@@ -1,0 +1,96 @@
+#!/usr/bin/env python3
+"""test_receipts.py — the lab's first verification pins.
+
+Dogfood of the fleet's FAIL-first doctrine: every pin here must be
+demonstrably RED on the state it guards against, before it can go green.
+Run: python -m unittest discover -s tests -v   (or: python tests/test_receipts.py)
+
+Pins:
+  1. queue/results consistency — every checked QUEUE item has at least
+     one RESULTS entry and vice versa (the cron loop can drift: a
+     check-off without a run, an append that missed the box).
+  2. every RESULTS entry names an experiment file that exists — a
+     verdict whose code left the repo is a claim no one can re-run.
+  3. receipts/manifest.json matches the working tree — digests are
+     re-derived, never trusted. Regenerate via tools/receipt_manifest.py.
+"""
+from __future__ import annotations
+
+import hashlib
+import json
+import re
+import sys
+import unittest
+from pathlib import Path
+
+LAB = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(LAB / "tools"))
+import receipt_manifest  # noqa: E402
+
+QUEUE = LAB / "QUEUE.md"
+RESULTS = LAB / "RESULTS.md"
+MANIFEST = LAB / "receipts" / "manifest.json"
+
+# Experiments legitimately run from outside this repo. Any entry here is
+# a DECLARED external — the pin still requires a RESULTS note naming it.
+DECLARED_EXTERNALS: frozenset[str] = frozenset()
+
+CHECKED_RE = re.compile(r"^- \[x\] (E[0-9]+[a-z]?)\s", re.M)
+UNCHECKED_RE = re.compile(r"^- \[ \] (E[0-9]+[a-z]?)\s", re.M)
+RESULTS_H_RE = re.compile(r"^## (E[0-9]+[a-z]?)\b", re.M)
+
+
+def queue_ids(text: str) -> tuple[set[str], set[str]]:
+    return set(CHECKED_RE.findall(text)), set(UNCHECKED_RE.findall(text))
+
+
+def results_ids(text: str) -> list[str]:
+    return RESULTS_H_RE.findall(text)
+
+
+class QueueResultsConsistency(unittest.TestCase):
+    def test_checked_items_have_results(self):
+        checked, _ = queue_ids(QUEUE.read_text())
+        have = set(results_ids(RESULTS.read_text()))
+        missing = checked - have
+        self.assertEqual(missing, set(),
+                         f"QUEUE items checked but no RESULTS entry: {sorted(missing)}")
+
+    def test_results_have_checked_queue_items(self):
+        checked, _ = queue_ids(QUEUE.read_text())
+        for rid in results_ids(RESULTS.read_text()):
+            self.assertIn(rid, checked,
+                          f"RESULTS entry {rid} has no checked QUEUE item — "
+                          "the run was never claimed")
+
+
+class ExperimentFilesExist(unittest.TestCase):
+    def test_every_result_entry_has_a_file(self):
+        for rid in set(results_ids(RESULTS.read_text())):
+            if rid in DECLARED_EXTERNALS:
+                continue
+            slug = rid[1:].lower()  # E2b -> e2b (the file prefix drops the E)
+            pat = f"e{slug}_*.py"
+            hits = list((LAB / "experiments").glob(pat))
+            self.assertTrue(hits,
+                            f"RESULTS entry {rid} has no experiments/{pat} — "
+                            "a verdict whose code left the repo cannot be re-run")
+
+
+class ReceiptManifestMatches(unittest.TestCase):
+    def test_manifest_matches_working_tree(self):
+        self.assertTrue(MANIFEST.exists(),
+                        "receipts/manifest.json missing — regenerate via "
+                        "python tools/receipt_manifest.py and commit it WITH your change")
+        on_disk = json.loads(MANIFEST.read_text())
+        live = receipt_manifest.build()
+        for ledger, digest in live["ledgers"].items():
+            self.assertEqual(on_disk["ledgers"].get(ledger), digest,
+                             f"{ledger} drifted from the sealed digest — regenerate "
+                             "the manifest (tools/receipt_manifest.py), never edit it by hand")
+        self.assertEqual(on_disk.get("experiments"), live["experiments"],
+                         "experiment digests drifted — regenerate the manifest")
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)
