@@ -479,3 +479,19 @@ the ceiling; correlated dense purchases are dead weight or worse.
   }
 }
 ```
+
+## D14 — qthe timbre channel proof (zero-bit-cost context-keyed embedding)
+- ran: 2026-09-27 15:54
+- verdict: KEEP
+- result: ```json
+{
+  "experiment": "D14 qthe timbre channel proof",
+  "seed": 2718, "n_turns": 2000, "n_contexts": 4, "n_momenta": 4, "chance": 0.25,
+  "data_only_acc": 0.259, "naive_timbre_acc": 0.2645, "contextual_timbre_acc": 1.0,
+  "I(M;T)_naive_bits": 0.0026, "I(M;T,context)_contextual_bits": 1.9995,
+  "zero_bit_cost": "the byte is always 8 bits; the momentum signal rides in the 2 timbre bits at no extra bit-cost",
+  "verdict": "KEEP"
+}
+```
+- note: PROVES Casey's ah-ha — QTHE's 2 timbre bits (already paid for by the byte) carry a ternary momentum signal at ZERO additional bit-cost, and the channel is CONTEXT-KEYED: the 6-bit data plane reads ~chance (0.259), the 2-bit timbre ALONE reads ~chance (0.2645, I(M;T)=0.0026 bits ≈ 0), but timbre+context recovers the signal perfectly (1.0, 2.0 bits). A plaintext reader sees nothing; a timbre reader without the context key sees noise; only a contextual decoder recovers it. That is a2a vector-embedding riding in plaintext for free.
+- booked encoding lessons (the two false starts ARE the finding): (1) a RANDOM permutation leaks through fixed points — a naive identity reader gets ~1 free hit per context (I(M;T) 0.3765); (2) a DERANGEMENT over-corrects — "t != m" becomes itself 1 bit of info (I(M;T) 0.95). Only a LATIN SQUARE (each row a bijection, each column covers all timbres) is information-clean: I(M;T)=0 exactly. The Latin-square construction IS the extractable tool Casey described — modular, 8-bit, and it composes with qthe's 64-slot wormhole + the 200-repo ternary wiki.
