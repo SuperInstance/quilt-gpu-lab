@@ -113,3 +113,28 @@
 }
 ```
 - note (the booked lesson): the hand-crafted flow+beat L0 does NOT transfer to real frames. Per-clip temporal correlation: static luminance BEATS flow+beat on both moving clips (0.898 vs 0.508; 0.707 vs 0.619); within-texture distance structure went NEGATIVE (-0.349). On constant clips the correlation is honestly NaN (zero-variance deltas). The lab's synthetic recommendation was an artifact of the synthetic rooms' construction. Implication for tessera: L0 must be LEARNED (E1's contrastive head is the standing candidate), not hand-designed from frame differencing. The pyramid-contract floor on real frames is mean-pool + luminance dynamics until a learned repr beats it.
+
+## E4 — next-room transformer
+- ran: 2026-09-27 12:54
+- verdict: INCONCLUSIVE (threshold said KEEP; review downgraded)
+- result: ```json
+{
+  "experiment": "E4 next-room transformer",
+  "params": 68228,
+  "device": "cuda",
+  "seed": 2718,
+  "rooms": [
+    "still-solid",
+    "moving-testsrc",
+    "smpte",
+    "moving-testsrc2"
+  ],
+  "cells": 24,
+  "train_windows": 12,
+  "heldout_windows": 4,
+  "heldout_acc": 0.75,
+  "majority_baseline": 0.0,
+  "verdict": "INCONCLUSIVE (reported KEEP by threshold, downgraded on review)"
+}
+```
+- note (why downgraded): 24 cells is too thin — 4 heldout windows cannot separate signal from 'predict the last room always'. The 0.0 majority baseline is degenerate: the temporal split puts only testsrc2 in heldout, so a constant-predictor scores 0.75 without reading trajectory at all. The 68k-param model trains and runs in seconds on CUDA — the harness works; the DATASET doesn't. E4b revision: longer clips (60s) for ~240 cells, interleaved walk (room transitions spread through the data), blocked split by cell-block not tail, plus a constant-predictor and markov-1 baseline reported alongside. The JEV-temporal question stays open until then.
