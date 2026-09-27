@@ -1,0 +1,9 @@
+# QUEUE — the chip's standing worklist. Runner claims the first unchecked item.
+
+- [x] E1 real-glyph-contrast (2026-09-27 KEEP) — real ffmpeg frames through elephant's contrastive encoder, heldout separation vs untrained baseline
+- [x] E2 flow-beat-vs-pool (2026-09-27 INCONCLUSIVE) — 40x20 flow+beat L0 tokens vs mean-pool floor on real frames (pyramid-contract test)
+- [ ] E3 cast-heldout control — elephant's full vmf pipeline on real frames with cast-heldout split (does separation survive unseen content?)
+- [ ] E4 next-room transformer — <2M-param model predicting next-room from room-history over glyph-cell logs (JEV-temporal probe, 10 min budget)
+- [ ] E5 quantization probe — int8 vs fp16 embedding drift: does room-sense survive quantization for portable deployment?
+- [ ] E6 harness self-test — guard breach paths, torn-queue resilience, results append integrity
+- [ ] E2b flow-beat-revision — per-clip temporal-delta correlation only + within-texture clip pair (two moving sources); E2's cross-clip pairing conflated static-content distance with the temperature axis
