@@ -34,9 +34,12 @@ Any crash: prints ONE JSON with verdict ABORTED, exit 0 (failures are data).
 SMOKE (default):  Qwen/Qwen2.5-0.5B-Instruct, 4-bit NF4, 2 optimizer steps
 (batch 1 x accum 4) on 8 synthetic probes, eval base-vs-tuned on 20 held-out
 probes. If the 4-bit load fails: fp16 fallback, and the JSON says so.
-FULL (D4_FULL=1): Qwen/Qwen2.5-1.5B-Instruct, same adapter spec, 2 epochs
-over the full foundry pool (55 submissions -> 660 probes; swap in the D5
-dataset when it lands), ~60 held-out probes, ~1 h scale on the RTX 4050.
+FULL (D4_FULL=1): Qwen/Qwen2.5-1.5B-Instruct, same adapter spec, 2 epochs.
+Data: D5 probes.jsonl (deduped, content-addressed) when present, split by
+sha256 parity (D5's hash-split discipline); falls back to the synthetic
+foundry (55 submissions -> 660 probes). ~60 held-out probes, ~1 h scale on
+the RTX 4050. D4_DATA=d5|synthetic forces the source (default: d5 in full,
+synthetic in smoke).
 """
 from __future__ import annotations
 
@@ -250,6 +253,36 @@ TARGET_MODULES = {
 }
 
 
+def build_d5_split(n_held: int) -> tuple[list[dict], list[dict]] | None:
+    """D5 foundry rows (probes.jsonl) -> canon-reader examples.
+
+    claim/evidence pair -> 'does the EVIDENCE support the CLAIM?'; gold yes
+    iff label canon. Split by sha256 parity — deterministic, seed-independent
+    (D5's own hash-split discipline). Eval half label-stratified. Returns
+    None when the dataset is absent or too thin to be worth a full run.
+    """
+    path = LAB / "probes.jsonl"
+    if not path.exists():
+        return None
+    rows = [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
+    if len(rows) < 40:
+        return None
+    held: list[dict] = []
+    train: list[dict] = []
+    for r in rows:
+        ex = {"item_id": r["sha256"][:16], "probe": f"d5_{r['kind']}",
+              "question": "Does the EVIDENCE support the CLAIM? "
+                          "Answer with exactly one word: yes or no.",
+              "submission": f"CLAIM: {r['claim']}\nEVIDENCE: {r['evidence']}",
+              "gold": "yes" if r["label"] == "canon" else "no",
+              "family": r["kind"]}
+        (held if int(r["sha256"], 16) % 2 else train).append(ex)
+    rng2 = random.Random(SEED * 7 + 1)  # separate stream; foundry rng untouched
+    rng2.shuffle(held)
+    rng2.shuffle(train)
+    return train, _stratified_sample(held, min(n_held, len(held)), rng2)
+
+
 def target_modules_for(model_type: str) -> list[str]:
     for key, mods in TARGET_MODULES.items():
         if key in model_type.lower():
@@ -441,16 +474,26 @@ def main() -> dict:
                         "device": dev, "seed": seed, "verdict": "ABORTED",
                         "reason": breach, "guard": {"free_mib": gv[0], "temp_c": gv[1]}}, mode)
 
-    # --- probe foundry + split (submission-level, seed-pinned) ------------
-    items = build_items(rng)
-    rng.shuffle(items)
+    # --- probe data: D5 dataset (hash-split) when present, else foundry ---
     n_held = FULL_HELDOUT if mode == "full" else SMOKE_HELDOUT
-    held_items, train_items = split_items(rng, items, max(2, n_held // 3))
-    # item counts: heldout ~6 items smoke / 20 items full -> 20 / 60 probe examples
-    n_eval = min(n_held, len(held_items) * len(PROBES))
-    n_train = SMOKE_TRAIN_EXAMPLES if mode == "smoke" else None
     accum = GRAD_ACCUM if mode == "smoke" else 8  # full recipe: eff batch 8
-    train_ex, held_ex = build_examples(rng, held_items, n_eval, train_items, n_train)
+    use_d5 = os.environ.get("D4_DATA", "d5" if mode == "full" else "synthetic") == "d5"
+    d5 = build_d5_split(n_held) if use_d5 else None
+    items = build_items(rng)  # synthetic foundry: smoke data + pool stats
+    rng.shuffle(items)
+    if d5:
+        train_ex, held_ex = d5
+        data_source = ("D5 probes.jsonl (content-addressed, sha256-parity "
+                       "split, label-stratified eval)")
+        if mode == "smoke":
+            train_ex = train_ex[:SMOKE_TRAIN_EXAMPLES]
+    else:
+        data_source = "synthetic foundry (jev_oracle canon battery templates)"
+        held_items, train_items = split_items(rng, items, max(2, n_held // 3))
+        # item counts: heldout ~6 items smoke / 20 items full -> 20 / 60 probe examples
+        n_eval = min(n_held, len(held_items) * len(PROBES))
+        n_train = SMOKE_TRAIN_EXAMPLES if mode == "smoke" else None
+        train_ex, held_ex = build_examples(rng, held_items, n_eval, train_items, n_train)
     if mode == "smoke":
         steps = SMOKE_STEPS
     else:  # 2 epochs over the full train pool, expressed as optimizer steps
@@ -504,7 +547,7 @@ def main() -> dict:
                                                                getattr(base.config, "model_type", ""))),
                   "grad_checkpointing": True, "batch": 1, "grad_accum": accum,
                   "seq_max": MAX_SEQ, "lr": LR, "optimizer_steps": steps},
-        "data": {"pool_items": len(items), "train_examples": len(train_ex),
+        "data": {"source": data_source, "pool_items": len(items), "train_examples": len(train_ex),
                  "heldout_examples": len(held_ex),
                  "heldout_gold_yes": sum(1 for e in held_ex if e["gold"] == "yes"),
                  "heldout_gold_no": sum(1 for e in held_ex if e["gold"] == "no"),
@@ -527,9 +570,11 @@ def main() -> dict:
             "not the hypothesis test. FULL-SCALE RECIPE (D4_FULL=1): model "
             f"{FULL_MODEL}; 4-bit NF4 double-quant + LoRA r={LORA_R} alpha={LORA_ALPHA} dropout="
             f"{LORA_DROPOUT} on q/k/v/o/gate/up/down; grad checkpointing (use_reentrant=False); "
-            "batch 1 x grad-accum 8; seq<=1024; lr 2e-4 AdamW; 2 epochs over the full foundry "
-            f"pool ({len(items)} submissions -> {len(train_ex) + len(held_ex)}+ probes here; "
-            "production target = D5 dataset, few thousand); eval on "
+            "batch 1 x grad-accum 8; seq<=1024; lr 2e-4 AdamW; 2 epochs; data source "
+            f"this pass: {data_source}; synthetic fallback pool = {len(items)} submissions "
+            f"x {len(PROBES)} probes = {len(items) * len(PROBES)} probes; this pass used "
+            f"{len(train_ex)} train + {len(held_ex)} held-out; D5's recipe scales to "
+            "thousands. Eval on "
             "~60 held-out probes + spot-agreement vs cloud oracle if a key is present. "
             "Expected VRAM ~4-4.5 GB peak (0.5B smoke measured above), ~1 h wall on the "
             "RTX 4050 6 GB. Voice probes need real Fleet-Radio prose (jev-quilt essays). "

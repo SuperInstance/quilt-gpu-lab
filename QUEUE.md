@@ -21,3 +21,4 @@
 - [x] D7 quant-drift probe — fp16/int8/NF4 reader portability — 2026-09-27 KEEP
 - [x] D5 probe foundry — seeded canon/distortion triples, content-addressed, hash-split — 2026-09-27 KEEP
 - [x] D10 cudaclaw cell kernel — n-qubit cell + ternary passband — 2026-09-27 KEEP
+- [x] D4 canon-lora (smoke INCONCLUSIVE; full-scale recipe ready) — 2026-09-27 INCONCLUSIVE

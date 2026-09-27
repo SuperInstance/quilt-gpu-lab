@@ -1,0 +1,97 @@
+{
+  "experiment": "D4 canon-lora (QLoRA local canon reader)",
+  "mode": "smoke",
+  "device": "cuda",
+  "seed": 2718,
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "quant": "nf4-4bit",
+  "quant_note": "4-bit NF4 double-quant, bf16 compute",
+  "qlora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "grad_checkpointing": true,
+    "batch": 1,
+    "grad_accum": 4,
+    "seq_max": 1024,
+    "lr": 0.0002,
+    "optimizer_steps": 2
+  },
+  "data": {
+    "pool_items": 55,
+    "train_examples": 8,
+    "heldout_examples": 20,
+    "heldout_gold_yes": 6,
+    "heldout_gold_no": 14,
+    "split": "by submission item, then exploded to probes; no submission in both sides",
+    "source": "synthetic foundry (jev_oracle canon battery templates)"
+  },
+  "base_eval": {
+    "n": 20,
+    "acc": 0.75,
+    "parse_rate": 1.0,
+    "seconds": 4.6,
+    "per_family": {
+      "alignment": 0.3333,
+      "doctrine": 1.0,
+      "misquote": 0.75,
+      "substance": 0.5
+    },
+    "per_family_n": {
+      "alignment": 3,
+      "doctrine": 7,
+      "misquote": 8,
+      "substance": 2
+    }
+  },
+  "tuned_eval": {
+    "n": 20,
+    "acc": 0.7,
+    "parse_rate": 1.0,
+    "seconds": 1.9,
+    "per_family": {
+      "alignment": 0.3333,
+      "doctrine": 0.8571,
+      "misquote": 0.75,
+      "substance": 0.5
+    },
+    "per_family_n": {
+      "alignment": 3,
+      "doctrine": 7,
+      "misquote": 8,
+      "substance": 2
+    }
+  },
+  "margin": -0.05,
+  "preregistered_margin": 0.15,
+  "train": {
+    "steps": 2,
+    "losses": [
+      0.172,
+      0.017
+    ],
+    "trainable_params": 8798208,
+    "seconds": 2.6
+  },
+  "adapter_path": "/home/eileen/projects/quilt-gpu-lab/results/d4_adapter_smoke",
+  "peak_vram_mib": 1024.2,
+  "wall_seconds": 506.4,
+  "versions": {
+    "torch": "2.14.0+cu126",
+    "transformers": "5.17.0",
+    "peft": "0.21.0",
+    "bitsandbytes": "0.50.2"
+  },
+  "verdict": "INCONCLUSIVE",
+  "reason": "smoke pass: pipeline proof only (2 steps, 8 train probes, 20 held-out); the KEEP/KILL gate (|0.15|) is full-scale",
+  "note": "SMOKE numbers above are pipeline proof on a 0.5B proxy (2 optimizer steps), not the hypothesis test. FULL-SCALE RECIPE (D4_FULL=1): model Qwen/Qwen2.5-1.5B-Instruct; 4-bit NF4 double-quant + LoRA r=16 alpha=32 dropout=0.05 on q/k/v/o/gate/up/down; grad checkpointing (use_reentrant=False); batch 1 x grad-accum 8; seq<=1024; lr 2e-4 AdamW; 2 epochs over the full foundry pool (55 submissions x 12 probes = 660 probes; this pass used 8 train + 20 held-out; production data = D5 probes.jsonl (215 rows, auto-used by D4_FULL=1: sha256-parity split -> 98 train / 60 stratified held-out); eval on ~60 held-out probes + spot-agreement vs cloud oracle if a key is present. Expected VRAM ~4-4.5 GB peak (0.5B smoke measured above), ~1 h wall on the RTX 4050 6 GB. Voice probes need real Fleet-Radio prose (jev-quilt essays). Other lanes contend: preflight floor 1024 MiB free / 80 C; run via runner.py guard."
+}

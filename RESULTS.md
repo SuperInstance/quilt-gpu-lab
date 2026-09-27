@@ -446,3 +446,19 @@ the ceiling; correlated dense purchases are dead weight or worse.
 }
 ```
 - note: a quilt cell whose memory is an n-qubit statevector and whose edge is ternary-quantized (never raw amplitude). Determinism PASS (byte-identical state hash across two seeded runs); reconstruction PASS (ternary message = sign of dominant correlation); 2-cell relational smoke PASS (biased cell A emits +1, balanced cell B shifts 0->1 in the received direction). Booked bugs: X applied to an already-uniform qubit does nothing (bias qubit must be set definite before the H loop); a phase-only RZ message cannot move probabilities (must RX). This is D13's substrate in miniature.
+
+## D4 — canon-lora (QLoRA local canon reader)
+- ran: 2026-09-27 15:43
+- verdict: INCONCLUSIVE
+- result: ```json
+{
+  "experiment": "D4 canon-lora (QLoRA local canon reader)",
+  "mode": "smoke", "seed": 2718, "model": "Qwen/Qwen2.5-0.5B-Instruct", "quant": "nf4-4bit",
+  "base_acc": 0.75, "tuned_acc": 0.7,
+  "margin": -0.05, "preregistered_margin": 0.15,
+  "peak_vram_mib": 1024.2, "wall_seconds": 506.4,
+  "verdict": "INCONCLUSIVE"
+}
+```
+- note: SMOKE pass proves the pipeline — 4-bit NF4 load WORKED on Qwen2.5-0.5B (no fp16 fallback), 2 optimizer steps, base 0.750 vs tuned 0.700 (margin -0.05, INCONCLUSIVE by design — a 2-step run can't KEEP/KILL). Full-scale recipe in results/d4_eval.json: D4_FULL=1 -> Qwen2.5-1.5B-Instruct, 2 epochs over D5 probes (98 train / 60 held-out, sha256-parity split), ~4-4.5 GB peak, ~1h wall, KEEP iff tuned >= base + 0.15. Adapter (8.8M params, 34MB) at results/d4_adapter_smoke/.
+
