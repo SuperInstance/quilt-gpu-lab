@@ -462,3 +462,20 @@ the ceiling; correlated dense purchases are dead weight or worse.
 ```
 - note: SMOKE pass proves the pipeline — 4-bit NF4 load WORKED on Qwen2.5-0.5B (no fp16 fallback), 2 optimizer steps, base 0.750 vs tuned 0.700 (margin -0.05, INCONCLUSIVE by design — a 2-step run can't KEEP/KILL). Full-scale recipe in results/d4_eval.json: D4_FULL=1 -> Qwen2.5-1.5B-Instruct, 2 epochs over D5 probes (98 train / 60 held-out, sha256-parity split), ~4-4.5 GB peak, ~1h wall, KEEP iff tuned >= base + 0.15. Adapter (8.8M params, 34MB) at results/d4_adapter_smoke/.
 
+
+## E9 — ijepa stills — I-JEPA ViT-B (facebookresearch/ijepa) on still frames through the same cell contract; does a still-image world model read rooms differently than video V-JEPA 2?
+- ran: 2026-09-27 15:45
+- verdict: ABORTED
+- result: ```json
+{
+  "experiment": "E9",
+  "facebook/ijepa_vitb": "load failed: OSError: facebook/ijepa_vitb is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'\nIf this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your",
+  "guard_summary": {
+    "samples": 243,
+    "min_free_vram_mib": 4104,
+    "max_temp_c": 61,
+    "breach": null,
+    "timed_out": false
+  }
+}
+```
