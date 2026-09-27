@@ -1,14 +1,14 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-09-27T23:09:09.171584+00:00",
+  "generated_at": "2026-09-27T23:14:02.568732+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "b30c5407acac3fcbbcd71f052ad0b4710eb664fbbb94a4ef296a536ba134e743",
+    "RESULTS.md": "bfa53fe3e0d32d4e62821cc3df1aa821d4dbaa8ba822a72d4ce74450fbc39d4e",
     "QUEUE.md": "fc940af955762f5a7a13aeed86e686e84efd4d9d3d694aa9f195e0794e7a5400"
   },
   "experiments": {
     "common.py": "af08f672c78f4934e69fb0e240f22928ff3e65a9848ca9a55a8d07293b69db33",
-    "d1_look_again_scale.py": "fd70bc737706dccee02932dd40b2425d7b0b474f5c131ed2faa2c760aa8f795f",
+    "d1_look_again_scale.py": "0ecfd28cd4f3b559c1868f16a0d92b5f1dd605211e2ae63a4f304ff329f99cc6",
     "d2_ternary_kernel.py": "a10ad0cac866e05559a75f050a58c83f80da0e2916625fe1432e991137cf9d4f",
     "d3_statevector_ceiling.py": "caa75c73a01162950cbfb7604c05510bedf80df6fc0c0c2a71714a763dad8d24",
     "d6_fun_scorer.py": "4e8187c23910be71398c8aa78fc85daf0d761e2718d422b1f6b703d58981fa76",

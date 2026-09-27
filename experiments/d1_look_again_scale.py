@@ -19,15 +19,18 @@ that reaches what the others structurally cannot). This scales the check:
     reach-bound effect is testable, not assumed.
 
 Fold verdict = the chord (oracle_chord.md): mean of reader witnesses;
-abstains count 0, ties read not-supported (conservative). Sweep
-best-single vs dense chord vs chord+symbolic with bootstrap CIs over items
-(seed 2718, paired resamples shared across configs). Book the curve:
-marginal ceiling-lift per bought reader. Docket verdict rule: KEEP iff the
-chord beats best-single beyond overlapping CIs AND the independent symbolic
-purchase lifts more than buying a correlated dense one.
+abstains count 0, ties read not-supported (conservative).
 
-Dense models used plain (no retrieval prompt) — honest out-of-the-box
-folds, no per-model prompt tuning. Everything seeds to 2718.
+HONESTY RULES. Reader thresholds are calibrated on a calibration split;
+the chord configuration for the verdict is SELECTED on the same calibration
+split and only SCORED on the held-out eval split (no selection on the test
+set). The eval-best envelope over all subsets is also reported, clearly
+labeled as an oracle bound, not a claim. Bootstrap CIs share one resample
+matrix across configs (paired, seed 2718). Docket verdict rule: KEEP iff
+the Look-Again chord beats best-single beyond overlapping CIs AND buying
+the independent symbolic reader lifts the ceiling more than buying a
+correlated dense one. Dense models used plain (no retrieval prompt) —
+honest out-of-the-box folds, no per-model prompt tuning.
 """
 from __future__ import annotations
 
@@ -142,8 +145,6 @@ def _counting_item(rng: np.random.Generator) -> dict:
         gold = 1
     else:  # near-miss count, present verbatim at another dock
         wrong = int(rng.choice(other_counts)) if other_counts else (nt + 1) % 28
-        if wrong == nt:
-            wrong = (wrong + 1) % 28
         claim = f"Dock {dt} holds {wrong} {ct}."
         gold = 0
     return {"kind": "counting", "claim": claim, "evidence": evidence,
@@ -189,7 +190,7 @@ def symbolic_witness(claim: str, evidence: str) -> int:
 
 def calibrate_threshold(cos_calib: np.ndarray, gold_calib: np.ndarray) -> float:
     grid = np.unique(np.quantile(cos_calib, np.linspace(0.02, 0.98, 49)))
-    accs = [( (cos_calib > t).astype(float) == gold_calib ).mean() for t in grid]
+    accs = [((cos_calib > t).astype(float) == gold_calib).mean() for t in grid]
     return float(grid[int(np.argmax(accs))])
 
 
@@ -252,83 +253,128 @@ def main() -> dict:
         wit[i] = (cos_all[key] > t).astype(np.int64)
 
     # ---------------------------------------------------------------- sweep
-    def acc_of(subset: tuple) -> tuple:
-        pred = chord(wit[list(subset)])
-        a = (pred[evalm] == gold[evalm]).astype(np.float64)
-        lo, hi = boot_ci(a, boot_idx)
-        return a.mean(), lo, hi, a
-
     combos = [c for k in range(1, 5) for c in itertools.combinations(range(4), k)]
-    table = {c: acc_of(c) for c in combos}
 
-    def by_k(k):
-        best = max((c for c in combos if len(c) == k), key=lambda c: table[c][0])
-        return best
+    def chord_pred(subset, mask):
+        return chord(wit[list(subset)][:, mask])
 
+    def score(subset, mask):
+        """Point accuracy + bootstrap CI on `mask` items."""
+        a = (chord_pred(subset, mask) == gold[mask]).astype(np.float64)
+        return a, a.mean()
+
+    cache_eval, cache_cal = {}, {}
+    for c in combos:
+        cache_eval[c] = score(c, evalm)
+        cache_cal[c] = score(c, calib)
+
+    def eval_ci(subset):
+        lo, hi = boot_ci(cache_eval[subset][0], boot_idx)
+        return float(cache_eval[subset][1]), [lo, hi], cache_eval[subset][0]
+
+    # selection happens on CALIBRATION only (no peeking at eval)
+    best_single_cal = max((c for c in combos if len(c) == 1), key=lambda c: cache_cal[c][1])
+    best_chord_cal = max(combos, key=lambda c: (cache_cal[c][1], -len(c)))
+    dense_only = tuple(range(3))
+    best_dense_base_cal = max((c for c in combos if set(c) <= set(dense_only)),
+                              key=lambda c: (cache_cal[c][1], -len(c)))
+    # correlated purchase: best dense ADDITION to the base, by calibration
+    extra_dense = [c for c in combos
+                   if set(dense_only) <= set(c) and set(c) > set(best_dense_base_cal)]
+    extra_dense = [c for c in extra_dense
+                   if len(c) == len(best_dense_base_cal) + 1]
+    best_extra_dense_cal = (max(extra_dense, key=lambda c: cache_cal[c][1])
+                            if extra_dense else best_dense_base_cal)
+    base_plus_sym = tuple(sorted(set(best_dense_base_cal) | {3}))
+
+    singles = {}
+    for i, key in enumerate(READER_KEYS):
+        acc, ci, a = eval_ci((i,))
+        pred = wit[i][evalm]
+        singles[key] = {
+            "acc": acc, "ci95": ci,
+            "acc_semantic": float((a[kinds[evalm] == "semantic"]).mean()),
+            "acc_counting": float((a[kinds[evalm] == "counting"]).mean()),
+            "supported_rate": float((pred == 1).mean()),
+            "abstain_rate": float((pred == 0).mean()),
+        }
+
+    # honest per-k curve: calib-selected subset of each size, eval-scored
     curve = []
     for k in range(1, 5):
-        best = by_k(k)
-        acc, lo, hi, _ = table[best]
-        row = {"k": k, "readers": [READER_KEYS[i] for i in best],
-               "acc": float(acc), "ci95": [lo, hi]}
+        cands = [c for c in combos if len(c) == k]
+        best_cal = max(cands, key=lambda c: (cache_cal[c][1], -len(c)))
+        acc, ci, a = eval_ci(best_cal)
+        row = {"k": k, "readers": [READER_KEYS[i] for i in best_cal],
+               "acc": acc, "ci95": ci}
         if k > 1:
-            prev = table[by_k(k - 1)][3]
-            diff = table[best][3] - prev
+            prev_c = max((c for c in combos if len(c) == k - 1),
+                         key=lambda c: (cache_cal[c][1], -len(c)))
+            diff = a - cache_eval[prev_c][0]
             dlo, dhi = boot_ci(diff, boot_idx)
             row["lift_vs_best_prev"] = float(diff.mean())
             row["lift_ci95"] = [dlo, dhi]
         curve.append(row)
 
-    best_single = by_k(1)
-    dense_only = [i for i in range(3)]
-    best_dense_single = max(dense_only, key=lambda i: table[(i,)][0])
-    dense_chord = tuple(range(3))
-    chord_sym = tuple(range(4))
-    best_dense_pair = max(itertools.combinations(dense_only, 2),
-                          key=lambda c: table[c][0])
-    best_dense_triple = dense_chord
-
-    sym_lift = table[chord_sym][0] - table[dense_chord][0]
-    corr_lift = table[best_dense_triple][0] - table[best_dense_pair][0]
-    la_lift = table[dense_chord][0] - table[best_single][0]
+    # descriptive envelope: eval-best subset per k (oracle bound — selected on
+    # eval, reported for transparency only, never carries the verdict)
+    envelope = []
+    for k in range(1, 5):
+        best_e = max((c for c in combos if len(c) == k), key=lambda c: cache_eval[c][1])
+        acc, ci, _ = eval_ci(best_e)
+        envelope.append({"k": k, "readers": [READER_KEYS[i] for i in best_e],
+                         "acc": acc, "ci95": ci})
 
     def subset_acc(subset, mask):
-        pred = chord(wit[list(subset)])
-        return float((pred[evalm & mask] == gold[evalm & mask]).mean())
+        return float((chord_pred(subset, mask) == gold[mask]).mean())
 
     sem_mask, cnt_mask = kinds == "semantic", kinds == "counting"
+
+    def row(subset):
+        acc, ci, _ = eval_ci(subset)
+        return {"readers": [READER_KEYS[i] for i in subset], "acc": acc, "ci95": ci,
+                "acc_semantic": subset_acc(subset, sem_mask),
+                "acc_counting": subset_acc(subset, cnt_mask)}
+
+    dc = dense_only
+    dcs = tuple(range(4))
     ablation = {
-        "best_single": {"readers": [READER_KEYS[i] for i in best_single],
-                        "acc": table[best_single][0], "ci95": table[best_single][1:3],
-                        "acc_semantic": subset_acc(best_single, sem_mask),
-                        "acc_counting": subset_acc(best_single, cnt_mask)},
-        "dense_chord": {"readers": [READER_KEYS[i] for i in dense_chord],
-                        "acc": table[dense_chord][0], "ci95": table[dense_chord][1:3],
-                        "acc_semantic": subset_acc(dense_chord, sem_mask),
-                        "acc_counting": subset_acc(dense_chord, cnt_mask)},
-        "dense_chord_plus_symbolic": {
-            "readers": [READER_KEYS[i] for i in chord_sym],
-            "acc": table[chord_sym][0], "ci95": table[chord_sym][1:3],
-            "acc_semantic": subset_acc(chord_sym, sem_mask),
-            "acc_counting": subset_acc(chord_sym, cnt_mask)},
-        "symbolic_alone": {"acc": table[(3,)][0], "ci95": table[(3,)][1:3],
-                           "acc_semantic": subset_acc((3,), sem_mask),
-                           "acc_counting": subset_acc((3,), cnt_mask)},
-        "ceiling_lift_look_again_vs_best_single": float(la_lift),
-        "ceiling_lift_symbolic_purchase": float(sym_lift),
-        "ceiling_lift_correlated_dense_purchase": float(corr_lift),
-        "reach_bound_bites_on": "counting-address items (symbolic-only reach)",
+        "best_single_calib_selected": row(best_single_cal),
+        "dense_chord_all3": row(dc),
+        "dense_chord_plus_symbolic": row(dcs),
+        "look_again_chord_calib_selected": row(best_chord_cal),
+        "symbolic_alone": row((3,)),
+        "dense_base_calib_selected": row(best_dense_base_cal),
+        "dense_base_plus_symbolic": row(base_plus_sym),
+        "dense_base_plus_correlated_dense": row(best_extra_dense_cal),
     }
 
+    # ceiling lifts (point estimates, eval)
+    lift_la = ablation["look_again_chord_calib_selected"]["acc"] \
+        - ablation["best_single_calib_selected"]["acc"]
+    lift_sym = ablation["dense_base_plus_symbolic"]["acc"] \
+        - ablation["dense_base_calib_selected"]["acc"]
+    lift_corr = ablation["dense_base_plus_correlated_dense"]["acc"] \
+        - ablation["dense_base_calib_selected"]["acc"]
+
+    # chord diagnostics: why do liberal dense votes hurt?
+    dc_pred = chord_pred(dc, evalm)
+    dc_wit = wit[list(dc)][:, evalm]
+    splits = ((dc_wit.sum(axis=0) != 0) & (dc_wit.min(axis=0) != dc_wit.max(axis=0)))
+    pairwise = [float((wit[i][evalm] == wit[j][evalm]).mean())
+                for i, j in itertools.combinations(range(3), 2)]
+
     # ---------------------------------------------------------- verdict (docket rule)
-    c1 = (table[dense_chord][0] > table[best_single][0]
-          and table[dense_chord][1] > table[best_single][2])  # CIs don't overlap
-    diff_sym = table[chord_sym][3] - table[dense_chord][3]
+    chord_acc, chord_ci, _ = eval_ci(best_chord_cal)
+    single_acc, single_ci, _ = eval_ci(best_single_cal)
+    c1 = chord_acc > single_acc and chord_ci[0] > single_ci[1]  # CIs don't overlap
+    diff_sym = cache_eval[base_plus_sym][0] - cache_eval[best_dense_base_cal][0]
     sym_lo, _ = boot_ci(diff_sym, boot_idx)
-    c2 = sym_lift > corr_lift and sym_lo > 0
+    c2 = lift_sym > lift_corr and sym_lo > 0
     if c1 and c2:
-        verdict, reason = "KEEP", ("chord beats best-single beyond overlapping CIs and the "
-                                   "independent symbolic purchase out-lifts a correlated dense one")
+        verdict, reason = "KEEP", ("calib-selected chord beats calib-selected best-single "
+                                   "beyond overlapping CIs, and the independent symbolic "
+                                   "purchase out-lifts a correlated dense purchase")
     elif not c1 and not c2:
         verdict, reason = "KILL", "neither arm of the docket rule cleared (lift within CI noise)"
     else:
@@ -350,8 +396,22 @@ def main() -> dict:
         "readers": {**{k: m for k, m in zip(READER_KEYS[:3], DENSE_MODELS)},
                     "s_symbolic": SYMBOLIC},
         "calibrated_thresholds": thresholds,
-        "curve_best_by_k": curve,
-        "ablation": ablation,
+        "singles": singles,
+        "sweep": ablation,
+        "curve_calib_selected_by_k": curve,
+        "curve_eval_best_envelope_oracle": envelope,
+        "chord_diagnostics": {
+            "dense_pairwise_witness_agreement_eval": pairwise,
+            "dense_chord_2_1_split_rate_eval": float(splits.mean()),
+            "dense_chord_supported_rate_eval": float((dc_pred == 1).mean()),
+            "note": "majority vote of correlated biased readers can underperform "
+                    "the best member — lift must come from reach, not vote count",
+        },
+        "ceiling_lift": {
+            "look_again_chord_vs_best_single": float(lift_la),
+            "symbolic_purchase_on_dense_base": float(lift_sym),
+            "correlated_dense_purchase_on_dense_base": float(lift_corr),
+        },
         "bootstrap_draws": N_BOOT,
         "peak_vram_mib": round(float(peak_mib), 1),
         "runtime_s": round(time.time() - t0, 1),

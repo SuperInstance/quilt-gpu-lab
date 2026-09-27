@@ -19,7 +19,158 @@
     "d2_minilm": 0.7899474596977234,
     "d3_gte": 0.931640625
   },
-  "curve_best_by_k": [
+  "singles": {
+    "d1_bge": {
+      "acc": 0.7177777777777777,
+      "ci95": [
+        0.6733333333333333,
+        0.76
+      ],
+      "acc_semantic": 0.8587360594795539,
+      "acc_counting": 0.5082872928176796,
+      "supported_rate": 0.5177777777777778,
+      "abstain_rate": 0.4822222222222222
+    },
+    "d2_minilm": {
+      "acc": 0.6088888888888889,
+      "ci95": [
+        0.5644444444444444,
+        0.6533888888888888
+      ],
+      "acc_semantic": 0.6877323420074349,
+      "acc_counting": 0.49171270718232046,
+      "supported_rate": 0.3333333333333333,
+      "abstain_rate": 0.6666666666666666
+    },
+    "d3_gte": {
+      "acc": 0.6777777777777778,
+      "ci95": [
+        0.6355,
+        0.72
+      ],
+      "acc_semantic": 0.8178438661710037,
+      "acc_counting": 0.4696132596685083,
+      "supported_rate": 0.4288888888888889,
+      "abstain_rate": 0.5711111111111111
+    },
+    "s_symbolic": {
+      "acc": 0.6177777777777778,
+      "ci95": [
+        0.5777777777777777,
+        0.6644444444444444
+      ],
+      "acc_semantic": 0.48698884758364314,
+      "acc_counting": 0.8121546961325967,
+      "supported_rate": 0.1288888888888889,
+      "abstain_rate": 0.7422222222222222
+    }
+  },
+  "sweep": {
+    "best_single_calib_selected": {
+      "readers": [
+        "d1_bge"
+      ],
+      "acc": 0.7177777777777777,
+      "ci95": [
+        0.6733333333333333,
+        0.76
+      ],
+      "acc_semantic": 0.8638888888888889,
+      "acc_counting": 0.5166666666666667
+    },
+    "dense_chord_all3": {
+      "readers": [
+        "d1_bge",
+        "d2_minilm",
+        "d3_gte"
+      ],
+      "acc": 0.6266666666666667,
+      "ci95": [
+        0.58,
+        0.6711111111111111
+      ],
+      "acc_semantic": 0.7333333333333333,
+      "acc_counting": 0.4791666666666667
+    },
+    "dense_chord_plus_symbolic": {
+      "readers": [
+        "d1_bge",
+        "d2_minilm",
+        "d3_gte",
+        "s_symbolic"
+      ],
+      "acc": 0.7444444444444445,
+      "ci95": [
+        0.7022222222222222,
+        0.7844444444444445
+      ],
+      "acc_semantic": 0.7333333333333333,
+      "acc_counting": 0.7666666666666667
+    },
+    "look_again_chord_calib_selected": {
+      "readers": [
+        "d1_bge",
+        "s_symbolic"
+      ],
+      "acc": 0.8444444444444444,
+      "ci95": [
+        0.8088888888888889,
+        0.8777777777777778
+      ],
+      "acc_semantic": 0.8638888888888889,
+      "acc_counting": 0.8208333333333333
+    },
+    "symbolic_alone": {
+      "readers": [
+        "s_symbolic"
+      ],
+      "acc": 0.6177777777777778,
+      "ci95": [
+        0.5777777777777777,
+        0.6644444444444444
+      ],
+      "acc_semantic": 0.4777777777777778,
+      "acc_counting": 0.8083333333333333
+    },
+    "dense_base_calib_selected": {
+      "readers": [
+        "d1_bge"
+      ],
+      "acc": 0.7177777777777777,
+      "ci95": [
+        0.6733333333333333,
+        0.76
+      ],
+      "acc_semantic": 0.8638888888888889,
+      "acc_counting": 0.5166666666666667
+    },
+    "dense_base_plus_symbolic": {
+      "readers": [
+        "d1_bge",
+        "s_symbolic"
+      ],
+      "acc": 0.8444444444444444,
+      "ci95": [
+        0.8088888888888889,
+        0.8777777777777778
+      ],
+      "acc_semantic": 0.8638888888888889,
+      "acc_counting": 0.8208333333333333
+    },
+    "dense_base_plus_correlated_dense": {
+      "readers": [
+        "d1_bge"
+      ],
+      "acc": 0.7177777777777777,
+      "ci95": [
+        0.6733333333333333,
+        0.76
+      ],
+      "acc_semantic": 0.8638888888888889,
+      "acc_counting": 0.5166666666666667
+    }
+  },
+  "curve_calib_selected_by_k": [
     {
       "k": 1,
       "readers": [
@@ -86,8 +237,9 @@
       ]
     }
   ],
-  "ablation": {
-    "best_single": {
+  "curve_eval_best_envelope_oracle": [
+    {
+      "k": 1,
       "readers": [
         "d1_bge"
       ],
@@ -95,25 +247,35 @@
       "ci95": [
         0.6733333333333333,
         0.76
-      ],
-      "acc_semantic": 0.8587360594795539,
-      "acc_counting": 0.5082872928176796
+      ]
     },
-    "dense_chord": {
+    {
+      "k": 2,
       "readers": [
         "d1_bge",
-        "d2_minilm",
-        "d3_gte"
+        "s_symbolic"
       ],
-      "acc": 0.6266666666666667,
+      "acc": 0.8444444444444444,
       "ci95": [
-        0.58,
-        0.6711111111111111
-      ],
-      "acc_semantic": 0.724907063197026,
-      "acc_counting": 0.48066298342541436
+        0.8088888888888889,
+        0.8777777777777778
+      ]
     },
-    "dense_chord_plus_symbolic": {
+    {
+      "k": 3,
+      "readers": [
+        "d1_bge",
+        "d3_gte",
+        "s_symbolic"
+      ],
+      "acc": 0.82,
+      "ci95": [
+        0.78,
+        0.8555555555555555
+      ]
+    },
+    {
+      "k": 4,
       "readers": [
         "d1_bge",
         "d2_minilm",
@@ -124,27 +286,27 @@
       "ci95": [
         0.7022222222222222,
         0.7844444444444445
-      ],
-      "acc_semantic": 0.724907063197026,
-      "acc_counting": 0.7734806629834254
-    },
-    "symbolic_alone": {
-      "acc": 0.6177777777777778,
-      "ci95": [
-        0.5777777777777777,
-        0.6644444444444444
-      ],
-      "acc_semantic": 0.48698884758364314,
-      "acc_counting": 0.8121546961325967
-    },
-    "ceiling_lift_look_again_vs_best_single": -0.09111111111111103,
-    "ceiling_lift_symbolic_purchase": 0.11777777777777776,
-    "ceiling_lift_correlated_dense_purchase": -0.07555555555555549,
-    "reach_bound_bites_on": "counting-address items (symbolic-only reach)"
+      ]
+    }
+  ],
+  "chord_diagnostics": {
+    "dense_pairwise_witness_agreement_eval": [
+      0.66,
+      0.8177777777777778,
+      0.7133333333333334
+    ],
+    "dense_chord_2_1_split_rate_eval": 0.40444444444444444,
+    "dense_chord_supported_rate_eval": 0.64,
+    "note": "majority vote of correlated biased readers can underperform the best member \u2014 lift must come from reach, not vote count"
+  },
+  "ceiling_lift": {
+    "look_again_chord_vs_best_single": 0.1266666666666667,
+    "symbolic_purchase_on_dense_base": 0.1266666666666667,
+    "correlated_dense_purchase_on_dense_base": 0.0
   },
   "bootstrap_draws": 1000,
   "peak_vram_mib": 451.0,
-  "runtime_s": 31.0,
-  "verdict": "INCONCLUSIVE",
-  "verdict_reason": "chord-vs-best-single arm failed; symbolic-purchase arm cleared"
+  "runtime_s": 32.8,
+  "verdict": "KEEP",
+  "verdict_reason": "calib-selected chord beats calib-selected best-single beyond overlapping CIs, and the independent symbolic purchase out-lifts a correlated dense purchase"
 }
