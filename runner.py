@@ -16,7 +16,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-LAB = Path(__file__).resolve().parent.parent
+LAB = Path(__file__).resolve().parent
 sys.path.insert(0, str(LAB))
 from guard import Guard  # noqa: E402
 

@@ -55,3 +55,61 @@
   revision (E2b): per-clip temporal-delta correlation only + a
   within-texture clip pair (two moving sources). The naive
   cross-clip form: KILL. The design: unproven, not dead.
+
+## E3 — cast-heldout control
+- ran: 2026-09-27 12:51
+- verdict: KEEP
+- result: ```json
+{
+  "experiment": "E3 cast-heldout control",
+  "checks": {
+    "stability_still-solid": {
+      "d_mu": 0.0,
+      "real": false
+    },
+    "stability_moving-testsrc": {
+      "d_mu": 0.044,
+      "real": false
+    },
+    "separation_still->moving": {
+      "d_mu": 0.664,
+      "real": true
+    },
+    "separation_moving->still": {
+      "d_mu": 0.664,
+      "real": true
+    }
+  },
+  "kl_sym_heldout": 217.4,
+  "verdict": "KEEP",
+  "note": "fit on train-half windows (step-4 stride, 30 windows/clip), evaluate on heldout half. Stability: same-room gates not real (0.0 / 0.044). Separation: cross-room real both directions, d_mu 0.664 vs seed all-windows 0.628. Curiosity: moving-testsrc heldout kappa saturated to 500 (train 257.2) \u2014 the held-out half of testsrc (later seconds, larger gradient) reads 'quieter' geometry; booked, not alarmed. vmf_fit honestly returned None below NMIN on the first attempt \u2014 the honesty rule bit before the fix."
+}
+```
+
+## E2b — flow-beat-revision
+- ran: 2026-09-27 12:52
+- verdict: KILL
+- result: ```json
+{
+  "experiment": "E2b flow-beat-revision",
+  "per_clip": {
+    "still-solid": "NaN (constant clip \u2014 zero-variance delta, honestly undefined)",
+    "moving-testsrc": {
+      "flowbeat": 0.508,
+      "static_lum": 0.898
+    },
+    "smpte": "NaN (constant clip)",
+    "moving-testsrc2": {
+      "flowbeat": 0.619,
+      "static_lum": 0.707
+    }
+  },
+  "flowbeat_wins": 0,
+  "within_texture_testsrc_testsrc2": {
+    "glyph_vs_macropool_spearman": 0.642,
+    "glyph_vs_flowbeat_spearman": -0.349
+  },
+  "verdict": "KILL"
+}
+```
+- note (the booked lesson): the hand-crafted flow+beat L0 does NOT transfer to real frames. Per-clip temporal correlation: static luminance BEATS flow+beat on both moving clips (0.898 vs 0.508; 0.707 vs 0.619); within-texture distance structure went NEGATIVE (-0.349). On constant clips the correlation is honestly NaN (zero-variance deltas). The lab's synthetic recommendation was an artifact of the synthetic rooms' construction. Implication for tessera: L0 must be LEARNED (E1's contrastive head is the standing candidate), not hand-designed from frame differencing. The pyramid-contract floor on real frames is mean-pool + luminance dynamics until a learned repr beats it.
