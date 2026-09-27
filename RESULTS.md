@@ -190,3 +190,166 @@
   }
 }
 ```
+
+## D7 — quant-drift (portability probe)
+- ran: 2026-09-27 15:02
+- verdict: **KEEP**
+- result: ```json
+{
+  "experiment": "D7 quant-drift",
+  "device": "cuda",
+  "seed": 2718,
+  "model": "BAAI/bge-small-en-v1.5",
+  "max_seq_length": 64,
+  "probe": {
+    "n_unique_sentences": 254,
+    "n_cal_pairs": 60,
+    "n_probe_pairs": 240,
+    "balanced_labels": true
+  },
+  "calibration": {
+    "threshold_tau": 0.7184,
+    "fp16_mean_same_cos": 0.9226,
+    "fp16_mean_diff_cos": 0.5142,
+    "separation": 0.4084,
+    "protocol": "tau from fp16 cal split only, frozen for all precisions"
+  },
+  "flip_ceiling": 0.05,
+  "precisions": {
+    "fp32": {
+      "bits": 32,
+      "mean_cos_drift": 1.0001354217529297,
+      "min_cos_drift": 0.9995529651641846,
+      "mean_pair_sim_absdelta": 0.00020337113528512418,
+      "probe_flips": 0,
+      "flip_rate": 0.0
+    },
+    "fp16": {
+      "bits": 16,
+      "mean_cos_drift": 1.0002720355987549,
+      "min_cos_drift": 0.9991075992584229,
+      "mean_pair_sim_absdelta": 0.0,
+      "probe_flips": 0,
+      "flip_rate": 0.0
+    },
+    "int8": {
+      "bits": 8,
+      "mean_cos_drift": 0.9998080730438232,
+      "min_cos_drift": 0.9989901781082153,
+      "mean_pair_sim_absdelta": 0.0024867805186659098,
+      "probe_flips": 0,
+      "flip_rate": 0.0
+    },
+    "nf4": {
+      "bits": 4,
+      "mean_cos_drift": 0.9840461015701294,
+      "min_cos_drift": 0.9783671498298645,
+      "mean_pair_sim_absdelta": 0.01710696332156658,
+      "probe_flips": 0,
+      "flip_rate": 0.0
+    }
+  },
+  "smallest_viable_precision": "nf4",
+  "verdict": "KEEP",
+  "reason": "nf4 holds probe flip-rate 0.0000 < ceiling 0.05",
+  "loads": {
+    "fp32": {
+      "seconds": 7.97,
+      "dim": 384
+    },
+    "fp16": {
+      "seconds": 6.92,
+      "dim": 384
+    },
+    "int8": {
+      "seconds": 6.26,
+      "dim": 384
+    },
+    "nf4": {
+      "seconds": 6.1,
+      "dim": 384
+    }
+  },
+  "versions": {
+    "torch": "2.14.0+cu126",
+    "transformers": "5.17.0",
+    "sentence_transformers": "6.1.0",
+    "bitsandbytes": "0.50.2"
+  }
+}
+```
+- drift/flip table (probe pairs=240, tau=0.7184, ceiling=0.05):
+
+| precision | bits | mean cos drift vs fp16 | mean pair-sim abs-delta | probe flips | flip rate |
+|---|---|---|---|---|---|
+| fp32 | 32 | 1.0001 | 0.0002 | 0/240 | 0.0000 |
+| fp16 | 16 | 1.0003 | 0.0000 | 0/240 | 0.0000 |
+| int8 | 8 | 0.9998 | 0.0025 | 0/240 | 0.0000 |
+| nf4 | 4 | 0.9840 | 0.0171 | 0/240 | 0.0000 |
+
+- note: nf4 holds probe flip-rate 0.0000 < ceiling 0.05. fp32-vs-fp16 rows price the reference's own noise floor (no int8/NF4 treatment). E5 line closes into D7 (cross-link: GPU-DOCKET D7 'cross-link the closed E5 line').
+
+## D1 — look-again-scale (reach-bound fold sweep)
+- ran: 2026-09-27 15:09
+- verdict: INCONCLUSIVE
+- result: ```json
+{
+  "experiment": "D1 look-again-scale",
+  "n_items": 600, "seed": 2718,
+  "readers": {"dense": ["bge-small","MiniLM","gte-small"], "symbolic": "counting-address"},
+  "best_single_acc": 0.7178, "dense_chord_acc": 0.6267,
+  "dense_plus_symbolic_acc": 0.7444,
+  "counting_acc_dense": 0.4807, "counting_acc_with_symbolic": 0.7735,
+  "verdict": "INCONCLUSIVE"
+}
+```
+- note: chord-vs-best-single arm FAILED (dense chord 0.627 < best-single 0.718 — the three dense readers are correlated, so their chord does not beat the best one; buying a CORRELATED reader gives ~0 lift, the honest null the docket predicted). symbolic-purchase arm CLEARED (adding the counting-address reader lifts counting accuracy 0.48->0.77 and overall 0.627->0.744 — buying an INDEPENDENT reader with orthogonal reach raises the ceiling, the G21 Law-7 effect). Reach-bound curve booked in results/d1_reach_bound_curve.json.
+
+## D2 — qthe ternary matmul kernel
+- ran: 2026-09-27 15:09
+- verdict: KEEP
+- result: ```json
+{
+  "experiment": "D2 qthe ternary kernel",
+  "parity": "PASS", "vs_node_ref": true, "vs_py_ref": true,
+  "benchmark": [
+    {"size": 1024, "fp16_ms": 0.0273, "ternary_ms": 0.015, "speedup": 1.824},
+    {"size": 2048, "fp16_ms": 0.1109, "ternary_ms": 0.0311, "speedup": 3.567},
+    {"size": 4096, "fp16_ms": 0.3743, "ternary_ms": 0.456, "speedup": 0.821}
+  ],
+  "prereg_margin": 1.10, "verdict": "KEEP"
+}
+```
+- note: parity PASS (byte-exact vs qthe.mjs vectorPass AND vs a python integer reference — the mandatory Law-0 gate). ternary beats fp16 by 1.82x @1024 and 3.57x @2048 (past the 1.10 pre-registered margin), reversing to 0.82x @4096 where fp16 cuBLAS tensor cores dominate. This PRICES qthe SPEC Layer-2 claim C1: the "gain of function" is real in the small-to-mid regime, not at scale on this GPU.
+
+## D3 — statevector ceiling (GPU executor for micromoth)
+- ran: 2026-09-27 15:09
+- verdict: KEEP
+- result: ```json
+{
+  "experiment": "D3 statevector ceiling",
+  "correctness_max_err": 5.96e-08, "correctness": "PASS",
+  "ceiling": [
+    {"n": 16, "gpu_ms": 3.99}, {"n": 18, "gpu_ms": 3.18}, {"n": 20, "gpu_ms": 9.95},
+    {"n": 22, "gpu_ms": 51.72}, {"n": 24, "gpu_ms": 207.28}, {"n": 26, "gpu_ms": 817.25},
+    {"n": 27, "gpu_ms": 25559.49}, {"n": 28, "error": "OOM"}
+  ],
+  "verdict": "KEEP"
+}
+```
+- note: correctness PASS at 5.96e-08 vs micromoth's own simulator (battery of Bell/GHZ/Clifford up to n=12). GPU executor reaches n=27 complex64 (25.6s) before OOM at n=28; pure-Python micromoth chokes ~n=20. That's a ~7-qubit ceiling lift AND a reusable in-place GPU executor for the fleet's quantum-wow work. Booked bugs: LSB-first reshape order (my first two attempts used MSB-first — caught by the correctness gate), plus a latent RX sign error.
+
+## D6 — fun scorer + seed bank (cargo-line-tycoon)
+- ran: 2026-09-27 15:09
+- verdict: KEEP
+- result: ```json
+{
+  "experiment": "D6 fun scorer",
+  "n_worlds": 3000, "seed": 2718,
+  "model_B_params": 41473,
+  "heldout_rho_B": 0.869, "heldout_rho_A": 0.781,
+  "top_seed": 1421, "top25_mean_proxy": 1.298, "population_mean_proxy": 0.029,
+  "verdict": "KEEP"
+}
+```
+- note: real cargo-line-tycoon procgen (GameEngine constructor, 40-tick deterministic loop), no fallback. 6 features verified seed-variant (lcc_fraction, price_entropy, route_diversity, reachability, price_dispersion, activity); 3 excluded for zero seed-variance (booked honestly). Transparent weighted proxy. Tiny MLP (41k params) ranks held-out seeds at rho=0.869, past the 0.60 bar; top-25 seeds genuinely higher-proxy. Seed bank in results/d6_seed_bank.json. The shippable scorer is 41k params (binned 118-dim tensor beats raw distances — coarse generalizes better).

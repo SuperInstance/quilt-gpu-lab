@@ -1,0 +1,150 @@
+{
+  "experiment": "D1 look-again-scale (reach-bound fold sweep)",
+  "device": "cuda",
+  "seed": 2718,
+  "n_items": 600,
+  "n_semantic": 360,
+  "n_counting": 240,
+  "n_calib": 150,
+  "n_eval": 450,
+  "gold_balance_eval": 0.5111111111111111,
+  "readers": {
+    "d1_bge": "BAAI/bge-small-en-v1.5",
+    "d2_minilm": "sentence-transformers/all-MiniLM-L6-v2",
+    "d3_gte": "thenlper/gte-small",
+    "s_symbolic": "counting-address"
+  },
+  "calibrated_thresholds": {
+    "d1_bge": 0.7655982828140259,
+    "d2_minilm": 0.7899474596977234,
+    "d3_gte": 0.931640625
+  },
+  "curve_best_by_k": [
+    {
+      "k": 1,
+      "readers": [
+        "d1_bge"
+      ],
+      "acc": 0.7177777777777777,
+      "ci95": [
+        0.6733333333333333,
+        0.76
+      ]
+    },
+    {
+      "k": 2,
+      "readers": [
+        "d1_bge",
+        "s_symbolic"
+      ],
+      "acc": 0.8444444444444444,
+      "ci95": [
+        0.8088888888888889,
+        0.8777777777777778
+      ],
+      "lift_vs_best_prev": 0.12666666666666668,
+      "lift_ci95": [
+        0.09555555555555556,
+        0.16
+      ]
+    },
+    {
+      "k": 3,
+      "readers": [
+        "d1_bge",
+        "d3_gte",
+        "s_symbolic"
+      ],
+      "acc": 0.82,
+      "ci95": [
+        0.78,
+        0.8555555555555555
+      ],
+      "lift_vs_best_prev": -0.024444444444444446,
+      "lift_ci95": [
+        -0.042277777777777775,
+        -0.006666666666666667
+      ]
+    },
+    {
+      "k": 4,
+      "readers": [
+        "d1_bge",
+        "d2_minilm",
+        "d3_gte",
+        "s_symbolic"
+      ],
+      "acc": 0.7444444444444445,
+      "ci95": [
+        0.7022222222222222,
+        0.7844444444444445
+      ],
+      "lift_vs_best_prev": -0.07555555555555556,
+      "lift_ci95": [
+        -0.10005555555555556,
+        -0.051111111111111114
+      ]
+    }
+  ],
+  "ablation": {
+    "best_single": {
+      "readers": [
+        "d1_bge"
+      ],
+      "acc": 0.7177777777777777,
+      "ci95": [
+        0.6733333333333333,
+        0.76
+      ],
+      "acc_semantic": 0.8587360594795539,
+      "acc_counting": 0.5082872928176796
+    },
+    "dense_chord": {
+      "readers": [
+        "d1_bge",
+        "d2_minilm",
+        "d3_gte"
+      ],
+      "acc": 0.6266666666666667,
+      "ci95": [
+        0.58,
+        0.6711111111111111
+      ],
+      "acc_semantic": 0.724907063197026,
+      "acc_counting": 0.48066298342541436
+    },
+    "dense_chord_plus_symbolic": {
+      "readers": [
+        "d1_bge",
+        "d2_minilm",
+        "d3_gte",
+        "s_symbolic"
+      ],
+      "acc": 0.7444444444444445,
+      "ci95": [
+        0.7022222222222222,
+        0.7844444444444445
+      ],
+      "acc_semantic": 0.724907063197026,
+      "acc_counting": 0.7734806629834254
+    },
+    "symbolic_alone": {
+      "acc": 0.6177777777777778,
+      "ci95": [
+        0.5777777777777777,
+        0.6644444444444444
+      ],
+      "acc_semantic": 0.48698884758364314,
+      "acc_counting": 0.8121546961325967
+    },
+    "ceiling_lift_look_again_vs_best_single": -0.09111111111111103,
+    "ceiling_lift_symbolic_purchase": 0.11777777777777776,
+    "ceiling_lift_correlated_dense_purchase": -0.07555555555555549,
+    "reach_bound_bites_on": "counting-address items (symbolic-only reach)"
+  },
+  "bootstrap_draws": 1000,
+  "peak_vram_mib": 451.0,
+  "runtime_s": 31.0,
+  "verdict": "INCONCLUSIVE",
+  "verdict_reason": "chord-vs-best-single arm failed; symbolic-purchase arm cleared"
+}

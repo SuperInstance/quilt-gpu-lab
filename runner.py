@@ -37,6 +37,11 @@ EXP_MOD = {
     "E7": "experiments.e7_vjepa2_in_cells",
     "E8": "experiments.e8_encoder_swap_leaderboard",
     "E9": "experiments.e9_ijepa_stills",
+    "D1": "experiments.d1_look_again_scale",
+    "D2": "experiments.d2_ternary_kernel",
+    "D3": "experiments.d3_statevector_ceiling",
+    "D6": "experiments.d6_fun_scorer",
+    "D7": "experiments.d7_quant_drift",
 }
 
 

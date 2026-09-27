@@ -1,19 +1,26 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-09-27T22:37:24.396262+00:00",
+  "generated_at": "2026-09-27T23:09:09.171584+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "693328ace4039d2cafbe5b928e8ce50eff1e2e51ebc4972f165248074ce6e2a4",
-    "QUEUE.md": "567fc12a73c2df01e7e06fa872a0b3fbc60ceb64a9758d414b6867dba2583b23"
+    "RESULTS.md": "b30c5407acac3fcbbcd71f052ad0b4710eb664fbbb94a4ef296a536ba134e743",
+    "QUEUE.md": "fc940af955762f5a7a13aeed86e686e84efd4d9d3d694aa9f195e0794e7a5400"
   },
   "experiments": {
     "common.py": "af08f672c78f4934e69fb0e240f22928ff3e65a9848ca9a55a8d07293b69db33",
+    "d1_look_again_scale.py": "fd70bc737706dccee02932dd40b2425d7b0b474f5c131ed2faa2c760aa8f795f",
+    "d2_ternary_kernel.py": "a10ad0cac866e05559a75f050a58c83f80da0e2916625fe1432e991137cf9d4f",
+    "d3_statevector_ceiling.py": "caa75c73a01162950cbfb7604c05510bedf80df6fc0c0c2a71714a763dad8d24",
+    "d6_fun_scorer.py": "4e8187c23910be71398c8aa78fc85daf0d761e2718d422b1f6b703d58981fa76",
+    "d7_quant_drift.py": "187d4e02d1925f3b8124079bd552c7c4f2e612440f40e8e282026fc54e31aa00",
     "e1_real_glyph_contrast.py": "d4f9d71d164e681bffcc14ef7e947a74c2a1306b6623476ef1b98b51c367535f",
     "e2_flow_beat_vs_pool.py": "69a0f17faaf0ed003e4c013fdec56e66a09ad46f59bef4c21fd1563e7d95d11a",
     "e2b_flow_beat_revision.py": "3fe205915d36317ca58baa4721462202d0a6ee82e793ddd17e97f84b73b752d6",
     "e3_cast_heldout.py": "a1aa84dc5086d63564b0128dd02175a3e7ccaca6375832e92d58b69385aa3a51",
     "e4_next_room_transformer.py": "74342f5cabd658348f4e5df350f4b59453d8300d033c08ac2ce80c8321f93d6f",
     "e7_vjepa2_in_cells.py": "53213552122b40fbdd1b6e22078582d94a264252f56495bed04865b01cceaee9",
+    "e8_encoder_swap_leaderboard.py": "712cf1047349e804c5f73ee884c65dfd5cadb6874bced8ca6990fd262d6c977b",
+    "e9_ijepa_stills.py": "477c71f3b6b4f87bb3b3927b624208b8c9c1a9ddfdccdcfad9100c6221fee83f",
     "elephant_model.py": "977b173fa6006e885ef5fdfda30f13d401211b38311ee1b0aac706e5fda45eb9"
   }
 }

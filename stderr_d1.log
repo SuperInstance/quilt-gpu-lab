@@ -1,0 +1,7 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  58%|█████▊    | 116/199 [00:00<00:00, 1155.81it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1901.21it/s]
+[d1] BAAI/bge-small-en-v1.5: encoded 600 claim/evidence pairs
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights:  34%|███▍      | 35/103 [00:00<00:00, 295.37it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 665.37it/s]
+[d1] sentence-transformers/all-MiniLM-L6-v2: encoded 600 claim/evidence pairs
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  34%|███▎      | 67/199 [00:00<00:00, 667.66it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1221.15it/s]
+[d1] thenlper/gte-small: encoded 600 claim/evidence pairs

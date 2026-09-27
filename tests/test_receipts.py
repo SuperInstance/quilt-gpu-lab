@@ -35,9 +35,9 @@ MANIFEST = LAB / "receipts" / "manifest.json"
 # a DECLARED external — the pin still requires a RESULTS note naming it.
 DECLARED_EXTERNALS: frozenset[str] = frozenset()
 
-CHECKED_RE = re.compile(r"^- \[x\] (E[0-9]+[a-z]?)\s", re.M)
-UNCHECKED_RE = re.compile(r"^- \[ \] (E[0-9]+[a-z]?)\s", re.M)
-RESULTS_H_RE = re.compile(r"^## (E[0-9]+[a-z]?)\b", re.M)
+CHECKED_RE = re.compile(r"^- \[x\] ([ED][0-9]+[a-z]?)\s", re.M)
+UNCHECKED_RE = re.compile(r"^- \[ \] ([ED][0-9]+[a-z]?)\s", re.M)
+RESULTS_H_RE = re.compile(r"^## ([ED][0-9]+[a-z]?)\b", re.M)
 
 
 def queue_ids(text: str) -> tuple[set[str], set[str]]:
@@ -69,8 +69,9 @@ class ExperimentFilesExist(unittest.TestCase):
         for rid in set(results_ids(RESULTS.read_text())):
             if rid in DECLARED_EXTERNALS:
                 continue
-            slug = rid[1:].lower()  # E2b -> e2b (the file prefix drops the E)
-            pat = f"e{slug}_*.py"
+            prefix = rid[0].lower()          # 'E' -> 'e', 'D' -> 'd'
+            slug = rid[1:].lower()           # 'E2b' -> '2b'
+            pat = f"{prefix}{slug}_*.py"
             hits = list((LAB / "experiments").glob(pat))
             self.assertTrue(hits,
                             f"RESULTS entry {rid} has no experiments/{pat} — "

@@ -1,0 +1,242 @@
+{
+  "experiment": "D6 fun-scorer seed bank",
+  "seed": 2718,
+  "source": "cargo-line-tycoon GameEngine procgen (real import, node driver tools/d6_worldgen.js)",
+  "ticks_per_world": 40,
+  "score_range": [
+    1,
+    3000
+  ],
+  "shipped_model": "B",
+  "heldout_spearman": {
+    "A_full": 0.7809380371187,
+    "B_binned": 0.8693857532248824
+  },
+  "top_k": [
+    {
+      "rank": 1,
+      "seed": 1421,
+      "predicted_fun": 1.6116784811019897,
+      "proxy_true": 1.218732476234436,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.0194710929961963,
+      "route_diversity_nm": 6817.619497853375
+    },
+    {
+      "rank": 2,
+      "seed": 546,
+      "predicted_fun": 1.5853582620620728,
+      "proxy_true": 1.5853564739227295,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.218612766053084,
+      "route_diversity_nm": 7076.743536188935
+    },
+    {
+      "rank": 3,
+      "seed": 2809,
+      "predicted_fun": 1.570950984954834,
+      "proxy_true": 1.1907985210418701,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.049104168097523,
+      "route_diversity_nm": 7076.529763061416
+    },
+    {
+      "rank": 4,
+      "seed": 558,
+      "predicted_fun": 1.5409951210021973,
+      "proxy_true": 1.2170921564102173,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.1110038753088873,
+      "route_diversity_nm": 6965.9521420274905
+    },
+    {
+      "rank": 5,
+      "seed": 249,
+      "predicted_fun": 1.5384949445724487,
+      "proxy_true": 1.2607229948043823,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.101861330142675,
+      "route_diversity_nm": 6970.23228650451
+    },
+    {
+      "rank": 6,
+      "seed": 1174,
+      "predicted_fun": 1.4803729057312012,
+      "proxy_true": 1.412239909172058,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.18676244129588,
+      "route_diversity_nm": 6806.231667827953
+    },
+    {
+      "rank": 7,
+      "seed": 1973,
+      "predicted_fun": 1.4732493162155151,
+      "proxy_true": 1.401387333869934,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.183540974518142,
+      "route_diversity_nm": 7107.7128432585005
+    },
+    {
+      "rank": 8,
+      "seed": 2154,
+      "predicted_fun": 1.4717406034469604,
+      "proxy_true": 1.4717305898666382,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.1271783513389986,
+      "route_diversity_nm": 6968.704789614024
+    },
+    {
+      "rank": 9,
+      "seed": 334,
+      "predicted_fun": 1.455232858657837,
+      "proxy_true": 1.1182293891906738,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.032161703354905,
+      "route_diversity_nm": 6984.305789442607
+    },
+    {
+      "rank": 10,
+      "seed": 441,
+      "predicted_fun": 1.4191107749938965,
+      "proxy_true": 1.4191185235977173,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.2143351178208266,
+      "route_diversity_nm": 6803.67609279114
+    },
+    {
+      "rank": 11,
+      "seed": 1883,
+      "predicted_fun": 1.416921854019165,
+      "proxy_true": 1.242226481437683,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.1515295610862073,
+      "route_diversity_nm": 6967.875554136977
+    },
+    {
+      "rank": 12,
+      "seed": 757,
+      "predicted_fun": 1.3967193365097046,
+      "proxy_true": 1.1574112176895142,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.077642656071584,
+      "route_diversity_nm": 6974.368835527041
+    },
+    {
+      "rank": 13,
+      "seed": 1260,
+      "predicted_fun": 1.379734754562378,
+      "proxy_true": 1.2293498516082764,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.0526370554812563,
+      "route_diversity_nm": 7100.772975360104
+    },
+    {
+      "rank": 14,
+      "seed": 1713,
+      "predicted_fun": 1.379255771636963,
+      "proxy_true": 1.3792606592178345,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.1552235371446717,
+      "route_diversity_nm": 7090.853798217862
+    },
+    {
+      "rank": 15,
+      "seed": 1771,
+      "predicted_fun": 1.3767857551574707,
+      "proxy_true": 1.1257133483886719,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.1096540695035193,
+      "route_diversity_nm": 6801.776414966014
+    },
+    {
+      "rank": 16,
+      "seed": 245,
+      "predicted_fun": 1.366269826889038,
+      "proxy_true": 1.3662806749343872,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.116131171136507,
+      "route_diversity_nm": 7093.81415024167
+    },
+    {
+      "rank": 17,
+      "seed": 2682,
+      "predicted_fun": 1.3661444187164307,
+      "proxy_true": 1.3661597967147827,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.1895113987928916,
+      "route_diversity_nm": 7094.222535720872
+    },
+    {
+      "rank": 18,
+      "seed": 580,
+      "predicted_fun": 1.3447339534759521,
+      "proxy_true": 1.3447282314300537,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.15378521641483,
+      "route_diversity_nm": 7115.792338304261
+    },
+    {
+      "rank": 19,
+      "seed": 405,
+      "predicted_fun": 1.3355073928833008,
+      "proxy_true": 1.3355026245117188,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.1086156843041466,
+      "route_diversity_nm": 7006.300273308189
+    },
+    {
+      "rank": 20,
+      "seed": 2832,
+      "predicted_fun": 1.328960657119751,
+      "proxy_true": 1.4017136096954346,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.2039259566390887,
+      "route_diversity_nm": 6969.952881806239
+    },
+    {
+      "rank": 21,
+      "seed": 1735,
+      "predicted_fun": 1.3288493156433105,
+      "proxy_true": 1.3288506269454956,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.1791022376111537,
+      "route_diversity_nm": 6982.886920718042
+    },
+    {
+      "rank": 22,
+      "seed": 295,
+      "predicted_fun": 1.3243427276611328,
+      "proxy_true": 1.0499188899993896,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.0162154581409464,
+      "route_diversity_nm": 6980.837219313809
+    },
+    {
+      "rank": 23,
+      "seed": 1084,
+      "predicted_fun": 1.3173776865005493,
+      "proxy_true": 1.317388653755188,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.050265236298881,
+      "route_diversity_nm": 6815.1767068902645
+    },
+    {
+      "rank": 24,
+      "seed": 1590,
+      "predicted_fun": 1.3149518966674805,
+      "proxy_true": 1.314954161643982,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.1096540695035193,
+      "route_diversity_nm": 6998.425632111695
+    },
+    {
+      "rank": 25,
+      "seed": 1117,
+      "predicted_fun": 1.313784122467041,
+      "proxy_true": 1.1899477243423462,
+      "lcc_fraction": 0.9032258064516129,
+      "price_entropy_bits": 2.0163479938170643,
+      "route_diversity_nm": 6978.804984707286
+    }
+  ]
+}

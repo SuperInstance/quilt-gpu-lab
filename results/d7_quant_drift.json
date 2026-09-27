@@ -1,0 +1,82 @@
+{
+  "experiment": "D7 quant-drift",
+  "device": "cuda",
+  "seed": 2718,
+  "model": "BAAI/bge-small-en-v1.5",
+  "max_seq_length": 64,
+  "probe": {
+    "n_unique_sentences": 254,
+    "n_cal_pairs": 60,
+    "n_probe_pairs": 240,
+    "balanced_labels": true
+  },
+  "calibration": {
+    "threshold_tau": 0.7184,
+    "fp16_mean_same_cos": 0.9226,
+    "fp16_mean_diff_cos": 0.5142,
+    "separation": 0.4084,
+    "protocol": "tau from fp16 cal split only, frozen for all precisions"
+  },
+  "flip_ceiling": 0.05,
+  "precisions": {
+    "fp32": {
+      "bits": 32,
+      "mean_cos_drift": 1.0001354217529297,
+      "min_cos_drift": 0.9995529651641846,
+      "mean_pair_sim_absdelta": 0.00020337113528512418,
+      "probe_flips": 0,
+      "flip_rate": 0.0
+    },
+    "fp16": {
+      "bits": 16,
+      "mean_cos_drift": 1.0002720355987549,
+      "min_cos_drift": 0.9991075992584229,
+      "mean_pair_sim_absdelta": 0.0,
+      "probe_flips": 0,
+      "flip_rate": 0.0
+    },
+    "int8": {
+      "bits": 8,
+      "mean_cos_drift": 0.9998080730438232,
+      "min_cos_drift": 0.9989901781082153,
+      "mean_pair_sim_absdelta": 0.0024867805186659098,
+      "probe_flips": 0,
+      "flip_rate": 0.0
+    },
+    "nf4": {
+      "bits": 4,
+      "mean_cos_drift": 0.9840461015701294,
+      "min_cos_drift": 0.9783671498298645,
+      "mean_pair_sim_absdelta": 0.01710696332156658,
+      "probe_flips": 0,
+      "flip_rate": 0.0
+    }
+  },
+  "smallest_viable_precision": "nf4",
+  "verdict": "KEEP",
+  "reason": "nf4 holds probe flip-rate 0.0000 < ceiling 0.05",
+  "loads": {
+    "fp32": {
+      "seconds": 7.97,
+      "dim": 384
+    },
+    "fp16": {
+      "seconds": 6.92,
+      "dim": 384
+    },
+    "int8": {
+      "seconds": 6.26,
+      "dim": 384
+    },
+    "nf4": {
+      "seconds": 6.1,
+      "dim": 384
+    }
+  },
+  "versions": {
+    "torch": "2.14.0+cu126",
+    "transformers": "5.17.0",
+    "sentence_transformers": "6.1.0",
+    "bitsandbytes": "0.50.2"
+  }
+}
