@@ -394,3 +394,26 @@ the ceiling; correlated dense purchases are dead weight or worse.
   the honest reach limit, and it still carries the lift. Full curve +
   diagnostics: `results/d1_reach_bound_curve.json`. Code:
   `experiments/d1_look_again_scale.py` (D1_N/D1_BOOT env to scale it up).
+
+## E8 — encoder-swap leaderboard (generated 2026-09-27)
+
+| encoder | exp | separation gap (heldout) | drift gate | surprise | axis corr | verdict | date |
+|---|---|---|---|---|---|---|---|
+| our contrastive RoomEncoder (~150k, learned L0) | E1 | +1.2833 (margin delta trained-minus-untrained (heldout)) | not run | not taken | not taken | KEEP | 2026-09-27 |
+| elephant vMF pipeline (hand-crafted dials) | E3 | +0.6640 (vmf d_mu (heldout fits)) | pass (stability 2/2 not-real, separation 2/2 real) | 217.4 | not taken | KEEP | 2026-09-27 |
+| V-JEPA 2 ViT-L (frozen, video JEPA) | E7 | +0.4456 (cosine within-minus-cross (heldout)) | not run | not taken | 0.2799 | KEEP | 2026-09-27 |
+| I-JEPA ViT-B (frozen, still-image JEPA) | E9 | pending (no non-aborted result in RESULTS.md yet) | | | | | |
+- caveat: gaps are within-metric only (E1 margin on learned obs; E3 vMF d_mu on hand-crafted dials; E7/E9 cosine on frozen JEPA embeddings) — the board compares encoders against the SAME cell contract, not raw gap numbers across rows. Cross-encoder correlation (MODELS.md surprise protocol) needs persisted embeddings — future work.
+- full machine-readable board: results/leaderboard.json
+
+## E8 — encoder-swap leaderboard — aggregate E1/E3/E7 (+E9) readings into one table: separation gap, drift-gate, surprise dims per encoder. The scoreboard for the swap-and-hunt protocol.
+- ran: 2026-09-27 15:21
+- verdict: KEEP
+- note: the runner first logged this INCONCLUSIVE due to a parser bug (rindex on nested indent=2 JSON); the board itself is correct and on disk at results/leaderboard.json. E1 margin +1.283 KEEP, E3 vMF d_mu 0.664 KEEP, E7 cosine gap 0.4456 KEEP, E9 pending. Gaps are within-metric only. Runner parser hardened (raw_decode scan-backward).
+- result: ```json
+{
+  "experiment": "E8",
+  "verdict": "KEEP",
+  "stdout_tail": "\": \"2026-09-27\"\n    },\n    {\n      \"encoder\": \"elephant vMF pipeline (hand-crafted dials)\",\n      \"experiment\": \"E3\",\n      \"heldout_gap\": 0.664,\n      \"gap_metric\": \"vmf d_mu (heldout fits)\",\n      \"drift_gate\": \"pass (stability 2/2 not-real, separation 2/2 real)\",\n      \"surprise\": 217.4,\n      \"surprise_metric\": \"KL sym (heldout vMF fits)\",\n      \"axis_corr\": null,\n      \"axis_corr_metric\": \"not taken\",\n      \"verdict\": \"KEEP\",\n      \"date\": \"2026-09-27\"\n    },\n    {\n      \"encoder\": \"V-JEPA 2 ViT-L (frozen, video JEPA)\",\n      \"experiment\": \"E7\",\n      \"heldout_gap\": 0.4456,\n      \"gap_metric\": \"cosine within-minus-cross (heldout)\",\n      \"drift_gate\": \"not run\",\n      \"surprise\": null,\n      \"surprise_metric\": \"not taken\",\n      \"axis_corr\": 0.2799,\n      \"axis_corr_metric\": \"tex-vs-motion axis corr (smpte-still vs testsrc-testsrc2)\",\n      \"verdict\": \"KEEP\",\n      \"date\": \"2026-09-27\"\n    }\n  ],\n  \"pending\": [\n    {\n      \"encoder\": \"I-JEPA ViT-B (frozen, still-image JEPA)\",\n      \"experiment\": \"E9\",\n      \"status\": \"pending (no non-aborted result in RESULTS.md yet)\"\n    }\n  ],\n  \"aborted_latest_only\": [],\n  \"caveat\": \"gaps are within-metric only (E1 margin on learned obs; E3 vMF d_mu on hand-crafted dials; E7/E9 cosine on frozen JEPA embeddings) \\u2014 the board compares encoders against the SAME cell contract, not raw gap numbers across rows. Cross-encoder correlation (MODELS.md surprise protocol) needs persisted embeddings \\u2014 future work.\",\n  \"verdict\": \"KEEP\"\n}\n"
+}
+```

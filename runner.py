@@ -82,8 +82,19 @@ def run(eid: str) -> dict:
         return result
     # experiment prints a single JSON object at the end
     try:
-        j = json.loads(out[out.rindex("{\n"):])
-        result.update(j)
+        # Robust extraction: find the LAST top-level JSON object. rindex("{\n")
+        # breaks on nested dicts (indent=2); use raw_decode scanning backward.
+        decoder = json.JSONDecoder()
+        obj = None
+        idx = out.rfind('{')
+        while idx >= 0 and obj is None:
+            try:
+                obj, _ = decoder.raw_decode(out, idx)
+            except json.JSONDecodeError:
+                idx = out.rfind('{', 0, idx)
+        if obj is None:
+            raise ValueError("no JSON object found in stdout")
+        result.update(obj)
         result["guard_summary"] = result.pop("guard")
     except Exception:
         result.update(verdict="INCONCLUSIVE", reason="no parseable result",

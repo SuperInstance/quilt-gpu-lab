@@ -1,0 +1,57 @@
+{
+  "experiment": "E8 encoder-swap leaderboard",
+  "seed": 2718,
+  "generated": "2026-09-27",
+  "source": "RESULTS.md",
+  "rows": [
+    {
+      "encoder": "our contrastive RoomEncoder (~150k, learned L0)",
+      "experiment": "E1",
+      "heldout_gap": 1.2833,
+      "gap_metric": "margin delta trained-minus-untrained (heldout)",
+      "drift_gate": "not run",
+      "surprise": null,
+      "surprise_metric": "not taken",
+      "axis_corr": null,
+      "axis_corr_metric": "not taken",
+      "verdict": "KEEP",
+      "date": "2026-09-27"
+    },
+    {
+      "encoder": "elephant vMF pipeline (hand-crafted dials)",
+      "experiment": "E3",
+      "heldout_gap": 0.664,
+      "gap_metric": "vmf d_mu (heldout fits)",
+      "drift_gate": "pass (stability 2/2 not-real, separation 2/2 real)",
+      "surprise": 217.4,
+      "surprise_metric": "KL sym (heldout vMF fits)",
+      "axis_corr": null,
+      "axis_corr_metric": "not taken",
+      "verdict": "KEEP",
+      "date": "2026-09-27"
+    },
+    {
+      "encoder": "V-JEPA 2 ViT-L (frozen, video JEPA)",
+      "experiment": "E7",
+      "heldout_gap": 0.4456,
+      "gap_metric": "cosine within-minus-cross (heldout)",
+      "drift_gate": "not run",
+      "surprise": null,
+      "surprise_metric": "not taken",
+      "axis_corr": 0.2799,
+      "axis_corr_metric": "tex-vs-motion axis corr (smpte-still vs testsrc-testsrc2)",
+      "verdict": "KEEP",
+      "date": "2026-09-27"
+    }
+  ],
+  "pending": [
+    {
+      "encoder": "I-JEPA ViT-B (frozen, still-image JEPA)",
+      "experiment": "E9",
+      "status": "pending (no non-aborted result in RESULTS.md yet)"
+    }
+  ],
+  "aborted_latest_only": [],
+  "caveat": "gaps are within-metric only (E1 margin on learned obs; E3 vMF d_mu on hand-crafted dials; E7/E9 cosine on frozen JEPA embeddings) \u2014 the board compares encoders against the SAME cell contract, not raw gap numbers across rows. Cross-encoder correlation (MODELS.md surprise protocol) needs persisted embeddings \u2014 future work.",
+  "verdict": "KEEP"
+}
