@@ -28,6 +28,15 @@ ITEM_RE = re.compile(r"^- \[ \] (E\d+)\s+(.+)$")
 EXP_MOD = {
     "E1": "experiments.e1_real_glyph_contrast",
     "E2": "experiments.e2_flow_beat_vs_pool",
+    "E2b": "experiments.e2b_flow_beat_revision",
+    "E3": "experiments.e3_cast_heldout",
+    "E4": "experiments.e4_next_room_transformer",
+    "E4b": None,  # revision of E4, dataset redesign — script pending
+    "E5": None,   # int8 probe — script pending
+    "E6": None,   # harness self-test — script pending
+    "E7": "experiments.e7_vjepa2_in_cells",
+    "E8": None,   # leaderboard aggregation — script pending
+    "E9": None,   # ijepa stills — script pending
 }
 
 
@@ -35,7 +44,11 @@ def claim() -> tuple[str, str] | None:
     for line in QUEUE.read_text().splitlines():
         m = ITEM_RE.match(line)
         if m:
-            return m.group(1), m.group(2)
+            eid = m.group(1)
+            if EXP_MOD.get(eid) is None:
+                print(f"[runner] {eid} has no script yet — skipping")
+                continue
+            return eid, m.group(2)
     return None
 
 
