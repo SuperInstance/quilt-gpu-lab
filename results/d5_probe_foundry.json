@@ -1,0 +1,15 @@
+{
+  "experiment": "D5 probe foundry (proof batch)",
+  "seed": 2718,
+  "n_generated": 240,
+  "n_deduped": 215,
+  "dedup_rate": 0.1042,
+  "counts": {
+    "canon": 107,
+    "distortion": 108
+  },
+  "train": 149,
+  "heldout": 66,
+  "reproducibility_hash": "9817d604826801ddd7ff53b2c748d10e964b003b0d17832d0a91cf63cb82be7e",
+  "verdict": "KEEP"
+}

@@ -417,3 +417,32 @@ the ceiling; correlated dense purchases are dead weight or worse.
   "stdout_tail": "\": \"2026-09-27\"\n    },\n    {\n      \"encoder\": \"elephant vMF pipeline (hand-crafted dials)\",\n      \"experiment\": \"E3\",\n      \"heldout_gap\": 0.664,\n      \"gap_metric\": \"vmf d_mu (heldout fits)\",\n      \"drift_gate\": \"pass (stability 2/2 not-real, separation 2/2 real)\",\n      \"surprise\": 217.4,\n      \"surprise_metric\": \"KL sym (heldout vMF fits)\",\n      \"axis_corr\": null,\n      \"axis_corr_metric\": \"not taken\",\n      \"verdict\": \"KEEP\",\n      \"date\": \"2026-09-27\"\n    },\n    {\n      \"encoder\": \"V-JEPA 2 ViT-L (frozen, video JEPA)\",\n      \"experiment\": \"E7\",\n      \"heldout_gap\": 0.4456,\n      \"gap_metric\": \"cosine within-minus-cross (heldout)\",\n      \"drift_gate\": \"not run\",\n      \"surprise\": null,\n      \"surprise_metric\": \"not taken\",\n      \"axis_corr\": 0.2799,\n      \"axis_corr_metric\": \"tex-vs-motion axis corr (smpte-still vs testsrc-testsrc2)\",\n      \"verdict\": \"KEEP\",\n      \"date\": \"2026-09-27\"\n    }\n  ],\n  \"pending\": [\n    {\n      \"encoder\": \"I-JEPA ViT-B (frozen, still-image JEPA)\",\n      \"experiment\": \"E9\",\n      \"status\": \"pending (no non-aborted result in RESULTS.md yet)\"\n    }\n  ],\n  \"aborted_latest_only\": [],\n  \"caveat\": \"gaps are within-metric only (E1 margin on learned obs; E3 vMF d_mu on hand-crafted dials; E7/E9 cosine on frozen JEPA embeddings) \\u2014 the board compares encoders against the SAME cell contract, not raw gap numbers across rows. Cross-encoder correlation (MODELS.md surprise protocol) needs persisted embeddings \\u2014 future work.\",\n  \"verdict\": \"KEEP\"\n}\n"
 }
 ```
+
+## D5 — probe foundry (proof batch)
+- ran: 2026-09-27 15:29
+- verdict: KEEP
+- result: ```json
+{
+  "experiment": "D5 probe foundry (proof batch)",
+  "seed": 2718, "n_generated": 240, "n_deduped": 215, "dedup_rate": 0.1042,
+  "counts": {"canon": 107, "distortion": 108},
+  "train": 149, "heldout": 66,
+  "reproducibility_hash": "9817d604826801ddd7ff53b2c748d10e964b003b0d17832d0a91cf63cb82be7e",
+  "verdict": "KEEP"
+}
+```
+- note: seeded template grammar (no model, no API) proves the foundry plumbing: content-addressed (sha256), 10.4% dedup (periodic grammar collisions), hash-split 149 train / 66 held-out. Full-scale recipe (7B-4bit regeneration) in recipe.json; probes.jsonl + recipe.json on disk. Feeds D1 readers and D4 QLoRA.
+
+## D10 — cudaclaw cell kernel (micromoth-quilt-cudaclaw step 1)
+- ran: 2026-09-27 15:29
+- verdict: KEEP
+- result: ```json
+{
+  "experiment": "D10 cudaclaw cell kernel",
+  "seed": 2718, "n_qubits": 6,
+  "determinism": "PASS", "reconstruction": "PASS",
+  "cell_A_message": 1, "cell_B_before": 0, "cell_B_after": 1,
+  "two_cell_smoke": "PASS", "verdict": "KEEP"
+}
+```
+- note: a quilt cell whose memory is an n-qubit statevector and whose edge is ternary-quantized (never raw amplitude). Determinism PASS (byte-identical state hash across two seeded runs); reconstruction PASS (ternary message = sign of dominant correlation); 2-cell relational smoke PASS (biased cell A emits +1, balanced cell B shifts 0->1 in the received direction). Booked bugs: X applied to an already-uniform qubit does nothing (bias qubit must be set definite before the H loop); a phase-only RZ message cannot move probabilities (must RX). This is D13's substrate in miniature.

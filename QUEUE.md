@@ -19,3 +19,5 @@
 - [x] D3 statevector ceiling — GPU executor for micromoth — 2026-09-27 KEEP
 - [x] D6 fun scorer + seed bank — cargo-line-tycoon — 2026-09-27 KEEP
 - [x] D7 quant-drift probe — fp16/int8/NF4 reader portability — 2026-09-27 KEEP
+- [x] D5 probe foundry — seeded canon/distortion triples, content-addressed, hash-split — 2026-09-27 KEEP
+- [x] D10 cudaclaw cell kernel — n-qubit cell + ternary passband — 2026-09-27 KEEP
