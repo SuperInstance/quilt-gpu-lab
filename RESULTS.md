@@ -138,3 +138,55 @@
 }
 ```
 - note (why downgraded): 24 cells is too thin — 4 heldout windows cannot separate signal from 'predict the last room always'. The 0.0 majority baseline is degenerate: the temporal split puts only testsrc2 in heldout, so a constant-predictor scores 0.75 without reading trajectory at all. The 68k-param model trains and runs in seconds on CUDA — the harness works; the DATASET doesn't. E4b revision: longer clips (60s) for ~240 cells, interleaved walk (room transitions spread through the data), blocked split by cell-block not tail, plus a constant-predictor and markov-1 baseline reported alongside. The JEV-temporal question stays open until then.
+
+## E7 — vjepa2-in-cells — V-JEPA 2 ViT-L (Meta, downloaded) embeddings through the same cell contract; judged on separation, drift-gate, and surprise vs local heads
+- ran: 2026-09-27 14:05
+- verdict: ABORTED
+- result: ```json
+{
+  "experiment": "E7",
+  "guard": {
+    "samples": 2,
+    "min_free_vram_mib": 5920,
+    "max_temp_c": 47,
+    "breach": null,
+    "timed_out": false
+  },
+  "verdict": "ABORTED",
+  "reason": "exit 1",
+  "stderr": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/home/eileen/projects/quilt-gpu-lab/experiments/e7_vjepa2_in_cells.py\", line 107, in <module>\n    main()\n    ~~~~^^\n  File \"/home/eileen/projects/quilt-gpu-lab/experiments/e7_vjepa2_in_cells.py\", line 42, in main\n    processor = VJEPA2VideoProcessor.from_pretrained(MODEL_ID)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/eileen/venvs/elephant-gpu/lib/python3.14/site-packages/transformers/utils/import_utils.py\", line 2388, in __getattribute__\n    requires_backends(cls, cls._backends)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/home/eileen/venvs/elephant-gpu/lib/python3.14/site-packages/transformers/utils/import_utils.py\", line 2374, in requires_backends\n    raise ImportError(\"\".join(failed))\nImportError: \nVJEPA2VideoProcessor requires the PIL library but it was not found in your environment. You can install it with pip:\n`pip install pillow`. Please note that you may need to restart your runtime after installation.\n\nVJEPA2VideoProcessor requires the Torchvision library but it was not found in your environment. Check out the instructions on the\ninstallation page: https://pytorch.org/get-started/locally/ and follow the ones that match your environment.\nPlease note that you may need to restart your runtime after installation.\n\n"
+}
+```
+
+## E7 — vjepa2-in-cells (retry after pillow+torchvision install) — V-JEPA 2 ViT-L (Meta, downloaded) embeddings through the same cell contract; judged on separation, drift-gate, and surprise vs local heads — 2026-09-27 ABORTED
+- ran: 2026-09-27 14:11
+- verdict: KEEP
+- result: ```json
+{
+  "experiment": "E7 vjepa2-in-cells",
+  "device": "cuda",
+  "seed": 2718,
+  "model": "facebook/vjepa2-vitl-fpc16-256-ssv2",
+  "rooms": [
+    "still-solid",
+    "moving-testsrc",
+    "smpte",
+    "moving-testsrc2"
+  ],
+  "cells": 24,
+  "emb_dim": 1024,
+  "still_vs_testsrc_cross_cos": 0.5442,
+  "within_still": 1.0,
+  "within_testsrc": 0.9898,
+  "heldout_gap": 0.4456,
+  "tex_vs_motion_axis_corr": 0.2799,
+  "verdict": "KEEP",
+  "guard_summary": {
+    "samples": 3,
+    "min_free_vram_mib": 5056,
+    "max_temp_c": 59,
+    "breach": null,
+    "timed_out": false
+  }
+}
+```
