@@ -35,8 +35,8 @@ EXP_MOD = {
     "E5": None,   # int8 probe — script pending
     "E6": None,   # harness self-test — script pending
     "E7": "experiments.e7_vjepa2_in_cells",
-    "E8": None,   # leaderboard aggregation — script pending
-    "E9": None,   # ijepa stills — script pending
+    "E8": "experiments.e8_encoder_swap_leaderboard",
+    "E9": "experiments.e9_ijepa_stills",
 }
 
 
