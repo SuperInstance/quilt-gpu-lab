@@ -542,3 +542,18 @@ the ceiling; correlated dense purchases are dead weight or worse.
 ```
 - note: the design doc's crown jewel, at the reach-bound structural baseline. Cross-boundary facts (parity of two atoms in DIFFERENT cells) are structurally invisible to any isolated cell (A 0.558 ~ chance). The relational graph recovers them at 1.0 by message-passing (a cell receives its partner's atom value and reconstructs the parity). The traffic-permuted control C (SAME message volume, scrambled targeting) stays at 0.508 — proving the win is the RELATIONAL TARGETING, not the communication volume. delta 0.44 >> 0.10. Honest caveat: this is the structural baseline with noiseless messages and perfect addressing; the learning version (cells must LEARN whom to message) is D13. Booked bug en route: my first measurement conflated "fraction of facts with parity=1" (0.44) with reconstruction accuracy — the receiver reconstructs the parity CORRECTLY, so B=1.0, not 0.44.
 
+
+## D13 — relational intelligence growing (learned addressing)
+- ran: 2026-09-27 17:58
+- verdict: KILL
+- result: ```json
+{
+  "experiment": "D13 relational intelligence growing (learned addressing)",
+  "seed": 2718, "epochs": 30, "cells": 8, "facts": 60,
+  "final_acc": 0.467, "target": 0.80,
+  "edge_concentration_on_true_partner": 0.233,
+  "verdict": "KILL"
+}
+```
+- note: the REAL falsification Casey named — cells must LEARN whom to message (D12 handed them the address). With a naive binary-reward Hebbian rule (reward 1.0 when reconstruction matches, 0.5-coin otherwise, 0.98-decay + 0.02-boost), the graph does NOT converge: final accuracy 0.467 (below the isolated baseline 0.558), edge concentration 0.233 vs chance 0.143. There IS a real but weak gradient (true partner rewards 1.0 always vs 0.5 for wrong), but the rule is too slow/weak to climb in 30 epochs over only 30 updates/edge. BOOKED HONESTLY: the structural result (D12, perfect addressing -> 1.0) stands; "relational intelligence GROWING" needs a stronger credit-assignment mechanism than naive Hebbian reward — that IS the finding. Next: policy-gradient-style edge learning, or a reward that uses reconstruction CONFIDENCE (not binary match) as the signal. D13 kills the naive version, not the program.
+

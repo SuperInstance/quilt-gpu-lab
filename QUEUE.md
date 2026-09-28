@@ -24,3 +24,4 @@
 - [x] D4 canon-lora (smoke INCONCLUSIVE; full-scale recipe ready) — 2026-09-27 INCONCLUSIVE
 - [x] D14 qthe timbre channel proof — zero-bit-cost context-keyed ternary embedding — 2026-09-27 KEEP
 - [x] D12 substrate falsification (relational vs isolated) — 2026-09-27 KEEP
+- [x] D13 relational intelligence growing (learned addressing) — 2026-09-27 KILL (naive Hebbian reward does not converge)
