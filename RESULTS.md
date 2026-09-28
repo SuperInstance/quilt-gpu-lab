@@ -496,3 +496,18 @@ the ceiling; correlated dense purchases are dead weight or worse.
 ```
 - note: PROVES Casey's ah-ha — QTHE's 2 timbre bits (already paid for by the byte) carry a ternary momentum signal at ZERO additional bit-cost, and the channel is CONTEXT-KEYED: the 6-bit data plane reads ~chance (0.259), the 2-bit timbre ALONE reads ~chance (0.2645, I(M;T)=0.0026 bits ≈ 0), but timbre+context recovers the signal perfectly (1.0, 2.0 bits). A plaintext reader sees nothing; a timbre reader without the context key sees noise; only a contextual decoder recovers it. That is a2a vector-embedding riding in plaintext for free.
 - booked encoding lessons (the two false starts ARE the finding): (1) a RANDOM permutation leaks through fixed points — a naive identity reader gets ~1 free hit per context (I(M;T) 0.3765); (2) a DERANGEMENT over-corrects — "t != m" becomes itself 1 bit of info (I(M;T) 0.95). Only a LATIN SQUARE (each row a bijection, each column covers all timbres) is information-clean: I(M;T)=0 exactly. The Latin-square construction IS the extractable tool Casey described — modular, 8-bit, and it composes with qthe's 64-slot wormhole + the 200-repo ternary wiki.
+
+## E10 — invariance race (ternary gate vs stateless sign-trackers)
+- ran: 2026-09-27 17:50
+- verdict: KILL
+- result: ```json
+{
+  "experiment": "E10 invariance race",
+  "seed": 2718, "frames": 200, "dims": 256,
+  "gate_acc": 0.6784, "persistence_acc": 0.9146, "deadreckon_acc": 0.9192,
+  "gate_minus_persistence": -0.2362, "preregistered_margin": 0.05,
+  "verdict": "KILL"
+}
+```
+- note: the naive ternary coordinate-stepper (one clamped flip/frame over 256 cells) LOSES to a stateless persistence tracker (0.678 vs 0.915) and to dead-reckoning (0.919) on smooth-sinusoid next-sign prediction. This is the honest null the docket pre-registered — on a smooth signal, "predict the last sign" IS the lookup table that wins, and the gate does not beat it. It CONFIRMS the earlier adversary-lane prediction (NMEA/smooth-signal = mirage: a persistence tracker looks brilliant and is a lookup table). The "ternary = learning substrate" claim is NOT supported by this task. It survives only on a task where persistence structurally FAILS — e.g. a reach-bound task where the truth is in the correlation between two positions, not in "keep going the same way." That is the discriminating test to run next (E11 debounce-kill should isolate exactly that). Booked as KILL, not dressed up.
+

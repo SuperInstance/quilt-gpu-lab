@@ -12,7 +12,7 @@
 
 - [x] E8 encoder-swap leaderboard — aggregate E1/E3/E7 (+E9) readings into one table: separation gap, drift-gate, surprise dims per encoder. The scoreboard for the swap-and-hunt protocol. — 2026-09-27 INCONCLUSIVE
 - [x] E9 ijepa stills — I-JEPA ViT-B (facebookresearch/ijepa) on still frames through the same cell contract; does a still-image world model read rooms differently than video V-JEPA 2? — 2026-09-27 ABORTED
-- [ ] E10 invariance race — ternary gate vs a stateless sign-tracker (persistence/dead-reckoning) on the SAME frames; does the gate beat a lookup table, or is it a fancy debounce circuit? The ground-truth pole.
+- [x] E10 invariance race — ternary gate vs a stateless sign-tracker (persistence/dead-reckoning) on the SAME frames; does the gate beat a lookup table, or is it a fancy debounce circuit? The ground-truth pole.
 - [ ] E11 debounce kill — pre-registered adversarial test: run the gate on held-out sign-patterns and see if it loses to a 2-bit dead-reckoning baseline; a loss here kills the 'ternary = learning substrate' thesis honestly.
 - [x] D1 look-again-scale (reach-bound fold sweep) — jev-quilt G21 Law-7 effect at scale — 2026-09-27 KEEP
 - [x] D2 qthe ternary matmul kernel — parity + speedup vs fp16 (prices C1) — 2026-09-27 KEEP

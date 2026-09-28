@@ -1,10 +1,10 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-09-28T00:13:44.314381+00:00",
+  "generated_at": "2026-09-28T01:50:49.734091+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "98c46b5b77c294b0053b65e30ea7bc1321c91db328ed64f011532e25e13bb5c9",
-    "QUEUE.md": "e6ae15038e5868302598194891e37b2f6e359ad85abfadf4df6246138eadf08c"
+    "RESULTS.md": "f59a7f986870b9fa950f0d5dfd980357fde9958b4f1be0f35fb65d734ece36b4",
+    "QUEUE.md": "7a8a48c11da98aaf5b819d683067c8d0ef955f73d1dfad0fd055f5133d1621be"
   },
   "experiments": {
     "common.py": "af08f672c78f4934e69fb0e240f22928ff3e65a9848ca9a55a8d07293b69db33",
@@ -17,6 +17,7 @@
     "d5_probe_foundry.py": "040f4df845595ffbc01961961956b7044f07d57e851c87459458d1e918658d81",
     "d6_fun_scorer.py": "4e8187c23910be71398c8aa78fc85daf0d761e2718d422b1f6b703d58981fa76",
     "d7_quant_drift.py": "187d4e02d1925f3b8124079bd552c7c4f2e612440f40e8e282026fc54e31aa00",
+    "e10_invariance_race.py": "9ef6deddda4921353742530aec91474540e0fc647e6686284c59684ae1f715f2",
     "e1_real_glyph_contrast.py": "d4f9d71d164e681bffcc14ef7e947a74c2a1306b6623476ef1b98b51c367535f",
     "e2_flow_beat_vs_pool.py": "69a0f17faaf0ed003e4c013fdec56e66a09ad46f59bef4c21fd1563e7d95d11a",
     "e2b_flow_beat_revision.py": "3fe205915d36317ca58baa4721462202d0a6ee82e793ddd17e97f84b73b752d6",
