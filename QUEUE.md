@@ -37,6 +37,6 @@
 - [x] D20 transitional-jepa ablation (nonlinear + identity) — 2026-09-27 KEEP (linear sufficient: nonlinear -3%, identity -0.2%)
 
 - [x] D1b look-again sweep (full-scale) — 2026-09-27 KEEP (look-again 0.8569 vs best-single 0.6884, lift +0.1684)
-- [ ] D21 perception=ledger (kernel on real receipt-chain data) — verify imbalance ≡ field-edge delta empirically (superinstance-old claim)
-- [ ] D15c tone-channel generalization (held-out tone classes) — does the 0.94 adapter read UNSEEN tone classes? GPU LoRA
-- [ ] E12 room-dial reader (JEPA reads elephant dials: mood/volume/presence) — GPU vision
+- [x] D21 perception=ledger (kernel on real receipt-chain data) — 2026-09-27 KILL (imbalance ≡ d_mu is conditional, not unconditional)
+- [x] D15c tone-channel generalization (held-out tone classes) — 2026-09-27 KILL (tuned fails held-out class -0.0516; adapter memorizes seen-class patterns)
+- [x] E12 room-dial reader (JEPA reads elephant dials: mood/volume/presence) — 2026-09-28 KEEP (R² 0.81/0.96/0.95; frozen I-JEPA reads staged dials beyond luminance)
