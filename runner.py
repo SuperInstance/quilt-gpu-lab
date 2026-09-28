@@ -57,6 +57,7 @@ EXP_MOD = {
     "D15b": "experiments.d15b_read_channel_v2",
     "D15c": "experiments.d15c_tone_generalization",
     "D21": "experiments.d21_perception_ledger",
+    "D22": "experiments.d22_ternary_forgiveness",
     "D16": "experiments.d16_embedder_readable",
     "D17": "experiments.d17_compiler_scale",
     "D14": "experiments.d14_qthe_timbre_proof",

@@ -933,3 +933,8 @@ the ceiling; correlated dense purchases are dead weight or worse.
 }
 ```
 - note: imbalance ≡ d_mu is CONDITIONAL (holds only on the unit sphere, ‖before‖=‖after‖=1), which superinstance-old compressed away. Real heldout receipt-chain edges: max |imb−d_mu|/imb = 0.96–0.98 ≫ 1e-9 gate. Two rooms fail OPPOSITELY: kernel room 86.7% radial (magnitude drift), harbor receipt-chain 94.9% directional (perception delta ~38× smaller than sealed surprise). Spearman ρ(imb,d_mu) = −0.487 (anti-correlated) room A, undefined room B. Controls: G1 identity-1 decomposition exact (6.8e-15), G2 unit-collapse reproduces identity (4.4e-16) — the gap is real. The room's temperature ≠ the substrate's transaction history; two projections coinciding only on the unit sphere.
+
+## D22 — ternary-forgiveness (forgiveness-via-privacy-noise falsification)
+- ran: 2026-09-27 23:52
+- verdict: KILL
+- note: the claimed 0.5–0.7% trit-flip sweet spot is reproduced by NEITHER flip model. honest DP (signal-independent flip) leaves accuracy flat at chance 1/3 (spread 2.4e-3) — no recovery; signal-correlated "reveal" is monotonically increasing (0.338→0.368 at 5%) — no upper "drown" bound. Non-monotonic sweet spot: not detected. The synergy-miner's composition (DP-flip = forgiveness tunneling) is a good IDEA but its falsifiable band is not a generic property of trit-flip noise — it needs the ternary-engine forgiveness dynamics, absent from the claim's description and the local repos (ternary-forgiveness is an empty placeholder).

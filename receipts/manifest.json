@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-09-28T07:37:44.748987+00:00",
+  "generated_at": "2026-09-28T07:53:46.073509+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "d0978b046247a70dda6fdaa428ee86fa886a8f2d444a8e8b5dd18f2f9c7f67eb",
+    "RESULTS.md": "298f6044e021ab4c2cb2e5a9e62d64ebdfb9c8971d39095aa72580dcef9f899c",
     "QUEUE.md": "2c2162462a047da1f2c6229a02e813922d79b94b2130ef1a9ce541117ac61fb1"
   },
   "experiments": {
@@ -26,6 +26,7 @@
     "d1b_lookagain_sweep.py": "1483437833257c57a384420404804f6e57074b7db4b44b7010c0b1d5e9ebd2bf",
     "d20_transitional_ablate.py": "378cdc6324102afc29374f12801451c8ca009619206b915cf4a3a73a75200c31",
     "d21_perception_ledger.py": "8e1fd7dec958201d5dc89d4a73878c236d48ce32560956070a74af3b63ab6851",
+    "d22_ternary_forgiveness.py": "feaf55367fe632a188306e6f3090ab5f11d689b24f94b383b3212871b379a7bd",
     "d2_ternary_kernel.py": "a10ad0cac866e05559a75f050a58c83f80da0e2916625fe1432e991137cf9d4f",
     "d3_statevector_ceiling.py": "caa75c73a01162950cbfb7604c05510bedf80df6fc0c0c2a71714a763dad8d24",
     "d4_canon_lora.py": "e91940be5d06a476d4f60563fa65e59c6d5c59a43ebf11ef21a03774a5083a64",
