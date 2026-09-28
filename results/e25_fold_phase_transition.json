@@ -1,0 +1,2693 @@
+{
+  "experiment": "E25 fold-amplitude phase transition",
+  "registered_amplitude_set": true,
+  "dev_amplitude_override": null,
+  "seed_carriers": 2718,
+  "seed_e25": 2741,
+  "carrier_arm": "N2",
+  "fold_phase": 0.0,
+  "fold_amps": [
+    0.5,
+    1.0,
+    1.5,
+    2.2,
+    2.8,
+    3.5
+  ],
+  "dial_names": [
+    "mood",
+    "volume",
+    "presence"
+  ],
+  "extra_dials": [
+    "earnestness",
+    "cynicism",
+    "joke_landing",
+    "panic"
+  ],
+  "k_primary": 64,
+  "guard_preflight": {
+    "free_vram_mib": 5920,
+    "temp_c": 44
+  },
+  "replicates": 1,
+  "gates": {
+    "mono_rho_floor": -0.8,
+    "drop_floor": 0.15,
+    "up_step_tol": 0.05,
+    "min_live_amps": 4,
+    "r2_floor": 0.3,
+    "r2_room_floor": 0.15,
+    "r2_top_pc_fraction": 0.5,
+    "sensitivity_floor": 0.9
+  },
+  "mode": "sweep",
+  "model": "facebook/ijepa_vith16_1k",
+  "load_notes": {
+    "facebook/ijepa_vitb": "load failed: OSError: facebook/ijepa_vitb is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'\nIf this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your"
+  },
+  "device": "cuda",
+  "rooms": 27,
+  "stills_per_room": 12,
+  "encoder_forwards": 1620,
+  "label_stats": {
+    "mood": {
+      "min": -1.0,
+      "max": 1.0,
+      "std": 0.8332
+    },
+    "volume": {
+      "min": 0.1854,
+      "max": 0.6897,
+      "std": 0.1902
+    },
+    "presence": {
+      "min": 0.5222,
+      "max": 0.6555,
+      "std": 0.0548
+    }
+  },
+  "extra_dial_stats": {
+    "earnestness": {
+      "min": 0.5,
+      "max": 1.0,
+      "std": 0.1942
+    },
+    "cynicism": {
+      "min": 0.0,
+      "max": 0.0,
+      "std": 0.0
+    },
+    "joke_landing": {
+      "min": 0.0,
+      "max": 0.0,
+      "std": 0.0
+    },
+    "panic": {
+      "min": 0.0428,
+      "max": 0.7533,
+      "std": 0.1841
+    }
+  },
+  "harness_selftest_g0d": {
+    "r2_min_signal": 0.9991,
+    "r2_max_shuffled": -0.1652,
+    "pass": true
+  },
+  "verdict_mapper_selftest_g0e": {
+    "cases": {
+      "keep": {
+        "verdict": "KEEP",
+        "expect": "KEEP",
+        "monotone": [
+          "mood",
+          "volume",
+          "presence"
+        ],
+        "criticals": {
+          "mood": null,
+          "volume": 1.5,
+          "presence": 2.8
+        }
+      },
+      "kill_flat": {
+        "verdict": "KILL",
+        "expect": "KILL",
+        "monotone": [],
+        "criticals": {
+          "mood": null,
+          "volume": null,
+          "presence": null
+        }
+      },
+      "kill_rising": {
+        "verdict": "KILL",
+        "expect": "KILL",
+        "monotone": [],
+        "criticals": {
+          "mood": null,
+          "volume": 0.5,
+          "presence": 0.5
+        }
+      },
+      "incon_same_crit": {
+        "verdict": "INCONCLUSIVE",
+        "expect": "INCONCLUSIVE",
+        "monotone": [
+          "mood",
+          "volume",
+          "presence"
+        ],
+        "criticals": {
+          "mood": 2.2,
+          "volume": 2.2,
+          "presence": 2.2
+        }
+      },
+      "incon_wrong_dial_longest": {
+        "verdict": "INCONCLUSIVE",
+        "expect": "INCONCLUSIVE",
+        "monotone": [
+          "mood",
+          "volume",
+          "presence"
+        ],
+        "criticals": {
+          "mood": 1.5,
+          "volume": 2.8,
+          "presence": 1.5
+        }
+      }
+    },
+    "pass": true,
+    "note": "exercises the trend/verdict mapper only (dial_trend -> map_verdict) on planted curves; the probe path is G0d"
+  },
+  "fold_patch_audit_c7": {
+    "per_amp": {
+      "0.5": {
+        "fold_matches_closed_form": true,
+        "fold_at_probes": [
+          0.5,
+          0.591973,
+          0.207451,
+          0.96602
+        ]
+      },
+      "1": {
+        "fold_matches_closed_form": true,
+        "fold_at_probes": [
+          0.5,
+          0.680808,
+          0.025508,
+          0.837732
+        ]
+      },
+      "1.5": {
+        "fold_matches_closed_form": true,
+        "fold_at_probes": [
+          0.5,
+          0.763472,
+          0.022957,
+          0.27874
+        ]
+      },
+      "2.2": {
+        "fold_matches_closed_form": true,
+        "fold_at_probes": [
+          0.5,
+          0.86352,
+          0.30917,
+          0.078406
+        ]
+      },
+      "2.8": {
+        "fold_matches_closed_form": true,
+        "fold_at_probes": [
+          0.5,
+          0.930186,
+          0.675392,
+          0.711528
+        ]
+      },
+      "3.5": {
+        "fold_matches_closed_form": true,
+        "fold_at_probes": [
+          0.5,
+          0.981104,
+          0.971811,
+          0.927299
+        ]
+      }
+    },
+    "all_patched": true,
+    "constants_restored": true,
+    "fold_amp_before_audit": 2.2,
+    "restored_fold_amp": 2.2,
+    "knob_matrix_distinctness": {
+      "digests": {
+        "0.5": 2695.6264,
+        "1": 4815.0185,
+        "1.5": 6310.8171,
+        "2.2": 7024.4918,
+        "2.8": 6304.2097,
+        "3.5": 4251.2651
+      },
+      "n_unique": 6,
+      "all_distinct": true
+    }
+  },
+  "staging_fidelity_spearman_target_vs_label": {
+    "mood": 0.98,
+    "volume": 0.9437,
+    "presence": 0.9864
+  },
+  "g0a_staging_fidelity_pass": true,
+  "carrier_points": {
+    "0.5": {
+      "nominal_fold_amp": 0.5,
+      "mean_curvature": 0.3384,
+      "curvature_by_dial": {
+        "mood": 0.332,
+        "volume": 0.3335,
+        "presence": 0.3496
+      },
+      "nonaffine_pass": true,
+      "live_pass": true,
+      "n_dials_live": 3,
+      "knn_loo_r2_by_dial": {
+        "mood": 0.5921,
+        "volume": 0.3817,
+        "presence": 0.5018
+      },
+      "distcorr_p_by_dial": {
+        "mood": 0.0,
+        "volume": 0.0,
+        "presence": 0.0
+      },
+      "mean_lin_loo_r2": 0.9779,
+      "mean_quad_loo_r2": -0.2301,
+      "injectivity": {
+        "min_pairwise_distance": 1.74747,
+        "duplicate_pairs": 0,
+        "injective": true
+      },
+      "status": "LIVE",
+      "knob_ranges": {
+        "r": {
+          "min": 100.43,
+          "max": 193.375,
+          "n_unique": 27
+        },
+        "g": {
+          "min": 101.113,
+          "max": 193.772,
+          "n_unique": 27
+        },
+        "b": {
+          "min": 101.175,
+          "max": 194.187,
+          "n_unique": 27
+        },
+        "bright": {
+          "min": -0.118,
+          "max": 0.079,
+          "n_unique": 26
+        },
+        "contrast": {
+          "min": 0.873,
+          "max": 1.331,
+          "n_unique": 27
+        },
+        "noise": {
+          "min": 7.0,
+          "max": 51.0,
+          "n_unique": 20
+        },
+        "n_occ": {
+          "min": 2.0,
+          "max": 8.0,
+          "n_unique": 7
+        }
+      },
+      "carrier_source": "roomgen.SensorMixture(seed=2719) via importlib (/home/eileen/projects/elephant/gpu/roomgen.py): frozen W,b,gain; channel noise/dropout (training augmentation) unused",
+      "readout": "folded channel responses: 5 knobs = 0.5*(1+sin(0.5*w+0.0)), 2 knobs = products of two channels",
+      "svd_singular_values": [
+        10.375,
+        10.2457,
+        7.4349,
+        3.2144,
+        2.6295,
+        1.8568,
+        1.0833,
+        0.8333,
+        0.7041,
+        0.6599,
+        0.5655,
+        0.4892
+      ],
+      "certificate_summary": {
+        "mean_curvature": 0.3384,
+        "nonaffine_pass": true,
+        "mean_lin_loo_r2": 0.9779,
+        "mean_quad_loo_r2": -0.2301,
+        "n_dials_live": 3,
+        "live_pass": true,
+        "injectivity": {
+          "min_pairwise_distance": 1.74747,
+          "duplicate_pairs": 0,
+          "injective": true
+        },
+        "floors": {
+          "curvature": 0.2,
+          "knn_loo_r2": 0.2,
+          "distcorr_p": 0.05,
+          "live_dials": 2
+        },
+        "pass": true
+      },
+      "certificate_per_dial": {
+        "mood": {
+          "curvature": 0.332,
+          "knn_loo_r2": 0.5921,
+          "distcorr": 0.6531,
+          "distcorr_null95": 0.4837,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9814,
+          "quad_loo_r2": -0.3681,
+          "nonlin_gain": -1.3495,
+          "best_knob_abs_spearman": 0.9435
+        },
+        "volume": {
+          "curvature": 0.3335,
+          "knn_loo_r2": 0.3817,
+          "distcorr": 0.6011,
+          "distcorr_null95": 0.5029,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9763,
+          "quad_loo_r2": -0.2774,
+          "nonlin_gain": -1.2538,
+          "best_knob_abs_spearman": 0.9435
+        },
+        "presence": {
+          "curvature": 0.3496,
+          "knn_loo_r2": 0.5018,
+          "distcorr": 0.658,
+          "distcorr_null95": 0.4949,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9759,
+          "quad_loo_r2": -0.0447,
+          "nonlin_gain": -1.0206,
+          "best_knob_abs_spearman": 0.9435
+        }
+      }
+    },
+    "1": {
+      "nominal_fold_amp": 1.0,
+      "mean_curvature": 0.2938,
+      "curvature_by_dial": {
+        "mood": 0.3001,
+        "volume": 0.2862,
+        "presence": 0.295
+      },
+      "nonaffine_pass": true,
+      "live_pass": true,
+      "n_dials_live": 3,
+      "knn_loo_r2_by_dial": {
+        "mood": 0.6873,
+        "volume": 0.3937,
+        "presence": 0.44
+      },
+      "distcorr_p_by_dial": {
+        "mood": 0.0,
+        "volume": 0.0,
+        "presence": 0.0
+      },
+      "mean_lin_loo_r2": 0.9715,
+      "mean_quad_loo_r2": -0.2178,
+      "injectivity": {
+        "min_pairwise_distance": 1.72643,
+        "duplicate_pairs": 0,
+        "injective": true
+      },
+      "status": "LIVE",
+      "knob_ranges": {
+        "r": {
+          "min": 62.865,
+          "max": 230.476,
+          "n_unique": 27
+        },
+        "g": {
+          "min": 63.808,
+          "max": 231.032,
+          "n_unique": 27
+        },
+        "b": {
+          "min": 63.893,
+          "max": 231.608,
+          "n_unique": 27
+        },
+        "bright": {
+          "min": -0.195,
+          "max": 0.16,
+          "n_unique": 26
+        },
+        "contrast": {
+          "min": 0.695,
+          "max": 1.51,
+          "n_unique": 27
+        },
+        "noise": {
+          "min": 7.0,
+          "max": 51.0,
+          "n_unique": 20
+        },
+        "n_occ": {
+          "min": 2.0,
+          "max": 8.0,
+          "n_unique": 7
+        }
+      },
+      "carrier_source": "roomgen.SensorMixture(seed=2719) via importlib (/home/eileen/projects/elephant/gpu/roomgen.py): frozen W,b,gain; channel noise/dropout (training augmentation) unused",
+      "readout": "folded channel responses: 5 knobs = 0.5*(1+sin(1.0*w+0.0)), 2 knobs = products of two channels",
+      "svd_singular_values": [
+        10.375,
+        10.2457,
+        7.4349,
+        3.2144,
+        2.6295,
+        1.8568,
+        1.0833,
+        0.8333,
+        0.7041,
+        0.6599,
+        0.5655,
+        0.4892
+      ],
+      "certificate_summary": {
+        "mean_curvature": 0.2938,
+        "nonaffine_pass": true,
+        "mean_lin_loo_r2": 0.9715,
+        "mean_quad_loo_r2": -0.2178,
+        "n_dials_live": 3,
+        "live_pass": true,
+        "injectivity": {
+          "min_pairwise_distance": 1.72643,
+          "duplicate_pairs": 0,
+          "injective": true
+        },
+        "floors": {
+          "curvature": 0.2,
+          "knn_loo_r2": 0.2,
+          "distcorr_p": 0.05,
+          "live_dials": 2
+        },
+        "pass": true
+      },
+      "certificate_per_dial": {
+        "mood": {
+          "curvature": 0.3001,
+          "knn_loo_r2": 0.6873,
+          "distcorr": 0.6522,
+          "distcorr_null95": 0.4822,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9762,
+          "quad_loo_r2": -0.3872,
+          "nonlin_gain": -1.3634,
+          "best_knob_abs_spearman": 0.9435
+        },
+        "volume": {
+          "curvature": 0.2862,
+          "knn_loo_r2": 0.3937,
+          "distcorr": 0.6001,
+          "distcorr_null95": 0.5028,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9697,
+          "quad_loo_r2": -0.3063,
+          "nonlin_gain": -1.276,
+          "best_knob_abs_spearman": 0.9435
+        },
+        "presence": {
+          "curvature": 0.295,
+          "knn_loo_r2": 0.44,
+          "distcorr": 0.6574,
+          "distcorr_null95": 0.4946,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9685,
+          "quad_loo_r2": 0.0401,
+          "nonlin_gain": -0.9284,
+          "best_knob_abs_spearman": 0.9435
+        }
+      }
+    },
+    "1.5": {
+      "nominal_fold_amp": 1.5,
+      "mean_curvature": 0.3292,
+      "curvature_by_dial": {
+        "mood": 0.3437,
+        "volume": 0.3141,
+        "presence": 0.3297
+      },
+      "nonaffine_pass": true,
+      "live_pass": true,
+      "n_dials_live": 3,
+      "knn_loo_r2_by_dial": {
+        "mood": 0.7178,
+        "volume": 0.3797,
+        "presence": 0.3811
+      },
+      "distcorr_p_by_dial": {
+        "mood": 0.0,
+        "volume": 0.0,
+        "presence": 0.0
+      },
+      "mean_lin_loo_r2": 0.9562,
+      "mean_quad_loo_r2": -0.1499,
+      "injectivity": {
+        "min_pairwise_distance": 1.70293,
+        "duplicate_pairs": 0,
+        "injective": true
+      },
+      "status": "LIVE",
+      "knob_ranges": {
+        "r": {
+          "min": 42.388,
+          "max": 251.708,
+          "n_unique": 27
+        },
+        "g": {
+          "min": 42.888,
+          "max": 252.024,
+          "n_unique": 27
+        },
+        "b": {
+          "min": 42.935,
+          "max": 252.338,
+          "n_unique": 27
+        },
+        "bright": {
+          "min": -0.241,
+          "max": 0.198,
+          "n_unique": 27
+        },
+        "contrast": {
+          "min": 0.606,
+          "max": 1.596,
+          "n_unique": 27
+        },
+        "noise": {
+          "min": 7.0,
+          "max": 51.0,
+          "n_unique": 20
+        },
+        "n_occ": {
+          "min": 2.0,
+          "max": 8.0,
+          "n_unique": 7
+        }
+      },
+      "carrier_source": "roomgen.SensorMixture(seed=2719) via importlib (/home/eileen/projects/elephant/gpu/roomgen.py): frozen W,b,gain; channel noise/dropout (training augmentation) unused",
+      "readout": "folded channel responses: 5 knobs = 0.5*(1+sin(1.5*w+0.0)), 2 knobs = products of two channels",
+      "svd_singular_values": [
+        10.375,
+        10.2457,
+        7.4349,
+        3.2144,
+        2.6295,
+        1.8568,
+        1.0833,
+        0.8333,
+        0.7041,
+        0.6599,
+        0.5655,
+        0.4892
+      ],
+      "certificate_summary": {
+        "mean_curvature": 0.3292,
+        "nonaffine_pass": true,
+        "mean_lin_loo_r2": 0.9562,
+        "mean_quad_loo_r2": -0.1499,
+        "n_dials_live": 3,
+        "live_pass": true,
+        "injectivity": {
+          "min_pairwise_distance": 1.70293,
+          "duplicate_pairs": 0,
+          "injective": true
+        },
+        "floors": {
+          "curvature": 0.2,
+          "knn_loo_r2": 0.2,
+          "distcorr_p": 0.05,
+          "live_dials": 2
+        },
+        "pass": true
+      },
+      "certificate_per_dial": {
+        "mood": {
+          "curvature": 0.3437,
+          "knn_loo_r2": 0.7178,
+          "distcorr": 0.6501,
+          "distcorr_null95": 0.4803,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9644,
+          "quad_loo_r2": -0.3036,
+          "nonlin_gain": -1.268,
+          "best_knob_abs_spearman": 0.9435
+        },
+        "volume": {
+          "curvature": 0.3141,
+          "knn_loo_r2": 0.3797,
+          "distcorr": 0.5979,
+          "distcorr_null95": 0.5017,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9533,
+          "quad_loo_r2": -0.1569,
+          "nonlin_gain": -1.1102,
+          "best_knob_abs_spearman": 0.9435
+        },
+        "presence": {
+          "curvature": 0.3297,
+          "knn_loo_r2": 0.3811,
+          "distcorr": 0.6557,
+          "distcorr_null95": 0.4913,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9509,
+          "quad_loo_r2": 0.0107,
+          "nonlin_gain": -0.9402,
+          "best_knob_abs_spearman": 0.9435
+        }
+      }
+    },
+    "2.2": {
+      "nominal_fold_amp": 2.2,
+      "mean_curvature": 0.4712,
+      "curvature_by_dial": {
+        "mood": 0.4997,
+        "volume": 0.4373,
+        "presence": 0.4766
+      },
+      "nonaffine_pass": true,
+      "live_pass": true,
+      "n_dials_live": 3,
+      "knn_loo_r2_by_dial": {
+        "mood": 0.6707,
+        "volume": 0.3323,
+        "presence": 0.3742
+      },
+      "distcorr_p_by_dial": {
+        "mood": 0.0,
+        "volume": 0.0,
+        "presence": 0.0
+      },
+      "mean_lin_loo_r2": 0.9005,
+      "mean_quad_loo_r2": -0.0078,
+      "injectivity": {
+        "min_pairwise_distance": 1.55749,
+        "duplicate_pairs": 0,
+        "injective": true
+      },
+      "status": "LIVE",
+      "knob_ranges": {
+        "r": {
+          "min": 40.209,
+          "max": 254.843,
+          "n_unique": 27
+        },
+        "g": {
+          "min": 40.004,
+          "max": 254.913,
+          "n_unique": 27
+        },
+        "b": {
+          "min": 40.002,
+          "max": 254.976,
+          "n_unique": 27
+        },
+        "bright": {
+          "min": -0.25,
+          "max": 0.2,
+          "n_unique": 26
+        },
+        "contrast": {
+          "min": 0.607,
+          "max": 1.585,
+          "n_unique": 27
+        },
+        "noise": {
+          "min": 7.0,
+          "max": 51.0,
+          "n_unique": 20
+        },
+        "n_occ": {
+          "min": 2.0,
+          "max": 8.0,
+          "n_unique": 7
+        }
+      },
+      "carrier_source": "roomgen.SensorMixture(seed=2719) via importlib (/home/eileen/projects/elephant/gpu/roomgen.py): frozen W,b,gain; channel noise/dropout (training augmentation) unused",
+      "readout": "folded channel responses: 5 knobs = 0.5*(1+sin(2.2*w+0.0)), 2 knobs = products of two channels",
+      "svd_singular_values": [
+        10.375,
+        10.2457,
+        7.4349,
+        3.2144,
+        2.6295,
+        1.8568,
+        1.0833,
+        0.8333,
+        0.7041,
+        0.6599,
+        0.5655,
+        0.4892
+      ],
+      "certificate_summary": {
+        "mean_curvature": 0.4712,
+        "nonaffine_pass": true,
+        "mean_lin_loo_r2": 0.9005,
+        "mean_quad_loo_r2": -0.0078,
+        "n_dials_live": 3,
+        "live_pass": true,
+        "injectivity": {
+          "min_pairwise_distance": 1.55749,
+          "duplicate_pairs": 0,
+          "injective": true
+        },
+        "floors": {
+          "curvature": 0.2,
+          "knn_loo_r2": 0.2,
+          "distcorr_p": 0.05,
+          "live_dials": 2
+        },
+        "pass": true
+      },
+      "certificate_per_dial": {
+        "mood": {
+          "curvature": 0.4997,
+          "knn_loo_r2": 0.6707,
+          "distcorr": 0.6417,
+          "distcorr_null95": 0.4828,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9221,
+          "quad_loo_r2": 0.1519,
+          "nonlin_gain": -0.7703,
+          "best_knob_abs_spearman": 0.9435
+        },
+        "volume": {
+          "curvature": 0.4373,
+          "knn_loo_r2": 0.3323,
+          "distcorr": 0.5901,
+          "distcorr_null95": 0.5019,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.8995,
+          "quad_loo_r2": -0.1353,
+          "nonlin_gain": -1.0348,
+          "best_knob_abs_spearman": 0.9435
+        },
+        "presence": {
+          "curvature": 0.4766,
+          "knn_loo_r2": 0.3742,
+          "distcorr": 0.6481,
+          "distcorr_null95": 0.4955,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.88,
+          "quad_loo_r2": -0.0401,
+          "nonlin_gain": -0.9201,
+          "best_knob_abs_spearman": 0.9435
+        }
+      }
+    },
+    "2.8": {
+      "nominal_fold_amp": 2.8,
+      "mean_curvature": 0.7285,
+      "curvature_by_dial": {
+        "mood": 0.7744,
+        "volume": 0.6686,
+        "presence": 0.7425
+      },
+      "nonaffine_pass": true,
+      "live_pass": true,
+      "n_dials_live": 3,
+      "knn_loo_r2_by_dial": {
+        "mood": 0.5513,
+        "volume": 0.2448,
+        "presence": 0.2524
+      },
+      "distcorr_p_by_dial": {
+        "mood": 0.0,
+        "volume": 0.005,
+        "presence": 0.0
+      },
+      "mean_lin_loo_r2": 0.7571,
+      "mean_quad_loo_r2": 0.0517,
+      "injectivity": {
+        "min_pairwise_distance": 1.34485,
+        "duplicate_pairs": 0,
+        "injective": true
+      },
+      "status": "LIVE",
+      "knob_ranges": {
+        "r": {
+          "min": 43.785,
+          "max": 254.982,
+          "n_unique": 27
+        },
+        "g": {
+          "min": 45.005,
+          "max": 253.31,
+          "n_unique": 27
+        },
+        "b": {
+          "min": 40.403,
+          "max": 254.176,
+          "n_unique": 27
+        },
+        "bright": {
+          "min": -0.25,
+          "max": 0.198,
+          "n_unique": 27
+        },
+        "contrast": {
+          "min": 0.601,
+          "max": 1.599,
+          "n_unique": 27
+        },
+        "noise": {
+          "min": 7.0,
+          "max": 51.0,
+          "n_unique": 20
+        },
+        "n_occ": {
+          "min": 2.0,
+          "max": 8.0,
+          "n_unique": 7
+        }
+      },
+      "carrier_source": "roomgen.SensorMixture(seed=2719) via importlib (/home/eileen/projects/elephant/gpu/roomgen.py): frozen W,b,gain; channel noise/dropout (training augmentation) unused",
+      "readout": "folded channel responses: 5 knobs = 0.5*(1+sin(2.8*w+0.0)), 2 knobs = products of two channels",
+      "svd_singular_values": [
+        10.375,
+        10.2457,
+        7.4349,
+        3.2144,
+        2.6295,
+        1.8568,
+        1.0833,
+        0.8333,
+        0.7041,
+        0.6599,
+        0.5655,
+        0.4892
+      ],
+      "certificate_summary": {
+        "mean_curvature": 0.7285,
+        "nonaffine_pass": true,
+        "mean_lin_loo_r2": 0.7571,
+        "mean_quad_loo_r2": 0.0517,
+        "n_dials_live": 3,
+        "live_pass": true,
+        "injectivity": {
+          "min_pairwise_distance": 1.34485,
+          "duplicate_pairs": 0,
+          "injective": true
+        },
+        "floors": {
+          "curvature": 0.2,
+          "knn_loo_r2": 0.2,
+          "distcorr_p": 0.05,
+          "live_dials": 2
+        },
+        "pass": true
+      },
+      "certificate_per_dial": {
+        "mood": {
+          "curvature": 0.7744,
+          "knn_loo_r2": 0.5513,
+          "distcorr": 0.6186,
+          "distcorr_null95": 0.488,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.8251,
+          "quad_loo_r2": 0.1208,
+          "nonlin_gain": -0.7043,
+          "best_knob_abs_spearman": 0.827
+        },
+        "volume": {
+          "curvature": 0.6686,
+          "knn_loo_r2": 0.2448,
+          "distcorr": 0.5701,
+          "distcorr_null95": 0.5006,
+          "distcorr_p": 0.005,
+          "lin_loo_r2": 0.7508,
+          "quad_loo_r2": -0.044,
+          "nonlin_gain": -0.7948,
+          "best_knob_abs_spearman": 0.8386
+        },
+        "presence": {
+          "curvature": 0.7425,
+          "knn_loo_r2": 0.2524,
+          "distcorr": 0.6255,
+          "distcorr_null95": 0.4994,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.6954,
+          "quad_loo_r2": 0.0783,
+          "nonlin_gain": -0.6171,
+          "best_knob_abs_spearman": 0.8561
+        }
+      }
+    },
+    "3.5": {
+      "nominal_fold_amp": 3.5,
+      "mean_curvature": 1.3076,
+      "curvature_by_dial": {
+        "mood": 1.3644,
+        "volume": 1.2282,
+        "presence": 1.3301
+      },
+      "nonaffine_pass": true,
+      "live_pass": false,
+      "n_dials_live": 0,
+      "knn_loo_r2_by_dial": {
+        "mood": 0.0965,
+        "volume": -0.2591,
+        "presence": -0.3279
+      },
+      "distcorr_p_by_dial": {
+        "mood": 0.025,
+        "volume": 0.14,
+        "presence": 0.01
+      },
+      "mean_lin_loo_r2": 0.3087,
+      "mean_quad_loo_r2": -0.1945,
+      "injectivity": {
+        "min_pairwise_distance": 1.0056,
+        "duplicate_pairs": 0,
+        "injective": true
+      },
+      "status": "INVALID_STAGING",
+      "knob_ranges": {
+        "r": {
+          "min": 40.193,
+          "max": 254.815,
+          "n_unique": 27
+        },
+        "g": {
+          "min": 40.003,
+          "max": 253.436,
+          "n_unique": 27
+        },
+        "b": {
+          "min": 41.097,
+          "max": 251.974,
+          "n_unique": 27
+        },
+        "bright": {
+          "min": -0.25,
+          "max": 0.199,
+          "n_unique": 27
+        },
+        "contrast": {
+          "min": 0.603,
+          "max": 1.598,
+          "n_unique": 27
+        },
+        "noise": {
+          "min": 7.0,
+          "max": 51.0,
+          "n_unique": 20
+        },
+        "n_occ": {
+          "min": 2.0,
+          "max": 8.0,
+          "n_unique": 7
+        }
+      },
+      "carrier_source": "roomgen.SensorMixture(seed=2719) via importlib (/home/eileen/projects/elephant/gpu/roomgen.py): frozen W,b,gain; channel noise/dropout (training augmentation) unused",
+      "readout": "folded channel responses: 5 knobs = 0.5*(1+sin(3.5*w+0.0)), 2 knobs = products of two channels",
+      "svd_singular_values": [
+        10.375,
+        10.2457,
+        7.4349,
+        3.2144,
+        2.6295,
+        1.8568,
+        1.0833,
+        0.8333,
+        0.7041,
+        0.6599,
+        0.5655,
+        0.4892
+      ],
+      "certificate_summary": {
+        "mean_curvature": 1.3076,
+        "nonaffine_pass": true,
+        "mean_lin_loo_r2": 0.3087,
+        "mean_quad_loo_r2": -0.1945,
+        "n_dials_live": 0,
+        "live_pass": false,
+        "injectivity": {
+          "min_pairwise_distance": 1.0056,
+          "duplicate_pairs": 0,
+          "injective": true
+        },
+        "floors": {
+          "curvature": 0.2,
+          "knn_loo_r2": 0.2,
+          "distcorr_p": 0.05,
+          "live_dials": 2
+        },
+        "pass": false
+      },
+      "certificate_per_dial": {
+        "mood": {
+          "curvature": 1.3644,
+          "knn_loo_r2": 0.0965,
+          "distcorr": 0.5315,
+          "distcorr_null95": 0.5077,
+          "distcorr_p": 0.025,
+          "lin_loo_r2": 0.5345,
+          "quad_loo_r2": -0.1201,
+          "nonlin_gain": -0.6546,
+          "best_knob_abs_spearman": 0.6581
+        },
+        "volume": {
+          "curvature": 1.2282,
+          "knn_loo_r2": -0.2591,
+          "distcorr": 0.4797,
+          "distcorr_null95": 0.5031,
+          "distcorr_p": 0.14,
+          "lin_loo_r2": 0.1208,
+          "quad_loo_r2": -0.0815,
+          "nonlin_gain": -0.2024,
+          "best_knob_abs_spearman": 0.6464
+        },
+        "presence": {
+          "curvature": 1.3301,
+          "knn_loo_r2": -0.3279,
+          "distcorr": 0.5275,
+          "distcorr_null95": 0.4902,
+          "distcorr_p": 0.01,
+          "lin_loo_r2": 0.2708,
+          "quad_loo_r2": -0.382,
+          "nonlin_gain": -0.6528,
+          "best_knob_abs_spearman": 0.6523
+        }
+      }
+    }
+  },
+  "carriers_live": [
+    0.5,
+    1.0,
+    1.5,
+    2.2,
+    2.8
+  ],
+  "carriers_censored": [
+    3.5
+  ],
+  "x_axis_measured_nonlinearity": {
+    "0.5": 0.3384,
+    "1": 0.2938,
+    "1.5": 0.3292,
+    "2.2": 0.4712,
+    "2.8": 0.7285
+  },
+  "points": {
+    "0.5": {
+      "title": "nonlinear-mixture (roomgen.SensorMixture: frozen random tanh(Wz+b)*gain, per-room nuisance, label-free SVD readout) \u2014 PRIMARY",
+      "cells": 324,
+      "emb_dim": 1280,
+      "pca_evr_k16": 0.9488,
+      "pca_evr_k64": 0.9918,
+      "pca_evr_k256": 0.9998,
+      "r2_still_loro": {
+        "16": {
+          "mood": 0.6962,
+          "volume": 0.2554,
+          "presence": 0.6102
+        },
+        "64": {
+          "mood": 0.7962,
+          "volume": 0.398,
+          "presence": 0.6197
+        },
+        "256": {
+          "mood": 0.8347,
+          "volume": 0.4597,
+          "presence": 0.7445
+        }
+      },
+      "r2_room_loro": {
+        "16": {
+          "mood": 0.6014,
+          "volume": 0.4338,
+          "presence": 0.5363
+        },
+        "64": {
+          "mood": 0.6014,
+          "volume": 0.4338,
+          "presence": 0.5363
+        },
+        "256": {
+          "mood": 0.5849,
+          "volume": 0.3666,
+          "presence": 0.3442
+        }
+      },
+      "room_space_k": {
+        "16": 13,
+        "64": 13,
+        "256": 13
+      },
+      "spearman_loro_k64": {
+        "mood": 0.8896,
+        "volume": 0.7138,
+        "presence": 0.7795
+      },
+      "perm_null95_k64": {
+        "mood": -0.2694,
+        "volume": -0.0622,
+        "presence": -0.2827
+      },
+      "perm_p_k64": {
+        "mood": 0.0,
+        "volume": 0.01,
+        "presence": 0.0
+      },
+      "lambda_median_k64": 0.001,
+      "tertile_acc_k64": {
+        "mood": 0.8735,
+        "volume": 0.9105,
+        "presence": 0.9599
+      },
+      "tertile_p_k64": {
+        "mood": 0.0,
+        "volume": 0.0,
+        "presence": 0.0
+      },
+      "g0b_luminance_r2_k64": 0.8721,
+      "controls": {
+        "raw_pixel_r2_k64": {
+          "mood": 0.484,
+          "volume": -0.1608,
+          "presence": 0.4612
+        },
+        "luminance_spearman": {
+          "mood": -0.2415,
+          "volume": -0.5331,
+          "presence": 0.3135
+        },
+        "room_identity_acc": 1.0,
+        "room_identity_chance": 0.037
+      },
+      "carrier_certificate_dials": {
+        "mood": {
+          "curvature": 0.332,
+          "knn_loo_r2": 0.5921,
+          "distcorr": 0.6531,
+          "distcorr_null95": 0.4837,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9814,
+          "quad_loo_r2": -0.3681,
+          "nonlin_gain": -1.3495,
+          "best_knob_abs_spearman": 0.9435
+        },
+        "volume": {
+          "curvature": 0.3335,
+          "knn_loo_r2": 0.3817,
+          "distcorr": 0.6011,
+          "distcorr_null95": 0.5029,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9763,
+          "quad_loo_r2": -0.2774,
+          "nonlin_gain": -1.2538,
+          "best_knob_abs_spearman": 0.9435
+        },
+        "presence": {
+          "curvature": 0.3496,
+          "knn_loo_r2": 0.5018,
+          "distcorr": 0.658,
+          "distcorr_null95": 0.4949,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9759,
+          "quad_loo_r2": -0.0447,
+          "nonlin_gain": -1.0206,
+          "best_knob_abs_spearman": 0.9435
+        }
+      },
+      "carrier_certificate": {
+        "mean_curvature": 0.3384,
+        "nonaffine_pass": true,
+        "mean_lin_loo_r2": 0.9779,
+        "mean_quad_loo_r2": -0.2301,
+        "n_dials_live": 3,
+        "live_pass": true,
+        "injectivity": {
+          "min_pairwise_distance": 1.74747,
+          "duplicate_pairs": 0,
+          "injective": true
+        },
+        "floors": {
+          "curvature": 0.2,
+          "knn_loo_r2": 0.2,
+          "distcorr_p": 0.05,
+          "live_dials": 2
+        },
+        "pass": true
+      },
+      "knob_ranges": {
+        "r": {
+          "min": 100.43,
+          "max": 193.375,
+          "n_unique": 27
+        },
+        "g": {
+          "min": 101.113,
+          "max": 193.772,
+          "n_unique": 27
+        },
+        "b": {
+          "min": 101.175,
+          "max": 194.187,
+          "n_unique": 27
+        },
+        "bright": {
+          "min": -0.118,
+          "max": 0.079,
+          "n_unique": 26
+        },
+        "contrast": {
+          "min": 0.873,
+          "max": 1.331,
+          "n_unique": 27
+        },
+        "noise": {
+          "min": 7.0,
+          "max": 51.0,
+          "n_unique": 20
+        },
+        "n_occ": {
+          "min": 2.0,
+          "max": 8.0,
+          "n_unique": 7
+        }
+      },
+      "gate": {
+        "dial_pass": {
+          "mood": true,
+          "volume": true,
+          "presence": true
+        },
+        "n_pass": 3,
+        "mean_r2_k64": 0.6046,
+        "mean_null95_k64": -0.2048,
+        "room_sep_ok": true,
+        "room_sep_floor": 0.75,
+        "ladder": "KEEP"
+      },
+      "x_axis": {
+        "nominal_fold_amp": 0.5,
+        "mean_curvature": 0.3384,
+        "curvature_by_dial": {
+          "mood": 0.332,
+          "volume": 0.3335,
+          "presence": 0.3496
+        },
+        "nonaffine_pass": true,
+        "live_pass": true,
+        "n_dials_live": 3,
+        "knn_loo_r2_by_dial": {
+          "mood": 0.5921,
+          "volume": 0.3817,
+          "presence": 0.5018
+        },
+        "distcorr_p_by_dial": {
+          "mood": 0.0,
+          "volume": 0.0,
+          "presence": 0.0
+        },
+        "mean_lin_loo_r2": 0.9779,
+        "status": "LIVE"
+      },
+      "certificate_recompute_match": true
+    },
+    "1": {
+      "title": "nonlinear-mixture (roomgen.SensorMixture: frozen random tanh(Wz+b)*gain, per-room nuisance, label-free SVD readout) \u2014 PRIMARY",
+      "cells": 324,
+      "emb_dim": 1280,
+      "pca_evr_k16": 0.9602,
+      "pca_evr_k64": 0.9951,
+      "pca_evr_k256": 0.9999,
+      "r2_still_loro": {
+        "16": {
+          "mood": 0.4097,
+          "volume": 0.2626,
+          "presence": 0.4664
+        },
+        "64": {
+          "mood": 0.762,
+          "volume": -0.0532,
+          "presence": 0.6361
+        },
+        "256": {
+          "mood": 0.818,
+          "volume": 0.3406,
+          "presence": 0.5891
+        }
+      },
+      "r2_room_loro": {
+        "16": {
+          "mood": 0.6009,
+          "volume": 0.2304,
+          "presence": 0.3994
+        },
+        "64": {
+          "mood": 0.6009,
+          "volume": 0.2304,
+          "presence": 0.3994
+        },
+        "256": {
+          "mood": 0.2502,
+          "volume": 0.2093,
+          "presence": 0.2933
+        }
+      },
+      "room_space_k": {
+        "16": 13,
+        "64": 13,
+        "256": 13
+      },
+      "spearman_loro_k64": {
+        "mood": 0.8888,
+        "volume": 0.5633,
+        "presence": 0.7867
+      },
+      "perm_null95_k64": {
+        "mood": -0.2809,
+        "volume": -0.1715,
+        "presence": -0.0934
+      },
+      "perm_p_k64": {
+        "mood": 0.0,
+        "volume": 0.025,
+        "presence": 0.0
+      },
+      "lambda_median_k64": 0.01,
+      "tertile_acc_k64": {
+        "mood": 0.8642,
+        "volume": 0.8148,
+        "presence": 0.9938
+      },
+      "tertile_p_k64": {
+        "mood": 0.0,
+        "volume": 0.0,
+        "presence": 0.0
+      },
+      "g0b_luminance_r2_k64": 0.8871,
+      "controls": {
+        "raw_pixel_r2_k64": {
+          "mood": 0.4349,
+          "volume": -0.1264,
+          "presence": 0.3888
+        },
+        "luminance_spearman": {
+          "mood": -0.2598,
+          "volume": -0.5508,
+          "presence": 0.2622
+        },
+        "room_identity_acc": 1.0,
+        "room_identity_chance": 0.037
+      },
+      "carrier_certificate_dials": {
+        "mood": {
+          "curvature": 0.3001,
+          "knn_loo_r2": 0.6873,
+          "distcorr": 0.6522,
+          "distcorr_null95": 0.4822,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9762,
+          "quad_loo_r2": -0.3872,
+          "nonlin_gain": -1.3634,
+          "best_knob_abs_spearman": 0.9435
+        },
+        "volume": {
+          "curvature": 0.2862,
+          "knn_loo_r2": 0.3937,
+          "distcorr": 0.6001,
+          "distcorr_null95": 0.5028,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9697,
+          "quad_loo_r2": -0.3063,
+          "nonlin_gain": -1.276,
+          "best_knob_abs_spearman": 0.9435
+        },
+        "presence": {
+          "curvature": 0.295,
+          "knn_loo_r2": 0.44,
+          "distcorr": 0.6574,
+          "distcorr_null95": 0.4946,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9685,
+          "quad_loo_r2": 0.0401,
+          "nonlin_gain": -0.9284,
+          "best_knob_abs_spearman": 0.9435
+        }
+      },
+      "carrier_certificate": {
+        "mean_curvature": 0.2938,
+        "nonaffine_pass": true,
+        "mean_lin_loo_r2": 0.9715,
+        "mean_quad_loo_r2": -0.2178,
+        "n_dials_live": 3,
+        "live_pass": true,
+        "injectivity": {
+          "min_pairwise_distance": 1.72643,
+          "duplicate_pairs": 0,
+          "injective": true
+        },
+        "floors": {
+          "curvature": 0.2,
+          "knn_loo_r2": 0.2,
+          "distcorr_p": 0.05,
+          "live_dials": 2
+        },
+        "pass": true
+      },
+      "knob_ranges": {
+        "r": {
+          "min": 62.865,
+          "max": 230.476,
+          "n_unique": 27
+        },
+        "g": {
+          "min": 63.808,
+          "max": 231.032,
+          "n_unique": 27
+        },
+        "b": {
+          "min": 63.893,
+          "max": 231.608,
+          "n_unique": 27
+        },
+        "bright": {
+          "min": -0.195,
+          "max": 0.16,
+          "n_unique": 26
+        },
+        "contrast": {
+          "min": 0.695,
+          "max": 1.51,
+          "n_unique": 27
+        },
+        "noise": {
+          "min": 7.0,
+          "max": 51.0,
+          "n_unique": 20
+        },
+        "n_occ": {
+          "min": 2.0,
+          "max": 8.0,
+          "n_unique": 7
+        }
+      },
+      "gate": {
+        "dial_pass": {
+          "mood": true,
+          "volume": false,
+          "presence": true
+        },
+        "n_pass": 2,
+        "mean_r2_k64": 0.4483,
+        "mean_null95_k64": -0.1819,
+        "room_sep_ok": true,
+        "room_sep_floor": 0.75,
+        "ladder": "KEEP"
+      },
+      "x_axis": {
+        "nominal_fold_amp": 1.0,
+        "mean_curvature": 0.2938,
+        "curvature_by_dial": {
+          "mood": 0.3001,
+          "volume": 0.2862,
+          "presence": 0.295
+        },
+        "nonaffine_pass": true,
+        "live_pass": true,
+        "n_dials_live": 3,
+        "knn_loo_r2_by_dial": {
+          "mood": 0.6873,
+          "volume": 0.3937,
+          "presence": 0.44
+        },
+        "distcorr_p_by_dial": {
+          "mood": 0.0,
+          "volume": 0.0,
+          "presence": 0.0
+        },
+        "mean_lin_loo_r2": 0.9715,
+        "status": "LIVE"
+      },
+      "certificate_recompute_match": true
+    },
+    "1.5": {
+      "title": "nonlinear-mixture (roomgen.SensorMixture: frozen random tanh(Wz+b)*gain, per-room nuisance, label-free SVD readout) \u2014 PRIMARY",
+      "cells": 324,
+      "emb_dim": 1280,
+      "pca_evr_k16": 0.9661,
+      "pca_evr_k64": 0.9966,
+      "pca_evr_k256": 0.9999,
+      "r2_still_loro": {
+        "16": {
+          "mood": 0.2196,
+          "volume": 0.3376,
+          "presence": 0.4504
+        },
+        "64": {
+          "mood": 0.7178,
+          "volume": -0.054,
+          "presence": 0.4251
+        },
+        "256": {
+          "mood": 0.76,
+          "volume": 0.2061,
+          "presence": 0.6545
+        }
+      },
+      "r2_room_loro": {
+        "16": {
+          "mood": 0.554,
+          "volume": 0.245,
+          "presence": 0.2875
+        },
+        "64": {
+          "mood": 0.554,
+          "volume": 0.245,
+          "presence": 0.2875
+        },
+        "256": {
+          "mood": -0.2037,
+          "volume": 0.0781,
+          "presence": 0.1391
+        }
+      },
+      "room_space_k": {
+        "16": 13,
+        "64": 13,
+        "256": 13
+      },
+      "spearman_loro_k64": {
+        "mood": 0.8643,
+        "volume": 0.5118,
+        "presence": 0.6999
+      },
+      "perm_null95_k64": {
+        "mood": -0.1015,
+        "volume": -0.0194,
+        "presence": -0.1036
+      },
+      "perm_p_k64": {
+        "mood": 0.0,
+        "volume": 0.06,
+        "presence": 0.0
+      },
+      "lambda_median_k64": 0.1,
+      "tertile_acc_k64": {
+        "mood": 0.8333,
+        "volume": 0.7623,
+        "presence": 0.9198
+      },
+      "tertile_p_k64": {
+        "mood": 0.0,
+        "volume": 0.0,
+        "presence": 0.0
+      },
+      "g0b_luminance_r2_k64": 0.8834,
+      "controls": {
+        "raw_pixel_r2_k64": {
+          "mood": 0.4341,
+          "volume": -0.1265,
+          "presence": 0.3739
+        },
+        "luminance_spearman": {
+          "mood": -0.2887,
+          "volume": -0.5644,
+          "presence": 0.2721
+        },
+        "room_identity_acc": 1.0,
+        "room_identity_chance": 0.037
+      },
+      "carrier_certificate_dials": {
+        "mood": {
+          "curvature": 0.3437,
+          "knn_loo_r2": 0.7178,
+          "distcorr": 0.6501,
+          "distcorr_null95": 0.4803,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9644,
+          "quad_loo_r2": -0.3036,
+          "nonlin_gain": -1.268,
+          "best_knob_abs_spearman": 0.9435
+        },
+        "volume": {
+          "curvature": 0.3141,
+          "knn_loo_r2": 0.3797,
+          "distcorr": 0.5979,
+          "distcorr_null95": 0.5017,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9533,
+          "quad_loo_r2": -0.1569,
+          "nonlin_gain": -1.1102,
+          "best_knob_abs_spearman": 0.9435
+        },
+        "presence": {
+          "curvature": 0.3297,
+          "knn_loo_r2": 0.3811,
+          "distcorr": 0.6557,
+          "distcorr_null95": 0.4913,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9509,
+          "quad_loo_r2": 0.0107,
+          "nonlin_gain": -0.9402,
+          "best_knob_abs_spearman": 0.9435
+        }
+      },
+      "carrier_certificate": {
+        "mean_curvature": 0.3292,
+        "nonaffine_pass": true,
+        "mean_lin_loo_r2": 0.9562,
+        "mean_quad_loo_r2": -0.1499,
+        "n_dials_live": 3,
+        "live_pass": true,
+        "injectivity": {
+          "min_pairwise_distance": 1.70293,
+          "duplicate_pairs": 0,
+          "injective": true
+        },
+        "floors": {
+          "curvature": 0.2,
+          "knn_loo_r2": 0.2,
+          "distcorr_p": 0.05,
+          "live_dials": 2
+        },
+        "pass": true
+      },
+      "knob_ranges": {
+        "r": {
+          "min": 42.388,
+          "max": 251.708,
+          "n_unique": 27
+        },
+        "g": {
+          "min": 42.888,
+          "max": 252.024,
+          "n_unique": 27
+        },
+        "b": {
+          "min": 42.935,
+          "max": 252.338,
+          "n_unique": 27
+        },
+        "bright": {
+          "min": -0.241,
+          "max": 0.198,
+          "n_unique": 27
+        },
+        "contrast": {
+          "min": 0.606,
+          "max": 1.596,
+          "n_unique": 27
+        },
+        "noise": {
+          "min": 7.0,
+          "max": 51.0,
+          "n_unique": 20
+        },
+        "n_occ": {
+          "min": 2.0,
+          "max": 8.0,
+          "n_unique": 7
+        }
+      },
+      "gate": {
+        "dial_pass": {
+          "mood": false,
+          "volume": false,
+          "presence": true
+        },
+        "n_pass": 1,
+        "mean_r2_k64": 0.363,
+        "mean_null95_k64": -0.0748,
+        "room_sep_ok": true,
+        "room_sep_floor": 0.75,
+        "ladder": "INCONCLUSIVE"
+      },
+      "x_axis": {
+        "nominal_fold_amp": 1.5,
+        "mean_curvature": 0.3292,
+        "curvature_by_dial": {
+          "mood": 0.3437,
+          "volume": 0.3141,
+          "presence": 0.3297
+        },
+        "nonaffine_pass": true,
+        "live_pass": true,
+        "n_dials_live": 3,
+        "knn_loo_r2_by_dial": {
+          "mood": 0.7178,
+          "volume": 0.3797,
+          "presence": 0.3811
+        },
+        "distcorr_p_by_dial": {
+          "mood": 0.0,
+          "volume": 0.0,
+          "presence": 0.0
+        },
+        "mean_lin_loo_r2": 0.9562,
+        "status": "LIVE"
+      },
+      "certificate_recompute_match": true
+    },
+    "2.2": {
+      "title": "nonlinear-mixture (roomgen.SensorMixture: frozen random tanh(Wz+b)*gain, per-room nuisance, label-free SVD readout) \u2014 PRIMARY",
+      "cells": 324,
+      "emb_dim": 1280,
+      "pca_evr_k16": 0.9692,
+      "pca_evr_k64": 0.9969,
+      "pca_evr_k256": 0.9999,
+      "r2_still_loro": {
+        "16": {
+          "mood": 0.4875,
+          "volume": -0.1875,
+          "presence": 0.2291
+        },
+        "64": {
+          "mood": 0.5372,
+          "volume": -0.0998,
+          "presence": 0.27
+        },
+        "256": {
+          "mood": 0.5826,
+          "volume": 0.1047,
+          "presence": 0.5507
+        }
+      },
+      "r2_room_loro": {
+        "16": {
+          "mood": 0.3126,
+          "volume": 0.0853,
+          "presence": 0.3323
+        },
+        "64": {
+          "mood": 0.3126,
+          "volume": 0.0853,
+          "presence": 0.3323
+        },
+        "256": {
+          "mood": 0.1731,
+          "volume": 0.0385,
+          "presence": 0.4167
+        }
+      },
+      "room_space_k": {
+        "16": 13,
+        "64": 13,
+        "256": 13
+      },
+      "spearman_loro_k64": {
+        "mood": 0.7369,
+        "volume": 0.3494,
+        "presence": 0.545
+      },
+      "perm_null95_k64": {
+        "mood": 0.0458,
+        "volume": 0.0634,
+        "presence": -0.0372
+      },
+      "perm_p_k64": {
+        "mood": 0.0,
+        "volume": 0.085,
+        "presence": 0.01
+      },
+      "lambda_median_k64": 1.0,
+      "tertile_acc_k64": {
+        "mood": 0.7716,
+        "volume": 0.6667,
+        "presence": 0.8302
+      },
+      "tertile_p_k64": {
+        "mood": 0.0,
+        "volume": 0.0,
+        "presence": 0.0
+      },
+      "g0b_luminance_r2_k64": 0.9579,
+      "controls": {
+        "raw_pixel_r2_k64": {
+          "mood": 0.4311,
+          "volume": -0.1876,
+          "presence": 0.3751
+        },
+        "luminance_spearman": {
+          "mood": -0.3153,
+          "volume": -0.5211,
+          "presence": 0.3306
+        },
+        "room_identity_acc": 1.0,
+        "room_identity_chance": 0.037
+      },
+      "carrier_certificate_dials": {
+        "mood": {
+          "curvature": 0.4997,
+          "knn_loo_r2": 0.6707,
+          "distcorr": 0.6417,
+          "distcorr_null95": 0.4828,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9221,
+          "quad_loo_r2": 0.1519,
+          "nonlin_gain": -0.7703,
+          "best_knob_abs_spearman": 0.9435
+        },
+        "volume": {
+          "curvature": 0.4373,
+          "knn_loo_r2": 0.3323,
+          "distcorr": 0.5901,
+          "distcorr_null95": 0.5019,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.8995,
+          "quad_loo_r2": -0.1353,
+          "nonlin_gain": -1.0348,
+          "best_knob_abs_spearman": 0.9435
+        },
+        "presence": {
+          "curvature": 0.4766,
+          "knn_loo_r2": 0.3742,
+          "distcorr": 0.6481,
+          "distcorr_null95": 0.4955,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.88,
+          "quad_loo_r2": -0.0401,
+          "nonlin_gain": -0.9201,
+          "best_knob_abs_spearman": 0.9435
+        }
+      },
+      "carrier_certificate": {
+        "mean_curvature": 0.4712,
+        "nonaffine_pass": true,
+        "mean_lin_loo_r2": 0.9005,
+        "mean_quad_loo_r2": -0.0078,
+        "n_dials_live": 3,
+        "live_pass": true,
+        "injectivity": {
+          "min_pairwise_distance": 1.55749,
+          "duplicate_pairs": 0,
+          "injective": true
+        },
+        "floors": {
+          "curvature": 0.2,
+          "knn_loo_r2": 0.2,
+          "distcorr_p": 0.05,
+          "live_dials": 2
+        },
+        "pass": true
+      },
+      "knob_ranges": {
+        "r": {
+          "min": 40.209,
+          "max": 254.843,
+          "n_unique": 27
+        },
+        "g": {
+          "min": 40.004,
+          "max": 254.913,
+          "n_unique": 27
+        },
+        "b": {
+          "min": 40.002,
+          "max": 254.976,
+          "n_unique": 27
+        },
+        "bright": {
+          "min": -0.25,
+          "max": 0.2,
+          "n_unique": 26
+        },
+        "contrast": {
+          "min": 0.607,
+          "max": 1.585,
+          "n_unique": 27
+        },
+        "noise": {
+          "min": 7.0,
+          "max": 51.0,
+          "n_unique": 20
+        },
+        "n_occ": {
+          "min": 2.0,
+          "max": 8.0,
+          "n_unique": 7
+        }
+      },
+      "gate": {
+        "dial_pass": {
+          "mood": true,
+          "volume": false,
+          "presence": false
+        },
+        "n_pass": 1,
+        "mean_r2_k64": 0.2358,
+        "mean_null95_k64": 0.024,
+        "room_sep_ok": true,
+        "room_sep_floor": 0.75,
+        "ladder": "INCONCLUSIVE"
+      },
+      "x_axis": {
+        "nominal_fold_amp": 2.2,
+        "mean_curvature": 0.4712,
+        "curvature_by_dial": {
+          "mood": 0.4997,
+          "volume": 0.4373,
+          "presence": 0.4766
+        },
+        "nonaffine_pass": true,
+        "live_pass": true,
+        "n_dials_live": 3,
+        "knn_loo_r2_by_dial": {
+          "mood": 0.6707,
+          "volume": 0.3323,
+          "presence": 0.3742
+        },
+        "distcorr_p_by_dial": {
+          "mood": 0.0,
+          "volume": 0.0,
+          "presence": 0.0
+        },
+        "mean_lin_loo_r2": 0.9005,
+        "status": "LIVE"
+      },
+      "certificate_recompute_match": true
+    },
+    "2.8": {
+      "title": "nonlinear-mixture (roomgen.SensorMixture: frozen random tanh(Wz+b)*gain, per-room nuisance, label-free SVD readout) \u2014 PRIMARY",
+      "cells": 324,
+      "emb_dim": 1280,
+      "pca_evr_k16": 0.9612,
+      "pca_evr_k64": 0.9957,
+      "pca_evr_k256": 0.9999,
+      "r2_still_loro": {
+        "16": {
+          "mood": 0.4458,
+          "volume": -0.1824,
+          "presence": 0.3196
+        },
+        "64": {
+          "mood": 0.4318,
+          "volume": -0.0256,
+          "presence": -0.1702
+        },
+        "256": {
+          "mood": 0.5801,
+          "volume": 0.1504,
+          "presence": 0.1973
+        }
+      },
+      "r2_room_loro": {
+        "16": {
+          "mood": 0.2516,
+          "volume": 0.0603,
+          "presence": 0.2752
+        },
+        "64": {
+          "mood": 0.2516,
+          "volume": 0.0603,
+          "presence": 0.2752
+        },
+        "256": {
+          "mood": 0.2154,
+          "volume": -0.0053,
+          "presence": 0.2813
+        }
+      },
+      "room_space_k": {
+        "16": 13,
+        "64": 13,
+        "256": 13
+      },
+      "spearman_loro_k64": {
+        "mood": 0.6437,
+        "volume": 0.3993,
+        "presence": 0.2865
+      },
+      "perm_null95_k64": {
+        "mood": 0.0668,
+        "volume": -0.0199,
+        "presence": -0.0273
+      },
+      "perm_p_k64": {
+        "mood": 0.005,
+        "volume": 0.055,
+        "presence": 0.115
+      },
+      "lambda_median_k64": 1.0,
+      "tertile_acc_k64": {
+        "mood": 0.6451,
+        "volume": 0.6574,
+        "presence": 0.7562
+      },
+      "tertile_p_k64": {
+        "mood": 0.0,
+        "volume": 0.0,
+        "presence": 0.0
+      },
+      "g0b_luminance_r2_k64": 0.6554,
+      "controls": {
+        "raw_pixel_r2_k64": {
+          "mood": 0.4322,
+          "volume": -0.3617,
+          "presence": 0.3387
+        },
+        "luminance_spearman": {
+          "mood": -0.3181,
+          "volume": -0.5189,
+          "presence": 0.2843
+        },
+        "room_identity_acc": 1.0,
+        "room_identity_chance": 0.037
+      },
+      "carrier_certificate_dials": {
+        "mood": {
+          "curvature": 0.7744,
+          "knn_loo_r2": 0.5513,
+          "distcorr": 0.6186,
+          "distcorr_null95": 0.488,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.8251,
+          "quad_loo_r2": 0.1208,
+          "nonlin_gain": -0.7043,
+          "best_knob_abs_spearman": 0.827
+        },
+        "volume": {
+          "curvature": 0.6686,
+          "knn_loo_r2": 0.2448,
+          "distcorr": 0.5701,
+          "distcorr_null95": 0.5006,
+          "distcorr_p": 0.005,
+          "lin_loo_r2": 0.7508,
+          "quad_loo_r2": -0.044,
+          "nonlin_gain": -0.7948,
+          "best_knob_abs_spearman": 0.8386
+        },
+        "presence": {
+          "curvature": 0.7425,
+          "knn_loo_r2": 0.2524,
+          "distcorr": 0.6255,
+          "distcorr_null95": 0.4994,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.6954,
+          "quad_loo_r2": 0.0783,
+          "nonlin_gain": -0.6171,
+          "best_knob_abs_spearman": 0.8561
+        }
+      },
+      "carrier_certificate": {
+        "mean_curvature": 0.7285,
+        "nonaffine_pass": true,
+        "mean_lin_loo_r2": 0.7571,
+        "mean_quad_loo_r2": 0.0517,
+        "n_dials_live": 3,
+        "live_pass": true,
+        "injectivity": {
+          "min_pairwise_distance": 1.34485,
+          "duplicate_pairs": 0,
+          "injective": true
+        },
+        "floors": {
+          "curvature": 0.2,
+          "knn_loo_r2": 0.2,
+          "distcorr_p": 0.05,
+          "live_dials": 2
+        },
+        "pass": true
+      },
+      "knob_ranges": {
+        "r": {
+          "min": 43.785,
+          "max": 254.982,
+          "n_unique": 27
+        },
+        "g": {
+          "min": 45.005,
+          "max": 253.31,
+          "n_unique": 27
+        },
+        "b": {
+          "min": 40.403,
+          "max": 254.176,
+          "n_unique": 27
+        },
+        "bright": {
+          "min": -0.25,
+          "max": 0.198,
+          "n_unique": 27
+        },
+        "contrast": {
+          "min": 0.601,
+          "max": 1.599,
+          "n_unique": 27
+        },
+        "noise": {
+          "min": 7.0,
+          "max": 51.0,
+          "n_unique": 20
+        },
+        "n_occ": {
+          "min": 2.0,
+          "max": 8.0,
+          "n_unique": 7
+        }
+      },
+      "gate": {
+        "dial_pass": {
+          "mood": true,
+          "volume": false,
+          "presence": false
+        },
+        "n_pass": 1,
+        "mean_r2_k64": 0.0787,
+        "mean_null95_k64": 0.0065,
+        "room_sep_ok": true,
+        "room_sep_floor": 0.75,
+        "ladder": "INCONCLUSIVE"
+      },
+      "x_axis": {
+        "nominal_fold_amp": 2.8,
+        "mean_curvature": 0.7285,
+        "curvature_by_dial": {
+          "mood": 0.7744,
+          "volume": 0.6686,
+          "presence": 0.7425
+        },
+        "nonaffine_pass": true,
+        "live_pass": true,
+        "n_dials_live": 3,
+        "knn_loo_r2_by_dial": {
+          "mood": 0.5513,
+          "volume": 0.2448,
+          "presence": 0.2524
+        },
+        "distcorr_p_by_dial": {
+          "mood": 0.0,
+          "volume": 0.005,
+          "presence": 0.0
+        },
+        "mean_lin_loo_r2": 0.7571,
+        "status": "LIVE"
+      },
+      "certificate_recompute_match": true
+    }
+  },
+  "trend": {
+    "mood": {
+      "r2_still_loro_k64": [
+        0.7962,
+        0.762,
+        0.7178,
+        0.5372,
+        0.4318
+      ],
+      "r2_room_loro_k64": [
+        0.6014,
+        0.6009,
+        0.554,
+        0.3126,
+        0.2516
+      ],
+      "perm_null95_k64": [
+        -0.2694,
+        -0.2809,
+        -0.1015,
+        0.0458,
+        0.0668
+      ],
+      "gate_pass": [
+        true,
+        true,
+        false,
+        true,
+        true
+      ],
+      "spearman_amp_vs_r2_still_k64": -1.0,
+      "spearman_amp_vs_r2_room_k64": -1.0,
+      "total_drop_k64": 0.3644,
+      "max_up_step_k64": -0.0342,
+      "monotone_decay": true,
+      "critical_amp": 1.5,
+      "critical_prev_pass_amp": 1.0,
+      "dead_at_or_below_sweep_floor": false,
+      "crit_k64_floor_booked": null,
+      "n_live_amps_passing": 4
+    },
+    "volume": {
+      "r2_still_loro_k64": [
+        0.398,
+        -0.0532,
+        -0.054,
+        -0.0998,
+        -0.0256
+      ],
+      "r2_room_loro_k64": [
+        0.4338,
+        0.2304,
+        0.245,
+        0.0853,
+        0.0603
+      ],
+      "perm_null95_k64": [
+        -0.0622,
+        -0.1715,
+        -0.0194,
+        0.0634,
+        -0.0199
+      ],
+      "gate_pass": [
+        true,
+        false,
+        false,
+        false,
+        false
+      ],
+      "spearman_amp_vs_r2_still_k64": -0.4,
+      "spearman_amp_vs_r2_room_k64": -0.9,
+      "total_drop_k64": 0.4236,
+      "max_up_step_k64": 0.0742,
+      "monotone_decay": false,
+      "critical_amp": 1.0,
+      "critical_prev_pass_amp": 0.5,
+      "dead_at_or_below_sweep_floor": false,
+      "crit_k64_floor_booked": 1.0,
+      "n_live_amps_passing": 1
+    },
+    "presence": {
+      "r2_still_loro_k64": [
+        0.6197,
+        0.6361,
+        0.4251,
+        0.27,
+        -0.1702
+      ],
+      "r2_room_loro_k64": [
+        0.5363,
+        0.3994,
+        0.2875,
+        0.3323,
+        0.2752
+      ],
+      "perm_null95_k64": [
+        -0.2827,
+        -0.0934,
+        -0.1036,
+        -0.0372,
+        -0.0273
+      ],
+      "gate_pass": [
+        true,
+        true,
+        true,
+        false,
+        false
+      ],
+      "spearman_amp_vs_r2_still_k64": -0.9,
+      "spearman_amp_vs_r2_room_k64": -0.9,
+      "total_drop_k64": 0.7899,
+      "max_up_step_k64": 0.0164,
+      "monotone_decay": true,
+      "critical_amp": 2.2,
+      "critical_prev_pass_amp": 1.5,
+      "dead_at_or_below_sweep_floor": false,
+      "crit_k64_floor_booked": 2.2,
+      "n_live_amps_passing": 3
+    }
+  },
+  "controls_by_amplitude": {
+    "0.5": {
+      "raw_pixel_r2_k64": {
+        "mood": 0.484,
+        "volume": -0.1608,
+        "presence": 0.4612
+      },
+      "luminance_spearman": {
+        "mood": -0.2415,
+        "volume": -0.5331,
+        "presence": 0.3135
+      },
+      "g0b_luminance_r2_k64": 0.8721,
+      "room_identity_acc": 1.0,
+      "tertile_acc_k64": {
+        "mood": 0.8735,
+        "volume": 0.9105,
+        "presence": 0.9599
+      },
+      "lambda_median_k64": 0.001,
+      "pca_evr_k16_k64_k256": [
+        0.9488,
+        0.9918,
+        0.9998
+      ]
+    },
+    "1": {
+      "raw_pixel_r2_k64": {
+        "mood": 0.4349,
+        "volume": -0.1264,
+        "presence": 0.3888
+      },
+      "luminance_spearman": {
+        "mood": -0.2598,
+        "volume": -0.5508,
+        "presence": 0.2622
+      },
+      "g0b_luminance_r2_k64": 0.8871,
+      "room_identity_acc": 1.0,
+      "tertile_acc_k64": {
+        "mood": 0.8642,
+        "volume": 0.8148,
+        "presence": 0.9938
+      },
+      "lambda_median_k64": 0.01,
+      "pca_evr_k16_k64_k256": [
+        0.9602,
+        0.9951,
+        0.9999
+      ]
+    },
+    "1.5": {
+      "raw_pixel_r2_k64": {
+        "mood": 0.4341,
+        "volume": -0.1265,
+        "presence": 0.3739
+      },
+      "luminance_spearman": {
+        "mood": -0.2887,
+        "volume": -0.5644,
+        "presence": 0.2721
+      },
+      "g0b_luminance_r2_k64": 0.8834,
+      "room_identity_acc": 1.0,
+      "tertile_acc_k64": {
+        "mood": 0.8333,
+        "volume": 0.7623,
+        "presence": 0.9198
+      },
+      "lambda_median_k64": 0.1,
+      "pca_evr_k16_k64_k256": [
+        0.9661,
+        0.9966,
+        0.9999
+      ]
+    },
+    "2.2": {
+      "raw_pixel_r2_k64": {
+        "mood": 0.4311,
+        "volume": -0.1876,
+        "presence": 0.3751
+      },
+      "luminance_spearman": {
+        "mood": -0.3153,
+        "volume": -0.5211,
+        "presence": 0.3306
+      },
+      "g0b_luminance_r2_k64": 0.9579,
+      "room_identity_acc": 1.0,
+      "tertile_acc_k64": {
+        "mood": 0.7716,
+        "volume": 0.6667,
+        "presence": 0.8302
+      },
+      "lambda_median_k64": 1.0,
+      "pca_evr_k16_k64_k256": [
+        0.9692,
+        0.9969,
+        0.9999
+      ]
+    },
+    "2.8": {
+      "raw_pixel_r2_k64": {
+        "mood": 0.4322,
+        "volume": -0.3617,
+        "presence": 0.3387
+      },
+      "luminance_spearman": {
+        "mood": -0.3181,
+        "volume": -0.5189,
+        "presence": 0.2843
+      },
+      "g0b_luminance_r2_k64": 0.6554,
+      "room_identity_acc": 1.0,
+      "tertile_acc_k64": {
+        "mood": 0.6451,
+        "volume": 0.6574,
+        "presence": 0.7562
+      },
+      "lambda_median_k64": 1.0,
+      "pca_evr_k16_k64_k256": [
+        0.9612,
+        0.9957,
+        0.9999
+      ]
+    }
+  },
+  "arm_L_anchor": {
+    "title": "E12's linear staging (= E13's Arm L), rendered once: G0b's sensitivity anchor and the left edge of the x-axis, not a sweep point",
+    "mean_curvature": 0.0,
+    "mean_lin_loo_r2": 1.0,
+    "complete_pass": false,
+    "certificate_summary": {
+      "mean_curvature": 0.0,
+      "nonaffine_pass": false,
+      "mean_lin_loo_r2": 1.0,
+      "mean_quad_loo_r2": 1.0,
+      "n_dials_live": 3,
+      "live_pass": true,
+      "injectivity": {
+        "min_pairwise_distance": 1.22474,
+        "duplicate_pairs": 0,
+        "injective": true
+      },
+      "floors": {
+        "curvature": 0.2,
+        "knn_loo_r2": 0.2,
+        "distcorr_p": 0.05,
+        "live_dials": 2
+      },
+      "pass": false
+    },
+    "certificate_per_dial": {
+      "mood": {
+        "curvature": 0.0,
+        "knn_loo_r2": 1.0,
+        "distcorr": 0.9,
+        "distcorr_null95": 0.4553,
+        "distcorr_p": 0.0,
+        "lin_loo_r2": 1.0,
+        "quad_loo_r2": 1.0,
+        "nonlin_gain": -0.0,
+        "best_knob_abs_spearman": 1.0
+      },
+      "volume": {
+        "curvature": 0.0,
+        "knn_loo_r2": 0.7551,
+        "distcorr": 0.6723,
+        "distcorr_null95": 0.445,
+        "distcorr_p": 0.0,
+        "lin_loo_r2": 1.0,
+        "quad_loo_r2": 1.0,
+        "nonlin_gain": -0.0,
+        "best_knob_abs_spearman": 1.0
+      },
+      "presence": {
+        "curvature": 0.0,
+        "knn_loo_r2": 0.625,
+        "distcorr": 0.4986,
+        "distcorr_null95": 0.4353,
+        "distcorr_p": 0.015,
+        "lin_loo_r2": 1.0,
+        "quad_loo_r2": 1.0,
+        "nonlin_gain": -0.0,
+        "best_knob_abs_spearman": 1.0
+      }
+    },
+    "r2_still_loro": {
+      "16": {
+        "mood": 0.848,
+        "volume": 0.9653,
+        "presence": 0.9292
+      },
+      "64": {
+        "mood": 0.8106,
+        "volume": 0.9624,
+        "presence": 0.9478
+      },
+      "256": {
+        "mood": 0.8726,
+        "volume": 0.9722,
+        "presence": 0.9729
+      }
+    },
+    "r2_room_loro": {
+      "16": {
+        "mood": 0.8902,
+        "volume": 0.9717,
+        "presence": 0.9374
+      },
+      "64": {
+        "mood": 0.8902,
+        "volume": 0.9717,
+        "presence": 0.9374
+      },
+      "256": {
+        "mood": 0.7211,
+        "volume": 0.8888,
+        "presence": 0.7636
+      }
+    },
+    "g0b_luminance_r2_k64": 0.993,
+    "controls": {
+      "raw_pixel_r2_k64": {
+        "mood": 0.9355,
+        "volume": -0.7664,
+        "presence": 0.1625
+      },
+      "luminance_spearman": {
+        "mood": 0.9224,
+        "volume": 0.0804,
+        "presence": 0.1803
+      },
+      "room_identity_acc": 1.0,
+      "room_identity_chance": 0.037
+    },
+    "gate": {
+      "dial_pass": {
+        "mood": true,
+        "volume": true,
+        "presence": true
+      },
+      "n_pass": 3,
+      "mean_r2_k64": 0.9069,
+      "mean_null95_k64": -0.014,
+      "room_sep_ok": true,
+      "room_sep_floor": 0.75,
+      "ladder": "KEEP"
+    }
+  },
+  "e13_replication_c6": {
+    "e13_recorded_r2_k64": {
+      "mood": 0.537,
+      "volume": -0.1,
+      "presence": 0.27
+    },
+    "e25_measured_r2_k64": {
+      "mood": 0.5372,
+      "volume": -0.0998,
+      "presence": 0.27
+    },
+    "abs_diff": {
+      "mood": 0.0002,
+      "volume": 0.0002,
+      "presence": 0.0
+    },
+    "within_tol": true,
+    "tolerance": 0.12,
+    "e13_recorded_curvature": 0.471,
+    "e25_measured_curvature": 0.4712,
+    "note": "C6: E13's single measured point, re-measured through E25's plumbing. A mismatch here means the sweep is not E13's harness and nothing downstream is a statement about E13."
+  },
+  "verdict_details": {
+    "monotone_dials": [
+      "mood",
+      "presence"
+    ],
+    "n_monotone_decay": 2,
+    "spearman_by_dial": {
+      "mood": -1.0,
+      "volume": -0.4,
+      "presence": -0.9
+    },
+    "mean_spearman": -0.7667,
+    "critical_amps": {
+      "mood": 1.5,
+      "volume": 1.0,
+      "presence": 2.2
+    },
+    "n_finite_criticals": 3,
+    "criticals_distinct": true,
+    "mood_critical": 1.5,
+    "mood_survives_longest": false,
+    "floors": {
+      "mono_rho": -0.8,
+      "drop": 0.15,
+      "up_step_tol": 0.05,
+      "min_live_amps": 4
+    }
+  },
+  "gates_measured": {
+    "g0d_probe_selftest": true,
+    "g0e_verdict_mapper_selftest": true,
+    "g0a_staging_fidelity": {
+      "floor": 0.5,
+      "pass": true,
+      "measured": {
+        "mood": 0.98,
+        "volume": 0.9437,
+        "presence": 0.9864
+      }
+    },
+    "g0b_sensitivity": {
+      "floor": 0.9,
+      "pass": true,
+      "anchor": "Arm L (E12's linear staging) \u2014 E13's G0b verbatim",
+      "measured": 0.993,
+      "per_amplitude_booked": {
+        "0.5": 0.8721,
+        "1": 0.8871,
+        "1.5": 0.8834,
+        "2.2": 0.9579,
+        "2.8": 0.6554
+      },
+      "mildest_live_amplitude_booked": {
+        "amplitude": 1.0,
+        "curvature": 0.2938,
+        "luminance_r2_k64": 0.8871,
+        "note": "v1 gated G0b on this anchor and the registered sweep returned INVALID_HARNESS at 0.887 (floor 0.90) \u2014 a build bug, not a finding: luminance readability is carrier-dependent, so the mildest folded point is no sensitivity control. v2 restores E13's Arm L anchor. This row stays on the record as a booked control."
+      }
+    },
+    "censoring": {
+      "rule": "a carrier failing E13's certificate liveness half is INVALID_STAGING and censored from the trend; carrier-only, label-free, embedding-free, decided before the model",
+      "live": [
+        0.5,
+        1.0,
+        1.5,
+        2.2,
+        2.8
+      ],
+      "censored": [
+        3.5
+      ],
+      "min_live_amps": 4
+    },
+    "g1_g2_g3": {
+      "monotone_dials": [
+        "mood",
+        "presence"
+      ],
+      "n_monotone_decay": 2,
+      "spearman_by_dial": {
+        "mood": -1.0,
+        "volume": -0.4,
+        "presence": -0.9
+      },
+      "mean_spearman": -0.7667,
+      "critical_amps": {
+        "mood": 1.5,
+        "volume": 1.0,
+        "presence": 2.2
+      },
+      "n_finite_criticals": 3,
+      "criticals_distinct": true,
+      "mood_critical": 1.5,
+      "mood_survives_longest": false,
+      "floors": {
+        "mono_rho": -0.8,
+        "drop": 0.15,
+        "up_step_tol": 0.05,
+        "min_live_amps": 4
+      }
+    }
+  },
+  "data_needed": [
+    "ffmpeg ~/.local/bin/ffmpeg (lavfi: color, eq, noise, drawbox)",
+    "facebook/ijepa_vith16_1k fp16 on the RTX 4050 (E9 loader)",
+    "elephant package importable (dial bank = labels)",
+    "roomgen.py loadable (frozen nonlinear physics; inline replica fallback recorded in carrier_source)",
+    "5 live amplitudes x 27 rooms x 12 stills = 1620 encoder forwards (~15-30 min GPU) + CPU ridge sweeps (200-perm null at k=64 per amplitude)",
+    "GPU free (guard preflight in-process)"
+  ],
+  "wiring": "NOT in QUEUE.md / runner.py EXP_MOD by design \u2014 manual fire only, to avoid the cron runner double-claiming it",
+  "verdict": "INCONCLUSIVE",
+  "verdict_reason": "monotone decay is real (2 dials) but the per-dial critical structure did not separate: finite criticals {'mood': 1.5, 'volume': 1.0, 'presence': 2.2} (distinct=True), mood longest=False \u2014 never overclaim from a partial",
+  "seconds_total": 210.0,
+  "note": "E25 walks the carrier-nonlinearity axis E13 could only sample at one point. SPOOL's fold amplitudes {0.5, 1.0, 1.5, 2.2, 2.8, 3.5} are applied to E13's own N2 carrier by re-pointing its module constant, and at every amplitude the FULL E13 pipeline runs: carrier certificate (measured curvature + liveness), 27 staged rooms rendered and embedded by the frozen I-JEPA, E12/E13's ridge probe with leave-one-room-out CV, its 200-perm room-shuffle null, and its per-dial gate. The x-axis in the report is the MEASURED curvature, not the nominal amplitude. KEEP = >= 2 dials decay monotonically in amplitude with >= 2 DISTINCT critical amplitudes and mood surviving longest (a phase transition with a per-dial boundary). KILL = no monotone relationship (E13's single point was noise). A point whose carrier fails liveness is INVALID_STAGING and censored from the trend \u2014 a dead render cannot testify about the embedding \u2014 and that censoring is carrier-only and label-free, so it cannot be tuned by the read results. Booked caveats: one carrier family, one fold phase (0.0), one frozen random physics draw, one encoder, and the LINEAR reader of E12/E13 (E13b's nonlinear-reader axis is not answered here); G0b's sensitivity anchor is E13's Arm L, rendered in-run as the x-axis origin; crit_d is a grid property, so each critical is reported with its neighbouring passing amplitude, and the crit_k64_floor_booked column shows the same critical with the k16 retention clause dropped. See the module docstring for the full pre-registration, the measured design-pass table, and the C1-C9 booked controls."
+}

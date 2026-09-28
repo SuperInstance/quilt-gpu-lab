@@ -106,18 +106,11 @@ def run(eid: str) -> dict:
         return result
     # experiment prints a single JSON object at the end
     try:
-        # Robust extraction: find the LAST top-level JSON object. rindex("{\n")
-        # breaks on nested dicts (indent=2); use raw_decode scanning backward.
-        decoder = json.JSONDecoder()
-        obj = None
-        idx = out.rfind('{')
-        while idx >= 0 and obj is None:
-            try:
-                obj, _ = decoder.raw_decode(out, idx)
-            except json.JSONDecodeError:
-                idx = out.rfind('{', 0, idx)
-        if obj is None:
-            raise ValueError("no JSON object found in stdout")
+        # Parse the whole stdout as ONE top-level JSON object. The old
+        # backward rfind('{') + raw_decode scan landed on INNERMOST nested
+        # dicts (indent=2), dropping the verdict key and booking spurious
+        # ABORTEDs (the E25 receipt bug, 2026-09-28).
+        obj = json.loads(out)
         result.update(obj)
         result["guard_summary"] = result.pop("guard")
     except Exception:
