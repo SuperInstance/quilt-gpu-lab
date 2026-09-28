@@ -669,3 +669,18 @@ the ceiling; correlated dense purchases are dead weight or worse.
 ```
 - note: the reading gate. A 2-step smoke proves the pipeline: the tuned model immediately learns the output FORMAT (loss 1.04->0.52, emits d/f/u/h codes) while base just echoes hex (0.00 wellformed). 0.127 token-acc on a 2-step run is pipeline proof, not the hypothesis test. 4-bit NF4 held, no fallback. FULL-SCALE RECIPE (D15_FULL=1): Qwen2.5-1.5B, 2 epochs over 400 train pairs, eval 60 held-out pairs; pre-registered gate: tuned >= 0.80 AND base <= 0.30 (chance 0.25). Since D14 proved I(M;T)=0 without context, >=0.80 can only be reached by actually reading timbre+context. ~1h on the 4050.
 
+
+## E4b — next-room revision (60s clips, 236 cells, blocked split) [SMOKE]
+- ran: 2026-09-27 19:11
+- verdict: INCONCLUSIVE (smoke; full-scale recipe ready)
+- result: ```json
+{
+  "experiment": "E4b next-room revision",
+  "mode": "smoke", "seed": 2718, "rooms": 2, "cells": 38, "epochs": 1,
+  "model_train_acc": 0.923, "model_heldout_acc": 0.750,
+  "constant_baseline": 0.250, "markov1_baseline": 0.750,
+  "verdict": "INCONCLUSIVE"
+}
+```
+- note: the E4 fix. The degenerate E4 baseline is DEAD: constant-predictor now 0.25 (chance, was 0.75 in E4's broken tail-split), markov-1 0.75 is the real bar. 60s clips -> 236 cells, interleaved walk (35 room transitions), blocked split by cell-block (all 4 rooms in heldout). Full data-path validation: constant 0.179, markov-1 0.846 — so the full-scale question is sharp: beat 0.846+0.05 by reading run-position from 8-cell context, not just current room. FULL-SCALE: E4B_FULL=1 -> rooms=4, 60s, 120 epochs, minutes on 4050. Determinism proven (byte-identical runs).
+

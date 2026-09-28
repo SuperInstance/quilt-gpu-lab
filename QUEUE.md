@@ -8,7 +8,7 @@
 - [x] E5 quantization probe — int8 vs fp16 embedding drift: does room-sense survive quantization for portable deployment?
 - [x] E6 harness self-test — guard breach paths, torn-queue resilience, results append integrity
 - [x] E2b flow-beat-revision (2026-09-27 KILL — hand-crafted L0 dead, learned L0 next) — per-clip temporal-delta correlation only + within-texture clip pair (two moving sources); E2's cross-clip pairing conflated static-content distance with the temperature axis
-- [ ] E4b next-room-revision — 60s clips (~240 cells), interleaved walk, blocked split, constant+markov-1 baselines reported alongside
+- [x] E4b next-room-revision — 60s clips (~240 cells), interleaved walk, blocked split, constant+markov-1 baselines reported alongside
 
 - [x] E8 encoder-swap leaderboard — aggregate E1/E3/E7 (+E9) readings into one table: separation gap, drift-gate, surprise dims per encoder. The scoreboard for the swap-and-hunt protocol. — 2026-09-27 INCONCLUSIVE
 - [x] E9 ijepa stills — I-JEPA ViT-B (facebookresearch/ijepa) on still frames through the same cell contract; does a still-image world model read rooms differently than video V-JEPA 2? — 2026-09-27 ABORTED

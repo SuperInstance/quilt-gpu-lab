@@ -31,7 +31,7 @@ EXP_MOD = {
     "E2b": "experiments.e2b_flow_beat_revision",
     "E3": "experiments.e3_cast_heldout",
     "E4": "experiments.e4_next_room_transformer",
-    "E4b": None,  # revision of E4, dataset redesign — script pending
+    "E4b": "experiments.e4b_next_room_revision",
     "E5": None,   # int8 probe — script pending
     "E6": None,   # harness self-test — script pending
     "E7": "experiments.e7_vjepa2_in_cells",
