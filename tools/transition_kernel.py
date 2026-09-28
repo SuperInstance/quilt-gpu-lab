@@ -79,7 +79,8 @@ class TransitionPredictor:
 
 
 def make_tripartite_transitions(n_agents=8, field_dim=32, n_steps=4000,
-                                push=0.5, noise=0.1, seed=SEED):
+                                push=0.5, noise=0.1, seed=SEED,
+                                return_pairs: bool = False):
     """Synthesize field-state transitions on a tripartite-style agent graph.
 
     Each agent has a persistent identity id_i ~ N(0,1)^field_dim. A step picks
@@ -106,4 +107,6 @@ def make_tripartite_transitions(n_agents=8, field_dim=32, n_steps=4000,
     eps = noise * rng.standard_normal((n_steps, field_dim)).astype(np.float32)
     field_after = 0.5 * field_before + push * diff_n + eps
     corr = ternary_correlation(ids[src], ids[tgt])
+    if return_pairs:
+        return field_before, corr, diff_n, field_after, ids, src, tgt
     return field_before, corr, diff_n, field_after, ids

@@ -34,3 +34,4 @@
 - [x] D15 read-the-channel (VLM LoRA reads tone channel) — 2026-09-27 INCONCLUSIVE (full: 0.351 vs 0.266, positive but under gate)
 - [x] D15b read-the-channel v2 — 2026-09-27 KEEP (full: tuned 0.9413 vs base 0.0781, margin 0.8632)
 - [x] D19 transitional-jepa (relational transition kernel) — 2026-09-27 KEEP (ternary 0.0101 vs markov1 0.0179; ternarization cost -0.0009 ≈ free)
+- [x] D20 transitional-jepa ablation (nonlinear + identity) — 2026-09-27 KEEP (linear sufficient: nonlinear -3%, identity -0.2%)

@@ -848,3 +848,24 @@ the ceiling; correlated dense purchases are dead weight or worse.
 }
 ```
 - note: the relational transition kernel (tools/transition_kernel.py) — the "Transitional JEPA" primitive where ternary correlation is the perceptual feature predicting field-state transitions. TWO findings: (1) KEEP — ternary correlation of the acting edge carries real signal: 0.0101 vs markov1 0.0179 (+0.0077 gain), and the shuffled control collapses to 0.0180 (≈ markov1), so the win is the signal, not capacity. (2) BONUS — ternarization is FREE: the ternary model (0.0101) slightly BEATS the continuous-diff oracle (0.0110); the sign/deadband acts as a regularizer, not a cost. The 3-state codec generalizes at least as well as the continuous identity difference here.
+
+
+## D20 — transitional-jepa ablation (nonlinear + identity)
+- ran: 2026-09-27 21:41
+- verdict: KEEP
+- result: ```json
+{
+  "experiment": "D20 transitional-jepa ablation (nonlinear + identity)",
+  "seed": 2718,
+  "heldout_mse": {
+    "linear_ternary": 0.01012,
+    "nonlinear_quadratic": 0.01043,
+    "identity_onehot": 0.01015,
+    "oracle_continuous": 0.01098
+  },
+  "rel_gain_nonlinear": -0.0305,
+  "rel_gain_identity": -0.0023,
+  "verdict": "KEEP"
+}
+```
+- note: the simple linear ternary kernel is SUFFICIENT. Nonlinear quadratic expansion is 3% WORSE (0.0104 vs 0.0101 — overfits; the generator is linear in field_before and corr is already {-1,0,+1}). Exact agent identity (one-hot pair) adds nothing (0.0101 vs 0.0101, -0.2% — sign-only ternary correlation already carries all the identity signal that matters). Together with D19's "ternarization is free", the picture sharpens: the 3-state codec's sign-only correlation is not a compromise — it is the RIGHT abstraction for relational transitions. Full nonlinearity and exact identity both buy zero predictive value here.

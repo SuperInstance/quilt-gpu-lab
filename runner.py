@@ -59,6 +59,7 @@ EXP_MOD = {
     "D17": "experiments.d17_compiler_scale",
     "D14": "experiments.d14_qthe_timbre_proof",
     "D19": "experiments.d19_transitional_jepa",
+    "D20": "experiments.d20_transitional_ablate",
 }
 
 
