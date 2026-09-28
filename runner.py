@@ -51,6 +51,7 @@ EXP_MOD = {
     "D13": "experiments.d13_relational_growing",
     "D13b": "experiments.d13b_relational_confidence",
     "D13c": "experiments.d13c_relational_reinforce",
+    "D13d": "experiments.d13d_shared_key",
     "D14": "experiments.d14_qthe_timbre_proof",
 }
 

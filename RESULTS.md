@@ -587,3 +587,17 @@ the ceiling; correlated dense purchases are dead weight or worse.
 ```
 - note: the third rung. Policy-gradient with learned baseline does NOT converge either (concentration 0.217, worse than D13b's 0.30; final acc 0.65). The arc is now COMPLETE and honest: D12 KEEP (structure reachable at 1.0 with perfect addressing), D13/D13b/D13c all KILL (learning the addressing does not yield to Hebbian, confidence-weighted, OR REINFORCE-with-baseline in this sparse setting — only ~32 reward updates per edge over 30 epochs, a 0.5 signal buried in coin-flip noise). The finding: the credit-assignment of RELATIONAL LEARNING is the open problem, and standard RL does not crack it here. Next rung is NOT another RL variant — it is the SHARED-KEY discovery (two cells detect their atoms are anti-correlated and identify each other directly, O(1) information instead of reward accumulation), which is a different MECHANISM, not a better reward.
 
+
+## D13d — shared-key discovery (correlation, not reward)
+- ran: 2026-09-27 18:55
+- verdict: KEEP
+- result: ```json
+{
+  "experiment": "D13d shared-key discovery (correlation, not reward)",
+  "seed": 2718, "cells": 8, "observations": 200, "p_corr": 0.9,
+  "partner_identification_acc": 1.0, "target": 0.90,
+  "verdict": "KEEP"
+}
+```
+- note: the payoff of the D13 arc. Three RL variants (Hebbian, confidence-weighted, REINFORCE-with-baseline) all KILLed on learning the relational partner (concentration 0.217-0.30, chance 0.143). This tests the OTHER mechanism Casey named — SHARED-KEY DISCOVERY — and it cracks it at 1.0: a cell finds its true partner by computing max |correlation| of atom streams over 200 observations, with NO reward signal. The finding is sharp and general: the relational primitive is CORRELATION DETECTION (mutual information), not reward accumulation. "Relational intelligence growing" = cells noticing their atoms are correlated, then messaging the correlated peer directly — O(1) information, not gradient descent over reward. This connects to elephant's vmf/correlation machinery: the room-sense is already correlation; the substrate's partner-discovery is the same primitive. Booked bug: first run used a cyclic pairing (each cell in two pairs -> scrambled streams, 0.375); fixed to disjoint pairs.
+
