@@ -919,3 +919,17 @@ the ceiling; correlated dense purchases are dead weight or worse.
 }
 ```
 - note: I-JEPA loaded via fallback checkpoint (facebook/ijepa_vith16_1k, fp16, emb_dim 1280) — requested facebook/ijepa_vitb 401s on the hub, fallback held. The still-image world model separates STILL frame structure from motion texture: within-still 1.0 / within-testsrc 0.9996, but still-vs-testsrc cross-cos 0.70 (heldout gap 0.298), texture-vs-motion axis correlation -0.32. A real reading on the elephant lane: a room's stable still-identity is distinguishable from its transient motion texture.
+
+## D21 — perception=ledger (imbalance ≡ d_mu falsification)
+- ran: 2026-09-27 23:36
+- verdict: KILL
+- result: ```json
+{
+  "experiment": "D21 perception=ledger (imbalance ≡ d_mu falsification)",
+  "seed": 2718, "device": "cpu", "verdict": "KILL",
+  "kernel_room": {"n_heldout": 800, "imbalance_mean": 2.904, "d_mu_mean": 0.260, "max_rel_dev": 0.9599, "spearman": -0.487},
+  "harbor_receipt_chain": {"n_heldout": 43, "n_probes_sealed": 215, "imbalance_mean": 1.0, "d_mu_mean": 0.0258, "max_rel_dev": 0.9774},
+  "gates": {"G1_decomp_exact": true, "G2_unit_collapse": true, "G3_identity_both_rooms": false}
+}
+```
+- note: imbalance ≡ d_mu is CONDITIONAL (holds only on the unit sphere, ‖before‖=‖after‖=1), which superinstance-old compressed away. Real heldout receipt-chain edges: max |imb−d_mu|/imb = 0.96–0.98 ≫ 1e-9 gate. Two rooms fail OPPOSITELY: kernel room 86.7% radial (magnitude drift), harbor receipt-chain 94.9% directional (perception delta ~38× smaller than sealed surprise). Spearman ρ(imb,d_mu) = −0.487 (anti-correlated) room A, undefined room B. Controls: G1 identity-1 decomposition exact (6.8e-15), G2 unit-collapse reproduces identity (4.4e-16) — the gap is real. The room's temperature ≠ the substrate's transaction history; two projections coinciding only on the unit sphere.

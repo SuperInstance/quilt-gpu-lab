@@ -1,0 +1,48 @@
+{
+  "experiment": "D21 perception=ledger (imbalance \u2261 d_mu falsification)",
+  "seed": 2718,
+  "device": "cpu",
+  "claim": "superinstance-old: quilt ledger imbalance \u2261 elephant field-edge d_mu (unconditional)",
+  "definitions": {
+    "imbalance": "\u2016x_after \u2212 x_before\u2016\u2082 (quilt wire op_d, persistence prior)",
+    "d_mu": "\u2016x_after/\u2016x_after\u2016 \u2212 x_before/\u2016x_before\u2016\u2016\u2082 (elephant vmf.py unit-direction chord)",
+    "kernel_surprise": "\u2016x_after \u2212 [x_before,corr,1]@W\u2016\u2082 (learned prior, TransitionPredictor seed 2718)"
+  },
+  "gates": {
+    "G1_decomposition_exact_le_1e-9": true,
+    "G2_unit_collapse_control_le_1e-9": true,
+    "G3_claim_identity_le_1e-9_both_rooms": false
+  },
+  "unit_collapse_control": {
+    "max_rel_dev": 4.3560776510359114e-16
+  },
+  "precision_note_O0": {
+    "measurement_dtype": "float64",
+    "float32_raw_storage_identity1_residual_max": 5.788169801235199e-07,
+    "note": "float32 storage alone caps raw residuals near 1e-6; float64 gate math is the golden-standard basis"
+  },
+  "room_A_kernel": {
+    "n_heldout": 800,
+    "imbalance_mean": 2.90398666665428,
+    "d_mu_mean": 0.26048266840171974,
+    "max_rel_dev": 0.9599088190677258,
+    "identity1_residual_max": 9.485748342517982e-16,
+    "radial_share_mean": 0.8667552631296809,
+    "spearman_imb_dmu": -0.4873213708146419,
+    "kernel_surprise_mean": 0.5648824834032267
+  },
+  "room_B_harbor_receipt_chain": {
+    "n_heldout": 43,
+    "imbalance_mean": 1.0,
+    "d_mu_mean": 0.025836671265068473,
+    "max_rel_dev": 0.9774054297469351,
+    "identity1_residual_max": 6.772360450213455e-15,
+    "radial_share_mean": 0.05140149911701591,
+    "spearman_imb_dmu": null,
+    "n_probes_sealed": 215,
+    "n_edges": 214,
+    "kernel_surprise_mean": 1.1454180125693185
+  },
+  "verdict": "KILL",
+  "reason": "identity is CONDITIONAL, not unconditional: max |imb\u2212d_mu|/imb = 0.9599 (kernel room) and 0.9774 (harbor receipt chain) \u226b 1e-09; unit-collapse control passes (G2, 4.4e-16) and identity-1 decomposition is exact (G1 residual 6.77e-15), so the gap is real radial+directional divergence, not harness error"
+}
