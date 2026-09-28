@@ -2400,3 +2400,8 @@ the ceiling; correlated dense purchases are dead weight or worse.
 - ran: 2026-09-28 13:15 (300s budget, seed 42, paired vs baseline; committed 5da8101)
 - verdict: KEEP — val_bpb 1.666624 vs baseline 1.695939 (**−0.029315**), ~100× the margin D1 lost by
 - note: the free-delta mutation (delta heads' k/v = POST-projection temporal diffs of the same row-slices; zero new params; VRAM identical to baseline 3745.3MB) converted D1's per-token signal into a real win: tok/s only −2% (71.3K), 3 steps bought back (52 vs 49), final train loss 4.864 vs 4.906, tracking better the whole way. Compile parity |d|=0.0 on the real FA3 kernel; GPU serialization with X9 worked (waited, ran clean). The day's evidence stack (E18 diff super-additivity, D19/D20 ternary transition, E24 memory-not-momentum) predicted differences carry structure absolutes don't — now a trained delta-attention model BEATS vanilla at the same budget. The nursery's first kept mutation. D3 = seed replication to harden the win.
+
+## D3 — free-delta seed replication (the win hardens)
+- ran: 2026-09-28 13:35 (300s budget, seed 1337, both arms; committed 21a251c)
+- verdict: REPLICATED — baseline@1337 1.700300 vs free-delta@1337 1.671658 (paired **−0.028642**), vs D2's seed-42 −0.029315 (agreement within 0.0007)
+- note: two seeds, two paired wins of ~0.029 bpb. Seed-only diffs verified byte-identical to the receipt code; seed-to-seed noise ~0.005 bpb vs ~6x that for the paired effect. Cost profile matches D2 exactly (98% tokens, 71K tok/s, VRAM identical, zero new params). **Free-delta is hardened — the fleet can stack mutations on it.** Next: D4 candidates (delta-head ratio sweep, ternary weights on the delta path).
