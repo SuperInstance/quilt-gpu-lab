@@ -143,3 +143,49 @@ Feasibility: high — reuse D15c harness, swap reader.
 
 *Build order (self-contained → novel): E25 → E15 → E18 → E24 → E22 → E26 →
 D24 → D23 → E16 → E19 → E20 → E27. Refresh this file as experiments land.*
+
+---
+
+# WAVE 2 — DeepInfra ideation (Seed-mini widen + Hy3 contrast, 2026-09-28)
+
+## Contrarian falsifiers (Hy3) — the load-bearing assumptions, one kill-shot each
+- **X1 [HIGHEST VALUE, trivial] — reverse-probe variance fraction.** Every result is a FORWARD probe (embedding→dial). Nobody measured the reverse: predict each embedding dim from the 3 dials (LORO). If dials explain <10% of embedding variance, the "room-temperature sense" framing dies regardless of forward R². Gate: mean reverse-R² < 0.10 = KILL the framing; > 0.40 = license it. CPU, data on disk.
+- **X2 — renderer transfer.** The read may be the STAGING FUNCTION, not "room geometry." Re-render same dials via a second independent renderer; cross-renderer R² ≥0.5× within = room content; collapse <0.2 = renderer parameterization.
+- **X3 — stats-battery parity.** E12's control was mean luminance only. A ~20-dim battery (color moments, histograms, Fourier band energy, contrast, edge density) is the real null. If it reads volume/presence within 0.1 R² of I-JEPA, the JEPA story is decoration.
+- **X4 — walk-tautology dismantling.** If sauna_plunge_gap IS a dial difference, emb_B−emb_A is handed the target's functional form. Re-run E18 with matched capacity + mismatched (random-pair/wrong-dial) targets; if diff's edge survives arbitrary targets, the "walk" is real.
+- **X5 — critical-amplitude family-invariance.** 1.0/1.5/2.2 are in ONE warp family's units, 5 points. Re-sweep under ≥2 fold families + 9 points; re-express in invariant currency (MI destroyed). Non-aligning = curve-fitting, "distinct critical amplitudes" dies.
+- **X6 — extrapolation.** Train on dial range [0,0.7], test [0.7,1.0]. Collapse = the reader memorized the staging manifold's local geometry (LORO tests room-holdout, not range-holdout).
+- **X7 — label-free reachability.** Can a self-supervised head recover dial directions WITHOUT labels? If nothing finds any dial direction, the elephant never bootstraps and needs labels.
+- **X8 — encoder-family taxonomy.** Add a supervised ResNet/CNN + a mismatched (audio/text) encoder as negative controls. If only the JEPA-vision family reads, "room geometry" collapses to "JEPA bias."
+
+## Alternative framings (Hy3)
+- **F1 Manifold cartography, not dial bank.** Ask "what IS the room-embedding manifold and where do dials sit in it?" (reverse-R², intrinsic dim, principal angles) — survives negative results with dignity.
+- **F2 The difference-operator program.** E18's diff, D19/D20's ternary transition, D13d's correlation discovery are the SAME primitive: signed/ternary differences carry structure absolutes don't. Generalize: for which f(A,B) does emb_B−emb_A beat [emb_A;emb_B]?
+
+## Seed-mini widen (top of 20 — renumber into E48+ to avoid collision with E28/E29)
+- Critical-amplitude encoder shift (fuse E25+E15): do per-dial death points move across encoders?
+- Strip luminance → mood should die (falsify E13's "mood rides colour-temp").
+- Permute dials → read collapses to chance (hard test of "room geometry").
+- Distill to ~10k-param edge model keeping ≥90% of the read (boat deployment).
+- int4 quantization: mood survives, volume/presence degrade (boat deployment).
+- Adversarial carriers (targeted per-dial; cross-encoder specificity).
+- Layer-wise peaks across encoders; late-layer fine-tuning; multi-gap reads; augmentation robustness.
+
+---
+
+# WAVE 3 — polln + webgpu-profiler extractions (Casey, 2026-09-28 11:31)
+Older but still-valid ideas, extracted as modular quilt tooling:
+
+## polln (Pattern-Organized LLM Network — Rust, cloned to ~/projects/polln)
+- **Plinko Layer → the cell-ROUTER organ.** Gumbel-Softmax stochastic selection (annealed τ, entropy-collapse detection, discriminator hard-gates) picks WHICH sub-cell handles a task — sampling instead of argmax preserves behavioral diversity. The missing router of the cellular-decomposition loop.
+- **Confidence Cascade → the inter-cell ESCALATION bus.** Hierarchical deadband triggers (hysteresis: no state change inside [r_min, r_max]) with propagation weights = when a small cell escalates to a bigger one. WGSL shaders already exist.
+- **VAE world model + dreaming → the SUPER-CELL SIMULATOR.** DreamerV2-style latent rollout without environment interaction = Casey's "use the larger model to simulate inputs/outputs to test whether the decomposed system handles everything the super-cell would." Powers the capstone super-cell-vs-cells equivalence test.
+- **Behavioral Embedding Space (pollen grains, privacy tiers)** → the relational-weighting substrate for agent behavior vectors across untrusted nodes.
+
+## webgpu-profiler (browser-GPU instrumentation — local at ~/projects/webgpu-profiler)
+- **Metric-honesty contract** (real / estimated / placeholder — never lie about which is which) → the quilt metrics contract for every cell.
+- **BenchmarkSuite 6-pass** (dispatch/bandwidth/register-pressure/texture/atomics/sparse) → the cell hardware-benchmark tool; pairs with cudaclaw-Moth.
+- **MemoryTracker per-allocation** → cell-memory receipts (every allocation a BIND cell).
+- **Browser-as-GPU-substrate**: cells running IN the browser via WebGPU — the chiaroscuro doors already live there; a cell layer under them = the a2a translation layer rendered where the renderer lives.
+
+*Build order: Plinko router → deadband escalation → dream-simulator (capstone).*

@@ -2370,3 +2370,8 @@ the ceiling; correlated dense purchases are dead weight or worse.
 - ran: 2026-09-28 11:10
 - verdict: INCONCLUSIVE (parity gate splits: volume parity, presence jepa-wins)
 - note: 24-dim hand-crafted battery (color moments, percentiles, Michelson contrast, Fourier bands, Sobel density/magnitude, spatial autocorr) vs I-JEPA on the same E12 bank, same LORO ridge + 200-perm nulls. **Volume is decoration**: battery 0.954 vs jepa 0.962 (gap 0.008 = parity) — volume's carrier was always classic statistics; the JEPA claim loses volume outright. **Mood flips**: battery 0.937 > jepa 0.811 (colour-temp is statistics' home turf). **Presence is the surviving JEPA story and a GENERALIZATION win**: still-level gap 0.29, but room-level LORO collapses the battery to 0.028 while I-JEPA holds 0.937 — the battery memorizes per-still edge patterns; the embedding generalizes to unseen rooms. Net: "the encoder found something deep" survives on presence ONLY; volume (and mood) belong to classical statistics. Harness drift check: jepa row reproduces E12 exactly. Natural escalation: battery + nonlinear reader on presence at room level (mirror of E13b's reader question).
+
+## D13b — relational addressing (confidence-weighted reward)
+- ran: 2026-09-28 10:27 (CPU-only, seed 2718)
+- verdict: KILL
+- note: final_acc 0.533 vs the 0.80 bar; edge concentration on true partner 0.30 vs 0.50 bar (chance 0.143). Signed-confidence reward improved margin over D13's 0.467 but no convergence (accuracy drifted to ~0.72 mid-run, decayed back). Learned edge addressing has now failed two reward formulations; d13c (reinforce) + d13d (shared-key) were the remaining rescues — d13d later KEEPed (correlation, not reward). The 0.44 structural delta from D12 is handed-addressing-only.

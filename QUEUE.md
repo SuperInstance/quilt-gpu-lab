@@ -42,4 +42,4 @@
 - [x] E12 room-dial reader (JEPA reads elephant dials: mood/volume/presence) — 2026-09-28 KEEP (R² 0.81/0.96/0.95; frozen I-JEPA reads staged dials beyond luminance)
 - [x] E25 fold-phase transition (where does the dial read die under carrier nonlinearity? sweep N2 fold amplitude, per-dial critical point) — pre-registered in SPOOL.md — 2026-09-28 INCONCLUSIVE (monotone decay real; distinct criticals volume 1.0/mood 1.5/presence 2.2; mood not longest on k16 clause)
 - [x] E18 sauna/plunge contrast (is the walk between rooms more readable than the rooms? pairwise gap vs two-absolutes baseline) — pre-registered in SPOOL.md
-- [ ] E15 encoder-swap dial read (is I-JEPA special? DINOv2/CLIP/V-JEPA 2 leaderboard) — pre-registered in SPOOL.md
+- [x] E15 encoder-swap dial read (is I-JEPA special? DINOv2/CLIP/V-JEPA 2 leaderboard) — pre-registered in SPOOL.md — 2026-09-28 KEEP
