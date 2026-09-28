@@ -37,3 +37,6 @@
 - [x] D20 transitional-jepa ablation (nonlinear + identity) — 2026-09-27 KEEP (linear sufficient: nonlinear -3%, identity -0.2%)
 
 - [x] D1b look-again sweep (full-scale) — 2026-09-27 KEEP (look-again 0.8569 vs best-single 0.6884, lift +0.1684)
+- [ ] D21 perception=ledger (kernel on real receipt-chain data) — verify imbalance ≡ field-edge delta empirically (superinstance-old claim)
+- [ ] D15c tone-channel generalization (held-out tone classes) — does the 0.94 adapter read UNSEEN tone classes? GPU LoRA
+- [ ] E12 room-dial reader (JEPA reads elephant dials: mood/volume/presence) — GPU vision
