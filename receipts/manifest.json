@@ -1,10 +1,10 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-09-28T08:31:26.616484+00:00",
+  "generated_at": "2026-09-28T21:28:20.157572+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "c06380ae474a53e72b4cb5a19b1b562e8ef899050f6e61bd7e1ec2b87796e2f4",
-    "QUEUE.md": "2c2162462a047da1f2c6229a02e813922d79b94b2130ef1a9ce541117ac61fb1"
+    "RESULTS.md": "c91544eb9ef42faf5db3335e8b0e833078a570e467308104f9cbbaff7ffdb61d",
+    "QUEUE.md": "958a9ec0692161bae26868b84eb73b516d6b45bec6e6123814180c922e1dfb63"
   },
   "experiments": {
     "common.py": "af08f672c78f4934e69fb0e240f22928ff3e65a9848ca9a55a8d07293b69db33",
@@ -36,7 +36,17 @@
     "e10_invariance_race.py": "9ef6deddda4921353742530aec91474540e0fc647e6686284c59684ae1f715f2",
     "e11_debounce_kill.py": "d5c6fb0ea7abfa8016acebe8121ccb531641c7b125764995aef1472b2c402d14",
     "e12_room_dial_reader.py": "1bdb04873fab7140c36ec2cb7ad6d9c2df4269a3a4ec33b7f4c3d68563ba744d",
+    "e13_nonlinear_dial_reader.py": "7178986b8cf7455a601aa0ff1590b8a1d0fb668132165d3e60708f5670a6b8b4",
+    "e13b_nonlinear_reader.py": "8714a7225c568a3094c05feb445950e80b20f191aec387b5631e093859f841cd",
+    "e15_encoder_swap_dial_read.py": "b01262dbcd232e26e0188ec031a9ba7cd9accc02b8987ea898478ac9d83f78eb",
+    "e16_field_edge.py": "45f5d1c11cdf5627fed6b9661c189d4e3998e8a0e78ba001507a87668755c1f3",
+    "e18_sauna_plunge_contrast.py": "b3836efa3d7b1569ee6312fd9f87c8b042b9f772d5400e9308c483c67e15f588",
     "e1_real_glyph_contrast.py": "d4f9d71d164e681bffcc14ef7e947a74c2a1306b6623476ef1b98b51c367535f",
+    "e24_dial_momentum.py": "b5aa0f6420638a39e85190d014d96f4eb86d46d4c6bc1e1210c1ecb7c8c2357c",
+    "e25_fold_phase_transition.py": "a0adc00a749f02a975ff0f5725f0dd754207df751f281ef403607cd435934846",
+    "e26_layerwise_probe.py": "2e63fdf60b0ca12cc043074c648a1594b349e81cd0865f3707a369f44cbaf9bd",
+    "e27_hidden_angle.py": "fa226d12610431524a094cde5552251f48d55ae5602d127ea0576453f850636b",
+    "e28_hybrid_reader.py": "e305118d707f863369e4a5ee65ea596271617ad071efe55adecacc129eedeeff",
     "e2_flow_beat_vs_pool.py": "69a0f17faaf0ed003e4c013fdec56e66a09ad46f59bef4c21fd1563e7d95d11a",
     "e2b_flow_beat_revision.py": "3fe205915d36317ca58baa4721462202d0a6ee82e793ddd17e97f84b73b752d6",
     "e3_cast_heldout.py": "a1aa84dc5086d63564b0128dd02175a3e7ccaca6375832e92d58b69385aa3a51",
@@ -46,6 +56,11 @@
     "e7_vjepa2_in_cells.py": "53213552122b40fbdd1b6e22078582d94a264252f56495bed04865b01cceaee9",
     "e8_encoder_swap_leaderboard.py": "712cf1047349e804c5f73ee884c65dfd5cadb6874bced8ca6990fd262d6c977b",
     "e9_ijepa_stills.py": "477c71f3b6b4f87bb3b3927b624208b8c9c1a9ddfdccdcfad9100c6221fee83f",
-    "elephant_model.py": "977b173fa6006e885ef5fdfda30f13d401211b38311ee1b0aac706e5fda45eb9"
+    "elephant_model.py": "977b173fa6006e885ef5fdfda30f13d401211b38311ee1b0aac706e5fda45eb9",
+    "x1_reverse_probe.py": "1970f44113e1756ca5682736274ff66c7145b4be17058084b716f380b6b79bb8",
+    "x2_renderer_transfer.py": "b02711dcd7c973bfefa3e28d868eac757b187393a436867d1bbc1b889c3b07e4",
+    "x3_stats_battery.py": "1ac6cf8c282a9605221d245fa1d8ad7f6bbc34e280b061604f4fc66c3dc2adb4",
+    "x6_extrapolation.py": "bbdc02e20f5951ca6c412f098034733f2da8e376a0e9c6dd2c59a31ebbdabe94",
+    "x9_presence_depth.py": "79699698f964f6da0361c8f4f92c03fa27cac94b59d5b8fdf41d6123848ae7d4"
   }
 }
