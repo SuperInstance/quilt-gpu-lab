@@ -812,3 +812,39 @@ the ceiling; correlated dense purchases are dead weight or worse.
   directly with the command above (still wired into `runner.EXP_MOD["D1b"]`
   for `guard.py`-wrapped manual invocation via `runner.run("D1b")`).
 
+
+## D15b — read-the-channel v2 (FULL-SCALE, D15B_FULL=1)
+- ran: 2026-09-27 21:35
+- verdict: KEEP
+- result: ```json
+{
+  "experiment": "D15b read-the-channel v2",
+  "mode": "full", "seed": 2718, "model": "Qwen2.5-3B-Instruct", "quant": "nf4-4bit",
+  "peak_vram_mib": 4236.2, "wall_seconds": 5167.8,
+  "tuned_token_acc": 0.9413, "base_token_acc": 0.0781, "margin_token_acc": 0.8632,
+  "verdict": "KEEP"
+}
+```
+- note: full-scale landed. Tuned adapter reads the tone channel at 0.9413 (gate >=0.8) vs base 0.0781 (gate <=0.3, chance 0.25) — margin 0.8632. Plaintext carries zero momentum bits (D14), so >=0.80 is only reachable by decoding timbre+context. The tone channel is a real, learnable, decodable side-channel.
+
+
+## D19 — transitional-jepa (relational transition kernel)
+- ran: 2026-09-27 21:37
+- verdict: KEEP
+- result: ```json
+{
+  "experiment": "D19 transitional-jepa (relational transition kernel)",
+  "seed": 2718, "n_agents": 8, "field_dim": 32, "n_steps": 4000,
+  "heldout_mse": {
+    "markov1": 0.01786,
+    "jepa_ternary": 0.01012,
+    "oracle_continuous": 0.01098,
+    "jepa_shuffled": 0.01801
+  },
+  "signal_gain": 0.00774,
+  "ternarization_cost": -0.00085,
+  "control_ok": true,
+  "verdict": "KEEP"
+}
+```
+- note: the relational transition kernel (tools/transition_kernel.py) — the "Transitional JEPA" primitive where ternary correlation is the perceptual feature predicting field-state transitions. TWO findings: (1) KEEP — ternary correlation of the acting edge carries real signal: 0.0101 vs markov1 0.0179 (+0.0077 gain), and the shuffled control collapses to 0.0180 (≈ markov1), so the win is the signal, not capacity. (2) BONUS — ternarization is FREE: the ternary model (0.0101) slightly BEATS the continuous-diff oracle (0.0110); the sign/deadband acts as a regularizer, not a cost. The 3-state codec generalizes at least as well as the continuous identity difference here.

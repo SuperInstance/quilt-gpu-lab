@@ -8,10 +8,10 @@
     "bigger base chain: Qwen2.5-3B 4-bit first, VRAM-headroom fallback to 1.5B",
     "short-stream held-out diagnostic separates read-bottleneck from alignment-bottleneck"
   ],
-  "mode": "smoke",
+  "mode": "full",
   "device": "cuda",
   "seed": 2718,
-  "model_used": "Qwen/Qwen2.5-0.5B-Instruct",
+  "model_used": "Qwen/Qwen2.5-3B-Instruct",
   "model_candidates_tried": [],
   "fallback_note": null,
   "quant": "nf4-4bit",
@@ -42,6 +42,21 @@
       ],
       [
         "A",
+        "B"
+      ],
+      [
+        "A",
+        "B",
+        "C"
+      ],
+      [
+        "A",
+        "B",
+        "C"
+      ],
+      [
+        "A",
+        "B",
         "C"
       ]
     ],
@@ -61,172 +76,173 @@
     "source": "qthe_codec.encode() seeded foundry (~/projects/qthe-codec)",
     "split": "BY TEXT: held-out texts never appear in training",
     "pool_texts": 44,
-    "held_texts": 10,
-    "train_texts": 34,
+    "held_texts": 20,
+    "train_texts": 24,
     "stage_sizes": {
-      "A": 4,
-      "C": 4
+      "A": 150,
+      "B": 150,
+      "C": 150
     },
     "trunc_a_chars": 12,
     "trunc_b_chars": 24,
-    "train_pairs": 8,
-    "heldout_pairs_full": 10,
-    "heldout_pairs_short_diag": 5,
+    "train_pairs": 450,
+    "heldout_pairs_full": 60,
+    "heldout_pairs_short_diag": 20,
     "codec_roundtrip": "asserted on every pair"
   },
   "base_eval": {
-    "n": 10,
-    "acc": 0.0,
+    "n": 60,
+    "acc": 0.0781,
     "exact_match": 0.0,
     "wellformed_rate": 0.0,
-    "mean_stream_bytes": 40.2,
-    "seconds": 18.5,
+    "mean_stream_bytes": 39.7,
+    "seconds": 64.5,
     "samples": [
       {
         "id": "held-The Canary H-0",
-        "gold": "f f f f f f f f f f f f f f f f f f f f h h h h h h h h h h h h h",
-        "pred": "",
-        "raw": "d,f,u,d,h",
-        "acc": 0.0
+        "gold": "u u u u u u u u u u u u u u u u u u u u u u d d d d d d d d d d d",
+        "pred": "d f u h",
+        "raw": "d f u h",
+        "acc": 0.03
+      },
+      {
+        "id": "held-The Canary H-1",
+        "gold": "u u u u u u u u h h h h h h h h h h h f f f f f f d d d d d d d d",
+        "pred": "d f u h",
+        "raw": "d f u h",
+        "acc": 0.03
+      },
+      {
+        "id": "held-The Canary H-2",
+        "gold": "h h h h h h h h h d d d d d d d u u u u u u u u u f f f f f f f f",
+        "pred": "d f u h",
+        "raw": "d f u h",
+        "acc": 0.03
       },
       {
         "id": "held-the canary h-0",
-        "gold": "u u u u u u u u u u u u u u u u u u u h h h h h h d d d d d d d d d d d d d",
-        "pred": "",
-        "raw": "d,f,u,d,h",
-        "acc": 0.0
-      },
-      {
-        "id": "held-the substrat-0",
-        "gold": "f f f f f f f f f f f d d d d d d d d d d d u u u u u u u u u u u u u u u d",
-        "pred": "",
-        "raw": "d,f,u,d,h",
-        "acc": 0.0
-      },
-      {
-        "id": "held-cold front m-0",
-        "gold": "f f f f f f f f f f f f f f f f f f u u u u u u u u u u u u h h h h h h h h h h h",
-        "pred": "",
-        "raw": "d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,",
-        "acc": 0.0
+        "gold": "u u u u u u u u f f f f f f f f f f f f f f f f f d d d d d d d d d d d d d",
+        "pred": "d f u h",
+        "raw": "d f u h",
+        "acc": 0.026
       }
     ]
   },
   "base_eval_short_diag": {
-    "n": 5,
-    "acc": 0.0154,
+    "n": 20,
+    "acc": 0.08,
     "exact_match": 0.0,
     "wellformed_rate": 0.0,
-    "mean_stream_bytes": 13.6,
-    "seconds": 1.2,
+    "mean_stream_bytes": 13.2,
+    "seconds": 5.8,
     "samples": [
       {
         "id": "heldshort-The Canary",
-        "gold": "h h h h u u u u f f f f f d d d",
-        "pred": "",
-        "raw": "d,f,u,d,h",
-        "acc": 0.0
+        "gold": "f f f f f d d d d d d u u u h h",
+        "pred": "d f u h",
+        "raw": "d f u h",
+        "acc": 0.062
       },
       {
         "id": "heldshort-the canary",
-        "gold": "h h h h h d d d u u u u f",
-        "pred": "",
-        "raw": "d,f,u,d,h",
-        "acc": 0.0
+        "gold": "u u u f f f h h h d d d d",
+        "pred": "d f u h",
+        "raw": "d f u h",
+        "acc": 0.077
       },
       {
         "id": "heldshort-the substr",
-        "gold": "d d d u u u u f f f f h h",
-        "pred": "d f u",
-        "raw": "d 2 f 0 u",
+        "gold": "f f f f f u u u u u u u u",
+        "pred": "d f u h",
+        "raw": "d f u h",
         "acc": 0.077
       },
       {
         "id": "heldshort-cold front",
-        "gold": "h h h d d d d d u u u u u",
-        "pred": "",
-        "raw": "d,f,u,d,h,d,f,u,d,h,d",
-        "acc": 0.0
+        "gold": "d d d d d u u u f f f h h",
+        "pred": "d f u h",
+        "raw": "d f u h",
+        "acc": 0.077
       }
     ]
   },
   "tuned_eval": {
-    "n": 10,
-    "acc": 0.2773,
+    "n": 60,
+    "acc": 0.9413,
     "exact_match": 0.0,
     "wellformed_rate": 0.0,
-    "mean_stream_bytes": 40.2,
-    "seconds": 38.0,
+    "mean_stream_bytes": 39.7,
+    "seconds": 223.9,
     "samples": [
       {
         "id": "held-The Canary H-0",
-        "gold": "f f f f f f f f f f f f f f f f f f f f h h h h h h h h h h h h h",
-        "pred": "f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f",
-        "raw": "f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f ",
-        "acc": 0.606
+        "gold": "u u u u u u u u u u u u u u u u u u u u u u d d d d d d d d d d d",
+        "pred": "u u u u u u u u u u u u u u u u u u u u d d d d d d d d d d d d d",
+        "raw": "u u u u u u u u u u u u u u u u u u u u d d d d d d d d d d d d d d d d d d",
+        "acc": 0.939
+      },
+      {
+        "id": "held-The Canary H-1",
+        "gold": "u u u u u u u u h h h h h h h h h h h f f f f f f d d d d d d d d",
+        "pred": "u u u u u u u u h h h h h h h h h h h h h h h h h d d d d d d d d",
+        "raw": "u u u u u u u u h h h h h h h h h h h h h h h h h d d d d d d d d d d d d d d",
+        "acc": 0.818
+      },
+      {
+        "id": "held-The Canary H-2",
+        "gold": "h h h h h h h h h d d d d d d d u u u u u u u u u f f f f f f f f",
+        "pred": "h h h h h h h h h h d d d d d d d u u u u u u u f f f f f f f f f",
+        "raw": "h h h h h h h h h h d d d d d d d u u u u u u u f f f f f f f f f f f f f f",
+        "acc": 0.909
       },
       {
         "id": "held-the canary h-0",
-        "gold": "u u u u u u u u u u u u u u u u u u u h h h h h h d d d d d d d d d d d d d",
-        "pred": "f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f",
-        "raw": "f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f ",
-        "acc": 0.0
-      },
-      {
-        "id": "held-the substrat-0",
-        "gold": "f f f f f f f f f f f d d d d d d d d d d d u u u u u u u u u u u u u u u d",
-        "pred": "f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f",
-        "raw": "f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f ",
-        "acc": 0.289
-      },
-      {
-        "id": "held-cold front m-0",
-        "gold": "f f f f f f f f f f f f f f f f f f u u u u u u u u u u u u h h h h h h h h h h h",
-        "pred": "f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f",
-        "raw": "f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f ",
-        "acc": 0.439
+        "gold": "u u u u u u u u f f f f f f f f f f f f f f f f f d d d d d d d d d d d d d",
+        "pred": "u u u u u u u u u f f f f f f f f f f f f f f f f d d d d d d d d d d d d d",
+        "raw": "u u u u u u u u u f f f f f f f f f f f f f f f f d d d d d d d d d d d d d d d d d d d d",
+        "acc": 0.974
       }
     ]
   },
   "tuned_eval_short_diag": {
-    "n": 5,
-    "acc": 0.2933,
-    "exact_match": 0.0,
-    "wellformed_rate": 0.0,
-    "mean_stream_bytes": 13.6,
-    "seconds": 6.7,
+    "n": 20,
+    "acc": 0.8397,
+    "exact_match": 0.2,
+    "wellformed_rate": 1.0,
+    "mean_stream_bytes": 13.2,
+    "seconds": 20.1,
     "samples": [
       {
         "id": "heldshort-The Canary",
-        "gold": "h h h h u u u u f f f f f d d d",
-        "pred": "f f f f f f f f f f f f f f f f",
-        "raw": "f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f",
-        "acc": 0.312
+        "gold": "f f f f f d d d d d d u u u h h",
+        "pred": "f f f f f f f f f f f u u u u h",
+        "raw": "f f f f f f f f f f f u u u u h",
+        "acc": 0.562
       },
       {
         "id": "heldshort-the canary",
-        "gold": "h h h h h d d d u u u u f",
-        "pred": "u u u u u u u u u u u u u",
-        "raw": "u u u u u u u u u u u u u u u u u u u u u u u u u u u u u u u u u u",
-        "acc": 0.308
+        "gold": "u u u f f f h h h d d d d",
+        "pred": "u u u f f f f h h h d d d",
+        "raw": "u u u f f f f h h h d d d",
+        "acc": 0.846
       },
       {
         "id": "heldshort-the substr",
-        "gold": "d d d u u u u f f f f h h",
-        "pred": "f f f f f f f f f f f f f",
-        "raw": "f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f",
-        "acc": 0.308
+        "gold": "f f f f f u u u u u u u u",
+        "pred": "f f f f f f u u u u u u u",
+        "raw": "f f f f f f u u u u u u u",
+        "acc": 0.923
       },
       {
         "id": "heldshort-cold front",
-        "gold": "h h h d d d d d u u u u u",
-        "pred": "u u u u u u u u u u u u u",
-        "raw": "u u u u u u u u u u u u u u u u u u u u u u u u u u u u u u u u u u",
-        "acc": 0.385
+        "gold": "d d d d d u u u f f f h h",
+        "pred": "d d d d d d d d f f f f h",
+        "raw": "d d d d d d d d f f f f h",
+        "acc": 0.692
       }
     ]
   },
-  "margin_token_acc": 0.2773,
+  "margin_token_acc": 0.8632,
   "preregistered": {
     "tuned_acc_gte": 0.8,
     "base_acc_lte": 0.3,
@@ -234,47 +250,309 @@
     "gate_set": "FULL-LENGTH held-out only"
   },
   "train": {
-    "optimizer_steps_total": 2,
+    "optimizer_steps_total": 225,
     "per_epoch": [
       {
         "epoch": 1,
         "stages": [
           "A"
         ],
-        "pairs": 4,
-        "steps": 1,
-        "mean_loss": 1.9844,
+        "pairs": 150,
+        "steps": 19,
+        "mean_loss": 0.9698,
         "losses": [
-          1.9844
+          4.1024,
+          1.4307,
+          1.1955,
+          0.8608,
+          0.7724,
+          0.8107,
+          0.6946,
+          0.6835,
+          0.7216,
+          0.7096,
+          0.7709,
+          0.708,
+          0.7853,
+          0.7663,
+          0.8039,
+          0.6064,
+          0.7019,
+          0.7575,
+          0.5438
         ]
       },
       {
         "epoch": 2,
         "stages": [
           "A",
+          "B"
+        ],
+        "pairs": 300,
+        "steps": 38,
+        "mean_loss": 0.5281,
+        "losses": [
+          0.6219,
+          0.7757,
+          0.6964,
+          0.5413,
+          0.5804,
+          0.6479,
+          0.5442,
+          0.65,
+          0.627,
+          0.5777,
+          0.6037,
+          0.5726,
+          0.6795,
+          0.5471,
+          0.6858,
+          0.548,
+          0.7171,
+          0.5819,
+          0.5089,
+          0.4437,
+          0.4842,
+          0.4247,
+          0.4637,
+          0.4262,
+          0.4584,
+          0.3915,
+          0.4404,
+          0.4003,
+          0.5119,
+          0.4606,
+          0.404,
+          0.4838,
+          0.3487,
+          0.4677,
+          0.402,
+          0.4454,
+          0.3594,
+          0.5437
+        ]
+      },
+      {
+        "epoch": 3,
+        "stages": [
+          "A",
+          "B",
           "C"
         ],
-        "pairs": 8,
-        "steps": 1,
-        "mean_loss": 0.9345,
+        "pairs": 450,
+        "steps": 56,
+        "mean_loss": 0.4284,
         "losses": [
-          0.9345
+          0.62,
+          0.6616,
+          0.5889,
+          0.5389,
+          0.5991,
+          0.6283,
+          0.5359,
+          0.5485,
+          0.597,
+          0.5887,
+          0.5839,
+          0.5284,
+          0.6094,
+          0.5348,
+          0.5818,
+          0.5059,
+          0.637,
+          0.5702,
+          0.5187,
+          0.4615,
+          0.4124,
+          0.3322,
+          0.3671,
+          0.3667,
+          0.4575,
+          0.374,
+          0.3931,
+          0.3292,
+          0.3691,
+          0.398,
+          0.364,
+          0.4115,
+          0.3105,
+          0.3877,
+          0.3323,
+          0.4001,
+          0.3137,
+          0.4889,
+          0.4135,
+          0.3417,
+          0.3765,
+          0.3832,
+          0.3025,
+          0.308,
+          0.3189,
+          0.3408,
+          0.3066,
+          0.3312,
+          0.303,
+          0.2542,
+          0.3085,
+          0.338,
+          0.2973,
+          0.2742,
+          0.2768,
+          0.2693
+        ]
+      },
+      {
+        "epoch": 4,
+        "stages": [
+          "A",
+          "B",
+          "C"
+        ],
+        "pairs": 450,
+        "steps": 56,
+        "mean_loss": 0.3161,
+        "losses": [
+          0.5378,
+          0.6714,
+          0.5827,
+          0.4378,
+          0.5081,
+          0.5189,
+          0.4345,
+          0.4703,
+          0.4935,
+          0.4319,
+          0.4997,
+          0.439,
+          0.5423,
+          0.4398,
+          0.469,
+          0.3803,
+          0.4463,
+          0.4499,
+          0.3517,
+          0.3643,
+          0.4083,
+          0.3058,
+          0.3072,
+          0.2828,
+          0.2992,
+          0.2136,
+          0.2606,
+          0.241,
+          0.249,
+          0.3409,
+          0.2443,
+          0.2384,
+          0.1618,
+          0.2252,
+          0.162,
+          0.1937,
+          0.1803,
+          0.2764,
+          0.2537,
+          0.2277,
+          0.2437,
+          0.2397,
+          0.1943,
+          0.1844,
+          0.1935,
+          0.283,
+          0.1582,
+          0.2162,
+          0.1825,
+          0.1313,
+          0.2058,
+          0.2005,
+          0.1513,
+          0.2153,
+          0.2046,
+          0.1549
+        ]
+      },
+      {
+        "epoch": 5,
+        "stages": [
+          "A",
+          "B",
+          "C"
+        ],
+        "pairs": 450,
+        "steps": 56,
+        "mean_loss": 0.1883,
+        "losses": [
+          0.237,
+          0.3864,
+          0.3213,
+          0.2143,
+          0.3214,
+          0.3439,
+          0.2029,
+          0.273,
+          0.244,
+          0.2125,
+          0.3452,
+          0.1431,
+          0.3091,
+          0.2735,
+          0.255,
+          0.2058,
+          0.4505,
+          0.237,
+          0.1015,
+          0.1616,
+          0.1845,
+          0.115,
+          0.1383,
+          0.1316,
+          0.1324,
+          0.1199,
+          0.1293,
+          0.1696,
+          0.1414,
+          0.1441,
+          0.1206,
+          0.1553,
+          0.085,
+          0.1229,
+          0.1178,
+          0.1025,
+          0.0776,
+          0.2188,
+          0.2239,
+          0.2208,
+          0.1909,
+          0.2965,
+          0.1606,
+          0.1279,
+          0.1937,
+          0.179,
+          0.1316,
+          0.1938,
+          0.1241,
+          0.1154,
+          0.1568,
+          0.1154,
+          0.1282,
+          0.1341,
+          0.1044,
+          0.1037
         ]
       }
     ],
-    "trainable_params": 8798208,
-    "seconds": 9.7
+    "trainable_params": 29933568,
+    "seconds": 2541.5
   },
-  "adapter_path": "/home/eileen/projects/quilt-gpu-lab/results/d15b_adapter_smoke",
-  "peak_vram_mib": 1873.5,
-  "wall_seconds": 100.4,
+  "adapter_path": "/home/eileen/projects/quilt-gpu-lab/results/d15b_adapter_full",
+  "peak_vram_mib": 4236.2,
+  "wall_seconds": 5167.8,
   "versions": {
     "torch": "2.14.0+cu126",
     "transformers": "5.17.0",
     "peft": "0.21.0",
     "bitsandbytes": "0.50.2"
   },
-  "verdict": "INCONCLUSIVE",
-  "reason": "smoke pass: pipeline proof only (2 steps, 8 train pairs, 10 held-out); the gate (tuned>=0.8, base<=0.3) is full-scale",
+  "verdict": "KEEP",
+  "reason": "tuned reads the channel at 0.9413 (>= 0.8) vs base 0.0781 (<= 0.3); plaintext alone carries zero momentum bits, so the tuned model must be decoding timbre+context",
   "note": "SMOKE numbers are pipeline proof on the 0.5B proxy, not the hypothesis test. FULL-SCALE RECIPE (D15B_FULL=1): base chain Qwen2.5-3B -> 1.5B (4-bit NF4 double-quant; 3B kept only if free VRAM after load >= 1500 MiB); LoRA r=16 alpha=32 dropout=0.05 on q/k/v/o/gate/up/down; grad checkpointing (use_reentrant=False); batch 1 x grad-accum {GRAD_ACCUM}; seq<=1024; lr 2e-4 AdamW; 5 curriculum epochs over 450 pairs (A=12-char, B=24-char, C=full, 150 each): ep1=A, ep2=A+B, ep3-5=all; eval on 60 FULL-LENGTH held-out pairs (20 unseen texts x 3 draws; pre-registered gate set) + 20 short diagnostics. Gate: tuned token-acc >= 0.8 AND base <= 0.3 (chance 0.25), unchanged from D15. The decode rule AND worked examples are public in the prompt for BOTH arms; plaintext carries zero momentum bits (D14), so >= 0.80 can only be reached by actually reading timbre+context. Expected VRAM ~4-4.5 GB peak on 3B, ~2.5-3.5 h wall on the RTX 4050 6 GB; smoke takes minutes. Other lanes contend: preflight floor 1024 MiB free / 80 C; run via runner.py guard. This pass quant: nf4-4bit."
 }

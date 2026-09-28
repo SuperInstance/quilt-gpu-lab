@@ -1,3 +1,4 @@
 __pycache__/
 *.pyc
 results/*/adapter_model.safetensors
+results/*_adapter_*/
