@@ -572,3 +572,18 @@ the ceiling; correlated dense purchases are dead weight or worse.
 ```
 - note: the confidence-weighted (signed) reward is a STRONGER signal than D13's binary reward — edge concentration rose 0.233 -> 0.30 (chance 0.143) and mid-run accuracy peaked 0.717 — but it still does not converge within 30 epochs. The trail is now honest and sharp: D12 proves the STRUCTURAL reach-bound (perfect addressing -> 1.0), but LEARNING the addressing is a genuinely hard credit-assignment problem. Naive Hebbian (D13) and confidence-weighted (D13b) both fail; the next rung is a proper policy-gradient / REINFORCE-with-baseline, or a shared-key (two cells discover their correlation by noticing their atoms are anti-correlated, then message each other directly). "Relational intelligence GROWING" is real at the structure level and HARD at the learning level — that is the finding. Booked honestly, not dressed up.
 
+
+## D13c — relational addressing (REINFORCE with baseline)
+- ran: 2026-09-27 18:53
+- verdict: KILL
+- result: ```json
+{
+  "experiment": "D13c relational addressing (REINFORCE with baseline)",
+  "seed": 2718, "epochs": 30, "cells": 8, "facts": 60,
+  "final_acc": 0.65, "target_acc": 0.80,
+  "edge_concentration": 0.217, "target_conc": 0.50,
+  "verdict": "KILL"
+}
+```
+- note: the third rung. Policy-gradient with learned baseline does NOT converge either (concentration 0.217, worse than D13b's 0.30; final acc 0.65). The arc is now COMPLETE and honest: D12 KEEP (structure reachable at 1.0 with perfect addressing), D13/D13b/D13c all KILL (learning the addressing does not yield to Hebbian, confidence-weighted, OR REINFORCE-with-baseline in this sparse setting — only ~32 reward updates per edge over 30 epochs, a 0.5 signal buried in coin-flip noise). The finding: the credit-assignment of RELATIONAL LEARNING is the open problem, and standard RL does not crack it here. Next rung is NOT another RL variant — it is the SHARED-KEY discovery (two cells detect their atoms are anti-correlated and identify each other directly, O(1) information instead of reward accumulation), which is a different MECHANISM, not a better reward.
+

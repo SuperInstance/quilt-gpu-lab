@@ -26,3 +26,4 @@
 - [x] D12 substrate falsification (relational vs isolated) — 2026-09-27 KEEP
 - [x] D13 relational intelligence growing (learned addressing) — 2026-09-27 KILL (naive Hebbian reward does not converge)
 - [x] D13b relational addressing (confidence-weighted reward) — 2026-09-27 KILL (stronger signal, still no convergence)
+- [x] D13c relational addressing (REINFORCE with baseline) — 2026-09-27 KILL (3rd RL variant fails)

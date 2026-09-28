@@ -1,10 +1,10 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-09-28T02:00:01.300887+00:00",
+  "generated_at": "2026-09-28T02:53:16.881024+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "42ba1b74910ba424f6a8db9a283933892670386651695470d69b428982a272e3",
-    "QUEUE.md": "1e38da5b92de800a0b45a82384c84afccbba4f659341a9fc3bc21b414e10af34"
+    "RESULTS.md": "41202b1037020f8a63047a8b06d2c7fadfa2ded8bfbc6bd8979c0a39fe92fdaa",
+    "QUEUE.md": "a6702c99422f68881262359fc69359d6e10eb50821387322ae951a7c03c62404"
   },
   "experiments": {
     "common.py": "af08f672c78f4934e69fb0e240f22928ff3e65a9848ca9a55a8d07293b69db33",
@@ -12,6 +12,7 @@
     "d12_substrate_falsification.py": "a65977dd393f77a8897b948aba90fc53124ab9d08e0b5e4eeee498ff6dc56651",
     "d13_relational_growing.py": "6376b3753b41f5f29a0f7ed5abed72d9451350ba3089c828a7fdcea5d85c1a08",
     "d13b_relational_confidence.py": "ddac65b0b0883c07ec81bf2f8fafc9426e60f8435d4b368c586afacd534ae618",
+    "d13c_relational_reinforce.py": "f0f60d742b14aae52542afeeb57061921b961583a113af9b65d3801d03d158dd",
     "d14_qthe_timbre_proof.py": "2db0d7604a795f81aeab522193ff43331126e3be1915f3731e1583b485394d0d",
     "d1_look_again_scale.py": "0ecfd28cd4f3b559c1868f16a0d92b5f1dd605211e2ae63a4f304ff329f99cc6",
     "d2_ternary_kernel.py": "a10ad0cac866e05559a75f050a58c83f80da0e2916625fe1432e991137cf9d4f",
