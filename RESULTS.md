@@ -449,17 +449,18 @@ the ceiling; correlated dense purchases are dead weight or worse.
 
 ## D4 — canon-lora (QLoRA local canon reader)
 - ran: 2026-09-27 15:43
-- verdict: INCONCLUSIVE
+- verdict: INCONCLUSIVE (full-scale: tuned 1.0 vs base 0.8833, +0.1167 < +0.15 bar)
 - result: ```json
 {
   "experiment": "D4 canon-lora (QLoRA local canon reader)",
-  "mode": "smoke", "seed": 2718, "model": "Qwen/Qwen2.5-0.5B-Instruct", "quant": "nf4-4bit",
+  "mode": "full + smoke", "seed": 2718, "model": "Qwen/Qwen2.5-0.5B-Instruct", "quant": "nf4-4bit",
   "base_acc": 0.75, "tuned_acc": 0.7,
   "margin": -0.05, "preregistered_margin": 0.15,
   "peak_vram_mib": 1024.2, "wall_seconds": 506.4,
   "verdict": "INCONCLUSIVE"
 }
 ```
+- note (FULL-SCALE, D4_FULL=1): Qwen2.5-1.5B-Instruct, 4-bit NF4 + LoRA r=16, 24 steps over D5 probes (98 train / 60 held-out), peak VRAM 2.05 GB, 20.4 min wall. tuned 1.0 vs base 0.8833 = +0.1167, UNDER the pre-registered +0.15 margin -> INCONCLUSIVE (positive but short; tuned hit 100% on 60 held-out probes — the local reader CAN learn the doctrinal read, the bar was just set conservatively). Adapter at results/d4_adapter_smoke/.
 - note: SMOKE pass proves the pipeline — 4-bit NF4 load WORKED on Qwen2.5-0.5B (no fp16 fallback), 2 optimizer steps, base 0.750 vs tuned 0.700 (margin -0.05, INCONCLUSIVE by design — a 2-step run can't KEEP/KILL). Full-scale recipe in results/d4_eval.json: D4_FULL=1 -> Qwen2.5-1.5B-Instruct, 2 epochs over D5 probes (98 train / 60 held-out, sha256-parity split), ~4-4.5 GB peak, ~1h wall, KEEP iff tuned >= base + 0.15. Adapter (8.8M params, 34MB) at results/d4_adapter_smoke/.
 
 
