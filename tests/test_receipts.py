@@ -13,6 +13,13 @@ Pins:
      verdict whose code left the repo is a claim no one can re-run.
   3. receipts/manifest.json matches the working tree — digests are
      re-derived, never trusted. Regenerate via tools/receipt_manifest.py.
+  4. doctrine citation drift — the README's Doctrine provenance block
+     names the canonical source (SuperInstance/AI-Writings, algebra.md).
+     A doctrine no one names is a doctrine no one can trace.
+  5. edge drift — the provenance names the canonical WAL producer
+     (SuperInstance/git-agent, quilt_emit): the referral edge
+     aw-quint-opcode -> gl-ledgers must be named where the doctrine is
+     claimed, or the weight law cannot mint it.
 """
 from __future__ import annotations
 
@@ -91,6 +98,25 @@ class ReceiptManifestMatches(unittest.TestCase):
                              "the manifest (tools/receipt_manifest.py), never edit it by hand")
         self.assertEqual(on_disk.get("experiments"), live["experiments"],
                          "experiment digests drifted — regenerate the manifest")
+
+
+class DoctrineProvenance(unittest.TestCase):
+    def test_readme_names_canonical_source(self):
+        text = (LAB / "README.md").read_text()
+        self.assertIn("SuperInstance/AI-Writings", text,
+                      "README Doctrine provenance must name the canonical source "
+                      "(SuperInstance/AI-Writings, algebra.md) — a doctrine no one "
+                      "names is a doctrine no one can trace")
+        self.assertIn("algebra.md", text)
+
+    def test_edge_named_in_provenance(self):
+        text = (LAB / "README.md").read_text()
+        self.assertIn("aw-quint-opcode", text,
+                      "README Doctrine provenance must name the referral edge "
+                      "aw-quint-opcode -> gl-ledgers and the canonical producer "
+                      "(SuperInstance/git-agent, quilt_emit), or the weight law "
+                      "cannot mint the edge")
+        self.assertIn("quilt_emit", text)
 
 
 if __name__ == "__main__":

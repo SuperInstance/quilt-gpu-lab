@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """receipt_manifest.py — seal the lab's ledgers into a chained receipt.
 
-Dogfood of the fleet's receipt doctrine (pong-quilt R37+): a result the
+Dogfood of the fleet's receipt doctrine (pong-quilt R37+; canonical source
+SuperInstance/AI-Writings algebra.md — the five-opcode quilt WAL; canonical
+producer SuperInstance/git-agent quilt_emit, git-agent#1): a result the
 ledger cannot re-derive is a claim, not a receipt. The manifest binds:
 
   - RESULTS.md        (the verdict ledger — the lab's memory)
