@@ -33,7 +33,7 @@ MANIFEST = LAB / "receipts" / "manifest.json"
 
 # Experiments legitimately run from outside this repo. Any entry here is
 # a DECLARED external — the pin still requires a RESULTS note naming it.
-DECLARED_EXTERNALS: frozenset[str] = frozenset()
+DECLARED_EXTERNALS: frozenset[str] = frozenset({"E5"})  # subsumed by D7, never run standalone
 
 CHECKED_RE = re.compile(r"^- \[x\] ([ED][0-9]+[a-z]?)\s", re.M)
 UNCHECKED_RE = re.compile(r"^- \[ \] ([ED][0-9]+[a-z]?)\s", re.M)

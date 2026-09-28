@@ -601,3 +601,23 @@ the ceiling; correlated dense purchases are dead weight or worse.
 ```
 - note: the payoff of the D13 arc. Three RL variants (Hebbian, confidence-weighted, REINFORCE-with-baseline) all KILLed on learning the relational partner (concentration 0.217-0.30, chance 0.143). This tests the OTHER mechanism Casey named — SHARED-KEY DISCOVERY — and it cracks it at 1.0: a cell finds its true partner by computing max |correlation| of atom streams over 200 observations, with NO reward signal. The finding is sharp and general: the relational primitive is CORRELATION DETECTION (mutual information), not reward accumulation. "Relational intelligence growing" = cells noticing their atoms are correlated, then messaging the correlated peer directly — O(1) information, not gradient descent over reward. This connects to elephant's vmf/correlation machinery: the room-sense is already correlation; the substrate's partner-discovery is the same primitive. Booked bug: first run used a cyclic pairing (each cell in two pairs -> scrambled streams, 0.375); fixed to disjoint pairs.
 
+
+## E6 — harness self-test (guard breach paths, torn-queue, receipt integrity)
+- ran: 2026-09-27 18:57
+- verdict: KEEP
+- result: ```json
+{
+  "experiment": "E6 harness self-test",
+  "guard_low_vram_refuses": true, "guard_high_temp_refuses": true, "guard_healthy_accepts": true,
+  "claim_skips_scriptless": true, "checkoff_exactly_one": true, "receipt_drift_detected": true,
+  "verdict": "KEEP"
+}
+```
+- note: the watchdog works — guard refuses low-VRAM (<1GB) and high-temp (>80C) preflights and accepts a healthy one; the runner skips scriptless items and checks off exactly one; the receipt manifest detects a tampered digest. The harness is not the weak point.
+
+
+## E5 — quantization probe (CLOSED — subsumed by D7)
+- ran: 2026-09-27 18:57
+- verdict: CLOSED (subsumed)
+- note: E5's "int8 vs fp16 embedding drift" question was fully answered by D7 (quant-drift probe): fp16->int8->NF4 drift and verdict-flip rate measured on a held-out probe set, NF4 held flip-rate 0.0. No redundant experiment run; cross-linked to D7 per the docket.
+

@@ -5,8 +5,8 @@
 - [x] E3 cast-heldout control (2026-09-27 KEEP) — elephant's full vmf pipeline on real frames with cast-heldout split (does separation survive unseen content?)
 - [x] E4 next-room transformer (2026-09-27 INCONCLUSIVE — dataset too thin, E4b revision needed) — <2M-param model predicting next-room from room-history over glyph-cell logs (JEV-temporal probe, 10 min budget)
 - [x] E7 vjepa2-in-cells (retry after pillow+torchvision install) — V-JEPA 2 ViT-L (Meta, downloaded) embeddings through the same cell contract; judged on separation, drift-gate, and surprise vs local heads — 2026-09-27 ABORTED — 2026-09-27 KEEP
-- [ ] E5 quantization probe — int8 vs fp16 embedding drift: does room-sense survive quantization for portable deployment?
-- [ ] E6 harness self-test — guard breach paths, torn-queue resilience, results append integrity
+- [x] E5 quantization probe — int8 vs fp16 embedding drift: does room-sense survive quantization for portable deployment?
+- [x] E6 harness self-test — guard breach paths, torn-queue resilience, results append integrity
 - [x] E2b flow-beat-revision (2026-09-27 KILL — hand-crafted L0 dead, learned L0 next) — per-clip temporal-delta correlation only + within-texture clip pair (two moving sources); E2's cross-clip pairing conflated static-content distance with the temperature axis
 - [ ] E4b next-room-revision — 60s clips (~240 cells), interleaved walk, blocked split, constant+markov-1 baselines reported alongside
 
