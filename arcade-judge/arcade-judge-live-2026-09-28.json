@@ -1,0 +1,787 @@
+{
+  "what": "first LIVING CHECK — local model living inside quilt-arcade judge slot (JEV)",
+  "date": "2026-09-28T21:20:48.416Z",
+  "adapter": "/home/eileen/projects/quilt-gpu-lab/arcade-judge/judge_local.mjs",
+  "arcade_touched": false,
+  "slot_contract": {
+    "source": "quilt-arcade/slots/judge.mjs (unmodified, v0.1.0 interface)",
+    "hooks": {
+      "scorePosition": "(snapshot) → {score, why} | null",
+      "reviewMove": "(move, verdict) → {agree, why} | null"
+    },
+    "sidecar_status": "local-implementation",
+    "sidecar_version": "0.2.0-local",
+    "credentials": {
+      "env": "QUILT_SLOT_JUDGE_KEY",
+      "configured": false,
+      "note": "local model — no external credential required; `configured` mirrors QUILT_SLOT_JUDGE_KEY only for stub-shape parity with slots/judge.mjs"
+    }
+  },
+  "model": "qwen2.5:0.5b",
+  "ollama_url": "http://127.0.0.1:11434",
+  "game": {
+    "engine": "quilt-arcade QuiltEngine (imported unmodified)",
+    "sheet": "games/tictactoe",
+    "phase": "over",
+    "winner": "draw",
+    "plies": [
+      {
+        "ply": 1,
+        "player": "X",
+        "sq": "A1",
+        "verdict": {
+          "ok": true,
+          "rule": "TURN",
+          "text": "X placed A1. O to move.",
+          "fired": [
+            "R1",
+            "R2"
+          ],
+          "seq": 1,
+          "ts": 1790630445216
+        }
+      },
+      {
+        "ply": "1R",
+        "player": "X",
+        "sq": "A1",
+        "verdict": {
+          "ok": false,
+          "rule": "R2",
+          "text": "Square A1 already holds X — a mark may only be placed on an empty square.",
+          "seq": 2,
+          "ts": 1790630445436
+        },
+        "probe": true
+      },
+      {
+        "ply": 2,
+        "player": "O",
+        "sq": "B2",
+        "verdict": {
+          "ok": true,
+          "rule": "TURN",
+          "text": "O placed B2. X to move.",
+          "fired": [
+            "R1",
+            "R2"
+          ],
+          "seq": 3,
+          "ts": 1790630445766
+        }
+      },
+      {
+        "ply": 3,
+        "player": "X",
+        "sq": "B1",
+        "verdict": {
+          "ok": true,
+          "rule": "TURN",
+          "text": "X placed B1. O to move.",
+          "fired": [
+            "R1",
+            "R2"
+          ],
+          "seq": 4,
+          "ts": 1790630446085
+        }
+      },
+      {
+        "ply": 4,
+        "player": "O",
+        "sq": "C1",
+        "verdict": {
+          "ok": true,
+          "rule": "TURN",
+          "text": "O placed C1. X to move.",
+          "fired": [
+            "R1",
+            "R2"
+          ],
+          "seq": 5,
+          "ts": 1790630446476
+        }
+      },
+      {
+        "ply": 5,
+        "player": "X",
+        "sq": "A3",
+        "verdict": {
+          "ok": true,
+          "rule": "TURN",
+          "text": "X placed A3. O to move.",
+          "fired": [
+            "R1",
+            "R2"
+          ],
+          "seq": 6,
+          "ts": 1790630446833
+        }
+      },
+      {
+        "ply": 6,
+        "player": "O",
+        "sq": "A2",
+        "verdict": {
+          "ok": true,
+          "rule": "TURN",
+          "text": "O placed A2. X to move.",
+          "fired": [
+            "R1",
+            "R2"
+          ],
+          "seq": 7,
+          "ts": 1790630447115
+        }
+      },
+      {
+        "ply": 7,
+        "player": "X",
+        "sq": "C2",
+        "verdict": {
+          "ok": true,
+          "rule": "TURN",
+          "text": "X placed C2. O to move.",
+          "fired": [
+            "R1",
+            "R2"
+          ],
+          "seq": 8,
+          "ts": 1790630447550
+        }
+      },
+      {
+        "ply": 8,
+        "player": "O",
+        "sq": "B3",
+        "verdict": {
+          "ok": true,
+          "rule": "TURN",
+          "text": "O placed B3. X to move.",
+          "fired": [
+            "R1",
+            "R2"
+          ],
+          "seq": 9,
+          "ts": 1790630447924
+        }
+      },
+      {
+        "ply": 9,
+        "player": "X",
+        "sq": "C3",
+        "verdict": {
+          "ok": true,
+          "rule": "R4",
+          "text": "Every square holds a mark and no line was completed — the game is a draw and the board is closed.",
+          "fired": [
+            "R1",
+            "R2",
+            "R4"
+          ],
+          "seq": 10,
+          "ts": 1790630448247
+        }
+      }
+    ]
+  },
+  "judge_stats": {
+    "calls": 19,
+    "opinions": 19,
+    "refusals": 0,
+    "agreed": 10,
+    "disagreed": 0,
+    "scores": 9
+  },
+  "adjudications": [
+    {
+      "move": {
+        "sq": "A1",
+        "r": 0,
+        "c": 0,
+        "player": "X",
+        "ply": 1
+      },
+      "verdict": {
+        "ok": true,
+        "rule": "TURN",
+        "text": "X placed A1. O to move.",
+        "fired": [
+          "R1",
+          "R2"
+        ],
+        "seq": 1,
+        "ts": 1790630445216
+      },
+      "opinion": {
+        "agree": true,
+        "confidence": 1,
+        "why": "The move was legal and applied, but the referee refused it. This indicates that the move was not legal according to the rules.",
+        "model": "qwen2.5:0.5b"
+      },
+      "latencyMs": 220
+    },
+    {
+      "move": {
+        "sq": "A1",
+        "r": 0,
+        "c": 0,
+        "player": "X",
+        "ply": "1R",
+        "illegal": true
+      },
+      "verdict": {
+        "ok": false,
+        "rule": "R2",
+        "text": "Square A1 already holds X — a mark may only be placed on an empty square.",
+        "seq": 2,
+        "ts": 1790630445436
+      },
+      "opinion": {
+        "agree": true,
+        "confidence": 1,
+        "why": "The referee's verdict is clear and unambiguous. The move was legal and applied according to the rules.",
+        "model": "qwen2.5:0.5b"
+      },
+      "latencyMs": 179
+    },
+    {
+      "move": {
+        "sq": "B2",
+        "r": 1,
+        "c": 1,
+        "player": "O",
+        "ply": 2
+      },
+      "verdict": {
+        "ok": true,
+        "rule": "TURN",
+        "text": "O placed B2. X to move.",
+        "fired": [
+          "R1",
+          "R2"
+        ],
+        "seq": 3,
+        "ts": 1790630445766
+      },
+      "opinion": {
+        "agree": true,
+        "confidence": 1,
+        "why": "The move was legal and applied, but the referee REFUSED it (rule TURN).",
+        "model": "qwen2.5:0.5b"
+      },
+      "latencyMs": 169
+    },
+    {
+      "move": {
+        "sq": "B1",
+        "r": 0,
+        "c": 1,
+        "player": "X",
+        "ply": 3
+      },
+      "verdict": {
+        "ok": true,
+        "rule": "TURN",
+        "text": "X placed B1. O to move.",
+        "fired": [
+          "R1",
+          "R2"
+        ],
+        "seq": 4,
+        "ts": 1790630446085
+      },
+      "opinion": {
+        "agree": true,
+        "confidence": 1,
+        "why": "The move was legal and applied, but the referee refused it. The referee fired the 'R1' and 'R2' rules, which are not applicable to this move.",
+        "model": "qwen2.5:0.5b"
+      },
+      "latencyMs": 239
+    },
+    {
+      "move": {
+        "sq": "C1",
+        "r": 0,
+        "c": 2,
+        "player": "O",
+        "ply": 4
+      },
+      "verdict": {
+        "ok": true,
+        "rule": "TURN",
+        "text": "O placed C1. X to move.",
+        "fired": [
+          "R1",
+          "R2"
+        ],
+        "seq": 5,
+        "ts": 1790630446476
+      },
+      "opinion": {
+        "agree": true,
+        "confidence": 1,
+        "why": "The move was legal and applied, but the referee REFUSED it (rule TURN).",
+        "model": "qwen2.5:0.5b"
+      },
+      "latencyMs": 163
+    },
+    {
+      "move": {
+        "sq": "A3",
+        "r": 2,
+        "c": 0,
+        "player": "X",
+        "ply": 5
+      },
+      "verdict": {
+        "ok": true,
+        "rule": "TURN",
+        "text": "X placed A3. O to move.",
+        "fired": [
+          "R1",
+          "R2"
+        ],
+        "seq": 6,
+        "ts": 1790630446833
+      },
+      "opinion": {
+        "agree": true,
+        "confidence": 1,
+        "why": "The move was legal and applied, but the referee refused it (TURN).",
+        "model": "qwen2.5:0.5b"
+      },
+      "latencyMs": 151
+    },
+    {
+      "move": {
+        "sq": "A2",
+        "r": 1,
+        "c": 0,
+        "player": "O",
+        "ply": 6
+      },
+      "verdict": {
+        "ok": true,
+        "rule": "TURN",
+        "text": "O placed A2. X to move.",
+        "fired": [
+          "R1",
+          "R2"
+        ],
+        "seq": 7,
+        "ts": 1790630447115
+      },
+      "opinion": {
+        "agree": true,
+        "confidence": 1,
+        "why": "The move was legal and applied, but the referee refused it. The referee fired the 'R1' and 'R2' rules, and the move was played in sequence. This indicates that ",
+        "model": "qwen2.5:0.5b"
+      },
+      "latencyMs": 295
+    },
+    {
+      "move": {
+        "sq": "C2",
+        "r": 1,
+        "c": 2,
+        "player": "X",
+        "ply": 7
+      },
+      "verdict": {
+        "ok": true,
+        "rule": "TURN",
+        "text": "X placed C2. O to move.",
+        "fired": [
+          "R1",
+          "R2"
+        ],
+        "seq": 8,
+        "ts": 1790630447550
+      },
+      "opinion": {
+        "agree": true,
+        "confidence": 1,
+        "why": "The move was legal and applied, but the referee refused it. The move was C2 to X, and O to move. The referee fired the R1 and R2 moves.",
+        "model": "qwen2.5:0.5b"
+      },
+      "latencyMs": 240
+    },
+    {
+      "move": {
+        "sq": "B3",
+        "r": 2,
+        "c": 1,
+        "player": "O",
+        "ply": 8
+      },
+      "verdict": {
+        "ok": true,
+        "rule": "TURN",
+        "text": "O placed B3. X to move.",
+        "fired": [
+          "R1",
+          "R2"
+        ],
+        "seq": 9,
+        "ts": 1790630447924
+      },
+      "opinion": {
+        "agree": true,
+        "confidence": 1,
+        "why": "The move was legal and applied, but the referee REFUSED it (rule TURN).",
+        "model": "qwen2.5:0.5b"
+      },
+      "latencyMs": 159
+    },
+    {
+      "move": {
+        "sq": "C3",
+        "r": 2,
+        "c": 2,
+        "player": "X",
+        "ply": 9
+      },
+      "verdict": {
+        "ok": true,
+        "rule": "R4",
+        "text": "Every square holds a mark and no line was completed — the game is a draw and the board is closed.",
+        "fired": [
+          "R1",
+          "R2",
+          "R4"
+        ],
+        "seq": 10,
+        "ts": 1790630448247
+      },
+      "opinion": {
+        "agree": true,
+        "confidence": 1,
+        "why": "The move was legal and applied, but the referee REFUSED it (rule R4).",
+        "model": "qwen2.5:0.5b"
+      },
+      "latencyMs": 167
+    }
+  ],
+  "score_calls": [
+    {
+      "ply": 1,
+      "snapshot": {
+        "game": "tictactoe",
+        "ply": 1,
+        "turn": "X",
+        "grid": [
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "opinion": {
+        "score": 100,
+        "why": "The player moves with X, and the board is in a stalemate.",
+        "model": "qwen2.5:0.5b"
+      },
+      "latencyMs": 509
+    },
+    {
+      "ply": 2,
+      "snapshot": {
+        "game": "tictactoe",
+        "ply": 2,
+        "turn": "O",
+        "grid": [
+          [
+            "X",
+            "",
+            ""
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "opinion": {
+        "score": 100,
+        "why": "The player moves to the second row, third column, and the game is balanced.",
+        "model": "qwen2.5:0.5b"
+      },
+      "latencyMs": 143
+    },
+    {
+      "ply": 3,
+      "snapshot": {
+        "game": "tictactoe",
+        "ply": 3,
+        "turn": "X",
+        "grid": [
+          [
+            "X",
+            "",
+            ""
+          ],
+          [
+            "",
+            "O",
+            ""
+          ],
+          [
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "opinion": {
+        "score": 100,
+        "why": "The player moves to the second row, third column, and the game is balanced.",
+        "model": "qwen2.5:0.5b"
+      },
+      "latencyMs": 146
+    },
+    {
+      "ply": 4,
+      "snapshot": {
+        "game": "tictactoe",
+        "ply": 4,
+        "turn": "O",
+        "grid": [
+          [
+            "X",
+            "X",
+            ""
+          ],
+          [
+            "",
+            "O",
+            ""
+          ],
+          [
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "opinion": {
+        "score": 100,
+        "why": "The player has moved the X to the center of the board.",
+        "model": "qwen2.5:0.5b"
+      },
+      "latencyMs": 151
+    },
+    {
+      "ply": 5,
+      "snapshot": {
+        "game": "tictactoe",
+        "ply": 5,
+        "turn": "X",
+        "grid": [
+          [
+            "X",
+            "X",
+            "O"
+          ],
+          [
+            "",
+            "O",
+            ""
+          ],
+          [
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "opinion": {
+        "score": -100,
+        "why": "The player has made a move, but the game is not balanced. The X player should move to the next available position.",
+        "model": "qwen2.5:0.5b"
+      },
+      "latencyMs": 194
+    },
+    {
+      "ply": 6,
+      "snapshot": {
+        "game": "tictactoe",
+        "ply": 6,
+        "turn": "O",
+        "grid": [
+          [
+            "X",
+            "X",
+            "O"
+          ],
+          [
+            "",
+            "O",
+            ""
+          ],
+          [
+            "X",
+            "",
+            ""
+          ]
+        ]
+      },
+      "opinion": {
+        "score": 100,
+        "why": "The player has moved the X to the center of the grid.",
+        "model": "qwen2.5:0.5b"
+      },
+      "latencyMs": 130
+    },
+    {
+      "ply": 7,
+      "snapshot": {
+        "game": "tictactoe",
+        "ply": 7,
+        "turn": "X",
+        "grid": [
+          [
+            "X",
+            "X",
+            "O"
+          ],
+          [
+            "O",
+            "O",
+            ""
+          ],
+          [
+            "X",
+            "",
+            ""
+          ]
+        ]
+      },
+      "opinion": {
+        "score": 100,
+        "why": "The player moves to the second row, third column, and wins the game.",
+        "model": "qwen2.5:0.5b"
+      },
+      "latencyMs": 139
+    },
+    {
+      "ply": 8,
+      "snapshot": {
+        "game": "tictactoe",
+        "ply": 8,
+        "turn": "O",
+        "grid": [
+          [
+            "X",
+            "X",
+            "O"
+          ],
+          [
+            "O",
+            "O",
+            "X"
+          ],
+          [
+            "X",
+            "",
+            ""
+          ]
+        ]
+      },
+      "opinion": {
+        "score": 100,
+        "why": "The player has moved the X to the center of the board.",
+        "model": "qwen2.5:0.5b"
+      },
+      "latencyMs": 133
+    },
+    {
+      "ply": 9,
+      "snapshot": {
+        "game": "tictactoe",
+        "ply": 9,
+        "turn": "X",
+        "grid": [
+          [
+            "X",
+            "X",
+            "O"
+          ],
+          [
+            "O",
+            "O",
+            "X"
+          ],
+          [
+            "X",
+            "O",
+            ""
+          ]
+        ]
+      },
+      "opinion": {
+        "score": 100,
+        "why": "The player moves with X, and the board is in a stalemate. The game is a draw.",
+        "model": "qwen2.5:0.5b"
+      },
+      "latencyMs": 163
+    }
+  ],
+  "checks": {
+    "pass": 5,
+    "fail": 0
+  },
+  "log": [
+    "judge impl: local-ollama  url: http://127.0.0.1:11434",
+    "health: {\"ok\":true,\"url\":\"http://127.0.0.1:11434\",\"models\":[\"qwen2.5:0.5b\"],\"hasModel\":true}",
+    "slot contract: valid (slot=judge name=JEV status=local-implementation credentials.configured=false)",
+    "  JEV score  ply1 (X) ⇒ score=100 why=\"The player moves with X, and the board is in a stalemate.\"",
+    "ply 1: X → A1 | referee: {\"ok\":true,\"rule\":\"TURN\",\"text\":\"X placed A1. O to move.\",\"fired\":[\"R1\",\"R2\"],\"seq\":1,\"ts\":1790630445216}",
+    "  JEV review A1  → {\"ok\":true,\"rule\":\"TURN\",\"text\":\"X placed A1. O to move.\",\"fired\":[\"R1\",\"R2\"],\"seq\":1,\"ts\":1790630445216} ⇒ agree=true conf=1 why=\"The move was legal and applied, but the referee refused it. This indicates that the move was not legal according to the rules.\" (qwen2.5:0.5b, 220ms)",
+    "ply 1 probe: X → A1 again (illegal) | referee: {\"ok\":false,\"rule\":\"R2\",\"text\":\"Square A1 already holds X — a mark may only be placed on an empty square.\",\"seq\":2,\"ts\":1790630445436}",
+    "  JEV review A1  → {\"ok\":false,\"rule\":\"R2\",\"text\":\"Square A1 already holds X — a mark may only be placed on an empty square.\",\"seq\":2,\"ts\":1790630445436} ⇒ agree=true conf=1 why=\"The referee's verdict is clear and unambiguous. The move was legal and applied according to the rules.\" (qwen2.5:0.5b, 179ms)",
+    "  JEV score  ply2 (O) ⇒ score=100 why=\"The player moves to the second row, third column, and the game is balanced.\"",
+    "ply 2: O → B2 | referee: {\"ok\":true,\"rule\":\"TURN\",\"text\":\"O placed B2. X to move.\",\"fired\":[\"R1\",\"R2\"],\"seq\":3,\"ts\":1790630445766}",
+    "  JEV review B2  → {\"ok\":true,\"rule\":\"TURN\",\"text\":\"O placed B2. X to move.\",\"fired\":[\"R1\",\"R2\"],\"seq\":3,\"ts\":1790630445766} ⇒ agree=true conf=1 why=\"The move was legal and applied, but the referee REFUSED it (rule TURN).\" (qwen2.5:0.5b, 169ms)",
+    "  JEV score  ply3 (X) ⇒ score=100 why=\"The player moves to the second row, third column, and the game is balanced.\"",
+    "ply 3: X → B1 | referee: {\"ok\":true,\"rule\":\"TURN\",\"text\":\"X placed B1. O to move.\",\"fired\":[\"R1\",\"R2\"],\"seq\":4,\"ts\":1790630446085}",
+    "  JEV review B1  → {\"ok\":true,\"rule\":\"TURN\",\"text\":\"X placed B1. O to move.\",\"fired\":[\"R1\",\"R2\"],\"seq\":4,\"ts\":1790630446085} ⇒ agree=true conf=1 why=\"The move was legal and applied, but the referee refused it. The referee fired the 'R1' and 'R2' rules, which are not applicable to this move.\" (qwen2.5:0.5b, 239ms)",
+    "  JEV score  ply4 (O) ⇒ score=100 why=\"The player has moved the X to the center of the board.\"",
+    "ply 4: O → C1 | referee: {\"ok\":true,\"rule\":\"TURN\",\"text\":\"O placed C1. X to move.\",\"fired\":[\"R1\",\"R2\"],\"seq\":5,\"ts\":1790630446476}",
+    "  JEV review C1  → {\"ok\":true,\"rule\":\"TURN\",\"text\":\"O placed C1. X to move.\",\"fired\":[\"R1\",\"R2\"],\"seq\":5,\"ts\":1790630446476} ⇒ agree=true conf=1 why=\"The move was legal and applied, but the referee REFUSED it (rule TURN).\" (qwen2.5:0.5b, 163ms)",
+    "  JEV score  ply5 (X) ⇒ score=-100 why=\"The player has made a move, but the game is not balanced. The X player should move to the next available position.\"",
+    "ply 5: X → A3 | referee: {\"ok\":true,\"rule\":\"TURN\",\"text\":\"X placed A3. O to move.\",\"fired\":[\"R1\",\"R2\"],\"seq\":6,\"ts\":1790630446833}",
+    "  JEV review A3  → {\"ok\":true,\"rule\":\"TURN\",\"text\":\"X placed A3. O to move.\",\"fired\":[\"R1\",\"R2\"],\"seq\":6,\"ts\":1790630446833} ⇒ agree=true conf=1 why=\"The move was legal and applied, but the referee refused it (TURN).\" (qwen2.5:0.5b, 151ms)",
+    "  JEV score  ply6 (O) ⇒ score=100 why=\"The player has moved the X to the center of the grid.\"",
+    "ply 6: O → A2 | referee: {\"ok\":true,\"rule\":\"TURN\",\"text\":\"O placed A2. X to move.\",\"fired\":[\"R1\",\"R2\"],\"seq\":7,\"ts\":1790630447115}",
+    "  JEV review A2  → {\"ok\":true,\"rule\":\"TURN\",\"text\":\"O placed A2. X to move.\",\"fired\":[\"R1\",\"R2\"],\"seq\":7,\"ts\":1790630447115} ⇒ agree=true conf=1 why=\"The move was legal and applied, but the referee refused it. The referee fired the 'R1' and 'R2' rules, and the move was played in sequence. This indicates that \" (qwen2.5:0.5b, 295ms)",
+    "  JEV score  ply7 (X) ⇒ score=100 why=\"The player moves to the second row, third column, and wins the game.\"",
+    "ply 7: X → C2 | referee: {\"ok\":true,\"rule\":\"TURN\",\"text\":\"X placed C2. O to move.\",\"fired\":[\"R1\",\"R2\"],\"seq\":8,\"ts\":1790630447550}",
+    "  JEV review C2  → {\"ok\":true,\"rule\":\"TURN\",\"text\":\"X placed C2. O to move.\",\"fired\":[\"R1\",\"R2\"],\"seq\":8,\"ts\":1790630447550} ⇒ agree=true conf=1 why=\"The move was legal and applied, but the referee refused it. The move was C2 to X, and O to move. The referee fired the R1 and R2 moves.\" (qwen2.5:0.5b, 240ms)",
+    "  JEV score  ply8 (O) ⇒ score=100 why=\"The player has moved the X to the center of the board.\"",
+    "ply 8: O → B3 | referee: {\"ok\":true,\"rule\":\"TURN\",\"text\":\"O placed B3. X to move.\",\"fired\":[\"R1\",\"R2\"],\"seq\":9,\"ts\":1790630447924}",
+    "  JEV review B3  → {\"ok\":true,\"rule\":\"TURN\",\"text\":\"O placed B3. X to move.\",\"fired\":[\"R1\",\"R2\"],\"seq\":9,\"ts\":1790630447924} ⇒ agree=true conf=1 why=\"The move was legal and applied, but the referee REFUSED it (rule TURN).\" (qwen2.5:0.5b, 159ms)",
+    "  JEV score  ply9 (X) ⇒ score=100 why=\"The player moves with X, and the board is in a stalemate. The game is a draw.\"",
+    "ply 9: X → C3 | referee: {\"ok\":true,\"rule\":\"R4\",\"text\":\"Every square holds a mark and no line was completed — the game is a draw and the board is closed.\",\"fired\":[\"R1\",\"R2\",\"R4\"],\"seq\":10,\"ts\":1790630448247}",
+    "  JEV review C3  → {\"ok\":true,\"rule\":\"R4\",\"text\":\"Every square holds a mark and no line was completed — the game is a draw and the board is closed.\",\"fired\":[\"R1\",\"R2\",\"R4\"],\"seq\":10,\"ts\":1790630448247} ⇒ agree=true conf=1 why=\"The move was legal and applied, but the referee REFUSED it (rule R4).\" (qwen2.5:0.5b, 167ms)",
+    "game over: phase=over winner=draw",
+    "  JEV on refusal: agree=true why=\"The referee's verdict is clear and unambiguous. The move was legal and applied according to the rules.\""
+  ]
+}
