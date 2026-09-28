@@ -2360,3 +2360,8 @@ the ceiling; correlated dense purchases are dead weight or worse.
 - ran: 2026-09-28 09:56
 - verdict: LICENSE
 - note: reverse ridge (dials → embedding, LORO): mean R² 0.4264, median 0.4688, var-weighted 0.5215 (still-level); room-level 0.4432/0.5363. The dials explain ~43–52% of the I-JEPA room embedding — a MAJOR axis, not a needle; the elephant could find them without labels. Controls: dials→pixels 0.68 (ceiling 0.88) vs dials→embedding 0.43 = the embedding keeps ~2/3 of the dial signal (dial-preserving compression, not destruction); luminance→embedding 0.041 = the embedding is NOT a brightness meter. Null (shuffled dials) −0.20, p=0.0. Metric calibrated (planted 0.255 → recovered 0.201). Between-room ceiling 0.96. LICENSE (mean > 0.40) — the room-temperature sense SURVIVES the reverse kill-shot.
+
+## E15 (full leaderboard, 4 encoders) — is I-JEPA special? NO.
+- ran: 2026-09-28 10:50 (DINOv2 + CLIP downloaded and run)
+- verdict: KEEP (aggregate)
+- note: ALL FOUR frozen encoders read all 3 dials at E12 thresholds — ijepa_vith16_1k 0.811/0.962/0.948 (control, replicates E12), dinov2-base 0.838/0.956/0.899, clip-vit-b32 0.901/0.958/0.669, vjepa2-vitl 0.875/0.967/0.876. Supervised (CLIP), distillation (DINOv2), and both JEPA families all pass. The dial read is a property of ROOM GEOMETRY, not of any encoder family's inductive bias. Interesting per-encoder texture: CLIP is best on mood (0.90) but weakest on presence (0.67); V-JEPA 2 is best on volume. Full table: results/e15_full_leaderboard.json.
