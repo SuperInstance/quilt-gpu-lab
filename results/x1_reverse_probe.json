@@ -1,0 +1,379 @@
+{
+  "experiment": "X1 reverse probe (dial-explained embedding variance)",
+  "mode": "full 27-room staged dial bank",
+  "device": "cuda",
+  "seed": 2718,
+  "model": "facebook/ijepa_vith16_1k",
+  "load_notes": {
+    "facebook/ijepa_vitb": "load failed: OSError: facebook/ijepa_vitb is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'\nIf this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your"
+  },
+  "guard_preflight": {
+    "free_vram_mib": 5920,
+    "temp_c": 45
+  },
+  "dial_names": [
+    "mood",
+    "volume",
+    "presence"
+  ],
+  "dial_source": "elephant DialBank reading of the room's staged script (E12's label source \u2014 never hand-typed)",
+  "rooms": 27,
+  "stills_per_room": 12,
+  "cells": 324,
+  "emb_dim": 1280,
+  "lambda_grid": [
+    0.001,
+    0.01,
+    0.1,
+    1.0,
+    10.0,
+    100.0
+  ],
+  "forward_replication": {
+    "measured_forward_r2_k64": {
+      "mood": 0.8106,
+      "volume": 0.9624,
+      "presence": 0.9478
+    },
+    "anchors_forward_r2_k64": {
+      "mood": 0.8106,
+      "volume": 0.9624,
+      "presence": 0.9478
+    },
+    "anchor_source": "results/e12_room_dial_reader.json",
+    "abs_dev_per_dial": {
+      "mood": 0.0,
+      "volume": 0.0,
+      "presence": 0.0
+    },
+    "max_abs_dev": 0.0,
+    "tol": 0.05,
+    "forward_replicated": true,
+    "lambda_median_k64": 1.0,
+    "g0b_sensitivity_r2_luminance_k64": 0.993,
+    "g0b_sensitivity_floor": 0.9,
+    "g0b_sensitivity_pass": true,
+    "forward_note": "E12's own read, re-run on this bank: anchors 0.8106/0.9624/0.9478 (mean 0.9069) from the recorded run; forward != reverse \u2014 a label-told reader can recover a thin dial direction with R\u00b2~0.95 while the dials explain almost none of the embedding's total variance. Both numbers are true at once."
+  },
+  "reverse_primary_still_level_from_dial_labels": {
+    "lambda_median": 10.0,
+    "lambda_per_dim_counts": {
+      "1.0": 11,
+      "10.0": 869,
+      "100.0": 400
+    },
+    "mean_r2": 0.42641,
+    "median_r2": 0.46878,
+    "variance_weighted_r2": 0.52145,
+    "n_dims": 1280,
+    "n_dims_r2_ge_0.30": 892,
+    "n_dims_r2_ge_0.10": 1122,
+    "n_dims_r2_gt_0": 1193,
+    "p90_r2": 0.72129
+  },
+  "reverse_room_level": {
+    "lambda_median": 1.0,
+    "lambda_per_dim_counts": {
+      "0.1": 23,
+      "1.0": 921,
+      "10.0": 273,
+      "100.0": 63
+    },
+    "mean_r2": 0.44317,
+    "median_r2": 0.48537,
+    "variance_weighted_r2": 0.53634,
+    "n_dims": 1280,
+    "n_dims_r2_ge_0.30": 911,
+    "n_dims_r2_ge_0.10": 1129,
+    "n_dims_r2_gt_0": 1195,
+    "p90_r2": 0.73667
+  },
+  "reverse_shared_lambda_booked": {
+    "lambda_median": 10.0,
+    "lambda_per_dim_counts": {
+      "10.0": 1280
+    },
+    "mean_r2": 0.41968,
+    "median_r2": 0.46878,
+    "variance_weighted_r2": 0.51812,
+    "n_dims": 1280,
+    "n_dims_r2_ge_0.30": 891,
+    "n_dims_r2_ge_0.10": 1103,
+    "n_dims_r2_gt_0": 1172,
+    "p90_r2": 0.72129,
+    "shared_lambda": 10.0
+  },
+  "reverse_staging_target_features": {
+    "lambda_median": 10.0,
+    "lambda_per_dim_counts": {
+      "1.0": 19,
+      "10.0": 880,
+      "100.0": 381
+    },
+    "mean_r2": 0.45351,
+    "median_r2": 0.49764,
+    "variance_weighted_r2": 0.5538,
+    "n_dims": 1280,
+    "n_dims_r2_ge_0.30": 924,
+    "n_dims_r2_ge_0.10": 1131,
+    "n_dims_r2_gt_0": 1198,
+    "p90_r2": 0.75915
+  },
+  "reverse_augmented_dial_features": {
+    "features": [
+      "m",
+      "v",
+      "p",
+      "m^2",
+      "v^2",
+      "p^2",
+      "m*v",
+      "m*p",
+      "v*p"
+    ],
+    "lambda_median": 1.0,
+    "lambda_per_dim_counts": {
+      "0.001": 51,
+      "0.01": 381,
+      "0.1": 153,
+      "1.0": 184,
+      "10.0": 277,
+      "100.0": 234
+    },
+    "mean_r2": 0.6268,
+    "median_r2": 0.69152,
+    "variance_weighted_r2": 0.742,
+    "n_dims": 1280,
+    "n_dims_r2_ge_0.30": 1133,
+    "n_dims_r2_ge_0.10": 1230,
+    "n_dims_r2_gt_0": 1258,
+    "p90_r2": 0.87306
+  },
+  "embedding_variance_ceiling": {
+    "mean_between_room_ceiling": 0.9605,
+    "median_between_room_ceiling": 0.9673,
+    "loro_trainmean_floor_room_constant": -0.0784,
+    "note": "mean per-dim SS_between/SS_total over rooms \u2014 the hard upper bound on ANY room-constant-feature reverse-R\u00b2 at still level. primary/ceiling isolates 'the dials explain little' from 'the stills are noisy'. Calibration: a dim that is room-constant but DIAL-UNPREDICTABLE scores the LORO train-mean floor 1-(n/(n-1))\u00b2 (negative at 27 rooms, shown above), and a pure within-room noise dim scores ~0 \u2014 so a dial-free embedding lands near or below 0 and the 0.10 KILL cut is comfortably above the floor."
+  },
+  "top_dial_explained_dims": {
+    "k": 20,
+    "dims": [
+      {
+        "dim": 841,
+        "r2": 0.8979,
+        "var_share": 0.00382
+      },
+      {
+        "dim": 480,
+        "r2": 0.8971,
+        "var_share": 1e-05
+      },
+      {
+        "dim": 60,
+        "r2": 0.8883,
+        "var_share": 0.01025
+      },
+      {
+        "dim": 1212,
+        "r2": 0.8763,
+        "var_share": 0.01523
+      },
+      {
+        "dim": 125,
+        "r2": 0.8736,
+        "var_share": 0.00491
+      },
+      {
+        "dim": 655,
+        "r2": 0.8712,
+        "var_share": 1e-05
+      },
+      {
+        "dim": 805,
+        "r2": 0.8668,
+        "var_share": 1e-05
+      },
+      {
+        "dim": 645,
+        "r2": 0.8593,
+        "var_share": 1e-05
+      },
+      {
+        "dim": 733,
+        "r2": 0.851,
+        "var_share": 0.0
+      },
+      {
+        "dim": 167,
+        "r2": 0.8475,
+        "var_share": 0.0
+      },
+      {
+        "dim": 1009,
+        "r2": 0.8456,
+        "var_share": 1e-05
+      },
+      {
+        "dim": 781,
+        "r2": 0.8446,
+        "var_share": 3e-05
+      },
+      {
+        "dim": 817,
+        "r2": 0.8434,
+        "var_share": 0.00274
+      },
+      {
+        "dim": 453,
+        "r2": 0.8409,
+        "var_share": 0.00334
+      },
+      {
+        "dim": 1026,
+        "r2": 0.84,
+        "var_share": 0.00372
+      },
+      {
+        "dim": 276,
+        "r2": 0.8385,
+        "var_share": 0.00279
+      },
+      {
+        "dim": 1210,
+        "r2": 0.838,
+        "var_share": 2e-05
+      },
+      {
+        "dim": 981,
+        "r2": 0.8374,
+        "var_share": 0.00812
+      },
+      {
+        "dim": 541,
+        "r2": 0.8352,
+        "var_share": 0.00209
+      },
+      {
+        "dim": 886,
+        "r2": 0.8327,
+        "var_share": 1e-05
+      }
+    ],
+    "var_share_top_k": 0.0571,
+    "var_share_top_3": 0.0141,
+    "dims_sorted_by_dial_explainability": true
+  },
+  "controls": {
+    "raw_pixel_reverse": {
+      "mean_r2": 0.6798,
+      "variance_weighted_r2": 0.68,
+      "mean_ceiling": 0.8804,
+      "ceiling_normalized_r2": 0.7722,
+      "n_dims": 144
+    },
+    "embedding_ceiling_normalized_r2": 0.4439,
+    "embedding_mean_ceiling": 0.9605,
+    "luminance_only_to_embedding": {
+      "mean_r2": 0.0407,
+      "variance_weighted_r2": 0.0717,
+      "ceiling_normalized_r2": 0.0423
+    },
+    "luminance_only_to_pixels": {
+      "mean_r2": 0.7308,
+      "variance_weighted_r2": 0.7315,
+      "ceiling_normalized_r2": 0.83
+    },
+    "dial_to_embedding_vs_dial_to_pixels": {
+      "mean_r2_ratio_emb_over_pix": 0.6272,
+      "ceiling_normalized_ratio": 0.5749,
+      "verdict": "the dials explain NO MORE of the embedding than of the trivial pixel statistics \u2014 the reverse residual is not JEPA-specific",
+      "note": "the two target spaces have different intrinsic room structure; the ceiling-normalized ratio is the fairer comparison, the raw ratio is scale-dependent"
+    }
+  },
+  "null_shuffled_dials": {
+    "perms": 200,
+    "lambda_fixed": 10.0,
+    "mean_r2_null_mean": -0.20154956489801407,
+    "mean_r2_null95": -0.12608709968626505,
+    "mean_r2_null_max": 0.07971151173114777,
+    "mean_r2_null_std": 0.04659871205611566,
+    "variance_weighted_null95": -0.12608692179353448,
+    "note": "room-level shuffle of the dial TRIPLE; because the bank is a 3x3x3 grid, a shuffled triple is a legal but wrong room's dials \u2014 the honest 'the dials carry no room information' null",
+    "p_mean_r2": 0.0,
+    "p_variance_weighted_r2": 0.0,
+    "primary_beats_null95": true
+  },
+  "metric_scale_calibration": {
+    "dims": 64,
+    "rooms": 27,
+    "stills_per_room": 12,
+    "cases": {
+      "dial_aligned": {
+        "ideal_mean_r2": 0.255,
+        "ideal_variance_weighted_r2": 0.3001,
+        "recovered_mean_r2": 0.2013,
+        "recovered_variance_weighted_r2": 0.2473,
+        "recovered_room_level_mean_r2": 0.3026,
+        "recovery_gap_mean_r2": -0.0538
+      },
+      "dial_aligned_strong": {
+        "ideal_mean_r2": 0.6038,
+        "ideal_variance_weighted_r2": 0.6861,
+        "recovered_mean_r2": 0.5691,
+        "recovered_variance_weighted_r2": 0.6603,
+        "recovered_room_level_mean_r2": 0.6974,
+        "recovery_gap_mean_r2": -0.0347
+      },
+      "dial_free": {
+        "ideal_mean_r2": -0.0203,
+        "ideal_variance_weighted_r2": -0.02,
+        "recovered_mean_r2": -0.0796,
+        "recovered_variance_weighted_r2": -0.0805,
+        "recovered_room_level_mean_r2": -0.0642,
+        "recovery_gap_mean_r2": -0.0594
+      }
+    },
+    "note": "positive + negative controls for the GATE METRIC itself, on the real bank's geometry; a large recovery gap would mean the metric, not the encoder, is the story"
+  },
+  "verdict_echoes": {
+    "room_level_mean_r2": {
+      "value": 0.4432,
+      "band": "LICENSE"
+    },
+    "variance_weighted_r2": {
+      "value": 0.5215,
+      "band": "LICENSE"
+    },
+    "target_triple_features_mean_r2": {
+      "value": 0.4535,
+      "band": "LICENSE"
+    },
+    "shared_lambda_mean_r2": {
+      "value": 0.4197,
+      "band": "LICENSE"
+    },
+    "augmented_dial_features_mean_r2": {
+      "value": 0.6268,
+      "band": "LICENSE"
+    },
+    "raw_pixel_mean_r2": {
+      "value": 0.6798,
+      "band": "LICENSE"
+    }
+  },
+  "verdict_echo_agreement": true,
+  "gates": {
+    "metric": "mean per-dim still-level LORO reverse-R\u00b2 (dial labels, per-dim lambda chosen by inner grouped CV on the same pooled-SSE statistic the gate reports)",
+    "kill_below": 0.1,
+    "license_above": 0.4,
+    "measured_primary_mean_reverse_r2": 0.4264,
+    "forward_replicated": true,
+    "g0b_sensitivity_pass": true,
+    "n_rooms": 27,
+    "min_rooms": 8,
+    "harness_invalid_reasons": []
+  },
+  "seconds_total": 35.8,
+  "verdict": "LICENSE",
+  "note": "REVERSE probe: predict each of the 1280 embedding dims from the 3 elephant dial labels, leave-one-room-out (per-dim ridge lambda chosen by inner grouped CV on the same pooled-SSE statistic the gate reports; targets column-standardized). Forward R\u00b2 asks 'can a reader HANDED the labels recover the dials?'; reverse R\u00b2 asks 'is the dial direction a meaningful share of the embedding's variance?' \u2014 the question that decides whether a label-free elephant could ever find it. KILL (<0.10) = the dials are a tiny corner of the embedding and the room-temperature framing is dead regardless of forward R\u00b2. LICENSE (>0.40) = the framing survives. Between = INCONCLUSIVE, reported as-is. INVALID_HARNESS (E12's forward read must reproduce, luminance sensitivity must hold, >=8 rooms) pre-empts any KILL from a broken harness. The bank is a staged 3x3x3 grid where room identity IS the dial triple, so this is the FRIENDLIEST possible case: a KILL is decisive, a LICENSE is not yet evidence about natural rooms. No results/ writes; one JSON on stdout."
+}

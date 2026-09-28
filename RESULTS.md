@@ -1571,3 +1571,792 @@ the ceiling; correlated dense purchases are dead weight or worse.
 - ran: 2026-09-28 08:50
 - verdict: INCONCLUSIVE
 - note: the SIGNED-DIFFERENCE feature is the "walk" representation and it super-adds — diff-feature read of the gap (0.97) crushes the two-absolutes baseline (0.40), i.e. emb_B−emb_A carries edge signal beyond the absolutes. But the CONCAT/pair features do NOT super-add (two-absolutes 0.99 ≈ gap 0.97), because concatenation is just the two absolutes stacked. 2/3 dials beat the two-absolutes baseline, but only 1/3 clears BOTH comparators AND the null → honest INCONCLUSIVE. The elephant's "walk" lives in the difference, not the sum — a clean follow-up target: edge = signed-difference, and the concat arm is the right null.
+
+## E15 — encoder-swap dial read (is I-JEPA special? DINOv2/CLIP/V-JEPA 2 leaderboard) — pre-registered in SPOOL.md
+- ran: 2026-09-28 09:26
+- verdict: KEEP
+- result: ```json
+{
+  "experiment": "E15 encoder-swap dial-read leaderboard",
+  "device": "cuda",
+  "seed": 2718,
+  "guard_preflight": {
+    "free_vram_mib": 4484,
+    "temp_c": 57
+  },
+  "download_opt_in": false,
+  "dial_names": [
+    "mood",
+    "volume",
+    "presence"
+  ],
+  "k_primary": 64,
+  "e12_published_reference": {
+    "verdict": "KEEP",
+    "date": "2026-09-28",
+    "model": "facebook/ijepa_vith16_1k",
+    "r2_still_loro_k64": {
+      "mood": 0.811,
+      "volume": 0.962,
+      "presence": 0.948
+    },
+    "r2_room_loro_k64": {
+      "mood": 0.89,
+      "volume": 0.972,
+      "presence": 0.937
+    }
+  },
+  "shared": {
+    "rooms_armB": 27,
+    "rooms_armA": 4,
+    "stills_per_room": 12,
+    "raw_pixel_r2_k64_booked": {
+      "mood": 0.9355,
+      "volume": -0.7664,
+      "presence": 0.1625
+    },
+    "luminance_spearman_booked": {
+      "mood": 0.9224,
+      "volume": 0.0804,
+      "presence": 0.1803
+    },
+    "note": "C1/C2 are encoder-independent (same stills for every encoder) \u2014 taken from the first encoder that ran",
+    "staging_fidelity_spearman_target_vs_label": {
+      "mood": 0.98,
+      "volume": 0.9437,
+      "presence": 0.9864
+    }
+  },
+  "encoders": {
+    "ijepa_vith16_1k": {
+      "verdict": "KEEP",
+      "emb_dim": 1280,
+      "pca_evr_k64": 0.9967,
+      "r2_still_loro_k64": {
+        "mood": 0.8106,
+        "volume": 0.9624,
+        "presence": 0.9478
+      },
+      "r2_still_loro_k16": {
+        "mood": 0.848,
+        "volume": 0.9653,
+        "presence": 0.9292
+      },
+      "r2_still_loro_k256": {
+        "mood": 0.8726,
+        "volume": 0.9722,
+        "presence": 0.9729
+      },
+      "r2_room_loro_k64": {
+        "mood": 0.8902,
+        "volume": 0.9717,
+        "presence": 0.9374
+      },
+      "spearman_loro_k64": {
+        "mood": 0.896,
+        "volume": 0.903,
+        "presence": 0.9329
+      },
+      "perm_null95_k64": {
+        "mood": -0.0561,
+        "volume": 0.0371,
+        "presence": -0.023
+      },
+      "perm_p_k64": {
+        "mood": 0.0,
+        "volume": 0.0,
+        "presence": 0.0
+      },
+      "lambda_median_k64": 1.0,
+      "tertile_acc_k64": {
+        "mood": 0.9691,
+        "volume": 1.0,
+        "presence": 1.0
+      },
+      "g0b_sensitivity_r2_luminance_k64": 0.993,
+      "g0b_sensitivity_pass": true,
+      "g1_dial_pass": {
+        "mood": true,
+        "volume": true,
+        "presence": true
+      },
+      "g1_pass_count": 3,
+      "armA_room_sep_pass": true,
+      "armB_room_identity_acc": 1.0,
+      "gates": {
+        "r2_floor": 0.3,
+        "room_r2_floor": 0.15,
+        "top_pc_fraction": 0.5,
+        "armA_acc_floor": 0.75,
+        "sensitivity_floor": 0.9
+      },
+      "key": "ijepa_vith16_1k",
+      "hf_id": "facebook/ijepa_vith16_1k",
+      "kind": "image",
+      "role": "control (E12 replication)",
+      "loader": "e9.load_encoder verbatim",
+      "cache": {
+        "cached": true,
+        "snapshot": "43ea3b33a17addfa9a32261f6fde003fd97f38d9",
+        "weights_file": "model.safetensors",
+        "weights_mib": 2409.7
+      },
+      "model": "facebook/ijepa_vith16_1k",
+      "load_notes": {
+        "facebook/ijepa_vitb": "load failed: OSError: facebook/ijepa_vitb is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'\nIf this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your"
+      },
+      "vram": {
+        "free_before_mib": 4484,
+        "free_after_mib": 4355,
+        "weights_mib": 1205.4,
+        "peak_allocated_mib": 1503.4
+      },
+      "controls_armA": {
+        "dial_r2_k64_booked": {
+          "mood": 0.4842,
+          "volume": 0.4326,
+          "presence": 0.4728
+        },
+        "room_identity_acc": 1.0
+      },
+      "status": "ran",
+      "labels_are_reference": true
+    },
+    "dinov2_base": {
+      "key": "dinov2_base",
+      "hf_id": "facebook/dinov2-base",
+      "status": "skipped",
+      "reason": "weights not in local HF cache \u2014 one-time download needed (~350-600 MB). Re-run with E15_ALLOW_DOWNLOAD=1 or pre-pull: huggingface-cli download facebook/dinov2-base",
+      "cache": {
+        "cached": false,
+        "reason": "/home/eileen/.cache/huggingface/hub/models--facebook--dinov2-base absent \u2014 one-time download needed"
+      }
+    },
+    "clip_vitb32": {
+      "key": "clip_vitb32",
+      "hf_id": "openai/clip-vit-base-patch32",
+      "status": "skipped",
+      "reason": "weights not in local HF cache \u2014 one-time download needed (~350-600 MB). Re-run with E15_ALLOW_DOWNLOAD=1 or pre-pull: huggingface-cli download openai/clip-vit-base-patch32",
+      "cache": {
+        "cached": false,
+        "reason": "/home/eileen/.cache/huggingface/hub/models--openai--clip-vit-base-patch32 absent \u2014 one-time download needed"
+      }
+    },
+    "vjepa2_vitl": {
+      "verdict": "KEEP",
+      "emb_dim": 1024,
+      "pca_evr_k64": 0.9972,
+      "r2_still_loro_k64": {
+        "mood": 0.8753,
+        "volume": 0.9671,
+        "presence": 0.8764
+      },
+      "r2_still_loro_k16": {
+        "mood": 0.8207,
+        "volume": 0.9728,
+        "presence": 0.7842
+      },
+      "r2_still_loro_k256": {
+        "mood": 0.8694,
+        "volume": 0.972,
+        "presence": 0.8999
+      },
+      "r2_room_loro_k64": {
+        "mood": 0.8313,
+        "volume": 0.9554,
+        "presence": 0.8034
+      },
+      "spearman_loro_k64": {
+        "mood": 0.9058,
+        "volume": 0.9164,
+        "presence": 0.9281
+      },
+      "perm_null95_k64": {
+        "mood": 0.0017,
+        "volume": -0.0861,
+        "presence": -0.1077
+      },
+      "perm_p_k64": {
+        "mood": 0.0,
+        "volume": 0.0,
+        "presence": 0.0
+      },
+      "lambda_median_k64": 0.1,
+      "tertile_acc_k64": {
+        "mood": 1.0,
+        "volume": 1.0,
+        "presence": 1.0
+      },
+      "g0b_sensitivity_r2_luminance_k64": 0.9958,
+      "g0b_sensitivity_pass": true,
+      "g1_dial_pass": {
+        "mood": true,
+        "volume": true,
+        "presence": true
+      },
+      "g1_pass_count": 3,
+      "armA_room_sep_pass": true,
+      "armB_room_identity_acc": 1.0,
+      "gates": {
+        "r2_floor": 0.3,
+        "room_r2_floor": 0.15,
+        "top_pc_fraction": 0.5,
+        "armA_acc_floor": 0.75,
+        "sensitivity_floor": 0.9
+      },
+      "key": "vjepa2_vitl",
+      "hf_id": "facebook/vjepa2-vitl-fpc16-256-ssv2",
+      "kind": "video",
+      "role": "swap",
+      "loader": "VJEPA2Model + VJEPA2VideoProcessor (E7's pattern)",
+      "cache": {
+        "cached": true,
+        "snapshot": "4aa02df83918538fc21cfaf576382fa20e489a80",
+        "weights_file": "model.safetensors",
+        "weights_mib": 1432.4
+      },
+      "load_notes": {},
+      "vram": {
+        "free_before_mib": 4355,
+        "free_after_mib": 4355,
+        "weights_mib": 631.5,
+        "peak_allocated_mib": 703.8
+      },
+      "controls_armA": {
+        "dial_r2_k64_booked": {
+          "mood": -0.5886,
+          "volume": -0.6696,
+          "presence": -0.6548
+        },
+        "room_identity_acc": 1.0
+      },
+      "status": "ran",
+      "labels_match_control": true
+    }
+  },
+  "leaderboard": [
+    {
+      "encoder": "ijepa_vith16_1k",
+      "hf_id": "facebook/ijepa_vith16_1k",
+      "role": "control (E12 replication)",
+      "status": "ran",
+      "verdict": "KEEP",
+      "r2_still_loro_k64": {
+        "mood": 0.8106,
+        "volume": 0.9624,
+        "presence": 0.9478
+      },
+      "r2_room_loro_k64": {
+        "mood": 0.8902,
+        "volume": 0.9717,
+        "presence": 0.9374
+      },
+      "perm_null95_k64": {
+        "mood": -0.0561,
+        "volume": 0.0371,
+        "presence": -0.023
+      },
+      "g1_pass_count": 3,
+      "armA_room_identity_acc": 1.0,
+      "vram": {
+        "free_before_mib": 4484,
+        "free_after_mib": 4355,
+        "weights_mib": 1205.4,
+        "peak_allocated_mib": 1503.4
+      },
+      "reason": null
+    },
+    {
+      "encoder": "dinov2_base",
+      "hf_id": "facebook/dinov2-base",
+      "role": "swap",
+      "status": "skipped",
+      "verdict": null,
+      "r2_still_loro_k64": null,
+      "r2_room_loro_k64": null,
+      "perm_null95_k64": null,
+      "g1_pass_count": null,
+      "armA_room_identity_acc": null,
+      "vram": null,
+      "reason": "weights not in local HF cache \u2014 one-time download needed (~350-600 MB). Re-run with E15_ALLOW_DOWNLOAD=1 or pre-pull: huggingface-cli download facebook/dinov2-base"
+    },
+    {
+      "encoder": "clip_vitb32",
+      "hf_id": "openai/clip-vit-base-patch32",
+      "role": "swap",
+      "status": "skipped",
+      "verdict": null,
+      "r2_still_loro_k64": null,
+      "r2_room_loro_k64": null,
+      "perm_null95_k64": null,
+      "g1_pass_count": null,
+      "armA_room_identity_acc": null,
+      "vram": null,
+      "reason": "weights not in local HF cache \u2014 one-time download needed (~350-600 MB). Re-run with E15_ALLOW_DOWNLOAD=1 or pre-pull: huggingface-cli download openai/clip-vit-base-patch32"
+    },
+    {
+      "encoder": "vjepa2_vitl",
+      "hf_id": "facebook/vjepa2-vitl-fpc16-256-ssv2",
+      "role": "swap",
+      "status": "ran",
+      "verdict": "KEEP",
+      "r2_still_loro_k64": {
+        "mood": 0.8753,
+        "volume": 0.9671,
+        "presence": 0.8764
+      },
+      "r2_room_loro_k64": {
+        "mood": 0.8313,
+        "volume": 0.9554,
+        "presence": 0.8034
+      },
+      "perm_null95_k64": {
+        "mood": 0.0017,
+        "volume": -0.0861,
+        "presence": -0.1077
+      },
+      "g1_pass_count": 3,
+      "armA_room_identity_acc": 1.0,
+      "vram": {
+        "free_before_mib": 4355,
+        "free_after_mib": 4355,
+        "weights_mib": 631.5,
+        "peak_allocated_mib": 703.8
+      },
+      "reason": null
+    }
+  ],
+  "gates": {
+    "control_key": "ijepa_vith16_1k",
+    "control_ran": true,
+    "control_keep": true,
+    "control_verdict": "KEEP",
+    "swaps_ran": [
+      "vjepa2_vitl"
+    ],
+    "swaps_keep": [
+      "vjepa2_vitl"
+    ],
+    "swaps_not_ran": [
+      {
+        "key": "dinov2_base",
+        "status": "skipped",
+        "verdict": null,
+        "reason": "weights not in local HF cache \u2014 one-time download needed (~350-600 MB). Re-run with E15_ALLOW_DOWNLOAD=1 or pre-pull: huggingface-cli download facebook/dinov2-base"
+      },
+      {
+        "key": "clip_vitb32",
+        "status": "skipped",
+        "verdict": null,
+        "reason": "weights not in local HF cache \u2014 one-time download needed (~350-600 MB). Re-run with E15_ALLOW_DOWNLOAD=1 or pre-pull: huggingface-cli download openai/clip-vit-base-patch32"
+      }
+    ]
+  },
+  "verdict": "KEEP",
+  "note": "E12's dial-read pipeline (same 27-room staged bank, same elephant-bank labels, same ridge/LORO/perm-null) re-run under each frozen encoder. Per-encoder gate = E12 G1 verbatim. INVALID_CONTROL: the I-JEPA control failed to replicate E12's KEEP in THIS run (comparison void). KEEP: >=1 non-I-JEPA encoder reads >=2/3 dials at E12's thresholds -> room-geometry property. KILL: every valid non-I-JEPA swap fails where I-JEPA keeps -> I-JEPA's inductive bias is load-bearing. Skipped/failed/INVALID_HARNESS swaps never silently become a KILL. Caveats: staged carriers (E12's limit); vjepa2 rows are 16-frame windows anchored at each still; CLS tokens included in the uniform mean-pool for dinov2/clip.",
+  "guard_summary": {
+    "samples": 43,
+    "min_free_vram_mib": 2681,
+    "max_temp_c": 74,
+    "breach": null,
+    "timed_out": false
+  }
+}
+```
+
+## E15 — encoder-swap dial read (is I-JEPA special? DINOv2/CLIP/V-JEPA 2 leaderboard) — pre-registered in SPOOL.md
+- ran: 2026-09-28 09:29
+- verdict: KEEP
+- result: ```json
+{
+  "experiment": "E15 encoder-swap dial-read leaderboard",
+  "device": "cuda",
+  "seed": 2718,
+  "guard_preflight": {
+    "free_vram_mib": 4355,
+    "temp_c": 58
+  },
+  "download_opt_in": false,
+  "dial_names": [
+    "mood",
+    "volume",
+    "presence"
+  ],
+  "k_primary": 64,
+  "e12_published_reference": {
+    "verdict": "KEEP",
+    "date": "2026-09-28",
+    "model": "facebook/ijepa_vith16_1k",
+    "r2_still_loro_k64": {
+      "mood": 0.811,
+      "volume": 0.962,
+      "presence": 0.948
+    },
+    "r2_room_loro_k64": {
+      "mood": 0.89,
+      "volume": 0.972,
+      "presence": 0.937
+    }
+  },
+  "shared": {
+    "rooms_armB": 27,
+    "rooms_armA": 4,
+    "stills_per_room": 12,
+    "raw_pixel_r2_k64_booked": {
+      "mood": 0.9355,
+      "volume": -0.7664,
+      "presence": 0.1625
+    },
+    "luminance_spearman_booked": {
+      "mood": 0.9224,
+      "volume": 0.0804,
+      "presence": 0.1803
+    },
+    "note": "C1/C2 are encoder-independent (same stills for every encoder) \u2014 taken from the first encoder that ran",
+    "staging_fidelity_spearman_target_vs_label": {
+      "mood": 0.98,
+      "volume": 0.9437,
+      "presence": 0.9864
+    }
+  },
+  "encoders": {
+    "ijepa_vith16_1k": {
+      "verdict": "KEEP",
+      "emb_dim": 1280,
+      "pca_evr_k64": 0.9967,
+      "r2_still_loro_k64": {
+        "mood": 0.8106,
+        "volume": 0.9624,
+        "presence": 0.9478
+      },
+      "r2_still_loro_k16": {
+        "mood": 0.848,
+        "volume": 0.9653,
+        "presence": 0.9292
+      },
+      "r2_still_loro_k256": {
+        "mood": 0.8726,
+        "volume": 0.9722,
+        "presence": 0.9729
+      },
+      "r2_room_loro_k64": {
+        "mood": 0.8902,
+        "volume": 0.9717,
+        "presence": 0.9374
+      },
+      "spearman_loro_k64": {
+        "mood": 0.896,
+        "volume": 0.903,
+        "presence": 0.9329
+      },
+      "perm_null95_k64": {
+        "mood": -0.0561,
+        "volume": 0.0371,
+        "presence": -0.023
+      },
+      "perm_p_k64": {
+        "mood": 0.0,
+        "volume": 0.0,
+        "presence": 0.0
+      },
+      "lambda_median_k64": 1.0,
+      "tertile_acc_k64": {
+        "mood": 0.9691,
+        "volume": 1.0,
+        "presence": 1.0
+      },
+      "g0b_sensitivity_r2_luminance_k64": 0.993,
+      "g0b_sensitivity_pass": true,
+      "g1_dial_pass": {
+        "mood": true,
+        "volume": true,
+        "presence": true
+      },
+      "g1_pass_count": 3,
+      "armA_room_sep_pass": true,
+      "armB_room_identity_acc": 1.0,
+      "gates": {
+        "r2_floor": 0.3,
+        "room_r2_floor": 0.15,
+        "top_pc_fraction": 0.5,
+        "armA_acc_floor": 0.75,
+        "sensitivity_floor": 0.9
+      },
+      "key": "ijepa_vith16_1k",
+      "hf_id": "facebook/ijepa_vith16_1k",
+      "kind": "image",
+      "role": "control (E12 replication)",
+      "loader": "e9.load_encoder verbatim",
+      "cache": {
+        "cached": true,
+        "snapshot": "43ea3b33a17addfa9a32261f6fde003fd97f38d9",
+        "weights_file": "model.safetensors",
+        "weights_mib": 2409.7
+      },
+      "model": "facebook/ijepa_vith16_1k",
+      "load_notes": {
+        "facebook/ijepa_vitb": "load failed: OSError: facebook/ijepa_vitb is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'\nIf this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your"
+      },
+      "vram": {
+        "free_before_mib": 4355,
+        "free_after_mib": 4355,
+        "weights_mib": 1205.4,
+        "peak_allocated_mib": 1503.4
+      },
+      "controls_armA": {
+        "dial_r2_k64_booked": {
+          "mood": 0.4842,
+          "volume": 0.4326,
+          "presence": 0.4728
+        },
+        "room_identity_acc": 1.0
+      },
+      "status": "ran",
+      "labels_are_reference": true
+    },
+    "dinov2_base": {
+      "key": "dinov2_base",
+      "hf_id": "facebook/dinov2-base",
+      "status": "skipped",
+      "reason": "weights not in local HF cache \u2014 one-time download needed (~350-600 MB). Re-run with E15_ALLOW_DOWNLOAD=1 or pre-pull: huggingface-cli download facebook/dinov2-base",
+      "cache": {
+        "cached": false,
+        "reason": "/home/eileen/.cache/huggingface/hub/models--facebook--dinov2-base absent \u2014 one-time download needed"
+      }
+    },
+    "clip_vitb32": {
+      "key": "clip_vitb32",
+      "hf_id": "openai/clip-vit-base-patch32",
+      "status": "skipped",
+      "reason": "weights not in local HF cache \u2014 one-time download needed (~350-600 MB). Re-run with E15_ALLOW_DOWNLOAD=1 or pre-pull: huggingface-cli download openai/clip-vit-base-patch32",
+      "cache": {
+        "cached": false,
+        "reason": "/home/eileen/.cache/huggingface/hub/models--openai--clip-vit-base-patch32 absent \u2014 one-time download needed"
+      }
+    },
+    "vjepa2_vitl": {
+      "verdict": "KEEP",
+      "emb_dim": 1024,
+      "pca_evr_k64": 0.9972,
+      "r2_still_loro_k64": {
+        "mood": 0.8753,
+        "volume": 0.9671,
+        "presence": 0.8764
+      },
+      "r2_still_loro_k16": {
+        "mood": 0.8207,
+        "volume": 0.9728,
+        "presence": 0.7842
+      },
+      "r2_still_loro_k256": {
+        "mood": 0.8694,
+        "volume": 0.972,
+        "presence": 0.8999
+      },
+      "r2_room_loro_k64": {
+        "mood": 0.8313,
+        "volume": 0.9554,
+        "presence": 0.8034
+      },
+      "spearman_loro_k64": {
+        "mood": 0.9058,
+        "volume": 0.9164,
+        "presence": 0.9281
+      },
+      "perm_null95_k64": {
+        "mood": 0.0017,
+        "volume": -0.0861,
+        "presence": -0.1077
+      },
+      "perm_p_k64": {
+        "mood": 0.0,
+        "volume": 0.0,
+        "presence": 0.0
+      },
+      "lambda_median_k64": 0.1,
+      "tertile_acc_k64": {
+        "mood": 1.0,
+        "volume": 1.0,
+        "presence": 1.0
+      },
+      "g0b_sensitivity_r2_luminance_k64": 0.9958,
+      "g0b_sensitivity_pass": true,
+      "g1_dial_pass": {
+        "mood": true,
+        "volume": true,
+        "presence": true
+      },
+      "g1_pass_count": 3,
+      "armA_room_sep_pass": true,
+      "armB_room_identity_acc": 1.0,
+      "gates": {
+        "r2_floor": 0.3,
+        "room_r2_floor": 0.15,
+        "top_pc_fraction": 0.5,
+        "armA_acc_floor": 0.75,
+        "sensitivity_floor": 0.9
+      },
+      "key": "vjepa2_vitl",
+      "hf_id": "facebook/vjepa2-vitl-fpc16-256-ssv2",
+      "kind": "video",
+      "role": "swap",
+      "loader": "VJEPA2Model + VJEPA2VideoProcessor (E7's pattern)",
+      "cache": {
+        "cached": true,
+        "snapshot": "4aa02df83918538fc21cfaf576382fa20e489a80",
+        "weights_file": "model.safetensors",
+        "weights_mib": 1432.4
+      },
+      "load_notes": {},
+      "vram": {
+        "free_before_mib": 4355,
+        "free_after_mib": 4355,
+        "weights_mib": 631.5,
+        "peak_allocated_mib": 703.8
+      },
+      "controls_armA": {
+        "dial_r2_k64_booked": {
+          "mood": -0.5886,
+          "volume": -0.6696,
+          "presence": -0.6548
+        },
+        "room_identity_acc": 1.0
+      },
+      "status": "ran",
+      "labels_match_control": true
+    }
+  },
+  "leaderboard": [
+    {
+      "encoder": "ijepa_vith16_1k",
+      "hf_id": "facebook/ijepa_vith16_1k",
+      "role": "control (E12 replication)",
+      "status": "ran",
+      "verdict": "KEEP",
+      "r2_still_loro_k64": {
+        "mood": 0.8106,
+        "volume": 0.9624,
+        "presence": 0.9478
+      },
+      "r2_room_loro_k64": {
+        "mood": 0.8902,
+        "volume": 0.9717,
+        "presence": 0.9374
+      },
+      "perm_null95_k64": {
+        "mood": -0.0561,
+        "volume": 0.0371,
+        "presence": -0.023
+      },
+      "g1_pass_count": 3,
+      "armA_room_identity_acc": 1.0,
+      "vram": {
+        "free_before_mib": 4355,
+        "free_after_mib": 4355,
+        "weights_mib": 1205.4,
+        "peak_allocated_mib": 1503.4
+      },
+      "reason": null
+    },
+    {
+      "encoder": "dinov2_base",
+      "hf_id": "facebook/dinov2-base",
+      "role": "swap",
+      "status": "skipped",
+      "verdict": null,
+      "r2_still_loro_k64": null,
+      "r2_room_loro_k64": null,
+      "perm_null95_k64": null,
+      "g1_pass_count": null,
+      "armA_room_identity_acc": null,
+      "vram": null,
+      "reason": "weights not in local HF cache \u2014 one-time download needed (~350-600 MB). Re-run with E15_ALLOW_DOWNLOAD=1 or pre-pull: huggingface-cli download facebook/dinov2-base"
+    },
+    {
+      "encoder": "clip_vitb32",
+      "hf_id": "openai/clip-vit-base-patch32",
+      "role": "swap",
+      "status": "skipped",
+      "verdict": null,
+      "r2_still_loro_k64": null,
+      "r2_room_loro_k64": null,
+      "perm_null95_k64": null,
+      "g1_pass_count": null,
+      "armA_room_identity_acc": null,
+      "vram": null,
+      "reason": "weights not in local HF cache \u2014 one-time download needed (~350-600 MB). Re-run with E15_ALLOW_DOWNLOAD=1 or pre-pull: huggingface-cli download openai/clip-vit-base-patch32"
+    },
+    {
+      "encoder": "vjepa2_vitl",
+      "hf_id": "facebook/vjepa2-vitl-fpc16-256-ssv2",
+      "role": "swap",
+      "status": "ran",
+      "verdict": "KEEP",
+      "r2_still_loro_k64": {
+        "mood": 0.8753,
+        "volume": 0.9671,
+        "presence": 0.8764
+      },
+      "r2_room_loro_k64": {
+        "mood": 0.8313,
+        "volume": 0.9554,
+        "presence": 0.8034
+      },
+      "perm_null95_k64": {
+        "mood": 0.0017,
+        "volume": -0.0861,
+        "presence": -0.1077
+      },
+      "g1_pass_count": 3,
+      "armA_room_identity_acc": 1.0,
+      "vram": {
+        "free_before_mib": 4355,
+        "free_after_mib": 4355,
+        "weights_mib": 631.5,
+        "peak_allocated_mib": 703.8
+      },
+      "reason": null
+    }
+  ],
+  "gates": {
+    "control_key": "ijepa_vith16_1k",
+    "control_ran": true,
+    "control_keep": true,
+    "control_verdict": "KEEP",
+    "swaps_ran": [
+      "vjepa2_vitl"
+    ],
+    "swaps_keep": [
+      "vjepa2_vitl"
+    ],
+    "swaps_not_ran": [
+      {
+        "key": "dinov2_base",
+        "status": "skipped",
+        "verdict": null,
+        "reason": "weights not in local HF cache \u2014 one-time download needed (~350-600 MB). Re-run with E15_ALLOW_DOWNLOAD=1 or pre-pull: huggingface-cli download facebook/dinov2-base"
+      },
+      {
+        "key": "clip_vitb32",
+        "status": "skipped",
+        "verdict": null,
+        "reason": "weights not in local HF cache \u2014 one-time download needed (~350-600 MB). Re-run with E15_ALLOW_DOWNLOAD=1 or pre-pull: huggingface-cli download openai/clip-vit-base-patch32"
+      }
+    ]
+  },
+  "verdict": "KEEP",
+  "note": "E12's dial-read pipeline (same 27-room staged bank, same elephant-bank labels, same ridge/LORO/perm-null) re-run under each frozen encoder. Per-encoder gate = E12 G1 verbatim. INVALID_CONTROL: the I-JEPA control failed to replicate E12's KEEP in THIS run (comparison void). KEEP: >=1 non-I-JEPA encoder reads >=2/3 dials at E12's thresholds -> room-geometry property. KILL: every valid non-I-JEPA swap fails where I-JEPA keeps -> I-JEPA's inductive bias is load-bearing. Skipped/failed/INVALID_HARNESS swaps never silently become a KILL. Caveats: staged carriers (E12's limit); vjepa2 rows are 16-frame windows anchored at each still; CLS tokens included in the uniform mean-pool for dinov2/clip.",
+  "guard_summary": {
+    "samples": 28,
+    "min_free_vram_mib": 2681,
+    "max_temp_c": 77,
+    "breach": null,
+    "timed_out": false
+  }
+}
+```
+
+## X1 — reverse-probe variance fraction (how much of the embedding do the dials actually explain?)
+- ran: 2026-09-28 09:56
+- verdict: LICENSE
+- note: reverse ridge (dials → embedding, LORO): mean R² 0.4264, median 0.4688, var-weighted 0.5215 (still-level); room-level 0.4432/0.5363. The dials explain ~43–52% of the I-JEPA room embedding — a MAJOR axis, not a needle; the elephant could find them without labels. Controls: dials→pixels 0.68 (ceiling 0.88) vs dials→embedding 0.43 = the embedding keeps ~2/3 of the dial signal (dial-preserving compression, not destruction); luminance→embedding 0.041 = the embedding is NOT a brightness meter. Null (shuffled dials) −0.20, p=0.0. Metric calibrated (planted 0.255 → recovered 0.201). Between-room ceiling 0.96. LICENSE (mean > 0.40) — the room-temperature sense SURVIVES the reverse kill-shot.
