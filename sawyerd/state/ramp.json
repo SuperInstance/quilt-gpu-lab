@@ -1,0 +1,15 @@
+{
+  "admitted": [],
+  "ema": 0.9858,
+  "free_runs": 0,
+  "gpu_temp_c": 48.0,
+  "idle_score": 0.9858,
+  "level": "PARKED",
+  "metered_used": 0,
+  "running": 0,
+  "target_capacity": 0,
+  "telemetry": "ok",
+  "throttle": 0.0,
+  "ts": 1790578074.304944,
+  "vram_free_mb": 6141
+}

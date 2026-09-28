@@ -1,0 +1,30 @@
+{
+  "name": "correlate-cuda",
+  "version": "0.1.0",
+  "abi": "cudaclaw-v1",
+  "vram_ceiling_bytes": 6291456000,
+  "duration_class": "ms-small",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "files": {"type": "array", "items": {"type": "string"}},
+      "min_corr": {"type": "number", "default": 0.15},
+      "redundant": {"type": "number", "default": 0.90},
+      "top_k": {"type": "integer", "default": 25},
+      "json": {"type": "boolean", "default": false}
+    },
+    "required": ["files"]
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "status": {"type": "string"},
+      "peak_vram_mb": {"type": "number"},
+      "wall_seconds": {"type": "number"},
+      "output_hash": {"type": "string"},
+      "results": {"type": "object"}
+    }
+  },
+  "determinism_policy": "seed=2718",
+  "cancel_poll_interval_ms": 1000
+}

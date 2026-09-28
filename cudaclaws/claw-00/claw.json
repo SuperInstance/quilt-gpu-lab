@@ -1,0 +1,67 @@
+{
+  "name": "claw-00-selftest",
+  "kind": "cudaclaw",
+  "version": "0.1.0",
+  "spec": "research/2026-09-27-cudaclaw.md",
+  "entrypoint": "python3 selftest.py",
+  "abi": "claw-receipt-v1",
+  "declared_vram_ceiling_bytes": 536870912,
+  "vram_ceiling_note": "512 MiB: context+JIT overhead dominates (~192-384 MiB on WSL2); job buffers are job-capped to fit. Enforced: job is rejected with an honest error receipt above this.",
+  "duration_class": "s",
+  "expected_duration_s": [1, 10],
+  "cancel_poll_interval_s": 2.0,
+  "heartbeat_interval_s": 2.0,
+  "seed_policy": {
+    "default_seed": 2718,
+    "override": "job.seed (int)",
+    "determinism": "bitwise-stable per (device, driver): fixed-order f32 FMA map y=fma(y,a,b), y0=hash(gid,seed); output_sha256 is the witness. Cross-device drift is expected and is signal, not failure."
+  },
+  "input_schema": {
+    "job_id": "string, optional; default generated from claw name + time",
+    "seed": "int, optional, default 2718",
+    "device_index": "int, optional, default 0",
+    "memcpy_bytes": "int bytes per d2d buffer, default 67108864, range [1048576, 536870912]",
+    "memcpy_reps": "int, default 50, range [1, 100000]",
+    "flop_chunk_elems": "int f32 elements per chunk, default 4194304, range [1024, 67108864]",
+    "flop_inner_iters": "int FMAs per element per pass, default 4096, range [1, 1000000]",
+    "flop_passes": "int chunk-boundary passes, default 8, range [1, 1000000]"
+  },
+  "output_schema": {
+    "stream": "stdout, exactly one JSON line (the receipt); also emitted on failure — no receipt = never happened",
+    "fields": [
+      "receipt_version", "claw{name,version}", "job_id", "seed", "status(ok|preempted|error)",
+      "error", "started_at", "ended_at", "duration_s", "host", "pid",
+      "device", "telemetry(ok|degraded)", "declared_vram_ceiling_bytes", "vram_used_peak_mb",
+      "memcpy{bytes,reps,seconds,gb_per_s}", "flop{elements,inner_iters,passes,passes_done,flops,seconds,gf_per_s,map,output_sha256}",
+      "progress", "preempt_reason", "cuda_unavailable", "cpu_caps_applied"
+    ]
+  },
+  "exit_codes": {
+    "0": "ok — receipt has status=ok",
+    "1": "error — receipt still emitted (status=error)",
+    "2": "preempted — receipt with progress + partial results (status=preempted)"
+  },
+  "telemetry": {
+    "stream": "stderr",
+    "line_schema": "{ts, phase, progress_sofar, items_per_sec, vram_mb, gpu_temp_c, util_pct}",
+    "graceful_optional": true,
+    "degraded_marker": "receipt.telemetry=degraded when VRAM sample unavailable (WSL2 NVML is quirky); temp/util nulls alone do not degrade"
+  },
+  "throttle": {
+    "file": "job.<job_id>.throttle",
+    "value_range": [0.0, 1.0],
+    "semantics": "read at chunk boundaries; 1.0=full speed, 0<p<1 stretches boundary by (1-p)*2s, 0=pause until raised or canceled",
+    "boundary_budget_s": 2.0
+  },
+  "cancel": {
+    "file": "job.<job_id>.cancel",
+    "signals": ["SIGTERM"],
+    "response": "at next chunk boundary: receipt status=preempted with progress + partials, exit 2"
+  },
+  "host_assumptions": {
+    "gpu": "NVIDIA RTX 4050 Laptop 6GB (sm_89)",
+    "platform": "WSL2 via /dev/dxg; nvidia-smi fallback path /usr/lib/wsl/lib/nvidia-smi",
+    "deps": "none hard-required: CUDA driver API + NVML via ctypes; numpy only for the CPU-fallback lane"
+  },
+  "notes": "First cudaclaw. Validates recruit->run->receipt->preempt loop before any real kernel risks it. One process per job; subprocess in list form only, never shell=True; O(chunk) memory."
+}
