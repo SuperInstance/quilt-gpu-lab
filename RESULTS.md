@@ -636,3 +636,20 @@ the ceiling; correlated dense purchases are dead weight or worse.
 ```
 - note: validates the embedder (qthe_embedder.py) — a 13-dim tone vector IS readable by a tiny MLP (dim->32->K), recovering the tone class from held-out samples at 0.93 vs majority 0.20. So the embedder is not lossy: the tone shape (histogram/arc/run/spectral features) is a real, learnable representation. This is the first validation of the embedder stage, closing the loop that D14 opened (the primitive exists) -> compiler (verifiable) -> embedder (readable) -> transformer (condense/spatialize).
 
+
+## D17 — compiler compression at scale
+- ran: 2026-09-27 19:06
+- verdict: KEEP
+- result: ```json
+{
+  "experiment": "D17 compiler compression at scale",
+  "seed": 2718,
+  "crossover_chars": 200,
+  "largest_ratio": 0.7893,
+  "largest_momentum_compression": 0.0345,
+  "largest_wire_compression": 0.72,
+  "verdict": "KEEP"
+}
+```
+- note: first pass KILLED — the compiler (RLE on the WIRE timbre) INFLATED the stream (ratio 1.73) because the Latin square scrambles the wire timbre into noise (that scrambling IS what hides the tone). The fix, and the FINDING: decode the momentum FIRST (using the data plane as context), then RLE the decoded momentum — which compresses to 0.034 (3.4%!), vs the wire's 0.72. With 6-bit data packed 4-per-3-bytes, the compiler now beats raw at 200 chars and reaches ratio 0.789 at 4000. This is a genuine, sharp result: the tone channel's INVISIBILITY (Latin-square scrambling) and its COMPRESSIBILITY are in tension on the wire — you cannot compress what you are hiding. A receiver with context can decode-and-compress; a context-free observer can neither read nor compress it. That is the whole game in one number.
+

@@ -1,0 +1,142 @@
+{
+  "experiment": "D15 read-the-channel (LoRA learns the contextual timbre decoder)",
+  "vision_layer": "Layer 3 reading gate (text-model proxy; VLM step follows this gate)",
+  "mode": "smoke",
+  "device": "cuda",
+  "seed": 2718,
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "quant": "nf4-4bit",
+  "quant_note": "4-bit NF4 double-quant, bf16 compute",
+  "qlora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "grad_checkpointing": true,
+    "batch": 1,
+    "grad_accum": 4,
+    "seq_max": 768,
+    "lr": 0.0002,
+    "optimizer_steps": 2
+  },
+  "data": {
+    "source": "qthe_codec.encode() seeded foundry (~/projects/qthe-codec)",
+    "split": "BY TEXT: held-out texts never appear in training",
+    "pool_texts": 44,
+    "held_texts": 10,
+    "train_texts": 34,
+    "train_pairs": 8,
+    "heldout_pairs": 10,
+    "mean_stream_bytes": 40.2,
+    "codec_roundtrip": "asserted on every pair"
+  },
+  "base_eval": {
+    "n": 10,
+    "acc": 0.0,
+    "exact_match": 0.0,
+    "wellformed_rate": 0.0,
+    "seconds": 18.7,
+    "samples": [
+      {
+        "id": "held-The Canary H-0",
+        "gold": "h h h h h h h h h h h u u u u u u u u u u u u u u u u u u u u u u",
+        "pred": "",
+        "raw": "3d 93 87 c4 e4 3d 42 c0 0d c0 11 98 a4 fd 47 80 12 47 0e 4b 43 12 e5 7f 3d 93 87 c4",
+        "acc": 0.0
+      },
+      {
+        "id": "held-the canary h-0",
+        "gold": "f f f f f f f f f f f h h h h h h h h h h h u u u u u u u u u u u u u u u f",
+        "pred": "",
+        "raw": "13 07 44 64 c2 40 8d 40 91 58 64 87 c0 52 87 e4 c0 0d 42 87 4e 11 12 a4 84 d5 84 d1 98 a4 0e",
+        "acc": 0.0
+      },
+      {
+        "id": "held-the substrat-0",
+        "gold": "f f f f f f f f d d d d d d d d d d d d d d d d d u u u u u u u u u u u u u",
+        "pred": "",
+        "raw": "13 07 44 64 d2 54 81 d2 d3 51 00 d3 04 24 08 92 24 86 51 8e 96 4d a6 24 4d 0e 53 a4 43 84 ",
+        "acc": 0.0
+      },
+      {
+        "id": "held-cold front m-0",
+        "gold": "f f f f f h h h h h h h h h h d d d d d d d d d d d d d d d d d d d d u u u u u h",
+        "pred": "",
+        "raw": "c2 ce 0b 03 64 05 11 4e 0d 93 e4 cc 4e 15 c8 4d 86 24 08 4d 24 45 51 8e 0c 24 d3 c7 04 24 4d 8e 51",
+        "acc": 0.0
+      }
+    ]
+  },
+  "tuned_eval": {
+    "n": 10,
+    "acc": 0.1266,
+    "exact_match": 0.0,
+    "wellformed_rate": 0.0,
+    "seconds": 14.4,
+    "samples": [
+      {
+        "id": "held-The Canary H-0",
+        "gold": "h h h h h h h h h h h u u u u u u u u u u u u u u u u u u u u u u",
+        "pred": "d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d",
+        "raw": "d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d",
+        "acc": 0.0
+      },
+      {
+        "id": "held-the canary h-0",
+        "gold": "f f f f f f f f f f f h h h h h h h h h h h u u u u u u u u u u u u u u u f",
+        "pred": "d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d",
+        "raw": "d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d",
+        "acc": 0.0
+      },
+      {
+        "id": "held-the substrat-0",
+        "gold": "f f f f f f f f d d d d d d d d d d d d d d d d d u u u u u u u u u u u u u",
+        "pred": "d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d",
+        "raw": "d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d",
+        "acc": 0.447
+      },
+      {
+        "id": "held-cold front m-0",
+        "gold": "f f f f f h h h h h h h h h h d d d d d d d d d d d d d d d d d d d d u u u u u h",
+        "pred": "f f f f f f f f f f f f f f f f f f f f f f f f f f f f f",
+        "raw": "f f f f f f f f f f f f f f f f f f f f f f f f f f f f f",
+        "acc": 0.122
+      }
+    ]
+  },
+  "margin_token_acc": 0.1266,
+  "preregistered": {
+    "tuned_acc_gte": 0.8,
+    "base_acc_lte": 0.3,
+    "chance": 0.25
+  },
+  "train": {
+    "steps": 2,
+    "losses": [
+      1.0385,
+      0.5154
+    ],
+    "trainable_params": 8798208,
+    "seconds": 2.7
+  },
+  "adapter_path": "/home/eileen/projects/quilt-gpu-lab/results/d15_adapter_smoke",
+  "peak_vram_mib": 1389.3,
+  "wall_seconds": 45.3,
+  "versions": {
+    "torch": "2.14.0+cu126",
+    "transformers": "5.17.0",
+    "peft": "0.21.0",
+    "bitsandbytes": "0.50.2"
+  },
+  "verdict": "INCONCLUSIVE",
+  "reason": "smoke pass: pipeline proof only (2 steps, 8 train pairs, 10 held-out); the gate (tuned>=0.8, base<=0.3) is full-scale",
+  "note": "SMOKE numbers are pipeline proof on the 0.5B proxy (2 optimizer steps), not the hypothesis test. FULL-SCALE RECIPE (D15_FULL=1): model Qwen/Qwen2.5-1.5B-Instruct; 4-bit NF4 double-quant + LoRA r=16 alpha=32 dropout=0.05 on q/k/v/o/gate/up/down; grad checkpointing (use_reentrant=False); batch 1 x grad-accum 8; seq<=768; lr 2e-4 AdamW; 2 epochs over 400 seeded (text, tone) pairs from 24 train texts; eval on 60 held-out pairs (20 unseen texts x 3 tone draws). Gate: tuned token-acc >= 0.8 AND base <= 0.3 (chance 0.25). The decode rule is public in the prompt; plaintext alone carries zero momentum bits (D14 Latin square), so >= 0.80 can only be reached by actually reading timbre+context. Expected VRAM ~4-4.5 GB peak, ~1 h wall on the RTX 4050 6 GB. Other lanes contend: preflight floor 1024 MiB free / 80 C; run via runner.py guard. This pass quant: nf4-4bit."
+}
