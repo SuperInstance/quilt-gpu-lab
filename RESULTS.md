@@ -511,3 +511,18 @@ the ceiling; correlated dense purchases are dead weight or worse.
 ```
 - note: the naive ternary coordinate-stepper (one clamped flip/frame over 256 cells) LOSES to a stateless persistence tracker (0.678 vs 0.915) and to dead-reckoning (0.919) on smooth-sinusoid next-sign prediction. This is the honest null the docket pre-registered — on a smooth signal, "predict the last sign" IS the lookup table that wins, and the gate does not beat it. It CONFIRMS the earlier adversary-lane prediction (NMEA/smooth-signal = mirage: a persistence tracker looks brilliant and is a lookup table). The "ternary = learning substrate" claim is NOT supported by this task. It survives only on a task where persistence structurally FAILS — e.g. a reach-bound task where the truth is in the correlation between two positions, not in "keep going the same way." That is the discriminating test to run next (E11 debounce-kill should isolate exactly that). Booked as KILL, not dressed up.
 
+
+## E11 — debounce-kill (delay-2 discriminating test)
+- ran: 2026-09-27 17:54
+- verdict: KEEP
+- result: ```json
+{
+  "experiment": "E11 debounce-kill (delay-2 discriminating test)",
+  "seed": 2718, "frames": 300, "window": 8,
+  "gate_acc": 0.9966, "persistence_acc": 0.0, "deadreckon_acc": 0.0,
+  "gate_minus_persistence": 0.9966, "preregistered_margin": 0.30,
+  "verdict": "KEEP"
+}
+```
+- note: the DISCRIMINATING test E10 demanded. On a delay-2 signal (s[t]=s[t-2], alternating +1/-1) a stateless persistence tracker is structurally blind (0% — it predicts the last sign, which is always wrong on an alternating line), and dead-reckoning is also 0%. The ternary gate, holding an 8-tap memory window, finds the delay-2 tap and reaches 0.9966. So the gate is NOT a pure debounce circuit: it learns a temporal dependency no stateless sign-tracker can reach. Combined with E10 (KILL on smooth signals where persistence wins), the two poles bracket the truth: ternary adds nothing on smooth signals, but adds real structure-learning where the stateless tracker is blind. Honest caveat booked: this is a toy alternating line, not a realistic signal — the point is narrow (existence of a learnable dependency beyond persistence), not a claim of practical win.
+
