@@ -526,3 +526,19 @@ the ceiling; correlated dense purchases are dead weight or worse.
 ```
 - note: the DISCRIMINATING test E10 demanded. On a delay-2 signal (s[t]=s[t-2], alternating +1/-1) a stateless persistence tracker is structurally blind (0% — it predicts the last sign, which is always wrong on an alternating line), and dead-reckoning is also 0%. The ternary gate, holding an 8-tap memory window, finds the delay-2 tap and reaches 0.9966. So the gate is NOT a pure debounce circuit: it learns a temporal dependency no stateless sign-tracker can reach. Combined with E10 (KILL on smooth signals where persistence wins), the two poles bracket the truth: ternary adds nothing on smooth signals, but adds real structure-learning where the stateless tracker is blind. Honest caveat booked: this is a toy alternating line, not a realistic signal — the point is narrow (existence of a learnable dependency beyond persistence), not a claim of practical win.
 
+
+## D12 — substrate falsification (relational graph vs isolated cells)
+- ran: 2026-09-27 17:57
+- verdict: KEEP
+- result: ```json
+{
+  "experiment": "D12 substrate falsification (relational vs isolated)",
+  "seed": 2718, "n_cells": 8, "qubits": 4, "facts": 120,
+  "acc_isolated_A": 0.5583, "acc_relational_B": 1.0, "acc_traffic_permuted_C": 0.5083,
+  "delta": 0.4417, "preregistered_margin": 0.10,
+  "ci_A": [0.475, 0.642], "ci_B": [1.0, 1.0], "ci_C": [0.425, 0.6],
+  "verdict": "KEEP"
+}
+```
+- note: the design doc's crown jewel, at the reach-bound structural baseline. Cross-boundary facts (parity of two atoms in DIFFERENT cells) are structurally invisible to any isolated cell (A 0.558 ~ chance). The relational graph recovers them at 1.0 by message-passing (a cell receives its partner's atom value and reconstructs the parity). The traffic-permuted control C (SAME message volume, scrambled targeting) stays at 0.508 — proving the win is the RELATIONAL TARGETING, not the communication volume. delta 0.44 >> 0.10. Honest caveat: this is the structural baseline with noiseless messages and perfect addressing; the learning version (cells must LEARN whom to message) is D13. Booked bug en route: my first measurement conflated "fraction of facts with parity=1" (0.44) with reconstruction accuracy — the receiver reconstructs the parity CORRECTLY, so B=1.0, not 0.44.
+

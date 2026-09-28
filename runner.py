@@ -47,6 +47,7 @@ EXP_MOD = {
     "D6": "experiments.d6_fun_scorer",
     "D7": "experiments.d7_quant_drift",
     "D10": "experiments.d10_cell_kernel",
+    "D12": "experiments.d12_substrate_falsification",
     "D14": "experiments.d14_qthe_timbre_proof",
 }
 
