@@ -40,3 +40,6 @@
 - [x] D21 perception=ledger (kernel on real receipt-chain data) — 2026-09-27 KILL (imbalance ≡ d_mu is conditional, not unconditional)
 - [x] D15c tone-channel generalization (held-out tone classes) — 2026-09-27 KILL (tuned fails held-out class -0.0516; adapter memorizes seen-class patterns)
 - [x] E12 room-dial reader (JEPA reads elephant dials: mood/volume/presence) — 2026-09-28 KEEP (R² 0.81/0.96/0.95; frozen I-JEPA reads staged dials beyond luminance)
+- [ ] E25 fold-phase transition (where does the dial read die under carrier nonlinearity? sweep N2 fold amplitude, per-dial critical point) — pre-registered in SPOOL.md
+- [ ] E18 sauna/plunge contrast (is the walk between rooms more readable than the rooms? pairwise gap vs two-absolutes baseline) — pre-registered in SPOOL.md
+- [ ] E15 encoder-swap dial read (is I-JEPA special? DINOv2/CLIP/V-JEPA 2 leaderboard) — pre-registered in SPOOL.md
