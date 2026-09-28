@@ -1,0 +1,780 @@
+{
+  "experiment": "E18 sauna/plunge contrast read",
+  "seed": 2718,
+  "dial_names": [
+    "mood",
+    "volume",
+    "presence"
+  ],
+  "extra_dials": [
+    "earnestness",
+    "cynicism",
+    "joke_landing",
+    "panic"
+  ],
+  "primary_arm": "pair",
+  "arm_titles": {
+    "concat": "both rooms' embeddings concatenated [z_i, z_j]",
+    "diff": "the signed walk only, z_j - z_i",
+    "pair": "concat + signed difference [z_i, z_j, z_j - z_i] \u2014 PRIMARY",
+    "pair_inter": "pair + top-4 inter-room outer products \u2014 BOOKED exploratory"
+  },
+  "k_pair_primary": 13,
+  "k_pair_sweep": [
+    6,
+    13,
+    20
+  ],
+  "guard_preflight": {
+    "free_vram_mib": 4426,
+    "temp_c": 56
+  },
+  "claim": "the signed sauna/plunge gap (target_j - target_i) is read better from embedding-pair features than from either room's absolute dials or from differencing the two absolutes",
+  "device": "cuda",
+  "model": "facebook/ijepa_vith16_1k",
+  "load_notes": {
+    "facebook/ijepa_vitb": "load failed: OSError: facebook/ijepa_vitb is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'\nIf this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your"
+  },
+  "rooms": 27,
+  "pairs": 351,
+  "stills_per_room": 12,
+  "cells": 324,
+  "emb_dim": 1280,
+  "pca_evr_k16": 0.9782,
+  "pca_evr_k64": 0.9967,
+  "pca_evr_k256": 0.9999,
+  "label_stats": {
+    "mood": {
+      "min": -1.0,
+      "max": 1.0,
+      "std": 0.8332
+    },
+    "volume": {
+      "min": 0.1854,
+      "max": 0.6897,
+      "std": 0.1902
+    },
+    "presence": {
+      "min": 0.5222,
+      "max": 0.6555,
+      "std": 0.0548
+    }
+  },
+  "harness_selftest": {
+    "r2_gap_signal": [
+      0.9998,
+      0.9993,
+      0.9996
+    ],
+    "r2_gap_shuffled": [
+      -2.3812,
+      -1.3929,
+      -2.0226
+    ],
+    "r2_gap_signal_min": 0.9993,
+    "r2_gap_shuffled_max": -1.3929,
+    "lambda_median": 0.1,
+    "fold_structure": {
+      "n_rooms": 30,
+      "n_pairs": 435,
+      "folds": 30,
+      "test_pairs_per_fold": 29,
+      "train_pairs_per_fold": 406,
+      "min_test_pairs": 29,
+      "min_train_pairs": 406,
+      "bad_fold_sizes": 0,
+      "test_pair_without_held_room": 0,
+      "train_pair_with_held_room": 0,
+      "ok": true,
+      "note": "leave-one-ROOM-out on pairs: the held-out room appears in every test pair and in no train pair. Leave-one-PAIR-out is forbidden (it leaks the rooms of the test pair into training and would make the two-absolutes baseline undefined)."
+    },
+    "pass": true,
+    "note": "carrier-free, model-free check of pca_basis -> pair_features -> pair_loro_predict -> pair_pick_lambda -> r2_columns on a synthetic linear dial signal."
+  },
+  "fold_structure": {
+    "n_rooms": 27,
+    "n_pairs": 351,
+    "folds": 27,
+    "test_pairs_per_fold": 26,
+    "train_pairs_per_fold": 325,
+    "min_test_pairs": 26,
+    "min_train_pairs": 325,
+    "bad_fold_sizes": 0,
+    "test_pair_without_held_room": 0,
+    "train_pair_with_held_room": 0,
+    "ok": true,
+    "note": "leave-one-ROOM-out on pairs: the held-out room appears in every test pair and in no train pair. Leave-one-PAIR-out is forbidden (it leaks the rooms of the test pair into training and would make the two-absolutes baseline undefined)."
+  },
+  "cv_design": {
+    "outer_unit": "room (leave-one-ROOM-out on pairs)",
+    "folds": 27,
+    "test_pairs_per_fold": 26,
+    "train_pairs_per_fold": 325,
+    "inner_lambda": "grouped inner CV on the training rooms (e12._ridge_path_pred, 6 lambdas)",
+    "pca_basis": "label-free, fit once on all still embeddings, frozen for every fold and arm (E12's convention)",
+    "null": "200 room-level target shuffles, gaps rebuilt from the permuted triples, fixed fold-median lambda",
+    "pair_level_split": "forbidden (booked leak probe below)"
+  },
+  "comparators": {
+    "6": {
+      "single_room_abs_r2": {
+        "mood": 0.9702,
+        "volume": 0.9364,
+        "presence": 0.8832
+      },
+      "two_abs_loo_r2": {
+        "mood": 0.9226,
+        "volume": 0.9318,
+        "presence": 0.8823
+      },
+      "two_abs_fold_r2": {
+        "mood": 0.9444,
+        "volume": 0.9502,
+        "presence": 0.9108
+      },
+      "lambda_median_abs": 0.1
+    },
+    "13": {
+      "single_room_abs_r2": {
+        "mood": 0.9856,
+        "volume": 0.9135,
+        "presence": 0.9571
+      },
+      "two_abs_loo_r2": {
+        "mood": 0.9625,
+        "volume": 0.9072,
+        "presence": 0.9568
+      },
+      "two_abs_fold_r2": {
+        "mood": 0.975,
+        "volume": 0.946,
+        "presence": 0.9667
+      },
+      "lambda_median_abs": 0.001
+    },
+    "20": {
+      "single_room_abs_r2": {
+        "mood": 0.9883,
+        "volume": 0.8379,
+        "presence": 0.8805
+      },
+      "two_abs_loo_r2": {
+        "mood": 0.9702,
+        "volume": 0.8262,
+        "presence": 0.8803
+      },
+      "two_abs_fold_r2": {
+        "mood": 0.9777,
+        "volume": 0.9005,
+        "presence": 0.9139
+      },
+      "lambda_median_abs": 0.1
+    }
+  },
+  "primary": {
+    "arm": "pair",
+    "k": 13,
+    "r2_gap": {
+      "mood": 0.9728,
+      "volume": 0.9684,
+      "presence": 0.956
+    },
+    "n_features": 39
+  },
+  "arms": {
+    "concat": {
+      "6": {
+        "n_features": 12,
+        "r2_gap": {
+          "mood": 0.9484,
+          "volume": 0.9589,
+          "presence": 0.9052
+        },
+        "r2_sum_control": {
+          "mood": 0.9768,
+          "volume": 0.9553,
+          "presence": 0.9033
+        },
+        "r2_gap_pair_order_invariance": {
+          "mood": 0.9484,
+          "volume": 0.9589,
+          "presence": 0.9052
+        },
+        "pair_order_invariance_max_abs_diff": 2.6179e-08,
+        "lambda_median_gap": 1.0,
+        "lambda_median_sum": 1.0,
+        "mean_r2_gap": 0.9375
+      },
+      "13": {
+        "n_features": 26,
+        "r2_gap": {
+          "mood": 0.9727,
+          "volume": 0.9675,
+          "presence": 0.9562
+        },
+        "r2_sum_control": {
+          "mood": 0.9888,
+          "volume": 0.9625,
+          "presence": 0.954
+        },
+        "r2_gap_pair_order_invariance": {
+          "mood": 0.9727,
+          "volume": 0.9675,
+          "presence": 0.9562
+        },
+        "pair_order_invariance_max_abs_diff": 6.3898e-08,
+        "lambda_median_gap": 1.0,
+        "lambda_median_sum": 0.1,
+        "mean_r2_gap": 0.9654
+      },
+      "20": {
+        "n_features": 40,
+        "r2_gap": {
+          "mood": 0.9285,
+          "volume": 0.885,
+          "presence": 0.8641
+        },
+        "r2_sum_control": {
+          "mood": 0.9685,
+          "volume": 0.8727,
+          "presence": 0.8534
+        },
+        "r2_gap_pair_order_invariance": {
+          "mood": 0.9285,
+          "volume": 0.885,
+          "presence": 0.8641
+        },
+        "pair_order_invariance_max_abs_diff": 1.94135e-07,
+        "lambda_median_gap": 1.0,
+        "lambda_median_sum": 0.1,
+        "mean_r2_gap": 0.8925
+      }
+    },
+    "diff": {
+      "6": {
+        "n_features": 6,
+        "r2_gap": {
+          "mood": 0.9474,
+          "volume": 0.9518,
+          "presence": 0.9102
+        },
+        "r2_sum_control": {
+          "mood": 0.2894,
+          "volume": 0.1401,
+          "presence": -0.1979
+        },
+        "r2_gap_pair_order_invariance": {
+          "mood": 0.9474,
+          "volume": 0.9518,
+          "presence": 0.9102
+        },
+        "pair_order_invariance_max_abs_diff": 9.7e-09,
+        "lambda_median_gap": 1.0,
+        "lambda_median_sum": 100.0,
+        "mean_r2_gap": 0.9365
+      },
+      "13": {
+        "n_features": 13,
+        "r2_gap": {
+          "mood": 0.9747,
+          "volume": 0.9461,
+          "presence": 0.9664
+        },
+        "r2_sum_control": {
+          "mood": 0.3971,
+          "volume": 0.2336,
+          "presence": -0.0061
+        },
+        "r2_gap_pair_order_invariance": {
+          "mood": 0.9747,
+          "volume": 0.9461,
+          "presence": 0.9664
+        },
+        "pair_order_invariance_max_abs_diff": 9.597e-09,
+        "lambda_median_gap": 1.0,
+        "lambda_median_sum": 10.0,
+        "mean_r2_gap": 0.9624
+      },
+      "20": {
+        "n_features": 20,
+        "r2_gap": {
+          "mood": 0.9822,
+          "volume": 0.8983,
+          "presence": 0.9138
+        },
+        "r2_sum_control": {
+          "mood": 0.1555,
+          "volume": 0.2089,
+          "presence": -0.6174
+        },
+        "r2_gap_pair_order_invariance": {
+          "mood": 0.9822,
+          "volume": 0.8983,
+          "presence": 0.9138
+        },
+        "pair_order_invariance_max_abs_diff": 3.9289e-08,
+        "lambda_median_gap": 1.0,
+        "lambda_median_sum": 100.0,
+        "mean_r2_gap": 0.9314
+      }
+    },
+    "pair": {
+      "6": {
+        "n_features": 18,
+        "r2_gap": {
+          "mood": 0.9464,
+          "volume": 0.9585,
+          "presence": 0.906
+        },
+        "r2_sum_control": {
+          "mood": 0.9768,
+          "volume": 0.9552,
+          "presence": 0.9033
+        },
+        "r2_gap_pair_order_invariance": {
+          "mood": 0.9464,
+          "volume": 0.9585,
+          "presence": 0.906
+        },
+        "pair_order_invariance_max_abs_diff": 1.2414e-08,
+        "lambda_median_gap": 10.0,
+        "lambda_median_sum": 1.0,
+        "mean_r2_gap": 0.937
+      },
+      "13": {
+        "n_features": 39,
+        "r2_gap": {
+          "mood": 0.9728,
+          "volume": 0.9684,
+          "presence": 0.956
+        },
+        "r2_sum_control": {
+          "mood": 0.9889,
+          "volume": 0.9625,
+          "presence": 0.9539
+        },
+        "r2_gap_pair_order_invariance": {
+          "mood": 0.9728,
+          "volume": 0.9684,
+          "presence": 0.956
+        },
+        "pair_order_invariance_max_abs_diff": 3.5985e-08,
+        "lambda_median_gap": 1.0,
+        "lambda_median_sum": 0.1,
+        "mean_r2_gap": 0.9657
+      },
+      "20": {
+        "n_features": 60,
+        "r2_gap": {
+          "mood": 0.9633,
+          "volume": 0.868,
+          "presence": 0.8636
+        },
+        "r2_sum_control": {
+          "mood": 0.973,
+          "volume": 0.8777,
+          "presence": 0.8428
+        },
+        "r2_gap_pair_order_invariance": {
+          "mood": 0.9633,
+          "volume": 0.868,
+          "presence": 0.8636
+        },
+        "pair_order_invariance_max_abs_diff": 1.14229e-07,
+        "lambda_median_gap": 1.0,
+        "lambda_median_sum": 1.0,
+        "mean_r2_gap": 0.8983
+      }
+    },
+    "pair_inter": {
+      "6": {
+        "n_features": 34,
+        "r2_gap": {
+          "mood": 0.9512,
+          "volume": 0.958,
+          "presence": 0.9001
+        },
+        "r2_sum_control": {
+          "mood": 0.9763,
+          "volume": 0.9558,
+          "presence": 0.9013
+        },
+        "r2_gap_pair_order_invariance": {
+          "mood": 0.9512,
+          "volume": 0.958,
+          "presence": 0.9001
+        },
+        "pair_order_invariance_max_abs_diff": 1.3934e-08,
+        "lambda_median_gap": 10.0,
+        "lambda_median_sum": 1.0,
+        "mean_r2_gap": 0.9364
+      },
+      "13": {
+        "n_features": 55,
+        "r2_gap": {
+          "mood": 0.9736,
+          "volume": 0.9654,
+          "presence": 0.9524
+        },
+        "r2_sum_control": {
+          "mood": 0.9887,
+          "volume": 0.9625,
+          "presence": 0.9516
+        },
+        "r2_gap_pair_order_invariance": {
+          "mood": 0.9736,
+          "volume": 0.9654,
+          "presence": 0.9524
+        },
+        "pair_order_invariance_max_abs_diff": 3.9011e-08,
+        "lambda_median_gap": 10.0,
+        "lambda_median_sum": 0.1,
+        "mean_r2_gap": 0.9638
+      },
+      "20": {
+        "n_features": 76,
+        "r2_gap": {
+          "mood": 0.938,
+          "volume": 0.8844,
+          "presence": 0.8931
+        },
+        "r2_sum_control": {
+          "mood": 0.9747,
+          "volume": 0.878,
+          "presence": 0.846
+        },
+        "r2_gap_pair_order_invariance": {
+          "mood": 0.938,
+          "volume": 0.8844,
+          "presence": 0.8931
+        },
+        "pair_order_invariance_max_abs_diff": 4.8428e-08,
+        "lambda_median_gap": 10.0,
+        "lambda_median_sum": 1.0,
+        "mean_r2_gap": 0.9052
+      }
+    }
+  },
+  "perm_null95_gap_primary": {
+    "mood": 0.2616,
+    "volume": 0.3037,
+    "presence": 0.1587
+  },
+  "perm_p_gap_primary": {
+    "mood": 0.0,
+    "volume": 0.0,
+    "presence": 0.0
+  },
+  "deltas_vs_single_abs": {
+    "mood": -0.0128,
+    "volume": 0.0549,
+    "presence": -0.0011
+  },
+  "deltas_vs_two_abs": {
+    "mood": 0.0103,
+    "volume": 0.0612,
+    "presence": -0.0008
+  },
+  "gap_composition": {
+    "mood": {
+      "unique_values": [
+        0.0,
+        0.8,
+        1.6
+      ],
+      "counts": [
+        108,
+        162,
+        81
+      ],
+      "std_gap": 0.5838,
+      "std_absolute": 0.6532,
+      "frac_zero": 0.3077,
+      "frac_positive": 0.6923,
+      "frac_negative": 0.0,
+      "spearman_target_gap_vs_label_gap": 0.9298
+    },
+    "volume": {
+      "unique_values": [
+        -0.7,
+        -0.35,
+        0.0,
+        0.35,
+        0.7
+      ],
+      "counts": [
+        27,
+        54,
+        108,
+        108,
+        54
+      ],
+      "std_gap": 0.3975,
+      "std_absolute": 0.2858,
+      "frac_zero": 0.3077,
+      "frac_positive": 0.4615,
+      "frac_negative": 0.2308,
+      "spearman_target_gap_vs_label_gap": 0.9664
+    },
+    "presence": {
+      "unique_values": [
+        -0.7,
+        -0.35,
+        0.0,
+        0.35,
+        0.7
+      ],
+      "counts": [
+        36,
+        72,
+        108,
+        90,
+        45
+      ],
+      "std_gap": 0.4103,
+      "std_absolute": 0.2858,
+      "frac_zero": 0.3077,
+      "frac_positive": 0.3846,
+      "frac_negative": 0.3077,
+      "spearman_target_gap_vs_label_gap": 0.9817
+    }
+  },
+  "controls": {
+    "raw_pixel_pair_gap_r2": {
+      "mood": 0.8994,
+      "volume": -0.159,
+      "presence": 0.0011
+    },
+    "raw_pixel_k_used": 13,
+    "raw_pixel_pca_evr": 0.9806,
+    "luminance_gap_spearman_target": {
+      "mood": 0.9435,
+      "volume": 0.1747,
+      "presence": 0.198
+    },
+    "r2_luminance_still_k64": 0.993,
+    "r2_luminance_gap_pair_primary": 0.9778,
+    "null95_luminance_gap_pair": 0.2095,
+    "e12_still_k64_abs_r2": {
+      "mood": 0.8106,
+      "volume": 0.9624,
+      "presence": 0.9478
+    },
+    "e12_still_k16_abs_r2": {
+      "mood": 0.848,
+      "volume": 0.9653,
+      "presence": 0.9292
+    },
+    "e12_replication_floor": 0.3,
+    "room_identity_acc": 1.0,
+    "room_identity_chance": 0.037,
+    "pair_split_leak_probe": {
+      "r2": {
+        "mood": 0.9874,
+        "volume": 0.9799,
+        "presence": 0.9925
+      },
+      "lambda": 1.0,
+      "n_train_pairs": 281,
+      "n_test_pairs": 70,
+      "rooms_shared_between_splits": 27,
+      "note": "random pair split \u2014 rooms appear on BOTH sides (the column above), which is why it is booked, not gated."
+    },
+    "extra_dials_booked": {
+      "earnestness": {
+        "min": 0.5,
+        "max": 1.0
+      },
+      "cynicism": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "joke_landing": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "panic": {
+        "min": 0.0428,
+        "max": 0.7533
+      }
+    }
+  },
+  "carrier_certificate": {
+    "summary": {
+      "mean_curvature": 0.0,
+      "nonaffine_pass": false,
+      "mean_lin_loo_r2": 1.0,
+      "mean_quad_loo_r2": 1.0,
+      "n_dials_live": 3,
+      "live_pass": true,
+      "injectivity": {
+        "min_pairwise_distance": 1.22474,
+        "duplicate_pairs": 0,
+        "injective": true
+      },
+      "floors": {
+        "curvature": 0.2,
+        "knn_loo_r2": 0.2,
+        "distcorr_p": 0.05,
+        "live_dials": 2
+      },
+      "pass": false
+    },
+    "per_dial": {
+      "mood": {
+        "curvature": 0.0,
+        "knn_loo_r2": 1.0,
+        "distcorr": 0.9,
+        "distcorr_null95": 0.4553,
+        "distcorr_p": 0.0,
+        "lin_loo_r2": 1.0,
+        "quad_loo_r2": 1.0,
+        "nonlin_gain": -0.0,
+        "best_knob_abs_spearman": 1.0
+      },
+      "volume": {
+        "curvature": 0.0,
+        "knn_loo_r2": 0.7551,
+        "distcorr": 0.6723,
+        "distcorr_null95": 0.445,
+        "distcorr_p": 0.0,
+        "lin_loo_r2": 1.0,
+        "quad_loo_r2": 1.0,
+        "nonlin_gain": -0.0,
+        "best_knob_abs_spearman": 1.0
+      },
+      "presence": {
+        "curvature": 0.0,
+        "knn_loo_r2": 0.625,
+        "distcorr": 0.4986,
+        "distcorr_null95": 0.4353,
+        "distcorr_p": 0.015,
+        "lin_loo_r2": 1.0,
+        "quad_loo_r2": 1.0,
+        "nonlin_gain": -0.0,
+        "best_knob_abs_spearman": 1.0
+      }
+    },
+    "knob_ranges": {
+      "r": {
+        "min": 79.0,
+        "max": 235.0,
+        "n_unique": 3
+      },
+      "g": {
+        "min": 98.0,
+        "max": 162.0,
+        "n_unique": 3
+      },
+      "b": {
+        "min": 79.0,
+        "max": 235.0,
+        "n_unique": 3
+      },
+      "bright": {
+        "min": -0.2,
+        "max": 0.2,
+        "n_unique": 3
+      },
+      "contrast": {
+        "min": 0.835,
+        "max": 1.465,
+        "n_unique": 3
+      },
+      "noise": {
+        "min": 11.0,
+        "max": 53.0,
+        "n_unique": 3
+      },
+      "n_occ": {
+        "min": 2.0,
+        "max": 8.0,
+        "n_unique": 3
+      }
+    },
+    "gate_used": "liveness half only (injective + >=2/3 dials live) + mirror check; non-affinity NOT gated \u2014 E12's linear carrier by construction"
+  },
+  "arm_L_mirror_check": {
+    "match": true,
+    "n_rooms": 27,
+    "mismatches": [],
+    "note": "E13's Arm-L knobs are a mirror of e12.stage_source; a mismatch means Arm L is NOT E12's carrier and the certificate numbers for L are not comparable."
+  },
+  "staging_fidelity_spearman_target_vs_label": {
+    "mood": 0.98,
+    "volume": 0.9437,
+    "presence": 0.9864
+  },
+  "gates": {
+    "g0d_harness_selftest": {
+      "pass": true,
+      "signal_min": 0.9993,
+      "shuffled_max": -1.3929
+    },
+    "g0a_staging_fidelity": {
+      "floor": 0.5,
+      "measured": {
+        "mood": 0.98,
+        "volume": 0.9437,
+        "presence": 0.9864
+      },
+      "pass": true
+    },
+    "g0c_carrier_certificate": {
+      "live_pass": true,
+      "injective": true,
+      "mirror_match": true,
+      "mean_curvature": 0.0,
+      "pass": true
+    },
+    "g0b_sensitivity": {
+      "r2_luminance_still_k64": 0.993,
+      "floor_still": 0.9,
+      "r2_luminance_gap_pair": 0.9778,
+      "floor_pair_gap": 0.5,
+      "pass": true
+    },
+    "g0e_e12_replication": {
+      "measured": {
+        "mood": 0.8106,
+        "volume": 0.9624,
+        "presence": 0.9478
+      },
+      "floor": 0.3,
+      "pass": true
+    },
+    "g1_contrast": {
+      "exceed_both_and_null": {
+        "mood": false,
+        "volume": true,
+        "presence": false
+      },
+      "n_exceed": 1,
+      "beats_two_abs_baseline": {
+        "mood": true,
+        "volume": true,
+        "presence": false
+      },
+      "n_beat_baseline": 2,
+      "beats_conservative_baseline_booked": {
+        "mood": false,
+        "volume": true,
+        "presence": false
+      },
+      "gate_dials_required": 2,
+      "null_beats": "strict",
+      "mean_gap_r2": 0.9657,
+      "mean_null95": 0.2413
+    }
+  },
+  "verdict": "INCONCLUSIVE",
+  "verdict_reason": "2/3 dials beat the two-absolutes baseline but only 1/3 clear BOTH comparators and the null",
+  "data_needed": [
+    "ffmpeg ~/.local/bin/ffmpeg (lavfi chain, same as E12/E13)",
+    "facebook/ijepa_vith16_1k fp16 on the RTX 4050 (E9 loader, imported via E12/E13)",
+    "elephant package importable (DialBank = labels)",
+    "27 rooms x 12 stills = 324 forwards \u2248 3-5 min GPU (one arm; E18 adds no second carrier)",
+    "GPU free (guard preflight in-process)"
+  ],
+  "note": "E18 changes the TARGET and the CV unit, nothing else: E12's bank and probe, E13's carrier/collector, one frozen I-JEPA. The target is the signed sauna/plunge gap target_j - target_i for each of the 351 room pairs; the CV is leave-one-ROOM-out on pairs (a held-out room appears in every test pair and in no train pair), which is the only split under which 'read the gap involving an UNSEEN room' is the question asked. KEEP = the gap read beats both the single-room absolute R2 and the two-absolutes baseline (and its null) on >= 2/3 dials \u2014 super-additivity: the walk carries signal the rooms do not. KILL = it beats the baseline on <= 1 dial \u2014 the contrast is just the two absolutes differenced. INVALID_STAGING (dead/non-injective carrier, or the scripts stopped moving the dials) and INVALID_HARNESS (blind probe, broken fold structure, or E12's own read failing to replicate) are never KILLs. SCOPE: staged carriers (E12/E13's caveat unchanged) \u2014 a KEEP is a floor. Target difficulty is NOT assumed to favour the baseline: the measured gap-vs-absolute std ratio is booked per dial in gap_composition (volume/presence gaps are WIDER than their absolutes), and the room-shuffle null95 anchors every dial."
+}
