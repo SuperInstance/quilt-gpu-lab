@@ -27,6 +27,17 @@ receipt doctrine, dogfooded from pong-quilt):
 
 A verdict the ledger cannot re-derive is a claim, not a receipt.
 
+### Doctrine provenance
+
+The receipt doctrine dogfooded here is the fleet's five-opcode quilt WAL,
+whose canonical source is `SuperInstance/AI-Writings` (`algebra.md`) —
+the git-agent contribution to it is the git isomorphism, and the canonical
+producer of that WAL shape is `SuperInstance/git-agent` (`quilt_emit`,
+landed in git-agent#1). This lab's manifest is the same doctrine over the
+ledger pair (RESULTS/QUEUE) plus the experiment code: BIND every artifact
+to its digest, re-derive to verify. Referral edge: `aw-quint-opcode` →
+`gl-ledgers` (minted VERIFIED by this citation, per the fleet weight law).
+
 Verdicts are honest: KEEP / KILL / INCONCLUSIVE / ABORTED — and the
 ledger keeps all of them. Experiments so far test whether elephant's
 room-sense survives contact with real rendered frames, compression,
