@@ -672,7 +672,7 @@ the ceiling; correlated dense purchases are dead weight or worse.
 
 ## E4b — next-room revision (60s clips, 236 cells, blocked split) [SMOKE]
 - ran: 2026-09-27 19:11
-- verdict: INCONCLUSIVE (smoke; full-scale recipe ready)
+- verdict: KILL (full-scale: heldout 0.821 vs markov-1 0.846)
 - result: ```json
 {
   "experiment": "E4b next-room revision",
@@ -698,3 +698,19 @@ the ceiling; correlated dense purchases are dead weight or worse.
 }
 ```
 - note: the reading gate, honestly. Tuned beats base (+0.0851) — the LoRA is learning SOMETHING about the channel — but tuned 0.3509 is far from the 0.80 gate, and base 0.2658 is barely under its 0.30 ceiling (chance 0.25). Reading the timbre channel from bytes is HARD: the model climbs to 0.35 (well above chance, format learned) but can't reach the read-the-channel ceiling in 2 epochs on 1.5B. This is the honest first rung of Casey's VLM-LoRA vision: the channel is learnable-but-hard, and the gap (0.35 -> 0.80) is exactly where a bigger model / more epochs / better tokenization lives. Not a KILL — a direction with a measured distance.
+
+
+## E4b — next-room revision [FULL-SCALE]
+- ran: 2026-09-27 20:04
+- verdict: KILL
+- result: ```json
+{
+  "experiment": "E4b next-room-revision",
+  "mode": "full", "seed": 2718, "params": 68164,
+  "cells": 236, "room_transitions": 35, "train_windows": 189, "heldout_windows": 39,
+  "train_acc": 0.963, "heldout_acc": 0.821,
+  "constant_baseline": 0.179, "markov1_baseline": 0.846,
+  "preregistered_margin": 0.05, "verdict": "KILL"
+}
+```
+- note: the fixed dataset finally runs, and the honest null lands. The degenerate constant baseline is dead (0.179, was 0.75 in E4's broken tail-split). But markov-1 (0.846) is the real bar, and the 68k-param transformer — now with 236 cells, interleaved walk (35 transitions), blocked split (all 4 rooms in heldout) — reaches heldout 0.821, which is BELOW markov-1. Verdict KILL per pre-registration (heldout must exceed max(baseline)+0.05). Finding: next-room prediction from 8-cell glyph context does NOT beat a simple transition-count model at this scale. The JEV-temporal question closes as: the temporal signal in this glyph-cell encoding is already fully captured by markov-1; a learned model adds nothing at 68k params. (The E4b note's "SMOKE" text in the JSON note field is stale cosmetic text from the smoke template — the mode/verdict/cells are the real full-scale run.)
