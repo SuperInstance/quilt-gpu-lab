@@ -2375,3 +2375,8 @@ the ceiling; correlated dense purchases are dead weight or worse.
 - ran: 2026-09-28 10:27 (CPU-only, seed 2718)
 - verdict: KILL
 - note: final_acc 0.533 vs the 0.80 bar; edge concentration on true partner 0.30 vs 0.50 bar (chance 0.143). Signed-confidence reward improved margin over D13's 0.467 but no convergence (accuracy drifted to ~0.72 mid-run, decayed back). Learned edge addressing has now failed two reward formulations; d13c (reinforce) + d13d (shared-key) were the remaining rescues — d13d later KEEPed (correlation, not reward). The 0.44 structural delta from D12 is handed-addressing-only.
+
+## X6 — extrapolation (did the reader memorize the staging manifold?)
+- ran: 2026-09-28 11:56
+- verdict: KILL
+- note: train on dial range [min,0.7], test on [0.7,max] (18/9 rooms). ALL THREE dials collapse outside the trained range: mood interp +0.449 -> extrap −3.148 (ratio −7.0), volume +0.941 -> −0.139 (−0.15), presence +0.839 -> −4.314 (−5.1). The read is RANGE-LOCAL: LORO tested room-holdout (interpolation within the staged dial grid), not dial-range generalization. The E12-family read is a local map of the staged manifold — it does not extrapolate to unseen dial values. Combined with X3 (volume/presence = classical statistics), the staging-artifact thread is now strong. The one falsifier that could still save the “room geometry” framing: X2 renderer transfer (same dials through a second independent renderer — transfer = content, collapse = renderer parameterization). That is now THE experiment.

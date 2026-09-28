@@ -1,0 +1,444 @@
+{
+  "experiment": "X6 dial-range extrapolation",
+  "seed": 2718,
+  "tau": 0.7,
+  "keep_ratio": 0.8,
+  "kill_ratio": 0.6,
+  "k_primary": 64,
+  "dial_names": [
+    "mood",
+    "volume",
+    "presence"
+  ],
+  "guard_preflight": {
+    "free_vram_mib": 5920,
+    "temp_c": 44
+  },
+  "harness_selftest": {
+    "r2_min_signal": 0.9991,
+    "r2_max_shuffled": -0.1652,
+    "pass": true
+  },
+  "bank_provenance": "e13.build_bank(1) = e12.build_dial_grid + e12.stage_transcript + e12.read_room (E12's 27-cell grid, elephant-bank labels)",
+  "carrier": "e12.stage_source (E12's linear staging, the arm that KEPT)",
+  "split_is_on": "staged target triple, tau=0.7 in raw dial units",
+  "interpolation_reference": "e12 standard LORO ridge k=64, all 27 rooms (E12 currency, feeds G1); the gated ratio uses LORO within train in the fixed-denominator currency",
+  "extrapolation_fit": "ridge on train rooms only, lambda by inner leave-one-room CV within train, error on test",
+  "scoring_currency": "fixed denominator = train-side label variance of the same split (amendment in the module docstring; test-variance R2 is undefined on a one-level test side)",
+  "model": "facebook/ijepa_vith16_1k",
+  "device": "cuda",
+  "load_notes": {
+    "facebook/ijepa_vitb": "load failed: OSError: facebook/ijepa_vitb is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'\nIf this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your"
+  },
+  "rooms": 27,
+  "stills_per_room": 12,
+  "cells": 324,
+  "emb_dim": 1280,
+  "pca_evr_k64": 0.9967,
+  "staging_fidelity_spearman_target_vs_label": {
+    "mood": 0.98,
+    "volume": 0.9437,
+    "presence": 0.9864
+  },
+  "split_audit": {
+    "mood": {
+      "n_train_rooms": 18,
+      "n_test_rooms": 9,
+      "levels": [
+        -0.8,
+        0.0,
+        0.8
+      ],
+      "train_levels": [
+        -0.8,
+        0.0
+      ],
+      "test_levels": [
+        0.8
+      ]
+    },
+    "volume": {
+      "n_train_rooms": 18,
+      "n_test_rooms": 9,
+      "levels": [
+        0.15,
+        0.5,
+        0.85
+      ],
+      "train_levels": [
+        0.15,
+        0.5
+      ],
+      "test_levels": [
+        0.85
+      ]
+    },
+    "presence": {
+      "n_train_rooms": 18,
+      "n_test_rooms": 9,
+      "levels": [
+        0.15,
+        0.5,
+        0.85
+      ],
+      "train_levels": [
+        0.15,
+        0.5
+      ],
+      "test_levels": [
+        0.85
+      ]
+    },
+    "corner_mood_x_presence": {
+      "n_train_rooms": 12,
+      "n_test_rooms": 15,
+      "levels": [
+        -0.8,
+        0.0,
+        0.8
+      ],
+      "train_levels": [
+        -0.8,
+        0.0
+      ],
+      "test_levels": [
+        -0.8,
+        0.0,
+        0.8
+      ]
+    }
+  },
+  "lambda_median_interp_all27": 1.0,
+  "interpolation_loro_r2_k64_e12currency": {
+    "mood": 0.8106,
+    "volume": 0.9624,
+    "presence": 0.9478
+  },
+  "extrapolation_1d": {
+    "mood": {
+      "threshold": 0.7,
+      "target_range": [
+        -0.8,
+        0.8
+      ],
+      "train_rooms": 18,
+      "test_rooms": 9,
+      "test_levels": [
+        0.8
+      ],
+      "label_range_test": [
+        1.0,
+        1.0
+      ],
+      "split_dial": "mood",
+      "lambda": 1.0,
+      "r2i_range": 0.4493,
+      "r2x_range": -3.1483,
+      "rmse_test": [
+        1.1366,
+        0.1802,
+        0.0829
+      ],
+      "train_mean_floor_r2": [
+        -6.0304,
+        0.0402,
+        -0.0
+      ],
+      "var_train": [
+        0.311424,
+        0.03668,
+        0.003001
+      ],
+      "r2_testvar_evidence": [
+        -139521950533461.64,
+        0.0772,
+        -1.2926
+      ],
+      "r2x_room_level": [
+        -1.3445,
+        -0.4915,
+        -15.9115
+      ],
+      "room_probe_width": 9,
+      "r2x_train_only_basis": [
+        -0.6847,
+        0.8445,
+        0.6821
+      ],
+      "ratio": -7.0071,
+      "denominator_valid": true
+    },
+    "volume": {
+      "threshold": 0.7,
+      "target_range": [
+        0.15,
+        0.85
+      ],
+      "train_rooms": 18,
+      "test_rooms": 9,
+      "test_levels": [
+        0.85
+      ],
+      "label_range_test": [
+        0.6739,
+        0.6897
+      ],
+      "split_dial": "volume",
+      "lambda": 0.1,
+      "r2i_range": 0.9405,
+      "r2x_range": -0.1394,
+      "rmse_test": [
+        0.351,
+        0.1466,
+        0.009
+      ],
+      "train_mean_floor_r2": [
+        0.0386,
+        -4.6381,
+        -0.0
+      ],
+      "var_train": [
+        0.703303,
+        0.018851,
+        0.003001
+      ],
+      "r2_testvar_evidence": [
+        0.8175,
+        -810.0253,
+        0.9727
+      ],
+      "r2x_room_level": [
+        0.7625,
+        0.7197,
+        0.8883
+      ],
+      "room_probe_width": 9,
+      "r2x_train_only_basis": [
+        0.8937,
+        0.401,
+        0.9676
+      ],
+      "ratio": -0.1482,
+      "denominator_valid": true
+    },
+    "presence": {
+      "threshold": 0.7,
+      "target_range": [
+        0.15,
+        0.85
+      ],
+      "train_rooms": 18,
+      "test_rooms": 9,
+      "test_levels": [
+        0.85
+      ],
+      "label_range_test": [
+        0.6555,
+        0.6555
+      ],
+      "split_dial": "presence",
+      "lambda": 0.1,
+      "r2i_range": 0.8387,
+      "r2x_range": -4.3141,
+      "rmse_test": [
+        0.3097,
+        0.0347,
+        0.0618
+      ],
+      "train_mean_floor_r2": [
+        -0.0002,
+        0.0968,
+        -14.7619
+      ],
+      "var_train": [
+        0.694479,
+        0.037395,
+        0.00072
+      ],
+      "r2_testvar_evidence": [
+        0.8613,
+        0.9644,
+        -413041743504.9271
+      ],
+      "r2x_room_level": [
+        0.8979,
+        0.9795,
+        -2.7544
+      ],
+      "room_probe_width": 9,
+      "r2x_train_only_basis": [
+        0.9061,
+        0.9833,
+        -3.093
+      ],
+      "ratio": -5.1438,
+      "denominator_valid": true
+    }
+  },
+  "ratios_extrap_over_interp": {
+    "mood": {
+      "ratio": -7.0071,
+      "r2i_range": 0.4493,
+      "r2x_range": -3.1483
+    },
+    "volume": {
+      "ratio": -0.1482,
+      "r2i_range": 0.9405,
+      "r2x_range": -0.1394
+    },
+    "presence": {
+      "ratio": -5.1438,
+      "r2i_range": 0.8387,
+      "r2x_range": -4.3141
+    }
+  },
+  "booked_targets_arm_c5": {
+    "mood": {
+      "r2i_range": 0.9818,
+      "r2x_range": -0.9149,
+      "ratio": -0.9319,
+      "denominator_valid": true
+    },
+    "volume": {
+      "r2i_range": 0.9645,
+      "r2x_range": -1.684,
+      "ratio": -1.746,
+      "denominator_valid": true
+    },
+    "presence": {
+      "r2i_range": 0.8428,
+      "r2x_range": -0.5242,
+      "ratio": -0.622,
+      "denominator_valid": true
+    }
+  },
+  "corner_2d": {
+    "train_rooms": 12,
+    "test_rooms": 15,
+    "train_levels_m": [
+      -0.8,
+      0.0
+    ],
+    "test_levels_m": [
+      -0.8,
+      0.0,
+      0.8
+    ],
+    "extrapolated_dims": [
+      "mood",
+      "presence"
+    ],
+    "per_dial": {
+      "mood": {
+        "r2x_fixed_den": -6.408,
+        "r2_testvar": -2.3275,
+        "rmse_test": 1.4484,
+        "r2i_range": 0.3907,
+        "r2x_range": -6.408,
+        "ratio": -16.4013,
+        "denominator_valid": true
+      },
+      "volume": {
+        "r2x_fixed_den": 0.2689,
+        "r2_testvar": 0.1994,
+        "rmse_test": 0.1667,
+        "r2i_range": 0.8001,
+        "r2x_range": 0.2689,
+        "ratio": 0.3361,
+        "denominator_valid": true
+      },
+      "presence": {
+        "r2x_fixed_den": -3.9885,
+        "r2_testvar": -0.1926,
+        "rmse_test": 0.0599,
+        "r2i_range": 0.8334,
+        "r2x_range": -3.9885,
+        "ratio": -4.7858,
+        "denominator_valid": true
+      }
+    },
+    "r2i_range_fixed_den": [
+      0.3907,
+      0.8001,
+      0.8334
+    ],
+    "note": "booked, not gated: mood and presence are the extrapolated corner dims; volume stays interpolated (train covers all v levels). ratio uses the fixed-denominator currency."
+  },
+  "booked_mood_low_holdout_c6": {
+    "train_rooms": 18,
+    "test_rooms": 9,
+    "r2i_range": 0.4052,
+    "r2x_range": -8.2449,
+    "ratio": -20.3477,
+    "denominator_valid": true,
+    "rmse_test_mood": 1.5822
+  },
+  "controls": {
+    "raw_pixel_144d_c1": {
+      "mood": {
+        "r2_interp_all27_testvar": 0.9355,
+        "r2i_range": 0.7673,
+        "r2x_range": 0.8348,
+        "ratio": 1.088,
+        "denominator_valid": true
+      },
+      "volume": {
+        "r2_interp_all27_testvar": -0.7664,
+        "r2i_range": -0.975,
+        "r2x_range": -5.5514,
+        "ratio": null,
+        "denominator_valid": false
+      },
+      "presence": {
+        "r2_interp_all27_testvar": 0.1625,
+        "r2i_range": 0.4206,
+        "r2x_range": -20.9247,
+        "ratio": -49.7496,
+        "denominator_valid": true
+      }
+    },
+    "pixel_note": "E12's carrier is affine dial->pixels, so pixels should extrapolate; if the embedding collapses where pixels hold, the range-locality lives in the encoder nonlinearity, not the probe"
+  },
+  "gates": {
+    "g0d_harness_selftest": true,
+    "g0a_staging_fidelity": {
+      "pass": true,
+      "measured": {
+        "mood": 0.98,
+        "volume": 0.9437,
+        "presence": 0.9864
+      }
+    },
+    "g1_baseline": {
+      "floor": 0.3,
+      "n_dials_ok": 3,
+      "measured": {
+        "mood": 0.8106,
+        "volume": 0.9624,
+        "presence": 0.9478
+      },
+      "pass": true
+    },
+    "g2_ratio_gate": {
+      "kill_below": 0.6,
+      "keep_above": 0.8,
+      "ratio_den_floor": 0.05,
+      "n_keep": 0,
+      "n_kill": 3,
+      "valid_dials": [
+        "mood",
+        "volume",
+        "presence"
+      ]
+    }
+  },
+  "verdict": "KILL",
+  "verdict_reason": "G2: extrapolation < 0.6x interpolation on 3 dials \u2014 the read is range-local (LORO tested rooms, not dial range)",
+  "data_needed": [
+    "ffmpeg ~/.local/bin/ffmpeg (lavfi chain, E12's)",
+    "facebook/ijepa_vith16_1k fp16 on the RTX 4050 (E9 loader, imported)",
+    "elephant package importable (dial bank = labels)",
+    "27 rooms x 12 stills = 324 forwards \u2014 ~3-5 min GPU"
+  ],
+  "note": "X6 asks whether E12-family LORO KEEPs survive DIAL-RANGE holdout. Same bank, same carrier, same ridge probe as E12; the ONLY change is the split: per dial, train t<=0.7, test t>0.7 (room-disjoint by construction; lambda picked inside train). Because a 3-level grid makes the held-out side a single CONSTANT level, the gated currency is fixed-denominator R2 (both sides over the train-side label variance of the same split; interpolation side = LORO within train) \u2014 the degenerate test-variance numbers are reported per split as the amendment's evidence. KILL = ratio < 0.6x on >= 2/3 dials (the read memorized the staging manifold's local geometry; every LORO KEEP in the family is range-bound). KEEP = >= 0.8x on >= 2/3 (the dial direction extends beyond the trained range). INVALID_BASELINE protects the denominator (E12's KEEP must replicate here first). C5 (targets arm) separates embedding failure from label saturation (mood labels pin at 1.0)."
+}
