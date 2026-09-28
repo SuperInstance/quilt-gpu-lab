@@ -714,3 +714,17 @@ the ceiling; correlated dense purchases are dead weight or worse.
 }
 ```
 - note: the fixed dataset finally runs, and the honest null lands. The degenerate constant baseline is dead (0.179, was 0.75 in E4's broken tail-split). But markov-1 (0.846) is the real bar, and the 68k-param transformer — now with 236 cells, interleaved walk (35 transitions), blocked split (all 4 rooms in heldout) — reaches heldout 0.821, which is BELOW markov-1. Verdict KILL per pre-registration (heldout must exceed max(baseline)+0.05). Finding: next-room prediction from 8-cell glyph context does NOT beat a simple transition-count model at this scale. The JEV-temporal question closes as: the temporal signal in this glyph-cell encoding is already fully captured by markov-1; a learned model adds nothing at 68k params. (The E4b note's "SMOKE" text in the JSON note field is stale cosmetic text from the smoke template — the mode/verdict/cells are the real full-scale run.)
+
+## D15b — read-the-channel v2 (few-shot + curriculum + 5 real epochs) [SMOKE]
+- ran: 2026-09-27 20:09
+- verdict: INCONCLUSIVE (smoke; full-scale recipe ready)
+- result: ```json
+{
+  "experiment": "D15b read-the-channel v2",
+  "mode": "smoke", "seed": 2718, "model": "Qwen2.5-0.5B-Instruct", "quant": "nf4-4bit",
+  "peak_vram_mib": 1873.5, "wall_seconds": 100.4,
+  "verdict": "INCONCLUSIVE"
+}
+```
+- note: pipeline proven on GPU (4-bit NF4 held, no fallback). D15b attacks the 0.35->0.80 gap with 4 concrete changes: (1) 5 REAL curriculum epochs — fixes a step-math bug in D15 where steps=len*epochs//8 but the loop ate 4 examples/step, so "2 epochs" was ~1 effective pass; (2) few-shot worked examples (4 codec-asserted byte decodings) in the prompt, both arms; (3) curriculum short->long (12-char -> 24-char -> full, so the model learns the per-byte subroutine before long-output alignment); (4) bigger base chain Qwen2.5-3B 4-bit with VRAM-headroom fallback to 1.5B. Gate unchanged: tuned>=0.80 AND base<=0.30. FULL-SCALE: D15B_FULL=1, ~2.5-3.5h on the 4050.
+

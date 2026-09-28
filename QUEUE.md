@@ -31,3 +31,4 @@
 - [x] D16 embedder readability (tiny MLP reads tone class) — 2026-09-27 KEEP (0.93)
 - [x] D17 compiler compression at scale — 2026-09-27 KEEP (0.789, momentum 0.034; invisibility vs compressibility tension)
 - [x] D15 read-the-channel (VLM LoRA reads tone channel) — 2026-09-27 INCONCLUSIVE (full: 0.351 vs 0.266, positive but under gate)
+- [x] D15b read-the-channel v2 — 2026-09-27 INCONCLUSIVE (smoke; full-scale D15B_FULL=1 ready)

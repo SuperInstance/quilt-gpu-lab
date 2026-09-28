@@ -1,0 +1,280 @@
+{
+  "experiment": "D15b read-the-channel v2 (few-shot + curriculum + 5 real epochs + bigger base)",
+  "vision_layer": "Layer 3 reading gate (text-model proxy; VLM step follows this gate)",
+  "changes_vs_d15": [
+    "5 REAL curriculum epochs (D15's steps/accum mismatch meant ~1 effective pass)",
+    "few-shot worked examples: 4 codec-asserted byte decodings in the prompt (both arms)",
+    "curriculum short->long: stage A=12-char texts, B=24-char, C=full; ep1=A, ep2=A+B, ep3-5=all",
+    "bigger base chain: Qwen2.5-3B 4-bit first, VRAM-headroom fallback to 1.5B",
+    "short-stream held-out diagnostic separates read-bottleneck from alignment-bottleneck"
+  ],
+  "mode": "smoke",
+  "device": "cuda",
+  "seed": 2718,
+  "model_used": "Qwen/Qwen2.5-0.5B-Instruct",
+  "model_candidates_tried": [],
+  "fallback_note": null,
+  "quant": "nf4-4bit",
+  "quant_note": "4-bit NF4 double-quant, bf16 compute",
+  "qlora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "grad_checkpointing": true,
+    "batch": 1,
+    "grad_accum": 8,
+    "seq_max": 1024,
+    "lr": 0.0002
+  },
+  "curriculum": {
+    "schedule": [
+      [
+        "A"
+      ],
+      [
+        "A",
+        "C"
+      ]
+    ],
+    "stage_truncs": {
+      "A": 12,
+      "B": 24,
+      "C": null
+    },
+    "worked_example_bytes": {
+      "86": "d",
+      "ca": "f",
+      "47": "u",
+      "05": "h"
+    }
+  },
+  "data": {
+    "source": "qthe_codec.encode() seeded foundry (~/projects/qthe-codec)",
+    "split": "BY TEXT: held-out texts never appear in training",
+    "pool_texts": 44,
+    "held_texts": 10,
+    "train_texts": 34,
+    "stage_sizes": {
+      "A": 4,
+      "C": 4
+    },
+    "trunc_a_chars": 12,
+    "trunc_b_chars": 24,
+    "train_pairs": 8,
+    "heldout_pairs_full": 10,
+    "heldout_pairs_short_diag": 5,
+    "codec_roundtrip": "asserted on every pair"
+  },
+  "base_eval": {
+    "n": 10,
+    "acc": 0.0,
+    "exact_match": 0.0,
+    "wellformed_rate": 0.0,
+    "mean_stream_bytes": 40.2,
+    "seconds": 18.5,
+    "samples": [
+      {
+        "id": "held-The Canary H-0",
+        "gold": "f f f f f f f f f f f f f f f f f f f f h h h h h h h h h h h h h",
+        "pred": "",
+        "raw": "d,f,u,d,h",
+        "acc": 0.0
+      },
+      {
+        "id": "held-the canary h-0",
+        "gold": "u u u u u u u u u u u u u u u u u u u h h h h h h d d d d d d d d d d d d d",
+        "pred": "",
+        "raw": "d,f,u,d,h",
+        "acc": 0.0
+      },
+      {
+        "id": "held-the substrat-0",
+        "gold": "f f f f f f f f f f f d d d d d d d d d d d u u u u u u u u u u u u u u u d",
+        "pred": "",
+        "raw": "d,f,u,d,h",
+        "acc": 0.0
+      },
+      {
+        "id": "held-cold front m-0",
+        "gold": "f f f f f f f f f f f f f f f f f f u u u u u u u u u u u u h h h h h h h h h h h",
+        "pred": "",
+        "raw": "d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,d,f,u,",
+        "acc": 0.0
+      }
+    ]
+  },
+  "base_eval_short_diag": {
+    "n": 5,
+    "acc": 0.0154,
+    "exact_match": 0.0,
+    "wellformed_rate": 0.0,
+    "mean_stream_bytes": 13.6,
+    "seconds": 1.2,
+    "samples": [
+      {
+        "id": "heldshort-The Canary",
+        "gold": "h h h h u u u u f f f f f d d d",
+        "pred": "",
+        "raw": "d,f,u,d,h",
+        "acc": 0.0
+      },
+      {
+        "id": "heldshort-the canary",
+        "gold": "h h h h h d d d u u u u f",
+        "pred": "",
+        "raw": "d,f,u,d,h",
+        "acc": 0.0
+      },
+      {
+        "id": "heldshort-the substr",
+        "gold": "d d d u u u u f f f f h h",
+        "pred": "d f u",
+        "raw": "d 2 f 0 u",
+        "acc": 0.077
+      },
+      {
+        "id": "heldshort-cold front",
+        "gold": "h h h d d d d d u u u u u",
+        "pred": "",
+        "raw": "d,f,u,d,h,d,f,u,d,h,d",
+        "acc": 0.0
+      }
+    ]
+  },
+  "tuned_eval": {
+    "n": 10,
+    "acc": 0.2773,
+    "exact_match": 0.0,
+    "wellformed_rate": 0.0,
+    "mean_stream_bytes": 40.2,
+    "seconds": 38.0,
+    "samples": [
+      {
+        "id": "held-The Canary H-0",
+        "gold": "f f f f f f f f f f f f f f f f f f f f h h h h h h h h h h h h h",
+        "pred": "f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f",
+        "raw": "f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f ",
+        "acc": 0.606
+      },
+      {
+        "id": "held-the canary h-0",
+        "gold": "u u u u u u u u u u u u u u u u u u u h h h h h h d d d d d d d d d d d d d",
+        "pred": "f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f",
+        "raw": "f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f ",
+        "acc": 0.0
+      },
+      {
+        "id": "held-the substrat-0",
+        "gold": "f f f f f f f f f f f d d d d d d d d d d d u u u u u u u u u u u u u u u d",
+        "pred": "f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f",
+        "raw": "f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f ",
+        "acc": 0.289
+      },
+      {
+        "id": "held-cold front m-0",
+        "gold": "f f f f f f f f f f f f f f f f f f u u u u u u u u u u u u h h h h h h h h h h h",
+        "pred": "f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f",
+        "raw": "f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f ",
+        "acc": 0.439
+      }
+    ]
+  },
+  "tuned_eval_short_diag": {
+    "n": 5,
+    "acc": 0.2933,
+    "exact_match": 0.0,
+    "wellformed_rate": 0.0,
+    "mean_stream_bytes": 13.6,
+    "seconds": 6.7,
+    "samples": [
+      {
+        "id": "heldshort-The Canary",
+        "gold": "h h h h u u u u f f f f f d d d",
+        "pred": "f f f f f f f f f f f f f f f f",
+        "raw": "f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f",
+        "acc": 0.312
+      },
+      {
+        "id": "heldshort-the canary",
+        "gold": "h h h h h d d d u u u u f",
+        "pred": "u u u u u u u u u u u u u",
+        "raw": "u u u u u u u u u u u u u u u u u u u u u u u u u u u u u u u u u u",
+        "acc": 0.308
+      },
+      {
+        "id": "heldshort-the substr",
+        "gold": "d d d u u u u f f f f h h",
+        "pred": "f f f f f f f f f f f f f",
+        "raw": "f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f",
+        "acc": 0.308
+      },
+      {
+        "id": "heldshort-cold front",
+        "gold": "h h h d d d d d u u u u u",
+        "pred": "u u u u u u u u u u u u u",
+        "raw": "u u u u u u u u u u u u u u u u u u u u u u u u u u u u u u u u u u",
+        "acc": 0.385
+      }
+    ]
+  },
+  "margin_token_acc": 0.2773,
+  "preregistered": {
+    "tuned_acc_gte": 0.8,
+    "base_acc_lte": 0.3,
+    "chance": 0.25,
+    "gate_set": "FULL-LENGTH held-out only"
+  },
+  "train": {
+    "optimizer_steps_total": 2,
+    "per_epoch": [
+      {
+        "epoch": 1,
+        "stages": [
+          "A"
+        ],
+        "pairs": 4,
+        "steps": 1,
+        "mean_loss": 1.9844,
+        "losses": [
+          1.9844
+        ]
+      },
+      {
+        "epoch": 2,
+        "stages": [
+          "A",
+          "C"
+        ],
+        "pairs": 8,
+        "steps": 1,
+        "mean_loss": 0.9345,
+        "losses": [
+          0.9345
+        ]
+      }
+    ],
+    "trainable_params": 8798208,
+    "seconds": 9.7
+  },
+  "adapter_path": "/home/eileen/projects/quilt-gpu-lab/results/d15b_adapter_smoke",
+  "peak_vram_mib": 1873.5,
+  "wall_seconds": 100.4,
+  "versions": {
+    "torch": "2.14.0+cu126",
+    "transformers": "5.17.0",
+    "peft": "0.21.0",
+    "bitsandbytes": "0.50.2"
+  },
+  "verdict": "INCONCLUSIVE",
+  "reason": "smoke pass: pipeline proof only (2 steps, 8 train pairs, 10 held-out); the gate (tuned>=0.8, base<=0.3) is full-scale",
+  "note": "SMOKE numbers are pipeline proof on the 0.5B proxy, not the hypothesis test. FULL-SCALE RECIPE (D15B_FULL=1): base chain Qwen2.5-3B -> 1.5B (4-bit NF4 double-quant; 3B kept only if free VRAM after load >= 1500 MiB); LoRA r=16 alpha=32 dropout=0.05 on q/k/v/o/gate/up/down; grad checkpointing (use_reentrant=False); batch 1 x grad-accum {GRAD_ACCUM}; seq<=1024; lr 2e-4 AdamW; 5 curriculum epochs over 450 pairs (A=12-char, B=24-char, C=full, 150 each): ep1=A, ep2=A+B, ep3-5=all; eval on 60 FULL-LENGTH held-out pairs (20 unseen texts x 3 draws; pre-registered gate set) + 20 short diagnostics. Gate: tuned token-acc >= 0.8 AND base <= 0.3 (chance 0.25), unchanged from D15. The decode rule AND worked examples are public in the prompt for BOTH arms; plaintext carries zero momentum bits (D14), so >= 0.80 can only be reached by actually reading timbre+context. Expected VRAM ~4-4.5 GB peak on 3B, ~2.5-3.5 h wall on the RTX 4050 6 GB; smoke takes minutes. Other lanes contend: preflight floor 1024 MiB free / 80 C; run via runner.py guard. This pass quant: nf4-4bit."
+}
