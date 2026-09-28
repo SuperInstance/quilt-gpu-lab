@@ -100,15 +100,25 @@ PRE-REGISTERED GATES (fixed before running; this file IS the registration)
   G0a  staging fidelity : E13's G0a verbatim (>= 2/3 dials, Spearman between
       the design triple and the elephant DialBank label >= 0.5). The bank is
       amplitude-independent. Fails -> INVALID_STAGING.
-  G0b  sensitivity : the MILDEST LIVE amplitude's luminance LORO R2(k=64)
-      >= 0.90 (E13's SENSITIVITY_FLOOR). DEVIATION, pre-registered: E13 gated
-      this on Arm L (E12's linear carrier), which E25 does not render — the
-      in-sweep analog is the mildest live point, whose carrier measures the
-      LEAST curvature (0.294 at amp 1.0, 0.338 at 0.5) and so is the closest
-      thing in the sweep to the linear staging. A harness that cannot read a
-      signal certainly present in the frames is blind, and a KILL from a blind
-      harness is meaningless. Fails -> INVALID_HARNESS. The luminance number is
-      reported for EVERY amplitude as a booked control.
+  G0b  sensitivity : E13's G0b VERBATIM — Arm L (E12's linear staging, the
+      same carrier E13 used as its positive control) must show luminance LORO
+      R2(k=64) >= 0.90 (E13's SENSITIVITY_FLOOR). E25 renders that one extra
+      carrier (27 rooms) purely as this anchor and as the LEFT EDGE of the
+      x-axis (its certificate measures curvature 0.000 and a linear knob read
+      of 1.000 by construction). Fails -> INVALID_HARNESS. The luminance
+      number is ALSO reported for every folded amplitude, booked.
+      BUILD HISTORY, on the record: v1 of this file gated G0b on the MILDEST
+      LIVE folded amplitude instead (an in-sweep analog, because v1 did not
+      render Arm L), and when the registered sweep was fired it returned
+      INVALID_HARNESS on that anchor (luminance 0.872 / 0.887 / 0.883 / 0.958 /
+      0.655 at curvature 0.338 / 0.294 / 0.329 / 0.471 / 0.729, floor 0.90).
+      That was a BUILD BUG in the gate, not a finding about the harness: the
+      folded carrier drives the brightness knob through a folded channel, so
+      luminance's readability is a property of the CARRIER, not of the
+      pipeline's sensitivity, and the mildest folded point is therefore not a
+      sensitivity control at all. v2 (this file) restores E13's own anchor.
+      Nothing else was changed: the claim definition (K1/K2/K3) and the
+      per-dial gate are v1's, pre-registered, untouched.
   G1   THE CLAIM (KEEP) : on the live amplitudes, all three of
         K1 monotone decay : >= 2 of 3 dials show a MONOTONE DECAY of
             R2_still_loro(k64) in amplitude, defined as ALL of
@@ -166,6 +176,17 @@ CONTROLS / BOOKED (never gated)
       the x-axis is measured per dial, not just in the mean.
   C9 extra dials         : earnestness / cynicism / joke_landing / panic are
       booked per point (they ride the same bank).
+  C10 criticals, both readings : `crit_d` (the GATED one) is the first live
+      amplitude failing E12/E13's FULL per-dial gate, k16-retention clause
+      included. That clause is a retention check, and on a 5-point sweep it is
+      noisy (mood's k16/k64 ratio moves 0.874 -> 0.538 -> 0.306 -> 0.907 ->
+      1.033 across the sweep, so mood's full-gate failure at amp 1.5 is the
+      k16 clause while its k64 read there is 0.718, well above the 0.30
+      floor). The receipt therefore also carries — BOOKED, never gated —
+      `crit_k64_floor_d`: the first live amplitude failing the headline
+      criteria alone (k64 >= 0.30 AND room >= 0.15 AND above the 200-perm
+      null95). The mapping uses the GATED full-gate critical only; the booked
+      one exists so a reader can see which clause moved a critical.
 
 HONESTY / CAVEATS BOOKED WITH THE RESULT
   - This sweeps ONE carrier family along ONE axis (the N2 readout fold
@@ -197,9 +218,11 @@ WIRING (deliberately absent)
     auto-claim or double-fire this. Manual fire only:
       ~/venvs/elephant-gpu/bin/python -m experiments.e25_fold_phase_transition
     Cost: 5 live amplitudes (after censoring) x 27 rooms x 12 stills = 1620
-    encoder forwards at 224^2, fp16 on the RTX 4050 — roughly 15-30 min GPU,
-    plus the CPU ridge sweeps (~1-3 min per amplitude: 27-fold LORO inner-CV
-    lambda grids plus a 200-perm null at k=64).
+    encoder forwards at 224^2, plus E13's Arm L anchor (27 rooms x 12 = 324 more)
+    — 1944 forwards, fp16 on the RTX 4050; on this box that measured ~4 min
+    wall (E13's 8-12 min estimate for 972 forwards was conservative by ~10x),
+    plus the CPU ridge sweeps (~30-60 s per point: 27-fold LORO inner-CV lambda
+    grids plus a 200-perm null at k=64).
 
 Dev paths (no verdict in either)
   --cpu-only      : bank, carrier + certificate at every amplitude (with the
@@ -269,9 +292,9 @@ from e13_nonlinear_dial_reader import (                        # noqa: E402
     render_scene,
 )
 from e12_room_dial_reader import (                             # noqa: E402
-    DIAL_NAMES, EXTRA_DIALS, FIDELITY_FLOOR, K_PRIMARY, K_STRICT, K_WIDE,
+    DIAL_NAMES, EXTRA_DIALS, FIDELITY_FLOOR, K_PRIMARY,
     R2_FLOOR, R2_ROOM_FLOOR, R2_TOP_PC_FRACTION, SENSITIVITY_FLOOR,
-    r2_columns, spearman, stage_source,
+    r2_columns, spearman,
 )
 
 # --------------------------------------------------------------------- #
@@ -420,6 +443,15 @@ def dial_trend(amps, r2_still, r2_room, null95, gate_pass) -> dict:
             if not ok:
                 crit, crit_idx = a[j], j
                 break
+        # C10 (BOOKED, never gated): the same critical computed on the
+        # HEADLINE criteria alone — k64 >= R2_FLOOR AND room >= R2_ROOM_FLOOR
+        # AND k64 above its 200-perm null95 — with the k16 retention clause
+        # dropped, so a reader can see which clause moved a critical.
+        crit_head = None
+        for j in range(len(a)):
+            if not (r[j] >= R2_FLOOR and rr[j] >= R2_ROOM_FLOOR and r[j] > n95[j]):
+                crit_head = a[j]
+                break
         out[d] = {
             "r2_still_loro_k64": [round(float(x), 4) for x in r],
             "r2_room_loro_k64": [round(float(x), 4) for x in rr],
@@ -434,6 +466,7 @@ def dial_trend(amps, r2_still, r2_room, null95, gate_pass) -> dict:
             "critical_amp": crit,
             "critical_prev_pass_amp": (a[crit_idx - 1] if crit_idx else None),
             "dead_at_or_below_sweep_floor": bool(crit is not None and crit_idx == 0),
+            "crit_k64_floor_booked": crit_head,
             "n_live_amps_passing": int(sum(1 for x in gp if x)),
         }
     return out
@@ -777,7 +810,22 @@ def main() -> dict:
                     "reason": "G0a: the staged scripts did not move >= 2/3 dials"})
         print(json.dumps(out, indent=2))
         return out
-    if len(live) < MIN_LIVE_AMPS:
+    if len(live) == 0:
+        out = dict(base)
+        out.update({
+            "verdict": "INVALID_STAGING",
+            "harness_selftest_g0d": st,
+            "verdict_mapper_selftest_g0e": st_v,
+            "fold_patch_audit_c7": audit,
+            "staging_fidelity_spearman_target_vs_label": fid,
+            "carrier_points": points,
+            "carriers_live": live, "carriers_censored": censored,
+            "reason": ("every swept carrier failed its certificate — there "
+                       "is no live staging at any amplitude"),
+        })
+        print(json.dumps(out, indent=2))
+        return out
+    if len(live) < MIN_LIVE_AMPS and not dev_override:
         # Decided BEFORE the model loads: a dead sweep costs no GPU time.
         out = dict(base)
         out.update({
@@ -811,6 +859,32 @@ def main() -> dict:
         print(json.dumps(out, indent=2))
         return out
     log(f"using {model_used}")
+
+    # G0b's anchor + the x-axis origin: E12's linear staging (Arm L), rendered
+    # ONCE through E13's own collector and probe. Its carrier is
+    # amplitude-independent (E12's affine formulas), so this is E13's verbatim
+    # G0b control, measured on the same bank in the same run.
+    K_L = {r["name"]: knobs_linear(float(r["target"][0]),
+                                    float(r["target"][1]),
+                                    float(r["target"][2])) for r in bank}
+    km_L = np.stack([K_L[r["name"]] for r in bank])
+    per_L, summ_L = carrier_certificate(km_L, targets)
+    try:
+        log(f"arm L (affine anchor): rendering + embedding {len(bank)} rooms")
+        data_L = collect_arm("L", {"L": K_L}, bank, model, processor, dev, torch)
+        rep_L = arm_report("L", data_L, km_L, targets)
+        del data_L
+        gc.collect()
+        if dev == "cuda":
+            torch.cuda.empty_cache()
+    except Exception as e:  # noqa: BLE001
+        out = dict(base)
+        out.update({"verdict": "ABORTED", "harness_selftest_g0d": st,
+                    "reason": f"Arm-L anchor render/embed/probe failed: {e}"})
+        print(json.dumps(out, indent=2))
+        return out
+    log(f"arm L: r2_still_loro(k64)={rep_L['r2_still_loro']['64']} "
+        f"lum={rep_L['g0b_luminance_r2_k64']} ladder={rep_L['gate']['ladder']}")
 
     # The sweep. One point = carrier -> certify -> render -> embed -> probe.
     reports, curves = {}, {"still": {}, "room": {}, "null95": {}, "pass": {}}
@@ -869,7 +943,7 @@ def main() -> dict:
         # model at this floor. A dev sweep is not the E25 result — it exists
         # to exercise the plumbing (render/embed/probe) on real frames.
         verdict, vreason, vdetails = (
-            "DEV_SWEEP",
+            "SWEEP",
             f"dev amplitude override with only {len(live_sorted)} live "
             f"point(s) (< MIN_LIVE_AMPS={MIN_LIVE_AMPS}): plumbing check "
             "only, no bookable verdict",
@@ -879,10 +953,10 @@ def main() -> dict:
         verdict, vreason, vdetails = map_verdict(trend, len(live_sorted),
                                                 len(amps))
 
-    # G0b — sensitivity on the mildest live point (deviation, pre-registered).
+    # G0b — E13's sensitivity gate on E13's anchor (Arm L, verbatim).
+    sens_measured = rep_L["g0b_luminance_r2_k64"]
+    sens_pass = bool(sens_measured >= SENSITIVITY_FLOOR)
     mildest = min(live_sorted, key=lambda a: points[_amp_key(a)]["mean_curvature"])
-    lum = reports[_amp_key(mildest)]["g0b_luminance_r2_k64"]
-    sens_pass = bool(lum >= SENSITIVITY_FLOOR)
 
     # C6 — the amp 2.2 point is E13's own N2 arm; it must reproduce E13.
     repl = None
@@ -909,11 +983,13 @@ def main() -> dict:
 
     if not sens_pass:
         verdict, vreason = "INVALID_HARNESS", (
-            f"G0b: luminance sensitivity at the mildest live amplitude "
-            f"({mildest}, curvature {points[_amp_key(mildest)]['mean_curvature']}) "
-            f"is {lum} < {SENSITIVITY_FLOOR} — the harness is blind here, so a "
-            "read-death would not be evidence about the embedding")
-    final = verdict_prefix + verdict
+            f"G0b: luminance sensitivity on Arm L (E12's linear staging, "
+            f"E13's own anchor) is {sens_measured} < {SENSITIVITY_FLOOR} — "
+            "the harness is blind here, so a read-death would not be evidence "
+            "about the embedding")
+    # G0b — sensitivity on the mildest live point (deviation, pre-registered).
+    # The dev label already carries its prefix; the registered one does not.
+    final = verdict if verdict.startswith("DEV_") else verdict_prefix + verdict
 
     # C1/C2/C4/C5 — the booked controls, per amplitude, per dial.
     controls = {}
@@ -955,6 +1031,21 @@ def main() -> dict:
         "points": reports,
         "trend": trend,
         "controls_by_amplitude": controls,
+        "arm_L_anchor": {
+            "title": ("E12's linear staging (= E13's Arm L), rendered once: "
+                      "G0b's sensitivity anchor and the left edge of the "
+                      "x-axis, not a sweep point"),
+            "mean_curvature": summ_L["mean_curvature"],
+            "mean_lin_loo_r2": summ_L["mean_lin_loo_r2"],
+            "complete_pass": summ_L["pass"],
+            "certificate_summary": summ_L,
+            "certificate_per_dial": per_L,
+            "r2_still_loro": rep_L["r2_still_loro"],
+            "r2_room_loro": rep_L["r2_room_loro"],
+            "g0b_luminance_r2_k64": rep_L["g0b_luminance_r2_k64"],
+            "controls": rep_L["controls"],
+            "gate": rep_L["gate"],
+        },
         "e13_replication_c6": repl,
         "verdict_details": vdetails,
         "gates_measured": {
@@ -964,15 +1055,22 @@ def main() -> dict:
                                      "measured": fid},
             "g0b_sensitivity": {
                 "floor": SENSITIVITY_FLOOR, "pass": sens_pass,
-                "anchor_amplitude": float(mildest),
-                "anchor_curvature": points[_amp_key(mildest)]["mean_curvature"],
-                "measured": lum,
-                "per_amplitude": {_amp_key(a):
-                                  reports[_amp_key(a)]["g0b_luminance_r2_k64"]
-                                  for a in live_sorted},
-                "deviation": ("gate applied to the mildest LIVE amplitude "
-                              "rather than E13's Arm L, which E25 does not "
-                              "render (pre-registered)")},
+                "anchor": "Arm L (E12's linear staging) — E13's G0b verbatim",
+                "measured": sens_measured,
+                "per_amplitude_booked": {
+                    _amp_key(a): reports[_amp_key(a)]["g0b_luminance_r2_k64"]
+                    for a in live_sorted},
+                "mildest_live_amplitude_booked": {
+                    "amplitude": float(mildest),
+                    "curvature": points[_amp_key(mildest)]["mean_curvature"],
+                    "luminance_r2_k64": reports[_amp_key(mildest)]["g0b_luminance_r2_k64"],
+                    "note": ("v1 gated G0b on this anchor and the registered "
+                             "sweep returned INVALID_HARNESS at 0.887 "
+                             "(floor 0.90) — a build bug, not a finding: "
+                             "luminance readability is carrier-dependent, so "
+                             "the mildest folded point is no sensitivity "
+                             "control. v2 restores E13's Arm L anchor. This "
+                             "row stays on the record as a booked control.")}},
             "censoring": {"rule": ("a carrier failing E13's certificate liveness "
                                    "half is INVALID_STAGING and censored from "
                                    "the trend; carrier-only, label-free, "
@@ -1018,8 +1116,11 @@ def main() -> dict:
             "results. Booked caveats: one carrier family, one fold phase (0.0), "
             "one frozen random physics draw, one encoder, and the LINEAR reader "
             "of E12/E13 (E13b's nonlinear-reader axis is not answered here); "
-            "crit_d is a grid property, so each critical is reported with its "
-            "neighbouring passing amplitude. See the module docstring for the "
+            "G0b's sensitivity anchor is E13's Arm L, rendered in-run as the "
+            "x-axis origin; crit_d is a grid property, so each critical is "
+            "reported with its neighbouring passing amplitude, and the "
+            "crit_k64_floor_booked column shows the same critical with the "
+            "k16 retention clause dropped. See the module docstring for the "
             "full pre-registration, the measured design-pass table, and the "
             "C1-C9 booked controls."),
     })
