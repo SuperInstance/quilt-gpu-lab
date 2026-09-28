@@ -425,7 +425,8 @@ def run_encoder(spec, dev, torch, allow_download) -> tuple[dict, dict]:
 
     log(f"loading {spec['hf_id']} ({dev})...")
     if spec["loader"].startswith("e9.load_encoder"):
-        model, proc, notes = load_control(dev)
+        model_used, model, proc, notes = load_control(dev)
+        res["model"] = model_used
     elif spec["kind"] == "video":
         model, proc, notes = load_vjepa2(spec, dev, allow_download)
     else:
