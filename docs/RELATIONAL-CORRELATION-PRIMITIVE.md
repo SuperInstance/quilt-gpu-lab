@@ -57,28 +57,36 @@ are the same verb — *compute the co-variation and read its direction* — appl
 to different fields. That is not a coincidence to exploit; it is the primitive
 surfacing in two independent builds, which is exactly what a real primitive does.
 
-## The follow-up experiment (falsifiable)
+## The follow-up experiment (D18 — run, and it corrected the doc)
 
-The D13d result is clean but small (8 cells, p_corr=0.9). The principle claims
-generality. The falsifiable test:
+The falsifiable test was run (D18, 2026-09-27, seed 2718, pure CPU): sweep
+N ∈ {8, 32, 100, 300} × p_corr ∈ {0.9, 0.75, 0.6, 0.55}, plus a REINFORCE re-run
+at N=32, p_corr=0.9. Two findings, one of which retires a claim above.
 
-**Does correlation-discovery scale, and where does it break?** Sweep three axes
-on a single seeded harness:
-1. **Scale** — N ∈ {8, 32, 100, 300} cells. Claim: identification stays ≥0.95
-   at N=100 (correlation is O(N²) pairwise but O(1) per decision).
-2. **Noise** — p_corr ∈ {0.9, 0.75, 0.6, 0.55}. Claim: correlation degrades
-   gracefully, staying ≥0.9 at p_corr=0.6, and crossing 0.5 (chance) somewhere
-   near p_corr=0.55 — i.e., the method dies *at* the information bound, not
-   before it.
-3. **Reward comparison** — re-run the best RL variant (D13c) at N=32, p_corr=0.9.
-   Claim: reward-based concentration *collapses* with N (more receivers per
-   cell → sparser reward) while correlation does not.
+**Finding 1 — correlation scales (CONFIRMED, stronger than claimed).** Partner
+identification held at 1.0 on the *entire* grid, including the strict joint cell
+(N=100, p_corr=0.6) and the whole p_corr=0.55 row. The doc's "crossing 0.5 near
+p_corr=0.55" was pessimistic: at T=200 observations the per-decision SNR is still
+~5–8σ at p_corr=0.55, and the real floor sits far lower (~0.25 by SNR math). The
+primitive generalizes.
 
-**The number that decides:** if correlation-discovery holds ≥0.9 at N=100 AND
-p_corr=0.6, while REINFORCE falls below 0.3 at N=32, the principle generalizes —
-correlation is the primitive, reward is the fallback. If correlation also
-collapses at scale or under noise, then D13d was a small-N artifact and the
-principle retires to "correlation helps small graphs, learning scales."
+**Finding 2 — the "reward vs correlation" contrast was CONFOUNDED (FALSIFIED).**
+Re-running D13c REINFORCE on *disjoint consistent partners* (not the original's
+scattered per-fact partners) reaches concentration **1.0** at both N=8 and N=32 —
+NOT the claimed collapse below 0.3. D13c's published 0.217 was measured with one
+per-sender policy chasing ~7 conflicting targets, whose argmax metric has a
+structural ceiling near ~1/7. On the *same partner-consistent ground truth* that
+D13d's correlation read, REINFORCE learns the addressing at 1.0 even at N=32.
 
-Either outcome is a finding. This is the next D-experiment (D18), pure CPU, no
-model, minutes to run.
+So the claim "reward is structurally poor" was wrong as stated. The real
+primitive is **consistent relational target**, and correlation is the O(1) way to
+*find* that target — but once the target is consistent, reward learns it too.
+This does not demote correlation; it corrects *why* it wins. Correlation wins
+because it *discovers the consistent target* in O(1), not because gradient credit
+assignment is inherently incapable.
+
+**What stays true:** the harness is sound (verbatim D13c reproduction = 0.217;
+negative control — reward wired to a shifted partner → conc 0.0). The elephant
+connection stands. The next open question is no longer "correlation vs reward"
+but "how does a cell *find* a consistent target in a field where partners are
+entangled, not pre-paired" — the scattered-partner regime is the honest frontier.

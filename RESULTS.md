@@ -715,6 +715,28 @@ the ceiling; correlated dense purchases are dead weight or worse.
 ```
 - note: the fixed dataset finally runs, and the honest null lands. The degenerate constant baseline is dead (0.179, was 0.75 in E4's broken tail-split). But markov-1 (0.846) is the real bar, and the 68k-param transformer — now with 236 cells, interleaved walk (35 transitions), blocked split (all 4 rooms in heldout) — reaches heldout 0.821, which is BELOW markov-1. Verdict KILL per pre-registration (heldout must exceed max(baseline)+0.05). Finding: next-room prediction from 8-cell glyph context does NOT beat a simple transition-count model at this scale. The JEV-temporal question closes as: the temporal signal in this glyph-cell encoding is already fully captured by markov-1; a learned model adds nothing at 68k params. (The E4b note's "SMOKE" text in the JSON note field is stale cosmetic text from the smoke template — the mode/verdict/cells are the real full-scale run.)
 
+## D18 — correlation-discovery scaling (does D13d generalize?) [CPU]
+- ran: 2026-09-27 20:23
+- verdict: INCONCLUSIVE (correlation CONFIRMED, but the contrast half FALSIFIED)
+- result: ```json
+{
+  "experiment": "D18 correlation-discovery scaling",
+  "seed": 2718, "observations": 200, "reps": 5,
+  "corr_matrix_acc": {
+    "8":  {"0.9": 1.0, "0.75": 1.0, "0.6": 1.0, "0.55": 1.0},
+    "32": {"0.9": 1.0, "0.75": 1.0, "0.6": 1.0, "0.55": 1.0},
+    "100":{"0.9": 1.0, "0.75": 1.0, "0.6": 1.0, "0.55": 1.0},
+    "300":{"0.9": 1.0, "0.75": 1.0, "0.6": 1.0, "0.55": 1.0}
+  },
+  "rl_reinforce_d13c": {"N=8": {"conc": 1.0, "chance": 0.143}, "N=32": {"conc": 1.0, "chance": 0.032}},
+  "sanity_wrong_partner_conc": 0.0,
+  "strict_joint_ok_N100_p060": true,
+  "reinforce_collapses_N32": false,
+  "verdict": "INCONCLUSIVE"
+}
+```
+- note: TWO findings, one clean one painful. (1) Correlation-discovery is CONFIRMED and STRONGER than claimed — identification holds at 1.0 on the ENTIRE grid, every cell including the strict joint (N=100, p_corr=0.6) and the whole p_corr=0.55 row (the doc predicted crossing 0.5 near 0.55; the real floor sits far lower, ~0.25 by SNR math at T=200). (2) The contrast half FALSIFIED — re-running D13c REINFORCE on *disjoint consistent partners* (not the scattered per-fact partners of the original) reaches concentration 1.0 at N=8 AND N=32, NOT the claimed collapse below 0.3. The D13/D13b/D13c "reward is structurally poor" claim was CONFOUNDED: D13c's 0.217 was measured with one per-sender policy chasing ~7 conflicting targets (argmax structural ceiling ~1/7), while D13d's correlation read disjoint consistent pairs. On the SAME partner-consistent ground truth, REINFORCE learns the addressing at 1.0 even at N=32. Corrections: correlation scales (stronger than claimed); reward ALSO scales when the relational target is consistent. The primitive is NOT "correlation vs reward" — it is "consistent relational target," and correlation is the O(1) way to FIND that target. Negative control (reward wired to a shifted partner → conc 0.0) and verbatim D13c reproduction (0.217) confirm the harness is sound. Verdict INCONCLUSIVE per pre-registration because the contrast half of the claim failed, not because the signal was weak. RELATIONAL-CORRELATION-PRIMITIVE.md revised to correct the confound.
+
 ## D15b — read-the-channel v2 (few-shot + curriculum + 5 real epochs) [SMOKE]
 - ran: 2026-09-27 20:09
 - verdict: INCONCLUSIVE (smoke; full-scale recipe ready)
