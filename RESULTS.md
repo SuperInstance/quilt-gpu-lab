@@ -890,10 +890,32 @@ the ceiling; correlated dense purchases are dead weight or worse.
 
 ## E9 — ijepa-stills (I-JEPA still-image world model on STILL frames)
 - ran: 2026-09-27 21:57
-- verdict: None
+- verdict: KEEP
 - result: ```json
 {
-  "facebook/ijepa_vitb": "load failed: OSError: facebook/ijepa_vitb is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'\nIf this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your"
+  "experiment": "E9 ijepa-stills",
+  "device": "cuda",
+  "seed": 2718,
+  "model_requested": "facebook/ijepa_vitb",
+  "model": "facebook/ijepa_vith16_1k",
+  "load_notes": {
+    "facebook/ijepa_vitb": "load failed: OSError: facebook/ijepa_vitb is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'\nIf this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your"
+  },
+  "rooms": [
+    "still-solid",
+    "moving-testsrc",
+    "smpte",
+    "moving-testsrc2"
+  ],
+  "stills_per_room": 12,
+  "cells": 48,
+  "emb_dim": 1280,
+  "still_vs_testsrc_cross_cos": 0.7012,
+  "within_still": 1.0,
+  "within_testsrc": 0.9996,
+  "heldout_gap": 0.2984,
+  "tex_vs_motion_axis_corr": -0.3177,
+  "verdict": "KEEP"
 }
 ```
-- note: I-JEPA loaded via fallback checkpoint (facebook/ijepa_vith16_1k, fp16, emb_dim 1280) — the requested facebook/ijepa_vitb 401s on the hub, fallback held. The still-image world model separates STILL frame structure from motion texture: within-still 1.0 / within-testsrc 0.9996, but still-vs-testsrc cross-cos 0.70 (heldout gap 0.298), texture-vs-motion axis correlation -0.32. A real reading on the elephant lane: a room's stable still-identity is distinguishable from its transient motion texture — perception reads the still field as a distinct object from the moving texture.
+- note: I-JEPA loaded via fallback checkpoint (facebook/ijepa_vith16_1k, fp16, emb_dim 1280) — requested facebook/ijepa_vitb 401s on the hub, fallback held. The still-image world model separates STILL frame structure from motion texture: within-still 1.0 / within-testsrc 0.9996, but still-vs-testsrc cross-cos 0.70 (heldout gap 0.298), texture-vs-motion axis correlation -0.32. A real reading on the elephant lane: a room's stable still-identity is distinguishable from its transient motion texture.
