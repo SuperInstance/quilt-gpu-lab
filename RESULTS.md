@@ -2415,3 +2415,8 @@ the ceiling; correlated dense purchases are dead weight or worse.
 - ran: 2026-09-28 15:30 (same config/seed as G1 — clean replication; commit chain in training/glyph_g1)
 - verdict: INCONCLUSIVE (gate replicated: majority +19.1, persistence fails life −12.2 / mandelbrot −6.4, testsrc2 +6.7)
 - note: **the changed-cells answer: the model learned statics + predictable dynamics, not hard dynamics.** On cells that actually moved: gradients 66% (of 4% changed), testsrc2 **40%** (periodic motion — real dynamics learning), but life 5.6% (of 17%) and mandelbrot 7.5% (of 53%) — the cellular automaton and the fractal zoom are NOT learned in 5 minutes. Overall 80.5% accuracy is mostly statics; the G1 gate's INCONCLUSIVE is now fully explained. G3 lever firing: double the framerate (bigger per-frame deltas starve persistence AND test whether life/mandelbrot become learnable at finer dt).
+
+## G3 — framerate scaling (20fps: does finer dt teach the hard dynamics?)
+- ran: 2026-09-28 15:45 (20fps corpus, 2x temporal data; same config/seed)
+- verdict: INCONCLUSIVE (and the diagnosis sharpened)
+- note: 20fps did NOT teach the hard dynamics — life changed_acc 6.9% (vs 5.6% @10fps), mandelbrot 8.1% (vs 7.5%). The doubled framerate made frames MORE similar (changed_frac collapsed: life 16.6%→5.1%), strengthening persistence's statics advantage (testsrc2 margin shrank +6.7→+2.8; majority margin +19.3→+13.2). Model overall 83.1% (up from 80.5%) — better statics, same dynamics. **The diagnosis now points exactly at diff-targets (gem #1): the model wastes capacity predicting the 95% that doesn't change. G4 fires the loss-masked variant (train only on changed cells) — the glyph program independently derived why 'predict differences, not states' matters.**

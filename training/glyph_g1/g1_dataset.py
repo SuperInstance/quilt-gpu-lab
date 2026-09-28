@@ -33,8 +33,10 @@ COLS, ROWS = 48, 36
 RL = len(active_ramp(S))          # 11 for classic
 SEP = 31
 
-NFF = 600  # spec: 60 s x 10 fps per lavfi source (c2_feed's SECONDS=10 overridden)
+FPS_OVERRIDE = int(os.environ.get("G1_FPS", "0")) or FPS
 SECONDS = 60
+NFF = SECONDS * FPS_OVERRIDE  # frames per lavfi source
+OUT_TAG = "" if FPS_OVERRIDE == FPS else str(FPS_OVERRIDE)
 
 
 def codes_for(frame_rgb: np.ndarray) -> np.ndarray:
@@ -71,8 +73,10 @@ def codes_for(frame_rgb: np.ndarray) -> np.ndarray:
 
 def lavfi_frames(graph: str):
     """Pipe raw rgb24 frames from an ffmpeg lavfi source."""
+    if FPS_OVERRIDE != FPS:
+        graph = graph.replace(f"rate={FPS}", f"rate={FPS_OVERRIDE}")
     cmd = ["ffmpeg", "-loglevel", "error", "-f", "lavfi", "-i", graph,
-           "-t", str(SECONDS), "-r", str(FPS),
+           "-t", str(SECONDS), "-r", str(FPS_OVERRIDE),
            "-vf", f"scale={W}:{H}", "-pix_fmt", "rgb24",
            "-f", "rawvideo", "-"]
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, bufsize=W * H * 3 * 32)
@@ -121,7 +125,7 @@ def main() -> None:
         splits[f"{name}_va"] = arr[a:b]
         splits[f"{name}_te"] = arr[b:]
     splits["names"] = np.array(list(streams.keys()))
-    np.savez_compressed(os.path.join(out_dir, "data.npz"), **splits)
+    np.savez_compressed(os.path.join(out_dir, f"data{OUT_TAG}.npz"), **splits)
     cells = total * ROWS * COLS
     print(f"[g1] total frames {total}, cells {cells:,}, "
           f"3-pack tokens ~{cells * 3 + total * 9:,}", flush=True)

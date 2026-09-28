@@ -491,7 +491,7 @@ import numpy as np
 from dataclasses import asdict
 
 HERE = _os.path.dirname(_os.path.abspath(__file__))
-DATA_NPZ = _os.path.join(HERE, "data.npz")
+DATA_NPZ = _os.path.join(HERE, _os.environ.get("G1_DATA", "data.npz"))
 MAX_SEQ_LEN = 6144
 TIME_BUDGET = 300
 SEP = 31
