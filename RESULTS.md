@@ -656,7 +656,7 @@ the ceiling; correlated dense purchases are dead weight or worse.
 
 ## D15 — read-the-channel (VLM LoRA reads the tone channel) [SMOKE]
 - ran: 2026-09-27 19:09
-- verdict: INCONCLUSIVE (smoke; full-scale recipe ready)
+- verdict: INCONCLUSIVE (full-scale: tuned 0.3509 vs base 0.2658, +0.0851 — positive but under the 0.80/0.30 gate)
 - result: ```json
 {
   "experiment": "D15 read-the-channel (VLM LoRA reads the tone channel)",
@@ -684,3 +684,17 @@ the ceiling; correlated dense purchases are dead weight or worse.
 ```
 - note: the E4 fix. The degenerate E4 baseline is DEAD: constant-predictor now 0.25 (chance, was 0.75 in E4's broken tail-split), markov-1 0.75 is the real bar. 60s clips -> 236 cells, interleaved walk (35 room transitions), blocked split by cell-block (all 4 rooms in heldout). Full data-path validation: constant 0.179, markov-1 0.846 — so the full-scale question is sharp: beat 0.846+0.05 by reading run-position from 8-cell context, not just current room. FULL-SCALE: E4B_FULL=1 -> rooms=4, 60s, 120 epochs, minutes on 4050. Determinism proven (byte-identical runs).
 
+
+
+## D15 — read-the-channel [FULL-SCALE]
+- ran: 2026-09-27 19:53
+- verdict: INCONCLUSIVE (positive but under gate)
+- result: ```json
+{
+  "experiment": "D15 read-the-channel (full-scale)",
+  "tuned_token_acc": 0.3509, "base_token_acc": 0.2658,
+  "tuned_minus_base": 0.0851, "gate_tuned": 0.80, "gate_base": 0.30,
+  "verdict": "INCONCLUSIVE"
+}
+```
+- note: the reading gate, honestly. Tuned beats base (+0.0851) — the LoRA is learning SOMETHING about the channel — but tuned 0.3509 is far from the 0.80 gate, and base 0.2658 is barely under its 0.30 ceiling (chance 0.25). Reading the timbre channel from bytes is HARD: the model climbs to 0.35 (well above chance, format learned) but can't reach the read-the-channel ceiling in 2 epochs on 1.5B. This is the honest first rung of Casey's VLM-LoRA vision: the channel is learnable-but-hard, and the gap (0.35 -> 0.80) is exactly where a bigger model / more epochs / better tokenization lives. Not a KILL — a direction with a measured distance.
