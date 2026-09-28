@@ -653,3 +653,19 @@ the ceiling; correlated dense purchases are dead weight or worse.
 ```
 - note: first pass KILLED — the compiler (RLE on the WIRE timbre) INFLATED the stream (ratio 1.73) because the Latin square scrambles the wire timbre into noise (that scrambling IS what hides the tone). The fix, and the FINDING: decode the momentum FIRST (using the data plane as context), then RLE the decoded momentum — which compresses to 0.034 (3.4%!), vs the wire's 0.72. With 6-bit data packed 4-per-3-bytes, the compiler now beats raw at 200 chars and reaches ratio 0.789 at 4000. This is a genuine, sharp result: the tone channel's INVISIBILITY (Latin-square scrambling) and its COMPRESSIBILITY are in tension on the wire — you cannot compress what you are hiding. A receiver with context can decode-and-compress; a context-free observer can neither read nor compress it. That is the whole game in one number.
 
+
+## D15 — read-the-channel (VLM LoRA reads the tone channel) [SMOKE]
+- ran: 2026-09-27 19:09
+- verdict: INCONCLUSIVE (smoke; full-scale recipe ready)
+- result: ```json
+{
+  "experiment": "D15 read-the-channel (VLM LoRA reads the tone channel)",
+  "mode": "smoke", "seed": 2718, "model": "Qwen2.5-0.5B-Instruct", "quant": "nf4-4bit",
+  "train_pairs": 8, "heldout_pairs": 10, "steps": 2,
+  "tuned_token_acc": 0.127, "base_token_acc": 0.00,
+  "peak_vram_mib": 1390, "wall_s": 45,
+  "verdict": "INCONCLUSIVE"
+}
+```
+- note: the reading gate. A 2-step smoke proves the pipeline: the tuned model immediately learns the output FORMAT (loss 1.04->0.52, emits d/f/u/h codes) while base just echoes hex (0.00 wellformed). 0.127 token-acc on a 2-step run is pipeline proof, not the hypothesis test. 4-bit NF4 held, no fallback. FULL-SCALE RECIPE (D15_FULL=1): Qwen2.5-1.5B, 2 epochs over 400 train pairs, eval 60 held-out pairs; pre-registered gate: tuned >= 0.80 AND base <= 0.30 (chance 0.25). Since D14 proved I(M;T)=0 without context, >=0.80 can only be reached by actually reading timbre+context. ~1h on the 4050.
+

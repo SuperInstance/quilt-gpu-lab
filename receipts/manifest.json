@@ -1,10 +1,10 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-09-28T03:06:48.295399+00:00",
+  "generated_at": "2026-09-28T03:09:43.149234+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "3798ee73938f2836a3dd578e12523048bc669095842ea70d9e0381cd15951400",
-    "QUEUE.md": "2c28e24d60f0fc60f20bc54b4fa3c6aa234a36e4867ab8092625cb199674b786"
+    "RESULTS.md": "5679e634ed03ccbdb90fae9a4f7b2676180ad968428217975fdb14ac4aeaa357",
+    "QUEUE.md": "ea8edf7aeb682aefb3944fa444c2f36865cd0c931d1c89b1712d3b81b7268e89"
   },
   "experiments": {
     "common.py": "af08f672c78f4934e69fb0e240f22928ff3e65a9848ca9a55a8d07293b69db33",
@@ -32,7 +32,7 @@
     "e2b_flow_beat_revision.py": "3fe205915d36317ca58baa4721462202d0a6ee82e793ddd17e97f84b73b752d6",
     "e3_cast_heldout.py": "a1aa84dc5086d63564b0128dd02175a3e7ccaca6375832e92d58b69385aa3a51",
     "e4_next_room_transformer.py": "74342f5cabd658348f4e5df350f4b59453d8300d033c08ac2ce80c8321f93d6f",
-    "e4b_next_room_revision.py": "d9ac183cdbb0a01c7021de7248b7ef789c8849022795e30060a50bf0d75d60a1",
+    "e4b_next_room_revision.py": "f6e9e40c4961bb47ecdbe9bf7d0dc90b2179cd3a83f918c286e3bfac01f54085",
     "e6_harness_selftest.py": "db4a151496b443053b2402f467dc5b738f5dea7cae8a58e558d6040a26d9845e",
     "e7_vjepa2_in_cells.py": "53213552122b40fbdd1b6e22078582d94a264252f56495bed04865b01cceaee9",
     "e8_encoder_swap_leaderboard.py": "712cf1047349e804c5f73ee884c65dfd5cadb6874bced8ca6990fd262d6c977b",

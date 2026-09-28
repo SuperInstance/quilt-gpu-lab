@@ -52,6 +52,7 @@ EXP_MOD = {
     "D13b": "experiments.d13b_relational_confidence",
     "D13c": "experiments.d13c_relational_reinforce",
     "D13d": "experiments.d13d_shared_key",
+    "D15": "experiments.d15_read_channel",
     "D16": "experiments.d16_embedder_readable",
     "D17": "experiments.d17_compiler_scale",
     "D14": "experiments.d14_qthe_timbre_proof",

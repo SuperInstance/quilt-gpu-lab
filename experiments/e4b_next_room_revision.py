@@ -143,7 +143,6 @@ def blocked_split(y: np.ndarray, n_rooms: int, rng: np.random.Generator
     room and the heldout side has enough windows to mean anything."""
     n_walk = len(y)
     n_windows = n_walk - CTX
-    W = np.stack([np.arange(n_windows)])  # placeholder for shape doc
     block_of = np.minimum(np.arange(n_walk) * N_BLOCKS // n_walk, N_BLOCKS - 1)
     for _ in range(50):
         heldout_blocks = sorted(rng.choice(N_BLOCKS, size=2, replace=False).tolist())
@@ -214,8 +213,9 @@ def main() -> dict:
     tr, he, heldout_blocks = blocked_split(y, n_rooms, rng)
     Wtr, Ttr = torch.tensor(W[tr]), torch.tensor(T[tr])
     Whe, The = torch.tensor(W[he]), torch.tensor(T[he])
-    cur_tr, cur_he = T[tr[:-1]] if False else y[np.where(tr)[0] + CTX - 1], \
-        y[np.where(he)[0] + CTX - 1]
+    tr_idx, he_idx = np.where(tr)[0], np.where(he)[0]
+    cur_tr = y[tr_idx + CTX - 1]   # current room = last context cell's room
+    cur_he = y[he_idx + CTX - 1]
     print(f"[e4b] split: {int(tr.sum())} train / {int(he.sum())} heldout windows "
           f"(heldout cell-blocks {heldout_blocks} of {N_BLOCKS})")
 
