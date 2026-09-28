@@ -557,3 +557,18 @@ the ceiling; correlated dense purchases are dead weight or worse.
 ```
 - note: the REAL falsification Casey named — cells must LEARN whom to message (D12 handed them the address). With a naive binary-reward Hebbian rule (reward 1.0 when reconstruction matches, 0.5-coin otherwise, 0.98-decay + 0.02-boost), the graph does NOT converge: final accuracy 0.467 (below the isolated baseline 0.558), edge concentration 0.233 vs chance 0.143. There IS a real but weak gradient (true partner rewards 1.0 always vs 0.5 for wrong), but the rule is too slow/weak to climb in 30 epochs over only 30 updates/edge. BOOKED HONESTLY: the structural result (D12, perfect addressing -> 1.0) stands; "relational intelligence GROWING" needs a stronger credit-assignment mechanism than naive Hebbian reward — that IS the finding. Next: policy-gradient-style edge learning, or a reward that uses reconstruction CONFIDENCE (not binary match) as the signal. D13 kills the naive version, not the program.
 
+
+## D13b — relational addressing (confidence-weighted reward)
+- ran: 2026-09-27 18:00
+- verdict: KILL
+- result: ```json
+{
+  "experiment": "D13b relational addressing (confidence-weighted reward)",
+  "seed": 2718, "epochs": 30, "cells": 8, "facts": 60,
+  "final_acc": 0.533, "target_acc": 0.80,
+  "edge_concentration": 0.30, "target_conc": 0.50,
+  "verdict": "KILL"
+}
+```
+- note: the confidence-weighted (signed) reward is a STRONGER signal than D13's binary reward — edge concentration rose 0.233 -> 0.30 (chance 0.143) and mid-run accuracy peaked 0.717 — but it still does not converge within 30 epochs. The trail is now honest and sharp: D12 proves the STRUCTURAL reach-bound (perfect addressing -> 1.0), but LEARNING the addressing is a genuinely hard credit-assignment problem. Naive Hebbian (D13) and confidence-weighted (D13b) both fail; the next rung is a proper policy-gradient / REINFORCE-with-baseline, or a shared-key (two cells discover their correlation by noticing their atoms are anti-correlated, then message each other directly). "Relational intelligence GROWING" is real at the structure level and HARD at the learning level — that is the finding. Booked honestly, not dressed up.
+

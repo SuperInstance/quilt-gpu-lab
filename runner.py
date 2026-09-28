@@ -49,6 +49,7 @@ EXP_MOD = {
     "D10": "experiments.d10_cell_kernel",
     "D12": "experiments.d12_substrate_falsification",
     "D13": "experiments.d13_relational_growing",
+    "D13b": "experiments.d13b_relational_confidence",
     "D14": "experiments.d14_qthe_timbre_proof",
 }
 
