@@ -562,16 +562,25 @@ def evaluate_g1(model, streams, autocast_ctx):
         toks = stream_tokens(frames)
         n = len(toks)
         correct = total = 0
+        changed_correct = changed_total = 0
         ce_sum = 0.0
+        # G2 diagnostic: changed-cells mask (cell != previous frame's same cell)
+        Lw = 1728 + 1  # frame + SEP stride
+        chg_stream = np.zeros(n, dtype=bool)
+        ii = np.arange(Lw, n)
+        chg_stream[ii] = (toks[ii] != SEP) & (toks[ii] != toks[ii - Lw])
         for i in range(T, n - 1, T):
             x = torch.from_numpy(toks[i - T:i])[None].to(device)
             yt = torch.from_numpy(toks[i - T + 1:i + 1])[None].to(device)
             with autocast_ctx:
                 logits = model(x)
             mask = yt[0] != SEP
+            cmask = mask & torch.from_numpy(chg_stream[i - T + 1:i + 1]).to(device)
             pred = logits[0].argmax(-1)
             correct += (pred[mask] == yt[0][mask]).sum().item()
             total += int(mask.sum().item())
+            changed_correct += (pred[cmask] == yt[0][cmask]).sum().item()
+            changed_total += int(cmask.sum().item())
             ce_sum += F.cross_entropy(logits[0][mask].float(),
                                       yt[0][mask], reduction="sum").item()
         fr = frames
@@ -589,6 +598,8 @@ def evaluate_g1(model, streams, autocast_ctx):
             "model_ce_per_cell": ce_sum / max(total, 1),
             "persist_acc": persist_acc,
             "majority_acc": majority_acc,
+            "model_changed_acc": changed_correct / max(changed_total, 1),
+            "changed_frac": float(chg_stream.mean()),
         }
     model.train()
     return results
