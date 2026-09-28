@@ -1,0 +1,129 @@
+{
+  "experiment": "D1b look-again sweep (bundled corpus, reach-bound scaling)",
+  "mode": "smoke",
+  "device": "cpu",
+  "have_torch": false,
+  "seed": 2718,
+  "item_source": "bundle:d1_lookagain_items.jsonl (n=320)",
+  "n_items": 320,
+  "n_semantic": 160,
+  "n_counting": 160,
+  "n_calib": 80,
+  "n_eval": 240,
+  "n_dense_readers": 3,
+  "readers": {
+    "dense_0": {
+      "model": "BAAI/bge-small-en-v1.5",
+      "backend": "hash-fallback"
+    },
+    "dense_1": {
+      "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "backend": "hash-fallback"
+    },
+    "dense_2": {
+      "model": "thenlper/gte-small",
+      "backend": "hash-fallback"
+    }
+  },
+  "symbolic_reader": "counting-address (G21)",
+  "calibrated_thresholds": {
+    "dense_0": 0.6388907170295716,
+    "dense_1": 0.7224255263805389,
+    "dense_2": 0.8148665559291839
+  },
+  "headline": {
+    "dense_readers": [
+      0,
+      1,
+      2
+    ],
+    "best_single_acc": 0.45,
+    "oracle_dense_acc": 0.7083333333333334,
+    "oracle_dense_plus_reach_acc": 0.9125,
+    "safe_fold_dense_acc": 0.45,
+    "safe_fold_dense_plus_reach_acc": 0.6291666666666667,
+    "look_again_acc": 0.6291666666666667,
+    "look_again_minus_best_single": 0.17916666666666664,
+    "reach_ceiling_lift": 0.2041666666666666,
+    "lift_ci95": [
+      0.1375,
+      0.22916666666666666
+    ],
+    "best_single_ci95": [
+      0.3875,
+      0.5083333333333333
+    ]
+  },
+  "correlated_dense_purchase_oracle_lift": 0.15416666666666662,
+  "scaling_by_items": [
+    {
+      "n_items": 48,
+      "best_single_acc": 0.5833333333333334,
+      "look_again_acc": 0.75,
+      "lift": 0.16666666666666663,
+      "oracle_dense_plus_reach_acc": 0.8888888888888888
+    },
+    {
+      "n_items": 96,
+      "best_single_acc": 0.5833333333333334,
+      "look_again_acc": 0.6666666666666666,
+      "lift": 0.08333333333333326,
+      "oracle_dense_plus_reach_acc": 0.9166666666666666
+    },
+    {
+      "n_items": 160,
+      "best_single_acc": 0.525,
+      "look_again_acc": 0.6583333333333333,
+      "lift": 0.1333333333333333,
+      "oracle_dense_plus_reach_acc": 0.9333333333333333
+    },
+    {
+      "n_items": 240,
+      "best_single_acc": 0.4777777777777778,
+      "look_again_acc": 0.6277777777777778,
+      "lift": 0.14999999999999997,
+      "oracle_dense_plus_reach_acc": 0.9
+    },
+    {
+      "n_items": 320,
+      "best_single_acc": 0.45,
+      "look_again_acc": 0.6291666666666667,
+      "lift": 0.17916666666666664,
+      "oracle_dense_plus_reach_acc": 0.9125
+    }
+  ],
+  "scaling_by_readers": [
+    {
+      "n_dense_readers": 1,
+      "best_single_acc": 0.45,
+      "look_again_acc": 0.6291666666666667,
+      "lift": 0.17916666666666664,
+      "oracle_dense_acc": 0.45,
+      "oracle_dense_plus_reach_acc": 0.9,
+      "reach_ceiling_lift": 0.45
+    },
+    {
+      "n_dense_readers": 2,
+      "best_single_acc": 0.45,
+      "look_again_acc": 0.6291666666666667,
+      "lift": 0.17916666666666664,
+      "oracle_dense_acc": 0.6041666666666666,
+      "oracle_dense_plus_reach_acc": 0.9125,
+      "reach_ceiling_lift": 0.30833333333333335
+    },
+    {
+      "n_dense_readers": 3,
+      "best_single_acc": 0.45,
+      "look_again_acc": 0.6291666666666667,
+      "lift": 0.17916666666666664,
+      "oracle_dense_acc": 0.7083333333333334,
+      "oracle_dense_plus_reach_acc": 0.9125,
+      "reach_ceiling_lift": 0.2041666666666666
+    }
+  ],
+  "bootstrap_draws": 500,
+  "peak_vram_mib": 0.0,
+  "runtime_s": 0.1,
+  "verdict": "INCONCLUSIVE",
+  "verdict_reason": "smoke run (D1B_FULL unset) \u2014 pipeline-proof only, not the docket decision"
+}

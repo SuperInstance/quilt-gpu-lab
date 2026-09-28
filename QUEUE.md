@@ -15,6 +15,7 @@
 - [x] E10 invariance race — ternary gate vs a stateless sign-tracker (persistence/dead-reckoning) on the SAME frames; does the gate beat a lookup table, or is it a fancy debounce circuit? The ground-truth pole.
 - [x] E11 debounce kill — pre-registered adversarial test: run the gate on held-out sign-patterns and see if it loses to a 2-bit dead-reckoning baseline; a loss here kills the 'ternary = learning substrate' thesis honestly.
 - [x] D1 look-again-scale (reach-bound fold sweep) — jev-quilt G21 Law-7 effect at scale — 2026-09-27 KEEP
+- [x] D1b look-again sweep (bundled corpus, oracle/safe-fold/Look-Again, scaling by items+readers) — ready-to-run packaging of D1 for tonight's RTX 4050 pass: committed item set (no network needed for a smoke pass), GPU-accelerated dense readers with a clean CPU/offline hashing fallback. Run: `python -m experiments.d1b_lookagain_sweep` (smoke) or `D1B_FULL=1 python -m experiments.d1b_lookagain_sweep` (docket-scale) — 2026-09-28 INCONCLUSIVE (smoke; full-scale D1B_FULL=1 ready)
 - [x] D2 qthe ternary matmul kernel — parity + speedup vs fp16 (prices C1) — 2026-09-27 KEEP
 - [x] D3 statevector ceiling — GPU executor for micromoth — 2026-09-27 KEEP
 - [x] D6 fun scorer + seed bank — cargo-line-tycoon — 2026-09-27 KEEP

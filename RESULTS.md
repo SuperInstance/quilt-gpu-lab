@@ -750,3 +750,65 @@ the ceiling; correlated dense purchases are dead weight or worse.
 ```
 - note: pipeline proven on GPU (4-bit NF4 held, no fallback). D15b attacks the 0.35->0.80 gap with 4 concrete changes: (1) 5 REAL curriculum epochs — fixes a step-math bug in D15 where steps=len*epochs//8 but the loop ate 4 examples/step, so "2 epochs" was ~1 effective pass; (2) few-shot worked examples (4 codec-asserted byte decodings) in the prompt, both arms; (3) curriculum short->long (12-char -> 24-char -> full, so the model learns the per-byte subroutine before long-output alignment); (4) bigger base chain Qwen2.5-3B 4-bit with VRAM-headroom fallback to 1.5B. Gate unchanged: tuned>=0.80 AND base<=0.30. FULL-SCALE: D15B_FULL=1, ~2.5-3.5h on the 4050.
 
+
+## D1b — look-again sweep (bundled corpus, oracle/safe-fold/Look-Again) [SMOKE]
+- ran: 2026-09-28 (dev-box smoke, no GPU/network in that box — this is the
+  zero-setup portability proof, not the docket-scale decision)
+- verdict: INCONCLUSIVE (smoke; full-scale ready via `D1B_FULL=1` on the RTX 4050)
+- result: ```json
+{
+  "experiment": "D1b look-again sweep (bundled corpus, reach-bound scaling)",
+  "mode": "smoke", "device": "cpu", "have_torch": false, "seed": 2718,
+  "item_source": "bundle:d1_lookagain_items.jsonl (n=320)",
+  "n_items": 320, "n_semantic": 160, "n_counting": 160, "n_eval": 240,
+  "readers": {"dense_0": "bge-small-en-v1.5 (hash-fallback)",
+              "dense_1": "all-MiniLM-L6-v2 (hash-fallback)",
+              "dense_2": "gte-small (hash-fallback)",
+              "symbolic": "counting-address (G21)"},
+  "headline": {
+    "best_single_acc": 0.45, "best_single_ci95": [0.3875, 0.5083],
+    "oracle_dense_acc": 0.7083, "oracle_dense_plus_reach_acc": 0.9125,
+    "safe_fold_dense_acc": 0.45, "safe_fold_dense_plus_reach_acc": 0.6292,
+    "look_again_acc": 0.6292, "look_again_minus_best_single": 0.1792,
+    "lift_ci95": [0.1375, 0.2292], "reach_ceiling_lift": 0.2042
+  },
+  "correlated_dense_purchase_oracle_lift": 0.1542,
+  "bootstrap_draws": 500, "runtime_s": 0.1,
+  "verdict": "INCONCLUSIVE"
+}
+```
+- note: this is D1 (`experiments/d1_look_again_scale.py`, KEEP) repackaged as
+  a zero-setup artifact — a COMMITTED 320-item bundle
+  (`experiments/data/d1_lookagain_items.jsonl`, 50/50 semantic/counting,
+  seed 2718, regenerate with `--regen-bundle`) plus an explicit
+  best-single / oracle(dense) / oracle(dense+symbolic) / safe-fold-vote /
+  Look-Again comparison (not just a chord sweep), and a scaling readout over
+  #items and #dense-readers (`scaling_by_items`, `scaling_by_readers` in
+  `results/d1_lookagain_scaling.json`). This run used the CPU/offline
+  hashing-trick fallback (no torch, no network in the dev sandbox that
+  wrote this line) — deliberately weak individual dense readers, which is
+  WHY `best_single_acc` (0.45) reads below chance and `safe_fold_dense_acc`
+  matches it exactly (3 noisy, correlated hash-projections voting together
+  add nothing). The qualitative finding survives anyway, sharply: buying
+  the independent-reach symbolic reader lifts the existential oracle
+  ceiling +0.204 (0.708 -> 0.913, more than the +0.154 a second correlated
+  dense reader buys), and Look-Again (best-single, overridden by the
+  reach reader at its addresses) beats best-single by +0.179
+  [0.138, 0.229] — CI excludes 0. Both scaling curves
+  (`scaling_by_items` n=48..320, `scaling_by_readers` k=1..3) hold the same
+  qualitative shape across sizes. **This is a pipeline/portability proof,
+  not the docket decision** — the verdict is correctly downgraded to
+  INCONCLUSIVE per the smoke convention (cf. D4, D15, D15b) because weak
+  fallback embeddings aren't the real LLM-reader question. On the RTX 4050
+  tonight, `D1B_FULL=1 python -m experiments.d1b_lookagain_sweep` downloads
+  the real `bge-small-en-v1.5` / `all-MiniLM-L6-v2` / `gte-small` encoders
+  (GPU-accelerated via sentence-transformers/torch, <2 GB VRAM per the
+  docket envelope), generates 3000 items on the fly (same generator, seed
+  2718), and can return **KEEP/KILL** for real: KEEP iff the accuracy-lift
+  CI excludes 0 AND the reach-reader purchase raises the oracle ceiling
+  over the dense pool alone. **Caveat on `runner.py`:** its queue-claim
+  regex (`ITEM_RE`) only matches `E\d+` ids, so — like every other D-item
+  in this ledger — D1b is NOT auto-claimed by the cron loop; run it
+  directly with the command above (still wired into `runner.EXP_MOD["D1b"]`
+  for `guard.py`-wrapped manual invocation via `runner.run("D1b")`).
+

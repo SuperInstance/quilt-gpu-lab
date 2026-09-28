@@ -1,0 +1,17 @@
+# Pinned deps for experiments/d1b_lookagain_sweep.py (D1b).
+# Install into the shared lab venv (~/venvs/elephant-gpu) that runner.py uses.
+#
+# The script has a clean CPU/offline fallback (a deterministic hashing-trick
+# embedding, numpy-only) when these are missing, so it runs anywhere — but
+# for the real docket-scale sweep on the RTX 4050, install the real stack:
+#
+#   ~/venvs/elephant-gpu/bin/pip install -r requirements-d1b_lookagain_sweep.txt
+#
+# CUDA build of torch (matches the lab's cu126 wheel used elsewhere, see
+# RESULTS.md D7's `versions` block) — install torch FIRST from the CUDA
+# index, then this file's sentence-transformers/numpy pins:
+#   ~/venvs/elephant-gpu/bin/pip install torch==2.14.0 --index-url https://download.pytorch.org/whl/cu126
+numpy==2.4.6
+sentence-transformers==6.1.0
+transformers==5.17.0
+huggingface-hub>=0.25,<1.0
