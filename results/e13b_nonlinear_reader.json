@@ -1,0 +1,1400 @@
+{
+  "experiment": "E13b nonlinear-reader dial read",
+  "seed_carriers": 2718,
+  "seed_reader": 2731,
+  "primary_arm": "N2",
+  "arms": {
+    "L": {
+      "title": "linear-staging (E12's stage_source, verbatim formulas) \u2014 replication / positive control",
+      "cells": 324,
+      "emb_dim": 1280,
+      "pca_evr_k16": 0.9782,
+      "pca_evr_k64": 0.9967,
+      "pca_evr_k256": 0.9999,
+      "r2_still_loro": {
+        "16": {
+          "mood": 0.848,
+          "volume": 0.9653,
+          "presence": 0.9292
+        },
+        "64": {
+          "mood": 0.8106,
+          "volume": 0.9624,
+          "presence": 0.9478
+        },
+        "256": {
+          "mood": 0.8726,
+          "volume": 0.9722,
+          "presence": 0.9729
+        }
+      },
+      "r2_room_loro": {
+        "16": {
+          "mood": 0.8902,
+          "volume": 0.9717,
+          "presence": 0.9374
+        },
+        "64": {
+          "mood": 0.8902,
+          "volume": 0.9717,
+          "presence": 0.9374
+        },
+        "256": {
+          "mood": 0.7211,
+          "volume": 0.8888,
+          "presence": 0.7636
+        }
+      },
+      "room_space_k": {
+        "16": 13,
+        "64": 13,
+        "256": 13
+      },
+      "spearman_loro_k64": {
+        "mood": 0.896,
+        "volume": 0.903,
+        "presence": 0.9329
+      },
+      "perm_null95_k64": {
+        "mood": -0.0561,
+        "volume": 0.0371,
+        "presence": -0.023
+      },
+      "perm_p_k64": {
+        "mood": 0.0,
+        "volume": 0.0,
+        "presence": 0.0
+      },
+      "lambda_median_k64": 1.0,
+      "tertile_acc_k64": {
+        "mood": 0.9691,
+        "volume": 1.0,
+        "presence": 1.0
+      },
+      "tertile_p_k64": {
+        "mood": 0.0,
+        "volume": 0.0,
+        "presence": 0.0
+      },
+      "g0b_luminance_r2_k64": 0.993,
+      "controls": {
+        "raw_pixel_r2_k64": {
+          "mood": 0.9355,
+          "volume": -0.7664,
+          "presence": 0.1625
+        },
+        "luminance_spearman": {
+          "mood": 0.9224,
+          "volume": 0.0804,
+          "presence": 0.1803
+        },
+        "room_identity_acc": 1.0,
+        "room_identity_chance": 0.037
+      },
+      "carrier_certificate_dials": {
+        "mood": {
+          "curvature": 0.0,
+          "knn_loo_r2": 1.0,
+          "distcorr": 0.9,
+          "distcorr_null95": 0.4553,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 1.0,
+          "quad_loo_r2": 1.0,
+          "nonlin_gain": -0.0,
+          "best_knob_abs_spearman": 1.0
+        },
+        "volume": {
+          "curvature": 0.0,
+          "knn_loo_r2": 0.7551,
+          "distcorr": 0.6723,
+          "distcorr_null95": 0.445,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 1.0,
+          "quad_loo_r2": 1.0,
+          "nonlin_gain": -0.0,
+          "best_knob_abs_spearman": 1.0
+        },
+        "presence": {
+          "curvature": 0.0,
+          "knn_loo_r2": 0.625,
+          "distcorr": 0.4986,
+          "distcorr_null95": 0.4353,
+          "distcorr_p": 0.015,
+          "lin_loo_r2": 1.0,
+          "quad_loo_r2": 1.0,
+          "nonlin_gain": -0.0,
+          "best_knob_abs_spearman": 1.0
+        }
+      },
+      "carrier_certificate": {
+        "mean_curvature": 0.0,
+        "nonaffine_pass": false,
+        "mean_lin_loo_r2": 1.0,
+        "mean_quad_loo_r2": 1.0,
+        "n_dials_live": 3,
+        "live_pass": true,
+        "injectivity": {
+          "min_pairwise_distance": 1.22474,
+          "duplicate_pairs": 0,
+          "injective": true
+        },
+        "floors": {
+          "curvature": 0.2,
+          "knn_loo_r2": 0.2,
+          "distcorr_p": 0.05,
+          "live_dials": 2
+        },
+        "pass": false
+      },
+      "knob_ranges": {
+        "r": {
+          "min": 79.0,
+          "max": 235.0,
+          "n_unique": 3
+        },
+        "g": {
+          "min": 98.0,
+          "max": 162.0,
+          "n_unique": 3
+        },
+        "b": {
+          "min": 79.0,
+          "max": 235.0,
+          "n_unique": 3
+        },
+        "bright": {
+          "min": -0.2,
+          "max": 0.2,
+          "n_unique": 3
+        },
+        "contrast": {
+          "min": 0.835,
+          "max": 1.465,
+          "n_unique": 3
+        },
+        "noise": {
+          "min": 11.0,
+          "max": 53.0,
+          "n_unique": 3
+        },
+        "n_occ": {
+          "min": 2.0,
+          "max": 8.0,
+          "n_unique": 3
+        }
+      },
+      "gate": {
+        "dial_pass": {
+          "mood": true,
+          "volume": true,
+          "presence": true
+        },
+        "n_pass": 3,
+        "mean_r2_k64": 0.9069,
+        "mean_null95_k64": -0.014,
+        "room_sep_ok": true,
+        "room_sep_floor": 0.75,
+        "ladder": "KEEP"
+      },
+      "mlp": {
+        "reader": "MLP k->16 ReLU->3, sklearn LBFGS(alpha=0.1, max_iter=2000), LORO",
+        "r2_still_loro": {
+          "16": {
+            "mood": 0.8664,
+            "volume": 0.9223,
+            "presence": 0.8663
+          },
+          "64": {
+            "mood": 0.8098,
+            "volume": 0.8333,
+            "presence": 0.8417
+          }
+        },
+        "r2_room_loro_avg_pred": {
+          "16": {
+            "mood": 0.8726,
+            "volume": 0.9271,
+            "presence": 0.8756
+          },
+          "64": {
+            "mood": 0.822,
+            "volume": 0.8456,
+            "presence": 0.8528
+          }
+        },
+        "spearman_loro_k64": {
+          "mood": 0.8909,
+          "volume": 0.856,
+          "presence": 0.9293
+        },
+        "perm_null95_k64": {
+          "mood": 0.0001,
+          "volume": 0.0183,
+          "presence": 0.007
+        },
+        "perm_p_k64": {
+          "mood": 0.0,
+          "volume": 0.0,
+          "presence": 0.0
+        },
+        "null_perms": 200,
+        "null_max_iter": 2000,
+        "mlp_curvature_k64": {
+          "mood": 3.5349,
+          "volume": 1.8038,
+          "presence": 5.9214,
+          "mean": 3.7534
+        },
+        "mlp_curvature_floor": 0.02,
+        "mlp_genuinely_nonlinear": true,
+        "gate": {
+          "dial_pass": {
+            "mood": true,
+            "volume": true,
+            "presence": true
+          },
+          "n_pass": 3
+        },
+        "seconds": 569.8
+      }
+    },
+    "N1": {
+      "title": "nonlinear-warp (frozen sigmoid mixer of all three dials, with cross-terms and a hue rotation) \u2014 mild rung",
+      "cells": 324,
+      "emb_dim": 1280,
+      "pca_evr_k16": 0.985,
+      "pca_evr_k64": 0.9981,
+      "pca_evr_k256": 1.0,
+      "r2_still_loro": {
+        "16": {
+          "mood": 0.3956,
+          "volume": 0.066,
+          "presence": 0.6131
+        },
+        "64": {
+          "mood": 0.7009,
+          "volume": -0.3285,
+          "presence": 0.7502
+        },
+        "256": {
+          "mood": 0.7723,
+          "volume": 0.0595,
+          "presence": 0.8486
+        }
+      },
+      "r2_room_loro": {
+        "16": {
+          "mood": 0.4022,
+          "volume": 0.1423,
+          "presence": 0.6404
+        },
+        "64": {
+          "mood": 0.4022,
+          "volume": 0.1423,
+          "presence": 0.6404
+        },
+        "256": {
+          "mood": 0.408,
+          "volume": 0.0359,
+          "presence": 0.7222
+        }
+      },
+      "room_space_k": {
+        "16": 13,
+        "64": 13,
+        "256": 13
+      },
+      "spearman_loro_k64": {
+        "mood": 0.8779,
+        "volume": 0.2186,
+        "presence": 0.8933
+      },
+      "perm_null95_k64": {
+        "mood": 0.0434,
+        "volume": 0.001,
+        "presence": 0.0492
+      },
+      "perm_p_k64": {
+        "mood": 0.0,
+        "volume": 0.185,
+        "presence": 0.0
+      },
+      "lambda_median_k64": 1.0,
+      "tertile_acc_k64": {
+        "mood": 0.8272,
+        "volume": 0.5556,
+        "presence": 1.0
+      },
+      "tertile_p_k64": {
+        "mood": 0.0,
+        "volume": 0.0,
+        "presence": 0.0
+      },
+      "g0b_luminance_r2_k64": 0.9405,
+      "controls": {
+        "raw_pixel_r2_k64": {
+          "mood": 0.6579,
+          "volume": -0.2477,
+          "presence": 0.4025
+        },
+        "luminance_spearman": {
+          "mood": 0.6794,
+          "volume": 0.1932,
+          "presence": 0.5128
+        },
+        "room_identity_acc": 1.0,
+        "room_identity_chance": 0.037
+      },
+      "carrier_certificate_dials": {
+        "mood": {
+          "curvature": 0.6061,
+          "knn_loo_r2": 0.6782,
+          "distcorr": 0.7777,
+          "distcorr_null95": 0.4498,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.8435,
+          "quad_loo_r2": 0.8247,
+          "nonlin_gain": -0.0188,
+          "best_knob_abs_spearman": 0.8974
+        },
+        "volume": {
+          "curvature": 0.3678,
+          "knn_loo_r2": 0.7435,
+          "distcorr": 0.5869,
+          "distcorr_null95": 0.4439,
+          "distcorr_p": 0.01,
+          "lin_loo_r2": 0.9555,
+          "quad_loo_r2": 0.8282,
+          "nonlin_gain": -0.1274,
+          "best_knob_abs_spearman": 0.9318
+        },
+        "presence": {
+          "curvature": 0.5834,
+          "knn_loo_r2": 0.6405,
+          "distcorr": 0.5945,
+          "distcorr_null95": 0.4401,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9098,
+          "quad_loo_r2": 0.8346,
+          "nonlin_gain": -0.0752,
+          "best_knob_abs_spearman": 0.8726
+        }
+      },
+      "carrier_certificate": {
+        "mean_curvature": 0.5191,
+        "nonaffine_pass": true,
+        "mean_lin_loo_r2": 0.9029,
+        "mean_quad_loo_r2": 0.8292,
+        "n_dials_live": 3,
+        "live_pass": true,
+        "injectivity": {
+          "min_pairwise_distance": 0.43254,
+          "duplicate_pairs": 0,
+          "injective": true
+        },
+        "floors": {
+          "curvature": 0.2,
+          "knn_loo_r2": 0.2,
+          "distcorr_p": 0.05,
+          "live_dials": 2
+        },
+        "pass": true
+      },
+      "knob_ranges": {
+        "r": {
+          "min": 80.139,
+          "max": 255.0,
+          "n_unique": 21
+        },
+        "g": {
+          "min": 54.643,
+          "max": 255.0,
+          "n_unique": 27
+        },
+        "b": {
+          "min": 0.0,
+          "max": 255.0,
+          "n_unique": 16
+        },
+        "bright": {
+          "min": -0.217,
+          "max": 0.179,
+          "n_unique": 27
+        },
+        "contrast": {
+          "min": 0.652,
+          "max": 1.563,
+          "n_unique": 27
+        },
+        "noise": {
+          "min": 2.0,
+          "max": 50.0,
+          "n_unique": 18
+        },
+        "n_occ": {
+          "min": 1.0,
+          "max": 9.0,
+          "n_unique": 9
+        }
+      },
+      "gate": {
+        "dial_pass": {
+          "mood": true,
+          "volume": false,
+          "presence": true
+        },
+        "n_pass": 2,
+        "mean_r2_k64": 0.3742,
+        "mean_null95_k64": 0.0312,
+        "room_sep_ok": true,
+        "room_sep_floor": 0.75,
+        "ladder": "KEEP"
+      },
+      "mlp": {
+        "reader": "MLP k->16 ReLU->3, sklearn LBFGS(alpha=0.1, max_iter=2000), LORO",
+        "r2_still_loro": {
+          "16": {
+            "mood": 0.3775,
+            "volume": -0.2482,
+            "presence": 0.6916
+          },
+          "64": {
+            "mood": 0.5507,
+            "volume": -0.1416,
+            "presence": 0.6609
+          }
+        },
+        "r2_room_loro_avg_pred": {
+          "16": {
+            "mood": 0.3909,
+            "volume": -0.2122,
+            "presence": 0.6986
+          },
+          "64": {
+            "mood": 0.5681,
+            "volume": -0.0956,
+            "presence": 0.679
+          }
+        },
+        "spearman_loro_k64": {
+          "mood": 0.7609,
+          "volume": 0.1649,
+          "presence": 0.8677
+        },
+        "perm_null95_k64": {
+          "mood": 0.0277,
+          "volume": 0.0327,
+          "presence": 0.0239
+        },
+        "perm_p_k64": {
+          "mood": 0.0,
+          "volume": 0.19,
+          "presence": 0.0
+        },
+        "null_perms": 200,
+        "null_max_iter": 2000,
+        "mlp_curvature_k64": {
+          "mood": 5.5209,
+          "volume": 3.3262,
+          "presence": 6.8394,
+          "mean": 5.2288
+        },
+        "mlp_curvature_floor": 0.02,
+        "mlp_genuinely_nonlinear": true,
+        "gate": {
+          "dial_pass": {
+            "mood": true,
+            "volume": false,
+            "presence": true
+          },
+          "n_pass": 2
+        },
+        "seconds": 529.2
+      }
+    },
+    "N2": {
+      "title": "nonlinear-mixture (roomgen.SensorMixture: frozen random tanh(Wz+b)*gain, per-room nuisance, label-free SVD readout) \u2014 PRIMARY",
+      "cells": 324,
+      "emb_dim": 1280,
+      "pca_evr_k16": 0.9692,
+      "pca_evr_k64": 0.9969,
+      "pca_evr_k256": 0.9999,
+      "r2_still_loro": {
+        "16": {
+          "mood": 0.4875,
+          "volume": -0.1875,
+          "presence": 0.2291
+        },
+        "64": {
+          "mood": 0.5372,
+          "volume": -0.0998,
+          "presence": 0.27
+        },
+        "256": {
+          "mood": 0.5826,
+          "volume": 0.1047,
+          "presence": 0.5507
+        }
+      },
+      "r2_room_loro": {
+        "16": {
+          "mood": 0.3126,
+          "volume": 0.0853,
+          "presence": 0.3323
+        },
+        "64": {
+          "mood": 0.3126,
+          "volume": 0.0853,
+          "presence": 0.3323
+        },
+        "256": {
+          "mood": 0.1731,
+          "volume": 0.0385,
+          "presence": 0.4167
+        }
+      },
+      "room_space_k": {
+        "16": 13,
+        "64": 13,
+        "256": 13
+      },
+      "spearman_loro_k64": {
+        "mood": 0.7369,
+        "volume": 0.3494,
+        "presence": 0.545
+      },
+      "perm_null95_k64": {
+        "mood": 0.0458,
+        "volume": 0.0634,
+        "presence": -0.0372
+      },
+      "perm_p_k64": {
+        "mood": 0.0,
+        "volume": 0.085,
+        "presence": 0.01
+      },
+      "lambda_median_k64": 1.0,
+      "tertile_acc_k64": {
+        "mood": 0.7716,
+        "volume": 0.6667,
+        "presence": 0.8302
+      },
+      "tertile_p_k64": {
+        "mood": 0.0,
+        "volume": 0.0,
+        "presence": 0.0
+      },
+      "g0b_luminance_r2_k64": 0.9579,
+      "controls": {
+        "raw_pixel_r2_k64": {
+          "mood": 0.4311,
+          "volume": -0.1876,
+          "presence": 0.3751
+        },
+        "luminance_spearman": {
+          "mood": -0.3153,
+          "volume": -0.5211,
+          "presence": 0.3306
+        },
+        "room_identity_acc": 1.0,
+        "room_identity_chance": 0.037
+      },
+      "carrier_certificate_dials": {
+        "mood": {
+          "curvature": 0.4997,
+          "knn_loo_r2": 0.6707,
+          "distcorr": 0.6417,
+          "distcorr_null95": 0.4828,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9221,
+          "quad_loo_r2": 0.1519,
+          "nonlin_gain": -0.7703,
+          "best_knob_abs_spearman": 0.9435
+        },
+        "volume": {
+          "curvature": 0.4373,
+          "knn_loo_r2": 0.3323,
+          "distcorr": 0.5901,
+          "distcorr_null95": 0.5019,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.8995,
+          "quad_loo_r2": -0.1353,
+          "nonlin_gain": -1.0348,
+          "best_knob_abs_spearman": 0.9435
+        },
+        "presence": {
+          "curvature": 0.4766,
+          "knn_loo_r2": 0.3742,
+          "distcorr": 0.6481,
+          "distcorr_null95": 0.4955,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.88,
+          "quad_loo_r2": -0.0401,
+          "nonlin_gain": -0.9201,
+          "best_knob_abs_spearman": 0.9435
+        }
+      },
+      "carrier_certificate": {
+        "mean_curvature": 0.4712,
+        "nonaffine_pass": true,
+        "mean_lin_loo_r2": 0.9005,
+        "mean_quad_loo_r2": -0.0078,
+        "n_dials_live": 3,
+        "live_pass": true,
+        "injectivity": {
+          "min_pairwise_distance": 1.55749,
+          "duplicate_pairs": 0,
+          "injective": true
+        },
+        "floors": {
+          "curvature": 0.2,
+          "knn_loo_r2": 0.2,
+          "distcorr_p": 0.05,
+          "live_dials": 2
+        },
+        "pass": true
+      },
+      "knob_ranges": {
+        "r": {
+          "min": 40.209,
+          "max": 254.843,
+          "n_unique": 27
+        },
+        "g": {
+          "min": 40.004,
+          "max": 254.913,
+          "n_unique": 27
+        },
+        "b": {
+          "min": 40.002,
+          "max": 254.976,
+          "n_unique": 27
+        },
+        "bright": {
+          "min": -0.25,
+          "max": 0.2,
+          "n_unique": 26
+        },
+        "contrast": {
+          "min": 0.607,
+          "max": 1.585,
+          "n_unique": 27
+        },
+        "noise": {
+          "min": 7.0,
+          "max": 51.0,
+          "n_unique": 20
+        },
+        "n_occ": {
+          "min": 2.0,
+          "max": 8.0,
+          "n_unique": 7
+        }
+      },
+      "gate": {
+        "dial_pass": {
+          "mood": true,
+          "volume": false,
+          "presence": false
+        },
+        "n_pass": 1,
+        "mean_r2_k64": 0.2358,
+        "mean_null95_k64": 0.024,
+        "room_sep_ok": true,
+        "room_sep_floor": 0.75,
+        "ladder": "INCONCLUSIVE"
+      },
+      "mlp": {
+        "reader": "MLP k->16 ReLU->3, sklearn LBFGS(alpha=0.1, max_iter=2000), LORO",
+        "r2_still_loro": {
+          "16": {
+            "mood": 0.2959,
+            "volume": 0.0777,
+            "presence": 0.3126
+          },
+          "64": {
+            "mood": 0.3671,
+            "volume": 0.2064,
+            "presence": 0.3382
+          }
+        },
+        "r2_room_loro_avg_pred": {
+          "16": {
+            "mood": 0.3047,
+            "volume": 0.0855,
+            "presence": 0.3211
+          },
+          "64": {
+            "mood": 0.3837,
+            "volume": 0.2295,
+            "presence": 0.3555
+          }
+        },
+        "spearman_loro_k64": {
+          "mood": 0.6101,
+          "volume": 0.458,
+          "presence": 0.5307
+        },
+        "perm_null95_k64": {
+          "mood": 0.0553,
+          "volume": 0.0634,
+          "presence": 0.1225
+        },
+        "perm_p_k64": {
+          "mood": 0.005,
+          "volume": 0.015,
+          "presence": 0.005
+        },
+        "null_perms": 200,
+        "null_max_iter": 2000,
+        "mlp_curvature_k64": {
+          "mood": 5.3777,
+          "volume": 2.6842,
+          "presence": 8.4308,
+          "mean": 5.4976
+        },
+        "mlp_curvature_floor": 0.02,
+        "mlp_genuinely_nonlinear": true,
+        "gate": {
+          "dial_pass": {
+            "mood": true,
+            "volume": false,
+            "presence": true
+          },
+          "n_pass": 2
+        },
+        "seconds": 477.7
+      }
+    }
+  },
+  "dial_names": [
+    "mood",
+    "volume",
+    "presence"
+  ],
+  "extra_dials": [
+    "earnestness",
+    "cynicism",
+    "joke_landing",
+    "panic"
+  ],
+  "k_primary": 64,
+  "guard_preflight": {
+    "free_vram_mib": 5920,
+    "temp_c": 47
+  },
+  "replicates": 1,
+  "reader_spec": {
+    "hidden": 16,
+    "solver": "lbfgs",
+    "alpha": 0.1,
+    "max_iter": 2000,
+    "null_perms": 200,
+    "curv_floor": 0.02,
+    "note": "MLP reader trains on the encoder's device under the same in-process guard (E12/E13's CPU-only-probe convention does not survive a 200-perm x 27-fold MLP null); the ridge side is E13's numpy probe verbatim."
+  },
+  "model": "facebook/ijepa_vith16_1k",
+  "load_notes": {
+    "facebook/ijepa_vitb": "load failed: OSError: facebook/ijepa_vitb is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'\nIf this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your"
+  },
+  "device": "cuda",
+  "rooms": 27,
+  "stills_per_room": 12,
+  "label_stats": {
+    "mood": {
+      "min": -1.0,
+      "max": 1.0,
+      "std": 0.8332
+    },
+    "volume": {
+      "min": 0.1854,
+      "max": 0.6897,
+      "std": 0.1902
+    },
+    "presence": {
+      "min": 0.5222,
+      "max": 0.6555,
+      "std": 0.0548
+    }
+  },
+  "extra_dial_stats": {
+    "earnestness": {
+      "min": 0.5,
+      "max": 1.0,
+      "std": 0.1942
+    },
+    "cynicism": {
+      "min": 0.0,
+      "max": 0.0,
+      "std": 0.0
+    },
+    "joke_landing": {
+      "min": 0.0,
+      "max": 0.0,
+      "std": 0.0
+    },
+    "panic": {
+      "min": 0.0428,
+      "max": 0.7533,
+      "std": 0.1841
+    }
+  },
+  "harness_selftest_ridge": {
+    "r2_min_signal": 0.9991,
+    "r2_max_shuffled": -0.1652,
+    "pass": true
+  },
+  "harness_selftest_mlp": {
+    "device": "cpu",
+    "linear_r2_min": 0.9015,
+    "linear_shuffled_r2_max": -1.8791,
+    "nonlinear_ridge_r2": [
+      -0.0584,
+      -0.064,
+      -0.07
+    ],
+    "nonlinear_mlp_r2": [
+      0.932,
+      -3.3288,
+      0.8011
+    ],
+    "null_smoke_r2_p95": -0.3149,
+    "pass": true,
+    "seconds": 8.2
+  },
+  "staging_fidelity_spearman_target_vs_label": {
+    "mood": 0.98,
+    "volume": 0.9437,
+    "presence": 0.9864
+  },
+  "g0a_staging_fidelity_pass": true,
+  "arm_L_mirror_check": {
+    "match": true,
+    "n_rooms": 27,
+    "mismatches": [],
+    "note": "E13's Arm-L knobs are a mirror of e12.stage_source; a mismatch means Arm L is NOT E12's carrier and the certificate numbers for L are not comparable."
+  },
+  "carrier_mixture": {
+    "carrier_source": "roomgen.SensorMixture(seed=2719) via importlib (/home/eileen/projects/elephant/gpu/roomgen.py): frozen W,b,gain; channel noise/dropout (training augmentation) unused",
+    "latent_dim": 8,
+    "obs_dim": 48,
+    "readout_channels": 12,
+    "svd_singular_values": [
+      10.375,
+      10.2457,
+      7.4349,
+      3.2144,
+      2.6295,
+      1.8568,
+      1.0833,
+      0.8333,
+      0.7041,
+      0.6599,
+      0.5655,
+      0.4892
+    ],
+    "channel_std": [
+      1.9967,
+      1.9718,
+      1.4308,
+      0.6186,
+      0.506,
+      0.3573,
+      0.2085,
+      0.1604,
+      0.1355,
+      0.127,
+      0.1088,
+      0.0942
+    ],
+    "readout": "folded channel responses: 5 knobs = 0.5*(1+sin(2.2*w+0.0)), 2 knobs = products of two channels",
+    "note": "frozen tanh(Wz+b)*gain physics from roomgen; the readout (SVD directions + logistic scaling + folded/product channel responses) uses label-free bank statistics only, exactly like E12's PCA basis. Per-room nuisance dims make the render a function of (dial, room seed), not of the dial alone."
+  },
+  "carrier_certificates": {
+    "L": {
+      "per_dial": {
+        "mood": {
+          "curvature": 0.0,
+          "knn_loo_r2": 1.0,
+          "distcorr": 0.9,
+          "distcorr_null95": 0.4553,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 1.0,
+          "quad_loo_r2": 1.0,
+          "nonlin_gain": -0.0,
+          "best_knob_abs_spearman": 1.0
+        },
+        "volume": {
+          "curvature": 0.0,
+          "knn_loo_r2": 0.7551,
+          "distcorr": 0.6723,
+          "distcorr_null95": 0.445,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 1.0,
+          "quad_loo_r2": 1.0,
+          "nonlin_gain": -0.0,
+          "best_knob_abs_spearman": 1.0
+        },
+        "presence": {
+          "curvature": 0.0,
+          "knn_loo_r2": 0.625,
+          "distcorr": 0.4986,
+          "distcorr_null95": 0.4353,
+          "distcorr_p": 0.015,
+          "lin_loo_r2": 1.0,
+          "quad_loo_r2": 1.0,
+          "nonlin_gain": -0.0,
+          "best_knob_abs_spearman": 1.0
+        }
+      },
+      "summary": {
+        "mean_curvature": 0.0,
+        "nonaffine_pass": false,
+        "mean_lin_loo_r2": 1.0,
+        "mean_quad_loo_r2": 1.0,
+        "n_dials_live": 3,
+        "live_pass": true,
+        "injectivity": {
+          "min_pairwise_distance": 1.22474,
+          "duplicate_pairs": 0,
+          "injective": true
+        },
+        "floors": {
+          "curvature": 0.2,
+          "knn_loo_r2": 0.2,
+          "distcorr_p": 0.05,
+          "live_dials": 2
+        },
+        "pass": false
+      },
+      "knob_ranges": {
+        "r": {
+          "min": 79.0,
+          "max": 235.0,
+          "n_unique": 3
+        },
+        "g": {
+          "min": 98.0,
+          "max": 162.0,
+          "n_unique": 3
+        },
+        "b": {
+          "min": 79.0,
+          "max": 235.0,
+          "n_unique": 3
+        },
+        "bright": {
+          "min": -0.2,
+          "max": 0.2,
+          "n_unique": 3
+        },
+        "contrast": {
+          "min": 0.835,
+          "max": 1.465,
+          "n_unique": 3
+        },
+        "noise": {
+          "min": 11.0,
+          "max": 53.0,
+          "n_unique": 3
+        },
+        "n_occ": {
+          "min": 2.0,
+          "max": 8.0,
+          "n_unique": 3
+        }
+      }
+    },
+    "N1": {
+      "per_dial": {
+        "mood": {
+          "curvature": 0.6061,
+          "knn_loo_r2": 0.6782,
+          "distcorr": 0.7777,
+          "distcorr_null95": 0.4498,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.8435,
+          "quad_loo_r2": 0.8247,
+          "nonlin_gain": -0.0188,
+          "best_knob_abs_spearman": 0.8974
+        },
+        "volume": {
+          "curvature": 0.3678,
+          "knn_loo_r2": 0.7435,
+          "distcorr": 0.5869,
+          "distcorr_null95": 0.4439,
+          "distcorr_p": 0.01,
+          "lin_loo_r2": 0.9555,
+          "quad_loo_r2": 0.8282,
+          "nonlin_gain": -0.1274,
+          "best_knob_abs_spearman": 0.9318
+        },
+        "presence": {
+          "curvature": 0.5834,
+          "knn_loo_r2": 0.6405,
+          "distcorr": 0.5945,
+          "distcorr_null95": 0.4401,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9098,
+          "quad_loo_r2": 0.8346,
+          "nonlin_gain": -0.0752,
+          "best_knob_abs_spearman": 0.8726
+        }
+      },
+      "summary": {
+        "mean_curvature": 0.5191,
+        "nonaffine_pass": true,
+        "mean_lin_loo_r2": 0.9029,
+        "mean_quad_loo_r2": 0.8292,
+        "n_dials_live": 3,
+        "live_pass": true,
+        "injectivity": {
+          "min_pairwise_distance": 0.43254,
+          "duplicate_pairs": 0,
+          "injective": true
+        },
+        "floors": {
+          "curvature": 0.2,
+          "knn_loo_r2": 0.2,
+          "distcorr_p": 0.05,
+          "live_dials": 2
+        },
+        "pass": true
+      },
+      "knob_ranges": {
+        "r": {
+          "min": 80.139,
+          "max": 255.0,
+          "n_unique": 21
+        },
+        "g": {
+          "min": 54.643,
+          "max": 255.0,
+          "n_unique": 27
+        },
+        "b": {
+          "min": 0.0,
+          "max": 255.0,
+          "n_unique": 16
+        },
+        "bright": {
+          "min": -0.217,
+          "max": 0.179,
+          "n_unique": 27
+        },
+        "contrast": {
+          "min": 0.652,
+          "max": 1.563,
+          "n_unique": 27
+        },
+        "noise": {
+          "min": 2.0,
+          "max": 50.0,
+          "n_unique": 18
+        },
+        "n_occ": {
+          "min": 1.0,
+          "max": 9.0,
+          "n_unique": 9
+        }
+      }
+    },
+    "N2": {
+      "per_dial": {
+        "mood": {
+          "curvature": 0.4997,
+          "knn_loo_r2": 0.6707,
+          "distcorr": 0.6417,
+          "distcorr_null95": 0.4828,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.9221,
+          "quad_loo_r2": 0.1519,
+          "nonlin_gain": -0.7703,
+          "best_knob_abs_spearman": 0.9435
+        },
+        "volume": {
+          "curvature": 0.4373,
+          "knn_loo_r2": 0.3323,
+          "distcorr": 0.5901,
+          "distcorr_null95": 0.5019,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.8995,
+          "quad_loo_r2": -0.1353,
+          "nonlin_gain": -1.0348,
+          "best_knob_abs_spearman": 0.9435
+        },
+        "presence": {
+          "curvature": 0.4766,
+          "knn_loo_r2": 0.3742,
+          "distcorr": 0.6481,
+          "distcorr_null95": 0.4955,
+          "distcorr_p": 0.0,
+          "lin_loo_r2": 0.88,
+          "quad_loo_r2": -0.0401,
+          "nonlin_gain": -0.9201,
+          "best_knob_abs_spearman": 0.9435
+        }
+      },
+      "summary": {
+        "mean_curvature": 0.4712,
+        "nonaffine_pass": true,
+        "mean_lin_loo_r2": 0.9005,
+        "mean_quad_loo_r2": -0.0078,
+        "n_dials_live": 3,
+        "live_pass": true,
+        "injectivity": {
+          "min_pairwise_distance": 1.55749,
+          "duplicate_pairs": 0,
+          "injective": true
+        },
+        "floors": {
+          "curvature": 0.2,
+          "knn_loo_r2": 0.2,
+          "distcorr_p": 0.05,
+          "live_dials": 2
+        },
+        "pass": true
+      },
+      "knob_ranges": {
+        "r": {
+          "min": 40.209,
+          "max": 254.843,
+          "n_unique": 27
+        },
+        "g": {
+          "min": 40.004,
+          "max": 254.913,
+          "n_unique": 27
+        },
+        "b": {
+          "min": 40.002,
+          "max": 254.976,
+          "n_unique": 27
+        },
+        "bright": {
+          "min": -0.25,
+          "max": 0.2,
+          "n_unique": 26
+        },
+        "contrast": {
+          "min": 0.607,
+          "max": 1.585,
+          "n_unique": 27
+        },
+        "noise": {
+          "min": 7.0,
+          "max": 51.0,
+          "n_unique": 20
+        },
+        "n_occ": {
+          "min": 2.0,
+          "max": 8.0,
+          "n_unique": 7
+        }
+      }
+    }
+  },
+  "side_by_side_k64": {
+    "L": {
+      "mood": {
+        "ridge_k64": 0.8106,
+        "mlp_k64": 0.8098,
+        "ridge_room": 0.8902,
+        "mlp_room": 0.822,
+        "ridge_null95": -0.0561,
+        "mlp_null95": 0.0001,
+        "mlp_minus_ridge": -0.0008,
+        "mlp_curvature": 3.5349
+      },
+      "volume": {
+        "ridge_k64": 0.9624,
+        "mlp_k64": 0.8333,
+        "ridge_room": 0.9717,
+        "mlp_room": 0.8456,
+        "ridge_null95": 0.0371,
+        "mlp_null95": 0.0183,
+        "mlp_minus_ridge": -0.1291,
+        "mlp_curvature": 1.8038
+      },
+      "presence": {
+        "ridge_k64": 0.9478,
+        "mlp_k64": 0.8417,
+        "ridge_room": 0.9374,
+        "mlp_room": 0.8528,
+        "ridge_null95": -0.023,
+        "mlp_null95": 0.007,
+        "mlp_minus_ridge": -0.1061,
+        "mlp_curvature": 5.9214
+      }
+    },
+    "N1": {
+      "mood": {
+        "ridge_k64": 0.7009,
+        "mlp_k64": 0.5507,
+        "ridge_room": 0.4022,
+        "mlp_room": 0.5681,
+        "ridge_null95": 0.0434,
+        "mlp_null95": 0.0277,
+        "mlp_minus_ridge": -0.1502,
+        "mlp_curvature": 5.5209
+      },
+      "volume": {
+        "ridge_k64": -0.3285,
+        "mlp_k64": -0.1416,
+        "ridge_room": 0.1423,
+        "mlp_room": -0.0956,
+        "ridge_null95": 0.001,
+        "mlp_null95": 0.0327,
+        "mlp_minus_ridge": 0.1869,
+        "mlp_curvature": 3.3262
+      },
+      "presence": {
+        "ridge_k64": 0.7502,
+        "mlp_k64": 0.6609,
+        "ridge_room": 0.6404,
+        "mlp_room": 0.679,
+        "ridge_null95": 0.0492,
+        "mlp_null95": 0.0239,
+        "mlp_minus_ridge": -0.0893,
+        "mlp_curvature": 6.8394
+      }
+    },
+    "N2": {
+      "mood": {
+        "ridge_k64": 0.5372,
+        "mlp_k64": 0.3671,
+        "ridge_room": 0.3126,
+        "mlp_room": 0.3837,
+        "ridge_null95": 0.0458,
+        "mlp_null95": 0.0553,
+        "mlp_minus_ridge": -0.1701,
+        "mlp_curvature": 5.3777
+      },
+      "volume": {
+        "ridge_k64": -0.0998,
+        "mlp_k64": 0.2064,
+        "ridge_room": 0.0853,
+        "mlp_room": 0.2295,
+        "ridge_null95": 0.0634,
+        "mlp_null95": 0.0634,
+        "mlp_minus_ridge": 0.3062,
+        "mlp_curvature": 2.6842
+      },
+      "presence": {
+        "ridge_k64": 0.27,
+        "mlp_k64": 0.3382,
+        "ridge_room": 0.3323,
+        "mlp_room": 0.3555,
+        "ridge_null95": -0.0372,
+        "mlp_null95": 0.1225,
+        "mlp_minus_ridge": 0.0682,
+        "mlp_curvature": 8.4308
+      }
+    }
+  },
+  "attribution": {
+    "ridge_gate_n2": {
+      "mood": true,
+      "volume": false,
+      "presence": false
+    },
+    "mlp_gate_n2": {
+      "mood": true,
+      "volume": false,
+      "presence": true
+    },
+    "ridge_fail_set": [
+      "volume",
+      "presence"
+    ],
+    "mlp_recovered": [
+      "presence"
+    ],
+    "mlp_n_pass": 2,
+    "mean_mlp_r2_failset": 0.2723,
+    "mean_mlp_null95_failset": 0.093,
+    "mlp_genuinely_nonlinear": true,
+    "mlp_curvature_n2": {
+      "mood": 5.3777,
+      "volume": 2.6842,
+      "presence": 8.4308,
+      "mean": 5.4976
+    }
+  },
+  "gates": {
+    "g0d_ridge_selftest": true,
+    "g0d_prime_mlp_selftest": {
+      "device": "cpu",
+      "linear_r2_min": 0.9015,
+      "linear_shuffled_r2_max": -1.8791,
+      "nonlinear_ridge_r2": [
+        -0.0584,
+        -0.064,
+        -0.07
+      ],
+      "nonlinear_mlp_r2": [
+        0.932,
+        -3.3288,
+        0.8011
+      ],
+      "null_smoke_r2_p95": -0.3149,
+      "pass": true,
+      "seconds": 8.2
+    },
+    "g0a_staging_fidelity": {
+      "floor": 0.5,
+      "pass": true,
+      "measured": {
+        "mood": 0.98,
+        "volume": 0.9437,
+        "presence": 0.9864
+      }
+    },
+    "g0b_sensitivity_arm_L": {
+      "floor": 0.9,
+      "measured": 0.993,
+      "pass": true
+    },
+    "g0c_carrier_certificate_primary": {
+      "mean_curvature": 0.4712,
+      "nonaffine_pass": true,
+      "mean_lin_loo_r2": 0.9005,
+      "mean_quad_loo_r2": -0.0078,
+      "n_dials_live": 3,
+      "live_pass": true,
+      "injectivity": {
+        "min_pairwise_distance": 1.55749,
+        "duplicate_pairs": 0,
+        "injective": true
+      },
+      "floors": {
+        "curvature": 0.2,
+        "knn_loo_r2": 0.2,
+        "distcorr_p": 0.05,
+        "live_dials": 2
+      },
+      "pass": true
+    },
+    "arm_L_control_keeps": true,
+    "arm_L_ladder": "KEEP",
+    "arm_N1_ladder": "KEEP",
+    "arm_N1_mlp_n_pass": 2,
+    "arm_N2_ladder": "INCONCLUSIVE",
+    "gr_mlp_reads_arm_L": true,
+    "gc_mlp_nonlinear": true
+  },
+  "data_needed": [
+    "ffmpeg ~/.local/bin/ffmpeg (lavfi: color, eq, noise, drawbox)",
+    "facebook/ijepa_vith16_1k fp16 on the RTX 4050 (E9 loader)",
+    "elephant package importable (dial bank = labels)",
+    "roomgen.py loadable (frozen nonlinear physics; inline replica fallback recorded in carrier_source)",
+    "3 arms x 27 rooms x 12 stills \u2248 972 encoder forwards (~8-15 min GPU) + CPU ridge sweeps + GPU MLP fits",
+    "GPU free (guard preflight in-process)"
+  ],
+  "wiring": "NOT in QUEUE.md / runner.py EXP_MOD by design \u2014 manual fire only, to avoid the cron runner double-claiming it",
+  "verdict": "INCONCLUSIVE",
+  "verdict_reason": "partial recovery: ridge failed ['volume', 'presence'], MLP recovered ['presence'] (mean MLP R2 0.272 vs mean null95 0.093 on the failed dials) \u2014 never overclaim from a partial",
+  "seconds_total": 1700.0,
+  "mlp_seconds_total": 1576.7,
+  "note": "E13b holds E13's entire world fixed (27-room bank, elephant DialBank labels, carriers L/N1/N2 from e13's own code, frozen I-JEPA embeddings, PCA spaces) and swaps ONLY the reader: a 2-layer MLP (hidden 64, ReLU, full-batch Adam, leave-one-room-out fold-nets, early stop on frozen inner-val rooms, E12's 200-perm room-shuffle null at a fixed median-epoch budget) against the linear ridge, side by side, per arm per dial. KEEP = the dials ridge killed on N2 (volume/presence in E13) PASS under the MLP => the loss was in the reader and E12's claim survives with a nonlinear reader. KILL = the MLP fails the same dials at/below its own shuffle null while Arm L replicates E12's KEEP and the MLP is certified capable (self-test) and genuinely nonlinear (curvature) => the loss is in the embedding and E12's volume/presence claim dies. INCONCLUSIVE for any partial recovery \u2014 never overclaim. Scope, pre-registered: one frozen carrier draw (E13's seeds), one reader family, moderate fold strength; the MLP reader itself trains on the encoder's device under the same guard (convention change vs E12/E13, booked above)."
+}
