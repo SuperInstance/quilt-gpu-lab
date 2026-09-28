@@ -1,0 +1,243 @@
+{
+  "experiment": "X9 presence-depth (battery + nonlinear reader)",
+  "seed": 2718,
+  "reader_seed_base": 2731,
+  "reader": "MLP 16 hidden ReLU, lbfgs, alpha=0.1, max_iter=2000 (e13b verbatim)",
+  "headline_dial": "presence",
+  "gate_thresholds": {
+    "wall_batt_mlp": 0.3,
+    "wall_emb_floor": 0.8,
+    "falls_ratio": 0.7
+  },
+  "perms": {
+    "ridge": 200,
+    "mlp": 100
+  },
+  "guard_preflight": {
+    "free_vram_mib": 5920,
+    "temp_c": 46
+  },
+  "x3_published_reference": {
+    "verdict": "INCONCLUSIVE (volume parity, presence jepa-wins)",
+    "r2_room_loro_presence": {
+      "battery": 0.028,
+      "jepa": 0.937
+    },
+    "r2_still_loro": {
+      "volume": {
+        "battery": 0.954,
+        "jepa": 0.962
+      },
+      "mood": {
+        "battery": 0.937,
+        "jepa": 0.811
+      },
+      "presence": {
+        "battery": 0.66,
+        "jepa": 0.948
+      }
+    }
+  },
+  "model": "facebook/ijepa_vith16_1k",
+  "device": "cuda",
+  "load_notes": {
+    "facebook/ijepa_vitb": "load failed: OSError: facebook/ijepa_vitb is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'\nIf this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your"
+  },
+  "rooms": 27,
+  "stills_per_room": 12,
+  "cells": 324,
+  "harness_selftest_e13": {
+    "r2_min_signal": 0.9991,
+    "r2_max_shuffled": -0.1652,
+    "pass": true
+  },
+  "mlp_reader_selftest_e13b": {
+    "device": "cpu",
+    "linear_r2_min": 0.9015,
+    "linear_shuffled_r2_max": -1.8791,
+    "nonlinear_ridge_r2": [
+      -0.0584,
+      -0.064,
+      -0.07
+    ],
+    "nonlinear_mlp_r2": [
+      0.932,
+      -3.3288,
+      0.8011
+    ],
+    "null_smoke_r2_p95": -0.3149,
+    "pass": true,
+    "seconds": 9.2
+  },
+  "staging_fidelity_spearman_target_vs_label": {
+    "mood": 0.98,
+    "volume": 0.9437,
+    "presence": 0.9864
+  },
+  "g0a_pass": true,
+  "g0b_battery_luminance_r2": 1.0,
+  "pca_evr_k16": 0.9782,
+  "pca_evr_k64": 0.9967,
+  "jepa_k16_ridge_still": {
+    "mood": 0.848,
+    "volume": 0.9653,
+    "presence": 0.9292
+  },
+  "four_way_table_room_loro": {
+    "mood": {
+      "battery_ridge": 0.8964,
+      "embedding_ridge": 0.8902,
+      "battery_mlp": 0.8971,
+      "embedding_mlp": 0.8277
+    },
+    "volume": {
+      "battery_ridge": 0.9085,
+      "embedding_ridge": 0.9717,
+      "battery_mlp": 0.9777,
+      "embedding_mlp": 0.883
+    },
+    "presence": {
+      "battery_ridge": 0.0277,
+      "embedding_ridge": 0.9374,
+      "battery_mlp": 0.895,
+      "embedding_mlp": 0.8346
+    }
+  },
+  "full_table": {
+    "battery_ridge": {
+      "r2_room_loro": {
+        "mood": 0.8964,
+        "volume": 0.9085,
+        "presence": 0.0277
+      },
+      "r2_still_loro": {
+        "mood": 0.9374,
+        "volume": 0.9545,
+        "presence": 0.6544
+      },
+      "perm_null95_still": {
+        "mood": 0.0496,
+        "volume": 0.0602,
+        "presence": -0.0014
+      },
+      "perm_p_still": {
+        "mood": 0.0,
+        "volume": 0.0,
+        "presence": 0.0
+      },
+      "lambda_median": 100.0
+    },
+    "battery_mlp": {
+      "r2_room_loro_avg_pred": {
+        "mood": 0.8295,
+        "volume": 0.9641,
+        "presence": 0.8057
+      },
+      "r2_room_loro_refit": {
+        "mood": 0.8971,
+        "volume": 0.9777,
+        "presence": 0.895
+      },
+      "r2_room_loro_gate_input": {
+        "mood": 0.8971,
+        "volume": 0.9777,
+        "presence": 0.895
+      },
+      "r2_still_loro": {
+        "mood": 0.8293,
+        "volume": 0.9639,
+        "presence": 0.8035
+      },
+      "perm_null95_still": {
+        "mood": -0.6337,
+        "volume": -0.7406,
+        "presence": -0.5086
+      },
+      "perm_p_still": {
+        "mood": 0.0,
+        "volume": 0.0,
+        "presence": 0.0
+      },
+      "curvature": {
+        "mood": 3.9288,
+        "volume": 2.6749,
+        "presence": 12.3875,
+        "mean": 6.3304
+      },
+      "curv_dials_ok": 3
+    },
+    "embedding_ridge": {
+      "r2_room_loro": {
+        "mood": 0.8902,
+        "volume": 0.9717,
+        "presence": 0.9374
+      },
+      "r2_still_loro": {
+        "mood": 0.8106,
+        "volume": 0.9624,
+        "presence": 0.9478
+      },
+      "perm_null95_still": {
+        "mood": -0.0539,
+        "volume": -0.0873,
+        "presence": -0.1341
+      },
+      "perm_p_still": {
+        "mood": 0.0,
+        "volume": 0.0,
+        "presence": 0.0
+      },
+      "lambda_median": 1.0
+    },
+    "embedding_mlp": {
+      "r2_room_loro_avg_pred": {
+        "mood": 0.8277,
+        "volume": 0.883,
+        "presence": 0.8346
+      },
+      "r2_room_loro_refit": {
+        "mood": -1.6215,
+        "volume": -1.696,
+        "presence": -1.9202
+      },
+      "r2_room_loro_gate_input": {
+        "mood": 0.8277,
+        "volume": 0.883,
+        "presence": 0.8346
+      },
+      "r2_still_loro": {
+        "mood": 0.8178,
+        "volume": 0.8675,
+        "presence": 0.8217
+      },
+      "perm_null95_still": {
+        "mood": 0.0051,
+        "volume": 0.069,
+        "presence": -0.0094
+      },
+      "perm_p_still": {
+        "mood": 0.0,
+        "volume": 0.0,
+        "presence": 0.0
+      },
+      "curvature": {
+        "mood": 3.7568,
+        "volume": 1.8151,
+        "presence": 6.3386,
+        "mean": 3.9701
+      },
+      "curv_dials_ok": 3
+    }
+  },
+  "gate": {
+    "rule": "FALLS iff batt_mlp_room >= 0.7 x emb_mlp_room (checked first); WALL iff batt_mlp_room < 0.30 AND emb_mlp_room >= 0.80; batt/emb_mlp_room = max(avg-pred, refit) \u2014 the null gets every chance",
+    "batt_mlp_room_gate_input": 0.895,
+    "emb_mlp_room_gate_input": 0.8346,
+    "falls": true,
+    "wall": false,
+    "reader_affine_guard_fired": false
+  },
+  "verdict": "FALLS",
+  "verdict_reason": "nonlinear reader lifts battery presence to room-level 0.895 = 1.07x the embedding's 0.8346 (>= 0.7x) \u2014 presence falls to statistics; X3's surviving deep claim is dead",
+  "note": "X9 gives X3's 24-d stats battery the E13b nonlinear reader at room-level LORO, against the frozen I-JEPA embedding on the same bank/labels/protocol. Ridge rows are X3's control, re-run for drift. The gate input per arm is the BEST of the two honest room-level MLP conventions (E13b avg-pred; room-mean refit). A WALL hardens 'classical stats cannot buy presence generalization even nonlinearly'; a FALLS kills the last deep claim; volume/mood are reported, not gated (X3 already gave them to statistics)."
+}

@@ -2390,3 +2390,8 @@ the ceiling; correlated dense purchases are dead weight or worse.
 - ran: 2026-09-28 12:50 (300s budget, seed 42, zero new params — head-split reuses same weights)
 - verdict: KILL (val_bpb 1.696093 vs baseline 1.695939, +0.000154 at fixed budget)
 - note: the honest nuance: delta-attention tracked the baseline train curve to 3 decimals while consuming 7.5% FEWER tokens (25.7M vs 27.8M) — per-token the difference signal is REAL; the ~9% wall-clock overhead (66K vs 73K tok/s, extra shift+sub path) ate it before warmdown. Next lever queued (D2): make delta free — k_d = k_t − k_{t−1} POST-projection (reuse normal heads' k/v, no second linear) so overhead → ~0 and the per-token parity competes on even wall-clock. Artifacts: training/delta_increment/ (8871a10).
+
+## X9 — presence-depth hardening (the last deep claim)
+- ran: 2026-09-28 13:05
+- verdict: FALLS (presence falls to statistics; ratio 1.07×)
+- note: X3's battery room-level collapse (0.028) inverted under the nonlinear reader — the same 24-dim battery through E13b's fixed MLP reads presence at **0.895** room-level, BEATING embedding-MLP (0.835). The battery contained presence generalization all along; the ridge couldn't extract it. The "generalization gap" was a NONLINEARITY gap. Ridge rows reproduce X3 bit-for-bit (drift green); all honesty guards passed (nulls ≪ reads, curvature 6.3 vs 0.02 affine floor). **With X3+X6+X2: the E12-family dial read is fully statistics-explainable on ALL THREE dials.** The falsifier campaign swept the table: X1 LICENSE (dials ~half the embedding's variance — within the staged bank) · X3 KILL · X6 KILL (range-local) · X2 renderer-bound · X9 FALLS. The staged elephant measured the staging. Full JSON: results/x9_presence_depth.json.
