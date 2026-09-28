@@ -23,8 +23,10 @@ CLAIM UNDER TEST (concrete, falsifiable)
   on >= 2 of 3 dials, and the gap read is above its own shuffle null. That
   would say the pair representation carries contrast information the two
   single-room reads do not already contain.
-  KILL = the gap read does not beat the two-absolutes baseline on >= 2/3 dials:
-  contrast is just the two absolutes differenced — the walk adds nothing.
+  KILL = at most 1 of 3 dials beats the two-absolutes baseline: contrast is
+  just the two absolutes differenced — the walk adds nothing. (INCONCLUSIVE =
+  >= 2 dials beat the baseline but fewer than 2 clear BOTH comparators and the
+  null.)
   INVALID_STAGING = the carrier certificate fails (dead or non-injective
   staged carrier, or the scripts stopped moving the dials).
   A KILL is a win (a claim died honestly); INVALID_* always means the arm
@@ -136,17 +138,21 @@ PRE-REGISTERED GATES (fixed before running; this file IS the registration)
   G2 INCONCLUSIVE       : exactly 1 dial exceeds both comparators (and the
       null), or mean gap_R2 > mean null95.
   G3 KILL               : at most 1 dial beats the two-absolutes baseline
-      (i.e. >= 2/3 dials: gap_R2 <= two_abs_loo_R2) and no mean-gap-above-null
-      rescue — the contrast read is not super-additive; the walk is just the
-      two absolutes differenced.
+      (i.e. >= 2/3 dials: gap_R2 <= two_abs_loo_R2) — the contrast read is not
+      super-additive; the walk is just the two absolutes differenced.
+      (mean_gap_r2 vs mean_null95 is BOOKED in the gate block and does not
+      rescue a KILL: the pre-registered lane is the baseline comparison.)
   INVALID_STAGING       : G0a or G0c fails.
   INVALID_HARNESS       : G0d, G0b or G0e fails.
   ABORTED               : guard preflight, model load, no frames, or < 8 rooms.
 
 CONTROLS / BOOKED (never gated)
-  C1 raw-pixel pair probe : the same LORO pair read on 16x9 grayscale stills
-      (144-d room means). If pixels beat the embedding, the embedding is
-      losing contrast signal (E12's C1, lifted to pairs).
+  C1 raw-pixel pair probe : the same LORO pair read on the ROOM-MEAN 16x9
+      grayscale stills (144-d), PCA-reduced label-free to the SAME width as
+      the embedding reader (k = 13) so the pair design stays overdetermined by
+      the 325 training pairs and the control is apples-to-apples. If pixels
+      beat the embedding, the embedding is losing contrast signal (E12's C1,
+      lifted to pairs).
   C2 luminance-gap Spearman per dial.
   C3 permutation null (200 room shuffles) + p-values for the gap read.
   C4 E12 headline replication: still-level absolute dial R2 at k=16/64 (the
@@ -159,17 +165,26 @@ CONTROLS / BOOKED (never gated)
       not variance-matched).
   C7 arm ladder: concat / diff / pair / pair_inter across k ∈ {6, 13, 20} —
       which part of the pair actually carries the contrast.
-  C8 sum-target control (above) + the random-pair-split leak probe.
+  C8 sum-target control (above) + the random-pair-split leak probe + a
+      pair-ORDER invariance check (a reordering of the 351 pair rows must
+      reproduce the gap R2 exactly — it is a relabelling, and a mismatch
+      would mean the fold bookkeeping is order-dependent).
   C9 extra dials booked by the bank (never gated, not tasked).
 
 HONESTY / CAVEATS BOOKED WITH THE RESULT
   - Carriers are STAGED (E12/E13's caveat, unchanged): this tests staged visual
     carriers of the dials, not arbitrary camera feeds. A KEEP is a floor.
-  - Gap R2 and absolute R2 are computed on DIFFERENT sample sets with different
-    target variance (351 differences vs 27 absolutes of a 3-level grid); R2 is
-    scale-free but a difference target is a strictly harder target (shared
-    components cancel — reported in C6). The comparison is therefore
-    conservative against a KEEP, which is the honest direction.
+  - Gap R2 and absolute R2 are computed on DIFFERENT sample sets (351 pairs vs
+    27 rooms) with DIFFERENT target variance, and each R2 is computed against
+    its OWN target's mean, so the two numbers are comparable but not identical
+    in difficulty. The direction is NOT assumed: the measured std ratio (gap
+    std / absolute std) is booked per dial in gap_composition (C6). At the CPU
+    design pass it is 0.89 / 1.39 / 1.44 for mood / volume / presence — the
+    volume and presence GAPS have MORE spread than their absolutes (a 3-level
+    grid's differences span +-0.7 while its values span 0.15..0.85), so for
+    those two dials the gate is not automatically conservative in either
+    direction; it is an honest open comparison, and the null95 column (same
+    target type, shuffled rooms) is what anchors each dial.
   - Comparator (b) two_abs_loo differences two OUT-OF-FOLD predictions, so it
     is symmetric between the two rooms and shares nothing with the pair
     reader's fitting; the in-sample variant two_abs_fold is reported too and is
@@ -688,7 +703,12 @@ def cpu_only() -> dict:
         "plumbing_only_not_evidence": {
             "feature_space": ("the 7-d label-free KNOB matrix (room -> scene "
                               "parameters), not I-JEPA embeddings — the "
-                              "embedding space needs the GPU run"),
+                              "embedding space needs the GPU run. Widths k > 7 "
+                              "therefore clamp to the matrix's 7 columns "
+                              "(n_features saturates at 3*7 = 21), so this "
+                              "block exercises the code path and the fold "
+                              "bookkeeping ONLY; the R2 values are a "
+                              "near-affine sanity read, not a claim."),
             "arms": plumbing,
         },
         "note": ("No verdict in CPU-only mode. Watch: fold_structure must be "
@@ -829,11 +849,17 @@ def main() -> dict:
     lum_col = lum.reshape(-1, 1).astype(np.float64)
     pred_lum, _ = loro_predict(zc, lum_col, groups)
     r2_lum_still = float(r2_columns(lum_col, pred_lum)[0])
-    # G0e — in-run replication of E12's own still-level gate.
+    # G0e — in-run replication of E12's own still-level gate (k=64 primary,
+    # k=16 booked) on E12's exact cell-level LORO path.
     pred_abs_still, _ = loro_predict(zc, Ylab, groups)
     r2_abs_still = r2_columns(Ylab, pred_abs_still)
+    zc16 = X @ basis[:, :K_STRICT]
+    pred_abs_still16, _ = loro_predict(zc16, Ylab, groups)
+    r2_abs_still16 = r2_columns(Ylab, pred_abs_still16)
     e12_repl = {d: round(float(r2_abs_still[i]), 4)
                 for i, d in enumerate(DIAL_NAMES)}
+    e12_repl16 = {d: round(float(r2_abs_still16[i]), 4)
+                  for i, d in enumerate(DIAL_NAMES)}
     e12_repl_pass = bool(sum(1 for d in DIAL_NAMES
                              if e12_repl[d] >= E12_REPL_FLOOR)
                          >= GATE_HIT_DIALS)
@@ -856,7 +882,8 @@ def main() -> dict:
             "single_room_abs_r2": r2_dict(r2_abs),
             "two_abs_loo_r2": r2_dict(r2_base_loo),
             "two_abs_fold_r2": r2_dict(r2_base_fold),
-            "lambda_median_abs": None if lam_abs != lam_abs else round(float(lam_abs), 6),
+            "lambda_median_abs": round(float(lam_abs), 6)
+            if lam_abs == lam_abs else None,
         }
 
     comp = {str(k): comparators(k) for k in K_PAIR_SWEEP}
@@ -915,14 +942,19 @@ def main() -> dict:
             r2_sum = r2_columns(Ysum, pred_s)
             rid = np.random.default_rng(SEED + 7 + k)
             idx = rid.permutation(len(pair_idx))
-            pred_px, _ = pair_loro_predict(F[idx], Ygap[idx], pair_idx[idx],
-                                           n_rooms)
-            r2_px = r2_columns(Ygap[idx], pred_px)
+            pred_o, _ = pair_loro_predict(F[idx], Ygap[idx], pair_idx[idx],
+                                          n_rooms)
+            r2_o = r2_columns(Ygap[idx], pred_o)
+            # C8 — pair-ORDER invariance: reordering the 351 pair rows is a
+            # relabelling, so the gap R2 must be reproduced exactly. A mismatch
+            # means the fold bookkeeping (not the signal) is order-dependent.
+            order_gap = float(np.max(np.abs(r2_o - r2_gap)))
             sweep[arm][str(k)] = {
                 "n_features": int(F.shape[1]),
                 "r2_gap": r2_dict(r2_gap),
                 "r2_sum_control": r2_dict(r2_sum),
-                "r2_gap_raw_pixel_compare": r2_dict(r2_px),
+                "r2_gap_pair_order_invariance": r2_dict(r2_o),
+                "pair_order_invariance_max_abs_diff": round(order_gap, 12),
                 "lambda_median_gap": round(float(lam), 6),
                 "lambda_median_sum": round(float(lam_s), 6),
                 "mean_r2_gap": round(float(np.mean(r2_gap)), 4),
@@ -941,8 +973,13 @@ def main() -> dict:
     perm_p = {d: round(float((null[:, i] >= prim_gap[d]).mean()), 4)
               for i, d in enumerate(DIAL_NAMES)}
 
-    # C1 — raw-pixel room means through the SAME pair probe.
-    F_pix = pair_features(room_pix, pair_idx, PRIMARY_ARM)
+    # C1 — raw-pixel control through the SAME pair probe. The 144-d room-mean
+    # pixel vector is PCA-reduced (label-free) to the SAME width as the
+    # embedding reader (k = 13) so the control is apples-to-apples and the pair
+    # design (3k = 39 features) stays overdetermined by the 325 training pairs.
+    pix_basis, pix_evr = pca_basis(room_pix, K_PAIR_PRIMARY)
+    F_pix = pair_features(room_pix @ pix_basis[:, :K_PAIR_PRIMARY], pair_idx,
+                          PRIMARY_ARM)
     pred_pix, _ = pair_loro_predict(F_pix, Ygap, pair_idx, n_rooms)
     pix_gap = r2_dict(r2_columns(Ygap, pred_pix))
 
@@ -1032,11 +1069,14 @@ def main() -> dict:
         "gap_composition": gap_composition(targets, pair_idx, labels),
         "controls": {
             "raw_pixel_pair_gap_r2": pix_gap,
+            "raw_pixel_k_used": K_PAIR_PRIMARY,
+            "raw_pixel_pca_evr": round(float(pix_evr.sum()), 4),
             "luminance_gap_spearman_target": lum_spear,
             "r2_luminance_still_k64": round(r2_lum_still, 4),
             "r2_luminance_gap_pair_primary": round(r2_lum_gap, 4),
             "null95_luminance_gap_pair": round(null95_lum_gap, 4),
             "e12_still_k64_abs_r2": e12_repl,
+            "e12_still_k16_abs_r2": e12_repl16,
             "e12_replication_floor": E12_REPL_FLOOR,
             "room_identity_acc": round(float(id_acc), 4),
             "room_identity_chance": round(1.0 / n_rooms, 4),
@@ -1113,10 +1153,11 @@ def main() -> dict:
             "(dead/non-injective carrier, or the scripts stopped moving the "
             "dials) and INVALID_HARNESS (blind probe, broken fold structure, or "
             "E12's own read failing to replicate) are never KILLs. SCOPE: "
-            "staged carriers (E12/E13's caveat unchanged) — a KEEP is a floor, "
-            "and because a difference target has strictly less shared variance "
-            "than an absolute target (see gap_composition), an R2 that beats "
-            "the absolutes is a conservative win."),
+            "staged carriers (E12/E13's caveat unchanged) — a KEEP is a floor. "
+            "Target difficulty is NOT assumed to favour the baseline: the "
+            "measured gap-vs-absolute std ratio is booked per dial in "
+            "gap_composition (volume/presence gaps are WIDER than their "
+            "absolutes), and the room-shuffle null95 anchors every dial."),
     })
     print(json.dumps(out, indent=2))
     return out
