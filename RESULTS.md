@@ -1546,3 +1546,8 @@ the ceiling; correlated dense purchases are dead weight or worse.
 }
 ```
 - note: tuned fails to beat base on the held-out class (-0.0516): the 0.94 read does not transfer to classes absent from training gradients — the adapter memorizes seen-class output patterns rather than executing the rule
+
+## E12 — room-dial reader (I-JEPA reads the elephant dials)
+- ran: 2026-09-28 00:25
+- verdict: KEEP
+- note: frozen I-JEPA (facebook/ijepa_vith16_1k) linearly reads STAGED mood/volume/presence at R² 0.811/0.962/0.948 (k=64, leave-one-room-out ridge; room-level 0.890/0.972/0.937). Controls: luminance Spearman correlates only with mood (0.92), NOT volume (0.08) or presence (0.18); raw-pixel probe FAILS volume (-0.77) and presence (0.16) — the embedding genuinely captures volume+presence beyond the trivial correlate. On REAL E9 rooms (armA): dial R² 0.48/0.43/0.47, tertile 0.73-0.75. Caveat: carriers are staged (deliberately varied to match dials), not natural vibes; presence labels compressed to v0 ceiling. Natural-room test is the real claim, still open.

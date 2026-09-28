@@ -1,0 +1,187 @@
+{
+  "experiment": "E12 room-dial reader",
+  "device": "cuda",
+  "seed": 2718,
+  "model": "facebook/ijepa_vith16_1k",
+  "load_notes": {
+    "facebook/ijepa_vitb": "load failed: OSError: facebook/ijepa_vitb is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'\nIf this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your"
+  },
+  "guard_preflight": {
+    "free_vram_mib": 5920,
+    "temp_c": 47
+  },
+  "dial_names": [
+    "mood",
+    "volume",
+    "presence"
+  ],
+  "extra_dials": [
+    "earnestness",
+    "cynicism",
+    "joke_landing",
+    "panic"
+  ],
+  "k_primary": 64,
+  "rooms_armA": 4,
+  "rooms_armB": 27,
+  "stills_per_room": 12,
+  "cells_armB": 324,
+  "emb_dim": 1280,
+  "pca_evr_k16": 0.9782,
+  "pca_evr_k64": 0.9967,
+  "pca_evr_k256": 0.9999,
+  "label_stats_armB": {
+    "mood": {
+      "min": -1.0,
+      "max": 1.0,
+      "std": 0.8332
+    },
+    "volume": {
+      "min": 0.1854,
+      "max": 0.6897,
+      "std": 0.1902
+    },
+    "presence": {
+      "min": 0.5222,
+      "max": 0.6555,
+      "std": 0.0548
+    }
+  },
+  "staging_fidelity_spearman_target_vs_label": {
+    "mood": 0.98,
+    "volume": 0.9437,
+    "presence": 0.9864
+  },
+  "g0a_staging_fidelity_pass": true,
+  "g0b_sensitivity_r2_luminance_k64": 0.993,
+  "g0b_sensitivity_pass": true,
+  "r2_still_loro": {
+    "16": {
+      "mood": 0.848,
+      "volume": 0.9653,
+      "presence": 0.9292
+    },
+    "64": {
+      "mood": 0.8106,
+      "volume": 0.9624,
+      "presence": 0.9478
+    },
+    "256": {
+      "mood": 0.8726,
+      "volume": 0.9722,
+      "presence": 0.9729
+    }
+  },
+  "r2_room_loro": {
+    "16": {
+      "mood": 0.8902,
+      "volume": 0.9717,
+      "presence": 0.9374
+    },
+    "64": {
+      "mood": 0.8902,
+      "volume": 0.9717,
+      "presence": 0.9374
+    },
+    "256": {
+      "mood": 0.7211,
+      "volume": 0.8888,
+      "presence": 0.7636
+    }
+  },
+  "room_space_k": {
+    "16": 13,
+    "64": 13,
+    "256": 13
+  },
+  "room_probe_note": "room-level check uses width min(64, k, n_rooms//2) = 13 with its own per-fold inner-CV lambda, so every k maps to the SAME 13-d room probe (a 27-room ridge is underdetermined above that)",
+  "spearman_loro_k64": {
+    "mood": 0.896,
+    "volume": 0.903,
+    "presence": 0.9329
+  },
+  "perm_null95_k64": {
+    "mood": -0.0561,
+    "volume": 0.0371,
+    "presence": -0.023
+  },
+  "perm_p_k64": {
+    "mood": 0.0,
+    "volume": 0.0,
+    "presence": 0.0
+  },
+  "lambda_median_k64": 1.0,
+  "tertile_acc_k64": {
+    "mood": 0.9691,
+    "volume": 1.0,
+    "presence": 1.0
+  },
+  "tertile_chance": 0.3333,
+  "tertile_p_k64": {
+    "mood": 0.0,
+    "volume": 0.0,
+    "presence": 0.0
+  },
+  "controls": {
+    "raw_pixel_r2_k64": {
+      "mood": 0.9355,
+      "volume": -0.7664,
+      "presence": 0.1625
+    },
+    "luminance_spearman": {
+      "mood": 0.9224,
+      "volume": 0.0804,
+      "presence": 0.1803
+    },
+    "room_identity_acc_armB": 1.0,
+    "room_identity_chance_armB": 0.037,
+    "room_identity_acc_armA": 1.0,
+    "room_identity_chance_armA": 0.25,
+    "armA_dial_r2_k64": {
+      "mood": 0.4842,
+      "volume": 0.4326,
+      "presence": 0.4728
+    },
+    "armA_dial_tertile_acc_k64": {
+      "mood": 0.7292,
+      "volume": 0.75,
+      "presence": 0.75
+    }
+  },
+  "gates": {
+    "g0a_staging_fidelity": {
+      "floor": 0.5,
+      "pass": true
+    },
+    "g0b_sensitivity": {
+      "floor": 0.9,
+      "measured": 0.993,
+      "pass": true
+    },
+    "g1_dial_pass": {
+      "mood": true,
+      "volume": true,
+      "presence": true
+    },
+    "g1_pass_count": 3,
+    "g1_r2_floor": 0.3,
+    "g1_room_r2_floor": 0.15,
+    "g1_top_pc_fraction": 0.5,
+    "armA_room_sep": {
+      "floor": 0.75,
+      "measured": 1.0,
+      "pass": true
+    },
+    "mean_r2_k64": 0.9069,
+    "mean_null95_k64": -0.014
+  },
+  "data_needed": [
+    "ffmpeg ~/.local/bin/ffmpeg (lavfi: color, eq, noise, drawbox) \u2014 chain pre-verified at write time",
+    "facebook/ijepa_vith16_1k fp16 weights on the RTX 4050 (E9 loader)",
+    "elephant package importable (dial bank = ground-truth labels)",
+    "27+4 rooms x 12 stills \u2248 372 forwards; ~3-5 min GPU, ~30-60 min CPU",
+    "GPU free (D15c held it at write time) \u2014 no other blockers"
+  ],
+  "verdict": "KEEP",
+  "note": "Staged-carrier test: scripts are read by the REAL elephant dial bank (labels), lavfi scenes staged from the same dial triple are read by a frozen I-JEPA. KEEP = >=2/3 dials linearly readable at k=64 (R2>=0.30, room-level R2>=0.15, top-16 PCs retain >=50%, above the 200-perm shuffle null) AND Arm A room separation >=0.75. INVALID_STAGING/INVALID_HARNESS mean the arm tested nothing (dead staging / blind probe) \u2014 never a KILL. A KILL says the frozen embedding is not a dial reader even for a deliberately staged carrier. Caveat: carriers are staged, not naturally-occurring vibes; C2 (luminance Spearman) names the trivial-correlate escape hatch."
+}
