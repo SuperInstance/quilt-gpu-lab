@@ -869,3 +869,31 @@ the ceiling; correlated dense purchases are dead weight or worse.
 }
 ```
 - note: the simple linear ternary kernel is SUFFICIENT. Nonlinear quadratic expansion is 3% WORSE (0.0104 vs 0.0101 — overfits; the generator is linear in field_before and corr is already {-1,0,+1}). Exact agent identity (one-hot pair) adds nothing (0.0101 vs 0.0101, -0.2% — sign-only ternary correlation already carries all the identity signal that matters). Together with D19's "ternarization is free", the picture sharpens: the 3-state codec's sign-only correlation is not a compromise — it is the RIGHT abstraction for relational transitions. Full nonlinearity and exact identity both buy zero predictive value here.
+
+
+## D1b — look-again sweep (FULL-SCALE, D1B_FULL=1)
+- ran: 2026-09-27 21:54
+- verdict: KEEP
+- result: ```json
+{
+  "experiment": "D1b look-again sweep (bundled corpus, reach-bound scaling)",
+  "mode": "full", "device": "cuda", "seed": 2718,
+  "n_items": 3000, "bootstrap_draws": 2000,
+  "best_single_acc": 0.6884, "look_again_acc": 0.8569, "lift": 0.1684,
+  "oracle_dense_plus_reach_acc": 0.9649, "reach_ceiling_lift": 0.1462,
+  "peak_vram_mib": 471.9, "runtime_s": 38.5,
+  "verdict": "KEEP"
+}
+```
+- note: full-scale on the RTX 4050 with real dense encoders (bge-small-en-v1.5 / all-MiniLM-L6-v2 / gte-small, GPU-accelerated). Look-Again beats best-single 0.8569 vs 0.6884 (+0.1684, bootstrap CI excludes 0); buying the independent-reach reader raises the existential oracle ceiling to 0.9649 (+0.146 over the dense pool). Confirms D1's KEEP at scale: the reach reader's independent address-space buys more than a second correlated dense reader.
+
+
+## E9 — ijepa-stills (I-JEPA still-image world model on STILL frames)
+- ran: 2026-09-27 21:57
+- verdict: None
+- result: ```json
+{
+  "facebook/ijepa_vitb": "load failed: OSError: facebook/ijepa_vitb is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'\nIf this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your"
+}
+```
+- note: I-JEPA loaded via fallback checkpoint (facebook/ijepa_vith16_1k, fp16, emb_dim 1280) — the requested facebook/ijepa_vitb 401s on the hub, fallback held. The still-image world model separates STILL frame structure from motion texture: within-still 1.0 / within-testsrc 0.9996, but still-vs-testsrc cross-cos 0.70 (heldout gap 0.298), texture-vs-motion axis correlation -0.32. A real reading on the elephant lane: a room's stable still-identity is distinguishable from its transient motion texture — perception reads the still field as a distinct object from the moving texture.

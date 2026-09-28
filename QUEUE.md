@@ -11,7 +11,7 @@
 - [x] E4b next-room-revision — 60s clips (~240 cells), interleaved walk, blocked split, constant+markov-1 baselines reported alongside
 
 - [x] E8 encoder-swap leaderboard — aggregate E1/E3/E7 (+E9) readings into one table: separation gap, drift-gate, surprise dims per encoder. The scoreboard for the swap-and-hunt protocol. — 2026-09-27 INCONCLUSIVE
-- [x] E9 ijepa stills — I-JEPA ViT-B (facebookresearch/ijepa) on still frames through the same cell contract; does a still-image world model read rooms differently than video V-JEPA 2? — 2026-09-27 ABORTED
+- [x] E9 ijepa stills — 2026-09-27 None
 - [x] E10 invariance race — ternary gate vs a stateless sign-tracker (persistence/dead-reckoning) on the SAME frames; does the gate beat a lookup table, or is it a fancy debounce circuit? The ground-truth pole.
 - [x] E11 debounce kill — pre-registered adversarial test: run the gate on held-out sign-patterns and see if it loses to a 2-bit dead-reckoning baseline; a loss here kills the 'ternary = learning substrate' thesis honestly.
 - [x] D1 look-again-scale (reach-bound fold sweep) — jev-quilt G21 Law-7 effect at scale — 2026-09-27 KEEP
@@ -35,3 +35,5 @@
 - [x] D15b read-the-channel v2 — 2026-09-27 KEEP (full: tuned 0.9413 vs base 0.0781, margin 0.8632)
 - [x] D19 transitional-jepa (relational transition kernel) — 2026-09-27 KEEP (ternary 0.0101 vs markov1 0.0179; ternarization cost -0.0009 ≈ free)
 - [x] D20 transitional-jepa ablation (nonlinear + identity) — 2026-09-27 KEEP (linear sufficient: nonlinear -3%, identity -0.2%)
+
+- [x] D1b look-again sweep (full-scale) — 2026-09-27 KEEP (look-again 0.8569 vs best-single 0.6884, lift +0.1684)
