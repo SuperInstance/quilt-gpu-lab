@@ -1,0 +1,601 @@
+{
+  "experiment": "D15c tone-channel generalization (held-out tone classes)",
+  "vision_layer": "Layer 3 reading gate (text-model proxy; follows D15b KEEP)",
+  "changes_vs_d15b": [
+    "tone-class holdout: training trajectories sampled from 3 classes only (d, f, u); gold 'h' (hold) absent from every train pair (asserted per pair)",
+    "gate metric re-anchored: pooled per-token accuracy over held-out-class positions of the all-four-class gate set (tuned>=0.80 AND base<=0.30)",
+    "gate set keeps D15b's exact all-four-class trajectory distribution on unseen texts, so held-position accuracy isolates class transfer",
+    "added seen-only eval set (3-class trajectories, unseen texts): replication axis separating 'read broken by restricted training' from 'read intact but cannot emit the unseen code'",
+    "per-class accuracy table + held-code emission rate reported for both arms",
+    "prompt UNCHANGED from D15b (rule + worked examples are public, including one held-class demonstration \u2014 part of the recipe under test)"
+  ],
+  "mode": "full",
+  "device": "cuda",
+  "seed": 2718,
+  "holdout": {
+    "name": "hold",
+    "momentum": 3,
+    "code": "h",
+    "seen_classes": [
+      "d",
+      "f",
+      "u"
+    ],
+    "rule_visibility": "public: RULE names all four codes and WORKED EXAMPLES show one demonstration of each; what is held out is every gold demonstration of 'h' in training gradients"
+  },
+  "model_used": "Qwen/Qwen2.5-3B-Instruct",
+  "model_candidates_tried": [],
+  "fallback_note": null,
+  "quant": "nf4-4bit",
+  "quant_note": "4-bit NF4 double-quant, bf16 compute",
+  "qlora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "grad_checkpointing": true,
+    "batch": 1,
+    "grad_accum": 8,
+    "seq_max": 1024,
+    "lr": 0.0002
+  },
+  "curriculum": {
+    "schedule": [
+      [
+        "A"
+      ],
+      [
+        "A",
+        "B"
+      ],
+      [
+        "A",
+        "B",
+        "C"
+      ],
+      [
+        "A",
+        "B",
+        "C"
+      ],
+      [
+        "A",
+        "B",
+        "C"
+      ]
+    ],
+    "stage_truncs": {
+      "A": 12,
+      "B": 24,
+      "C": null
+    },
+    "worked_example_bytes": {
+      "86": "d",
+      "ca": "f",
+      "47": "u",
+      "05": "h"
+    }
+  },
+  "data": {
+    "source": "qthe_codec.encode() seeded foundry (~/projects/qthe-codec)",
+    "split": "BY TEXT (held-out texts never in training) + BY CLASS (held-out class 'h' never in any training gold trajectory; asserted per pair)",
+    "pool_texts": 44,
+    "held_texts": 20,
+    "train_texts": 24,
+    "stage_sizes": {
+      "A": 150,
+      "B": 150,
+      "C": 150
+    },
+    "trunc_a_chars": 12,
+    "trunc_b_chars": 24,
+    "train_pairs": 450,
+    "gate_pairs_all4classes": 60,
+    "seen_pairs_3classes": 40,
+    "held_positions_in_gate_set": 678,
+    "codec_roundtrip": "asserted on every pair"
+  },
+  "base_eval_gate": {
+    "n": 60,
+    "acc": 0.0639,
+    "exact_match": 0.0,
+    "wellformed_rate": 0.0,
+    "mean_stream_bytes": 39.7,
+    "held_class_acc": 0.0516,
+    "held_class_positions": 678,
+    "held_code_rate_gold": 0.2846,
+    "held_code_rate_pred": 0.246,
+    "per_class_acc": {
+      "d": {
+        "acc": 0.0709,
+        "n": 508
+      },
+      "f": {
+        "acc": 0.0852,
+        "n": 587
+      },
+      "u": {
+        "acc": 0.0608,
+        "n": 609
+      },
+      "h": {
+        "acc": 0.0516,
+        "n": 678
+      }
+    },
+    "seconds": 42.9,
+    "samples": [
+      {
+        "id": "gate-The Canary H-0",
+        "gold": "f f f f f f f h h h h h h h h h h h d d d d u u u u u u u u u u u",
+        "pred": "d f u h",
+        "raw": "d f u h",
+        "acc": 0.03
+      },
+      {
+        "id": "gate-The Canary H-1",
+        "gold": "h h h h h h h u u u u u u u u u u u u u u u u u u u u u u u u u u",
+        "pred": "d f u h",
+        "raw": "d f u h",
+        "acc": 0.03
+      },
+      {
+        "id": "gate-the canary h-1",
+        "gold": "h h h h h h h h f f f f f f f f f f d d d d d d d d d d u u u u u u u u u u",
+        "pred": "d f u h",
+        "raw": "d f u h",
+        "acc": 0.026
+      },
+      {
+        "id": "gate-the canary h-2",
+        "gold": "f f f f f f f f f f f f f h h h h h h h h h h h h h h h h h h h h h h h h h",
+        "pred": "d f u h",
+        "raw": "d f u h",
+        "acc": 0.026
+      }
+    ]
+  },
+  "base_eval_seen": {
+    "n": 40,
+    "acc": 0.0922,
+    "exact_match": 0.0,
+    "wellformed_rate": 0.0,
+    "mean_stream_bytes": 39.7,
+    "held_class_acc": null,
+    "held_class_positions": 0,
+    "held_code_rate_gold": 0.0,
+    "held_code_rate_pred": 0.2205,
+    "per_class_acc": {
+      "d": {
+        "acc": 0.0885,
+        "n": 531
+      },
+      "f": {
+        "acc": 0.1142,
+        "n": 569
+      },
+      "u": {
+        "acc": 0.0984,
+        "n": 488
+      },
+      "h": {
+        "acc": null,
+        "n": 0
+      }
+    },
+    "seconds": 39.8,
+    "samples": []
+  },
+  "tuned_eval_gate": {
+    "n": 60,
+    "acc": 0.6564,
+    "exact_match": 0.0,
+    "wellformed_rate": 0.0333,
+    "mean_stream_bytes": 39.7,
+    "held_class_acc": 0.0,
+    "held_class_positions": 678,
+    "held_code_rate_gold": 0.2846,
+    "held_code_rate_pred": 0.0,
+    "per_class_acc": {
+      "d": {
+        "acc": 0.937,
+        "n": 508
+      },
+      "f": {
+        "acc": 0.9506,
+        "n": 587
+      },
+      "u": {
+        "acc": 0.8539,
+        "n": 609
+      },
+      "h": {
+        "acc": 0.0,
+        "n": 678
+      }
+    },
+    "seconds": 716.7,
+    "samples": [
+      {
+        "id": "gate-The Canary H-0",
+        "gold": "f f f f f f f h h h h h h h h h h h d d d d u u u u u u u u u u u",
+        "pred": "f f f f f f f f f f f f f f f u u u d d d d d d d d d u u u u u u",
+        "raw": "f f f f f f f f f f f f f f f u u u d d d d d d d d d u u u u u u u u u u u",
+        "acc": 0.515
+      },
+      {
+        "id": "gate-The Canary H-1",
+        "gold": "h h h h h h h u u u u u u u u u u u u u u u u u u u u u u u u u u",
+        "pred": "f f f f f f f u u u u u u u u u u u u u u u u u u u u u u u u u u",
+        "raw": "f f f f f f f u u u u u u u u u u u u u u u u u u u u u u u u u u u u u u u",
+        "acc": 0.788
+      },
+      {
+        "id": "gate-the canary h-1",
+        "gold": "h h h h h h h h f f f f f f f f f f d d d d d d d d d d u u u u u u u u u u",
+        "pred": "f f f f f f f f f f f f f f f f f f d d d d d d d d d d d d d d d d d d d u",
+        "raw": "f f f f f f f f f f f f f f f f f f d d d d d d d d d d d d d d d d d d d u u u u u u u u u u u u u u u u u u u u u u u ",
+        "acc": 0.553
+      },
+      {
+        "id": "gate-the canary h-2",
+        "gold": "f f f f f f f f f f f f f h h h h h h h h h h h h h h h h h h h h h h h h h",
+        "pred": "f f f f f f f f f f f f f f f f f f f f u u u u u u u u u u u u u u u u u d",
+        "raw": "f f f f f f f f f f f f f f f f f f f f u u u u u u u u u u u u u u u u u d d d d d d d d d d",
+        "acc": 0.342
+      }
+    ]
+  },
+  "tuned_eval_seen": {
+    "n": 40,
+    "acc": 0.9275,
+    "exact_match": 0.0,
+    "wellformed_rate": 0.05,
+    "mean_stream_bytes": 39.7,
+    "held_class_acc": null,
+    "held_class_positions": 0,
+    "held_code_rate_gold": 0.0,
+    "held_code_rate_pred": 0.0,
+    "per_class_acc": {
+      "d": {
+        "acc": 0.9228,
+        "n": 531
+      },
+      "f": {
+        "acc": 0.935,
+        "n": 569
+      },
+      "u": {
+        "acc": 0.9078,
+        "n": 488
+      },
+      "h": {
+        "acc": null,
+        "n": 0
+      }
+    },
+    "seconds": 453.4,
+    "samples": []
+  },
+  "held_class_margin": -0.0516,
+  "preregistered": {
+    "tuned_held_acc_gte": 0.8,
+    "base_held_acc_lte": 0.3,
+    "metric": "pooled per-token accuracy over held-out-class positions of the gate set",
+    "chance": 0.25
+  },
+  "train": {
+    "optimizer_steps_total": 225,
+    "per_epoch": [
+      {
+        "epoch": 1,
+        "stages": [
+          "A"
+        ],
+        "pairs": 150,
+        "steps": 19,
+        "mean_loss": 0.8252,
+        "losses": [
+          3.4878,
+          0.939,
+          1.5643,
+          0.8343,
+          0.8082,
+          0.7676,
+          0.5849,
+          0.6104,
+          0.5828,
+          0.5229,
+          0.669,
+          0.5978,
+          0.5248,
+          0.5864,
+          0.6016,
+          0.517,
+          0.4715,
+          0.5394,
+          0.4687
+        ]
+      },
+      {
+        "epoch": 2,
+        "stages": [
+          "A",
+          "B"
+        ],
+        "pairs": 300,
+        "steps": 38,
+        "mean_loss": 0.3591,
+        "losses": [
+          0.4761,
+          0.406,
+          0.4042,
+          0.4781,
+          0.4217,
+          0.5458,
+          0.4463,
+          0.4296,
+          0.3972,
+          0.3823,
+          0.3888,
+          0.3369,
+          0.3585,
+          0.4116,
+          0.4278,
+          0.3517,
+          0.3547,
+          0.3658,
+          0.3789,
+          0.4437,
+          0.4042,
+          0.38,
+          0.3337,
+          0.3163,
+          0.3105,
+          0.2775,
+          0.2884,
+          0.2893,
+          0.2969,
+          0.315,
+          0.2624,
+          0.2501,
+          0.303,
+          0.2709,
+          0.2942,
+          0.2375,
+          0.2593,
+          0.3523
+        ]
+      },
+      {
+        "epoch": 3,
+        "stages": [
+          "A",
+          "B",
+          "C"
+        ],
+        "pairs": 450,
+        "steps": 56,
+        "mean_loss": 0.2484,
+        "losses": [
+          0.3797,
+          0.3026,
+          0.3118,
+          0.3234,
+          0.3484,
+          0.3381,
+          0.3109,
+          0.3044,
+          0.2674,
+          0.3114,
+          0.3229,
+          0.2199,
+          0.2877,
+          0.3484,
+          0.4089,
+          0.282,
+          0.3056,
+          0.29,
+          0.3222,
+          0.2818,
+          0.2339,
+          0.2606,
+          0.1798,
+          0.1852,
+          0.1828,
+          0.1528,
+          0.2451,
+          0.1929,
+          0.1833,
+          0.2066,
+          0.1242,
+          0.2033,
+          0.2222,
+          0.169,
+          0.1704,
+          0.1696,
+          0.1401,
+          0.4808,
+          0.4514,
+          0.286,
+          0.2711,
+          0.2589,
+          0.209,
+          0.2017,
+          0.214,
+          0.2205,
+          0.202,
+          0.2294,
+          0.1929,
+          0.2066,
+          0.2147,
+          0.1323,
+          0.1615,
+          0.1351,
+          0.2013,
+          0.152
+        ]
+      },
+      {
+        "epoch": 4,
+        "stages": [
+          "A",
+          "B",
+          "C"
+        ],
+        "pairs": 450,
+        "steps": 56,
+        "mean_loss": 0.1469,
+        "losses": [
+          0.3871,
+          0.1921,
+          0.2105,
+          0.3073,
+          0.1756,
+          0.2085,
+          0.2472,
+          0.2503,
+          0.189,
+          0.1827,
+          0.1305,
+          0.0883,
+          0.1268,
+          0.2677,
+          0.133,
+          0.1322,
+          0.0471,
+          0.0922,
+          0.1523,
+          0.1835,
+          0.0767,
+          0.1269,
+          0.1172,
+          0.1129,
+          0.1407,
+          0.0672,
+          0.1168,
+          0.1165,
+          0.0961,
+          0.0827,
+          0.0559,
+          0.0919,
+          0.0909,
+          0.1175,
+          0.0731,
+          0.0566,
+          0.0518,
+          0.2797,
+          0.3092,
+          0.1729,
+          0.1849,
+          0.2166,
+          0.1636,
+          0.159,
+          0.1361,
+          0.1467,
+          0.127,
+          0.115,
+          0.1188,
+          0.1268,
+          0.1168,
+          0.0935,
+          0.1145,
+          0.0916,
+          0.1005,
+          0.1556
+        ]
+      },
+      {
+        "epoch": 5,
+        "stages": [
+          "A",
+          "B",
+          "C"
+        ],
+        "pairs": 450,
+        "steps": 56,
+        "mean_loss": 0.1105,
+        "losses": [
+          0.2528,
+          0.0358,
+          0.1496,
+          0.1349,
+          0.0723,
+          0.0967,
+          0.0903,
+          0.0823,
+          0.0188,
+          0.0196,
+          0.0282,
+          0.0135,
+          0.0642,
+          0.0761,
+          0.091,
+          0.0498,
+          0.013,
+          0.0704,
+          0.2223,
+          0.5017,
+          0.2697,
+          0.1335,
+          0.0413,
+          0.0902,
+          0.159,
+          0.0631,
+          0.0705,
+          0.0875,
+          0.0592,
+          0.0605,
+          0.0721,
+          0.037,
+          0.0545,
+          0.054,
+          0.0625,
+          0.0365,
+          0.0378,
+          0.1432,
+          0.1835,
+          0.1471,
+          0.1431,
+          0.1748,
+          0.2074,
+          0.2023,
+          0.1526,
+          0.1316,
+          0.1437,
+          0.1217,
+          0.1331,
+          0.1386,
+          0.1263,
+          0.1249,
+          0.113,
+          0.1202,
+          0.1258,
+          0.0841
+        ]
+      }
+    ],
+    "trainable_params": 29933568,
+    "seconds": 2530.4
+  },
+  "adapter_path": "/home/eileen/projects/quilt-gpu-lab/results/d15c_adapter_full_hold",
+  "peak_vram_mib": 4240.8,
+  "wall_seconds": 3818.2,
+  "versions": {
+    "torch": "2.14.0+cu126",
+    "transformers": "5.17.0",
+    "peft": "0.21.0",
+    "bitsandbytes": "0.50.2"
+  },
+  "verdict": "KILL",
+  "reason": "tuned fails to beat base on the held-out class (-0.0516): the 0.94 read does not transfer to classes absent from training gradients \u2014 the adapter memorizes seen-class output patterns rather than executing the rule",
+  "note": "SMOKE numbers are pipeline proof on the 0.5B proxy, not the hypothesis test. FULL-SCALE RECIPE (D15C_FULL=1, D15C_HOLDOUT=hold): base chain Qwen2.5-3B -> 1.5B (4-bit NF4 double-quant; 3B kept only if free VRAM after load >= 1500 MiB); LoRA r=16 alpha=32 dropout=0.05 on q/k/v/o/gate/up/down; grad checkpointing (use_reentrant=False); batch 1 x grad-accum 8; seq<=1024; lr 2e-4 AdamW; 5 curriculum epochs over 450 seen-class-only pairs (A=12-char, B=24-char, C=full, 150 each): ep1=A, ep2=A+B, ep3-5=all; eval on 60 all-four-class gate pairs (20 unseen texts x 3 draws; held-class positions are the gate) + 40 seen-class pairs (replication axis). Gate: tuned held-class acc >= 0.8 AND base <= 0.3 (chance 0.25), pooled over held positions; KILL iff tuned <= base; else INCONCLUSIVE \u2014 same convention as D15/D15b. Prompt identical to D15b for BOTH arms (public rule + 4 worked examples), so the ONLY difference from D15b is the absence of held-class training gradients. Expected VRAM ~4-4.5 GB peak on 3B, ~2.5-3.5 h wall on the RTX 4050 6 GB; runner.py's Guard hard-codes 1800 s \u2014 D15b full needed 5168 s, so schedule accordingly. Other lanes contend: preflight floor 1024 MiB free / 80 C. This pass quant: nf4-4bit."
+}
