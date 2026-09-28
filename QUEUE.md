@@ -28,3 +28,4 @@
 - [x] D13b relational addressing (confidence-weighted reward) — 2026-09-27 KILL (stronger signal, still no convergence)
 - [x] D13c relational addressing (REINFORCE with baseline) — 2026-09-27 KILL (3rd RL variant fails)
 - [x] D13d shared-key discovery (correlation, not reward) — 2026-09-27 KEEP (1.0, cracks what 3 RL variants couldn't)
+- [x] D16 embedder readability (tiny MLP reads tone class) — 2026-09-27 KEEP (0.93)

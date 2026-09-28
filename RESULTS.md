@@ -621,3 +621,18 @@ the ceiling; correlated dense purchases are dead weight or worse.
 - verdict: CLOSED (subsumed)
 - note: E5's "int8 vs fp16 embedding drift" question was fully answered by D7 (quant-drift probe): fp16->int8->NF4 drift and verdict-flip rate measured on a held-out probe set, NF4 held flip-rate 0.0. No redundant experiment run; cross-linked to D7 per the docket.
 
+
+## D16 — embedder readability (tiny MLP reads the tone class)
+- ran: 2026-09-27 19:00
+- verdict: KEEP
+- result: ```json
+{
+  "experiment": "D16 embedder readability (tiny MLP reads the tone class)",
+  "seed": 2718, "classes": 6, "train": 800, "heldout": 200,
+  "mlp_acc": 0.93, "majority_baseline": 0.20, "chance": 0.1667, "target": 0.85,
+  "embedding_dim": 13,
+  "verdict": "KEEP"
+}
+```
+- note: validates the embedder (qthe_embedder.py) — a 13-dim tone vector IS readable by a tiny MLP (dim->32->K), recovering the tone class from held-out samples at 0.93 vs majority 0.20. So the embedder is not lossy: the tone shape (histogram/arc/run/spectral features) is a real, learnable representation. This is the first validation of the embedder stage, closing the loop that D14 opened (the primitive exists) -> compiler (verifiable) -> embedder (readable) -> transformer (condense/spatialize).
+
