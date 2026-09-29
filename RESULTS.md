@@ -2460,3 +2460,10 @@ the ceiling; correlated dense purchases are dead weight or worse.
 - ran: 2026-09-28 18:52-19:00 (G_DEPTH=12 G_BATCH=2, 85.1M params, verified chain)
 - verdict: ABORTED (CUDA allocation failure at B=2 — the (2,6144,3072) MLP buffer)
 - note: five honest deaths on one axis: G9 OOM@B4 (the ASPECT coupling made 85M not 40M), G9b odd-head assert (the delta mutation's even-head requirement), G9c-v1 my syntax error (nested quotes), G9c-v2 the _os scope bug (head vs tail imports), G9c-v3 OOM@B2 (85M × 3072-wide MLP does not fit 6GB at any B>=2). **CONCLUSION: the params axis is BOXED on this skeleton tonight — the knobs are coupled (depth drags width, width pins heads, heads gate the mutation) and the clean test needs the decoupled width knob (harness debt, queued).** The provisional science stands: time helps then saturates (G7 KEEP / G8 SATURATION), data doesn't help (G6). **G10 pivots the GPU: the seed replication of G7** (600s, seed 1337, the proven 25M config — the D3 replication discipline applied to the glyph program's central KEEP).
+
+## G10 — the G7 replication at seed 1337 [REPLICATED — the arc's central KEEP hardens]
+- ran: 2026-09-28 18:55-19:07 (G_SEED=1337 G_TIME_BUDGET=600 G4_LOSS_MASK=1, the proven 25.3M config)
+- result: life 0.430 | mandelbrot 0.323 | testsrc2 0.809 | mockscene 0.460 | loss 1.002 | 106 steps | 4754MB peak
+- vs G7@seed42: life 0.422 | mandelbrot 0.320 | testsrc2 0.656 | mockscene 0.442
+- verdict: **REPLICATED** — every source within noise (life +0.008, mandelbrot +0.003, mockscene +0.018; testsrc2 +0.153, the noisiest easy source, same regime). TIME-CRACKS-THE-HARD-DYNAMICS is now double-seeded: the G4(diff-mask)->G7(time) composite finding graduates to HARDENED.
+- meta: this is the RSI loop's receipt chain working — G7 proposed (KEEP), G10 replicated (the D3 discipline applied to the glyph program). The finding that survived: it is not parameters (G9 boxed, G6 data-dead), it is not more time beyond 600s (G8 saturated) — it is the DIFFERENCE OPERATOR plus time. The delta-native hypothesis's third data point.
