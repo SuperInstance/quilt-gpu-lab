@@ -98,7 +98,7 @@ def decode_clip_ffmpeg(clip_path, ffmpeg_bin, tmpdir):
         [ffmpeg_bin, "-y", "-loglevel", "error",
          "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", "%dx%d" % (W, H),
          "-i", clip_path,
-         "-f", "image2pipe", "-vcodec", "png", out_pat],
+         "-vsync", "0", "-vcodec", "png", out_pat],
         capture_output=True, text=True)
     if r.returncode != 0:
         sys.exit("[c3_probe] FATAL: ffmpeg decode %s rc=%d stderr=%s"
