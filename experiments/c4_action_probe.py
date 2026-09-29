@@ -26,6 +26,9 @@ def log(msg):
 
 def loocv_centroid_auc(X, y):
     """Leave-one-out nearest-centroid AUC (rank-exact)."""
+    import numpy as np
+    X = np.asarray(X)
+    y = np.asarray(y)
     pos, neg = [], []
     for i in range(len(y)):
         keep = [j for j in range(len(y)) if j != i]
@@ -96,6 +99,10 @@ def main():
     # 3) extract layer-B embeddings
     torch.cuda.reset_peak_memory_stats()
     records, batch_final = c3.extract_all(model, proc, clips, ffmpeg)
+    json.dump({"records": records, "meta": [list(m) for m in meta]},
+              open(os.path.join(os.path.dirname(OUT_JSON),
+                                "c4_embeddings_checkpoint.json"), "w"))
+    log("checkpoint: embeddings persisted (metric bugs no longer lose GPU work)")
     peak = torch.cuda.max_memory_allocated() / 2 ** 30
     torch.cuda.empty_cache()
     X = [[float(v) for v in r["emb_tokens_f16"]] for r in records]
