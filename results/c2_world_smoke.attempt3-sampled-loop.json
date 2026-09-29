@@ -1,0 +1,51 @@
+{
+ "t_load_s": 14.36,
+ "v": {
+  "task": "V-task (8 frames, anticipation)",
+  "path": "videos=[8 frames]",
+  "input_tokens": 1026,
+  "n_new_tokens": 256,
+  "t_gen_s": 12.96,
+  "decode_tok_s": 19.76,
+  "gen_params": {
+   "do_sample": true,
+   "temperature": 1.0,
+   "top_p": 1.0,
+   "top_k": 50,
+   "repetition_penalty": 1.0,
+   "max_new_tokens": 256,
+   "seed": 0
+  },
+  "prompt": "Watch this clip. What is happening, and what is most likely to happen next?",
+  "text": " YOUR 6._LA. **6. 6.. **_6. **_7,6 in 6 and in 6. **6 over in 7 in 7. **_7_6. **76 in **6_7._7_7_6. **7_6_ 6_+ **6_ 3_ **7_6_ **_7_7_6_7_ 7_7_6_3_6_7_6_ **6_7_7_6_6_7_6_6_6_7_7_6_7_5_6_6_7_6_6_7_6_6_6_6_6_6_6_7_6_6_6_6_6_7_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6_6"
+ },
+ "i": {
+  "task": "I-task (example png, repo example prompt)",
+  "path": "images=[1 example png]",
+  "input_tokens": 218,
+  "n_new_tokens": 216,
+  "t_gen_s": 4.68,
+  "decode_tok_s": 46.2,
+  "gen_params": {
+   "do_sample": true,
+   "temperature": 1.0,
+   "top_p": 1.0,
+   "top_k": 50,
+   "repetition_penalty": 1.0,
+   "max_new_tokens": 256,
+   "seed": 0
+  },
+  "prompt": "The task is to put flower into the red bottle. Generate a plan consisting of subtasks for accomplish the task.",
+  "text": " to generate at this task.\n\n\ufffd and  to this task...\n\nThis is to this task..._..._..._..._..._..._..._... with this\n\n..._...  ...  ..._... in this task..._... in this task... in this task... in this task... at this task... with this task... with this task...in this task... with this task... in this task..._... in this task...  . in this task... with this task... in this task... with this task... in this task... at this task... at this task... in this task... with this task... in this task...  . in this task... . in this task ... with this task... with this task... with this task... in this task... in this task... at this task... ... with this task... the task ... in this task... \n  in this task... at this task... _ with this task ... with this task...with this task in this task ... in this task... in this"
+ },
+ "i_prompt_source": "snapshot assets/example_reasoning_prompt.json [\"prompt\"]",
+ "repo_example_max_tokens_noted": 4096,
+ "chat_template_kwargs": {
+  "add_generation_prompt": true,
+  "enable_thinking": true
+ },
+ "peak_alloc_gib_i_task": 2.01,
+ "vram_used_gib": 3.34,
+ "verdict_stage": "generated",
+ "verdict": "KEEP"
+}
