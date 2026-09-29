@@ -39,6 +39,7 @@
 - [x] D1b look-again sweep (full-scale) — 2026-09-27 KEEP (look-again 0.8569 vs best-single 0.6884, lift +0.1684)
 - [x] D21 perception=ledger (kernel on real receipt-chain data) — 2026-09-27 KILL (imbalance ≡ d_mu is conditional, not unconditional)
 - [x] D15c tone-channel generalization (held-out tone classes) — 2026-09-27 KILL (tuned fails held-out class -0.0516; adapter memorizes seen-class patterns)
+- [x] D18 correlation-discovery scaling (does D13d generalize? N∈{8,32,100,300} × corr strength sweep) — 2026-09-28 INCONCLUSIVE (correlation CONFIRMED at all scales; the contrast half FALSIFIED) — [backfilled 2026-09-28: ran without a QUEUE claim, flagged by the music-study lane's RED test]
 - [x] E12 room-dial reader (JEPA reads elephant dials: mood/volume/presence) — 2026-09-28 KEEP (R² 0.81/0.96/0.95; frozen I-JEPA reads staged dials beyond luminance)
 - [x] E25 fold-phase transition (where does the dial read die under carrier nonlinearity? sweep N2 fold amplitude, per-dial critical point) — pre-registered in SPOOL.md — 2026-09-28 INCONCLUSIVE (monotone decay real; distinct criticals volume 1.0/mood 1.5/presence 2.2; mood not longest on k16 clause)
 - [x] E18 sauna/plunge contrast (is the walk between rooms more readable than the rooms? pairwise gap vs two-absolutes baseline) — pre-registered in SPOOL.md
