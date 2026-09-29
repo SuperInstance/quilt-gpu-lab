@@ -1,0 +1,1 @@
+{"schema": "cm1-round1/1", "created": "2026-09-29 13:59:36", "correct_A": 0, "correct_B": 10, "diff": 10, "verdict": "GATING_WINS", "paths": {"DRAFT_PASS": 1, "RETRY_PASS": 0, "PINCHED_FALLBACK": 11}, "jev_tokens": {"in": 9628, "out": 897}}

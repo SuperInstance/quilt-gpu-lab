@@ -1,0 +1,14 @@
+[cm1 13:59:25] S1 A=PARSE_FAIL- B=BOOK:navigation:mid+ (PINCHED_FALLBACK gates=(0.74, 0.35))
+[cm1 13:59:26] S2 A=PARSE_FAIL- B=BOOK:engine:high+ (PINCHED_FALLBACK gates=(0.68, 0.07))
+[cm1 13:59:27] S3 A=PARSE_FAIL- B=BOOK:deck:low+ (PINCHED_FALLBACK gates=(0.12, 0.17))
+[cm1 13:59:27] S4 A=PARSE_FAIL- B=BOOK:navigation:mid+ (PINCHED_FALLBACK gates=(0.25, 0.27))
+[cm1 13:59:28] S5 A=PARSE_FAIL- B=BOOK:engine:low+ (PINCHED_FALLBACK gates=(0.66, 0.11))
+[cm1 13:59:28] S6 A=PARSE_FAIL- B=BOOK:engine:high+ (PINCHED_FALLBACK gates=(0.91, 0.04))
+[cm1 13:59:29] S7 A=PARSE_FAIL- B=PARSE_FAIL- (DRAFT_PASS gates=(0.67, 0.91))
+[cm1 13:59:29] S8 A=PARSE_FAIL- B=BOOK:navigation:mid+ (PINCHED_FALLBACK gates=(0.04, 0.15))
+[cm1 13:59:30] S9 A=PARSE_FAIL- B=BOOK:deck:high+ (PINCHED_FALLBACK gates=(0.65, 0.11))
+[cm1 13:59:31] S10 A=PARSE_FAIL- B=BOOK:engine:low+ (PINCHED_FALLBACK gates=(0.73, 0.09))
+[cm1 13:59:31] S11 A=PARSE_FAIL- B=BOOK:navigation:mid+ (PINCHED_FALLBACK gates=(0.14, 0.23))
+[cm1 13:59:32] S12 A=PARSE_FAIL- B=BOOK:navigation:mid- (PINCHED_FALLBACK gates=(0.1, 0.19))
+[cm1 13:59:36] A 0/12  B 10/12  diff 10 -> GATING_WINS  paths={'DRAFT_PASS': 1, 'RETRY_PASS': 0, 'PINCHED_FALLBACK': 11}  jev=9628/897 tok  16.2s
+[cm1 13:59:36] DONE

@@ -1,0 +1,411 @@
+{
+ "schema": "cm1-round1/1",
+ "plan": "proposals/runs/CM1-cell-mesh-plan.md",
+ "created": "2026-09-29 13:59:36",
+ "cells": {
+  "gen": "qwen2.5:0.5b (ollama, temp 0)",
+  "judge": "jev-preview (typesafe /v1/systemone)",
+  "project": "nomic-embed-text (ollama)"
+ },
+ "pinch": 0.5,
+ "n": 12,
+ "correct_A": 0,
+ "correct_B": 10,
+ "diff": 10,
+ "verdict": "GATING_WINS",
+ "paths": {
+  "DRAFT_PASS": 1,
+  "RETRY_PASS": 0,
+  "PINCHED_FALLBACK": 11
+ },
+ "ollama_eval_total": 171,
+ "jev_tokens": {
+  "in": 9628,
+  "out": 897
+ },
+ "wall_s": 16.2,
+ "geometry": [
+  {
+   "sid": "S1",
+   "sim_A_canon": 0.4205,
+   "sim_B_canon": 1.0
+  },
+  {
+   "sid": "S2",
+   "sim_A_canon": 0.4914,
+   "sim_B_canon": 1.0
+  },
+  {
+   "sid": "S3",
+   "sim_A_canon": 0.499,
+   "sim_B_canon": 1.0
+  },
+  {
+   "sid": "S4",
+   "sim_A_canon": 0.4205,
+   "sim_B_canon": 1.0
+  },
+  {
+   "sid": "S5",
+   "sim_A_canon": 0.5176,
+   "sim_B_canon": 1.0
+  },
+  {
+   "sid": "S6",
+   "sim_A_canon": 0.4914,
+   "sim_B_canon": 1.0
+  },
+  {
+   "sid": "S7",
+   "sim_A_canon": 0.4681,
+   "sim_B_canon": 0.4681
+  },
+  {
+   "sid": "S8",
+   "sim_A_canon": 0.4205,
+   "sim_B_canon": 1.0
+  },
+  {
+   "sid": "S9",
+   "sim_A_canon": 0.4681,
+   "sim_B_canon": 1.0
+  },
+  {
+   "sid": "S10",
+   "sim_A_canon": 0.5176,
+   "sim_B_canon": 1.0
+  },
+  {
+   "sid": "S11",
+   "sim_A_canon": 0.4205,
+   "sim_B_canon": 1.0
+  },
+  {
+   "sid": "S12",
+   "sim_A_canon": 0.499,
+   "sim_B_canon": 0.6116
+  }
+ ],
+ "records": [
+  {
+   "sid": "S1",
+   "report": "Camera frame: three blobs, one moving left at 0.4 units per second. Engine readings steady. Deck clear.",
+   "truth": "BOOK:navigation:mid",
+   "armA": {
+    "answer": "PARSE_FAIL",
+    "correct": false,
+    "t_s": 4.82
+   },
+   "armB": {
+    "answer": "BOOK:navigation:mid",
+    "correct": true,
+    "path": "PINCHED_FALLBACK",
+    "gates": [
+     [
+      0.24,
+      0.33
+     ],
+     [
+      0.74,
+      0.35
+     ]
+    ],
+    "retries": 1,
+    "t_s": 0.64
+   }
+  },
+  {
+   "sid": "S2",
+   "report": "Engine temp rising 2C per minute. Oil pressure dropping. No camera motion detected.",
+   "truth": "BOOK:engine:high",
+   "armA": {
+    "answer": "PARSE_FAIL",
+    "correct": false,
+    "t_s": 0.04
+   },
+   "armB": {
+    "answer": "BOOK:engine:high",
+    "correct": true,
+    "path": "PINCHED_FALLBACK",
+    "gates": [
+     [
+      0.87,
+      0.02
+     ],
+     [
+      0.68,
+      0.07
+     ]
+    ],
+    "retries": 1,
+    "t_s": 0.9
+   }
+  },
+  {
+   "sid": "S3",
+   "report": "All sensors nominal. Bilge dry. Radio quiet. No motion on any camera.",
+   "truth": "BOOK:deck:low",
+   "armA": {
+    "answer": "PARSE_FAIL",
+    "correct": false,
+    "t_s": 0.05
+   },
+   "armB": {
+    "answer": "BOOK:deck:low",
+    "correct": true,
+    "path": "PINCHED_FALLBACK",
+    "gates": [
+     [
+      0.06,
+      0.17
+     ],
+     [
+      0.12,
+      0.17
+     ]
+    ],
+    "retries": 1,
+    "t_s": 0.64
+   }
+  },
+  {
+   "sid": "S4",
+   "report": "AIS contact closing from starboard, course drift detected. Engine nominal.",
+   "truth": "BOOK:navigation:mid",
+   "armA": {
+    "answer": "PARSE_FAIL",
+    "correct": false,
+    "t_s": 0.04
+   },
+   "armB": {
+    "answer": "BOOK:navigation:mid",
+    "correct": true,
+    "path": "PINCHED_FALLBACK",
+    "gates": [
+     [
+      0.11,
+      0.25
+     ],
+     [
+      0.25,
+      0.27
+     ]
+    ],
+    "retries": 1,
+    "t_s": 0.53
+   }
+  },
+  {
+   "sid": "S5",
+   "report": "Fuel flow steady at cruise rate. No motion. Bilge dry.",
+   "truth": "BOOK:engine:low",
+   "armA": {
+    "answer": "PARSE_FAIL",
+    "correct": false,
+    "t_s": 0.04
+   },
+   "armB": {
+    "answer": "BOOK:engine:low",
+    "correct": true,
+    "path": "PINCHED_FALLBACK",
+    "gates": [
+     [
+      0.93,
+      0.13
+     ],
+     [
+      0.66,
+      0.11
+     ]
+    ],
+    "retries": 1,
+    "t_s": 0.6
+   }
+  },
+  {
+   "sid": "S6",
+   "report": "Smoke alarm triggered in the engine room, possible fire. Temp rising.",
+   "truth": "BOOK:engine:high",
+   "armA": {
+    "answer": "PARSE_FAIL",
+    "correct": false,
+    "t_s": 0.04
+   },
+   "armB": {
+    "answer": "BOOK:engine:high",
+    "correct": true,
+    "path": "PINCHED_FALLBACK",
+    "gates": [
+     [
+      0.88,
+      0.02
+     ],
+     [
+      0.91,
+      0.04
+     ]
+    ],
+    "retries": 1,
+    "t_s": 0.52
+   }
+  },
+  {
+   "sid": "S7",
+   "report": "Bilge water rising. Engine nominal, no motion on cameras.",
+   "truth": "BOOK:deck:high",
+   "armA": {
+    "answer": "PARSE_FAIL",
+    "correct": false,
+    "t_s": 0.03
+   },
+   "armB": {
+    "answer": "PARSE_FAIL",
+    "correct": false,
+    "path": "DRAFT_PASS",
+    "gates": [
+     [
+      0.67,
+      0.91
+     ]
+    ],
+    "retries": 0,
+    "t_s": 0.28
+   }
+  },
+  {
+   "sid": "S8",
+   "report": "Course drift 5 degrees starboard over last minute. AIS clear.",
+   "truth": "BOOK:navigation:mid",
+   "armA": {
+    "answer": "PARSE_FAIL",
+    "correct": false,
+    "t_s": 0.04
+   },
+   "armB": {
+    "answer": "BOOK:navigation:mid",
+    "correct": true,
+    "path": "PINCHED_FALLBACK",
+    "gates": [
+     [
+      0.01,
+      0.23
+     ],
+     [
+      0.04,
+      0.15
+     ]
+    ],
+    "retries": 1,
+    "t_s": 0.63
+   }
+  },
+  {
+   "sid": "S9",
+   "report": "Galley water leak reported. Engine nominal, no motion.",
+   "truth": "BOOK:deck:high",
+   "armA": {
+    "answer": "PARSE_FAIL",
+    "correct": false,
+    "t_s": 0.04
+   },
+   "armB": {
+    "answer": "BOOK:deck:high",
+    "correct": true,
+    "path": "PINCHED_FALLBACK",
+    "gates": [
+     [
+      0.49,
+      0.05
+     ],
+     [
+      0.65,
+      0.11
+     ]
+    ],
+    "retries": 1,
+    "t_s": 0.65
+   }
+  },
+  {
+   "sid": "S10",
+   "report": "RPM steady at 1800. Oil pressure normal. No contacts.",
+   "truth": "BOOK:engine:low",
+   "armA": {
+    "answer": "PARSE_FAIL",
+    "correct": false,
+    "t_s": 0.04
+   },
+   "armB": {
+    "answer": "BOOK:engine:low",
+    "correct": true,
+    "path": "PINCHED_FALLBACK",
+    "gates": [
+     [
+      0.95,
+      0.09
+     ],
+     [
+      0.73,
+      0.09
+     ]
+    ],
+    "retries": 1,
+    "t_s": 0.62
+   }
+  },
+  {
+   "sid": "S11",
+   "report": "Blob moving fast toward vessel bow on camera two. Engine nominal.",
+   "truth": "BOOK:navigation:mid",
+   "armA": {
+    "answer": "PARSE_FAIL",
+    "correct": false,
+    "t_s": 0.04
+   },
+   "armB": {
+    "answer": "BOOK:navigation:mid",
+    "correct": true,
+    "path": "PINCHED_FALLBACK",
+    "gates": [
+     [
+      0.07,
+      0.29
+     ],
+     [
+      0.14,
+      0.23
+     ]
+    ],
+    "retries": 1,
+    "t_s": 0.57
+   }
+  },
+  {
+   "sid": "S12",
+   "report": "Radio check complete, all quiet. Bilge dry. No AIS contacts, no motion.",
+   "truth": "BOOK:deck:low",
+   "armA": {
+    "answer": "PARSE_FAIL",
+    "correct": false,
+    "t_s": 0.04
+   },
+   "armB": {
+    "answer": "BOOK:navigation:mid",
+    "correct": false,
+    "path": "PINCHED_FALLBACK",
+    "gates": [
+     [
+      0.04,
+      0.14
+     ],
+     [
+      0.1,
+      0.19
+     ]
+    ],
+    "retries": 1,
+    "t_s": 0.55
+   }
+  }
+ ]
+}
