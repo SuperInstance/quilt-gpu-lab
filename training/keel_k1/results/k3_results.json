@@ -1,0 +1,53 @@
+{
+  "experiment": "K3 boundary map (synthetic:lavfi train mix)",
+  "ratios": [
+    1.0,
+    0.75,
+    0.5,
+    0.25,
+    0.0
+  ],
+  "seeds": [
+    42,
+    1337
+  ],
+  "persistence_mse": 2.87872,
+  "meta": {
+    "synth": "transformers:facebook/vjepa2-vitl-fpc16-256-ssv2",
+    "lavfi": "transformers:facebook/vjepa2-vitl-fpc16-256-ssv2",
+    "dim": 1024
+  },
+  "grid": {
+    "state_r1.0_42": 2.135046,
+    "state_r1.0_1337": 3.069037,
+    "diff_r1.0_42": 2.625272,
+    "diff_r1.0_1337": 2.618513,
+    "state_r0.75_42": 1.724668,
+    "state_r0.75_1337": 1.47393,
+    "diff_r0.75_42": 1.547451,
+    "diff_r0.75_1337": 1.524387,
+    "state_r0.5_42": 1.297695,
+    "state_r0.5_1337": 1.44665,
+    "diff_r0.5_42": 1.391411,
+    "diff_r0.5_1337": 1.246791,
+    "state_r0.25_42": 3.111202,
+    "state_r0.25_1337": 1.5719,
+    "diff_r0.25_42": 3.079373,
+    "diff_r0.25_1337": 1.634549,
+    "state_r0.0_42": 2.568257,
+    "state_r0.0_1337": 2.583163,
+    "diff_r0.0_42": 2.873336,
+    "diff_r0.0_1337": 2.07548
+  },
+  "rel_win_by_ratio": {
+    "1.00": -0.0414,
+    "0.75": 0.0343,
+    "0.50": 0.033,
+    "0.25": -0.0148,
+    "0.00": 0.0389
+  },
+  "spearman_r_relwin": -0.6,
+  "spread": 0.0803,
+  "verdict": "INVALID_HARNESS",
+  "seconds": 309.3
+}
