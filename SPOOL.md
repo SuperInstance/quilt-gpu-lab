@@ -189,3 +189,16 @@ Older but still-valid ideas, extracted as modular quilt tooling:
 - **Browser-as-GPU-substrate**: cells running IN the browser via WebGPU — the chiaroscuro doors already live there; a cell layer under them = the a2a translation layer rendered where the renderer lives.
 
 *Build order: Plinko router → deadband escalation → dream-simulator (capstone).*
+
+---
+
+# WAVE 4 — edge-mine (test-time training / context-as-weights, 2026-09-29)
+
+*Seeded from GEMS.md Wave 5 (abstraction M2, assayed 32 = 4×2×4). One gem this wave — the assayer promoted nothing else.*
+
+## Z1 — the context-as-weights arm (does an inner-loop update beat putting the same tokens in the window?)
+Q: TTT-E2E's claim is that context is not retrieved but *learned* — mini-gradient steps on the incoming stream compress it into weights (parity at 128k, 2.7× faster; ≤35× at 2M). Does a cheap inner-loop parameter update beat handing the identical tokens to the attention window at MATCHED parameter count and MATCHED wall-clock on a 6GB GPU?
+Claim: at matched budget, the learned-in-weights arm wins on held-out next-token loss once the context is long enough to saturate the window's usable capacity — i.e. the crossover exists and is measurable on our metal.
+Gate: two arms, same tokens, same params, same wall-clock. KEEP iff the inner-loop arm's held-out loss is lower by ≥2% relative at the long-context point **and** ≥1 seed replicates. KILL iff the arms tie, or the inner loop loses, or the crossover does not exist within the budget we can actually run. Secondary (reported, not gating): the fixed-budget rate-distortion point (change in bits vs change in tokens-per-second over the attention-only arm).
+Feasibility: high — a small char/byte-level stream, our existing skeleton, `G_TIME_BUDGET` discipline; the compute analogue of the free-iteration economics that produced the free-delta KEEP. ~an afternoon, 1–2 GPU hours. Instruments the boat doctrine: at 60 mi offshore there is no window big enough, only weights that updated on the way out.
+Pre-registration required first: the crossover point and the ≥2% margin must be frozen in `proposals/runs/` before any code, per the assayer spec.
