@@ -1,0 +1,593 @@
+{
+ "schema": "cm1-round2/1",
+ "plan": "proposals/runs/CM1-r2-plan.md",
+ "created": "2026-09-29 14:03:23",
+ "pinches": [
+  0.3,
+  0.5,
+  0.7
+ ],
+ "correct_A": 0,
+ "armA": [
+  {
+   "sid": "S1",
+   "answer": "PARSE_FAIL",
+   "correct": false,
+   "t_s": 0.34
+  },
+  {
+   "sid": "S2",
+   "answer": "PARSE_FAIL",
+   "correct": false,
+   "t_s": 0.04
+  },
+  {
+   "sid": "S3",
+   "answer": "PARSE_FAIL",
+   "correct": false,
+   "t_s": 0.04
+  },
+  {
+   "sid": "S4",
+   "answer": "PARSE_FAIL",
+   "correct": false,
+   "t_s": 0.04
+  },
+  {
+   "sid": "S5",
+   "answer": "PARSE_FAIL",
+   "correct": false,
+   "t_s": 0.04
+  },
+  {
+   "sid": "S6",
+   "answer": "PARSE_FAIL",
+   "correct": false,
+   "t_s": 0.04
+  },
+  {
+   "sid": "S7",
+   "answer": "PARSE_FAIL",
+   "correct": false,
+   "t_s": 0.05
+  },
+  {
+   "sid": "S8",
+   "answer": "PARSE_FAIL",
+   "correct": false,
+   "t_s": 0.05
+  },
+  {
+   "sid": "S9",
+   "answer": "PARSE_FAIL",
+   "correct": false,
+   "t_s": 0.04
+  },
+  {
+   "sid": "S10",
+   "answer": "PARSE_FAIL",
+   "correct": false,
+   "t_s": 0.04
+  },
+  {
+   "sid": "S11",
+   "answer": "PARSE_FAIL",
+   "correct": false,
+   "t_s": 0.04
+  },
+  {
+   "sid": "S12",
+   "answer": "PARSE_FAIL",
+   "correct": false,
+   "t_s": 0.03
+  }
+ ],
+ "jev_r1_avg_in_per_stimulus": 802,
+ "armB": {
+  "p0.3": {
+   "correct": 11,
+   "diff": 11,
+   "verdict": "GATING_WINS",
+   "paths": {
+    "FORMAT_PINCHED": 12
+   },
+   "jev_in": 0,
+   "jev_out": 0,
+   "records": [
+    {
+     "answer": "BOOK:navigation:mid",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.08,
+     "ollama_eval": 8,
+     "sid": "S1",
+     "truth": "BOOK:navigation:mid"
+    },
+    {
+     "answer": "BOOK:engine:high",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.08,
+     "ollama_eval": 10,
+     "sid": "S2",
+     "truth": "BOOK:engine:high"
+    },
+    {
+     "answer": "BOOK:deck:low",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S3",
+     "truth": "BOOK:deck:low"
+    },
+    {
+     "answer": "BOOK:navigation:mid",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S4",
+     "truth": "BOOK:navigation:mid"
+    },
+    {
+     "answer": "BOOK:engine:low",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S5",
+     "truth": "BOOK:engine:low"
+    },
+    {
+     "answer": "BOOK:engine:high",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S6",
+     "truth": "BOOK:engine:high"
+    },
+    {
+     "answer": "BOOK:deck:high",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.09,
+     "ollama_eval": 8,
+     "sid": "S7",
+     "truth": "BOOK:deck:high"
+    },
+    {
+     "answer": "BOOK:navigation:mid",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S8",
+     "truth": "BOOK:navigation:mid"
+    },
+    {
+     "answer": "BOOK:deck:high",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S9",
+     "truth": "BOOK:deck:high"
+    },
+    {
+     "answer": "BOOK:engine:low",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S10",
+     "truth": "BOOK:engine:low"
+    },
+    {
+     "answer": "BOOK:navigation:mid",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S11",
+     "truth": "BOOK:navigation:mid"
+    },
+    {
+     "answer": "BOOK:navigation:mid",
+     "correct": false,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.06,
+     "ollama_eval": 8,
+     "sid": "S12",
+     "truth": "BOOK:deck:low"
+    }
+   ]
+  },
+  "p0.5": {
+   "correct": 11,
+   "diff": 11,
+   "verdict": "GATING_WINS",
+   "paths": {
+    "FORMAT_PINCHED": 12
+   },
+   "jev_in": 0,
+   "jev_out": 0,
+   "records": [
+    {
+     "answer": "BOOK:navigation:mid",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S1",
+     "truth": "BOOK:navigation:mid"
+    },
+    {
+     "answer": "BOOK:engine:high",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.09,
+     "ollama_eval": 10,
+     "sid": "S2",
+     "truth": "BOOK:engine:high"
+    },
+    {
+     "answer": "BOOK:deck:low",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S3",
+     "truth": "BOOK:deck:low"
+    },
+    {
+     "answer": "BOOK:navigation:mid",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S4",
+     "truth": "BOOK:navigation:mid"
+    },
+    {
+     "answer": "BOOK:engine:low",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S5",
+     "truth": "BOOK:engine:low"
+    },
+    {
+     "answer": "BOOK:engine:high",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S6",
+     "truth": "BOOK:engine:high"
+    },
+    {
+     "answer": "BOOK:deck:high",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.08,
+     "ollama_eval": 8,
+     "sid": "S7",
+     "truth": "BOOK:deck:high"
+    },
+    {
+     "answer": "BOOK:navigation:mid",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S8",
+     "truth": "BOOK:navigation:mid"
+    },
+    {
+     "answer": "BOOK:deck:high",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S9",
+     "truth": "BOOK:deck:high"
+    },
+    {
+     "answer": "BOOK:engine:low",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S10",
+     "truth": "BOOK:engine:low"
+    },
+    {
+     "answer": "BOOK:navigation:mid",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S11",
+     "truth": "BOOK:navigation:mid"
+    },
+    {
+     "answer": "BOOK:navigation:mid",
+     "correct": false,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S12",
+     "truth": "BOOK:deck:low"
+    }
+   ]
+  },
+  "p0.7": {
+   "correct": 11,
+   "diff": 11,
+   "verdict": "GATING_WINS",
+   "paths": {
+    "FORMAT_PINCHED": 12
+   },
+   "jev_in": 0,
+   "jev_out": 0,
+   "records": [
+    {
+     "answer": "BOOK:navigation:mid",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.06,
+     "ollama_eval": 8,
+     "sid": "S1",
+     "truth": "BOOK:navigation:mid"
+    },
+    {
+     "answer": "BOOK:engine:high",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 10,
+     "sid": "S2",
+     "truth": "BOOK:engine:high"
+    },
+    {
+     "answer": "BOOK:deck:low",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S3",
+     "truth": "BOOK:deck:low"
+    },
+    {
+     "answer": "BOOK:navigation:mid",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S4",
+     "truth": "BOOK:navigation:mid"
+    },
+    {
+     "answer": "BOOK:engine:low",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S5",
+     "truth": "BOOK:engine:low"
+    },
+    {
+     "answer": "BOOK:engine:high",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S6",
+     "truth": "BOOK:engine:high"
+    },
+    {
+     "answer": "BOOK:deck:high",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S7",
+     "truth": "BOOK:deck:high"
+    },
+    {
+     "answer": "BOOK:navigation:mid",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S8",
+     "truth": "BOOK:navigation:mid"
+    },
+    {
+     "answer": "BOOK:deck:high",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S9",
+     "truth": "BOOK:deck:high"
+    },
+    {
+     "answer": "BOOK:engine:low",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S10",
+     "truth": "BOOK:engine:low"
+    },
+    {
+     "answer": "BOOK:navigation:mid",
+     "correct": true,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S11",
+     "truth": "BOOK:navigation:mid"
+    },
+    {
+     "answer": "BOOK:navigation:mid",
+     "correct": false,
+     "path": "FORMAT_PINCHED",
+     "gates": [],
+     "retries": 1,
+     "jev_in": 0,
+     "jev_out": 0,
+     "t_s": 0.07,
+     "ollama_eval": 8,
+     "sid": "S12",
+     "truth": "BOOK:deck:low"
+    }
+   ]
+  }
+ },
+ "wall_s": 3.4
+}

@@ -1,0 +1,5 @@
+[cm1r2 14:03:21] arm A: 0/12
+[cm1r2 14:03:21] p=0.3: B 11/12 diff +11 -> GATING_WINS paths={'FORMAT_PINCHED': 12} jev=0/0
+[cm1r2 14:03:22] p=0.5: B 11/12 diff +11 -> GATING_WINS paths={'FORMAT_PINCHED': 12} jev=0/0
+[cm1r2 14:03:23] p=0.7: B 11/12 diff +11 -> GATING_WINS paths={'FORMAT_PINCHED': 12} jev=0/0
+[cm1r2 14:03:23] DONE 3.4s
