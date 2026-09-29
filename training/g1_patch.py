@@ -80,7 +80,10 @@ class GlyphLoader:
     """Infinite (x, y, epoch) batches sampled from the split's token stream."""
 
     def __init__(self, streams, split, batch, seq_len, seed=42):
-        toks = [stream_tokens(s) for (nm, sp), s in streams.items() if sp == split]
+        sel = _os.environ.get("G6_SOURCES", "")
+        keep = set(x.strip() for x in sel.split(",") if x.strip())
+        toks = [stream_tokens(s) for (nm, sp), s in streams.items()
+                if sp == split and (not keep or sp != "tr" or nm in keep)]
         self.tokens = np.concatenate(toks)
         self.batch, self.T = batch, seq_len
         self.rng = np.random.default_rng(seed)
