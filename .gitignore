@@ -2,3 +2,5 @@ __pycache__/
 *.pyc
 results/*/adapter_model.safetensors
 results/*_adapter_*/
+data/c3/real/
+data/c3/synth/

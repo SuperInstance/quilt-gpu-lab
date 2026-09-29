@@ -1,0 +1,13 @@
+[K3c] persistence floor (fixed mixed val) = 2.847748  (K3 booked 2.879)
+/home/eileen/projects/quilt-gpu-lab/training/keel_k1/k1_run.py:34: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.blocks = nn.TransformerEncoder(layer, num_layers=2)
+[K3c] P1 r=0.25 state@42 [poisoned (K3+K3b identical)]: final_val=3.092559 (k3b 3.111202, match=False) mode=train-val-split dom={'synth': 4.294838, 'lavfi': 1.766574} (15s)
+/home/eileen/projects/quilt-gpu-lab/training/keel_k1/k1_run.py:34: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.blocks = nn.TransformerEncoder(layer, num_layers=2)
+[K3c] P2 r=0.25 diff@42 [poisoned (K3+K3b identical)]: final_val=3.094687 (k3b 3.079373, match=False) mode=train-val-split dom={'synth': 4.261299, 'lavfi': 1.504659} (28s)
+[K3c] P3 r=0.00 state@7 [poisoned (order-only draw)]: final_val=3.301198 (k3b 4.349166, match=False) mode=train-val-split dom={'synth': 4.714907, 'lavfi': 1.629741} (42s)
+[K3c] C1 r=0.00 diff@7 [healthy control, same draw as P3]: final_val=2.205832 (k3b 2.382021, match=False) mode=healthy dom={'synth': 1.769966, 'lavfi': 1.433932} (56s)
+[K3c] C2 r=0.25 state@1337 [healthy control, same r as P1]: final_val=1.8173 (k3b 1.5719, match=False) mode=healthy dom={'synth': 2.545381, 'lavfi': 1.633104} (71s)
+[K3c] C3 r=0.00 state@42 [healthy control, r=0 sibling of P3]: final_val=3.092764 (k3b 2.568257, match=False) mode=train-val-split dom={'synth': 6.250195, 'lavfi': 2.345809} (86s)
+[K3c] DONE 86.1s -> /home/eileen/projects/quilt-gpu-lab/training/keel_k1/results/k3c_diagnose.json
+{"P1": {"mode": "train-val-split", "domain_split": true, "match": false}, "P2": {"mode": "train-val-split", "domain_split": true, "match": false}, "P3": {"mode": "train-val-split", "domain_split": true, "match": false}, "C1": {"mode": "healthy", "domain_split": false, "match": false}, "C2": {"mode": "healthy", "domain_split": false, "match": false}, "C3": {"mode": "train-val-split", "domain_split": true, "match": false}}

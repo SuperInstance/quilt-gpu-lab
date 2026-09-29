@@ -1,0 +1,22 @@
+[x6] harness self-test: {'r2_min_signal': 0.9991, 'r2_max_shuffled': -0.1652, 'pass': True}
+[x6] loading I-JEPA (cuda)...
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/517 [00:00<?, ?it/s]Loading weights:  22%|██▏       | 115/517 [00:00<00:00, 1142.58it/s]Loading weights:  46%|████▌     | 237/517 [00:00<00:00, 1167.95it/s]Loading weights:  68%|██████▊   | 354/517 [00:00<00:00, 1151.24it/s]Loading weights:  91%|█████████ | 470/517 [00:00<00:00, 1072.90it/s]Loading weights: 100%|██████████| 517/517 [00:00<00:00, 1100.56it/s]
+[x6] using facebook/ijepa_vith16_1k
+[x6] room 1/27 dial_grid_01 embedded
+[x6] room 9/27 dial_grid_09 embedded
+[x6] room 18/27 dial_grid_18 embedded
+[x6] room 27/27 dial_grid_27 embedded
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/x6_extrapolation.py", line 727, in <module>
+    main()
+    ~~~~^^
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/x6_extrapolation.py", line 554, in main
+    e = range_eval(z, Y, groups, tr, te)
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/x6_extrapolation.py", line 280, in range_eval
+    var_tr = np.asarray(Y, float)[tr].var(0)          # per-sample, per-dial
+             ~~~~~~~~~~~~~~~~~~~~^^^^
+IndexError: boolean index did not match indexed array along axis 0; size of axis is 324 but size of corresponding boolean axis is 27

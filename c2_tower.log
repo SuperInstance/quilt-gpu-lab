@@ -1,0 +1,11 @@
+[P5] preflight {'free_mib': 5920, 'temp_c': 46}
+[P5] guard rc=0
+[P5] stderr tail: weights:  63%|██████▎   | 419/670 [00:03<00:00, 289.24it/s]
+Loading weights:  71%|███████   | 475/670 [00:03<00:00, 350.64it/s]
+Loading weights:  79%|███████▉  | 531/670 [00:03<00:00, 397.64it/s]
+Loading weights:  89%|████████▊ | 593/670 [00:03<00:00, 445.19it/s]
+Loading weights:  96%|█████████▌| 643/670 [00:04<00:00, 459.54it/s]
+Loading weights: 100%|██████████| 670/670 [00:04<00:00, 163.25it/s]
+
+[P5] visual_dtype=None verdict=KILL
+[P5] DONE

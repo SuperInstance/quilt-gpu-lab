@@ -1,0 +1,61 @@
+{
+  "experiment": "D12e delta verdict under correlation-key (grown) addressing",
+  "seed": 2718,
+  "n_cells": 8,
+  "qubits": 4,
+  "facts": 120,
+  "T_obs": 200,
+  "preregistered_margin": 0.1,
+  "sweep": [
+    {
+      "p_corr": 0.9,
+      "partner_id_acc": 1.0,
+      "acc_A": 0.4667,
+      "acc_B_corrkey": 1.0,
+      "acc_C_antipartner": 0.4667,
+      "delta": 0.5333,
+      "ci_B": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "p_corr": 0.75,
+      "partner_id_acc": 1.0,
+      "acc_A": 0.4667,
+      "acc_B_corrkey": 1.0,
+      "acc_C_antipartner": 0.5,
+      "delta": 0.5,
+      "ci_B": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "p_corr": 0.6,
+      "partner_id_acc": 1.0,
+      "acc_A": 0.4667,
+      "acc_B_corrkey": 1.0,
+      "acc_C_antipartner": 0.6333,
+      "delta": 0.3667,
+      "ci_B": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "p_corr": 0.5,
+      "partner_id_acc": 1.0,
+      "acc_A": 0.4667,
+      "acc_B_corrkey": 1.0,
+      "acc_C_antipartner": 0.4583,
+      "delta": 0.5333,
+      "ci_B": [
+        1.0,
+        1.0
+      ]
+    }
+  ],
+  "verdict": "KEEP",
+  "note": "structure delta re-measured with partner edges DISCOVERED by max |correlation| of atom streams (no handed addresses, no reward). Control C' = min |correlation| (anti-partner) targeting. KEEP iff delta >= 0.10 at p_corr=0.9."
+}

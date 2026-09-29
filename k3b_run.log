@@ -1,0 +1,59 @@
+/home/eileen/projects/quilt-gpu-lab/training/keel_k1/k1_run.py:34: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.blocks = nn.TransformerEncoder(layer, num_layers=2)
+[K3b] r=1.00 state@42: mse=2.135046 (15s)
+/home/eileen/projects/quilt-gpu-lab/training/keel_k1/k1_run.py:34: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.blocks = nn.TransformerEncoder(layer, num_layers=2)
+[K3b] r=1.00 state@1337: mse=3.069037 (31s)
+[K3b] r=1.00 state@7: mse=2.180832 (46s)
+[K3b] r=1.00 diff@42: mse=2.625272 (61s)
+[K3b] r=1.00 diff@1337: mse=2.618513 (77s)
+[K3b] r=1.00 diff@7: mse=2.584114 (92s)
+[K3b] r=0.75 state@42: mse=1.724668 (108s)
+[K3b] r=0.75 state@1337: mse=1.473930 (123s)
+[K3b] r=0.75 state@7: mse=1.514563 (138s)
+[K3b] r=0.75 diff@42: mse=1.547451 (154s)
+[K3b] r=0.75 diff@1337: mse=1.524387 (170s)
+[K3b] r=0.75 diff@7: mse=1.402344 (185s)
+[K3b] r=0.50 state@42: mse=1.297695 (200s)
+[K3b] r=0.50 state@1337: mse=1.446650 (215s)
+[K3b] r=0.50 state@7: mse=1.407553 (230s)
+[K3b] r=0.50 diff@42: mse=1.391411 (246s)
+[K3b] r=0.50 diff@1337: mse=1.246791 (261s)
+[K3b] r=0.50 diff@7: mse=1.329469 (277s)
+[K3b] r=0.25 state@42: mse=3.111202 (293s)
+[K3b] r=0.25 state@1337: mse=1.571900 (308s)
+[K3b] r=0.25 state@7: mse=1.967487 (323s)
+[K3b] r=0.25 diff@42: mse=3.079373 (338s)
+[K3b] r=0.25 diff@1337: mse=1.634549 (354s)
+[K3b] r=0.25 diff@7: mse=1.727680 (369s)
+[K3b] r=0.00 state@42: mse=2.568257 (384s)
+[K3b] r=0.00 state@1337: mse=2.583163 (399s)
+[K3b] r=0.00 state@7: mse=4.349166 (415s)
+[K3b] r=0.00 diff@42: mse=2.873336 (430s)
+[K3b] r=0.00 diff@1337: mse=2.075480 (446s)
+[K3b] r=0.00 diff@7: mse=2.382021 (461s)
+{
+  "experiment": "K3b",
+  "verdict": "INVALID_HARNESS",
+  "rel_win_by_ratio": {
+    "1.00": -0.0892,
+    "0.75": 0.0475,
+    "0.50": 0.0405,
+    "0.25": 0.0308,
+    "0.00": 0.1767
+  },
+  "cell_mean": {
+    "state_r1.0": 2.461638,
+    "diff_r1.0": 2.6093,
+    "state_r0.75": 1.571054,
+    "diff_r0.75": 1.491394,
+    "state_r0.5": 1.383966,
+    "diff_r0.5": 1.322557,
+    "state_r0.25": 2.216863,
+    "diff_r0.25": 2.147201,
+    "state_r0.0": 3.166862,
+    "diff_r0.0": 2.443612
+  },
+  "spearman": -0.6,
+  "spread": 0.2659
+}

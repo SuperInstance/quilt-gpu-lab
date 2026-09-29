@@ -1,0 +1,20 @@
+[x2] harness self-test: {'r2_min_signal': 0.9991, 'r2_max_shuffled': -0.1652, 'pass': True}
+[x2] bank: 27 rooms (E12's grid, shared by both renderers)
+[x2] carrier certificates: A: curv=0.0 live=3/3; B: curv=0.5277 live=3/3
+[x2] loading I-JEPA (cuda)...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/517 [00:00<?, ?it/s]Loading weights:   5%|▍         | 25/517 [00:00<00:02, 199.65it/s]Loading weights:   9%|▊         | 45/517 [00:00<00:02, 173.47it/s]Loading weights:  12%|█▏        | 63/517 [00:00<00:02, 161.86it/s]Loading weights:  20%|█▉        | 101/517 [00:00<00:01, 230.86it/s]Loading weights:  27%|██▋       | 141/517 [00:00<00:01, 285.38it/s]Loading weights:  33%|███▎      | 173/517 [00:00<00:01, 282.27it/s]Loading weights:  39%|███▉      | 203/517 [00:00<00:01, 237.03it/s]Loading weights:  44%|████▍     | 229/517 [00:01<00:01, 157.52it/s]Loading weights:  48%|████▊     | 249/517 [00:01<00:01, 155.68it/s]Loading weights:  52%|█████▏    | 268/517 [00:01<00:02, 113.30it/s]Loading weights:  55%|█████▌    | 285/517 [00:02<00:03, 66.76it/s] Loading weights:  68%|██████▊   | 349/517 [00:02<00:01, 128.78it/s]Loading weights:  72%|███████▏  | 372/517 [00:02<00:01, 135.24it/s]Loading weights:  76%|███████▌  | 393/517 [00:02<00:00, 139.84it/s]Loading weights:  80%|███████▉  | 413/517 [00:02<00:00, 136.39it/s]Loading weights:  83%|████████▎ | 431/517 [00:03<00:00, 101.35it/s]Loading weights:  87%|████████▋ | 451/517 [00:03<00:00, 113.63it/s]Loading weights:  92%|█████████▏| 475/517 [00:03<00:00, 131.29it/s]Loading weights:  95%|█████████▌| 492/517 [00:03<00:00, 82.53it/s] Loading weights:  98%|█████████▊| 505/517 [00:04<00:00, 73.79it/s]Loading weights: 100%|█████████▉| 516/517 [00:04<00:00, 53.70it/s]Loading weights: 100%|██████████| 517/517 [00:04<00:00, 115.76it/s]
+[x2] using facebook/ijepa_vith16_1k
+[x2] renderer A: rendering + embedding 27 rooms x 12 stills
+[x2] renderer A room 1/27 dial_grid_01
+[x2] renderer A room 9/27 dial_grid_09
+[x2] renderer A room 18/27 dial_grid_18
+[x2] renderer A room 27/27 dial_grid_27
+[x2] renderer B: rendering + embedding 27 rooms x 12 stills
+[x2] renderer B room 1/27 dial_grid_01
+[x2] renderer B room 9/27 dial_grid_09
+[x2] renderer B room 18/27 dial_grid_18
+[x2] renderer B room 27/27 dial_grid_27
+[x2] within-A: r2_still_loro(k64)={'mood': 0.8106, 'volume': 0.9624, 'presence': 0.9478} ladder=KEEP lum_r2=0.993
+[x2] within-B: r2_still_loro(k64)={'mood': 0.7665, 'volume': 0.9439, 'presence': 0.9112} ladder=KEEP lum_r2=0.4127

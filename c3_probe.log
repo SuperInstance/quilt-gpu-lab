@@ -1,0 +1,10 @@
+[c3_probe 12:47:29] preflight {'free_mib': 5920, 'temp_c': 46}
+[c3_probe 12:48:06] guard rc=1
+[c3_probe 12:48:06] stderr tail: 205.40it/s]
+Loading weights:  91%|█████████ | 610/670 [00:11<00:00, 195.93it/s]
+Loading weights:  96%|█████████▌| 640/670 [00:11<00:00, 221.16it/s]
+Loading weights:  99%|█████████▉| 664/670 [00:11<00:00, 191.60it/s]
+Loading weights: 100%|██████████| 670/670 [00:11<00:00, 59.05it/s] 
+[c3_probe] FATAL: /home/eileen/projects/quilt-gpu-lab/data/c3/synth/train/synth_train_000.rgb -> 1 frames (want 16)
+
+[c3_probe 12:48:06] no results json: [Errno 2] No such file or directory: '/home/eileen/projects/quilt-gpu-lab/results/c3_probe.json'

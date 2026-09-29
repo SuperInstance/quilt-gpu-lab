@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/c3_make_data.py", line 272, in <module>
+    main()
+    ~~~~^^
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/c3_make_data.py", line 268, in main
+    generate(ffmpeg, ffprobe)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/c3_make_data.py", line 165, in generate
+    probes[s] = probe_source(ffprobe, p)
+                ~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/c3_make_data.py", line 91, in probe_source
+    out = subprocess.run(
+          ~~~~~~~~~~~~~~^
+        [ffprobe, "-v", "error", "-select_streams", "v:0",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         "-show_entries", "stream=width,height,r_frame_rate",
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         "-show_entries", "format=duration", "-of", "json", path],
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        capture_output=True, check=True).stdout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/home/eileen/.local/bin/ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=width,height,r_frame_rate', '-show_entries', 'format=duration', '-of', 'json', '/home/eileen/.cache/huggingface/hub/models--nvidia--Cosmos3-Edge/snapshots/344d602b128d1bbdacb43b08d0a3626f46343e29/assets/example_action_id_av_0_input.mp4']' returned non-zero exit status 1.

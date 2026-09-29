@@ -1,0 +1,15 @@
+[ie2] blob-only reader gate, tau=2
+[ie2] density 8: R2_dir=0.541407 acc=0.908854
+[ie2] density 16: R2_dir=0.80641 acc=0.980469
+[ie2] density 32: R2_dir=0.930296 acc=1.0
+[ie2] GATE: 3/3 densities -> KEEP
+[ie2] blob-only tau sweep (density 16, descriptive)
+[ie2]   tau=1.0: R2_dir=0.781635
+[ie2]   tau=2.0: R2_dir=0.80641
+[ie2]   tau=4.0: R2_dir=0.837201
+[ie2] amplitude dilution (descriptive)
+[ie2]   density 8: blob/grating amplitude ratio = 0.0249
+[ie2]   density 16: blob/grating amplitude ratio = 0.0164
+[ie2]   density 32: blob/grating amplitude ratio = 0.0065
+[ie2] DONE 1.0s -> results/ie2_blob_reader.json
+{"verdict": "KEEP", "passing": 3, "r2_by_density": {"8": 0.541407, "16": 0.80641, "32": 0.930296}, "amplitude_ratio": {"8": 0.0249, "16": 0.0164, "32": 0.0065}}
