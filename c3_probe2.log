@@ -1,0 +1,13 @@
+[c3_probe 13:17:11] preflight {'free_mib': 5920, 'temp_c': 49}
+[c3_probe 13:18:11] guard rc=0
+[c3_probe 13:18:11] stderr tail: 0:00, 430.15it/s]
+Loading weights:  81%|████████▏ | 545/670 [00:02<00:00, 601.18it/s]
+Loading weights:  96%|█████████▌| 643/670 [00:02<00:00, 700.28it/s]
+Loading weights: 100%|██████████| 670/670 [00:02<00:00, 267.87it/s]
+[transformers] Cosmos3 Edge samples video frames using fps, but input video metadata did not provide an fps. Defaulting to fps=24. Pass `video_metadata` for accurate timestamps.
+
+[c3_probe 13:18:11] visual=torch.bfloat16/Parameter verdict=ANCHORING_REPLICATED (stage gated)
+[c3_probe 13:18:11]   B/nearest_centroid: train_auc=1.0 val_auc=1.0 val_acc=1.0 (p=5.421e-20)
+[c3_probe 13:18:11]   B/linear_logistic: train_auc=0.0 val_auc=0.0 val_acc=0.0 (p=>0.5)
+[c3_probe 13:18:11] gate: {'metric': 'nearest_centroid val AUC, layer B (post-projector, mean-pooled)', 'threshold': 0.9, 'chance': 0.5}
+[c3_probe 13:18:11] DONE
