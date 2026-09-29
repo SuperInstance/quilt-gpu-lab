@@ -12,7 +12,7 @@ piece others can lift. Grab = copy the file; everything here runs alone.
   VLM, with VRAM/temp guard and fail-loud JSON receipts. Swap MODEL_ID.
 
 - **skip-tower-quantizer** — `experiments/c2_probe_skip_tower.py`
-  attempt-5: NF4-quantize the LM while holding the vision tower + projector
+  PROVEN on-silicon (attempt-5b KEEP): NF4-quantize the LM while holding the vision tower + projector
   in bf16 (`llm_int8_skip_modules`). If this restores image coherence, the
   recipe is "never quantize the tower on small GPUs" — lift the loader block.
 
