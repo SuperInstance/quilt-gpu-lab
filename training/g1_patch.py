@@ -28,7 +28,7 @@ src = src.replace("vocab_size: int = 32768", "vocab_size: int = 32")
 src = src.replace("sequence_len: int = 2048", "sequence_len: int = 6144")
 
 # 3. Batch size for 6GB at seq 6144.
-src = re.sub(r"DEVICE_BATCH_SIZE = 8.*", "DEVICE_BATCH_SIZE = 4  # G1: seq 6144 on 6GB", src, count=1)
+src = re.sub(r"DEVICE_BATCH_SIZE = 8.*", "DEVICE_BATCH_SIZE = int(_os.environ.get("G_BATCH", "4"))  # G1: seq 6144 on 6GB (G9c: 2 for the 768-embd params test)", src, count=1)
 # TOTAL_BATCH must divide: tokens/fwdbwd = 4*6144 = 24576; 16 accum steps.
 src = re.sub(r"TOTAL_BATCH_SIZE = 2\*\*19.*",
              "TOTAL_BATCH_SIZE = 4 * 6144 * 16  # G1: 393,216 tokens/step (16 accum)", src, count=1)

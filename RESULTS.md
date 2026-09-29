@@ -2450,3 +2450,8 @@ the ceiling; correlated dense purchases are dead weight or worse.
 - ran: 2026-09-28 18:21 (G_DEPTH=12, G_TIME_BUDGET=600, G4_LOSS_MASK=1)
 - verdict: ABORTED (CUDA allocation failure — a config bug, not a finding)
 - note: **G_DEPTH=12 scaled WIDTH with it** (n_embd = depth x ASPECT 64 = 768): the model built at **85.1M params** (vs the intended ~40M — the depth knob drags width through the ASPECT coupling), passed the FAIL-first check, then died allocating the (4, 6144, 768) fp32 activation buffer — "CUDA driver error: device not ready" (WSL's flavor of the 6GB wall). Lesson: the params axis needs the WIDTH-only knob (ASPECT env), or the conservative depth step. **G9b fired the corrected single-variable: G_DEPTH=10 (640 embd, ~42M params, +65%)** at the same 600s vs G7's numbers.
+
+## G9b — the params axis, second attempt (crashed on the even-head assert)
+- ran: 2026-09-28 18:40 (G_DEPTH=10, 640 embd, 5 heads, 600s)
+- verdict: ABORTED (AssertionError: delta-attention mutation requires even head counts)
+- note: 640 embd / HEAD_DIM 128 = **5 heads — odd** — and the free-delta mutation splits heads in half, so odd counts are structurally excluded by its own assert. The params axis is BOXED by architecture constraints: width must be a multiple of 256 (2 heads' worth) for even heads; 512@B4 fits but is the baseline; 768@B4 OOM'd (G9); the odd-head widths are excluded. **The only remaining move: G9c = 768 embd (6 heads) at B=2** — fits the VRAM by halving the batch, with the batch-confound acknowledged (params AND batch both change; a win is still informative, a loss is ambiguous).
