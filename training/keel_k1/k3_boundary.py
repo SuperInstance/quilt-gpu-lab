@@ -41,7 +41,7 @@ def main():
     tr_l, va_l, meta_l = load(os.path.join(HERE, "cache_lavfi.pt"))
     # val = fixed 50/50 interleave (same testbed for every r)
     nva = min(len(va_s), len(va_l))
-    va = torch.stack([va_s[i] if i % 2 == 0 else va_l[i] for i in range(2 * nva)])
+    va = torch.stack([x for pair in zip(va_s[:nva], va_l[:nva]) for x in pair])
     persistence = torch.nn.functional.mse_loss(va[1:], va[:-1]).item()
     res = {"experiment": "K3 boundary map (synthetic:lavfi train mix)",
            "ratios": list(RATIOS), "seeds": SEEDS, "persistence_mse": round(persistence, 6),
