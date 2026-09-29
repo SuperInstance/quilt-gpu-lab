@@ -2572,3 +2572,10 @@ the ceiling; correlated dense purchases are dead weight or worse.
 - τ sweep (descriptive): 0.782 / 0.806 / 0.837 at τ = 1/2/4 — mild, monotone in τ, no cliff.
 - Follow-up shape (not booked): a two-head reader (wide-field + small-field heads, or per-family gating) should recover both families from the single 4-code stream — the fam code carries more than one reader can see at once.
 - Artifacts: experiments/ie2_blob_reader.py · results/ie2_blob_reader.json · ie2_run.log · proposals/runs/IE2-plan.md.
+
+### 2026-09-29 10:05 — C1: Cosmos 3 Edge boots on the RTX 4050 — KEEP (17.5 tok/s at 1.95 GiB: frontier edge world model runs on boat-class silicon)
+**The ground truth nobody had: NVIDIA's 4B edge world model runs comfortably on a 6 GB laptop GPU.** Plan-first (proposals/runs/C1-cosmos-edge-boots-plan.md). `nvidia/Cosmos3-Edge` (9.18 GB bf16 snapshot, OpenMDW1.1) via transformers 5.17 native `cosmos3_edge` + bitsandbytes **NF4** (double-quant, bf16 compute), device_map auto, under guard.py. Mandate: Casey 07:43/08:52/09:54 — experiment widely, push often.
+- **KEEP numbers:** 48/48 tokens, **17.5 tok/s decode** (t_gen 2.74 s), **peak alloc 1.95 GiB / total VRAM 3.12 GiB** of 6, **peak 49 °C**, guard floor never threatened (min free 3.7 GiB), load 5–11 s warm / processor ~10 s. Frozen deckhand prompt via the repo chat template; the model opens with visible chain-of-thought reasoning (Nemotron style) before answering.
+- Fail-loud trail (all receipts kept): attempt-1 crashed on a debug print (`hf_device_map` missing on this class — the model had already LOADED); attempt-2 generated 1 token from a raw-text prompt (no chat template → instant EOS); attempt-3 applied the chat template → full generation. A first boot on new silicon owes exactly this trail.
+- Scope: AR-tower text reasoning only. Diffusion tower (video/action gen, WAM policy mode) is C2+; Jetson Thor's 15 Hz is another class — **17.5 tok/s on a 4050 is the hundred-boats number.**
+- Artifacts: experiments/c1_cosmos_boots.py · results/c1_cosmos_boots.json (+ .attempt1-crash, .attempt2-short) · c1_pull.log · c1_run*.log · proposals/runs/C1-cosmos-edge-boots-plan.md.

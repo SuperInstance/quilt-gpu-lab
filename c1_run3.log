@@ -1,0 +1,12 @@
+[C1] guard rc=0 breach=None tail={'returncode': 0, 'guard_breach': None, 'guard_timed_out': False, 'peak_temp_c': 50, 'min_free_mib': 3712}
+[C1] stderr tail: hts:  22%|██▏       | 147/670 [00:00<00:02, 256.60it/s]
+Loading weights:  26%|██▌       | 175/670 [00:00<00:01, 263.72it/s]
+Loading weights:  30%|███       | 202/670 [00:00<00:01, 253.28it/s]
+Loading weights:  34%|███▍      | 228/670 [00:01<00:02, 190.62it/s]
+Loading weights:  50%|█████     | 337/670 [00:01<00:00, 403.56it/s]
+Loading weights:  69%|██████▉   | 465/670 [00:01<00:00, 616.73it/s]
+Loading weights:  80%|████████  | 539/670 [00:01<00:00, 647.70it/s]
+Loading weights:  98%|█████████▊| 659/670 [00:01<00:00, 796.91it/s]
+Loading weights: 100%|██████████| 670/670 [00:01<00:00, 439.05it/s]
+
+[C1] DONE

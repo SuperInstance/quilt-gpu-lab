@@ -1,0 +1,5 @@
+{
+ "verdict": "KILL",
+ "verdict_stage": "exception",
+ "traceback_tail": "Traceback (most recent call last):\n  File \"/home/eileen/projects/quilt-gpu-lab/experiments/c1_cosmos_boots.py\", line 97, in main\n    res = inner()\n  File \"/home/eileen/projects/quilt-gpu-lab/experiments/c1_cosmos_boots.py\", line 53, in inner\n    {k: str(v) for k, v in list(model.hf_device_map.items())[:4]}, flush=True)\n                                ^^^^^^^^^^^^^^^^^^^\n  File \"/home/eileen/venvs/elephant-gpu/lib/python3.14/site-packages/torch/nn/modules/module.py\", line 1972, in __getattr__\n    raise AttributeError(\n        f\"'{type(self).__name__}' object has no attribute '{name}'\"\n    )\nAttributeError: 'Cosmos3EdgeForConditionalGeneration' object has no attribute 'hf_device_map'\n"
+}

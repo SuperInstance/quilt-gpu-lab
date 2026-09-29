@@ -1,0 +1,13 @@
+[C1] guard rc=0 breach=None tail={'returncode': 0, 'guard_breach': None, 'guard_timed_out': False, 'peak_temp_c': 51, 'min_free_mib': 3752}
+[C1] stderr tail: c1_cosmos_boots.py", line 97, in main
+    res = inner()
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/c1_cosmos_boots.py", line 53, in inner
+    {k: str(v) for k, v in list(model.hf_device_map.items())[:4]}, flush=True)
+                                ^^^^^^^^^^^^^^^^^^^
+  File "/home/eileen/venvs/elephant-gpu/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1972, in __getattr__
+    raise AttributeError(
+        f"'{type(self).__name__}' object has no attribute '{name}'"
+    )
+AttributeError: 'Cosmos3EdgeForConditionalGeneration' object has no attribute 'hf_device_map'
+
+[C1] DONE

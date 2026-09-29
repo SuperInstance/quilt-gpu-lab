@@ -1,0 +1,15 @@
+{
+ "prompt": "You are a deckhand on a fishing vessel in Alaska. In three short sentences, what should you watch for on deck right now?",
+ "pixels": "none",
+ "proc_path": "AutoProcessor",
+ "verdict_stage": "generated",
+ "t_proc_s": 14.21,
+ "t_load_s": 11.26,
+ "t_gen_s": 7.02,
+ "n_new_tokens": 1,
+ "decode_tok_s": 0.14,
+ "peak_alloc_gib": 1.94,
+ "vram_used_gib": 3.11,
+ "gen_text": "",
+ "verdict": "SHORT"
+}
