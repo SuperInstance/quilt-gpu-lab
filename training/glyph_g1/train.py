@@ -496,6 +496,7 @@ MAX_SEQ_LEN = 6144
 TIME_BUDGET = 300
 SEP = 31
 DYNAMIC = ("life", "testsrc2", "mandelbrot")
+G5_THRESHOLDS = (0.1, 0.2, 0.3, 0.5)
 
 
 def load_streams():
@@ -529,6 +530,16 @@ class GlyphLoader:
         self.rng = np.random.default_rng(seed)
         self.epoch = 0
         self._calls = 0
+        # G4: changed-cell loss mask (train only where the target differs from
+        # the previous frame's same cell — the diff-target insight as a loss)
+        self.loss_mask_mode = _os.environ.get("G4_LOSS_MASK", "0") == "1"
+        if self.loss_mask_mode:
+            Lw = 1728 + 1
+            n = len(self.tokens)
+            chg = np.zeros(n, dtype=bool)
+            ii = np.arange(Lw, n)
+            chg[ii] = (self.tokens[ii] != SEP) & (self.tokens[ii] != self.tokens[ii - Lw])
+            self.chg = chg
 
     def __iter__(self):
         return self
@@ -539,9 +550,16 @@ class GlyphLoader:
         ys = np.zeros((B, T), dtype=np.int64)
         n = len(self.tokens)
         for b in range(B):
-            i = int(self.rng.integers(0, n - T - 2))
-            xs[b] = self.tokens[i:i + T]
-            ys[b] = self.tokens[i + 1:i + 1 + T]
+            for _retry in range(20):
+                i = int(self.rng.integers(0, n - T - 2))
+                xs[b] = self.tokens[i:i + T]
+                ys[b] = self.tokens[i + 1:i + 1 + T]
+                if not self.loss_mask_mode:
+                    break
+                m = ~self.chg[i + 1:i + 1 + T]
+                if int((~m).sum()) >= 100:  # need >=100 loss-bearing targets
+                    ys[b][m] = -1
+                    break
         self._calls += 1
         if self._calls % 500 == 0:
             self.epoch += 1
@@ -551,7 +569,8 @@ class GlyphLoader:
 
 @torch.no_grad()
 def evaluate_g1(model, streams, autocast_ctx):
-    """Per-source test metrics: model acc/CE-per-cell vs persistence + majority."""
+    """Per-source test metrics: model acc/CE-per-cell vs persistence + majority,
+    plus the G5 hybrid-refiner composite accuracy at each confidence threshold."""
     import torch.nn.functional as F
     model.eval()
     results = {}
@@ -564,6 +583,9 @@ def evaluate_g1(model, streams, autocast_ctx):
         correct = total = 0
         changed_correct = changed_total = 0
         ce_sum = 0.0
+        # G5 composite accumulators: per-threshold (full-cell, changed-cell) hits
+        comp_correct = {thr: 0 for thr in G5_THRESHOLDS}
+        comp_chg = {thr: 0 for thr in G5_THRESHOLDS}
         # G2 diagnostic: changed-cells mask (cell != previous frame's same cell)
         Lw = 1728 + 1  # frame + SEP stride
         chg_stream = np.zeros(n, dtype=bool)
@@ -583,6 +605,28 @@ def evaluate_g1(model, streams, autocast_ctx):
             changed_total += int(cmask.sum().item())
             ce_sum += F.cross_entropy(logits[0][mask].float(),
                                       yt[0][mask], reduction="sum").item()
+            # G5 hybrid-refiner composite: prev_code = the previous frame's
+            # same-cell token (global position j − (1728+1)); invalid before
+            # the first frame → fall back to model argmax. Substitute the
+            # model's argmax where (p_top − p(prev_code) > thr) AND
+            # (argmax ≠ prev_code); persistence elsewhere.
+            probs = logits[0].float().softmax(-1)
+            p_top = probs.gather(1, pred[:, None]).squeeze(1)
+            prev_idx = np.arange(i - T + 1, i + 1) - Lw
+            prev_ok = prev_idx >= 0
+            prev_code = torch.from_numpy(
+                np.where(prev_ok, toks[np.clip(prev_idx, 0, None)], 0)).to(device)
+            p_prev = probs.gather(1, prev_code[:, None]).squeeze(1)
+            margin = p_top - p_prev
+            prev_ok_t = torch.from_numpy(prev_ok).to(device)
+            for thr in G5_THRESHOLDS:
+                # invalid prev -> model argmax fallback; valid prev -> model
+                # argmax only when confident it differs, else persistence
+                use_model = (~prev_ok_t) | ((margin > thr) & (pred != prev_code))
+                comp = torch.where(use_model, pred, prev_code)
+                ok = (comp == yt[0]) & mask
+                comp_correct[thr] += int(ok.sum().item())
+                comp_chg[thr] += int((ok & cmask).sum().item())
         fr = frames
         fr_flat = fr.reshape(len(fr), -1)
         persist_acc = float((fr[1:] == fr[:-1]).mean())
@@ -600,6 +644,13 @@ def evaluate_g1(model, streams, autocast_ctx):
             "majority_acc": majority_acc,
             "model_changed_acc": changed_correct / max(changed_total, 1),
             "changed_frac": float(chg_stream.mean()),
+            # On changed cells persistence is definitionally wrong (the mask is
+            # prev_code != target), so persist_changed_acc is 0 wherever any
+            # cell ever changed — recorded explicitly for the G5 gate.
+            "persist_changed_acc": 0.0 if changed_total > 0 else None,
+            "composite": {f"{thr}": {"acc": round(comp_correct[thr] / max(total, 1), 4),
+                                     "changed_acc": round(comp_chg[thr] / max(changed_total, 1), 4)}
+                          for thr in G5_THRESHOLDS},
         }
     model.train()
     return results
@@ -620,6 +671,43 @@ def gate_verdict(results):
     return verdict, dict(persist_margins=persist_margins,
                          majority_margin=model_overall - maj_overall,
                          model_overall=model_overall, maj_overall=maj_overall)
+
+
+def gate5(results):
+    """G5 pre-registered gate: the composite must beat BOTH pure-persistence and
+    the pure-model overall accuracy at some threshold, AND beat persistence on
+    >=2 of 3 dynamic sources' changed-cell accuracy (at that same threshold).
+    KILL if no threshold beats persistence overall; INCONCLUSIVE if persistence
+    is beaten somewhere but the full KEEP bar is never met."""
+    srcs = list(results)
+    persist_overall = sum(results[s]["persist_acc"] for s in srcs) / len(srcs)
+    model_overall = sum(results[s]["model_acc"] for s in srcs) / len(srcs)
+    table = {}
+    best_thr, best_acc = None, -1.0
+    for thr in G5_THRESHOLDS:
+        comp = sum(results[s]["composite"][f"{thr}"]["acc"] for s in srcs) / len(srcs)
+        beats_persist_chg = sum(
+            1 for s in DYNAMIC if s in results
+            and results[s]["persist_changed_acc"] is not None
+            and results[s]["composite"][f"{thr}"]["changed_acc"]
+            > results[s]["persist_changed_acc"])
+        table[f"{thr}"] = {"composite_overall": round(comp, 4),
+                           "beats_persistence": comp > persist_overall,
+                           "beats_model": comp > model_overall,
+                           "dynamic_changed_beats": beats_persist_chg}
+        if comp > persist_overall and comp > model_overall and beats_persist_chg >= 2                 and comp > best_acc:
+            best_thr, best_acc = thr, comp
+    if best_thr is not None:
+        verdict = "KEEP"
+    elif any(t["beats_persistence"] for t in table.values()):
+        verdict = "INCONCLUSIVE"
+    else:
+        verdict = "KILL"
+    return verdict, dict(persist_overall=round(persist_overall, 4),
+                         model_overall=round(model_overall, 4),
+                         best_threshold=best_thr,
+                         best_composite_overall=round(best_acc, 4) if best_thr is not None else None,
+                         thresholds=table)
 
 
 def main():
@@ -758,12 +846,15 @@ def main():
 
     print()
     results = evaluate_g1(model, streams, autocast_ctx)
-    verdict, gate = gate_verdict(results)
+    g5_verdict, g5_gate = gate5(results)
+    legacy_verdict, legacy_gate = gate_verdict(results)
+    verdict = g5_verdict
     t_end = time.time()
     peak_vram_mb = torch.cuda.max_memory_allocated() / 1024 / 1024
     out = {
-        "experiment": "G1 glyph-domain next-frame predictor",
-        "verdict": verdict, "gate": gate,
+        "experiment": "G5 hybrid refiner composite (diff-trained model + persistence)",
+        "verdict": verdict, "gate": g5_gate,
+        "g1_style_gate": {"verdict": legacy_verdict, **legacy_gate},
         "per_source": {f"{k[0]}/{k[1]}": {kk: round(vv, 4) if isinstance(vv, float) else vv
                                           for kk, vv in v.items()}
                        for k, v in results.items()},
