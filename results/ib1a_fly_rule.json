@@ -1,0 +1,54 @@
+{
+  "experiment": "IB1a fly-rule (no backprop) vs controls",
+  "rule": "frozen sparse PN->KC, k-WTA, K.V, order-gated delta-broadcast, eligibility traces, RW extinction, homeostatic decay",
+  "seeds": [
+    2718,
+    42,
+    1337
+  ],
+  "arms": {
+    "A_fly-rule": {
+      "train_reward_last200": 0.3733,
+      "eval_transfer": 0.25,
+      "per_seed": [
+        0.33,
+        0.37,
+        0.42
+      ]
+    },
+    "B_no-third-factor": {
+      "train_reward_last200": 0.2583,
+      "eval_transfer": 0.0967,
+      "per_seed": [
+        0.17,
+        0.305,
+        0.3
+      ]
+    },
+    "C_order-swapped": {
+      "train_reward_last200": 0.2717,
+      "eval_transfer": 0.15,
+      "per_seed": [
+        0.23,
+        0.31,
+        0.275
+      ]
+    },
+    "D_backprop": {
+      "train_reward_last200": 0.3717,
+      "eval_transfer": 0.2233,
+      "per_seed": [
+        0.435,
+        0.35,
+        0.33
+      ]
+    }
+  },
+  "verdict": "KEEP",
+  "gate": "A-B>=0.05 and A-C>=0.05 (train reward, 3-seed mean)",
+  "A_vs_D_ungated": {
+    "A": 0.3733,
+    "D": 0.3717
+  },
+  "seconds": 5.1
+}
