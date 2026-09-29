@@ -80,6 +80,16 @@ class GlyphLoader:
         self.rng = np.random.default_rng(seed)
         self.epoch = 0
         self._calls = 0
+        # G4: changed-cell loss mask (train only where the target differs from
+        # the previous frame's same cell — the diff-target insight as a loss)
+        self.loss_mask_mode = _os.environ.get("G4_LOSS_MASK", "0") == "1"
+        if self.loss_mask_mode:
+            Lw = 1728 + 1
+            n = len(self.tokens)
+            chg = np.zeros(n, dtype=bool)
+            ii = np.arange(Lw, n)
+            chg[ii] = (self.tokens[ii] != SEP) & (self.tokens[ii] != self.tokens[ii - Lw])
+            self.chg = chg
 
     def __iter__(self):
         return self
@@ -90,9 +100,16 @@ class GlyphLoader:
         ys = np.zeros((B, T), dtype=np.int64)
         n = len(self.tokens)
         for b in range(B):
-            i = int(self.rng.integers(0, n - T - 2))
-            xs[b] = self.tokens[i:i + T]
-            ys[b] = self.tokens[i + 1:i + 1 + T]
+            for _retry in range(20):
+                i = int(self.rng.integers(0, n - T - 2))
+                xs[b] = self.tokens[i:i + T]
+                ys[b] = self.tokens[i + 1:i + 1 + T]
+                if not self.loss_mask_mode:
+                    break
+                m = ~self.chg[i + 1:i + 1 + T]
+                if int((~m).sum()) >= 100:  # need >=100 loss-bearing targets
+                    ys[b][m] = -1
+                    break
         self._calls += 1
         if self._calls % 500 == 0:
             self.epoch += 1
