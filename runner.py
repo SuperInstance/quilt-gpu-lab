@@ -97,8 +97,28 @@ def run(eid: str) -> dict:
                 "guard": guard.summary()}
     env = dict(os.environ)
     env["PYTHONPATH"] = str(LAB)
-    code, out, err = guard.run(
-        [str(VENV_PY), "-m", EXP_MOD[eid]], cwd=str(LAB), env=env)
+    # chip_route gate (2026-09-28): one door for every fire. tensor class =
+    # GPU serial (the sibling rule, G9-saga-hardened); rc=3 = refused, reason
+    # on stderr. Per-experiment device classes can come later if the runner
+    # ever carries CPU-class experiments.
+    _cr = subprocess.run(
+        [str(LAB / "tools" / "chip_route.py"), "--class", "tensor"],
+        capture_output=True, text=True)
+    if _cr.returncode == 3:
+        return {"experiment": eid, "verdict": "ABORTED",
+                "reason": f"chip_route refused: {_cr.stderr.strip()}"}
+    for _line in _cr.stdout.splitlines():
+        if "=" in _line:
+            _k, _v = _line.split("=", 1)
+            env[_k] = _v
+    _lock = LAB / ".gpu.lock"
+    _lock.write_text(str(os.getpid()))
+    try:
+        code, out, err = guard.run(
+            [str(VENV_PY), "-m", EXP_MOD[eid]], cwd=str(LAB), env=env)
+    finally:
+        if _lock.exists():
+            _lock.unlink()
     result = {"experiment": eid, "guard": guard.summary()}
     if code != 0:
         result.update(verdict="ABORTED", reason=f"exit {code}",
