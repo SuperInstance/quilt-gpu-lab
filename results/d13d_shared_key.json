@@ -1,0 +1,1 @@
+{"experiment": "D13d shared-key discovery (correlation, not reward)", "seed": 2718, "cells": 8, "observations": 200, "p_corr": 0.9, "partner_identification_acc": 1.0, "target": 0.9, "verdict": "KEEP", "note": "cells identify their partner by max |correlation| of atom streams, with NO reward signal. KEEP iff >=0.90, decisively beating the RL variants (0.2-0.3)."}
