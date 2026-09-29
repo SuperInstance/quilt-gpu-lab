@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Lane Dance — 2026-09-28</title>
+<style>
+  html,body{margin:0;height:100%;background:#0a0f14;overflow:hidden;font-family:Georgia,serif}
+  canvas{display:block}
+  #title{position:fixed;top:14px;left:0;right:0;text-align:center;color:#c9a959;letter-spacing:.35em;font-size:15px;opacity:.9}
+  #sub{position:fixed;bottom:12px;left:0;right:0;text-align:center;color:#5b7a8a;font-size:11px;letter-spacing:.12em}
+</style>
+</head>
+<body>
+<div id="title">THE LANE DANCE</div>
+<div id="sub">the chip is the stage · the receipts are the music · score: lane-dance-score-2026-09-28.md</div>
+<canvas id="c"></canvas>
+<script>
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+let W,H;function fit(){W=cv.width=innerWidth;H=cv.height=innerHeight}fit();onresize=fit;
+const T=()=>performance.now()/1000;
+
+// ---- the stage: GPU platform (left, raised) + CPU floor (right)
+function stage(t){
+  ctx.strokeStyle='#1e2c36';ctx.lineWidth=1.5;
+  const px=W*0.30,py=H*0.68,ph=H*0.16,pw=W*0.26;      // platform
+  ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(px+pw,py);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(px+pw*0.5,py);ctx.lineTo(px+pw*0.5,py+ph*0.7);ctx.stroke();
+  ctx.fillStyle='#2b4250';ctx.font='10px monospace';
+  ctx.fillText('RTX 4050 · the serial floor',px+8,py-8);
+  ctx.fillText('24 threads · the ensemble',W*0.40,H*0.84+16);
+  // floor
+  ctx.strokeStyle='#16222b';
+  for(let i=0;i<5;i++){const y=H*0.84+ i*0;ctx.beginPath();ctx.moveTo(W*0.38,H*0.84);ctx.lineTo(W*0.95,H*0.84);ctx.stroke();}
+}
+
+// ---- receipts: the day's verdicts drift down like notes
+const VERD=['KEEP','KILL','∆','∇','−0.029','R²≥0.5','58','0.45','τ'];
+let receipts=[];
+function spawnReceipts(t){
+  if(receipts.length<26&&Math.random()<0.05)
+    receipts.push({x:W*0.36+Math.random()*W*0.6,y:-20,v:14+Math.random()*20,
+                   s:VERD[(Math.random()*VERD.length)|0],a:0.5+Math.random()*0.4});
+  receipts.forEach(r=>r.y+=r.v/60);receipts=receipts.filter(r=>r.y<H);
+}
+
+// ---- dancer: K1 — the deep stride, solo on the platform (two seed-orbs)
+function k1(t){
+  const px=W*0.30+ W*0.13, py=H*0.68;
+  const sway=Math.sin(t*0.35)*26;
+  ctx.strokeStyle='#c9a959';ctx.lineWidth=3;
+  ctx.beginPath();ctx.moveTo(px-16,py);ctx.quadraticCurveTo(px+sway*0.4,py-46,px+sway,py-64);ctx.stroke();
+  ctx.fillStyle='#e8d9a0';ctx.beginPath();ctx.arc(px+sway,py-70,5,0,7);ctx.fill();
+  // the two seed arms orbiting
+  for(let i=0;i<2;i++){const a=t*0.6+i*Math.PI;
+    ctx.strokeStyle=i?'#7ab8c9':'#c98a59';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.arc(px+sway+Math.cos(a)*34,py-58+Math.sin(a)*18,4,0,7);ctx.stroke();
+    ctx.beginPath();ctx.arc(px+sway+Math.cos(a)*34,py-58+Math.sin(a)*18,1.6,0,7);ctx.fill();}
+  ctx.fillStyle='#7a6a3a';ctx.font='9px monospace';ctx.fillText('K1 · diff vs state',px-28,py+14);
+}
+
+// ---- dancer: ie1 — directional steps with an echo (delay-and-correlate)
+let ie1x=null,ie1y,ie1hist=[];
+function ie1(t){
+  const fy=H*0.84;
+  if(ie1x===null){ie1x=W*0.44;ie1y=fy;}
+  if(Math.floor(t*1.4)!==Math.floor((t-0.7)*1.4)){ // each beat: one cardinal step
+    const dirs=[[26,0],[-26,0],[0,-16],[0,0]];
+    const d=dirs[(Math.random()*4)|0];
+    ie1x=Math.min(W*0.92,Math.max(W*0.40,ie1x+d[0]));ie1y=fy+d[1];
+  }
+  ie1hist.push([ie1x,ie1y]);if(ie1hist.length>40)ie1hist.shift();
+  // the echo (the delayed copy the correlator multiplies against)
+  const e=ie1hist[Math.max(0,ie1hist.length-14)]||ie1hist[0];
+  ctx.strokeStyle='#4a6b7a';ctx.lineWidth=1;
+  ctx.beginPath();ctx.arc(e[0],e[1]-24,6,0,7);ctx.stroke();
+  ctx.strokeStyle='#7ab8c9';ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(ie1x-10,ie1y);ctx.lineTo(ie1x,ie1y-22);ctx.lineTo(ie1x+10,ie1y);ctx.stroke();
+  ctx.beginPath();ctx.arc(ie1x,ie1y-27,3.4,0,7);ctx.fill();
+  ctx.fillStyle='#44606d';ctx.font='9px monospace';ctx.fillText('ie1 · the correlator',ie1x-30,ie1y+14);
+}
+
+// ---- dancer: IB1a — pulse-gated: moves ONLY when a receipt lands (δ broadcast)
+let ibx,ibstep=0,ibpulse=[],lastBeat=-1;
+function ib1a(t){
+  const fy=H*0.84;
+  if(ibx===undefined){ibx=W*0.62;}
+  const beat=Math.floor(t*0.5);
+  if(beat!==lastBeat){lastBeat=beat;
+    if(Math.random()<0.6){ibstep++;ibx+=20;ibpulse.push({x:ibx,y:fy-24,r:4,a:1});}
+  }
+  ibpulse.forEach(p=>{p.r+=1.2;p.a-=0.02});ibpulse=ibpulse.filter(p=>p.a>0);
+  ibpulse.forEach(p=>{ctx.strokeStyle=`rgba(201,149,89,${p.a})`;ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,7);ctx.stroke();});
+  ctx.strokeStyle=Math.sin(t*6)>0?'#c99559':'#8a6a3a';ctx.lineWidth=2;
+  const q=ibpulse.length?4:0; // lifted when pulsing
+  ctx.beginPath();ctx.moveTo(ibx-8,fy);ctx.lineTo(ibx,fy-20-q);ctx.lineTo(ibx+8,fy);ctx.stroke();
+  ctx.fillStyle='#8a7a4a';ctx.font='9px monospace';ctx.fillText('IB1a · δ-gated',ibx-26,fy+14);
+  if(ibx>W*0.90)ibx=W*0.58;
+}
+
+// ---- dancer: t5 — mode alternation: slow poses (confirm) vs flurries (predict)
+let t5x,t5phase=0,t5acc=0;
+function t5d(t,dt){
+  const fy=H*0.84;
+  if(t5x===undefined){t5x=W*0.78;}
+  t5acc+=dt;
+  if(t5acc>3.2){t5acc=0;t5phase^=1;}      // 3.2s: confirm ~3s, predict ~0.2 flurries below
+  if(t5phase===0){ // confirm: held pose, high-res slow arc
+    const breathe=Math.sin(t*1.2)*3;
+    ctx.strokeStyle='#7ab8c9';ctx.lineWidth=3;
+    ctx.beginPath();ctx.arc(t5x,fy+6,20,Math.PI,2*Math.PI);ctx.stroke();
+    ctx.fillStyle='#a8d8e8';ctx.beginPath();ctx.arc(t5x,fy-16+breathe,3,0,7);ctx.fill();
+  }else{ // predict: fast small steps
+    t5x+=Math.sin(t*22)*3.4;
+    ctx.strokeStyle='#e8b4a0';ctx.lineWidth=2;
+    for(let i=0;i<5;i++){ctx.beginPath();
+      ctx.moveTo(t5x-8+i*4,fy);ctx.lineTo(t5x-8+i*4+2,fy-10-Math.random()*10);ctx.stroke();}
+  }
+  ctx.fillStyle='#44606d';ctx.font='9px monospace';
+  ctx.fillText(t5phase?'t5 · predict':'t5 · confirm',t5x-24,fy+14);
+}
+
+let last=T();
+function loop(){
+  const t=T(),dt=Math.min(0.05,t-last);last=t;
+  ctx.fillStyle='#0a0f14';ctx.fillRect(0,0,W,H);
+  stage(t);spawnReceipts(t);
+  receipts.forEach(r=>{ctx.fillStyle=`rgba(122,184,201,${r.a*0.7})`;
+    ctx.font='10px monospace';ctx.fillText(r.s,r.x,r.y);});
+  k1(t);ie1(t);ib1a(t);t5d(t,dt);
+  requestAnimationFrame(loop);
+}
+loop();
+</script>
+</body>
+</html>
