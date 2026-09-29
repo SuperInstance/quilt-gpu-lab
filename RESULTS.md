@@ -2579,3 +2579,7 @@ the ceiling; correlated dense purchases are dead weight or worse.
 - Fail-loud trail (all receipts kept): attempt-1 crashed on a debug print (`hf_device_map` missing on this class — the model had already LOADED); attempt-2 generated 1 token from a raw-text prompt (no chat template → instant EOS); attempt-3 applied the chat template → full generation. A first boot on new silicon owes exactly this trail.
 - Scope: AR-tower text reasoning only. Diffusion tower (video/action gen, WAM policy mode) is C2+; Jetson Thor's 15 Hz is another class — **17.5 tok/s on a 4050 is the hundred-boats number.**
 - Artifacts: experiments/c1_cosmos_boots.py · results/c1_cosmos_boots.json (+ .attempt1-crash, .attempt2-short) · c1_pull.log · c1_run*.log · proposals/runs/C1-cosmos-edge-boots-plan.md.
+
+## C2 - first real video through the 4050's world model (smoke) - 2026-09-29
+- attempt-1 INVALID_HARNESS: processor produced 960 video features vs 0 video placeholder tokens (chat content lacked {"type":"video"}); I-task never reached. Traceback kept: results/c2_world_smoke.attempt1-kill.json. Guard clean (rc=0, breach=None).
+- attempt-2: mechanical placeholder fix (video/image entries in chat content), same frozen gates (proposals/runs/C2-world-smoke-plan.md). Log: c2_run2.log.
