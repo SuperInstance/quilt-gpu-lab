@@ -1,0 +1,15 @@
+{
+ "schema": "c3-logistic-refit/1",
+ "layer_key": "emb_tokens_f16",
+ "note": "diagnostic: resolve 0.0-AUC flag on C3 secondary logistic head",
+ "cv5_mean_auc": 1.0,
+ "cv_folds": [
+  1.0,
+  1.0,
+  1.0,
+  1.0,
+  1.0
+ ],
+ "full_fit_auc": 1.0,
+ "convention": "score>0 => real (y=1)"
+}
