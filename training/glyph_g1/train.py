@@ -493,7 +493,7 @@ from dataclasses import asdict
 HERE = _os.path.dirname(_os.path.abspath(__file__))
 DATA_NPZ = _os.path.join(HERE, _os.environ.get("G1_DATA", "data.npz"))
 MAX_SEQ_LEN = 6144
-TIME_BUDGET = 300
+TIME_BUDGET = int(_os.environ.get("G_TIME_BUDGET", "300"))
 SEP = 31
 DYNAMIC = ("life", "testsrc2", "mandelbrot")
 G5_THRESHOLDS = (0.1, 0.2, 0.3, 0.5)
