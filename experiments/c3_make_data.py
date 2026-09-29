@@ -86,18 +86,25 @@ def sha256_file(path):
     return h.hexdigest()
 
 
-def probe_source(ffprobe, path):
-    """Read-only metadata probe (duration/res/fps) — deterministic, recorded."""
-    out = subprocess.run(
-        [ffprobe, "-v", "error", "-select_streams", "v:0",
-         "-show_entries", "stream=width,height,r_frame_rate",
-         "-show_entries", "format=duration", "-of", "json", path],
-        capture_output=True, check=True).stdout
-    meta = json.loads(out.decode("utf-8"))
-    st = meta["streams"][0]
-    return {"width": int(st["width"]), "height": int(st["height"]),
-            "fps": st.get("r_frame_rate", "?"),
-            "duration_s": round(float(meta["format"]["duration"]), 3)}
+def probe_source(ffmpeg, path):
+    """Read-only metadata probe (duration/res/fps) parsed from ffmpeg stderr.
+    No ffprobe dependency (the static_ffprobe wrapper rotted — module gone).
+    ffmpeg exits 1 here by design (no output file); we parse stderr, fail loud."""
+    import re
+    r = subprocess.run(
+        [ffmpeg, "-nostdin", "-hide_banner", "-i", path],
+        capture_output=True, check=False)
+    err = r.stderr.decode("utf-8", "replace")
+    dur = re.search(r"Duration:\s*(\d+):(\d+):([\d.]+)", err)
+    vid = re.search(r"Video:.*?,\s*(\d{2,5})x(\d{2,5})", err)
+    fps = re.search(r"([\d.]+)\s*fps", err) or re.search(r"([\d.]+)\s*tbr", err)
+    if not (dur and vid):
+        sys.exit("[c3_data] FATAL: probe parse failed for %s (rc=%d)\n%s"
+                 % (path, r.returncode, err[-400:]))
+    seconds = int(dur.group(1)) * 3600 + int(dur.group(2)) * 60 + float(dur.group(3))
+    return {"width": int(vid.group(1)), "height": int(vid.group(2)),
+            "fps": fps.group(1) if fps else "?",
+            "duration_s": round(seconds, 3)}
 
 
 def run_ffmpeg(argv):
@@ -148,9 +155,9 @@ def check_file(out_path):
     return sha256_file(out_path)
 
 
-def generate(ffmpeg, ffprobe):
+def generate(ffmpeg):
     t_start = time.time()
-    for name in (ffmpeg, ffprobe):
+    for name in (ffmpeg,):
         if not (os.path.isfile(name) and os.access(name, os.X_OK)):
             sys.exit("[c3_data] FATAL: not executable: %s" % name)
     missing = [s for s in REAL_SOURCES if not os.path.isfile(os.path.join(SNAP, "assets", s))]
@@ -162,7 +169,7 @@ def generate(ffmpeg, ffprobe):
     probes, src_sha = {}, {}
     for s in REAL_SOURCES:
         p = os.path.join(SNAP, "assets", s)
-        probes[s] = probe_source(ffprobe, p)
+        probes[s] = probe_source(ffmpeg, p)
         src_sha[s] = sha256_file(p)
         log("real source %s: %s" % (s, probes[s]))
 
@@ -171,7 +178,7 @@ def generate(ffmpeg, ffprobe):
         "plan": PLAN,
         "created": time.strftime("%Y-%m-%d %H:%M:%S"),
         "ffmpeg": {"path": ffmpeg, "version": version},
-        "ffprobe": {"path": ffprobe},
+        "prober": {"path": ffmpeg, "mode": "ffmpeg-stderr-regex"},
         "cosmos_snapshot": {"path": SNAP, "commit": os.path.basename(SNAP),
                             "assets_sha256": src_sha, "probes": probes},
         "geometry": {"frames": FRAMES, "width": W, "height": H, "fps": FPS,
@@ -263,9 +270,8 @@ def main():
     if "--check" in sys.argv:
         check()
     ffmpeg = resolve_bin("C3_FFMPEG", "/home/eileen/.local/bin/ffmpeg", "ffmpeg")
-    ffprobe = resolve_bin("C3_FFPROBE", "/home/eileen/.local/bin/ffprobe", "ffprobe")
     os.makedirs(DATA, exist_ok=True)
-    generate(ffmpeg, ffprobe)
+    generate(ffmpeg)
 
 
 if __name__ == "__main__":

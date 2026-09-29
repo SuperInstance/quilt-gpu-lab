@@ -23,7 +23,10 @@ OUT_JSON = os.path.join(RESULTS, "c2_probe_skip_tower.json")
 MODEL_ID = "nvidia/Cosmos3-Edge"
 SNAP = "/home/eileen/.cache/huggingface/hub/models--nvidia--Cosmos3-Edge/snapshots/344d602b128d1bbdacb43b08d0a3626f46343e29"
 MAX_NEW = 96
-SKIP_MODULES = ["visual", "projector"]  # verified in modeling_cosmos3_edge.py
+SKIP_MODULES = ["visual", "projector", "model.visual", "model.projector"]
+# visual/projector live on the INNER Cosmos3EdgeModel (modeling_cosmos3_edge
+# line ~777: self.visual/self.projector in Cosmos3EdgeModel.__init__), and
+# transformers bnb skip-matching may want either the short or qualified name.
 
 
 def preflight():
@@ -105,7 +108,11 @@ def inner():
                               device_map="auto", torch_dtype=torch.bfloat16)
     model.eval()
     t_load = time.time() - t0
-    visual_dtype = str(next(model.visual.parameters()).dtype)
+    m = getattr(model, "model", model)
+    visual = getattr(model, "visual", None) or m.visual
+    p0 = next(visual.parameters())
+    visual_dtype = str(p0.dtype)
+    visual_type = type(p0).__name__  # Parameter = not quantized; Params4bit = skip failed
     torch.cuda.reset_peak_memory_stats()
     with open(os.path.join(SNAP, "assets", "example_reasoning_prompt.json")) as f:
         prompt_i = json.load(f)["prompt"]
@@ -120,10 +127,12 @@ def inner():
              image=img, thinking=True)
     peak = torch.cuda.max_memory_allocated() / 2**30
     cells_by_name = {"A2": a2, "B2": b2, "Q": q}
-    verdict = verdict_of(cells_by_name) if visual_dtype == "torch.bfloat16" \
+    verdict = verdict_of(cells_by_name) if (visual_dtype == "torch.bfloat16"
+                                            and visual_type == "Parameter") \
         else "INVALID_HARNESS"
     return {"t_load_s": round(t_load, 2),
             "skip_modules": SKIP_MODULES, "visual_dtype": visual_dtype,
+            "visual_type": visual_type,
             "cells": [a2, b2, q],
             "peak_alloc_gib": round(peak, 2), "max_new": MAX_NEW,
             "verdict_stage": "gated", "verdict": verdict}
@@ -155,8 +164,9 @@ def main():
     except Exception as e:
         print("[P5] no results json:", e, flush=True)
         return
-    print("[P5] visual_dtype=%s verdict=%s"
-          % (d.get("visual_dtype"), d.get("verdict")), flush=True)
+    print("[P5] visual_dtype=%s visual_type=%s verdict=%s"
+          % (d.get("visual_dtype"), d.get("visual_type"), d.get("verdict")),
+          flush=True)
     for c in d.get("cells", []):
         print("[P5] %s in=%d new=%d tok/s=%s loop_frac=%s"
               % (c["cell"], c["input_tokens"], c["n_new_tokens"],
