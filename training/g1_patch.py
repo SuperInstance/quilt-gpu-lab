@@ -292,7 +292,7 @@ def main():
             n_embd=model_dim, window_pattern=WINDOW_PATTERN,
         )
 
-    config = build_model_config(DEPTH)
+    config = build_model_config(int(_os.environ.get("G_DEPTH", str(DEPTH))))
     print(f"Model config: {asdict(config)}")
 
     with torch.device("meta"):
