@@ -1,0 +1,66 @@
+{
+  "experiment": "IB1b fly-rule under variable delay + nonlinear structure",
+  "hardening_vs_ib1a": [
+    "receipt delay ~ Uniform{1..5} resampled per receipt (was fixed 3)",
+    "correct-action = argmax(ReLU(x@W1 50x16)@W2 16x8), frozen (was linear argmax)",
+    "credit bridge = per-action eligibility traces only (no timestamps)",
+    "D matched under the same variable-delay schedule (numpy manual backprop, no torch)"
+  ],
+  "rule": "frozen sparse PN->KC, k-WTA, K.V, order-gated delta-broadcast, per-action eligibility traces (lam=0.9), RW delta, RW extinction, homeostatic decay",
+  "chance": 0.275,
+  "seeds": [
+    2718,
+    42,
+    1337
+  ],
+  "arms": {
+    "A_fly-rule": {
+      "train_reward_last200": 0.3017,
+      "eval_transfer": 0.1967,
+      "per_seed": [
+        0.325,
+        0.295,
+        0.285
+      ]
+    },
+    "B_no-third-factor": {
+      "train_reward_last200": 0.3583,
+      "eval_transfer": 0.28,
+      "per_seed": [
+        0.45,
+        0.22,
+        0.405
+      ]
+    },
+    "C_order-swapped": {
+      "train_reward_last200": 0.2817,
+      "eval_transfer": 0.2733,
+      "per_seed": [
+        0.3,
+        0.255,
+        0.29
+      ]
+    },
+    "D_backprop": {
+      "train_reward_last200": 0.355,
+      "eval_transfer": 0.24,
+      "per_seed": [
+        0.41,
+        0.31,
+        0.345
+      ]
+    }
+  },
+  "verdict": "KILL",
+  "gate": "A-B>=0.05 and A-C>=0.05 (train reward, 3-seed mean; frozen in proposals/runs/IB1b-plan.md)",
+  "deltas": {
+    "A-B": -0.0566,
+    "A-C": 0.02
+  },
+  "A_vs_D_ungated": {
+    "A": 0.3017,
+    "D": 0.355
+  },
+  "sanity_annotation": "D learned (above chance+0.02); world is learnable",
+  "seconds": 7.7
+}
