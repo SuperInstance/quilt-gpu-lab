@@ -1,0 +1,162 @@
+{
+  "experiment": "ie3 specialist trunks: sequential specialization vs joint training",
+  "date": "2026-09-29 13:34:08 AKDT",
+  "plan": "proposals/runs/IE3-plan.md",
+  "cpu_only": true,
+  "numpy_version": "2.5.3",
+  "config": {
+    "arms": [
+      "A_joint: shared trunk, blob+dir losses summed from epoch 0",
+      "B_sequential: blob-only to val r2>=0.40 (min 50/cap 400), then +dir head, both losses, 600 total trunk epochs",
+      "C_split_trunks: independent specialist per family (baseline)"
+    ],
+    "sensor": "IE2 stack verbatim via ie1_reichardt import: blob sigma 2/3, speeds 0.25/0.5, 4 cardinals, densities 8/16/32, tau 2, warmup 12 / kept 48; grating lambdas 8/16 at speeds 0.25/0.5 (IE1 grating speed 1.0 dropped: both families share IE2's set)",
+    "reader": "trunk 4-12-8 tanh (164 params) + linear heads 8->2 (18 params each); Adam lr 0.01; L2 weight decay 0.01 (IE2 ridge alpha lineage, W only)",
+    "standardization": "A/B pooled over both families' train frames; C per-family (specialists own their stats)",
+    "seed_base": 20260929,
+    "seed_law": "base + 1000*ci + 10*si + split_offset; blob ci 0-15, grating ci 100-115; train si 0-2, val si 3 (B gate only), test si 0-3 @ offset 100; model rng base+500000+1000*arm+17*density_idx",
+    "frames_per_family_per_density": {
+      "train": 2304,
+      "val": 768,
+      "test": 3072
+    },
+    "gates": {
+      "SPECIALIZATION_WINS": "r2_dir_B[32]-r2_dir_A[32] >= 0.15 AND r2_blob_B[32] >= r2_blob_C[32]-0.05",
+      "JOINT_OK": "else: A within 0.05 of per-density max on BOTH heads at ALL densities",
+      "else": "DILUTION_CONFIRMS",
+      "invalid": "any P1 competence miss / non-finite metric / shape assert"
+    }
+  },
+  "densities": {
+    "8": {
+      "A_joint": {
+        "r2_blob": 0.577159,
+        "r2_direction": 0.995608,
+        "cardinal_acc_blob": 0.907552,
+        "cardinal_acc_direction": 1.0,
+        "r2_blobhead_on_grat_leak": -0.39672,
+        "r2_dirhead_on_blob_leak": 0.397132,
+        "trunk_epochs": 600
+      },
+      "B_sequential": {
+        "r2_blob": 0.568749,
+        "r2_direction": 0.993919,
+        "cardinal_acc_blob": 0.914714,
+        "cardinal_acc_direction": 1.0,
+        "r2_blobhead_on_grat_leak": -1.078047,
+        "r2_dirhead_on_blob_leak": 0.371541,
+        "trunk_epochs": 600,
+        "p1_epochs": 50,
+        "p1_reached": true,
+        "p1_switch_val_r2": 0.563529,
+        "final_val_blob_r2": 0.573134,
+        "forgetting_val_r2": -0.009605
+      },
+      "C_split_trunks": {
+        "r2_blob": 0.757181,
+        "r2_direction": 0.978573,
+        "cardinal_acc_blob": 0.901367,
+        "cardinal_acc_direction": 1.0,
+        "r2_blobhead_on_grat_leak": 0.989709,
+        "r2_dirhead_on_blob_leak": 0.288522,
+        "trunk_epochs": 600
+      }
+    },
+    "16": {
+      "A_joint": {
+        "r2_blob": 0.798944,
+        "r2_direction": 0.998689,
+        "cardinal_acc_blob": 0.975911,
+        "cardinal_acc_direction": 1.0,
+        "r2_blobhead_on_grat_leak": -11.705888,
+        "r2_dirhead_on_blob_leak": 0.280047,
+        "trunk_epochs": 600
+      },
+      "B_sequential": {
+        "r2_blob": 0.797873,
+        "r2_direction": 0.998422,
+        "cardinal_acc_blob": 0.982422,
+        "cardinal_acc_direction": 1.0,
+        "r2_blobhead_on_grat_leak": -15.681658,
+        "r2_dirhead_on_blob_leak": 0.257533,
+        "trunk_epochs": 600,
+        "p1_epochs": 50,
+        "p1_reached": true,
+        "p1_switch_val_r2": 0.809051,
+        "final_val_blob_r2": 0.800873,
+        "forgetting_val_r2": 0.008178
+      },
+      "C_split_trunks": {
+        "r2_blob": 0.898571,
+        "r2_direction": 0.983416,
+        "cardinal_acc_blob": 0.976562,
+        "cardinal_acc_direction": 1.0,
+        "r2_blobhead_on_grat_leak": 0.731872,
+        "r2_dirhead_on_blob_leak": 0.136717,
+        "trunk_epochs": 600
+      }
+    },
+    "32": {
+      "A_joint": {
+        "r2_blob": 0.863126,
+        "r2_direction": 0.999731,
+        "cardinal_acc_blob": 1.0,
+        "cardinal_acc_direction": 1.0,
+        "r2_blobhead_on_grat_leak": -37.232252,
+        "r2_dirhead_on_blob_leak": 0.170603,
+        "trunk_epochs": 600
+      },
+      "B_sequential": {
+        "r2_blob": 0.863756,
+        "r2_direction": 0.999865,
+        "cardinal_acc_blob": 1.0,
+        "cardinal_acc_direction": 1.0,
+        "r2_blobhead_on_grat_leak": -46.852023,
+        "r2_dirhead_on_blob_leak": 0.170215,
+        "trunk_epochs": 600,
+        "p1_epochs": 60,
+        "p1_reached": true,
+        "p1_switch_val_r2": 0.418802,
+        "final_val_blob_r2": 0.864014,
+        "forgetting_val_r2": -0.445212
+      },
+      "C_split_trunks": {
+        "r2_blob": 0.98667,
+        "r2_direction": 0.983814,
+        "cardinal_acc_blob": 1.0,
+        "cardinal_acc_direction": 1.0,
+        "r2_blobhead_on_grat_leak": 0.573297,
+        "r2_dirhead_on_blob_leak": 0.051613,
+        "trunk_epochs": 600
+      }
+    }
+  },
+  "gate": {
+    "density_of_record": 32,
+    "B_dir_minus_A_dir": 0.000134,
+    "spec_margin_dir": 0.15,
+    "B_blob_minus_C_blob": -0.122914,
+    "spec_blob_slack": 0.05,
+    "joint_slack": 0.05,
+    "joint_rows": {
+      "8": {
+        "A_blob_minus_max": -0.180022,
+        "A_dir_minus_max": 0.0,
+        "ok": false
+      },
+      "16": {
+        "A_blob_minus_max": -0.099627,
+        "A_dir_minus_max": 0.0,
+        "ok": false
+      },
+      "32": {
+        "A_blob_minus_max": -0.123544,
+        "A_dir_minus_max": -0.000134,
+        "ok": false
+      }
+    }
+  },
+  "verdict": "DILUTION_CONFIRMS",
+  "interpretation": "trunk sharing dilutes under BOTH schedules at this scale; split specialists remain the reader doctrine",
+  "seconds": 7.1
+}

@@ -1,0 +1,105 @@
+{
+ "schema": "c4-action-probe/1",
+ "plan": "proposals/runs/C4-action-probe-plan.md",
+ "created": "2026-09-29 13:34:44",
+ "visual_dtype": "torch.bfloat16",
+ "visual_type": "Parameter",
+ "batch_final": 4,
+ "peak_alloc_gib": 2.35,
+ "n_clips": 16,
+ "n_per_video": 8,
+ "gate": {
+  "diff_threshold": 0.1,
+  "bands": [
+   "ACTION_SEPARABLE >=0.10",
+   "CONTENT_DOMINANT <=0.00",
+   "WEAK_UNRESOLVED between"
+  ]
+ },
+ "auc_cross": 0.0,
+ "auc_time": 0.9219,
+ "diff": -0.9219,
+ "verdict": "CONTENT_DOMINANT",
+ "clips": [
+  {
+   "path": "data/c4/av0_00.rgb",
+   "video": 0,
+   "half": 0
+  },
+  {
+   "path": "data/c4/av0_01.rgb",
+   "video": 0,
+   "half": 0
+  },
+  {
+   "path": "data/c4/av0_02.rgb",
+   "video": 0,
+   "half": 0
+  },
+  {
+   "path": "data/c4/av0_03.rgb",
+   "video": 0,
+   "half": 0
+  },
+  {
+   "path": "data/c4/av0_04.rgb",
+   "video": 0,
+   "half": 1
+  },
+  {
+   "path": "data/c4/av0_05.rgb",
+   "video": 0,
+   "half": 1
+  },
+  {
+   "path": "data/c4/av0_06.rgb",
+   "video": 0,
+   "half": 1
+  },
+  {
+   "path": "data/c4/av0_07.rgb",
+   "video": 0,
+   "half": 1
+  },
+  {
+   "path": "data/c4/av1_00.rgb",
+   "video": 1,
+   "half": 0
+  },
+  {
+   "path": "data/c4/av1_01.rgb",
+   "video": 1,
+   "half": 0
+  },
+  {
+   "path": "data/c4/av1_02.rgb",
+   "video": 1,
+   "half": 0
+  },
+  {
+   "path": "data/c4/av1_03.rgb",
+   "video": 1,
+   "half": 0
+  },
+  {
+   "path": "data/c4/av1_04.rgb",
+   "video": 1,
+   "half": 1
+  },
+  {
+   "path": "data/c4/av1_05.rgb",
+   "video": 1,
+   "half": 1
+  },
+  {
+   "path": "data/c4/av1_06.rgb",
+   "video": 1,
+   "half": 1
+  },
+  {
+   "path": "data/c4/av1_07.rgb",
+   "video": 1,
+   "half": 1
+  }
+ ]
+}

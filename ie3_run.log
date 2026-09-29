@@ -1,0 +1,71 @@
+[ie3] 3 arms x 3 densities, CPU-only; gates frozen in IE3-plan.md
+[ie3] density 8 A_joint: r2_blob=0.577159 r2_dir=0.995608 acc_b=0.907552 acc_d=1.0
+[ie3] density 8 B_sequential: r2_blob=0.568749 r2_dir=0.993919 acc_b=0.914714 acc_d=1.0
+[ie3]   B p1_epochs=50 switch_val_r2=0.563529 forgetting=-0.009605
+[ie3] density 8 C_split_trunks: r2_blob=0.757181 r2_dir=0.978573 acc_b=0.901367 acc_d=1.0
+[ie3] density 16 A_joint: r2_blob=0.798944 r2_dir=0.998689 acc_b=0.975911 acc_d=1.0
+[ie3] density 16 B_sequential: r2_blob=0.797873 r2_dir=0.998422 acc_b=0.982422 acc_d=1.0
+[ie3]   B p1_epochs=50 switch_val_r2=0.809051 forgetting=0.008178
+[ie3] density 16 C_split_trunks: r2_blob=0.898571 r2_dir=0.983416 acc_b=0.976562 acc_d=1.0
+[ie3] density 32 A_joint: r2_blob=0.863126 r2_dir=0.999731 acc_b=1.0 acc_d=1.0
+[ie3] density 32 B_sequential: r2_blob=0.863756 r2_dir=0.999865 acc_b=1.0 acc_d=1.0
+[ie3]   B p1_epochs=60 switch_val_r2=0.418802 forgetting=-0.445212
+[ie3] density 32 C_split_trunks: r2_blob=0.98667 r2_dir=0.983814 acc_b=1.0 acc_d=1.0
+[ie3] gate inputs @32: B-A dir=0.000134 (need >=0.15); B-C blob=-0.122914 (need >=-0.05)
+[ie3] VERDICT: DILUTION_CONFIRMS
+[ie3] DONE 7.1s -> results/ie3_specialist_trunks.json
+{
+  "verdict": "DILUTION_CONFIRMS",
+  "gate": {
+    "density_of_record": 32,
+    "B_dir_minus_A_dir": 0.000134,
+    "spec_margin_dir": 0.15,
+    "B_blob_minus_C_blob": -0.122914,
+    "spec_blob_slack": 0.05,
+    "joint_slack": 0.05
+  },
+  "by_density": {
+    "8": {
+      "A_joint": {
+        "r2_blob": 0.577159,
+        "r2_direction": 0.995608
+      },
+      "B_sequential": {
+        "r2_blob": 0.568749,
+        "r2_direction": 0.993919
+      },
+      "C_split_trunks": {
+        "r2_blob": 0.757181,
+        "r2_direction": 0.978573
+      }
+    },
+    "16": {
+      "A_joint": {
+        "r2_blob": 0.798944,
+        "r2_direction": 0.998689
+      },
+      "B_sequential": {
+        "r2_blob": 0.797873,
+        "r2_direction": 0.998422
+      },
+      "C_split_trunks": {
+        "r2_blob": 0.898571,
+        "r2_direction": 0.983416
+      }
+    },
+    "32": {
+      "A_joint": {
+        "r2_blob": 0.863126,
+        "r2_direction": 0.999731
+      },
+      "B_sequential": {
+        "r2_blob": 0.863756,
+        "r2_direction": 0.999865
+      },
+      "C_split_trunks": {
+        "r2_blob": 0.98667,
+        "r2_direction": 0.983814
+      }
+    }
+  }
+}

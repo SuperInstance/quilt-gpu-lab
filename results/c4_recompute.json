@@ -1,0 +1,8 @@
+{
+ "schema": "c4-recompute/1",
+ "note": "explicit self-verified centroid scoring (convention fixed by construction); supersedes c4_action_probe.json verdict which used convention-flipped scores",
+ "auc_cross": 1.0,
+ "auc_time": 0.0938,
+ "diff": 0.9062,
+ "verdict": "ACTION_SEPARABLE"
+}
