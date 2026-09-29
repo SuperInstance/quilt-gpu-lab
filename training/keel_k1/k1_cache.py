@@ -72,7 +72,9 @@ def load_encoder():
             inputs = {k: (v.half().to(DEV) if v.dtype.is_floating_point else v.to(DEV))
                       for k, v in inputs.items()}
             out = mdl(**inputs)
-            h = getattr(out, "last_hidden_state", None) or out[0]
+            h = getattr(out, "last_hidden_state", None)
+            if h is None:
+                h = out[0]
             if h.dim() == 3:
                 h = h.mean(dim=1)
             return h.reshape(-1).float().cpu()
