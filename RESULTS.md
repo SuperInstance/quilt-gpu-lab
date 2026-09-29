@@ -2540,3 +2540,9 @@ the ceiling; correlated dense purchases are dead weight or worse.
 - Informational only, NOT booked: rel_win(r) = −0.041/+0.034/+0.033/−0.015/+0.039 (r=1.0→0.0), spread 0.080, Spearman −0.6 — non-monotone and inverted vs the K1/K2 bookends (diff won pure-synth val, lost pure-lavfi val; here the r=1.0 point is negative on the mixed testbed). The mixed testbed changed the question, not just the noise.
 - Repair pre-registered BEFORE leaning on the numbers: **K3b** (proposals/runs/K3b-plan.md) — one delta, 3 draws per cell (seed 7 added), floor applied to per-cell draw-means, gates textually identical, K3 not pooled in. Fired after booking.
 - Artifacts: training/keel_k1/k3_boundary.py · training/keel_k1/results/k3_results.json · proposals/runs/K3b-plan.md.
+
+### 2026-09-29 05:28 — IE1: Reichardt correlators → 4 motion fam codes — KEEP (grating-borne; blob direction unreadable)
+**The lobula-plate rung holds: a plain linear reader decodes true direction from the pooled 4-cardinal-code stream alone.** Plan-first (proposals/runs/ie1-plan.md, written 09-28 before any run; fired this morning). CPU-only numpy lane, GPU untouched. Delay-LP → multiply → mirror-subtract on adjacent pairs, pooled to 4 cardinal family codes; gate frozen: R²(direction) ≥ 0.5 at ≥2 of 3 densities, τ=2 frames.
+- Densities 8/16/32: r2_dir = 0.446 / 0.519 / 0.508 → **2 of 3 pass → KEEP**; cardinal accuracy 0.968 / 0.995 / 1.000.
+- The split that scopes the KEEP (honest): grating-only r2 = 0.702 / 0.836 / 0.836 vs blob-only r2 = 0.061 / 0.044 / 0.015 — the fam code carries direction for periodic texture, not localized blobs, at this rung. Science §4's pooling-hyperacuity claim stays untested on blob motion (ie2's question, not booked here).
+- 3.0 s, seed 20260928. Artifacts: experiments/ie1_reichardt.py · results/ie1_reichardt.json · proposals/runs/ie1-plan.md.

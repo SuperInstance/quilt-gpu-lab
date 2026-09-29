@@ -1,0 +1,199 @@
+{
+  "experiment": "ie1 Reichardt correlators -> 4 motion fam codes (lobula-plate rung)",
+  "date": "2026-09-29 05:28:42 AKDT",
+  "science": "docs/insect-vision-science-2026-09-28.md S1.2/S1.5/S2.2-2.3/S4",
+  "hrc": "R = c^2 sin(2 pi dphi/lambda) w tau / (1+(w tau)^2); delay-LP + multiply + mirror-subtract on adjacent pairs; signed inputs",
+  "cpu_only": true,
+  "numpy_version": "2.4.6",
+  "config": {
+    "tau_baseline_frames": 2.0,
+    "densities": [
+      8,
+      16,
+      32
+    ],
+    "dphi_cells": 1.0,
+    "warmup_frames": 12,
+    "kept_frames": 48,
+    "train_seqs_per_cfg": 4,
+    "test_seqs_per_cfg": 4,
+    "grating_lambdas": [
+      8.0,
+      16.0
+    ],
+    "grating_speeds": [
+      0.25,
+      0.5,
+      1.0
+    ],
+    "blob_sigmas": [
+      2.0,
+      3.0
+    ],
+    "blob_speeds": [
+      0.25,
+      0.5
+    ],
+    "directions": [
+      "R",
+      "L",
+      "D",
+      "U"
+    ],
+    "contrast": 1.0,
+    "ridge_alpha": 0.01,
+    "seed_base": 20260928,
+    "gate": "R^2(direction) >= 0.5 at >= 2 of 3 densities, tau=2.0 frames"
+  },
+  "gate_by_density": {
+    "8": {
+      "lattice": [
+        8,
+        8
+      ],
+      "dphi_cells": 1.0,
+      "tau_frames": 2.0,
+      "train_frames": 7680,
+      "test_frames": 7680,
+      "r2_direction": 0.445797,
+      "direction_accuracy_cardinal": 0.968359,
+      "r2_velocity": 0.515821,
+      "r2_direction_gratings_only": 0.70209,
+      "r2_direction_blobs_only": 0.061359
+    },
+    "16": {
+      "lattice": [
+        16,
+        16
+      ],
+      "dphi_cells": 1.0,
+      "tau_frames": 2.0,
+      "train_frames": 7680,
+      "test_frames": 7680,
+      "r2_direction": 0.519303,
+      "direction_accuracy_cardinal": 0.994922,
+      "r2_velocity": 0.626673,
+      "r2_direction_gratings_only": 0.836212,
+      "r2_direction_blobs_only": 0.043939
+    },
+    "32": {
+      "lattice": [
+        32,
+        32
+      ],
+      "dphi_cells": 1.0,
+      "tau_frames": 2.0,
+      "train_frames": 7680,
+      "test_frames": 7680,
+      "r2_direction": 0.507954,
+      "direction_accuracy_cardinal": 1.0,
+      "r2_velocity": 0.618714,
+      "r2_direction_gratings_only": 0.836422,
+      "r2_direction_blobs_only": 0.015253
+    }
+  },
+  "tau_sweep_density16": {
+    "1.0": {
+      "r2_direction": 0.440838,
+      "r2_velocity": 0.651853
+    },
+    "2.0": {
+      "r2_direction": 0.519303,
+      "r2_velocity": 0.626673
+    },
+    "4.0": {
+      "r2_direction": 0.560985,
+      "r2_velocity": 0.51008
+    }
+  },
+  "aliasing_check": {
+    "lambda_cells": [
+      1.5,
+      1.75,
+      2.0,
+      2.25,
+      2.5,
+      3.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "pooled_D_R": [
+      -0.09046986,
+      -0.06146044,
+      0.0,
+      0.06963187,
+      0.13408356,
+      0.23460981,
+      0.33083228,
+      0.32495387,
+      0.26129288
+    ],
+    "predicted_shape": [
+      -0.19560045,
+      -0.11214617,
+      0.0,
+      0.10855627,
+      0.20190747,
+      0.33673117,
+      0.45301835,
+      0.43255264,
+      0.34348287
+    ],
+    "predicted_zero_crossing_lambda": 2.0,
+    "measured_zero_crossing_lambda": 2.0,
+    "shape_pearson_r": 0.994701,
+    "fitted_scale": 0.71299
+  },
+  "contrast_fingerprint": {
+    "contrasts": [
+      0.25,
+      0.5,
+      1.0
+    ],
+    "measured_amplitude": [
+      0.0163308,
+      0.06532322,
+      0.26129288
+    ],
+    "measured_ratio_vs_c025": [
+      1.0,
+      4.0,
+      16.0
+    ],
+    "predicted_ratio_vs_c025": [
+      1.0,
+      4.0,
+      16.0
+    ]
+  },
+  "temporal_tuning": {
+    "speeds": [
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.8,
+      1.2,
+      1.6,
+      2.0
+    ],
+    "amplitude": [
+      0.08345121,
+      0.15548154,
+      0.20919716,
+      0.24350268,
+      0.26129288,
+      0.25664053,
+      0.20846577,
+      0.16162864,
+      0.12336458
+    ],
+    "measured_peak_speed": 0.5,
+    "predicted_peak_speed": 0.6366
+  },
+  "gate_densities_passing": 2,
+  "verdict": "KEEP",
+  "seconds": 3.0
+}
