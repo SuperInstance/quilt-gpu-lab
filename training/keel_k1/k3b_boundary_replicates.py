@@ -55,8 +55,8 @@ def main():
                 mse, _ = k1run.run_arm(target, seed, trmix, va)
                 res["grid"][f"{target}_r{r}_{seed}"] = round(mse, 6)
                 print(f"[K3b] r={r:.2f} {target}@{seed}: mse={mse:.6f} ({time.time()-t0:.0f}s)", flush=True)
-            res["cell_mean"][f"state_r{r}"] = round(sum(res["grid"][f"state_r{r}_{s}"] for s in SEEDS) / len(SEEDS), 6)
-            res["cell_mean"][f"diff_r{r}"] = round(sum(res["grid"][f"diff_r{r}_{s}"] for s in SEEDS) / len(SEEDS), 6)
+        res["cell_mean"][f"state_r{r}"] = round(sum(res["grid"][f"state_r{r}_{s}"] for s in SEEDS) / len(SEEDS), 6)
+        res["cell_mean"][f"diff_r{r}"] = round(sum(res["grid"][f"diff_r{r}_{s}"] for s in SEEDS) / len(SEEDS), 6)
         rel = {s: (res["grid"][f"state_r{r}_{s}"] - res["grid"][f"diff_r{r}_{s}"])
                   / res["grid"][f"state_r{r}_{s}"] for s in SEEDS}
         res["rel_win_by_ratio"][f"{r:.2f}"] = round(sum(rel.values()) / len(SEEDS), 4)
