@@ -1,0 +1,485 @@
+{
+ "schema": "cm1-round4/1",
+ "plan": "proposals/runs/CM1-r4-plan.md",
+ "created": "2026-09-29 15:09:14",
+ "gen": "ByteDance/Seed-2.0-mini",
+ "pinch": 0.5,
+ "factor": "gate call pattern: rule-blind per-stimulus (A) vs rule-rich batched (B)",
+ "hypothesis": "r3 doubting caused by RULE absent from gate state",
+ "correct_A": 12,
+ "A_paths": {
+  "RETRY_PASS": 6,
+  "DRAFT_PASS": 3,
+  "PINCHED_FALLBACK": 3
+ },
+ "A_jev": [
+  6965,
+  702
+ ],
+ "A_judge_wall_s": 6.92,
+ "A_calls": 18,
+ "A_cal_domain": 0.648,
+ "armA": [
+  {
+   "answer": "BOOK:navigation:mid",
+   "correct": true,
+   "path": "RETRY_PASS",
+   "gates": [
+    [
+     0.51,
+     0.47
+    ],
+    [
+     0.88,
+     0.79
+    ]
+   ],
+   "di_in": 455,
+   "di_out": 1819,
+   "jev_in": 849,
+   "jev_out": 78,
+   "t_s": 19.39,
+   "sid": "S1",
+   "truth": "BOOK:navigation:mid"
+  },
+  {
+   "answer": "BOOK:engine:high",
+   "correct": true,
+   "path": "DRAFT_PASS",
+   "gates": [
+    [
+     0.72,
+     0.71
+    ]
+   ],
+   "di_in": 190,
+   "di_out": 190,
+   "jev_in": 336,
+   "jev_out": 39,
+   "t_s": 3.71,
+   "sid": "S2",
+   "truth": "BOOK:engine:high"
+  },
+  {
+   "answer": "BOOK:deck:low",
+   "correct": true,
+   "path": "RETRY_PASS",
+   "gates": [
+    [
+     0.4,
+     0.47
+    ],
+    [
+     0.91,
+     0.89
+    ]
+   ],
+   "di_in": 437,
+   "di_out": 1837,
+   "jev_in": 837,
+   "jev_out": 78,
+   "t_s": 18.78,
+   "sid": "S3",
+   "truth": "BOOK:deck:low"
+  },
+  {
+   "answer": "BOOK:navigation:mid",
+   "correct": true,
+   "path": "RETRY_PASS",
+   "gates": [
+    [
+     0.75,
+     0.42
+    ],
+    [
+     0.89,
+     0.72
+    ]
+   ],
+   "di_in": 433,
+   "di_out": 4124,
+   "jev_in": 860,
+   "jev_out": 78,
+   "t_s": 38.21,
+   "sid": "S4",
+   "truth": "BOOK:navigation:mid"
+  },
+  {
+   "answer": "BOOK:engine:low",
+   "correct": true,
+   "path": "PINCHED_FALLBACK",
+   "gates": [
+    [
+     0.21,
+     0.11
+    ]
+   ],
+   "di_in": 431,
+   "di_out": 12875,
+   "jev_in": 332,
+   "jev_out": 39,
+   "t_s": 107.47,
+   "sid": "S5",
+   "truth": "BOOK:engine:low"
+  },
+  {
+   "answer": "BOOK:engine:high",
+   "correct": true,
+   "path": "PINCHED_FALLBACK",
+   "gates": [
+    [
+     0.48,
+     0.58
+    ]
+   ],
+   "di_in": 431,
+   "di_out": 5443,
+   "jev_in": 332,
+   "jev_out": 39,
+   "t_s": 44.88,
+   "sid": "S6",
+   "truth": "BOOK:engine:high"
+  },
+  {
+   "answer": "BOOK:deck:high",
+   "correct": true,
+   "path": "DRAFT_PASS",
+   "gates": [
+    [
+     0.61,
+     0.57
+    ]
+   ],
+   "di_in": 185,
+   "di_out": 737,
+   "jev_in": 330,
+   "jev_out": 39,
+   "t_s": 7.95,
+   "sid": "S7",
+   "truth": "BOOK:deck:high"
+  },
+  {
+   "answer": "BOOK:navigation:mid",
+   "correct": true,
+   "path": "RETRY_PASS",
+   "gates": [
+    [
+     0.72,
+     0.42
+    ],
+    [
+     0.92,
+     0.85
+    ]
+   ],
+   "di_in": 433,
+   "di_out": 4571,
+   "jev_in": 818,
+   "jev_out": 78,
+   "t_s": 39.65,
+   "sid": "S8",
+   "truth": "BOOK:navigation:mid"
+  },
+  {
+   "answer": "BOOK:deck:high",
+   "correct": true,
+   "path": "RETRY_PASS",
+   "gates": [
+    [
+     0.46,
+     0.4
+    ],
+    [
+     0.91,
+     0.9
+    ]
+   ],
+   "di_in": 427,
+   "di_out": 3659,
+   "jev_in": 814,
+   "jev_out": 78,
+   "t_s": 31.93,
+   "sid": "S9",
+   "truth": "BOOK:deck:high"
+  },
+  {
+   "answer": "BOOK:engine:low",
+   "correct": true,
+   "path": "RETRY_PASS",
+   "gates": [
+    [
+     0.23,
+     0.14
+    ],
+    [
+     0.94,
+     0.92
+    ]
+   ],
+   "di_in": 435,
+   "di_out": 1882,
+   "jev_in": 791,
+   "jev_out": 78,
+   "t_s": 18.76,
+   "sid": "S10",
+   "truth": "BOOK:engine:low"
+  },
+  {
+   "answer": "BOOK:navigation:mid",
+   "correct": true,
+   "path": "PINCHED_FALLBACK",
+   "gates": [
+    [
+     0.57,
+     0.36
+    ]
+   ],
+   "di_in": 431,
+   "di_out": 2592,
+   "jev_in": 331,
+   "jev_out": 39,
+   "t_s": 24.16,
+   "sid": "S11",
+   "truth": "BOOK:navigation:mid"
+  },
+  {
+   "answer": "BOOK:deck:low",
+   "correct": true,
+   "path": "DRAFT_PASS",
+   "gates": [
+    [
+     0.55,
+     0.56
+    ]
+   ],
+   "di_in": 191,
+   "di_out": 444,
+   "jev_in": 335,
+   "jev_out": 39,
+   "t_s": 4.71,
+   "sid": "S12",
+   "truth": "BOOK:deck:low"
+  }
+ ],
+ "correct_B": 12,
+ "B_paths": {
+  "DRAFT_PASS": 12
+ },
+ "B_jev": [
+  1559,
+  490
+ ],
+ "B_batch_walls": {
+  "pass1": 0.28
+ },
+ "B_cal_domain": 0.767,
+ "armB": [
+  {
+   "sid": "S1",
+   "truth": "BOOK:navigation:mid",
+   "gates": [
+    [
+     0.77,
+     0.75
+    ]
+   ],
+   "answer": "BOOK:navigation:mid",
+   "correct": true,
+   "path": "DRAFT_PASS",
+   "jev_in": 129.91666666666666,
+   "jev_out": 40.833333333333336,
+   "di_in": 188.08333333333334,
+   "di_out": 393.0833333333333
+  },
+  {
+   "sid": "S2",
+   "truth": "BOOK:engine:high",
+   "gates": [
+    [
+     0.75,
+     0.73
+    ]
+   ],
+   "answer": "BOOK:engine:high",
+   "correct": true,
+   "path": "DRAFT_PASS",
+   "jev_in": 129.91666666666666,
+   "jev_out": 40.833333333333336,
+   "di_in": 188.08333333333334,
+   "di_out": 393.0833333333333
+  },
+  {
+   "sid": "S3",
+   "truth": "BOOK:deck:low",
+   "gates": [
+    [
+     0.78,
+     0.73
+    ]
+   ],
+   "answer": "BOOK:deck:low",
+   "correct": true,
+   "path": "DRAFT_PASS",
+   "jev_in": 129.91666666666666,
+   "jev_out": 40.833333333333336,
+   "di_in": 188.08333333333334,
+   "di_out": 393.0833333333333
+  },
+  {
+   "sid": "S4",
+   "truth": "BOOK:navigation:mid",
+   "gates": [
+    [
+     0.77,
+     0.72
+    ]
+   ],
+   "answer": "BOOK:navigation:mid",
+   "correct": true,
+   "path": "DRAFT_PASS",
+   "jev_in": 129.91666666666666,
+   "jev_out": 40.833333333333336,
+   "di_in": 188.08333333333334,
+   "di_out": 393.0833333333333
+  },
+  {
+   "sid": "S5",
+   "truth": "BOOK:engine:low",
+   "gates": [
+    [
+     0.76,
+     0.73
+    ]
+   ],
+   "answer": "BOOK:engine:low",
+   "correct": true,
+   "path": "DRAFT_PASS",
+   "jev_in": 129.91666666666666,
+   "jev_out": 40.833333333333336,
+   "di_in": 188.08333333333334,
+   "di_out": 393.0833333333333
+  },
+  {
+   "sid": "S6",
+   "truth": "BOOK:engine:high",
+   "gates": [
+    [
+     0.78,
+     0.73
+    ]
+   ],
+   "answer": "BOOK:engine:high",
+   "correct": true,
+   "path": "DRAFT_PASS",
+   "jev_in": 129.91666666666666,
+   "jev_out": 40.833333333333336,
+   "di_in": 188.08333333333334,
+   "di_out": 393.0833333333333
+  },
+  {
+   "sid": "S7",
+   "truth": "BOOK:deck:high",
+   "gates": [
+    [
+     0.77,
+     0.74
+    ]
+   ],
+   "answer": "BOOK:deck:high",
+   "correct": true,
+   "path": "DRAFT_PASS",
+   "jev_in": 129.91666666666666,
+   "jev_out": 40.833333333333336,
+   "di_in": 188.08333333333334,
+   "di_out": 393.0833333333333
+  },
+  {
+   "sid": "S8",
+   "truth": "BOOK:navigation:mid",
+   "gates": [
+    [
+     0.75,
+     0.72
+    ]
+   ],
+   "answer": "BOOK:navigation:mid",
+   "correct": true,
+   "path": "DRAFT_PASS",
+   "jev_in": 129.91666666666666,
+   "jev_out": 40.833333333333336,
+   "di_in": 188.08333333333334,
+   "di_out": 393.0833333333333
+  },
+  {
+   "sid": "S9",
+   "truth": "BOOK:deck:high",
+   "gates": [
+    [
+     0.75,
+     0.71
+    ]
+   ],
+   "answer": "BOOK:deck:high",
+   "correct": true,
+   "path": "DRAFT_PASS",
+   "jev_in": 129.91666666666666,
+   "jev_out": 40.833333333333336,
+   "di_in": 188.08333333333334,
+   "di_out": 393.0833333333333
+  },
+  {
+   "sid": "S10",
+   "truth": "BOOK:engine:low",
+   "gates": [
+    [
+     0.76,
+     0.73
+    ]
+   ],
+   "answer": "BOOK:engine:low",
+   "correct": true,
+   "path": "DRAFT_PASS",
+   "jev_in": 129.91666666666666,
+   "jev_out": 40.833333333333336,
+   "di_in": 188.08333333333334,
+   "di_out": 393.0833333333333
+  },
+  {
+   "sid": "S11",
+   "truth": "BOOK:navigation:mid",
+   "gates": [
+    [
+     0.78,
+     0.75
+    ]
+   ],
+   "answer": "BOOK:navigation:mid",
+   "correct": true,
+   "path": "DRAFT_PASS",
+   "jev_in": 129.91666666666666,
+   "jev_out": 40.833333333333336,
+   "di_in": 188.08333333333334,
+   "di_out": 393.0833333333333
+  },
+  {
+   "sid": "S12",
+   "truth": "BOOK:deck:low",
+   "gates": [
+    [
+     0.78,
+     0.73
+    ]
+   ],
+   "answer": "BOOK:deck:low",
+   "correct": true,
+   "path": "DRAFT_PASS",
+   "jev_in": 129.91666666666666,
+   "jev_out": 40.833333333333336,
+   "di_in": 188.08333333333334,
+   "di_out": 393.0833333333333
+  }
+ ],
+ "diff": 0,
+ "verdict": "TIE_NOISE",
+ "wall_s": 414.3
+}
