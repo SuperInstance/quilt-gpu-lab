@@ -2564,3 +2564,11 @@ the ceiling; correlated dense purchases are dead weight or worse.
 - Floor on the fixed val recomputed 2.8477 (K3 booked 2.879 — different compute detail; classifications unchanged).
 - **The boundary question as posed is undecidable at n=96**: a single mixed-val MSE averages a portable-diff signal with a domain-anchored-state signal. K3d, if attempted, must gate per-domain (or report rel_win per domain) and grow n.
 - Artifacts: training/keel_k1/k3c_diagnose.py · training/keel_k1/results/k3c_diagnose.json · k3c_run.log · proposals/runs/K3c-plan.md.
+
+### 2026-09-29 09:14 — IE2: blob-only reader — KEEP (3/3): the sensor was fine; IE1's gap was reader dilution
+**IE1's honest caveat resolves in the sensor's favor.** Plan-first (proposals/runs/IE2-plan.md). One delta vs IE1: the ridge reader trains on BLOB-ONLY sequences and tests blob-only; all else identical (σ 2/3, speeds 0.25/0.5, 4 cardinals, densities 8/16/32, τ=2, α=0.01, seed base 20260928). CPU-only, 1.0 s.
+- r2(direction) = **0.541 / 0.806 / 0.930** at densities 8/16/32 (IE1's mixed-trained reader on the same blobs: 0.061 / 0.044 / 0.015); cardinal accuracy 0.909 / 0.980 / 1.000. Gate ≥ 0.5 at ≥ 2 of 3 → **3/3 → KEEP**.
+- **H-reader confirmed, H-sensor killed:** the wide-field pooled correlator DOES carry small-field direction. The mean-pooled blob signal is 40–150× smaller than the grating signal (amplitude ratio 0.0249 / 0.0164 / 0.0065 by density) — yet a linear reader that is not drowned by wide-field variance decodes it near-perfectly. Science §4's pooling-hyperacuity claim now holds for both stimulus families; the boundary was in the reader, not the rung.
+- τ sweep (descriptive): 0.782 / 0.806 / 0.837 at τ = 1/2/4 — mild, monotone in τ, no cliff.
+- Follow-up shape (not booked): a two-head reader (wide-field + small-field heads, or per-family gating) should recover both families from the single 4-code stream — the fam code carries more than one reader can see at once.
+- Artifacts: experiments/ie2_blob_reader.py · results/ie2_blob_reader.json · ie2_run.log · proposals/runs/IE2-plan.md.

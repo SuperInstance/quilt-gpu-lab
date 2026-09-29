@@ -1,0 +1,77 @@
+{
+  "experiment": "ie2 blob-only reader (sensor gap or reader dilution?)",
+  "date": "2026-09-29 09:07:10 AKDT",
+  "plan": "proposals/runs/IE2-plan.md",
+  "cpu_only": true,
+  "numpy_version": "2.4.6",
+  "config": {
+    "delta": "ridge reader trained blob-only, tested blob-only; all else identical to IE1 (sigma 2/3, speeds 0.25/0.5, 4 cardinals, 3 densities, tau 2, ridge alpha 0.01)",
+    "gate": "blob-only r2(direction) >= 0.5 at >= 2 of 3 densities, tau=2",
+    "seed_base": 20260928
+  },
+  "gate_density_8": {
+    "tau_frames": 2.0,
+    "train_frames": 3072,
+    "test_frames": 3072,
+    "r2_direction": 0.541407,
+    "cardinal_accuracy": 0.908854
+  },
+  "gate_density_16": {
+    "tau_frames": 2.0,
+    "train_frames": 3072,
+    "test_frames": 3072,
+    "r2_direction": 0.80641,
+    "cardinal_accuracy": 0.980469
+  },
+  "gate_density_32": {
+    "tau_frames": 2.0,
+    "train_frames": 3072,
+    "test_frames": 3072,
+    "r2_direction": 0.930296,
+    "cardinal_accuracy": 1.0
+  },
+  "gate_densities_passing": 3,
+  "verdict": "KEEP",
+  "interpretation": "H-reader: gap was training-distribution dilution; lobula-plate rung carries small-field direction",
+  "tau_sweep_density16": {
+    "1.0": {
+      "tau_frames": 1.0,
+      "train_frames": 3072,
+      "test_frames": 3072,
+      "r2_direction": 0.781635,
+      "cardinal_accuracy": 0.973307
+    },
+    "2.0": {
+      "tau_frames": 2.0,
+      "train_frames": 3072,
+      "test_frames": 3072,
+      "r2_direction": 0.80641,
+      "cardinal_accuracy": 0.980469
+    },
+    "4.0": {
+      "tau_frames": 4.0,
+      "train_frames": 3072,
+      "test_frames": 3072,
+      "r2_direction": 0.837201,
+      "cardinal_accuracy": 0.988607
+    }
+  },
+  "amplitude_dilution": {
+    "8": {
+      "grating_mean_abs_R": 0.26129288,
+      "blob_mean_abs_R": 0.00649869,
+      "ratio_blob_over_grating": 0.0249
+    },
+    "16": {
+      "grating_mean_abs_R": 0.26129288,
+      "blob_mean_abs_R": 0.00429328,
+      "ratio_blob_over_grating": 0.0164
+    },
+    "32": {
+      "grating_mean_abs_R": 0.26129288,
+      "blob_mean_abs_R": 0.00170734,
+      "ratio_blob_over_grating": 0.0065
+    }
+  },
+  "seconds": 1.0
+}
