@@ -1,0 +1,49 @@
+{
+  "experiment": "K2 latent diff-target vs state-target",
+  "meta": {
+    "encoder": "transformers:facebook/vjepa2-vitl-fpc16-256-ssv2",
+    "latent_dim": 1024,
+    "n_train": 96,
+    "n_val": 32,
+    "clip_len": 16,
+    "source": "lavfi",
+    "created": "2026-09-28 20:44:23"
+  },
+  "seeds": [
+    42,
+    1337
+  ],
+  "steps": 1200,
+  "persistence_mse": {
+    "42": 2.7426891326904297,
+    "1337": 2.7426891326904297
+  },
+  "arms": {
+    "state_42": {
+      "val_rec_mse": 0.063117,
+      "reader_ridge": 1.0,
+      "reader_mlp": 1.0
+    },
+    "state_1337": {
+      "val_rec_mse": 0.064458,
+      "reader_ridge": 1.0,
+      "reader_mlp": 1.0
+    },
+    "diff_42": {
+      "val_rec_mse": 0.07776,
+      "reader_ridge": 1.0,
+      "reader_mlp": 1.0
+    },
+    "diff_1337": {
+      "val_rec_mse": 0.080632,
+      "reader_ridge": 1.0,
+      "reader_mlp": 1.0
+    }
+  },
+  "relative_win": {
+    "42": -0.232,
+    "1337": -0.2509
+  },
+  "verdict": "KILL",
+  "seconds": 60.8
+}
