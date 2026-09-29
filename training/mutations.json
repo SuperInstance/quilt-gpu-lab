@@ -1,0 +1,256 @@
+{
+  "meta": {
+    "what": "The mutation ledger as data — one record per nursery/glyph mutation, 2026-09-28 arc. The RSI loop's memory: this file is what the proposer retrieves from.",
+    "created": "2026-09-28",
+    "sources": [
+      "RESULTS.md (entries D1/D2/D3 and G1-G4, 2026-09-28)",
+      "training/delta_increment/ (README, run.log, train.py, commit 8871a10)",
+      "training/delta_free/ (README, run.log, train.py, commit 5da8101)",
+      "training/delta_seed1337/ (README + both arms, commit 21a251c)",
+      "training/glyph_g1/ (g1_dataset.py, train.py incl. G4_LOSS_MASK, commit chain)",
+      "gem-hits.md (feedback counter rows for today)"
+    ],
+    "conventions": {
+      "verdicts": "KEEP / REPLICATED / KILL / INCONCLUSIVE / QUEUED — exactly the RESULTS.md wording, downgraded nothing.",
+      "metric_delta": "val_bpb delta is mutant-minus-baseline (negative = better). Glyph lane reports accuracy points.",
+      "diagnostic_validated": "Only set where the ledger itself says the KILL's diagnostic validated the underlying mechanism (G4). The scorer reads this; nothing else may.",
+      "queued": "D4 and G5 are named in the D3/G4 receipts but have NOT run. They are recorded to consume their IDs honestly — the proposer proposes D5/G6, never a re-spell of the queue.",
+      "no_invented_fields": "Every number traces to a receipt above. null means not measured."
+    }
+  },
+  "mutations": [
+    {
+      "id": "D1",
+      "domain": "bpb",
+      "ran": "2026-09-28 12:50",
+      "mutation": "Delta-attention: split the heads — second half attends on the hidden-path delta h − shift(h,1) via a second projection pass over the same c_q/c_k/c_v row-slices (zero new params, 50.3M).",
+      "diff_summary": "training/delta_increment/train.py vs the receipt baseline: delta_x = x - shift(x,1); delta heads derive q/k/v from delta_x via F.linear on weight row-slices; VE gate reads the delta path; one FA3 call over all heads; rotary/norms/window/c_proj/residuals untouched.",
+      "verdict": "KILL",
+      "metric_delta": {
+        "metric": "val_bpb",
+        "delta": 0.000154,
+        "mutant": 1.696093,
+        "baseline": 1.695939,
+        "direction": "worse"
+      },
+      "cost": {
+        "wall_s": 543.5,
+        "training_s": 301.5,
+        "peak_vram_mb": 3884.1,
+        "tok_s": "~66K (-9% vs baseline)",
+        "budget_s": 300,
+        "steps": 49,
+        "tokens_M": 25.7
+      },
+      "lesson": "The difference signal is real (per-token parity on 7.5% fewer tokens) but the ~9% wall-clock overhead ate the whole advantage at fixed budget — a mutation must be free, not just good.",
+      "receipts": ["training/delta_increment/", "commit 8871a10", "gem-hits.md: difference-operator KILL (partial — led to D2)"]
+    },
+    {
+      "id": "D2",
+      "domain": "bpb",
+      "ran": "2026-09-28 13:15",
+      "mutation": "Free delta: one projection pass only — delta heads' k/v are the POST-projection temporal diffs of the same row-slices (k_d[t]=k[t]−k[t−1], v_d likewise; zero-row shift at t=0), q as-is. Zero new params.",
+      "diff_summary": "training/delta_free/train.py vs delta_increment/train.py: the second F.linear trio and the hidden-state shift are DELETED; kd/vd are elementwise temporal diffs of projected k/v row-slices; VE gate back on the absolute path for all heads (identical to baseline). Diff is the delta-path block only.",
+      "verdict": "KEEP",
+      "metric_delta": {
+        "metric": "val_bpb",
+        "delta": -0.029315,
+        "mutant": 1.666624,
+        "baseline": 1.695939,
+        "direction": "better (~100x the margin D1 lost by)"
+      },
+      "cost": {
+        "wall_s": 516.0,
+        "training_s": 301.5,
+        "peak_vram_mb": 3745.3,
+        "tok_s": "~71.3K steady (-2% vs baseline)",
+        "budget_s": 300,
+        "steps": 52,
+        "tokens_M": 27.3
+      },
+      "lesson": "D1's signal kept, D1's cost removed → the nursery's first novel-model KEEP. Per-token the difference signal is decisively real once it costs nothing.",
+      "receipts": ["training/delta_free/", "commit 5da8101", "gem-hits.md: difference-operator KEEP (−0.0293 bpb)"]
+    },
+    {
+      "id": "D3",
+      "domain": "bpb",
+      "ran": "2026-09-28 13:35",
+      "mutation": "Seed replication of D2: both arms (receipt baseline + free-delta) re-run at seed 1337, seed-only diffs, everything else identical.",
+      "diff_summary": "training/delta_seed1337/{baseline,free_delta}/train.py: byte-identical to the receipt baseline and to delta_free/train.py with seed 42→1337 only (verified: diff <(sed s/1337/42/) original is empty both arms); prepare.py byte-identical copies; runs serialized, GPU-checked free before each.",
+      "verdict": "REPLICATED",
+      "metric_delta": {
+        "metric": "val_bpb",
+        "delta": -0.028642,
+        "mutant": 1.671658,
+        "baseline": 1.700300,
+        "seed42_delta_for_comparison": -0.029315,
+        "direction": "better (agreement within 0.0007 across seeds; seed-noise ~0.005)"
+      },
+      "cost": {
+        "wall_s": 1021.0,
+        "training_s": 602.9,
+        "peak_vram_mb": 3745.3,
+        "tok_s": "matches D2 profile (~71K)",
+        "budget_s": 300,
+        "steps": "53 baseline / 51 free-delta",
+        "tokens_M": null
+      },
+      "lesson": "Two seeds, two paired wins of ~0.029 bpb — the effect is ~6x seed noise. Free-delta is hardened; the paired-replication protocol is what earns the right to stack mutations on it.",
+      "receipts": ["training/delta_seed1337/", "commit 21a251c", "gem-hits.md: replication discipline REPLICATED"]
+    },
+    {
+      "id": "D4",
+      "domain": "bpb",
+      "ran": null,
+      "mutation": "QUEUED, NOT RUN — named in D3's receipt: delta-head ratio sweep and/or ternary weights on the delta path.",
+      "diff_summary": "No training dir exists yet. The queue line lives in RESULTS.md's D3 note ('Next: D4 candidates (delta-head ratio sweep, ternary weights on the delta path)').",
+      "verdict": "QUEUED",
+      "metric_delta": null,
+      "cost": {
+        "wall_s": null,
+        "peak_vram_mb": null,
+        "planned": "300s/arm speedrun protocol (the D2/D3 pattern)"
+      },
+      "lesson": "The next nursery rungs named by the receipts. They fire first; the proposer ranks NEW mutations beyond them (D5+).",
+      "receipts": ["RESULTS.md D3 note"]
+    },
+    {
+      "id": "G1",
+      "domain": "glyph",
+      "ran": "2026-09-28 15:13",
+      "mutation": "First generative glyph-domain model: 25.3M-param free-delta GPT over V=32 renderer codes (tone idx 0-10 + edge fam×level 11-30 + SEP 31), seq 6144, next-frame prediction on 6,000 frames (5 lavfi sources + MockScene, 48×36 cells).",
+      "diff_summary": "training/glyph_g1/: g1_dataset.py renders frames into the chiaroscuro code-space (data.npz, temporal 70/15/15 split per source, no shuffle); train.py is the D2 free-delta skeleton re-tokenized to V=32 (SSSL windows one-frame-short/two-frame-long).",
+      "verdict": "INCONCLUSIVE (majority gate cleared +19.3 pts; persistence gate failed on 2 of 3 dynamic sources)",
+      "metric_delta": {
+        "metric": "next-frame cell accuracy",
+        "model_overall": 0.806,
+        "majority_overall": 0.613,
+        "majority_margin_pts": 19.3,
+        "persistence_margins_pts": {
+          "testsrc2": 6.9,
+          "life": -12.0,
+          "mandelbrot": -6.3
+        },
+        "ce_per_cell": {
+          "gradients": 0.07,
+          "smptebars": 0.017,
+          "mockscene": 0.28,
+          "testsrc2": 0.64,
+          "life": 1.02,
+          "mandelbrot": 1.96
+        }
+      },
+      "cost": {
+        "wall_s": 304.9,
+        "peak_vram_mb": null,
+        "steps": 59,
+        "params_M": 25.3,
+        "train_loss": "3.47 → 0.48"
+      },
+      "lesson": "Beats majority by +19.3 and wins on the fast-motion source, but copy-last-frame (persistence) wins on slow feeds — statics dominate overall accuracy; persistence is the bar the model must beat per-source.",
+      "receipts": ["training/glyph_g1/", "results/g1_glyph_predictor.json", "commit 22d9129", "gem-hits.md: G1-G4 arc (diff-targets/canvas)"]
+    },
+    {
+      "id": "G2",
+      "domain": "glyph",
+      "ran": "2026-09-28 15:30",
+      "mutation": "Changed-cells diagnostic on the G1 replication: same config/seed, plus changed-cells-only accuracy (cell != same cell of previous frame).",
+      "diff_summary": "training/glyph_g1/train.py: eval path adds the G2 changed-cell mask (cmask from prev-frame comparison) and reports model_changed_acc + changed_frac alongside overall accuracy.",
+      "verdict": "INCONCLUSIVE (gate replicated: majority +19.1, persistence fails life −12.2 / mandelbrot −6.4, testsrc2 +6.7)",
+      "metric_delta": {
+        "metric": "changed-cell accuracy",
+        "gradients": 0.66,
+        "testsrc2": 0.403,
+        "life": 0.056,
+        "mandelbrot": 0.075,
+        "mockscene": 0.047,
+        "changed_frac": {
+          "life": 0.17,
+          "mandelbrot": 0.53
+        },
+        "model_overall": 0.805
+      },
+      "cost": {
+        "wall_s": 304.9,
+        "peak_vram_mb": null,
+        "note": "same config/seed as G1 — clean replication"
+      },
+      "lesson": "The model learned statics + predictable dynamics, not hard dynamics: the cellular automaton (5.6%) and fractal zoom (7.5%) are NOT learned in 5 minutes — G1's INCONCLUSIVE is fully explained.",
+      "receipts": ["training/glyph_g1/train.py (G2 eval block)", "commit bd7dbe7"]
+    },
+    {
+      "id": "G3",
+      "domain": "glyph",
+      "ran": "2026-09-28 15:45",
+      "mutation": "Framerate scaling 10→20fps: 2× temporal data, finer dt (G1_FPS=20 → data20.npz), same model/seed.",
+      "diff_summary": "training/glyph_g1/: g1_dataset.py FPS_OVERRIDE via G1_FPS env (data20.npz); train.py unchanged except corpus path — the mutation is the corpus, not the model.",
+      "verdict": "INCONCLUSIVE (20fps taught statics, not dynamics)",
+      "metric_delta": {
+        "metric": "changed-cell accuracy",
+        "life": 0.069,
+        "mandelbrot": 0.081,
+        "vs_G2": {
+          "life": "5.6% → 6.9%",
+          "mandelbrot": "7.5% → 8.1%"
+        },
+        "changed_frac_life": "16.6% → 5.1% (frames MORE similar)",
+        "testsrc2_persistence_margin": "+6.7 → +2.8",
+        "majority_margin": "+19.3 → +13.2",
+        "model_overall": 0.831
+      },
+      "cost": {
+        "wall_s": 304.9,
+        "peak_vram_mb": null,
+        "note": "2x temporal data, same budget"
+      },
+      "lesson": "Doubling framerate made frames MORE similar and strengthened persistence's statics advantage — finer dt does not teach hard dynamics. Capacity is going to the ~95% of cells that never change.",
+      "receipts": ["training/glyph_g1/data20.npz", "commit 5f088d1"]
+    },
+    {
+      "id": "G4",
+      "domain": "glyph",
+      "ran": "2026-09-28 16:01",
+      "mutation": "Diff-target loss mask: train only on changed cells — statics + SEP masked from the gradient (G4_LOSS_MASK=1), with a >=100-target resample guard.",
+      "diff_summary": "training/glyph_g1/train.py: self.loss_mask_mode from G4_LOSS_MASK env; per-example loss mask zeroes static cells and SEP before the gradient; eval reports both overall and changed-cell accuracy for the masked model.",
+      "verdict": "KILL (by the registered overall-accuracy gate — 61.6% overall, majority-margin ~0)",
+      "diagnostic_validated": true,
+      "metric_delta": {
+        "metric": "changed-cell accuracy (the diagnostic axis)",
+        "life": 0.198,
+        "mandelbrot": 0.196,
+        "mockscene": 0.195,
+        "testsrc2": 0.473,
+        "gradients": 0.743,
+        "multiples_vs_G2": {
+          "life": "3.5x",
+          "mandelbrot": "2.6x",
+          "mockscene": "4.0x"
+        },
+        "model_overall": 0.616
+      },
+      "cost": {
+        "wall_s": 304.9,
+        "peak_vram_mb": null,
+        "note": "same config/seed; statics loss masked"
+      },
+      "lesson": "The gate's KILL is the hypothesis's KEEP: predicting differences (not states) tripled-to-quadrupled dynamics learning on EVERY source. Persistence covers statics for free, so the arc derives the hybrid refiner (copy-last-frame + diff-head corrections on changed cells).",
+      "receipts": ["training/glyph_g1/train.py (G4_LOSS_MASK)", "commit 20751f8", "gem-hits.md: diff-targets/canvas — G4 dynamics tripled"]
+    },
+    {
+      "id": "G5",
+      "domain": "glyph",
+      "ran": null,
+      "mutation": "QUEUED, NOT RUN — the hybrid refiner composite: predicted frame = copy-last-frame + the diff-trained head's corrections on changed cells.",
+      "diff_summary": "No code exists yet. Derived by the G1→G4 arc (G4's receipt: 'G5 is the composite').",
+      "verdict": "QUEUED",
+      "metric_delta": null,
+      "cost": {
+        "wall_s": null,
+        "peak_vram_mb": null,
+        "planned": "~300s-class run reusing the G4-masked trainer + a persistence-composite eval head"
+      },
+      "lesson": "The two-scale diff principle (token-level free-delta KEEP, target-level diff-mask 3-4x dynamics) gets its composite test. Fires before any G6 proposal.",
+      "receipts": ["RESULTS.md G4 note"]
+    }
+  ]
+}

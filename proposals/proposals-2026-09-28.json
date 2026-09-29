@@ -1,0 +1,263 @@
+{
+  "meta": {
+    "what": "Ranked self-proposed mutations + pre-registered gates. NOTHING FIRED \u2014 proposals wait for human review (acceptance discipline: gate pre-registered, budget capped, ~90% expected rejection is the design).",
+    "generated": "2026-09-28T16:23:46-08:00",
+    "proposer": "propose.py v0 (deterministic; spec: proposals/PROPOSER.md)",
+    "inputs": {
+      "ledger": "training/mutations.json",
+      "ledger_sha256": "bdd28a6564cd6c8dc540d5875087740348697de3bb9662739981a4158f95ff55",
+      "gems": "GEMS.md",
+      "gems_sha256": "c782718ff558394b4dee9f775cd7af5fcc162faa2fdd0f81312448adb471b7da"
+    },
+    "scoring": "score = past_outcome_similarity(refs) x gem_synergy(status-weighted) x falsifiability; KILL-with-validated-diagnostic counts +0.5 (G4); queued duplicates suppressed; queued overlaps penalized 0.8",
+    "queue_first": "Ledger QUEUED records fire before any proposal: D4 (delta-head ratio / delta-path ternary), G5 (hybrid refiner). D5/G6 are NEW slots beyond the queue."
+  },
+  "proposed": {
+    "D": {
+      "next_id": "D5",
+      "ranked": [
+        {
+          "key": "looped_free_delta",
+          "domain": "bpb",
+          "mutation": "Looped free-delta: one shared transformer block re-entered R=2 (weight-tied) at params matched to the D2/D3 free-delta skeleton \u2014 does the \u22120.029 bpb delta win survive weight sharing?",
+          "score": 0.8075,
+          "factors": {
+            "past_outcome_similarity": 1.0,
+            "gem_synergy": 0.95,
+            "falsifiability": 0.85
+          },
+          "gate": {
+            "keep_if": "looped-R2 free-delta beats its param-matched non-looped control by >0.005 bpb AND lands within +0.01 bpb of the D3 free-delta arm (the delta advantage survives weight-sharing)",
+            "kill_if": "looped-R2 loses to its own control by >0.005 bpb, OR gives back the delta advantage (>+0.01 vs the D3 arm at matched params)",
+            "inconclusive": "between the bands \u2014 report both numbers, no verdict inflation",
+            "budget": "2 arms x 300s TIME_BUDGET (the D2/D3 speedrun protocol), serialized, GPU-checked",
+            "eval": "val_bpb on the pinned val shard, paired arms, seed 42 then 1337 on KEEP"
+          },
+          "expected_cost": "~2x300s GPU + ~1h build/smoke (loop flag on training/delta_free/train.py); GEMS envelope ~3h GPU",
+          "receipts_drawn": "D2 (free-delta KEEP \u22120.0293), D3 (replication \u22120.0286 @1337); gem: Looped free-delta (depth-as-loop mine, unfired)",
+          "receipt_ledger_refs": [
+            "D2",
+            "D3"
+          ],
+          "gems": [
+            "Looped free-delta"
+          ],
+          "gem_status_verified": {
+            "Looped free-delta": "SEEDED"
+          },
+          "queued_overlap": null,
+          "why_now": "The one gem in the pool that is both unfired and rides a hardened KEEP; the composition question (delta x weight-sharing) is open in the literature and cheap to falsify at speedrun budget.",
+          "rank": 1,
+          "proposed_id": "D5",
+          "status": "PROPOSED_AWAITING_REVIEW"
+        },
+        {
+          "key": "ternary_free_delta_full",
+          "domain": "bpb",
+          "mutation": "Ternary free-delta (full skeleton): BitNet-style BitLinear (ternary {\u22121,0,+1} weights, absmean scale) on the whole free-delta model \u2014 if the delta win survives 1.58-bit weights, that is a multiplier-free LM trained on one 6GB GPU.",
+          "score": 0.504,
+          "factors": {
+            "past_outcome_similarity": 1.0,
+            "gem_synergy": 0.72,
+            "falsifiability": 0.7
+          },
+          "gate": {
+            "keep_if": "paired delta (ternary-free-delta minus ternary-baseline, both ternarized, same 300s-class budget) <= \u22120.01 bpb (the delta win survives ternary weights) AND ternary-free-delta <= fp16-free-delta + 0.05 (ternarization cost bounded)",
+            "kill_if": "the paired delta advantage inverts under ternary weights (>0), or ternarization costs >0.05 bpb",
+            "inconclusive": "delta survives but ternary cost lands between +0.02 and +0.05",
+            "budget": "2 ternary arms x 300s + quant smoke; overnight-class envelope per GEMS",
+            "eval": "val_bpb paired; weight-bit receipt per layer"
+          },
+          "expected_cost": "overnight-class (GEMS: 'overnight'); 4 runs if the 1337 replication clause fires",
+          "receipts_drawn": "D2/D3 (the win to survive ternarization); qthe lineage KEEP streak (D14/D19/D20 in the pre-today ledger); gem: Ternary free-delta (SEEDED)",
+          "receipt_ledger_refs": [
+            "D2",
+            "D3"
+          ],
+          "gems": [
+            "Ternary free-delta"
+          ],
+          "gem_status_verified": {
+            "Ternary free-delta": "SEEDED"
+          },
+          "queued_overlap": {
+            "id": "D4",
+            "note": "D4 queues ternary weights on the DELTA PATH; this candidate extends ternarization to the whole skeleton. Overlap penalty applied; do not fire before D4's result lands."
+          },
+          "why_now": "Biggest-payoff gem in the pool (boat-doctrine endpoint), but it overlaps the queued D4 slot \u2014 ranked, gated, and explicitly held until D4 reports.",
+          "rank": 2,
+          "proposed_id": null,
+          "status": "PROPOSED_AWAITING_REVIEW"
+        },
+        {
+          "key": "budget_ladder_900s",
+          "domain": "bpb",
+          "mutation": "Budget ladder: re-run the D2 paired comparison at TIME_BUDGET=900 (3x) \u2014 does the \u22120.029 bpb paired win grow, hold, or shrink with training? (The WECO L1 'sustained trend' condition, tested on our own mutation.)",
+          "score": 0.4725,
+          "factors": {
+            "past_outcome_similarity": 1.0,
+            "gem_synergy": 0.525,
+            "falsifiability": 0.9
+          },
+          "gate": {
+            "keep_if": "paired delta @900s <= \u22120.01 bpb (the free-delta advantage sustains at 3x budget)",
+            "kill_if": "paired delta @900s >= \u22120.002 (the win vanishes at scale \u2014 it was a short-budget artifact)",
+            "inconclusive": "between \u22120.002 and \u22120.01: shrinking but alive; report the curve",
+            "budget": "2 arms x 900s = 30 min GPU, serialized",
+            "eval": "val_bpb paired, seed 42 (1337 clause on KEEP, same as D3)"
+          },
+          "expected_cost": "~30 min GPU total (2 x 900s), zero new code (env change only)",
+          "receipts_drawn": "D2 (\u22120.029315 @300s), D3 (\u22120.028642 @300s/1337); gem: acceptance-gate harness (sustained-trend metrology)",
+          "receipt_ledger_refs": [
+            "D2",
+            "D3"
+          ],
+          "gems": [
+            "The acceptance-gate harness"
+          ],
+          "gem_status_verified": {
+            "The acceptance-gate harness": "ASSAYED"
+          },
+          "queued_overlap": null,
+          "why_now": "Cheapest possible hardening of the fleet's first KEEP, and it manufactures the multi-step-trend evidence an eventual L1 claim needs.",
+          "rank": 3,
+          "proposed_id": null,
+          "status": "PROPOSED_AWAITING_REVIEW"
+        }
+      ]
+    },
+    "G": {
+      "next_id": "G6",
+      "ranked": [
+        {
+          "key": "hard_source_starved_probe",
+          "domain": "glyph",
+          "mutation": "Hard-source starved probe: train the G4 diff-masked model on life+mandelbrot frames ONLY (drop the 4 easy sources) at equal budget \u2014 does hard-dynamic changed-cell accuracy scale once easy statics stop diluting every batch?",
+          "score": 0.255,
+          "factors": {
+            "past_outcome_similarity": 0.3333,
+            "gem_synergy": 0.9,
+            "falsifiability": 0.85
+          },
+          "gate": {
+            "keep_if": "changed-cell acc: life >= 39.6% (2x G4's 19.8) OR mandelbrot >= 39.2% (2x G4's 19.6) at the same ~300s budget",
+            "kill_if": "both < 1.3x G4 (life < 25.7% AND mandelbrot < 25.5%) \u2014 hard dynamics are capacity/tokenization-bound, not data-mix-bound, and the diff-target program should pivot to model capacity, not data weighting",
+            "inconclusive": "one source clears 1.3x but neither clears 2x",
+            "budget": "1 x ~300s run (G4_LOSS_MASK=1, corpus flag to the two hard sources); no model changes",
+            "eval": "changed-cell accuracy per source (the G2/G4 diagnostic axis \u2014 the metric the arc actually moves), overall accuracy reported but NOT the gate"
+          },
+          "expected_cost": "~5 min GPU + a corpus-subset flag in g1_dataset.py",
+          "receipts_drawn": "G4 (diff-mask tripled/quadrupled dynamics \u2014 diagnostic validated), G2 (hard dynamics 5.6%/7.5% unchanged), G3 (framerate lever falsified \u2014 data-mix is the next lever in the same family)",
+          "receipt_ledger_refs": [
+            "G4",
+            "G2",
+            "G3"
+          ],
+          "gems": [
+            "Diff-JEPA"
+          ],
+          "gem_status_verified": {
+            "Diff-JEPA": "SEEDED"
+          },
+          "queued_overlap": null,
+          "why_now": "The G1\u2192G4 arc isolated the gradient signal as the bottleneck and fixed it; this tests the remaining dilution hypothesis with one cheap run and a crisp 2x threshold. Direct heir of gem #1 (predict differences, not states).",
+          "rank": 1,
+          "proposed_id": "G6",
+          "status": "PROPOSED_AWAITING_REVIEW"
+        },
+        {
+          "key": "entropy_reweighted_loss",
+          "domain": "glyph",
+          "mutation": "Entropy-reweighted diff loss: keep all 6 sources but weight the loss 4:1 toward high-CE sources' changed cells (life 1.02, mandelbrot 1.96 nats/cell vs smptebars 0.017) \u2014 spend the gradient where the entropy is.",
+          "score": 0.225,
+          "factors": {
+            "past_outcome_similarity": 0.375,
+            "gem_synergy": 0.8,
+            "falsifiability": 0.75
+          },
+          "gate": {
+            "keep_if": "changed-cell acc: life >= 30% AND mandelbrot >= 28% at full corpus, equal budget",
+            "kill_if": "neither source beats G4 by >=2 points",
+            "inconclusive": "one clears, one doesn't",
+            "budget": "1 x ~300s run (loss-weight vector only)",
+            "eval": "changed-cell accuracy per source; CE-per-cell table reported"
+          },
+          "expected_cost": "~5 min GPU + a 6-vector in the loss",
+          "receipts_drawn": "G4 (mask >> reweight, but same mechanism family), G2 (per-source CE table is the weighting map)",
+          "receipt_ledger_refs": [
+            "G4",
+            "G2"
+          ],
+          "gems": [
+            "Diff-JEPA"
+          ],
+          "gem_status_verified": {
+            "Diff-JEPA": "SEEDED"
+          },
+          "queued_overlap": null,
+          "why_now": "The soft version of the starved probe: if reweighting works, production keeps statics (hybrid-refiner-friendly) while still teaching dynamics.",
+          "rank": 2,
+          "proposed_id": null,
+          "status": "PROPOSED_AWAITING_REVIEW"
+        },
+        {
+          "key": "prev_frame_conditioning_channel",
+          "domain": "glyph",
+          "mutation": "Explicit persistence-init conditioning: add the previous frame's code as a second input embedding (canvas-style init made explicit) so the diff head conditions on WHAT changed from, not just where.",
+          "score": 0.126,
+          "factors": {
+            "past_outcome_similarity": 0.375,
+            "gem_synergy": 0.56,
+            "falsifiability": 0.6
+          },
+          "gate": {
+            "keep_if": "both hard sources >= 25% changed-cell acc (vs G4's 19.8/19.6)",
+            "kill_if": "no hard source improves >=1.2x over G4",
+            "inconclusive": "between",
+            "budget": "1 x ~300s run + small input-path build",
+            "eval": "changed-cell accuracy per source"
+          },
+          "expected_cost": "~5 min GPU + ~2h build (input embedding change, smoke required)",
+          "receipts_drawn": "G4 (diff-targets work), G1 (persistence is the free statics baseline)",
+          "receipt_ledger_refs": [
+            "G4",
+            "G1"
+          ],
+          "gems": [
+            "Diff-JEPA"
+          ],
+          "gem_status_verified": {
+            "Diff-JEPA": "SEEDED"
+          },
+          "queued_overlap": {
+            "id": "G5",
+            "note": "touches the hybrid-refiner territory G5 queues; penalty applied; fire only after G5 reports"
+          },
+          "why_now": "Canvas-mine probe at glyph scale \u2014 'start from persistence, refine' as an input conditioning rather than a decode loop.",
+          "rank": 3,
+          "proposed_id": null,
+          "status": "PROPOSED_AWAITING_REVIEW"
+        }
+      ]
+    }
+  },
+  "suppressed_queued_duplicates": [
+    {
+      "key": "delta_head_ratio_sweep",
+      "domain": "bpb",
+      "duplicate_of": "D4",
+      "reason": "already queued as D4 in the ledger \u2014 the queue precedes proposals"
+    },
+    {
+      "key": "hybrid_refiner_verbatim",
+      "domain": "glyph",
+      "duplicate_of": "G5",
+      "reason": "already queued as G5 in the ledger \u2014 the queue precedes proposals"
+    }
+  ],
+  "review_gate": [
+    "1. Gates above survive human review UNCHANGED before firing (no post-hoc threshold edits).",
+    "2. Budget cap goes in the firing command; the run cannot exceed it.",
+    "3. Verdict + receipt append to RESULTS.md and gem-hits.md; mutations.json gets the next record."
+  ]
+}
