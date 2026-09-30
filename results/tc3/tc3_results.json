@@ -1,0 +1,68 @@
+{
+  "experiment": "TC3 \u2014 codec compression frontier",
+  "n_tiles": 2551,
+  "device": "cuda",
+  "arms": {
+    "A_deterministic_384B": {
+      "top1": 0.7173657389259114,
+      "top5": 0.8365346922775382,
+      "bytes": 384
+    },
+    "B_int8_384B": {
+      "top1": 0.6875735005880047,
+      "top5": 0.8482947863582909,
+      "bytes": 384
+    },
+    "E_retrieval_48B": {
+      "top1": 0.6707173657389259,
+      "top5": 0.9133673069384555,
+      "bytes": 48
+    },
+    "E_retrieval_96B": {
+      "top1": 0.8643669149353195,
+      "top5": 0.9772638181105449,
+      "bytes": 96
+    },
+    "E_retrieval_192B": {
+      "top1": 0.8780870246961976,
+      "top5": 0.9788318306546452,
+      "bytes": 192
+    },
+    "E_retrieval_384B": {
+      "top1": 0.8773030184241474,
+      "top5": 0.9784398275186201,
+      "bytes": 384
+    },
+    "F_hybrid_384B": {
+      "top1": 0.8776950215601724,
+      "top5": 0.9784398275186201,
+      "bytes": 384
+    }
+  },
+  "curve_bytes_top1": [
+    [
+      48,
+      0.6707173657389259
+    ],
+    [
+      96,
+      0.8643669149353195
+    ],
+    [
+      192,
+      0.8780870246961976
+    ],
+    [
+      384,
+      0.8773030184241474
+    ]
+  ],
+  "text_reference_top1": 0.7173657389259114,
+  "gates": {
+    "G1_monotone": true,
+    "G2_crosses_text_at_or_below_192B": true,
+    "G3_knee_above_48B": true
+  },
+  "verdict": "FRONTIER_CROSSES",
+  "wall_clock_s": 51.9
+}
