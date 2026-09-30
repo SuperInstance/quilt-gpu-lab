@@ -10,6 +10,7 @@
 7. Do NOT message Casey (asleep). If local time >= 07:00 AKDT: book state, mark NIGHT COMPLETE, start nothing new.
 
 ## DOCKSIDE
+- [DONE 03:5x PR-SWEEP #3 (quiet)]: only state change = MM #29 merged (already handled in #2). micrograd-quilt #3-#7 all previously-seen mirrors, no updates. No steals, no new items. 6 repos, zero new PRs since 02:2x.
 - [DONE 02:2x PR-SWEEP #2 + RECEIPT-CITE]: only MM #29 merged (docs citation pin). Applied convention to QG1/QG2/QO1 receipts (cite SuperInstance/micrograd-quilt, labs/qcells tree; PRs #5-#7 mirror). Docs-only, pushed.
 - [DONE 02:3x] **DECIDE-1c BOOKED (REFUTES flip)**: instruction word largest->smallest changes NOTHING — 5/64 identical accuracy, argmin consistency 0.891 unchanged. Model is instruction-BLIND on this lane, not sign-flipped. STOP rule honored, no re-roll.
   - [spawned by DECIDE-1c] DECIDE-1d (instruction-ablation census): sweep instruction variants {largest, smallest, "highest", "lowest", neutral "Choose one edit.", superlative-only no-definition-sentence} x 64 questions. Map: does ANY phrasing move pred off argmin? If none do, the argmin lock is absolute in the representation -> name it and move on. Cheap (~6 lanes x 2 min).
@@ -98,3 +99,8 @@
     rollout arm (fix champion stream RNG at eval). Cheap, feeds QG3.
   - [spawned by SCOUT #1] QC-KA (reading, non-GPU): read KACS paper + repo (YNU-NakataLab/KACS); write a
     1-page note on whether Kolmogorov-Arnold dimension-wise decomposition applies to qcell rule space.
+
+- 03:5x CONDUCTOR slice (night cron): QG3 booking landed (was uncommitted — committed+pushed ba565d8 first).
+  PR-SWEEP #3 (rotation: non-GPU after QG3 GPU): QUIET — 6 repos, only MM #29 merge as state change, no new
+  PRs since 02:2x, micrograd-quilt #3-#7 stale mirrors. No steals. Rotation for next wake: GPU — QO3
+  (early-forecast horizon, marked NEXT GPU) or QG1-residual per queue order; pre-register before firing.
