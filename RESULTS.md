@@ -3101,3 +3101,16 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
   silent-edit class, caught by checking `git status` after the seal instead of trusting it). Committed now;
   manifest re-sealed again. `tools/local_jev_bench.py` appeared untracked this sweep (another agent's or a
   prior wake's stray, not mine) — left in place, flagged, not deleted.
+
+## ST1 — quilt-cell-v0: trained receipt-validity judgment cell (2026-09-30) — **KILL**
+- Trained cell (all-MiniLM-L6-v2, 22.7M) on 8000 synthetic receipts (6 corruption ops, dual render styles),
+  5 seeds; real gate = 15 lab receipts × up to 4 injected corruptions; abstention on a non-circular OOD A/B split.
+  Pre-reg `proposals/runs/ST1-quilt-cell-v0.md`, frozen+pushed before fire (3c373d0 → a10b76d → 94a6364).
+- **Gates: G1 SYN FAIL** (AUC 0.5034 vs ≥0.95) · **G2 REAL FAIL** (AUC 0.5025 vs ≥0.80; honest FPR 0.20 vs ≤0.10) ·
+  **G3 ABSTAIN PASS** (0.90) — but the pass is hollow: per-seed OOD thresholds all ≈0.50 and gate coverage flips
+  0.0/1.0 per seed, i.e. the model is uniformly unconfident, not judicious. gate_coverage mean 0.42.
+- **Diagnosis (harness fault, not a blind re-roll): lr 3e-4 is ~10× too hot for a 6-layer encoder** — it collapsed
+  MiniLM's features to the uniform prior within the first steps (smoke train loss ≈ ln2 = 0.693 agrees). Standard
+  MiniLM fine-tune LR is 2e-5. Pre-registered config failed as registered; no config retro-editing.
+- Artifacts kept: `experiments/st1_quilt_cell_v0.py`, `results/st1_quilt_cell_v0/results.json` (both committed).
+- **ST1v2** = new pre-reg, same frozen gates, lr 2e-5 + warmup, 3 epochs (gate thresholds untouched — that is the point).
