@@ -1,87 +1,43 @@
 # Encod Misc: bech32-encode / geohash-encoder / dodecet-encoder — Synergy Proposal
 
-Date: 2026-09-29 · Author: subagent `encod-misc` · Repo root: `/home/eileen/scratch/encod/`
-All three inspected READ-ONLY (no writes/commits). Commands run in copies under `/tmp` where a
-build was required.
+Date: 2026-09-29 · subagent `encod-misc` · repos `/home/eileen/scratch/encod/*` (READ-ONLY; builds ran in `/tmp` copies). Facts verified by running code; anything not run is marked UNVERIFIED.
 
----
+## 1. bech32-encode — correct checksum core, broken pipeline
+**Purpose:** BIP-173/350 Bech32+Bech32m (SegWit/Lightning addresses). **Single file**, `src/main.rs` (162 L), no `lib.rs` → it is a *binary*: its `pub fn`s are unreachable from other crates. Zero deps, Rust 2021.
+**Algorithm:** charset `qpzry9x8gf2tvdw0s3jn54khce6mua7l` (`main.rs:4`); BCH polymod generator `{0x3B6A57B2,0x26508E6D,0x1EA119FA,0x3D4233DD,0x2A1462B3}` (`:16`), `bech32_polymod` (`:9-21`), HRP hi/lo expand (`:24-34`), 6-symbol checksum (`:37-47`), `BECH32_CONST=1`/`BECH32M_CONST=0x2BC830A3` (`:5-6`); `bech32_encode(hrp,data,encoding)` expects already-converted 5-bit data (`:71-86`); `convertbits` (`:89-113`); `encode_segwit_address` (`:116-125`).
+**Maturity: FAILS.** `cargo build` OK; `cargo test` → *0 tests*; the binary **panics**: `src/main.rs:95:12 attempt to shift right with overflow` (`value: u8 >> frombits=8` in `convertbits`). Debug panics; release masks the shift then `.unwrap()`s `None` — so the entire 8→5-bit SegWit path never works. The one working path (`bech32_encode` on hand-made 5-bit data) printed `bc1qw508d6qejxtdg4y5…`, matching the BIP-173 vector.
+**License:** `MIT OR Apache-2.0` in Cargo.toml; **no LICENSE file**.
 
-## 1. bech32-encode
+## 2. geohash-encoder — every output wrong; own test fails
+**Purpose:** Geohash (Niemeyer 2008) lat/lon ↔ base-32 Z-order string + 8-neighbour ring. **`src/lib.rs`, 102 L**, zero deps, 1 unit test.
+**Algorithm:** alphabet `0123456789bcdefghjkmnpqrstuvwxyz` (`:3`), `char_to_val` (`:5-14`), `encode` = lon/lat bisection, 5 bits/char (`:16-51`), `decode` → cell centre (`:53-74`), `neighbors` = decode→offset→re-encode (`:76-88`).
+**Maturity: `cargo test` FAILS** — `left "u3nq", right "u4pr"` (`:97`) on canonical (57.64911,10.40744). Probe of unmodified lib:
+`(57.64911,10.40744)p12→"u3nqgfgmqwrd"`, which its own decode reads as (51.873, 66.660) — err 5.8°/56°; `(0,0)p7→"s000000"` decodes lon +45°; `decode("u4pruydqqvj")=(58.53,54.40)` vs true ≈(57.65,10.41). **Encode and decode are not inverses**; interleave is wrong.
+Verified extra bugs: `char_to_val('z')` = 32 (`:11`) but alphabet index 31 → `decode("zzzz")` = min corner (−89.91,−179.82) instead of max. `neighbors` uses `4f64.powi(p*5/2)` (square of the true denominator, `:79-80`) → offsets ≈0 → `neighbors("u4pr")` = `["v3jf"×5,"v3jc"×3]`, not 8 distinct cells.
+**License:** `MIT OR Apache-2.0` in Cargo.toml; **no LICENSE file**. Verdict: alphabet only; nothing reusable.
 
-**Purpose:** BIP-173 / BIP-350 Bech32 and Bech32m encoder — human-readable base32 with a 30-bit
-BCH checksum, used for SegWit addresses & Lightning invoices.
+## 3. dodecet-encoder — what a "dodecet" actually is
+**Purpose:** "12-bit dodecet encoding system optimized for geometric and calculus operations" (v1.1.0, SuperInstance).
+**A dodecet is a 12-bit unsigned value, 0–4095 (4096 values), stored in a `u16`** (`src/lib.rs:87-97`: `MAX_DODECET=0xFFF`, `DODECET_BITS=12`, `NIBBLES=3`, `CAPACITY=4096`; `src/dodecet.rs:20-30`). **There is no 12-symbol alphabet anywhere** — the "12" is a bit width, not a symbol count. Serialisation uses the ordinary **16-symbol hex alphabet, exactly 3 hex chars per dodecet** (`to_hex_string = format!("{:03X}")` `dodecet.rs:299-301`; `from_hex_str` = `u16::from_str_radix(s,16)` rejecting >4095 `:313-321`); `hex::encode/decode` concatenate/de-chunk by 3 (`hex.rs:19-72`).
+**Packing:** `DodecetString::to_bytes` (`string.rs:186-207`) packs **2 dodecets (24 bits) → 3 bytes**: `b0=d0>>4`, `b1=((d0&0xF)<<4)|((d1>>8)&0xF)`, `b2=d1&0xFF` (nibble-aligned, high-nibble-first); a trailing odd dodecet emits 2 bytes (`d0>>4`, `(d0&0xF)<<4`) — that half-nibble is lossy, and `from_bytes` (`:220-244`) reconstructs 2/1 dodecets per 3/2 bytes. 12 bits vs f64: 2 bytes vs 8 (their claim).
+**The 6-value structure you keep hitting lives in `src/eisenstein.rs`, not in the dodecet itself:** the 12 bits are a *constraint state* = `error_level(4b, 16 levels of ρ)` ⊕ `azimuth(4b, 16 levels × 22.5°)` ⊕ `chamber(3b)` ⊕ `safety(1b)` (`eisenstein.rs:9-24, 206-228`), over the A₂/Eisenstein lattice with **6 S₃ Weyl chambers** (order 6, `:50-70`), covering radius ρ = 1/√3 ≈ 0.57735 (`:39`), cell area √3/2 (`:42`), safe threshold ρ/2 (`:53`).
+**Deps/language:** Rust 2021, deps `hex 0.4`, `paste 1.0`; optional `serde/serde_json`, `nalgebra 0.32`, `serde`-gated; optional `wasm-bindgen`-family; optional path dep `fleet-math-c`; dev `criterion 0.5`, `rand 0.8`, `wasm-bindgen-test 0.3`. 6,594 LOC across 15 modules.
+**Maturity:** as shipped, **`cargo test` cannot even load the manifest** — `failed to read /home/eileen/scratch/encod/fleet-math-c/Cargo.toml` (the optional path dep is absent; `fleet-math-c` does not exist on disk). In a `/tmp` copy with that one dep line removed: **98 unit + 21 (edge_cases) + 22 (wasm_integration) + 69 doctests pass, 0 failed, 1 ignored**; library warnings only (dead `ODD_CHAMBERS`, unused field/mut). Four test files — `tests/performance/benchmarks.rs`, `tests/compatibility/browser_tests.rs`, `tests/integration/wasm_integration.rs`, `tests/wasm/wasm_package_tests.rs` — are **never compiled** by `cargo test` (nested dirs need `[[test]]` entries; Cargo.toml has none): dead weight, coverage UNVERIFIED. `--all-features`/`wasm`/`c-bridge` builds **UNVERIFIED** (need the missing path dep + browser/node). Docs corpus is huge (40+ md, benchmark/phase/publication reports) with **self-reported, unattributed-hardware numbers (~0.5–2 ns/op) — UNVERIFIED**; git history is **1 squashed commit** (`b78abf3`), so the "phase 1–4" reports are not backed by commits.
+**License:** `LICENSE` = **MIT**, "Copyright (c) 2026 Casey Digennaro" (README badge agrees); Cargo.toml says `MIT OR Apache-2.0` — **mismatch, no Apache text**.
 
-**Format/algorithm (all in one file, `src/main.rs`, 162 lines):**
-- 32-char charset `qpzry9x8gf2tvdw0s3jn54khce6mua7l` (`main.rs:4`).
-- Polymod BCH generator constants `{0x3B6A57B2, 0x26508E6D, 0x1EA119FA, 0x3D4233DD, 0x2A1462B3}` (`main.rs:16`); `bech32_polymod` (`main.rs:9-21`); HRP expand hi/lo nibbles (`main.rs:24-34`).
-- `BECH32_CONST = 1`, `BECH32M_CONST = 0x2BC830A3` (`main.rs:5-6`); 6-symbol checksum (`main.rs:37-47`).
-- `bech32_encode(hrp, data, encoding)` writes `hrp + '1' + data + checksum` (`main.rs:71-86`) — data must ALREADY be 5-bit groups.
-- `convertbits(data, 8, 5, pad)` (`main.rs:89-113`); `encode_segwit_address` = witver + convertbits 8→5 (`main.rs:116-125`).
+## 4. Harmony — ranked GPU-testable experiments (RTX 4050 6 GB)
+**E1. Dodecet-12 constraint receipts on the tape WAL (merkle-witnessed).** H: 12-bit eisenstein states (`err_level│azimuth│chamber│safety`) are a lossless-enough receipt payload vs float states *and* shrink receipts to 3 B/state. Harness: 50k synthetic receipts → float (error, θ, chamber, safe) and dodecet encoding; tape WAL append + merkle witness recompute; retrieval top-1 over a 96-d **retrieval-trained** bottleneck (parent's TC2 winner, 0.8782). Frozen gates: exact dodecet round-trip 100%; ≤3 B/state; merkle verify <1 s/10k; top-1 ≥ float-state −0.01 **or** reject. Wall-clock ≈ **15 min** (mostly CPU + one tiny MLP).
 
-**Deps/language:** Rust 2021, **zero dependencies** (`Cargo.toml`). It is a *binary* crate
-(`src/main.rs` only, no `lib.rs`), so its "library" functions are unreachable from other crates.
+**E2. 6-chamber azimuth grounding from bbox crops (C-line Cosmos3-Edge lane).** H: a VLM bbox embedding predicts the A₂ chamber (6-way) and 16-level azimuth well enough to key tile rooms, i.e. 6-way is learnable, not arbitrary. Harness: 20k crops with known (x,y) → bbox → frozen VLM features → 2-head MLP (6-way + 16-way + regression on error/ρ); metrics: chamber acc, cross-entropy, azimuth MAE (deg), error-level MAE. Gates: chamber acc ≥0.85 and azimuth MAE ≤22.5° → adopt 3-bit chamber in the spatial key; else keep continuous. Wall-clock ≈ **25 min**.
 
-**Maturity: FAILS at runtime.** `cargo build` succeeds (1 dead-code warning). `cargo test` →
-`running 0 tests` (no test module at all). Running the binary **panics**:
-`thread 'main' panicked at src/main.rs:95:12: attempt to shift right with overflow` — line 95 is
-`if value >> frombits != 0` in `convertbits`, where `value: u8` is shifted by `frombits = 8`.
-Debug builds panic; release builds mask the shift (`>> 0`) and then `.unwrap()` on `None` panics
-instead. Net: **the 8→5 bit conversion — i.e. the entire SegWit address path — never works.**
-The one path that does work is `bech32_encode` fed hand-converted 5-bit data: it printed
-`bc1qw508d6qejxtdg4y5…`, matching the BIP-173 test vector, so the polymod/checksum is correct.
+**E3. 6-D codec gap: menu (4096 dodecet cells) vs pyramid (hierarchical residual).** H: for 6-D spatial cells the flat 12-bit "menu" and a coarse→fine "pyramid" reach the same top-1 at ~the same bytes, but the pyramid degrades more gracefully under truncation (prefix-only reads). Harness: 100k 6-D vectors; encode as (a) per-axis 12-bit dodecets = 72 bits, (b) pyramid (3+3+3+3 bits/axis) with prefix truncation; SAME retrieval-trained 96-d encoder (TC2 recipe); metrics: top-1 vs byte budget and vs bit-truncation. Frozen gates: adopt pyramid only if it beats menu by ≥**0.03** top-1 at equal bytes; if within 0.01 → keep the simpler menu (canon's menu-vs-pyramid question closes as TIE). Wall-clock ≈ **30 min**.
 
-**License:** `MIT OR Apache-2.0` (Cargo.toml; no LICENSE file in repo).
+**E4. Bech32-BCH integrity layer for i2i-ledger Vectorize ids.** H: a 30-bit bech32/bech32m checksum carried in the Vectorize id detects id corruption at prefix level with zero false accepts on a plausible error model (using the *correct* polymod, copied from this crate). Harness: 10⁶ ids + HRP tag; inject 1–4 char substitutions/transpositions; metric: detection rate, false-accept, latency; retrieval recall unchanged. Gates: ≥99.9% detection of ≤2-char errors, 0 false accepts, id overhead ≤+8 chars → adopt; else reject. Wall-clock ≈ **10 min**.
 
-**Verdict:** checksum core is correct and worth lifting; everything above it is broken and untested.
+**E5. Cowboy fleet bind ops over dodecet-quantised spatial cells.** H: packing 2 dodecets→3 B makes a bind-op key 25% smaller than u16-per-axis, with identical join semantics, so the fleet binder can carry more spatial state per op. Harness: 200k bind ops with 3-D coordinates (12-bit/axis → 3 B per 2 dodecets); metrics: key bytes, bind-join correctness vs float reference, collision rate on a synthetic hot-spot distribution. Gates: bit-exact joins, ≤75% of raw u16 bytes, collisions unchanged → adopt; else reject. Wall-clock ≈ **12 min**.
 
----
-
-## 2. geohash-encoder
-
-**Purpose:** Geohash (Niemeyer 2008) encode/decode of (lat, lon) into base-32 Z-order-curve
-strings, plus 8-neighbour ring query.
-
-**Format/algorithm (`src/lib.rs`, 102 lines):**
-- Alphabet `0123456789bcdefghjkmnpqrstuvwxyz` (`lib.rs:3`), `char_to_val` (`lib.rs:5-14`).
-- `encode` (`lib.rs:16-51`): binary-bisection of lat/lon ranges, 5 bits → 1 char, lon at even bit index.
-- `decode` (`lib.rs:53-74`): reverses, returns cell centre.
-- `neighbors` (`lib.rs:76-88`): decode → offset by estimated cell size → re-encode 8 directions.
-
-**Deps/language:** Rust 2021, **zero dependencies**; proper lib crate with 1 unit test.
-
-**Maturity: BROKEN — `cargo test` FAILS** (0 passed, 1 failed):
-`assertion left == right failed: left "u3nq", right "u4pr"` at `lib.rs:97` on the canonical
-Wikipedia input `(57.64911, 10.40744)`. Empirical probe (compiled `lib.rs` unmodified into `/tmp`):
-
-| input | crate `encode` | its own `decode` of that | error |
-|---|---|---|---|
-| (57.64911, 10.40744) p=12 | `u3nqgfgmqwrd` | (51.873, 66.660) | 5.78°, 56.25° |
-| (51.5074, −0.1278) p=9 | `gpxqk4pk2` | (−50.744, 20.267) | 102°, 20° |
-| (0, 0) p=7 | `s000000` | (0.0007, 45.0007) | lon +45° |
-| (40.7128, −74.006) p=8 | `dfwmzw7y` | (20.78, −1.38) | 20°, 73° |
-
-So **encode and decode are not inverses** — the bit-interleave is wrong; `decode` is also off
-canonical (`decode("u4pruydqqvj") = (58.53, 54.40)`, should be ≈(57.65, 10.41)).
-Two further verified defects:
-- `char_to_val('z')` returns **32** (`'z'−'a'+7`, `lib.rs:11`) but `z` is index 31 of the alphabet →
-  `decode("zzzz") = (−89.91, −179.82)` (min corner) instead of the max corner. Latent
-  out-of-range/duplicate-mapping bug.
-- `neighbors` cell-size math uses `4f64.powi(precision*5/2)` (= 2^(p·5), the *square* of the true
-  denominator, `lib.rs:79-80`) → offsets ≈0 → returns duplicates: `neighbors("u4pr") =
-  ["v3jf"×5, "v3jc"×3]`, not 8 distinct cells.
-
-**License:** `MIT OR Apache-2.0` (Cargo.toml; no LICENSE file).
-
-**Verdict:** algorithm sketch only; every observable output is wrong. Nothing here is safe to
-reuse except the alphabet.
-
----
-
-## 3. dodecet-encoder
-_(pending)_
-
-## 4. Harmony — ranked GPU-testable synergy experiments
-_(pending)_
-
-## 5. CPU-only, do not burn GPU
-_(pending)_
+## 5. CPU-only — do not burn GPU
+- **Fix, don't train, geohash:** correct the bit interleave so `encode(decode(h))` round-trips and matches `u4pr`, fix `char_to_val('z')→31`, and fix `neighbors` cell math (`2f64.powi`, not `4f64.powi`). Pure unit-test work; the current test suite already encodes the correct expectation.
+- **Fix bech32 `convertbits`:** widen the accumulator operand (`value as u32 >> frombits`) or use `frombits<8` checks; add the BIP-173/350 vectors as tests. This is the crate's only real bug and it is a one-liner.
+- **Dodecet as shipped cannot build:** restore/remove the `fleet-math-c` path dep (or vendor it). Add `[[test]]` entries so the 4 orphaned test files run; decide whether `tests/compatibility/browser_tests.rs` (browser/node) belongs in CI at all.
+- **Do not trust** the md benchmark/phase/publication reports as evidence; only the 210 passing tests in the `/tmp` copy are real. No GPU needed for any of the above.
