@@ -480,7 +480,7 @@ FINAL_LR_FRAC = 0.0     # final LR as fraction of initial
 
 # Model size
 DEPTH = 8               # number of transformer layers
-DEVICE_BATCH_SIZE = 4  # G1: seq 6144 on 6GB
+DEVICE_BATCH_SIZE = int(os.environ.get('G_BATCH', '4'))  # G1: seq 6144 on 6GB (G9c: 2 for the 768-embd params test)
 
 
 # ---------------------------------------------------------------------------
@@ -715,8 +715,8 @@ def gate5(results):
 
 def main():
     t_start = time.time()
-    torch.manual_seed(42)
-    torch.cuda.manual_seed(42)
+    torch.manual_seed(int(_os.environ.get("G_SEED", "42")))
+    torch.cuda.manual_seed(int(_os.environ.get("G_SEED", "42")))
     torch.set_float32_matmul_precision("high")
     global device, autocast_ctx
     device = torch.device("cuda")
@@ -735,7 +735,7 @@ def main():
             n_embd=model_dim, window_pattern=WINDOW_PATTERN,
         )
 
-    config = build_model_config(DEPTH)
+    config = build_model_config(int(_os.environ.get("G_DEPTH", str(DEPTH))))
     print(f"Model config: {asdict(config)}")
 
     with torch.device("meta"):

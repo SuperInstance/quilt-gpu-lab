@@ -1,7 +1,7 @@
 {
  "schema": "c4-action-probe/1",
  "plan": "proposals/runs/C4-action-probe-plan.md",
- "created": "2026-09-29 13:34:44",
+ "created": "2026-09-29 18:31:47",
  "visual_dtype": "torch.bfloat16",
  "visual_type": "Parameter",
  "batch_final": 4,

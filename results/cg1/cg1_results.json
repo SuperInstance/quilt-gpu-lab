@@ -1,0 +1,452 @@
+{
+  "summary": {
+    "experiment": "CG1 \u2014 canon gate on a local model",
+    "instrument": "Qwen/Qwen2.5-1.5B-Instruct",
+    "second_oracle": "Qwen/Qwen2.5-0.5B-Instruct",
+    "n_samples": 3,
+    "temp": 0.3,
+    "ladder": [
+      0.9666666666666667,
+      0.9499999999999998,
+      0.9,
+      0.9666666666666667,
+      0.9166666666666666,
+      0.9333333333333332,
+      0.9499999999999998,
+      0.9499999999999998,
+      0.9666666666666667
+    ],
+    "step_rung4_to_5": -0.050000000000000044,
+    "saturation_delta": 0.033333333333333326,
+    "states": {
+      "mechanism+guarantee": {
+        "composite": 1.0,
+        "min": 0.96,
+        "bare": 1.0,
+        "mech": 0.96,
+        "ext": 1.0
+      },
+      "mechanism only": {
+        "composite": 1.0,
+        "min": 0.9633333333333334,
+        "bare": 0.6666666666666666,
+        "mech": 0.9633333333333334,
+        "ext": 1.0
+      },
+      "guarantee only": {
+        "composite": 0.0,
+        "min": 0.0,
+        "bare": 1.0,
+        "mech": 0.0,
+        "ext": 0.0
+      },
+      "neither": {
+        "composite": 0.9166666666666666,
+        "min": 0.0,
+        "bare": 0.3,
+        "mech": 0.0,
+        "ext": 0.3
+      }
+    },
+    "payoff": {
+      "M1 cite a mine id + boilerplate": {
+        "composite": 0.9499999999999998,
+        "mech": 0.3,
+        "ext": 0.0,
+        "decomposed": 0.0
+      },
+      "M4 budget cap line in every header": {
+        "composite": 0.31666666666666665,
+        "mech": 0.0,
+        "ext": 0.0,
+        "decomposed": 0.0
+      },
+      "M9 at least half the queue": {
+        "composite": 0.5,
+        "mech": 0.5,
+        "ext": 0.5,
+        "decomposed": 0.5
+      },
+      "M5 at most 1 death per wave": {
+        "composite": 0.9499999999999998,
+        "mech": 0.31666666666666665,
+        "ext": 0.0,
+        "decomposed": 0.0
+      },
+      "M6 opens a PR with the right words": {
+        "composite": 0.9499999999999998,
+        "mech": 0.9499999999999998,
+        "ext": 0.6333333333333333,
+        "decomposed": 0.6333333333333333
+      },
+      "S1 signed tag, clean clone reproduces": {
+        "composite": 0.9499999999999998,
+        "mech": 0.9499999999999998,
+        "ext": 1.0,
+        "decomposed": 0.9499999999999998
+      },
+      "S2 release verifier + self-test": {
+        "composite": 0.9833333333333334,
+        "mech": 0.9333333333333332,
+        "ext": 0.9666666666666667,
+        "decomposed": 0.9333333333333332
+      }
+    },
+    "ladder_small": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "gates": {
+      "G1_step": false,
+      "G2_saturation": true,
+      "G3_tautology": true,
+      "G4_min_separates": true
+    },
+    "verdict": "ORACLE_BOUND",
+    "wall_clock_s": 42.9
+  },
+  "detail": {
+    "ladder": [
+      {
+        "rung": 1,
+        "desc": "The project has a registry file.",
+        "mean": 0.9666666666666667,
+        "scores": [
+          0.95,
+          0.95,
+          1.0
+        ],
+        "unparsed": 0
+      },
+      {
+        "rung": 2,
+        "desc": "The registry file records one prediction.",
+        "mean": 0.9499999999999998,
+        "scores": [
+          0.95,
+          0.95,
+          0.95
+        ],
+        "unparsed": 0
+      },
+      {
+        "rung": 3,
+        "desc": "The registry file records predictions, each line sha256-sealed.",
+        "mean": 0.9,
+        "scores": [
+          0.9,
+          0.9,
+          0.9
+        ],
+        "unparsed": 0
+      },
+      {
+        "rung": 4,
+        "desc": "The registry file records predictions, each line sha256-sealed; editing a line breaks the hash.",
+        "mean": 0.9666666666666667,
+        "scores": [
+          1.0,
+          1.0,
+          0.9
+        ],
+        "unparsed": 0
+      },
+      {
+        "rung": 5,
+        "desc": "The registry file records predictions, each line sha256-sealed, editing a line breaks the hash, and the file is append-only.",
+        "mean": 0.9166666666666666,
+        "scores": [
+          0.9,
+          0.95,
+          0.9
+        ],
+        "unparsed": 0
+      },
+      {
+        "rung": 6,
+        "desc": "The registry file is append-only and a validator proves the byte-prefix property.",
+        "mean": 0.9333333333333332,
+        "scores": [
+          0.95,
+          0.95,
+          0.9
+        ],
+        "unparsed": 0
+      },
+      {
+        "rung": 7,
+        "desc": "The registry file is append-only, a validator proves the byte-prefix property, and the validator fails closed.",
+        "mean": 0.9499999999999998,
+        "scores": [
+          0.95,
+          0.95,
+          0.95
+        ],
+        "unparsed": 0
+      },
+      {
+        "rung": 8,
+        "desc": "The registry file is append-only and the byte-prefix property holds across commits.",
+        "mean": 0.9499999999999998,
+        "scores": [
+          0.95,
+          0.95,
+          0.95
+        ],
+        "unparsed": 0
+      },
+      {
+        "rung": 9,
+        "desc": "The registry file is append-only with byte-prefix across commits, and a second independent implementation reproduces it.",
+        "mean": 0.9666666666666667,
+        "scores": [
+          0.95,
+          1.0,
+          0.95
+        ],
+        "unparsed": 0
+      }
+    ],
+    "states": {
+      "mechanism+guarantee": {
+        "composite": {
+          "mean": 1.0,
+          "scores": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "raw": [
+            "1.0",
+            "1",
+            "1"
+          ],
+          "unparsed": 0
+        },
+        "mech": {
+          "mean": 0.96,
+          "scores": [
+            0.98,
+            0.9,
+            1.0
+          ],
+          "raw": [
+            "0.98",
+            "0.9",
+            "1.0"
+          ],
+          "unparsed": 0
+        },
+        "ext": {
+          "mean": 1.0,
+          "scores": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "raw": [
+            "1",
+            "1",
+            "1.0"
+          ],
+          "unparsed": 0
+        },
+        "bare": {
+          "mean": 1.0,
+          "scores": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "raw": [
+            "1",
+            "1",
+            "1"
+          ],
+          "unparsed": 0
+        }
+      },
+      "mechanism only": {
+        "composite": {
+          "mean": 1.0,
+          "scores": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "raw": [
+            "1",
+            "1",
+            "1"
+          ],
+          "unparsed": 0
+        },
+        "mech": {
+          "mean": 0.9633333333333334,
+          "scores": [
+            0.9,
+            1.0,
+            0.99
+          ],
+          "raw": [
+            "0.9",
+            "1",
+            "0.99"
+          ],
+          "unparsed": 0
+        },
+        "ext": {
+          "mean": 1.0,
+          "scores": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "raw": [
+            "1",
+            "1",
+            "1"
+          ],
+          "unparsed": 0
+        },
+        "bare": {
+          "mean": 0.6666666666666666,
+          "scores": [
+            0.0,
+            1.0,
+            1.0
+          ],
+          "raw": [
+            "0",
+            "1",
+            "1"
+          ],
+          "unparsed": 0
+        }
+      },
+      "guarantee only": {
+        "composite": {
+          "mean": 0.0,
+          "scores": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "raw": [
+            "0",
+            "0.0",
+            "0.0"
+          ],
+          "unparsed": 0
+        },
+        "mech": {
+          "mean": 0.0,
+          "scores": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "raw": [
+            "0",
+            "0",
+            "0"
+          ],
+          "unparsed": 0
+        },
+        "ext": {
+          "mean": 0.0,
+          "scores": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "raw": [
+            "0",
+            "0",
+            "0"
+          ],
+          "unparsed": 0
+        },
+        "bare": {
+          "mean": 1.0,
+          "scores": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "raw": [
+            "1",
+            "1",
+            "1"
+          ],
+          "unparsed": 0
+        }
+      },
+      "neither": {
+        "composite": {
+          "mean": 0.9166666666666666,
+          "scores": [
+            0.9,
+            0.95,
+            0.9
+          ],
+          "raw": [
+            "0.9",
+            "0.95",
+            "0.9"
+          ],
+          "unparsed": 0
+        },
+        "mech": {
+          "mean": 0.0,
+          "scores": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "raw": [
+            "0",
+            "0",
+            "0"
+          ],
+          "unparsed": 0
+        },
+        "ext": {
+          "mean": 0.3,
+          "scores": [
+            0.0,
+            0.9,
+            0.0
+          ],
+          "raw": [
+            "0",
+            "0.9",
+            "0"
+          ],
+          "unparsed": 0
+        },
+        "bare": {
+          "mean": 0.3,
+          "scores": [
+            0.0,
+            0.0,
+            0.9
+          ],
+          "raw": [
+            "0",
+            "0",
+            "0.9"
+          ],
+          "unparsed": 0
+        }
+      }
+    }
+  }
+}

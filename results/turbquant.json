@@ -1,0 +1,20 @@
+{
+ "verdict": "VACUOUS_NEEDS_N",
+ "recall_full": 1.0,
+ "recall_q": 1.0,
+ "loss": 0.0,
+ "gate_pass": true,
+ "gate_marginal": false,
+ "gate_reject": false,
+ "n_gists": 1000,
+ "n_bits": 4,
+ "seed": 20260929,
+ "topk": 10,
+ "zoom": 1.5,
+ "size_full_mb": 0.20703125,
+ "size_q_dequant_mb": 0.4140625,
+ "size_q_packed_mb": 0.02587890625,
+ "compression_ratio": 8.0,
+ "n_gists_actual": 53,
+ "gate_vacuous": true
+}

@@ -1,55 +1,6 @@
 {
- "preflight": {
-  "free_mib": 5920,
-  "temp_c": 45
- },
- "t_load_s": 7.99,
- "skip_modules": [
-  "visual",
-  "projector",
-  "model.visual",
-  "model.projector"
- ],
- "visual_dtype": "torch.bfloat16",
- "visual_type": "Parameter",
- "cells": [
-  {
-   "cell": "A2-text-thinking",
-   "placeholder": "none",
-   "thinking": true,
-   "input_tokens": 40,
-   "n_new_tokens": 96,
-   "t_gen_s": 6.79,
-   "decode_tok_s": 14.15,
-   "loop_frac": 0.037,
-   "text": "Okay, the user wants me to generate a plan for putting a flower into the red bottle. Let me start by understanding the task. The main goal is to place a flower inside the red bottle. So, the first step would be to locate the red bottle. But wait, how do I know where that is? Maybe the user has multiple bottles, so I need to identify the correct one. Then, I need to find a flower. The type might matter, but maybe"
-  },
-  {
-   "cell": "B2-image-nothink",
-   "placeholder": "image",
-   "thinking": false,
-   "input_tokens": 218,
-   "n_new_tokens": 96,
-   "t_gen_s": 2.12,
-   "decode_tok_s": 45.29,
-   "loop_frac": 0.036,
-   "text": "```json\n[\n    {\"bbox_2d\": [174, 669, 418, 807], \"label\": \"Pick up the flower with the gripper.\"},\n    {\"bbox_2d\": [666, 495, 744, 706], \"label\": \"Move the flower to the red bottle.\"},\n    {\"bbox_2d\": [774"
-  },
-  {
-   "cell": "Q-image-thinking-towerbf16",
-   "placeholder": "image",
-   "thinking": true,
-   "input_tokens": 218,
-   "n_new_tokens": 96,
-   "t_gen_s": 1.81,
-   "decode_tok_s": 52.96,
-   "loop_frac": 0.025,
-   "text": "Got it, let's try to figure out how to put the flower into the red bottle. First, I need to identify the objects: the flower is the green stem with the red flower, and the red bottle is the red container. The robot arm has a gripper, so maybe I need to pick up the flower first. Let's break it down step by step.\n\nFirst, the robot needs to locate the flower. The flower is on the table, so the first"
-  }
- ],
- "peak_alloc_gib": 2.31,
- "max_new": 96,
- "verdict_stage": "gated",
- "verdict": "KEEP",
+ "verdict": "KILL",
+ "verdict_stage": "exception",
+ "traceback_tail": "Traceback (most recent call last):\n  File \"/home/eileen/projects/quilt-gpu-lab/experiments/c2_probe_skip_tower.py\", line 145, in main\n    res = {\"preflight\": preflight(), **inner(), \"done\": True}\n                                       ~~~~~^^\n  File \"/home/eileen/projects/quilt-gpu-lab/experiments/c2_probe_skip_tower.py\", line 93, in inner\n    import torch\nModuleNotFoundError: No module named 'torch'\n",
  "done": true
 }

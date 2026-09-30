@@ -29,19 +29,29 @@ every graft point.
 - **Graft init:** fresh random weights (a new cell joins as it is), lr
   unchanged. No re-warming, no surgery on existing weights.
 - **Seeds:** 5 per arm (inits). Report ALL seeds — no cherry-picking.
-- **Witness:** every run appends to a `quilt/tape.Tape` (TICK per eval,
-  graft events as rows); `verify()` must pass at run end.
-- **Auditor:** at each graft point, one audited backward pass (stochastic
-  default sampling); record mean drift + 95% CI. Claim: drift stays within
-  CI of non-graft steps.
+- **Witness (amended pre-fire, 20:35 AKDT):** full-run WAL attach measured
+  ~4-5× wall-clock on smoke runs — training runs under `engine.quiet()`;
+  the run tape still carries a hash-chained TICK per eval plus graft
+  markers (`verify()` at end), and every graft point gets a **full-fidelity
+  audit-window tape** (fresh, loud, every op) that the auditor consumes.
+  Spirit preserved: the chain witnesses eval-level truth; the auditor sees
+  the complete graph exactly where it matters.
+- **Auditor (amended pre-fire, 20:40 AKDT — calibration from smoke runs):**
+  `_xapply` realizes transcendentals as float snapshots in Fractions
+  (`Fraction(math.tanh(float(x)))`), so tanh-heavy nets have a transcendental
+  drift FLOOR (measured 0.1–0.5 rel in smoke) that is not graft signal.
+  Therefore: every run also audits 3 matched control steps (no graft); the
+  gate compares **graft drift vs control drift**, not vs zero.
+  GRAFT_DAMAGE only if median(graft drift) > 2 × median(control drift).
+  The absolute-CI gate is retired as uninformative for tanh nets.
 
 ## Success gates (frozen before firing)
 
 - **GROWN_WINS:** median held-out MSE(grown) < 0.95 × median MSE(fixed)
 - **TIE:** within ±5%
 - **FIXED_WINS:** grown worse by >5%
-- Auditor gate (independent): no graft-point drift CI excluding 0 by more
-  than 1e-6 relative — else flag GRAFT_DAMAGE.
+- Auditor gate (amended): GRAFT_DAMAGE only if median(graft drift) >
+  2 × median(control drift); otherwise FABRIC_INTACT.
 
 ## Shadow replication (tensor scale — the RTX 4050)
 
