@@ -205,12 +205,12 @@ def acc_of(preds, qs):
 
 
 def run_seed(seed, smoke=False):
-    global N_LIVE
+    global N_LIVE, N_CORPUS
     n_pool = 800 if smoke else N_POOL
-    n_corpus = 400 if smoke else N_CORPUS
     n_calib, n_dev, n_test = (100, 80, 120) if smoke else (N_CALIB, N_DEV, N_TEST)
     if smoke:
         N_LIVE = 500
+        N_CORPUS = 400
     rng = np.random.default_rng(seed)
     memo = {}
     boards, labels = [], []
