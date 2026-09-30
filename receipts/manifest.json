@@ -1,6 +1,6 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-09-30T13:54:15.474241+00:00",
+  "generated_at": "2026-09-30T14:19:18.638315+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
     "RESULTS.md": "1b52d55203ae932f030d18f30613cef258de2623c96f65c2d5821c5287e51df4",
@@ -48,7 +48,7 @@
     "d21_perception_ledger.py": "8e1fd7dec958201d5dc89d4a73878c236d48ce32560956070a74af3b63ab6851",
     "d22_ternary_forgiveness.py": "feaf55367fe632a188306e6f3090ab5f11d689b24f94b383b3212871b379a7bd",
     "d23_marginal_hidden_angle.py": "431480fb461d96fe7275faed398f8bf5a5cc1e03e8f564a96777f0a3a282da9b",
-    "d23b_relational_hidden_angle.py": "80e545bb1a587dcc3527f3b46a3a28cc750824e172d58922030b0a3f9c71a313",
+    "d23b_relational_hidden_angle.py": "a0a204fe63e433b20b4cd09ac90b79d076f3e8c5eac89c2611ecb232f60d7c4e",
     "d2_ternary_kernel.py": "a10ad0cac866e05559a75f050a58c83f80da0e2916625fe1432e991137cf9d4f",
     "d3_statevector_ceiling.py": "caa75c73a01162950cbfb7604c05510bedf80df6fc0c0c2a71714a763dad8d24",
     "d4_canon_lora.py": "e91940be5d06a476d4f60563fa65e59c6d5c59a43ebf11ef21a03774a5083a64",
