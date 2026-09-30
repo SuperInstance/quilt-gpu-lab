@@ -1,0 +1,39 @@
+{
+  "seed": 2718,
+  "n_cells": 8,
+  "n_qubits": 8,
+  "sigma": 0.15,
+  "results": [
+    {
+      "T": 5,
+      "partner_id_acc": 0.5,
+      "control_acc": 0.0
+    },
+    {
+      "T": 10,
+      "partner_id_acc": 0.75,
+      "control_acc": 0.25
+    },
+    {
+      "T": 25,
+      "partner_id_acc": 0.875,
+      "control_acc": 0.5
+    },
+    {
+      "T": 50,
+      "partner_id_acc": 0.5,
+      "control_acc": 0.0
+    },
+    {
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "control_acc": 0.25
+    },
+    {
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "control_acc": 0.5
+    }
+  ],
+  "verdict": "INVALID_HARNESS"
+}

@@ -10,6 +10,7 @@
 7. Do NOT message Casey (asleep). If local time >= 07:00 AKDT: book state, mark NIGHT COMPLETE, start nothing new.
 
 ## DOCKSIDE
+- [DONE 04:3x QO5 BOOKED (birth lottery)]: g0 states byte-IDENTICAL across all 4096 streams (cv std 0, frac_identical 1.0, len_unique [2]) — g0 AUC 0.500 is trivial, nothing to distinguish at birth. Fate diverges at first selection round. QG2 tension resolved. Free QO3 replicate in the overwrite (rate in ±0.006 band, g0 0.500 again). Retroactive pre-reg declared (analysis-only; fired during QO3 wake). Commit 0df921d.
 - [DONE 03:5x PR-SWEEP #3 (quiet)]: only state change = MM #29 merged (already handled in #2). micrograd-quilt #3-#7 all previously-seen mirrors, no updates. No steals, no new items. 6 repos, zero new PRs since 02:2x.
 - [DONE 02:2x PR-SWEEP #2 + RECEIPT-CITE]: only MM #29 merged (docs citation pin). Applied convention to QG1/QG2/QO1 receipts (cite SuperInstance/micrograd-quilt, labs/qcells tree; PRs #5-#7 mirror). Docs-only, pushed.
 - [DONE 02:3x] **DECIDE-1c BOOKED (REFUTES flip)**: instruction word largest->smallest changes NOTHING — 5/64 identical accuracy, argmin consistency 0.891 unchanged. Model is instruction-BLIND on this lane, not sign-flipped. STOP rule honored, no re-roll.
@@ -41,7 +42,9 @@
 - 00:2x PR-SWEEP #1 (conductor): 6 repos swept; only MicroMoth-quilt active. **PR #29 OPEN** — docs-only provenance: qcells lab canonical home = SuperInstance/micrograd-quilt; cite repo not local path in receipts. Clean (fail-first pins, 248/249; 1 pre-existing main-tip manifest drift, remedy already in PR #25 stack). Merged highlights: #28 exp022 train-visible crossing census (tie-break-invariant), #27 rate-not-wall + desert-extends-to-cloud, #26 tie-band-diversity replicated, #25 archive-assembly + manifest regen, #24 fitness desert at birth cloud (29/31/37). **Steals:** (a) weight-law by-name citation -> spawned RECEIPT-CITE item; (b) exp018 desert-at-birth-cloud independently corroborates QG2 structural-desert — desert is upstream of selection, now two lanes agreeing; (c) note bookkeeping discipline: my first spool edit clobbered the QG4 queue line; caught + restored same wake. Always re-read the file after structural edits.
 \n- 00:45 CONDUCTOR-0 (main): PhysicalCoding + jeff recons landed; DECIDE-1 armed behind the weight download; qcell_sim crx fix (tool had been missing a gate the telemetry uses since QG1 — caught by the QG2 anchor).\n- 01:1x CONDUCTOR slice (night cron): QO1 landed (see RESULTS.md). Two spawned items:
   - [spawned by QO1] QO2: oracle-guided routing — use qcell_oracle.pt P(cross) to allocate remaining budget across streams (kill low-P streams early, resample high-P). Does oracle-guided selection beat uniform selection at equal total child-evaluations? Directly tests "routing happens between cells".
-  - [spawned by QO1] QO3: early-forecast horizon — at which gen does oracle AUC first clear 0.80? (train per-gen classifiers). If gen<=3, crossing is near-deterministic early -> desert streams are visible at birth, feeding QG3.
+  - [spawned by PR-SWEEP #4] QO6 (retractable kill-evidence): QO2 routing must NOT kill streams on irrevocable tail predicates. Wrap oracle P(cross) in an e-process-style evidence accumulator (quilt-ewitness doctrine) so kill-decisions can retract if late signal arrives. Read SuperInstance/quilt-ewitness eproc.mjs first (vendored copy in delta-shape PR #1).
+- [spawned by PR-SWEEP #4] RECEIPT-HASH (cheap, non-GPU): adopt delta-shape #1's sha256-pinned vendored-instrument pattern for quilt-gpu-lab receipts — pin tool/weight file hashes in proposals/runs/*.md so any drift in tools/qcell_sim.py et al. is detectable against past bookings. Docs+hashes only.
+- [spawned by QO1] QO3: early-forecast horizon — at which gen does oracle AUC first clear 0.80? (train per-gen classifiers). If gen<=3, crossing is near-deterministic early -> desert streams are visible at birth, feeding QG3.
 - 01:3x CONDUCTOR slice (night cron): DECIDE-1 fired on landed weights and booked. Headline: jeff-0.8b's decision
   mechanism is intact (control 16/16) but the balance-edit lane reads BELOW chance (0.078 vs 0.25 random) — and the
   shipped trained readout and zero-shot head give byte-identical wrong predictions on the lane. Below-chance
@@ -105,6 +108,22 @@
   PR-SWEEP #3 (rotation: non-GPU after QG3 GPU): QUIET — 6 repos, only MM #29 merge as state change, no new
   PRs since 02:2x, micrograd-quilt #3-#7 stale mirrors. No steals. Rotation for next wake: GPU — QO3
   (early-forecast horizon, marked NEXT GPU) or QG1-residual per queue order; pre-register before firing.
+
+- 04:3x CONDUCTOR slice (night cron): QO5 landed (booked by prior wake's opportunistic probe —
+  verified sound, pre-reg declared retroactively, committed 0df921d). Then PR-SWEEP #4 (non-GPU
+  rotation honored): **delta-shape PR #1 NEW+OPEN** (first PR outside micrograd-quilt all night) —
+  "Drift significance layer (E1-E5): e-witness bridge consuming SuperInstance/quilt-ewitness".
+  3-score lines: WHERE (shape, content-addressed) / WHETHER (Ville-bound e-process) / signatures
+  (HMAC). Steals: (a) **retraction doctrine** — "a process that cannot retract is a p-value in
+  disguise"; our QO2 oracle kill-decisions are irrevocable tail predicates — an e-process evidence
+  layer with retraction should gate stream-killing (spawned QO6); (b) **sha256-pinned vendored
+  consumption** — hash IS the identity, mismatched bytes refuse to run; applicable to our
+  weight/tool receipts (spawned RECEIPT-HASH); (c) **pre-registered sigma, no silent defaults**
+  — tool refuses to run without it; matches our pre-reg discipline, steal the refusal-pattern.
+  Also: SL-G1 priority RAISED — quilt-ewitness is now consumed in anger by delta-shape #1;
+  its LR-rule validation pins serve a live consumer. Other 5 repos: quiet (MM #29 last state
+  change, as sweeps #2-#3). Rotation for next wake: GPU — QG6 (variance rescue) or QG1-residual
+  per queue order; pre-register before firing.
 
 - 04:5x CONDUCTOR slice (night cron): QO3 landed (GPU, per rotation after PR-SWEEP #3). Headline:
   horizon g*=1 (bootstrap-stable IQR [1,1]); AUC path 0.500 -> 0.880 -> 0.913 -> 0.999; gen-0

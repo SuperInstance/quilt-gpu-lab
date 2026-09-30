@@ -72,6 +72,7 @@ def run_T(T: int, rng: random.Random) -> dict:
     random.seed(rng.random())
     grid = np.linspace(-math.pi, math.pi, GRIDS)
     phis = [rng.uniform(-math.pi, math.pi) for _ in range(N_VIEWS)]
+    labels = list(range(N_CELLS))
 
     # ground truth: 4 partner pairs among 8 cells
     partners = [(0, 1), (2, 3), (4, 5), (6, 7)]
@@ -115,22 +116,24 @@ def run_T(T: int, rng: random.Random) -> dict:
                 best, best_d = d, dist
         correct += (best == partner_of[c])
 
-    # control: shuffle partner labels
-    labels = list(range(N_CELLS))
+    # control: permute the ESTIMATED angles among cells (destroys pairing,
+    # keeps noise); if accuracy survives, the harness is faking it.
+    est_ctrl = {}
+    perm = labels[:]
+    random.shuffle(perm)
+    for c in range(N_CELLS):
+        for q in range(N_QUBITS):
+            est_ctrl[(c, q)] = est[(perm[c], q)]
     ctrl_correct = 0
     for c in range(N_CELLS):
         best, best_d = None, float("inf")
         for d in range(N_CELLS):
             if d == c:
                 continue
-            dist = circ_dist(est[(c, partner_qubit)], est[(d, partner_qubit)])
+            dist = circ_dist(est_ctrl[(c, partner_qubit)], est_ctrl[(d, partner_qubit)])
             if dist < best_d:
                 best, best_d = d, dist
-        # correct only if best matches a RANDOM relabel of the truth
-        shuffled = labels[:]
-        random.shuffle(shuffled)
-        ctrl_correct += (shuffled.index(best) == shuffled.index(partner_of[c]) if False else
-                         (best == shuffled[partner_of[c]]))
+        ctrl_correct += (best == partner_of[c])
     return {"T": T, "partner_id_acc": round(correct / N_CELLS, 4),
             "control_acc": round(ctrl_correct / N_CELLS, 4)}
 
