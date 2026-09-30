@@ -19,7 +19,7 @@
 
 ## QUEUE (top = next)
 - [spawned by PR-SWEEP #4] QO6 (retractable kill-evidence): QO2 routing must NOT kill streams on irrevocable tail predicates. Wrap oracle P(cross) in an e-process-style evidence accumulator (quilt-ewitness doctrine) so kill-decisions can retract if late signal arrives. Read SuperInstance/quilt-ewitness eproc.mjs first (vendored copy in delta-shape PR #1).
-- [spawned by PR-SWEEP #4] RECEIPT-HASH (cheap, non-GPU): adopt delta-shape #1's sha256-pinned vendored-instrument pattern for quilt-gpu-lab receipts — pin tool/weight file hashes in proposals/runs/*.md so any drift in tools/qcell_sim.py et al. is detectable against past bookings. Docs+hashes only.
+- [DONE 05:1x RECEIPT-HASH (tool/weight digest seal)]: manifest extended to 17 tool/weight files, test pin added, retroactive snapshot receipts/tool_pins_2026-09-30.md, 10 night receipts amended w/ Pinned-instruments blocks. Forward convention: receipts pin at fire time. Bonus: pins exposed QUEUE drift (D22/E13/E13b booked-not-claimed) — backfilled per c9b39b4 precedent, tests OK.
 - [DONE 01:5x] **DECIDE-1b BOOKED (P1 INVERTED FIRED)**: predicted option is argMIN-balance on 0.891 of questions; argmin-prob acc 0.375 (lower CP95 > 0.25); pred_kinds delete=42 vs label_kinds insert=42; shuffle test content_following 0.78 vs letter_stickiness 0.375 (reads CONTENT, not position). The cell answers "smallest balance" — inversion lives in the backbone (both readers identical).
   - [spawned by DECIDE-1b] DECIDE-1c (confirmatory flip): re-run the SAME lane with instruction "...gives the smallest balance?" — prediction: argmax accuracy jumps toward the same 0.89 consistency (mirrored). If it does, the mechanism is a signed-superlative flip, fully characterized. Pre-register before firing.
 - [DONE 00:0x] **DECIDE-1 pre-reg + tool + driver WRITTEN** (`tools/decision_cell.py`, `experiments/decide1.py`, `proposals/runs/DECIDE-1-decision-cell.md` + AMENDMENT 1): jeff mechanism fully reverse-engineered — 255x1024 readout head, temperature 1.1289, exact prompt template, answer formulas. Firing blocked only on the 1.7 GB weight download.\n- [DONE 00:0x] **Recons landed**: `proposals/physicalcoding-recon-2026-09-30.md` (1288w) + `proposals/jeff-recon-2026-09-30.md` (1004w + addendum).\n- [DONE 00:0x] QC: `tools/qcell_sim.py` gained the missing `crx` gate + receipt-anchored selftest (k4 champion 0.4268).\n- [DONE 00:0x] QG2 desert-break law: **desert is STRUCTURAL** — exact-arm 57.9% ~= shot-arm 58.2%; ~42% of streams landscape-trapped; G1 FAIL (lane fills desert 0.023 vs recorded 0.017); G2 rate caveat (reimpl 58% vs recorded 3/8; P~0.26 at N=8). results/qg2_desert_law/
@@ -134,3 +134,14 @@
   data, near-zero cost). One crash en route (importing oracle1 executes QO1's training —
   module-not-found caught, lane copied verbatim, declared in code). Rotation for next wake:
   non-GPU (PR-SWEEP #4 or SCOUT/QC-KA reading), then QO5 or QG6 per queue order.
+
+- 05:1x CONDUCTOR slice (night cron): RECEIPT-HASH landed (non-GPU, rotation honored after
+  QO3/QO5 GPU slices). tools/receipt_manifest.py now seals tools+weights (17 files) alongside
+  experiments; test_receipts.py pins the tools section; retroactive snapshot in
+  receipts/tool_pins_2026-09-30.md (seal-time hashes, fire-time declared un-captured);
+  10 night receipts amended with Pinned-instruments pointer blocks; forward convention =
+  pin at fire time. FAIL-first observed: extending pins immediately exposed 3 pre-existing
+  QUEUE drift entries (D22, E13, E13b booked in RESULTS, never claimed in QUEUE) — backfilled
+  per the c9b39b4 D18 precedent, manifest re-sealed after each ledger change, all tests OK.
+  Rotation for next wake: GPU — QG6 (variance rescue, top GPU item) or QG1-residual per
+  queue order; pre-register before firing.

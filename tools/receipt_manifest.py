@@ -31,6 +31,7 @@ from pathlib import Path
 
 LAB = Path(__file__).resolve().parent.parent
 EXPERIMENTS = LAB / "experiments"
+TOOLS = LAB / "tools"
 MANIFEST = LAB / "receipts" / "manifest.json"
 
 
@@ -43,6 +44,14 @@ def build() -> dict:
         p.name: sha256(p)
         for p in sorted(EXPERIMENTS.glob("*.py"))
     }
+    # RECEIPT-HASH (2026-09-30, spawned by PR-SWEEP #4 off delta-shape #1's
+    # hash-pinned vendoring): tools and trained weights are part of the
+    # receipt — any drift in qcell_sim.py or qcell_oracle.pt must be
+    # detectable against past bookings. Hash IS the identity.
+    tool_digests = {}
+    for p in sorted(TOOLS.iterdir()):
+        if p.is_file() and p.suffix in {".py", ".pt", ".sh", ".mjs", ".js"} or p.name == "README.md":
+            tool_digests[p.name] = sha256(p)
     return {
         "schema": "quilt-gpu-lab/receipt-manifest@v1",
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -52,6 +61,7 @@ def build() -> dict:
             "QUEUE.md": sha256(LAB / "QUEUE.md"),
         },
         "experiments": exp_digests,
+        "tools": tool_digests,
     }
 
 
@@ -61,7 +71,8 @@ def main() -> None:
     MANIFEST.write_text(json.dumps(manifest, indent=2) + "\n")
     print(f"sealed: RESULTS.md {manifest['ledgers']['RESULTS.md'][:12]}… "
           f"QUEUE.md {manifest['ledgers']['QUEUE.md'][:12]}… "
-          f"{len(manifest['experiments'])} experiment file(s)")
+          f"{len(manifest['experiments'])} experiment file(s), "
+          f"{len(manifest['tools'])} tool/weight file(s)")
 
 
 if __name__ == "__main__":

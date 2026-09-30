@@ -44,3 +44,10 @@ The reimplemented lane follows the qcells lab's documented loop; the lab's canon
 PRs #5–#7). Note: "qcells repo not public" above was true at pre-reg time; the labs/qcells tree
 is now mirrored in the org repo. Local workspace paths are quoted history, not the citation.
 No data or gates changed.
+
+## Pinned instruments
+
+Retroactively sealed 2026-09-30 (RECEIPT-HASH): instrument hashes for the tools
+used by this run are pinned in `receipts/tool_pins_2026-09-30.md` (snapshot as of
+seal time, not fire time — earliest verifiable baseline). Forward-looking receipts
+pin at fire time.

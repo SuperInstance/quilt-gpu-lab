@@ -98,6 +98,9 @@ class ReceiptManifestMatches(unittest.TestCase):
                              "the manifest (tools/receipt_manifest.py), never edit it by hand")
         self.assertEqual(on_disk.get("experiments"), live["experiments"],
                          "experiment digests drifted — regenerate the manifest")
+        self.assertEqual(on_disk.get("tools"), live["tools"],
+                         "tool/weight digests drifted — regenerate the manifest "
+                         "(tools/receipt_manifest.py) and commit it WITH your change")
 
 
 class DoctrineProvenance(unittest.TestCase):

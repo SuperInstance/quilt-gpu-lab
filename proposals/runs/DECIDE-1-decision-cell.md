@@ -38,3 +38,10 @@ Additional arch notes: base is a **hybrid linear-attention** Qwen3.5 (24 layers,
 First fire crashed PRE-SCORING (transformers ValueError: processor has no chat template — checkpoint ships none).
 Mechanical harness fix in tools/decision_cell.py: loud fallback to base Qwen/Qwen3.5-0.8B family chat template
 (same architecture; chosen over inventing a format). No scoring occurred before the crash, so this is not a re-roll.
+
+## Pinned instruments
+
+Retroactively sealed 2026-09-30 (RECEIPT-HASH): instrument hashes for the tools
+used by this run are pinned in `receipts/tool_pins_2026-09-30.md` (snapshot as of
+seal time, not fire time — earliest verifiable baseline). Forward-looking receipts
+pin at fire time.

@@ -2887,3 +2887,14 @@ probe was fired opportunistically during the QO3 wake on existing lane code, boo
 - Free QO3 replicate from the probe's lane re-run: rate 0.5769->0.5789 (inside ±0.006
   nondeterminism band), g0 AUC exactly 0.500 again, g*=1 again. Conclusions strengthened.
 Artifacts: experiments/qo5_birth_probe.py, results/qo3_horizon/{qo5_birth_probe.json,qo5_run.log}.
+
+## RECEIPT-HASH — tool/weight digests now sealed (2026-09-30 05:1x): BOOKED — docs/tooling, no GPU
+Spawned by PR-SWEEP #4 (delta-shape #1's sha256-pinned vendoring). tools/receipt_manifest.py now
+seals 17 tool/weight files (incl. qcell_sim.py, qcell_oracle.pt, decision_cell.py) alongside
+experiments; tests/test_receipts.py pins the tools section (red on drift). Retroactive snapshot
+`receipts/tool_pins_2026-09-30.md` pins the 2026-09-29/30 night-lane instruments — hashes are
+seal-time, not fire-time (declared; earliest verifiable baseline). Ten night receipts (QG1-QG3,
+QO1/QO3/QO5, DECIDE-1*) amended with Pinned-instruments pointer blocks; convention set: future
+receipts pin at fire time. Also fixed pre-existing QUEUE drift the pins exposed: D22, E13, E13b
+were booked in RESULTS but never claimed in QUEUE — backfilled per c9b39b4 precedent (D18).
+Artifacts: tools/receipt_manifest.py, tests/test_receipts.py, receipts/tool_pins_2026-09-30.md, receipts/manifest.json.

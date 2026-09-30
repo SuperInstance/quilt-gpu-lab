@@ -48,3 +48,10 @@ strengthens them. Committed as-is (this file is the receipt for the overwrite).
   mutations) acts on the FIRST move-set — exactly the slow-climb-vs-move-set question.
 
 Artifacts: experiments/qo5_birth_probe.py, results/qo3_horizon/{qo5_birth_probe.json,qo5_run.log}.
+
+## Pinned instruments
+
+Retroactively sealed 2026-09-30 (RECEIPT-HASH): instrument hashes for the tools
+used by this run are pinned in `receipts/tool_pins_2026-09-30.md` (snapshot as of
+seal time, not fire time — earliest verifiable baseline). Forward-looking receipts
+pin at fire time.

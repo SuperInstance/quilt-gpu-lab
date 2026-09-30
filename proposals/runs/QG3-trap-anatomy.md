@@ -50,3 +50,10 @@ Initial arms A/B changed W and gens together (confound). Run is 5s/arm — add a
 gens=24, seed=2468) and D (W=8, gens=12, seed=1357), S=1024, same gates. Question: is the
 budget-open effect driven by generations (C≈B) or width (D≈B)? Prediction: generations drive
 it (C≈B, D≈A) — the trap is a slow-climb fence, not a width fence.
+
+## Pinned instruments
+
+Retroactively sealed 2026-09-30 (RECEIPT-HASH): instrument hashes for the tools
+used by this run are pinned in `receipts/tool_pins_2026-09-30.md` (snapshot as of
+seal time, not fire time — earliest verifiable baseline). Forward-looking receipts
+pin at fire time.

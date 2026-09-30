@@ -25,3 +25,10 @@ physics. Goal: name the failure mode before any further lane work.
 - No temperature fitting, no head retraining, no question re-sampling in this run. If none of the
   verdicts fire, the honest landing is "offset is subtler than position/inversion" and the next
   spawned item is a token-level prompt diff (DECIDE-1c), not a retry of these probes.
+
+## Pinned instruments
+
+Retroactively sealed 2026-09-30 (RECEIPT-HASH): instrument hashes for the tools
+used by this run are pinned in `receipts/tool_pins_2026-09-30.md` (snapshot as of
+seal time, not fire time — earliest verifiable baseline). Forward-looking receipts
+pin at fire time.

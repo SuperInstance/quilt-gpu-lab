@@ -36,3 +36,10 @@ This receipt's source corpus (exp020–022 telemetry) originates from the qcells
 canonical, addressable home is **SuperInstance/micrograd-quilt** (labs/qcells tree; sealed
 lineage exp018–exp022 mirrored there as receipt PRs #5–#7). Local workspace paths in this
 receipt are quoted history, not the citation. No data or gates changed.
+
+## Pinned instruments
+
+Retroactively sealed 2026-09-30 (RECEIPT-HASH): instrument hashes for the tools
+used by this run are pinned in `receipts/tool_pins_2026-09-30.md` (snapshot as of
+seal time, not fire time — earliest verifiable baseline). Forward-looking receipts
+pin at fire time.

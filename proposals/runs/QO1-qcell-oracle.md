@@ -34,3 +34,10 @@ metrics json), `tools/qcell_oracle.pt` + `tools/README.md` update. Commit+push b
 Training data derives from QG2's reimplementation of the qcells lab loop; canonical home of the
 lab is **SuperInstance/micrograd-quilt** (labs/qcells tree). Local paths are quoted history.
 No data or gates changed.
+
+## Pinned instruments
+
+Retroactively sealed 2026-09-30 (RECEIPT-HASH): instrument hashes for the tools
+used by this run are pinned in `receipts/tool_pins_2026-09-30.md` (snapshot as of
+seal time, not fire time — earliest verifiable baseline). Forward-looking receipts
+pin at fire time.

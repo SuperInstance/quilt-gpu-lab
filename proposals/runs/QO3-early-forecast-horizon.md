@@ -35,3 +35,10 @@ HORIZON->NONE (itself informative: QO1's 0.951 needed pooled gens).
 Artifacts: `experiments/qo3_horizon.py`, `results/qo3_horizon/{results.json,run.log}`.
 Provenance: qcells lab canonical home = **SuperInstance/micrograd-quilt** (labs/qcells tree),
 per MicroMoth-quilt PR #29 citation convention.
+
+## Pinned instruments
+
+Retroactively sealed 2026-09-30 (RECEIPT-HASH): instrument hashes for the tools
+used by this run are pinned in `receipts/tool_pins_2026-09-30.md` (snapshot as of
+seal time, not fire time — earliest verifiable baseline). Forward-looking receipts
+pin at fire time.

@@ -31,3 +31,10 @@ If all variants hold argmin >= 0.75, name the lock ("representation-locked argmi
 
 ## Budget
 4 variants x 64 questions ~ 256 decides, ~1.7 GiB VRAM class, ~8 min.
+
+## Pinned instruments
+
+Retroactively sealed 2026-09-30 (RECEIPT-HASH): instrument hashes for the tools
+used by this run are pinned in `receipts/tool_pins_2026-09-30.md` (snapshot as of
+seal time, not fire time — earliest verifiable baseline). Forward-looking receipts
+pin at fire time.
