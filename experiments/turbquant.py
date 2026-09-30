@@ -57,31 +57,32 @@ def get_gists():
     return gists[:N_GISTS]
 
 def embed_batch(gist_texts):
-    """Embed via Cloudflare Workers AI REST (wrangler 4.x dropped 'ai run')."""
+    """Embed via DeepInfra (BAAI/bge-m3, 1024-d — the same model the ledger uses).
+
+    CF Workers AI REST was tried first: the CF_API_TOKEN authenticates for
+    Pages/Workers but returns 401 on /ai/run (scope mismatch), so the fleet's
+    reinstated DeepInfra key is the working path. Key read at use-time.
+    """
     import urllib.request, pathlib
-    token = os.environ.get("CF_API_TOKEN") or ""
+    token = os.environ.get("DEEPINFRA_KEY") or ""
     if not token:
-        kf = pathlib.Path("/mnt/c/Users/casey/key.txt")
-        if kf.exists():
-            for line in kf.read_text().splitlines():
-                if line.strip().startswith("CF_API_TOKEN"):
-                    token = line.split("=", 1)[1].strip().strip('"').strip("'")
+        tf = pathlib.Path("/home/eileen/.config/deepinfra/token")
+        if tf.exists():
+            token = tf.read_text().strip()
     if not token:
-        sys.exit("[TURBQUANT] FATAL: no CF_API_TOKEN (env or /mnt/c/Users/casey/key.txt)")
-    acct = os.environ.get("CF_ACCOUNT_ID") or "049ff5e84ecf636b53b162cbb580aae6"
-    url = "https://api.cloudflare.com/client/v4/accounts/%s/ai/run/@cf/baai/bge-m3" % acct
+        sys.exit("[TURBQUANT] FATAL: no DeepInfra key (env DEEPINFRA_KEY or ~/.config/deepinfra/token)")
     req = urllib.request.Request(
-        url, data=json.dumps({"texts": gist_texts}).encode(), method="POST",
+        "https://api.deepinfra.com/v1/openai/embeddings",
+        data=json.dumps({"model": "BAAI/bge-m3", "input": gist_texts}).encode(),
+        method="POST",
         headers={"Authorization": "Bearer " + token, "Content-Type": "application/json",
                  "User-Agent": "fleet-turbquant/1.0"})
     try:
-        with urllib.request.urlopen(req, timeout=120) as r:
+        with urllib.request.urlopen(req, timeout=180) as r:
             res = json.loads(r.read().decode())
     except Exception as e:
-        sys.exit("[TURBQUANT] FATAL: CF AI REST call failed: %s" % e)
-    if not res.get("success"):
-        sys.exit("[TURBQUANT] FATAL: CF AI error: %s" % str(res.get("errors"))[:300])
-    data = res["result"]["data"]
+        sys.exit("[TURBQUANT] FATAL: DeepInfra embeddings call failed: %s" % e)
+    data = [d["embedding"] for d in res.get("data", [])]
     if len(data) != len(gist_texts):
         sys.exit("[TURBQUANT] FATAL: asked for %d embeddings, got %d" % (len(gist_texts), len(data)))
     return data
