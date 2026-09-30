@@ -1,0 +1,44 @@
+{
+  "V1a_lr_exact": {
+    "expected": 0.24666666666666673,
+    "got": 0.24666666666666673,
+    "abs_err": 0.0
+  },
+  "V1b": {
+    "drift_down": {
+      "verdict": "WITNESSED",
+      "stop_t": 7,
+      "retracted": 0.0
+    },
+    "flat_noise": {
+      "verdict": "NOT_WITNESSED",
+      "E_max": 3.61356364714096
+    }
+  },
+  "V1c_refusals": {
+    "short_series": "refused",
+    "no_sigma": "refused",
+    "bad_sigma": "refused",
+    "nonfinite": "refused"
+  },
+  "V2_late_bloomer": {
+    "decision": "KEEP",
+    "verdict": "WITNESSED",
+    "stop_t": 5,
+    "retracted": 1.0,
+    "E_max": 580.7895647860025,
+    "E_final": 0.3965990524245128
+  },
+  "V3_hopeless": {
+    "decision": "KILL_CANDIDATE",
+    "verdict": "WITNESSED",
+    "stop_t": 4,
+    "retracted": 0.0,
+    "E_max": 7609513.433902642
+  },
+  "V4_flat": {
+    "decision": "INSUFFICIENT",
+    "verdict": "NOT_WITNESSED"
+  },
+  "ALL_PASS": true
+}

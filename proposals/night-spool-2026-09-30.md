@@ -18,7 +18,7 @@
 - [DONE 01:3x] **DECIDE-1 FIRED + BOOKED**: G1 control PASS (16/16=1.0); G2 lane FAIL decisively BELOW chance (5/64=0.078; zero-shot and shipped trained readout give IDENTICAL predictions); G3 PASS (3.31 GiB, 54 ms); G4 exploratory (fitted-T pinned at boundary, fitted head 0.3125 not significant vs 0.25). Per protocol: STOPPED on G2 FAIL, no re-roll.
 
 ## QUEUE (top = next)
-- [spawned by PR-SWEEP #4] QO6 (retractable kill-evidence): QO2 routing must NOT kill streams on irrevocable tail predicates. Wrap oracle P(cross) in an e-process-style evidence accumulator (quilt-ewitness doctrine) so kill-decisions can retract if late signal arrives. Read SuperInstance/quilt-ewitness eproc.mjs first (vendored copy in delta-shape PR #1).
+- [DONE 05:5x QO6 BOOKED (retractable kill-evidence gate)]: eproc.mjs ported (lineage pinned 61b9e04/aad90ac5); ALL V1-V4 PASS — late-bloomer fires (E 581) then retracts -> KEEP; hopeless -> KILL_CANDIDATE; sigma-honesty refusals verified. QO2 routing fully specified in components (oracle + budget triage + gate). Fired by 05:3x wake (died unbooked); replicated then booked this wake.
 - [DONE 05:1x RECEIPT-HASH (tool/weight digest seal)]: manifest extended to 17 tool/weight files, test pin added, retroactive snapshot receipts/tool_pins_2026-09-30.md, 10 night receipts amended w/ Pinned-instruments blocks. Forward convention: receipts pin at fire time. Bonus: pins exposed QUEUE drift (D22/E13/E13b booked-not-claimed) — backfilled per c9b39b4 precedent, tests OK.
 - [DONE 01:5x] **DECIDE-1b BOOKED (P1 INVERTED FIRED)**: predicted option is argMIN-balance on 0.891 of questions; argmin-prob acc 0.375 (lower CP95 > 0.25); pred_kinds delete=42 vs label_kinds insert=42; shuffle test content_following 0.78 vs letter_stickiness 0.375 (reads CONTENT, not position). The cell answers "smallest balance" — inversion lives in the backbone (both readers identical).
   - [spawned by DECIDE-1b] DECIDE-1c (confirmatory flip): re-run the SAME lane with instruction "...gives the smallest balance?" — prediction: argmax accuracy jumps toward the same 0.89 consistency (mirrored). If it does, the mechanism is a signed-superlative flip, fully characterized. Pre-register before firing.
@@ -147,3 +147,14 @@
   per the c9b39b4 D18 precedent, manifest re-sealed after each ledger change, all tests OK.
   Rotation for next wake: GPU — QG6 (variance rescue, top GPU item) or QG1-residual per
   queue order; pre-register before firing.
+
+- 05:5x CONDUCTOR slice (night cron): QO6 BOOKED (CPU, non-GPU — rotation honored after QG6 GPU).
+  Found the 05:3x wake had fired QO6 (pre-reg daf7db7 committed) but died before booking —
+  untracked eproc.py + experiment + results dir. Replicated (deterministic, ALL_PASS identical)
+  before booking. Headline: the retraction gate works — late bloomers keep, hopeless kill,
+  flat insufficient; QO2 is now fully specified in components (oracle + triage + gate).
+  Bookkeeping lesson: when a wake dies mid-slice, its artifacts land uncommitted+untracked —
+  `git status` + `process list` on every wake catches this (protocol step 1 already says so;
+  this is the first time it fired in anger). Rotation for next wake: GPU — QG7
+  (generation-asymmetry routing test, top GPU item, gens=24 lanes ~2x QG3 cost; budget check
+  against remaining night) or QG1-residual per queue order; pre-register before firing.

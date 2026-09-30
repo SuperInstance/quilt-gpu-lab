@@ -2919,3 +2919,18 @@ declared, anchor unaffected). Stray uncommitted d23b files (pre-existing dirty s
 left untouched. Pinned instruments per fire-time convention: tools/qcell_sim.py sha256 8c82d4bc…,
 qcell_oracle.pt per receipts/manifest.json seal fc79ff1.
 Artifacts: experiments/qg6_variance_rescue.py, results/qg6_variance_rescue/{results.json,run.log}.
+
+## QO6 — retractable kill-evidence gate: ALL V1-V4 PASS (2026-09-30 05:5x): BOOKED — CPU only
+Pre-reg: proposals/runs/QO6-retractable-kill-evidence.md (committed daf7db7 before firing; fired by the
+05:3x wake which died pre-booking — replicated ALL_PASS this wake before booking, deterministic).
+tools/eproc.py = semantic Python port of SuperInstance/quilt-ewitness eproc.mjs (lineage pinned:
+commit 61b9e04, sha256 aad90ac5…, vendored-via delta-shape PR #1; parity enforced by exact-algebra pin abs_err 0.0).
+- V2 CORE CLAIM HOLDS: late-bloomer trajectory fires (E_max 581 at t=5) then decays (0.40) -> RETRACTED -> gate
+  says KEEP. Evidence accumulators, not tail predicates, gate stream-killing — "a process that cannot retract is
+  a p-value in disguise" is now operative doctrine on this substrate.
+- V3: monotone collapse -> WITNESSED (E_max 7.6e6) -> KILL_CANDIDATE. V4: flat -> INSUFFICIENT (keep).
+- Honesty contract: sigma required, refuses short/missing/bad-sigma/non-finite inputs (V1c all refuse).
+- QO2 routing now fully specified in components: oracle (QO1 AUC 0.951 / QO3 g1 0.88) + budget triage
+  (QG3+QG6 law: generations rescue, variance/width do not) + QO6 gate. QG7 reuses the same trajectories.
+Fire-time pins: tools/eproc.py 8243ef91b1a39f3f, experiments/qo6_kill_evidence.py fcbfe984ddfe0133.
+Artifacts: tools/eproc.py, experiments/qo6_kill_evidence.py, results/qo6_kill_evidence/{results.json,run.log}.

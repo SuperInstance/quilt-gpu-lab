@@ -38,3 +38,16 @@ Success = all four. Any failure is booked loudly, not patched silently.
 ## Non-goals this slice
 No live QO2 integration, no GPU. Feeds QO2 (routing fully specified = oracle + budget triage +
 this gate) and QG7 (gen-24 asymmetry test uses the same trajectories).
+
+## RESULTS (booked 2026-09-30 05:5x AKDT, night conductor — fired by prior wake 05:3x, unbooked at its death; replicated ALL_PASS this wake)
+- V1a PORT-PARITY PASS: single-increment LR exact-algebra match, abs_err 0.0 (vs 1e-12 tol).
+- V1b PINS PASS: strong downward drift -> WITNESSED at t=7, no retraction; flat noise -> NOT_WITNESSED (E_max 3.61).
+- V1c REFUSALS PASS: short series (<10), missing sigma, sigma<=0, non-finite -> all refuse (no silent defaults).
+- V2 RETRACTION PASS (core claim): late-bloomer P(cross) trajectory fires at t=5 (E_max 581) then decays (E_final 0.40) -> verdict RETRACTED -> gate says KEEP. The gate retracts.
+- V3 HOPELESS-KILL PASS: monotone collapse -> WITNESSED t=4, E_max 7.6e6, no retraction -> KILL_CANDIDATE.
+- V4 PASS: flat -> INSUFFICIENT (keep, no evidence either way).
+- Replicate this wake (deterministic CPU): ALL_PASS identical.
+
+Pinned instruments (fire-time convention): tools/eproc.py sha256 8243ef91b1a39f3f, experiments/qo6_kill_evidence.py sha256 fcbfe984ddfe0133, qcell_sim.py untouched (not used; CPU-only slice).
+
+Conclusion: QO2 routing = oracle (QO1/QO3) + budget triage (QG3/QG6: give generations, not variance) + THIS gate. QG7 consumes the same per-gen P(cross) trajectories.
