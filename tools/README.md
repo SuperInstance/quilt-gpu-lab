@@ -57,3 +57,10 @@ more than a copy to use, it's not grabbable yet.
   2026-09-29: drove the live canvas ONLINE, both chiaroscuro modes, live
   EFFECT through the socket — and found two upstream bugs (argv/env drift,
   peer divergence) reported with receipts.
+
+### qcell_sim.py — exact small-circuit cell evaluator (GPU, batched)
+Batched statevector evaluator for qcell genomes (n<=12 qubits). Returns exact p(targets), balance,
+best_target, union, and optional shot samples with a sha256 receipt_id. One file, one job, cell-slot ready.
+Conventions are receipt-calibrated (see proposals/runs/QG1-exact-census.md): balance = min(p000,p111);
+angles in units of pi; q0 = MSB; gates h,x,rx,rz,cx,crx,swap.
+Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` | `--selftest` | `--receipt out.json`

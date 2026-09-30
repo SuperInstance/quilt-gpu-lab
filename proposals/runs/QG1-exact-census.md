@@ -24,3 +24,9 @@ If anchor fails: simulator semantics wrong -> STOP, diagnose, never re-roll blin
 ## Why GPU
 The whole census = one batched matmul chain on the 4050; scales to QG2 (4096 salted streams, live evolution)
 which is the follow-up if G1–G3 hold.
+
+## AMENDMENT (2026-09-29 23:2x, diagnosed via anchor — same statevectors, corrected readout)
+First pass violated the anchor on high-fitness cells: break cells have union-p(000∪111) ≈ 1.0 while recorded
+fitness ≈ 0.498. The lane mode is "balance": fitness = min(p000, p111), ceiling 0.5 — the union observable was wrong.
+All gates re-read on balance = min(|s000|²,|s111|²). No new data, no re-rolls; the break cells are EXACT GHZ-family
+generators (all amplitude on-targets AND balanced) — the needle is doubly-constrained.

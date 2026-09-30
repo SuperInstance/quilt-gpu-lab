@@ -1,0 +1,28 @@
+{
+ "anchor": {
+  "within_2sigma": 1892,
+  "total": 1920,
+  "frac": 0.9854166666666667,
+  "pass": false
+ },
+ "conventions": {
+  "fitness": "min(p000,p111)",
+  "angle_units": "pi (theta_pi * pi, standard half-angle)"
+ },
+ "gates": {
+  "G1": {
+   "hidden_crossers": 5,
+   "pass": false
+  },
+  "G2": {
+   "recorded": 0.417969,
+   "exact_bal": 0.42677669529663664,
+   "pass": true
+  },
+  "G3": {
+   "n": 451,
+   "mean_exact_bal": 0.17154687513773673,
+   "pass": false
+  }
+ }
+}
