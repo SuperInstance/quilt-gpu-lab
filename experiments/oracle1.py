@@ -59,7 +59,8 @@ for r in rows:
     blk = np.concatenate([np.stack([r["gen"] / GENS, r["len"] / W, r["v"], r["cv"]], 1),
                           r["hist"] / 6.0], 1)          # [S, 53]
     feats.append(blk)
-X = np.concatenate(feats, 0)                              # [S*(GENS+1), 53]
+X = np.concatenate(feats, 0)                              # [S*(GENS+1), 4+PAD+1]
+D = X.shape[1]
 y = np.concatenate([crossed] * (GENS + 1), 0)
 stream_id = np.concatenate([np.arange(S)] * (GENS + 1), 0)
 
@@ -81,14 +82,14 @@ def logit_fit(Xtr_c, ytr, Xte_c):
     for _ in range(400):
         opt.zero_grad(); loss = nn.functional.binary_cross_entropy_with_logits(Xm@w, ytr); loss.backward(); opt.step()
     Xt = torch.cat([torch.ones(len(yte),1,device=DEV), Xte_c],1)
-    return torch.sigmoid(Xt@w).cpu().numpy()
+    return torch.sigmoid(Xt @ w).detach().cpu().numpy()
 
 pb = logit_fit(Xtr[:, 3:4], ytr, Xte[:, 3:4])
 auc_b = roc_auc_score(yte.cpu(), pb); br_b = brier_score_loss(yte.cpu(), pb)
 
 # MLP
 torch.manual_seed(0)
-mlp = nn.Sequential(nn.Linear(53, 64), nn.ReLU(), nn.Linear(64, 64), nn.ReLU(),
+mlp = nn.Sequential(nn.Linear(D, 64), nn.ReLU(), nn.Linear(64, 64), nn.ReLU(),
                     nn.Linear(64, 64), nn.ReLU(), nn.Linear(64, 1)).to(DEV)
 opt = torch.optim.Adam(mlp.parameters(), 1e-3)
 best_auc, best_state, patience = 0.0, None, 0
@@ -114,14 +115,14 @@ print(f"G2 (skill): {'PASS' if G2 else 'FAIL'}")
 # G4 permutation importance (on val, AUC drop)
 imp = {}
 base = auc_m
-for i, name in enumerate(["gen", "len", "v", "cv"] + [f"h{j}" for j in range(49)]):
+for i, name in enumerate(["gen", "len", "v", "cv"] + [f"h{j}" for j in range(D - 4)]):
     Xt2 = Xte.clone(); Xt2[:, i] = Xt2[torch.randperm(len(Xt2), device=DEV), i]
     with torch.no_grad(): p2 = torch.sigmoid(mlp(Xt2).squeeze(-1)).cpu().numpy()
     imp[name] = base - roc_auc_score(yte.cpu(), p2)
 top = sorted(imp.items(), key=lambda kv: -kv[1])[:12]
 print("G4 permutation importance top:", [(k, round(v_, 4)) for k, v_ in top])
 
-torch.save({"state_dict": mlp.state_dict(), "features": ["gen","len","v","cv"]+[f"h{i}" for i in range(49)],
+torch.save({"state_dict": mlp.state_dict(), "features": ["gen","len","v","cv"]+[f"h{i}" for i in range(D - 4)],
             "norm": {"gen": GENS, "len": W, "hist": 6.0}, "bar": BAR, "auc_val": auc_m}, "tools/qcell_oracle.pt")
 import os
 os.makedirs("results/qo1_oracle", exist_ok=True)

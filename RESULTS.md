@@ -2729,3 +2729,20 @@ Fresh-rng lane reimplementation (declared), QG1-calibrated physics, GPU-batched 
 - ARM-EXACT (noiseless ablation): crossed 2373/4096 = **0.5793**. G3 delta (exact - shot) = -0.0029 -> MIXED.
 - G1 desert shape: shot-arm child balances in [0.30,0.43): 0.0234 vs recorded-receipts baseline (AMENDED: template guessed 0.086 before measuring; true = 32/1920 = 0.0167) 0.0167 -> PASS (gate recalibrated to measured baseline; original <1% guess was wrong — the receipts themselves carry ~8.6% band mass).
 - Loneliness (exact arm): mean gap 0.0262, p90 0.0732.
+
+## QO1 — qcell-oracle: crossing IS foreseeable (2026-09-30): BOOKED — G1 PASS, G2 PASS
+First trained fleet component on the qcell substrate. Pre-reg: proposals/runs/QO1-qcell-oracle.md (committed
+before firing). Shot arm lane, S=4096, 12 gens, bar 0.45, passive champion-state recording.
+- Lane crossing rate 0.5847 (2395/4096) CP95 [0.5694,0.5999] -> G1 (QG2 band 0.5670-0.5974) PASS.
+  Honesty note: three executions of the seeded lane gave 0.5908/0.5869/0.5847 — torch CUDA ops (tie-break
+  torch.rand, GPU sampling) are not bitwise deterministic, so the lane is reproducible only to ~±0.006.
+  All three inside CP95; single-seed bit-exact replays of this lane are NOT guaranteed.
+- Baseline (logistic on champ_v only): AUC 0.8860, Brier 0.1519. Oracle MLP (64x3): **AUC 0.9510, Brier 0.0872**
+  -> G2 PASS (>=0.70 and delta 0.065 >= 0.05). Split by stream (leakage guard), 42588/10660 rows.
+- G4 feature census: cv (0.1024) > v (0.0751) > gen (0.0515) >> len/gates (<=0.0094). Champion balances and
+  generation dominate; gate-identity histogram is nearly dead weight — crossing is foretold by WHERE the champion
+  is on the balance ladder + how early, not by which gates it uses. Strong corroboration of QG2's structural-desert
+  law: streams are separable long before gen 12 by observable scalar state.
+- Fail-loud trail: run 1 crashed (.numpy() on grad tensor), run 2 crashed (histogram width assumed 49, actually
+  67 = PAD+1) — both mechanical, fixed in place, physics untouched. No re-rolls.
+Artifacts: experiments/oracle1.py, results/qo1_oracle/qo1_results.json, tools/qcell_oracle.pt.
