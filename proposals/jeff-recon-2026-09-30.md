@@ -47,3 +47,15 @@ Three of our lanes meet here:
 
 ## Relationship to Jev/typesafe
 Independent project, same request format, **not affiliated with TypeSafe**. Their `test_jevbench.py` + `src/jeff/jevbench.py` give us a **public hard-tier harness** to score our own local decider against Jev's published 73.3 — a ready-made benchmark for the fleet's judgment-cell work.
+
+---
+## Addendum (00:35) — the published checkpoint, read in the clear
+`decision_config.json` + `readout.safetensors` give the whole inference contract:
+- **`codes`**: A…Z then two-letter codes to 254 options (note: BQ, CJ, EJ, GH-ish gaps — the code list is not a naive A…Z×A…Z product; worth a census, it looks deliberately curated). **`token_ids`**: the pinned vocab id of each code (A=32 … ASCII letters) — needed because the codes appear *as text* in the prompt.
+- **`temperature` = 1.1289476733993191** — the fitted calibration constant, published rather than baked into weights.
+- **`prompt_layout` = "state-first"**; `max_options` = 254; `format_version` = 1.
+- **`readout.safetensors`** = single `weight` tensor **(255, 1024) bf16** = trained linear head over the base model's hidden state (1024), one class per option code + 1 extra.
+- **Provenance block**: `run`, `git_commit`, plus **sha256 of every source file and uv.lock**, and `step`. Their artifact carries a receipt of the code that made it — the same discipline as our sha256 tool receipts, applied to model artifacts. **Adopt this for our own trained artifacts.**
+- Base: Qwen3.5-0.8B, hybrid linear attention (3 linear : 1 full per 4 layers), attn_output_gate, hidden 1024, head_dim 256, VL-capable, bf16.
+
+**Consequence for the fleet**: the expensive-looking part of jeff (full-weight fine-tune) is *optional*. The readout is a linear probe we can fit in minutes against **exact-simulator labels** — see DECIDE-1 G4.
