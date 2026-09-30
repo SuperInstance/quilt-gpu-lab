@@ -77,11 +77,26 @@ def embed_batch(gist_texts):
         method="POST",
         headers={"Authorization": "Bearer " + token, "Content-Type": "application/json",
                  "User-Agent": "fleet-turbquant/1.0"})
-    try:
-        with urllib.request.urlopen(req, timeout=180) as r:
-            res = json.loads(r.read().decode())
-    except Exception as e:
-        sys.exit("[TURBQUANT] FATAL: DeepInfra embeddings call failed: %s" % e)
+    import urllib.request, urllib.error, pathlib
+    last = None
+    for attempt in range(4):
+        try:
+            with urllib.request.urlopen(req, timeout=180) as r:
+                res = json.loads(r.read().decode())
+            break
+        except urllib.error.HTTPError as e:
+            last = e
+            if e.code == 429:
+                wait = int(e.headers.get("Retry-After") or 0) or (5 * (attempt + 1))
+                log("embeddings 429 — sleeping %ds (attempt %d/4)" % (wait, attempt + 1))
+                time.sleep(wait)
+                continue
+            sys.exit("[TURBQUANT] FATAL: DeepInfra embeddings HTTP %s: %s" % (e.code, e.read()[:200]))
+        except Exception as e:  # noqa: BLE001
+            last = e
+            time.sleep(2 * (attempt + 1))
+    else:
+        sys.exit("[TURBQUANT] FATAL: DeepInfra embeddings failed after retries: %s" % last)
     data = [d["embedding"] for d in res.get("data", [])]
     if len(data) != len(gist_texts):
         sys.exit("[TURBQUANT] FATAL: asked for %d embeddings, got %d" % (len(gist_texts), len(data)))
@@ -110,7 +125,7 @@ def compress(X, n_bits=4):
             bins = np.linspace(vmin, vmax, n_levels + 1)
             q = np.digitize(vals, bins[:-1])
             centers = (bins[:-1] + bins[1:]) / 2
-            new_c = np.array([centers[q == k].mean() if (q == k).any() else centers[k] for k in range(n_levels)])
+            new_c = np.array([vals[q == k].mean() if (q == k).any() else centers[k] for k in range(n_levels)])
             if np.allclose(centers, new_c):
                 break
             centers = new_c
