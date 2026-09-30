@@ -1,0 +1,43 @@
+{
+  "checkpoint": "/home/eileen/scratch/external/jeff-checkpoints/jeff-0.8b",
+  "choice_argmax_same": false,
+  "choice_neg_ok": true,
+  "choice_pos_ok": true,
+  "d_ptrue": 0.936322,
+  "noul_identical_distribution": false,
+  "pre_reg": "proposals/runs/QC-JEV-discriminating-control.md",
+  "probes": {
+    "choice_neg": {
+      "_reader": "trained",
+      "choice": "5",
+      "confidence": 0.8158150328616982,
+      "probabilities": {
+        "4": 0.09209248356915087,
+        "5": 0.9079075164308491
+      },
+      "type": "choice"
+    },
+    "choice_pos": {
+      "_reader": "trained",
+      "choice": "4",
+      "confidence": 0.8615673488019155,
+      "probabilities": {
+        "4": 0.9307836744009578,
+        "5": 0.06921632559904226
+      },
+      "type": "choice"
+    },
+    "noul_neg": {
+      "_reader": "trained",
+      "noul": 0.02426383406778248,
+      "type": "noul"
+    },
+    "noul_pos": {
+      "_reader": "trained",
+      "noul": 0.9605858131824707,
+      "type": "noul"
+    }
+  },
+  "runner_sha256": "95cba5985274ff4a8da4fc320f632bab6f500ef47079d1a20504c2ad852da397",
+  "verdict": "DISCRIMINATING"
+}

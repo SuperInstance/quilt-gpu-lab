@@ -3078,3 +3078,26 @@ Pre-reg: proposals/runs/QC-JEV-discriminating-control.md (frozen before fire; 4 
 - Honest notes: one mechanical crash pre-scoring (the noul answer branch returns a scalar `noul`, not a `probabilities` dict — my scoring line assumed the choice shape); fixed in place and declared, fix commit `802bae1` before any scoring ran. Probes use the same fire path as DECIDE-1 (DecisionCell, trained reader, shipped temperature, CPU). Latency 0.4-6.5 s/probe (first probe pays load cost). No zeroshot secondary was run — pre-registered as optional, skipped to stay inside the slice.
 Fire-time pins: experiments/qc_jev_control.py sha256 **95cba5985274ff4a…**, results/qc_jev_control/results.json sha256 **be86893fd74664de…** (receipts/manifest.json seal).
 Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, proposals/runs/QC-JEV-discriminating-control.md.
+
+### (C) MANDATORY REPRODUCTION CHECK — 10:3x: **QC-JEV PASS on verdict + gates; PARTIAL on byte-identity (honest)**
+- Re-ran the COMMITTED `experiments/qc_jev_control.py` (sha256 95cba5985274ff4a…, pinned in the booking and
+  re-asserted inside the result file's own `runner_sha256` field). Re-run reproduced every gate value exactly:
+  noul p(true) 0.9606 vs 0.0243, d_ptrue **0.936322**, noul_identical_distribution False, choice_pos_ok True,
+  choice_neg_ok True, **verdict DISCRIMINATING** — identical to the booking.
+- **Honest caveat (fail-loud):** the byte-level comparison is NOT a clean bill. My reference copy was taken
+  with `cp results/qc_jev_control/results.json` AFTER the second fire had already written the file in the same
+  sweep, so the "committed reference" and the re-run output are the same bytes by construction — the diff is
+  therefore uninformative, not evidence. The meaningful evidence is (a) the `runner_sha256` embedded in the
+  artifact equals the committed script's hash, and (b) every gate-bearing field reproduces. Per-probe
+  `_latency_ms` varies between runs (466.47 vs 467.87 in the choice_neg slot) — i.e. the artifact is NOT
+  byte-stable across fires, which is exactly why claiming bit-exactness here would have been wrong.
+- **Tooling defect (third instance of the class, new variant):** `qc_jev_control.py` writes to a HARDCODED
+  `results/` path, so no stdout redirect can keep a verification run off the artifact it verifies — the same
+  defect booked at 09:1x for W5a. It fired for real this time: the re-run overwrote the artifact under test.
+  Reinforces the RC-1 spec item: **every runner needs `--out`, and verification writes to a scratch dir on
+  ext4, never into `results/`.**
+- **Dirty-tree exposure found and fixed in this slice:** `results/qc_jev_control/` was **untracked** when I
+  re-sealed the manifest — the seal had pinned a runner whose result artifact was never committed (the D-2
+  silent-edit class, caught by checking `git status` after the seal instead of trusting it). Committed now;
+  manifest re-sealed again. `tools/local_jev_bench.py` appeared untracked this sweep (another agent's or a
+  prior wake's stray, not mine) — left in place, flagged, not deleted.
