@@ -18,30 +18,55 @@ rng = np.random.default_rng(SEED)
 def log(m): print("[turbquant %s] %s" % (time.strftime("%H:%M:%S"), m), flush=True)
 
 def get_gists():
-    """Pull gist strings from i2i-ledger (no auth for GET)."""
-    import urllib.request, json
-    url = "https://i2i-ledger.casey-digennaro.workers.dev/since?ts=0&limit=%d" % N_GISTS
+    """Pull gist strings from i2i-ledger (Bearer token read at use time; UA header defeats CF bot-fingerprint 403)."""
+    import urllib.request, json, pathlib
+    token = ""
+    tf = pathlib.Path("/home/eileen/.config/i2i/i2i-token")
+    if tf.exists():
+        token = tf.read_text().strip()
+    # /since requires a real ts (ts=0 silently returns count=0; no ts is a 400) — look back 30d
+    ts = int(time.time()) - 30 * 86400
+    url = "https://i2i-ledger.casey-digennaro.workers.dev/since?ts=%d&limit=%d" % (ts, N_GISTS)
+    headers = {"User-Agent": "fleet-ideation/1.0", "Accept": "application/json"}
+    if token:
+        headers["Authorization"] = "Bearer " + token
     try:
-        with urllib.request.urlopen(url, timeout=30) as r:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=30) as r:
             rows = json.load(r)
     except Exception as e:
         sys.exit("[TURBQUANT] FATAL: ledger fetch failed: %s" % e)
-    # assume each row has a 'gist' field
-    gists = [row.get("gist", row.get("content", row.get("text", ""))) for row in rows if row.get("gist") or row.get("content") or row.get("text")]
-    gists = [g.strip()[:1000] for g in gists if g and len(g) >= 50]   # short but not empty
+    # shape-tolerant: list of strings | list of dicts | dict wrapping any of those
+    if isinstance(rows, dict):
+        for k in ("entries", "rows", "bookings", "results", "items", "data"):
+            if isinstance(rows.get(k), list):
+                rows = rows[k]
+                break
+        else:
+            rows = []
+    gists = []
+    for row in rows if isinstance(rows, list) else []:
+        if isinstance(row, str):
+            gists.append(row)
+        elif isinstance(row, dict):
+            g = row.get("gist") or row.get("content") or row.get("text") or ""
+            if g:
+                gists.append(g)
+    gists = [g.strip()[:1000] for g in gists if g and len(g.strip()) >= 40]
     log("pulled %d gists from ledger" % len(gists))
     return gists[:N_GISTS]
 
 def embed_batch(gist_texts):
     """Embed via Cloudflare Workers AI (bge-m3)."""
-    import subprocess, json
-    import tempfile
+    import subprocess, json, shutil
+    wrangler = (os.environ.get("WRANGLER_BIN") or shutil.which("wrangler")
+                or os.path.expanduser("~/.npm-global/bin/wrangler"))
     payload = {"texts": gist_texts}
     # wrangler ai run @cf/baai/bge-m3 --payload <json>
     # stdout returns json with .result.data[] embeddings
     try:
         p = subprocess.run(
-            ["wrangler", "ai", "run", "@cf/baai/bge-m3", "--payload", json.dumps(payload)],
+            [wrangler, "ai", "run", "@cf/baai/bge-m3", "--payload", json.dumps(payload)],
             capture_output=True, text=True, timeout=180
         )
         if p.returncode != 0:
@@ -49,7 +74,10 @@ def embed_batch(gist_texts):
         res = json.loads(p.stdout)
         if "result" not in res or "data" not in res["result"]:
             sys.exit("[TURBQUANT] FATAL: wrangler returned unexpected JSON: %s" % p.stdout)
-        return res["result"]["data"]
+        data = res["result"]["data"]
+        if len(data) != len(gist_texts):
+            sys.exit("[TURBQUANT] FATAL: asked for %d embeddings, got %d" % (len(gist_texts), len(data)))
+        return data
     except Exception as e:
         sys.exit("[TURBQUANT] FATAL: embedding failed: %s" % e)
 
@@ -106,6 +134,8 @@ def main():
 
     # 1) pull gists
     gists = get_gists()
+    if len(gists) < 10:
+        sys.exit("[TURBQUANT] FATAL: pulled only %d gists (need >=10) — fix the pull, never run on an empty corpus" % len(gists))
 
     # 2) embed (full)
     log("embedding %d gists (full)..." % len(gists))
