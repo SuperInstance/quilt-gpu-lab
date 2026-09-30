@@ -57,3 +57,9 @@
 - [x] QG1c swap-convention search — 2026-09-30 NONE (C0 current best 0.9854; no frozen candidate improves; residual is swap-ONLY, x spurious). Not a convention typo. Spawned QG1d (source-level recon: read micromoth exp022 simulator swap)
 - [ ] QG1d source-level swap recon — read micromoth-quilt exp022 simulator swap implementation, reconcile byte-level against our census map; read-only, cheap
 - [ ] F1 DeltaF-admission falsifier (CPU): ternary-* cluster's entropy-budgeted scheduling claim — priority-FIFO vs DeltaF admission (T from budget trits); frozen gates: mean wait within 5%, queue variance -40%, no 3x depth-4 blowups, slack-extreme +1 >=15% slower. Source: mining proposal 07:30 + ternary-{thermodynamics,budget,depth,scheduling}
+
+## IN FLIGHT 2026-09-30 08:4x (do NOT double-fire — conductor take note)
+- [ ] W5a reobserve-vs-trace (CPU) — firing 08:4x, pre-reg proposals/runs/W5a-reobserve-vs-trace.md
+- [ ] F1 df-admission falsifier (CPU) — firing 08:4x, pre-reg proposals/runs/F1-df-admission.md
+- [ ] W5b2 antirank-primacy confirmation (GPU) — firing 08:4x, pre-reg proposals/runs/W5b2-antirank-primacy.md; spawned from W5b KILL (primary lifetime seed-dependent 1/3) + antirank secondary win 3/3 (+1.6/+2.5/+3.0%)
+- Booking one-shots armed: 08:55 AK W5a+F1, 09:15 AK W5b (existing), 10:25 AK W5b2

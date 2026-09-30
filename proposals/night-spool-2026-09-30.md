@@ -265,3 +265,5 @@ other agents are feeding us; keep the handshake lane warm.
   `_archive/qg7_gen_asymmetry_run.log.stray-20260930` (archive-never-delete).
 - GPU lane occupied by W5b all slice; no new GPU item fired. Rotation next wake: book W5b (GPU-free, just
   verdict vs frozen gates), then PR-SWEEP #6 or SCOUT item per queue order.
+
+- [DONE 08:3x GPU] **W5b BOOKED-pending (results.json written; 09:15 cron books): verdict KILL** — lifetime-ranked precision allocation is seed-dependent (4241 +10.0% best arm; 4242/43 WORST arm, mean_rel -1.05%, wins 1/3). M11's abstraction does NOT transfer to from-scratch ternary in our regime. BUT pre-registered secondary: antirank beat random 3/3 (+2.5/+1.65/+3.0%) — instability, not persistence, may mark precision-worthiness. W5b2 (antirank-primacy, 5 fresh seeds, gates >=0.5% and >=4/5) FIRED 08:4x as a new pre-reg — two-sided design paying off exactly as designed.
