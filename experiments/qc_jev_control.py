@@ -39,7 +39,7 @@ for name, qtype, state, q in PROBES:
 pn, px = out["probes"]["noul_pos"], out["probes"]["noul_neg"]
 cp, cx = out["probes"]["choice_pos"], out["probes"]["choice_neg"]
 d_ptrue = abs(pn["noul"] - px["noul"])
-identical = pn["probabilities"] == px["probabilities"]
+identical = abs(pn["noul"] - px["noul"]) == 0.0  # noul answers carry a single scalar, not a distribution
 choice_pos_ok = cp["choice"] == "4"
 choice_neg_ok = cx["choice"] == "5"
 choice_same = cp["choice"] == cx["choice"]
