@@ -9,6 +9,9 @@ subpopulation the census readout gets wrong).
 Machinery (gate2/embed1/perm/genome_unitary/key) is copied verbatim from
 experiments/qg1_exact_census.py — that module is script-style (no main guard;
 QO3 lesson), so importing it would re-run the census. Copy declared here.
+Honest note: the first fire crashed on gate2 (math.exp on complex), and the
+rebuilt perm guessed swap-semantics instead of the census's XOR map — 604/1920
+bogus failures before any scoring was booked; both fixed verbatim pre-verdict.
 Corpus: /home/eileen/projects/micromoth-quilt/receipts/exp022-desert-break/
 exp022.telemetry.{k3..k7}.jsonl — read-only.
 
@@ -51,26 +54,16 @@ def gate2(g):
     raise ValueError(f"unknown 1q gate {n}")
 
 
-def kron(a, b): return torch.kron(a, b)
-
-
-def embed1(u, q):
-    ops = [torch.eye(2, dtype=torch.complex128) for _ in range(3)]
-    ops[q] = u
-    M = ops[0]
-    for o in ops[1:]:
-        M = kron(M, o)
-    return M
-
-
+def kron(a,b): return torch.kron(a,b)
+def embed1(u,q):
+    I = torch.eye(2, dtype=torch.complex128)
+    return kron(kron(u,I),I) if q==0 else (kron(kron(I,u),I) if q==1 else kron(kron(I,I),u))
 def perm(pairs):  # permutation matrix from index map old->new
-    P = torch.zeros(8, 8, dtype=torch.complex128)
-    for st in range(8):
-        nx = st
-        for (a, b) in pairs:
-            if st == a: nx = b
-            elif st == b: nx = a
-        P[nx, st] = 1
+    P = torch.zeros(8,8, dtype=torch.complex128)
+    for s in range(8):
+        b = [(s>>(2-q))&1 for q in range(3)]
+        for c,t in pairs: b[t] ^= b[c]
+        P[(b[0]<<2)|(b[1]<<1)|b[2], s] = 1
     return P
 
 
