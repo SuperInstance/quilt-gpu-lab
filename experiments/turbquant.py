@@ -95,7 +95,8 @@ def compress(X, n_bits=4):
     Xz = X / norms * ZOOM_FACTOR
 
     # orthogonal-ish rotation
-    A = rng.normal(size=Xz.shape[1:])
+    dim = Xz.shape[1]
+    A = rng.normal(size=(dim, dim))   # square basis; shape[1:] handed QR a 1-D array (bug #5)
     Q, R = np.linalg.qr(A)
     Xr = Xz @ Q
 
