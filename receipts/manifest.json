@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-09-30T22:15:22.932227+00:00",
+  "generated_at": "2026-09-30T23:12:57.295816+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "8aa29c44885a18140f5f1449b83968342d55f049171fcb4e7bbd8835ebd31ee7",
+    "RESULTS.md": "b98c29cc9f7376901e6fabf533635a48cb11890d8034a79bcbea8029c65659ce",
     "QUEUE.md": "8337a086bbd2be0ebf435ee2bd9ca737d636a29b12c16920f3b849273d1e55f4"
   },
   "experiments": {
@@ -115,6 +115,7 @@
     "qo9_lane_vs_stream.py": "30ef64dccbb29bf8d261ece169a02a06f8d0f655fa10d5574d4022ac6949211e",
     "rt1_route_marginal.py": "6fc473af0a60ecfdfc3270643de14552cdf4674bccf2ecfc1d421bebc293c93f",
     "st1_quilt_cell_v0.py": "d4f4cf1c4c6b79bbf98c423e27a5d4a04945c5f9b7aaa3d7ffb44189b78a42fc",
+    "st3_calibrated_noul.py": "6318e1152a9891a7292ca9e2153b776e47f09f9728ae2e31b28e74e6cdc8af30",
     "t5_dial_controller.py": "177ef7859e42542b6c71d51a726f0e6cf34c1274673e269f3f499d9329a6fa22",
     "t5b_tau_sweep.py": "57a2cc88255c7413dd376f10d3f8ebf7b1b16dcc061f59eddea5f51bc729f539",
     "tc1_tile_codec.py": "4441169589181cae937b31d015710ed8d24664b51a802031033225931efccc6f",
