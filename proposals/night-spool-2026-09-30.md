@@ -158,3 +158,17 @@
   this is the first time it fired in anger). Rotation for next wake: GPU — QG7
   (generation-asymmetry routing test, top GPU item, gens=24 lanes ~2x QG3 cost; budget check
   against remaining night) or QG1-residual per queue order; pre-register before firing.
+
+- [DONE 06:4x GPU] **QG7 BOOKED (ensemble)**: gens=24, S=2048. **P1 FAIL** — gen-1 signal cannot reliably
+  separate late-bloomers from hopeless (AUC 0.546/0.663/0.636/0.580 across 4 identical-seed reruns, mean 0.606,
+  only 1/4 clears 0.65 = luck). **P2 PASS weak** — frozen QO1 oracle ranks late>hopeless (0.566-0.581),
+  miscalibrated as expected. **QO2 routing law finalized**: forecast (g1 AUC 0.88) for the cross-by-12 majority;
+  desert subpopulation (~42%) governed by QO6 e-process retraction gate — evidence, not tail predicates.
+  Commit 9a93858. NEW LESSON: lane torch-nondeterminism is MATERIAL for subpopulation questions — always book
+  subpopulation verdicts as rerun ensembles (>=4), never single draws.
+  - [spawned by QG7] QO7 (day-item for Casey, needs his eyes): assemble the QO2 routing system end-to-end as a
+    runnable component (oracle + budget triage + eproc gate + gen-1 router) over a fresh 24-gen lane with a
+    budget scoreboard: streams saved (late kept) vs wasted (hopeless funded to 24) vs wrongly killed. All
+    pieces exist and are pinned; this is integration + one scoreboard run. NOT a night item — the QO2
+    stop/kill thresholds deserve pre-registration with Casey's judgment on the cost matrix.
+Rotation for next wake: non-GPU (PR-SWEEP #5 or SCOUT #2), then QG1-residual or QG4 per queue order.
