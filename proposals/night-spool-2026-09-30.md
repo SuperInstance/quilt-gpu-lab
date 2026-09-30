@@ -31,7 +31,8 @@
 - [DONE 03:5x GPU] **QG3 BOOKED**: traps OPEN with generations — C(W6,g24)=0.755 ~= B(W8/g24)=0.763, D(W8,g12)=0.568 ~= A(W6/g12)=0.578. Width is INERT; trap = slow-climb fence (refutes my P1; QG2 structural-desert sharpened: passable at 2x gens). Basin edit-distance metric INCONCLUSIVE (degenerate on short champions; no claim either way).
   - [spawned by QG3] QG6 (variance rescue): stuck streams on shallow gradient — try temperature-style bigger mutations (k-gate block edits, k in {2,3}) at FIXED total children. Does variance, not more generations, rescue the slow climbers? Tests selection-pressure vs move-set explanation.
   - [spawned by QG3] QG3b (basin observable fix, cheap): re-cluster stuck champions by champion STATEVECTOR distance (unitary output overlap) instead of genome edit distance. Only if QG6/QO2 needs basin identity.
-- [open | NEXT GPU] QO3 (early-forecast horizon): at which gen does oracle AUC first clear 0.80? If gen<=3, crossing near-deterministic early -> feeds QO2 routing directly. QG3's slow-climb result says late-gen information matters — test which.
+- [DONE 04:5x GPU] **QO3 BOOKED**: g*=1 stable (bootstrap IQR [1,1]); AUC 0.500(g0) -> 0.880(g1) -> 0.913(g2) -> 0.931(g3) -> ... -> 0.999(g12). HEADLINE: birth state carries ZERO signal (g0 AUC exactly 0.500 both models); one selection round exposes fate. Tension w/ QG2 desert-at-birth: desert is landscape property, not stream-observable at birth. Feeds QO2: route at gen 1 (0.88) or gen 3 (0.93).
+  - [spawned by QO3] QO5 (birth-state insufficiency probe): WHY is g0 AUC exactly 0.500? All streams share one skeleton draw + fresh mutation, so birth states may be near-identical across streams (check state diversity at g0: var of len/v/hist across streams). If g0 states ARE diverse but uninformative -> landscape decides, stream state irrelevant; if g0 states are near-identical -> desert-at-birth means birth LOTTERY, and gen1 selection is the first observable branch point. Cheap (data already in results/qo3_horizon).
 - [spawned by QG2] QG4: budget/gens phase diagram (W x gens grid, 1024 streams/cell) — map the crossing frontier. Directly serves "cells are dedicated; routing happens between cells".
 - [spawned by PR-SWEEP #1] RECEIPT-CITE: amend QG1/QG2 receipts (proposals/runs/*.md) to cite SuperInstance repos by name (weight law; see MicroMoth-quilt PR #29). Docs-only, no re-run.
 
@@ -104,3 +105,13 @@
   PR-SWEEP #3 (rotation: non-GPU after QG3 GPU): QUIET — 6 repos, only MM #29 merge as state change, no new
   PRs since 02:2x, micrograd-quilt #3-#7 stale mirrors. No steals. Rotation for next wake: GPU — QO3
   (early-forecast horizon, marked NEXT GPU) or QG1-residual per queue order; pre-register before firing.
+
+- 04:5x CONDUCTOR slice (night cron): QO3 landed (GPU, per rotation after PR-SWEEP #3). Headline:
+  horizon g*=1 (bootstrap-stable IQR [1,1]); AUC path 0.500 -> 0.880 -> 0.913 -> 0.999; gen-0
+  AUC EXACTLY 0.500 for both MLP and cv-logit — birth champion state is uninformative about
+  eventual crossing, one selection round reveals ~0.88 (cv-only logit alone 0.811). Sharpest
+  framing for QO2: routing decision is cheap and reliable from gen 1; nothing to decide at
+  birth. Spawned QO5 (why is g0 exactly uninformative — state-diversity census on existing
+  data, near-zero cost). One crash en route (importing oracle1 executes QO1's training —
+  module-not-found caught, lane copied verbatim, declared in code). Rotation for next wake:
+  non-GPU (PR-SWEEP #4 or SCOUT/QC-KA reading), then QO5 or QG6 per queue order.
