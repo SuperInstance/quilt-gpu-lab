@@ -1,0 +1,46 @@
+{
+  "experiment": "TC2 \u2014 retrieval-objective 384-byte tile codec",
+  "n_tiles": 2529,
+  "device": "cuda",
+  "arms": {
+    "A_deterministic": {
+      "top1": 0.7180703835508105,
+      "top5": 0.8351126927639383,
+      "cos": 0.965049684047699,
+      "bytes": 384
+    },
+    "B_int8_full": {
+      "top1": 0.6876235666271253,
+      "top5": 0.8469750889679716,
+      "cos": 0.9999071359634399,
+      "bytes": 384
+    },
+    "C_mse_96d": {
+      "top1": 0.5551601423487544,
+      "top5": 0.730723606168446,
+      "bytes": 384,
+      "final_loss": 0.00017072257469408214,
+      "cos": 0.9666597843170166
+    },
+    "E_retrieval_96d": {
+      "top1": 0.878212732305259,
+      "top5": 0.9790431000395413,
+      "bytes": 384,
+      "final_loss": 0.3820600211620331
+    },
+    "F_hybrid_96d": {
+      "top1": 0.8778173190984578,
+      "top5": 0.9794385132463425,
+      "bytes": 384,
+      "final_loss": 0.3813247084617615,
+      "cos": 0.934221625328064
+    }
+  },
+  "gates": {
+    "G1_retrieval_objective_wins": true,
+    "G2_beats_int8": true,
+    "G3_reconstruction_rules": false
+  },
+  "verdict": "RETRIEVAL_OBJECTIVE_WINS",
+  "wall_clock_s": 36.9
+}

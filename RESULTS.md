@@ -2655,3 +2655,12 @@ Pre-reg TC1-tile-codec-384.md (pushed fc683e6). Source: SuperInstance/plato-tile
 - FINDING (doc/code drift): the doc comment says tags(24) + 128+128+64+32+4+4+4 = 388; the CODE writes tags at 20 bytes, which is what makes 384. The comment is wrong; the code is right. Same crate: `cargo test` FAILS — the doctest at lib.rs:6 does not compile (`cannot find type EncodedTile`, missing use import).
 - HARMONY: the crate's 64-byte id field is EXACTLY a sha256 hex digest — we set tile ids to sha256(question+answer) and they fit with zero waste. Same 64-byte id limit as Vectorize (the limit we hit in the ocean fix). 384 bytes = 96 float32 = 384 int8 dims: three budgets, one number.
 - VERIFICATION: Python harness validated 5/5 fixtures byte-identical (hex + decode status) against the real crate via a path dependency (not a copy) -> scratch harness at /home/eileen/scratch/tc1-rust/. Receipts: results/tc1/tc1_results.json.
+
+## TC2 (2026-09-29) — RETRIEVAL_OBJECTIVE_WINS: the 384-byte budget was never the problem, the objective was
+Pre-reg TC2-tile-codec-retrieval.md (pushed pre-fire). Same corpus (2525 real tiles), same embedder, same evaluation as TC1 — only the training objective of the 96-d bottleneck changed. 36.9s on the 4050.
+- A_deterministic top-1 0.7164 | B_int8 top-1 0.6876 (cos 0.99991) | C_mse_96d top-1 0.5552 (cos 0.9667) | E_retrieval_96d top-1 0.8782 / top-5 0.9790 | F_hybrid_96d top-1 0.8778 / top-5 0.9794 (cos 0.9342).
+- Gates: G1 true (E/F beat the text codec by +0.16, gate was +0.05), G2 true (+0.19 over int8), G3 false -> RETRIEVAL_OBJECTIVE_WINS.
+- FINDING: the SAME 384 bytes that scored 0.5552 under MSE score 0.8782 under InfoNCE (+0.32). Reconstruction is the wrong proxy for meaning; retrieval is the right one. A codec should be trained for the query it will answer, not for the bytes it will reproduce.
+- FINDING: the hybrid (MSE + InfoNCE) keeps both worlds — cosine 0.9342 with retrieval 0.8778 (statistically tied with pure retrieval). If a tile must be both readable and findable, train both objectives.
+- STRATEGIC READ (for the encod harmony work): the deterministic 384-byte text codec is a fine FALLBACK (0.7164 top-1, human-readable, zero training) but a retrieval-trained 96-d codec is +16 points better at the same byte cost. Worth wiring as an option in the tile path (superinstance-api /near already ranks by embedding — this makes the stored representation itself retrieval-native).
+- Receipts: results/tc2/tc2_results.json.
