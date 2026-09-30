@@ -254,6 +254,10 @@ other agents are feeding us; keep the handshake lane warm.
 - [IN-PROGRESS 08:1x] **W5b** (pre-reg 0757ad6): FIRED 07:35 by prior wake, run STILL LIVE (PID 20070,
   ~37 min elapsed, seed 4243 pending, ETA ~08:35). Next wake: check completion, book honestly vs the frozen
   gates (margin 0.5% lifetime-vs-random, antirank secondary), re-seal manifest. DO NOT re-fire.
+## SCOUT-5 SPAWNED ITEMS (concrete)
+- [ ] **QO9** (CONTRADICT-candidate, CPU ~30m, existing data, pre-reg first): oracle signal stream-vs-lane stratification; gates + threatened bookings in proposals/runs/SCOUT-5-fleet-push-2026-09-30-1911Z.md.
+- [ ] **ST-STEEL** (CPU docs ~20m): pre-fire steelman section convention for all new pre-regs (jev-fusion STEELMAN.md doctrine).
+- [ ] **JF-1** (reading, low): jev-fusion exp5 clustered-defect results after their push settles; map onto QO6 thresholds.
 - [IN-PROGRESS] RC-1 / SC-1 / VP-1 / XR-1 (spawned by SCOUT-2, unclaimed).
 
 ## DAY BOOKKEEPING 08:1x (conductor)
@@ -439,3 +443,21 @@ other agents are feeding us; keep the handshake lane warm.
   3. Scope honesty: one corpus, one architecture (GRU-384) — the KEEP claims "reproducible in OUR regime,"
      not generality. 161 warmup commits keep change_count coarse (the pre-reg's accepted risk).
 - No re-roll, no re-run, no re-fire. GPU lane free after this slice.
+
+- 11:1x CONDUCTOR slice (day cron): SCOUT-5 (A-rotation; GPU occupied by live ST1 PID 38353, CPU/reading only).
+  Full text: proposals/runs/SCOUT-5-fleet-push-2026-09-30-1911Z.md. HEADLINE — **jev-fusion is a NEW repo
+  being pushed LIVE seconds before the sweep** (STEELMAN.md, exp4 selective, ideation batch). Classifications:
+  (1) CORROBORATE-strong/CONTRADICT-candidate: their steelman point 3 — a per-cell sparse independent signal
+  cannot represent GROUPED error — transfers to us: our oracle is per-stream but QO5 proved all streams share
+  one skeleton draw, so failure structure is grouped at LANE level. Threatens QO3/QO6/QO7 bookings if the
+  gen-1 signal is lane-level, not stream-level. Spawned **QO9** (stratified AUC on existing data, pre-reg
+  first, gates in words in the report). (2) STEAL: the STEELMAN doctrine itself — best-case-against-our-own-
+  premise before firing — spawned **ST-STEEL** (pre-reg steelman section convention, forward-only). (3)
+  CORROBORATE: murmuration jev_probe2 now shows PERFECT discrimination (max 1.0) while jev_control null
+  stands on jev-1.13.0 — consistent with our QC-JEV booking, no amendment needed. (4) voxelglyph NEW repo
+  (syzygy port, luma collision) + PR #1 independent stdlib receipt — receipt doctrine corroborated again.
+  pong-quilt #85 open (round 67); [EMBASSY] #49 still unresponded (day item for Casey, unchanged). Watch:
+  **JF-1** (jev-fusion exp5 clustered-defect read after push settles). No GPU item (lane busy); no
+  reproduction check due this slice (last booking QC-JEV reproduced at 10:3x; ST1/W5b2 bookings will need
+  their checks when booked). Rotation next wake: book ST1 when it finishes (GPU-free verdict), or QO9
+  pre-reg + fire (CPU) if ST1 still running.
