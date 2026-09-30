@@ -65,3 +65,4 @@ Conventions are receipt-calibrated (see proposals/runs/QG1-exact-census.md): bal
 angles in units of pi; q0 = MSB; gates h,x,rx,rz,cx,crx,swap.
 Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` | `--selftest` | `--receipt out.json`
 - `qcell_oracle.pt`: QO1 MLP (64x3) predicting P(stream crosses bar 0.45 | champion state: gen/len/v/cv + 67-gate hist). Val AUC 0.9510. Input norms: gen/12, len/6, hist/6; v,cv raw. See results/qo1_oracle/.
+- systemone_proxy.py — System One API wrapper; every teacher call HMAC-booked to ~/.config/systemone/call-ledger.jsonl (state, questions, answers, probabilities, latency). ask()/ledger_stats(); CLI --stats / --state. The distillation corpus grows by using the teacher (wide-scope P-1).
