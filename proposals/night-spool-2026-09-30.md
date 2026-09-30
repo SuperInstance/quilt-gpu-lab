@@ -22,11 +22,12 @@
 - [DONE 01:1x] **QO1 qcell-oracle BOOKED**: G1+G2 PASS, oracle AUC 0.9510 vs baseline 0.8860 (Brier 0.087); features cv>v>gen >> gates. First trained fleet component. Lane torch-nondeterminism ±0.006 noted (all runs in CP95). WAS: train a tiny MLP on QG2 rollouts -> P(cross | champion state: len, balance, gate histogram, gen). Save tools/qcell_oracle.pt + README. First TRAINED fleet component on this substrate. Data: instrument run_lane to dump per-gen champion states + outcomes (4096 streams = 400k+ rows free).
 - [open] QG1-residual: localize the 28/1920 anchor mismatches (gate-combo census of failing cells) -> either close to >=99% or name the missing convention.
 - [DONE 00:2x PR-SWEEP #1] see FINDINGS.
+- [DONE 03:2x SCOUT #1]: see FINDINGS 03:2x. Web search API degraded (503/timeout) — fell back to arxiv API (export.arxiv.org), which worked. Note for future scouts: use the arxiv API directly, no retries on the search provider.
 - [open] SL-G1: syzygy-lattice e-process martingale Monte Carlo (port LR rules to torch; operating-characteristic curves: kill-on-impossible, impostor late-cross; validate truth@10/impostor@112 pins first).
 - [open] SCOUT #1 (see rotation).
 - [open] SF-G1: subleq VM in torch (Int32Array machines, batched) -> program-space census; validate vs subleq-fabric pins.
 - [open] DS-G2: change-point GPU engine, synthetic boat telemetry first (the 5-min predictor line = trail() membrane).
-- [spawned by QG2] QG3: WHY are 42% landscape-trapped? Cluster stuck streams by champion basin (genome edit-distance clustering); test deeper budget (W=8, 24 gens) — do traps open with budget? Cheap on this lane.
+- [open | NEXT GPU] QG3: WHY are 42% landscape-trapped? Cluster stuck streams by champion basin (genome edit-distance clustering); test deeper budget (W=8, 24 gens) — do traps open with budget? Cheap on this lane.
 - [spawned by QG2] QG4: budget/gens phase diagram (W x gens grid, 1024 streams/cell) — map the crossing frontier. Directly serves "cells are dedicated; routing happens between cells".
 - [spawned by PR-SWEEP #1] RECEIPT-CITE: amend QG1/QG2 receipts (proposals/runs/*.md) to cite SuperInstance repos by name (weight law; see MicroMoth-quilt PR #29). Docs-only, no re-run.
 
@@ -62,3 +63,35 @@
   named representation-locked argmin; DECIDE lane closed per STOP). Spawned DECIDE-2 (representation surgery,
   day item — needs Casey's eyes + new instrumentation). Rotation for next wake: non-GPU per rotation
   (PR-SWEEP #3 or SCOUT #1), then QG1-residual/QG3/QO3 per queue order.
+- 03:2x CONDUCTOR slice (night cron): SCOUT #1 landed (non-GPU per rotation; last slice was DECIDE-1d GPU). Source:
+  arxiv API fallback (search provider 503 — one alternate route, no retry loop). Six live steals, ranked:
+  1. **EvE "An Alternate Optimizer to Adam" (2609.36xxx)** — configs ranked CHEAPLY and pruned EARLY in search
+     budgets. Maps directly onto QO2/QO3: oracle-guided pruning is the same doctrine; steal any early-ranking
+     metric ideas for oracle features. Spawned QO4 below.
+  2. **CMDO: Cognitive Memory-Driven Optimization** — population search retaining the CONTEXT where behaviors
+     succeeded/failed. Mirrors QO1 oracle + QG3 desert clustering: routing should remember *why* streams died,
+     not just that they died. Feeds QG3 design (basin memory features).
+  3. **"Where Does Randomness Matter in Neural Cellular Automata?"** — separates train-time vs execution-time
+     update randomness. Directly relevant to qcells: our structural-desert law says trapping is upstream of
+     selection; this paper's train/exec randomness split is a ready-made ablation frame. Spawned QG5 below.
+  4. **KACS: Kolmogorov-Arnold Classifier Systems (IEEE TEVC 2026)** — rule count O(m^n)->O(mn^2) via
+     dimension-wise decomposition; first LCS universal-approximator proof. Speaks to "cells are dedicated;
+     routing happens between cells": per-dimension dedicated rulesets + superposition. Candidate frame for
+     qcell rule-space scaling. Spawned QC-KA below (reading item first).
+  5. **"Evolving Towards Better Codes: LLM-Guided Search"** — record-breaking combinatorial constructions via
+     LLM-driven evolutionary search. Directly relevant to subleq-fabric program-space census (SF-G1): the
+     harness pattern (LLM proposes mutations, exact verifier accepts) is exactly our lane. Read before SF-G1.
+  6. (minor) iSOMA-AR adaptive rotation — learns a basis from successful migration displacements; long-shot
+     idea for qcell routing if basins show shared geometry.
+  Spawned queue items: QO4, QG5, QC-KA. Rotation honored (GPU last, non-GPU this). Next wake: GPU — QG3
+  (marked NEXT GPU) or QG1-residual per queue order; pre-register before firing.
+
+  New queue items spawned by SCOUT #1:
+  - [spawned by SCOUT #1] QO4 (early-ranking steal): read EvE paper; extract its cheap early-ranking signal
+    and test as an oracle FEATURE alongside cv/v/gen (does EvE-style momentum of champion fitness improve
+    QO1 AUC 0.951? Does it clear 0.80 earlier than QO3's per-gen horizon?).
+  - [spawned by SCOUT #1] QG5 (train-vs-exec randomness in qcells): NCA-paper ablation frame — does desert
+    trapping depend on update-randomness at roll-in vs roll-out? Instrument run_lane with a deterministic-
+    rollout arm (fix champion stream RNG at eval). Cheap, feeds QG3.
+  - [spawned by SCOUT #1] QC-KA (reading, non-GPU): read KACS paper + repo (YNU-NakataLab/KACS); write a
+    1-page note on whether Kolmogorov-Arnold dimension-wise decomposition applies to qcell rule space.
