@@ -55,7 +55,8 @@ def main():
         probe = mk.probe_source(ffmpeg, p)
         sha = mk.sha256_file(p)
         log("source %s: %s" % (src, probe))
-        for ci, t0 in enumerate(mk.real_t0s(probe["duration_s"], N_PER)):
+        for ci, t0 in enumerate(mk.pick_frames(mk.frame_starts(probe["duration_s"]), N_PER,
+                                              "c4/av%d" % vi)):
             out_path = os.path.join(CLIP_DIR, "av%d_%02d.rgb" % (vi, ci))
             mk.run_ffmpeg(mk.real_clip(ffmpeg, p, t0, out_path)["argv"])
             size = os.path.getsize(out_path)
