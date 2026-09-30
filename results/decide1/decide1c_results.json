@@ -1,0 +1,36 @@
+{
+ "n": 64,
+ "instructions": "Balance is min(P(000), P(111)) of the final state. Which single edit gives the smallest balance?",
+ "C2": {
+  "argmax_acc": {
+   "k": 5,
+   "acc": 0.078125,
+   "cp95": [
+    0.03383067809543547,
+    0.1701975287864777
+   ]
+  }
+ },
+ "C1": {
+  "pred_is_argmax_balance": 0.078125,
+  "cp95": [
+   0.03383067809543547,
+   0.1701975287864777
+  ]
+ },
+ "exploratory_pred_is_argmin_balance": 0.890625,
+ "C3": {
+  "content_following": 0.84375,
+  "n": 64
+ },
+ "exploratory_pred_kinds": {
+  "delete": 45,
+  "replace": 10,
+  "insert": 9
+ },
+ "gates": {
+  "C1_pass": false,
+  "C2_pass": false,
+  "C3_pass": true
+ }
+}

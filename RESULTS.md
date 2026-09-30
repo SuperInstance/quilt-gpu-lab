@@ -2787,3 +2787,21 @@ the shipped trained readout and the LM-init zeroshot head agree, the inversion l
 representation, not the head. Plausible mechanism (untested): "largest" in the instructions vs option
 salience — the model tracks "balance" faithfully but drops/flips the superlative direction.
 Artifacts: experiments/decide1b.py, results/decide1/decide1b_results.json, results/decide1/decide1b_run.log.
+
+## DECIDE-1c — instruction flip: REFUTES signed-superlative flip; the model IGNORES the superlative word (2026-09-30 02:3x): BOOKED — C1 FAIL, C2 FAIL, C3 PASS
+Pre-reg: proposals/runs/DECIDE-1c-instruction-flip.md (committed before firing). Identical lane to DECIDE-1b
+except instructions "...gives the smallest balance?" Labels unchanged (argmax-balance).
+- **C1 FAIL decisively**: pred_is_argmax_balance 5/64 = 0.078 (predicted >= 0.75). The choice did NOT flip.
+- **C2 FAIL / NULL-RESULT-MIRROR**: argmax accuracy 5/64 = 0.078 — BYTE-IDENTICAL to the "largest" run
+  (DECIDE-1: 5/64; 1b: 5/64). The instruction word has ZERO effect on the choice distribution.
+- **C3 PASS**: content_following 0.844 under shuffle — still reads candidate content, not letters.
+- Exploratory: pred_is_argmin_balance 0.891 (unchanged), kinds delete=45 (unchanged bias).
+- STOP rule honored: signed-superlative-flip hypothesis is DEAD. No re-roll.
+Synthesis: jeff-0.8b's decision cell answers a FIXED question on this family ("smallest balance" /
+delete-side preference) regardless of whether the instruction asks largest or smallest — while the
+control lane (numeric comparison, 16/16) proves it CAN read superlatives elsewhere. The failure is not a
+sign flip; it's instruction-blindness specific to the balance-edit representation: the backbone locks onto
+the argmin candidate and the instruction never modulates it. Next diagnosis: instruction-ablation census
+(spawned DECIDE-1d) — does ANY phrasing move the choice, or is the argmin lock absolute?
+Hardware: same lane as 1b (~1.7 GiB class); runtime ~2 min.
+Artifacts: experiments/decide1c.py, results/decide1/decide1c_results.json.
