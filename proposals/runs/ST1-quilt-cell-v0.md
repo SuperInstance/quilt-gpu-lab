@@ -24,8 +24,12 @@ own bookings) as a trained local model instead of a prompted API call.
   verdict from seed-MEANS). AMENDMENT (pre-fire): examples rendered in BOTH
   styles — human template AND compact JSON — because real receipts are JSON
   dumps; without the JSON half, gate 2 faces a pure distribution shift.
-- **Model arm A (this run):** prajjwal1/bert-tiny (17M), seq 192, bf16, batch 32,
-  lr 3e-4, 4 epochs, AdamW, log-loss (=proper scoring rule, laya-aligned).
+- **Model arm A (this run):** AMENDED PRE-FIRE: prajjwal1/bert-tiny →
+  sentence-transformers/all-MiniLM-L6-v2 (22.7M) — transformers 5.17 on py3.14
+  cannot instantiate bert-tiny's legacy WordPiece tokenizer (smoke-fail, fail-loud
+  worked); MiniLM is same tiny class, native fast tokenizer, still within the
+  17-22M param budget. seq 192, bf16 eval, batch 32, lr 3e-4, 4 epochs, AdamW,
+  log-loss (=proper scoring rule, laya-aligned).
   Arm B (from-scratch 4L transformer) reserved for ST1b — do NOT run here.
 - **Abstention (laya M1/M2 from birth):** max-softmax threshold calibrated on
   OOD half A at its 90th percentile; GATE 3 evaluated on held-out OOD half B
@@ -52,4 +56,4 @@ cell-v0 before booking; flag → human/API escalation. KILL ⇒ booked, corpus +
 harness remain (training data for ST1b arms).
 
 ## Cost
-GPU-only, local; bert-tiny download ~70MB from HF hub. No API spend.
+GPU-only, local; all-MiniLM-L6-v2 download ~90MB from HF hub. No API spend.

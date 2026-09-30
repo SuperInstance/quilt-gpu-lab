@@ -30,7 +30,7 @@ LAB = Path(__file__).resolve().parents[1]
 RESULTS_DIR = LAB / "results" / "st1_quilt_cell_v0"
 SEEDS = [6611, 6612, 6613, 6614, 6615]
 TAU_GRID = (0.40, 0.45, 0.50, 0.55, 0.60)
-MODEL_NAME = "prajjwal1/bert-tiny"
+MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"  # amended pre-fire (see pre-reg)
 N_TRAIN, N_VAL, N_OOD = 8000, 1000, 120
 BATCH, EPOCHS, LR, SEQ = 32, 4, 3e-4, 192
 GATES = {"syn_auc_min": 0.95, "real_auc_min": 0.80, "honest_fpr_max": 0.10,
@@ -242,7 +242,7 @@ def fit_and_score(seed: int, train_pairs, score_sets: dict, smoke: bool, log):
     model = AutoModelForSequenceClassification.from_pretrained(
         MODEL_NAME, num_labels=2)
     targs = TrainingArguments(
-        output_dir=str(RESULTS_DIR / f"hf_seed{seed}"),
+        output_dir=str(Path("/home/eileen/scratch/st1_hf") / f"seed{seed}"),
         per_device_train_batch_size=BATCH,
         num_train_epochs=1 if smoke else EPOCHS,
         learning_rate=LR,
