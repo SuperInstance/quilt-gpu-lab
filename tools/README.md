@@ -48,3 +48,12 @@ piece others can lift. Grab = copy the file; everything here runs alone.
 
 Append it here with: name — path — one line on what it does. If it needs
 more than a copy to use, it's not grabbable yet.
+
+- **fleet_board.mjs** — `tools/fleet_board.mjs` — project work lanes onto a
+  quilt-canvas as fabric cells (grid address, receipt dials, dependency
+  links). Needs a quilt-canvas-tui clone for `fabric.mjs`
+  (`CANVAS_FABRIC=/path/to/bridge/fabric.mjs`); optional
+  `LANES_FILE=your-lanes.json` to project your own lanes. Dogfood receipt
+  2026-09-29: drove the live canvas ONLINE, both chiaroscuro modes, live
+  EFFECT through the socket — and found two upstream bugs (argv/env drift,
+  peer divergence) reported with receipts.
