@@ -17,9 +17,12 @@ holonomy is a real organ (free audit + free curriculum) or just neighborhood noi
   minimax outcome (solver used ONLY to build/corrupt the corpus — never during scoring).
 - Rooms: 27-dim one-hot board → seeded random projection to 16-d. Field judgment = kNN
   (k=9, inverse-distance weights) vote over stored labels {+1,0,−1}.
-- Blind region: per seed, a marker pattern P (specific X/O/X occupancy triple at fixed cells);
-  every field episode matching P has its stored label **flipped** (guaranteed wrong).
-  Expected corrupted count recorded; must be ≥ 40 or the seed is void (re-drawn).
+- Blind region: per seed, a marker pattern P = TWO cells with fixed marks (X at cell a,
+  O at cell b; a≠b, placement seeded); every field episode matching P has its stored label
+  **flipped** (guaranteed wrong). Expected corrupted count recorded; must be ≥ 40 or the seed
+  is void (re-drawn). [AMENDED PRE-FIRE 09:2x, before any fire: the original 3-cell X/O/X
+  pattern voids every seed (smoke 0/2) — ~3.7% base rate vs the ≥40/1200 bar. Two cells
+  (~11%) clears it. Amendment committed before fire; no other gate touched.]
 - Holonomy score (teacher-free): for a probe board b, take its 8 symmetry images; grade each
   with the field; inconsistency(b) = entropy of the 8 predicted outcome classes (0 = all
   images agree, ln3 = maximal disagreement). Probe set: 600 fresh boards (300 matching P,

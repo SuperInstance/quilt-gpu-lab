@@ -83,8 +83,8 @@ def room(board):
 
 
 def margins(rooms_q, field_rooms, field_labels):
-    """Leave-one-out margin for each field board + margin for queries."""
-    out = []
+    """Leave-one-out margins + field predictions. Returns (margins_list, preds_list)."""
+    out_m, out_p = [], []
     for q in rooms_q:
         d = np.linalg.norm(field_rooms - q, axis=1)
         idx = np.argsort(d)[: K + 1]
@@ -96,8 +96,9 @@ def margins(rooms_q, field_rooms, field_labels):
             votes[int(field_labels[j]) + 1] += wij
         p = (votes + 1e-12) / (votes.sum() + 1e-12)
         s = np.sort(p)
-        out.append((float(s[-1] - s[-2]), int(np.argmax(votes)) - 1))
-    return out
+        out_m.append(float(s[-1] - s[-2]))
+        out_p.append(int(np.argmax(votes)) - 1)
+    return out_m, out_p
 
 
 def train_mlp(X, Y, rng, epochs=EPOCHS, lr=LR):
@@ -172,7 +173,6 @@ def run_seed(seed):
     e_rooms = np.stack([room(b) for b in eval_b])
     fm, _ = margins(f_rooms, f_rooms, field_l)          # leave-one-out field margins
     em, epred = margins(e_rooms, f_rooms, field_l)      # eval-board margins + field predictions
-
     fm = np.asarray(fm)
     thr = np.quantile(fm, FRONTIER_FRAC)
     frontier_idx = np.where(fm <= thr)[0]

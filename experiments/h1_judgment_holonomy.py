@@ -181,9 +181,9 @@ def run_seed(seed):
         boards.append(b)
         labels.append(solved(b, "X", memo))
 
-    # blind region pattern: 3 fixed cells with required marks (per-seed placement)
-    cells = rng.choice(9, size=3, replace=False)
-    marks = ["X", "O", "X"]
+    # blind region pattern: TWO fixed cells with fixed marks (per-seed placement)
+    cells = rng.choice(9, size=2, replace=False)
+    marks = ["X", "O"]
     pattern = {int(c): m for c, m in zip(cells, marks)}
 
     def matches(b):
