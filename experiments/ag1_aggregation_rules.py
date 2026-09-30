@@ -256,7 +256,7 @@ def run_seed(seed, smoke=False):
     pool = pool_answers(sub["members"], sub["tau_med"], test_qs)
     cons_pred = [p["cons"] for p in pool]
     g1_cons = acc_of(cons_pred, test_qs)
-    single = [p for (t, md, a) in sub["tau_med"]]
+    single = [a for (t, md, a) in sub["tau_med"]]
     g1_single = float(np.mean(single))
     res["g1"] = {"cons": g1_cons, "single_mean": g1_single, "pass": g1_cons > g1_single}
 
