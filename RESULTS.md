@@ -2974,3 +2974,56 @@ Pre-reg: proposals/runs/QG1c-swap-convention.md (frozen C0-C5, committed BEFORE 
 - [spawned] **QG1d** = SOURCE-LEVEL RECON (read-only, cheap): read micromoth-quilt's exp022 simulator swap implementation and reconcile at byte level instead of by candidate search. Discipline lesson booked: after a frozen candidate set fails, go read the producer's source — don't widen the guess space.
 Honest notes: analysis-only, no data touched, deterministic, candidates frozen pre-fire, 6/6 in one pass. The NONE verdict is a real negative result — the residual is not a convention typo and must not be "fixed" by widening the search post hoc.
 Artifacts: experiments/qg1c_swap_convention.py, results/qg1c_swap_convention/{results.json,run.log}, proposals/runs/QG1c-swap-convention.md.
+
+## W5a — re-observation vs trace-reading: **REFUTED** (trace-reading matches fresh re-observation at matched budget) (2026-09-30 08:5x AKDT): BOOKED — CPU only
+Pre-reg: proposals/runs/W5a-reobserve-vs-trace.md (frozen + committed before fire; CONFIRM/REFUTED/MIXED gates, no post-hoc change).
+Lane: x_t = mu_t + sigma*z_t, sigma=1, T=200, drift onset t0=50, mu in {0,0.2,0.5,1.0}, sign in {+1,-1}; 28 drift cells + 4 no-drift
+cells, REPS=200 x SEEDS=[1101,1102,1103] = 600 worlds/cell. FOUR arms, ONE matched detector (mean-shift statistic, |stat|>=0.2*sigma,
+max-|stat| split for t0): `trace` (quantized to q in {0.5,1.0}sigma + subsampled every k in {1,4} — what trace-reading gets),
+`rawsame` (unquantized at the same positions), `fresh` (budget-matched fresh draws = pure re-observation), `freshfull` (fresh at all T = upper bound).
+- **VERDICT: REFUTED per the frozen gate.** overall_pp 0.01 (det_err basis), 0/24 primary cells where fresh wins by >2pp, worst_cell_pp 0.0 =>
+  error(fresh) - error(trace) within the 2pp band with no consistent direction: at MATCHED observation budget, re-observation does NOT beat
+  trace-reading in this regime. QO6's retraction doctrine therefore does NOT generalize to the mildly-lossy-trace regime via this route —
+  it keeps its substrate-side claim (evidence accumulators vs tail predicates) but loses the claim that *any* trace-reading is strictly dominated.
+- **AUDIT (honest methodology flag — declared, not buried)**: the frozen verdict function scores `det_err` ONLY, and det_err is SATURATED
+  everywhere — 0.0 for every arm on every drift cell (single exception: trace 0.00167 at (0.5,+1,1.0,4)) and ~1.0 on every no-drift cell.
+  Cause: the detector thresholds a MAX over ~T candidate split statistics, so |stat|>=0.2*sigma fires ~always (no-drift false-alarm rate ~1.0)
+  and always fires under real drift — det_err carries no information in either direction. The REFUTED verdict is therefore *forced by
+  saturation*, not earned by a sensitive test. Re-scoring on the pre-reg's OTHER two registered metrics (collected in results.json but unused by
+  the verdict function): sign_err mean +0.42pp (range -4.33..+5.83; 3 cells fresh-better >2pp, 2 trace-better >2pp) and |t0|>10 rate mean +0.12pp
+  (range -3.50..+5.50; 4 vs 5) — both far inside the 2pp band with mixed direction. Verdict survives the honest re-read; it is a low-power REFUTED.
+- Regime map (the MIXED payload, reported not gating): the gap never opens. The trace at its coarsest (q=1.0sigma, k=4) is within ~1pp of fresh on
+  sign error at every mu. Signal that re-observation DOES carry more information: the full-power `freshfull` arm beats trace by 4.02pp mean on
+  |t0|>10 (it sees all T positions) — but the BUDGET-MATCHED `fresh` arm does not, which is exactly the REFUTED clause. Any advantage of
+  re-observation here is bought by budget, not by re-observation.
+- Honest notes: (a) verdict-function metric scope is narrower than the pre-reg's metric list (det only) — audit above; not a re-roll, an in-place
+  declaration. (b) Detector floor: t0_err is 0.53-0.98 in ALL arms including freshfull, i.e. the matched detector is swamped by a shared bias, so
+  the test is a floor test — the honest conclusion is "no arm separates at this detector", not "trace = fresh in general". (c) Pre-reg says
+  >=8/12 primary cells; the runner evaluates 24 (mu x sign x q x k) — a denominator discrepancy that cannot change the verdict (0 wins either way).
+Fire-time pins: experiments/w5a_reobserve_vs_trace.py sha256 271a6251f592acb0… (receipts/manifest.json seal).
+Artifacts: experiments/w5a_reobserve_vs_trace.py, results/w5a_reobserve_vs_trace/{results.json,run.log,smoke_results.json}.
+
+## F1 — DeltaF-admission scheduling falsifier: **PREMISE-ABSENT** (the mined composition's claimed regime does not reproduce) (2026-09-30 08:5x AKDT): BOOKED — CPU only
+Pre-reg: proposals/runs/F1-df-admission.md (frozen + committed before fire; G1-G4 + KEEP/KILL/PREMISE-ABSENT, no post-hoc change).
+Lane: discrete-tick single server, TICKS=30000, Bernoulli(0.8) arrivals, u~Exp(1), depth d in 1..6 with p=[.40,.25,.15,.10,.06,.04],
+service s=1+0.1*d, requeue prob 0.05*d per pass; paired streams across arms; SEEDS=[91,92,93]. Arms: `pfifo` (max-utility, FIFO tiebreak),
+`df` (key u - T*z_d, z_d=(d-2.29)/1.43; T read off the budget trit: -1 if Q>6, 0 if 2<=Q<=6, +1 if Q<2 -> T in {0,1.0,2.0}), `slack` (T=2.0 always).
+- Gate table (aggregate over 3 seeds): **G1 PASS within 5%** (df mean_wait 6755.903971 vs pfifo 6755.904026 — relative dev 8.2e-9, i.e. IDENTICAL);
+  **G2 FAIL** (var ratio 0.9999994 vs the required <=0.6); **G3 premise FAIL** (r_blowup_pfifo 1.0013 < 3.0, so nothing to eliminate);
+  **G4 FAIL** (slack mean_wait 6313.187 = 0.9346x df — slack is **6.5% FASTER**, not the claimed >=15% slower).
+- **VERDICT: PREMISE-ABSENT** per the frozen G3 instruction ("if premise absent (r_pfifo < 3.0) the claimed regime does not reproduce in this
+  sim — a finding about the claim's fragility, not a pass"). KEEP is impossible (G2 and G4 both dead); the mined DeltaF-admission composition
+  as specified is not supported, and its slack-extreme prediction is CONTRADICTED in sign.
+- What actually happened (honest read): (a) the `df` arm is behaviorally ~identical to `pfifo` — mean wait equal to 9 significant figures and
+  frac_started equal to 10 (0.5511788441444608 both), so under this budget-trit read the u - T*z_d key essentially never changed which job was
+  served; the "within 5% of priority-FIFO" gate is met DEGENERATELY, not by a tuned tradeoff. (b) The sim is saturated/overloaded: arrivals
+  ~24.1k over 30k ticks vs ~13.3k completions (frac_started 0.55), mean wait ~6756 ticks — all wait metrics are saturation-dominated, so policy
+  differences are structurally invisible in the mean. (c) The requeue mechanism (0.05*d) never produced the claimed 3x depth-4 blowup under
+  FIFO (r=1.001); slack DID blow up by depth (r=6.48, w_deep ~14.8k vs w_shallow ~2.3k) while being FASTER in the mean — a real
+  depth-redistributing tradeoff, opposite in sign to the claim's latency prediction.
+- Honest notes: single server, rho=0.8, no reneging, one regime; the churn proxy (z-scored depth) is our minimal faithful reading of "nesting
+  pressure" (pre-reg risk declared). A KILL/PREMISE-ABSENT here kills the mined composition as specified, not their repositories. Regime finding
+  worth carrying: at this load the admission key is inert — any future revision must first fix the load (or report per-depth waits) before
+  admission policy can be measured at all. No re-roll.
+Fire-time pins: experiments/f1_df_admission.py sha256 52516866a64d8934… (receipts/manifest.json seal).
+Artifacts: experiments/f1_df_admission.py, results/f1_df_admission/{results.json,run.log,smoke_results.json}.

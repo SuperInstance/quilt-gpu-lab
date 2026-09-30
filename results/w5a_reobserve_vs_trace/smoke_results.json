@@ -1,0 +1,628 @@
+{
+  "n_worlds_per_cell": 10,
+  "arms": [
+    "trace",
+    "rawsame",
+    "fresh",
+    "freshfull"
+  ],
+  "rates": {
+    "(0.0, 1, 0.5, 1)": {
+      "trace": {
+        "det_err": 1.0,
+        "sign_err": 0.0,
+        "t0_err": 0.0
+      },
+      "rawsame": {
+        "det_err": 1.0,
+        "sign_err": 0.0,
+        "t0_err": 0.0
+      },
+      "fresh": {
+        "det_err": 1.0,
+        "sign_err": 0.0,
+        "t0_err": 0.0
+      },
+      "freshfull": {
+        "det_err": 1.0,
+        "sign_err": 0.0,
+        "t0_err": 0.0
+      }
+    },
+    "(0.0, 1, 0.5, 4)": {
+      "trace": {
+        "det_err": 1.0,
+        "sign_err": 0.0,
+        "t0_err": 0.0
+      },
+      "rawsame": {
+        "det_err": 1.0,
+        "sign_err": 0.0,
+        "t0_err": 0.0
+      },
+      "fresh": {
+        "det_err": 1.0,
+        "sign_err": 0.0,
+        "t0_err": 0.0
+      },
+      "freshfull": {
+        "det_err": 1.0,
+        "sign_err": 0.0,
+        "t0_err": 0.0
+      }
+    },
+    "(0.0, 1, 1.0, 1)": {
+      "trace": {
+        "det_err": 1.0,
+        "sign_err": 0.0,
+        "t0_err": 0.0
+      },
+      "rawsame": {
+        "det_err": 1.0,
+        "sign_err": 0.0,
+        "t0_err": 0.0
+      },
+      "fresh": {
+        "det_err": 1.0,
+        "sign_err": 0.0,
+        "t0_err": 0.0
+      },
+      "freshfull": {
+        "det_err": 1.0,
+        "sign_err": 0.0,
+        "t0_err": 0.0
+      }
+    },
+    "(0.0, 1, 1.0, 4)": {
+      "trace": {
+        "det_err": 1.0,
+        "sign_err": 0.0,
+        "t0_err": 0.0
+      },
+      "rawsame": {
+        "det_err": 1.0,
+        "sign_err": 0.0,
+        "t0_err": 0.0
+      },
+      "fresh": {
+        "det_err": 1.0,
+        "sign_err": 0.0,
+        "t0_err": 0.0
+      },
+      "freshfull": {
+        "det_err": 1.0,
+        "sign_err": 0.0,
+        "t0_err": 0.0
+      }
+    },
+    "(0.2, 1, 0.5, 1)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.4,
+        "t0_err": 1.0
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.4,
+        "t0_err": 1.0
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.2,
+        "t0_err": 1.0
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.2,
+        "t0_err": 1.0
+      }
+    },
+    "(0.2, 1, 0.5, 4)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.5,
+        "t0_err": 1.0
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.4,
+        "t0_err": 1.0
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.4,
+        "t0_err": 0.8
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.4,
+        "t0_err": 1.0
+      }
+    },
+    "(0.2, 1, 1.0, 1)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.5,
+        "t0_err": 1.0
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.4,
+        "t0_err": 1.0
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.4,
+        "t0_err": 1.0
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.4,
+        "t0_err": 1.0
+      }
+    },
+    "(0.2, 1, 1.0, 4)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.1,
+        "t0_err": 0.9
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.9
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.5,
+        "t0_err": 0.9
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.5,
+        "t0_err": 1.0
+      }
+    },
+    "(0.2, -1, 0.5, 1)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.6,
+        "t0_err": 1.0
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.6,
+        "t0_err": 1.0
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.3,
+        "t0_err": 0.8
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.3,
+        "t0_err": 0.8
+      }
+    },
+    "(0.2, -1, 0.5, 4)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.3,
+        "t0_err": 1.0
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.3,
+        "t0_err": 1.0
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.5,
+        "t0_err": 1.0
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.4,
+        "t0_err": 1.0
+      }
+    },
+    "(0.2, -1, 1.0, 1)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.4,
+        "t0_err": 1.0
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.5,
+        "t0_err": 1.0
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.2,
+        "t0_err": 1.0
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.2,
+        "t0_err": 1.0
+      }
+    },
+    "(0.2, -1, 1.0, 4)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.3,
+        "t0_err": 1.0
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.3,
+        "t0_err": 1.0
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.2,
+        "t0_err": 0.9
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.1,
+        "t0_err": 0.9
+      }
+    },
+    "(0.5, 1, 0.5, 1)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.2,
+        "t0_err": 0.8
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.2,
+        "t0_err": 0.8
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.2,
+        "t0_err": 0.9
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.2,
+        "t0_err": 0.9
+      }
+    },
+    "(0.5, 1, 0.5, 4)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.2,
+        "t0_err": 0.9
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.2,
+        "t0_err": 0.9
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.2,
+        "t0_err": 0.8
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.1,
+        "t0_err": 1.0
+      }
+    },
+    "(0.5, 1, 1.0, 1)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.1,
+        "t0_err": 0.8
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.1,
+        "t0_err": 0.9
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.1,
+        "t0_err": 1.0
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.1,
+        "t0_err": 1.0
+      }
+    },
+    "(0.5, 1, 1.0, 4)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.6
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.6
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.2,
+        "t0_err": 0.9
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.2,
+        "t0_err": 1.0
+      }
+    },
+    "(0.5, -1, 0.5, 1)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.8
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.8
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.1,
+        "t0_err": 0.8
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.1,
+        "t0_err": 0.8
+      }
+    },
+    "(0.5, -1, 0.5, 4)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.1,
+        "t0_err": 0.9
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.1,
+        "t0_err": 1.0
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.4,
+        "t0_err": 0.7
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.2,
+        "t0_err": 0.9
+      }
+    },
+    "(0.5, -1, 1.0, 1)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.9
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.1,
+        "t0_err": 1.0
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.8
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.8
+      }
+    },
+    "(0.5, -1, 1.0, 4)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.2,
+        "t0_err": 0.7
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.3,
+        "t0_err": 0.7
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.2,
+        "t0_err": 0.8
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.2,
+        "t0_err": 0.8
+      }
+    },
+    "(1.0, 1, 0.5, 1)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.8
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.9
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.6
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.6
+      }
+    },
+    "(1.0, 1, 0.5, 4)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.5
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.6
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.3
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.5
+      }
+    },
+    "(1.0, 1, 1.0, 1)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.7
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.5
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.6
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.6
+      }
+    },
+    "(1.0, 1, 1.0, 4)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.7
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.8
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.5
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.8
+      }
+    },
+    "(1.0, -1, 0.5, 1)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.6
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.6
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.7
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.7
+      }
+    },
+    "(1.0, -1, 0.5, 4)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.5
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.5
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.8
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.5
+      }
+    },
+    "(1.0, -1, 1.0, 1)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.8
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.6
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.1,
+        "t0_err": 0.9
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.1,
+        "t0_err": 0.9
+      }
+    },
+    "(1.0, -1, 1.0, 4)": {
+      "trace": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.5
+      },
+      "rawsame": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.4
+      },
+      "fresh": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.7
+      },
+      "freshfull": {
+        "det_err": 0.0,
+        "sign_err": 0.0,
+        "t0_err": 0.8
+      }
+    }
+  },
+  "verdict": "smoke-only"
+}

@@ -267,3 +267,18 @@ other agents are feeding us; keep the handshake lane warm.
   verdict vs frozen gates), then PR-SWEEP #6 or SCOUT item per queue order.
 
 - [DONE 08:3x GPU] **W5b BOOKED-pending (results.json written; 09:15 cron books): verdict KILL** — lifetime-ranked precision allocation is seed-dependent (4241 +10.0% best arm; 4242/43 WORST arm, mean_rel -1.05%, wins 1/3). M11's abstraction does NOT transfer to from-scratch ternary in our regime. BUT pre-registered secondary: antirank beat random 3/3 (+2.5/+1.65/+3.0%) — instability, not persistence, may mark precision-worthiness. W5b2 (antirank-primacy, 5 fresh seeds, gates >=0.5% and >=4/5) FIRED 08:4x as a new pre-reg — two-sided design paying off exactly as designed.
+
+- [DONE 08:5x CPU] **W5a BOOKED: verdict REFUTED** — at MATCHED observation budget, trace-reading matches fresh re-observation (0/24 primary
+  cells fresh beats trace by >2pp; overall 0.01pp; no consistent direction). QO6 keeps the substrate claim (accumulators over tail predicates)
+  but LOSES the claim that trace-reading is strictly dominated in the mildly-lossy regime. Honest flag booked: the frozen verdict function scored
+  det_err ONLY and det_err is saturated (max-|stat| detector fires ~always — false-alarm rate ~1.0 on the 4 no-drift cells, 0.0 on every drift
+  cell), so REFUTED was forced by saturation; the audit over the pre-reg's other two registered metrics (sign +0.42pp, |t0|>10 +0.12pp, both mixed
+  direction) corroborates it => low-power REFUTED, no re-roll. Signal that survives: the FULL-power freshfull arm beats trace by 4.0pp mean on
+  |t0|>10 — the advantage is bought by budget, not by re-observation (exactly the REFUTED clause). Pre-reg proposals/runs/W5a-reobserve-vs-trace.md.
+- [DONE 08:5x CPU] **F1 BOOKED: verdict PREMISE-ABSENT** — the mined DeltaF-admission composition's regime does not reproduce. G1 passes only
+  DEGENERATELY (df == pfifo to 9 sig figs, identical frac_started — the u - T*z_d key essentially never changed the served job); G2 FAIL
+  (variance ratio 0.9999994 vs <=0.6); premise r_pfifo 1.001 << 3.0 (no depth-4 blowup to eliminate under FIFO); G4 CONTRADICTED (slack 6.5%
+  FASTER, not the claimed >=15% slower). Diagnosed cause: the frozen sim is load-saturated (~24.1k arrivals vs ~13.3k completions; 55% start;
+  mean wait ~6756 ticks) so policy differences are invisible in the mean. Slack did redistribute wait hard by depth (r=6.48) — real tradeoff,
+  opposite sign to the claim. Carry forward: fix the load (or report per-depth) before any admission-policy measurement. Pre-reg
+  proposals/runs/F1-df-admission.md. QUEUE lines marked, RESULTS.md booked, manifest re-sealed.

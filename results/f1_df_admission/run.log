@@ -1,0 +1,9 @@
+{
+  "G1_within5pct": true,
+  "G2_var_minus40": false,
+  "G3_premise_and_eliminated": false,
+  "premise_r_pfifo": false,
+  "G4_slack_15pct_slower": false,
+  "verdict": "PREMISE-ABSENT"
+}
+WROTE /home/eileen/projects/quilt-gpu-lab/results/f1_df_admission/results.json
