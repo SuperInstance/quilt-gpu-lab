@@ -494,3 +494,42 @@ other agents are feeding us; keep the handshake lane warm.
 - **Slice status:** (B) ST1v2 BOOKED KILL + repro PASS; (C) re-seal complete; (A) SCOUT not run this slice
   (rotation deferred — the unbooked artifact was the higher-value catch). Tree clean, nothing unpushed. GPU free.
   Next wake: **ST1-AUDIT (CPU, top open item)** — or SCOUT-6 if the audit needs pre-reg work first. GPU lane open.
+
+- [DONE 13:1x SCOUT-6 (day-conductor, non-GPU — rotation honored; GPU lane free, no GPU item fired)]
+  Fleet push sweep since 19:11Z. Full text: proposals/runs/SCOUT-6-fleet-push-2026-09-30-2111Z.md.
+  **HEADLINE — jev-fusion RETRACTED its own published JEV null**: the "judge does not discriminate"
+  result was a **MALFORMED REQUEST** (`state` an object not a string; a separate `options` list sent
+  alongside `criteria` — there is no `options` field, the option set IS the criteria keys). *"A
+  malformed spec does not error; it returns a well-formed, confidently unhelpful answer."* Remedy:
+  `jev_check.py` re-verifies 5/5 before EVERY experiment and the experiment REFUSES to run if the
+  check fails. => Our QC-JEV booking (murmuration null does not transfer; jeff-0.8b discriminates at
+  d_ptrue 0.936) is CORROBORATED and now has a named mechanism. Spawned **QC-JEV3** (malformed-spec /
+  confident-null pin on OUR lane; gate in words: if a malformed spec produces a plausible reading
+  silently, every DECIDE-1 receipt ships a request-shape assertion and G2's 5/64 is re-examined for
+  request shape, not representation-lock). CPU ~30m, no GPU.
+  **CORROBORATE — the fleet's second law **"a check that cannot fail converts a bug into a finding"**:
+  CONVERGENCE.md names 8 instances in 3 shapes, and shape (3) is literally ours — *a pipeline ending
+  in `tail` reports the exit code of the last command: a background task reported SUCCESS having
+  written no file* = our 09:1x tmpfs incident where the reproduction check died mid-write. canons
+  independently: sunset security-workflow UNFAILABLE, sailor-workspace CI neutered by `|| true`,
+  flux-tensor-midi 3/4 mutations survive. => **DEGENERATE gate verdict priority RAISED, spec widened**
+  to include "a check whose reported status is not the check's own".
+  **CORROBORATE-CONTRADICT-CANDIDATE (resolved, no amendment) — the projection law**: *"what survives
+  is bounded by what the observation carried; no downstream cleverness recovers what the projection
+  discarded"*, their instance being "one scalar per cell cannot represent 'these twelve cells are
+  wrong together'". Checked against our bookings: QO3 booked AUC 0.880(g1)→0.999 ⇒ the forecast lane
+  is NOT refuted; but QG7 booked P1 FAIL precisely on the desert subpopulation (gen-1 AUC
+  0.546-0.663, mean 0.606). Two lanes, one finding: **the desert subpopulation is not representable
+  in a per-stream projection** — which is exactly why QG7 routed it to the QO6 e-process gate
+  ("evidence, not tail predicates"). QO2 architecture VINDICATED; **QO9 priority RAISED + framing
+  sharpened** (lane-held-out AUC split, gates in words, existing data, CPU ~30m).
+  **STEAL — exp5/exp7 "make the control able to fire"**: exp5 refuted their own steelman with a
+  pre-declared rule (judge better on clustered; honest size small, 0.002-0.006, 2 seeds); exp7 then
+  fixed their own bad baseline (bilinear-upsample so the free statistic is ACTUALLY blind) and the
+  CONTROL FIRED — judge wins ~equally on SPLIT and CLEAN ⇒ cross-seam structure is not the mechanism.
+  Feeds ST-STEEL's spec with its best worked example.
+  **TOOL — pong-quilt #87** (open, r67 tip, Casey-gated): C1 receipts asserted a gen the lane never
+  used (silent gen-0 on save) => our D-2 silent-edit class + receipt doctrine; added to RC-3.
+  Also: AI-Writings audit-lane slices (prose exports), canons 19:55Z (unfailable CI, 59 empty
+  recovered-copies, atlas undercount → RC-2), pong #86 closed (our SCOUT-4 fetch-depth root-cause
+  confirmed). [EMBASSY] pong #49 still unresponded — Casey day item, unchanged.

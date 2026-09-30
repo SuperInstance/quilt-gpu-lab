@@ -79,3 +79,20 @@
 ## CLOSED 2026-09-30 12:1x (booked in RESULTS.md this commit)
 - [x] ST1v2 quilt-cell-v0 @ lr 2e-5 + warmup 0.1 (GPU, fired 11:42 pre-wake) — **KILL** (syn 0.7207 < 0.95; real 0.4434 < 0.80 and now BELOW chance; fpr 0.80 > 0.10; abstain 0.90 pass hollow). Pre-registered interpretation fires: **the LR diagnosis was incomplete — failure is not LR.** ST1 line closed as a pair.
 - [ ] **ST1-AUDIT (CPU, next queue item)** — op-by-op leakage/detectability audit of the 6 corruption ops (sign_flip, wins_over, verdict_flip, tau_off, seed_drop, denom_swap) on our own corpus. Question: does a trivial mechanical check (token/format diff) separate corrupt from clean for each op — i.e. is the synthetic task solvable by surface artifacts rather than corruption semantics? Gates in words: for each op, a byte-level/regex-only discriminator is run; if it separates clean-vs-corrupt at AUC >= 0.95 the op is flagged LEAKY (excluded from ST1v3 mix unless it survives a re-render). Verdict KEEP-AUDIT iff >=1 op is flagged LEAKY AND the flagged set explains the syn/real gap direction; CLEAN iff no op reaches AUC >= 0.95 (⇒ suspect (b)/(c) become primary). Cost: CPU only, minutes, no API spend.
+
+## SCOUT-6 SPAWNED ITEMS (2026-09-30 2111Z)
+- [ ] **QC-JEV3** (CPU ~30m, pre-reg first, no GPU): malformed-spec / confident-null pin on OUR jeff lane.
+  jev-fusion retracted its JEV null as a MALFORMED REQUEST (object `state`, spurious `options` key) —
+  "a malformed spec does not error; it returns a well-formed, confidently unhelpful answer". Send the
+  DECIDE-1 prompt with the option set omitted from criteria keys and with an objectified `state`; GATE:
+  if a malformed spec silently yields a plausible reading, every DECIDE-1 receipt ships a request-shape
+  assertion and DECIDE-1 G2 (5/64) is re-examined for request shape, not representation-lock.
+- [ ] **QO9 — priority RAISED** (CPU ~30m, existing data, pre-reg first): oracle signal stream-vs-lane
+  stratification, now backed by two independent lanes (jev-fusion projection law + our QG7 P1 FAIL).
+  GATE-1: lane-held-out AUC (train on lanes != L, score L) drops >0.05 below within-lane AUC ⇒ QO3/QO7
+  horizon claim is within-lane only — book the caveat. GATE-2 (exploratory): report desert subpopulation
+  separately. (Original gates: proposals/runs/SCOUT-5-fleet-push-2026-09-30-1911Z.md)
+- [ ] **DEGENERATE gate verdict — priority RAISED, spec widened** (CPU ~30m): zero-variance statistic
+  => DEGENERATE not PASS (F1 G1, QO5 g0, W5a saturation) PLUS the third shape from jev-fusion
+  CONVERGENCE: a check whose REPORTED status is not the check's own (pipeline ending in `tail`; CI
+  neutered by `|| true`; unfailable workflow). Corroborated externally 2x (jev-fusion, canons 19:55Z).
