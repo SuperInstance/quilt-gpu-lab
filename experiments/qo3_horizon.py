@@ -6,7 +6,42 @@ import sys, json, numpy as np, torch, torch.nn as nn
 sys.path.insert(0, "tools"); sys.path.insert(0, "experiments")
 from qcell_sim import evaluate  # noqa: F401
 from qg2_scale_lane import PAD, W, shot_counts, skeleton_seqs, mutate_draw
-from experiments.oracle1 import run_lane_states  # reuse QO1 lane verbatim
+
+# run_lane_states: VERBATIM copy from experiments/oracle1.py (seed 1234, passive recording)
+# — copied rather than imported so QO1's training doesn't execute on import.
+S1, GENS1, SHOTS, BAR1, C = 4096, 12, 512, 0.45, 15
+
+def run_lane_states(S):
+    rng = np.random.default_rng(1234)
+    seq, L = skeleton_seqs(S)
+    t = torch.tensor(seq); v = shot_counts(t, SHOTS, -1)
+    champ_v = v.clone().double()
+    rows = []
+    def record(g, seq, L, v, champ_v):
+        rows.append({"gen": np.full(S, g), "len": L.copy(),
+                     "v": v.numpy().copy(), "cv": champ_v.numpy().copy(),
+                     "hist": np.array([np.bincount(seq[s], minlength=PAD + 1) for s in range(S)])})
+    record(0, seq, L, v, champ_v)
+    for g in range(GENS1):
+        cseq, cl = mutate_draw(seq, L, rng)
+        ct = torch.tensor(cseq.reshape(S * C, W))
+        f = shot_counts(ct, SHOTS, g)
+        F = torch.cat([v.reshape(-1, 1), f.reshape(S, C)], dim=1)
+        fmax = F.max(dim=1).values
+        cseq_t = torch.cat([torch.tensor(seq)[:, None, :], torch.tensor(cseq)], dim=1)
+        clen_t = torch.cat([torch.tensor(L)[:, None], torch.tensor(cl)], dim=1)
+        key = torch.rand(F.shape)
+        pick = torch.where(F == fmax[:, None], key, torch.tensor(-1.0)).argmax(dim=1)
+        ar = torch.arange(S)
+        bseq = cseq_t[ar, pick]; blen = clen_t[ar, pick]; btrain = F[ar, pick]
+        bv = shot_counts(bseq, SHOTS, g + 100)
+        promote = (bv >= champ_v)
+        seq = np.where(promote[:, None].numpy(), bseq.numpy(), seq)
+        L = np.where(promote.numpy(), blen.numpy(), L)
+        v = torch.where(promote, btrain, v).double()
+        champ_v = torch.where(promote, bv.double(), champ_v)
+        record(g + 1, seq, L, v, champ_v)
+    return rows, (champ_v.numpy() >= BAR1)
 
 S, GENS, BAR = 4096, 12, 0.45
 DEV = "cuda"

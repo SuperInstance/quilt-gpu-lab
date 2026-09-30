@@ -2852,3 +2852,24 @@ allocation: spend generations where P(cross) is high — cheap since width is in
 poverty, is the limiter — desert streams may need higher child variance (bigger mutations) to find
 gradient, spawning QG6.
 Artifacts: experiments/qg3_trap_anatomy.py, results/qg3_trap_anatomy/{results.json,run.log}.
+
+## QO3 — early-forecast horizon: g*=1 (stable); birth state carries ZERO signal (2026-09-30 04:5x): BOOKED — G1 PASS, G2 g*=1, G3 stable
+Pre-reg: proposals/runs/QO3-early-forecast-horizon.md (committed+pushed before firing). Lane = QO1-identical
+(seed 1234; run_lane_states copied verbatim into qo3_horizon.py — importing oracle1 would execute QO1's training).
+Per-gen MLP (3x64) + cv-only logistic, stream-split 80/20, 13 models.
+- **G1 PASS**: lane rate 0.5769 (2363/4096) CP95 [0.5616,0.5921] — inside QG2 band.
+- **G2 HEADLINE — g\* = 1**: AUC trajectory 0.500 (g0) -> 0.880 (g1) -> 0.913 (g2) -> ... -> 0.999 (g12).
+  One generation of selection makes crossing ~88% foreseeable; interpretation rule from pre-reg says
+  "g\*<=3 => crossing visible at/near birth, feeds QO2 early routing" — but sharper than predicted:
+  **gen 0 AUC = 0.5000 EXACTLY (both MLP and cv-logit)**. Birth champion state carries literally zero
+  signal about eventual crossing.
+- **G3 PASS (stable)**: bootstrap g\* median 1.0, IQR [1,1] across 200 resamples — no uncertainty.
+- **Tension with QG2 desert-at-birth**: the desert is a property of the birth LANDSCAPE (exp018 cloud
+  corroboration), but the stream-OBSERVABLE birth state does not encode it. After ONE selection round the
+  champion state exposes fate (0.88, and cv-only logit alone gives 0.811 — most of the early signal is
+  just where selection placed the champion after one round). Crossing is not visible at birth; it is
+  visible one round after selection starts. Routing (QO2) can decide at gen 1 with ~0.88 skill, or wait
+  until gen 3 for 0.93 at trivial extra cost.
+- Monotone AUC climb (no jump) = accumulating signal, consistent with QG3 slow-climb; no path-dependent
+  lottery component detectable at the observable level.
+Artifacts: experiments/qo3_horizon.py, results/qo3_horizon/{results.json,run.log}.

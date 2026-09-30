@@ -1,0 +1,70 @@
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+/home/eileen/projects/quilt-gpu-lab/experiments/qo3_horizon.py:80: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  Xt = torch.tensor(Xte, dtype=torch.float32).to(DEV)
+lane crossing rate 0.5769 (2363/4096) CP95 [0.5616,0.5921]
+G1 (QG2-band anchor): PASS
+gen  0: MLP AUC 0.5000 | cv-logit AUC 0.5000
+gen  1: MLP AUC 0.8797 | cv-logit AUC 0.8111
+gen  2: MLP AUC 0.9129 | cv-logit AUC 0.8830
+gen  3: MLP AUC 0.9309 | cv-logit AUC 0.9141
+gen  4: MLP AUC 0.9384 | cv-logit AUC 0.9309
+gen  5: MLP AUC 0.9597 | cv-logit AUC 0.9440
+gen  6: MLP AUC 0.9564 | cv-logit AUC 0.9541
+gen  7: MLP AUC 0.9644 | cv-logit AUC 0.9648
+gen  8: MLP AUC 0.9753 | cv-logit AUC 0.9756
+gen  9: MLP AUC 0.9808 | cv-logit AUC 0.9839
+gen 10: MLP AUC 0.9880 | cv-logit AUC 0.9913
+gen 11: MLP AUC 0.9928 | cv-logit AUC 0.9961
+gen 12: MLP AUC 0.9985 | cv-logit AUC 1.0000
+G2 horizon g* = 1
+G3 g* bootstrap: median 1.0 IQR [1.0,1.0] (99=never)
+booked results/qo3_horizon/results.json
