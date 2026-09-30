@@ -33,11 +33,17 @@ RETENTION="${RETENTION_PERIOD:-1h}" # ...and expires for real if we die mid-job
 DISPLAY="lane-$(date +%Y%m%d-%H%M%S)"
 NAME=""
 
+DELETED=0
 cleanup() {
   local rc=$?
-  if [ -n "$NAME" ]; then
+  if [ -n "$NAME" ] && [ "$DELETED" = "0" ]; then
+    DELETED=1
     echo "[lane] putting it away: gh codespace delete -c $NAME --force"
-    gh codespace delete -c "$NAME" --force >/dev/null 2>&1 || echo "[lane] WARN: delete failed — SWEEP REQUIRED" >&2
+    if gh codespace delete -c "$NAME" --force >/dev/null 2>&1; then
+      echo "[lane] deleted — storage quota released"
+    else
+      echo "[lane] WARN: delete failed — SWEEP REQUIRED: gh codespace delete -c $NAME --force" >&2
+    fi
   fi
   exit $rc
 }
@@ -57,7 +63,9 @@ echo "[lane] name=$NAME"
 # wait for Available (cold start is minutes; a prebuild would make this the pinch)
 state=""
 for _ in $(seq 1 40); do
-  state="$(gh codespace list --json name,state -q "[.[] | select(.name==\"$NAME\")] | .state" 2>/dev/null || true)"
+  # jq-free state check: gh's -q output was empty for us, leaving the wait loop
+  # spinning until an outer timeout killed the run (2026-09-29).
+  state="$(gh codespace list --json name,state 2>/dev/null | python3 -c 'import json,sys; n=sys.argv[1]; print(next((c["state"] for c in json.load(sys.stdin) if c["name"]==n), ""))' "$NAME" 2>/dev/null || true)"
   [ "$state" = "Available" ] && break
   sleep 10
 done
