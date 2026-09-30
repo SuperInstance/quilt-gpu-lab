@@ -1,6 +1,6 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-09-30T15:12:23.022227+00:00",
+  "generated_at": "2026-09-30T15:33:14.717146+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
     "RESULTS.md": "58f9d1dcd0630bf2a2e9893ba54e69dd88b5702dbf2f04a5ad6b1fd728121ab1",
@@ -119,6 +119,7 @@
     "viz_frontier.py": "d9d95c5e7c1f111b08dbbc941654898413c90fd7cc8c4045e776e49879bb79af",
     "viz_mq1_cg1.py": "99a0449ee0179a4a4e95c5f3a840c715d8ad33a9ac43c9d8c1d9fa07ae2f622d",
     "viz_tc.py": "3f325e2fa6657abd931e908d80e03e597e8c761dda7a0ceb049d91036e2eb5d9",
+    "w5b_lifetime_precision.py": "a6d2bbcc1b68da5f5390b69c6b9852df720017aaef00c9fecd7b06acf02e3f95",
     "x1_reverse_probe.py": "1970f44113e1756ca5682736274ff66c7145b4be17058084b716f380b6b79bb8",
     "x2_renderer_transfer.py": "b02711dcd7c973bfefa3e28d868eac757b187393a436867d1bbc1b889c3b07e4",
     "x3_stats_battery.py": "1ac6cf8c282a9605221d245fa1d8ad7f6bbc34e280b061604f4fc66c3dc2adb4",
