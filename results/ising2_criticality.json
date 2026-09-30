@@ -1,0 +1,194 @@
+{
+ "experiment": "ISING-2",
+ "device": "cuda",
+ "N": 128,
+ "J": 1.0,
+ "runs": 8,
+ "sweeps": [
+  300,
+  300
+ ],
+ "curve": [
+  {
+   "T": 1.5,
+   "m_mean": 0.56725,
+   "m_std": 0.43843,
+   "chi_mean": 22.92,
+   "chi_std": 26.39,
+   "binder": 0.60239
+  },
+  {
+   "T": 1.6,
+   "m_mean": 0.69439,
+   "m_std": 0.40255,
+   "chi_mean": 4.64,
+   "chi_std": 9.54,
+   "binder": 0.63454
+  },
+  {
+   "T": 1.7,
+   "m_mean": 0.82618,
+   "m_std": 0.27357,
+   "chi_mean": 69.46,
+   "chi_std": 94.4,
+   "binder": 0.63777
+  },
+  {
+   "T": 1.8,
+   "m_mean": 0.70314,
+   "m_std": 0.30656,
+   "chi_mean": 99.18,
+   "chi_std": 99.6,
+   "binder": 0.59377
+  },
+  {
+   "T": 1.9,
+   "m_mean": 0.15988,
+   "m_std": 0.12308,
+   "chi_mean": 44.28,
+   "chi_std": 61.51,
+   "binder": 0.50495
+  },
+  {
+   "T": 2.0,
+   "m_mean": 0.47657,
+   "m_std": 0.25843,
+   "chi_mean": 54.18,
+   "chi_std": 34.32,
+   "binder": 0.58928
+  },
+  {
+   "T": 2.1,
+   "m_mean": 0.45509,
+   "m_std": 0.30948,
+   "chi_mean": 19.01,
+   "chi_std": 21.95,
+   "binder": 0.60755
+  },
+  {
+   "T": 2.2,
+   "m_mean": 0.36429,
+   "m_std": 0.15753,
+   "chi_mean": 53.28,
+   "chi_std": 36.04,
+   "binder": 0.56892
+  },
+  {
+   "T": 2.3,
+   "m_mean": 0.20198,
+   "m_std": 0.18726,
+   "chi_mean": 20.59,
+   "chi_std": 11.11,
+   "binder": 0.36901
+  },
+  {
+   "T": 2.4,
+   "m_mean": 0.07636,
+   "m_std": 0.01924,
+   "chi_mean": 16.59,
+   "chi_std": 7.63,
+   "binder": 0.24552
+  },
+  {
+   "T": 2.5,
+   "m_mean": 0.04815,
+   "m_std": 0.01023,
+   "chi_mean": 7.65,
+   "chi_std": 3.11,
+   "binder": 0.2081
+  },
+  {
+   "T": 2.6,
+   "m_mean": 0.03644,
+   "m_std": 0.00309,
+   "chi_mean": 4.74,
+   "chi_std": 1.06,
+   "binder": -0.00494
+  },
+  {
+   "T": 2.7,
+   "m_mean": 0.03118,
+   "m_std": 0.00596,
+   "chi_mean": 3.32,
+   "chi_std": 1.05,
+   "binder": 0.07023
+  },
+  {
+   "T": 2.8,
+   "m_mean": 0.02618,
+   "m_std": 0.0029,
+   "chi_mean": 2.35,
+   "chi_std": 0.41,
+   "binder": -0.01385
+  },
+  {
+   "T": 2.9,
+   "m_mean": 0.02249,
+   "m_std": 0.00332,
+   "chi_mean": 1.58,
+   "chi_std": 0.47,
+   "binder": 0.0204
+  },
+  {
+   "T": 3.0,
+   "m_mean": 0.02028,
+   "m_std": 0.00204,
+   "chi_mean": 1.29,
+   "chi_std": 0.19,
+   "binder": 0.01116
+  },
+  {
+   "T": 3.1,
+   "m_mean": 0.01977,
+   "m_std": 0.00143,
+   "chi_mean": 1.15,
+   "chi_std": 0.12,
+   "binder": 0.01375
+  },
+  {
+   "T": 3.2,
+   "m_mean": 0.01771,
+   "m_std": 0.00132,
+   "chi_mean": 0.93,
+   "chi_std": 0.08,
+   "binder": -0.00761
+  },
+  {
+   "T": 3.3,
+   "m_mean": 0.01721,
+   "m_std": 0.00121,
+   "chi_mean": 0.8,
+   "chi_std": 0.17,
+   "binder": 0.02684
+  },
+  {
+   "T": 3.4,
+   "m_mean": 0.0161,
+   "m_std": 0.00106,
+   "chi_mean": 0.67,
+   "chi_std": 0.09,
+   "binder": 0.07586
+  },
+  {
+   "T": 3.5,
+   "m_mean": 0.01523,
+   "m_std": 0.0012,
+   "chi_mean": 0.62,
+   "chi_std": 0.09,
+   "binder": -0.00422
+  }
+ ],
+ "tc_est": 1.7851,
+ "tc_analytic": 2.2692,
+ "tc_err": 0.4841,
+ "unimodality_gate_pass": true,
+ "peak_index": 3,
+ "verdict": "DEVIATES",
+ "fabric_demo_abs_m": {
+  "T=0.5": 1.0,
+  "T=2.0": 0.3333
+ },
+ "gate_source": "proposals/runs/ISING-2-plan.md (frozen, pushed pre-run)",
+ "parent": "ISING-1 (MARGINAL; estimator diagnosis only)",
+ "wall_s": 38.7
+}
