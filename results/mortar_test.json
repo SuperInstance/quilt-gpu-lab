@@ -1,0 +1,12 @@
+{
+ "verdict": "INVALID_HARNESS",
+ "loocv_acc": 0.9844,
+ "chance": 0.25,
+ "control_acc": 0.4688,
+ "control_gate": 0.35,
+ "n_segments": 64,
+ "n_stories": 4,
+ "T": 40,
+ "seed": 20260929,
+ "features": "level-free shape features (quartile slopes, peak pos, post-peak, drops, ar1, plateau)"
+}

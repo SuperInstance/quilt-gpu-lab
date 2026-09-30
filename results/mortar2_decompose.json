@@ -1,0 +1,17 @@
+{
+ "verdict": "ORDER_CARRIES_LEANING",
+ "acc_all": 1.0,
+ "acc_order_only": 1.0,
+ "acc_amplitude_only": 0.9688,
+ "null_order_shuffle": 0.2812,
+ "null_label_shuffle": 0.2344,
+ "chance": 0.25,
+ "gates": {
+  "harness_null_max": 0.35,
+  "order_acc_min": 0.9,
+  "order_null_max": 0.35
+ },
+ "n_segments": 64,
+ "seed": 20260929,
+ "note": "mortar-1 returned INVALID_HARNESS (order-shuffle null 0.469) \u2192 this run decomposes order vs amplitude carriers."
+}
