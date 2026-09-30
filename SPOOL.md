@@ -202,3 +202,30 @@ Claim: at matched budget, the learned-in-weights arm wins on held-out next-token
 Gate: two arms, same tokens, same params, same wall-clock. KEEP iff the inner-loop arm's held-out loss is lower by ≥2% relative at the long-context point **and** ≥1 seed replicates. KILL iff the arms tie, or the inner loop loses, or the crossover does not exist within the budget we can actually run. Secondary (reported, not gating): the fixed-budget rate-distortion point (change in bits vs change in tokens-per-second over the attention-only arm).
 Feasibility: high — a small char/byte-level stream, our existing skeleton, `G_TIME_BUDGET` discipline; the compute analogue of the free-iteration economics that produced the free-delta KEEP. ~an afternoon, 1–2 GPU hours. Instruments the boat doctrine: at 60 mi offshore there is no window big enough, only weights that updated on the way out.
 Pre-registration required first: the crossover point and the ≥2% margin must be frozen in `proposals/runs/` before any code, per the assayer spec.
+
+---
+
+# WAVE 5 — edge-mine (evidence-based failure diagnosis / lifetime-scaled precision / skills-as-supervision, 2026-09-30)
+
+*Seeded from GEMS.md Wave 6 (assayed 64, 48, 27). Three gems this wave — the first edge-mine wave with a direct collision between the literature and our own booked doctrine (M10 × QO6).*
+
+## W5a — evidence-gated harness revision (does re-observation beat trace-reading when fixing the improver?)
+Q: Video-RSI's claim is that a trace is a sample from the harness, not from the world, so failure diagnosis that reads only traces is circular; the fix is going back to the raw environment to test competing explanations. Our QO6 already proved the substrate-side twin (evidence accumulators, not tail predicates, gate stream-killing). Does an evidence-based revision loop — replay raw lane streams with extra probes on failure — produce better harness/policy revisions than trace-only revision, at matched revision budget?
+Claim: the re-observation arm's revisions are retained more often by the QO6 retraction gate (i.e. they survive later evidence) and end with higher held-out score than the trace-only arm's.
+Gate: two revision arms, matched number of proposed revisions and matched probe budget. KEEP iff the re-observation arm's final harnesses score higher on the private held-out streams by the pre-registered margin AND a lower fraction of their revisions get RETRACTED by the QO6 gate across the run. KILL iff the arms tie on either axis, or re-observation's advantage disappears once the gate controls retention (i.e. the gate was doing all the work).
+Feasibility: high — CPU only; the lanes are replayable worlds, eproc.py and the QO6 gate are already booked and pinned. ~an afternoon. This is the falsifier for our own doctrine: if trace-reading matches re-observation here, QO6's "cannot retract = p-value in disguise" loses its claim to generalize.
+Pre-registration required first: margin and retention-delta thresholds frozen in `proposals/runs/` before any code.
+
+## W5b — lifetime-scaled ternary delta state (does memory lifetime tell us which deltas deserve to survive rounding?)
+Q: STEPQuant/LeapQuant's convergence — quantize recurrent-state memory by its lifetime and output-impact, not uniformly — has not been tested in the *training-from-scratch ternary* regime (they are post-training, 4-8 bit, frontier-scale). Our free-delta stream is a recurrence whose D-ledger already labels which deltas persist. Does lifetime-weighted precision allocation beat uniform ternary quantization on the same parameter budget?
+Claim: allocating the few high-precision (non-ternary) weights to the longest-lived delta positions (measured on the D-ledger statistics) yields lower loss than allocating them uniformly or at random positions, at equal high-precision budget.
+Gate: three allocation arms (lifetime-ranked / uniform / random), equal non-ternary budget, equal training budget, 2+ seeds. KEEP iff lifetime-ranked beats random by the pre-registered bpb margin on held-out loss in ≥2/3 seed-pairs. KILL iff allocations tie or rank-correlate with no advantage (which would say lifetime structure in the delta stream is real but not exploitable at allocation time).
+Feasibility: high — nursery skeleton + qthe ternary lineage (D2/D14/D19/D20); ~3 GPU hours per arm, overnight total. Directly extends gem #3 and tests whether the ternary-free-delta KEEP generalizes to a *principled* mixed-precision map.
+Pre-registration required first: the lifetime statistic, allocation budget, and bpb margin frozen in `proposals/runs/`.
+
+## W5c — verdict-to-skill distillation (does a frozen skill bank mined from the keep/kill ledger beat handing over the raw ledger?)
+Q: Meta-Skill/Skill-Space Shooting's claim — supervision lives at the granularity of the reusable abstraction extracted from failure feedback, and a frozen skill bank beats raw experience handoff by double digits. Our D-ledger is a labeled verdict corpus nobody else has. Does distilling it into a compact, frozen bank of reusable lane-skills (principles of when support/builds fail) improve downstream forecasting/routing (QO1/QO3-style gen-1 prediction) more than fine-tuning or prompting on the raw ledger entries?
+Claim: the skill-bank arm's gen-1 forecast AUC exceeds both the raw-ledger-context arm and the no-bank baseline by the pre-registered margin.
+Gate: three arms (frozen skill bank / raw ledger in context / baseline), identical eval streams. KEEP iff skill-bank AUC > raw-ledger AUC by ≥ the registered margin (meta-skills paper saw +12pts for bank-over-raw-experience; our margin must be frozen first, not borrowed). KILL iff the bank ties or loses — which would say our verdicts do not compress into transferable principles, i.e. the ledger is a log, not a curriculum.
+Feasibility: high — CPU only; ledger already exists; ~an afternoon of distillation + eval. Also the cheapest instrument for the Pincher-pattern thesis (repeated patterns compile into skills) on our own substrate.
+Pre-registration required first: distillation budget, bank size cap, and AUC margin frozen in `proposals/runs/`.

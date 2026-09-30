@@ -83,3 +83,36 @@
 | M8 | augmentation as equilibration policy | 2 | 3 | 2 | **12** | ASSAYED — parked |
 
 *Rubric honesty: novelty was not inflated this wave — only 1/8 cleared 27, and three of the parked items died on a single axis star (M1 on falsifiability, M3 on local-uniqueness, M7 on local-uniqueness). No gate was loosened to promote an entry.*
+
+## Wave 6 — the evidence-and-lifetime harvest (2026-09-30: edge-mine scout, focus rotated to state-quantization + reward-free RSI + harness search, since Wave 5 was TTT/continual/routing)
+
+*Search focus this wave: delta-rule recurrent-state quantization · reward-free self-improvement · harness evolution · skills-as-supervision. Sources are arXiv abstract-grade (direct API fetch, fresh listings 2026-09-29/30) — abstracts read, full papers NOT; flagged for re-verification before canon (same caveat as Waves 0/5).*
+
+### Abstraction mines (status MINED → ASSAYED below)
+
+- **M9 — Experience records replace reward in the self-improvement loop (reward-free RSI).** SelfSearch (agents improve from records of prior self-modification episodes — reasoning, actions, outcomes — no downstream reward during search, $4.03 total search cost to top-harness parity), RLTL;DR (policy writes its own TL;DR insight after failure, next rollout conditioned on the insight stack, then insights are *internalized* by backprop — Pass@1 0-1% → 12-31% on Pass@128=0 tasks), Video-RSI (cost-aware retention of harness revisions). Convergent essence: *the scarcest resource in self-improvement is not compute or reward — it is structured memory of one's own modification attempts.*
+  - https://arxiv.org/abs/2609.37968 (SelfSearch) · https://arxiv.org/abs/2609.37633 (RLTL;DR) · https://arxiv.org/abs/2609.37950 (Video-RSI)
+
+- **M10 — Failure diagnosis requires re-observation, not trace-reading.** Video-RSI's load-bearing move: execution traces contain only the evidence the current harness chose to acquire, so competing failure explanations are tested by going back to the *raw environment* with additional observations. Essence: *a trace is a sample from the harness, not from the world; debugging the harness from its own trace is circular.* This is exactly our QO6 doctrine ("a process that cannot retract is a p-value in disguise") stated as an agent-harness principle — and our lanes are replayable worlds, the ideal substrate for evidence-based (vs trace-based) harness revision.
+  - https://arxiv.org/abs/2609.37950 (Video-RSI) · contrast: https://arxiv.org/abs/2609.38106 (Correct Answers, Invalid Traces)
+
+- **M11 — Precision is allocated by memory lifetime, not uniformly.** STEPQuant and LeapQuant (both fresh 2026-09-29) independently converge: recurrent delta-rule states should be quantized per *lifetime and output-impact* of each memory element (errors in long-lived memory persist across decode steps; window-leap quantization + high-precision outlier "compensator" tokens). Essence: *mixed precision is not a compression knob — it is a statement about which memories deserve to survive rounding.* Direct synergy with gem #3 (ternary free-delta): our delta stream is a recurrence, and the D-ledger tells us which deltas are long-lived.
+  - https://arxiv.org/abs/2609.38169 (STEPQuant) · https://arxiv.org/abs/2609.38166 (LeapQuant) · https://arxiv.org/abs/2609.38112 (WUSH-KV, same cluster)
+
+- **M12 — The improvement process itself is searched (branch-diverse RSI).** Mixture of Self-Improving Branches: partition the dev set across evolving harness-branches (keep cases solved by *more* of a branch's leading harnesses than others, drop universally-solved cases), revise each branch's proposal policy from its own history, route at deploy. Essence: *single-trajectory self-improvement overfits its own dev set; the fix is speciation pressure on the improver, not the agent.*
+  - https://arxiv.org/abs/2609.37834 (MoSIB)
+
+- **M13 — Skills are the currency that turns failure feedback into supervision.** Skill-Space Shooting (recurring short behaviors mined from failures become policy-improvement corrections, shareable across tasks) and Meta-Skill/AI4AI (a Builder learns *principles of when support is needed* from Target feedback into a frozen skill bank; +8.95pts, and delivering the bank beats handing over the raw experience by 12pts). Essence: *supervision is not the failure or its fix — it is the reusable abstraction extracted at the right granularity.*
+  - https://arxiv.org/abs/2609.38178 (Skill-Space Shooting) · https://arxiv.org/abs/2609.38143 (Meta-Skills for Agent Harness Design)
+
+### ASSAY — Wave 6 scoring (novelty × local-uniqueness × falsifiability, per `docs/assayer-spec.md`)
+
+| # | abstraction | N | U | F | score | status |
+|---|------------|---|---|---|-------|--------|
+| M10 | failure diagnosis needs re-observation (evidence > trace) | 4 | 4 | 4 | **64** | SEEDED (SPOOL Wave 5) |
+| M11 | precision allocated by memory lifetime | 3 | 4 | 4 | **48** | SEEDED (SPOOL Wave 5) |
+| M13 | skills as the currency of corrective supervision | 3 | 3 | 3 | **27** | SEEDED (SPOOL Wave 5) |
+| M9 | experience records replace reward in RSI | 4 | 2 | 3 | **24** | ASSAYED — parked, U-starved (needs API-scale agents; our lanes are too small to show the effect at record-scale) |
+| M12 | the improver process itself is searched | 3 | 2 | 2 | **12** | ASSAYED — parked |
+
+*Rubric honesty: 3/5 cleared 27 this wave — the haul was unusually well-matched to our assets (QO6 evidence gates, delta-stream ternary lineage, keep/kill D-ledger). M13 passed at exactly 27 with no axis inflated; M9 died honestly on local-uniqueness. No gate loosened.*
