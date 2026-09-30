@@ -282,3 +282,42 @@ other agents are feeding us; keep the handshake lane warm.
   mean wait ~6756 ticks) so policy differences are invisible in the mean. Slack did redistribute wait hard by depth (r=6.48) — real tradeoff,
   opposite sign to the claim. Carry forward: fix the load (or report per-depth) before any admission-policy measurement. Pre-reg
   proposals/runs/F1-df-admission.md. QUEUE lines marked, RESULTS.md booked, manifest re-sealed.
+
+- [DONE 09:1x SCOUT-4 (day-conductor, non-GPU — rotation honored; GPU lane occupied by live W5b2)]
+  Fleet push sweep, 20 repos by recency + canons scout reports + open PRs. Full text:
+  proposals/runs/SCOUT-4-fleet-push-2026-09-30-1711Z.md. **HEADLINE — CONTRADICT: the JEV oracle is
+  NULL.** New repo `murmuration` (created 15:26Z today; "a null result for JEV as an oracle") ships
+  jev_control.json where **positive "2+2=4" and negative "2+2=5" both return argmax=unclear at
+  0.74/0.79** — a positive control and its negation read the SAME. Our whole DECIDE-1 lineage reads
+  jeff's answer distribution as signal (DECIDE-1b fitted temp 1.1289; DECIDE-1d named
+  "representation-locked argmin"; DECIDE-2 proposes surgery on its hidden states). Threat named:
+  the below-chance G2 (5/64) and the temperature pinned-at-6.0 boundary may be a BROKEN CALIBRATOR,
+  not an inverted mechanism. Caveat: their control is jev-1.13.0, ours jeff-0.8b — threat, not
+  refutation. Spawned **QC-JEV** (must fire before DECIDE-2).
+  Other finds: STEAL murmuration `std==0 ⇒ INCONCLUSIVE never PASSED` (our mirror instances: QO5 g0
+  AUC exactly 0.500, F1 G1 degenerate pass, W5a saturation) → spawned **DEGENERATE gate verdict**;
+  STEAL cellgraph witness-width (hash input narrower than computation ⇒ blind witness) → spawned
+  **WIT-1**; STEAL canons `pagination_cap_hit` completeness-bounds (their sort=pushed census
+  silently overlapped 773 repos!) → spawned **RC-2**; canons mutation-tested OUR receipt layer and
+  it FAILED correctly (RED on one comment, restored green) — independent stranger verification, and
+  their follow-up == our dirty-tree class → spawned **RC-3 sealer --require-clean** (two independent
+  asks, do it); 3 repos adopted wave-67 history-independent CI (better than our fetch-depth:0 fix
+  for pong-quilt#84); percept-plugs v0.4 EKN e-calibrated kNN → spawned **QO8**; quilt-neighbourhood
+  v0.2/v0.3 (basin-merge honest FAIL corroborates our QG3 basin law; DID overlay keeps revisions
+  value-pure). Also: canons verified OUR lucineer-system (161 tests exact, 502k words) but flags
+  1 commit / no inspectable provenance. quilt-gpu-lab has NO fleet canary (1-of-10 repos carry it).
+  GPU: W5b2 live all slice (PID 21187); no GPU item fired. Rotation next wake: book W5b2 verdict
+  (10:25 AK), then QG1d or QG4.
+
+## SCOUT-4 SPAWNED ITEMS (concrete)
+- [ ] **QC-JEV discriminating-control pin** (CPU ~5m, no GPU): run "2+2=4" vs "2+2=5" against OUR
+  jeff-0.8b. GATE: if argmax identical AND both max-probs within 0.10 → oracle non-discriminating,
+  DECIDE-2 premise VOID, DECIDE-1 G2 re-read as calibrator defect. MUST fire before DECIDE-2.
+- [ ] **RC-2 completeness-bounds field** (CPU ~30m): `bound` + `bound_hit` on result receipts
+  (canons pagination_cap_hit pattern).
+- [ ] **RC-3 sealer `--require-clean`** (CPU ~30m): refuse to seal dirty sealed paths at seal time.
+- [ ] **DEGENERATE gate verdict** (CPU ~30m): zero-variance gate statistic → DEGENERATE, not PASS
+  (F1 G1, QO5 g0, W5a saturation all this shape).
+- [ ] **WIT-1 witness-width digest** (CPU ~30m): digest input domain (dtype/runtime/device) INSIDE
+  the hash — cellgraph's blind-witness fix.
+- [ ] **QO8 e-calibrated oracle readout** (GPU, read-first): percept-plugs v0.4 EKN over (cv,v,gen).

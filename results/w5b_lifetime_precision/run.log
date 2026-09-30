@@ -1,0 +1,19 @@
+[cfg] device=cuda warm=4000 main=6000 seeds=[4241, 4242, 4243] k_frac=0.02
+[corpus] files=122 bytes=992001 vocab=215 train=892800 valid=99201
+[seed 4241] warmup done bpb=6.31333 commits=161 (206s)
+[seed 4241] arm=lifetime final_bpb=9.30227 hp=19345 (261s)
+[seed 4241] arm=uniform  final_bpb=10.61573 hp=19345 (254s)
+[seed 4241] arm=random   final_bpb=10.33607 hp=19345 (229s)
+[seed 4241] arm=antirank final_bpb=10.07632 hp=19345 (223s)
+[seed 4242] warmup done bpb=6.15534 commits=161 (150s)
+[seed 4242] arm=lifetime final_bpb=9.92628 hp=19345 (225s)
+[seed 4242] arm=uniform  final_bpb=9.20415 hp=19345 (222s)
+[seed 4242] arm=random   final_bpb=9.02610 hp=19345 (221s)
+[seed 4242] arm=antirank final_bpb=8.87728 hp=19345 (221s)
+[seed 4243] warmup done bpb=6.11438 commits=161 (162s)
+[seed 4243] arm=lifetime final_bpb=10.22629 hp=19345 (233s)
+[seed 4243] arm=uniform  final_bpb=10.05230 hp=19345 (237s)
+[seed 4243] arm=random   final_bpb=9.91057 hp=19345 (240s)
+[seed 4243] arm=antirank final_bpb=9.61186 hp=19345 (234s)
+[VERDICT] KILL mean_rel=-0.01052 wins=1/3
+[wrote] /home/eileen/projects/quilt-gpu-lab/results/w5b_lifetime_precision/results.json

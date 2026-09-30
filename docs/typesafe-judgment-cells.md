@@ -49,8 +49,15 @@ Pinch thresholds are tunable per gate.
 2. Every question needs `type` ("noul"|"choice"|"score").
 3. `criteria` must be an object/dict, never a list.
 4. `min`/`max` are not score fields — use `criteria` levels.
-5. models endpoint: GET /v1/models → jev-latest, jev-preview.
+5. models endpoint: GET /v1/models → jev-latest, jev-preview. (Nimble/Tev1 are NOT on this API —
+   "Unknown model" 2026-09-30; they ship via Ollama/Together/Bespoke distribution = the local
+   student class.)
 6. Marketing site (typesafe.ai) has no API — use api.typesafe.ai.
+7. `score` criteria must be a LIST of ordered level descriptions (400-verified 2026-09-30);
+   `choice` criteria stays a dict; noul takes instructions string or criteria object.
+8. Response shape (jev-1.13.0, richer than first verified 09-29): every answer carries `confidence`
+   + `probabilities`; `score` returns a graded FLOAT interpolated between levels (e.g. 2.12) plus an
+   echoed `legend`; `choice` returns the chosen label + full probability dict.
 
 ## Where the key lives
 `/mnt/c/Users/casey/key.txt` → TYPESAFE_AI_KEY (read at use-time, never store values).

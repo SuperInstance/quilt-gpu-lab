@@ -1,0 +1,10 @@
+[cfg] w5b2 device=cuda warm=4000 main=6000 seeds=[5291, 5292, 5293, 5294, 5295] arms=['antirank', 'random'] corpus=1002774B vocab=215 files=125
+[seed 5291] warm bpb=6.27975 (195s)
+[seed 5291] arm=antirank final=8.83181 (267s)
+[seed 5291] arm=random   final=11.14607 (233s)
+[seed 5292] warm bpb=6.15160 (163s)
+[seed 5292] arm=antirank final=9.37486 (246s)
+[seed 5292] arm=random   final=11.07945 (280s)
+[seed 5293] warm bpb=6.48833 (177s)
+[seed 5293] arm=antirank final=9.87220 (246s)
+[seed 5293] arm=random   final=9.53015 (231s)

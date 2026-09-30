@@ -1,0 +1,75 @@
+{
+  "config": {
+    "seq": 64,
+    "batch": 64,
+    "commit_every": 25,
+    "hidden": 384,
+    "lr": 0.003,
+    "k_frac": 0.02,
+    "t_warm": 40,
+    "t_main": 80,
+    "seeds": [
+      1
+    ],
+    "arms": [
+      "lifetime",
+      "uniform",
+      "random",
+      "antirank"
+    ],
+    "margin": 0.005,
+    "corpus_bytes": 987710,
+    "corpus_files": 121,
+    "vocab": 215,
+    "gru_equiv_max_err": 2.7755575615628914e-16
+  },
+  "seeds": {
+    "1": {
+      "warmup_bpb": 10.40079,
+      "arms": {
+        "lifetime": {
+          "final_bpb": 10.11398,
+          "hp_slots": 19345,
+          "curve": [],
+          "secs": 5.6
+        },
+        "uniform": {
+          "final_bpb": 9.597068,
+          "hp_slots": 19345,
+          "curve": [],
+          "secs": 5.4
+        },
+        "random": {
+          "final_bpb": 9.274211,
+          "hp_slots": 19345,
+          "curve": [],
+          "secs": 3.8
+        },
+        "antirank": {
+          "final_bpb": 9.375692,
+          "hp_slots": 19345,
+          "curve": [],
+          "secs": 4.0
+        }
+      }
+    }
+  },
+  "verdict": {
+    "rule": "KEEP iff mean_rel>=0.005 and wins>=1/1",
+    "mean_rel_improvement": -0.090549,
+    "wins": 0,
+    "n_pairs": 1,
+    "pairs": [
+      {
+        "seed": 1,
+        "lifetime": 10.11398,
+        "random": 9.274211,
+        "rel_improvement": -0.09054883482810565
+      }
+    ],
+    "verdict": "KILL",
+    "secondary_antirank_vs_lifetime": {
+      "1": -0.738288
+    }
+  }
+}

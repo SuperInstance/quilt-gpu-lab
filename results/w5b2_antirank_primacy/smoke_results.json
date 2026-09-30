@@ -1,0 +1,47 @@
+{
+  "config": {
+    "arms": [
+      "antirank",
+      "random"
+    ],
+    "seeds": [
+      1
+    ],
+    "margin": 0.005,
+    "t_warm": 40,
+    "t_main": 80,
+    "machinery": "w5b_lifetime_precision (committed)"
+  },
+  "seeds": {
+    "1": {
+      "warmup_bpb": 10.720528,
+      "arms": {
+        "antirank": {
+          "final_bpb": 8.630375,
+          "hp": 19345,
+          "secs": 3.0
+        },
+        "random": {
+          "final_bpb": 8.829732,
+          "hp": 19345,
+          "secs": 3.0
+        }
+      }
+    }
+  },
+  "verdict": {
+    "rule": "KEEP iff mean_rel>=0.005 and wins>=1/1",
+    "mean_rel_improvement": 0.022578,
+    "wins": 1,
+    "n_pairs": 1,
+    "pairs": [
+      {
+        "seed": 1,
+        "antirank": 8.630375,
+        "random": 8.829732,
+        "rel_improvement": 0.02257792195731412
+      }
+    ],
+    "verdict": "KEEP"
+  }
+}
