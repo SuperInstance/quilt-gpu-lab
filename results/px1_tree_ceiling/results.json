@@ -1,0 +1,281 @@
+{
+  "experiment": "PX1 decision-tree ceiling (fleet-triage Exp 2)",
+  "device": "cpu (numpy 1.x + sklearn 1.9.0, no CUDA involved)",
+  "n_states": 180361,
+  "provenance_fnv1a64": "0x75f652bc1d8464b8",
+  "n_composed_states": 11520,
+  "frac_composed": 0.06387190135339679,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "pre_registered": "P1-P4 in module docstring, frozen before run",
+  "runs": [
+    {
+      "seed": 0,
+      "n_train": 144288,
+      "n_test": 36073,
+      "linear": {
+        "top1": 0.1944667757048208,
+        "set_recall": 0.19894605251520395
+      },
+      "linear_split": {
+        "SIMPLE": {
+          "top1": 0.18953899130228277,
+          "set_recall": 0.1877553443676874
+        },
+        "COMPOSED": {
+          "top1": 0.2640402347024308,
+          "set_recall": 0.35694328024587874
+        }
+      },
+      "depth3": {
+        "top1": 0.485792698139883,
+        "set_recall": 0.4555468210625808,
+        "n_leaves": 8,
+        "split": {
+          "SIMPLE": {
+            "top1": 0.4661145248909075,
+            "set_recall": 0.4519480455227182
+          },
+          "COMPOSED": {
+            "top1": 0.7636211232187762,
+            "set_recall": 0.5063565241687622
+          }
+        }
+      },
+      "depth4": {
+        "top1": 0.6075735314501151,
+        "set_recall": 0.572223652302936,
+        "n_leaves": 16,
+        "split": {
+          "SIMPLE": {
+            "top1": 0.5926618576899101,
+            "set_recall": 0.5740243162898786
+          },
+          "COMPOSED": {
+            "top1": 0.818105616093881,
+            "set_recall": 0.5468007823414361
+          }
+        }
+      },
+      "depth6": {
+        "top1": 0.751781110525878,
+        "set_recall": 0.7213553072935437,
+        "n_leaves": 64,
+        "split": {
+          "SIMPLE": {
+            "top1": 0.7396028141419538,
+            "set_recall": 0.7257334679055224
+          },
+          "COMPOSED": {
+            "top1": 0.9237217099748533,
+            "set_recall": 0.6595417714445375
+          }
+        }
+      },
+      "deep": {
+        "top1": 0.9985030355113242,
+        "set_recall": 0.9978619413279685,
+        "n_leaves": 1297,
+        "split": {
+          "SIMPLE": {
+            "top1": 0.9983970077477959,
+            "set_recall": 0.9977105058189749
+          },
+          "COMPOSED": {
+            "top1": 1.0,
+            "set_recall": 1.0
+          }
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "n_train": 144288,
+      "n_test": 36073,
+      "linear": {
+        "top1": 0.193995509106534,
+        "set_recall": 0.1943798487986662
+      },
+      "linear_split": {
+        "SIMPLE": {
+          "top1": 0.18759983434893215,
+          "set_recall": 0.1840412240148973
+        },
+        "COMPOSED": {
+          "top1": 0.2893692104102338,
+          "set_recall": 0.3485516835759447
+        }
+      },
+      "depth3": {
+        "top1": 0.47936129515149833,
+        "set_recall": 0.44904426605837633,
+        "n_leaves": 8,
+        "split": {
+          "SIMPLE": {
+            "top1": 0.4619002543927114,
+            "set_recall": 0.4461547400715004
+          },
+          "COMPOSED": {
+            "top1": 0.7397441552712837,
+            "set_recall": 0.49213350977797377
+          }
+        }
+      },
+      "depth4": {
+        "top1": 0.6015302303662019,
+        "set_recall": 0.5692338815602752,
+        "n_leaves": 16,
+        "split": {
+          "SIMPLE": {
+            "top1": 0.5890078684257233,
+            "set_recall": 0.5707953364153446
+          },
+          "COMPOSED": {
+            "top1": 0.788266431407146,
+            "set_recall": 0.5459491251286575
+          }
+        }
+      },
+      "depth6": {
+        "top1": 0.7453219859728883,
+        "set_recall": 0.7174222773133316,
+        "n_leaves": 64,
+        "split": {
+          "SIMPLE": {
+            "top1": 0.7343370999230906,
+            "set_recall": 0.7212252403771661
+          },
+          "COMPOSED": {
+            "top1": 0.9091310101455669,
+            "set_recall": 0.6607116600499926
+          }
+        }
+      },
+      "deep": {
+        "top1": 0.9989188589804009,
+        "set_recall": 0.9980661568538929,
+        "n_leaves": 1275,
+        "split": {
+          "SIMPLE": {
+            "top1": 0.998846358634562,
+            "set_recall": 0.9979364750692326
+          },
+          "COMPOSED": {
+            "top1": 1.0,
+            "set_recall": 1.0
+          }
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "n_train": 144288,
+      "n_test": 36073,
+      "linear": {
+        "top1": 0.20489008399634076,
+        "set_recall": 0.2072420607419083
+      },
+      "linear_split": {
+        "SIMPLE": {
+          "top1": 0.20038979447200567,
+          "set_recall": 0.19889881655473435
+        },
+        "COMPOSED": {
+          "top1": 0.2738795835219556,
+          "set_recall": 0.33514410743926365
+        }
+      },
+      "depth3": {
+        "top1": 0.47808610317966344,
+        "set_recall": 0.4483507649171719,
+        "n_leaves": 8,
+        "split": {
+          "SIMPLE": {
+            "top1": 0.4606366643042759,
+            "set_recall": 0.44503082357440965
+          },
+          "COMPOSED": {
+            "top1": 0.7455862381167949,
+            "set_recall": 0.49924551078919566
+          }
+        }
+      },
+      "depth4": {
+        "top1": 0.5981204779197737,
+        "set_recall": 0.5645041206125674,
+        "n_leaves": 16,
+        "split": {
+          "SIMPLE": {
+            "top1": 0.5849279470824474,
+            "set_recall": 0.5658621882487935
+          },
+          "COMPOSED": {
+            "top1": 0.8003621548211861,
+            "set_recall": 0.5436849253055681
+          }
+        }
+      },
+      "depth6": {
+        "top1": 0.74706844454301,
+        "set_recall": 0.718200989263834,
+        "n_leaves": 64,
+        "split": {
+          "SIMPLE": {
+            "top1": 0.736061894637373,
+            "set_recall": 0.7220400509601431
+          },
+          "COMPOSED": {
+            "top1": 0.9157990040742418,
+            "set_recall": 0.659348121321865
+          }
+        }
+      },
+      "deep": {
+        "top1": 0.9985307570759294,
+        "set_recall": 0.9978461664376336,
+        "n_leaves": 1278,
+        "split": {
+          "SIMPLE": {
+            "top1": 0.9984349161351288,
+            "set_recall": 0.9977056686128265
+          },
+          "COMPOSED": {
+            "top1": 1.0,
+            "set_recall": 1.0
+          }
+        }
+      }
+    }
+  ],
+  "summary_top1": {
+    "linear": {
+      "top1_mean": 0.19778412293589853,
+      "top1_std": 0.005028355264302389
+    },
+    "depth3": {
+      "top1_mean": 0.48108003215701495,
+      "top1_std": 0.0033727777020155143
+    },
+    "depth4": {
+      "top1_mean": 0.6024080799120303,
+      "top1_std": 0.003908795221949926
+    },
+    "depth6": {
+      "top1_mean": 0.7480571803472588,
+      "top1_std": 0.0027280360903906902
+    },
+    "deep": {
+      "top1_mean": 0.998650883855885,
+      "top1_std": 0.0001898246942235214
+    }
+  },
+  "branch_rulings": [
+    "P1 CONFIRMED: deep tree ~= 0.9987; ceiling is the exact function. Linear 0.1978 = 19.8% of ceiling.",
+    "P2: shallow trees BEAT linear substantially -> task is nonlinearly separable but shallowly structured.",
+    "P3 (seed 0): linear SIMPLE 0.1895 -> COMPOSED 0.2640 (drop -0.0745); deep-tree SIMPLE 0.9984 -> COMPOSED 1.0000 (drop -0.0016)."
+  ],
+  "runtime_s": 38.7
+}
