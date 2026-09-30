@@ -17,6 +17,12 @@ exp022.telemetry.{k3..k7}.jsonl — read-only.
 
 Two-sided exact tests, no scipy: binomial pmf via lgamma; Fisher 2x2 two-sided via
 the "all tables no more probable than observed" rule; BH step-up at q=0.01.
+
+ANGLE UNITS (Amendment 1): canonical machinery = pi-units (theta_pi * pi, standard
+half-angle) — the variant that reproduces the BOOKED census bit-exactly (1892/1920).
+The committed qg1_exact_census.py reads radians and does NOT reproduce its own booking
+(1503/1920); running this runner with --angle-units radians reproduces that broken
+variant for the differential record (fire 2: 417 fails, rx/crx Fisher 7.7e-41/4.9e-35).
 """
 from __future__ import annotations
 
@@ -38,6 +44,7 @@ REBAND_Z = 2.5758         # two-sided 99% normal quantile
 BH_Q = 0.01
 FISHER_ALPHA = 0.001
 FLAGS = ["h", "x", "rx", "rz", "crx", "cx", "swap"]
+ANGLE_UNITS = "pi"  # canonical: theta_pi * pi (Amendment 1); "radians" = broken committed variant
 
 
 # ---------- verbatim from experiments/qg1_exact_census.py ----------
@@ -45,11 +52,10 @@ def gate2(g):
     n = g[0]
     if n == "h":  return torch.tensor([[1,1],[1,-1]], dtype=torch.complex128)/math.sqrt(2)
     if n == "x":  return torch.tensor([[0,1],[1,0]], dtype=torch.complex128)
+    t = float(g[1]) * (math.pi / 2 if ANGLE_UNITS == "pi" else 0.5)
     if n == "rx":
-        t = float(g[1])/2
         return torch.tensor([[complex(math.cos(t),0),complex(0,-math.sin(t))],[complex(0,-math.sin(t)),complex(math.cos(t),0)]], dtype=torch.complex128)
     if n == "rz":
-        t = float(g[1])/2
         return torch.tensor([[complex(math.cos(t),-math.sin(t)),0],[0,complex(math.cos(t),math.sin(t))]], dtype=torch.complex128)
     raise ValueError(f"unknown 1q gate {n}")
 
@@ -134,6 +140,9 @@ def sha256(path: Path) -> str:
 
 
 def main() -> None:
+    global ANGLE_UNITS
+    if "--angle-units" in sys.argv:
+        ANGLE_UNITS = sys.argv[sys.argv.index("--angle-units") + 1]
     # ---- corpus (identical loading to the census) ----
     streams = {}
     for kk in ["k3", "k4", "k5", "k6", "k7"]:
@@ -243,6 +252,7 @@ def main() -> None:
             "telemetry_sha256": {f"exp022.telemetry.{kk}.jsonl": sha256(CORPUS / f"exp022.telemetry.{kk}.jsonl")
                                  for kk in ["k3", "k4", "k5", "k6", "k7"]},
             "device": DEV,
+            "angle_units": ANGLE_UNITS,
         },
         "failing_table": table,
     }

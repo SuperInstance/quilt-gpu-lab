@@ -37,6 +37,19 @@ unitary chain — GPU only for that matmul). Per pair:
   readout is wrong for genomes carrying it. No fix, no re-roll in this run — a corrected census would be a new
   pre-registration.
 
+## AMENDMENT 1 (2026-09-30, pre-fire, declared)
+The committed census script (experiments/qg1_exact_census.py @cf268c6) does NOT reproduce the
+booked census it anchors this run on: re-running it today gives 1503/1920 (different schema than
+the committed results — the booking came from an uncommitted variant; dirty-tree receipt class).
+Differential localization (this run's own enrichment table): failures enrich on the angle-carrying
+gates rx (Fisher 7.7e-41) and crx (4.9e-35), not on angle-free gates — and the committed script
+reads telemetry angles as RADIANS while its own booked conventions block declares pi-units
+(theta_pi * pi, standard half-angle). Probe: the pi-unit variant reproduces the booked anchor
+BIT-EXACTLY (1892/1920 = 0.985417). Arbitration therefore proceeds on the BOOKING machinery
+(pi-units), which is what "the 28 recorded values" were computed against. The radians run is
+retained in results/qg1_residual/ history as the localization evidence. A corrected census script
+is a NEW pre-registration (QG1c), not a silent fix.
+
 ## Discipline
 No new data, no re-rolls, telemetry read-only, keys never echoed. Fire-time pins captured in the RESULTS entry.
 Honest prior note: 28 observed is BELOW the ~96 Gaussian expectation at 2σ/1920, and 28 < at-risk-population
