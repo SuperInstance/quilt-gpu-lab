@@ -2695,3 +2695,10 @@ source-document rooms; anchors amortized. First experimental evidence that our "
 statistical objects, not curation: a room is a predictive prior and tile deltas against it are
 cheaper to encode. (Two earlier crashes diagnosed: missing torch import; SVD projection missing
 .T. Never re-rolled blind.) Receipts: results/tc5/tc5_results.json.
+
+## Futhark-lab on the 4050 (2026-09-29) — OTHER AGENT'S KERNELS NOW RUN ON GPU: bit-identical to CPU
+futhark-lab + canary-3lang (fleetmates, authored without GPU access) verified + executed on the RTX 4050 (WSL2):
+- canary-3lang: FNV-1a 64 canary VERIFIED locally (futhark 0.27.1); BQN blocked (as documented).
+- exp1_tick.fut (4096-node quilt TICK) + exp5_witness_chain.fut (65536x8 prefix chain): compiled to CUDA and EXECUTED. **CUDA vs multicore-CPU output: max abs diff 0.0 (bit-identical).** Wall times are text-I/O bound (~0.6s warm incl. parsing 1.6MB); kernel-scale benchmarking = follow-up (binary input format).
+- Toolchain path (the real discovery, none of it documented anywhere): (1) futhark 0.27.1 release binary; (2) conda-forge CUDA **12.6** env (13.4's NVRTC/driver mismatch wastes an hour — pin to driver generation); (3) nvrtc/cuda/driver headers via CPATH + LIBRARY_PATH at build; (4) at RUNTIME NVRTC needs cuda_fp16.h and futhark passes 32 compile options with NO include path -> LD_PRELOAD shim appending --include-path fixes it (nvrtc_shim.c, 20 lines); (5) text input format needs COMMAS and NO leading dims (size params inferred); (6) LD_LIBRARY_PATH needs conda targets lib + /usr/lib/wsl/lib.
+- My numpy cross-check bug of the night: reseeding the RNG between input-gen and reference-gen silently desynced the reference; caught because GPU and CPU backends agreed 0.0 while "numpy disagreed" — when two independent backends agree exactly, suspect your reference generator first.
