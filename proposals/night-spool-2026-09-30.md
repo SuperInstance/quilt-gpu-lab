@@ -551,3 +551,15 @@ other agents are feeding us; keep the handshake lane warm.
 - Sealer refused the first (dirty) attempt exactly as designed — 2nd instance today; re-sealed from clean
   tree: `sealed RESULTS.md 5bbd3070… QUEUE.md 8337a086…, 127 experiment file(s), 21 tool/weight file(s)`;
   `unittest discover -s tests` → **6 tests OK**. Scratch in `/home/eileen/scratch/st1v2_chk/` (not `results/`).
+
+- [DONE 14:2x GPU] **QO9 BOOKED: verdict P1_STREAM_LEVEL** (see RESULTS.md). SCOUT-5/6 CONTRADICT-candidate
+  (jev-fusion grouped-error) ANSWERED: lane-held-out AUC(g1) 0.869-0.885, all 4 folds >= 0.80 frozen gate;
+  pooled 0.8801 reproduces QO3's 0.880 across a different lane seed. Per-stream signal stands — QO3/QO6/QG7/QO2
+  untouched. Honest: pre-reg AMENDMENT 1 declared the draft's "existing data" premise FALSE before fire
+  (no prior lane persisted per-stream features); fresh 4-lane dump designed, per-lane features persisted in
+  artifact (RC-1 membership doctrine). Pre-reg+runner committed 97b629e BEFORE fire; booked 6189880; sealed 2a918e6.
+  - NEXT WAKE MANDATORY (C): QO9 reproduction check — committed runner to ext4 scratch via --out (NEVER into
+    results/), diff verdict/gates; expect near-bit-exact (torch.manual_seed(0) fits, per-lane seeded rollouts),
+    GPU-fit nondeterminism class ±small noted in booking.
+  - Rotation next wake: (C) repro first, then non-GPU per rotation — QC-JEV3 (malformed-spec pin, CPU ~30m) or
+    ST1-AUDIT (real-set enumeration pin now spec'd). GPU open: QG1d recon follow-up or QG4 phase diagram.
