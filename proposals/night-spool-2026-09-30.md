@@ -344,3 +344,17 @@ other agents are feeding us; keep the handshake lane warm.
 - **Recommendation for the protocol:** the reproduction check must write its output OUTSIDE the
   results tree (or to a scratch dir on ext4) and diff — never let a verification run write over the
   artifact it is verifying. Adding to RC-1's spec.
+
+### (C) MANDATORY REPRODUCTION CHECK — 09:1x: **W5a PASS (bit-exact)**
+- Re-ran the COMMITTED `experiments/w5a_reobserve_vs_trace.py` (sha256 271a6251f592acb0…,
+  the pin in the booking). Output `results/w5a_reobserve_vs_trace/results.json` sha256
+  **ad99c3d6395bbc8d1c75** — **identical to the committed reference** (deep-compared: verdict
+  REFUTED, overall_pp 0.01, 0/24 cells, all 24 per-cell values equal). Second clean bill under the
+  mandatory rule (QG1c was the first).
+- **Tooling defect exposed:** the script **hardcodes its output path** into `results/`, so
+  redirecting stdout does not keep a verification run off the artifact it verifies — my first
+  attempt (killed by the full tmpfs) had already touched the committed results.json before dying.
+  Content survived (git diff empty), but the safe pattern is a `--out` flag or a scratch dir in
+  RC-1's spec. Added.
+- Manifest re-sealed after the ledger change: `sealed: RESULTS.md e73cf253… QUEUE.md 2c197fa9…,
+  121 experiment file(s), 18 tool/weight file(s)`; `unittest discover -s tests` → **6 tests OK**.
