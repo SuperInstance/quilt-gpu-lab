@@ -186,10 +186,11 @@ def run_seed(seed):
     Yu = predict_mlp(params_u, e_rooms)
     Yf = predict_mlp(params_f, e_rooms)
     eval_Y = np.asarray(eval_l) + 1
-    Yh = np.where(np.asarray(em) <= thr, Yf, np.asarray(epred))  # hybrid
+    epred_i = np.asarray(epred) + 1          # field predictions -> one-hot index space
+    Yh = np.where(np.asarray(em) <= thr, Yf, epred_i)  # hybrid
 
     acc = lambda Yh_: float(np.mean(Yh_ == eval_Y))
-    field_only = float(np.mean(np.asarray(epred) == eval_Y))
+    field_only = float(np.mean(epred_i == eval_Y))
     return {
         "seed": seed,
         "n_frontier": int(len(frontier_idx)),
