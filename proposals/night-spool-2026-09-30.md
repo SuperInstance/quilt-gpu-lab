@@ -406,3 +406,36 @@ other agents are feeding us; keep the handshake lane warm.
   rotation — PR-SWEEP #6 or the cheap unclaimed CPU items (RC-3 sealer `--require-clean`+tracked-artifact
   assert, DEGENERATE gate verdict, RC-2 completeness-bounds). GPU: QG1d recon follow-up or QG4 phase diagram.
 - Commits: 10b661f (pre-reg+runner), 802bae1 (crash fix), 73377fd (booked+result artifact), a75b2fb (re-seal).
+
+## DAY SLICE 10:25 (booking cron) — W5b2 BOOKED: **KEEP** (confirmation-grade); missing spool row backfilled
+- **Idempotent check FIRST (no double-book).** RESULTS.md + QUEUE.md already carry the W5b2 booking from the
+  09:44 wake (commit 7706ec7, "BOOKED: W5b2 KEEP (+8.35% 4/5, confirmation-grade — antirank default)").
+  `results/w5b2_antirank_primacy/{results.json,run.log,smoke_results.json}` + the runner are all tracked,
+  the manifest is in sync (`unittest discover -s tests` → **6 tests OK**), tree clean at HEAD 90a36b1 with
+  nothing unpushed. So: **no re-book, no re-run, no re-fire** — verified against the frozen gates instead.
+- **Gate arithmetic re-derived independently from the committed results.json: verdict KEEP, honestly.**
+  Frozen gate (proposals/runs/W5b2-antirank-primacy.md): KEEP iff mean rel bpb improvement antirank-over-random
+  >= 0.5% AND wins >= 4/5. Measured: mean_rel = **+8.35%** (gate >= +0.5%) and wins **4/5** (gate >= 4/5).
+  Pair detail (rel = (random − antirank)/random): 5291 **+20.76%**, 5292 **+15.39%**, 5293 **−3.59%** (the
+  only loss; also the worst warmup fork, bpb 6.488 — booked as an observation, never adjusted for), 5294
+  **+4.00%**, 5295 **+5.21%**. Budget equality clean: hp == 19345 for every arm, identical data order/fresh
+  optimizer per seed. No re-roll, no blind re-run.
+- **Tie-back to W5b (the two-sided design paying off):** W5b KILLed the *primary* (lifetime/persistence
+  allocation) at mean_rel **−1.05%**, wins **1/3**, and seed sign-flip (lifetime was the BEST arm at 4241
+  +10.0%, the WORST at 4242 −9.97% / 4243 −3.19%), while its pre-registered *ungated secondary* showed
+  antirank over random **3/3** (+2.51/+1.65/+3.01%). W5b2 is that secondary promoted to a NEW directional
+  pre-reg on fresh seeds (5291–5295, zero overlap with 4241–4243) — and it confirms: **instability, not
+  persistence, marks which weights deserve the exact slots** in our regime. Doctrine landing: precision
+  allocation defaults to commit-count-ASCENDING (shortest-lived first).
+- **Fail-loud / honest notes:**
+  1. **The spool row for this booking was MISSING.** The 09:44 wake booked RESULTS.md + QUEUE.md and skipped
+     the append-only FINDINGS/DAY log; caught by re-reading the spool instead of trusting the commit message
+     (same "check, don't assume" reflex as the QO6 live-unbooked and the QC-JEV untracked-artifact finds).
+     This cron backfills it; the booking itself needed nothing.
+  2. **4th witness of the hardcoded-output-path defect:** `experiments/w5b2_antirank_primacy.py` writes to a
+     fixed `OUT = results/w5b2_antirank_primacy` with no `--out`, so any verification re-run would overwrite
+     the artifact it verifies (after W5a and qc_jev_control, which did overwrite). RC-1 spec item stands:
+     every runner takes `--out`; verification writes to ext4 scratch, never into `results/`.
+  3. Scope honesty: one corpus, one architecture (GRU-384) — the KEEP claims "reproducible in OUR regime,"
+     not generality. 161 warmup commits keep change_count coarse (the pre-reg's accepted risk).
+- No re-roll, no re-run, no re-fire. GPU lane free after this slice.
