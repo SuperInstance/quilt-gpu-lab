@@ -1,0 +1,14 @@
+/home/eileen/projects/quilt-gpu-lab/experiments/wg1_wgsl/target/release/deps/thiserror-379c1e569749c752.d: /home/eileen/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/lib.rs /home/eileen/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/aserror.rs /home/eileen/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/display.rs /home/eileen/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/var.rs /home/eileen/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/private.rs /home/eileen/projects/quilt-gpu-lab/experiments/wg1_wgsl/target/release/build/thiserror-ae62066e6df89413/out/private.rs
+
+/home/eileen/projects/quilt-gpu-lab/experiments/wg1_wgsl/target/release/deps/libthiserror-379c1e569749c752.rlib: /home/eileen/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/lib.rs /home/eileen/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/aserror.rs /home/eileen/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/display.rs /home/eileen/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/var.rs /home/eileen/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/private.rs /home/eileen/projects/quilt-gpu-lab/experiments/wg1_wgsl/target/release/build/thiserror-ae62066e6df89413/out/private.rs
+
+/home/eileen/projects/quilt-gpu-lab/experiments/wg1_wgsl/target/release/deps/libthiserror-379c1e569749c752.rmeta: /home/eileen/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/lib.rs /home/eileen/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/aserror.rs /home/eileen/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/display.rs /home/eileen/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/var.rs /home/eileen/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/private.rs /home/eileen/projects/quilt-gpu-lab/experiments/wg1_wgsl/target/release/build/thiserror-ae62066e6df89413/out/private.rs
+
+/home/eileen/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/lib.rs:
+/home/eileen/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/aserror.rs:
+/home/eileen/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/display.rs:
+/home/eileen/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/var.rs:
+/home/eileen/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/private.rs:
+/home/eileen/projects/quilt-gpu-lab/experiments/wg1_wgsl/target/release/build/thiserror-ae62066e6df89413/out/private.rs:
+
+# env-dep:OUT_DIR=/home/eileen/projects/quilt-gpu-lab/experiments/wg1_wgsl/target/release/build/thiserror-ae62066e6df89413/out

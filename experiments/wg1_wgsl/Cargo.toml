@@ -1,0 +1,12 @@
+[package]
+name = "wg1_wgsl"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+wgpu = "24"
+pollster = "0.4"
+bytemuck = "1"
+
+[profile.release]
+opt-level = 3
