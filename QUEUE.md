@@ -56,3 +56,4 @@
 - [x] QG1-residual localize the 28/1920 anchor misses — 2026-09-30 NAME (swap/wire-order convention, Fisher 7.0e-19; BH 28/28; census script's radians bug exposed en route — pi-units reproduces booking bit-exactly); QG1c spawned
 - [x] QG1c swap-convention search — 2026-09-30 NONE (C0 current best 0.9854; no frozen candidate improves; residual is swap-ONLY, x spurious). Not a convention typo. Spawned QG1d (source-level recon: read micromoth exp022 simulator swap)
 - [ ] QG1d source-level swap recon — read micromoth-quilt exp022 simulator swap implementation, reconcile byte-level against our census map; read-only, cheap
+- [ ] F1 DeltaF-admission falsifier (CPU): ternary-* cluster's entropy-budgeted scheduling claim — priority-FIFO vs DeltaF admission (T from budget trits); frozen gates: mean wait within 5%, queue variance -40%, no 3x depth-4 blowups, slack-extreme +1 >=15% slower. Source: mining proposal 07:30 + ternary-{thermodynamics,budget,depth,scheduling}
