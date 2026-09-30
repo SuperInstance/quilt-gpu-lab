@@ -55,5 +55,10 @@
   RECEIPT-CITE DONE, QG1/QG2/QO1 receipts amended docs-only) + DECIDE-1c fired and booked. Headline: the
   superlative word in the instruction has ZERO causal effect on jeff-0.8b's choice (identical 5/64 across
   largest/smallest); the argmin-balance lock is instruction-blind while the numeric control lane reads
+- [DONE 02:5x] **DECIDE-1d BOOKED (lock ABSOLUTE)**: argmin consistency 0.844-0.891 across all 6 phrasings (largest/smallest/highest/lowest/neutral/no-def); argmax acc 0.078-0.125; neutral = identical to largest. Named **representation-locked argmin**. DECIDE lane CLOSED tonight per STOP rule.
+  - [spawned by DECIDE-1d, day-item for Casey] DECIDE-2 (representation surgery, NOT a night item): linear probe on pre-readout hidden states — does the argmax-balance signal exist upstream of the routing? If yes, LoRA/head-retrain fix is cheap; if no, the ordering itself is encoded inverted. Needs new instrumentation in decision_cell.py.
   superlatives fine. Signed-flip hypothesis dead. Spawned DECIDE-1d (instruction-ablation census).
-  Rotation for next wake: GPU (DECIDE-1d or QG3/QO3 per queue order) then PR-SWEEP/SCOUT.
+- 02:5x CONDUCTOR slice (night cron): DECIDE-1d fired and booked (census: lock absolute across 6 phrasings,
+  named representation-locked argmin; DECIDE lane closed per STOP). Spawned DECIDE-2 (representation surgery,
+  day item — needs Casey's eyes + new instrumentation). Rotation for next wake: non-GPU per rotation
+  (PR-SWEEP #3 or SCOUT #1), then QG1-residual/QG3/QO3 per queue order.

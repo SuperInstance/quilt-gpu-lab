@@ -1,0 +1,10 @@
+Loading weights:   0%|          | 0/473 [00:00<?, ?it/s]Loading weights:  30%|██▉       | 141/473 [00:00<00:00, 1401.11it/s]Loading weights:  62%|██████▏   | 293/473 [00:00<00:00, 1470.52it/s]Loading weights: 100%|██████████| 473/473 [00:00<00:00, 2113.65it/s]
+Loading weights:   0%|          | 0/473 [00:00<?, ?it/s]Loading weights:  30%|██▉       | 140/473 [00:00<00:00, 1391.97it/s]Loading weights:  59%|█████▉    | 280/473 [00:00<00:00, 1382.80it/s]Loading weights: 100%|██████████| 473/473 [00:00<00:00, 2088.50it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+highest {'pred_is_argmin_balance': 0.890625, 'cp95': (0.7910113670806147, 0.9459995524731695), 'argmax_acc': 0.078125, 'D1_break': False, 'D2_recover': False, 'pred_kinds': {'delete': 39, 'replace': 15, 'insert': 10}}
+lowest {'pred_is_argmin_balance': 0.875, 'cp95': (0.7722521366978408, 0.9352783460737919), 'argmax_acc': 0.09375, 'D1_break': False, 'D2_recover': False, 'pred_kinds': {'delete': 45, 'replace': 11, 'insert': 8}}
+neutral {'pred_is_argmin_balance': 0.890625, 'cp95': (0.7910113670806147, 0.9459995524731695), 'argmax_acc': 0.078125, 'D1_break': False, 'D2_recover': False, 'pred_kinds': {'delete': 37, 'replace': 15, 'insert': 12}}
+no_def {'pred_is_argmin_balance': 0.84375, 'cp95': (0.7357170979769467, 0.9128525112303834), 'argmax_acc': 0.125, 'D1_break': False, 'D2_recover': False, 'pred_kinds': {'delete': 38, 'replace': 13, 'insert': 13}}
+{"D1_any_break": false, "D2_any_recover": false}

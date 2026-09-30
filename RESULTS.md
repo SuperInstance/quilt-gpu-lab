@@ -2805,3 +2805,22 @@ the argmin candidate and the instruction never modulates it. Next diagnosis: ins
 (spawned DECIDE-1d) — does ANY phrasing move the choice, or is the argmin lock absolute?
 Hardware: same lane as 1b (~1.7 GiB class); runtime ~2 min.
 Artifacts: experiments/decide1c.py, results/decide1/decide1c_results.json.
+
+## DECIDE-1d — instruction-ablation census: the argmin lock is ABSOLUTE (2026-09-30 02:5x): BOOKED — D1 FAIL, D2 FAIL, D3 as predicted
+Pre-reg: proposals/runs/DECIDE-1d-instruction-census.md (committed before firing). Same 64 questions (seed 202),
+zeroshot reader. 4 new variants + 2 reused baselines; only the instruction string varies.
+- **D1 FAIL (no break):** pred_is_argmin_balance across ALL phrasings: largest 0.891, smallest 0.891 (1c),
+  highest 0.891, lowest 0.875, neutral ("Choose one edit.") 0.891, no-definition 0.844 — every variant above
+  the 0.75 break threshold (CP95 lower bounds 0.736-0.791). NO phrasing moves the choice off the argmin candidate.
+- **D2 FAIL (no recovery):** argmax-balance accuracy 0.078-0.125 across all variants (random 0.25). Never answers
+  the asked question.
+- **D3 PASS as predicted:** neutral instruction = byte-trend identical to `largest` (0.891, delete-heavy 37/64).
+  The lock is representation-driven, not instruction-driven.
+- Kind census stable: delete-dominant (37-45/64) in every variant; no_def shows slight softening (insert 13 vs 8-12).
+- STOP rule honored: naming it the **representation-locked argmin** — jeff-0.8b's decision cell on the balance-edit
+  family selects the minimal-balance candidate regardless of instruction content, synonym, or instruction absence,
+  while the numeric control lane reads superlatives perfectly (16/16). DECIDE-1 lane CLOSED for tonight.
+Synthesis (DECIDE-1..1d): backbone + both readouts encode a fixed "worst-edit" criterion; instructions are causally
+inert on this lane. Any fix must operate on the representation or training mixture, not the prompt.
+Hardware: ~1.7 GiB class; 256 decides ~2 min.
+Artifacts: experiments/decide1d.py, results/decide1/decide1d_results.json, results/decide1/decide1d_run.log.

@@ -1,0 +1,69 @@
+{
+ "n": 64,
+ "variants": {
+  "highest": {
+   "pred_is_argmin_balance": 0.890625,
+   "cp95": [
+    0.7910113670806147,
+    0.9459995524731695
+   ],
+   "argmax_acc": 0.078125,
+   "D1_break": false,
+   "D2_recover": false,
+   "pred_kinds": {
+    "delete": 39,
+    "replace": 15,
+    "insert": 10
+   }
+  },
+  "lowest": {
+   "pred_is_argmin_balance": 0.875,
+   "cp95": [
+    0.7722521366978408,
+    0.9352783460737919
+   ],
+   "argmax_acc": 0.09375,
+   "D1_break": false,
+   "D2_recover": false,
+   "pred_kinds": {
+    "delete": 45,
+    "replace": 11,
+    "insert": 8
+   }
+  },
+  "neutral": {
+   "pred_is_argmin_balance": 0.890625,
+   "cp95": [
+    0.7910113670806147,
+    0.9459995524731695
+   ],
+   "argmax_acc": 0.078125,
+   "D1_break": false,
+   "D2_recover": false,
+   "pred_kinds": {
+    "delete": 37,
+    "replace": 15,
+    "insert": 12
+   }
+  },
+  "no_def": {
+   "pred_is_argmin_balance": 0.84375,
+   "cp95": [
+    0.7357170979769467,
+    0.9128525112303834
+   ],
+   "argmax_acc": 0.125,
+   "D1_break": false,
+   "D2_recover": false,
+   "pred_kinds": {
+    "delete": 38,
+    "replace": 13,
+    "insert": 13
+   }
+  }
+ },
+ "gates": {
+  "D1_any_break": false,
+  "D2_any_recover": false
+ }
+}
