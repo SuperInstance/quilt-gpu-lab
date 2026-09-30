@@ -40,22 +40,15 @@ FLAGS = ["h", "x", "rx", "rz", "crx", "cx", "swap"]
 # ---------- verbatim from experiments/qg1_exact_census.py ----------
 def gate2(g):
     n = g[0]
-    if n == "h":
-        return (1 / math.sqrt(2)) * torch.tensor([[1, 1], [1, -1]], dtype=torch.complex128)
-    if n == "x":
-        return torch.tensor([[0, 1], [1, 0]], dtype=torch.complex128)
-    if n in ("rx", "rz"):
-        th = float(g[1])
-        if n == "rx":
-            c, s = math.cos(th / 2), math.sin(th / 2)
-            return torch.tensor([[c, -1j * s], [-1j * s, c]], dtype=torch.complex128)
-        return torch.tensor([[math.exp(-1j * th / 2), 0], [0, math.exp(1j * th / 2)]], dtype=torch.complex128)
-    if n == "crx":
-        th = float(g[1])
-        c, s = math.cos(th / 2), math.sin(th / 2)
-        U = torch.tensor([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, c, -1j * s], [0, 0, -1j * s, c]], dtype=torch.complex128)
-        return U
-    raise ValueError(f"unknown gate {n}")
+    if n == "h":  return torch.tensor([[1,1],[1,-1]], dtype=torch.complex128)/math.sqrt(2)
+    if n == "x":  return torch.tensor([[0,1],[1,0]], dtype=torch.complex128)
+    if n == "rx":
+        t = float(g[1])/2
+        return torch.tensor([[complex(math.cos(t),0),complex(0,-math.sin(t))],[complex(0,-math.sin(t)),complex(math.cos(t),0)]], dtype=torch.complex128)
+    if n == "rz":
+        t = float(g[1])/2
+        return torch.tensor([[complex(math.cos(t),-math.sin(t)),0],[0,complex(math.cos(t),math.sin(t))]], dtype=torch.complex128)
+    raise ValueError(f"unknown 1q gate {n}")
 
 
 def kron(a, b): return torch.kron(a, b)
