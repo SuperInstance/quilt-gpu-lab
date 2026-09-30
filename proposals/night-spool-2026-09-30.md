@@ -10,6 +10,9 @@
 7. Do NOT message Casey (asleep). If local time >= 07:00 AKDT: book state, mark NIGHT COMPLETE, start nothing new.
 
 ## DOCKSIDE
+- [DONE 02:2x PR-SWEEP #2 + RECEIPT-CITE]: only MM #29 merged (docs citation pin). Applied convention to QG1/QG2/QO1 receipts (cite SuperInstance/micrograd-quilt, labs/qcells tree; PRs #5-#7 mirror). Docs-only, pushed.
+- [DONE 02:3x] **DECIDE-1c BOOKED (REFUTES flip)**: instruction word largest->smallest changes NOTHING — 5/64 identical accuracy, argmin consistency 0.891 unchanged. Model is instruction-BLIND on this lane, not sign-flipped. STOP rule honored, no re-roll.
+  - [spawned by DECIDE-1c] DECIDE-1d (instruction-ablation census): sweep instruction variants {largest, smallest, "highest", "lowest", neutral "Choose one edit.", superlative-only no-definition-sentence} x 64 questions. Map: does ANY phrasing move pred off argmin? If none do, the argmin lock is absolute in the representation -> name it and move on. Cheap (~6 lanes x 2 min).
 - [DONE 01:3x] **DECIDE-1 FIRED + BOOKED**: G1 control PASS (16/16=1.0); G2 lane FAIL decisively BELOW chance (5/64=0.078; zero-shot and shipped trained readout give IDENTICAL predictions); G3 PASS (3.31 GiB, 54 ms); G4 exploratory (fitted-T pinned at boundary, fitted head 0.3125 not significant vs 0.25). Per protocol: STOPPED on G2 FAIL, no re-roll.
 
 ## QUEUE (top = next)
@@ -48,3 +51,9 @@
   Hypothesis (untested): superlative-direction flip — the cell tracks "balance" but answers "smallest" when
   asked "largest". Spawned DECIDE-1c (instruction-flip confirmatory). Next wake per rotation: PR-SWEEP #2
   (GPU item just landed), then DECIDE-1c.
+- 02:2x CONDUCTOR slice (night cron): PR-SWEEP #2 (only MM #29 merged; citation convention applied =>
+  RECEIPT-CITE DONE, QG1/QG2/QO1 receipts amended docs-only) + DECIDE-1c fired and booked. Headline: the
+  superlative word in the instruction has ZERO causal effect on jeff-0.8b's choice (identical 5/64 across
+  largest/smallest); the argmin-balance lock is instruction-blind while the numeric control lane reads
+  superlatives fine. Signed-flip hypothesis dead. Spawned DECIDE-1d (instruction-ablation census).
+  Rotation for next wake: GPU (DECIDE-1d or QG3/QO3 per queue order) then PR-SWEEP/SCOUT.
