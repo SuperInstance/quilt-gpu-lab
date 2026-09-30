@@ -321,3 +321,26 @@ other agents are feeding us; keep the handshake lane warm.
 - [ ] **WIT-1 witness-width digest** (CPU ~30m): digest input domain (dtype/runtime/device) INSIDE
   the hash — cellgraph's blind-witness fix.
 - [ ] **QO8 e-calibrated oracle readout** (GPU, read-first): percept-plugs v0.4 EKN over (cv,v,gen).
+
+## DAY BOOKKEEPING 09:1x (conductor) — ENVIRONMENTAL RED: /tmp tmpfs FULL
+- **FAIL-LOUD ANCHOR: `/tmp` is a 7.9G tmpfs at 100% used, 0 avail.** Root mount `/` is fine
+  (1007G, 14%, 825G free). Culprits all transient installer debris, none of it results:
+  `/tmp/ollama-new{,.tgz,.tar.zst}` = 4.5G (ollama 0.35.1-rc0 already installed at
+  ~/.local/bin/ollama — the payload is spent), `/tmp/cuda12` 1.2G + `/tmp/cudanvcc` 979M (conda
+  CUDA extracts, Sep 29 22:0x), `/tmp/jparts` 644M (download fragments, Sep 30 00:4x).
+- **How it bit us:** the mandatory (C) reproduction check on W5a died mid-write with
+  `tail: No space left on device` — i.e. **the bookkeeping regime itself is now exposed to disk
+  exhaustion**, and worse, the first attempt **partially overwrote the committed
+  `results/w5a_reobserve_vs_trace/results.json` (mtime 09:13) before failing.** `git diff` confirms
+  the content is byte-identical to HEAD (no drift landed) — but this is the dirty-tree class again,
+  this time *caused by the verification step*.
+- **Mitigation applied (no deletion, per archive-never-delete + shared-machine caution):** the
+  re-run was redirected to the WORKSPACE (ext4, 825G free) instead of results/, with a saved
+  reference copy of the committed results.json (`/home/eileen/w5a_committed_ref.json`, sha
+  ad99c3d6395bbc8d) to diff against. **NOT deleting tmpfs debris** — it is outside the workspace,
+  ephemeral by nature, and belongs to the machine owner's session (Casey's ollama/CUDA work from
+  last night). Flagging for Casey rather than clearing: reclaim would be ~7G from the four paths
+  above and is his call.
+- **Recommendation for the protocol:** the reproduction check must write its output OUTSIDE the
+  results tree (or to a scratch dir on ext4) and diff — never let a verification run write over the
+  artifact it is verifying. Adding to RC-1's spec.
