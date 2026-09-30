@@ -58,7 +58,7 @@ def features(traj):
     post_peak = float(np.mean(np.diff(z[int(np.argmax(traj)):]))) if peak < 0.95 else 0.0
     drops = float(np.sum(np.abs(np.diff(z)) > 1.5))
     ar1 = float(np.corrcoef(z[:-1], z[1:])[0, 1])
-    plateau = float(np.max([len(r) for r in [np.flatnonzero(np.abs(np.diff(z[int(T*0.5):]))) < 0.2] if len(r) else [0]])) / T
+    plateau = float(np.max([len(r) for r in [np.flatnonzero(np.abs(np.diff(z[int(T*0.5):])) < 0.2)] if len(r) else [0]])) / T
     return slopes + [peak, post_peak, drops, ar1, plateau]
 
 def loocv_centroid(X, y):
