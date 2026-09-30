@@ -207,7 +207,9 @@ def ood_texts(rng: random.Random) -> list[str]:
 
 # ------------------------------------------------------------ training
 
-def fit_and_score(seed: int, train_pairs, score_sets: dict, smoke: bool, log):
+def fit_and_score(seed: int, train_pairs, score_sets: dict, smoke: bool, log,
+                  lr: float = LR, epochs: int = EPOCHS,
+                  warmup_ratio: float = 0.0):
     import torch
     from transformers import (AutoModelForSequenceClassification, AutoTokenizer,
                               Trainer, TrainingArguments)
@@ -246,8 +248,9 @@ def fit_and_score(seed: int, train_pairs, score_sets: dict, smoke: bool, log):
     targs = TrainingArguments(
         output_dir=str(Path("/home/eileen/scratch/st1_hf") / f"seed{seed}"),
         per_device_train_batch_size=BATCH,
-        num_train_epochs=1 if smoke else EPOCHS,
-        learning_rate=LR,
+        num_train_epochs=1 if smoke else epochs,
+        learning_rate=lr,
+        warmup_ratio=warmup_ratio,
         logging_steps=100,
         save_strategy="no",
         report_to=[],
@@ -288,7 +291,12 @@ def auc(labels, scores) -> float:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--smoke", action="store_true")
+    ap.add_argument("--lr", type=float, default=LR)
+    ap.add_argument("--epochs", type=int, default=EPOCHS)
+    ap.add_argument("--warmup-ratio", type=float, default=0.0)
+    ap.add_argument("--out", default=None, help="results dir override")
     args = ap.parse_args()
+    out_dir = Path(args.out) if args.out else RESULTS_DIR
     smoke = args.smoke
     seeds = SEEDS[:1] if smoke else SEEDS
     n_train = 400 if smoke else N_TRAIN
@@ -350,7 +358,9 @@ def main() -> int:
 
     seed_rows = []
     for seed in seeds:
-        sc = fit_and_score(seed, train_pairs, score_sets, smoke, log)
+        sc = fit_and_score(seed, train_pairs, score_sets, smoke, log,
+                           lr=args.lr, epochs=args.epochs,
+                           warmup_ratio=args.warmup_ratio)
         syn_auc = auc([l for _, l in val_pairs], sc["val"][:, 1])
         real_auc = auc(gate_labels, sc["gate"][:, 1])
         honest_p = sc["gate"][np.asarray(gate_labels) == 0][:, 1]
@@ -388,11 +398,15 @@ def main() -> int:
     }
     verdict = "KEEP" if all(gates.values()) else "KILL"
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    out_dir.mkdir(parents=True, exist_ok=True)
     out = {
         "experiment": "ST1-quilt-cell-v0",
         "pre_reg": "proposals/runs/ST1-quilt-cell-v0.md",
         "model": MODEL_NAME,
         "smoke": smoke,
+        "lr": args.lr,
+        "epochs": args.epochs,
+        "warmup_ratio": args.warmup_ratio,
         "gates_frozen": GATES,
         "gates": gates,
         "summary_mean": summary,
@@ -403,7 +417,7 @@ def main() -> int:
         "verdict": verdict,
         "ts": time.time(),
     }
-    (RESULTS_DIR / "results.json").write_text(json.dumps(out, indent=2) + "\n")
+    (out_dir / "results.json").write_text(json.dumps(out, indent=2) + "\n")
     log(f"GATES: {json.dumps(gates)}")
     log(f"SUMMARY: {json.dumps(summary)}")
     print(f"[st1] VERDICT: {verdict}", flush=True)
