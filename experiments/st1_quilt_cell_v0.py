@@ -103,6 +103,8 @@ def synth_pair(rng: random.Random) -> tuple[str, int]:
 def load_real_receipts() -> list[dict]:
     out = []
     for p in sorted(glob.glob(str(LAB / "results" / "*" / "results.json"))):
+        if "st1_quilt_cell_v0" in p:
+            continue  # never gate on our own receipt (self-contamination)
         try:
             obj = json.loads(Path(p).read_text())
         except Exception:
