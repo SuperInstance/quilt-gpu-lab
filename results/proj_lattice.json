@@ -1,0 +1,112 @@
+{
+ "source": "demo (live fleet board lanes)",
+ "digest_in": "f01271c5aa10079f",
+ "modes": {
+  "square": {
+   "round_trip_ok": true,
+   "digest_out": "f01271c5aa10079f",
+   "link_length_min": 1.0,
+   "link_length_max": 6.0,
+   "link_length_spread": 5.0,
+   "neighbour_lengths": [
+    1.0,
+    1.0,
+    1.0,
+    1.414214,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "neighbour_ratio": 1.414214
+  },
+  "hex": {
+   "round_trip_ok": true,
+   "digest_out": "f01271c5aa10079f",
+   "link_length_min": 1.73205,
+   "link_length_max": 10.392305,
+   "link_length_spread": 8.660255,
+   "neighbour_lengths": [
+    1.732051,
+    1.732051,
+    1.732051,
+    1.732051,
+    1.73205,
+    1.732051,
+    1.732051,
+    1.732051,
+    1.732051
+   ],
+   "neighbour_ratio": 1.000001
+  },
+  "ternary": {
+   "round_trip_ok": true,
+   "digest_out": "f01271c5aa10079f",
+   "medians": [
+    44,
+    5550,
+    5,
+    9688
+   ],
+   "states": {
+    "A1": [
+     1,
+     1
+    ],
+    "B1": [
+     1,
+     -1,
+     1,
+     0
+    ],
+    "C1": [
+     1,
+     0
+    ],
+    "D1": [
+     1,
+     1
+    ],
+    "E1": [
+     -1,
+     -1,
+     -1
+    ],
+    "F1": [
+     -1
+    ],
+    "G1": [
+     0,
+     -1,
+     0,
+     -1
+    ],
+    "H1": [
+     -1,
+     1
+    ],
+    "A2": [
+     -1,
+     -1
+    ]
+   },
+   "bytes_full": 4,
+   "bytes_state": 0.25,
+   "note": "state alone is lossy; residual restores the genome exactly"
+  }
+ },
+ "law": "round-trip: digest' == digest",
+ "effect": {
+  "claim": "for IMMEDIATE neighbours the A2 lattice has ONE distance, while the square grid has two (orthogonal vs diagonal) \u2014 so a link's rendered length stops encoding a direction the genome never contained",
+  "square_neighbour_ratio": 1.414214,
+  "hex_neighbour_ratio": 1.000001,
+  "expected": [
+   "square ~= 1.4142 (sqrt 2)",
+   "hex == 1.0"
+  ],
+  "all_links_spread_square": 5.0,
+  "all_links_spread_hex": 8.660255,
+  "scope_note": "all-links spread is a GRAPH property (how far apart the lanes are) and is not the geometry claim; the neighbour ratio is the claim"
+ }
+}
