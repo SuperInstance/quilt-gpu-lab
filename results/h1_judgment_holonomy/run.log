@@ -1,0 +1,6 @@
+[seed 7711] corrupted=114 auc_holonomy=0.4769 auc_baseline=0.5846
+[seed 7712] corrupted=108 auc_holonomy=0.6289 auc_baseline=0.5972
+[seed 7713] corrupted=112 auc_holonomy=0.4844 auc_baseline=0.5656
+[seed 7714] corrupted=122 auc_holonomy=0.5426 auc_baseline=0.5906
+[seed 7715] corrupted=120 auc_holonomy=0.6337 auc_baseline=0.5944
+[VERDICT] KILL wins=0/5 mean_gap=-0.0332

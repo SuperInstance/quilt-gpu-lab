@@ -1,0 +1,70 @@
+{
+  "experiment": "FD1-frontier-distillation",
+  "smoke": false,
+  "seeds": [
+    7721,
+    7722,
+    7723,
+    7724,
+    7725
+  ],
+  "rows": [
+    {
+      "seed": 7721,
+      "n_frontier": 667,
+      "acc_uniform": 0.622,
+      "acc_frontier": 0.558,
+      "acc_hybrid": 0.613,
+      "acc_field_only": 0.598
+    },
+    {
+      "seed": 7722,
+      "n_frontier": 667,
+      "acc_uniform": 0.597,
+      "acc_frontier": 0.551,
+      "acc_hybrid": 0.6,
+      "acc_field_only": 0.591
+    },
+    {
+      "seed": 7723,
+      "n_frontier": 667,
+      "acc_uniform": 0.608,
+      "acc_frontier": 0.563,
+      "acc_hybrid": 0.628,
+      "acc_field_only": 0.605
+    },
+    {
+      "seed": 7724,
+      "n_frontier": 667,
+      "acc_uniform": 0.592,
+      "acc_frontier": 0.512,
+      "acc_hybrid": 0.578,
+      "acc_field_only": 0.581
+    },
+    {
+      "seed": 7725,
+      "n_frontier": 667,
+      "acc_uniform": 0.597,
+      "acc_frontier": 0.567,
+      "acc_hybrid": 0.611,
+      "acc_field_only": 0.607
+    }
+  ],
+  "mean": {
+    "acc_uniform": 0.6032,
+    "acc_frontier": 0.5502,
+    "acc_hybrid": 0.6060000000000001,
+    "acc_field_only": 0.5964
+  },
+  "wins": {
+    "both": 0,
+    "a_frontier_safe": 0,
+    "b_hybrid_wins": 2
+  },
+  "gate": {
+    "frontier_loss_max_pp": 0.5,
+    "hybrid_gain_min_pp": 1.0,
+    "win_seeds": 4
+  },
+  "verdict": "KILL"
+}

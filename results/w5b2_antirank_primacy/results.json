@@ -1,0 +1,135 @@
+{
+  "config": {
+    "arms": [
+      "antirank",
+      "random"
+    ],
+    "seeds": [
+      5291,
+      5292,
+      5293,
+      5294,
+      5295
+    ],
+    "margin": 0.005,
+    "t_warm": 4000,
+    "t_main": 6000,
+    "machinery": "w5b_lifetime_precision (committed)"
+  },
+  "seeds": {
+    "5291": {
+      "warmup_bpb": 6.279755,
+      "arms": {
+        "antirank": {
+          "final_bpb": 8.831808,
+          "hp": 19345,
+          "secs": 267.1
+        },
+        "random": {
+          "final_bpb": 11.146073,
+          "hp": 19345,
+          "secs": 232.5
+        }
+      }
+    },
+    "5292": {
+      "warmup_bpb": 6.1516,
+      "arms": {
+        "antirank": {
+          "final_bpb": 9.374864,
+          "hp": 19345,
+          "secs": 246.2
+        },
+        "random": {
+          "final_bpb": 11.079454,
+          "hp": 19345,
+          "secs": 279.5
+        }
+      }
+    },
+    "5293": {
+      "warmup_bpb": 6.488329,
+      "arms": {
+        "antirank": {
+          "final_bpb": 9.8722,
+          "hp": 19345,
+          "secs": 246.2
+        },
+        "random": {
+          "final_bpb": 9.530155,
+          "hp": 19345,
+          "secs": 231.5
+        }
+      }
+    },
+    "5294": {
+      "warmup_bpb": 6.24731,
+      "arms": {
+        "antirank": {
+          "final_bpb": 8.992576,
+          "hp": 19345,
+          "secs": 268.9
+        },
+        "random": {
+          "final_bpb": 9.367583,
+          "hp": 19345,
+          "secs": 265.9
+        }
+      }
+    },
+    "5295": {
+      "warmup_bpb": 6.397689,
+      "arms": {
+        "antirank": {
+          "final_bpb": 9.125823,
+          "hp": 19345,
+          "secs": 267.6
+        },
+        "random": {
+          "final_bpb": 9.62696,
+          "hp": 19345,
+          "secs": 294.1
+        }
+      }
+    }
+  },
+  "verdict": {
+    "rule": "KEEP iff mean_rel>=0.005 and wins>=4/5",
+    "mean_rel_improvement": 0.083536,
+    "wins": 4,
+    "n_pairs": 5,
+    "pairs": [
+      {
+        "seed": 5291,
+        "antirank": 8.831808,
+        "random": 11.146073,
+        "rel_improvement": 0.20763052601575452
+      },
+      {
+        "seed": 5292,
+        "antirank": 9.374864,
+        "random": 11.079454,
+        "rel_improvement": 0.15385144430402434
+      },
+      {
+        "seed": 5293,
+        "antirank": 9.8722,
+        "random": 9.530155,
+        "rel_improvement": -0.03589081184933496
+      },
+      {
+        "seed": 5294,
+        "antirank": 8.992576,
+        "random": 9.367583,
+        "rel_improvement": 0.04003241818086908
+      },
+      {
+        "seed": 5295,
+        "antirank": 9.125823,
+        "random": 9.62696,
+        "rel_improvement": 0.05205558140887673
+      }
+    ],
+    "verdict": "KEEP"
+  }
+}

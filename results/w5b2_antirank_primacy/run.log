@@ -8,3 +8,11 @@
 [seed 5293] warm bpb=6.48833 (177s)
 [seed 5293] arm=antirank final=9.87220 (246s)
 [seed 5293] arm=random   final=9.53015 (231s)
+[seed 5294] warm bpb=6.24731 (189s)
+[seed 5294] arm=antirank final=8.99258 (269s)
+[seed 5294] arm=random   final=9.36758 (266s)
+[seed 5295] warm bpb=6.39769 (177s)
+[seed 5295] arm=antirank final=9.12582 (268s)
+[seed 5295] arm=random   final=9.62696 (294s)
+[VERDICT] KEEP mean_rel=+0.08354 wins=4/5
+WROTE /home/eileen/projects/quilt-gpu-lab/results/w5b2_antirank_primacy

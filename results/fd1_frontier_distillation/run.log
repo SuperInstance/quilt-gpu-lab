@@ -1,0 +1,6 @@
+[seed 7721] uniform=0.6220 frontier=0.5580 hybrid=0.6130 field_only=0.5980 (n_frontier=667)
+[seed 7722] uniform=0.5970 frontier=0.5510 hybrid=0.6000 field_only=0.5910 (n_frontier=667)
+[seed 7723] uniform=0.6080 frontier=0.5630 hybrid=0.6280 field_only=0.6050 (n_frontier=667)
+[seed 7724] uniform=0.5920 frontier=0.5120 hybrid=0.5780 field_only=0.5810 (n_frontier=667)
+[seed 7725] uniform=0.5970 frontier=0.5670 hybrid=0.6110 field_only=0.6070 (n_frontier=667)
+[VERDICT] KILL wins=0/5 (a=0/5 b=2/5)

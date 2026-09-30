@@ -1,0 +1,58 @@
+{
+  "experiment": "H1-judgment-holonomy",
+  "smoke": false,
+  "seeds": [
+    7711,
+    7712,
+    7713,
+    7714,
+    7715
+  ],
+  "rows": [
+    {
+      "seed": 7711,
+      "n_corrupted": 114,
+      "n_probes": 600,
+      "auc_holonomy": 0.4769333333333333,
+      "auc_baseline": 0.5846333333333333
+    },
+    {
+      "seed": 7712,
+      "n_corrupted": 108,
+      "n_probes": 600,
+      "auc_holonomy": 0.6289277777777778,
+      "auc_baseline": 0.5971777777777778
+    },
+    {
+      "seed": 7713,
+      "n_corrupted": 112,
+      "n_probes": 600,
+      "auc_holonomy": 0.48445,
+      "auc_baseline": 0.5655555555555556
+    },
+    {
+      "seed": 7714,
+      "n_corrupted": 122,
+      "n_probes": 600,
+      "auc_holonomy": 0.5425555555555556,
+      "auc_baseline": 0.5905666666666667
+    },
+    {
+      "seed": 7715,
+      "n_corrupted": 120,
+      "n_probes": 600,
+      "auc_holonomy": 0.63365,
+      "auc_baseline": 0.5943888888888889
+    }
+  ],
+  "n_void_draws": 0,
+  "mean_auc_holonomy": 0.5533033333333334,
+  "mean_auc_baseline": 0.5864644444444445,
+  "mean_gap": -0.03316111111111112,
+  "wins": 0,
+  "gate": {
+    "auc": 0.8,
+    "win_seeds": 4
+  },
+  "verdict": "KILL"
+}
