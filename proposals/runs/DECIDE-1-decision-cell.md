@@ -21,3 +21,15 @@ We can run this cell **locally, zero-shot, un-tuned, on the RTX 4050** with an o
 
 ## Honest caveats to record
 Zero-shot accuracy may disappoint (0.8B, reasoning-free). That is still a result: it sets the baseline that a one-epoch fine-tune (Jeff recipe) must beat. The Medium piece also notes "one paper broke" Jev's benchmark — treat every published figure as a hypothesis, ours included.
+
+---
+## AMENDMENT 1 (pre-fire, 2026-09-30 00:35 AKDT) — the readout is a *trained linear head*, not just a sideways softmax
+Inspecting the published checkpoint (`jeff-0.8b`) before firing:
+- `decision_config.json`: `codes` = A…(254 two-letter codes), `token_ids` = their **exact vocab ids** (A=32 … =ASCII letters), **`temperature` = 1.1289476733993191** (the fitted calibration constant, published in the clear), `prompt_layout = "state-first"`, `max_options = 254`, `base_model = Qwen/Qwen3.5-0.8B`, plus a **provenance block of sha256 hashes for every source file** (train.py, model.py, encoder.py, decoder.py, optim.py, evaluate.py, types.py, events.py, uv.lock) and the training `step` (1258).
+- `readout.safetensors`: **one tensor, `weight`, shape (255, 1024), bf16.** 1024 = the base model's `hidden_size`; 255 = 254 option codes + 1 extra class.
+⇒ The operative mechanism is: run the frozen LM (state-first layout, codes in the prompt) → take the **hidden state at the readout position** → **`softmax(W·h / T)`** with a **trained 255-class linear head** and the **fitted temperature**. The Medium post's "one token position and a softmax" is the *shape* of the interface; jeff's actual edge is that the readout is **fitted** (and that the codes' token ids are pinned exactly).
+⇒ Consequence for us, and it is a big one: **the readout can be trained without touching the base model.** With our exact simulators (qcell-sim) as labelers, fitting `W` is logistic regression on frozen 1024-d features — minutes of GPU, not the ≈2 h full-weight fine-tune. Full-weight fine-tuning then improves the *representation*; the readout-only path is the cheap "nudge ML above random" version Casey asked for.
+Additional arch notes: base is a **hybrid linear-attention** Qwen3.5 (24 layers, 3 linear : 1 full attention, attn_output_gate, head_dim 256, hidden 1024) and it is a **VL-capable** model (Qwen3VL processor, image/video tokens).
+
+### G4 (added, frozen before firing)
+- **G4 READOUT LADDER**: on the same 64 held-out lane questions, compare three readers — (a) **zero-shot sideways softmax** over the pinned code token ids; (b) **fitted temperature only** on (a); (c) **trained 255-class linear readout** on frozen hidden states (fitted on a disjoint set of lane questions, exact-simulator labels). Prediction: (c) > (b) > (a) ≥ random. Any ordering is reportable; (a)≈(c) would mean the base model already exposes the decision linearly, (c)≫(a) reproduces jeff's claimed value of a fitted readout.
