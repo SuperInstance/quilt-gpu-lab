@@ -37,17 +37,18 @@ def make_book(rng, defect):
     amt = rng.normal(0, 100, size=n)
     amt[-1] = -amt[:-1].sum()                    # balanced book
     if defect == "missing":
-        i = rng.integers(0, n - 1)
+        i = rng.integers(0, n - 1)                      # R2 (count/parity), R1 (sum)
         accts, amt = np.delete(accts, i), np.delete(amt, i)
     elif defect == "sign":
-        i = rng.integers(0, n - 1)
+        i = int(np.argmax(np.abs(amt)))                 # R1 (sum), R4 (sign stats)
         amt = amt.copy(); amt[i] = -amt[i]
-    elif defect == "rounding":
-        i = rng.integers(0, n - 1)
-        amt = amt.copy(); amt[i] += rng.normal(0, 0.3)
-    elif defect == "account":
-        i = rng.integers(0, n - 1)
-        accts = accts.copy(); accts[i] = (accts[i] + 1 + rng.integers(1, N_ACCT - 1)) % N_ACCT
+    elif defect == "rounding":                          # R3 (fractional mass)
+        idx = rng.choice(n - 1, size=4, replace=False)
+        amt = amt.copy(); amt[idx] += rng.uniform(0.6, 1.4, size=4)
+    elif defect == "account":                           # R5 (categorical shape)
+        idx = rng.choice(n - 1, size=3, replace=False)
+        accts = accts.copy()
+        accts[idx] = (accts[idx] + 1 + rng.integers(1, N_ACCT - 1, size=3)) % N_ACCT
     return accts, amt
 
 
@@ -77,11 +78,13 @@ class Tiny(nn.Module):
 
 def train_route(Xtr, ytr, Xte, seed):
     torch.manual_seed(seed)
+    mu, sd = Xtr.mean(0, keepdim=True), Xtr.std(0, keepdim=True).clamp_min(1e-6)
+    Xtr, Xte = (Xtr - mu) / sd, (Xte - mu) / sd   # standardize (train stats only)
     m = Tiny(Xtr.shape[1]).to(DEV)
     opt = torch.optim.Adam(m.parameters(), lr=0.02)
     lossf = nn.BCEWithLogitsLoss()
     Xt, yt = Xtr.to(DEV), ytr.to(DEV)
-    for _ in range(300):
+    for _ in range(500):
         opt.zero_grad()
         loss = lossf(m(Xt), yt)
         loss.backward()
@@ -114,21 +117,26 @@ if __name__ == "__main__":
         logits[r], probs[r] = z, 1 / (1 + np.exp(-z))
         print(f"  {r}: AUC {roc_auc_score(y[te], probs[r]):.4f}", flush=True)
 
-    L = np.column_stack([logits[r] for r in feats])
+    L = np.column_stack([logits[r] for r in feats])   # route logits on the TEST split
+    y_te = y[te]                                      # same rows — the length bug fixed
     skf = StratifiedKFold(5, shuffle=True, random_state=0)
-    ens = cross_val_predict(LogisticRegression(max_iter=1000), L, y,
+    ens = cross_val_predict(LogisticRegression(max_iter=1000), L, y_te,
                             cv=skf, method="predict_proba")[:, 1]
-    auc_full = roc_auc_score(y, ens)
+    auc_full = roc_auc_score(y_te, ens)
     names = list(feats)
     marginal = {}
     for i, r in enumerate(names):
         keep = [j for j in range(len(names)) if j != i]
-        loo = cross_val_predict(LogisticRegression(max_iter=1000), L[:, keep], y,
+        loo = cross_val_predict(LogisticRegression(max_iter=1000), L[:, keep], y_te,
                                 cv=skf, method="predict_proba")[:, 1]
-        marginal[r] = auc_full - roc_auc_score(y, loo)
+        marginal[r] = auc_full - roc_auc_score(y_te, loo)
     pred = {r: (probs[r] > 0.5).astype(int) for r in names}
-    disagree = {r: float(np.mean([np.mean(pred[r] != pred[s]) for s in names if s != r]))
-                for r in names}
+    # probability divergence (thresholded disagreement is degenerate at 0.5 on an
+    # 80%-positive label — measured all-zero on the first pass)
+    disagree = {r: float(np.mean([np.mean(np.abs(probs[r] - probs[s]))
+                                  for s in names if s != r])) for r in names}
+    disagree_thresh = {r: float(np.mean([np.mean(pred[r] != pred[s])
+                                         for s in names if s != r])) for r in names}
     rho, pval = spearmanr([marginal[r] for r in names], [disagree[r] for r in names])
     spread = np.ptp([logits[r].std() for r in names])
 
@@ -144,7 +152,8 @@ if __name__ == "__main__":
         "per_route_auc": per_route,
         "ensemble_auc_full": auc_full,
         "marginal_auc": marginal,
-        "disagreement_rate": disagree,
+        "disagreement_divergence": disagree,
+        "disagreement_thresholded": disagree_thresh,
         "spearman_marginal_vs_disagreement": [rho, pval],
         "gates": {"G1_learnable": bool(g1), "G2_spread": bool(g2), "G3_dial_tracks": bool(g3)},
         "verdict": verdict,

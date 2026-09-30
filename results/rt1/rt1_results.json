@@ -1,0 +1,45 @@
+{
+  "experiment": "RT1 \u2014 marginal information vs the disagreement dial",
+  "n_books": 4000,
+  "device": "cuda",
+  "per_route_auc": {
+    "R1_sum": 0.866015625,
+    "R2_parity": 0.6171875,
+    "R3_magnitude": 0.52784423828125,
+    "R4_sign": 0.6603662109375,
+    "R5_categorical": 0.5042773437499999
+  },
+  "ensemble_auc_full": 0.848671875,
+  "marginal_auc": {
+    "R1_sum": 0.20600097656249994,
+    "R2_parity": -0.006274414062499956,
+    "R3_magnitude": 0.007674560546874987,
+    "R4_sign": -0.006833496093750058,
+    "R5_categorical": -0.012036132812500044
+  },
+  "disagreement_divergence": {
+    "R1_sum": 0.1658189296722412,
+    "R2_parity": 0.08274240791797638,
+    "R3_magnitude": 0.0976095050573349,
+    "R4_sign": 0.08380725234746933,
+    "R5_categorical": 0.09829026460647583
+  },
+  "disagreement_thresholded": {
+    "R1_sum": 0.0,
+    "R2_parity": 0.0,
+    "R3_magnitude": 0.0,
+    "R4_sign": 0.0,
+    "R5_categorical": 0.0
+  },
+  "spearman_marginal_vs_disagreement": [
+    0.3,
+    0.623837664781073
+  ],
+  "gates": {
+    "G1_learnable": true,
+    "G2_spread": true,
+    "G3_dial_tracks": false
+  },
+  "verdict": "DIAL_DECORATIVE",
+  "wall_clock_s": 9.6
+}

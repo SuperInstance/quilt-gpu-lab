@@ -61,6 +61,20 @@ class Layer:
         return [p for n in self.neurons for p in n.parameters()]
 
 
+def graft_neuron(model, idx):
+    """Append one neuron to hidden layer `idx` — with the RIGHT input width,
+    and extend every neuron in the next layer by one fresh input weight.
+    (The 21:20 bug: Neuron(1) grafted into a layer fed by 8 outputs, and the
+    downstream layer never grew an input -> grown arm scored 0.1135 vs fixed
+    0.0280. Dimensional, not scientific.)"""
+    layers = model.layers
+    nin = 1 if idx == 0 else len(layers[idx - 1].neurons)
+    layers[idx].neurons.append(Neuron(nin, True))
+    if idx + 1 < len(layers):
+        for n in layers[idx + 1].neurons:
+            n.w.append(Value(random.uniform(-1, 1)))
+
+
 class MLP:
     def __init__(self, nin, nouts):
         sz = [nin] + nouts
@@ -171,7 +185,7 @@ def run_arm(arm, seed, lr, Xtr, Ytr, Xva, Yva):
                     if prev > 0 and (prev - w[-1]) / prev < PLATEAU_EPS:
                         target = 0 if len(model.layers[0].neurons) < MAX_WIDTH else 1
                         if len(model.layers[target].neurons) < MAX_WIDTH:
-                            model.layers[target].neurons.append(Neuron(1, True))
+                            graft_neuron(model, target)
                             grafts.append({"step": step, "layer": target,
                                            "width": len(model.layers[target].neurons),
                                            "val": v, "params": count_params(model)})
