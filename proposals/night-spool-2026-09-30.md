@@ -360,3 +360,20 @@ other agents are feeding us; keep the handshake lane warm.
   121 experiment file(s), 18 tool/weight file(s)`; `unittest discover -s tests` → **6 tests OK**.
 
 - [DONE 09:1x GPU] **W5b BOOKED: verdict KILL** — booking one-shot verified results.json against the frozen pre-reg and booked honestly. Gate arithmetic: mean relative bpb improvement of lifetime over random = **-1.05%** (needs >= +0.5%), wins **1/3** seed-pairs (needs >=2/3). Pairs: 4241 +10.00% (lifetime best arm) / 4242 **-9.97%** / 4243 **-3.19%** (lifetime worst arm in both) => direction failure, not a margin near-miss. Mean bpb order: antirank 9.52182 < random 9.75758 < lifetime 9.81828 < uniform 9.95739 (uniform worst 3/3 — the layout-stride confound the pre-reg flagged). Pre-registered SECONDARY (exploratory, NO gate): antirank beat random 3/3 (+2.51/+1.65/+3.01%) and lifetime 2/3 (bpb deltas +0.774/-1.049/-0.614) — the predicted inversion is visible (instability, not persistence, marks precision-worthiness in this regime), but it carries no verdict from W5b; W5b2 (5 fresh seeds, gates >=0.5% and >=4/5) is the confirmation and is in flight. Honest notes: 161 warmup commits make change_count coarse; HP budget identical (19345) across arms so budget equality is clean; no re-roll, no blind re-run. Pre-reg proposals/runs/W5b-lifetime-precision.md. QUEUE line added (backfill class of D18/c9b39b4 — W5b was spooled but never claimed in QUEUE), RESULTS.md booked, manifest re-sealed.
+
+- [DONE 10:2x CPU] **QC-JEV BOOKED: verdict DISCRIMINATING** — jeff-0.8b separates "2+2=4" (p_true 0.9606) from
+  "2+2=5" (p_true 0.0243), d_ptrue 0.936; both choice probes follow CONTENT with options swapped/letters fixed.
+  **The murmuration JEV null (jev-1.13.0, pos and neg both argmax=unclear) does NOT transfer to our checkpoint.**
+  SCOUT-4's CONTRADICT threat to DECIDE-1 is DISMISSED for jeff-0.8b; **DECIDE-2 premise STANDS**; DECIDE-1 G2
+  stays booked (below-chance balance-edit read on a demonstrably-discriminating head is lane information, not a
+  broken calibrator). Standing flag narrowed: temp-1.1289 / fitted-T-at-6.0 boundary is now a BALANCE-EDIT-LANE
+  flag only, not an oracle-wide doubt. 1 mechanical crash pre-scoring (noul branch returns scalar, not dict),
+  fixed in place (802bae1). Pre-reg proposals/runs/QC-JEV-discriminating-control.md; RESULTS.md booked.
+  - [spawned by QC-JEV] **QC-JEV2** (CPU ~10m, LOW priority): same 4 probes against a SECOND jeff checkpoint
+    (jeff-2b/jeff-1b if present locally) + one ambiguous control ("2+2≈4" / a genuinely unclear claim) so we
+    can pin WHERE the unclear band sits. Only if local weights exist — no new downloads for a sanity pin.
+  - [NOTE for Casey, day item] murmuration's jev-1.13.0 null is a REAL finding about that artifact and it lands
+    on DECIDE-2's design too: any head-retrain must ship a discriminating control in its own receipt. Add to
+    DECIDE-2's spec before firing.
+  - Rotation: QC-JEV was CPU, so next wake takes a non-GPU PR-SWEEP/SCOUT or an open CPU item (RC-3 sealer
+    --require-clean and DEGENERATE-gate-verdict are both cheap and unclaimed); GPU lane free all slice.
