@@ -48,7 +48,9 @@ def metropolis_sweep(spins, beta, gen):
 
 def run_temperature(dev, gen, T):
     beta = 1.0 / T
-    spins = torch.where(torch.rand(N, N, device=dev, generator=gen) < 0.5, 1, -1)
+    spins = torch.where(torch.rand(N, N, device=dev, generator=gen) < 0.5, 1.0, -1.0)
+    assert spins.dtype.is_floating_point, (
+        "spins must be float — Long breaks mean() (first ISING-1 fire died here): got %s" % spins.dtype)
     for _ in range(SWEEP_EQ):
         spins = metropolis_sweep(spins, beta, gen)
     m2, mabs, n = 0.0, 0.0, 0
@@ -61,7 +63,7 @@ def run_temperature(dev, gen, T):
     return mabs / n, N * N * (m2 / n - (mabs / n) ** 2) / T
 
 
-def fabric_demo(gen):
+def fabric_demo(dev, gen):
     """The 9 live board cells: spins from dial sign vs channel median, real links."""
     cells = {
         "A1": [4688, 9844], "B1": [10000, 2812, 2344, 9688], "C1": [200, 5550],
@@ -82,7 +84,7 @@ def fabric_demo(gen):
         for _ in range(50):
             for a, b in links:
                 field = s[a] + s[b]
-                if torch.rand(1, generator=gen).item() < math.exp(min(0.0, -2.0 * beta * J * field)):
+                if torch.rand(1, device=dev, generator=gen).item() < math.exp(min(0.0, -2.0 * beta * J * field)):
                     weak = a if abs(s[a]) <= abs(s[b]) else b
                     s[weak] = -s[weak]
         out["T=%.1f" % T] = round(abs(sum(s.values())) / len(s), 4)
@@ -117,7 +119,7 @@ def main():
 
     verdict = "REPLICATED" if err <= 0.15 else ("MARGINAL" if err <= 0.4 else "DEVIATES")
 
-    demo = fabric_demo(gen)
+    demo = fabric_demo(dev, gen)
     receipt = {
         "experiment": "ISING-1", "device": dev, "N": N, "J": J,
         "sweeps": [SWEEP_EQ, SWEEP_MEAS], "temps": temps, "abs_m": mags, "chi": chis,
