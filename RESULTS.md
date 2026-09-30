@@ -3188,3 +3188,21 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
   (3) RC-1 spec addition: the runner must record the real-set membership (receipt ids) in the result file,
   so a changing set is visible in the artifact rather than inferable only by re-running.
 - Scratch kept at `/home/eileen/scratch/st1v2_chk/`. Ledger changed → manifest re-seal below.
+
+### [DONE 14:2x GPU] **QO9 BOOKED: verdict P1_STREAM_LEVEL** — the gen-1 oracle signal is STREAM-level, not lane-level.
+- SCOUT-5/6 CONTRADICT-candidate (jev-fusion grouped-error steelman + projection law) **ANSWERED for this substrate**:
+  4 lanes (mutation-draw seeds 1234/1235/1236/1237, S=1024, GENS=12, pipeline verbatim qo3_horizon), classifier
+  trained on 3 lanes tested on the held-out 4th: AUC(g1) = 0.8722 / 0.8692 / 0.8851 / 0.8802 — ALL folds >= 0.80
+  (frozen P1 gate). Pooled mixed-lane AUC 0.8801, exactly reproducing QO3's booked 0.880 at the different seed.
+  G1 rate anchor PASS (all lanes 0.570-0.600).
+- **QO3/QO6/QG7/QO2 bookings UNTOUCHED**: the router's per-stream evidence generalizes across mutation draws;
+  the shared skeleton does not carry the signal (a lane-locked classifier would have collapsed on held-out draws).
+  jev-fusion's "per-cell sparse signal cannot represent grouped error" does not bite the qcell oracle at gen 1.
+- Honest provenance: AMENDMENT 1 to the pre-reg — the draft's "existing data" premise was FALSE (no prior lane
+  persisted per-stream features; every booking saved aggregates only). Discovered before fire, declared in the
+  pre-reg, fresh multi-lane dump designed instead. Per-lane gen-1 features + outcomes persisted in the artifact
+  (lane_data_g1.npz; RC-1 membership doctrine). Runner embeds runner_sha256 + args. Fire exit 0, no crashes.
+- Pre-reg proposals/runs/QO9-lane-vs-stream-stratification.md (committed 97b629e BEFORE firing). Commit of
+  artifact + this booking next; manifest re-seal after ledger change. Reproduction check for QO9 due next wake
+  (deterministic torch.manual_seed(0) fits; rollout rng seeded per lane — expect near-bit-exact, MLP fit path
+  nondeterminism class noted).

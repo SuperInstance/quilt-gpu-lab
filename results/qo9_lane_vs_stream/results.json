@@ -1,0 +1,41 @@
+{
+  "G1": true,
+  "lane_rates": {
+    "1234": 0.599609375,
+    "1235": 0.5810546875,
+    "1236": 0.5703125,
+    "1237": 0.5947265625
+  },
+  "pooled_auc_g1": 0.8801130644012866,
+  "lane_heldout_auc_g1": {
+    "1234": 0.8721518233097642,
+    "1235": 0.8692425221836988,
+    "1236": 0.8851046855541718,
+    "1237": 0.880226324015273
+  },
+  "gates_frozen": {
+    "p1_min_fold_auc": 0.8,
+    "p2_max_fold_auc": 0.6,
+    "p2_min_pooled": 0.8
+  },
+  "verdict": "P1_STREAM_LEVEL",
+  "runner_sha256": "30ef64dccbb29bf8d261ece169a02a06f8d0f655fa10d5574d4022ac6949211e",
+  "args": {
+    "out": "results/qo9_lane_vs_stream"
+  },
+  "lane_seeds": [
+    1234,
+    1235,
+    1236,
+    1237
+  ],
+  "S_per_lane": 1024,
+  "gens": 12,
+  "lane_membership": {
+    "1234": 1024,
+    "1235": 1024,
+    "1236": 1024,
+    "1237": 1024
+  },
+  "notes": "pipeline verbatim qo3_horizon; skeleton deterministic+shared (qo5 birth-lottery); per-lane var = mutation-draw seed; gen-1 features + outcome persisted in artifact"
+}
