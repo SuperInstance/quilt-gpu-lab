@@ -200,3 +200,54 @@ Rotation for next wake: non-GPU (PR-SWEEP #5 or SCOUT #2), then QG1-residual or 
   not a swap-arithmetic typo in their simulator either. NEXT for QG1d: recover/reimplement p_target
   (fitness definition unknown — may not be min(p000,p111)) and rebuild one failing genome directly in
   micromoth.QuantumCircuit to separate "recorded values stale" from "fitness definition differs".
+
+## SCOUT-2 (morning, Casey-directed) — what the fleet is pushing 2026-09-30, classified
+Sweep: SuperInstance account (it's a USER account, not an org — `/users/.../events` works, `/orgs/...` 404s),
+14 repos pushed in the last 48h. quilt-gpu-lab is the most-active repo this morning (our own pushes), plus
+percept-plugs, xruntime-conformance, substrate-foundation, consul-client, AI-Writings, Syzygy,
+quilt-research-canons, quilt-atlas, pong-quilt.
+
+**STEAL — percept-plugs v0.2/v0.3 (witness sheet + multi-runtime differential fuzz)**
+v0.2: JS/Python/C++ agree byte-for-byte on 2000 seeded adversarial series; the pins CAUGHT 2 real bugs
+(stream null-vs--1 contract; zero-surround ratio edge). v0.3: witness-sheet layer with P12 pinning the
+canon-chain defect classes D-1 splice / D-2 silent edit / D-3 reorder / D-4 truncation, bundle sha256 re-pinned.
+=> Their D-2 "silent edit" IS our dirty-tree booking class (3 instances found today: d23b phantom seal,
+qg1 census radians, and the booking-from-uncommitted-variant pattern). The multi-runtime differential harness
+is the same doctrine that caught our census bug by accident — they've made it a first-class layer.
+
+**STEAL/CONSUME — quilt-research-canons is a RUNNING fleet scout organ**
+Scout commits at 07:32Z / 10:30Z / 13:33Z today. They ALREADY flagged (10:30Z): "quilt-gpu-lab receipt layer
+RED on main" (our phantom seal — since repaired), and (13:33Z) "superinstance-api .wrangler STILL TRACKED
+despite .gitignore" (a half-fix from an earlier pass), plus measurement-trap and size-is-a-lie findings.
+=> We should CONSUME their reports as queue input instead of re-sweeping from scratch, and cross-check their
+findings against our assets. They are the fleet's scout organ; we should be the fleet's GPU lab consuming it.
+
+**CORROBORATE — substrate-foundation "all eleven canon opcodes were undefined at runtime"**
+Same defect class as our qcell_sim missing the `crx` gate (caught by the QG2 anchor): the tool's vocabulary
+did not cover the corpus's. Two independent instances => make it a fire-time PIN, not a habit.
+
+**CHECK/CONTRADICT-CANDIDATE — xruntime-conformance parts 4-5**
+"micrograd-quilt records the same six opcodes as a TAPE, not a cell graph — and that difference decides whether
+fault localisation is even possible." If fault localisation is impossible in cell-graph form, our cell-mesh
+ledger + QO2 routing claims need an explicit caveat. Worth a deep read before it bites a booking.
+
+**CORROBORATE — pong-quilt CI red root-caused as ENVIRONMENTAL** (build-then-test ordering; fresh site/dist
+seal required before the suite). Matches the scout lane's earlier note. Not our bug, not our action item.
+
+**OTHER** — AI-Writings d155 "ML-in-quilt: the forward pass as a priced cell graph" (steal candidate for the
+cell-mesh economics); quilt-atlas wave-66/67 publishing census (5106 repos, releases status); Syzygy wave-69
+Pages deploy; consul-client housekeeping only. quilt-gpu-lab PR #3 (merged) added G7/G1/G3 to OUR queue —
+other agents are feeding us; keep the handshake lane warm.
+
+**QUEUE ITEMS SPAWNED (concrete):**
+- [ ] **RC-1 differential receipt harness** (CPU, ~1h): for every booked result, run the COMMITTED script against
+  the COMMITTED results automatically (the manual check that found the census radians bug), and wire the
+  percept-plugs D-1..D-4 defect classes into our manifest guard. Closes the experiment-booking gap (dirty-tree
+  class). Improves: receipt doctrine, all booked results.
+- [ ] **SC-1 consume quilt-research-canons** (CPU, ~30m): pull their scout commits, extract every finding that
+  touches our assets, convert to queue items; stop duplicating full-org sweeps. Improves: scout efficiency,
+  cross-fleet leverage.
+- [ ] **VP-1 vocabulary-completeness pin** (CPU, ~30m): at fire time, assert tool gate vocabulary >= corpus gate
+  vocabulary (fail loud). Improves: qcell_sim class (crx miss), substrate-foundation's eleven-opcode class.
+- [ ] **XR-1 tape-vs-cell-graph fault-localisation read** (CPU, ~45m): read xruntime-conformance parts 1-5;
+  test whether our cell-mesh ledger admits fault localisation; write the caveat or the counter-argument.
