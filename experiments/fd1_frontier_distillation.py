@@ -59,10 +59,10 @@ def random_playout(rng, memo):
     to_move = "X"
     while True:
         if winner(board) is not None or "." not in board:
-            return board
+            return board, to_move
         moves = [i for i in range(9) if board[i] == "."]
         if len(moves) < 9 and rng.random() < 0.30:
-            return board
+            return board, to_move
         i = rng.choice(moves)
         board[i] = to_move
         to_move = "O" if to_move == "X" else "X"
@@ -159,13 +159,13 @@ def run_seed(seed):
     boards, labels = [], []
     seen = set()
     while len(boards) < N_CORPUS:
-        b = random_playout(rng, memo)
+        b, tm = random_playout(rng, memo)
         t = tuple(b)
         if t in seen:
             continue
         seen.add(t)
         boards.append(b)
-        labels.append(solved(b, "X", memo))
+        labels.append(solved(b, tm, memo))
     field_b, field_l = boards[:N_FIELD], labels[:N_FIELD]
     eval_b, eval_l = boards[N_FIELD:], labels[N_FIELD:]
 

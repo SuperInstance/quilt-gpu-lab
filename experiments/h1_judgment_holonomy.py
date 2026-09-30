@@ -63,11 +63,10 @@ def random_playout(rng, memo):
     to_move = "X"
     while True:
         if winner(board) is not None or "." not in board:
-            return board
+            return board, to_move
         moves = [i for i in range(9) if board[i] == "."]
-        # stop early sometimes so mid-game positions dominate
         if len(moves) < 9 and rng.random() < 0.30:
-            return board
+            return board, to_move
         i = rng.choice(moves)
         board[i] = to_move
         to_move = "O" if to_move == "X" else "X"
@@ -173,13 +172,13 @@ def run_seed(seed):
     boards, labels = [], []
     seen = set()
     while len(boards) < N_FIELD:
-        b = random_playout(rng, memo)
+        b, tm = random_playout(rng, memo)
         t = tuple(b)
         if t in seen:
             continue
         seen.add(t)
         boards.append(b)
-        labels.append(solved(b, "X", memo))
+        labels.append(solved(b, tm, memo))
 
     # blind region pattern: TWO fixed cells with fixed marks (per-seed placement)
     cells = rng.choice(9, size=2, replace=False)
@@ -201,7 +200,7 @@ def run_seed(seed):
     # probes: fresh boards, half matching P
     probes, is_corr = [], []
     while len(probes) < N_PROBE:
-        b = random_playout(rng, memo)
+        b, _tm = random_playout(rng, memo)
         want = len(probes) < N_PROBE // 2
         if matches(b) != want:
             continue
@@ -238,10 +237,10 @@ def run_seed(seed):
 
 
 def main(smoke=False):
-    global N_FIELD, N_PROBE
+    global N_FIELD, N_PROBE, MIN_CORRUPT
     seeds = SEEDS[:2] if smoke else SEEDS
     if smoke:
-        N_FIELD, N_PROBE = 300, 200
+        N_FIELD, N_PROBE, MIN_CORRUPT = 300, 200, 15
 
     rows, voids = [], 0
     for seed in seeds:
