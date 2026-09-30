@@ -1,0 +1,50 @@
+{
+  "experiment": "TC4 prefix locality + discrete budgets",
+  "n_tiles": 2497,
+  "device": "cuda",
+  "flat": {
+    "8b_256cells": {
+      "containment": 0.6163396075290348,
+      "mean_candidates": 9.75390625,
+      "n_cells_used": 256
+    },
+    "10b_1024cells": {
+      "containment": 0.6956347617140569,
+      "mean_candidates": 2.467391304347826,
+      "n_cells_used": 1012
+    },
+    "12b_4096cells": {
+      "containment": 0.7308770524629555,
+      "mean_candidates": 1.0460829493087558,
+      "n_cells_used": 2387
+    }
+  },
+  "prefix": {
+    "depth1_5b": {
+      "containment": 0.5530636764116941,
+      "mean_candidates": 78.03125,
+      "n_cells_used": 32
+    },
+    "depth2_10b": {
+      "containment": 0.5014016820184221,
+      "mean_candidates": 2.93075117370892,
+      "n_cells_used": 852
+    },
+    "depth3_15b": {
+      "containment": 0.9167000400480577,
+      "mean_candidates": 20.4672131147541,
+      "n_cells_used": 122
+    }
+  },
+  "hybrid_prefix2_zrerank": {
+    "top1_selfmatch": 0.5306367641169403,
+    "fallbacks": 0
+  },
+  "gates": {
+    "G1_discrete_12b": true,
+    "G2_prefix": true,
+    "G3_hybrid": false
+  },
+  "verdict": "MEASURED",
+  "wall_clock_s": 56.8
+}

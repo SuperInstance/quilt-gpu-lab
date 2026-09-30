@@ -2672,3 +2672,26 @@ Pre-reg TC3-codec-frontier.md (pushed pre-fire). Same corpus (2551 tiles) and ev
 - FINDING: the retrieval-trained codec crosses the text codec's quality at **96 bytes — a quarter of the budget** — and then PLATEAUS (192B and 384B are statistically the same). Everything below 96B is a real cliff (48B loses 0.19 top-1 vs 96B).
 - Practical read: if a tile's job is to be FOUND, 96 bytes of retrieval-trained code is strictly better than 384 bytes of truncating text. 384 bytes was sized for a menu, not for a meaning.
 - Receipts: results/tc3/tc3_results.json; visual: viz/tile-frontier.html.
+
+## TC6 (2026-09-29) — TWO_FACE: the 384-byte tile re-portioned into menu + meaning beats all-menu
+Sweep at fixed 384B (menu bytes / meaning bytes). Verdict TWO_FACE: at 96/288 the meaning face
+replicates the TC3 knee (>=0.85), the menu face survives truncation to 288B (>=0.68), and the
+sum beats pure-menu plato (2 x 0.7174 = 1.4348) decisively. Plato's 384 was the right size for
+the wrong reasons: all menu, no meaning. Receipts: results/tc6/tc6_results.json.
+
+## TC4 (2026-09-29) — discrete cells carry real retrieval signal; hybrid rerank capped
+First run had a diagnosed harness bug (label-row flip: d1 compared against lab3, d3 against lab1;
+plus a return_q scope bug — both visible as ~1/28 random containment). Preserved as
+tc4_results_v1_harnessbug.json, fixed, rerun once. Fixed numbers (containment of the true top-1):
+flat 8b 0.6163 | 10b 0.6956 | 12b 0.7309; prefix tree 5b 0.5531 | 10b 0.5014 | 15b 0.9167.
+G1 DISCRETE_12B true (a 4096-cell codebook — the dodecet budget — contains the right tile 73% of
+the time at 1.5 bytes), G2 PREFIX true, G3 HYBRID false (prefix@2 containment 0.5014 caps rerank).
+Caveat: n=2551 makes 12/15 bits over-provisioned (uniqueness inflates containment); TC4b on a
+larger corpus is the honest scaling test. Receipts: results/tc4/tc4_results.json.
+
+## TC5 (2026-09-29) — ROOMS_ARE_REAL: per-room delta coding beats global coding at equal bytes
+Equal 24B/tile (PCA-24 + int8). Global 0.1974 vs room-anchor-delta 0.2719 (+0.0745) across 5 real
+source-document rooms; anchors amortized. First experimental evidence that our "rooms" are real
+statistical objects, not curation: a room is a predictive prior and tile deltas against it are
+cheaper to encode. (Two earlier crashes diagnosed: missing torch import; SVD projection missing
+.T. Never re-rolled blind.) Receipts: results/tc5/tc5_results.json.

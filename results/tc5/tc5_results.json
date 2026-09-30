@@ -1,0 +1,23 @@
+{
+  "experiment": "TC5 rooms are priors",
+  "n_tiles": 2497,
+  "n_rooms": 5,
+  "mean_room_size": 499.4,
+  "device": "cuda",
+  "global_pca24_int8": {
+    "top1": 0.197436924309171,
+    "top5": 0.37645174209050863,
+    "bytes_per_tile": 24
+  },
+  "room_delta_pca24_int8": {
+    "top1": 0.2719263115738887,
+    "top5": 0.45334401281537845,
+    "bytes_per_tile": 24,
+    "anchor_bytes_amortized": 3.075690828994794
+  },
+  "gates": {
+    "G1_rooms_are_real": true
+  },
+  "verdict": "ROOMS_ARE_REAL",
+  "wall_clock_s": 15.8
+}

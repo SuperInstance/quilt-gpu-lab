@@ -1,0 +1,55 @@
+{
+  "experiment": "TC6 two-face split sweep",
+  "n_tiles": 2497,
+  "device": "cuda",
+  "splits": {
+    "split_384_0": {
+      "menu_bytes": 384,
+      "meaning_bytes": 0,
+      "menu_top1": 0.6944333199839807,
+      "meaning_top1": null,
+      "menu_top5": 0.8454144973968762
+    },
+    "split_288_96": {
+      "menu_bytes": 288,
+      "meaning_bytes": 96,
+      "menu_top1": 0.7028434120945134,
+      "meaning_top1": 0.8766519823788547,
+      "menu_top5": 0.8510212254705647,
+      "meaning_top5": 0.9759711653984782,
+      "sum": 1.579495394473368
+    },
+    "split_192_192": {
+      "menu_bytes": 192,
+      "meaning_bytes": 192,
+      "menu_top1": 0.7224669603524229,
+      "meaning_top1": 0.8846615939126953,
+      "menu_top5": 0.8614337204645575,
+      "meaning_top5": 0.9795754905887064,
+      "sum": 1.6071285542651181
+    },
+    "split_96_288": {
+      "menu_bytes": 96,
+      "meaning_bytes": 288,
+      "menu_top1": 0.7585102122547056,
+      "meaning_top1": 0.8846615939126953,
+      "menu_top5": 0.8802563075690829,
+      "meaning_top5": 0.9795754905887064,
+      "sum": 1.643171806167401
+    },
+    "split_0_384": {
+      "menu_bytes": 0,
+      "meaning_bytes": 384,
+      "menu_top1": null,
+      "meaning_top1": 0.8854625550660793,
+      "meaning_top5": 0.9783740488586303
+    }
+  },
+  "gates": {
+    "G1_meaning_holds": true,
+    "G2_menu_survives": true,
+    "G3_two_face_wins": true
+  },
+  "verdict": "TWO_FACE",
+  "wall_clock_s": 39.7
+}
