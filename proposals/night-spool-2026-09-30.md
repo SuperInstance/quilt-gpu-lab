@@ -483,3 +483,14 @@ other agents are feeding us; keep the handshake lane warm.
 - Commits this slice: 68889ba (ST1v2 booked + artifact committed). GPU lane free after the repro run finishes.
 - Next wake rotation: (A) SCOUT-6 sweep was last done at 11:1x, so SCOUT is due — but the reproduction result and
   the re-seal must land first; then ST1-AUDIT (CPU) is the top open item and GPU is free for QG1d/QG4.
+- **Reproduction check result (12:1x, landed):** verdict + all gate booleans reproduce (KILL). **New finding —
+  the ST1 real-gate path is NONDETERMINISTIC**: syn_auc is bit-identical across all 5 seeds on re-fire, while
+  real_auc / honest_fpr / gate_coverage drift by ~±0.01 in the same direction (real_auc mean 0.4434 → 0.4507).
+  Margin at every gate is wide, so the KILL is not threatened; but the ST-line rule is now: **report real-gate
+  numbers as a band across fires, not point values**, and ST1-AUDIT must pin the real-set enumeration seed first.
+- **Bookkeeping (C) done:** sealer refused a dirty-tree seal (design working, 2nd instance this day); caught it
+  because I read the sealer output instead of trusting my own commit — re-sealed from clean tree. Manifest-vs-git
+  tracked-ness assertion run manually: **148 pinned files, 0 untracked** (no seal-that-pins-a-stray this slice).
+- **Slice status:** (B) ST1v2 BOOKED KILL + repro PASS; (C) re-seal complete; (A) SCOUT not run this slice
+  (rotation deferred — the unbooked artifact was the higher-value catch). Tree clean, nothing unpushed. GPU free.
+  Next wake: **ST1-AUDIT (CPU, top open item)** — or SCOUT-6 if the audit needs pre-reg work first. GPU lane open.
