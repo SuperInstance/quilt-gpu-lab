@@ -9,7 +9,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 LAB = os.path.dirname(HERE)
 OUT = os.path.join(LAB, "results", "turbquant.json")
 SEED = 20260929
-N_GISTS = 250           # gist count from i2i-ledger /since?ts=0
+N_GISTS = 1000          # pull everything the ledger holds (250 made recall@10 saturate)
+LOOKBACK_DAYS = 365     # /since needs a REAL ts (ts=0 returns count=0); widen until n >> 20*TOPK
 TOPK = 10               # recall@10
 ZOOM_FACTOR = 1.5       # for embedding norm scaling
 BATCH = 25              # per wrangler ai run call
@@ -25,7 +26,7 @@ def get_gists():
     if tf.exists():
         token = tf.read_text().strip()
     # /since requires a real ts (ts=0 silently returns count=0; no ts is a 400) — look back 30d
-    ts = int(time.time()) - 30 * 86400
+    ts = int(time.time()) - LOOKBACK_DAYS * 86400
     url = "https://i2i-ledger.casey-digennaro.workers.dev/since?ts=%d&limit=%d" % (ts, N_GISTS)
     headers = {"User-Agent": "fleet-ideation/1.0", "Accept": "application/json"}
     if token:
@@ -190,7 +191,14 @@ def main():
     gate_pass = loss <= 0.02        # 2% recall loss = 8×, close to 0.5% claimed
     gate_marginal = 0.02 < loss <= 0.05
     gate_reject = loss > 0.05
-    verdict = ("KEEP_8X" if gate_pass else
+    # degeneracy guard: below n ~= 20*k, recall@k saturates and the gate cannot
+    # discriminate — a mechanical pass there is VACUOUS, not a KEEP.
+    gate_vacuous = (len(gists) < 20 * TOPK) and (recall_q >= 0.9999)
+    if gate_vacuous:
+        log("WARNING: recall@%d degenerate at n=%d (<%d) — gate cannot discriminate"
+            % (TOPK, len(gists), 20 * TOPK))
+    verdict = ("VACUOUS_NEEDS_N" if gate_vacuous else
+               "KEEP_8X" if gate_pass else
                "MARGINAL" if gate_marginal else "REJECT")
 
     out = {
@@ -207,8 +215,13 @@ def main():
         "topk": TOPK,
         "zoom": ZOOM_FACTOR,
         "size_full_mb": (X.nbytes / 1024 / 1024),
-        "size_q_mb": (Xq.nbytes / 1024 / 1024),
-        "compression_ratio": Xq.nbytes / X.nbytes,
+        "size_q_dequant_mb": (Xq.nbytes / 1024 / 1024),
+        # the real artifact is PACKED 4-bit: 4 bits/dim vs 32 bits/dim float32 = 8x.
+        # (Earlier runs measured the dequantized float64 array and 'found' 2x LARGER.)
+        "size_q_packed_mb": (X.size * 0.5 / 1024 / 1024),
+        "compression_ratio": (X.nbytes / (X.size * 0.5)),
+        "n_gists_actual": len(gists),
+        "gate_vacuous": gate_vacuous,
     }
     json.dump(out, open(OUT, "w"), indent=1)
     log("verdict=%s -> %s" % (verdict, "KEEP_8X" if gate_pass else "MARGINAL" if gate_marginal else "REJECT"))
