@@ -26,6 +26,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -37,6 +39,25 @@ MANIFEST = LAB / "receipts" / "manifest.json"
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+SEALED_PATHS = ("RESULTS.md", "QUEUE.md", "experiments", "tools")
+
+
+def dirty_sealed_paths() -> list[str]:
+    """--require-clean guard (2026-09-30, spawned by the d23b phantom-seal
+    autopsy in PR #5): the fc79ff1/d5e7009 seals hashed a dirty working tree
+    that git never saw, and the pin only caught it later on a clean clone.
+    Convert that failure class from pin-caught-after-the-fact to
+    refused-at-seal-time: sealing with dirty sealed paths exits 2 unless
+    --allow-dirty records a sealed_from_dirty_tree admission row."""
+    r = subprocess.run(
+        ["git", "status", "--porcelain", "--", *SEALED_PATHS],
+        cwd=LAB, capture_output=True, text=True,
+    )
+    if r.returncode != 0:
+        return []  # not a git checkout (tarball/tempdir): guard inert
+    return [ln for ln in r.stdout.splitlines() if ln.strip()]
 
 
 def build() -> dict:
@@ -66,7 +87,19 @@ def build() -> dict:
 
 
 def main() -> None:
+    allow_dirty = "--allow-dirty" in sys.argv
+    dirty = dirty_sealed_paths()
+    if dirty and not allow_dirty:
+        print("REFUSED: sealed paths are dirty — commit (or stash) first.")
+        print("Sealing uncommitted bytes is how the d23b phantom seal happened")
+        print("(receipts/manifest-repair-2026-09-30-d23b.md). Use --allow-dirty")
+        print("only to record an explicit sealed_from_dirty_tree admission.")
+        for ln in dirty:
+            print(f"  dirty: {ln}")
+        raise SystemExit(2)
     manifest = build()
+    if dirty:
+        manifest["sealed_from_dirty_tree"] = {"admission": True, "paths": dirty}
     MANIFEST.parent.mkdir(exist_ok=True)
     MANIFEST.write_text(json.dumps(manifest, indent=2) + "\n")
     print(f"sealed: RESULTS.md {manifest['ledgers']['RESULTS.md'][:12]}… "
