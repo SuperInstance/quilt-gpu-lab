@@ -1,0 +1,85 @@
+{
+  "experiment": "ST1-quilt-cell-v0",
+  "pre_reg": "proposals/runs/ST1-quilt-cell-v0.md",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "smoke": false,
+  "lr": 2e-05,
+  "epochs": 3,
+  "warmup_ratio": 0.1,
+  "gates_frozen": {
+    "syn_auc_min": 0.95,
+    "real_auc_min": 0.8,
+    "honest_fpr_max": 0.1,
+    "ood_abstain_min": 0.9,
+    "min_real_receipts": 10
+  },
+  "gates": {
+    "GATE1_syn": false,
+    "GATE2_real": false,
+    "GATE3_abstain": true
+  },
+  "summary_mean": {
+    "syn_auc": 0.7207,
+    "real_auc": 0.4434,
+    "honest_fpr": 0.8,
+    "ood_abstain": 0.9,
+    "gate_coverage": 0.584
+  },
+  "seed_rows": [
+    {
+      "seed": 6611,
+      "syn_auc": 0.739,
+      "real_auc": 0.4267,
+      "honest_fpr": 0.7333,
+      "ood_threshold": 0.8426,
+      "ood_abstain": 0.9,
+      "gate_coverage": 0.64
+    },
+    {
+      "seed": 6612,
+      "syn_auc": 0.7821,
+      "real_auc": 0.44,
+      "honest_fpr": 0.7333,
+      "ood_threshold": 0.8393,
+      "ood_abstain": 0.9,
+      "gate_coverage": 0.64
+    },
+    {
+      "seed": 6613,
+      "syn_auc": 0.6841,
+      "real_auc": 0.4762,
+      "honest_fpr": 0.9333,
+      "ood_threshold": 0.733,
+      "ood_abstain": 0.9,
+      "gate_coverage": 0.82
+    },
+    {
+      "seed": 6614,
+      "syn_auc": 0.7022,
+      "real_auc": 0.4362,
+      "honest_fpr": 0.7333,
+      "ood_threshold": 0.8323,
+      "ood_abstain": 0.9,
+      "gate_coverage": 0.34
+    },
+    {
+      "seed": 6615,
+      "syn_auc": 0.6963,
+      "real_auc": 0.4381,
+      "honest_fpr": 0.8667,
+      "ood_threshold": 0.8439,
+      "ood_abstain": 0.9,
+      "gate_coverage": 0.48
+    }
+  ],
+  "real_gate": {
+    "receipts": 15,
+    "rows": 50,
+    "corrupted": 35,
+    "honest": 15
+  },
+  "n_train": 8000,
+  "n_val": 1000,
+  "verdict": "KILL",
+  "ts": 1790797331.718902
+}

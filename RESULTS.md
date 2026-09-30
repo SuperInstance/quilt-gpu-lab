@@ -3114,3 +3114,26 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
   MiniLM fine-tune LR is 2e-5. Pre-registered config failed as registered; no config retro-editing.
 - Artifacts kept: `experiments/st1_quilt_cell_v0.py`, `results/st1_quilt_cell_v0/results.json` (both committed).
 - **ST1v2** = new pre-reg, same frozen gates, lr 2e-5 + warmup, 3 epochs (gate thresholds untouched — that is the point).
+
+## ST1v2 — quilt-cell-v0 at corrected lr 2e-5 + warmup 0.1, same frozen gates (2026-09-30) — **KILL**
+- New pre-reg `proposals/runs/ST1v2-quilt-cell-v0.md` (frozen+pushed 505e323/9259fdd BEFORE fire; interpretation
+  rules registered pre-fire). Single changed factor vs ST1: lr 3e-4→2e-5, warmup 0.0→0.1, epochs 4→3. Same corpus,
+  seeds 6611-6615, same gates: syn≥0.95 · real≥0.80 · fpr≤0.10 · abstain≥0.90.
+- **Gates: G1 SYN FAIL** (AUC 0.7207 vs ≥0.95 — up from v1's 0.5034 but nowhere near gate) · **G2 REAL FAIL**
+  (AUC 0.4434 vs ≥0.80; honest FPR 0.80 vs ≤0.10 — and now BELOW chance, anti-correlated on real receipts) ·
+  **G3 ABSTAIN PASS** (0.90) but again partially hollow: gate_coverage mean 0.584, per-seed OOD thresholds 0.73-0.84.
+- **Per the pre-registered interpretation: "v2 KILL at 2e-5 ⇒ the diagnosis was incomplete; the failure is not
+  LR."** The registered next-suspect order stands, no post-hoc drift: (a) label/format leakage audit op-by-op
+  (is every corruption detectable by a token-level artifact? note syn improved while real went anti-correlated —
+  the model may be learning render-style artifacts, not corruption semantics), (b) corpus size/epochs, (c) head
+  capacity. **Spawned ST1-AUDIT (CPU, next): op-by-op detectability audit — for each of the 6 corruption ops,
+  can a trivial hash/diff check distinguish corrupt from clean on our own corpus? Any op with a mechanical
+  tell is flagged as leakage-prone and excluded from ST1v3's training mix unless it survives.**
+- Honest provenance note: this artifact carries NO embedded `runner_sha256`/`args` fields (older runner output
+  format), so provenance rests on timestamps (written 11:42 AKDT, after the 11:36 pre-reg push) + config fields
+  matching the pre-reg exactly (lr 2e-5, epochs 3, warmup 0.1, seeds 6611-6615) + the reproduction re-run below.
+  **Tooling gap (RC-1 family): runner should embed runner_sha256 + full args in EVERY result file — it does in
+  qc_jev_control.py but not here.**
+- **MANDATORY REPRODUCTION CHECK: fired in-slice to ext4 scratch via the committed runner's `--out` flag**
+  (first clean use of the RC-1 fix on this runner); verdict + gate values to be appended on completion.
+- Artifacts: `results/st1v2_quilt_cell_v0/results.json` (committed this slice), runner `experiments/st1_quilt_cell_v0.py`.
