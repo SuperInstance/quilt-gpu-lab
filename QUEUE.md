@@ -73,3 +73,5 @@
 - [x] H1 judgment holonomy — KILL (0/5; mean AUC gap −0.033, holonomy below margin baseline; INDIFFERENT clause not met). wide-scope #3 closed.
 - [x] FD1 frontier distillation — KILL (frontier −5.3pp vs uniform; hybrid +0.3pp < +1.0pp; not HALF). wide-scope #1 closed.
 - [x] W5b2 antirank-primacy — **KEEP** (mean_rel +8.35%, wins 4/5, confirmation-grade; booked ahead of the 10:25 cron which will no-op). W5-line closed: antirank = default HP allocator.
+- [x] AG1 aggregation-rule repair (Syzygy d158 on our fields) — 2026-09-30 **PARTIAL-SUB+OM** (G1 5/5 consensus-repairs-substitution CONFIRMED; G2 4/5 union-repairs-omission CONFIRMED; G3 2/5 agreement-class selector FAILS as their E5 predicted). Spawned AG2: claim-ratio selector.
+- [ ] AG2 claim-ratio regime selector (their E7 selector, our substrate) — pre-reg next

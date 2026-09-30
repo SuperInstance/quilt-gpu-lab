@@ -1,0 +1,6 @@
+[seed 8811] G1 PASS (cons 0.612 vs single 0.511) | G2 PASS (unio 0.620 vs cons 0.618) | G3 fail (trk-sel 0.606 vs mom 0.624, rule=unio) | trackvote 0.608 clean 0.600
+[seed 8812] G1 PASS (cons 0.604 vs single 0.483) | G2 fail (unio 0.570 vs cons 0.588) | G3 PASS (trk-sel 0.578 vs mom 0.574, rule=cons) | trackvote 0.572 clean 0.580
+[seed 8813] G1 PASS (cons 0.636 vs single 0.536) | G2 PASS (unio 0.622 vs cons 0.612) | G3 PASS (trk-sel 0.622 vs mom 0.618, rule=cons) | trackvote 0.630 clean 0.632
+[seed 8814] G1 PASS (cons 0.564 vs single 0.476) | G2 PASS (unio 0.590 vs cons 0.570) | G3 fail (trk-sel 0.590 vs mom 0.592, rule=cons) | trackvote 0.566 clean 0.560
+[seed 8815] G1 PASS (cons 0.604 vs single 0.493) | G2 PASS (unio 0.628 vs cons 0.618) | G3 fail (trk-sel 0.642 vs mom 0.642, rule=cons) | trackvote 0.634 clean 0.632
+[VERDICT] PARTIAL-SUB+OM (G1 5/5 G2 4/5 G3 2/5)

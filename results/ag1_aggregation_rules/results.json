@@ -1,0 +1,129 @@
+{
+  "experiment": "AG1-aggregation-rules",
+  "smoke": false,
+  "seeds": [
+    8811,
+    8812,
+    8813,
+    8814,
+    8815
+  ],
+  "rows": [
+    {
+      "g1": {
+        "cons": 0.612,
+        "single_mean": 0.5109523809523809,
+        "pass": true
+      },
+      "g2": {
+        "unio": 0.62,
+        "cons": 0.618,
+        "pass": true
+      },
+      "g3": {
+        "track": 0.606,
+        "momentary": 0.624,
+        "rule": "unio",
+        "tau_m": 0.55,
+        "pass": false
+      },
+      "trac_acc_mix": 0.608,
+      "clean_cons": 0.6,
+      "single_clean": 0.5109523809523809
+    },
+    {
+      "g1": {
+        "cons": 0.604,
+        "single_mean": 0.4833333333333334,
+        "pass": true
+      },
+      "g2": {
+        "unio": 0.57,
+        "cons": 0.588,
+        "pass": false
+      },
+      "g3": {
+        "track": 0.578,
+        "momentary": 0.574,
+        "rule": "cons",
+        "tau_m": 0.4,
+        "pass": true
+      },
+      "trac_acc_mix": 0.572,
+      "clean_cons": 0.58,
+      "single_clean": 0.4833333333333334
+    },
+    {
+      "g1": {
+        "cons": 0.636,
+        "single_mean": 0.5357142857142857,
+        "pass": true
+      },
+      "g2": {
+        "unio": 0.622,
+        "cons": 0.612,
+        "pass": true
+      },
+      "g3": {
+        "track": 0.622,
+        "momentary": 0.618,
+        "rule": "cons",
+        "tau_m": 0.45,
+        "pass": true
+      },
+      "trac_acc_mix": 0.63,
+      "clean_cons": 0.632,
+      "single_clean": 0.5357142857142857
+    },
+    {
+      "g1": {
+        "cons": 0.564,
+        "single_mean": 0.4757142857142857,
+        "pass": true
+      },
+      "g2": {
+        "unio": 0.59,
+        "cons": 0.57,
+        "pass": true
+      },
+      "g3": {
+        "track": 0.59,
+        "momentary": 0.592,
+        "rule": "cons",
+        "tau_m": 0.4,
+        "pass": false
+      },
+      "trac_acc_mix": 0.566,
+      "clean_cons": 0.56,
+      "single_clean": 0.4757142857142857
+    },
+    {
+      "g1": {
+        "cons": 0.604,
+        "single_mean": 0.4928571428571428,
+        "pass": true
+      },
+      "g2": {
+        "unio": 0.628,
+        "cons": 0.618,
+        "pass": true
+      },
+      "g3": {
+        "track": 0.642,
+        "momentary": 0.642,
+        "rule": "cons",
+        "tau_m": 0.4,
+        "pass": false
+      },
+      "trac_acc_mix": 0.634,
+      "clean_cons": 0.632,
+      "single_clean": 0.4928571428571428
+    }
+  ],
+  "gate_wins": {
+    "g1": 5,
+    "g2": 4,
+    "g3": 2
+  },
+  "verdict": "PARTIAL-SUB+OM"
+}
