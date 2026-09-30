@@ -125,9 +125,10 @@ def run_T(T: int, rng: random.Random, null_model: bool = False) -> dict:
             "null_acc": round(null_acc, 4)}
 
 
-def _match_accuracy_null(T, phis, grid, rng):
+def _match_accuracy_null(T, phis, rng):
     """All-uniform angles: partner structure is absent. Best-neighbor matching
     on the designated qubit should hit chance (~1/7)."""
+    grid = np.linspace(-math.pi, math.pi, GRIDS)
     est = {}
     for c in range(N_CELLS):
         ths = [rng.uniform(-math.pi, math.pi) for _ in range(N_QUBITS)]

@@ -7,12 +7,12 @@
     {
       "T": 5,
       "partner_id_acc": 0.5,
-      "null_acc": 0.25
+      "null_acc": 0.15
     },
     {
       "T": 10,
-      "partner_id_acc": 0.75,
-      "null_acc": 0.25
+      "partner_id_acc": 0.875,
+      "null_acc": 0.1313
     },
     {
       "T": 25,
@@ -21,19 +21,19 @@
     },
     {
       "T": 50,
-      "partner_id_acc": 0.875,
-      "null_acc": 0.125
+      "partner_id_acc": 0.75,
+      "null_acc": 0.1125
     },
     {
       "T": 100,
-      "partner_id_acc": 0.5,
-      "null_acc": 0.125
+      "partner_id_acc": 1.0,
+      "null_acc": 0.1187
     },
     {
       "T": 200,
-      "partner_id_acc": 1.0,
-      "null_acc": 0.0
+      "partner_id_acc": 0.75,
+      "null_acc": 0.1125
     }
   ],
-  "verdict": "INVALID_HARNESS"
+  "verdict": "KILL"
 }

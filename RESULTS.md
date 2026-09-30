@@ -2946,3 +2946,11 @@ MATERIAL on this question — single-draw verdicts flip).
 Fire-time pins: qcell_sim.py 8c82d4bc…, qcell_oracle.pt fed2c15f…. Honest notes: 2 mechanical crashes fixed pre-verdict
 (stray dead line; ckpt key 'state_dict'), lane nondeterminism booked as ensemble, no re-roll.
 Artifacts: experiments/qg7_gen_asymmetry.py, results/qg7_gen_asymmetry/{results.json,run.log}.
+
+## D23b — hidden-angle register carries only a WEAK, non-monotone relational channel (deep n-qubit cell semantics): BOOKED 2026-09-30 06:4x — CPU only
+Gates (registered in the experiment source docstring): INVALID_HARNESS if shuffled-control partner_id >= 0.25; KEEP if partner_id_acc >= 0.90 at T=200 AND >= 0.50 at T=25; KILL if < 0.50 at T=200. Chance = 1/7 ~= 0.143.
+- partner_id_acc by T: 5:0.500, 10:0.875, 25:0.625, 50:0.750, 100:1.000, 200:0.750. Null lane 0.113-0.150 (~chance, labels destroyed => harness valid).
+- **VERDICT: KILL on the registered bar** — at T=200 only 0.75 (6/8) vs the 0.90 gate, and NON-MONOTONE at N=8 (1.000 at T=100 -> 0.750 at T=200). So the shared-secret angle on the partner qubit is a real but weak/noisy relational channel (2-7x chance at every T), far inferior to the ternary correlation keys (D12e: 1.0 at T>=25).
+- Working read: **angles are a DEGRADED SECONDARY MIRROR of stream coupling, not the primary memory.** The correlation-key mechanism lives in the ternary atom streams (consistent with D12e/D13d), not the phase register.
+Honest notes: (a) null lane had a template-guess bug — `_match_accuracy_null` took `grid` as a parameter and rebuilt its own linspace, so the null grid did not match the estimator's; fixed to reconstruct `grid = linspace(-pi, pi, GRIDS)` internally and the numbers were amended IN PLACE (supersedes the first run; the KILL verdict is unaffected). (b) Discipline miss: gates were registered in the experiment source, not as a frozen proposals/runs/ pre-reg. (c) QUEUE drift backfilled — D23b was booked nowhere, same class as D22/E13/E13b (D18 precedent c9b39b4).
+Artifacts: experiments/d23b_relational_hidden_angle.py, results/d23b_relational_hidden_angle.json. Next: sigma-vs-T spread sweep at N=32 cells, or close the semantics lane.
