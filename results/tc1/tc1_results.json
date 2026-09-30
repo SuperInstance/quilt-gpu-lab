@@ -1,0 +1,34 @@
+{
+  "experiment": "TC1 \u2014 384-byte tile codec showdown",
+  "n_tiles": 2525,
+  "device": "cuda",
+  "arms": {
+    "A_deterministic": {
+      "cos": 0.9650329947471619,
+      "bytes": 384,
+      "decode_fail_rate": 0.015841584158415842,
+      "top1": 0.7164356435643564,
+      "top5": 0.8352475247524752
+    },
+    "B_int8_full": {
+      "cos": 0.9999071955680847,
+      "bytes": 384,
+      "top1": 0.6879207920792079,
+      "top5": 0.8487128712871287
+    },
+    "C_learned_96d": {
+      "cos": 0.9654765725135803,
+      "bytes": 384,
+      "top1": 0.5738613861386138,
+      "top5": 0.7544554455445545
+    }
+  },
+  "gates": {
+    "G1_deterministic_decode_loss": false,
+    "G2_adaptive_wins": false,
+    "G3_deterministic_wins": false
+  },
+  "best_adaptive": "B_int8_full",
+  "verdict": "TIE",
+  "wall_clock_s": 23.8
+}
