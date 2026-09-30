@@ -1,6 +1,6 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-09-30T18:26:46.740868+00:00",
+  "generated_at": "2026-09-30T18:54:00.280273+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
     "RESULTS.md": "c19e0434104685e0fc45fe94928056a59828de0e064f9600351f6220a7e8f0ae",
@@ -50,6 +50,7 @@
     "d22_ternary_forgiveness.py": "feaf55367fe632a188306e6f3090ab5f11d689b24f94b383b3212871b379a7bd",
     "d23_marginal_hidden_angle.py": "431480fb461d96fe7275faed398f8bf5a5cc1e03e8f564a96777f0a3a282da9b",
     "d23b_relational_hidden_angle.py": "80e545bb1a587dcc3527f3b46a3a28cc750824e172d58922030b0a3f9c71a313",
+    "d23c_sigma_t_sweep.py": "52311a7c7f7c7b1dabf2e02ce246fac2e61e54cc23afdcaed6d33e5fd0b2e0e1",
     "d2_ternary_kernel.py": "a10ad0cac866e05559a75f050a58c83f80da0e2916625fe1432e991137cf9d4f",
     "d3_statevector_ceiling.py": "caa75c73a01162950cbfb7604c05510bedf80df6fc0c0c2a71714a763dad8d24",
     "d4_canon_lora.py": "e91940be5d06a476d4f60563fa65e59c6d5c59a43ebf11ef21a03774a5083a64",
@@ -153,7 +154,7 @@
     "qcell_oracle.pt": "fed2c15fb506899fdc0fb86a7656d965c4b0aae8bceda28d11d6850aec201eed",
     "qcell_sim.py": "8c82d4bcc88370c01870238a006fa62bdb6fe571f5c8951bcdae6f3cf7920962",
     "receipt_manifest.py": "6b3c8c5d0fb5310afba1d3cc1ac4467581ecb9459c13a62dcf88fa6818556114",
-    "systemone_proxy.py": "e9df09bad3e740c68e33965c4964bf286755bb5e3d9c20c43f6cef44e83b4022",
+    "systemone_proxy.py": "0fb09d57ab77c285ff39db7113c759bc334e17e9ce6b1cb98b76981b1ff66782",
     "transition_kernel.py": "8364ec79e6e866fbf78d4fbd80a3514bf14f11394c4048a1dff30889e7796443"
   }
 }
