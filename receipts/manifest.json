@@ -1,10 +1,10 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-09-30T15:33:14.717146+00:00",
+  "generated_at": "2026-09-30T16:38:26.465260+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
     "RESULTS.md": "58f9d1dcd0630bf2a2e9893ba54e69dd88b5702dbf2f04a5ad6b1fd728121ab1",
-    "QUEUE.md": "32e9a3c852fb291db023c997a2303867362cb92b751a3bbea2c903b52dc8c477"
+    "QUEUE.md": "4b549c0ddc8b702afdde8d869cbb32782e3388e504f7cbec53ad90e37cf7ef56"
   },
   "experiments": {
     "c1_cosmos_boots.py": "e95e86fc7dd90dfaa37ba3d2ce16f640a2e73dcd01d00b3a2668b450648f36ee",
@@ -83,6 +83,7 @@
     "e8_encoder_swap_leaderboard.py": "712cf1047349e804c5f73ee884c65dfd5cadb6874bced8ca6990fd262d6c977b",
     "e9_ijepa_stills.py": "477c71f3b6b4f87bb3b3927b624208b8c9c1a9ddfdccdcfad9100c6221fee83f",
     "elephant_model.py": "977b173fa6006e885ef5fdfda30f13d401211b38311ee1b0aac706e5fda45eb9",
+    "f1_df_admission.py": "52516866a64d89346f31ad3467c962bffb6d92db80347b9beb8c8e7c3ead2a3b",
     "ib1a_fly_rule.py": "1a00319c4460bb9159dddfd383e3abc7b0d52566f329e74ee9717c326435188d",
     "ib1b_variable_delay.py": "9950628b82b201b7b0ee8d915f8b665765f03e02217e5cd16f9d6c7ee11eef1b",
     "ie1_reichardt.py": "3a93df2e21d30cda086ae61e30708ac06877aed05a330aa82d824dfef517f17a",
@@ -119,6 +120,8 @@
     "viz_frontier.py": "d9d95c5e7c1f111b08dbbc941654898413c90fd7cc8c4045e776e49879bb79af",
     "viz_mq1_cg1.py": "99a0449ee0179a4a4e95c5f3a840c715d8ad33a9ac43c9d8c1d9fa07ae2f622d",
     "viz_tc.py": "3f325e2fa6657abd931e908d80e03e597e8c761dda7a0ceb049d91036e2eb5d9",
+    "w5a_reobserve_vs_trace.py": "271a6251f592acb031145758b2cdfac2a8a93d094215bbe1b0fdd2eaa3d20d55",
+    "w5b2_antirank_primacy.py": "7a3950c5f666361153199f69cbbcce9ce4a152fe9376f72e63ff9afdf9358698",
     "w5b_lifetime_precision.py": "a6d2bbcc1b68da5f5390b69c6b9852df720017aaef00c9fecd7b06acf02e3f95",
     "x1_reverse_probe.py": "1970f44113e1756ca5682736274ff66c7145b4be17058084b716f380b6b79bb8",
     "x2_renderer_transfer.py": "b02711dcd7c973bfefa3e28d868eac757b187393a436867d1bbc1b889c3b07e4",
