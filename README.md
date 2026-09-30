@@ -21,6 +21,11 @@ receipt doctrine, dogfooded from pong-quilt):
 - `python tools/receipt_manifest.py` seals `RESULTS.md`, `QUEUE.md`, and
   every `experiments/*.py` into `receipts/manifest.json` (sha256 digests).
   Regenerate after every honest ledger change and commit it WITH the change.
+  The seal refuses to run over dirty sealed paths (exit 2, `REFUSED`) —
+  sealing uncommitted bytes is how the d23b phantom seal happened
+  (`receipts/manifest-repair-2026-09-30-d23b.md`). `--allow-dirty` records
+  an explicit `sealed_from_dirty_tree` admission instead; `tests/test_seal_guard.py`
+  pins the refusal semantics.
 - `python -m unittest discover -s tests` re-derives every digest and trips
   RED on drift — a checked queue item with no result, a result whose code
   left the repo, or a manifest no one re-sealed. FAIL-first verified.
