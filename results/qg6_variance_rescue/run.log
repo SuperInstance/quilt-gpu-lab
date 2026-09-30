@@ -1,0 +1,12 @@
+ANCHOR-VEC: max|diff|=2.08e-34 pass=True
+arm k=1: W=6 gens=12 S=1024 ...
+  k=1: crossed 615/1024 = 0.601 [0.570,0.631]  med_gen=2.0  (3s)
+arm k=2: W=6 gens=12 S=1024 ...
+  k=2: crossed 599/1024 = 0.585 [0.554,0.615]  med_gen=4.0  (4s)
+arm k=3: W=6 gens=12 S=1024 ...
+  k=3: crossed 535/1024 = 0.522 [0.491,0.553]  med_gen=5.0  (5s)
+G2 REPLICATE: k1=0.601 in [0.541,0.615]? PASS
+delta_lb k=2 vs k=1: -0.077
+delta_lb k=3 vs k=1: -0.139
+GATE PASS — continuing to booking
+DONE 5s

@@ -2898,3 +2898,24 @@ QO1/QO3/QO5, DECIDE-1*) amended with Pinned-instruments pointer blocks; conventi
 receipts pin at fire time. Also fixed pre-existing QUEUE drift the pins exposed: D22, E13, E13b
 were booked in RESULTS but never claimed in QUEUE — backfilled per c9b39b4 precedent (D18).
 Artifacts: tools/receipt_manifest.py, tests/test_receipts.py, receipts/tool_pins_2026-09-30.md, receipts/manifest.json.
+
+## QG6 — variance does NOT rescue: bigger move-sets anti-monotone in k (2026-09-30 05:3x): BOOKED
+Pre-reg: proposals/runs/QG6-variance-rescue.md (committed 269b561 before firing). Lane verbatim from
+QG3 arm A (W=6, gens=12, S=1024, C=15 children/gen FIXED, bar=0.45), mutation kernel extended by
+k applications/child only.
+- G1 ANCHOR-VEC PASS (2.08e-34). G2 REPLICATE PASS: k=1 crossed 0.601, inside QG3 arm A CP95 window.
+- **P-null (slow-climb) wins**: k=2 0.585 [0.554,0.615] statistically indistinguishable from k=1;
+  **k=3 0.522 [0.491,0.553] is significantly BELOW k=1** (delta_lb -0.139) — mild "too-hot": 3-jump
+  children destroy accumulated fitness faster than selection can bank it. No variance rescue at any k.
+- **Crossing is delayed by bigger moves**: median crossed_gen 2 (k=1) -> 4 (k=2) -> 5 (k=3);
+  early-crossing mass (gen<=1) collapses 247 -> 138 -> ~. Same WHETHER (roughly), later WHEN.
+- **QG3+QG6 combined law: trapping is a TIME problem.** More generations rescue (QG3 2x gens);
+  neither width (QG3 inert) nor move-set variance (QG6 flat-to-harmful) does. The slow-climb fence
+  is climbed only by accumulating small wins — selection pressure on small mutations is the engine.
+  Routing (QO2) should not spend budget on variance hacks; give slow climbers generations or kill them
+  early per oracle (QO3: g1 AUC 0.88).
+Honest notes: one mechanical crash fixed pre-scoring (insert slice off-by-one in the k-loop refactor;
+declared, anchor unaffected). Stray uncommitted d23b files (pre-existing dirty state, unrelated lane)
+left untouched. Pinned instruments per fire-time convention: tools/qcell_sim.py sha256 8c82d4bc…,
+qcell_oracle.pt per receipts/manifest.json seal fc79ff1.
+Artifacts: experiments/qg6_variance_rescue.py, results/qg6_variance_rescue/{results.json,run.log}.

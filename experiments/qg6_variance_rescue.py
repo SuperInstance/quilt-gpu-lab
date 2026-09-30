@@ -39,7 +39,7 @@ def _one_mut_round(cseq, clen, rng, W):
                 ins = (L < W) and (sub[s, c] == 0 or L <= 1)
                 if ins:
                     pos = int(posf[s, c] * (L + 1))
-                    cseq[s, c, pos+1:L+2] = cseq[s, c, pos:L+1]; cseq[s, c, pos] = gates[s, c]; clen[s, c] = L + 1
+                    cseq[s, c, pos+1:L+1] = cseq[s, c, pos:L]; cseq[s, c, pos] = gates[s, c]; clen[s, c] = L + 1
                 elif L > 1:
                     pos = int(posf[s, c] * L)
                     cseq[s, c, pos:L-1] = cseq[s, c, pos+1:L]; cseq[s, c, L-1] = PAD; clen[s, c] = L - 1
