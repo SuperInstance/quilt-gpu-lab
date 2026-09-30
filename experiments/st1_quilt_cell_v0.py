@@ -245,12 +245,15 @@ def fit_and_score(seed: int, train_pairs, score_sets: dict, smoke: bool, log,
 
     model = AutoModelForSequenceClassification.from_pretrained(
         MODEL_NAME, num_labels=2)
+    epochs_n = 1 if smoke else epochs
+    steps_per_epoch = max(1, len(encs) // BATCH)
+    warmup_steps = int(warmup_ratio * steps_per_epoch * epochs_n)
     targs = TrainingArguments(
         output_dir=str(Path("/home/eileen/scratch/st1_hf") / f"seed{seed}"),
         per_device_train_batch_size=BATCH,
-        num_train_epochs=1 if smoke else epochs,
+        num_train_epochs=epochs_n,
         learning_rate=lr,
-        warmup_ratio=warmup_ratio,
+        warmup_steps=warmup_steps,
         logging_steps=100,
         save_strategy="no",
         report_to=[],
