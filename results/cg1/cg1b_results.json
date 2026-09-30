@@ -1,0 +1,54 @@
+{
+  "experiment": "CG1b \u2014 elicitation hardening of CG1",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "modes": {
+    "logit": {
+      "step": -0.07394498586654663,
+      "saturation": -0.23077445849776268,
+      "G1_step": false,
+      "G2_saturation": false
+    },
+    "anchored": {
+      "step": 0.0,
+      "saturation": -0.011666666666666603,
+      "G1_step": false,
+      "G2_saturation": true
+    }
+  },
+  "raw_ladder_logit": [
+    0.7799928784370422,
+    0.06853749603033066,
+    0.3106943964958191,
+    0.7217432260513306,
+    0.6477982401847839,
+    0.4882833957672119,
+    0.2254166156053543,
+    0.39606815576553345,
+    0.5583269596099854
+  ],
+  "raw_ladder_anchored": [
+    0.05000000000000001,
+    0.05000000000000001,
+    0.05000000000000001,
+    0.85,
+    0.85,
+    0.85,
+    0.8366666666666666,
+    0.8166666666666668,
+    0.85
+  ],
+  "states_logit": {
+    "mechanism+guarantee": 0.815232515335083,
+    "mechanism only": 0.740174412727356,
+    "guarantee only": 0.1561049073934555,
+    "neither": 0.18713268637657166
+  },
+  "states_anchored": {
+    "mechanism+guarantee": 0.9700000000000001,
+    "mechanism only": 0.9400000000000001,
+    "guarantee only": 0.05000000000000001,
+    "neither": 0.05000000000000001
+  },
+  "wall_clock_s": 51.2,
+  "verdict": "ORACLE_BOUND_STANDS"
+}
