@@ -110,6 +110,12 @@ class DecisionCell:
         n = len(options_of(question)[0])
         codes = self.codes[:n]
         prompt_text = decision_prompt(state, question, codes, self.prompt_layout)
+        if self.processor.tokenizer.chat_template is None:
+            # fail-loud fallback: checkpoint ships no chat template; use base Qwen3.5 family template
+            # (same arch — readout was trained on this family's template states; never invent one silently)
+            from transformers import AutoTokenizer
+            self.processor.tokenizer.chat_template = AutoTokenizer.from_pretrained(
+                "Qwen/Qwen3.5-0.8B").chat_template
         text = self.processor.apply_chat_template(
             [{"role": "system", "content": SYSTEM}, {"role": "user", "content": prompt_text}],
             tokenize=False, add_generation_prompt=True, enable_thinking=False)

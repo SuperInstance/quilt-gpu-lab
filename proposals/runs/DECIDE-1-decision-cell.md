@@ -33,3 +33,8 @@ Additional arch notes: base is a **hybrid linear-attention** Qwen3.5 (24 layers,
 
 ### G4 (added, frozen before firing)
 - **G4 READOUT LADDER**: on the same 64 held-out lane questions, compare three readers — (a) **zero-shot sideways softmax** over the pinned code token ids; (b) **fitted temperature only** on (a); (c) **trained 255-class linear readout** on frozen hidden states (fitted on a disjoint set of lane questions, exact-simulator labels). Prediction: (c) > (b) > (a) ≥ random. Any ordering is reportable; (a)≈(c) would mean the base model already exposes the decision linearly, (c)≫(a) reproduces jeff's claimed value of a fitted readout.
+
+## AMENDMENT 2 (2026-09-30 01:2x, night conductor)
+First fire crashed PRE-SCORING (transformers ValueError: processor has no chat template — checkpoint ships none).
+Mechanical harness fix in tools/decision_cell.py: loud fallback to base Qwen/Qwen3.5-0.8B family chat template
+(same architecture; chosen over inventing a format). No scoring occurred before the crash, so this is not a re-roll.

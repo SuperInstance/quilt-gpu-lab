@@ -1,0 +1,39 @@
+generated: train 64 test 64 control 16
+label margin check: [0.25, 0.25, 0.5, 0.073, 0.25, 0.073]
+
+sample question:
+ A three-qubit quantum circuit applies these gates, in order, to the state |000>:
+1. controlled-RX(π) with control qubit 1 and target qubit 0
+2. H (Hadamard) on qubit 2
+3. SWAP between qubits 0 and 2 
+ {
+ "type": "choice",
+ "criteria": {
+  "A": "replace step 1 with H (Hadamard) on qubit 1",
+  "B": "replace step 2 with CX (controlled-X) with control qubit 2 and target qubit 1",
+  "C": "replace step 3 with H (Hadamard) on qubit 2",
+  "D": "delete step 1 (controlled-RX(\u03c0) with control qubit 1 and target qubit 0)"
+ },
+ "instructions": "Balance is min(P(000), P(111)) of the final state. Which single edit gives the largest balance?"
+} 
+label: A
+Loading weights:   0%|          | 0/473 [00:00<?, ?it/s]Loading weights:  30%|███       | 143/473 [00:00<00:00, 1424.69it/s]Loading weights:  60%|██████    | 286/473 [00:00<00:00, 1389.55it/s]Loading weights: 100%|██████████| 473/473 [00:00<00:00, 2081.62it/s]
+Loading weights:   0%|          | 0/473 [00:00<?, ?it/s]Loading weights:  31%|███       | 145/473 [00:00<00:00, 1444.90it/s]Loading weights:  61%|██████▏   | 290/473 [00:00<00:00, 1381.70it/s]Loading weights: 100%|██████████| 473/473 [00:00<00:00, 2074.32it/s]
+Loading weights:   0%|          | 0/473 [00:00<?, ?it/s]Loading weights:  27%|██▋       | 130/473 [00:00<00:00, 1287.89it/s]Loading weights:  56%|█████▌    | 264/473 [00:00<00:00, 1309.15it/s]Loading weights: 100%|██████████| 473/473 [00:00<00:00, 2106.15it/s]
+Traceback (most recent call last):
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/decide1.py", line 118, in <module>
+    res["G1_control_zeroshot"] = {k: v for k, v in run("zeroshot", ctrl, zs).items() if k != "rows"}
+                                                   ~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/decide1.py", line 96, in run
+    r = cell.decide(state, q, temperature)
+  File "/home/eileen/venvs/elephant-gpu/lib/python3.14/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/eileen/projects/quilt-gpu-lab/tools/decision_cell.py", line 113, in decide
+    text = self.processor.apply_chat_template(
+        [{"role": "system", "content": SYSTEM}, {"role": "user", "content": prompt_text}],
+        tokenize=False, add_generation_prompt=True, enable_thinking=False)
+  File "/home/eileen/venvs/elephant-gpu/lib/python3.14/site-packages/transformers/processing_utils.py", line 2036, in apply_chat_template
+    raise ValueError(
+        "Cannot use apply_chat_template because this processor does not have a chat template."
+    )
+ValueError: Cannot use apply_chat_template because this processor does not have a chat template.
