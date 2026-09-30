@@ -1,0 +1,4 @@
+[cm1r4 15:08:19] A 12/12 paths={'RETRY_PASS': 6, 'DRAFT_PASS': 3, 'PINCHED_FALLBACK': 3} jev=6965/702 judge_wall=6.9s/18calls cal=0.648
+[cm1r4 15:09:14] B batch1: 24 answers in 0.28s jev=1559/490
+[cm1r4 15:09:14] B 12/12 paths={'DRAFT_PASS': 12} jev=1559/490 batch_walls={'pass1': 0.28} cal=0.767 -> TIE_NOISE (diff +0)
+[cm1r4 15:09:14] DONE 414.3s

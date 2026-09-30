@@ -1,0 +1,5 @@
+[cm1r3 14:06:46] arm A (Seed ungated): 12/12
+[cm1r3 14:08:12] p=0.3: B 12/12 diff +0 -> TIE_NOISE paths={'DRAFT_PASS': 11, 'RETRY_PASS': 1} jev=4519/507 di=2504/7764
+[cm1r3 14:13:04] p=0.5: B 12/12 diff +0 -> TIE_NOISE paths={'RETRY_PASS': 7, 'DRAFT_PASS': 3, 'PINCHED_FALLBACK': 2} jev=7374/741 di=4479/32646
+[cm1r3 14:18:40] p=0.7: B 12/12 diff +0 -> TIE_NOISE paths={'RETRY_PASS': 11, 'PINCHED_FALLBACK': 1} jev=9422/897 di=5222/35085
+[cm1r3 14:18:40] DONE 780.8s
