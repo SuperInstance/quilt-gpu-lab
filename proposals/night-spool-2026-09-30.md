@@ -377,3 +377,32 @@ other agents are feeding us; keep the handshake lane warm.
     DECIDE-2's spec before firing.
   - Rotation: QC-JEV was CPU, so next wake takes a non-GPU PR-SWEEP/SCOUT or an open CPU item (RC-3 sealer
     --require-clean and DEGENERATE-gate-verdict are both cheap and unclaimed); GPU lane free all slice.
+
+## DAY SLICE 10:1x-10:4x (day-conductor) — QC-JEV BOOKED; bookkeeping yielded the real find
+- **(B) TOP ITEM: QC-JEV fired + BOOKED — DISCRIMINATING.** The SCOUT-4 CONTRADICT (murmuration's jev-1.13.0
+  null: positive and negative arithmetic probes both argmax=unclear) does **NOT** transfer to jeff-0.8b:
+  p_true 0.9606 ("2+2=4") vs 0.0243 ("2+2=5"), d_ptrue 0.936, both letter-fixed choice probes follow content.
+  **DECIDE-2 premise STANDS; DECIDE-1 G2 stays booked as lane information, not a broken calibrator.** The
+  temp-1.1289 / fitted-T-6.0 boundary flag is narrowed to the balance-edit lane only. Spawned QC-JEV2 (low).
+- **(C) BOOKKEEPING — TWO REAL FINDS, both the silent-edit class the fleet keeps hitting:**
+  1. **The sealer refused to seal** (dirty RESULTS.md + two untracked strays) — working exactly as designed;
+     the 09:1x `--require-clean` ask is already satisfied by existing behavior in this repo (worth noting in RC-3).
+  2. **`results/qc_jev_control/` was UNTRACKED while I sealed the manifest** — the seal had pinned a runner
+     whose result artifact was never committed. Caught by checking `git status` after the seal. Committed,
+     re-sealed. This is the D-2 silent-edit class appearing in MY OWN slice: the seal does not verify that
+     the artifacts it names are tracked. **New RC-3 spec item: seal must assert every referenced artifact is
+     tracked at the sealed commit.**
+- **Reproduction check (mandatory): QC-JEV verdict + all gates reproduce; byte-identity claim WITHDRAWN honestly**
+  (my reference copy was taken after an earlier same-sweep re-fire had already overwritten the artifact, so the
+  diff was uninformative by construction). The artifact's embedded `runner_sha256` does equal the committed
+  script's hash, and `_latency_ms` demonstrably varies between fires ⇒ the artifact is not byte-stable, and I
+  did NOT claim otherwise. **Tooling defect (3rd instance): hardcoded results/ output path — the verification
+  run overwrote the artifact under test.** RC-1 spec item stands: every runner needs `--out`; verification
+  writes to ext4 scratch, never into results/.
+- Strays handled (archive-never-delete): `tools/deepinfra_ideate.py` (DeepInfra revoked) → archived to
+  `_archive/deepinfra_ideate.py.stray-20260930`; `tools/local_jev_bench.py` (serves the live JEV question)
+  → COMMITTED rather than archived, with an honest commit message naming it as not-mine.
+- **GPU lane free the whole slice; no GPU item fired (rotation: QC-JEV was CPU).** Next wake: non-GPU per
+  rotation — PR-SWEEP #6 or the cheap unclaimed CPU items (RC-3 sealer `--require-clean`+tracked-artifact
+  assert, DEGENERATE gate verdict, RC-2 completeness-bounds). GPU: QG1d recon follow-up or QG4 phase diagram.
+- Commits: 10b661f (pre-reg+runner), 802bae1 (crash fix), 73377fd (booked+result artifact), a75b2fb (re-seal).
