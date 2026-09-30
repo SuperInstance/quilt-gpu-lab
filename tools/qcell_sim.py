@@ -11,6 +11,7 @@ against 960 recorded cells; see proposals/runs/QG1-exact-census.md):
       -- this is the calibration cut (delta-shape D10): ratios exact, only the unit label drifts.
   * qubit indexing   = q0 is the MSB of the target bitstring
   * gate set         = h, x, rx(theta,q), rz(theta,q), cx(c,t), crx(theta,c,t), swap(a,b)
+                       (crx = controlled-RX: RX(theta) on target t iff control c is 1)
   * rz is phase-only -> invisible to the balance observable; carried for fidelity of the artifact.
 
 USAGE
@@ -76,6 +77,13 @@ def genome_unitary(genome, n, torch):
             for s in range(N):
                 (P1 if (s >> (n - 1 - c)) & 1 else P0)[s, s] = 1
             M = (P0 + P1 @ U) @ M
+        elif name == "crx":
+            th, c, t = float(g[1]) * math.pi, int(g[2]), int(g[3])
+            U = _embed(_rx(th, torch), t, n, torch)
+            P0 = torch.zeros(N, N, dtype=torch.complex128); P1 = torch.zeros(N, N, dtype=torch.complex128)
+            for st in range(N):
+                (P1 if (st >> (n - 1 - c)) & 1 else P0)[st, st] = 1
+            M = (P0 + P1 @ U) @ M
         elif name == "cx":
             M = _apply_bit_perm([(int(g[1]), int(g[2]))], n, torch) @ M
         elif name == "swap":
@@ -132,6 +140,10 @@ def _selftest():
     assert abs(r2["balance"] - 0.5) < 1e-9, r2
     r3 = evaluate([["rz",0.25,0],["h",0],["cx",0,2],["cx",0,1]], device="cpu")[0]
     assert abs(r3["balance"] - 0.5) < 1e-9, r3
+    r4 = evaluate([["crx",0.5,2,0]], device="cpu")[0]
+    assert abs(r4["balance"] - 0.0) < 1e-9, r4   # control q2=0 -> no-op -> |000> -> balance 0
+    r5 = evaluate([["h",2],["rx",0.25,0],["crx",0.5,2,0],["crx",1.0,2,1]], device="cpu")[0]
+    assert abs(r5["balance"] - 0.4267578125) < 1e-3, r5  # k4 champion receipt anchor
     print("selftest OK: bell balance=0.0 (shot 0.0), GHZ balance=0.5, rz-phase balance=0.5")
 
 if __name__ == "__main__":

@@ -1,0 +1,85 @@
+{
+ "shot": {
+  "crossed": 2385,
+  "n": 4096,
+  "rate": 0.582275390625,
+  "cp95": [
+   0.5669955728453451,
+   0.5974377334068119
+  ],
+  "break_gen_hist": [
+   626,
+   367,
+   288,
+   228,
+   185,
+   134,
+   128,
+   113,
+   86,
+   79,
+   71,
+   80
+  ],
+  "never_break_frac": 0.417724609375,
+  "desert_frac": 0.023383246527777776,
+  "mean_final_v": 0.33415699005126953,
+  "stuck_at_zero_frac": 0.22607421875
+ },
+ "exact": {
+  "crossed": 2373,
+  "n": 4096,
+  "rate": 0.579345703125,
+  "cp95": [
+   0.5640532926272837,
+   0.5945248228685838
+  ],
+  "break_gen_hist": [
+   613,
+   362,
+   254,
+   231,
+   176,
+   148,
+   137,
+   123,
+   87,
+   77,
+   87,
+   78
+  ],
+  "never_break_frac": 0.420654296875,
+  "desert_frac": 0.03858235677083333,
+  "mean_final_v": 0.35654921794571237,
+  "stuck_at_zero_frac": 0.177001953125,
+  "loneliness": {
+   "mean": 0.02622781265227563,
+   "p90": 0.07322330470336312
+  }
+ },
+ "recorded_band_frac_030_043": null,
+ "gates": {
+  "G1_desert_shape": {
+   "shot_frac": 0.023383246527777776,
+   "threshold": "<= recorded baseline (0.086, measured from exp022 receipts)",
+   "pass": false,
+   "recorded_baseline": 0.0167,
+   "note": "original <1% guess and first 0.086 template both wrong; measured receipts = 0.0167"
+  },
+  "G2_law": {
+   "rate": 0.582275390625,
+   "cp95": [
+    0.5669955728453451,
+    0.5974377334068119
+   ],
+   "contains_3_of_8": 0.0,
+   "verdict": "0.375 NOT in CP95 -> fresh-rng lane rate 58.2% inconsistent with recorded 3/8 at face value; P(X<=3 | n=8, p=0.582) ~= 0.26 so not alarming at N=8, but reimplementation gap is a live caveat"
+  },
+  "G3_noise_vs_landscape": {
+   "exact_rate": 0.579345703125,
+   "shot_rate": 0.582275390625,
+   "delta": -0.0029296875,
+   "verdict": "exact 57.9% ~= shot 58.2% -> DESERT IS STRUCTURAL (landscape-trapped ~42%), not shot noise"
+  }
+ }
+}

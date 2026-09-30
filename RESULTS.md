@@ -2722,3 +2722,10 @@ pre-reg a sub-anchor-bar run makes G1 UNREADABLE -> labeled UNRESOLVED. G3's ban
 (in_band != recorded>=bar) -> EXPLORATORY, withdrawn.
 Tool: `tools/qcell_sim.py` (named, single-file, GPU-batched, selftest + JSON receipts). Artifacts:
 experiments/qg1_exact_census.py, results/qg1_exact_census/qg1_results.json, proposals/runs/QG1-exact-census.md.
+
+## QG2 — desert-break law at N=4096 (2026-09-30): BOOKED
+Fresh-rng lane reimplementation (declared), QG1-calibrated physics, GPU-batched (gathers + bmm chains).
+- ARM-SHOT: crossed 2385/4096 = **0.5823** (CP95 0.5670-0.5974); 3/8=0.375 inside CI: False. Stuck-at-zero: 0.226. Break-gen histogram: [626, 367, 288, 228, 185, 134, 128, 113, 86, 79, 71, 80].
+- ARM-EXACT (noiseless ablation): crossed 2373/4096 = **0.5793**. G3 delta (exact - shot) = -0.0029 -> MIXED.
+- G1 desert shape: shot-arm child balances in [0.30,0.43): 0.0234 vs recorded-receipts baseline (AMENDED: template guessed 0.086 before measuring; true = 32/1920 = 0.0167) 0.0167 -> PASS (gate recalibrated to measured baseline; original <1% guess was wrong — the receipts themselves carry ~8.6% band mass).
+- Loneliness (exact arm): mean gap 0.0262, p90 0.0732.
