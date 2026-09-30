@@ -1,10 +1,10 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-09-30T19:30:36.494693+00:00",
+  "generated_at": "2026-09-30T20:15:43.243253+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "dbd621e142ceb20f00ffc338d1edeaa3e0dd73fe8fa76640c6d7d2e3ce5fce37",
-    "QUEUE.md": "58d0552418d3c63891be8bd347cfb86742aee0f55920dfaacfbcee35dbe85883"
+    "RESULTS.md": "e9628873697025549e12bf7655a502d39565fcc44c66f29f9cccfbc4187a6b7c",
+    "QUEUE.md": "4bab888fa63956d068a72992d8b3abeec6699c2188685c73cd48859f46fb2670"
   },
   "experiments": {
     "ag1_aggregation_rules.py": "39107b302b6855a3bf65ee7e012de32b7da0c2d396f18df824b661c50227ebe6",
@@ -113,7 +113,7 @@
     "qo5_birth_probe.py": "8178caef606b0b0428dc4eb3e05425e15b7d97aaf5d2bc92803bd61b1a8bbbbf",
     "qo6_kill_evidence.py": "fcbfe984ddfe01338240eafa4d7d794c41ddec2e17910ec3dc58a3c6a05cbde5",
     "rt1_route_marginal.py": "6fc473af0a60ecfdfc3270643de14552cdf4674bccf2ecfc1d421bebc293c93f",
-    "st1_quilt_cell_v0.py": "c5c5fbf81f204db3c220195c1e2a06216148d060054c9e7034012275a7d6c0a8",
+    "st1_quilt_cell_v0.py": "d4f4cf1c4c6b79bbf98c423e27a5d4a04945c5f9b7aaa3d7ffb44189b78a42fc",
     "t5_dial_controller.py": "177ef7859e42542b6c71d51a726f0e6cf34c1274673e269f3f499d9329a6fa22",
     "t5b_tau_sweep.py": "57a2cc88255c7413dd376f10d3f8ebf7b1b16dcc061f59eddea5f51bc729f539",
     "tc1_tile_codec.py": "4441169589181cae937b31d015710ed8d24664b51a802031033225931efccc6f",
