@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/qg7_gen_asymmetry.py", line 51, in <module>
+    r12 = float((crossed_gen >= 0) & (crossed_gen <= 12) | (crossed_gen == 0))
+TypeError: only 0-dimensional arrays can be converted to Python scalars

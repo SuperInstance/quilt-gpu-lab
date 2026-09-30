@@ -251,3 +251,17 @@ other agents are feeding us; keep the handshake lane warm.
   vocabulary (fail loud). Improves: qcell_sim class (crx miss), substrate-foundation's eleven-opcode class.
 - [ ] **XR-1 tape-vs-cell-graph fault-localisation read** (CPU, ~45m): read xruntime-conformance parts 1-5;
   test whether our cell-mesh ledger admits fault localisation; write the caveat or the counter-argument.
+- [IN-PROGRESS 08:1x] **W5b** (pre-reg 0757ad6): FIRED 07:35 by prior wake, run STILL LIVE (PID 20070,
+  ~37 min elapsed, seed 4243 pending, ETA ~08:35). Next wake: check completion, book honestly vs the frozen
+  gates (margin 0.5% lifetime-vs-random, antirank secondary), re-seal manifest. DO NOT re-fire.
+- [IN-PROGRESS] RC-1 / SC-1 / VP-1 / XR-1 (spawned by SCOUT-2, unclaimed).
+
+## DAY BOOKKEEPING 08:1x (conductor)
+- W5b found live-and-unbooked (QO6 pattern #2): prior wake fired pre-reg 0757ad6 and died before booking.
+  Smoke gate PASS (nn.GRU equivalence 2.8e-16). Left running; booking deferred to completion (next wake).
+- Mandatory reproduction check (C): QG1c committed script re-run -> results.json IDENTICAL to committed
+  booking (bit-exact). First clean bill under the new mandatory rule. Prior dirty-tree instances stand.
+- Stray `results/qg7_gen_asymmetry_run.log` (untracked debris from the QG7 crashed fire-1) archived to
+  `_archive/qg7_gen_asymmetry_run.log.stray-20260930` (archive-never-delete).
+- GPU lane occupied by W5b all slice; no new GPU item fired. Rotation next wake: book W5b (GPU-free, just
+  verdict vs frozen gates), then PR-SWEEP #6 or SCOUT item per queue order.
