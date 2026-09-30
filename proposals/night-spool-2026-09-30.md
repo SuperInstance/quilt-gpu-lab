@@ -189,3 +189,14 @@ Rotation for next wake: non-GPU (PR-SWEEP #5 or SCOUT #2), then QG1-residual or 
 - 07:1x CONDUCTOR-0 (main, morning): QG1-residual booked (see RESULTS + QUEUE mark). Rotation: QG1c pre-reg (CPU, tight scope) or PR-SWEEP #6; chip free.
 
 - [DONE 07:2x GPU] **QG1c BOOKED: verdict NONE** — all 6 frozen candidates: C0 current best (0.9854); nothing improves; the 28 misses are swap-ONLY (x spurious). Not a wire-order/order/CNOT-substitution typo. Spawned QG1d: read micromoth's exp022 simulator swap source (byte-level recon, read-only, cheap).
+
+- [PARTIAL 07:2x recon] **QG1d first finding (provenance gap)**: micromoth-quilt's exp022 generator
+  (receipts/exp022-desert-break/exp022_crossing_stream_census.py) imports `qcell.search`
+  (Candidate, fitness, p_target, mutate, random_gate) and that module does NOT exist anywhere in the
+  tree (not micromoth-quilt, not micrograd-quilt, not under ~/projects) — the generator cannot run,
+  so exp022's recorded train_p/verify_p are not reproducible from the committed receipts (same
+  systemic class as the dirty-tree bookings: the producing code is not in the repo). Also verified:
+  micromoth.py's own swap arithmetic is a CORRECT transposition (b01<->b10), so the residual 28 is
+  not a swap-arithmetic typo in their simulator either. NEXT for QG1d: recover/reimplement p_target
+  (fitness definition unknown — may not be min(p000,p111)) and rebuild one failing genome directly in
+  micromoth.QuantumCircuit to separate "recorded values stale" from "fitness definition differs".
