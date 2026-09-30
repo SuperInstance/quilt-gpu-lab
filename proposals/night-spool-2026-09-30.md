@@ -172,3 +172,16 @@
     pieces exist and are pinned; this is integration + one scoreboard run. NOT a night item — the QO2
     stop/kill thresholds deserve pre-registration with Casey's judgment on the cost matrix.
 Rotation for next wake: non-GPU (PR-SWEEP #5 or SCOUT #2), then QG1-residual or QG4 per queue order.
+
+- 06:4x CONDUCTOR slice (subagent): PR-SWEEP #5 (non-GPU per rotation after QG7 GPU). **pong-quilt main red +
+  PR #84 failing check ROOT-CAUSED**: single test — receipt-completeness CLI refuses on shallow checkout
+  ("no merge commits reachable from HEAD — fetch-depth must be 0", exit 2 vs 0; tests/receipt-completeness.test.js:75).
+  277/287 pass, 9 honest-SKIP; merge-gate full suite PASSES the same branch (it uses fetch-depth 0) ⇒ environmental
+  red in the build-and-test workflow, NOT a regression; fix = fetch-depth: 0 in test.yml. #84 otherwise green
+  (forge + merge-gate + GitGuardian), MERGEABLE, no review yet. quilt-nn#1 (issue, untriaged): lossShaOf not
+  portable cross-runtime, forward can't be called cold — corroborates RECEIPT-HASH caveat (pins are runtime-bound).
+  [EMBASSY] pong-quilt#49: erised-mirror strand stranger-verified the r37 stone-v1 chain 5/5 from published
+  arithmetic alone — independent-reimplementation-verify doctrine corroborated; still unresponded (day item for
+  Casey). Only other state change: pong-quilt round-66 branch pushed (forge green, no PR yet). Full detail in
+  workspace memory/superinstance-watch-log.md 06:45 entry. Sweep ~6 min ⇒ QG1-residual fires this slice
+  (pre-reg pushed before firing).
