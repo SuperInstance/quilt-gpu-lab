@@ -1,0 +1,91 @@
+generated: train 64 test 64 control 16
+label margin check: [0.25, 0.25, 0.5, 0.073, 0.25, 0.073]
+
+sample question:
+ A three-qubit quantum circuit applies these gates, in order, to the state |000>:
+1. controlled-RX(π) with control qubit 1 and target qubit 0
+2. H (Hadamard) on qubit 2
+3. SWAP between qubits 0 and 2 
+ {
+ "type": "choice",
+ "criteria": {
+  "A": "replace step 1 with H (Hadamard) on qubit 1",
+  "B": "replace step 2 with CX (controlled-X) with control qubit 2 and target qubit 1",
+  "C": "replace step 3 with H (Hadamard) on qubit 2",
+  "D": "delete step 1 (controlled-RX(\u03c0) with control qubit 1 and target qubit 0)"
+ },
+ "instructions": "Balance is min(P(000), P(111)) of the final state. Which single edit gives the largest balance?"
+} 
+label: A
+Loading weights:   0%|          | 0/473 [00:00<?, ?it/s]Loading weights:  25%|██▍       | 116/473 [00:00<00:00, 1155.15it/s]Loading weights:  52%|█████▏    | 248/473 [00:00<00:00, 1247.13it/s]Loading weights: 100%|██████████| 473/473 [00:00<00:00, 2070.48it/s]
+Loading weights:   0%|          | 0/473 [00:00<?, ?it/s]Loading weights:  29%|██▉       | 136/473 [00:00<00:00, 1347.47it/s]Loading weights:  58%|█████▊    | 275/473 [00:00<00:00, 1371.74it/s]Loading weights: 100%|██████████| 473/473 [00:00<00:00, 2066.63it/s]
+Loading weights:   0%|          | 0/473 [00:00<?, ?it/s]Loading weights:  26%|██▌       | 124/473 [00:00<00:00, 1237.80it/s]Loading weights:  53%|█████▎    | 250/473 [00:00<00:00, 1250.44it/s]Loading weights: 100%|██████████| 473/473 [00:00<00:00, 2167.54it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+/home/eileen/projects/quilt-gpu-lab/experiments/decide1.py:156: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  "fit_seconds": round(time.time() - t0, 2), "train_ce": float(loss)}
+{
+ "n_train": 64,
+ "n_test": 64,
+ "checkpoint": "/home/eileen/scratch/external/jeff-checkpoints/jeff-0.8b",
+ "G1_control_zeroshot": {
+  "acc": 1.0,
+  "k": 16,
+  "n": 16,
+  "cp95": [
+   0.8063865817272802,
+   1.0
+  ]
+ },
+ "A_zeroshot_lane": {
+  "acc": 0.078125,
+  "k": 5,
+  "n": 64,
+  "cp95": [
+   0.03383067809543547,
+   0.1701975287864777
+  ]
+ },
+ "B_fitted_temperature": {
+  "T": 6.0,
+  "train_nll": 1.47741307233156,
+  "acc": 0.078125
+ },
+ "C_fitted_head": {
+  "acc": 0.3125,
+  "k": 20,
+  "n": 64,
+  "cp95": [
+   0.21230909502265743,
+   0.43392566359152623
+  ],
+  "fit_seconds": 0.77,
+  "train_ce": 0.15261763334274292
+ },
+ "D_trained_readout_lane": {
+  "acc": 0.078125,
+  "k": 5,
+  "n": 64,
+  "cp95": [
+   0.03383067809543547,
+   0.1701975287864777
+  ]
+ },
+ "D_trained_readout_control": {
+  "acc": 1.0,
+  "k": 16,
+  "n": 16,
+  "cp95": [
+   0.8063865817272802,
+   1.0
+  ]
+ },
+ "hardware": {
+  "device": "cuda",
+  "peak_vram_gib": 3.306,
+  "median_latency_ms": 54.035
+ },
+ "random_baseline": 0.25
+}

@@ -116,7 +116,7 @@ class DecisionCell:
             from transformers import AutoTokenizer
             self.processor.tokenizer.chat_template = AutoTokenizer.from_pretrained(
                 "Qwen/Qwen3.5-0.8B").chat_template
-        text = self.processor.apply_chat_template(
+        text = self.processor.tokenizer.apply_chat_template(
             [{"role": "system", "content": SYSTEM}, {"role": "user", "content": prompt_text}],
             tokenize=False, add_generation_prompt=True, enable_thinking=False)
         enc = self.processor(text=[text], padding=True, return_tensors="pt")

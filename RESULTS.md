@@ -2746,3 +2746,22 @@ before firing). Shot arm lane, S=4096, 12 gens, bar 0.45, passive champion-state
 - Fail-loud trail: run 1 crashed (.numpy() on grad tensor), run 2 crashed (histogram width assumed 49, actually
   67 = PAD+1) — both mechanical, fixed in place, physics untouched. No re-rolls.
 Artifacts: experiments/oracle1.py, results/qo1_oracle/qo1_results.json, tools/qcell_oracle.pt.
+
+## DECIDE-1 — jeff-0.8b decision cell on the balance-edit lane (2026-09-30): BOOKED — G1 PASS, G2 FAIL, G3 PASS, G4 EXPLORATORY
+Weights downloaded complete (1.7 GB). Three mechanical crashes fixed in place before any scoring logic ran:
+processor-level chat template (arm C bypassed the Amendment-2 fallback -> use tokenizer.apply_chat_template),
+CPU/GPU device split on labels, string-vs-int labels. Physics/protocol untouched — no re-rolls.
+- **G1 control >= 0.75: PASS** — zero-shot control 16/16 = 1.0 (jeff's shipped control lane is real).
+- **G2 lane > 0.25, p < 0.01: FAIL — decisively BELOW chance.** Zero-shot lane 5/64 = 0.078 (CP95 0.034-0.170);
+  shipped trained readout lane IDENTICAL 5/64 = 0.078. Both readouts agree on the same wrong answers on novel
+  balance-edit questions: the mechanism (backbone + readout) is intact but its decision signal is anti-aligned
+  or systematically offset on this question family — this is a finding, not a null.
+- **G3 hardware: PASS** — peak VRAM 3.31 GiB (bar <= 6), median latency 54 ms.
+- **G4 reader ladder: EXPLORATORY** — zero-shot 0.078 -> fitted-T 0.078 (T pinned at boundary 6.0; temperature
+  cannot rescue; base logits carry near-zero decision signal) -> fitted linear head 0.3125 (CP95 0.212-0.434,
+  CONTAINS random 0.25 — not significant at 95%). Frozen last-hidden states do carry *some* signal the readout
+  head trains to in 0.77 s (train CE 0.153), but it does not clear random on 64 test items.
+- Protocol on G2 FAIL: STOP. Diagnosis queue item spawned (DECIDE-1b) — below-chance symmetric failure between
+  two independent readouts points at question-format/option-order bias, not a broken readout. Do NOT re-roll.
+Artifacts: experiments/decide1.py, results/decide1/decide1_results.json, tools/decision_cell.py,
+proposals/runs/DECIDE-1-decision-cell.md.

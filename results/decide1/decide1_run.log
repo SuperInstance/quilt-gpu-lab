@@ -17,23 +17,16 @@ sample question:
  "instructions": "Balance is min(P(000), P(111)) of the final state. Which single edit gives the largest balance?"
 } 
 label: A
-Loading weights:   0%|          | 0/473 [00:00<?, ?it/s]Loading weights:  30%|███       | 143/473 [00:00<00:00, 1424.69it/s]Loading weights:  60%|██████    | 286/473 [00:00<00:00, 1389.55it/s]Loading weights: 100%|██████████| 473/473 [00:00<00:00, 2081.62it/s]
-Loading weights:   0%|          | 0/473 [00:00<?, ?it/s]Loading weights:  31%|███       | 145/473 [00:00<00:00, 1444.90it/s]Loading weights:  61%|██████▏   | 290/473 [00:00<00:00, 1381.70it/s]Loading weights: 100%|██████████| 473/473 [00:00<00:00, 2074.32it/s]
-Loading weights:   0%|          | 0/473 [00:00<?, ?it/s]Loading weights:  27%|██▋       | 130/473 [00:00<00:00, 1287.89it/s]Loading weights:  56%|█████▌    | 264/473 [00:00<00:00, 1309.15it/s]Loading weights: 100%|██████████| 473/473 [00:00<00:00, 2106.15it/s]
+Loading weights:   0%|          | 0/473 [00:00<?, ?it/s]Loading weights:  29%|██▉       | 136/473 [00:00<00:00, 1359.75it/s]Loading weights:  58%|█████▊    | 272/473 [00:00<00:00, 1324.63it/s]Loading weights: 100%|██████████| 473/473 [00:00<00:00, 2029.33it/s]
+Loading weights:   0%|          | 0/473 [00:00<?, ?it/s]Loading weights:  27%|██▋       | 128/473 [00:00<00:00, 1279.72it/s]Loading weights:  55%|█████▍    | 258/473 [00:00<00:00, 1284.66it/s]Loading weights: 100%|██████████| 473/473 [00:00<00:00, 2095.01it/s]
+Loading weights:   0%|          | 0/473 [00:00<?, ?it/s]Loading weights:  29%|██▉       | 139/473 [00:00<00:00, 1386.09it/s]Loading weights:  59%|█████▉    | 278/473 [00:00<00:00, 1309.90it/s]Loading weights: 100%|██████████| 473/473 [00:00<00:00, 2021.14it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
 Traceback (most recent call last):
-  File "/home/eileen/projects/quilt-gpu-lab/experiments/decide1.py", line 118, in <module>
-    res["G1_control_zeroshot"] = {k: v for k, v in run("zeroshot", ctrl, zs).items() if k != "rows"}
-                                                   ~~~^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/eileen/projects/quilt-gpu-lab/experiments/decide1.py", line 96, in run
-    r = cell.decide(state, q, temperature)
-  File "/home/eileen/venvs/elephant-gpu/lib/python3.14/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
-    return func(*args, **kwargs)
-  File "/home/eileen/projects/quilt-gpu-lab/tools/decision_cell.py", line 113, in decide
-    text = self.processor.apply_chat_template(
-        [{"role": "system", "content": SYSTEM}, {"role": "user", "content": prompt_text}],
-        tokenize=False, add_generation_prompt=True, enable_thinking=False)
-  File "/home/eileen/venvs/elephant-gpu/lib/python3.14/site-packages/transformers/processing_utils.py", line 2036, in apply_chat_template
-    raise ValueError(
-        "Cannot use apply_chat_template because this processor does not have a chat template."
-    )
-ValueError: Cannot use apply_chat_template because this processor does not have a chat template.
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/decide1.py", line 120, in <module>
+    base_tr = run("zeroshot", train, zs, temperature=1.0)
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/decide1.py", line 95, in run
+    for state, q, label in items:
+        ^^^^^^^^^^^^^^^
+ValueError: too many values to unpack (expected 3, got 4)

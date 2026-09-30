@@ -115,10 +115,11 @@ if __name__ == "__main__":
     assert os.path.exists(f"{CKPT}/model.safetensors"), "weights not downloaded yet"
     res = {"n_train": len(train), "n_test": len(test), "checkpoint": CKPT}
     zs = DecisionCell(CKPT, reader="zeroshot"); tr = DecisionCell(CKPT, reader="trained")
+    train_r = [render(q) for q in train]; test_r = [render(q) for q in test]
     res["G1_control_zeroshot"] = {k: v for k, v in run("zeroshot", ctrl, zs).items() if k != "rows"}
     # base probs at temperature 1 for A/B (renormalising p**(1/T) == softmax(logits/T))
-    base_tr = run("zeroshot", train, zs, temperature=1.0)
-    base_te = run("zeroshot", test, zs, temperature=1.0)
+    base_tr = run("zeroshot", train_r, zs, temperature=1.0)
+    base_te = run("zeroshot", test_r, zs, temperature=1.0)
     res["A_zeroshot_lane"] = {k: v for k, v in base_te.items() if k != "rows"}
     # B: fit one scalar temperature on the disjoint train split
     def nll(rows, T):
@@ -129,31 +130,32 @@ if __name__ == "__main__":
         return tot / len(rows)
     Ts = np.linspace(0.25, 6.0, 24); Tbest = min(Ts, key=lambda T: nll(base_tr["rows"], T))
     res["B_fitted_temperature"] = {"T": float(Tbest), "train_nll": nll(base_tr["rows"], Tbest),
-                                   "acc": run("zeroshot", test, zs, temperature=float(Tbest))["acc"]}
+                                   "acc": run("zeroshot", test_r, zs, temperature=float(Tbest))["acc"]}
     # C: fit OUR OWN linear head on frozen last-hidden states (jeff's readout, trained in minutes)
     def hidden(state, q):
         from decision_cell import decision_prompt, SYSTEM
         codes = zs.codes[:len(options_of(q)[0])]
-        text = zs.processor.apply_chat_template(
+        text = zs.processor.tokenizer.apply_chat_template(
             [{"role": "system", "content": SYSTEM}, {"role": "user", "content": decision_prompt(state, q, codes, zs.prompt_layout)}],
             tokenize=False, add_generation_prompt=True, enable_thinking=False)
         enc = zs.processor(text=[text], padding=True, return_tensors="pt")
         inp = {k: v.to(zs.device) for k, v in enc.items() if k in ("input_ids", "attention_mask")}
         with torch.inference_mode():
             return zs.backbone(**inp, use_cache=False).last_hidden_state[:, -1].float()
-    Htr = torch.cat([hidden(*render(q)[:2]) for q in train]); ytr = torch.tensor([q["label"] for q in train])
-    Hte = torch.cat([hidden(*render(q)[:2]) for q in test]);  yte = torch.tensor([q["label"] for q in test])
+    Htr = torch.cat([hidden(*render(q)[:2]) for q in train]); ytr = torch.tensor([q["label"] for q in train]).to(zs.device)
+    Hte = torch.cat([hidden(*render(q)[:2]) for q in test]);  yte = torch.tensor([q["label"] for q in test]).to(zs.device)
     head = torch.nn.Linear(Htr.shape[1], 4).to(zs.device); opt = torch.optim.Adam(head.parameters(), lr=3e-3)
     t0 = time.time()
     for _ in range(400):
         opt.zero_grad(); loss = torch.nn.functional.cross_entropy(head(Htr), ytr); loss.backward(); opt.step()
     with torch.inference_mode(): cpred = head(Hte).argmax(-1).cpu()
-    acc_c = float((cpred == yte).float().mean())
-    res["C_fitted_head"] = {"acc": acc_c, "k": int((cpred == yte).sum()), "n": len(yte),
-                            "cp95": wilson(int((cpred == yte).sum()), len(yte)),
+    ycpu = yte.cpu()
+    acc_c = float((cpred == ycpu).float().mean())
+    res["C_fitted_head"] = {"acc": acc_c, "k": int((cpred == ycpu).sum()), "n": len(ycpu),
+                            "cp95": wilson(int((cpred == ycpu).sum()), len(ycpu)),
                             "fit_seconds": round(time.time() - t0, 2), "train_ce": float(loss)}
     # D: the shipped trained readout (what jeff actually serves)
-    res["D_trained_readout_lane"] = {k: v for k, v in run("trained", test, tr).items() if k != "rows"}
+    res["D_trained_readout_lane"] = {k: v for k, v in run("trained", test_r, tr).items() if k != "rows"}
     res["D_trained_readout_control"] = {k: v for k, v in run("trained", ctrl, tr).items() if k != "rows"}
     res["hardware"] = {"device": zs.device,
                        "peak_vram_gib": round(torch.cuda.max_memory_allocated() / 2**30, 3) if zs.device == "cuda" else None,

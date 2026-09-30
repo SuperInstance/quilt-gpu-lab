@@ -1,0 +1,63 @@
+{
+ "n_train": 64,
+ "n_test": 64,
+ "checkpoint": "/home/eileen/scratch/external/jeff-checkpoints/jeff-0.8b",
+ "G1_control_zeroshot": {
+  "acc": 1.0,
+  "k": 16,
+  "n": 16,
+  "cp95": [
+   0.8063865817272802,
+   1.0
+  ]
+ },
+ "A_zeroshot_lane": {
+  "acc": 0.078125,
+  "k": 5,
+  "n": 64,
+  "cp95": [
+   0.03383067809543547,
+   0.1701975287864777
+  ]
+ },
+ "B_fitted_temperature": {
+  "T": 6.0,
+  "train_nll": 1.47741307233156,
+  "acc": 0.078125
+ },
+ "C_fitted_head": {
+  "acc": 0.3125,
+  "k": 20,
+  "n": 64,
+  "cp95": [
+   0.21230909502265743,
+   0.43392566359152623
+  ],
+  "fit_seconds": 0.77,
+  "train_ce": 0.15261763334274292
+ },
+ "D_trained_readout_lane": {
+  "acc": 0.078125,
+  "k": 5,
+  "n": 64,
+  "cp95": [
+   0.03383067809543547,
+   0.1701975287864777
+  ]
+ },
+ "D_trained_readout_control": {
+  "acc": 1.0,
+  "k": 16,
+  "n": 16,
+  "cp95": [
+   0.8063865817272802,
+   1.0
+  ]
+ },
+ "hardware": {
+  "device": "cuda",
+  "peak_vram_gib": 3.306,
+  "median_latency_ms": 54.035
+ },
+ "random_baseline": 0.25
+}
