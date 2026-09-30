@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-09-30T12:55:55.583236+00:00",
+  "generated_at": "2026-09-30T13:54:15.474241+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "afbda6f23492e3dbe4e3c6d4378c81a6cd2dbd27164e2951e67eea08bf18f85a",
+    "RESULTS.md": "1b52d55203ae932f030d18f30613cef258de2623c96f65c2d5821c5287e51df4",
     "QUEUE.md": "daf977e380aaca17d4ea19f445a0b3a457d3ff161598a496b93090e0e636eba0"
   },
   "experiments": {
@@ -99,8 +99,10 @@
     "qg2_fire.py": "7f86c64105997651a4ec5e07dc298ca78755c987c3ee0391d0b88b8bce257ed9",
     "qg2_scale_lane.py": "686e23281cef2ad59920c5cb4a8d0976367767439792f44883d319c08ceef9a5",
     "qg3_trap_anatomy.py": "3176cd2490d64b0c0953023dacd3156333072da02a3409f5314f0286575f00b2",
+    "qg6_variance_rescue.py": "2e8e5d45d6c2ff7476e6d4a3ef68b88c441010b79abc661f7cb110fe08eee951",
     "qo3_horizon.py": "9deb7925069c6c3b75c5366b546004ca2d7292fa8d3187c0d31580a3cc167389",
     "qo5_birth_probe.py": "8178caef606b0b0428dc4eb3e05425e15b7d97aaf5d2bc92803bd61b1a8bbbbf",
+    "qo6_kill_evidence.py": "fcbfe984ddfe01338240eafa4d7d794c41ddec2e17910ec3dc58a3c6a05cbde5",
     "rt1_route_marginal.py": "6fc473af0a60ecfdfc3270643de14552cdf4674bccf2ecfc1d421bebc293c93f",
     "t5_dial_controller.py": "177ef7859e42542b6c71d51a726f0e6cf34c1274673e269f3f499d9329a6fa22",
     "t5b_tau_sweep.py": "57a2cc88255c7413dd376f10d3f8ebf7b1b16dcc061f59eddea5f51bc729f539",
@@ -129,6 +131,7 @@
     "correlate.py": "0e2e3a92a3ecaeee5fda9c34285b609e37ef4468cb33541465ed838603548475",
     "d6_worldgen.js": "789efc53a8312c86a96ab9223305727660d7e76dcd836ded3df36b2ff05f75d2",
     "decision_cell.py": "5a49d0ef989bdaad8acdb144b69998a750a861f64ed689b975915b17b815d8ac",
+    "eproc.py": "8243ef91b1a39f3fabf70d4e0235dbc9c27e0d4d4fd832474d44451c97423d1f",
     "fleet_board.mjs": "65b9bbdfd5ac4eefcdfbb3a47eb0adb668d2180a050a929e6374b1040b0eba70",
     "ideation_banter.py": "cfd95d15ed712f699c3902ad3e3c6b2dd67a1feee611ec15fee6d465ff1b3dee",
     "ideation_banter_gpu.py": "5eba10d0cbe2cf5276e02b9a463b395f6d8f5314edc988f310303c720e63ab11",
