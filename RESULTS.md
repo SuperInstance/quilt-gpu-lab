@@ -2873,3 +2873,17 @@ Per-gen MLP (3x64) + cv-only logistic, stream-split 80/20, 13 models.
 - Monotone AUC climb (no jump) = accumulating signal, consistent with QG3 slow-climb; no path-dependent
   lottery component detectable at the observable level.
 Artifacts: experiments/qo3_horizon.py, results/qo3_horizon/{results.json,run.log}.
+
+## QO5 — birth is a LOTTERY: g0 states byte-identical across all 4096 streams (2026-09-30 04:3x/04:5x): BOOKED
+Pre-reg: proposals/runs/QO5-birth-lottery-probe.md (analysis-only; retroactive pre-reg declared —
+probe was fired opportunistically during the QO3 wake on existing lane code, booked honestly here).
+- Census on QO3 lane (seed 1234, 4096 streams): g0 champion len unique=[2], v0/cv0 std 0.0,
+  gate-hist across-stream std 0.0, **frac streams with identical birth cv = 1.0**.
+- g0 AUC 0.500 is not weak signal — there is NOTHING to distinguish streams at birth. All
+  streams share one skeleton draw with no state divergence before the first mutation+selection.
+- **Named: birth lottery.** Fate diverges at the first selection round (g1 AUC 0.88-0.89).
+- QG2 tension resolved: desert is a property of the (shared) birth landscape; stream identity
+  is created by mutation+selection, not birth state. QO2 routing structurally must start at g>=1.
+- Free QO3 replicate from the probe's lane re-run: rate 0.5769->0.5789 (inside ±0.006
+  nondeterminism band), g0 AUC exactly 0.500 again, g*=1 again. Conclusions strengthened.
+Artifacts: experiments/qo5_birth_probe.py, results/qo3_horizon/{qo5_birth_probe.json,qo5_run.log}.

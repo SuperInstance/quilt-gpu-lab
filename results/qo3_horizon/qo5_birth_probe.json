@@ -1,0 +1,11 @@
+{
+  "cv_std": 0.0,
+  "auc_birth_cv": 0.5,
+  "mean_crossed": 0.0,
+  "mean_not": 0.0,
+  "frac_identical_cv": 1.0,
+  "len_unique": [
+    2
+  ],
+  "hist_across_stream_std": 0.0
+}
