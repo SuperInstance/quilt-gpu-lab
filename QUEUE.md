@@ -52,3 +52,6 @@
 - [ ] G3 quantization-erosion vs exact twins — same weights, fp16 exact twin vs Q8/Q5/Q4 GGUF at one fixed certified seed: capability-erosion curve (fixed-text perplexity + one reasoning battery) priced per quant level, KILL where the quantized twin stops being the same model — cheapest first G-lane run since D7's quant plumbing (fp16/int8/NF4 reader portability) already exists; G3 adds the matched-seed exact-twin control D7 does not claim
 
 - [x] D23b hidden-angle relational semantics (deep n-qubit cell semantics lane) — 2026-09-30 KILL (0.75 at T=200 vs 0.90 bar; non-monotone; angles = degraded mirror of coupling, not the memory) [backfilled: booked in RESULTS.md, never claimed in QUEUE — D18 precedent c9b39b4]
+
+- [x] QG1-residual localize the 28/1920 anchor misses — 2026-09-30 NAME (swap/wire-order convention, Fisher 7.0e-19; BH 28/28; census script's radians bug exposed en route — pi-units reproduces booking bit-exactly); QG1c spawned
+- [ ] QG1c corrected census — new pre-reg: swap/wire-order semantics fix in census machinery (q0-MSB/LSB swap map test vs telemetry), target >=99% anchor; decompose swap-vs-x enrichment (x 8.6e-5 secondary)

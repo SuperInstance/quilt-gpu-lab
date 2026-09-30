@@ -1,3 +1,9 @@
+# WARNING (2026-09-30, docs-only, via QG1-residual): THIS COMMITTED VERSION DOES NOT
+# REPRODUCE THE BOOKED CENSUS (re-run gives 1503/1920 vs booked 1892/1920). It reads
+# telemetry angles as RADIANS; the booking used pi-units (theta_pi * pi) — see
+# proposals/runs/QG1-residual.md Amendment 1 and results/qg1_residual/. Its 28-miss
+# residual was localized to swap/wire-order semantics (Fisher 7.0e-19) — fix lands via
+# QG1c pre-reg, not by editing this file in place.
 """QG1 — exact statevector census of exp022's recorded populations (pre-reg: proposals/runs/QG1-exact-census.md)."""
 import json, math, itertools, torch
 DEV = "cuda"

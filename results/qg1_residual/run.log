@@ -1,0 +1,10 @@
+pairs 1920 | failing 28 (0.0146) | signed mean dev -0.20536
+BH rejections @q=0.01: 28 | re-band-99% fraction: 0.9854
+  flag h   : n= 1204 fisher_p=0.4321494414827384
+  flag x   : n=  554 fisher_p=8.561570202930594e-05
+  flag rx  : n=  808 fisher_p=0.12331119797005075
+  flag rz  : n=  512 fisher_p=0.8304058334849489
+  flag crx : n=  886 fisher_p=0.7062389167382476
+  flag cx  : n= 1186 fisher_p=0.8469761841580137
+  flag swap: n=  442 fisher_p=7.013587876161428e-19
+VERDICT: NAME | gates: {'G_CLOSE': False}

@@ -26,7 +26,7 @@
 - [DONE 01:1x] **QO1 qcell-oracle BOOKED**: G1+G2 PASS, oracle AUC 0.9510 vs baseline 0.8860 (Brier 0.087); features cv>v>gen >> gates. First trained fleet component. Lane torch-nondeterminism ±0.006 noted (all runs in CP95). WAS: train a tiny MLP on QG2 rollouts -> P(cross | champion state: len, balance, gate histogram, gen). Save tools/qcell_oracle.pt + README. First TRAINED fleet component on this substrate. Data: instrument run_lane to dump per-gen champion states + outcomes (4096 streams = 400k+ rows free).
 - [DONE 05:3x GPU] **QG6 BOOKED**: no variance rescue. k=1 0.601 (replicate PASS), k=2 0.585 (indist.), k=3 0.522 (sig BELOW, delta_lb -0.139; too-hot). Median crossed_gen 2->4->5: big moves DELAY crossing. QG3+QG6 law: trapping is a TIME problem — only more generations rescue; width inert, variance flat-to-harmful. Spawned QG7. Commits 269b561 / 5df2739.
   - [spawned by QG6] QG7 (generation-asymmetry routing test): run gens=24 lanes; check whether oracle at gen 1 (QO3, AUC 0.88) separates streams that cross only-at-24 from hopeless-at-24. If yes, QO2 routing = oracle + budget triage fully specified.
-- [open] QG1-residual: localize the 28/1920 anchor mismatches (gate-combo census of failing cells) -> either close to >=99% or name the missing convention.
+- [DONE 07:1x GPU] **QG1-residual BOOKED: verdict NAME** — the 28 misses are swap/wire-order convention mismatch (swap Fisher 7.0e-19; BH 28/28; signed dev -0.205), NOT noise. META: committed census script exposed (radians vs declared pi-units; never produced its own 1892 booking; pi-unit variant reproduces bit-exactly). See RESULTS.md. Spawned QG1c (fix swap semantics, re-census, decompose swap-vs-x).
 - [DONE 00:2x PR-SWEEP #1] see FINDINGS.
 - [DONE 03:2x SCOUT #1]: see FINDINGS 03:2x. Web search API degraded (503/timeout) — fell back to arxiv API (export.arxiv.org), which worked. Note for future scouts: use the arxiv API directly, no retries on the search provider.
 - [open] SL-G1: syzygy-lattice e-process martingale Monte Carlo (port LR rules to torch; operating-characteristic curves: kill-on-impossible, impostor late-cross; validate truth@10/impostor@112 pins first).
@@ -185,3 +185,5 @@ Rotation for next wake: non-GPU (PR-SWEEP #5 or SCOUT #2), then QG1-residual or 
   Casey). Only other state change: pong-quilt round-66 branch pushed (forge green, no PR yet). Full detail in
   workspace memory/superinstance-watch-log.md 06:45 entry. Sweep ~6 min ⇒ QG1-residual fires this slice
   (pre-reg pushed before firing).
+
+- 07:1x CONDUCTOR-0 (main, morning): QG1-residual booked (see RESULTS + QUEUE mark). Rotation: QG1c pre-reg (CPU, tight scope) or PR-SWEEP #6; chip free.

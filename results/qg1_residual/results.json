@@ -1,0 +1,1109 @@
+{
+ "n_pairs": 1920,
+ "n_failing": 28,
+ "fail_rate": 0.014583333333333334,
+ "signed_mean_dev_failing": -0.20535580747881158,
+ "bh_rejections_q0.01": 28,
+ "reband99_fraction": 0.9854166666666667,
+ "enrichment": {
+  "h": {
+   "n_present": 1204,
+   "failing_with_flag": 20,
+   "failing_rate_with": 0.016611295681063124,
+   "failing_rate_without": 0.0111731843575419,
+   "fisher_p": 0.4321494414827384,
+   "enriches": false
+  },
+  "x": {
+   "n_present": 554,
+   "failing_with_flag": 0,
+   "failing_rate_with": 0.0,
+   "failing_rate_without": 0.020497803806734993,
+   "fisher_p": 8.561570202930594e-05,
+   "enriches": true
+  },
+  "rx": {
+   "n_present": 808,
+   "failing_with_flag": 16,
+   "failing_rate_with": 0.019801980198019802,
+   "failing_rate_without": 0.01079136690647482,
+   "fisher_p": 0.12331119797005075,
+   "enriches": false
+  },
+  "rz": {
+   "n_present": 512,
+   "failing_with_flag": 8,
+   "failing_rate_with": 0.015625,
+   "failing_rate_without": 0.014204545454545454,
+   "fisher_p": 0.8304058334849489,
+   "enriches": false
+  },
+  "crx": {
+   "n_present": 886,
+   "failing_with_flag": 14,
+   "failing_rate_with": 0.01580135440180587,
+   "failing_rate_without": 0.013539651837524178,
+   "fisher_p": 0.7062389167382476,
+   "enriches": false
+  },
+  "cx": {
+   "n_present": 1186,
+   "failing_with_flag": 18,
+   "failing_rate_with": 0.01517706576728499,
+   "failing_rate_without": 0.013623978201634877,
+   "fisher_p": 0.8469761841580137,
+   "enriches": false
+  },
+  "swap": {
+   "n_present": 442,
+   "failing_with_flag": 28,
+   "failing_rate_with": 0.06334841628959276,
+   "failing_rate_without": 0.0,
+   "fisher_p": 7.013587876161428e-19,
+   "enriches": true
+  }
+ },
+ "strongest_flag": {
+  "n_present": 442,
+  "failing_with_flag": 28,
+  "failing_rate_with": 0.06334841628959276,
+  "failing_rate_without": 0.0,
+  "fisher_p": 7.013587876161428e-19,
+  "enriches": true
+ },
+ "gates": {
+  "G_CLOSE": false
+ },
+ "verdict": "NAME",
+ "fire_time_pins": {
+  "runner_sha256": "136dafc33fb1dbfd0dba2817028ad928269b8228daa0613755e5dea0abdb533b",
+  "prereg_sha256": "3b146d80bc48f6ca6ce89be8680e85eaad594fa75ddd7c9df59dcae9686d62d9",
+  "telemetry_sha256": {
+   "exp022.telemetry.k3.jsonl": "b4ebee963aad1f2502eb816b11dc235bac04f492c96d023891a25015ae30b565",
+   "exp022.telemetry.k4.jsonl": "fb70fbabd119a57bd0d3abe3732861639988aa9984e871247baff347578a993f",
+   "exp022.telemetry.k5.jsonl": "c61aaec3c86fd889740e6e047a390ccf1ba8c46a6dfa09747313706430eeed49",
+   "exp022.telemetry.k6.jsonl": "7c6a131d96eaa9e467ba2c10b04756d53c06969cc735d64b2b3301357364b266",
+   "exp022.telemetry.k7.jsonl": "a3029418444d68cfa11c7dedb2ba0bf3e0b16a59677a4e0c1f4963fbd03a8ef8"
+  },
+  "device": "cuda",
+  "angle_units": "pi"
+ },
+ "failing_table": [
+  {
+   "stream": "k3",
+   "gen": 5,
+   "observable": "train_p",
+   "recorded": 0.0,
+   "exact": 0.5,
+   "dev": -0.5,
+   "k_of_512": 0,
+   "gate_multiset": [
+    "cx",
+    "h",
+    "rz",
+    "rz",
+    "swap"
+   ],
+   "flags": {
+    "h": true,
+    "x": false,
+    "rx": false,
+    "rz": true,
+    "crx": false,
+    "cx": true,
+    "swap": true
+   },
+   "angles": [
+    [
+     "rz",
+     0.5,
+     1
+    ],
+    [
+     "rz",
+     0.75,
+     1
+    ]
+   ],
+   "pair_pval": 1.491668146240059e-154
+  },
+  {
+   "stream": "k3",
+   "gen": 5,
+   "observable": "verify_p",
+   "recorded": 0.0,
+   "exact": 0.5,
+   "dev": -0.5,
+   "k_of_512": 0,
+   "gate_multiset": [
+    "cx",
+    "h",
+    "rz",
+    "rz",
+    "swap"
+   ],
+   "flags": {
+    "h": true,
+    "x": false,
+    "rx": false,
+    "rz": true,
+    "crx": false,
+    "cx": true,
+    "swap": true
+   },
+   "angles": [
+    [
+     "rz",
+     0.5,
+     1
+    ],
+    [
+     "rz",
+     0.75,
+     1
+    ]
+   ],
+   "pair_pval": 1.491668146240059e-154
+  },
+  {
+   "stream": "k3",
+   "gen": 8,
+   "observable": "train_p",
+   "recorded": 0.498047,
+   "exact": 0.0,
+   "dev": 0.498047,
+   "k_of_512": 255,
+   "gate_multiset": [
+    "cx",
+    "cx",
+    "h",
+    "rz",
+    "swap",
+    "swap"
+   ],
+   "flags": {
+    "h": true,
+    "x": false,
+    "rx": false,
+    "rz": true,
+    "crx": false,
+    "cx": true,
+    "swap": true
+   },
+   "angles": [
+    [
+     "rz",
+     0.5,
+     1
+    ]
+   ],
+   "pair_pval": 0.0
+  },
+  {
+   "stream": "k3",
+   "gen": 8,
+   "observable": "verify_p",
+   "recorded": 0.482422,
+   "exact": 0.0,
+   "dev": 0.482422,
+   "k_of_512": 247,
+   "gate_multiset": [
+    "cx",
+    "cx",
+    "h",
+    "rz",
+    "swap",
+    "swap"
+   ],
+   "flags": {
+    "h": true,
+    "x": false,
+    "rx": false,
+    "rz": true,
+    "crx": false,
+    "cx": true,
+    "swap": true
+   },
+   "angles": [
+    [
+     "rz",
+     0.5,
+     1
+    ]
+   ],
+   "pair_pval": 0.0
+  },
+  {
+   "stream": "k3",
+   "gen": 11,
+   "observable": "train_p",
+   "recorded": 0.0,
+   "exact": 0.5,
+   "dev": -0.5,
+   "k_of_512": 0,
+   "gate_multiset": [
+    "crx",
+    "cx",
+    "cx",
+    "h",
+    "rz",
+    "swap"
+   ],
+   "flags": {
+    "h": true,
+    "x": false,
+    "rx": false,
+    "rz": true,
+    "crx": true,
+    "cx": true,
+    "swap": true
+   },
+   "angles": [
+    [
+     "rz",
+     0.5,
+     1
+    ],
+    [
+     "crx",
+     0.25,
+     1,
+     0
+    ]
+   ],
+   "pair_pval": 1.491668146240059e-154
+  },
+  {
+   "stream": "k3",
+   "gen": 11,
+   "observable": "verify_p",
+   "recorded": 0.0,
+   "exact": 0.5,
+   "dev": -0.5,
+   "k_of_512": 0,
+   "gate_multiset": [
+    "crx",
+    "cx",
+    "cx",
+    "h",
+    "rz",
+    "swap"
+   ],
+   "flags": {
+    "h": true,
+    "x": false,
+    "rx": false,
+    "rz": true,
+    "crx": true,
+    "cx": true,
+    "swap": true
+   },
+   "angles": [
+    [
+     "rz",
+     0.5,
+     1
+    ],
+    [
+     "crx",
+     0.25,
+     1,
+     0
+    ]
+   ],
+   "pair_pval": 1.491668146240059e-154
+  },
+  {
+   "stream": "k4",
+   "gen": 2,
+   "observable": "train_p",
+   "recorded": 0.0,
+   "exact": 0.5,
+   "dev": -0.5,
+   "k_of_512": 0,
+   "gate_multiset": [
+    "crx",
+    "h",
+    "swap"
+   ],
+   "flags": {
+    "h": true,
+    "x": false,
+    "rx": false,
+    "rz": false,
+    "crx": true,
+    "cx": false,
+    "swap": true
+   },
+   "angles": [
+    [
+     "crx",
+     1.0,
+     2,
+     1
+    ]
+   ],
+   "pair_pval": 1.491668146240059e-154
+  },
+  {
+   "stream": "k4",
+   "gen": 2,
+   "observable": "verify_p",
+   "recorded": 0.0,
+   "exact": 0.5,
+   "dev": -0.5,
+   "k_of_512": 0,
+   "gate_multiset": [
+    "crx",
+    "h",
+    "swap"
+   ],
+   "flags": {
+    "h": true,
+    "x": false,
+    "rx": false,
+    "rz": false,
+    "crx": true,
+    "cx": false,
+    "swap": true
+   },
+   "angles": [
+    [
+     "crx",
+     1.0,
+     2,
+     1
+    ]
+   ],
+   "pair_pval": 1.491668146240059e-154
+  },
+  {
+   "stream": "k4",
+   "gen": 6,
+   "observable": "train_p",
+   "recorded": 0.0,
+   "exact": 0.073223,
+   "dev": -0.073223,
+   "k_of_512": 0,
+   "gate_multiset": [
+    "crx",
+    "crx",
+    "h",
+    "rx",
+    "swap"
+   ],
+   "flags": {
+    "h": true,
+    "x": false,
+    "rx": true,
+    "rz": false,
+    "crx": true,
+    "cx": false,
+    "swap": true
+   },
+   "angles": [
+    [
+     "rx",
+     0.25,
+     0
+    ],
+    [
+     "crx",
+     0.5,
+     2,
+     0
+    ],
+    [
+     "crx",
+     1.0,
+     2,
+     1
+    ]
+   ],
+   "pair_pval": 2.0915949822647217e-17
+  },
+  {
+   "stream": "k4",
+   "gen": 6,
+   "observable": "verify_p",
+   "recorded": 0.0,
+   "exact": 0.073223,
+   "dev": -0.073223,
+   "k_of_512": 0,
+   "gate_multiset": [
+    "crx",
+    "crx",
+    "h",
+    "rx",
+    "swap"
+   ],
+   "flags": {
+    "h": true,
+    "x": false,
+    "rx": true,
+    "rz": false,
+    "crx": true,
+    "cx": false,
+    "swap": true
+   },
+   "angles": [
+    [
+     "rx",
+     0.25,
+     0
+    ],
+    [
+     "crx",
+     0.5,
+     2,
+     0
+    ],
+    [
+     "crx",
+     1.0,
+     2,
+     1
+    ]
+   ],
+   "pair_pval": 2.0915949822647217e-17
+  },
+  {
+   "stream": "k4",
+   "gen": 7,
+   "observable": "train_p",
+   "recorded": 0.066406,
+   "exact": 0.426777,
+   "dev": -0.360371,
+   "k_of_512": 34,
+   "gate_multiset": [
+    "crx",
+    "h",
+    "rx",
+    "swap"
+   ],
+   "flags": {
+    "h": true,
+    "x": false,
+    "rx": true,
+    "rz": false,
+    "crx": true,
+    "cx": false,
+    "swap": true
+   },
+   "angles": [
+    [
+     "rx",
+     0.25,
+     0
+    ],
+    [
+     "crx",
+     1.0,
+     2,
+     1
+    ]
+   ],
+   "pair_pval": 2.5745294663372414e-75
+  },
+  {
+   "stream": "k4",
+   "gen": 7,
+   "observable": "verify_p",
+   "recorded": 0.082031,
+   "exact": 0.426777,
+   "dev": -0.344746,
+   "k_of_512": 42,
+   "gate_multiset": [
+    "crx",
+    "h",
+    "rx",
+    "swap"
+   ],
+   "flags": {
+    "h": true,
+    "x": false,
+    "rx": true,
+    "rz": false,
+    "crx": true,
+    "cx": false,
+    "swap": true
+   },
+   "angles": [
+    [
+     "rx",
+     0.25,
+     0
+    ],
+    [
+     "crx",
+     1.0,
+     2,
+     1
+    ]
+   ],
+   "pair_pval": 1.2426851637706077e-67
+  },
+  {
+   "stream": "k4",
+   "gen": 7,
+   "observable": "train_p",
+   "recorded": 0.0,
+   "exact": 0.25,
+   "dev": -0.25,
+   "k_of_512": 0,
+   "gate_multiset": [
+    "crx",
+    "crx",
+    "h",
+    "swap"
+   ],
+   "flags": {
+    "h": true,
+    "x": false,
+    "rx": false,
+    "rz": false,
+    "crx": true,
+    "cx": false,
+    "swap": true
+   },
+   "angles": [
+    [
+     "crx",
+     0.5,
+     2,
+     0
+    ],
+    [
+     "crx",
+     1.0,
+     2,
+     1
+    ]
+   ],
+   "pair_pval": 1.9251651290339934e-64
+  },
+  {
+   "stream": "k4",
+   "gen": 7,
+   "observable": "verify_p",
+   "recorded": 0.0,
+   "exact": 0.25,
+   "dev": -0.25,
+   "k_of_512": 0,
+   "gate_multiset": [
+    "crx",
+    "crx",
+    "h",
+    "swap"
+   ],
+   "flags": {
+    "h": true,
+    "x": false,
+    "rx": false,
+    "rz": false,
+    "crx": true,
+    "cx": false,
+    "swap": true
+   },
+   "angles": [
+    [
+     "crx",
+     0.5,
+     2,
+     0
+    ],
+    [
+     "crx",
+     1.0,
+     2,
+     1
+    ]
+   ],
+   "pair_pval": 1.9251651290339934e-64
+  },
+  {
+   "stream": "k4",
+   "gen": 11,
+   "observable": "train_p",
+   "recorded": 0.0,
+   "exact": 0.426777,
+   "dev": -0.426777,
+   "k_of_512": 0,
+   "gate_multiset": [
+    "crx",
+    "crx",
+    "cx",
+    "h",
+    "rx",
+    "swap"
+   ],
+   "flags": {
+    "h": true,
+    "x": false,
+    "rx": true,
+    "rz": false,
+    "crx": true,
+    "cx": true,
+    "swap": true
+   },
+   "angles": [
+    [
+     "crx",
+     0.5,
+     1,
+     0
+    ],
+    [
+     "rx",
+     0.25,
+     0
+    ],
+    [
+     "crx",
+     0.5,
+     2,
+     0
+    ]
+   ],
+   "pair_pval": 2.221467957226696e-124
+  },
+  {
+   "stream": "k4",
+   "gen": 11,
+   "observable": "verify_p",
+   "recorded": 0.0,
+   "exact": 0.426777,
+   "dev": -0.426777,
+   "k_of_512": 0,
+   "gate_multiset": [
+    "crx",
+    "crx",
+    "cx",
+    "h",
+    "rx",
+    "swap"
+   ],
+   "flags": {
+    "h": true,
+    "x": false,
+    "rx": true,
+    "rz": false,
+    "crx": true,
+    "cx": true,
+    "swap": true
+   },
+   "angles": [
+    [
+     "crx",
+     0.5,
+     1,
+     0
+    ],
+    [
+     "rx",
+     0.25,
+     0
+    ],
+    [
+     "crx",
+     0.5,
+     2,
+     0
+    ]
+   ],
+   "pair_pval": 2.221467957226696e-124
+  },
+  {
+   "stream": "k5",
+   "gen": 2,
+   "observable": "train_p",
+   "recorded": 0.15625,
+   "exact": 0.0,
+   "dev": 0.15625,
+   "k_of_512": 80,
+   "gate_multiset": [
+    "cx",
+    "cx",
+    "rx",
+    "swap"
+   ],
+   "flags": {
+    "h": false,
+    "x": false,
+    "rx": true,
+    "rz": false,
+    "crx": false,
+    "cx": true,
+    "swap": true
+   },
+   "angles": [
+    [
+     "rx",
+     0.75,
+     0
+    ]
+   ],
+   "pair_pval": 0.0
+  },
+  {
+   "stream": "k5",
+   "gen": 2,
+   "observable": "verify_p",
+   "recorded": 0.130859,
+   "exact": 0.0,
+   "dev": 0.130859,
+   "k_of_512": 67,
+   "gate_multiset": [
+    "cx",
+    "cx",
+    "rx",
+    "swap"
+   ],
+   "flags": {
+    "h": false,
+    "x": false,
+    "rx": true,
+    "rz": false,
+    "crx": false,
+    "cx": true,
+    "swap": true
+   },
+   "angles": [
+    [
+     "rx",
+     0.75,
+     0
+    ]
+   ],
+   "pair_pval": 0.0
+  },
+  {
+   "stream": "k5",
+   "gen": 2,
+   "observable": "train_p",
+   "recorded": 0.0,
+   "exact": 0.146447,
+   "dev": -0.146447,
+   "k_of_512": 0,
+   "gate_multiset": [
+    "cx",
+    "rx",
+    "swap"
+   ],
+   "flags": {
+    "h": false,
+    "x": false,
+    "rx": true,
+    "rz": false,
+    "crx": false,
+    "cx": true,
+    "swap": true
+   },
+   "angles": [
+    [
+     "rx",
+     0.75,
+     0
+    ]
+   ],
+   "pair_pval": 1.1162173149912586e-35
+  },
+  {
+   "stream": "k5",
+   "gen": 2,
+   "observable": "verify_p",
+   "recorded": 0.0,
+   "exact": 0.146447,
+   "dev": -0.146447,
+   "k_of_512": 0,
+   "gate_multiset": [
+    "cx",
+    "rx",
+    "swap"
+   ],
+   "flags": {
+    "h": false,
+    "x": false,
+    "rx": true,
+    "rz": false,
+    "crx": false,
+    "cx": true,
+    "swap": true
+   },
+   "angles": [
+    [
+     "rx",
+     0.75,
+     0
+    ]
+   ],
+   "pair_pval": 1.1162173149912586e-35
+  },
+  {
+   "stream": "k5",
+   "gen": 9,
+   "observable": "train_p",
+   "recorded": 0.498047,
+   "exact": 0.0,
+   "dev": 0.498047,
+   "k_of_512": 255,
+   "gate_multiset": [
+    "crx",
+    "cx",
+    "cx",
+    "rx",
+    "swap"
+   ],
+   "flags": {
+    "h": false,
+    "x": false,
+    "rx": true,
+    "rz": false,
+    "crx": true,
+    "cx": true,
+    "swap": true
+   },
+   "angles": [
+    [
+     "rx",
+     0.5,
+     0
+    ],
+    [
+     "crx",
+     1.0,
+     2,
+     0
+    ]
+   ],
+   "pair_pval": 0.0
+  },
+  {
+   "stream": "k5",
+   "gen": 9,
+   "observable": "verify_p",
+   "recorded": 0.482422,
+   "exact": 0.0,
+   "dev": 0.482422,
+   "k_of_512": 247,
+   "gate_multiset": [
+    "crx",
+    "cx",
+    "cx",
+    "rx",
+    "swap"
+   ],
+   "flags": {
+    "h": false,
+    "x": false,
+    "rx": true,
+    "rz": false,
+    "crx": true,
+    "cx": true,
+    "swap": true
+   },
+   "angles": [
+    [
+     "rx",
+     0.5,
+     0
+    ],
+    [
+     "crx",
+     1.0,
+     2,
+     0
+    ]
+   ],
+   "pair_pval": 0.0
+  },
+  {
+   "stream": "k5",
+   "gen": 11,
+   "observable": "train_p",
+   "recorded": 0.0,
+   "exact": 0.5,
+   "dev": -0.5,
+   "k_of_512": 0,
+   "gate_multiset": [
+    "cx",
+    "rx",
+    "rz",
+    "swap"
+   ],
+   "flags": {
+    "h": false,
+    "x": false,
+    "rx": true,
+    "rz": true,
+    "crx": false,
+    "cx": true,
+    "swap": true
+   },
+   "angles": [
+    [
+     "rx",
+     0.5,
+     0
+    ],
+    [
+     "rz",
+     0.75,
+     2
+    ]
+   ],
+   "pair_pval": 1.491668146240059e-154
+  },
+  {
+   "stream": "k5",
+   "gen": 11,
+   "observable": "verify_p",
+   "recorded": 0.0,
+   "exact": 0.5,
+   "dev": -0.5,
+   "k_of_512": 0,
+   "gate_multiset": [
+    "cx",
+    "rx",
+    "rz",
+    "swap"
+   ],
+   "flags": {
+    "h": false,
+    "x": false,
+    "rx": true,
+    "rz": true,
+    "crx": false,
+    "cx": true,
+    "swap": true
+   },
+   "angles": [
+    [
+     "rx",
+     0.5,
+     0
+    ],
+    [
+     "rz",
+     0.75,
+     2
+    ]
+   ],
+   "pair_pval": 1.491668146240059e-154
+  },
+  {
+   "stream": "k6",
+   "gen": 2,
+   "observable": "train_p",
+   "recorded": 0.0,
+   "exact": 0.25,
+   "dev": -0.25,
+   "k_of_512": 0,
+   "gate_multiset": [
+    "h",
+    "h",
+    "swap"
+   ],
+   "flags": {
+    "h": true,
+    "x": false,
+    "rx": false,
+    "rz": false,
+    "crx": false,
+    "cx": false,
+    "swap": true
+   },
+   "angles": [],
+   "pair_pval": 1.9251651290339148e-64
+  },
+  {
+   "stream": "k6",
+   "gen": 2,
+   "observable": "verify_p",
+   "recorded": 0.0,
+   "exact": 0.25,
+   "dev": -0.25,
+   "k_of_512": 0,
+   "gate_multiset": [
+    "h",
+    "h",
+    "swap"
+   ],
+   "flags": {
+    "h": true,
+    "x": false,
+    "rx": false,
+    "rz": false,
+    "crx": false,
+    "cx": false,
+    "swap": true
+   },
+   "angles": [],
+   "pair_pval": 1.9251651290339148e-64
+  },
+  {
+   "stream": "k6",
+   "gen": 9,
+   "observable": "train_p",
+   "recorded": 0.0,
+   "exact": 0.5,
+   "dev": -0.5,
+   "k_of_512": 0,
+   "gate_multiset": [
+    "cx",
+    "h",
+    "rx",
+    "swap"
+   ],
+   "flags": {
+    "h": true,
+    "x": false,
+    "rx": true,
+    "rz": false,
+    "crx": false,
+    "cx": true,
+    "swap": true
+   },
+   "angles": [
+    [
+     "rx",
+     0.75,
+     2
+    ]
+   ],
+   "pair_pval": 1.491668146240059e-154
+  },
+  {
+   "stream": "k6",
+   "gen": 9,
+   "observable": "verify_p",
+   "recorded": 0.0,
+   "exact": 0.5,
+   "dev": -0.5,
+   "k_of_512": 0,
+   "gate_multiset": [
+    "cx",
+    "h",
+    "rx",
+    "swap"
+   ],
+   "flags": {
+    "h": true,
+    "x": false,
+    "rx": true,
+    "rz": false,
+    "crx": false,
+    "cx": true,
+    "swap": true
+   },
+   "angles": [
+    [
+     "rx",
+     0.75,
+     2
+    ]
+   ],
+   "pair_pval": 1.491668146240059e-154
+  }
+ ]
+}
