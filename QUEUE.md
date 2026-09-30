@@ -64,3 +64,7 @@
 - [ ] W5b2 antirank-primacy confirmation (GPU) — firing 08:4x, pre-reg proposals/runs/W5b2-antirank-primacy.md; spawned from W5b KILL (primary lifetime seed-dependent 1/3) + antirank secondary win 3/3 (+1.6/+2.5/+3.0%)
 - Booked 08:5x AK by the 08:55 booking one-shot: W5a REFUTED, F1 PREMISE-ABSENT (see RESULTS.md).
 - Booked 09:1x AK by the 09:15 booking one-shot: **W5b KILL** (lifetime allocation is seed-unstable — best arm at 4241, worst at 4242/4243; mean_rel -1.05%, wins 1/3; antirank secondary 3/3 over random, ungated). Still armed: 10:25 AK W5b2 (in flight, do NOT double-fire).
+
+## IN FLIGHT 2026-09-30 09:2x — CPU double-fire (Casey: keep experiments hot)
+- [ ] H1 judgment holonomy audit (CPU): can symmetry-loop inconsistency localize a corrupted field region with ZERO teacher calls, beating the kNN-margin baseline? KEEP = AUC>=0.80 AND paired baseline win on >=4/5 seeds; INDIFFERENT if mean gap <0.02. pre-reg proposals/runs/H1-judgment-holonomy.md — wide-scope #3
+- [ ] FD1 frontier distillation (CPU): frontier-only student vs uniform, plus eval-time hybrid (field easy / student hard); KEEP = frontier >= uniform-0.5pp AND hybrid >= uniform+1.0pp on >=4/5 seeds; HALF if only frontier-safe. pre-reg proposals/runs/FD1-frontier-distillation.md — wide-scope #1
