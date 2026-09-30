@@ -3161,3 +3161,30 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
   path, so the audit must pin the real-set enumeration seed before drawing conclusions from real-gate numbers.
 - Scratch artifacts kept at `/tmp/st1v2_repro/` (results.json + full run.log); nothing written into `results/`.
 - Ledger change (RESULTS.md) → manifest re-sealed this slice.
+
+### (C) MANDATORY REPRODUCTION CHECK — 13:1x (day-conductor): **ST1v2 PASS on verdict/gates; real-path nondeterminism ROOT-CAUSED**
+- Re-ran the COMMITTED `experiments/st1_quilt_cell_v0.py` with the pre-reg's exact config
+  (`--lr 2e-5 --epochs 3 --warmup-ratio 0.1`) using the RC-1 `--out` flag → **wrote to ext4 scratch
+  `/home/eileen/scratch/st1v2_chk/`, never into `results/`** (third clean application of the RC-1 fix;
+  the committed artifact under test was NOT touched). Exit 0.
+- **Verdict + all gate booleans + frozen gate thresholds reproduce exactly**: `verdict KILL`,
+  `GATE1_syn False / GATE2_real False / GATE3_abstain True`, `gates_frozen {syn_auc_min 0.95,
+  real_auc_min 0.8, honest_fpr_max 0.1, ood_abstain_min 0.9, min_real_receipts 10}`, n_train 8000,
+  n_val 1000, model/lr/epochs/warmup identical. Only `ts` differs (expected).
+- **`syn_auc` reproduces BIT-IDENTICALLY for all 5 seeds** (0.7390/0.7821/0.6841/0.7022/0.6963 == committed).
+- **ROOT CAUSE FOUND for the 12:1x "real-gate drifts" finding — it is not a floating-point wobble, it is an
+  UNSTABLE REAL-SET ENUMERATION.** The `real_gate` block differs in *size* between fires:
+  committed `{receipts 15, rows 50, corrupted 35, honest 15}` vs repro `{receipts 16, rows 53,
+  corrupted 37, honest 16}`. Different receipts in the gate set ⇒ `summary_mean` real numbers move
+  (real_auc 0.4434 → 0.4507, honest_fpr 0.80 → 0.8125, gate_coverage 0.584 → 0.5962 — all in the same
+  direction, as booked at 12:1x). So the drift is a **membership artifact, not measurement noise**, and the
+  band is wider than ±0.01 because the set size itself changes across fires.
+- **Threat assessment: NONE to the booked verdict.** Every gate is missed by a wide margin
+  (syn 0.72 vs ≥0.95; real 0.44-0.45 vs ≥0.80 and BELOW chance; fpr ~0.81 vs ≤0.10), so the KILL is
+  robust to the whole observed band. No amendment to the ST1/ST1v2 bookings.
+- **Doctrine (forward, ST line):** (1) report real-gate numbers as a band across fires, never a point value
+  (12:1x rule, now root-caused); (2) **ST1-AUDIT must pin the real-receipt enumeration before reading any
+  real-gate number** — the audit reads the same path and would otherwise inherit this instability;
+  (3) RC-1 spec addition: the runner must record the real-set membership (receipt ids) in the result file,
+  so a changing set is visible in the artifact rather than inferable only by re-running.
+- Scratch kept at `/home/eileen/scratch/st1v2_chk/`. Ledger changed → manifest re-seal below.
