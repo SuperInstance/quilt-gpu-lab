@@ -29,3 +29,8 @@ from observable champion state, or does it arrive by lottery?
 **Artifacts (planned).** `experiments/oracle1.py`, `results/qo1_oracle/` (states parquet/json,
 metrics json), `tools/qcell_oracle.pt` + `tools/README.md` update. Commit+push before firing
 (this file); book in RESULTS.md after landing.
+
+## PROVENANCE CITATION AMENDMENT (2026-09-30 02:2x, docs-only — per MicroMoth-quilt PR #29)
+Training data derives from QG2's reimplementation of the qcells lab loop; canonical home of the
+lab is **SuperInstance/micrograd-quilt** (labs/qcells tree). Local paths are quoted history.
+No data or gates changed.

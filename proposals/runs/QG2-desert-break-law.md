@@ -37,3 +37,10 @@ genomes as id-sequences; unitaries = 6-step bmm chain over [65k, 8, 8]; shots vi
   property — the deeper finding.
 - EXPLORATORY (labeled): loneliness gap distribution; champion genome-length dynamics; per-gate frequency drift
   in crossers vs stuck streams.
+
+## PROVENANCE CITATION AMENDMENT (2026-09-30 02:2x, docs-only — per MicroMoth-quilt PR #29)
+The reimplemented lane follows the qcells lab's documented loop; the lab's canonical home is
+**SuperInstance/micrograd-quilt** (labs/qcells tree; sealed receipts exp018–exp022 mirrored as
+PRs #5–#7). Note: "qcells repo not public" above was true at pre-reg time; the labs/qcells tree
+is now mirrored in the org repo. Local workspace paths are quoted history, not the citation.
+No data or gates changed.

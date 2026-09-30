@@ -30,3 +30,9 @@ First pass violated the anchor on high-fitness cells: break cells have union-p(0
 fitness ≈ 0.498. The lane mode is "balance": fitness = min(p000, p111), ceiling 0.5 — the union observable was wrong.
 All gates re-read on balance = min(|s000|²,|s111|²). No new data, no re-rolls; the break cells are EXACT GHZ-family
 generators (all amplitude on-targets AND balanced) — the needle is doubly-constrained.
+
+## PROVENANCE CITATION AMENDMENT (2026-09-30 02:2x, docs-only — per MicroMoth-quilt PR #29)
+This receipt's source corpus (exp020–022 telemetry) originates from the qcells lab, whose
+canonical, addressable home is **SuperInstance/micrograd-quilt** (labs/qcells tree; sealed
+lineage exp018–exp022 mirrored there as receipt PRs #5–#7). Local workspace paths in this
+receipt are quoted history, not the citation. No data or gates changed.
