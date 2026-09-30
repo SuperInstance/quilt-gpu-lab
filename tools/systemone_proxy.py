@@ -34,7 +34,7 @@ LEDGER_PATH = LEDGER_DIR / "call-ledger.jsonl"
 
 
 def _token() -> str:
-    tok = TOKEN_PATH.read_text().strip()
+    tok = TOKEN_PATH.read_text(encoding="utf-8-sig").strip()
     if not tok:
         raise RuntimeError(f"empty token at {TOKEN_PATH}")
     return tok
