@@ -1,0 +1,8 @@
+C0_current           anchor 0.9854 (1892/1920) failing 28
+C1_embed_reversed    anchor 0.7875 (1512/1920) failing 408
+C2_perm_reversed     anchor 0.8063 (1548/1920) failing 372
+C3_both_reversed     anchor 0.9552 (1834/1920) failing 86
+C4_order_reversed    anchor 0.6953 (1335/1920) failing 585
+C5_swap_as_cnot      anchor 0.9781 (1878/1920) failing 42
+swap-vs-x decomposition (C0 28): {'n_failing_C0': 28, 'swap_and_x': 0, 'swap_only': 28, 'x_only': 0, 'neither': 0}
+VERDICT: NONE | best: C0_current 0.9854

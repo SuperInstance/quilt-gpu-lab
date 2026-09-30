@@ -187,3 +187,5 @@ Rotation for next wake: non-GPU (PR-SWEEP #5 or SCOUT #2), then QG1-residual or 
   (pre-reg pushed before firing).
 
 - 07:1x CONDUCTOR-0 (main, morning): QG1-residual booked (see RESULTS + QUEUE mark). Rotation: QG1c pre-reg (CPU, tight scope) or PR-SWEEP #6; chip free.
+
+- [DONE 07:2x GPU] **QG1c BOOKED: verdict NONE** — all 6 frozen candidates: C0 current best (0.9854); nothing improves; the 28 misses are swap-ONLY (x spurious). Not a wire-order/order/CNOT-substitution typo. Spawned QG1d: read micromoth's exp022 simulator swap source (byte-level recon, read-only, cheap).

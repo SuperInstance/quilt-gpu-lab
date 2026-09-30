@@ -1,0 +1,697 @@
+{
+ "candidates": {
+  "C0_current": {
+   "anchor": 0.9854166666666667,
+   "n_failing": 28,
+   "enrichment": {
+    "h": {
+     "n_present": 1204,
+     "failing_with_flag": 20,
+     "fisher_p": 0.4321494414827384,
+     "enriches": false
+    },
+    "x": {
+     "n_present": 554,
+     "failing_with_flag": 0,
+     "fisher_p": 8.561570202930594e-05,
+     "enriches": true
+    },
+    "rx": {
+     "n_present": 808,
+     "failing_with_flag": 16,
+     "fisher_p": 0.12331119797005075,
+     "enriches": false
+    },
+    "rz": {
+     "n_present": 512,
+     "failing_with_flag": 8,
+     "fisher_p": 0.8304058334849489,
+     "enriches": false
+    },
+    "crx": {
+     "n_present": 886,
+     "failing_with_flag": 14,
+     "fisher_p": 0.7062389167382476,
+     "enriches": false
+    },
+    "cx": {
+     "n_present": 1186,
+     "failing_with_flag": 18,
+     "fisher_p": 0.8469761841580137,
+     "enriches": false
+    },
+    "swap": {
+     "n_present": 442,
+     "failing_with_flag": 28,
+     "fisher_p": 7.013587876161428e-19,
+     "enriches": true
+    }
+   }
+  },
+  "C1_embed_reversed": {
+   "anchor": 0.7875,
+   "n_failing": 408,
+   "enrichment": {
+    "h": {
+     "n_present": 1204,
+     "failing_with_flag": 282,
+     "fisher_p": 0.0026797919186482395,
+     "enriches": false
+    },
+    "x": {
+     "n_present": 554,
+     "failing_with_flag": 20,
+     "fisher_p": 2.2485943292913836e-41,
+     "enriches": true
+    },
+    "rx": {
+     "n_present": 808,
+     "failing_with_flag": 206,
+     "fisher_p": 0.0001201748607422761,
+     "enriches": true
+    },
+    "rz": {
+     "n_present": 512,
+     "failing_with_flag": 168,
+     "fisher_p": 5.95561260886846e-13,
+     "enriches": true
+    },
+    "crx": {
+     "n_present": 886,
+     "failing_with_flag": 218,
+     "fisher_p": 0.0009554283587518203,
+     "enriches": true
+    },
+    "cx": {
+     "n_present": 1186,
+     "failing_with_flag": 367,
+     "fisher_p": 1.710891910147235e-45,
+     "enriches": true
+    },
+    "swap": {
+     "n_present": 442,
+     "failing_with_flag": 130,
+     "fisher_p": 3.2506791023019103e-06,
+     "enriches": true
+    }
+   }
+  },
+  "C2_perm_reversed": {
+   "anchor": 0.80625,
+   "n_failing": 372,
+   "enrichment": {
+    "h": {
+     "n_present": 1204,
+     "failing_with_flag": 248,
+     "fisher_p": 0.08343845990732619,
+     "enriches": false
+    },
+    "x": {
+     "n_present": 554,
+     "failing_with_flag": 20,
+     "fisher_p": 1.360102378089593e-35,
+     "enriches": true
+    },
+    "rx": {
+     "n_present": 808,
+     "failing_with_flag": 194,
+     "fisher_p": 1.4462837176192158e-05,
+     "enriches": true
+    },
+    "rz": {
+     "n_present": 512,
+     "failing_with_flag": 166,
+     "fisher_p": 6.439732723723733e-17,
+     "enriches": true
+    },
+    "crx": {
+     "n_present": 886,
+     "failing_with_flag": 182,
+     "fisher_p": 0.2467908497509981,
+     "enriches": false
+    },
+    "cx": {
+     "n_present": 1186,
+     "failing_with_flag": 358,
+     "fisher_p": 6.403754271403832e-66,
+     "enriches": true
+    },
+    "swap": {
+     "n_present": 442,
+     "failing_with_flag": 124,
+     "fisher_p": 3.4049131832779785e-07,
+     "enriches": true
+    }
+   }
+  },
+  "C3_both_reversed": {
+   "anchor": 0.9552083333333333,
+   "n_failing": 86,
+   "enrichment": {
+    "h": {
+     "n_present": 1204,
+     "failing_with_flag": 66,
+     "fisher_p": 0.005938002059997331,
+     "enriches": false
+    },
+    "x": {
+     "n_present": 554,
+     "failing_with_flag": 2,
+     "fisher_p": 8.450291677431693e-11,
+     "enriches": true
+    },
+    "rx": {
+     "n_present": 808,
+     "failing_with_flag": 34,
+     "fisher_p": 0.6562356084659886,
+     "enriches": false
+    },
+    "rz": {
+     "n_present": 512,
+     "failing_with_flag": 18,
+     "fisher_p": 0.2614414118054734,
+     "enriches": false
+    },
+    "crx": {
+     "n_present": 886,
+     "failing_with_flag": 72,
+     "fisher_p": 2.4247921056519526e-13,
+     "enriches": true
+    },
+    "cx": {
+     "n_present": 1186,
+     "failing_with_flag": 47,
+     "fisher_p": 0.173923799394693,
+     "enriches": false
+    },
+    "swap": {
+     "n_present": 442,
+     "failing_with_flag": 38,
+     "fisher_p": 9.427112749488502e-06,
+     "enriches": true
+    }
+   }
+  },
+  "C4_order_reversed": {
+   "anchor": 0.6953125,
+   "n_failing": 585,
+   "enrichment": {
+    "h": {
+     "n_present": 1204,
+     "failing_with_flag": 457,
+     "fisher_p": 3.3698894672108382e-21,
+     "enriches": true
+    },
+    "x": {
+     "n_present": 554,
+     "failing_with_flag": 46,
+     "fisher_p": 1.4419805223673276e-47,
+     "enriches": true
+    },
+    "rx": {
+     "n_present": 808,
+     "failing_with_flag": 335,
+     "fisher_p": 6.492043161196414e-19,
+     "enriches": true
+    },
+    "rz": {
+     "n_present": 512,
+     "failing_with_flag": 212,
+     "fisher_p": 8.240657908772589e-10,
+     "enriches": true
+    },
+    "crx": {
+     "n_present": 886,
+     "failing_with_flag": 363,
+     "fisher_p": 2.1641973009652325e-20,
+     "enriches": true
+    },
+    "cx": {
+     "n_present": 1186,
+     "failing_with_flag": 443,
+     "fisher_p": 2.520307293284792e-17,
+     "enriches": true
+    },
+    "swap": {
+     "n_present": 442,
+     "failing_with_flag": 122,
+     "fisher_p": 0.14119833701417922,
+     "enriches": false
+    }
+   }
+  },
+  "C5_swap_as_cnot": {
+   "anchor": 0.978125,
+   "n_failing": 42,
+   "enrichment": {
+    "h": {
+     "n_present": 1204,
+     "failing_with_flag": 30,
+     "fisher_p": 0.2624271720338393,
+     "enriches": false
+    },
+    "x": {
+     "n_present": 554,
+     "failing_with_flag": 4,
+     "fisher_p": 0.0032494263392345312,
+     "enriches": false
+    },
+    "rx": {
+     "n_present": 808,
+     "failing_with_flag": 22,
+     "fisher_p": 0.20602256789561876,
+     "enriches": false
+    },
+    "rz": {
+     "n_present": 512,
+     "failing_with_flag": 14,
+     "fisher_p": 0.3769112958418,
+     "enriches": false
+    },
+    "crx": {
+     "n_present": 886,
+     "failing_with_flag": 22,
+     "fisher_p": 0.4370618948158134,
+     "enriches": false
+    },
+    "cx": {
+     "n_present": 1186,
+     "failing_with_flag": 30,
+     "fisher_p": 0.20397253621152028,
+     "enriches": false
+    },
+    "swap": {
+     "n_present": 442,
+     "failing_with_flag": 42,
+     "fisher_p": 3.399943388114338e-28,
+     "enriches": true
+    }
+   }
+  }
+ },
+ "best_candidate": "C0_current",
+ "best_anchor": 0.9854166666666667,
+ "swap_vs_x_decomposition_C0": {
+  "n_failing_C0": 28,
+  "swap_and_x": 0,
+  "swap_only": 28,
+  "x_only": 0,
+  "neither": 0
+ },
+ "gates": {
+  "G_FIX": false,
+  "G_PARTIAL": false,
+  "G_NONE": true
+ },
+ "verdict": "NONE",
+ "fire_time_pins": {
+  "runner_sha256": "4f5e689618fd927f90496fca619ece71a2b7cbe88d40d3d2e44aa34d8e305cb9",
+  "prereg_sha256": "b597759779b28d9d145e4a697e0094270ac6de1433d3338f0b56366c05b076a1",
+  "telemetry_sha256": {
+   "exp022.telemetry.k3.jsonl": "b4ebee963aad1f2502eb816b11dc235bac04f492c96d023891a25015ae30b565",
+   "exp022.telemetry.k4.jsonl": "fb70fbabd119a57bd0d3abe3732861639988aa9984e871247baff347578a993f",
+   "exp022.telemetry.k5.jsonl": "c61aaec3c86fd889740e6e047a390ccf1ba8c46a6dfa09747313706430eeed49",
+   "exp022.telemetry.k6.jsonl": "7c6a131d96eaa9e467ba2c10b04756d53c06969cc735d64b2b3301357364b266",
+   "exp022.telemetry.k7.jsonl": "a3029418444d68cfa11c7dedb2ba0bf3e0b16a59677a4e0c1f4963fbd03a8ef8"
+  },
+  "device": "cuda"
+ },
+ "failing_table_C0": [
+  {
+   "stream": "k3",
+   "gen": 5,
+   "observable": "train_p",
+   "recorded": 0.0,
+   "exact": 0.5,
+   "gates": [
+    "cx",
+    "h",
+    "rz",
+    "rz",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k3",
+   "gen": 5,
+   "observable": "verify_p",
+   "recorded": 0.0,
+   "exact": 0.5,
+   "gates": [
+    "cx",
+    "h",
+    "rz",
+    "rz",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k3",
+   "gen": 8,
+   "observable": "train_p",
+   "recorded": 0.498047,
+   "exact": 0.0,
+   "gates": [
+    "cx",
+    "cx",
+    "h",
+    "rz",
+    "swap",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k3",
+   "gen": 8,
+   "observable": "verify_p",
+   "recorded": 0.482422,
+   "exact": 0.0,
+   "gates": [
+    "cx",
+    "cx",
+    "h",
+    "rz",
+    "swap",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k3",
+   "gen": 11,
+   "observable": "train_p",
+   "recorded": 0.0,
+   "exact": 0.5,
+   "gates": [
+    "crx",
+    "cx",
+    "cx",
+    "h",
+    "rz",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k3",
+   "gen": 11,
+   "observable": "verify_p",
+   "recorded": 0.0,
+   "exact": 0.5,
+   "gates": [
+    "crx",
+    "cx",
+    "cx",
+    "h",
+    "rz",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k4",
+   "gen": 2,
+   "observable": "train_p",
+   "recorded": 0.0,
+   "exact": 0.5,
+   "gates": [
+    "crx",
+    "h",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k4",
+   "gen": 2,
+   "observable": "verify_p",
+   "recorded": 0.0,
+   "exact": 0.5,
+   "gates": [
+    "crx",
+    "h",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k4",
+   "gen": 6,
+   "observable": "train_p",
+   "recorded": 0.0,
+   "exact": 0.073223,
+   "gates": [
+    "crx",
+    "crx",
+    "h",
+    "rx",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k4",
+   "gen": 6,
+   "observable": "verify_p",
+   "recorded": 0.0,
+   "exact": 0.073223,
+   "gates": [
+    "crx",
+    "crx",
+    "h",
+    "rx",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k4",
+   "gen": 7,
+   "observable": "train_p",
+   "recorded": 0.066406,
+   "exact": 0.426777,
+   "gates": [
+    "crx",
+    "h",
+    "rx",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k4",
+   "gen": 7,
+   "observable": "verify_p",
+   "recorded": 0.082031,
+   "exact": 0.426777,
+   "gates": [
+    "crx",
+    "h",
+    "rx",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k4",
+   "gen": 7,
+   "observable": "train_p",
+   "recorded": 0.0,
+   "exact": 0.25,
+   "gates": [
+    "crx",
+    "crx",
+    "h",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k4",
+   "gen": 7,
+   "observable": "verify_p",
+   "recorded": 0.0,
+   "exact": 0.25,
+   "gates": [
+    "crx",
+    "crx",
+    "h",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k4",
+   "gen": 11,
+   "observable": "train_p",
+   "recorded": 0.0,
+   "exact": 0.426777,
+   "gates": [
+    "crx",
+    "crx",
+    "cx",
+    "h",
+    "rx",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k4",
+   "gen": 11,
+   "observable": "verify_p",
+   "recorded": 0.0,
+   "exact": 0.426777,
+   "gates": [
+    "crx",
+    "crx",
+    "cx",
+    "h",
+    "rx",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k5",
+   "gen": 2,
+   "observable": "train_p",
+   "recorded": 0.15625,
+   "exact": 0.0,
+   "gates": [
+    "cx",
+    "cx",
+    "rx",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k5",
+   "gen": 2,
+   "observable": "verify_p",
+   "recorded": 0.130859,
+   "exact": 0.0,
+   "gates": [
+    "cx",
+    "cx",
+    "rx",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k5",
+   "gen": 2,
+   "observable": "train_p",
+   "recorded": 0.0,
+   "exact": 0.146447,
+   "gates": [
+    "cx",
+    "rx",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k5",
+   "gen": 2,
+   "observable": "verify_p",
+   "recorded": 0.0,
+   "exact": 0.146447,
+   "gates": [
+    "cx",
+    "rx",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k5",
+   "gen": 9,
+   "observable": "train_p",
+   "recorded": 0.498047,
+   "exact": 0.0,
+   "gates": [
+    "crx",
+    "cx",
+    "cx",
+    "rx",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k5",
+   "gen": 9,
+   "observable": "verify_p",
+   "recorded": 0.482422,
+   "exact": 0.0,
+   "gates": [
+    "crx",
+    "cx",
+    "cx",
+    "rx",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k5",
+   "gen": 11,
+   "observable": "train_p",
+   "recorded": 0.0,
+   "exact": 0.5,
+   "gates": [
+    "cx",
+    "rx",
+    "rz",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k5",
+   "gen": 11,
+   "observable": "verify_p",
+   "recorded": 0.0,
+   "exact": 0.5,
+   "gates": [
+    "cx",
+    "rx",
+    "rz",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k6",
+   "gen": 2,
+   "observable": "train_p",
+   "recorded": 0.0,
+   "exact": 0.25,
+   "gates": [
+    "h",
+    "h",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k6",
+   "gen": 2,
+   "observable": "verify_p",
+   "recorded": 0.0,
+   "exact": 0.25,
+   "gates": [
+    "h",
+    "h",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k6",
+   "gen": 9,
+   "observable": "train_p",
+   "recorded": 0.0,
+   "exact": 0.5,
+   "gates": [
+    "cx",
+    "h",
+    "rx",
+    "swap"
+   ]
+  },
+  {
+   "stream": "k6",
+   "gen": 9,
+   "observable": "verify_p",
+   "recorded": 0.0,
+   "exact": 0.5,
+   "gates": [
+    "cx",
+    "h",
+    "rx",
+    "swap"
+   ]
+  }
+ ]
+}
