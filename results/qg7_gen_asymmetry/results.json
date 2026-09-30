@@ -1,0 +1,60 @@
+{
+ "G1": true,
+ "rate12": 0.5869140625,
+ "cp95_12": [
+  0.5652329822017135,
+  0.608345949009691
+ ],
+ "rate24": 0.75146484375,
+ "cp95_24": [
+  0.7321520777439783,
+  0.7700551458116363
+ ],
+ "n_sub": 846,
+ "n_late": 337,
+ "n_hopeless": 509,
+ "auc_fresh_gen1": 0.5804356933389192,
+ "auc_frozen_oracle": 0.5656550051593571,
+ "oracle_median_p_late": 0.31658700108528137,
+ "oracle_median_p_hopeless": 0.2762155830860138,
+ "pinned": {
+  "qcell_sim": "8c82d4bcc88370c0",
+  "qcell_oracle.pt": "fed2c15fb506899f"
+ },
+ "elapsed_s": 4.558250188827515,
+ "ensemble": {
+  "runs": 4,
+  "g3_auc": [
+   0.5456,
+   0.6631,
+   0.636,
+   0.5804
+  ],
+  "g3_auc_mean": 0.6063,
+  "g4_auc": [
+   0.5809,
+   0.568,
+   0.5657
+  ],
+  "g4_auc_mean": 0.5715,
+  "rate12_runs": [
+   0.5845,
+   0.5713,
+   0.5864,
+   0.6069
+  ],
+  "rate24_runs": [
+   0.7383,
+   0.7378,
+   0.7417,
+   0.7676,
+   0.7515
+  ]
+ },
+ "verdict": {
+  "P1": "FAIL (ensemble): gen-1 signal does NOT reliably separate late-vs-hopeless; mean AUC 0.606, spread 0.546-0.663, only 1/4 draws clears 0.65. Single-draw P1 passes are luck, not signal.",
+  "P2": "PASS (weak): frozen QO1 oracle ranks late above hopeless consistently (0.566-0.581) but miscalibrated (median p late 0.33 vs hopeless 0.25; oracle trained on cross-by-12 where late streams are negatives).",
+  "routing": "QO2 verdict: forecast (gen-1 oracle) is sufficient for the cross-by-12 majority, but CANNOT adjudicate late-vs-hopeless inside the desert subpopulation -> those streams must be governed by the QO6 e-process retraction gate (evidence accumulation), not forecast. Fully consistent with delta-shape PR #1 doctrine: no irrevocable tail predicates."
+ },
+ "honest_notes": "Lane torch-nondeterminism (documented QO1) is material here: G3 AUC swing 0.546-0.663 across identical-seed reruns (tie-break RNG unseeded); booked as 4-run ensemble per fail-loud discipline. rate@12: 3/4 runs inside QG2 band 0.567-0.598, rep4 hit 0.6069 (just outside; band was calibrated at S=4096). rate@24 0.738-0.768 brackets QG3 arm C exact 0.755 - consistent. Two mechanical crashes fixed pre-verdict (stray dead line; oracle ckpt key is 'state_dict' not 'model'), declared, neither post-lane."
+}

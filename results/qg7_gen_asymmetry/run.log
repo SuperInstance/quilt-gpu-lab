@@ -1,0 +1,8 @@
+rate@12 0.5713 (1170/2048) CP95 [0.5495,0.5929]  elapsed 3s
+G1 (QG2-band anchor 0.567-0.598): PASS
+rate@24 0.7378 (1511/2048) CP95 [0.7182,0.7567]  (QG3 arm C exact: 0.755)
+subpop not-crossed-by-12: 878  late 341  hopeless 537
+G3 fresh gen-1 MLP  late-vs-hopeless AUC 0.6631 (P1 >0.65)
+G4 frozen QO1 oracle late-vs-hopeless AUC 0.5809 (P2 >0.55, miscalibration expected)
+   oracle median p: late 0.334 vs hopeless 0.252
+booked results/qg7_gen_asymmetry/results.json

@@ -2934,3 +2934,15 @@ commit 61b9e04, sha256 aad90ac5…, vendored-via delta-shape PR #1; parity enfor
   (QG3+QG6 law: generations rescue, variance/width do not) + QO6 gate. QG7 reuses the same trajectories.
 Fire-time pins: tools/eproc.py 8243ef91b1a39f3f, experiments/qo6_kill_evidence.py fcbfe984ddfe0133.
 Artifacts: tools/eproc.py, experiments/qo6_kill_evidence.py, results/qo6_kill_evidence/{results.json,run.log}.
+
+## QG7 — gen-1 forecast CANNOT adjudicate late-vs-hopeless; e-process gate governs the desert (2026-09-30 06:4x): BOOKED
+Pre-reg: proposals/runs/QG7-generation-asymmetry.md (committed 5781e58 before firing). Lane = QO3-identical
+shot arm, GENS=24, S=2048. Four identical-seed reruns booked as an ensemble (lane torch-nondeterminism is
+MATERIAL on this question — single-draw verdicts flip).
+- G1 PASS 3/4 (rate@12 0.571-0.606 vs QG2 band 0.567-0.598; rep4 0.6069 marginal-outside, band calibrated at S=4096). rate@24 0.738-0.768 brackets QG3 arm C exact 0.755 — consistent.
+- **P1 FAIL (ensemble)**: fresh gen-1 MLP on late(13-24)-vs-hopeless: AUC 0.546/0.663/0.636/0.580, mean 0.606 — only 1/4 draws clears the pre-registered 0.65; the one pass is luck, not signal. Late bloomers are only weakly distinguishable from hopeless at gen 1.
+- **P2 PASS (weak)**: frozen QO1 oracle transfers with modest consistent ranking (AUC 0.566-0.581) but miscalibrated (median p late 0.33 vs hopeless 0.25 — expected, late streams were training negatives).
+- **QO2 routing law finalized**: forecast (gen-1, AUC 0.88) governs the cross-by-12 majority; the desert subpopulation (~42%) goes to the QO6 e-process retraction gate — evidence accumulation, never an irrevocable tail predicate. Budget triage per QG3+QG6: generations rescue, variance/width do not.
+Fire-time pins: qcell_sim.py 8c82d4bc…, qcell_oracle.pt fed2c15f…. Honest notes: 2 mechanical crashes fixed pre-verdict
+(stray dead line; ckpt key 'state_dict'), lane nondeterminism booked as ensemble, no re-roll.
+Artifacts: experiments/qg7_gen_asymmetry.py, results/qg7_gen_asymmetry/{results.json,run.log}.
