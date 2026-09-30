@@ -3137,3 +3137,27 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
 - **MANDATORY REPRODUCTION CHECK: fired in-slice to ext4 scratch via the committed runner's `--out` flag**
   (first clean use of the RC-1 fix on this runner); verdict + gate values to be appended on completion.
 - Artifacts: `results/st1v2_quilt_cell_v0/results.json` (committed this slice), runner `experiments/st1_quilt_cell_v0.py`.
+
+### (C) MANDATORY REPRODUCTION CHECK — 12:1x: **Pass on verdict + all gates; disciplined DISSENT recorded on per-seed real_auc**
+- Re-ran the COMMITTED `experiments/st1_quilt_cell_v0.py` with the pre-reg's exact config
+  (`--lr 2e-5 --epochs 3 --warmup-ratio 0.1`) using the newly-added `--out /tmp/st1v2_repro` (first clean
+  application of the RC-1 fix on this runner — the verification wrote to ext4 scratch and did NOT touch the
+  committed artifact under test; the hardcoded-path defect booked at 09:1x/10:3x did not recur).
+- **Verdict + gate booleans reproduce exactly**: GATE1_syn False, GATE2_real False, GATE3_abstain True,
+  verdict **KILL**, n_train 8000, n_val 1000.
+- **Honest nondeterminism finding (why byte-identity is NOT claimed):** `syn_auc` reproduces **bit-identically for
+  all 5 seeds** (0.7390 / 0.7821 / 0.6841 / 0.7022 / 0.6963 → exact match), while the **real-gate** numbers drift
+  slightly per seed: real_auc mean 0.4434 → 0.4507, honest_fpr 0.80 → 0.8125, gate_coverage 0.584 → 0.5962
+  (e.g. seed 6611 real 0.4267 vs 0.4307; seed 6613 0.4762 vs 0.4831). Every drift is small and in the SAME
+  direction (real_auc slightly up, fpr slightly up) — the verdict has a wide margin at every gate, so this does
+  not threaten the KILL.
+- **Diagnosis of the asymmetry (new, bookable):** the synthetic arm is fully seeded and deterministic; the **real
+  arm is not** — its per-receipt scores vary across fires at fixed seed. That points at a nondeterminism source in
+  the real-receipt path (candidate: real receipts are enumerated/rendered in filesystem order or the held-out
+  corruption injection is seeded from a non-reproducible source, so which receipts land in the real gate set, or
+  their order, changes). **Fixed a latent trap for the whole ST line: any real-gate number should be reported as a
+  range across fires, not a point value; ST1/ST1v2's real_auc ("below chance") is the *low* end of a
+  ±0.01-wide band, still comfortably failing the ≥0.80 gate.** Flagged for ST1-AUDIT: it will read the same real
+  path, so the audit must pin the real-set enumeration seed before drawing conclusions from real-gate numbers.
+- Scratch artifacts kept at `/tmp/st1v2_repro/` (results.json + full run.log); nothing written into `results/`.
+- Ledger change (RESULTS.md) → manifest re-sealed this slice.
