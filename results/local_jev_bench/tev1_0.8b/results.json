@@ -1,0 +1,111 @@
+{
+  "model": "tev1:0.8b",
+  "gpu": false,
+  "seed": 20260930,
+  "ts": "2026-09-30T14:48:31-0800",
+  "yn_accuracy": 0.0,
+  "determinism_exact_rate": 1.0,
+  "json_parse_rate": 0.0,
+  "choice_accuracy": 0.0,
+  "score_within1_rate": 0.0,
+  "tok_s_mean": 52.6,
+  "calls": 60,
+  "rows": [
+    {
+      "probe": "yn",
+      "truth": "Yes",
+      "got": null,
+      "raw": ""
+    },
+    {
+      "probe": "yn",
+      "truth": "No",
+      "got": null,
+      "raw": ""
+    },
+    {
+      "probe": "yn",
+      "truth": "Yes",
+      "got": null,
+      "raw": ""
+    },
+    {
+      "probe": "yn",
+      "truth": "No",
+      "got": null,
+      "raw": ""
+    },
+    {
+      "probe": "yn",
+      "truth": "Yes",
+      "got": null,
+      "raw": ""
+    },
+    {
+      "probe": "yn",
+      "truth": "No",
+      "got": null,
+      "raw": ""
+    },
+    {
+      "probe": "yn",
+      "truth": "Yes",
+      "got": null,
+      "raw": ""
+    },
+    {
+      "probe": "yn",
+      "truth": "Yes",
+      "got": null,
+      "raw": ""
+    },
+    {
+      "probe": "yn",
+      "truth": "Yes",
+      "got": null,
+      "raw": ""
+    },
+    {
+      "probe": "yn",
+      "truth": "Yes",
+      "got": null,
+      "raw": ""
+    },
+    {
+      "probe": "yn",
+      "truth": "Yes",
+      "got": null,
+      "raw": ""
+    },
+    {
+      "probe": "yn",
+      "truth": "No",
+      "got": null,
+      "raw": ""
+    },
+    {
+      "probe": "yn",
+      "truth": "Yes",
+      "got": null,
+      "raw": ""
+    },
+    {
+      "probe": "yn",
+      "truth": "Yes",
+      "got": null,
+      "raw": ""
+    },
+    {
+      "probe": "yn",
+      "truth": "Yes",
+      "got": null,
+      "raw": ""
+    },
+    {
+      "probe": "yn",
+      "truth": "No",
+      "got": null,
+      "raw": ""
+    }
+  ]
+}

@@ -3206,3 +3206,17 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
   artifact + this booking next; manifest re-seal after ledger change. Reproduction check for QO9 due next wake
   (deterministic torch.manual_seed(0) fits; rollout rng seeded per lane — expect near-bit-exact, MLP fit path
   nondeterminism class noted).
+
+### [DONE 15:1x] **QO9 REPRODUCTION CHECK: PASS** (mandatory (C), committed runner + pre-reg config)
+- `experiments/qo9_lane_vs_stream.py` re-run to ext4 scratch `/home/eileen/scratch/qo9_repro/` via `--out`
+  (committed `results/qo9_lane_vs_stream/` untouched). Exit 0.
+- **Verdict `P1_STREAM_LEVEL` reproduces exactly; G1 rate-band anchor PASS in both fires;
+  ALL 4 lane-held-out folds >= 0.80 frozen gate in both fires** (repro: 0.8704/0.8658/0.8668/0.8611;
+  booked: 0.8722/0.8692/0.8851/0.8802). No gate is near its threshold — margin >= 0.06 on the worst fold.
+- **Honest band note (declared nondeterminism class, now measured):** per-lane point values wobble —
+  fold AUCs d=0.002-0.019, pooled AUC 0.8801 -> 0.8628 (d=0.017), lane rates d=0.003-0.031. So "pooled
+  0.8801 exactly reproduces QO3 0.880" in the 14:2x booking was a coincidence of draws, not a fixed point;
+  the robust statement is pooled AUC(g1) ~ 0.86-0.88, folds ~ 0.86-0.89, comfortably in P1. Forward
+  doctrine (QO line): report QO9-class numbers as bands across fires; single-fire point claims of
+  "exact reproduction" for torch-fit paths are not warranted.
+- Scratch kept (not results/). Manifest re-seal follows.

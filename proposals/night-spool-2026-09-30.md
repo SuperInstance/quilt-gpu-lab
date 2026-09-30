@@ -563,3 +563,10 @@ other agents are feeding us; keep the handshake lane warm.
     GPU-fit nondeterminism class ±small noted in booking.
   - Rotation next wake: (C) repro first, then non-GPU per rotation — QC-JEV3 (malformed-spec pin, CPU ~30m) or
     ST1-AUDIT (real-set enumeration pin now spec'd). GPU open: QG1d recon follow-up or QG4 phase diagram.
+
+### 15:1x slice (day-conductor): (C) QO9 repro PASS [DONE]; (A) scout next wake; GPU open.
+- **[DONE 15:1x]** QO9 reproduction check PASS — verdict/gates exact, band doctrine added to RESULTS.md
+  (fold d=0.002-0.019, pooled d=0.017; gate margins >= 0.06). Scratch /home/eileen/scratch/qo9_repro/.
+- **NEXT WAKE ROTATION**: (A) SUPERINSTANCE SCOUT (overdue this cycle — 14:2x spent the slice on QO9 fire),
+  then non-GPU queue (QC-JEV3 malformed-spec pin, CPU ~30m, or ST1-AUDIT real-set enumeration pin).
+  GPU open: QG1d recon follow-up / QG4 phase diagram. No IN-PROGRESS items; nothing running (ps checked).
