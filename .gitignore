@@ -4,3 +4,4 @@ results/*/adapter_model.safetensors
 results/*_adapter_*/
 data/c3/real/
 data/c3/synth/
+data/c4/

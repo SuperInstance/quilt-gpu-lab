@@ -57,29 +57,34 @@ def get_gists():
     return gists[:N_GISTS]
 
 def embed_batch(gist_texts):
-    """Embed via Cloudflare Workers AI (bge-m3)."""
-    import subprocess, json, shutil
-    wrangler = (os.environ.get("WRANGLER_BIN") or shutil.which("wrangler")
-                or os.path.expanduser("~/.npm-global/bin/wrangler"))
-    payload = {"texts": gist_texts}
-    # wrangler ai run @cf/baai/bge-m3 --payload <json>
-    # stdout returns json with .result.data[] embeddings
+    """Embed via Cloudflare Workers AI REST (wrangler 4.x dropped 'ai run')."""
+    import urllib.request, pathlib
+    token = os.environ.get("CF_API_TOKEN") or ""
+    if not token:
+        kf = pathlib.Path("/mnt/c/Users/casey/key.txt")
+        if kf.exists():
+            for line in kf.read_text().splitlines():
+                if line.strip().startswith("CF_API_TOKEN"):
+                    token = line.split("=", 1)[1].strip().strip('"').strip("'")
+    if not token:
+        sys.exit("[TURBQUANT] FATAL: no CF_API_TOKEN (env or /mnt/c/Users/casey/key.txt)")
+    acct = os.environ.get("CF_ACCOUNT_ID") or "049ff5e84ecf636b53b162cbb580aae6"
+    url = "https://api.cloudflare.com/client/v4/accounts/%s/ai/run/@cf/baai/bge-m3" % acct
+    req = urllib.request.Request(
+        url, data=json.dumps({"texts": gist_texts}).encode(), method="POST",
+        headers={"Authorization": "Bearer " + token, "Content-Type": "application/json",
+                 "User-Agent": "fleet-turbquant/1.0"})
     try:
-        p = subprocess.run(
-            [wrangler, "ai", "run", "@cf/baai/bge-m3", "--payload", json.dumps(payload)],
-            capture_output=True, text=True, timeout=180
-        )
-        if p.returncode != 0:
-            sys.exit("[TURBQUANT] FATAL: wrangler ai run failed (exit %d): %s" % (p.returncode, p.stderr))
-        res = json.loads(p.stdout)
-        if "result" not in res or "data" not in res["result"]:
-            sys.exit("[TURBQUANT] FATAL: wrangler returned unexpected JSON: %s" % p.stdout)
-        data = res["result"]["data"]
-        if len(data) != len(gist_texts):
-            sys.exit("[TURBQUANT] FATAL: asked for %d embeddings, got %d" % (len(gist_texts), len(data)))
-        return data
+        with urllib.request.urlopen(req, timeout=120) as r:
+            res = json.loads(r.read().decode())
     except Exception as e:
-        sys.exit("[TURBQUANT] FATAL: embedding failed: %s" % e)
+        sys.exit("[TURBQUANT] FATAL: CF AI REST call failed: %s" % e)
+    if not res.get("success"):
+        sys.exit("[TURBQUANT] FATAL: CF AI error: %s" % str(res.get("errors"))[:300])
+    data = res["result"]["data"]
+    if len(data) != len(gist_texts):
+        sys.exit("[TURBQUANT] FATAL: asked for %d embeddings, got %d" % (len(gist_texts), len(data)))
+    return data
 
 def compress(X, n_bits=4):
     """Seeded rotation + Lloyd-Max 4-bit per-dim quantization."""
