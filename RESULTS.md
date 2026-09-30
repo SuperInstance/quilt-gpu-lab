@@ -2824,3 +2824,31 @@ Synthesis (DECIDE-1..1d): backbone + both readouts encode a fixed "worst-edit" c
 inert on this lane. Any fix must operate on the representation or training mixture, not the prompt.
 Hardware: ~1.7 GiB class; 256 decides ~2 min.
 Artifacts: experiments/decide1d.py, results/decide1/decide1d_results.json, results/decide1/decide1d_run.log.
+
+## QG3 — trap anatomy: traps OPEN with generations (slow-climb fence, NOT width fence); basin metric inconclusive (2026-09-30 03:5x): BOOKED — G1 PASS-for-budget-open (refutes P1), G2 inconclusive, G3 PASS
+Pre-reg: proposals/runs/QG3-trap-anatomy.md (+ AMENDMENT 1, committed before firing each stage). Exact arm
+(shot==exact per QG2). S=1024/arm, bar=0.45, runtime ~5s/arm on RTX 4050 (~1 GiB class).
+- **G3 PASS**: ANCHOR-VEC max|diff| 2.08e-34.
+- **G1 PASS-for-budget-open — P1 REFUTED**: baseline W6/g12 crossed 592/1024 = 0.578 [0.547,0.609];
+  deep W8/g24 crossed 781/1024 = 0.763 [0.735,0.788]; delta lower bound +0.127 (gate was >+0.05).
+  The ~42% landscape-trap from QG2 is NOT absolute: budget opens most of it.
+- **AMENDMENT 1 disentangle (clean)**: C(W6,g24) = 773/1024 = 0.755 [0.727,0.781] ~= B(0.763);
+  D(W8,g12) = 582/1024 = 0.568 [0.537,0.599] ~= A(0.578). **Generations drive the opening; width
+  contributes nothing.** The trap is a SLOW-CLIMB FENCE: stuck streams are on viable but
+  shallow-gradient paths — more generations, not more gates, get them over the bar.
+- **G2 INCONCLUSIVE (booked honestly, gate not met)**: stuck-champion edit-distance single-linkage
+  (thr<=2): arm A n_stuck=432 -> 216 basins, top basin 177 (41%) vs null 160 (37%) — statistically
+  indistinguishable from the length-matched random null. Root cause: stuck champions are SHORT
+  (skeleton-length dominated), and Levenshtein<=2 over short sequences links near-everything —
+  the metric is degenerate on this length distribution. No basin-structure claim is supportable
+  with this metric; genome edit distance needs longer champions or a different observable
+  (e.g., champion statevector/unitary distance). Do NOT cite QG3 as evidence for or against basin
+  structure.
+Synthesis: QG2's "desert is structural" stands (desert exists at fixed budget, upstream of selection),
+but QG3 sharpens it: the trap is passable with ~2x generations at same width. Streams are not
+fenced out by landscape geometry — they're on slow gradient. Feeds QO2 (oracle-guided budget
+allocation: spend generations where P(cross) is high — cheap since width is inert) and QG4
+(phase diagram should sweep gens, not W). Slow-climb also suggests selection pressure, not move-set
+poverty, is the limiter — desert streams may need higher child variance (bigger mutations) to find
+gradient, spawning QG6.
+Artifacts: experiments/qg3_trap_anatomy.py, results/qg3_trap_anatomy/{results.json,run.log}.

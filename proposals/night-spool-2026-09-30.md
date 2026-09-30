@@ -27,7 +27,10 @@
 - [open] SCOUT #1 (see rotation).
 - [open] SF-G1: subleq VM in torch (Int32Array machines, batched) -> program-space census; validate vs subleq-fabric pins.
 - [open] DS-G2: change-point GPU engine, synthetic boat telemetry first (the 5-min predictor line = trail() membrane).
-- [open | NEXT GPU] QG3: WHY are 42% landscape-trapped? Cluster stuck streams by champion basin (genome edit-distance clustering); test deeper budget (W=8, 24 gens) — do traps open with budget? Cheap on this lane.
+- [DONE 03:5x GPU] **QG3 BOOKED**: traps OPEN with generations — C(W6,g24)=0.755 ~= B(W8/g24)=0.763, D(W8,g12)=0.568 ~= A(W6/g12)=0.578. Width is INERT; trap = slow-climb fence (refutes my P1; QG2 structural-desert sharpened: passable at 2x gens). Basin edit-distance metric INCONCLUSIVE (degenerate on short champions; no claim either way).
+  - [spawned by QG3] QG6 (variance rescue): stuck streams on shallow gradient — try temperature-style bigger mutations (k-gate block edits, k in {2,3}) at FIXED total children. Does variance, not more generations, rescue the slow climbers? Tests selection-pressure vs move-set explanation.
+  - [spawned by QG3] QG3b (basin observable fix, cheap): re-cluster stuck champions by champion STATEVECTOR distance (unitary output overlap) instead of genome edit distance. Only if QG6/QO2 needs basin identity.
+- [open | NEXT GPU] QO3 (early-forecast horizon): at which gen does oracle AUC first clear 0.80? If gen<=3, crossing near-deterministic early -> feeds QO2 routing directly. QG3's slow-climb result says late-gen information matters — test which.
 - [spawned by QG2] QG4: budget/gens phase diagram (W x gens grid, 1024 streams/cell) — map the crossing frontier. Directly serves "cells are dedicated; routing happens between cells".
 - [spawned by PR-SWEEP #1] RECEIPT-CITE: amend QG1/QG2 receipts (proposals/runs/*.md) to cite SuperInstance repos by name (weight law; see MicroMoth-quilt PR #29). Docs-only, no re-run.
 
