@@ -26,12 +26,14 @@ RNG_SEED = 20260930
 
 
 def call(model, prompt, gpu=False, num_predict=96):
+    opts = {"temperature": 0, "num_predict": num_predict}
+    if not gpu:
+        opts["num_gpu"] = 0  # CPU-only; keeps the GPU free for experiment lanes
     body = {
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
         "stream": False,
-        "options": {"temperature": 0, "num_predict": num_predict}
-        + ([] if gpu else [{"num_gpu": 0}]),
+        "options": opts,
     }
     req = urllib.request.Request(
         OLLAMA, data=json.dumps(body).encode(), headers={"Content-Type": "application/json"}
