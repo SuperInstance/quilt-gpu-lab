@@ -2765,3 +2765,25 @@ CPU/GPU device split on labels, string-vs-int labels. Physics/protocol untouched
   two independent readouts points at question-format/option-order bias, not a broken readout. Do NOT re-roll.
 Artifacts: experiments/decide1.py, results/decide1/decide1_results.json, tools/decision_cell.py,
 proposals/runs/DECIDE-1-decision-cell.md.
+
+## DECIDE-1b — diagnosis: the lane is INVERTED, not broken (2026-09-30): BOOKED — P1 INVERTED, P2 KIND-BIAS, P3 CONTENT-READING
+Pre-reg: proposals/runs/DECIDE-1b-diagnosis.md (committed before firing). Same 64 questions as DECIDE-1
+(seed 202), zeroshot reader, no re-sampling. Reproduced argmax 5/64 = 0.078 (matches DECIDE-1 exactly).
+- **P1 INVERSION: FIRED.** Predicted candidate is the argMIN-balance option on **0.891** of questions
+  (57/64). argmin-probability accuracy 0.375 (CP95 0.267-0.497, lower bound clears random 0.25). The cell
+  is answering "which edit gives the SMALLEST balance" with high consistency — it picks the worst edit.
+- **P2 kind-bias: pred_kinds delete=42/64 vs label_kinds insert=42/64.** The census cross-tabulates with the
+  inversion: delete-edits usually destroy balance (land at argmin), inserts usually build it. Letters
+  themselves near-uniform (max share 0.31) — NOT a positional bias.
+- **P3 shuffle: content-reading confirmed.** letter_stickiness 0.375 vs content_following 0.781 — under
+  option permutation the prediction follows the CANDIDATE, not the letter. The readout genuinely reads
+  option content; the decision sign is what's flipped.
+- **P4 mean label rank 2.0 (random 1.5; rank-3 = 24/64)** — the true best edit is most often ranked WORST,
+  i.e., the ordering is close to fully reversed, consistent with inversion.
+- Hardware: peak VRAM 1.67 GiB. One syntax error fixed in place pre-run (bracket in P1 line); physics untouched.
+Synthesis with DECIDE-1: jeff-0.8b's decision mechanism (backbone+readout, both readers identical) encodes a
+CONSISTENT but INVERTED criterion on this question family: it selects the minimal-balance edit. Since both
+the shipped trained readout and the LM-init zeroshot head agree, the inversion lives in the backbone's
+representation, not the head. Plausible mechanism (untested): "largest" in the instructions vs option
+salience — the model tracks "balance" faithfully but drops/flips the superlative direction.
+Artifacts: experiments/decide1b.py, results/decide1/decide1b_results.json, results/decide1/decide1b_run.log.

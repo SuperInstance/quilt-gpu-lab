@@ -1,0 +1,61 @@
+{
+ "n": 64,
+ "argmax_acc": {
+  "k": 5,
+  "acc": 0.078125,
+  "cp95": [
+   0.03383067809543547,
+   0.1701975287864777
+  ]
+ },
+ "P1": {
+  "argmin_prob_acc": 0.375,
+  "cp95": [
+   0.2666580388810532,
+   0.4974984668617358
+  ],
+  "pred_is_argmin_balance": 0.890625
+ },
+ "P2": {
+  "pred_letters": {
+   "A": 20,
+   "B": 15,
+   "C": 13,
+   "D": 16
+  },
+  "label_letters": {
+   "A": 11,
+   "B": 20,
+   "C": 17,
+   "D": 16
+  },
+  "pred_kinds": {
+   "delete": 42,
+   "replace": 12,
+   "insert": 10
+  },
+  "label_kinds": {
+   "replace": 17,
+   "insert": 42,
+   "delete": 5
+  }
+ },
+ "P3": {
+  "letter_stickiness": 0.375,
+  "content_following": 0.78125,
+  "n": 64
+ },
+ "P4": {
+  "mean_label_rank": 2.0,
+  "random_mean": 1.5,
+  "rank_hist": {
+   "0": 5,
+   "1": 14,
+   "2": 21,
+   "3": 24
+  }
+ },
+ "hardware": {
+  "peak_vram_gib": 1.67
+ }
+}
