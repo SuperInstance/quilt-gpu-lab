@@ -1,0 +1,95 @@
+{
+  "experiment": "D12f T-floor sweep for pure correlation discovery",
+  "seed": 2718,
+  "n_cells": 8,
+  "qubits": 4,
+  "facts": 120,
+  "p_corr": 0.3,
+  "t_values": [
+    5,
+    10,
+    25,
+    50,
+    100,
+    200
+  ],
+  "chance_partner_id": 0.143,
+  "pre_registered": "KEEP iff partner_id_acc >= 0.9 at some T (T_floor); curve should rise from T=5",
+  "sweep": [
+    {
+      "T": 5,
+      "partner_id_acc": 0.375,
+      "acc_B_corrkey": 0.7167,
+      "ci_B": [
+        0.642,
+        0.8
+      ],
+      "acc_C_antipartner": 0.5583,
+      "acc_A": 0.5333,
+      "delta": 0.1583
+    },
+    {
+      "T": 10,
+      "partner_id_acc": 0.375,
+      "acc_B_corrkey": 0.6583,
+      "ci_B": [
+        0.575,
+        0.742
+      ],
+      "acc_C_antipartner": 0.4583,
+      "acc_A": 0.5167,
+      "delta": 0.1417
+    },
+    {
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "acc_B_corrkey": 1.0,
+      "ci_B": [
+        1.0,
+        1.0
+      ],
+      "acc_C_antipartner": 0.575,
+      "acc_A": 0.4417,
+      "delta": 0.425
+    },
+    {
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "acc_B_corrkey": 1.0,
+      "ci_B": [
+        1.0,
+        1.0
+      ],
+      "acc_C_antipartner": 0.4417,
+      "acc_A": 0.5,
+      "delta": 0.5
+    },
+    {
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "acc_B_corrkey": 1.0,
+      "ci_B": [
+        1.0,
+        1.0
+      ],
+      "acc_C_antipartner": 0.5417,
+      "acc_A": 0.5,
+      "delta": 0.4583
+    },
+    {
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "acc_B_corrkey": 1.0,
+      "ci_B": [
+        1.0,
+        1.0
+      ],
+      "acc_C_antipartner": 0.45,
+      "acc_A": 0.5,
+      "delta": 0.5
+    }
+  ],
+  "t_floor": 25,
+  "verdict": "KEEP",
+  "note": "Closes D11b/D12e caveat: at p_corr=0.3 (hardest coupling), finds the sample-size floor where correlation discovery first identifies partners. Directly tests whether the T=5 failure in D11b was a sample-size floor (predicted) vs a validation-mechanism failure."
+}
