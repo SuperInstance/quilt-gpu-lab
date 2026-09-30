@@ -44,3 +44,9 @@ Two sub-questions, one lane instrumented:
   (device/shape) errors, which get amended in place with a note.
 - Artifacts: experiments/qg3_trap_anatomy.py, results/qg3_trap_anatomy/{results.json, run.log}.
 - STOP: one shot, no re-roll; negative results booked as-is.
+
+## AMENDMENT 1 (2026-09-30 03:5x, BEFORE firing disentangle arms)
+Initial arms A/B changed W and gens together (confound). Run is 5s/arm — add arms C (W=6,
+gens=24, seed=2468) and D (W=8, gens=12, seed=1357), S=1024, same gates. Question: is the
+budget-open effect driven by generations (C≈B) or width (D≈B)? Prediction: generations drive
+it (C≈B, D≈A) — the trap is a slow-climb fence, not a width fence.

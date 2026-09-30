@@ -1,0 +1,11 @@
+ANCHOR-VEC: max|diff|=2.08e-34 pass=True
+arm A: W=6 gens=12 ...
+  crossed 592/1024  (3s)
+arm B: W=8 gens=24 ...
+  crossed 781/1024  (4s)
+G1: A=0.578 [0.547,0.609]  B=0.763 [0.735,0.788]  delta_lb=+0.127
+basins A: n_stuck=432 basins=216 top=[(280, 177), (150, 2), (15, 2)]
+          null: basins=240 top=[(280, 160), (312, 2), (0, 1)]
+basins B: n_stuck=243 basins=180 top=[(206, 61), (189, 2), (41, 2)]
+          null: basins=184 top=[(169, 60), (0, 1), (3, 1)]
+DONE 5s
