@@ -461,3 +461,25 @@ other agents are feeding us; keep the handshake lane warm.
   reproduction check due this slice (last booking QC-JEV reproduced at 10:3x; ST1/W5b2 bookings will need
   their checks when booked). Rotation next wake: book ST1 when it finishes (GPU-free verdict), or QO9
   pre-reg + fire (CPU) if ST1 still running.
+
+## DAY SLICE 12:1x (day-conductor) — ST1v2 BOOKED (KILL): the LR fix did NOT rescue the cell; ST1-AUDIT spawned
+- **(B) TOP ITEM was ST1v2, already fired at 11:42 by the prior wake but left UNBOOKED** (untracked artifact
+  `results/st1v2_quilt_cell_v0/results.json`, no RESULTS.md row, no spool row) — the exact "fired but not booked"
+  gap. Booked this slice with honest provenance and no re-fire of the original.
+  Gates: **G1 SYN FAIL 0.7207 (gate ≥0.95; v1 was 0.5034 — real learning, far below gate) · G2 REAL FAIL 0.4434
+  (gate ≥0.80, and BELOW chance where v1 was 0.5025; honest FPR 0.80 vs ≤0.10) · G3 ABSTAIN PASS 0.90 but again
+  hollow (gate_coverage 0.584)** ⇒ verdict **KILL**, and per the pre-registered interpretation rules this means
+  **"the diagnosis was incomplete; the failure is not LR."** Registered next-suspect order stands: (a) op-by-op
+  leakage/detectability audit, (b) corpus size/epochs, (c) head capacity.
+- **The syn↑ / real↓ crossing is the real signal** (syn 0.50→0.72 while real 0.50→0.44): consistent with the cell
+  learning render-style / format artifacts of the synthetic render rather than corruption semantics. That is
+  suspect (a) and it is now the next queue item. Spawned **ST1-AUDIT (CPU)** with gates in words (see QUEUE.md).
+- **Provenance gap, booked honestly:** this artifact has no embedded `runner_sha256`/`args` (older output format),
+  so provenance rests on timestamp + exact config match + the re-run below. RC-1 family item: runner must embed
+  runner_sha256 + args in every result file (qc_jev_control.py already does; st1_quilt_cell_v0.py does not).
+- **(C) MANDATORY REPRODUCTION CHECK in flight** using the committed runner's new `--out` flag → `/tmp/st1v2_repro`
+  (first clean application of the RC-1 fix on this runner: verification writes to scratch, never into `results/`).
+  Verdict + gate values appended to RESULTS.md on completion; manifest re-seal follows the ledger change.
+- Commits this slice: 68889ba (ST1v2 booked + artifact committed). GPU lane free after the repro run finishes.
+- Next wake rotation: (A) SCOUT-6 sweep was last done at 11:1x, so SCOUT is due — but the reproduction result and
+  the re-seal must land first; then ST1-AUDIT (CPU) is the top open item and GPU is free for QG1d/QG4.
