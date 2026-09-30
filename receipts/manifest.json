@@ -1,13 +1,13 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-09-30T17:49:53.889443+00:00",
+  "generated_at": "2026-09-30T17:57:08.050709+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "ed89bf978461101178aff36c2fc68f5559f1f9a200103072871d2ec9b27bdc7d",
-    "QUEUE.md": "ae1e10ee333c6dcc011c28a81b5042a1e36f09c9f7245620cc7b14334a6a1433"
+    "RESULTS.md": "b69b90d75e32be0d5e86ca1424b80ae870db31f12ee58ddff17cf56a4764d1c1",
+    "QUEUE.md": "58d0552418d3c63891be8bd347cfb86742aee0f55920dfaacfbcee35dbe85883"
   },
   "experiments": {
-    "ag1_aggregation_rules.py": "b8b04a8d0dbfb95cf06ead12cd550532cf7d87afe1d121a5343c67a6b3b9cf6e",
+    "ag1_aggregation_rules.py": "39107b302b6855a3bf65ee7e012de32b7da0c2d396f18df824b661c50227ebe6",
     "c1_cosmos_boots.py": "e95e86fc7dd90dfaa37ba3d2ce16f640a2e73dcd01d00b3a2668b450648f36ee",
     "c2_probe_skip_tower.py": "afa061ca49da4f9ca514286eae04a0ddb1d5fad26d8df2df19cc93cef33b12c5",
     "c2_probe_vision_path.py": "b3dafeea576de01f2108329098b9fafa4ba7642926ed117fff415a80b0f33dd8",
