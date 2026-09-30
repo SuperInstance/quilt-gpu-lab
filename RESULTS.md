@@ -3039,3 +3039,24 @@ Warmup T_warm=4000 (161 commits, shared per seed) → all four arms fork from th
 - Spawned from this outcome at fire time: **W5b2 antirank-primacy confirmation** (5 fresh seeds 5291–5295, arms antirank vs random, gates >=0.5% and >=4/5; pre-reg proposals/runs/W5b2-antirank-primacy.md) — in flight, booking armed 10:25 AK.
 Fire-time pins: experiments/w5b_lifetime_precision.py sha256 a6d2bbcc1b68da5f… (receipts/manifest.json seal).
 Artifacts: experiments/w5b_lifetime_precision.py, results/w5b_lifetime_precision/{results.json,run.log,smoke_results.json}.
+
+## W5b2 — antirank primacy confirmation: **KEEP** (instability-ranked precision slots beat random at confirmation-grade gates) (2026-09-30 09:4x AKDT): BOOKED — GPU
+Pre-reg: proposals/runs/W5b2-antirank-primacy.md (frozen before fire; gates mean_rel >= +0.5% AND wins >= 4/5; 5 fresh seeds 5291–5295; machinery imported unchanged from committed w5b_lifetime_precision).
+- **VERDICT: KEEP per the frozen gates.** mean_rel = **+8.35%** (gate >= +0.5%), wins **4/5** (gate >= 4/5). Pairs (rel = (random − antirank)/random): 5291 +20.76%, 5292 +15.39%, 5293 −3.59%, 5294 +4.00%, 5295 +5.21%. The single loss (5293) had the worst warmup fork (bpb 6.488) — noted as observation, not post-hoc adjustment.
+- Doctrine landing: W5b KILLed lifetime (persistence) with a seed sign-flip; W5b2 CONFIRMS antirank (instability) on fresh seeds at +8.35% mean. Two-sided design paid off exactly as built: "the elements that flip are where the round error lives" is now pre-registered, confirmed evidence, not a reading. Precision allocation defaults to commit-count-ASCENDING (shortest-lived first).
+- Feeds: antirank becomes the default HP allocator for the next ternary run; the distillery's TWN trainer inherits it; wide-scope lanes cite it as the precision-lives-at-instability result.
+Fire-time pins: experiments/w5b2_antirank_primacy.py (receipts/manifest.json seal, 08:4x fire).
+Artifacts: experiments/w5b2_antirank_primacy.py, results/w5b2_antirank_primacy/{results.json,run.log}.
+
+## H1 — judgment holonomy audit: **KILL** (symmetry-loop inconsistency adds nothing beyond plain kNN margin) (2026-09-30 09:3x AKDT): BOOKED — CPU
+Pre-reg: proposals/runs/H1-judgment-holonomy.md (frozen gates: KEEP iff AUC(holonomy) >= 0.80 AND paired baseline win on >= 4/5 seeds; INDIFFERENT if mean gap < 0.02; amended PRE-FIRE only — 3-cell pattern → 2-cell after smoke voided every seed; amendment committed before fire).
+- **VERDICT: KILL per the frozen gates.** wins 0/5; mean AUC gap **−0.033** (holonomy 0.477/0.629/0.484/0.543/0.634 vs margin-baseline 0.585/0.597/0.566/0.591/0.594). AUC never approached 0.80; paired wins 0; INDIFFERENT clause not met (|gap| 0.033 > 0.02 — the gap is real but NEGATIVE).
+- Honest read: at this scale (k=9 fields over ~12%-corrupted pockets), the 8-image symmetry loop is a noisier estimator of the same neighborhood uncertainty the margin already measures — extra images add variance, not signal. Zero-teacher field auditing stays interesting; holonomy specifically is falsified as the audit signal. Wide-scope #3 closed honestly.
+- Smoke receipts: 3 real bugs caught pre-fire (3-cell pattern rarity; mover-parity label bug shared with FD1; smoke-scaled MIN_CORRUPT).
+Artifacts: experiments/h1_judgment_holonomy.py, results/h1_judgment_holonomy/{results.json,run.log}.
+
+## FD1 — frontier distillation: **KILL** (frontier-only training loses; hybrid doesn't clear the win gate) (2026-09-30 09:3x AKDT): BOOKED — CPU
+Pre-reg: proposals/runs/FD1-frontier-distillation.md (frozen gates: KEEP iff frontier >= uniform−0.5pp AND hybrid >= uniform+1.0pp on >= 4/5 seeds; HALF if only frontier-safe).
+- **VERDICT: KILL.** wins(both) 0/5; frontier-safe(a) 0/5 — frontier mean 0.550 vs uniform 0.603 (−5.3pp; gate allowed −0.5pp); hybrid-wins(b) 2/5, hybrid mean 0.606 vs uniform 0.603 (+0.3pp; gate needed +1.0pp). Not HALF (a failed outright).
+- Honest read: the field's own low-consensus margin is a WEAK frontier definition — the "easy" boards carry label geometry that regularizes the hard ones, and uniform students win. Composition caps near field_only (0.596): the hybrid inherits the field's ceiling on easy boards. Margin-defined frontier distillation is falsified at this scale; TRUE teacher-uncertainty curricula remain untested (a different idea, not a re-roll).
+Artifacts: experiments/fd1_frontier_distillation.py, results/fd1_frontier_distillation/{results.json,run.log}.

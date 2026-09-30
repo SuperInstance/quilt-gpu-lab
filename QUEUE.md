@@ -68,3 +68,8 @@
 ## IN FLIGHT 2026-09-30 09:2x — CPU double-fire (Casey: keep experiments hot)
 - [ ] H1 judgment holonomy audit (CPU): can symmetry-loop inconsistency localize a corrupted field region with ZERO teacher calls, beating the kNN-margin baseline? KEEP = AUC>=0.80 AND paired baseline win on >=4/5 seeds; INDIFFERENT if mean gap <0.02. pre-reg proposals/runs/H1-judgment-holonomy.md — wide-scope #3
 - [ ] FD1 frontier distillation (CPU): frontier-only student vs uniform, plus eval-time hybrid (field easy / student hard); KEEP = frontier >= uniform-0.5pp AND hybrid >= uniform+1.0pp on >=4/5 seeds; HALF if only frontier-safe. pre-reg proposals/runs/FD1-frontier-distillation.md — wide-scope #1
+
+## CLOSED 2026-09-30 09:4x (booked in RESULTS.md this commit)
+- [x] H1 judgment holonomy — KILL (0/5; mean AUC gap −0.033, holonomy below margin baseline; INDIFFERENT clause not met). wide-scope #3 closed.
+- [x] FD1 frontier distillation — KILL (frontier −5.3pp vs uniform; hybrid +0.3pp < +1.0pp; not HALF). wide-scope #1 closed.
+- [x] W5b2 antirank-primacy — **KEEP** (mean_rel +8.35%, wins 4/5, confirmation-grade; booked ahead of the 10:25 cron which will no-op). W5-line closed: antirank = default HP allocator.
