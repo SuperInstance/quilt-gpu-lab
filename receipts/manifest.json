@@ -1,12 +1,13 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-09-30T17:17:59.673827+00:00",
+  "generated_at": "2026-09-30T17:49:53.889443+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "bb4bee486562a2b9bdc852bf43c13824dbe424f501feceb9ef4e3941d009ec27",
-    "QUEUE.md": "b78d3d8b60f99a52fb69ec0f19112b45ccef2be9d4269b8dad2562295d6414f4"
+    "RESULTS.md": "ed89bf978461101178aff36c2fc68f5559f1f9a200103072871d2ec9b27bdc7d",
+    "QUEUE.md": "ae1e10ee333c6dcc011c28a81b5042a1e36f09c9f7245620cc7b14334a6a1433"
   },
   "experiments": {
+    "ag1_aggregation_rules.py": "b8b04a8d0dbfb95cf06ead12cd550532cf7d87afe1d121a5343c67a6b3b9cf6e",
     "c1_cosmos_boots.py": "e95e86fc7dd90dfaa37ba3d2ce16f640a2e73dcd01d00b3a2668b450648f36ee",
     "c2_probe_skip_tower.py": "afa061ca49da4f9ca514286eae04a0ddb1d5fad26d8df2df19cc93cef33b12c5",
     "c2_probe_vision_path.py": "b3dafeea576de01f2108329098b9fafa4ba7642926ed117fff415a80b0f33dd8",
@@ -84,6 +85,8 @@
     "e9_ijepa_stills.py": "477c71f3b6b4f87bb3b3927b624208b8c9c1a9ddfdccdcfad9100c6221fee83f",
     "elephant_model.py": "977b173fa6006e885ef5fdfda30f13d401211b38311ee1b0aac706e5fda45eb9",
     "f1_df_admission.py": "52516866a64d89346f31ad3467c962bffb6d92db80347b9beb8c8e7c3ead2a3b",
+    "fd1_frontier_distillation.py": "764cf1fd5291488434bab76d093cd6a451be1cadd33dc1f167509938c14f53b1",
+    "h1_judgment_holonomy.py": "2d60b21cdaebd77b14f26a3e09f2e5ebb9294999af4c4c8937fd882ccfe0efe6",
     "ib1a_fly_rule.py": "1a00319c4460bb9159dddfd383e3abc7b0d52566f329e74ee9717c326435188d",
     "ib1b_variable_delay.py": "9950628b82b201b7b0ee8d915f8b665765f03e02217e5cd16f9d6c7ee11eef1b",
     "ie1_reichardt.py": "3a93df2e21d30cda086ae61e30708ac06877aed05a330aa82d824dfef517f17a",
@@ -130,7 +133,7 @@
     "x9_presence_depth.py": "79699698f964f6da0361c8f4f92c03fa27cac94b59d5b8fdf41d6123848ae7d4"
   },
   "tools": {
-    "README.md": "ab550c12f28bf93ccfbe9d113dd23ef57c981569b74a50eda326f825897fbd6f",
+    "README.md": "bad4666eea7df543d3a0ea35db84d56edcff1fdf2669ba8806101b196abd7c4b",
     "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "chip_probe.py": "946cde078933dce54c3f4ed5783ef3ce20a0fc3bdd34f1af4bc132a43043c2b9",
     "chip_route.py": "608b890a9a293c7851e9fb18a0262a831dffcd6f85f171afb414b2b9c409f02a",
@@ -147,6 +150,7 @@
     "qcell_oracle.pt": "fed2c15fb506899fdc0fb86a7656d965c4b0aae8bceda28d11d6850aec201eed",
     "qcell_sim.py": "8c82d4bcc88370c01870238a006fa62bdb6fe571f5c8951bcdae6f3cf7920962",
     "receipt_manifest.py": "6b3c8c5d0fb5310afba1d3cc1ac4467581ecb9459c13a62dcf88fa6818556114",
+    "systemone_proxy.py": "e9df09bad3e740c68e33965c4964bf286755bb5e3d9c20c43f6cef44e83b4022",
     "transition_kernel.py": "8364ec79e6e866fbf78d4fbd80a3514bf14f11394c4048a1dff30889e7796443"
   }
 }
