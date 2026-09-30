@@ -2664,3 +2664,11 @@ Pre-reg TC2-tile-codec-retrieval.md (pushed pre-fire). Same corpus (2525 real ti
 - FINDING: the hybrid (MSE + InfoNCE) keeps both worlds — cosine 0.9342 with retrieval 0.8778 (statistically tied with pure retrieval). If a tile must be both readable and findable, train both objectives.
 - STRATEGIC READ (for the encod harmony work): the deterministic 384-byte text codec is a fine FALLBACK (0.7164 top-1, human-readable, zero training) but a retrieval-trained 96-d codec is +16 points better at the same byte cost. Worth wiring as an option in the tile path (superinstance-api /near already ranks by embedding — this makes the stored representation itself retrieval-native).
 - Receipts: results/tc2/tc2_results.json.
+
+## TC3 (2026-09-29) — FRONTIER_CROSSES: a 96-byte retrieval codec beats the 384-byte text codec
+Pre-reg TC3-codec-frontier.md (pushed pre-fire). Same corpus (2551 tiles) and evaluation as TC1/TC2; only the byte budget of the retrieval-trained bottleneck moves. 51.9s on the 4050.
+- Frontier (bytes -> top-1): 48B 0.6707 | 96B 0.8644 | 192B 0.8781 | 384B 0.8773. Reference: deterministic text fields 0.7174 (at their fixed 384B), int8 0.6876.
+- Gates: G1 monotone true (384B sits 0.0008 under 192B — inside the 0.01 training-noise slack), G2 crosses-at-or-below-192B true, G3 knee-above-48B true -> FRONTIER_CROSSES.
+- FINDING: the retrieval-trained codec crosses the text codec's quality at **96 bytes — a quarter of the budget** — and then PLATEAUS (192B and 384B are statistically the same). Everything below 96B is a real cliff (48B loses 0.19 top-1 vs 96B).
+- Practical read: if a tile's job is to be FOUND, 96 bytes of retrieval-trained code is strictly better than 384 bytes of truncating text. 384 bytes was sized for a menu, not for a meaning.
+- Receipts: results/tc3/tc3_results.json; visual: viz/tile-frontier.html.
