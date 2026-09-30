@@ -533,3 +533,21 @@ other agents are feeding us; keep the handshake lane warm.
   Also: AI-Writings audit-lane slices (prose exports), canons 19:55Z (unfailable CI, 59 empty
   recovered-copies, atlas undercount → RC-2), pong #86 closed (our SCOUT-4 fetch-depth root-cause
   confirmed). [EMBASSY] pong #49 still unresponded — Casey day item, unchanged.
+
+### (C) MANDATORY REPRODUCTION CHECK — 13:1x: **ST1v2 PASS (verdict + all gates + frozen thresholds exact)**
+- Committed `experiments/st1_quilt_cell_v0.py` re-run with the pre-reg config via the RC-1 `--out` flag
+  → wrote to `/home/eileen/scratch/st1v2_chk/`, NOT into `results/` (committed artifact untouched).
+  `verdict KILL`, all three gate booleans + `gates_frozen` thresholds exact, n_train/n_val/model/lr/
+  epochs/warmup identical; `syn_auc` **bit-identical for all 5 seeds**.
+- **REAL FIND — the 12:1x "real-gate drift" is ROOT-CAUSED: unstable real-set ENUMERATION, not noise.**
+  `real_gate` differs in SIZE across fires: committed {receipts 15, rows 50, corrupted 35, honest 15}
+  vs repro {receipts 16, rows 53, corrupted 37, honest 16}. Different receipts in the gate set ⇒ the
+  real numbers move (real_auc 0.4434 → 0.4507, fpr 0.80 → 0.8125, coverage 0.584 → 0.5962, same
+  direction). Band is wider than ±0.01 because set size itself changes.
+- **No threat to the booked KILL**: every gate missed widely (syn 0.72 vs ≥0.95, real 0.44-0.45 vs ≥0.80
+  and below chance, fpr ~0.81 vs ≤0.10). No amendment to ST1/ST1v2.
+- **Forward doctrine**: ST1-AUDIT must PIN the real-receipt enumeration before reading real-gate numbers;
+  RC-1 spec addition — runners must record real-set membership (receipt ids) in the result file.
+- Sealer refused the first (dirty) attempt exactly as designed — 2nd instance today; re-sealed from clean
+  tree: `sealed RESULTS.md 5bbd3070… QUEUE.md 8337a086…, 127 experiment file(s), 21 tool/weight file(s)`;
+  `unittest discover -s tests` → **6 tests OK**. Scratch in `/home/eileen/scratch/st1v2_chk/` (not `results/`).
