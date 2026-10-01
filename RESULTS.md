@@ -3520,3 +3520,19 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
   the binding constraint" = 4th instance of the VP-1 class. CONTRADICT scan: none — JEV work is gate-side,
   orthogonal to QC-JEV oracle discrimination; DECIDE-2 unthreatened. Full text:
   proposals/runs/SCOUT-12-fleet-push-2026-10-01-1311Z.md. Rotation next wake: GPU (QG1d follow-up or QG4).
+
+## [DONE 06:2x GPU Oct 1] **D12j BOOKED: verdict KEEP (product rule survives to W=128)**
+- Pre-reg fired as written (0b2df86 committed+pushed BEFORE fire; runner committed before fire too).
+- Gates: **J1 PASS** (T_floor non-increasing in W at every (N,p); monotonicity_inversions []) and
+  **J2 PASS** — at the hardest corner (N=128, p=0.3): T_floor 5 (W32) -> 3 (W64) -> **2 (W128)** <= 3.
+  **J3 not triggered** (floor still shrinking at W128; no plateau). Mechanical verdict: KEEP.
+- Headline: D12i's W·T product rule EXTENDS to the GPU-scale widths the CPU lane could not reach.
+  At p=0.3 the floor keeps falling ~2x per W doubling (W32->W128 at N128: 5->2); at p>=0.5 the floor
+  is already at the ladder's bottom rung (T=1) for W>=32 — discovery there is limited by the ladder
+  resolution, not the rule. Combined D12h/D12i/D12j law: T_floor ~ C(N,p)/W, saturating at the
+  message-exchange floor which is <= 2 for every tested (N,p) at W=128.
+- Harness notes: 1 mechanical crash pre-scoring (torch.cuda.temperature() raises ModuleNotFoundError
+  when pynvml absent; preflight except-list was too narrow — fixed in place, declared). Preflight
+  VRAM gate PASS (5.3 GiB free). Runtime: single-digit minutes, well under 50 MB device memory.
+- Seed family SEED=2718 per pre-reg formula (torch CUDA generator); NOT bit-matched to D12i
+  (declared in pre-reg). Result: results/d12j_gpu_width.json (+ runner experiments/d12j_gpu_width.py).
