@@ -121,9 +121,9 @@ class DiscoveryNet(nn.Module):
                 outs.append(cur)
             else:
                 outs.append(seq)
-        pooled = torch.cat(outs, 1)                    # (bs,T,d)
-        m = mask.unsqueeze(-1)
-        pooled = (pooled * m).sum(1) / m.sum(1).clamp(min=1)
+        pooled = torch.stack(outs, 1)                  # (bs,T,N,d) per-channel tokens
+        m = mask.unsqueeze(-1).unsqueeze(-1)           # (bs,T,1,1)
+        pooled = (pooled * m).sum(dim=(1, 2)) / m.sum(dim=(1, 2)).clamp(min=1)
         if self.mem:
             pooled = torch.cat([pooled, state.mean(1)], dim=-1)
         return self.read(pooled)

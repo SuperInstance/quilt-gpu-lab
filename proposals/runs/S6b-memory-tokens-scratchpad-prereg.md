@@ -28,3 +28,10 @@ scratchpad change C (real evidence-efficiency gain), or does any "win" just trac
 - **CAPACITY_CONFOUND**: MEM beats NOMEM but MATCH matches MEM → the win is size, not a scratchpad.
   Book as confound; do not spin.
 No post-hoc corners, no bar moves. One question per pre-reg.
+
+## Pre-fire amendment (2026-10-01, committed BEFORE any measured run — two-witness review: kimi+zcode)
+- Scalar-token design pinned: each e_t[j] is one token (Linear(1→d)); self channel stays pinned 0 (d12j convention, verified). Readout pools per-channel token outputs over (T,N); MEM concatenates mean mem state (read_d=2d as declared). Mem-token state split at N_MEM (first 4 slots = memory, remainder = channel tokens).
+- KILL-harness receipts go to attempt-stamped filenames — never overwrite a non-KILL receipt.
+- If any arm in a gate comparison is budget-capped (3h wall), the verdict reads INCONCLUSIVE-CAPPED (booked as such — not a gate verdict).
+- Eval precision: fp32 (measurement choice, declared); training bf16 per frozen recipe. Bar 0.9 over 5 draws = 5/5 (declared).
+- Receipt carries per-arm wall_s + the eval seed rule.

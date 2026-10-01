@@ -41,3 +41,10 @@ the claim under test.
 Cross-check: NOMEM here must reproduce S6b's NOMEM floors (same seeds/code) — a
 mismatch is booked as variance evidence before any gate is read.
 Kill-clause: no tolerance loosening, no re-rolls, no post-hoc corners.
+
+## Pre-fire amendment (2026-10-01, committed BEFORE any measured run — two-witness review: kimi+zcode)
+- Varying-N pinned: quilt layout follows the batch's actual N — cells [0..N) evidence / [N..q²) annotation; model input pads ev channels with zeros to n_channels (missing channels carry no evidence; partner ids < N always). Fixes the step-0 crash at train corners N∈{32,64}.
+- KILL-harness receipts go to attempt-stamped filenames — never overwrite a non-KILL receipt.
+- If any arm in a gate comparison is budget-capped (3h wall), the verdict reads INCONCLUSIVE-CAPPED (booked as such — not a gate verdict).
+- Eval precision: fp32 (measurement choice, declared). Training stays bf16 per frozen recipe.
+- Verified-correct under review (booked, no change): S/N/E/W pad directions + border sentinels; the DEAD_SUBSTRATE / MIXED fail token matches this prereg as written.

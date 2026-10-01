@@ -95,12 +95,14 @@ class QuiltField:
         self.pot = torch.zeros_like(self.pot)
 
     def inject_evidence(self, e):
+        n = e.shape[1]
         self.pot = self.pot.clone()
-        self.pot[:, : self.N] = 3.0 * e
+        self.pot[:, :n] = 3.0 * e
 
-    def write_annotation(self, w):
+    def write_annotation(self, w, n):
+        # annotation block = cells [n..q*q); write head emits q*q, sliced to fit
         self.pot = self.pot.clone()
-        self.pot[:, self.N:] = 3.0 * torch.tanh(w)
+        self.pot[:, n:] = 3.0 * torch.tanh(w[:, : self.pot.shape[1] - n])
 
     def flow_steps(self):
         for _ in range(self.F):
@@ -128,6 +130,7 @@ class XQNet(nn.Module):
     def __init__(self, d, n_channels, q=None, r=R_DEPTH):
         super().__init__()
         self.d, self.q, self.r = d, q, r
+        self.n_channels = n_channels
         in_dim = n_channels + (q * q if q else 0)
         self.inp = nn.Linear(in_dim, d)
         self.pos = nn.Embedding(40, d)
@@ -139,16 +142,17 @@ class XQNet(nn.Module):
         bs, T, N = ev.shape
         outs = []
         for t in range(T):
+            ev_t = torch.nn.functional.pad(ev[:, t], (0, self.n_channels - N))
             if quilt is not None:
-                tok_in = torch.cat([ev[:, t], quilt.read()], dim=1)
+                tok_in = torch.cat([ev_t, quilt.read()], dim=1)
             else:
-                tok_in = ev[:, t]
+                tok_in = ev_t
             seq = (self.inp(tok_in) + self.pos.weight[t]).unsqueeze(1)
             for _ in range(self.r):
                 seq = self.block(seq)
             outs.append(seq[:, 0])
             if quilt is not None:
-                quilt.write_annotation(self.write(seq[:, 0]))
+                quilt.write_annotation(self.write(seq[:, 0]), n=N)
                 quilt.inject_evidence(ev[:, t])
                 quilt.flow_steps()
         if quilt is not None:
@@ -190,7 +194,9 @@ def _min_le(floors, arms_a, arm_b, strict=False):
     return n
 
 
-def _verdict(floors):
+def _verdict(floors, capped):
+    if any(capped.values()):
+        return "INCONCLUSIVE-CAPPED"
     if _beat(floors, "QFLOW", "PASSIVE") >= 2:
         return "SUBSTRATE_THINKS"
     if _min_le(floors, ("PASSIVE", "QFLOW"), "NOMEM", strict=True) >= 2 \
@@ -261,7 +267,7 @@ def main():
                        ("PASSIVE", 1024, 0), ("QFLOW", 1024, 4)):
         out[name] = run_arm(name, d, F, dev)
     floors = {k: v["floors"] for k, v in out.items()}
-    verdict = _verdict(floors)
+    verdict = _verdict(floors, {k: v["budget_capped"] for k, v in out.items()})
     result = {
         "experiment": "xq0_substrate_consolidation",
         "device": torch.cuda.get_device_name(0),
@@ -282,8 +288,11 @@ if __name__ == "__main__":
     try:
         main()
     except Exception:
-        with open(OUT_PATH, "w") as fh:
+        kill_path = OUT_PATH.replace(
+            ".json", f".harness-invalid-{int(time.time())}.json")
+        with open(kill_path, "w") as fh:
             json.dump({"experiment": "xq0_substrate_consolidation",
+                       "kill_receipt": kill_path,
                        "verdict": "KILL-harness",
                        "error": traceback.format_exc(),
                        "python": sys.executable}, fh, indent=2)
