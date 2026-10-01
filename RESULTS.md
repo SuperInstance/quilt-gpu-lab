@@ -3432,3 +3432,29 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
 - Honest note: the repro validates the SCORING stage only — the Cosmos3-Edge extraction stage is not
   re-exercised (checkpoint match short-circuits it by design; re-extraction is ~GB-scale NF4 inference).
   The C5 booking's GPU claim therefore rests on the committed checkpoint + farm receipts, not on this repro.
+
+## CM1-r5 — judge swap + roster (2026-09-30 23:29 AKDT, farm-fed, 350.9s)
+- Factors: jev-preview→**jev-latest**; roster = {Seed-2.0-mini, MiMo-V2.6-Flash,
+  Ling-3.0-flash} (all 3 smoke-passed). Plan: proposals/runs/CM1-r5-plan.md (pushed
+  0936af9 before fire). Arm A = r4-winning recipe, single cell. Arm B = 36 drafts,
+  one 72-question batched judge, serve = argmax min(gd,gu) among gate-passing.
+- Verdicts:
+  - **H2 TRANSFERS** — Arm A 12/12 (all DRAFT_PASS), jev 1595/562 tok, batch wall 0.32s:
+    the r4 rule-rich recipe holds under jev-latest.
+  - **H1 KEEP** — Arm B 11/12 ≥ 11 bar, but the PATHS tell the real story:
+    **all 12 stimuli DOUBTED_PINCH** — not one of 36 drafts cleared min(gd,gu) ≥ 0.5;
+    11/12 came from the keyword_router pinch (7/3/1 served-from is router-only).
+  - **H3 ROSTER_HURTS** — B 11 < A 12, zero rescued sids, 3× token cost (4770/1678).
+- **The controlled finding (c0 ≡ A drafts, deterministic gen):** identical Seed drafts
+  passed 12-report/24-question state in Arm A and failed the 36-report/72-question
+  state in Arm B → **jev-latest gate judgment degrades with judge-state size
+  (attention/question dilution), independent of draft quality.** r4's "80q ≈ flat
+  latency" holds for LATENCY, not JUDGMENT QUALITY.
+- **Doctrine receipts:** pinch-fallback carried a round AGAIN (third time: CURL-1 r1,
+  CM1 r1, now r5) — the deterministic router is the load-bearing safety net.
+  Roster earned nothing under a saturated corpus (as pre-registered: expected
+  ROSTER_IDLE; actual ROSTER_HURTS — booked honestly).
+- **r6 candidate:** gate state ≤ 12 reports per batch call (per-cell batches), or
+  serve = argmax min(gd,gu) WITHOUT the 0.5 floor when the batch is large; roster
+  only earns when a cell is DEAD (r1 pattern), not when all are competent.
+- Output: results/cm1/round_005_out.json (schema cm1-round5/1), rounds.jsonl appended.

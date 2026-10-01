@@ -1,0 +1,595 @@
+{
+ "schema": "cm1-round5/1",
+ "plan": "proposals/runs/CM1-r5-plan.md",
+ "created": "2026-09-30 23:29:47",
+ "judge": "jev-latest",
+ "cells": [
+  "ByteDance/Seed-2.0-mini",
+  "XiaomiMiMo/MiMo-V2.6-Flash",
+  "inclusionAI/Ling-3.0-flash"
+ ],
+ "alive_cells": [
+  "ByteDance/Seed-2.0-mini",
+  "XiaomiMiMo/MiMo-V2.6-Flash",
+  "inclusionAI/Ling-3.0-flash"
+ ],
+ "pinch": 0.5,
+ "factor": "judge swap (jev-latest) + 3-cell roster under r4-winning recipe",
+ "correct_A": 12,
+ "A_paths": {
+  "DRAFT_PASS": 12
+ },
+ "A_jev": [
+  1595,
+  562
+ ],
+ "A_di": [
+  2257,
+  6193
+ ],
+ "A_walls": [
+  0.32
+ ],
+ "A_cal": 0.781,
+ "armA": [
+  {
+   "sid": "S1",
+   "truth": "BOOK:navigation:mid",
+   "cells": [
+    "c0"
+   ],
+   "gates": [
+    [
+     0.8,
+     0.74
+    ]
+   ],
+   "served_from": "c0",
+   "path": "DRAFT_PASS",
+   "answer": "BOOK:navigation:mid",
+   "correct": true
+  },
+  {
+   "sid": "S2",
+   "truth": "BOOK:engine:high",
+   "cells": [
+    "c0"
+   ],
+   "gates": [
+    [
+     0.77,
+     0.75
+    ]
+   ],
+   "served_from": "c0",
+   "path": "DRAFT_PASS",
+   "answer": "BOOK:engine:high",
+   "correct": true
+  },
+  {
+   "sid": "S3",
+   "truth": "BOOK:deck:low",
+   "cells": [
+    "c0"
+   ],
+   "gates": [
+    [
+     0.78,
+     0.73
+    ]
+   ],
+   "served_from": "c0",
+   "path": "DRAFT_PASS",
+   "answer": "BOOK:deck:low",
+   "correct": true
+  },
+  {
+   "sid": "S4",
+   "truth": "BOOK:navigation:mid",
+   "cells": [
+    "c0"
+   ],
+   "gates": [
+    [
+     0.78,
+     0.74
+    ]
+   ],
+   "served_from": "c0",
+   "path": "DRAFT_PASS",
+   "answer": "BOOK:navigation:mid",
+   "correct": true
+  },
+  {
+   "sid": "S5",
+   "truth": "BOOK:engine:low",
+   "cells": [
+    "c0"
+   ],
+   "gates": [
+    [
+     0.8,
+     0.76
+    ]
+   ],
+   "served_from": "c0",
+   "path": "DRAFT_PASS",
+   "answer": "BOOK:engine:low",
+   "correct": true
+  },
+  {
+   "sid": "S6",
+   "truth": "BOOK:engine:high",
+   "cells": [
+    "c0"
+   ],
+   "gates": [
+    [
+     0.78,
+     0.73
+    ]
+   ],
+   "served_from": "c0",
+   "path": "DRAFT_PASS",
+   "answer": "BOOK:engine:high",
+   "correct": true
+  },
+  {
+   "sid": "S7",
+   "truth": "BOOK:deck:high",
+   "cells": [
+    "c0"
+   ],
+   "gates": [
+    [
+     0.78,
+     0.74
+    ]
+   ],
+   "served_from": "c0",
+   "path": "DRAFT_PASS",
+   "answer": "BOOK:deck:high",
+   "correct": true
+  },
+  {
+   "sid": "S8",
+   "truth": "BOOK:navigation:mid",
+   "cells": [
+    "c0"
+   ],
+   "gates": [
+    [
+     0.77,
+     0.73
+    ]
+   ],
+   "served_from": "c0",
+   "path": "DRAFT_PASS",
+   "answer": "BOOK:navigation:mid",
+   "correct": true
+  },
+  {
+   "sid": "S9",
+   "truth": "BOOK:deck:high",
+   "cells": [
+    "c0"
+   ],
+   "gates": [
+    [
+     0.78,
+     0.75
+    ]
+   ],
+   "served_from": "c0",
+   "path": "DRAFT_PASS",
+   "answer": "BOOK:deck:high",
+   "correct": true
+  },
+  {
+   "sid": "S10",
+   "truth": "BOOK:engine:low",
+   "cells": [
+    "c0"
+   ],
+   "gates": [
+    [
+     0.79,
+     0.75
+    ]
+   ],
+   "served_from": "c0",
+   "path": "DRAFT_PASS",
+   "answer": "BOOK:engine:low",
+   "correct": true
+  },
+  {
+   "sid": "S11",
+   "truth": "BOOK:navigation:mid",
+   "cells": [
+    "c0"
+   ],
+   "gates": [
+    [
+     0.75,
+     0.75
+    ]
+   ],
+   "served_from": "c0",
+   "path": "DRAFT_PASS",
+   "answer": "BOOK:navigation:mid",
+   "correct": true
+  },
+  {
+   "sid": "S12",
+   "truth": "BOOK:deck:low",
+   "cells": [
+    "c0"
+   ],
+   "gates": [
+    [
+     0.79,
+     0.75
+    ]
+   ],
+   "served_from": "c0",
+   "path": "DRAFT_PASS",
+   "answer": "BOOK:deck:low",
+   "correct": true
+  }
+ ],
+ "correct_B": 11,
+ "B_paths": {
+  "DOUBTED_PINCH": 12
+ },
+ "B_jev": [
+  4770,
+  1678
+ ],
+ "B_di": [
+  8021,
+  8248
+ ],
+ "B_walls": [
+  0.47
+ ],
+ "B_cal": null,
+ "B_served_from": {
+  "c0": 7,
+  "c1": 3,
+  "c2": 1
+ },
+ "armB": [
+  {
+   "sid": "S1",
+   "truth": "BOOK:navigation:mid",
+   "cells": [
+    "c0",
+    "c2",
+    "c1"
+   ],
+   "gates": [
+    [
+     0.42,
+     0.43
+    ],
+    [
+     0.43,
+     0.42
+    ],
+    [
+     0.41,
+     0.43
+    ]
+   ],
+   "served_from": "c0",
+   "path": "DOUBTED_PINCH",
+   "answer": "BOOK:navigation:mid",
+   "correct": true
+  },
+  {
+   "sid": "S2",
+   "truth": "BOOK:engine:high",
+   "cells": [
+    "c0",
+    "c1",
+    "c2"
+   ],
+   "gates": [
+    [
+     0.43,
+     0.42
+    ],
+    [
+     0.42,
+     0.44
+    ],
+    [
+     0.42,
+     0.42
+    ]
+   ],
+   "served_from": "c0",
+   "path": "DOUBTED_PINCH",
+   "answer": "BOOK:engine:high",
+   "correct": true
+  },
+  {
+   "sid": "S3",
+   "truth": "BOOK:deck:low",
+   "cells": [
+    "c0",
+    "c1",
+    "c2"
+   ],
+   "gates": [
+    [
+     0.44,
+     0.43
+    ],
+    [
+     0.43,
+     0.42
+    ],
+    [
+     0.43,
+     0.42
+    ]
+   ],
+   "served_from": "c0",
+   "path": "DOUBTED_PINCH",
+   "answer": "BOOK:deck:low",
+   "correct": true
+  },
+  {
+   "sid": "S4",
+   "truth": "BOOK:navigation:mid",
+   "cells": [
+    "c1",
+    "c0",
+    "c2"
+   ],
+   "gates": [
+    [
+     0.44,
+     0.43
+    ],
+    [
+     0.42,
+     0.42
+    ],
+    [
+     0.44,
+     0.42
+    ]
+   ],
+   "served_from": "c1",
+   "path": "DOUBTED_PINCH",
+   "answer": "BOOK:navigation:mid",
+   "correct": true
+  },
+  {
+   "sid": "S5",
+   "truth": "BOOK:engine:low",
+   "cells": [
+    "c1",
+    "c0",
+    "c2"
+   ],
+   "gates": [
+    [
+     0.44,
+     0.43
+    ],
+    [
+     0.42,
+     0.42
+    ],
+    [
+     0.43,
+     0.42
+    ]
+   ],
+   "served_from": "c1",
+   "path": "DOUBTED_PINCH",
+   "answer": "BOOK:engine:low",
+   "correct": true
+  },
+  {
+   "sid": "S6",
+   "truth": "BOOK:engine:high",
+   "cells": [
+    "c2",
+    "c1",
+    "c0"
+   ],
+   "gates": [
+    [
+     0.42,
+     0.42
+    ],
+    [
+     0.41,
+     0.41
+    ],
+    [
+     0.44,
+     0.4
+    ]
+   ],
+   "served_from": "c2",
+   "path": "DOUBTED_PINCH",
+   "answer": "BOOK:engine:high",
+   "correct": true
+  },
+  {
+   "sid": "S7",
+   "truth": "BOOK:deck:high",
+   "cells": [
+    "c0",
+    "c2",
+    "c1"
+   ],
+   "gates": [
+    [
+     0.43,
+     0.42
+    ],
+    [
+     0.42,
+     0.42
+    ],
+    [
+     0.42,
+     0.41
+    ]
+   ],
+   "served_from": "c0",
+   "path": "DOUBTED_PINCH",
+   "answer": "BOOK:deck:high",
+   "correct": true
+  },
+  {
+   "sid": "S8",
+   "truth": "BOOK:navigation:mid",
+   "cells": [
+    "c0",
+    "c1",
+    "c2"
+   ],
+   "gates": [
+    [
+     0.43,
+     0.43
+    ],
+    [
+     0.44,
+     0.41
+    ],
+    [
+     0.41,
+     0.42
+    ]
+   ],
+   "served_from": "c0",
+   "path": "DOUBTED_PINCH",
+   "answer": "BOOK:navigation:mid",
+   "correct": true
+  },
+  {
+   "sid": "S9",
+   "truth": "BOOK:deck:high",
+   "cells": [
+    "c0",
+    "c1",
+    "c2"
+   ],
+   "gates": [
+    [
+     0.44,
+     0.42
+    ],
+    [
+     0.43,
+     0.42
+    ],
+    [
+     0.41,
+     0.43
+    ]
+   ],
+   "served_from": "c0",
+   "path": "DOUBTED_PINCH",
+   "answer": "BOOK:deck:high",
+   "correct": true
+  },
+  {
+   "sid": "S10",
+   "truth": "BOOK:engine:low",
+   "cells": [
+    "c1",
+    "c2",
+    "c0"
+   ],
+   "gates": [
+    [
+     0.43,
+     0.45
+    ],
+    [
+     0.43,
+     0.43
+    ],
+    [
+     0.43,
+     0.42
+    ]
+   ],
+   "served_from": "c1",
+   "path": "DOUBTED_PINCH",
+   "answer": "BOOK:engine:low",
+   "correct": true
+  },
+  {
+   "sid": "S11",
+   "truth": "BOOK:navigation:mid",
+   "cells": [
+    "c0",
+    "c1",
+    "c2"
+   ],
+   "gates": [
+    [
+     0.43,
+     0.43
+    ],
+    [
+     0.44,
+     0.42
+    ],
+    [
+     0.44,
+     0.41
+    ]
+   ],
+   "served_from": "c0",
+   "path": "DOUBTED_PINCH",
+   "answer": "BOOK:navigation:mid",
+   "correct": true
+  },
+  {
+   "sid": "S12",
+   "truth": "BOOK:deck:low",
+   "cells": [
+    "c0",
+    "c1",
+    "c2"
+   ],
+   "gates": [
+    [
+     0.43,
+     0.44
+    ],
+    [
+     0.44,
+     0.42
+    ],
+    [
+     0.41,
+     0.42
+    ]
+   ],
+   "served_from": "c0",
+   "path": "DOUBTED_PINCH",
+   "answer": "BOOK:navigation:mid",
+   "correct": false
+  }
+ ],
+ "cost_bar_ok": true,
+ "verdicts": {
+  "H1_roster_recipe": "KEEP",
+  "H2_transfer": "TRANSFERS",
+  "H3_roster": "ROSTER_HURTS",
+  "rescued_sids": []
+ },
+ "wall_s": 350.9
+}

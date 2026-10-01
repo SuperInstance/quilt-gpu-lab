@@ -16,3 +16,5 @@
 - 2026-10-01T06:33:22.965Z EXIT-1 c5-paired-action in 0.0min — log: farm/logs/c5-paired-action.log
 - 2026-10-01T06:36:26.935Z FIRE c5-paired-action (experiment) → ~/venvs/elephant-gpu/bin/python experiments/c5_paired_action.py cwd=/home/eileen/projects/quilt-gpu-lab
 - 2026-10-01T06:36:28.353Z DONE c5-paired-action in 0.0min — log: farm/logs/c5-paired-action.log
+- 2026-10-01T07:23:56.140Z FIRE cm1-r5 (experiment) → ~/venvs/elephant-gpu/bin/python experiments/cm1_relay_r5.py cwd=/home/eileen/projects/quilt-gpu-lab
+- 2026-10-01T07:29:47.079Z DONE cm1-r5 in 5.8min — log: farm/logs/cm1-r5.log
