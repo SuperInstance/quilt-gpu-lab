@@ -45,6 +45,13 @@
 - [spawned by QG2] QG4: budget/gens phase diagram (W x gens grid, 1024 streams/cell) — map the crossing frontier. Directly serves "cells are dedicated; routing happens between cells".
 - [spawned by PR-SWEEP #1] RECEIPT-CITE: amend QG1/QG2 receipts (proposals/runs/*.md) to cite SuperInstance repos by name (weight law; see MicroMoth-quilt PR #29). Docs-only, no re-run.
 
+## SCOUT-11 SPAWNED ITEMS (2026-10-01 1911Z) — full text proposals/runs/SCOUT-11-fleet-push-2026-10-01-1911Z.md
+- [ ] **FT-A1** (GPU, pre-reg FIRST): pie-minimax nonlinear closure per fleet-triage PR #1 buildspec (MLP 9-64-9 on 180,361 exact labels; P1 top-1 [0.25,0.40]; P2 COMPOSED <70% of global; reproduce linear 0.1807 first or STOP; 3 pinned seeds; their Do-NOT list inherited). Follows their Exp 2 DONE-VERIFIED 16:21Z (FT-1 closed upstream).
+- [ ] **FT-D3** (GPU, pre-reg template provided, fill brackets + commit before fire): determinism lab — H1 atomics divergence threshold / H2 fp32-vs-fp64 reorder / H3 canon-sort digest invariance; serial-reference + fp64-shadow controls. Converts the QG7 lane-nondeterminism lesson into a measured map. cite fleet-triage PR #1.
+- [ ] **QO10** (CPU ~30m, existing data): projection-ladder ablation for the QO1 oracle (raw state -> cv/v/gen -> cv -> gen) x random-stream vs later-generation holdout splits; pre-register BOTH directions (their L1>L0-under-shift inversion); gen-only >= cv under shift would mean oracle signal is partly REGIME — sharpens QO2. Spawned by fleet-triage projection-doctrine results (18:59Z).
+- RC-1b priority RAISED again (canons 16:28Z: quilt-llvm 1,127 input mutants 0% killed vs 76/76 tamper — the never-executed-branch fleet-wide instance).
+- [NOTE 19:1x] No CONTRADICT this sweep; INSTRUMENT-01 receipt artifact was untracked at booking (D-2 class, 2nd instance — committed this wake); repro result appended when it lands.
+
 ## SCOUT-10 SPAWNED ITEMS (2026-10-01 1811Z)
 - [ ] **RC-1b dead-branch census** (CPU ~45m): every runner a booked verdict depends on must have its gate-computation branches exercised by a committed test or the verified repro run (logtensor never-executed homing term; QG1c radians was a live instance). UNCOVERED gate branch on a BOOKED result = RED. Fold in pong #92 no-claim-marker-in-source pattern.
 - [ ] **JC-1** (CPU ~10m, LOW): reformat QC-JEV(/QC-JEV2) numbers into fleet-seeds wave-63 jev calibration ledger shape, staged locally for Casey to push. No filing.

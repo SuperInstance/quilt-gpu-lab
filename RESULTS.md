@@ -3569,3 +3569,22 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
   - R3 (exploratory, no gate): elementwise kernel hits **5.33×** after 20s idle — the law is KERNEL-AGNOSTIC, box-level, as suspected.
 - Mandated follow-ups done: ramp recipe → workspace TOOLS.md; bench.py keeps its ramp implementation (declared: docstring numbers ride on this booking).
 - Verdict: LAW_CALIBRATED — every future GPU measurement on this box ramps first, ramp receipts included.
+
+## [DONE 19:4x Oct 1] SCOUT-11 + (C) INSTRUMENT-01 REPRO: gates reproduce, per-point numbers are single-draw statistics
+- SCOUT-11 (non-GPU per (A)-first rotation): fleet-triage PR #1 RTX4050 worklist read in anger -> spawned FT-A1
+  (pie-minimax nonlinear closure per their buildspec), FT-D3 (determinism lab), QO10 (projection-ladder oracle
+  ablation). RC-1b raised (quilt-llvm 0%-killed mutants). Full text proposals/runs/SCOUT-11-fleet-push-2026-10-01-1911Z.md.
+  NO CONTRADICT findings this sweep.
+- Booking hygiene find: results/instrument_ramp_law.json was UNTRACKED while booking 929065a + the sealed
+  manifest referenced it (D-2 silent-edit class, 2nd local instance; QC-JEV was the first). Committed this wake.
+- (C) MANDATORY REPRO of INSTRUMENT-01 (committed runner to ext4 scratch /home/eileen/scratch/instr01_repro/,
+  output never touched results/): **R1 PASS, R2 PASS, verdict LAW_CALIBRATED — gates reproduce.** Honest
+  deviations (timing law is statistical, not deterministic):
+  - 0.1s ramp restored **76.8%** of hot this draw vs committed 98.8% — the "0.1s restores >=98%" margin is
+    BEST-CASE single-draw, not a floor. (R2 still passed on its own criterion; 0.3s/0.6s trials 97-106%.)
+  - R1 shape noisier: 20s-idle draw 0.98x and 80s draw 2.5x (committed: flat ~4.5x after 20s). Onset 5-10s and
+    "must ramp before measuring" both hold; the per-point slowdown values do NOT.
+  - AMENDED workspace TOOLS.md law wording accordingly (ramp receipt mandatory; treat slowdown magnitudes as
+    order-of-magnitude, ramps >=0.3s as the safe recipe).
+- Runner defect (3rd instance of the class): OUT_PATH hardcoded to results/ — verification must run in a copied
+  scratch tree (done) until runners grow --out (RC-1 spec).
