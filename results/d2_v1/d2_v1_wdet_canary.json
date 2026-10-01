@@ -1,0 +1,23 @@
+{
+ "task": "D2-V1",
+ "gate": "W-DET",
+ "role": "wiring canary (not a data point)",
+ "repo_pin": "SuperInstance/quilt-dba@5bbd99c99ab885fd8009655ddfbd5a3a58742364",
+ "smoke": "13/13",
+ "hashes_A_seeds_101_118_135": [
+  "8c8a54a43f10",
+  "8c8a54a43f10",
+  "8c8a54a43f10"
+ ],
+ "var_A": 0,
+ "r5": {
+  "full_hash": "1de2f9c27e8d",
+  "resumed_hash": "1de2f9c27e8d",
+  "pass": true
+ },
+ "r2_verdict": "CONFIRMED",
+ "expected_hash": "8c8a54a43f10",
+ "hash_match": true,
+ "gate_result": "PASS",
+ "note": "any deviation = wiring bug => run VOID; none observed"
+}

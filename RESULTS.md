@@ -4842,3 +4842,29 @@ Casey directive: "think through what each PR actually is and work with that repo
 - **FLEET PHILOSOPHY READ:** dominant = pre-register→seal→FAIL-honestly→close-lane (matches our laws); dominant risk = bureaucracy outpacing the experiment (pong bookkeeping a second job; chiaroscuro 4 PRs on one constant). Mirror-note for us: keep preregs one page, gates numeric, receipts automatic.
 - **13 helpful drafts** (REPLIES-draft.md): correctness notes, receipt gaps, replication offers (C-ROT second substrate, pie-minimax re-eval, dilution-law repro, cross-language canonicalizer, P1-P5 pins). NOTHING posted; keeper reviews each before any comment lands.
 - Artifacts: pr_harvest/{CARDS,BUILDERS,REPLIES-draft,SUMMARY}.md + _raw/. Read-only gh throughout.
+
+## [LANE D2-V1b RESUME 15:5x Oct 1] prior D2-V1 artifact honest audit → prior run VOID (incomplete + sub-1GB-free breach); guarded re-run PASS → v1 analysis lands INCONCLUSIVE (H1 ρ=−0.37 FAIL, H5 measure INCONCLUSIVE, all else PASS)
+
+Lane D2-V1b resumed the mid-killed D2-V1 lane. **Scripts unchanged — no defect found** (booked: none). Prior artifacts audited, not trusted.
+
+**AUDIT of left artifacts (honest):**
+- **W-DET canary `d2_v1_wdet_canary.json`: PASS, valid.** A-seeds 101/118/135 all hash `8c8a54a43f10`, `var_A=0`, r5 full==resumed `1de2f9c27e8d`, expected-hash match true, smoke 13/13. Exact-hash zero-variance gate met ⇒ wiring is not the failure.
+- **Prior `d2_v1_twins_result.json`: INCOMPLETE + target-fixed.** Has `reflex_target_fix="one-step-ahead (t+1) fire"` and traces_sha256 `53c8916b…c66757` (matches re-run), BUT only **2/6 sockets, 18/54 runs** (reflex.orient + world.surprise). Missing sensors.vision, policy.action, memory.semantic, memory.episodic.
+- **Prior G7 receipt `g7-wr-d2-v1-twins-1790897485`: self-declared VOID.** breach `free VRAM 1018 MiB < 1024`, `inner rc=-15` (SIGTERM). Schema-valid, verdict VOID ⇒ **not a data point** (the 4.397 Wh / 286 GPU-s is a VOID-run cost, not a measurement). `d2_v1_guard_run.out` = that VOID run (killed ~26/54); `d2_v1_guard_run2.out` = preflight-only (free=1497MiB, killed before inner). Prior evidence preserved: `*_PRIOR-VOID-1790897485.json` backups; the VOID receipt + ledger row kept.
+- Booking fairness: `guard/guard_summary.json` is last-run-only and was overwritten by the re-run; its VOID content survives in the PRIOR-VOID guard-log backup.
+- **Rail:** W-DET OK, target fix OK, but run VOID + result incomplete ⇒ **re-run required**, no verdict could be booked from it.
+
+**GUARDED RE-RUN (scripts as-is; guard.py + G7; co-tenant 7B seat resident — qwen2.5:7b-instruct-q4_K_M, `size_vram` 4185 MiB):**
+- `d2_v1_guard_run3.out`: PREFLIGHT OK free=1818MiB temp=46C → **inner rc=0, breach=null** → **receipt `g7-wr-d2-v1-twins-1790898417` verdict=PASS**, G7 validator ok. **0.5859 Wh / 49.26 GPU-s**, mean 15.24 W, wall 138.4 s, min_free 1625 MiB, max temp 64 °C. (Mean power is low honest-vs-the-VOID-run: tiny-net bursts with the seat idle; the VOID run's 47.95 W was a co-tenant-loaded window.)
+- 54/54 runs, 6 sockets, seeds 2718-2720, epochs 80, F5 disjointness OK (train 0..139 vs test 140..199), reflex on one-step-ahead target. **GPU-SEED LAW: every socket gap_seed_std > 0 ⇒ no INCONCLUSIVE-by-seed offender** (reflex.orient seed-std 0.0002, smallest).
+
+**ANALYSIS (`d2_v1_result.json`, B=1000 bootstrap over held-out REAL test worlds n=60; E3 perm-exact norm-MI, frozen declared encoders):**
+- **VERDICT: INCONCLUSIVE.** Gates H1 **FAIL** · H2 PASS · H3 PASS · H4 PASS · H5 **INCONCLUSIVE** · H6 PASS. seed-law offenders: none.
+- H1: ρ(op-determinacy, gap_sim) = **−0.3714**, CI95 **[−0.60, 0.60]** (upper bound not <0 → FAIL). H2: det≥0.8 sockets {reflex.orient 1.000, policy.action 0.901} mean gap −0.0071 ≤ 0.05 → PASS. H3: gap_mis − gap_sim = **+0.1427** ≥ 0.05 → PASS. H4: std>0 both axes → PASS. H5: **4/6 offenders** (world.surprise, sensors.vision, policy.action, memory.semantic) > 2 ⇒ measure does not exist at this scope → INCONCLUSIVE. H6: range 0.8799 ≥ 0.5 → PASS.
+- Determinacy (operational): reflex 1.000, policy.action 0.901, sensors.vision 0.616, world.surprise 0.448, memory.episodic 0.183, memory.semantic 0.120.
+- **Note the H5 vs H2 tension booked honestly:** policy.action scores op-det 0.901 (near-1 class) but its 3-distribution spread is 0.924 — its determinacy is distribution-sensitive, so its near-1 status is fragile; the H1 ρ is dragged by that instability rather than by a clean monotone law.
+- **H-GROWTH: R2 DOES NOT SURVIVE stochastic worlds** — gated_frac 0.83 ≥ 0.8 BUT unguided_frac 0.88 > 0.2 ⇒ seed-vacuity of E-D1's R2 confirmed (independent booking; does not veto the thesis measurement).
+- **1000-world ×5 extension: frozen trigger is MET** (H4 PASS ∧ ρ-CI width 1.20 > 0.40) **but NOT fired this lane** — budget ~60 min, and firing it would buy precision for a measure that just failed H5 (4/6 unstable). Recommended: repair the H5 measure (or re-scope sockets) first, then fire; book the receipt purpose in one line. QUEUE line added.
+- Energy booked: **0.586 Wh valid** (PASS receipt) + 4.397 Wh VOID-run cost (not a measurement). Total lane spend ~4.98 Wh; measurement-of-record 0.586 Wh.
+
+**Artifacts (append-only):** `results/d2_v1/{d2_v1_guard_run3.out, d2_v1_analysis_run3.out, d2_v1_result.json, d2_v1_twins_result.json (54/54, PASS), guard/g7-wr-d2-v1-twins-1790898417.json, guard/ledger.jsonl (both rows)}` + preserved `*_PRIOR-VOID-1790897485.*` and `d2_v1_wdet_canary.json`. NOT COMMITTED.

@@ -1,0 +1,63 @@
+PREFLIGHT OK free=1818MiB temp=46C
+inner rc=0
+F5 OK: train 0..139 disjoint from test 140..199
+  reflex.orient    real     seed=2718 nerr=0.1362 dev=cuda p=1474 3.4s
+  reflex.orient    real     seed=2719 nerr=0.1364 dev=cuda p=1474 2.6s
+  reflex.orient    real     seed=2720 nerr=0.1363 dev=cuda p=1474 2.7s
+  reflex.orient    sim      seed=2718 nerr=0.1189 dev=cuda p=1474 2.4s
+  reflex.orient    sim      seed=2719 nerr=0.1191 dev=cuda p=1474 2.8s
+  reflex.orient    sim      seed=2720 nerr=0.1194 dev=cuda p=1474 2.4s
+  reflex.orient    sim_mis  seed=2718 nerr=0.1567 dev=cuda p=1474 2.4s
+  reflex.orient    sim_mis  seed=2719 nerr=0.1965 dev=cuda p=1474 2.4s
+  reflex.orient    sim_mis  seed=2720 nerr=0.1520 dev=cuda p=1474 2.5s
+  world.surprise   real     seed=2718 nerr=0.1492 dev=cuda p=1541 2.6s
+  world.surprise   real     seed=2719 nerr=0.1621 dev=cuda p=1541 2.5s
+  world.surprise   real     seed=2720 nerr=0.1691 dev=cuda p=1541 2.4s
+  world.surprise   sim      seed=2718 nerr=0.1267 dev=cuda p=1541 2.5s
+  world.surprise   sim      seed=2719 nerr=0.1264 dev=cuda p=1541 2.4s
+  world.surprise   sim      seed=2720 nerr=0.1894 dev=cuda p=1541 2.3s
+  world.surprise   sim_mis  seed=2718 nerr=0.1684 dev=cuda p=1541 2.6s
+  world.surprise   sim_mis  seed=2719 nerr=0.1796 dev=cuda p=1541 2.3s
+  world.surprise   sim_mis  seed=2720 nerr=0.2053 dev=cuda p=1541 2.3s
+  sensors.vision   real     seed=2718 nerr=0.8107 dev=cuda p=18048 2.4s
+  sensors.vision   real     seed=2719 nerr=0.7966 dev=cuda p=18048 2.4s
+  sensors.vision   real     seed=2720 nerr=0.7988 dev=cuda p=18048 2.3s
+  sensors.vision   sim      seed=2718 nerr=0.8615 dev=cuda p=18048 2.4s
+  sensors.vision   sim      seed=2719 nerr=0.8581 dev=cuda p=18048 2.4s
+  sensors.vision   sim      seed=2720 nerr=0.8712 dev=cuda p=18048 2.4s
+  sensors.vision   sim_mis  seed=2718 nerr=0.8887 dev=cuda p=18048 2.8s
+  sensors.vision   sim_mis  seed=2719 nerr=0.8696 dev=cuda p=18048 2.7s
+  sensors.vision   sim_mis  seed=2720 nerr=0.8271 dev=cuda p=18048 2.5s
+  policy.action    real     seed=2718 nerr=0.0944 dev=cuda p=1637 2.5s
+  policy.action    real     seed=2719 nerr=0.0907 dev=cuda p=1637 2.7s
+  policy.action    real     seed=2720 nerr=0.0896 dev=cuda p=1637 2.9s
+  policy.action    sim      seed=2718 nerr=0.0944 dev=cuda p=1637 3.1s
+  policy.action    sim      seed=2719 nerr=0.0927 dev=cuda p=1637 2.8s
+  policy.action    sim      seed=2720 nerr=0.0965 dev=cuda p=1637 2.5s
+  policy.action    sim_mis  seed=2718 nerr=0.7880 dev=cuda p=1637 2.4s
+  policy.action    sim_mis  seed=2719 nerr=0.8058 dev=cuda p=1637 2.3s
+  policy.action    sim_mis  seed=2720 nerr=0.8042 dev=cuda p=1637 2.3s
+  memory.semantic  real     seed=2718 nerr=0.2788 dev=cuda p=3264 2.5s
+  memory.semantic  real     seed=2719 nerr=0.2815 dev=cuda p=3264 2.4s
+  memory.semantic  real     seed=2720 nerr=0.2823 dev=cuda p=3264 2.3s
+  memory.semantic  sim      seed=2718 nerr=0.2929 dev=cuda p=3264 2.4s
+  memory.semantic  sim      seed=2719 nerr=0.2919 dev=cuda p=3264 2.4s
+  memory.semantic  sim      seed=2720 nerr=0.2804 dev=cuda p=3264 2.4s
+  memory.semantic  sim_mis  seed=2718 nerr=0.4513 dev=cuda p=3264 2.4s
+  memory.semantic  sim_mis  seed=2719 nerr=0.2811 dev=cuda p=3264 2.4s
+  memory.semantic  sim_mis  seed=2720 nerr=0.3689 dev=cuda p=3264 2.5s
+  memory.episodic  real     seed=2718 nerr=0.9439 dev=cuda p=1680 2.5s
+  memory.episodic  real     seed=2719 nerr=0.9396 dev=cuda p=1680 2.5s
+  memory.episodic  real     seed=2720 nerr=0.9384 dev=cuda p=1680 2.5s
+  memory.episodic  sim      seed=2718 nerr=0.9410 dev=cuda p=1680 2.5s
+  memory.episodic  sim      seed=2719 nerr=0.9424 dev=cuda p=1680 2.6s
+  memory.episodic  sim      seed=2720 nerr=0.9387 dev=cuda p=1680 2.5s
+  memory.episodic  sim_mis  seed=2718 nerr=0.9206 dev=cuda p=1680 2.5s
+  memory.episodic  sim_mis  seed=2719 nerr=0.9320 dev=cuda p=1680 2.6s
+  memory.episodic  sim_mis  seed=2720 nerr=0.9353 dev=cuda p=1680 2.7s
+wrote d2_v1_twins_result.json
+INNER wall 138.5s
+
+GUARD: {"samples": 28, "min_free_vram_mib": 1625, "max_temp_c": 64, "breach": null, "timed_out": false, "g7": {"wall_seconds": 138.418, "power_samples": 27, "mean_power_w": 15.24, "joules": 2109.13, "watt_hours": 0.5858694444444444, "gpu_seconds": 49.26, "util_samples": 27, "windows": 1}, "task_id": "D2-V1-twins"}
+RECEIPT /home/eileen/projects/quilt-gpu-lab/results/d2_v1/guard/g7-wr-d2-v1-twins-1790898417.json verdict=PASS
+G7 VALIDATOR ok=True OK (exit 0): /home/eileen/projects/quilt-gpu-lab/results/d2_v1/guard/g7-wr-d2-v1-twins-1790898417.json is a valid g7-watt-receipt@1 watt-receipt

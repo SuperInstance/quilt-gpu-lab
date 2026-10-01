@@ -1,0 +1,18 @@
+{
+  "breach": null,
+  "g7": {
+    "gpu_seconds": 49.26,
+    "joules": 2109.13,
+    "mean_power_w": 15.24,
+    "power_samples": 27,
+    "util_samples": 27,
+    "wall_seconds": 138.418,
+    "watt_hours": 0.5858694444444444,
+    "windows": 1
+  },
+  "max_temp_c": 64,
+  "min_free_vram_mib": 1625,
+  "samples": 28,
+  "task_id": "D2-V1-twins",
+  "timed_out": false
+}

@@ -30,3 +30,13 @@ guard**. Families with <1 row per class are excluded from folds and reported.
 - **BASELINE_CARRIES**: AUC(GEOM) ≤ max(scalars) + 0.05. → The product law IS the whole story;
   booked negative, S6a closes. Equally informative.
 - **SPLIT** otherwise → no claim, book the split. No post-hoc folds, no added features, no re-rolls.
+
+## Pre-fire amendment (2026-10-01, committed BEFORE run — two-witness review: kimi+zcode)
+- Corpus validity filter: harness-invalid / KILL receipts are EXCLUDED from embedding (the d12j r1
+  invalid receipt carried an all-zero acc grid and would have poisoned the corpus). The d12j
+  lane+lucineer twin receipts count as ONE family (declared). Family restriction: D-line names only
+  (families starting "d1") — later-family receipts book for their own lanes' studies.
+- Runner is numpy, not torch as first drafted — declared; CPU-only unchanged.
+- NaN/finiteness guards: non-finite embeddings abort fail-loud; non-finite direction norms skip the
+  fold (booked).
+- KILL-harness receipts attempt-stamped — never overwrite a non-KILL receipt.
