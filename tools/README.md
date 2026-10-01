@@ -65,6 +65,15 @@ more than a copy to use, it's not grabbable yet.
   Token read at use-time from ~/.config/typesafe/token (never echoed).
   LIVE receipt 2026-10-01: 2-question smoke vs jev-1.13.0, 0.41s, both noul returned.
 
+- **checkpoint-guard** — `tools/checkpoint_guard.py` — reusable
+  embedding-checkpoint save/verify/resume (pattern lifted from
+  `experiments/c5_paired_action.py`): atomic fsync'd save, exact-key match
+  before resume (input fingerprint, key-order insensitive), archive-by-rename
+  invalidation, corrupt-file fails safe to full run. Stdlib-only.
+  `CheckpointGuard(path, key).try_resume()` / `.save(records)`;
+  CLI `--path ck.json --info | --invalidate | --selftest`.
+  SELFTEST receipt 2026-10-01: selftest OK + live save/resume/example + info.
+
 ### qcell_sim.py — exact small-circuit cell evaluator (GPU, batched)
 Batched statevector evaluator for qcell genomes (n<=12 qubits). Returns exact p(targets), balance,
 best_target, union, and optional shot samples with a sha256 receipt_id. One file, one job, cell-slot ready.
