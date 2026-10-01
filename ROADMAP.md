@@ -29,6 +29,8 @@
 - `A5-PARITY` (kimi/tmux `lab-a5`) — quilt-mojo-lab CuPy parity receipt on 4050: bit-parity @16/512/1024², cells/s next to their datacenter numbers. Consumer-silicon conformance node.
 - `D2-DESIGN` (GLM-5.3, serial flagship lane) — pre-register D2-STOCHASTIC: quilt-dba transfer-gap under 1000 seeded worlds; fold in XP-C serialization law.
 
+- `HY3-CACHE` (deepseek curator + **tencent/Hy3 via DeepInfra**, Casey 14:19) — dog-food Hy3 into a caching-domain expert: 5-surface idea expansion (tile tiers, pinch compile-back, prompt-cache economics, /near dedup, cells-as-caches) → top-3 rough-out designs → honest expert-seat verdict. Deliverable: superinstance-api/docs/cache-ideas-hy3-2026-10-01.md.
+
 **Queue (next waves, in order):**
 1. `XP-C2` — serialized-seat determinism gate (7B + grammar/JSON-mode, ≥0.95 well-formed). Unblocked by XP-C; needs the seat after C1 releases it.
 2. `C2-CHAMPIONS` (kimi/tmux) — pong trained champions vs derived law, h2h receipts. Needs C1 booked.

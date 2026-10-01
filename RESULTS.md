@@ -4369,3 +4369,80 @@ a post-hoc goalpost move — and it did **not** rescue the local arm.
   sealer refuses dirty sealed paths by design. Per foreign-live precedent (PW-1), the live run is not touched —
   **seal deferred to the first wake after c1_playtest completes; until then the manifest is knowingly stale and this
   entry is the honest drift marker.** This is the D-2 silent-edit class caught by the test before it could hide.
+
+
+---
+
+# A2-ga4444-4x4 — 4x4 composition + capacity: does A1's "nonlinear absorbs composition" scale?
+
+- lane: **A2-HARVEST** (`quilt-gpu-lab`; worklist item **A2** in `fleet-triage/docs/RTX4050-WORKLIST.md`)
+- date: 2026-10-01 · device: `cuda:0 (RTX 4050 Laptop, 6 GB)` · torch 2.14.0+cu126 · seed **2718** everywhere
+- clone `/tmp/ga4444` **read-only** · pre-registration: `proposals/runs/A2-ga4444-4x4.md` (written **before** the run)
+- **one smoke arm** (MLP) + its frozen matched contrast (LINEAR); full arm matrix is the follow-up
+- full entry: `results/a2_ga4444/RESULTS-ENTRY.md` · **not committed — keeper folds.**
+
+## 0. VERDICT (no goalpost migration)
+
+- **Frozen gate -> INCONCLUSIVE.** Rule 2 fires: the MLP sits at the **ceiling 1.0000 with `std == 0.0`** on
+  COMPOSED-B (5/5 folds), so no PASS-class verdict is bookable. Recorded, not hidden.
+- **Declared secondary reading (frozen `d_linear` row, non-degenerate) -> BREAKS.** The linear/additive arm shows
+  **NO composition penalty at 4x4**: `d_linear = top1_SIMPLE-B - top1_COMPOSED-B = 0.8110 - 0.9872 = -0.1762`
+  (better on COMPOSED; `std != 0` on both columns). **A1's "linear collapses on COMPOSED" does NOT carry one rung up** —
+  confirms `ga4444/PARTITION-44.md` sec.4 with complete ground truth + a matched optimiser.
+- **Finding under both:** COMPOSED-B's **computed chance is 0.9696** — on a board with >=2 immediate winning drops a
+  random legal move is already optimal 97% of the time. The class is **near-degenerate by construction** and cannot
+  discriminate local-voting vs composition at either rung (3x3: n=22 trivial; 4x4: floor 0.97). The pre-registered
+  composition-collapse test has **no executable positive instance** at natural-walk sampling. That is the result.
+
+## 1. Recon corrections (before any measured number)
+
+- **`gt4444_ground_truth.txt` (3,338 rows) is an INCOMPLETE walk.** The C `walk()` does
+  `if (has_won(pos|mv, m2)) return;` **inside the column loop** — `return` prunes the remaining columns where
+  `continue` belongs. Values are exact; enumeration is not. The repo's own `verify_maxmin.py` reports **161,029**
+  reachable states; this lane's complete non-terminal BFS is **139,625** (139,625 + 21,404 terminal = 161,029, exact).
+- **The repo holds TWO games.** `ga4444.py` `legal_moves` = **free placement** (gaps allowed) — measured reachable
+  non-terminal graph **> 8e6** states, labels capped at `MAX_PLY=9`; `gt4444.c` = **gravity**. Not the same game.
+- **Scope (frozen):** this lane = **gravity**, own **complete** enumeration, **no sampling**. Free placement out of scope.
+
+## 2. Data + provenance
+
+- **66,297** our-turn non-terminal gravity boards, `dataset_fnv1a64 = 0x98219e9d0dd0d382`, gen **3.5 s**
+  (5 parallel list-form shard subprocesses, never shell=True). ply hist `{0:1,2:16,4:160,6:1128,8:5036,10:14352,
+  12:24710,14:20894}`; **multi-optimal 47.8%**; COMPOSED-B n = **763** (>n>=50 power line).
+- labels exact + set-valued (memoized full-depth negamax). **Differential control (rule 5):** repo's C solver
+  `gt4444 --probe` on 500 boards -> **500/500, 0 disagreements**; `verify_maxmin.py` -> **200/200**. `control.json`.
+
+## 3. Results — 5-fold board-disjoint CV (FNV-1a-64 high-32 mod 5), mean +/- std over folds
+
+| arm | overall | COMPOSED-B | SIMPLE-B | COMPOSED-A | SIMPLE-A |
+|---|---|---|---|---|---|
+| MLP 16-64-16, lr1e-3, 120 ep (SMOKE) | **0.9712 +/- 0.0036** | **1.0000 +/- 0.0000** | 0.9708 +/- 0.0037 | 0.9791 +/- 0.0037 | 0.9663 +/- 0.0037 |
+| LINEAR 16->16, matched | **0.8130 +/- 0.0021** | **0.9872 +/- 0.0109** | 0.8110 +/- 0.0022 | 0.8191 +/- 0.0034 | 0.8091 +/- 0.0029 |
+| chance (computed per fold) | 0.7698 | **0.9696** | 0.7673 | 0.7660 | 0.7721 |
+
+`d_linear = -0.1762` · `d_mlp = -0.0292`. Normalised headroom filled - MLP S 0.875 / C 1.000; LINEAR S 0.188 / C 0.579
+(both arms fill MORE COMPOSED headroom than SIMPLE - the opposite of a collapse; but that headroom is only 0.0304 wide).
+
+## 4. What it means / follow-up
+
+1. A1's **linear half** does not replicate at 4x4 (correction, matches PARTITION-44). 2. Neither does the **test** -
+   the COMPOSED floor is 0.97; the design, not the data, is the defect. 3. Nonlinearity still helps overall
+   (+0.158 vs linear) - a capacity statement, not a composition one.
+- Full scale needs: **generated double-threat boards** (>=2 open wins BY DESIGN, matched single-threat controls at
+  equal stone count / equal |empty| - the only design with COMPOSED chance well below 1); the **plateau control** +
+  **capacity sweep**; **>=5 seeds**; **DEF-A/C cross-sweep**; the free-placement game (>8M, sharded).
+
+## 5. Receipts / energy / artifacts (all in `results/a2_ga4444/`)
+
+- G7: **`g7-wr-a2-ga4444-4x4-1790893502.json`** - `g7-watt-receipt@1`, gate **PASS**, validator exit 0.
+  Preflight attempt 1 clean (1820 MiB free >= 1024 floor, 68 C).
+- energy **13,917.53 J = 3.866 Wh**, **213.73 GPU-s**, `source: measured` (mean 46.5 W; includes the resident 7B ollama
+  seat's share - co-tenancy NOT subtracted; idle floor not subtracted).
+- artifacts: `a2_ga4444.py`, `run_a2.py`, `dataset.jsonl` (66,297 boards), `dataset_summary.json`, `control.json`,
+  `smoke_mlp_metrics.json`, `smoke_linear_metrics.json`, `gate.json`, `shards/`, `guard_summary.json`, `ledger.jsonl`.
+
+## 6. INSTRUMENT-01 / house laws
+
+seed 2718 · fail loud (2 recon corrections + 1 harness bug booked) · receipt or VOID (receipt sealed) ·
+no shell=True (list-form subprocess only) · O(chunk) data-gen (finite complete set, streamed to shard checkpoints on ext4)
+· no commit · other lanes' lines untouched.

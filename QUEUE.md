@@ -1,4 +1,5 @@
 - [x] A1-PIE pie-minimax closure (worklist harvest, no prior QUEUE line) — 2026-10-01 KILL-of-prediction: MLP absorbs minimax composition board-disjoint (0.9643 composed vs linear 0.1429); 2,423 distinct boards, not 180,361; 0.386 Wh; commit d835e71
+- [x] A2-ga4444-4x4 4x4 composition + capacity (worklist harvest) — 2026-10-01 INCONCLUSIVE (frozen gate; rule 2: MLP COMPOSED-B std==0 at ceiling 1.0000) / secondary BREAKS: linear shows NO composition penalty (d_linear=-0.1762) so A1's linear-collapse does NOT scale to 4x4; COMPOSED-B chance=0.9696 -> class near-degenerate by construction; 66,297 exact boards, 500/500 differential control vs gt4444; 3.866 Wh; full: results/a2_ga4444/RESULTS-ENTRY.md
 # QUEUE — the chip's standing worklist. Runner claims the first unchecked item.
 
 - [x] E1 real-glyph-contrast (2026-09-27 KEEP) — real ffmpeg frames through elephant's contrastive encoder, heldout separation vs untrained baseline

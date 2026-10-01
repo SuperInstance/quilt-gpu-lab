@@ -1,0 +1,35 @@
+{
+  "schema": "g7-watt-receipt@1",
+  "receipt_id": "g7-wr-a2-ga4444-4x4-1790893502",
+  "task_id": "A2-ga4444-4x4",
+  "agent": "quilt-gpu-lab keeper (Lucineer, main Super Z)",
+  "device": {
+    "model": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "vram_gb": 6.0,
+    "driver": "616.92 / WSL2 (/usr/lib/wsl/lib/nvidia-smi)"
+  },
+  "energy": {
+    "joules": 13917.5307,
+    "watt_hours": 3.86598075,
+    "source": "measured",
+    "sampling_method": "nvidia-smi --query-gpu=power.draw,utilization.gpu on the guard's poll thread every 5s across the run window under guard; integral = mean_power_W x wall_seconds; idle floor NOT subtracted \u2014 receipt reports the whole window the job held the GPU (WSL2 NVML)",
+    "instrument": "nvidia-smi (NVML power.draw counters) on the WSL2 host",
+    "derivation": null
+  },
+  "compute": {
+    "gpu_seconds": 213.726
+  },
+  "cost": {
+    "currency": "USD",
+    "amount": 0.000889,
+    "rate_source": "host marginal grid rate $0.23/kWh (Alaska residential average, quoted 2026-10-01); gifted compute priced, not billed"
+  },
+  "determinism": {
+    "seed": "2718",
+    "state_digest": "5a6ea3ffdd543d958367a47430fd8e1df34f38b4ec50fcba0588e5a977649d6f"
+  },
+  "gate": {
+    "rule": "no receipt \u2192 run VOID",
+    "verdict": "PASS"
+  }
+}
