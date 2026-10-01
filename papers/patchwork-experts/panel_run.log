@@ -1,0 +1,3 @@
+hermes_adversarial: 16.2s -> /home/eileen/projects/quilt-gpu-lab/papers/patchwork-experts/reviews/review_hermes_adversarial.md (1573 chars)
+deepseek_stats: 11.3s -> /home/eileen/projects/quilt-gpu-lab/papers/patchwork-experts/reviews/review_deepseek_stats.md (7274 chars)
+seed_novelty: 63.0s -> /home/eileen/projects/quilt-gpu-lab/papers/patchwork-experts/reviews/review_seed_novelty.md (6070 chars)

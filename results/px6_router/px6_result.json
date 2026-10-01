@@ -1,0 +1,52 @@
+{
+  "pre_reg": "proposals/runs/PX6-signature-router.md",
+  "provenance": {
+    "device": "cpu (numpy 2.4.6, sklearn 1.9.0; decision trees, no CUDA involved; ollama cells OFF (flag-gated, PX2_ENABLE_OLLAMA))",
+    "terrain_digest_fnv1a64": "0x75f652bc1d8464b8",
+    "n_train": 144288,
+    "n_test": 36073,
+    "router_fit_states": 125761,
+    "router_hyperparams": {
+      "max_depth": 6,
+      "min_samples_leaf": 5,
+      "random_state": 0
+    },
+    "conf_threshold": 0.5
+  },
+  "baselines": {
+    "composition_top1": 0.7437,
+    "any_cell_ceiling": 0.8698
+  },
+  "arm_a": {
+    "routed_top1": 0.7545,
+    "headroom_claimed_frac": 0.0856,
+    "branch": "KILL",
+    "per_class": {
+      "WIN": 0.8191,
+      "BLOCK": 0.8732,
+      "NON_LOCAL": 0.4968
+    },
+    "pred_distribution": {
+      "tree_d1": 1131,
+      "tree_d2": 1609,
+      "tree_d3": 1905,
+      "tree_d5": 3063,
+      "tree_d6": 823,
+      "pinch": 27542
+    },
+    "degenerate_flag": false
+  },
+  "arm_b": {
+    "routed_top1": 0.7774,
+    "headroom_claimed_frac": 0.2672,
+    "per_class": {
+      "WIN": 0.8355,
+      "BLOCK": 0.9164,
+      "NON_LOCAL": 0.5224
+    }
+  },
+  "reflex_coverage": {
+    "train_all_correct_n": 37838,
+    "pinch_fired_rate_within": 0.8889
+  }
+}
