@@ -45,12 +45,33 @@
 - [spawned by QG2] QG4: budget/gens phase diagram (W x gens grid, 1024 streams/cell) — map the crossing frontier. Directly serves "cells are dedicated; routing happens between cells".
 - [spawned by PR-SWEEP #1] RECEIPT-CITE: amend QG1/QG2 receipts (proposals/runs/*.md) to cite SuperInstance repos by name (weight law; see MicroMoth-quilt PR #29). Docs-only, no re-run.
 
+## SCOUT-16 SPAWNED ITEMS (2026-10-01 2311Z) — full text proposals/runs/SCOUT-16-fleet-push-2026-10-01-2311Z.md
+- [ ] **RC-4 seal-chain / reseal-forgery resistance** (CPU ~45m): manifest chains each seal to the previous
+  seal digest; tamper test red-then-green. Canons 2217Z scout reports reseal-forgery 3rd instance — our
+  sealer refuses dirty paths but a valid RE-seal of modified content is currently undetectable.
+- [ ] **QO10 premise amendment** (docs, before QO10 fires): fleet-triage RETRACTED the L1>L0-under-shift
+  ordering (88e30b3 — max-selection artifact, Kish n_eff 1.48; "no gap smaller than the spread is a finding").
+  Strike the premise, cite 88e30b3; both-direction pre-reg stays. STEAL their rule into ST1-AUDIT/QC-JEV3.
+- [stale] **FT-A1**: superseded by pie-minimax #2 A1 receipt (nonlinear closes ~1.0, P1 FAIL-HIGH).
+  Re-read both before firing; do NOT fire on the old buildspec.
+
 ## SCOUT-11 SPAWNED ITEMS (2026-10-01 1911Z) — full text proposals/runs/SCOUT-11-fleet-push-2026-10-01-1911Z.md
 - [ ] **FT-A1** (GPU, pre-reg FIRST): pie-minimax nonlinear closure per fleet-triage PR #1 buildspec (MLP 9-64-9 on 180,361 exact labels; P1 top-1 [0.25,0.40]; P2 COMPOSED <70% of global; reproduce linear 0.1807 first or STOP; 3 pinned seeds; their Do-NOT list inherited). Follows their Exp 2 DONE-VERIFIED 16:21Z (FT-1 closed upstream).
 - [ ] **FT-D3** (GPU, pre-reg template provided, fill brackets + commit before fire): determinism lab — H1 atomics divergence threshold / H2 fp32-vs-fp64 reorder / H3 canon-sort digest invariance; serial-reference + fp64-shadow controls. Converts the QG7 lane-nondeterminism lesson into a measured map. cite fleet-triage PR #1.
 - [ ] **QO10** (CPU ~30m, existing data): projection-ladder ablation for the QO1 oracle (raw state -> cv/v/gen -> cv -> gen) x random-stream vs later-generation holdout splits; pre-register BOTH directions (their L1>L0-under-shift inversion); gen-only >= cv under shift would mean oracle signal is partly REGIME — sharpens QO2. Spawned by fleet-triage projection-doctrine results (18:59Z).
 - RC-1b priority RAISED again (canons 16:28Z: quilt-llvm 1,127 input mutants 0% killed vs 76/76 tamper — the never-executed-branch fleet-wide instance).
 - [NOTE 19:1x] No CONTRADICT this sweep; INSTRUMENT-01 receipt artifact was untracked at booking (D-2 class, 2nd instance — committed this wake); repro result appended when it lands.
+- 23:1x CONDUCTOR slice (day-cron, SCOUT-16 per (A)-first rotation; GPU lane BUSY — live b1b_kink_head +
+  b1b runB + c1b playtest — nothing GPU fired, no repro due this slice; rides next wake). HEADLINE —
+  **fleet-triage 88e30b3 RETRACTS the projection-ladder ordering** (max-selection artifact over Kish
+  n_eff 1.48) — the premise SCOUT-11's QO10 cites is gone; QO10 amended-not-killed (both-direction
+  pre-reg survives). Their rule "no gap smaller than the spread is a finding" CORROBORATES our QG7
+  ensemble law — adopted into ST1-AUDIT. Also: pie-minimax #2 A1 receipt (nonlinear ~1.0, P1
+  FAIL-HIGH) SUPERSEDES FT-A1 (marked stale). TOOL: canons 22:27Z reseal-forgery 3rd instance →
+  spawned RC-4 (seal-chain). STEAL: pong-quilt #92 scaling-trajectory tool for our C1b lane.
+  CORROBORATE: jev-quilt 50th-wipe discipline (their net, no conflict with jeff-0.8b). Full text:
+  proposals/runs/SCOUT-16-fleet-push-2026-10-01-2311Z.md. Rotation next wake: book C1b/B1b verdicts
+  if landed, mandatory (C) repro of newest booking, then RC-4 (top cheap open item).
 
 ## SCOUT-10 SPAWNED ITEMS (2026-10-01 1811Z)
 - [ ] **RC-1b dead-branch census** (CPU ~45m): every runner a booked verdict depends on must have its gate-computation branches exercised by a committed test or the verified repro run (logtensor never-executed homing term; QG1c radians was a live instance). UNCOVERED gate branch on a BOOKED result = RED. Fold in pong #92 no-claim-marker-in-source pattern.
