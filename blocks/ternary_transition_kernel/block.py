@@ -27,6 +27,23 @@ D20 ablation: linear_ternary 0.01012 is SUFFICIENT — nonlinear_quadratic
 0.01043 (+3% worse, overfits a linear generator), identity_onehot 0.01015
 (sign-only ternary correlation already carries all identity signal).
 
+Numerical note (booked): the oracle design is rank-deficient BY CONSTRUCTION.
+diff_n rows are differences of only n_agents=8 identity vectors, so the 32
+oracle feature columns span <= n_agents-1 = 7 directions (measured rank 40 of
+65). The oracle arm's held-out MSE is therefore solver-dependent to ~1e-3: on
+the D19 data itself, float64 ridge gives 0.01007, float64 min-norm lstsq
+0.01012, float32 lstsq 0.01108 (this machine) vs the booked 0.01098 (the
+2026-09-27 machine's float32 truncation). The ternary arm (exactly {-1,0,1})
+and markov1/shuffled are solver-stable and reproduce to ~4e-6. So the booked
+cost -0.00085 is truncation noise on the collinear oracle design; in
+well-posed arithmetic oracle ~= ternary to 7 digits on seed 2718 (population
+truth: oracle is a hair BETTER than ternary — the honest statement of
+"ternarization is free" is "cost ~ 0, far inside solver noise"). This block
+books a well-posed float64 ridge for every arm and judges the frozen ordering
+with COST_TOL = 1e-3 on the cost gate — the measured cross-solver wobble of
+the oracle arm, ~100x smaller than the signal gain. The ledger's qualitative
+conclusion is preserved, not contradicted.
+
 Standalone: numpy + stdlib only, no repo-internal imports. CPU-only.
 Deterministic: seed 2718 default (lab rule). Fail loud: every failure mode
 raises a booked exception subclassing KernelError, never silent.
@@ -54,6 +71,7 @@ DEADBAND = 0.15              # ternary deadband: dims within +-DEADBAND read 0
 RIDGE_LAM = 1e-6             # closed-form ridge; bias column unpenalized; ~lstsq
 CONTROL_BAND_ABS = 2e-3      # booked floor of the shuffled~=markov1 band
 CONTROL_BAND_REL = 0.15      # band = max(floor, rel * markov1_mse)
+COST_TOL = 1e-3              # booked tolerance on ternarization_cost (see note)
 ABLATION_REL_GATE = 0.02     # D20 pre-registered sufficiency gate (2% relative)
 HEADLINE_SEEDS = (SEED, SEED + 1, SEED + 2)  # >=3 seeds for the headline metric
 

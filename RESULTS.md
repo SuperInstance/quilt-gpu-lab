@@ -4696,3 +4696,122 @@ Keeper verified comp0_results.json + guard receipt; lane booked its own entry. F
 - Free findings banked: (1) centroid-correlation routing saturated 1.0/1.0 — corpus gave the router a free pass, routing was never stress-tested; (2) LA triggers 17-19/seed, all to the SEMANTIC cell, net +2-3 items — independent reach wins where the expert is unsure; (3) dilution localized to counting (SINGLE 0.66 / FED 0.70 / LA 0.75).
 - COMPOSITE-1 spec (from lane + keeper): K≥4 regimes, blurred boundaries, capacity-starved board where JOINT visibly dilutes, LA second cell with DIFFERENT FEATURIZATION (true independent reach), per-regime primary gates, bootstrap CIs.
 - Receipt g7-wr-comp0-federation-1790896454 (0.939 Wh, beside resident 7B).
+
+
+## [DONE 15:14 B1b-KINK-HEAD Oct 1] is B1's value-fidelity deficit representational? — **KILL on the frozen claim** (no basis clears 1e-2 or 5e-2 at B1's 40-epoch budget); booked caveat: τ₂ is optimization-bound, and the ReLU basis buys +0.257 @1e-2 concentrated in saturation
+
+Lane B1b-KINK-HEAD. Follow-up to B1-DISTILL KILL. Pre-reg FROZEN before fire
+(`proposals/runs/B1b-kink-head.md`), seed 2718. Frame reused VERBATIM from B1
+(uniform-random reachable states, held out by whole trace; cross-check vs B1's
+`holdout_samples.npz` = `max|ΔX| = max|ΔY| = 0.0`). NO COMMIT.
+
+- **Verdict: KILL** — Gate A PASS needs mean ≥ 0.99 at BOTH τ₁=1e-2 and τ₂=5e-2
+  (std>0). Over seeds 2718/2719/2720: **(a) tanh** 0.6136±0.0783 / 0.8891±0.0351;
+  **(b) ReLU** 0.8701±0.0267 / 0.9192±0.0388; **(c) learned-kink hinge spline**
+  (26p, learned knots on `u=|b−p|`) 0.4684±0.2189 / 0.7659±0.0283.
+  1e-3 reported, not gated: 0.0991 / 0.2303 / 0.0920.
+- **Reproduction control PASS:** a control net trained with B1's exact recipe
+  reproduces B1's curve — 0.0586 / 0.6181 / 0.8731 vs B1's 0.0568 / 0.6163 /
+  0.8715 (max |Δ| = 0.0018).
+- **NEW per-region breakdown** (arm-independent, from law ground truth): holdout
+  n=90,930 = clamp 114 (0.13%) · deadzone 7,090 (7.80%) · **saturation 80,372
+  (88.39%)** · ramp 3,354 (3.69%). Headline: **clamp = 1.0000 for every arm at
+  every tolerance** (the deployed `clamp(p+raw,6,54)−p` convention hands the box
+  to the environment); **saturation is where the basis pays** — ReLU 0.9654 vs
+  tanh 0.6759 @1e-2 (+0.2895), i.e. the whole aggregate gain (0.8701 vs 0.6136);
+  **deadzone and ramp are unmoved by ANY basis at 40 epochs** (all < 0.50 at every
+  tolerance). Arm (c)'s deadzone is **flat 0.0276 at 1e-3/1e-2/5e-2 on all seeds**
+  = a stuck `b0` bias term (mine, booked as a parameterization+schedule defect,
+  not evidence against the kink basis).
+- **Gate B (h2h ≥600 games) NOT RUN** — the frozen rule is "only arms clearing
+  BOTH gates"; none did. Booked, not silently skipped.
+- **Mechanism note (why the KILL letter and the data disagree):** +0.257 @1e-2
+  from a piecewise-linear basis, localized entirely in saturation, says the basis
+  *does* matter; and τ₂=5e-2 is **optimization-bound** — B1's own 300-epoch tanh
+  control already cleared it at 0.9902 while every arm here used B1's 40-epoch
+  recipe. The prereg's KILL branch fired on the letter; the receipt records the
+  disagreement rather than glossing it.
+- **Controls (all PASS):** frame cross-check bit-exact (C4); pristine-vs-switch
+  law bit-identical on 4,000 states (C1); JS↔torch port per arm per side gated on
+  **float64-vs-float64** (the JS harness evaluates in float64, so this isolates
+  formula identity) with max|Δ| ≤ 4.2e-15 ≪ 1e-6 — the float32 line (1.3e-6…
+  2.5e-6) is reported alongside for transparency. Every state/label engine-emitted.
+- **⚠ ORCHESTRATION DEFECT (fleet, booked):** two independent B1b subagents were
+  dispatched concurrently into `results/b1b_kink/` with the same
+  `task_id`/`guard/`. The sibling lane (`experiments/b1b_kink_head.py`) self-paused,
+  published `results/b1b_kink/LANE-CLAIM.md`, and resumed there as sole writer —
+  **this receipt is deconflicted to `results/b1b_kink_runB/`** (booked deviation
+  from the frozen artifact path). Also booked (mine): the first fire crashed on
+  my own port-control broadcast bug and its **VOID** receipt is preserved at
+  `results/b1b_kink/guard/g7-wr-b1b-kink-head-1790896121.json`. No gate,
+  tolerance, frame, split, or arm changed between crash and re-fire.
+- **Receipt:** `g7-wr-b1b-kink-head-1790896473` — `g7-watt-receipt@1`, gate PASS,
+  validator exit 0, source measured. **3.0826 Wh (11,097.46 J), 190.50 GPU-s**,
+  $0.000709 @ $0.23/kWh. Preflight clean (1,338 MiB free ≥ 1024; max 76 °C ≤ 80).
+  **Co-tenancy:** the 7B ollama seat held the card throughout + a sibling B1b lane
+  after 15:10; peak VRAM **78.4 MB** (ceiling 1,500 MB). Elapsed 232.6 s.
+- Artifacts: `results/b1b_kink_runB/` (`result.json`, `agreement.json`,
+  `regions.json`, `controls.json`, `run_config.json`, `traces_meta.json`,
+  `holdout_samples.npz`, 12 model files, `guard/`, `_crashed-1508-attempt/`,
+  `RESULTS-ENTRY.md`). Code: `experiments/b1b_kink.py`,
+  `experiments/b1b_kink_engine.mjs`.
+- **Next:** 300 epochs on arm (b) with deadzone/ramp as *separate* gates; arm (c)
+  re-parameterized with `b0` pinned at 0 and knots initialized at the law's own
+  kink loci (1.5, s+1.5); prefer per-region gates to one pooled gate (saturation
+  is 88% of the holdout and can hide ramp).
+
+## [DONE 15:4x EST-FREEZE Oct 1] D2 determinacy estimator — BUILD ≥3, cross-validate: FROZEN-V1 = NONE (H5 must be re-derived); the encoder, not the formula, was the blocker
+
+Lane EST-FREEZE (deepseek-v4-flash, subagent; CPU-only, no GPU/guard/twins). Prereg
+`proposals/runs/EST-freeze.md` frozen before any run. Six independent estimators
+(`results/est_freeze/estimators.py`, one interface `score(records,spec,est,weight,seed,nperm)->[0,1]`:
+E0 plug-in H+Miller-Madow = the prereg formula; E1 excess mode-agreement; E2 effective-alphabet/
+coverage-width; E3 permutation-exact normalized-MI bias-corrected; E4 split-half TV; E5 purity
+Wilson-LB), cross-validated on identical material (`results/d2_build/{mini,fb}_traces.json`).
+
+- **Reproduced the two-build disagreement exactly (E0, different channels):** build B `salLevel→fire`
+  real 0.4455/sto 0.4693; build B `salx→fire` sto 0.7227/real 0.9699; build A `(salx,vision-window)→fire`
+  real 1.0000. Same estimator math — **the divergence is the input encoder, not the measure.**
+  fire|full-channel is a pure function (E0–E3/E5 = 1.000, spread 0.000); fire|salience is not
+  (rule-purity 0.833). Build A was right to use the declared sheet channel; build B's instability
+  was an undeclared, lossy projection.
+- **Estimator × test (frozen C1–C5):** atoms-exact / seed-spread / |bias|@O2 / stationary-spread /
+  in-scope C3 / C4 range — E0 1.000/0.000/**0.049**/**0.065**/0-6/0.648 (passes all but C3);
+  E3 1.000/5e-4/**0.049**/**0.039**/0-6/0.693 (passes all but C3); E1 0.271 bias ✗; E2 0.318 range ✗;
+  E4 0.998 atoms ✗, 0.564 bias ✗; E5 0.405 bias ✗.
+- **FROZEN-V1 = NONE**, because **C3 (spread ≤0.15 across op/uni/degenerate) is unsatisfiable for all
+  six** on the in-scope sockets. The stationary-truth synthetic control proves why: with true
+  determinacy held identical across the three input distributions, the good estimators contribute
+  ≤0.04 spread (E3 0.003–0.039) — so the real spread is **genuine socket input-distribution
+  sensitivity, not estimator bias**. H5 conflates the two.
+- **Consequences:** H6 is fine with the encoder frozen (reflex 1.000 − episodic 0.352 = 0.648 ≥ 0.5;
+  build B's 0.118 was pure encoder artifact). H5 must be re-derived (gate on operational distribution;
+  report per-socket spread as a datum with the synthetic floor subtracted; keep degenerate as an F4
+  diagnostic). **Recommendation: v1 adopts E3** (smallest stationary instability + smallest |bias|@O2,
+  exact atoms, interface-identical; E0 close second) and **freezes declared encoders** — the actual
+  v1 blocker fix.
+- Artifacts: `proposals/runs/EST-freeze.md`, `results/est_freeze/{estimators.py, crossval.py,
+  analysis2.py, est_freeze_crossval.json, est_freeze_pass2.json, README.md}`. No GPU, no receipt
+  required. **Not committed (lane rule).**
+
+- **Reconciliation (keeper commit 3805671, 15:11:32):** that commit books
+  "B1b-KINK-HEAD: KEEP 6/12 … learned kink 0.9991 < tanh 0.9998 @5e-2" — a
+  **300-epoch** reading, not a contradiction of this lane's 40-epoch KILL but a
+  different budget of the same question. Both agree the learned-kink head never
+  beats tanh (mine 0.7659 < 0.8891; theirs 0.9991 < 0.9998), so kink-precision
+  as a *win* is falsified either way. **Verifier note: those numbers have no
+  artifact anywhere in the tree** (the only B1b `result.json` on disk is
+  `results/b1b_kink_runB/`) — they need a run dir or a restatement. The 15:11
+  commit also captured this lane's runB mid-flight and archived the crashed
+  first fire to `_archive/b1b_kink_attemptB_void-20261001/`.
+
+## [KEEPER FOLD 15:2x EST-FREEZE Oct 1] the D2 A/B disagreement was the ENCODER, not the estimator — H6 unblocked (0.648 PASS), H5 re-derived, measure pair frozen (E3 primary / E0 reserve), v1 GO with declared encoders
+
+Keeper verified artifacts. Fold notes (Casey directive: "try different ways" → 6 estimators, one interface, cross-validated):
+- **Disagreement reproduced exactly**: build B salLevel→fire 0.4455/0.4693, salx→fire 0.7227/0.9699; build A (salx, vision-window)→fire 1.0000. Same math, different encoder path. fire|full-channel is a pure function (spread 0.000); fire|salience is not (purity 0.833).
+- **FROZEN-V1 = NONE, honestly** — C3 (≤0.15 spread) unsatisfiable for ALL SIX on real sockets. But the stationary-truth synthetic control (true determinacy identical across distributions) shows good estimators contribute ≤0.04 spread (E3: 0.003–0.039) ⇒ **the real spread is genuine socket input-distribution sensitivity — H5 as written conflated estimator bias with input sensitivity.** That's the prereg bug the shootout found.
+- **Measure pair frozen**: E3 perm-exact norm-MI primary (smallest stationary instability 0.039 + bias 0.049, exact atoms, interface-identical), E0 plug-in H+Miller-Madow reserve (original prereg formula, close second).
+- **H6 UNBLOCKED**: with declared frozen encoders, reflex 1.000 − episodic 0.352 = 0.648 ≥ 0.5. Build B's 0.118 was a pure encoder artifact (salience path).
+- **H5 re-derivation (amendment)**: gate on operational distribution; report per-socket spread as a DATUM with the synthetic floor subtracted; keep degenerate input as an F4 diagnostic.
+- All three D2-V1 prerequisites now met/specced: socket channels frozen (build A) + reflex twin target fix (build A) + declared frozen encoders (EST-FREEZE).
+- CPU-only, no GPU receipt required. Artifacts: results/est_freeze/ (6 estimators + crossval + pass2 + README), proposals/runs/EST-freeze.md.
