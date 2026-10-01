@@ -3605,3 +3605,31 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
 - R3 (exploratory, no gate) ran lighter than frozen: single 20s idle point, torch add_ elementwise rather than a cupy kernel, ~8× longer burst than the standard 30ms. The kernel-agnostic claim rides on this leg — treat as indicative until the A4/D3 Determinism Lab sweeps it properly.
 - hot baseline uses median-of-5 (matmul) vs min-of-3 (elementwise) — inconsistent reference convention; both are baselines only (calibrated gates read R1/R2). Future bench runs use median everywhere.
 - Launch-drain backlog flagged (zcode) as the real wall-clock hazard for GPU timing here; bench.py's sync-then-time pattern already avoids it.
+
+## [DONE 12:1x CPU Oct 1] DAY-CONDUCTOR slice: SCOUT-12 fresh-push sweep + FT-A1 mandatory repro PASS
+- **(A) SCOUT (SuperInstance pushes last 48h, read-only):** wave of merges ~20:05-20:08Z (fleet-triage PR#2
+  quilt-family census digest, 244 repos; canons PR#4 scout-gems + PR#5 referral-resolver; quilt-dba PR#1
+  predictive-paddle referral; quilt-tournament PR#1 "all 25 LINE_OOR in the quilt family live here" — none
+  ours; fleet-triage PR#3 OPEN referral doc re quilt-Kuramoto salvaged-archive, 253 FILE_MISSING independently
+  cross-checking their own docs/MISSING.md). Classifications:
+  - **CORROBORATE — quilt-tools edge14** ("qe-eproc-witness -> ds-esign-drift VERIFIED=1.0 ... **the merge
+    outran the booking**"): fleet-wide 4th independent witness of our D-2/dirty-tree class. Our RC-3
+    sealer + tracked-artifact-at-seal ask is now corroborated three times over.
+  - **TOOL — fleet-triage resolver AMBIGUOUS taxonomy** (PR#3: 264 bare-basename citations multi-repo
+    ambiguous, 8/8 spot-verified; basename-pinning doc lint). Spawned **RP-1** (apply the taxonomy as a
+    lint over OUR receipts' repo citations — we already do repo-name citations since RECEIPT-CITE; this
+    checks for ambiguous bare basenames).
+  - **CHECK — jev-quilt round 48 wipe active** (20:05Z r002 mean_p=0.9020, q10 +0.26 drift flagged; 19:04Z
+    "mean_p 0.7620 lucky draw n=5"). Their lane exhibits round-to-round drift; our QC-JEV pin (p_true
+    0.9606/0.0243) was a single-round draw on jeff-0.8b. Spawned **QC-JEV3** (drift re-probe, cheap).
+  - No CONTRADICT this sweep; our repo not flagged by the 244-repo census (LINE_OOR all in quilt-tournament).
+- **(C) MANDATORY REPRO — FT-A1: PASS.** Committed runner (2978159) re-run with elephant-gpu python, ref
+  copy saved first (sha 74ff62aa…), output diffed: every scored value byte-identical (top1_global 0.9996
+  x3, top1_composed 1.0 x3, composed_test_n 519/557/517, final_train_loss 1e-4, steps_run 4000 x3);
+  ONLY train_secs differ (4.2-4.5s vs committed 10.3-12.7s — timing fields, not measurements). Honest
+  note: byte-identity of the whole file is impossible by construction (embedded wall-clocks); verdict +
+  all gates reproduce exactly. Committed artifact restored via git checkout after the run (runner
+  hardcodes absolute output path — 4th instance of the RC-1 hardcoded-OUT class).
+- Manifest re-sealed after ledger change. No GPU queue item fired this slice (repro + scout timebox);
+  next wake per rotation: GPU item (QG4 phase diagram or QG1d recon) or the cheap CPU pins (RP-1,
+  QC-JEV3, DEGENERATE-gate).

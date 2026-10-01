@@ -868,3 +868,15 @@ other agents are feeding us; keep the handshake lane warm.
   now has 7 comments — lane moved, Casey item likely retired, not acted. Re-seal used --allow-dirty
   (foreign farm-lane files, PW-1 precedent). Spawned: RC-1b, JC-1. Rotation next wake: cheap CPU items
   RC-1b or JC-1, or GPU QG1d p_target rebuild / QG4 phase diagram.
+
+## DAY-CONDUCTOR 12:1x Oct 1 — SCOUT-12 fresh-push sweep + FT-A1 repro
+- [DONE 12:1x] SCOUT-12 (fresh pushes 19:0x-20:08Z): CORROBORATE quilt-tools edge14 "merge outran the
+  booking" (4th D-2 witness); TOOL fleet-triage resolver AMBIGUOUS basename lint -> RP-1; CHECK jev-quilt
+  round-48 drift flags -> QC-JEV3; census of 244 repos does NOT flag quilt-gpu-lab. No CONTRADICT.
+- [DONE 12:1x] (C) FT-A1 mandatory repro PASS (scored values byte-identical, only train_secs differ;
+  committed artifact restored; 4th hardcoded-OUT instance noted in RC-1 spec).
+- [ ] **RP-1** (CPU ~30m): receipt-citation lint per fleet-triage resolver AMBIGUOUS taxonomy — flag bare
+  basename repo refs in receipts/docs; gate: zero ambiguous refs at sealed HEAD or explicit waiver.
+- [ ] **QC-JEV3** (CPU ~5m, before any DECIDE-2 work): re-run the QC-JEV 4 probes on jeff-0.8b; GATE:
+  d_ptrue within 0.10 of the booked 0.936 AND p_true("2+2=4") > 0.90; failure => QC-JEV verdict is
+  round-sensitive, downgrade to drift-flagged (jev-quilt shows q10 +0.26 drift on their lane).
