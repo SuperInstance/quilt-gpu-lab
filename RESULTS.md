@@ -3248,3 +3248,30 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
 - P4 kill-branch honored: P1's ordered degradation (WIN > BLOCK > NON_LOCAL) did NOT hold — observed WIN 0.25 > NON_LOCAL 0.17 > BLOCK 0.027.
 - Deviation note (receipts doctrine): pre-reg frozen in the runner docstring before fire, but committed post-hoc alongside results — no separate commit-first push this time. Flagged here; next pre-regs go back to commit-first.
 - Runner `experiments/px1b_threat_locality.py`; results `results/px1b_threat_locality/results.json`. Cross-filed to SuperInstance/pie-minimax issue #1.
+
+## PX2 — patchwork harness + gardener loop + blind-control statistics (2026-09-30 16:4x-17:3x AKDT): BOOKED — CPU (live arm in flight)
+
+- Harness (px2_cells.py + px2_smoke.py): composed majority-vote(d3,d4)+format-gate **0.595** vs d3-alone 0.435 on the frozen 200-state eval (+0.16). Ollama cells wired, flag-gated OFF.
+- Gardener loop (px2_gardener.py): dry-run PASS — sanity cell 5/5, byte-identical determinism, drift control, BLOCK split every eval; 5% shadow no-ops logged sidecar-only (never shown to the gardener). **Blind-gardener 10-move control: 0.855** (found pinch+d6; BLOCK 0.976 vs linear's 0.022 — PX1b veto-cell prediction vindicated in the running system).
+- **Blind-control variance (budget-matched, serial 50-move runs): seeds 1/2/3 → 0.745 / 0.745 / 0.755 (mean 0.748, spread 0.010).** The blind walk has no ratchet — its endpoint is where the walk stopped, not best-seen. Seed-0's 0.855-at-10-moves was a lucky tail, not the control. **Adjudication bar for the live arm: beat ~0.75 endpoint AND receipt-direction audit >0.5.**
+- Live saga (fires 1-5, every abort fail-loud, every fix receipt-driven): (1) GLM-5.3 thinking ate max_tokens 400 → empty content → abstain cascade; (2) `thinking: disabled` honored on easy moves but hard wiring moves trigger adaptive thinking that ignores the flag (17k-char reasoning, finish_reason=length) → cap 16384; (3) killed for the cap fix; (4) 120s ssl read timeout → 240s + transport failures become receipted abstains + one clean same-prompt retry (no outcome info seen); (5) in flight. ZAI open-platform key had no balance (429/1113); key is the CODING-plan key — pre-reg intact (GLM-5.3 via api.z.ai/api/coding/paas/v4).
+- Infra lesson: parallel same-second launches collide on timestamped receipts filenames (three seeds, one file) — serial launches or sub-second suffixes.
+
+## PX3 — selectlib judge distillation (2026-09-30 17:1x-17:3x AKDT): BOOKED — INCONCLUSIVE (guard-fired) + mechanism discovery
+
+- 576/576 jev-1.13.0 calls, 0 errors, digest `0x29ebeffdce727a44`; instrument byte-identical to run_judge's ask(); 5/5 controls fired on both fields.
+- **Reproduction vs JUDGE-RUN.txt: harness exact, judge drifted.** Noise+oracle MAEs reproduce bit-exactly on both fields; BLIND_SPLIT judge deltas drifted in magnitude only (−0.0110/−0.0039/−0.0151 vs −0.0052/−0.0050/−0.0111, direction holds). Second finding: stored UNIFORM corr −0.184 is irreproducible (fresh −0.156) on an offline-deterministic quantity → that stored line predates the final fields.py.
+- Evals: within-SPLIT 0.9583 (F1 0.50/0.98, only 3 correct-class states); cross-field split→uniform **0.9167 [0.854, 0.969]** — lands in the WIN zone, but uniform labels are 96/96 `needs_fix` (single-class) → frozen degeneracy guard caps the ruling at **INCONCLUSIVE**. Judge duplicate-triple consistency 1.0 (drift is cross-run, not within-run).
+- **Mechanism discovery: the judge is ~a constant function on both blind fields** (93/96 and 96/96 needs_fix). That is WHY the stored result says judge ≈ noise — a nearly-constant label function carries no per-cell structural signal for any student to distill. The 3 `correct` outliers on SPLIT are the only structure; the student found 2.
+- Consequence for the typesafe/judgment-cell lane: jev's threshold/bias on scene-format prompts needs calibration before it is used as a selector anywhere; feeds quilt-gpu-lab/docs/typesafe-judgment-cells.md.
+- Pre-reg 0b5b88d (frozen, with degeneracy guard) → instrument ee99135 → receipts 62f256a → result f8c82e3. Key-name correction found by verification: keyfile line is TYPESAFE_AI_KEY.
+
+## PX5 — cell-signature map: routing structure BETWEEN cells (2026-09-30 17:2x AKDT): BOOKED — EXPLORATORY_MAP
+
+- Pre-reg FROZEN commit-first (ecc8288) before any scoring. Instrument: per-state 6-bit tree signature (d1..d6 top1-in-optimal) × pinch axis (fired-correct/wrong/abstain) × px1b class, over the full 36,073-state test split, terrain digest asserted.
+- **Only 15 unique signatures exist** (of 64 possible) — the cells' success patterns are heavily structured, not noise.
+- **The headline asymmetry: MI(signature → composition-correct) = 0.5955 bits vs MI(signature → class) = 0.1212 bits.** WHO-succeeds-WHERE strongly predicts whether the composition gets the state, and barely predicts the WIN/BLOCK/NON_LOCAL taxonomy — the routing surface is nearly orthogonal to the threat-class vocabulary. Candidate NEW latent taxonomy, discovered by the instrument, not authored.
+- **Class-blind failure basin: 7,895 states (21.9%) are all-wrong for every tree AND pinch**, spread evenly across WIN/BLOCK/NON_LOCAL (2812/2392/2691) — a systematic hole no current class explains. All-correct: 9,470 (26.3%) — reflex-compile candidates.
+- Router ceiling: any-cell-correct 0.8698 vs composition 0.7437 → **+12.6pts headroom** for a signature-conditional router cell (feeds CM1 r4+ / superinstance-api reflex).
+- Pinch pre-empts 72.5% of the space (66.35% correct / 6.15% wrong), abstains 27.5%.
+- Runner `experiments/px5_disagreement_map.py`; results `results/px5_disagreement/px5_map.json`.
