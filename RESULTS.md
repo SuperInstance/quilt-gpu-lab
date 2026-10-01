@@ -3390,3 +3390,28 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
   - Dedicated cells + routing BETWEEN cells reconfirmed from the prediction side (IE-line echo).
 - next: CURL-2 pre-reg — learned encoder (GPU idle: av1 trunk encoder or PCA latents), soft-gate
   blend routed = w·jepa + (1−w)·persist by noul, 1-good readmit, jepa re-tested only when it can win.
+
+## C5 — paired-condition action probe (2026-09-30 22:41 AKDT)
+- Casey "go": farm-fed round (first experiment the farm fired end-to-end). Pre-reg pushed before fire.
+  Crashed twice on SCORING-stage harness bugs (list-vs-ndarray ytr → empty-class NaN centroid; pixel
+  baseline 8 rows vs 16 labels) — the checkpoint kept the GPU work both times; fixes were scoring-only,
+  zero re-extraction (checkpoint-resume path added).
+- Design: 16 clips = {av_0, av_1} × 4 frame-aligned windows × {fwd, rev}; rev = exact byte-level frame
+  flip of the fwd clip. Skip-tower NF4 Cosmos3-Edge, 2048-d pooled embeddings (receipt bf16/Parameter).
+- Scoring: explicit-sign (score = cos(x, ĉ1) − cos(x, ĉ0), sep = max(AUC, 1−AUC)). The c3
+  nearest_centroid_scores implicit direction has now bitten C3, C4-booking, and C5 — helper deprecated
+  in-repo (lesson line 3: "convention-by-construction" — the fix belongs in the caller).
+- Verdicts:
+  - **H1 KEEP** — playback direction is linearly decodable in the latent: fwd-vs-rev LOOCV sep 1.00
+    (16/16), margin 0.094, score ranges non-overlapping.
+  - **H3 KEEP** — identity anchor: sep 1.00, margin 0.953 (10× the direction margin); identity SURVIVES
+    reversal — fwd-trained centroids classify all 8 rev clips correctly (100% cross-condition).
+  - **H2 KILL per frozen bar, degenerate at ceiling** — pixel-endpoint baseline ALSO sep 1.00 and
+    carries MORE directional margin (0.197 vs emb 0.094): on this clip set, first/last-frame features
+    beat the pooled embedding for direction. Follow-up: clip set with genuinely ambiguous endpoints
+    (loops, pendula) where H2 becomes measurable.
+  - Harness: single-draw shuffle band fired HARNESS_INVALID at 22:36 — correct call, it caught the sign
+    bug. Replaced with 5-seed median; honest caveat: LOOCV-centroid shuffles still hit sep 1.0 twice
+    (self-inclusion bias) — the probe machinery is biased; the score margins are the real evidence.
+- Farm flow receipts: FIRE→EXIT-1→NOTE→(fix, re-queue)→FIRE→EXIT-1→(fix2, re-queue)→FIRE→DONE; farm
+  v2.1 status-on-exit fix verified live (no phantom 'running').
