@@ -74,6 +74,14 @@ more than a copy to use, it's not grabbable yet.
   CLI `--path ck.json --info | --invalidate | --selftest`.
   SELFTEST receipt 2026-10-01: selftest OK + live save/resume/example + info.
 
+- **farm-queue-flip** — `tools/farm_queue_flip.py` — safe `farm/queue.json` entry
+  flipper: JSON validation, atomic write + archive copy, `--set-farm-fired`, `--note`,
+  `--list`, `--dry-run`, and the doctrine as a gate — experiments can't be armed
+  (`blocked` -> `queued`/`running`) unless their `prereg` is committed in git
+  (exit 2, refuses loudly). Stdlib-only.
+  `python tools/farm_queue_flip.py --id <id> --status queued [--note n] [--dry-run|--list]`
+  TEST receipt 2026-10-01: live flip on copy of real queue (gate pass), uncommitted-prereg refused rc=2, malformed JSON refused rc=1, queue stayed valid JSON.
+
 ### qcell_sim.py — exact small-circuit cell evaluator (GPU, batched)
 Batched statevector evaluator for qcell genomes (n<=12 qubits). Returns exact p(targets), balance,
 best_target, union, and optional shot samples with a sha256 receipt_id. One file, one job, cell-slot ready.
