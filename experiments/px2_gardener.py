@@ -338,7 +338,7 @@ def parse_live_move(content: str, registry: dict, composition: list[str]):
 
 
 def live_chat_move(prompt: str, endpoint: str, model: str, key_file: str,
-                   timeout_s: int = 120) -> tuple[str, dict]:
+                   timeout_s: int = 240) -> tuple[str, dict]:
     """One HTTP chat call. Key read at call time, Bearer header only, never logged.
     Returns (content, meta) — meta carries reasoning_len/finish/raw_head for abstain receipts."""
     key = read_zai_key(key_file)
@@ -365,6 +365,16 @@ def live_chat_move(prompt: str, endpoint: str, model: str, key_file: str,
         "raw_head": (msg.get("content") or "")[:300],
     }
     return str(msg.get("content", "")), meta
+
+
+def live_chat_move_safe(prompt: str, endpoint: str, model: str, key_file: str) -> tuple[str, dict]:
+    """Transport failures (timeout/HTTP/garbage body) become abstain-shaped receipts.
+    No outcome info has been seen, so the caller's retry-once path stays epistemically clean."""
+    try:
+        return live_chat_move(prompt, endpoint, model, key_file, timeout_s=240)
+    except (urllib.error.URLError, TimeoutError, OSError, json.JSONDecodeError) as e:
+        return "", {"reasoning_len": -1, "finish_reason": "transport_error",
+                    "usage": {}, "raw_head": f"transport: {type(e).__name__}: {e}"[:300]}
 
 
 # --------------------------------------------------------------------------
@@ -509,14 +519,14 @@ def run_session(args) -> dict:
             move = generate_blind_move(gardener_rng, registry, composition, visible_registry)
         else:
             prompt = render_live_prompt(composition, registry, history, args.prompt_context)
-            content, meta = live_chat_move(prompt, args.endpoint, args.model, args.key_file)
+            content, meta = live_chat_move_safe(prompt, args.endpoint, args.model, args.key_file)
             move, abstain_reason = parse_live_move(content, registry, composition)
             attempts = [{"content_head": meta["raw_head"], "reasoning_len": meta["reasoning_len"],
                          "finish_reason": meta["finish_reason"]}]
             if move is None:
                 # one same-prompt retry on unparseable — no outcome info has been seen,
                 # so the re-roll is epistemically clean; both raws logged.
-                content2, meta2 = live_chat_move(prompt, args.endpoint, args.model, args.key_file)
+                content2, meta2 = live_chat_move_safe(prompt, args.endpoint, args.model, args.key_file)
                 attempts.append({"content_head": meta2["raw_head"], "reasoning_len": meta2["reasoning_len"],
                                  "finish_reason": meta2["finish_reason"]})
                 move, abstain_reason = parse_live_move(content2, registry, composition)
