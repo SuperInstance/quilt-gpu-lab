@@ -3511,3 +3511,12 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
   RC-1/DEGENERATE-era convention not yet applied); verdict route through tools.verdict_gate not retrofitted
   (existing bookings stand per TRUNC-B convention).
 - Booking: this entry + runner + results committed together; manifest re-sealed after. QUEUE line backfilled.
+
+## [DONE 05:1x Oct 1] SCOUT-12 (day-conductor, non-GPU per (A)-first rotation): NEW repo chiaroscuro
+- 13 PRs in ~10h, sealed-pre-reg/receipt/R8-kill discipline — third independent witness of our doctrine.
+  #13 geometric-PN lane CLOSED (G2 PASS, H1-H4 FAIL, no iteration). #5/#6 JevGateV2 HOLD/CAST abstention
+  split INTEGRATE (+10pts degraded, parity clean, pins 6/6) — TOOL for QO2/QO6: we lack an explicit
+  receipted HOLD register distinct from permanent keep; spawned CH-1. #6 finding "vocabulary coverage is
+  the binding constraint" = 4th instance of the VP-1 class. CONTRADICT scan: none — JEV work is gate-side,
+  orthogonal to QC-JEV oracle discrimination; DECIDE-2 unthreatened. Full text:
+  proposals/runs/SCOUT-12-fleet-push-2026-10-01-1311Z.md. Rotation next wake: GPU (QG1d follow-up or QG4).
