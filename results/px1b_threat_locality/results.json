@@ -1,0 +1,252 @@
+{
+  "experiment": "PX1b threat-locality partition (real 180,361-state data)",
+  "device": "cpu (numpy + sklearn 1.9.0)",
+  "n_states": 180361,
+  "provenance_fnv1a64": "0xa0b08dfac4d13c57",
+  "class_sizes": {
+    "WIN": 109392,
+    "BLOCK": 29632,
+    "NON_LOCAL": 41337
+  },
+  "pre_registered": "P1-P4 in module docstring, frozen before run",
+  "per_class": {
+    "WIN": [
+      {
+        "n": 21922,
+        "linear": {
+          "top1": 0.2487,
+          "set_recall": 0.2562
+        },
+        "depth3": {
+          "top1": 0.5492,
+          "set_recall": 0.5345
+        },
+        "depth6": {
+          "top1": 0.8415,
+          "set_recall": 0.8232
+        },
+        "deep": {
+          "top1": 0.9998,
+          "set_recall": 0.9998
+        }
+      },
+      {
+        "n": 21747,
+        "linear": {
+          "top1": 0.2487,
+          "set_recall": 0.2529
+        },
+        "depth3": {
+          "top1": 0.542,
+          "set_recall": 0.5277
+        },
+        "depth6": {
+          "top1": 0.8376,
+          "set_recall": 0.8216
+        },
+        "deep": {
+          "top1": 0.9998,
+          "set_recall": 0.9998
+        }
+      },
+      {
+        "n": 21774,
+        "linear": {
+          "top1": 0.2682,
+          "set_recall": 0.273
+        },
+        "depth3": {
+          "top1": 0.5411,
+          "set_recall": 0.5268
+        },
+        "depth6": {
+          "top1": 0.8407,
+          "set_recall": 0.8239
+        },
+        "deep": {
+          "top1": 0.9998,
+          "set_recall": 0.9998
+        }
+      }
+    ],
+    "BLOCK": [
+      {
+        "n": 5924,
+        "linear": {
+          "top1": 0.0267,
+          "set_recall": 0.0262
+        },
+        "depth3": {
+          "top1": 0.2392,
+          "set_recall": 0.2357
+        },
+        "depth6": {
+          "top1": 0.5775,
+          "set_recall": 0.5702
+        },
+        "deep": {
+          "top1": 0.9965,
+          "set_recall": 0.9965
+        }
+      },
+      {
+        "n": 5987,
+        "linear": {
+          "top1": 0.0187,
+          "set_recall": 0.0202
+        },
+        "depth3": {
+          "top1": 0.2348,
+          "set_recall": 0.2333
+        },
+        "depth6": {
+          "top1": 0.5612,
+          "set_recall": 0.5558
+        },
+        "deep": {
+          "top1": 0.9987,
+          "set_recall": 0.9987
+        }
+      },
+      {
+        "n": 5960,
+        "linear": {
+          "top1": 0.0218,
+          "set_recall": 0.0251
+        },
+        "depth3": {
+          "top1": 0.2383,
+          "set_recall": 0.2345
+        },
+        "depth6": {
+          "top1": 0.5727,
+          "set_recall": 0.5661
+        },
+        "deep": {
+          "top1": 0.9973,
+          "set_recall": 0.9973
+        }
+      }
+    ],
+    "NON_LOCAL": [
+      {
+        "n": 8227,
+        "linear": {
+          "top1": 0.1709,
+          "set_recall": 0.1707
+        },
+        "depth3": {
+          "top1": 0.4945,
+          "set_recall": 0.4034
+        },
+        "depth6": {
+          "top1": 0.6383,
+          "set_recall": 0.5589
+        },
+        "deep": {
+          "top1": 0.9965,
+          "set_recall": 0.9937
+        }
+      },
+      {
+        "n": 8339,
+        "linear": {
+          "top1": 0.1772,
+          "set_recall": 0.1669
+        },
+        "depth3": {
+          "top1": 0.4915,
+          "set_recall": 0.3987
+        },
+        "depth6": {
+          "top1": 0.6369,
+          "set_recall": 0.5619
+        },
+        "deep": {
+          "top1": 0.9968,
+          "set_recall": 0.9931
+        }
+      },
+      {
+        "n": 8339,
+        "linear": {
+          "top1": 0.1704,
+          "set_recall": 0.1658
+        },
+        "depth3": {
+          "top1": 0.4851,
+          "set_recall": 0.3964
+        },
+        "depth6": {
+          "top1": 0.6273,
+          "set_recall": 0.551
+        },
+        "deep": {
+          "top1": 0.996,
+          "set_recall": 0.9931
+        }
+      }
+    ]
+  },
+  "summary_top1_by_class": {
+    "WIN": {
+      "linear": {
+        "top1_mean": 0.2552,
+        "top1_std": 0.0092
+      },
+      "depth3": {
+        "top1_mean": 0.5441,
+        "top1_std": 0.0036
+      },
+      "depth6": {
+        "top1_mean": 0.8399,
+        "top1_std": 0.0017
+      },
+      "deep": {
+        "top1_mean": 0.9998,
+        "top1_std": 0.0
+      }
+    },
+    "BLOCK": {
+      "linear": {
+        "top1_mean": 0.0224,
+        "top1_std": 0.0033
+      },
+      "depth3": {
+        "top1_mean": 0.2374,
+        "top1_std": 0.0019
+      },
+      "depth6": {
+        "top1_mean": 0.5705,
+        "top1_std": 0.0068
+      },
+      "deep": {
+        "top1_mean": 0.9975,
+        "top1_std": 0.0009
+      }
+    },
+    "NON_LOCAL": {
+      "linear": {
+        "top1_mean": 0.1728,
+        "top1_std": 0.0031
+      },
+      "depth3": {
+        "top1_mean": 0.4904,
+        "top1_std": 0.0039
+      },
+      "depth6": {
+        "top1_mean": 0.6342,
+        "top1_std": 0.0049
+      },
+      "deep": {
+        "top1_mean": 0.9964,
+        "top1_std": 0.0003
+      }
+    }
+  },
+  "branch_rulings": [
+    "P1 NOT CONFIRMED as ordered: linear per class = {'WIN': 0.2552, 'BLOCK': 0.0224, 'NON_LOCAL': 0.1728}. P4 kill branch engaged.",
+    "P2: d3 per class = {'WIN': 0.5441, 'BLOCK': 0.2374, 'NON_LOCAL': 0.4904}; deep per class = {'WIN': 0.9998, 'BLOCK': 0.9975, 'NON_LOCAL': 0.9964}.",
+    "P3: NON_LOCAL fraction = 0.229 (41337 states)."
+  ]
+}
