@@ -4345,3 +4345,27 @@ a post-hoc goalpost move — and it did **not** rescue the local arm.
   and the seat unloaded between replays; (b) test `qwen2.5:7b-instruct-q4_K_M` (G1b's byte-identical seat)
   and schema-constrained decoding (ollama `format: json` / grammar) against the >= 0.95 gate; (c) price the
   cloud arm per 1k envelopes — it already holds the contract at 30/30.
+
+## DAY SLICE 14:1x (day-conductor) — SCOUT-9 sweep + (C) static audit of XP-C; manifest RED found
+- **(A) SCOUT-9** (full text proposals/runs/SCOUT-9-fleet-push-2026-10-01-2211Z.md): HEADLINE — **pie-minimax PR #2
+  independently replicates OUR A1-PIE KILL-of-prediction** (their MLP composed 1.000 / linear 0.1807 exact repro, CV
+  0.980 held-out; explicit cross-ref of quilt-gpu-lab 2978159). Strongest corroborate of the day; magnitude caveat
+  booked (1.000 vs our 0.9643 — different seeds, same conclusion, both far past P1). New repos: quilt-edge-lab (Wave-1
+  receipts; STEAL: vendored-pin drift-tripwire + P1-sealed-FAIL-kept-sealed doctrine) and cot-quilt-lab (the direct
+  XP-C seam consumer — XPC-W watch item: check their pushes before proposing any XP-C2 serialized-seat re-run).
+  Projectionist = Casey's pocket-cinema app pushes, no signal. Spawned: EDGE-1, XPC-W (watch), PIM-1 (docs-only
+  citation close-the-loop). No CONTRADICT. GPU lane occupied all slice by the live c1_playtest run (PID 1823912,
+  started 14:09, --budget-s 1500; foreign-live, not touched).
+- **(C) XP-C reproduction check — STATIC AUDIT ONLY, honestly scoped.** A behavioral re-fire is non-verifying by the
+  booking's own KILL finding (local seat not byte-reproducible at temp0+seed; co-tenancy serving-window flake), and
+  the GPU lane is busy. Static audit PASSES the booking: committed xp_c_results.json gates re-read consistent with the
+  booked text (A refusal 20/20 PASS; B byte_identical FALSE = FAIL; C local_rate 0.9333 < 0.95 FAIL; cloud 30/30
+  registered). **Provenance gap booked (RC-1 family, XP-C instance): xp_c_results.json embeds NO runner_sha256/args**
+  (artifacts.code names the runner but nothing hash-binds it; sha256 of committed experiments/xp_c_envelope.py =
+  420c37c1… recorded here for the future seal).
+- **FAIL-LOUD: manifest is RED — test_receipts test_manifest_matches_working_tree FAILS.** RESULTS.md drifted from the
+  sealed digest (sealed 6d3a1162… vs on-disk 80f8b958…): the XP-C-era bookings landed WITHOUT a re-seal. Re-seal is
+  BLOCKED right now: the live c1_playtest run keeps the tree dirty (untracked experiments + results streaming) and the
+  sealer refuses dirty sealed paths by design. Per foreign-live precedent (PW-1), the live run is not touched —
+  **seal deferred to the first wake after c1_playtest completes; until then the manifest is knowingly stale and this
+  entry is the honest drift marker.** This is the D-2 silent-edit class caught by the test before it could hide.
