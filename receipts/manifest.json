@@ -1,6 +1,6 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-01T03:13:19.989838+00:00",
+  "generated_at": "2026-10-01T03:26:04.596227+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
     "RESULTS.md": "0511dbab514db92d28bf33009d6404613c16b538a06e4d560091ff46c9a7a265",
@@ -170,7 +170,7 @@
     "proj_lattice.py": "52cec2eee97fd649442be0d857810465df3007220e1d736b48d4f8fd61d95a2c",
     "qcell_oracle.pt": "fed2c15fb506899fdc0fb86a7656d965c4b0aae8bceda28d11d6850aec201eed",
     "qcell_sim.py": "8c82d4bcc88370c01870238a006fa62bdb6fe571f5c8951bcdae6f3cf7920962",
-    "receipt_manifest.py": "6b3c8c5d0fb5310afba1d3cc1ac4467581ecb9459c13a62dcf88fa6818556114",
+    "receipt_manifest.py": "c71be759252b34ef1da57a3613215c577ce88fd9321f245e7e0f4f42a7280f4d",
     "systemone_proxy.py": "0fb09d57ab77c285ff39db7113c759bc334e17e9ce6b1cb98b76981b1ff66782",
     "transition_kernel.py": "8364ec79e6e866fbf78d4fbd80a3514bf14f11394c4048a1dff30889e7796443"
   }
