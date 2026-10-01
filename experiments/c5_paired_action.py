@@ -83,18 +83,22 @@ def make_clips(ffmpeg):
 
 
 def pixel_endpoint_features():
-    """H2 baseline: frame0 + frame15 downsampled 16x16 gray, flattened (512-d)."""
+    """H2 baseline: frame0 + frame15 downsampled 16x16 gray, flattened (512-d).
+    Built for ALL 16 clips (fwd AND rev — the rev clip's endpoints are the
+    swapped pair, which is exactly the directional signal a cheap feature
+    should be able to see). Row order matches clips/meta/y_cond exactly."""
     feats = []
     for vi in range(len(SOURCES)):
         for ci in range(N_PER):
-            data = open(os.path.join(CLIP_DIR, "av%d_%02d_fwd.rgb" % (vi, ci)), "rb").read()
-            v = []
-            for fi in (0, mk.FRAMES - 1):
-                f = np.frombuffer(data[fi * FS:(fi + 1) * FS], dtype=np.uint8)
-                g = f.reshape(mk.H, mk.W, 3).mean(axis=2)
-                small = g.reshape(16, 16, 16, 16).mean(axis=(1, 3)) / 255.0
-                v.append(small.ravel())
-            feats.append(np.concatenate(v))
+            for cond in ("fwd", "rev"):
+                data = open(os.path.join(CLIP_DIR, "av%d_%02d_%s.rgb" % (vi, ci, cond)), "rb").read()
+                v = []
+                for fi in (0, mk.FRAMES - 1):
+                    f = np.frombuffer(data[fi * FS:(fi + 1) * FS], dtype=np.uint8)
+                    g = f.reshape(mk.H, mk.W, 3).mean(axis=2)
+                    small = g.reshape(16, 16, 16, 16).mean(axis=(1, 3)) / 255.0
+                    v.append(small.ravel())
+                feats.append(np.concatenate(v))
     return np.array(feats)
 
 
