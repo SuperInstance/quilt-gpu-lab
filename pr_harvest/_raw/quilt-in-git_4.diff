@@ -1,0 +1,1088 @@
+diff --git a/.quilt/bin/quilt-cascade b/.quilt/bin/quilt-cascade
+index 82628f4..8e4ca03 100755
+--- a/.quilt/bin/quilt-cascade
++++ b/.quilt/bin/quilt-cascade
+@@ -1,47 +1,68 @@
+ #!/bin/sh
+ # quilt-cascade — recompute ENTANGLEMENT (dial 14) for every cell with links.
+ #
+-# For each non-comment line "<src> <weight>" in cells/<alias>/links:
+-#     candidate = (cells/<src>/dials/1) * weight
+-# (a missing source cell or dial counts as 0), then
+-#     cells/<alias>/dials/14 = max(candidates), rounded to 4 decimals via awk.
++# Focus-safe since w3c: reads the INDEX (`git show :cells/...`), never the
++# worktree, so the cascade still sees every cell's dial 1 even in a sparse
++# (quilt-focus) worktree where other cells' files are not materialized.
++# The wave-2 version globbed the worktree — under focus it silently saw
++# only the focused cell and zeroed the rest; that claim was tested, found
++# false, and this is the fix (pin P14).
+ #
+-# Deterministic: cells are visited in glob (sorted) order, one pass, each
+-# cell's value depends only on its links file and the sources' dial 1 (no
+-# transitive propagation). A value is rewritten only when numerically
+-# different, so a settled cascade leaves the tree untouched and generates no
+-# cascade commit.
++# Writes, per cell whose dial 14 numerically changes:
++#   materialized cell  -> worktree file + git add (a nudge you can see)
++#   sparse cell        -> git hash-object + update-index --cacheinfo
++#                         + update-index --skip-worktree (an index-only
++#                         nudge: the value rides the next commit's tree
++#                         without touching the focused worktree). The
++#                         skip-worktree re-apply matters — --cacheinfo
++#                         alone clears the bit and leaves a phantom
++#                         deletion in the worktree.
++#
++# Determinism unchanged: links enumerated from the index in sorted order,
++# one pass, dial 14 = max(src dial 1 × weight) over links lines, missing
++# sources count as 0, rewritten only when numerically different.
+ 
+ ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || exit 1
+ cd "$ROOT" || exit 1
+ 
+-for links in cells/*/links; do
+-  [ -f "$links" ] || continue
++for links in $(git ls-files -- 'cells/*/links' | sort); do
+   alias=${links#cells/}
+   alias=${alias%/links}
+ 
+-  new=$(awk '
++  new=$(git show ":$links" 2>/dev/null | awk '
+     /^[[:space:]]*#/ { next }        # comments
+     /^[[:space:]]*$/ { next }        # blank lines
+     NF >= 2 {
+       src = $1; w = $2 + 0
+       v = 0
+-      fn = "cells/" src "/dials/1"
+-      if ((getline line < fn) > 0) {
++      cmd = "git show :cells/" src "/dials/1 2>/dev/null"
++      if ((cmd | getline line) > 0) {
+         gsub(/^[[:space:]]+|[[:space:]]+$/, "", line)
+         v = line + 0
+       }
+-      close(fn)
++      close(cmd)
+       val = v * w
+       if (!seen || val > max) { max = val; seen = 1 }
+     }
+     END { if (!seen) max = 0; printf "%.4f", max }
+-  ' "$links")
++  ')
+ 
+-  cur=$(tr -d '[:space:]' < "cells/$alias/dials/14" 2>/dev/null)
++  cur=$(git show ":cells/$alias/dials/14" 2>/dev/null | tr -d '[:space:]')
+   cur=${cur:-0}
+   awk -v a="$cur" -v b="$new" 'BEGIN{exit !(a + 0 == b + 0)}' \
+-    || printf '%s\n' "$new" > "cells/$alias/dials/14"
++    || {
++      if git ls-files -v -- "$links" | grep -q '^H'; then
++        # cell materialized in this worktree — ordinary file nudge
++        mkdir -p "cells/$alias/dials"
++        printf '%s\n' "$new" > "cells/$alias/dials/14"
++        git add "cells/$alias/dials/14"
++      else
++        # sparse cell — stage the blob without disturbing the worktree
++        sha=$(printf '%s\n' "$new" | git hash-object -w --stdin)
++        git update-index --cacheinfo 100644,"$sha","cells/$alias/dials/14"
++        git update-index --skip-worktree "cells/$alias/dials/14"
++      fi
++    }
+ done
+ 
+ exit 0
+diff --git a/.quilt/bin/quilt-export b/.quilt/bin/quilt-export
+new file mode 100755
+index 0000000..0be6a29
+--- /dev/null
++++ b/.quilt/bin/quilt-export
+@@ -0,0 +1,46 @@
++#!/bin/sh
++# quilt-export <path.bundle> — write the whole quilt into one file.
++#
++#   git bundle create <path> HEAD <branch> [refs/quilt/* ...]
++#
++# A COMPLETE bundle (no prerequisites): the far side needs nothing but git
++# and the file — no remote, no network, no shared filesystem. The branch,
++# HEAD, and every refs/quilt/* ref travel inside; the journal
++# (.quilt/receipts/, watch.log) travels as ordinary committed content —
++# fold it in first (`git add .quilt && git commit`) and the far side can
++# verify its regenerated journal against what you actually observed. If
++# you don't, quilt-import simply regenerates the journal from history.
++#
++# This is the sneakernet/sync surface for agents that never share a
++# remote: export, hand the file over any medium, import.
++
++set -e
++
++[ $# -eq 1 ] || { echo "usage: quilt-export <path.bundle>" >&2; exit 2; }
++OUT=$1
++
++ROOT=$(git rev-parse --show-toplevel 2>/dev/null) \
++  || { echo "quilt-export: not inside a git repository" >&2; exit 1; }
++cd "$ROOT"
++
++BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null) \
++  || { echo "quilt-export: detached HEAD, refusing to guess the branch" >&2; exit 1; }
++
++REFS="HEAD refs/heads/$BRANCH"
++QREFS=$(git for-each-ref --format='%(refname)' refs/quilt/)
++[ -n "$QREFS" ] && REFS="$REFS $QREFS"
++
++if ! git diff --quiet HEAD -- .quilt 2>/dev/null \
++   || [ -n "$(git ls-files --others --exclude-standard -- .quilt)" ]; then
++  echo "quilt-export: note: journal has uncommitted state — 'git add .quilt && git commit' folds it in" >&2
++  echo "quilt-export: note: (import regenerates the journal from history either way)" >&2
++fi
++
++git bundle create "$OUT" $REFS >/dev/null
++git bundle verify "$OUT" >/dev/null 2>&1 \
++  || { echo "quilt-export: bundle failed verification: $OUT" >&2; exit 1; }
++
++NCOMMITS=$(git rev-list --count "$BRANCH")
++NQ=$(printf '%s\n' $QREFS | grep -c . || true)
++[ -z "$QREFS" ] && NQ=0
++echo "quilt: exported $BRANCH ($NCOMMITS commits, complete bundle) + $NQ refs/quilt/* -> $OUT"
+diff --git a/.quilt/bin/quilt-focus b/.quilt/bin/quilt-focus
+new file mode 100755
+index 0000000..160fb23
+--- /dev/null
++++ b/.quilt/bin/quilt-focus
+@@ -0,0 +1,50 @@
++#!/bin/sh
++# quilt-focus <alias> | --off — sparse-checkout ONE organ of the body.
++#
++#   .quilt/bin/quilt-focus a      worktree holds ONLY cells/a/ and .quilt/
++#   .quilt/bin/quilt-focus --off  full worktree again
++#
++# An agent working one organ should not have to hold the whole body: focus
++# materializes just the target cell plus the runtime (.quilt/ holds the
++# hooks, receipts and watch.log the agent still needs). Nothing is deleted
++# — sparse-checkout only flips skip-worktree bits in the index; every
++# other cell's files stay in the index and in history.
++#
++# The received guarantee (documented, pinned by P14):
++#   * a focused agent can still read and write its OWN cell's dials —
++#     they are materialized;
++#   * the cascade still sees EVERY cell's dial values, because
++#     quilt-cascade reads the index (`git show :cells/...`), not the
++#     worktree. Cascade updates to out-of-focus cells land in the index
++#     (update-index --cacheinfo) and ride the next commit — visible via
++#     `git ls-files -s` + `git cat-file`, no unfocus needed.
++#   (The wave-2 cascade DID read the worktree and would have gone blind
++#   under focus; the claim was checked, found false, and the hook fixed.)
++#
++# Focus from a clean tree: git refuses to drop worktree files that carry
++# uncommitted changes, which is the safe failure.
++
++set -e
++
++ROOT=$(git rev-parse --show-toplevel 2>/dev/null) \
++  || { echo "quilt-focus: not inside a git repository" >&2; exit 1; }
++cd "$ROOT"
++
++if [ "${1:-}" = "--off" ]; then
++  git sparse-checkout disable
++  echo "quilt: focus off — full worktree restored"
++  exit 0
++fi
++
++[ $# -eq 1 ] || { echo "usage: quilt-focus <alias> | --off" >&2; exit 2; }
++alias=$1
++
++# the cell must exist in the index (any tracked file under cells/<alias>/)
++if [ -z "$(git ls-files -- "cells/$alias/")" ]; then
++  echo "quilt-focus: no such cell 'cells/$alias/' in the index" >&2
++  exit 1
++fi
++
++git sparse-checkout set --no-cone "/cells/$alias/" "/.quilt/"
++echo "quilt: focused on '$alias' — worktree holds cells/$alias/ + .quilt/ only"
++echo "quilt: index untouched (cascade reads it); quilt-focus --off restores the body"
+diff --git a/.quilt/bin/quilt-import b/.quilt/bin/quilt-import
+new file mode 100755
+index 0000000..7d7c9bc
+--- /dev/null
++++ b/.quilt/bin/quilt-import
+@@ -0,0 +1,86 @@
++#!/bin/sh
++# quilt-import <path.bundle> — land a bundle in THIS clone.
++#
++# Run it inside a fresh clone of the bundle (the documented flow):
++#
++#   git clone quilt.bundle far-side/ && cd far-side
++#   .quilt/bin/quilt-import ../quilt.bundle
++#
++# Steps:
++#   1. git bundle verify     — the file is intact and applies here
++#   2. git fetch refs/quilt/*  — a plain clone carries only heads; the
++#      quilt refs ride separately
++#   3. git checkout <branch>  — the branch the bundle's HEAD points at
++#   4. .quilt/bin/quilt-init  — hooks are local config; every clone
++#      re-arms them (wave-2 limit, unchanged)
++#   5. regenerate the journal from PURE history: walk every commit
++#      oldest-first; each non-cascade commit touching cells/ gets its
++#      receipt back (quilt-receipt <rev> — deterministic by design) and
++#      its watch line; then the result is verified byte-identical to the
++#      journal carried in the bundle (mismatch = exit 1). A journal that
++#      was never committed regenerates fresh instead — history is the
++#      only source of truth either way.
++
++set -e
++
++[ $# -eq 1 ] || { echo "usage: quilt-import <path.bundle>   (inside a clone of that bundle)" >&2; exit 2; }
++B=$1
++
++ROOT=$(git rev-parse --show-toplevel 2>/dev/null) \
++  || { echo "quilt-import: not inside a git repository" >&2; exit 1; }
++cd "$ROOT"
++
++git bundle verify "$B" >/dev/null 2>&1 \
++  || { echo "quilt-import: bundle failed verification: $B" >&2; exit 1; }
++
++# refs/quilt/* are not carried by a plain clone — fetch them explicitly
++if git bundle list-heads "$B" | awk '{print $2}' | grep -q '^refs/quilt/'; then
++  git fetch --quiet "$B" '+refs/quilt/*:refs/quilt/*'
++fi
++
++# land on the branch the bundle's HEAD points at
++HEADSHA=$(git bundle list-heads "$B" | awk '$2=="HEAD"{print $1}')
++BRANCH=$(git for-each-ref --format='%(refname:short) %(objectname)' refs/heads/ \
++         | awk -v s="$HEADSHA" '$2==s{print $1; exit}')
++BRANCH=${BRANCH:-main}
++CUR=$(git symbolic-ref --short HEAD 2>/dev/null || true)
++if [ "$CUR" != "$BRANCH" ]; then
++  git checkout -q "$BRANCH" 2>/dev/null \
++    || { echo "quilt-import: branch '$BRANCH' not present — clone the bundle first:" >&2
++         echo "       git clone $B <dir>" >&2; exit 1; }
++fi
++
++.quilt/bin/quilt-init >/dev/null
++
++# ---- regenerate the journal from history ----------------------------------
++: > .quilt/watch.log
++NTICKS=0
++for c in $(git rev-list --reverse HEAD); do
++  case "$(git log -1 --format=%s "$c")" in
++    "quilt: cascade after"*) continue ;;
++  esac
++  paths=$(git diff-tree --root --no-commit-id --name-only -r "$c" -- cells/)
++  [ -n "$paths" ] || continue
++  .quilt/bin/quilt-receipt "$c" >/dev/null
++  short=$(git rev-parse --short "$c")
++  cells=$(printf '%s\n' "$paths" | cut -d/ -f2 | sort -u | paste -sd, -)
++  printf 'tick %s %s %s\n' "$short" "$short" "$cells" >> .quilt/watch.log
++  NTICKS=$((NTICKS + 1))
++done
++
++# ---- verify against the carried journal ------------------------------------
++if git cat-file -e "HEAD:.quilt/watch.log" 2>/dev/null; then
++  bad=$(git status --porcelain -- .quilt/receipts .quilt/watch.log \
++        | grep -v '^??' || true)
++  if [ -n "$bad" ]; then
++    echo "quilt-import: journal mismatch — regenerated artifacts differ from carried history:" >&2
++    printf '%s\n' "$bad" >&2
++    exit 1
++  fi
++  echo "quilt: journal verified — regenerated receipts + watch.log byte-identical to the carried journal"
++else
++  echo "quilt: journal was not carried in history — regenerated $NTICKS ticks fresh (git add .quilt && git commit to fold it in)"
++fi
++
++NQ=$(git for-each-ref --format='%(refname)' refs/quilt/ | grep -c . || true)
++echo "quilt: imported $BRANCH + $NQ refs/quilt/* — hooks armed, $NTICKS ticks in the journal"
+diff --git a/.quilt/bin/quilt-init b/.quilt/bin/quilt-init
+index b7fbb5b..2379ed4 100755
+--- a/.quilt/bin/quilt-init
++++ b/.quilt/bin/quilt-init
+@@ -57,11 +57,19 @@ cat > .quilt/hooks/post-commit <<'QUILT_HOOK_EOF'
+ #
+ # For a commit that touches cells/:
+ #   1. .quilt/bin/quilt-receipt  writes .quilt/receipts/<short>.json
+-#   2. .quilt/bin/quilt-cascade  recomputes dial 14 of linked cells
+-#   3. if cascade changed dial files: git add cells/ and auto-commit
++#   2. .quilt/bin/quilt-cascade  recomputes dial 14 of linked cells (it
++#      reads and stages the INDEX, so it works under quilt-focus too)
++#   3. if the index now differs from HEAD under cells/: sweep any dirty
++#      materialized files (git add cells/) and auto-commit
+ #      "quilt: cascade after <short>" with --no-verify
+ #   4. append "tick <short> <short> <cells>" to .quilt/watch.log
+ #
++# Change detection is `git diff --cached HEAD -- cells/` — index vs HEAD,
++# never the worktree — so the cascade commit fires identically in a full
++# and in a sparse (focused) worktree. Out-of-focus cells are never swept
++# by the git add (sparse entries are skipped by design); their dial
++# updates are already staged by quilt-cascade itself.
++#
+ # Commits touching no cells/ path exit 0 silently, as do the hook's own
+ # "quilt: cascade after ..." commits (no recursion).
+ 
+@@ -81,8 +89,8 @@ CELLS=$(printf '%s\n' "$CELL_PATHS" | cut -d/ -f2 | sort -u | paste -sd, -)
+ .quilt/bin/quilt-receipt >/dev/null
+ .quilt/bin/quilt-cascade
+ 
+-if [ -n "$(git status --porcelain -- cells/)" ]; then
+-  git add cells/
++git add cells/ 2>/dev/null || true
++if ! git diff --cached --quiet HEAD -- cells/ 2>/dev/null; then
+   git commit --no-verify -qm "quilt: cascade after $SHORT" >/dev/null 2>&1
+ fi
+ 
+diff --git a/.quilt/bin/quilt-receipt b/.quilt/bin/quilt-receipt
+index 63433ca..c3e2cc5 100755
+--- a/.quilt/bin/quilt-receipt
++++ b/.quilt/bin/quilt-receipt
+@@ -1,11 +1,13 @@
+ #!/bin/sh
+-# quilt-receipt — write .quilt/receipts/<short>.json for HEAD.
++# quilt-receipt [REV] — write .quilt/receipts/<short>.json for REV (HEAD).
+ #
+ # Fields: commit (full hash), changed_cells (aliases under cells/ touched by
+-# HEAD), key_dials (per cell: obstruction = dial 1, freeze = dial 15, read
+-# from the committed tree), ts. The timestamp is the git commit time
++# the commit), key_dials (per cell: obstruction = dial 1, freeze = dial 15,
++# read from the committed tree), ts. The timestamp is the git commit time
+ # (`git log -1 --format=%ct`) — never wall clock — so receipts are
+-# deterministic and reproducible from history alone.
++# deterministic and reproducible from history alone: the same REV always
++# yields the same receipt bytes. quilt-import leans on that to regenerate
++# the whole journal on the far side of a bundle.
+ #
+ # Echoes the short hash on success (used by the post-commit hook).
+ 
+@@ -13,15 +15,16 @@ ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || exit 1
+ cd "$ROOT" || exit 1
+ mkdir -p .quilt/receipts
+ 
+-FULL=$(git rev-parse HEAD)
+-SHORT=$(git rev-parse --short HEAD)
+-TS=$(git log -1 --format=%ct HEAD)
+-CELLS=$(git diff-tree --root --no-commit-id --name-only -r HEAD -- cells/ \
++REV=${1:-HEAD}
++FULL=$(git rev-parse "$REV")
++SHORT=$(git rev-parse --short "$REV")
++TS=$(git log -1 --format=%ct "$REV")
++CELLS=$(git diff-tree --root --no-commit-id --name-only -r "$REV" -- cells/ \
+         | cut -d/ -f2 | sort -u)
+ 
+ # dial value from the committed tree, coerced to a number, 0 when absent
+ committed_dial() { # committed_dial <alias> <n>
+-  git show "HEAD:cells/$1/dials/$2" 2>/dev/null \
++  git show "$REV:cells/$1/dials/$2" 2>/dev/null \
+     | awk '{printf "%g", $1 + 0; found=1} END{if (!found) printf "0"}'
+ }
+ 
+diff --git a/.quilt/bin/quilt-tick b/.quilt/bin/quilt-tick
+index 296c821..b9a6852 100755
+--- a/.quilt/bin/quilt-tick
++++ b/.quilt/bin/quilt-tick
+@@ -21,6 +21,18 @@ awk -v v="$value" 'BEGIN{ if (v + 0 != v) exit 1 }' \
+ ROOT=$(git rev-parse --show-toplevel)
+ cd "$ROOT"
+ 
++# Focus guard: under quilt-focus, ticking a cell whose files are not
++# materialized would write into a hole the sparse worktree cannot see
++# (and git refuses to add such paths). The cell must be in focus — or the
++# focus off. Cells not yet in the index (brand new) are always allowed.
++if git config --get core.sparseCheckout >/dev/null 2>&1 \
++   && [ -n "$(git ls-files -- "cells/$alias/")" ] \
++   && [ -z "$(git ls-files -v -- "cells/$alias/" | grep '^H')" ]; then
++  echo "quilt-tick: cell '$alias' is not in focus (sparse worktree lacks its files)" >&2
++  echo "       .quilt/bin/quilt-focus $alias first, or quilt-focus --off" >&2
++  exit 1
++fi
++
+ mkdir -p "cells/$alias/dials"
+ printf '%s\n' "$value" > "cells/$alias/dials/$dial"
+ git add "cells/$alias/dials/$dial"
+diff --git a/.quilt/hooks/post-commit b/.quilt/hooks/post-commit
+index fbc33ce..a53f04d 100755
+--- a/.quilt/hooks/post-commit
++++ b/.quilt/hooks/post-commit
+@@ -3,11 +3,19 @@
+ #
+ # For a commit that touches cells/:
+ #   1. .quilt/bin/quilt-receipt  writes .quilt/receipts/<short>.json
+-#   2. .quilt/bin/quilt-cascade  recomputes dial 14 of linked cells
+-#   3. if cascade changed dial files: git add cells/ and auto-commit
++#   2. .quilt/bin/quilt-cascade  recomputes dial 14 of linked cells (it
++#      reads and stages the INDEX, so it works under quilt-focus too)
++#   3. if the index now differs from HEAD under cells/: sweep any dirty
++#      materialized files (git add cells/) and auto-commit
+ #      "quilt: cascade after <short>" with --no-verify
+ #   4. append "tick <short> <short> <cells>" to .quilt/watch.log
+ #
++# Change detection is `git diff --cached HEAD -- cells/` — index vs HEAD,
++# never the worktree — so the cascade commit fires identically in a full
++# and in a sparse (focused) worktree. Out-of-focus cells are never swept
++# by the git add (sparse entries are skipped by design); their dial
++# updates are already staged by quilt-cascade itself.
++#
+ # Commits touching no cells/ path exit 0 silently, as do the hook's own
+ # "quilt: cascade after ..." commits (no recursion).
+ 
+@@ -27,8 +35,8 @@ CELLS=$(printf '%s\n' "$CELL_PATHS" | cut -d/ -f2 | sort -u | paste -sd, -)
+ .quilt/bin/quilt-receipt >/dev/null
+ .quilt/bin/quilt-cascade
+ 
+-if [ -n "$(git status --porcelain -- cells/)" ]; then
+-  git add cells/
++git add cells/ 2>/dev/null || true
++if ! git diff --cached --quiet HEAD -- cells/ 2>/dev/null; then
+   git commit --no-verify -qm "quilt: cascade after $SHORT" >/dev/null 2>&1
+ fi
+ 
+diff --git a/README.md b/README.md
+index f7c12ae..08c3e60 100644
+--- a/README.md
++++ b/README.md
+@@ -17,11 +17,15 @@ cells/<alias>/body          the cell's content
+ cells/<alias>/links         optional; lines of "<src_alias> <weight>"
+ .quilt/bin/quilt-init       bootstrap (run once per clone)
+ .quilt/bin/quilt-tick       convenience: set one dial + commit
+-.quilt/bin/quilt-cascade    recompute dial 14 from links
++.quilt/bin/quilt-cascade    recompute dial 14 from links (reads the index)
+ .quilt/bin/quilt-receipt    write .quilt/receipts/<short>.json
++.quilt/bin/quilt-export     write the whole quilt to a git bundle (one file)
++.quilt/bin/quilt-import     land a bundle in a clone: refs + hooks + journal
++.quilt/bin/quilt-focus      sparse-checkout ONE cell + .quilt/ (--off undoes)
+ .quilt/hooks/               pre-commit, post-commit (generated by quilt-init)
+ .quilt/receipts/            one JSON receipt per tick commit
+ .quilt/watch.log            one "tick <short> <short> <cells>" line per tick
++demos/airgap.sh             narrated export → destroy → import round-trip
+ ```
+ 
+ ## Dial map
+@@ -75,23 +79,92 @@ Or with the helper: `.quilt/bin/quilt-tick auth 0 0.42`.
+   Commits touching no `cells/` path produce nothing — the journal stays
+   quiet.
+ 
++## Air-gap transport: bundles
++
++Two agents that never share a remote (or a network) still sync: the whole
++quilt — branch, `refs/quilt/*`, history — packs into one file, and the
++journal regenerates on the far side from history alone.
++
++```bash
++# near side
++git add .quilt && git commit -m "journal"   # fold the journal in (optional)
++.quilt/bin/quilt-export /usb/quilt.bundle   # complete bundle: no prereqs
++
++# ... carry the file across the air gap by any medium ...
++
++# far side
++git clone /usb/quilt.bundle far/ && cd far
++.quilt/bin/quilt-import /usb/quilt.bundle
++```
++
++`quilt-import` verifies the bundle, fetches `refs/quilt/*` (a plain clone
++carries only heads), checks out the bundled branch, re-runs `quilt-init`,
++then **regenerates** `.quilt/receipts/` and `watch.log` by walking every
++commit oldest-first and re-running the receipt logic — and verifies the
++result byte-identical to the journal carried inside the bundle. Receipts
++use commit time and tree state, never wall clock, so the journal is a pure
++function of history: same commits in, same journal out, on any machine.
++`demos/airgap.sh` tells the whole story — including deleting the original
++repo before importing (the bundle is the only surviving copy).
++
++A bundle is a snapshot, not a channel: it syncs one way, once. Two sides
++that keep ticking diverge and reconcile the ordinary git way (fetch,
++rebase, merge) — with the journal regenerated per side afterwards.
++
++## Focus: working one organ
++
++An agent working ONE organ should not hold the whole body:
++
++```bash
++.quilt/bin/quilt-focus auth    # worktree = cells/auth/ + .quilt/ only
++.quilt/bin/quilt-focus --off   # full body back, nothing lost
++```
++
++`quilt-focus` is sparse-checkout underneath: it flips skip-worktree bits in
++the index; no blob is ever deleted. **The received guarantee:** focus is
++worktree-only. A focused agent reads and writes its own cell's dials (they
++are materialized), and the cascade still sees EVERY cell's dial values,
++because `quilt-cascade` reads the **index** (`git show :cells/...`), not
++the worktree. Cascade updates to out-of-focus cells are staged straight
++into the index (`update-index --cacheinfo`) and ride the next commit —
++inspect them with `git ls-files -s cells/<alias>/dials/14` +
++`git cat-file -p <sha>`, no unfocus needed. (The wave-2 cascade did read
++the worktree and would have gone blind under focus — the claim was tested,
++found false, and the hook fixed; pin P14 holds it true.) `quilt-tick`
++refuses to tick a cell that is not in focus rather than writing into a
++hole the sparse worktree cannot see.
++
+ ## Honest limits
+ 
+ 1. **`core.hooksPath` is local config.** Hooks travel with the repo but are
+-   inert in a fresh clone; every clone must re-run `.quilt/bin/quilt-init`.
++   inert in a fresh clone; every clone must re-run `.quilt/bin/quilt-init`
++   (`quilt-import` does it for you).
+ 2. **Receipts use git commit time, not wall clock.** Deterministic, but a
+    rebased/amended history gets new receipt times for free.
+ 3. **Freeze is a convention enforced at pre-commit, not security.**
+    `git commit --no-verify` (and the cascade path) bypasses it.
+-4. **The cascade commit sweeps any dirty `cells/` files** that were left
+-   uncommitted when a tick lands.
++4. **The cascade commit sweeps any dirty materialized `cells/` files** that
++   were left uncommitted when a tick lands. Out-of-focus cells are never
++   swept — only the cascade's own index updates land for them.
+ 5. **`receipts/` and `watch.log` are working-tree artifacts** until someone
+    commits them; `git add .quilt && git commit` folds the journal in (such
+    commits are silent by design).
++6. **A bundle is a snapshot, not a channel.** One direction, one shot;
++   diverging sides reconcile with ordinary git, then regenerate journals.
++7. **Focus from a clean tree.** Git (rightly) refuses to drop worktree
++   files with uncommitted changes when focusing; commit or stash first.
++8. **Journal regeneration assumes stable short-hash abbreviations.**
++   Receipt filenames and watch lines use `git rev-parse --short`; at demo
++   scale both sides agree, but a repository large enough to lengthen
++   abbreviations would regenerate different (still valid) names.
+ 
+ ## Pins
+ 
+ `tests/pins_quiltgit.sh` — plain bash + git, no network, scratch repos under
+-`/tmp`. Six pins: receipt+watch on dial commit, freeze enforcement, cascade,
+-rewind, clone-needs-quilt-init, non-cell commits stay silent. Logs in
+-`pins/`.
++`/tmp`. Six wave-2 pins: receipt+watch on dial commit, freeze enforcement,
++cascade, rewind, clone-needs-quilt-init, non-cell commits stay silent.
++`tests/pins_w3c.sh` adds three wave-3c pins: P13 bundle air-gap round-trip
++(export, destroy the source, import, journal regenerates identically),
++P14 sparse focus (other cells' bodies absent from the worktree, yet a
++focused tick still cascades and the other cell's dial lands in the index),
++P15 `--off` restores the full body. Logs in `pins/`.
+diff --git a/demos/airgap.sh b/demos/airgap.sh
+new file mode 100755
+index 0000000..c287a50
+--- /dev/null
++++ b/demos/airgap.sh
+@@ -0,0 +1,104 @@
++#!/usr/bin/env bash
++# demos/airgap.sh — the bundle air-gap round-trip, told out loud.
++#
++# Two agents that NEVER share a remote (or a network). One builds a ticked
++# quilt and exports it to a single file; the original repo is then
++# DESTROYED — the bundle is the only surviving copy (that's the air gap).
++# On the far side the bundle is cloned and quilt-imported: hooks re-arm,
++# and the journal (receipts + watch.log) regenerates from pure history,
++# byte-identical to what the original actually observed. Then a fresh tick
++# proves the far side is alive.
++#
++# Exits non-zero on the first failed assertion. Scratch under /tmp.
++
++set -e
++
++SRC="$(cd "$(dirname "$0")/.." && pwd)"
++STAGE=$(mktemp -d /tmp/quilt-airgap-XXXXXX)
++
++step()   { printf '\n=== %s\n' "$*"; }
++assert() { # assert <description> <command...>
++  local desc=$1; shift
++  if "$@" >/dev/null 2>&1; then echo "  ok   $desc"
++  else echo "  FAIL $desc"; echo "(scratch kept: $STAGE)"; exit 1; fi
++}
++
++gitq() { git -c commit.gpgsign=false \
++              -c user.email=airgap@quilt.local \
++              -c user.name=airgap-demo "$@"; }
++
++# seed_cell <repo> <alias> — full dials + body, committed (already a tick)
++seed_cell() {
++  local repo=$1 alias=$2 i
++  mkdir -p "$repo/cells/$alias/dials"
++  echo "seed $alias" > "$repo/cells/$alias/body"
++  for i in $(seq 0 15); do echo 0.0 > "$repo/cells/$alias/dials/$i"; done
++  gitq -C "$repo" add cells
++  gitq -C "$repo" commit -qm "cells: seed $alias"
++}
++
++step "1. build a ticked quilt at $STAGE/source"
++SRC_REPO="$STAGE/source"
++git init -q -b main "$SRC_REPO"
++cp -R "$SRC/.quilt" "$SRC_REPO/.quilt"
++gitq -C "$SRC_REPO" add -A
++gitq -C "$SRC_REPO" commit -qm "skeleton: quilt runtime"
++( cd "$SRC_REPO" && ./.quilt/bin/quilt-init ) >/dev/null
++
++seed_cell "$SRC_REPO" auth
++seed_cell "$SRC_REPO" billing
++printf 'auth 0.5\n' > "$SRC_REPO/cells/billing/links"
++gitq -C "$SRC_REPO" add cells/billing/links
++gitq -C "$SRC_REPO" commit -qm "cells: billing links auth 0.5"
++
++( cd "$SRC_REPO" && ./.quilt/bin/quilt-tick auth 1 0.9 )   # -> billing.dials/14 = 0.4500
++( cd "$SRC_REPO" && ./.quilt/bin/quilt-tick billing 3 0.33 )
++
++gitq -C "$SRC_REPO" add .quilt                            # fold the journal in
++gitq -C "$SRC_REPO" commit -qm "journal: fold receipts + watch.log"
++gitq -C "$SRC_REPO" update-ref refs/quilt/snap HEAD       # a quilt ref rides too
++
++SNAP=$(gitq -C "$SRC_REPO" rev-parse refs/quilt/snap)
++WATCH_LINES=$(wc -l < "$SRC_REPO/.quilt/watch.log" | tr -d '[:space:]')
++echo "  history:"; gitq -C "$SRC_REPO" log --oneline | sed 's/^/    /'
++echo "  watch.log ($WATCH_LINES ticks):"; sed 's/^/    /' "$SRC_REPO/.quilt/watch.log"
++
++step "2. export the whole quilt to ONE file"
++BUNDLE="$STAGE/quilt.bundle"
++( cd "$SRC_REPO" && ./.quilt/bin/quilt-export "$BUNDLE" )
++ls -lh "$BUNDLE" | awk '{print "  bundle:", $5, $9}'
++
++step "3. AIR GAP — destroy the original repo"
++rm -rf "$SRC_REPO"
++assert "original repo is gone" test ! -d "$SRC_REPO"
++echo "  the bundle file is now the only surviving copy of this quilt"
++
++step "4. far side: clone the bundle, quilt-import it"
++IMP="$STAGE/imported"
++git clone -q "$BUNDLE" "$IMP"
++( cd "$IMP" && ./.quilt/bin/quilt-import "$BUNDLE" )
++
++step "5. assertions on the far side"
++assert "hooks re-armed (core.hooksPath=.quilt/hooks)" \
++  test "$(git -C "$IMP" config core.hooksPath)" = ".quilt/hooks"
++assert "journal regenerated byte-identical to the carried one" \
++  test -z "$(git -C "$IMP" status --porcelain -- .quilt/receipts .quilt/watch.log)"
++assert "watch.log carries all $WATCH_LINES original ticks" \
++  test "$(wc -l < "$IMP/.quilt/watch.log" | tr -d '[:space:]')" = "$WATCH_LINES"
++assert "refs/quilt/snap survived the gap ($SNAP)" \
++  test "$(git -C "$IMP" rev-parse refs/quilt/snap)" = "$SNAP"
++
++( cd "$IMP" && ./.quilt/bin/quilt-tick auth 0 0.42 ) >/dev/null
++IMP_SHORT=$(git -C "$IMP" rev-parse --short HEAD)
++assert "fresh tick in the imported clone wrote a receipt" \
++  test -f "$IMP/.quilt/receipts/$IMP_SHORT.json"
++assert "watch.log grew by exactly one line" \
++  test "$(wc -l < "$IMP/.quilt/watch.log" | tr -d '[:space:]')" = "$((WATCH_LINES + 1))"
++
++step "6. state on the far side"
++echo "  history:"; gitq -C "$IMP" log --oneline | head -4 | sed 's/^/    /'
++echo "  watch.log tail:"; tail -2 "$IMP/.quilt/watch.log" | sed 's/^/    /'
++echo "  receipts:"; ls "$IMP/.quilt/receipts" | tail -3 | sed 's/^/    /'
++
++printf '\nairgap demo: PASS — synced two ticks and a journal across a dead remote\n'
++rm -rf "$STAGE"
+diff --git a/pins/failfirst-w3c.log b/pins/failfirst-w3c.log
+new file mode 100644
+index 0000000..d1cdda8
+--- /dev/null
++++ b/pins/failfirst-w3c.log
+@@ -0,0 +1,14 @@
++# quilt-in-git w3c pins  src=/tmp/zlanes2/laneI/wt
++# scratch=/tmp/quilt-pins-w3c-syceo0  git=2.43.0
++
++FAIL P13a quilt-export failed (or empty bundle)
++FAIL P14a quilt-focus a failed
++FAIL P15a focus did not remove cells/b/body
++
++# ---- per-pin verdicts ----
++P13 bundle air-gap round-trip   : FAIL
++P14 sparse focus isolates organ : FAIL
++P15 focus --off restores body   : FAIL
++
++PINS: 0/3 pins pass (0 checks pass, 3 checks fail)
++PINS: FAILURES PRESENT (scratch kept for inspection: /tmp/quilt-pins-w3c-syceo0)
+diff --git a/pins/pins-w3c-final.log b/pins/pins-w3c-final.log
+new file mode 100644
+index 0000000..e76ef12
+--- /dev/null
++++ b/pins/pins-w3c-final.log
+@@ -0,0 +1,78 @@
++# quilt-in-git w3c pins  src=/tmp/zlanes2/laneI/wt
++# scratch=/tmp/quilt-pins-w3c-RFccAd  git=2.43.0
++
++PASS P13a quilt-export created a bundle
++PASS P13b source repo destroyed — the bundle is the only copy (air gap)
++PASS P13c far side: git clone from the bundle works
++PASS P13d quilt-import landed (verify + fetch refs + init + regenerate)
++PASS P13e hooks re-armed in the imported clone (core.hooksPath)
++PASS P13f regenerated journal byte-identical to the carried one (status clean)
++PASS P13g watch.log regenerated with all 5 tick lines
++PASS P13h refs/quilt/snap survived the air gap
++PASS P13i fresh tick commits in the imported clone
++PASS P13j P1-style receipt for the fresh tick (full hash + alias)
++PASS P13k watch.log grew by exactly one line (5->6)
++PASS P14a quilt-focus a succeeded
++PASS P14b focused cell materialized (body + dials)
++PASS P14c other cell's body absent from worktree
++PASS P14d other cell's dials absent from worktree
++PASS P14e focused quilt-tick commits (dial1=0.5 in HEAD)
++PASS P14f cascade commit exists (fired under focus)
++PASS P14g other cell's dial 14 present IN THE INDEX (ls-files -s: 14facca6f3c740fdd192104d0ea9b2c8141eb80c)
++PASS P14h index blob carries the cascaded value 0.2500 (cat-file)
++PASS P14i focus held: other cell's body still absent after the cascade
++PASS P15a focused: other cell's body absent
++PASS P15b quilt-focus --off succeeded
++PASS P15c other cell's body restored
++PASS P15d focused cell intact (dial1=0.8)
++PASS P15e other cell's cascaded dial restored (0.4000)
++PASS P15f cells/ clean after --off (no organ lost or altered)
++
++# ---- per-pin verdicts ----
++P13 bundle air-gap round-trip   : PASS
++P14 sparse focus isolates organ : PASS
++P15 focus --off restores body   : PASS
++
++PINS: 3/3 pins pass (26 checks pass, 0 checks fail)
++PINS: ALL PASS
++
++# ---- regression: wave-2 pins (pins_quiltgit.sh) ----
++# quilt-in-git pins  src=/tmp/zlanes2/laneI/wt
++# scratch=/tmp/quilt-pins-qL5C0i  git=2.43.0
++
++PASS P1a dial commit accepted
++PASS P1b receipt exists (.quilt/receipts/71bebce.json)
++PASS P1c receipt contains commit hash
++PASS P1d receipt contains alias a
++PASS P1e watch.log grew by exactly one line (1->2)
++PASS P1f watch line starts with 'tick' (tick 71bebce 71bebce a)
++PASS P2a freeze commit (dial15=0.8) accepted
++PASS P2b next commit touching cell rejected (rc=1)
++PASS P2c error mentions frozen
++PASS P2d dial file unchanged by rejected commit (still 0.7 as written)
++PASS P2e committed dial1 still 0.0
++PASS P2f no new commit was created
++PASS P3a tick a dial1=0.9 committed
++PASS P3b b.dials/14 == 0.4500 (== 0.45)
++PASS P3c 'quilt: cascade after' commit exists
++PASS P4c new dial value 0.99 committed
++PASS P4d rewind (checkout prev -- cells/a/) restores 0.11
++PASS P5c fresh clone: no receipt, no watch line (hooks inert)
++PASS P5e quilt-init set core.hooksPath=.quilt/hooks
++PASS P5g receipt appears after quilt-init (cbed87c.json)
++PASS P5h watch.log grew after quilt-init
++PASS P6b non-cell commit created NO receipt
++PASS P6c non-cell commit added NO watch.log line
++
++# ---- per-pin verdicts ----
++P1 receipt+watch on dial commit : PASS
++P2 freeze enforcement          : PASS
++P3 cascade                      : PASS
++P4 rewind                       : PASS
++P5 clone needs quilt-init       : PASS
++P6 non-cell commit silent       : PASS
++
++PINS: 6/6 pins pass (23 checks pass, 0 checks fail)
++PINS: ALL PASS
++
++# w3c harness rc=0  regression rc=0
+diff --git a/tests/pins_w3c.sh b/tests/pins_w3c.sh
+new file mode 100755
+index 0000000..22f75ec
+--- /dev/null
++++ b/tests/pins_w3c.sh
+@@ -0,0 +1,316 @@
++#!/usr/bin/env bash
++# tests/pins_w3c.sh — FAIL-first pin harness for wave 3c:
++# bundle air-gap transport + sparse-checkout focus.
++#
++# Plain bash + git + awk. No bats, no network. Every pin runs in its own
++# scratch repo under /tmp (one mktemp -d root, one subdir per pin), so pins
++# cannot leak state into each other.
++#
++#   P13 bundle round-trip — a ticked repo is exported with quilt-export,
++#       the original repo is then DESTROYED (the air gap: the bundle file is
++#       the only surviving copy), the bundle is cloned and quilt-imported on
++#       the far side. Asserts: bundle created; clone works; hooks re-armed
++#       (core.hooksPath); the journal (receipts + watch.log) REGENERATED
++#       from pure history is byte-identical to the journal carried in the
++#       bundle; refs/quilt/* survive; and a fresh tick in the imported clone
++#       passes the P1-style receipt + exactly-one-watch-line check.
++#   P14 focus — quilt-focus <alias> leaves ONLY cells/<alias>/ + .quilt/ in
++#       the worktree (the other cell's body and dials are absent); a focused
++#       quilt-tick still commits and the cascade still fires; the OTHER
++#       cell's dial 14 carries the new value IN THE INDEX while its worktree
++#       file stays absent (git ls-files -s + git cat-file on the staged
++#       blob) — the received guarantee that focus is worktree-only.
++#   P15 focus --off — the full worktree is restored, values intact, status
++#       clean.
++#
++# Exit 0 iff all three pin verdicts are PASS.
++
++set -u
++
++SRC="$(cd "$(dirname "$0")/.." && pwd)"
++SCRATCH="$(mktemp -d /tmp/quilt-pins-w3c-XXXXXX)"
++
++PASS=0
++FAIL=0
++FAILS=" "
++KEEP_SCRATCH=0
++
++say() { printf '%s\n' "$*"; }
++ok()  { PASS=$((PASS + 1)); say "PASS $1"; }
++bad() { FAIL=$((FAIL + 1)); KEEP_SCRATCH=1; FAILS="$FAILS$1 "; say "FAIL $1"; }
++
++count_lines() {    # count_lines <file>
++  if [ -f "$1" ]; then wc -l < "$1" | tr -d '[:space:]'; else echo 0; fi
++}
++count_receipts() { # count_receipts <repo>
++  ls -1 "$1/.quilt/receipts" 2>/dev/null | wc -l | tr -d '[:space:]'
++}
++
++# new_repo <name>: fresh git repo (branch main) at $SCRATCH/<name> with the
++# .quilt runtime from $SRC committed and activated via quilt-init.
++new_repo() {
++  local d="$SCRATCH/$1"
++  git init -q -b main "$d"                                          || return 1
++  git -C "$d" config user.email pins@quilt.local                    || return 1
++  git -C "$d" config user.name  quilt-pins                          || return 1
++  git -C "$d" config commit.gpgsign false                           || return 1
++  cp -R "$SRC/.quilt" "$d/.quilt"                                   || return 1
++  git -C "$d" add -A                                                || return 1
++  git -C "$d" commit -qm "skeleton: quilt runtime"                  || return 1
++  ( cd "$d" && ./.quilt/bin/quilt-init ) >/dev/null 2>&1            || return 1
++  echo "$d"
++}
++
++# seed_cell <repo> <alias>: full dials/{0..15} (all 0.0) + body, committed.
++seed_cell() {
++  local repo=$1 alias=$2 i
++  mkdir -p "$repo/cells/$alias/dials"
++  echo "seed $alias" > "$repo/cells/$alias/body"
++  for i in $(seq 0 15); do echo 0.0 > "$repo/cells/$alias/dials/$i"; done
++  git -C "$repo" add cells
++  git -C "$repo" commit -qm "cells: seed $alias"
++}
++
++# link_cells <repo> <dst> <src> <weight>: dst links src, committed.
++link_cells() {
++  printf '%s %s\n' "$3" "$4" > "$1/cells/$2/links"
++  git -C "$1" add "cells/$2/links"
++  git -C "$1" commit -qm "cells: $2 links $3 $4"
++}
++
++# ---------------------------------------------------------------- P13
++pin_p13() {
++  local d bundle imp snap wl full short R st wl0 wl1 sha
++  if ! d=$(new_repo p13); then bad "P13-0 setup (quilt-init runnable?)"; return; fi
++  seed_cell "$d" a
++  seed_cell "$d" b
++  link_cells "$d" b a 0.5
++  ( cd "$d" && ./.quilt/bin/quilt-tick a 1 0.9 ) >/dev/null 2>&1 \
++    || { bad "P13-0 pre-tick a failed"; return; }
++  ( cd "$d" && ./.quilt/bin/quilt-tick b 3 0.33 ) >/dev/null 2>&1 \
++    || { bad "P13-0 pre-tick b failed"; return; }
++  git -C "$d" add .quilt
++  git -C "$d" commit -qm "journal" >/dev/null 2>&1
++  git -C "$d" update-ref refs/quilt/snap HEAD
++  snap=$(git -C "$d" rev-parse HEAD)
++  wl=$(count_lines "$d/.quilt/watch.log")
++  [ "$wl" -ge 3 ] || { bad "P13-0 expected a ticked watch.log, got $wl lines"; return; }
++
++  bundle="$SCRATCH/p13.bundle"
++  if ( cd "$d" && ./.quilt/bin/quilt-export "$bundle" ) >/dev/null 2>&1 \
++     && [ -s "$bundle" ]; then
++    ok "P13a quilt-export created a bundle"
++  else
++    bad "P13a quilt-export failed (or empty bundle)"; return
++  fi
++
++  rm -rf "$d"
++  if [ ! -d "$d" ]; then
++    ok "P13b source repo destroyed — the bundle is the only copy (air gap)"
++  else
++    bad "P13b source repo survived rm -rf"; return
++  fi
++
++  imp="$SCRATCH/p13-imported"
++  if git clone -q "$bundle" "$imp" >/dev/null 2>&1; then
++    ok "P13c far side: git clone from the bundle works"
++  else
++    bad "P13c clone from bundle failed"; return
++  fi
++  git -C "$imp" config user.email pins@quilt.local
++  git -C "$imp" config user.name  quilt-pins
++  git -C "$imp" config commit.gpgsign false
++
++  if ( cd "$imp" && ./.quilt/bin/quilt-import "$bundle" ) >/dev/null 2>&1; then
++    ok "P13d quilt-import landed (verify + fetch refs + init + regenerate)"
++  else
++    bad "P13d quilt-import failed"; return
++  fi
++
++  if [ "$(git -C "$imp" config core.hooksPath)" = ".quilt/hooks" ]; then
++    ok "P13e hooks re-armed in the imported clone (core.hooksPath)"
++  else
++    bad "P13e core.hooksPath is '$(git -C "$imp" config core.hooksPath)'"
++  fi
++
++  st=$(git -C "$imp" status --porcelain -- .quilt/receipts .quilt/watch.log)
++  if [ -z "$st" ]; then
++    ok "P13f regenerated journal byte-identical to the carried one (status clean)"
++  else
++    bad "P13f journal mismatch after regeneration: $st"
++  fi
++  if [ "$(count_lines "$imp/.quilt/watch.log")" = "$wl" ]; then
++    ok "P13g watch.log regenerated with all $wl tick lines"
++  else
++    bad "P13g watch.log has $(count_lines "$imp/.quilt/watch.log") lines (want $wl)"
++  fi
++  if [ "$(git -C "$imp" rev-parse refs/quilt/snap 2>/dev/null)" = "$snap" ]; then
++    ok "P13h refs/quilt/snap survived the air gap"
++  else
++    bad "P13h refs/quilt/snap lost or wrong: $(git -C "$imp" rev-parse refs/quilt/snap 2>&1)"
++  fi
++
++  wl0=$(count_lines "$imp/.quilt/watch.log")
++  if ( cd "$imp" && ./.quilt/bin/quilt-tick a 0 0.42 ) >/dev/null 2>&1; then
++    ok "P13i fresh tick commits in the imported clone"
++  else
++    bad "P13i fresh tick failed in imported clone"; return
++  fi
++  full=$(git -C "$imp" rev-parse HEAD)
++  short=$(git -C "$imp" rev-parse --short HEAD)
++  R="$imp/.quilt/receipts/$short.json"
++  if [ -f "$R" ] && grep -qF "$full" "$R" && grep -q '"a"' "$R"; then
++    ok "P13j P1-style receipt for the fresh tick (full hash + alias)"
++  else
++    bad "P13j receipt wrong or missing: $R"
++  fi
++  wl1=$(count_lines "$imp/.quilt/watch.log")
++  if [ "$((wl1 - wl0))" -eq 1 ]; then
++    ok "P13k watch.log grew by exactly one line ($wl0->$wl1)"
++  else
++    bad "P13k watch.log delta $wl0->$wl1 (want +1)"
++  fi
++}
++
++# ---------------------------------------------------------------- P14
++pin_p14() {
++  local d line sha
++  if ! d=$(new_repo p14); then bad "P14-0 setup (quilt-init runnable?)"; return; fi
++  seed_cell "$d" a
++  seed_cell "$d" b
++  link_cells "$d" b a 0.5
++
++  if ( cd "$d" && ./.quilt/bin/quilt-focus a ) >/dev/null 2>&1; then
++    ok "P14a quilt-focus a succeeded"
++  else
++    bad "P14a quilt-focus a failed"; return
++  fi
++
++  if [ -f "$d/cells/a/body" ] && [ -f "$d/cells/a/dials/1" ]; then
++    ok "P14b focused cell materialized (body + dials)"
++  else
++    bad "P14b focused cell missing its own files"
++  fi
++  if [ ! -e "$d/cells/b/body" ]; then
++    ok "P14c other cell's body absent from worktree"
++  else
++    bad "P14c cells/b/body still materialized"
++  fi
++  if [ ! -e "$d/cells/b/dials/14" ]; then
++    ok "P14d other cell's dials absent from worktree"
++  else
++    bad "P14d cells/b/dials/14 still materialized"
++  fi
++
++  if ( cd "$d" && ./.quilt/bin/quilt-tick a 1 0.5 ) >/dev/null 2>&1 \
++     && [ "$(git -C "$d" show HEAD:cells/a/dials/1 2>/dev/null | tr -d '[:space:]')" = "0.5" ]; then
++    ok "P14e focused quilt-tick commits (dial1=0.5 in HEAD)"
++  else
++    bad "P14e focused tick failed or value not committed"; return
++  fi
++
++  if git -C "$d" log --format=%s | grep -q '^quilt: cascade after'; then
++    ok "P14f cascade commit exists (fired under focus)"
++  else
++    bad "P14f no cascade commit under focus"
++  fi
++
++  line=$(git -C "$d" ls-files -s -- cells/b/dials/14)
++  sha=$(printf '%s\n' "$line" | awk '{print $2}')
++  if [ -n "$sha" ] && [ "$sha" != "" ]; then
++    ok "P14g other cell's dial 14 present IN THE INDEX (ls-files -s: $sha)"
++  else
++    bad "P14g cells/b/dials/14 not in index: '$line'"; return
++  fi
++  if [ "$(git -C "$d" cat-file -p "$sha" 2>/dev/null | tr -d '[:space:]')" = "0.2500" ]; then
++    ok "P14h index blob carries the cascaded value 0.2500 (cat-file)"
++  else
++    bad "P14h index blob is '$(git -C "$d" cat-file -p "$sha" 2>/dev/null)' (want 0.2500)"
++  fi
++  if [ ! -e "$d/cells/b/body" ]; then
++    ok "P14i focus held: other cell's body still absent after the cascade"
++  else
++    bad "P14i focus lost: cells/b/body reappeared"
++  fi
++}
++
++# ---------------------------------------------------------------- P15
++pin_p15() {
++  local d
++  if ! d=$(new_repo p15); then bad "P15-0 setup (quilt-init runnable?)"; return; fi
++  seed_cell "$d" a
++  seed_cell "$d" b
++  link_cells "$d" b a 0.5
++  ( cd "$d" && ./.quilt/bin/quilt-tick a 1 0.8 ) >/dev/null 2>&1 \
++    || { bad "P15-0 pre-tick failed"; return; }
++  [ "$(tr -d '[:space:]' < "$d/cells/b/dials/14")" = "0.4000" ] \
++    || { bad "P15-0 cascade did not settle to 0.4000"; return; }
++
++  ( cd "$d" && ./.quilt/bin/quilt-focus a ) >/dev/null 2>&1
++  if [ ! -e "$d/cells/b/body" ]; then
++    ok "P15a focused: other cell's body absent"
++  else
++    bad "P15a focus did not remove cells/b/body"; return
++  fi
++
++  if ( cd "$d" && ./.quilt/bin/quilt-focus --off ) >/dev/null 2>&1; then
++    ok "P15b quilt-focus --off succeeded"
++  else
++    bad "P15b quilt-focus --off failed"; return
++  fi
++
++  if [ -f "$d/cells/b/body" ]; then
++    ok "P15c other cell's body restored"
++  else
++    bad "P15c cells/b/body missing after --off"
++  fi
++  if [ -f "$d/cells/a/dials/1" ] \
++     && [ "$(tr -d '[:space:]' < "$d/cells/a/dials/1")" = "0.8" ]; then
++    ok "P15d focused cell intact (dial1=0.8)"
++  else
++    bad "P15d focused cell damaged by --off"
++  fi
++  if [ -f "$d/cells/b/dials/14" ] \
++     && [ "$(tr -d '[:space:]' < "$d/cells/b/dials/14")" = "0.4000" ]; then
++    ok "P15e other cell's cascaded dial restored (0.4000)"
++  else
++    bad "P15e cells/b/dials/14 not restored to 0.4000"
++  fi
++  if [ -z "$(git -C "$d" status --porcelain -- cells/)" ]; then
++    ok "P15f cells/ clean after --off (no organ lost or altered)"
++  else
++    bad "P15f cells/ dirty after --off: $(git -C "$d" status --porcelain -- cells/)"
++  fi
++}
++
++# ---------------------------------------------------------------- main
++main() {
++  say "# quilt-in-git w3c pins  src=$SRC"
++  say "# scratch=$SCRATCH  git=$(git --version | cut -d' ' -f3)"
++  say ""
++  pin_p13
++  pin_p14
++  pin_p15
++  say ""
++  say "# ---- per-pin verdicts ----"
++  local v13 v14 v15 n
++  case "$FAILS" in *" P13"*) v13=FAIL;; *) v13=PASS;; esac
++  case "$FAILS" in *" P14"*) v14=FAIL;; *) v14=PASS;; esac
++  case "$FAILS" in *" P15"*) v15=FAIL;; *) v15=PASS;; esac
++  say "P13 bundle air-gap round-trip   : $v13"
++  say "P14 sparse focus isolates organ : $v14"
++  say "P15 focus --off restores body   : $v15"
++  n=0
++  for v in "$v13" "$v14" "$v15"; do [ "$v" = PASS ] && n=$((n+1)); done
++  say ""
++  say "PINS: $n/3 pins pass ($PASS checks pass, $FAIL checks fail)"
++  if [ "$n" -eq 3 ]; then
++    say "PINS: ALL PASS"
++    rm -rf "$SCRATCH"
++    exit 0
++  fi
++  say "PINS: FAILURES PRESENT (scratch kept for inspection: $SCRATCH)"
++  exit 1
++}
++
++main "$@"

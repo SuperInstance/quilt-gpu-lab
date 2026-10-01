@@ -1,0 +1,141 @@
+diff --git a/tools/kc_geo.py b/tools/kc_geo.py
+index ab8d988..b282fe6 100644
+--- a/tools/kc_geo.py
++++ b/tools/kc_geo.py
+@@ -30,7 +30,7 @@
+ 
+ SEED = 20261001
+ D_GEO = 64
+-RHO = float(np.tan(np.radians(30.0)))  # analytic 30-degree class-cone bound
++RHO = 0.5  # sin(30deg) — v4 correction: analytic worst case arcsin(rho)=30.000deg exactly
+ GEO_CLASSES = ["woodcut", "terminal", "soft", "harsh"]  # default owns no prototype
+ HERE = os.path.dirname(os.path.abspath(__file__))
+ 
+@@ -285,20 +285,28 @@ def main():
+     h4 = (shuf_mean <= 0.40) and (not approx)
+     dec += s_dec
+ 
+-    # sealed-v0 FAIL receipt hash for comparison
++    # sealed-v0 FAIL receipt + sealed v3 spec/v3 FAIL receipt hashes
+     with open(os.path.join(HERE, "kc_layer_receipt.json"), "rb") as f:
+         v0_hash = format(fnv1a_64(f.read().decode("utf-8")), "016x")
++    with open(os.path.join(HERE, "..", "docs", "pre-registration-geopn-kc.md"), "rb") as f:
++        v3_spec_hash = format(fnv1a_64(f.read().decode("utf-8")), "016x")
++    with open(os.path.join(HERE, "kc_geo_receipt.json"), "rb") as f:
++        v3_receipt_hash = format(fnv1a_64(f.read().decode("utf-8")), "016x")
+ 
+     receipt = {
+         "seed": SEED,
+         "d_geo": D_GEO,
+-        "rho_tan30": round(RHO, 6),
++        "rho": round(RHO, 6),
++        "analytic_bound_deg": 30.0,
++        "v3_rho_tan30_analytic_bound_deg": 35.264,
+         "prototype_frame_hash": format(
+             fnv1a_64(json.dumps(np.round(frame, 12).tolist())), "016x"),
+-        "spec": "docs/pre-registration-geopn-kc.md (sealed R1)",
++        "spec": "docs/pre-registration-geopn-kc-v4.md (sealed R1, cc93a7d)",
+         "geometry_pins": {
+             "G1_orthonormal_max_offdiag": off_diag, "G1_pass": bool(g1),
+-            "G2_max_term_deviation_deg": round(g2_val, 3), "G2_pass": bool(g2),
++            "G2_max_term_deviation_deg": round(g2_val, 3),
++            "G2_bar_deg": "<= 30.5 sampling margin over TRUE analytic bound 30.000 (v3's false claim: 30 at tan30; true v3 bound 35.264)",
++            "G2_pass": bool(g2),
+             "G3_within_minus_between_cos": round(g3_val, 4), "G3_pass": bool(g3),
+             "zero_hit_prompts": len(zero_hit_prompts),
+             "zero_hit_behavior_identical_to_v0": bool(zh_identical),
+@@ -322,12 +330,14 @@ def main():
+         "locality_pass": bool(m.rows_touched_max <= 102),
+         "decision_chain_fnv1a64": chain_hash(dec),
+         "sealed_v0_fail_receipt_hash": v0_hash,
++        "sealed_v3_spec_hash": v3_spec_hash,
++        "sealed_v3_fail_receipt_hash": v3_receipt_hash,
+         "verdict": None,
+     }
+     allpass = (g1 and g2 and g3 and zh_identical and h1 and h2 and h3 and h4
+                and receipt["locality_pass"])
+     receipt["verdict"] = "PASS" if allpass else "FAIL"
+-    with open(os.path.join(HERE, "kc_geo_receipt.json"), "w") as f:
++    with open(os.path.join(HERE, "kc_geo_v4_receipt.json"), "w") as f:
+         json.dump(receipt, f, indent=2)
+     print(json.dumps(receipt, indent=2))
+     return 0 if allpass else 1
+diff --git a/tools/kc_geo_v4_receipt.json b/tools/kc_geo_v4_receipt.json
+new file mode 100644
+index 0000000..19f2279
+--- /dev/null
++++ b/tools/kc_geo_v4_receipt.json
+@@ -0,0 +1,72 @@
++{
++  "seed": 20261001,
++  "d_geo": 64,
++  "rho": 0.5,
++  "analytic_bound_deg": 30.0,
++  "v3_rho_tan30_analytic_bound_deg": 35.264,
++  "prototype_frame_hash": "8f441e81c015776a",
++  "spec": "docs/pre-registration-geopn-kc-v4.md (sealed R1, cc93a7d)",
++  "geometry_pins": {
++    "G1_orthonormal_max_offdiag": 7.771561172376096e-16,
++    "G1_pass": true,
++    "G2_max_term_deviation_deg": 29.359,
++    "G2_bar_deg": "<= 30.5 sampling margin over TRUE analytic bound 30.000 (v3's false claim: 30 at tan30; true v3 bound 35.264)",
++    "G2_pass": true,
++    "G3_within_minus_between_cos": 0.8484,
++    "G3_pass": true,
++    "zero_hit_prompts": 5,
++    "zero_hit_behavior_identical_to_v0": true
++  },
++  "tests": {
++    "H1_cv5_clean": {
++      "folds": [
++        0.9,
++        1.0,
++        0.9,
++        0.8,
++        0.8
++      ],
++      "mean_top1": 0.88,
++      "dense_null_mean": 0.14,
++      "pass": false
++    },
++    "H2_zeroshot_degraded": {
++      "kc_top1": 0.3621,
++      "router_top1": 0.931,
++      "dense_null_top1": 0.2586,
++      "pass": false
++    },
++    "H3_interference": {
++      "trio_before": 0.4118,
++      "trio_after": 0.0,
++      "drop_pts": 41.18,
++      "pass": false
++    },
++    "H4_geometry_shuffle": {
++      "folds": [
++        0.9,
++        0.7,
++        0.7,
++        0.8,
++        0.9
++      ],
++      "mean_top1": 0.8,
++      "dense_null_mean": 0.16,
++      "approx_equal_to_main": false,
++      "bar": "<= 0.40 and not ~= main",
++      "pass": false
++    }
++  },
++  "nulls": {
++    "chance_top1": 0.2,
++    "dense_linear_clean_mean": 0.14,
++    "dense_linear_degraded_top1": 0.2586
++  },
++  "locality_rows_touched_max": 102,
++  "locality_pass": true,
++  "decision_chain_fnv1a64": "bd4bedce65759cd7",
++  "sealed_v0_fail_receipt_hash": "2561e3867d98a71a",
++  "sealed_v3_spec_hash": "9ab82f4aee275a69",
++  "sealed_v3_fail_receipt_hash": "c5d7f84afc3f5131",
++  "verdict": "FAIL"
++}
+\ No newline at end of file

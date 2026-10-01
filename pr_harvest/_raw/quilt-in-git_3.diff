@@ -1,0 +1,721 @@
+diff --git a/.quilt/bin/quilt-audit b/.quilt/bin/quilt-audit
+new file mode 100755
+index 0000000..83a7d10
+--- /dev/null
++++ b/.quilt/bin/quilt-audit
+@@ -0,0 +1,32 @@
++#!/bin/sh
++# quilt-audit — print every cell commit's receipt, from git notes.
++#
++# Receipts live twice: as files (.quilt/receipts/<short>.json — local
++# working-tree artifacts that never leave the clone) and as notes on the
++# tick commits themselves (refs/notes/quilt/receipts). Notes are real git
++# objects: they ride fetch/push with the branch (quilt-init wires the fetch
++# refspec), so the audit works in ANY clone that has the history — the
++# receipt travels with the commit it describes. Manual one-liner for a
++# quick overview:
++#   git log --notes=quilt/receipts --oneline -- cells/
++#
++# Output per noted cell commit, newest first:
++#   "== <short> <subject>" then the receipt JSON. Cascade auto-commits and
++# non-cell commits are silent (they carry no receipt note). Exit 0 even
++# when nothing is noted.
++
++ROOT=$(git rev-parse --show-toplevel 2>/dev/null) \
++  || { echo "quilt-audit: not inside a git repository" >&2; exit 2; }
++cd "$ROOT" || exit 2
++
++n=0
++for c in $(git log --format=%H -- cells/); do
++  note=$(git notes --ref=quilt/receipts show "$c" 2>/dev/null) || continue
++  echo "== $(git rev-parse --short "$c") $(git log -1 --format=%s "$c")"
++  printf '%s\n' "$note"
++  n=$((n + 1))
++done
++
++[ "$n" -gt 0 ] || echo "quilt-audit: no noted receipts under cells/ (yet)"
++echo "quilt-audit: $n noted receipt(s)"
++exit 0
+diff --git a/.quilt/bin/quilt-fnv1a b/.quilt/bin/quilt-fnv1a
+new file mode 100755
+index 0000000..1696edb
+--- /dev/null
++++ b/.quilt/bin/quilt-fnv1a
+@@ -0,0 +1,45 @@
++#!/bin/sh
++# quilt-fnv1a — fnv1a-64 checksum of stdin, printed as 16 lowercase hex chars.
++#
++# Pure awk, no gawk-isms: the 64-bit state is carried as two exact 32-bit
++# halves so every intermediate product stays below 2^53 (doubles stay
++# exact); the per-byte XOR is done bit by bit (POSIX awk has no xor()).
++# Multiplied by the FNV prime 0x100000001b3 as 435 + 2^40 so each partial
++# term fits a double. The input's trailing newline (if any) is ignored, so
++# callers may pipe with or without one — quilt-receipt (sign) and
++# quilt-verify (recheck) share this helper and therefore agree byte for
++# byte. Validated against the reference vectors: "" -> cbf29ce484222325,
++# "a" -> af63dc4c8601ec8c, "foobar" -> 85944171f73967e8.
++
++LC_ALL=C awk '
++function x32(a, b,    r, i) {           # low 32 bits of a XOR b
++  r = 0
++  for (i = 0; i < 32; i += 1) {
++    if (a % 2 != b % 2) r += 2 ^ i
++    a = int(a / 2); b = int(b / 2)
++  }
++  return r
++}
++function fnv(hi, lo, s,    i, b, p, r24, A, m, B, clo, chi, nlo, nhi) {
++  for (i = 1; i <= length(s); i += 1) {
++    b = ord[substr(s, i, 1)] + 0
++    lo = x32(lo, b)                       # hash ^= byte
++    # (hi:lo) * 0x100000001b3 mod 2^64, split so all terms stay < 2^53
++    p   = 435 * lo                        # 435*lo           < 2^41
++    r24 = lo - int(lo / 16777216) * 16777216
++    A   = r24 * 256                       # (lo mod 2^24)<<8 < 2^32
++    m   = 435 * hi                        # 435*hi           < 2^41
++    B   = m  - int(m  / 4294967296) * 4294967296
++    clo = p  - int(p  / 4294967296) * 4294967296
++    chi = int(p / 4294967296)             # < 2^9
++    nlo = clo
++    nhi = A + B + chi
++    nhi = nhi - int(nhi / 4294967296) * 4294967296
++    hi = nhi; lo = nlo
++  }
++  return sprintf("%08x%08x", hi, lo)
++}
++BEGIN { for (i = 1; i < 256; i++) ord[sprintf("%c", i)] = i }
++{ buf = buf $0 "\n" }
++END   { sub(/\n$/, "", buf); print fnv(3421674724, 2216829733, buf) }
++'
+diff --git a/.quilt/bin/quilt-init b/.quilt/bin/quilt-init
+index b7fbb5b..cd25040 100755
+--- a/.quilt/bin/quilt-init
++++ b/.quilt/bin/quilt-init
+@@ -4,6 +4,9 @@
+ #   mkdir -p cells .quilt/{receipts,bin,hooks}
+ #   git config core.hooksPath .quilt/hooks      (modern git; no .git/hooks symlinks)
+ #   (re)write .quilt/hooks/{pre-commit,post-commit}, chmod +x
++#   wire +refs/notes/quilt/receipts into remote.origin.fetch (when a remote
++#   exists) and fetch it — receipt notes ride fetch/pull, but a plain
++#   `git clone` does NOT copy refs/notes/*, so this step brings them over
+ #
+ # Idempotent: safe to re-run. The hook files are generated from this script —
+ # edit quilt-init, not the hook files. MUST be run once per clone: the hooks
+@@ -57,13 +60,17 @@ cat > .quilt/hooks/post-commit <<'QUILT_HOOK_EOF'
+ #
+ # For a commit that touches cells/:
+ #   1. .quilt/bin/quilt-receipt  writes .quilt/receipts/<short>.json
+-#   2. .quilt/bin/quilt-cascade  recomputes dial 14 of linked cells
+-#   3. if cascade changed dial files: git add cells/ and auto-commit
++#   2. git notes --ref=quilt/receipts attaches that same receipt JSON to the
++#      commit — notes are real git objects, so receipts ride fetch/push/
++#      clone with the branch (the .quilt/receipts/ files never leave the
++#      working tree)
++#   3. .quilt/bin/quilt-cascade  recomputes dial 14 of linked cells
++#   4. if cascade changed dial files: git add cells/ and auto-commit
+ #      "quilt: cascade after <short>" with --no-verify
+-#   4. append "tick <short> <short> <cells>" to .quilt/watch.log
++#   5. append "tick <short> <short> <cells>" to .quilt/watch.log
+ #
+ # Commits touching no cells/ path exit 0 silently, as do the hook's own
+-# "quilt: cascade after ..." commits (no recursion).
++# "quilt: cascade after ..." commits (no recursion, no receipt, no note).
+ 
+ ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0
+ cd "$ROOT" || exit 1
+@@ -79,6 +86,10 @@ SHORT=$(git rev-parse --short HEAD)
+ CELLS=$(printf '%s\n' "$CELL_PATHS" | cut -d/ -f2 | sort -u | paste -sd, -)
+ 
+ .quilt/bin/quilt-receipt >/dev/null
++if [ -f ".quilt/receipts/$SHORT.json" ]; then
++  git notes --ref=quilt/receipts add -f -F ".quilt/receipts/$SHORT.json" HEAD \
++    >/dev/null 2>&1 || true
++fi
+ .quilt/bin/quilt-cascade
+ 
+ if [ -n "$(git status --porcelain -- cells/)" ]; then
+@@ -97,6 +108,21 @@ for b in .quilt/bin/quilt-*; do
+ done
+ touch .quilt/watch.log
+ 
++# receipt notes ride fetch/pull once this refspec is wired; a plain
++# `git clone` does not copy refs/notes/*, so fetch them in now (best
++# effort — offline or noteless origins are fine)
++if git remote get-url origin >/dev/null 2>&1; then
++  if ! git config --get-all remote.origin.fetch 2>/dev/null \
++       | grep -q 'refs/notes/quilt/receipts'; then
++    git config --add remote.origin.fetch \
++      '+refs/notes/quilt/receipts:refs/notes/quilt/receipts'
++  fi
++  if git fetch -q origin refs/notes/quilt/receipts:refs/notes/quilt/receipts 2>/dev/null; then
++    echo "quilt: receipt notes fetched from origin (refs/notes/quilt/receipts)"
++  fi
++fi
++
+ echo "quilt: initialised at $ROOT"
+ echo "quilt: hooks active (core.hooksPath=.quilt/hooks)"
+ echo "quilt: ticks are ordinary commits touching cells/ — try .quilt/bin/quilt-tick <alias> <dial> <value>"
++echo "quilt: receipts ride git notes — audit: .quilt/bin/quilt-audit   verify: .quilt/bin/quilt-verify"
+diff --git a/.quilt/bin/quilt-receipt b/.quilt/bin/quilt-receipt
+index 63433ca..520dcce 100755
+--- a/.quilt/bin/quilt-receipt
++++ b/.quilt/bin/quilt-receipt
+@@ -3,10 +3,19 @@
+ #
+ # Fields: commit (full hash), changed_cells (aliases under cells/ touched by
+ # HEAD), key_dials (per cell: obstruction = dial 1, freeze = dial 15, read
+-# from the committed tree), ts. The timestamp is the git commit time
++# from the committed tree), ts, sig. The timestamp is the git commit time
+ # (`git log -1 --format=%ct`) — never wall clock — so receipts are
+ # deterministic and reproducible from history alone.
+ #
++# sig = fnv1a-64 over  BODY || committer-ident || commit-tree  where BODY is
++# the receipt text below up to and including the trailing comma after "ts"
++# (i.e. the whole receipt except the sig field, no trailing newline), the
++# committer ident is the raw `committer ...` header of HEAD, and the tree is
++# HEAD^{tree}. A cheap TRANSPORT-LEVEL integrity mark — recomputable by
++# .quilt/bin/quilt-verify — tying the receipt to THAT commit by THAT actor.
++# fnv1a-64 is a checksum, not cryptography: it catches transport damage and
++# un-reforged edits, not an adversary who recomputes it.
++#
+ # Echoes the short hash on success (used by the post-commit hook).
+ 
+ ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || exit 1
+@@ -36,19 +45,15 @@ for c in $CELLS; do
+   dial_json="$dial_json    \"$c\": {\"obstruction\": $obs, \"freeze\": $frz},
+ "
+ done
++dials=""
++[ -z "$dial_json" ] || dials=$(printf '%s' "$dial_json" | sed '$ s/,$//')
++
++BODY=$(printf '{\n  "commit": "%s",\n  "changed_cells": [%s],\n  "key_dials": {\n%s\n  },\n  "ts": %s,' \
++  "$FULL" "$cell_list" "$dials" "$TS")
++IDENT=$(git cat-file commit HEAD | sed -n 's/^committer //p')
++TREE=$(git rev-parse 'HEAD^{tree}')
++SIG=$(printf '%s%s%s' "$BODY" "$IDENT" "$TREE" | .quilt/bin/quilt-fnv1a)
+ 
+-OUT=".quilt/receipts/$SHORT.json"
+-{
+-  printf '{\n'
+-  printf '  "commit": "%s",\n' "$FULL"
+-  printf '  "changed_cells": [%s],\n' "$cell_list"
+-  printf '  "key_dials": {\n'
+-  if [ -n "$dial_json" ]; then
+-    printf '%s' "$dial_json" | sed '$ s/,$//'
+-  fi
+-  printf '  },\n'
+-  printf '  "ts": %s\n' "$TS"
+-  printf '}\n'
+-} > "$OUT"
++printf '%s\n  "sig": "%s"\n}\n' "$BODY" "$SIG" > ".quilt/receipts/$SHORT.json"
+ 
+ echo "$SHORT"
+diff --git a/.quilt/bin/quilt-verify b/.quilt/bin/quilt-verify
+new file mode 100755
+index 0000000..c028ba0
+--- /dev/null
++++ b/.quilt/bin/quilt-verify
+@@ -0,0 +1,57 @@
++#!/bin/sh
++# quilt-verify — recompute the sig of every noted receipt; report mismatches.
++#
++# For each commit touching cells/ that carries a receipt note under
++# quilt/receipts, re-derive from the NOTE's own body and the COMMIT's own
++# metadata:
++#   sig = fnv1a-64(receipt-body || committer-ident || commit-tree)
++# (receipt-body = the note text up to the "sig" field; committer-ident =
++# the raw `committer ...` header; commit-tree = <commit>^{tree}) and
++# compare with the sig recorded in the note. Any edit to a note that does
++# not re-forge its sig — and any transplant of a receipt onto a different
++# commit or actor, since ident and tree are mixed in — is reported by
++# short hash. Shared helper .quilt/bin/quilt-fnv1a guarantees signer and
++# verifier agree byte for byte.
++#
++# This is a transport-level integrity mark, not a signature: fnv1a-64 is an
++# unkeyed checksum, so a tamperer who recomputes it passes. It catches
++# transport damage and lazy edits, not adversaries (that is what commit
++# signing is for; the pins deliberately avoid a GPG dependency).
++#
++# Exit 0 = all sigs agree (or nothing noted); exit 1 = >= 1 MISMATCH.
++
++ROOT=$(git rev-parse --show-toplevel 2>/dev/null) \
++  || { echo "quilt-verify: not inside a git repository" >&2; exit 2; }
++cd "$ROOT" || exit 2
++
++n=0
++bad=0
++for c in $(git log --format=%H -- cells/); do
++  note=$(git notes --ref=quilt/receipts show "$c" 2>/dev/null) || continue
++  n=$((n + 1))
++  short=$(git rev-parse --short "$c")
++
++  noted=$(printf '%s\n' "$note" | sed -n 's/^  "sig": "\([0-9a-f][0-9a-f]*\)".*/\1/p')
++  if [ -z "$noted" ]; then
++    echo "quilt-verify: MISMATCH $short — receipt note has no sig field"
++    bad=$((bad + 1))
++    continue
++  fi
++
++  body=$(printf '%s\n' "$note" | sed '/^  "sig":/,$d')
++  ident=$(git cat-file commit "$c" | sed -n 's/^committer //p')
++  tree=$(git rev-parse "$c^{tree}")
++  want=$(printf '%s%s%s' "$body" "$ident" "$tree" | .quilt/bin/quilt-fnv1a)
++
++  if [ "$want" != "$noted" ]; then
++    echo "quilt-verify: MISMATCH $short — noted sig $noted, computed $want"
++    bad=$((bad + 1))
++  fi
++done
++
++if [ "$bad" -eq 0 ]; then
++  echo "quilt-verify: $n noted receipt(s), all sigs OK"
++  exit 0
++fi
++echo "quilt-verify: $n noted receipt(s), $bad MISMATCH (listed above)"
++exit 1
+diff --git a/.quilt/hooks/post-commit b/.quilt/hooks/post-commit
+index fbc33ce..9036c37 100755
+--- a/.quilt/hooks/post-commit
++++ b/.quilt/hooks/post-commit
+@@ -3,13 +3,17 @@
+ #
+ # For a commit that touches cells/:
+ #   1. .quilt/bin/quilt-receipt  writes .quilt/receipts/<short>.json
+-#   2. .quilt/bin/quilt-cascade  recomputes dial 14 of linked cells
+-#   3. if cascade changed dial files: git add cells/ and auto-commit
++#   2. git notes --ref=quilt/receipts attaches that same receipt JSON to the
++#      commit — notes are real git objects, so receipts ride fetch/push/
++#      clone with the branch (the .quilt/receipts/ files never leave the
++#      working tree)
++#   3. .quilt/bin/quilt-cascade  recomputes dial 14 of linked cells
++#   4. if cascade changed dial files: git add cells/ and auto-commit
+ #      "quilt: cascade after <short>" with --no-verify
+-#   4. append "tick <short> <short> <cells>" to .quilt/watch.log
++#   5. append "tick <short> <short> <cells>" to .quilt/watch.log
+ #
+ # Commits touching no cells/ path exit 0 silently, as do the hook's own
+-# "quilt: cascade after ..." commits (no recursion).
++# "quilt: cascade after ..." commits (no recursion, no receipt, no note).
+ 
+ ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0
+ cd "$ROOT" || exit 1
+@@ -25,6 +29,10 @@ SHORT=$(git rev-parse --short HEAD)
+ CELLS=$(printf '%s\n' "$CELL_PATHS" | cut -d/ -f2 | sort -u | paste -sd, -)
+ 
+ .quilt/bin/quilt-receipt >/dev/null
++if [ -f ".quilt/receipts/$SHORT.json" ]; then
++  git notes --ref=quilt/receipts add -f -F ".quilt/receipts/$SHORT.json" HEAD \
++    >/dev/null 2>&1 || true
++fi
+ .quilt/bin/quilt-cascade
+ 
+ if [ -n "$(git status --porcelain -- cells/)" ]; then
+diff --git a/README.md b/README.md
+index f7c12ae..1f8c34b 100644
+--- a/README.md
++++ b/README.md
+@@ -18,9 +18,13 @@ cells/<alias>/links         optional; lines of "<src_alias> <weight>"
+ .quilt/bin/quilt-init       bootstrap (run once per clone)
+ .quilt/bin/quilt-tick       convenience: set one dial + commit
+ .quilt/bin/quilt-cascade    recompute dial 14 from links
+-.quilt/bin/quilt-receipt    write .quilt/receipts/<short>.json
++.quilt/bin/quilt-receipt    write .quilt/receipts/<short>.json (with sig)
++.quilt/bin/quilt-fnv1a      fnv1a-64 of stdin (16 hex) — the sig primitive
++.quilt/bin/quilt-audit      print every cell commit's receipt from NOTES
++.quilt/bin/quilt-verify     recompute every noted receipt's sig; flag drift
+ .quilt/hooks/               pre-commit, post-commit (generated by quilt-init)
+-.quilt/receipts/            one JSON receipt per tick commit
++.quilt/receipts/            one JSON receipt per tick commit (local copy)
++refs/notes/quilt/receipts   the same receipts as git notes — these TRAVEL
+ .quilt/watch.log            one "tick <short> <short> <cells>" line per tick
+ ```
+ 
+@@ -48,6 +52,8 @@ git add cells/auth/dials/0
+ git commit -m "tick: lower auth budget"          # receipt + watch line appear
+ 
+ cat .quilt/receipts/*.json                       # proof of what happened
++./.quilt/bin/quilt-audit                         # same proofs, from notes
++./.quilt/bin/quilt-verify                        # all sigs OK?
+ tail -f .quilt/watch.log                         # live tick stream
+ git log -p -- cells/auth/                        # history of nudges
+ git checkout <old-hash> -- cells/auth/           # rewind just that organ
+@@ -58,9 +64,24 @@ Or with the helper: `.quilt/bin/quilt-tick auth 0 0.42`.
+ ## Runtime semantics
+ 
+ - **Receipts.** `post-commit` writes `.quilt/receipts/<short>.json`:
+-  `{commit, changed_cells, key_dials{<alias>{obstruction,freeze}}, ts}`.
++  `{commit, changed_cells, key_dials{<alias>{obstruction,freeze}}, ts, sig}`.
+   `ts` is the git commit time (`git log -1 --format=%ct`), never wall clock,
+   so receipts reproduce deterministically from history.
++- **Notes receipts.** The hook then attaches the same JSON to the tick
++  commit with `git notes --ref=quilt/receipts` — the receipt rides INSIDE
++  git's object graph, so it travels with the branch on fetch/push where the
++  `.quilt/receipts/` files cannot. `quilt-audit` prints every cell
++  commit's receipt from notes (`git log --notes=quilt/receipts --oneline
++  -- cells/` is the manual equivalent); plain `git clone` does not copy
++  `refs/notes/*`, so `quilt-init` wires the fetch refspec and pulls the
++  notes in.
++- **Signed ticks.** `sig` = fnv1a-64 over
++  `receipt-without-sig || committer-ident || commit-tree` — a cheap
++  transport-level integrity mark (unkeyed, GPG-free) tying the receipt to
++  THAT commit by THAT actor. `quilt-verify` recomputes it for every noted
++  receipt and names any commit whose note no longer matches. It catches
++  transport damage and lazy edits; a tamperer who re-forges the sig passes
++  (use signed commits for real security).
+ - **Cascade.** For every `cells/<alias>/links`, dial 14 becomes
+   `max(src.dial1 × weight)` over its lines, rounded to 4 decimals (awk).
+   Missing sources count as 0. One pass, sorted glob order, no transitive
+@@ -87,11 +108,19 @@ Or with the helper: `.quilt/bin/quilt-tick auth 0 0.42`.
+    uncommitted when a tick lands.
+ 5. **`receipts/` and `watch.log` are working-tree artifacts** until someone
+    commits them; `git add .quilt && git commit` folds the journal in (such
+-   commits are silent by design).
++   commits are silent by design). The notes mirror does NOT need this — but
++   a plain `git clone` skips `refs/notes/*`, and pushing notes needs an
++   explicit refspec: `git push origin refs/notes/quilt/receipts`.
++6. **`sig` is a checksum, not a signature.** fnv1a-64 is unkeyed: anyone
++   can re-forge a self-consistent receipt. It proves receipts survived
++   transport intact, not that a trusted actor produced them.
++7. **quilt-verify only walks `cells/` commits** — a note smuggled onto a
++   non-cell commit is invisible to audit and verify.
+ 
+ ## Pins
+ 
+ `tests/pins_quiltgit.sh` — plain bash + git, no network, scratch repos under
+-`/tmp`. Six pins: receipt+watch on dial commit, freeze enforcement, cascade,
+-rewind, clone-needs-quilt-init, non-cell commits stay silent. Logs in
++`/tmp`. Nine pins: receipt+watch on dial commit, freeze enforcement, cascade,
++rewind, clone-needs-quilt-init, non-cell commits stay silent, receipt note on
++tick commit, audit + receipts ride a clone, tampered note detected. Logs in
+ `pins/`.
+diff --git a/pins/failfirst-w3a.log b/pins/failfirst-w3a.log
+new file mode 100644
+index 0000000..f559d78
+--- /dev/null
++++ b/pins/failfirst-w3a.log
+@@ -0,0 +1,44 @@
++# quilt-in-git pins  src=/tmp/zlanes2/laneG/wt
++# scratch=/tmp/quilt-pins-uHSNTM  git=2.43.0
++
++PASS P1a dial commit accepted
++PASS P1b receipt exists (.quilt/receipts/fc794fc.json)
++PASS P1c receipt contains commit hash
++PASS P1d receipt contains alias a
++PASS P1e watch.log grew by exactly one line (1->2)
++PASS P1f watch line starts with 'tick' (tick fc794fc fc794fc a)
++PASS P2a freeze commit (dial15=0.8) accepted
++PASS P2b next commit touching cell rejected (rc=1)
++PASS P2c error mentions frozen
++PASS P2d dial file unchanged by rejected commit (still 0.7 as written)
++PASS P2e committed dial1 still 0.0
++PASS P2f no new commit was created
++PASS P3a tick a dial1=0.9 committed
++PASS P3b b.dials/14 == 0.4500 (== 0.45)
++PASS P3c 'quilt: cascade after' commit exists
++PASS P4c new dial value 0.99 committed
++PASS P4d rewind (checkout prev -- cells/a/) restores 0.11
++PASS P5c fresh clone: no receipt, no watch line (hooks inert)
++PASS P5e quilt-init set core.hooksPath=.quilt/hooks
++PASS P5g receipt appears after quilt-init (f506216.json)
++PASS P5h watch.log grew after quilt-init
++PASS P6b non-cell commit created NO receipt
++PASS P6c non-cell commit added NO watch.log line
++PASS P7a tick commit accepted
++FAIL P7b no receipt note on f21a84ff413c8ed96dc921b4c3def3cfc6a96dd5
++FAIL P8c quilt-audit exit=127: tests/pins_quiltgit.sh: line 342: ./.quilt/bin/quilt-audit: No such file or directory
++FAIL P9b verify already failing: tests/pins_quiltgit.sh: line 399: ./.quilt/bin/quilt-verify: No such file or directory
++
++# ---- per-pin verdicts ----
++P1 receipt+watch on dial commit : PASS
++P2 freeze enforcement          : PASS
++P3 cascade                      : PASS
++P4 rewind                       : PASS
++P5 clone needs quilt-init       : PASS
++P6 non-cell commit silent       : PASS
++P7 receipt note on tick commit  : FAIL
++P8 audit + receipts ride clone  : FAIL
++P9 tampered note detected       : FAIL
++
++PINS: 6/9 pins pass (24 checks pass, 3 checks fail)
++PINS: FAILURES PRESENT (scratch kept for inspection: /tmp/quilt-pins-uHSNTM)
+diff --git a/pins/pins-w3a-final.log b/pins/pins-w3a-final.log
+new file mode 100644
+index 0000000..c3d4269
+--- /dev/null
++++ b/pins/pins-w3a-final.log
+@@ -0,0 +1,58 @@
++# quilt-in-git pins  src=/tmp/zlanes2/laneG/wt
++# scratch=/tmp/quilt-pins-WyBbCS  git=2.43.0
++
++PASS P1a dial commit accepted
++PASS P1b receipt exists (.quilt/receipts/008d290.json)
++PASS P1c receipt contains commit hash
++PASS P1d receipt contains alias a
++PASS P1e watch.log grew by exactly one line (1->2)
++PASS P1f watch line starts with 'tick' (tick 008d290 008d290 a)
++PASS P2a freeze commit (dial15=0.8) accepted
++PASS P2b next commit touching cell rejected (rc=1)
++PASS P2c error mentions frozen
++PASS P2d dial file unchanged by rejected commit (still 0.7 as written)
++PASS P2e committed dial1 still 0.0
++PASS P2f no new commit was created
++PASS P3a tick a dial1=0.9 committed
++PASS P3b b.dials/14 == 0.4500 (== 0.45)
++PASS P3c 'quilt: cascade after' commit exists
++PASS P4c new dial value 0.99 committed
++PASS P4d rewind (checkout prev -- cells/a/) restores 0.11
++PASS P5c fresh clone: no receipt, no watch line (hooks inert)
++PASS P5e quilt-init set core.hooksPath=.quilt/hooks
++PASS P5g receipt appears after quilt-init (69edeee.json)
++PASS P5h watch.log grew after quilt-init
++PASS P6b non-cell commit created NO receipt
++PASS P6c non-cell commit added NO watch.log line
++PASS P7a tick commit accepted
++PASS P7b receipt note attached to the tick commit (refs/notes/quilt/receipts)
++PASS P7c note JSON carries the full commit hash
++PASS P7d note JSON names cell a
++PASS P7e note JSON carries a 16-hex sig
++PASS P7f note == .quilt/receipts/5984620.json byte-for-byte
++PASS P8c quilt-audit runs (exit 0)
++PASS P8d audit lists every noted cell commit (3 blocks: seed + 2 ticks)
++PASS P8e audit shows the last tick's receipt (4401879 / 4401879cbd95e91be4ad18fff5171e777b4a654f)
++PASS P8g file receipts did NOT cross the clone (as designed)
++PASS P8i receipt note crossed the clone after quilt-init (fetched from origin)
++PASS P8j audit in the clone lists the origin repo's tick receipt
++PASS P8k quilt-verify passes in the clone (sig survives transport)
++PASS P9b verify clean before tampering (quilt-verify: 2 noted receipt(s), all sigs OK)
++PASS P9c tampered note installed via git notes add -f (alias a -> mallory, sig kept)
++PASS P9d verify exits non-zero after tamper (rc=1)
++PASS P9e verify says MISMATCH
++PASS P9f verify names the tampered commit (3e191c2)
++
++# ---- per-pin verdicts ----
++P1 receipt+watch on dial commit : PASS
++P2 freeze enforcement          : PASS
++P3 cascade                      : PASS
++P4 rewind                       : PASS
++P5 clone needs quilt-init       : PASS
++P6 non-cell commit silent       : PASS
++P7 receipt note on tick commit  : PASS
++P8 audit + receipts ride clone  : PASS
++P9 tampered note detected       : PASS
++
++PINS: 9/9 pins pass (41 checks pass, 0 checks fail)
++PINS: ALL PASS
+diff --git a/tests/pins_quiltgit.sh b/tests/pins_quiltgit.sh
+index 8e8254d..124f842 100755
+--- a/tests/pins_quiltgit.sh
++++ b/tests/pins_quiltgit.sh
+@@ -20,8 +20,19 @@
+ #                       watch line); after quilt-init they do.
+ #   P6  non-cell     -> a README-only commit creates NO receipt and NO
+ #                       watch.log line.
++#   P7  notes        -> a tick also leaves a receipt NOTE on the commit
++#                       (git notes --ref=quilt/receipts): JSON with the full
++#                       commit hash, the alias, a 16-hex sig, byte-identical
++#                       to .quilt/receipts/<short>.json.
++#   P8  audit+ride   -> quilt-audit lists every noted cell commit's receipt;
++#                       file receipts do NOT cross a clone, noted ones DO
++#                       (quilt-init wires the fetch refspec) and the sig
++#                       still verifies in the clone.
++#   P9  tamper       -> rewriting a noted receipt with a wrong alias (git
++#                       notes add -f, sig kept) makes quilt-verify exit
++#                       non-zero, say MISMATCH, and name the commit.
+ #
+-# Exit 0 iff all six pin verdicts are PASS.
++# Exit 0 iff all nine pin verdicts are PASS.
+ 
+ set -u
+ 
+@@ -275,6 +286,149 @@ pin_p6() {
+   fi
+ }
+ 
++# ---------------------------------------------------------------- P7
++pin_p7() {
++  local d full short
++  if ! d=$(new_repo p7); then bad "P7-0 setup (quilt-init runnable?)"; return; fi
++  seed_cell "$d" a
++
++  if ( cd "$d" && ./.quilt/bin/quilt-tick a 3 0.77 ) >/dev/null 2>&1; then
++    ok "P7a tick commit accepted"
++  else
++    bad "P7a tick commit failed"; return
++  fi
++  full=$(git -C "$d" rev-parse HEAD)
++  short=$(git -C "$d" rev-parse --short HEAD)
++
++  if git -C "$d" notes --ref=quilt/receipts show "$full" > "$SCRATCH/p7-note.json" 2>/dev/null; then
++    ok "P7b receipt note attached to the tick commit (refs/notes/quilt/receipts)"
++  else
++    bad "P7b no receipt note on $full"; return
++  fi
++  if grep -qF "$full" "$SCRATCH/p7-note.json"; then
++    ok "P7c note JSON carries the full commit hash"
++  else
++    bad "P7c note JSON lacks the commit hash"
++  fi
++  if grep -q '"a"' "$SCRATCH/p7-note.json"; then
++    ok "P7d note JSON names cell a"
++  else
++    bad "P7d note JSON lacks alias a"
++  fi
++  if grep -Eq '"sig": "[0-9a-f]{16}"' "$SCRATCH/p7-note.json"; then
++    ok "P7e note JSON carries a 16-hex sig"
++  else
++    bad "P7e note JSON lacks a 16-hex sig field"
++  fi
++  if cmp -s "$SCRATCH/p7-note.json" "$d/.quilt/receipts/$short.json"; then
++    ok "P7f note == .quilt/receipts/$short.json byte-for-byte"
++  else
++    bad "P7f note and file receipt differ"
++  fi
++}
++
++# ---------------------------------------------------------------- P8
++pin_p8() {
++  local d c full short out rc blocks
++  if ! d=$(new_repo p8); then bad "P8-0 setup (quilt-init runnable?)"; return; fi
++  seed_cell "$d" a
++  ( cd "$d" && ./.quilt/bin/quilt-tick a 5 0.5 ) >/dev/null 2>&1 \
++    || { bad "P8a first tick failed"; return; }
++  ( cd "$d" && ./.quilt/bin/quilt-tick a 6 0.6 ) >/dev/null 2>&1 \
++    || { bad "P8b second tick failed"; return; }
++  full=$(git -C "$d" rev-parse HEAD)
++  short=$(git -C "$d" rev-parse --short HEAD)
++
++  out=$( cd "$d" && ./.quilt/bin/quilt-audit 2>&1 ); rc=$?
++  if [ "$rc" -eq 0 ]; then
++    ok "P8c quilt-audit runs (exit 0)"
++  else
++    bad "P8c quilt-audit exit=$rc: $out"; return
++  fi
++  blocks=$(printf '%s\n' "$out" | grep -c '^== ')
++  if [ "$blocks" -eq 3 ]; then          # seed + two ticks
++    ok "P8d audit lists every noted cell commit (3 blocks: seed + 2 ticks)"
++  else
++    bad "P8d audit listed $blocks block(s) (want 3)"
++  fi
++  if printf '%s\n' "$out" | grep -q "^== $short " \
++     && printf '%s\n' "$out" | grep -qF "$full"; then
++    ok "P8e audit shows the last tick's receipt ($short / $full)"
++  else
++    bad "P8e audit missing the last tick's receipt"
++  fi
++
++  # transport: file receipts never cross a clone; noted ones must
++  c="$SCRATCH/p8-clone"
++  git clone -q "$d" "$c" || { bad "P8f clone failed"; return; }
++  if [ ! -d "$c/.quilt/receipts" ]; then
++    ok "P8g file receipts did NOT cross the clone (as designed)"
++  else
++    bad "P8g receipts dir crossed the clone?"
++  fi
++  ( cd "$c" && ./.quilt/bin/quilt-init ) >/dev/null 2>&1 \
++    || { bad "P8h quilt-init failed in the clone"; return; }
++  if git -C "$c" notes --ref=quilt/receipts show "$full" >/dev/null 2>&1; then
++    ok "P8i receipt note crossed the clone after quilt-init (fetched from origin)"
++  else
++    bad "P8i receipt note absent in the clone"
++  fi
++  out=$( cd "$c" && ./.quilt/bin/quilt-audit 2>&1 )
++  if printf '%s\n' "$out" | grep -qF "$full"; then
++    ok "P8j audit in the clone lists the origin repo's tick receipt"
++  else
++    bad "P8j clone audit missing the origin tick receipt"
++  fi
++  if ( cd "$c" && ./.quilt/bin/quilt-verify ) >/dev/null 2>&1; then
++    ok "P8k quilt-verify passes in the clone (sig survives transport)"
++  else
++    bad "P8k quilt-verify failed in the clone"
++  fi
++}
++
++# ---------------------------------------------------------------- P9
++pin_p9() {
++  local d full short out rc
++  if ! d=$(new_repo p9); then bad "P9-0 setup (quilt-init runnable?)"; return; fi
++  seed_cell "$d" a
++  ( cd "$d" && ./.quilt/bin/quilt-tick a 2 0.25 ) >/dev/null 2>&1 \
++    || { bad "P9a tick failed"; return; }
++  full=$(git -C "$d" rev-parse HEAD)
++  short=$(git -C "$d" rev-parse --short HEAD)
++
++  if out=$( cd "$d" && ./.quilt/bin/quilt-verify 2>&1 ); then
++    ok "P9b verify clean before tampering ($out)"
++  else
++    bad "P9b verify already failing: $out"; return
++  fi
++
++  # tamper: rewrite the noted receipt with a wrong alias, keep the old sig
++  if git -C "$d" notes --ref=quilt/receipts show "$full" 2>/dev/null \
++     | sed 's/"a"/"mallory"/g' \
++     | git -C "$d" notes --ref=quilt/receipts add -f -F - "$full" 2>/dev/null; then
++    ok "P9c tampered note installed via git notes add -f (alias a -> mallory, sig kept)"
++  else
++    bad "P9c tamper via git notes add -f failed"; return
++  fi
++
++  out=$( cd "$d" && ./.quilt/bin/quilt-verify 2>&1 ); rc=$?
++  if [ "$rc" -ne 0 ]; then
++    ok "P9d verify exits non-zero after tamper (rc=$rc)"
++  else
++    bad "P9d verify accepted the tampered note (rc=0)"
++  fi
++  if printf '%s\n' "$out" | grep -qi 'mismatch'; then
++    ok "P9e verify says MISMATCH"
++  else
++    bad "P9e verify output lacks 'mismatch': $out"
++  fi
++  if printf '%s\n' "$out" | grep -q "$short"; then
++    ok "P9f verify names the tampered commit ($short)"
++  else
++    bad "P9f verify does not name $short: $out"
++  fi
++}
++
+ # ---------------------------------------------------------------- main
+ main() {
+   say "# quilt-in-git pins  src=$SRC"
+@@ -286,26 +440,37 @@ main() {
+   pin_p4
+   pin_p5
+   pin_p6
++  pin_p7
++  pin_p8
++  pin_p9
+   say ""
+   say "# ---- per-pin verdicts ----"
+-  local v1 v2 v3 v4 v5 v6 n
++  local v1 v2 v3 v4 v5 v6 v7 v8 v9 n
+   case "$FAILS" in *" P1"*) v1=FAIL;; *) v1=PASS;; esac
+   case "$FAILS" in *" P2"*) v2=FAIL;; *) v2=PASS;; esac
+   case "$FAILS" in *" P3"*) v3=FAIL;; *) v3=PASS;; esac
+   case "$FAILS" in *" P4"*) v4=FAIL;; *) v4=PASS;; esac
+   case "$FAILS" in *" P5"*) v5=FAIL;; *) v5=PASS;; esac
+   case "$FAILS" in *" P6"*) v6=FAIL;; *) v6=PASS;; esac
++  case "$FAILS" in *" P7"*) v7=FAIL;; *) v7=PASS;; esac
++  case "$FAILS" in *" P8"*) v8=FAIL;; *) v8=PASS;; esac
++  case "$FAILS" in *" P9"*) v9=FAIL;; *) v9=PASS;; esac
+   say "P1 receipt+watch on dial commit : $v1"
+   say "P2 freeze enforcement          : $v2"
+   say "P3 cascade                      : $v3"
+   say "P4 rewind                       : $v4"
+   say "P5 clone needs quilt-init       : $v5"
+   say "P6 non-cell commit silent       : $v6"
++  say "P7 receipt note on tick commit  : $v7"
++  say "P8 audit + receipts ride clone  : $v8"
++  say "P9 tampered note detected       : $v9"
+   n=0
+-  for v in "$v1" "$v2" "$v3" "$v4" "$v5" "$v6"; do [ "$v" = PASS ] && n=$((n+1)); done
++  for v in "$v1" "$v2" "$v3" "$v4" "$v5" "$v6" "$v7" "$v8" "$v9"; do
++    [ "$v" = PASS ] && n=$((n+1))
++  done
+   say ""
+-  say "PINS: $n/6 pins pass ($PASS checks pass, $FAIL checks fail)"
+-  if [ "$n" -eq 6 ]; then
++  say "PINS: $n/9 pins pass ($PASS checks pass, $FAIL checks fail)"
++  if [ "$n" -eq 9 ]; then
+     say "PINS: ALL PASS"
+     rm -rf "$SCRATCH"
+     exit 0
