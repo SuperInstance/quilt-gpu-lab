@@ -94,17 +94,22 @@ def p_xref(rng, cid):
 
 def p_contra(rng, cid):
     box = rng.sample(FILLER, 5)
-    listed = ", ".join(box)
-    claims = [f"The locker contains exactly these items: {listed}.",
-              f"The {rng.choice(box)} is NOT on the locker list."]
-    corrupt = rng.random() < 0.5
-    if corrupt:
+    claims = [f"The locker contains exactly these items: {', '.join(box)}."]
+    # G1d fix: B's item choice DERIVES the truth — B ("X is NOT on the list") is
+    # true iff X is absent from A's list; consistent = both true.
+    if rng.random() < 0.5:
         drop = rng.choice(box)
         claims[0] = f"The locker contains exactly these items: {', '.join(i for i in box if i != drop)}."
+        b_item = drop                      # B refers to the omitted item -> B true
+    else:
+        b_item = rng.choice(box)           # B names a listed item -> B false
+    claims.append(f"The {b_item} is NOT on the locker list.")
+    a_list = set(claims[0].split("items: ", 1)[1].rstrip(".").split(", "))
+    consistent = b_item not in a_list
     text = (f"Statement A: {claims[0]}\nStatement B: {claims[1]}\n\n"
             f"Claim: Statements A and B are mutually consistent (both can be true).\n{CONTRACT}")
-    return text, {"expected": "REFUTED" if corrupt else "SUPPORTED",
-                  "truth": "B contradicts A" if corrupt else "B consistent with A"}
+    return text, {"expected": "SUPPORTED" if consistent else "REFUTED",
+                  "truth": f"B {'true' if consistent else 'false'} given A (item {'absent' if consistent else 'present'})"}
 
 
 def p_count(rng, cid):
@@ -112,8 +117,10 @@ def p_count(rng, cid):
     k = rng.randint(3, 8)
     pool = [f for f in FILLER if f != target]
     parts = []
+    # G1d fix: target appears EXACTLY k times (old code scattered target via
+    # rng.choice(FILLER), so the true count was random and labels lied)
     for _ in range(k):
-        parts.append(rng.choice(FILLER))
+        parts.append(target)
         parts.append(rng.choice(pool))
         parts.append(rng.choice(pool))
     rng.shuffle(parts)
