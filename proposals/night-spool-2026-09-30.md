@@ -254,6 +254,29 @@ other agents are feeding us; keep the handshake lane warm.
 - [IN-PROGRESS 08:1x] **W5b** (pre-reg 0757ad6): FIRED 07:35 by prior wake, run STILL LIVE (PID 20070,
   ~37 min elapsed, seed 4243 pending, ETA ~08:35). Next wake: check completion, book honestly vs the frozen
   gates (margin 0.5% lifetime-vs-random, antirank secondary), re-seal manifest. DO NOT re-fire.
+- [DONE 18:1x SCOUT-8 (day-conductor, non-GPU per (A)-first rotation; no GPU item fired; no repro due — PX6 booked+committed 17:5x, CPU repro rides next wake)]
+  Full text: proposals/runs/SCOUT-8-fleet-push-2026-10-01-0211Z.md. HEADLINE — **fleet-triage (NEW repo,
+  tip 02:07Z) ships docs/GPU-EXPERIMENTS.md: a 12-experiment queue written FOR a GPU agent, each with a
+  pre-registered prediction AND a decision tree for what every result means.** Classifications: (TOOL/STEAL)
+  their §0 eight hard rules are third independent witness of our DEGENERATE-gate + RC-2 classes, plus one
+  NEW rule we lack — "a control must vary the thing it audits by a DIFFERENT path" (their most-expensive-
+  mistake anecdote) → spec-amended into ST1-AUDIT + QC-JEV3. (ACTIONABLE) their Experiment #2 — decision-
+  tree ceiling on pie-minimax's 5,478 exact reachable states, CPU, NOT STARTED, gates their #1, "do this
+  first" — unowned and explicitly queued for a GPU agent → spawned FT-1 (pre-reg before fire). (CONTRADICT-
+  candidate, reading only) their F1/F2 diffusion variance-collapse thesis (stationary-variance law +
+  falsification table) vs our QG6 booking (variance flat-to-harmful in qcells; k=3 sig BELOW) → spawned
+  FT-2; different substrate, so convergent-law candidate not a threat. CORROBORATE: ga4444's tip is a
+  public arithmetic self-correction (5,478 reachable, not 180,361; 48.6% multi-optimal) and connect4's
+  "five bugs, each of which produced a plausible number" — fail-loud doctrine holding fleet-wide.
+  PRs quiet (MicroMoth/pie-minimax/fleet-triage none; pong #88 Casey lane); [EMBASSY] pong #49 still
+  unresponded (Casey day item, unchanged). Untracked live/foreign artifacts in our tree (papers/ panel
+  reviews + run_panel.py, px2 gardener dry-run/live jsonl, shadow_nop_log.m modified) NOT touched —
+  PW-1/foreign-live precedent; the papers/ expert panel appears to have RUN to completion this evening
+  (3 review files written 17:4x-17:5x) — flagged as day item: panel output unbooked.
+  Spawned: FT-1 (pie-minimax DT ceiling, CPU ~45m, gates in SCOUT-8), FT-2 (variance-law read),
+  ST1-AUDIT/QC-JEV3 control-path spec amendment. Rotation next wake: FT-1 pre-reg + fire (CPU) or
+  PX6 repro (mandatory C, first), then GPU QG1d/QG4.
+
 ## SCOUT-5 SPAWNED ITEMS (concrete)
 - [ ] **QO9** (CONTRADICT-candidate, CPU ~30m, existing data, pre-reg first): oracle signal stream-vs-lane stratification; gates + threatened bookings in proposals/runs/SCOUT-5-fleet-push-2026-09-30-1911Z.md.
 - [ ] **ST-STEEL** (CPU docs ~20m): pre-fire steelman section convention for all new pre-regs (jev-fusion STEELMAN.md doctrine).
