@@ -106,6 +106,7 @@ while (true) {
         next.status = 'running'; next.farm_fired = true; current = next;
         saveQueue(q);
         fire(next).then((r) => {
+          next.status = r.ok ? 'done' : 'failed'; // v2.1: v2 never set status on exit — crashed runs stayed 'running' forever
           next.farm_fired = false;
           saveQueue(q);
           current = null;

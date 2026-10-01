@@ -105,41 +105,60 @@ def main():
 
     clips, meta = make_clips(ffmpeg)
 
-    # --- model: skip-tower recipe + fail-loud receipt (c4's block) ---
-    import torch
-    from transformers import AutoProcessor, BitsAndBytesConfig
-    try:
-        from transformers import Cosmos3EdgeForConditionalGeneration as M
-    except ImportError:
-        from transformers.models.cosmos3_edge.modeling_cosmos3_edge import \
-            Cosmos3EdgeForConditionalGeneration as M
-    quant = BitsAndBytesConfig(
-        load_in_4bit=True, bnb_4bit_quant_type="nf4",
-        bnb_4bit_use_double_quant=True,
-        bnb_4bit_compute_dtype=torch.bfloat16,
-        llm_int8_skip_modules=c3.SKIP_MODULES)
-    t0 = time.time()
-    model = M.from_pretrained(c3.MODEL_ID, quantization_config=quant,
-                              device_map="auto", torch_dtype=torch.bfloat16)
-    model.eval()
-    proc = AutoProcessor.from_pretrained(c3.MODEL_ID)
-    p0 = next(model.model.visual.parameters())
-    visual_dtype, visual_type = str(p0.dtype), type(p0).__name__
-    if not (visual_dtype == "torch.bfloat16" and visual_type == "Parameter"):
-        json.dump({"verdict": "INVALID_HARNESS", "visual_dtype": visual_dtype,
-                   "visual_type": visual_type,
-                   "reason": "skip-tower failed"}, open(OUT_JSON, "w"), indent=1)
-        sys.exit("[c5] FATAL: INVALID_HARNESS (visual %s/%s)" % (visual_dtype, visual_type))
-    log("model loaded %.1fs, receipt %s/%s" % (time.time() - t0, visual_dtype, visual_type))
+    # --- resume path: the 22:28 crash happened AFTER extraction (scoring-stage bug),
+    # so the checkpoint lets the re-run skip the GPU entirely (metric bugs never lose GPU work)
+    resumed = None
+    if os.path.isfile(CHECKPOINT):
+        try:
+            d = json.load(open(CHECKPOINT))
+            if len(d["records"]) == len(clips) and \
+               [list(m) for m in d["meta"]] == [list(m) for m in meta]:
+                resumed = d
+                log("RESUME: checkpoint matches (%d records) — scoring only, no GPU" % len(d["records"]))
+        except Exception as e:  # noqa: BLE001 — unreadable checkpoint = full run
+            log("checkpoint unreadable (%r) — full run" % e)
 
-    # --- extract embeddings, checkpoint before scoring ---
-    torch.cuda.reset_peak_memory_stats()
-    records, batch_final = c3.extract_all(model, proc, clips, ffmpeg)
-    json.dump({"records": records, "meta": [list(m) for m in meta]},
-              open(CHECKPOINT, "w"))
-    log("checkpoint: embeddings persisted")
-    peak = torch.cuda.max_memory_allocated() / 2 ** 30
-    torch.cuda.empty_cache()
+    if resumed is not None:
+        records = resumed["records"]
+        batch_final = {"resumed": True}
+        peak = 0.0
+        visual_dtype = visual_type = "checkpoint-resume"
+    else:
+        # --- model: skip-tower recipe + fail-loud receipt (c4's block) ---
+        import torch
+        from transformers import AutoProcessor, BitsAndBytesConfig
+        try:
+            from transformers import Cosmos3EdgeForConditionalGeneration as M
+        except ImportError:
+            from transformers.models.cosmos3_edge.modeling_cosmos3_edge import \
+                Cosmos3EdgeForConditionalGeneration as M
+        quant = BitsAndBytesConfig(
+            load_in_4bit=True, bnb_4bit_quant_type="nf4",
+            bnb_4bit_use_double_quant=True,
+            bnb_4bit_compute_dtype=torch.bfloat16,
+            llm_int8_skip_modules=c3.SKIP_MODULES)
+        t0 = time.time()
+        model = M.from_pretrained(c3.MODEL_ID, quantization_config=quant,
+                                  device_map="auto", torch_dtype=torch.bfloat16)
+        model.eval()
+        proc = AutoProcessor.from_pretrained(c3.MODEL_ID)
+        p0 = next(model.model.visual.parameters())
+        visual_dtype, visual_type = str(p0.dtype), type(p0).__name__
+        if not (visual_dtype == "torch.bfloat16" and visual_type == "Parameter"):
+            json.dump({"verdict": "INVALID_HARNESS", "visual_dtype": visual_dtype,
+                       "visual_type": visual_type,
+                       "reason": "skip-tower failed"}, open(OUT_JSON, "w"), indent=1)
+            sys.exit("[c5] FATAL: INVALID_HARNESS (visual %s/%s)" % (visual_dtype, visual_type))
+        log("model loaded %.1fs, receipt %s/%s" % (time.time() - t0, visual_dtype, visual_type))
+
+        # --- extract embeddings, checkpoint before scoring ---
+        torch.cuda.reset_peak_memory_stats()
+        records, batch_final = c3.extract_all(model, proc, clips, ffmpeg)
+        json.dump({"records": records, "meta": [list(m) for m in meta]},
+                  open(CHECKPOINT, "w"))
+        log("checkpoint: embeddings persisted")
+        peak = torch.cuda.max_memory_allocated() / 2 ** 30
+        torch.cuda.empty_cache()
     X = np.array([[float(v) for v in r["emb_tokens_f16"]] for r in records], dtype=np.float64)
 
     # --- frozen probes ---
@@ -152,7 +171,9 @@ def main():
     auc_id_fwd = loocv_centroid_auc(X[fwd_idx], [y_vid[i] for i in fwd_idx])
     auc_id_rev = loocv_centroid_auc(X[rev_idx], [y_vid[i] for i in rev_idx])
     # informational: identity cross-condition (train fwd -> test rev)
-    sc = c3.nearest_centroid_scores(X[fwd_idx], [y_vid[i] for i in fwd_idx], X[rev_idx])
+    # ytr MUST be ndarray: `list == int` is just False, which made an empty class
+    # and NaN centroids (the 22:28 crash)
+    sc = c3.nearest_centroid_scores(X[fwd_idx], np.array([y_vid[i] for i in fwd_idx]), X[rev_idx])
     id_xhits = sum(1 for i, s in zip(rev_idx, sc)
                    if (s > 0) == (y_vid[i] == 1))
     id_xacc = round(id_xhits / max(len(rev_idx), 1), 4)
