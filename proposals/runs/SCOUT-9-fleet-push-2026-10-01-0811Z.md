@@ -64,7 +64,7 @@ convergent evolution; nothing to amend.
   (i) if their JEV v2 ships a discriminating control at batch>=36 that passes, CM1-r5's dilution finding
   needs a scope amendment; (ii) if their fly-stack PASS depends on our jeff-0.8b discriminator, cite QC-JEV
   as upstream dependency; (iii) else CORROBORATE and move on.
-- [ ] **FT-1b** (CPU ~20m, PRIORITY — CONTRADICT-class): read pie-minimax #1 composition claim ("composed
+- [DONE 02:1x] **FT-1b** (CPU ~20m, PRIORITY — CONTRADICT-class): read pie-minimax #1 composition claim ("composed
   prediction flips sign") against our committed FT-1 artifact. Gate: if their composed-sign claim follows
   from our own results.json, our booking was INCOMPLETE (amend in place); if it requires their added
   composition math, CORROBORATE-with-citation; if it contradicts the committed numbers, fail loud.

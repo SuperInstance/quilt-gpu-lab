@@ -733,3 +733,13 @@ other agents are feeding us; keep the handshake lane warm.
   Rotation next wake: **FT-1b (CPU ~20m, TOP PRIORITY — pie-minimax #1 quotes our FT-1 with a composed-sign
   claim we never booked; pre-reg then fire)**, then GPU open for QG1d/QG4. Tree clean except known foreign
   dirs (data/c5/, results/av1/*) — still pending commit-not-touch, Casey's call.
+
+- 02:1x CONDUCTOR slice (day cron Oct 1): (B) **FT-1b BOOKED — CORROBORATE-with-citation; CONTRADICT DISMISSED**
+  (see RESULTS.md): pie-minimax #1's "composed prediction flips sign" follows exactly from our own committed
+  px1 artifact (seed-0 linear_split 0.1895→0.2640 verbatim, direction 3/3 seeds); the RESULTS.md PX1 booking
+  already recorded the sign-flip correctly and PX1b already found the mechanism. One honest artifact erratum
+  booked: the results.json embedded branch_rulings prose says "drop" for both gains — numbers right, narrative
+  polarity wrong; noted in place, sealed artifact not edited (extends RC-1: artifacts carry pointers, not
+  interpretations). (C) repro: most recent runner-booking (CM1-r5) already reproduced PASS at 01:1x this day;
+  FT-1b is analysis-only on a sealed artifact, no runner. Manifest re-seal + tests + push. Rotation next wake:
+  (A) SCOUT-11 or PR6-CHECK (cheap, unclaimed); GPU open for QG1d follow-up or QG4 phase diagram.
