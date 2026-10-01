@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-01T14:16:25.267675+00:00",
+  "generated_at": "2026-10-01T15:13:58.515540+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "95ea1f4894e500ca380aff28346a2b2df6dd9ed47154c8eb90793fec7935c28a",
+    "RESULTS.md": "52cd5ea1099372a9414b6acd6c6bf01abf31e30e350812c40abd18320507552c",
     "QUEUE.md": "9284eac5f2373879e0731d24c80ba9b5cb524a4fb72b025d7a36e1018f652ef2"
   },
   "experiments": {
@@ -41,6 +41,7 @@
     "d12h_t_floor_surface.py": "868713337c4d635d295ea9268e16f27f651b56d9399b093ca6937a483c383b39",
     "d12i_width_scaling.py": "501cb7051bb938dfdc581ef4b901616289cdd80dfd1fdaa5ee091eded034a2b1",
     "d12j_gpu_width.py": "9c33458d20d92ae01bccf085fa7029d3a49fd06472e1043381920345fd36dfc0",
+    "d12j_gpu_width_lucineer.py": "e922559ad1e82b4fcb145b308c053d8019efb44570c142720e27dd0b4562fd38",
     "d13_relational_growing.py": "6376b3753b41f5f29a0f7ed5abed72d9451350ba3089c828a7fdcea5d85c1a08",
     "d13b_relational_confidence.py": "ddac65b0b0883c07ec81bf2f8fafc9426e60f8435d4b368c586afacd534ae618",
     "d13c_relational_reinforce.py": "f0f60d742b14aae52542afeeb57061921b961583a113af9b65d3801d03d158dd",
@@ -160,7 +161,7 @@
     "x9_presence_depth.py": "79699698f964f6da0361c8f4f92c03fa27cac94b59d5b8fdf41d6123848ae7d4"
   },
   "tools": {
-    "README.md": "1b94d82fd670125648ba457070ff2a273410a1587aec3cc4332fd9fb70a14c6a",
+    "README.md": "62cfba8289b67692fec2dc883641fe2dd51ecb08c64c3d13a0e5a0c9dea8f863",
     "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "checkpoint_guard.py": "1bf8ad1fa920b2a636f780a038a1b7fa02088ddb2eb8010133f0c0a3ab963370",
     "chip_probe.py": "946cde078933dce54c3f4ed5783ef3ce20a0fc3bdd34f1af4bc132a43043c2b9",
@@ -171,6 +172,7 @@
     "decision_cell.py": "5a49d0ef989bdaad8acdb144b69998a750a861f64ed689b975915b17b815d8ac",
     "deepinfra_ideate.py": "a43b5e545269e14b7a73f35fbf30a3295d4952ea9647f22bfd751a797de73b80",
     "eproc.py": "8243ef91b1a39f3fabf70d4e0235dbc9c27e0d4d4fd832474d44451c97423d1f",
+    "farm_queue_flip.py": "8b375211ed2bdee64015078d1b9f3415a08f19e3a7788ba6b702607166b20e81",
     "fleet_board.mjs": "65b9bbdfd5ac4eefcdfbb3a47eb0adb668d2180a050a929e6374b1040b0eba70",
     "ideation_banter.py": "cfd95d15ed712f699c3902ad3e3c6b2dd67a1feee611ec15fee6d465ff1b3dee",
     "ideation_banter_gpu.py": "5eba10d0cbe2cf5276e02b9a463b395f6d8f5314edc988f310303c720e63ab11",
