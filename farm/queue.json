@@ -29,16 +29,16 @@
    "farm_fired": false
   },
   {
-   "id": "cm1-r4",
+   "id": "cm1-r5",
    "kind": "experiment",
    "status": "queued",
-   "prereg": null,
+   "prereg": "proposals/runs/CM1-r5-plan.md",
    "cmd": [
     "~/venvs/elephant-gpu/bin/python",
-    "experiments/cm1_relay_r4.py"
+    "experiments/cm1_relay_r5.py"
    ],
    "cwd": "/home/eileen/projects/quilt-gpu-lab",
-   "note": "BLOCKED: needs r4 pre-reg (judge swap jev-latest, bigger GENs, roster diversity per RESULTS notes)."
+   "note": "R4 STALE (already ran+booked RICH_WINS 12/12) — replaced with r5: judge swap jev-latest + 3-cell roster under the r4-winning recipe. Plan pushed before fire; farm fires when committed."
   }
  ],
  "fillers": [
