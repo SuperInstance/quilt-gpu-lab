@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-01T01:14:04.473373+00:00",
+  "generated_at": "2026-10-01T03:13:19.989838+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "8277d903053541f8002062683d2bf91765abaa25406959560601babb844a78b8",
+    "RESULTS.md": "0511dbab514db92d28bf33009d6404613c16b538a06e4d560091ff46c9a7a265",
     "QUEUE.md": "8337a086bbd2be0ebf435ee2bd9ca737d636a29b12c16920f3b849273d1e55f4"
   },
   "experiments": {
@@ -23,6 +23,7 @@
     "cm1_relay_r3.py": "e8208f2067fc3f513ff6081fecf175f2b063d571d2253152e0bc19307b07b53f",
     "cm1_relay_r4.py": "3c8140936cf8afcf0fc27b0f9d346f06165d287eacfa1a92124c24580ed4ff35",
     "common.py": "af08f672c78f4934e69fb0e240f22928ff3e65a9848ca9a55a8d07293b69db33",
+    "cudaclaw_spool.py": "27c46de3212019739da35015c5b59520905f155b2c6d80235fd1d8dd35683537",
     "d10_cell_kernel.py": "82c6b1748a9e484a58e6175ca3075386f7b19d45b56ba36207c563a4975cddc6",
     "d11_don_contract.py": "9a6cb117d817a35cd0bbebb868155c8988f73023279edd8e0c06b0a8bc486409",
     "d11_don_contract_hard.py": "466dceec74fa7e22550b7d57e5141b673bd16c9bcad99d79f892a48bb89068fd",
@@ -96,6 +97,7 @@
     "ie3_specialist_trunks.py": "a70a9546472f76426796b68669fc2d633ab29087b1f15bd2ac139285e8727fb6",
     "ising2_criticality.py": "e578310a11706cd058774c5ba7c3117cfb2df2b8cd4b9326ddf0fbbf2a1bc536",
     "ising_criticality.py": "3843178d3ecf238aee4637912c5ccd5bb71560cfe97cffef13a756f6f69b3b1e",
+    "laneb_tmux_quilt_spec.py": "65dc2aaa930eb4608f28690fb248a58f7bac0533f9100fc100a8b3f491806a0a",
     "mortar2_decompose.py": "9955709cb32b33ef1d8969cc56143806bef5a8e6966624e8746d854018fa341b",
     "mortar_test.py": "567b70fc466926a3d81dfc56c4a27c6d670e06a64f016847f716b611405f2c06",
     "mq1_growth.py": "7e27d81657009fdcd23c52d9cdaeb70ebef41eecaa2952969fd59fa8390cb567",
@@ -108,6 +110,10 @@
     "px2_cells.py": "12075bfcfa288dfbc840d12d13d4ce9326d873e94dcea1e83d50652fe3ffe4a7",
     "px2_gardener.py": "0fa710c56daa536e8af4ecb27cc88d9adb57b9b5510dc451dbe6a11478535728",
     "px2_smoke.py": "f6acabc736cea6c7da2856d70b6937642037250d732e528ab740c9a94822715b",
+    "px3_distill.py": "eedec1b317e9ecd35a728dcb62b15a59752a0b432859e5ddd175803c2166d4d8",
+    "px5_disagreement_map.py": "321a799fd6300a4c9ba30321d964d2cec73b84273d62d4fe76d8c35c2962d4df",
+    "px5_permtest.py": "0eb175dcb16ef270deeac3acd778914753bc5e713d66a465aa61b5fe3f7d5033",
+    "px6_router.py": "020e2b2b8e4b2b099f5b14221aed8cc2e73bba31b44eb47a3310228aad19e9b7",
     "qc_jev_control.py": "95cba5985274ff4a8da4fc320f632bab6f500ef47079d1a20504c2ad852da397",
     "qg1_exact_census.py": "d8ed337f9611ffb7ca7962f6bb4829b9653f8c7201ce4986b47d937a3fc8a122",
     "qg1_residual.py": "136dafc33fb1dbfd0dba2817028ad928269b8228daa0613755e5dea0abdb533b",
