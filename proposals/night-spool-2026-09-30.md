@@ -571,6 +571,20 @@ other agents are feeding us; keep the handshake lane warm.
   then non-GPU queue (QC-JEV3 malformed-spec pin, CPU ~30m, or ST1-AUDIT real-set enumeration pin).
   GPU open: QG1d recon follow-up / QG4 phase diagram. No IN-PROGRESS items; nothing running (ps checked).
 
+- 17:1x CONDUCTOR slice (day cron): (C) MANDATORY REPRODUCTION CHECK on the latest booking PX1b — **PASS,
+  BIT-EXACT** (all per_class numbers identical, n_states/provenance/class_sizes/branch_rulings equal).
+  The verification run went to ext4 scratch `/home/eileen/scratch/px1b_repro/` via a NEW `--out` flag added
+  to `experiments/px1b_threat_locality.py` first — **5th instance of the hardcoded-output-path defect**
+  (RC-1 spec item: every runner takes --out; this runner had none, so a naive repro would have overwritten
+  the artifact under test, W5a/QC-JEV class). Runner fix committed BEFORE the repro fire (commit-first
+  restored per the PX1b deviation note).
+- Foreign-live strays NOT touched (PW-1 precedent): `results/px2_patchwork/gardener_live_20260930-16*.jsonl`
+  (neighbor PX2 gardener loop, last append 17:05 — 6 min before this slice, LIVE) and the finished
+  `experiments/d12g_cell_count_scaling.py` + `results/d12g_cell_count_scaling.json` (16:33, unbooked,
+  D12f lineage — neighbor lane's pre-reg'd sweep, presumably booking it themselves; flagged here so no
+  wake mistakes it for our orphan). No GPU item this slice (CPU repro); GPU lane free. Next wake rotation:
+  non-GPU (JH-1/QC-JEV3 residual, RC-3 tracked-artifact assert) or GPU (QG1d follow-up / QG4 / PX2 reading
+  once the neighbor lane lands).
 - 16:1x CONDUCTOR slice (day cron): SCOUT-7 (A-rotation, overdue; read-only). Full text:
   proposals/runs/SCOUT-7-fleet-push-2026-10-01-0011Z.md. HEADLINE: NO contradict this sweep —
   nothing threatens a booked result. Consumes: (1) **jev-harness NEW repo** = fleet-level

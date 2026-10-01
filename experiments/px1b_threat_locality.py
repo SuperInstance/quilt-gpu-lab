@@ -27,7 +27,7 @@ Reporting per fleet doc rules: device, provenance digest, ceiling per class, mea
 over 3 seeds, class sizes, controls (same split/metric as PX1; models never see test).
 """
 from __future__ import annotations
-import json, os, sys, time
+import argparse, json, os, sys, time
 
 import numpy as np
 from sklearn.tree import DecisionTreeRegressor
@@ -194,8 +194,12 @@ def main():
     rulings.append(f"P3: NON_LOCAL fraction = {frac_nl:.3f} ({results['class_sizes']['NON_LOCAL']} states).")
     results["branch_rulings"] = rulings
 
-    os.makedirs(os.path.expanduser("~/projects/quilt-gpu-lab/results/px1b_threat_locality"), exist_ok=True)
-    out = os.path.expanduser("~/projects/quilt-gpu-lab/results/px1b_threat_locality/results.json")
+    # RC-1: verification re-runs must write to scratch, never over the artifact under test.
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", default="~/projects/quilt-gpu-lab/results/px1b_threat_locality/results.json")
+    args = ap.parse_args()
+    out = os.path.expanduser(args.out)
+    os.makedirs(os.path.dirname(out), exist_ok=True)
     with open(out, "w") as f:
         json.dump(results, f, indent=2)
     print(json.dumps(summary, indent=2))
