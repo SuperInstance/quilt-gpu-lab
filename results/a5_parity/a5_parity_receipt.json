@@ -1,0 +1,91 @@
+{
+ "job": "a5_parity \u2014 reproduce quilt-mojo-lab wave-73 runtime #9 CuPy receipt",
+ "device": "NVIDIA GeForce RTX 4050 Laptop GPU, 616.92 (WSL2)",
+ "device_detail": {
+  "nvidia_smi": "NVIDIA GeForce RTX 4050 Laptop GPU, 616.92",
+  "cupy_device_name": "NVIDIA GeForce RTX 4050 Laptop GPU"
+ },
+ "cupy_version": "14.2.0",
+ "protocol": {
+  "source_runtime": "quilt-mojo-lab/python/cupy_quilt.py (imported read-only)",
+  "reference": "quilt-mojo-lab/python/flat_quilt.py (FlatQuilt, their Python canon)",
+  "inject": [
+   [
+    1,
+    1,
+    4.8
+   ]
+  ],
+  "threshold": 0.6,
+  "steps": 10,
+  "repeat": 3,
+  "timing": "best_of_3; flow passes only; flow_sync inside the timed window; cells/s = size^2*steps/best_ns",
+  "parity": "|gpu_checksum - ref_checksum| and max|gpu_pot - ref_pot| after run(10), host-side float64 sequential accumulation",
+  "deltas_vs_their_harness": [
+   "D1: deliberate 12s idle gap once at start + pre/post-ramp probes to receipt the INSTRUMENT-01 ramp law on this box",
+   "D2: per-size pre-ramp probes + this JSON receipt",
+   "no kernel/gate/tolerance changes; kernels and timing window identical"
+  ]
+ },
+ "ramp_receipt": {
+  "law": "INSTRUMENT-01: idle >= ~10s -> short GPU bursts measure 2-10x slow on this box; 0.6s sustained synced load restores full speed; ramp runs on a throwaway instance before any timing",
+  "idle_gap_before_first_probe_s": 12.0,
+  "per_size": {
+   "16": {
+    "probe_cells_per_s_pre_ramp": 165283.9,
+    "probe_cells_per_s_post_ramp": 2201427.1,
+    "ramp_duration_s": 0.601,
+    "ramp_flow_passes": 11400
+   },
+   "512": {
+    "probe_cells_per_s_pre_ramp": 1142436279.9,
+    "probe_cells_per_s_post_ramp": 2136525603.0,
+    "ramp_duration_s": 0.603,
+    "ramp_flow_passes": 3820
+   },
+   "1024": {
+    "probe_cells_per_s_pre_ramp": 2026760970.1,
+    "probe_cells_per_s_post_ramp": 3067038526.1,
+    "ramp_duration_s": 0.601,
+    "ramp_flow_passes": 1520
+   }
+  }
+ },
+ "sizes": [
+  {
+   "size": 16,
+   "steps": 10,
+   "parity_diff": 0.0,
+   "max_abs_dpot": 0.0,
+   "cells_per_s": 2235889.9,
+   "best_flow_window_ns": 1144958,
+   "ref_checksum": 0.4000000059604645,
+   "probe_cells_per_s_pre_ramp": 165283.9,
+   "probe_cells_per_s_post_ramp": 2201427.1
+  },
+  {
+   "size": 512,
+   "steps": 10,
+   "parity_diff": 0.0,
+   "max_abs_dpot": 0.0,
+   "cells_per_s": 2073540183.2,
+   "best_flow_window_ns": 1264234,
+   "ref_checksum": 0.4000000059604645,
+   "probe_cells_per_s_pre_ramp": 1142436279.9,
+   "probe_cells_per_s_post_ramp": 2136525603.0
+  },
+  {
+   "size": 1024,
+   "steps": 10,
+   "parity_diff": 0.0,
+   "max_abs_dpot": 0.0,
+   "cells_per_s": 3062703617.8,
+   "best_flow_window_ns": 3423694,
+   "ref_checksum": 0.4000000059604645,
+   "probe_cells_per_s_pre_ramp": 2026760970.1,
+   "probe_cells_per_s_post_ramp": 3067038526.1
+  }
+ ],
+ "timestamp": "2026-10-01T22:18:16.210121+00:00",
+ "started_at": "2026-10-01T22:17:56.723495+00:00"
+}

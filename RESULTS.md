@@ -4582,3 +4582,22 @@ else (pre-reg, seeds, prompt, gate) is frozen and unchanged.
   contention-aborted partials (exploratory only; not folded into the gate)
 - code: `experiments/c1_playtest_pong.py` (driver) + `experiments/c1_pong_engine.mjs`
   (engine harness)
+
+## [DONE 14:18 A5-PARITY Oct 1] quilt-mojo-lab wave-73 CuPy receipt reproduced on the 4050 — consumer-silicon conformance node LIVE
+
+Lane A5-PARITY (kimi, tmux lab-a5). Reproduced `python/cupy_quilt.py` (runtime #9) per their
+`docs/RUNTIME9-PREREG.md` + wave-73 `bench.py` protocol; quilt-mojo-lab used READ-ONLY; no
+kernel/gate/tolerance changes. Verdict family: conformance receipt (no K/K/I gate — pre-dates
+G7 adoption for this lane shape; INSTRUMENT-01 ramp receipt included instead).
+
+- **Bit-parity 0.0 at 16²/512²/1024², max|Δpot| = 0.0** — stronger than their frozen P1 claim
+  ("0.0 at 16², within 1e-4 at 512²"). Checksum 0.4000000059604645 matched exactly at all sizes.
+- **1024²: 3.06G cells/s = within 1.3% of their 3.099G receipt.** 512²: 2.07G vs 2.83G
+  (throughput moves, parity doesn't); 16² launch-bound (2.24M vs 15.7M).
+- **INSTRUMENT-01 receipted on a second independent harness:** 12s idle → pre-ramp probes
+  2–10× slow (16²: 165k → 2.20M cells/s after 0.6s ramp, 13×); ramp law holds outside guard.py.
+- **Honesty catch (kimi, kept):** their RESULTS.md header records wave-73 on "2-core container
+  + RTX 4050 6GB" — the "datacenter silicon" framing in the worklist was wrong; our box matches
+  their hardware class, which makes the 1.3% @1024² reading cleaner, not worse.
+- Artifacts: results/a5_parity/{a5_parity_receipt.json, a5_parity_repro.py, README.md};
+  CuPy 14.2.0, driver 616.92 (WSL2), elephant-gpu venv python 3.14.
