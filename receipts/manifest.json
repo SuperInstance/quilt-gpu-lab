@@ -1,10 +1,10 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-01T20:15:05.789182+00:00",
+  "generated_at": "2026-10-01T21:15:07.808442+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "361f949aac9fedf249ed5b7961be35599701ce521f3d468248a8d4d475cd6264",
-    "QUEUE.md": "9284eac5f2373879e0731d24c80ba9b5cb524a4fb72b025d7a36e1018f652ef2"
+    "RESULTS.md": "6d3a1162022666b68c7ee840dd81b6be3431e91db135ecf6b6713272e334a230",
+    "QUEUE.md": "bfdaf8de48d87b75855f25dec5db5a51779b1530badc25540b2f1655b9bd35e5"
   },
   "experiments": {
     "ag1_aggregation_rules.py": "39107b302b6855a3bf65ee7e012de32b7da0c2d396f18df824b661c50227ebe6",
@@ -138,7 +138,7 @@
     "qo6_kill_evidence.py": "fcbfe984ddfe01338240eafa4d7d794c41ddec2e17910ec3dc58a3c6a05cbde5",
     "qo9_lane_vs_stream.py": "30ef64dccbb29bf8d261ece169a02a06f8d0f655fa10d5574d4022ac6949211e",
     "rt1_route_marginal.py": "6fc473af0a60ecfdfc3270643de14552cdf4674bccf2ecfc1d421bebc293c93f",
-    "s6a_delta_direction.py": "c6d637ed75b3d3d4d2953231b8d907883aeb238441f73027a6cb460e87562a7c",
+    "s6a_delta_direction.py": "b9d469407bb8a13f3077274a77d8ecf7a7fe838ff6672c4c631b6bd28696feb8",
     "s6b_memory_tokens.py": "51c765572648dba380247dde2a43803e5a612d5ef285fac64c5cb162fcac283f",
     "st1_quilt_cell_v0.py": "d4f4cf1c4c6b79bbf98c423e27a5d4a04945c5f9b7aaa3d7ffb44189b78a42fc",
     "st3_calibrated_noul.py": "6318e1152a9891a7292ca9e2153b776e47f09f9728ae2e31b28e74e6cdc8af30",
@@ -165,12 +165,13 @@
     "xq0_substrate_consolidation.py": "eae71b6a1c664669a941bc9be03e7574e0ec16fb6f9541250aae11c9384bb32a"
   },
   "tools": {
-    "README.md": "62cfba8289b67692fec2dc883641fe2dd51ecb08c64c3d13a0e5a0c9dea8f863",
+    "README.md": "cd72669c4d94773875c962c6c47b09779eb78e9139e957f7cdbe7fb79d9675a3",
     "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "checkpoint_guard.py": "1bf8ad1fa920b2a636f780a038a1b7fa02088ddb2eb8010133f0c0a3ab963370",
     "chip_probe.py": "946cde078933dce54c3f4ed5783ef3ce20a0fc3bdd34f1af4bc132a43043c2b9",
     "chip_route.py": "608b890a9a293c7851e9fb18a0262a831dffcd6f85f171afb414b2b9c409f02a",
     "codespace_lane.sh": "996c8e110423fa6b7b22b1781dbe88496b4e488f0601f893abcf1cf2f2580321",
+    "corpus_filter.py": "3dbe92aa917eead56bd0c47a2dea858595ee8277a18c0d6c812424bd3ace79c3",
     "correlate.py": "0e2e3a92a3ecaeee5fda9c34285b609e37ef4468cb33541465ed838603548475",
     "d6_worldgen.js": "789efc53a8312c86a96ab9223305727660d7e76dcd836ded3df36b2ff05f75d2",
     "decision_cell.py": "5a49d0ef989bdaad8acdb144b69998a750a861f64ed689b975915b17b815d8ac",
@@ -191,11 +192,5 @@
     "transition_kernel.py": "8364ec79e6e866fbf78d4fbd80a3514bf14f11394c4048a1dff30889e7796443",
     "typesafe_batch.py": "6f4a470a02d262c2877748670aeb6ae1ca74a98f6b395864bb84dd8ec2d30381",
     "verdict_gate.py": "b1b431f643635b881fb770b72b66429cc3189f9cabb07506371de4fbc8d8f8f8"
-  },
-  "sealed_from_dirty_tree": {
-    "admission": true,
-    "paths": [
-      " M tools/pr_sweep.py"
-    ]
   }
 }
