@@ -3536,3 +3536,7 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
   VRAM gate PASS (5.3 GiB free). Runtime: single-digit minutes, well under 50 MB device memory.
 - Seed family SEED=2718 per pre-reg formula (torch CUDA generator); NOT bit-matched to D12i
   (declared in pre-reg). Result: results/d12j_gpu_width.json (+ runner experiments/d12j_gpu_width.py).
+- (C) MANDATORY REPRODUCTION CHECK 06:2x: D12j re-run from the COMMITTED runner to ext4 scratch
+  (/home/eileen/scratch/d12j_repro/, never touched results/) → output IDENTICAL to the committed
+  artifact (gates, floors, grid all deep-equal; device-name field excluded). CUDA generator seeds
+  are version-stable here. Clean bill.
