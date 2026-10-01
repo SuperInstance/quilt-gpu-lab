@@ -346,7 +346,7 @@ def live_chat_move(prompt: str, endpoint: str, model: str, key_file: str,
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
         "temperature": 0.2,
-        "max_tokens": 4096,
+        "max_tokens": 16384,  # adaptive thinking ignores disabled on hard moves (17k-char reasoning seen); cap must fit thinking + content
         "thinking": {"type": "disabled"},  # coding endpoint honors it; thinking starved content -> abstain cascade
         "stream": False,
     }).encode("utf-8")
