@@ -62,4 +62,5 @@ A1 ✅ KILL-of-prediction (d835e71) · A2 ✅ smoke INCONCLUSIVE-gate/BREAKS-sec
 - moth-seal: pool=53, retry loop, n=4, direct; --stream=prf broken today.
 - tmux: session `3` idle (10:40) — claim or kill next housekeeping; `canvas-ctl` is system.
 
-- `KIMI SUSPENDED` (Casey 15:26, until further notice) — lab-blocks runner died with it. blocks/ status: 3/5 complete (envelope_guard, format_first_gate, port_harness committed); exact_minimax_labels + ternary_transition_kernel dirs incomplete. Continuation queued: deepseek lane finishes the last 2 blocks + composition map (blocks/README.md) on next slot.
+- `KIMI SUSPENDED` (Casey 15:26, until further notice) — roles re-homed (deepseek lanes; zcode added as third runner per Casey 15:29).
+- `BLOCKS-FINISH` RUNNING on **zcode** (tmux lab-zblocks, 15:31) — exact_minimax_labels + ternary_transition_kernel BLOCK.md/self-tests + blocks/README.md composition map. CPU-only, no commit.
