@@ -3458,3 +3458,21 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
   serve = argmax min(gd,gu) WITHOUT the 0.5 floor when the batch is large; roster
   only earns when a cell is DEAD (r1 pattern), not when all are competent.
 - Output: results/cm1/round_005_out.json (schema cm1-round5/1), rounds.jsonl appended.
+
+### (C) MANDATORY REPRODUCTION CHECK — 01:1x Oct 1: **CM1-r5 PASS (scoring re-derivation)**
+- CM1-r5 is a live-API farm fire (DeepInfra cells + jev-latest judge), so a byte-level re-run is neither
+  possible nor meaningful; the valid repro is SCORING-ONLY re-derivation from the committed
+  `results/cm1/round_005_out.json` (scratch script, ext4, never touched results/ — 09:1x doctrine).
+- Recomputed from per-record fields: correct_A **12**, correct_B **11**, A_paths {DRAFT_PASS:12},
+  B_paths {DOUBTED_PINCH:11-correct/12-total}, B_served_from {c0:7,c1:3,c2:1}, verdicts
+  **KEEP / TRANSFERS / ROSTER_HURTS**, cost_bar_ok **true** — ALL match the committed booking exactly.
+- Two apparent diffs, both resolved as non-findings: (1) committed B_paths counts ALL records (runner
+  lines 252-254 have no `correct` filter) vs my scratch filtering correct-only — my filter artifact;
+  the one incorrect record (S12, DOUBTED_PINCH served from c0) is exactly the booked 11/12-with-pinch story.
+  (2) committed verdicts carries the extra `rescued_sids: []` key — expected under ROSTER_HURTS.
+- Honest scope note (same class as C5): this validates the SCORING/verdict stage and per-record internal
+  consistency only; no pinch-floor violations found scanning all correct DRAFT_PASS records (none exist —
+  all B passes were pinch-served, corroborating the dilution finding). Draft-generation and judge calls
+  are NOT re-exercised; the booking rests on the committed artifact + farm receipts.
+- 6th witness of RC-1 hardcoded-path class: cm1_relay_r5.py has no `--out` (OUT_JSON hardcoded); the
+  clone-at-HEAD workaround wasn't needed here only because this repro makes no writes at all.
