@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-01T07:14:36.055769+00:00",
+  "generated_at": "2026-10-01T09:13:08.064591+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "068f6034d2a11131e7fdce622d9d055eeb38593f4b4a1ee4051095462369bafc",
+    "RESULTS.md": "51cf42cda8d5cbddb8973c586e434a5b0f163b590d16b2200075af5eedfafaa0",
     "QUEUE.md": "9a61accc2043e7e9022fa1e8801835b4d3baf99a2fe75fbb79dd8304fec3a2c3"
   },
   "experiments": {
@@ -25,6 +25,7 @@
     "cm1_relay_r2.py": "def4c6e9b28ad89e753424b32919a56d36fb263671984b2b5658aa986c1b0634",
     "cm1_relay_r3.py": "e8208f2067fc3f513ff6081fecf175f2b063d571d2253152e0bc19307b07b53f",
     "cm1_relay_r4.py": "3c8140936cf8afcf0fc27b0f9d346f06165d287eacfa1a92124c24580ed4ff35",
+    "cm1_relay_r5.py": "36705a913abfa04699c9556425c0ff4d6c662fecbbbb28d0d01256fdc401d9b2",
     "common.py": "af08f672c78f4934e69fb0e240f22928ff3e65a9848ca9a55a8d07293b69db33",
     "cudaclaw_spool.py": "27c46de3212019739da35015c5b59520905f155b2c6d80235fd1d8dd35683537",
     "curl1_mesh.py": "12f20b6173eaf237ce25ce77e8cc03f10c06f8479aca5f52449948bb30cc2754",
@@ -157,7 +158,7 @@
     "x9_presence_depth.py": "79699698f964f6da0361c8f4f92c03fa27cac94b59d5b8fdf41d6123848ae7d4"
   },
   "tools": {
-    "README.md": "ad3d66fdb7e2cad417be7a72a53e9176f5298139c33e58e0966fe7c598e3babc",
+    "README.md": "847f04590c3a4f986a26710ede72cadde5e8fd7c031982b875778ae9362028cb",
     "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "chip_probe.py": "946cde078933dce54c3f4ed5783ef3ce20a0fc3bdd34f1af4bc132a43043c2b9",
     "chip_route.py": "608b890a9a293c7851e9fb18a0262a831dffcd6f85f171afb414b2b9c409f02a",
@@ -177,6 +178,7 @@
     "qcell_sim.py": "8c82d4bcc88370c01870238a006fa62bdb6fe571f5c8951bcdae6f3cf7920962",
     "receipt_manifest.py": "6b3c8c5d0fb5310afba1d3cc1ac4467581ecb9459c13a62dcf88fa6818556114",
     "systemone_proxy.py": "0fb09d57ab77c285ff39db7113c759bc334e17e9ce6b1cb98b76981b1ff66782",
-    "transition_kernel.py": "8364ec79e6e866fbf78d4fbd80a3514bf14f11394c4048a1dff30889e7796443"
+    "transition_kernel.py": "8364ec79e6e866fbf78d4fbd80a3514bf14f11394c4048a1dff30889e7796443",
+    "typesafe_batch.py": "6f4a470a02d262c2877748670aeb6ae1ca74a98f6b395864bb84dd8ec2d30381"
   }
 }
