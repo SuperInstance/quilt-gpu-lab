@@ -113,9 +113,10 @@ def main():
 
     rows = {k: [] for k in ("FAST-FAIL", "PENDING", "CONFLICTS", "GREEN",
                             "OTHER", "REPO-ERROR")}
-    for name in names:
+    for idx, name in enumerate(names, 1):
         repo = f"{args.org}/{name}"
         time.sleep(0.2)
+        print(f"[sweep {idx}/{len(names)}] {repo}", file=sys.stderr, flush=True)
         prs, err = gh_json(["pr", "list", "--repo", repo, "--state", "open",
                             "--json", "number,title,author,headRefName,"
                                       "baseRefName,mergeable,updatedAt,url",
