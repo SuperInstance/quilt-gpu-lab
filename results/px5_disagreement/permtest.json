@@ -1,0 +1,76 @@
+{
+  "experiment": "PX5b permutation null for PX5 MI asymmetry",
+  "pre_reg": "REVISION-BRIEF-v1.md item 3 (panel 2026-09-30, deepseek_stats point 3)",
+  "provenance": {
+    "method": "per-state join regenerated via frozen px5 instrument machinery (build_registry(seed=0), identical per-state code path); aggregates cross-checked against booked px5_map.json before booking",
+    "terrain_digest_fnv1a64": "0x75f652bc1d8464b8",
+    "n_test": 36073,
+    "split_seed": 0,
+    "tree_seed": 0,
+    "permutation_seed": 0,
+    "numpy_rng": "np.random.default_rng(0)"
+  },
+  "cross_checks_vs_booked": {
+    "n_test": {
+      "regenerated": 36073,
+      "booked": 36073
+    },
+    "n_unique_signatures": {
+      "regenerated": 15,
+      "booked": 15
+    },
+    "comp_top1_overall": {
+      "regenerated": 0.7437,
+      "booked": 0.7437
+    },
+    "mi_signature_vs_comp_correct": {
+      "regenerated": 0.5955,
+      "booked": 0.5955
+    },
+    "mi_signature_vs_class": {
+      "regenerated": 0.1212,
+      "booked": 0.1212
+    },
+    "all_6_correct_n": {
+      "regenerated": 9470,
+      "booked": 9470
+    },
+    "all_6_wrong_n": {
+      "regenerated": 7895,
+      "booked": 7895
+    }
+  },
+  "T1_signature_vs_composition_correct": {
+    "observed_mi_bits": 0.595498,
+    "null_mean_bits": 0.000281,
+    "null_sd_bits": 0.000107,
+    "null_max_bits": 0.000663,
+    "empirical_p": 0.001,
+    "n_shuffles": 1000,
+    "effective_cardinality": {
+      "signature_values_observed": 15,
+      "label_values": 2,
+      "joint_cells": 30
+    },
+    "miller_madow_bias_bits": 0.00028
+  },
+  "T2_signature_vs_threat_class": {
+    "observed_mi_bits": 0.121228,
+    "null_mean_bits": 0.000578,
+    "null_sd_bits": 0.000149,
+    "null_max_bits": 0.001069,
+    "empirical_p": 0.001,
+    "n_shuffles": 1000,
+    "effective_cardinality": {
+      "signature_values_observed": 15,
+      "label_values": 3,
+      "joint_cells": 45
+    },
+    "miller_madow_bias_bits": 0.00056
+  },
+  "notes": [
+    "Empirical p is (1 + #{null >= observed}) / (1 + n_shuffles); the +1 avoids zero p-values.",
+    "Shuffling the label vector preserves the label marginal, so the null is 'no association with signature', not 'label marginal changed'.",
+    "Miller-Madow bias for T1 (15x2 cells, N=36,073) is ~2.8e-4 bits and for T2 (15x3) ~5.6e-4 bits \u2014 orders of magnitude below the observed asymmetry; effective cardinality is the 15 OBSERVED signature values, not 64."
+  ]
+}

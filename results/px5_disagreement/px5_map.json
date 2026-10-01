@@ -1,0 +1,161 @@
+{
+  "pre_reg": "proposals/runs/PX5-cell-signature-map.md",
+  "class": "EXPLORATORY_MAP",
+  "provenance": {
+    "device": "cpu (numpy 2.4.6, sklearn 1.9.0; decision trees, no CUDA involved; ollama cells OFF (flag-gated, PX2_ENABLE_OLLAMA))",
+    "terrain_digest_fnv1a64": "0x75f652bc1d8464b8",
+    "n_states": 180361,
+    "n_test": 36073,
+    "split_seed": 0,
+    "tree_seed": 0,
+    "depths": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "tree_hyperparams": {
+      "min_samples_leaf": 5,
+      "random_state": 0
+    }
+  },
+  "signature_census": {
+    "n_unique": 15,
+    "top10": [
+      [
+        "111111",
+        9470
+      ],
+      [
+        "000000",
+        7895
+      ],
+      [
+        "000111",
+        4738
+      ],
+      [
+        "001111",
+        3793
+      ],
+      [
+        "011111",
+        3748
+      ],
+      [
+        "000001",
+        3040
+      ],
+      [
+        "000011",
+        2203
+      ],
+      [
+        "000010",
+        673
+      ],
+      [
+        "001000",
+        303
+      ],
+      [
+        "111101",
+        85
+      ]
+    ]
+  },
+  "mi_bits": {
+    "signature_vs_class": 0.1212,
+    "signature_vs_comp_correct": 0.5955
+  },
+  "unanimous_partitions": {
+    "all_6_correct": {
+      "n": 9470,
+      "class_mix": {
+        "NON_LOCAL": 2727,
+        "WIN": 6282,
+        "BLOCK": 461
+      },
+      "comp_top1": 1.0
+    },
+    "all_6_wrong": {
+      "n": 7895,
+      "class_mix": {
+        "BLOCK": 2392,
+        "WIN": 2812,
+        "NON_LOCAL": 2691
+      },
+      "comp_top1": 0.1075
+    }
+  },
+  "router_ceiling": {
+    "any_tree_correct": {
+      "overall": 0.7811,
+      "WIN": 0.8717,
+      "BLOCK": 0.5962,
+      "NON_LOCAL": 0.6729
+    },
+    "any_cell_correct": {
+      "overall": 0.8698,
+      "WIN": 0.9097,
+      "BLOCK": 0.9777,
+      "NON_LOCAL": 0.686
+    },
+    "comp_top1": {
+      "overall": 0.7437,
+      "WIN": 0.8188,
+      "BLOCK": 0.6913,
+      "NON_LOCAL": 0.5811
+    }
+  },
+  "cell_class_matrix": {
+    "tree_d1": {
+      "WIN": 0.2894,
+      "BLOCK": 0.0819,
+      "NON_LOCAL": 0.3382
+    },
+    "tree_d2": {
+      "WIN": 0.3955,
+      "BLOCK": 0.1882,
+      "NON_LOCAL": 0.4377
+    },
+    "tree_d3": {
+      "WIN": 0.5492,
+      "BLOCK": 0.2392,
+      "NON_LOCAL": 0.4945
+    },
+    "tree_d4": {
+      "WIN": 0.6661,
+      "BLOCK": 0.4828,
+      "NON_LOCAL": 0.5414
+    },
+    "tree_d5": {
+      "WIN": 0.7649,
+      "BLOCK": 0.5469,
+      "NON_LOCAL": 0.5691
+    },
+    "tree_d6": {
+      "WIN": 0.8415,
+      "BLOCK": 0.5775,
+      "NON_LOCAL": 0.6383
+    },
+    "pinch_fired_correct": {
+      "WIN": 0.9042,
+      "BLOCK": 0.976,
+      "NON_LOCAL": 0.8653
+    },
+    "pinch_fired_rate": {
+      "WIN": 0.7596,
+      "BLOCK": 1.0,
+      "NON_LOCAL": 0.4348
+    }
+  },
+  "pinch_preemption_share": {
+    "correct": 0.6635,
+    "abstain": 0.275,
+    "wrong": 0.0615
+  },
+  "comp_top1_overall": 0.7437
+}
