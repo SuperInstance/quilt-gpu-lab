@@ -3540,3 +3540,23 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
   (/home/eileen/scratch/d12j_repro/, never touched results/) → output IDENTICAL to the committed
   artifact (gates, floors, grid all deep-equal; device-name field excluded). CUDA generator seeds
   are version-stable here. Clean bill.
+
+## [06:4x Oct 1] D12j RECONCILIATION — the pre-reg was run TWICE independently; both KEEP (two-witness verdict)
+- Race found at reconciliation: the wheel lane (grabbed 0b2df86 within minutes of push) implemented and
+  fired its own runner (28e2654, preflight fix 7c33add) and booked KEEP (756986c; corner floors
+  5→3→2 at W32/64/128, N128/p0.3) while Lucineer was building an independent implementation at the same
+  paths. Colliding writes: Lucineer's fix commit (3a4ec94) replaced the lane's runner in the tree, and
+  the r2 receipt overwrote the lane's receipt (uncommitted at collision time — nothing lost; lane
+  artifacts restored verbatim from 7c33add / 756986c).
+- Reconciliation: lane's runner + receipt restored to the canonical paths their booking references;
+  Lucineer's implementation + r2 receipt preserved at experiments/d12j_gpu_width_lucineer.py +
+  results/d12j_gpu_width_lucineer-r2.json.
+- Result: TWO independent implementations of the same frozen gates, both **KEEP — J1 PASS (0
+  inversions), J2 PASS (floor(128)=2 ≤ 3), J3 not triggered**. Only divergence: the W32 floor rung
+  (lane 5 vs Lucineer 10 at N128/p0.3) — ladder-resolution-sensitive; the D12i extrapolation
+  (~400/32 ≈ 12.5) sits nearer 10, and both implementations land on identical W64/W128 rungs.
+  Two-witness verdict: **the W·T product rule survives to W=128; the message-exchange floor at W=128
+  is T=2.**
+- Process lesson (banked): pre-regs in proposals/runs/ are implicit claims — main-session self-fires
+  must check the farm/spool first or mark ownership in the pre-reg itself. This race cost nothing
+  (git kept everything) but is a standing collision hazard.
