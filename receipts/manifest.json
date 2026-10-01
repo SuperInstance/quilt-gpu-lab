@@ -1,6 +1,6 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-01T15:13:58.515540+00:00",
+  "generated_at": "2026-10-01T16:15:06.929317+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
     "RESULTS.md": "52cd5ea1099372a9414b6acd6c6bf01abf31e30e350812c40abd18320507552c",
@@ -104,6 +104,7 @@
     "ie1_reichardt.py": "3a93df2e21d30cda086ae61e30708ac06877aed05a330aa82d824dfef517f17a",
     "ie2_blob_reader.py": "21824a0d02dc41c28bcea89eb6942c813f2fb909a19ec00bd846726f3ebb3f74",
     "ie3_specialist_trunks.py": "a70a9546472f76426796b68669fc2d633ab29087b1f15bd2ac139285e8727fb6",
+    "instrument_ramp_law.py": "62d3dc0cef6f2076f5875d5048360147c04342f1928ba647d4c36988a81f5396",
     "ising2_criticality.py": "e578310a11706cd058774c5ba7c3117cfb2df2b8cd4b9326ddf0fbbf2a1bc536",
     "ising_criticality.py": "3843178d3ecf238aee4637912c5ccd5bb71560cfe97cffef13a756f6f69b3b1e",
     "laneb_tmux_quilt_spec.py": "65dc2aaa930eb4608f28690fb248a58f7bac0533f9100fc100a8b3f491806a0a",
@@ -137,6 +138,8 @@
     "qo6_kill_evidence.py": "fcbfe984ddfe01338240eafa4d7d794c41ddec2e17910ec3dc58a3c6a05cbde5",
     "qo9_lane_vs_stream.py": "30ef64dccbb29bf8d261ece169a02a06f8d0f655fa10d5574d4022ac6949211e",
     "rt1_route_marginal.py": "6fc473af0a60ecfdfc3270643de14552cdf4674bccf2ecfc1d421bebc293c93f",
+    "s6a_delta_direction.py": "c6d637ed75b3d3d4d2953231b8d907883aeb238441f73027a6cb460e87562a7c",
+    "s6b_memory_tokens.py": "78e62b0335357e4529553935724a229d929228a7f166584dad63096d2b1ae7c2",
     "st1_quilt_cell_v0.py": "d4f4cf1c4c6b79bbf98c423e27a5d4a04945c5f9b7aaa3d7ffb44189b78a42fc",
     "st3_calibrated_noul.py": "6318e1152a9891a7292ca9e2153b776e47f09f9728ae2e31b28e74e6cdc8af30",
     "t5_dial_controller.py": "177ef7859e42542b6c71d51a726f0e6cf34c1274673e269f3f499d9329a6fa22",
@@ -158,7 +161,8 @@
     "x2_renderer_transfer.py": "b02711dcd7c973bfefa3e28d868eac757b187393a436867d1bbc1b889c3b07e4",
     "x3_stats_battery.py": "1ac6cf8c282a9605221d245fa1d8ad7f6bbc34e280b061604f4fc66c3dc2adb4",
     "x6_extrapolation.py": "bbdc02e20f5951ca6c412f098034733f2da8e376a0e9c6dd2c59a31ebbdabe94",
-    "x9_presence_depth.py": "79699698f964f6da0361c8f4f92c03fa27cac94b59d5b8fdf41d6123848ae7d4"
+    "x9_presence_depth.py": "79699698f964f6da0361c8f4f92c03fa27cac94b59d5b8fdf41d6123848ae7d4",
+    "xq0_substrate_consolidation.py": "2e281ba0ed4adf4831c53992ccae0c7595429fbee512a48d038d701410a56638"
   },
   "tools": {
     "README.md": "62cfba8289b67692fec2dc883641fe2dd51ecb08c64c3d13a0e5a0c9dea8f863",
@@ -186,5 +190,14 @@
     "transition_kernel.py": "8364ec79e6e866fbf78d4fbd80a3514bf14f11394c4048a1dff30889e7796443",
     "typesafe_batch.py": "6f4a470a02d262c2877748670aeb6ae1ca74a98f6b395864bb84dd8ec2d30381",
     "verdict_gate.py": "b1b431f643635b881fb770b72b66429cc3189f9cabb07506371de4fbc8d8f8f8"
+  },
+  "sealed_from_dirty_tree": {
+    "admission": true,
+    "paths": [
+      "?? experiments/instrument_ramp_law.py",
+      "?? experiments/s6a_delta_direction.py",
+      "?? experiments/s6b_memory_tokens.py",
+      "?? experiments/xq0_substrate_consolidation.py"
+    ]
   }
 }
