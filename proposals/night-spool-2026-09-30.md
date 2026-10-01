@@ -796,3 +796,22 @@ other agents are feeding us; keep the handshake lane warm.
   loop-no-op as the negative control. Day item, rides DECIDE-2.
 - Rotation next wake: non-GPU per rotation (RC-2 completeness-bounds, RC-3 tracked-artifact assert,
   or PR-SWEEP #6); GPU lane free (QG1d recon follow-up or QG4 phase diagram per queue order).
+
+## DAY SLICE 07:1x (day-conductor) — SCOUT-14 (non-GPU per rotation; GPU lane free, no GPU item)
+- Full text: proposals/runs/SCOUT-14-fleet-push-2026-10-01-1511Z.md. HEADLINE — **PR #6 on OUR repo
+  (OPEN, Casey-gated): seal-guard usability fix + refusal-semantics pins** — our `--require-clean`
+  guard false-refuses after ANY test run (tracked `tools/__pycache__/*.pyc` regenerates on import);
+  the PR fixes the dirty-path check and FAIL-first-pins the refusal semantics (4/4 mutation-caught).
+  TOOL against the receipt doctrine; spawned **RG-6** (verify claim on scratch clone, verdict for
+  Casey's merge gate; INVALID if the false-refuse doesn't reproduce on main).
+- **CORROBORATE: jev-quilt 41st-44th wipes — JEV oracle STABLE** (mean_p 0.60, 0 drift, 7 sessions,
+  14-probe battery incl. misquote/typo probes). Third witness against murmuration's jev-1.13.0 null;
+  further narrows that finding to artifact-version-specific; QC-JEV booking stands. Steal: their
+  misquote/ambiguity probe classes + drift-across-wipes protocol → QC-JEV2 spec amended.
+- **TOOL/STEAL: quilt-mojo-lab wave-73 WSL2 GPU burst-timing law — idle ≥10s → bursts 2-10× slow
+  on OUR box (RTX 4050/WSL2).** Any cold-start timing gate (G3-style ms anchors) flakes without a
+  warmup commit → spawned **TW-1** (audit timing gates, add warmups).
+- No CONTRADICTs this sweep. Quiet: taps-creative-break (lore lane), reverse-actualization wave-79
+  (honest-FAIL corroborated), quilt-arcade, slackwater-lattice (vendor-defect pinning, same doctrine).
+- Spawns: RG-6, TW-1, QC-JEV2 amendment. No repro due this wake (last booking D12j already
+  reproduced bit-exact in the 06:2x slice). Rotation next wake: RG-6 or FT-1 (CPU); GPU: QG1d/QG4.
