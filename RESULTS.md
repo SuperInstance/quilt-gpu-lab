@@ -4825,3 +4825,9 @@ Two independent B1b builds ran (double-dispatch defect, LANE-CLAIM.md deconflict
 - **ROBUST STRUCTURE (both):** clamp region perfect for every arm at every tolerance; deadzone (7.8%) + ramp (3.7%) unmoved by ANY basis at 40ep (all <0.50) — THE value-fidelity gap lives in deadzone/ramp, and B1C's arm list targets exactly that.
 - runB's own defect booked honestly: kink head stuck b0 bias (flat 0.0276 across tolerances, all seeds) = parameterization/schedule, not shape failure; first fire VOID receipt preserved; h2h correctly not run (frozen rule).
 - Receipt g7-wr-b1b-kink-head-1790896473 (3.08 Wh, 78.4 MB peak, beside seat).
+
+## [OPS 15:4x PR-QUEUE Oct 1] 52 open PRs swept (Casey: work through all PRs, learn, design 4050 probes) — deps queue cleaned, harvest lane dispatched
+
+- 13 dependabot PRs triaged by CI: **2 merged** (quilt-pincher #12 #14, green patch bumps, squash), **11 closed with evidence** (Test FAILURE on major bumps: vitest 1→5 / eslint 8→10 / TS 5.9→7.0 / @types/node 20→26 — deps-breaks-build never merges blind).
+- 39 substantive PRs → knowledge-card harvest (mechanism / outcome / primitive / 4050 probe / verdict-if-ours). kimi lane died on 5h-quota 403 before first read → re-dispatched as deepseek subagent (routing law: kimi quota-dead, z.ai busy serial, deepseek parallel).
+- Card targets incl.: chiaroscuro #1-13 (synonym-graph router 1.000 vs 0.560, CX/KC/Moth stack, JEV abstention split, geometric-PN CLOSED lane), quilt-arcade #6 (fruitfly-CX paddle: sealed FAIL H1/H2, advisory H3/H4, v2 prereg), quilt-edge-lab #1-4 (C-ROT canon-rotation invariance, AUTO_PROMOTE, fleet-state interop), pie-minimax #2 (A1 closure, thesis weakened honestly), quilt-in-git #1-4 (refs/quilt/HEAD live pointers, signed ticks, airgap+sparse), pong rounds #88-93 (scaling study), tidepool #11 (WAL pins), Patchwork-experts #1 (verification-layer proposal).
