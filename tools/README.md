@@ -58,6 +58,13 @@ more than a copy to use, it's not grabbable yet.
   EFFECT through the socket — and found two upstream bugs (argv/env drift,
   peer divergence) reported with receipts.
 
+- **typesafe-batch** — `tools/typesafe_batch.py` — one-call batched
+  typesafe/System One judge: state + named questions JSON -> answers, with
+  the retry-once / fail-loud / flat-latency pattern from cm1_relay_r4/r5.
+  `python tools/typesafe_batch.py --state s.json --questions q.json [--model jev-latest] [--out r.json]`
+  Token read at use-time from ~/.config/typesafe/token (never echoed).
+  LIVE receipt 2026-10-01: 2-question smoke vs jev-1.13.0, 0.41s, both noul returned.
+
 ### qcell_sim.py — exact small-circuit cell evaluator (GPU, batched)
 Batched statevector evaluator for qcell genomes (n<=12 qubits). Returns exact p(targets), balance,
 best_target, union, and optional shot samples with a sha256 receipt_id. One file, one job, cell-slot ready.
