@@ -3560,3 +3560,12 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
 - Process lesson (banked): pre-regs in proposals/runs/ are implicit claims — main-session self-fires
   must check the farm/spool first or mark ownership in the pre-reg itself. This race cost nothing
   (git kept everything) but is a standing collision hazard.
+
+## [DONE 10:4x GPU Oct 1] **INSTRUMENT-01 BOOKED: LAW_CALIBRATED (R1 PASS, R2 PASS — first fire)**
+- Pre-reg fired as written (owner: any; prereg+runner pushed before fire). Receipt: results/instrument_ramp_law.json.
+- The calibrated WSL2 burst-timing law (replaces the morning's single B/C-series estimate):
+  - Idle 5s → **0.97× (SAFE)**; onset between 5-10s idle; saturation ~4.5× by 20s (10s→3.4×, 20s→4.43×, 40s→4.51×, 80s→4.47× — flat after 20s).
+  - Recovery: even a **0.1s sustained synced ramp restores ≥98.8%** of hot; 0.6s → 100.4-103.7%. bench.py's 0.6s ramp RETAINED (margin is free).
+  - R3 (exploratory, no gate): elementwise kernel hits **5.33×** after 20s idle — the law is KERNEL-AGNOSTIC, box-level, as suspected.
+- Mandated follow-ups done: ramp recipe → workspace TOOLS.md; bench.py keeps its ramp implementation (declared: docstring numbers ride on this booking).
+- Verdict: LAW_CALIBRATED — every future GPU measurement on this box ramps first, ramp receipts included.
