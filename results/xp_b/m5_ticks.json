@@ -1,0 +1,104 @@
+{
+  "a": {
+    "device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "dials": [
+      48,
+      6,
+      41,
+      43,
+      6,
+      36,
+      88,
+      18,
+      0,
+      45,
+      23,
+      31,
+      10,
+      96,
+      81,
+      75
+    ],
+    "iters": 80000,
+    "ramp_receipt": {
+      "cold_first_matmul_ms": 343.632,
+      "hot_matmul_ms": 0.224,
+      "ramp_iters": 925,
+      "ramp_s": 0.6,
+      "ramped": true
+    },
+    "seed": 2718,
+    "size": 1024,
+    "state_sha256": "f4dd90ae8879f0b4b0e80ec1363d78cd8115ef307395e41728ce2b54923db7f2",
+    "torch": "2.14.0+cu126",
+    "wall_s": 10.376
+  },
+  "b": {
+    "device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "dials": [
+      48,
+      6,
+      41,
+      43,
+      6,
+      36,
+      88,
+      18,
+      0,
+      45,
+      23,
+      31,
+      10,
+      96,
+      81,
+      75
+    ],
+    "iters": 80000,
+    "ramp_receipt": {
+      "cold_first_matmul_ms": 0.307,
+      "hot_matmul_ms": 0.256,
+      "ramp_iters": 2850,
+      "ramp_s": 0.6,
+      "ramped": true
+    },
+    "seed": 2718,
+    "size": 1024,
+    "state_sha256": "f4dd90ae8879f0b4b0e80ec1363d78cd8115ef307395e41728ce2b54923db7f2",
+    "torch": "2.14.0+cu126",
+    "wall_s": 9.886
+  },
+  "c": {
+    "device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "dials": [
+      41,
+      68,
+      14,
+      6,
+      17,
+      56,
+      41,
+      0,
+      78,
+      60,
+      33,
+      71,
+      53,
+      64,
+      14,
+      23
+    ],
+    "iters": 80000,
+    "ramp_receipt": {
+      "cold_first_matmul_ms": 0.234,
+      "hot_matmul_ms": 0.133,
+      "ramp_iters": 3829,
+      "ramp_s": 0.6,
+      "ramped": true
+    },
+    "seed": 2719,
+    "size": 1024,
+    "state_sha256": "fbaa6a32e34bef8c85408cf92db10f3c02a6532c9b016085c1c971a0caa86d76",
+    "torch": "2.14.0+cu126",
+    "wall_s": 9.786
+  }
+}

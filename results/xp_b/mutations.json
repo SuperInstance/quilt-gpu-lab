@@ -1,0 +1,161 @@
+{
+  "classes": [
+    {
+      "test": "M1_dial_changed_no_receipt_update",
+      "committed": false,
+      "gate_verdict": "REFUSE",
+      "gate_line": "QTHE-GATE REFUSE: sha256 mismatch: receipt=08c4bf5ae7cc recomputed=0fb1c7001011 (1 staged cell file(s))",
+      "git_stderr": "QTHE-GATE ACCEPT (pre-commit: structural ok, 1 staged cell file(s))\nQTHE-GATE REFUSE: sha256 mismatch: receipt=08c4bf5ae7cc recomputed=0fb1c7001011 (1 staged cell file(s))"
+    },
+    {
+      "test": "M2a_chain_repair_receipt_reused",
+      "committed": false,
+      "gate_verdict": "REFUSE",
+      "gate_line": "QTHE-GATE REFUSE: chain link: receipt prev=becbe03aa70b but parent receipt=671fbd807f11 (chain-repair?)",
+      "git_stderr": "QTHE-GATE ACCEPT (pre-commit: structural ok, 1 staged cell file(s))\nQTHE-GATE REFUSE: chain link: receipt prev=becbe03aa70b but parent receipt=671fbd807f11 (chain-repair?)"
+    },
+    {
+      "test": "M2b_chain_link_forged_prev",
+      "committed": false,
+      "gate_verdict": "REFUSE",
+      "gate_line": "QTHE-GATE REFUSE: chain link: receipt prev=becbe03aa70b but parent receipt=671fbd807f11 (chain-repair?)",
+      "git_stderr": "QTHE-GATE ACCEPT (pre-commit: structural ok, 1 staged cell file(s))\nQTHE-GATE REFUSE: chain link: receipt prev=becbe03aa70b but parent receipt=671fbd807f11 (chain-repair?)"
+    },
+    {
+      "test": "M3a_truncated_sha256",
+      "committed": false,
+      "gate_verdict": "REFUSE",
+      "gate_line": "QTHE-GATE REFUSE: receipt parse: receipt line malformed (truncated/format): 'qthe-receipt@1 seed=2718 sha256=0c7bb6fdd4a7d5da4fa927e17dad42cf48d24f77 fnv64=056765f228f8da38 prev=671fbd807f112c001efb7002855cc4e65154cfe4b0a06b7eb71583788e55ab61'",
+      "git_stderr": "QTHE-GATE ACCEPT (pre-commit: structural ok, 1 staged cell file(s))\nQTHE-GATE REFUSE: receipt parse: receipt line malformed (truncated/format): 'qthe-receipt@1 seed=2718 sha256=0c7bb6fdd4a7d5da4fa927e17dad42cf48d24f77 fnv64=056765f228f8da38 prev=671fbd807f112c001efb7002855cc4e65154cfe4b0a06b7eb71583788e55ab61'"
+    },
+    {
+      "test": "M3b_missing_fnv64_field",
+      "committed": false,
+      "gate_verdict": "REFUSE",
+      "gate_line": "QTHE-GATE REFUSE: receipt parse: receipt line malformed (truncated/format): 'qthe-receipt@1 seed=2718 sha256=60494c005832dd7402c66c326c81ee4e4a8b93f508487d6f474eb33ef4fc9f6c prev=671fbd807f112c001efb7002855cc4e65154cfe4b0a06b7eb71583788e55ab61'",
+      "git_stderr": "QTHE-GATE ACCEPT (pre-commit: structural ok, 1 staged cell file(s))\nQTHE-GATE REFUSE: receipt parse: receipt line malformed (truncated/format): 'qthe-receipt@1 seed=2718 sha256=60494c005832dd7402c66c326c81ee4e4a8b93f508487d6f474eb33ef4fc9f6c prev=671fbd807f112c001efb7002855cc4e65154cfe4b0a06b7eb71583788e55ab61'"
+    },
+    {
+      "test": "M4_fnv64_recomputed_sha256_stale",
+      "committed": false,
+      "gate_verdict": "REFUSE",
+      "gate_line": "QTHE-GATE REFUSE: sha256 mismatch: receipt=948941b8778c recomputed=6a38bcf4795c (1 staged cell file(s))",
+      "git_stderr": "QTHE-GATE ACCEPT (pre-commit: structural ok, 1 staged cell file(s))\nQTHE-GATE REFUSE: sha256 mismatch: receipt=948941b8778c recomputed=6a38bcf4795c (1 staged cell file(s))"
+    },
+    {
+      "test": "M4_fnv_primary_gate_counterfactual",
+      "description": "gate variant that validates fnv64 ONLY, on the same forged commit",
+      "receipt_fnv64": "75e3494852b10a18",
+      "recomputed_fnv64_over_corrupted_state": "75e3494852b10a18",
+      "fnv_primary_gate_would": "ACCEPT",
+      "fnv_field_was_internally_consistent": true,
+      "sha256_pinned_gate": "REFUSED (see M4 row above)"
+    },
+    {
+      "test": "M5_gpu_cell",
+      "determinism": {
+        "dials_identical": true,
+        "state_sha256_identical": true,
+        "dials_a": [
+          48,
+          6,
+          41,
+          43,
+          6,
+          36,
+          88,
+          18,
+          0,
+          45,
+          23,
+          31,
+          10,
+          96,
+          81,
+          75
+        ],
+        "dials_b": [
+          48,
+          6,
+          41,
+          43,
+          6,
+          36,
+          88,
+          18,
+          0,
+          45,
+          23,
+          31,
+          10,
+          96,
+          81,
+          75
+        ],
+        "state_sha256": "f4dd90ae8879f0b4b0e80ec1363d78cd8115ef307395e41728ce2b54923db7f2"
+      },
+      "gate_verdict": "REFUSE",
+      "clean_gpu_commit": "ACCEPT",
+      "clean_gpu_committed": true,
+      "mutated_seed_commit": {
+        "test": "M5b_gpu_cell_mutated_seed",
+        "committed": false,
+        "gate_verdict": "REFUSE",
+        "gate_line": "QTHE-GATE REFUSE: sha256 mismatch: receipt=cd3b074f4567 recomputed=a4dac16bd2ec (1 staged cell file(s))",
+        "git_stderr": "QTHE-GATE ACCEPT (pre-commit: structural ok, 1 staged cell file(s))\nQTHE-GATE REFUSE: sha256 mismatch: receipt=cd3b074f4567 recomputed=a4dac16bd2ec (1 staged cell file(s))"
+      },
+      "guard_receipt": {
+        "path": "/tmp/xpb-hook-lab/out/g7/g7-wr-xp-b-hook-gpu-cell-1790890680.json",
+        "receipt_id": "g7-wr-xp-b-hook-gpu-cell-1790890680",
+        "gate_verdict": "PASS",
+        "joules": 1681.0403,
+        "watt_hours": 0.46695563888888886,
+        "source": "measured",
+        "gpu_seconds": 24.044
+      },
+      "ramp_receipt": {
+        "cold_first_matmul_ms": 343.632,
+        "hot_matmul_ms": 0.224,
+        "ramp_iters": 925,
+        "ramp_s": 0.6,
+        "ramped": true
+      }
+    }
+  ],
+  "controls": [
+    {
+      "test": "C1_honest_new_cell",
+      "committed": true,
+      "gate_verdict": "ACCEPT",
+      "gate_line": "QTHE-GATE ACCEPT (sha256 cd7430b86ab8, chain 671fbd807f11, 1 cell file(s))",
+      "git_stderr": "QTHE-GATE ACCEPT (pre-commit: structural ok, 1 staged cell file(s))\nQTHE-GATE ACCEPT (sha256 cd7430b86ab8, chain 671fbd807f11, 1 cell file(s))"
+    },
+    {
+      "test": "C2_honest_dial_update",
+      "committed": true,
+      "gate_verdict": "ACCEPT",
+      "gate_line": "QTHE-GATE ACCEPT (sha256 74cbb091b2a4, chain 671fbd807f11, 1 cell file(s))",
+      "git_stderr": "QTHE-GATE ACCEPT (pre-commit: structural ok, 1 staged cell file(s))\nQTHE-GATE ACCEPT (sha256 74cbb091b2a4, chain 671fbd807f11, 1 cell file(s))"
+    },
+    {
+      "test": "C2_receipt_changed_after_update",
+      "receipt_before": "d90c8582b07d",
+      "receipt_after": "74cbb091b2a4",
+      "changed": true
+    },
+    {
+      "test": "C3_two_cells_one_commit",
+      "committed": true,
+      "gate_verdict": "ACCEPT",
+      "gate_line": "QTHE-GATE ACCEPT (sha256 19c6dfccf734, chain 671fbd807f11, 2 cell file(s))",
+      "git_stderr": "QTHE-GATE ACCEPT (pre-commit: structural ok, 2 staged cell file(s))\nQTHE-GATE ACCEPT (sha256 19c6dfccf734, chain 671fbd807f11, 2 cell file(s))"
+    }
+  ],
+  "boundary_probe": {
+    "test": "BP1_deliberate_forger_recomputes_receipt",
+    "committed": true,
+    "gate_verdict": "ACCEPT",
+    "gate_line": "QTHE-GATE ACCEPT (sha256 18d99b7ccb66, chain 671fbd807f11, 1 cell file(s))",
+    "git_stderr": "QTHE-GATE ACCEPT (pre-commit: structural ok, 1 staged cell file(s))\nQTHE-GATE ACCEPT (sha256 18d99b7ccb66, chain 671fbd807f11, 1 cell file(s))"
+  }
+}

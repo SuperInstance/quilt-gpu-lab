@@ -1,0 +1,68 @@
+{
+  "lane": "XP-B",
+  "claim": "a commit-time hook enforces cell honesty: refuses every pre-registered corruption class, zero false rejects on clean commits",
+  "seed": 2718,
+  "verdict": "KEEP",
+  "clean_commits_accepted": 124,
+  "clean_detail": {
+    "history_commits": 120,
+    "controls": [
+      "C1_honest_new_cell",
+      "C2_honest_dial_update",
+      "C3_two_cells_one_commit"
+    ],
+    "m5_clean_gpu_commit": true
+  },
+  "class_ops_refused": [
+    "M1_dial_changed_no_receipt_update",
+    "M2a_chain_repair_receipt_reused",
+    "M2b_chain_link_forged_prev",
+    "M3a_truncated_sha256",
+    "M3b_missing_fnv64_field",
+    "M4_fnv64_recomputed_sha256_stale",
+    "M5_gpu_cell"
+  ],
+  "class_ops_accepted": [],
+  "controls_rejected": [],
+  "inconclusive_trigger_fired": false,
+  "inconclusive_note": "FNV-64 collisions were found (3/3 rounds) but no digest upgrade was forced mid-run: the gate was pre-registered on sha256, and the collisions do not transfer to canonical-JSON cell states (fixed JSON tail kills the suffix-patch handle).",
+  "boundary_probe": {
+    "test": "BP1_deliberate_forger_recomputes_receipt",
+    "committed": true,
+    "gate_verdict": "ACCEPT",
+    "gate_line": "QTHE-GATE ACCEPT (sha256 18d99b7ccb66, chain 671fbd807f11, 1 cell file(s))",
+    "git_stderr": "QTHE-GATE ACCEPT (pre-commit: structural ok, 1 staged cell file(s))\nQTHE-GATE ACCEPT (sha256 18d99b7ccb66, chain 671fbd807f11, 1 cell file(s))"
+  },
+  "findings": [
+    "gate is a CONSISTENCY gate, not an authentication gate: with no keys, a deliberate forger who recomputes a fully consistent receipt is ACCEPTED (BP1). Adversarial integrity needs keys (SIG-1, Casey-gated).",
+    "git cannot enforce message-embedded receipts from pre-commit (COMMIT_EDITMSG is absent or STALE \u2014 verified empirically). Enforcement must be at commit-msg. Gate installed at both.",
+    "FNV-1a-64 is genuinely collidable at ~2^28 work (3/3 rounds, all independently verified) vs the 2^32 generic birthday bound; mean avalanche 28.07/32 bits, min 6. Do NOT use FNV-64 as an adversarial cell address; sha256 pinned.",
+    "guard.py defect booked: Guard._stop is a one-shot Event, so one Guard instance watches only its FIRST run(); subsequent run() calls get no samples (0 J booked). All three ticks were moved into a single guarded child.",
+    "determinism: the GPU cell (2 runs, seed 2718, fixed 80k-iteration matmul chain) reproduced dials and state_sha256 byte-identically \u2014 the M5 replay class is meaningful."
+  ],
+  "gpu": {
+    "ticks_wall_s": [
+      10.376,
+      9.886,
+      9.786
+    ],
+    "guard_receipt": {
+      "path": "/tmp/xpb-hook-lab/out/g7/g7-wr-xp-b-hook-gpu-cell-1790890680.json",
+      "receipt_id": "g7-wr-xp-b-hook-gpu-cell-1790890680",
+      "gate_verdict": "PASS",
+      "joules": 1681.0403,
+      "watt_hours": 0.46695563888888886,
+      "source": "measured",
+      "gpu_seconds": 24.044
+    },
+    "ramp_receipt": {
+      "cold_first_matmul_ms": 343.632,
+      "hot_matmul_ms": 0.224,
+      "ramp_iters": 925,
+      "ramp_s": 0.6,
+      "ramped": true
+    },
+    "device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "torch": "2.14.0+cu126"
+  }
+}

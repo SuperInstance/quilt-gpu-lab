@@ -1,0 +1,16 @@
+{
+  "trials": 20000,
+  "fnv1a64": {
+    "ideal_bits": 32,
+    "mean_bits_changed": 28.069,
+    "min": 6,
+    "max": 47
+  },
+  "sha256": {
+    "ideal_bits": 128,
+    "mean_bits_changed": 128.053,
+    "min": 97,
+    "max": 159
+  },
+  "note": "1-bit input flip, 16-byte messages, seed 2718"
+}

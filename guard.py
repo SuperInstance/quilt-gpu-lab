@@ -115,6 +115,7 @@ class Guard:
         self._device: Optional[dict] = None
         self._receipt: Optional[dict] = None
         self._receipt_path: Optional[str] = None
+        self.windows: List[dict] = []  # per-run energy windows (G7 defect fix)
 
     # -- lifecycle ---------------------------------------------------------
     def preflight(self) -> bool:
@@ -131,9 +132,9 @@ class Guard:
             return False
         return True
 
-    def _watch(self, proc: subprocess.Popen) -> None:
+    def _watch(self, proc: subprocess.Popen, stop: threading.Event) -> None:
         deadline = time.time() + self.timeout_s
-        while not self._stop.wait(POLL_S):
+        while not stop.wait(POLL_S):
             now = time.time()
             free, temp, power, util = sample_full()
             self.samples.append((now, free, temp))
@@ -167,17 +168,49 @@ class Guard:
 
     def run(self, cmd: List[str], cwd: str, env: dict
             ) -> Tuple[int, str, str]:
-        """Run cmd under watch. Returns (returncode, stdout, stderr)."""
+        """Run cmd under watch. Returns (returncode, stdout, stderr).
+
+        Each run() gets a FRESH stop event and closes its own energy window
+        (G7 defect found by XP-B: a one-shot stop Event meant a second run()
+        on the same Guard sampled nothing -> 0 J). emit_receipt() integrates
+        ALL windows; per-window sums exclude inter-run gaps.
+        """
+        stop = threading.Event()
+        w_start = len(self.power_samples)
+        w_t0 = time.time()
         proc = subprocess.Popen(
             cmd, cwd=cwd, env=env,
             stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
         )
-        watcher = threading.Thread(target=self._watch, args=(proc,), daemon=True)
+        watcher = threading.Thread(target=self._watch, args=(proc, stop), daemon=True)
         watcher.start()
         out, err = proc.communicate()
-        self._stop.set()
+        stop.set()
         watcher.join(timeout=2)
+        self._close_window(w_start, w_t0)
         return proc.returncode, out, err
+
+    def _close_window(self, w_start: int, w_t0: float) -> None:
+        """Snapshot the energy window for one run(): mean power x wall (gap-
+        free), util-weighted gpu seconds. Appended to self.windows."""
+        sl = self.power_samples[w_start:]
+        if not sl:
+            self.windows.append({"power_samples": 0, "joules": 0.0,
+                                 "wall_seconds": 0.0, "gpu_seconds": 0.0})
+            return
+        t_end = time.time()
+        wall = max(0.0, sl[-1][0] - min(sl[0][0], w_t0))
+        ps = [p for _, p, _ in sl if p is not None]
+        mean_p = (sum(ps) / len(ps)) if ps else 0.0
+        gpu_s = 0.0
+        for (t0, _, u0), (t1, _, _) in zip(sl, sl[1:]):
+            if u0 is not None:
+                gpu_s += max(0.0, t1 - t0) * (u0 / 100.0)
+        self.windows.append({"wall_seconds": round(wall, 3),
+                             "power_samples": len(ps),
+                             "mean_power_w": round(mean_p, 2),
+                             "joules": round(mean_p * wall, 4),
+                             "gpu_seconds": round(gpu_s, 3)})
 
     # -- G7 energy integration ----------------------------------------------
     def _energy(self) -> dict:
@@ -187,6 +220,24 @@ class Guard:
         ps = [p for _, p, _ in self.power_samples if p is not None]
         us = [u for _, _, u in self.power_samples if u is not None]
         wall = 0.0
+        if self.windows:
+            # multi-run Guard: sum per-window integrals (inter-run gaps excluded)
+            win_wall = sum(w["wall_seconds"] for w in self.windows)
+            win_joules = sum(w["joules"] for w in self.windows)
+            win_ps = sum(w["power_samples"] for w in self.windows)
+            gpu_s = sum(w["gpu_seconds"] for w in self.windows)
+            mean_p = (win_joules / win_wall) if win_wall > 0 else None
+            joules = round(win_joules, 4)
+            return {
+                "wall_seconds": round(win_wall, 3),
+                "power_samples": win_ps,
+                "mean_power_w": round(mean_p, 2) if mean_p is not None else None,
+                "joules": joules,
+                "watt_hours": joules / 3600.0,
+                "gpu_seconds": round(gpu_s, 3),
+                "util_samples": len(us),
+                "windows": len(self.windows),
+            }
         if self._t_first is not None and self._t_last is not None:
             wall = max(0.0, self._t_last - self._t_first)
         mean_p = (sum(ps) / len(ps)) if ps else None
