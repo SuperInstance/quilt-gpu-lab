@@ -676,3 +676,7 @@ other agents are feeding us; keep the handshake lane warm.
   M farm/RECEIPTS.md, ?? farm/state.json, commit a38403c 21:06 — PW-1 precedent). Rotation next wake:
   (A) SUPERINSTANCE SCOUT or top open CPU item (SIG-1 design note Casey-gated, JH-1/QC-JEV3 residual,
   QG1d recon); GPU open for QG4 phase diagram.
+- 21:1x SEAL STATUS: manifest re-seal DEFERRED — sealer correctly refused (?? experiments/av1_train.py,
+  untracked, mtime 21:12 = LIVE foreign AV1 lane mid-write; not mine to commit or archive). My ledger
+  changes (RESULTS/QUEUE/spool) are committed+pushed at 123145e; next wake after the AV1 lane settles
+  should re-seal. Fourth clean refusal-by-design instance today.
