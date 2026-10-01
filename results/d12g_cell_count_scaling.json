@@ -1,0 +1,238 @@
+{
+  "experiment": "D12g cell-count scaling of correlation discovery",
+  "seed": 2718,
+  "qubits": 4,
+  "p_corr": 0.3,
+  "t_values": [
+    25,
+    50,
+    100,
+    200
+  ],
+  "n_values": [
+    8,
+    16,
+    32,
+    64
+  ],
+  "draws_per_cell": 5,
+  "pre_registered": "KEEP floor-N-robust iff partner_id_acc >= 0.8 at T=25 for ALL N",
+  "sweep": [
+    {
+      "n_cells": 8,
+      "T": 25,
+      "partner_id_acc_mean": 0.95,
+      "draws": [
+        0.75,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chance": 0.1429
+    },
+    {
+      "n_cells": 8,
+      "T": 50,
+      "partner_id_acc_mean": 1.0,
+      "draws": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chance": 0.1429
+    },
+    {
+      "n_cells": 8,
+      "T": 100,
+      "partner_id_acc_mean": 1.0,
+      "draws": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chance": 0.1429
+    },
+    {
+      "n_cells": 8,
+      "T": 200,
+      "partner_id_acc_mean": 1.0,
+      "draws": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chance": 0.1429
+    },
+    {
+      "n_cells": 16,
+      "T": 25,
+      "partner_id_acc_mean": 0.8875,
+      "draws": [
+        0.812,
+        0.875,
+        0.875,
+        0.875,
+        1.0
+      ],
+      "chance": 0.0667
+    },
+    {
+      "n_cells": 16,
+      "T": 50,
+      "partner_id_acc_mean": 0.9875,
+      "draws": [
+        1.0,
+        0.938,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chance": 0.0667
+    },
+    {
+      "n_cells": 16,
+      "T": 100,
+      "partner_id_acc_mean": 1.0,
+      "draws": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chance": 0.0667
+    },
+    {
+      "n_cells": 16,
+      "T": 200,
+      "partner_id_acc_mean": 1.0,
+      "draws": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chance": 0.0667
+    },
+    {
+      "n_cells": 32,
+      "T": 25,
+      "partner_id_acc_mean": 0.7875,
+      "draws": [
+        0.844,
+        0.719,
+        0.812,
+        0.812,
+        0.75
+      ],
+      "chance": 0.0323
+    },
+    {
+      "n_cells": 32,
+      "T": 50,
+      "partner_id_acc_mean": 0.9375,
+      "draws": [
+        0.812,
+        0.938,
+        1.0,
+        0.969,
+        0.969
+      ],
+      "chance": 0.0323
+    },
+    {
+      "n_cells": 32,
+      "T": 100,
+      "partner_id_acc_mean": 1.0,
+      "draws": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chance": 0.0323
+    },
+    {
+      "n_cells": 32,
+      "T": 200,
+      "partner_id_acc_mean": 1.0,
+      "draws": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chance": 0.0323
+    },
+    {
+      "n_cells": 64,
+      "T": 25,
+      "partner_id_acc_mean": 0.6969,
+      "draws": [
+        0.562,
+        0.812,
+        0.734,
+        0.734,
+        0.641
+      ],
+      "chance": 0.0159
+    },
+    {
+      "n_cells": 64,
+      "T": 50,
+      "partner_id_acc_mean": 0.9094,
+      "draws": [
+        0.984,
+        0.922,
+        0.781,
+        0.984,
+        0.875
+      ],
+      "chance": 0.0159
+    },
+    {
+      "n_cells": 64,
+      "T": 100,
+      "partner_id_acc_mean": 1.0,
+      "draws": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chance": 0.0159
+    },
+    {
+      "n_cells": 64,
+      "T": 200,
+      "partner_id_acc_mean": 1.0,
+      "draws": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chance": 0.0159
+    }
+  ],
+  "t25_by_n": {
+    "8": 0.95,
+    "16": 0.8875,
+    "32": 0.7875,
+    "64": 0.6969
+  },
+  "verdict": "KILL",
+  "note": "Tests whether D12f's T=25 floor holds as the cell pool grows (more confusable candidates per argmax pick)."
+}
