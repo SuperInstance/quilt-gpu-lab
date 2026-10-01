@@ -63,4 +63,5 @@ A1 ✅ KILL-of-prediction (d835e71) · A2 ✅ smoke INCONCLUSIVE-gate/BREAKS-sec
 - tmux: session `3` idle (10:40) — claim or kill next housekeeping; `canvas-ctl` is system.
 
 - `KIMI SUSPENDED` (Casey 15:26, until further notice) — roles re-homed (deepseek lanes; zcode added as third runner per Casey 15:29).
+- `PR-HARVEST` ✅ DONE 15:4x (245caf8) — 37 PRs/12 repos, mechanism map (5 recurring machines), 13 drafts held, our ledger hash gap found. Follow-ups: `PROBE-BATTERY` RUNNING on zcode (probes 4-10, ≤3 min each, incl. our-own-ledger hash audit); top-3 probe cluster (ring-attractor × ternary × KC-sparsification) queued as bench day; 13 review comments await keeper+Casey review before posting.
 - `BLOCKS-FINISH` RUNNING on **zcode** (tmux lab-zblocks, 15:31) — exact_minimax_labels + ternary_transition_kernel BLOCK.md/self-tests + blocks/README.md composition map. CPU-only, no commit.
