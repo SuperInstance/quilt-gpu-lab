@@ -98,11 +98,14 @@
   neutered by `|| true`; unfailable workflow). Corroborated externally 2x (jev-fusion, canons 19:55Z).
 
 ## SCOUT-9 SPAWNED ITEMS (2026-10-01 0411Z) — full text proposals/runs/SCOUT-9-fleet-push-2026-10-01-0411Z.md
-- [ ] **SC-2 arXiv-ID integrity check** (CPU ~15m): verify every arXiv ID cited in proposals/ + RESULTS.md
+- [x] **SC-2 arXiv-ID integrity check** (CPU ~15m): verify every arXiv ID cited in proposals/ + RESULTS.md
   resolves (export.arxiv.org API, one query per ID, no retry loops). Specifically SCOUT-1's "EvE 2609.36xxx"
   and QO4's reading premise — fleet-triage 50a5d66 reports TWO FABRICATED arXiv IDs circulating in the fleet.
   GATE in words: an ID that 404s or title-mismatches => mark the citing proposal's spawn-premise UNVERIFIED
   in place (honest amendment, no deletion); the spawned item is BLOCKED until re-sourced.
+  — 2026-09-30 21:1x **ALL PASS** (2404.04616 / 2609.35432 / 2602.17997 resolve with matching titles;
+  EvE = 2609.35614 real, SCOUT-1's "36xxx" guess was numerically wrong — hand-wave pattern, caught by design).
+  **QO4 premise SOURCED, unblocked.** Doctrine: ID-verify before consuming any scout-spawned reading premise.
 - [ ] **SIG-1 signed-seal design note** (CPU ~30m, DESIGN-ONLY, Casey-gated): canvas-tui c49fdb3 ships
   HMAC-signed receipts with the key OUTSIDE the agent process (0400 keyfile); S3 pins a chain-repair attack
   (verifyChain passes on public-rule repair, verifySignatures refuses); unsigned is declared, never

@@ -663,3 +663,16 @@ other agents are feeding us; keep the handshake lane warm.
     pong #88 routine; selectlib #1 not ours; quilt-atlas routine. [EMBASSY] pong #49 unchanged.
 - GPU lane idle all slice. Next wake: top open CPU item (SC-2 ~15m, QC-JEV3, DEGENERATE gate) or GPU
   QG1d/QG4 per queue order.
+
+- 21:1x CONDUCTOR slice (day cron): **SC-2 BOOKED (B-item; CPU read-only, top open item after SCOUT-9)**.
+  ALL PASS — 2404.04616, 2609.35432, 2602.17997 all resolve with matching titles; SCOUT-1's hand-waved
+  "EvE 2609.36xxx" RESOLVED as arXiv 2609.35614 (real, published 2026-09-28; the "36xxx" guess was
+  numerically wrong — exactly the hand-wave pattern fleet-triage caught as fabrication elsewhere).
+  **QO4 premise SOURCED, unblocked.** New standing doctrine: verify the arXiv ID before consuming any
+  scout-spawned reading premise. Fail-loud trap noted: first curl over http:// returned EMPTY bodies
+  with exit 0 — exit code alone would have "confirmed" nothing; https:// worked. No GPU item (CPU slice
+  per rotation; GPU lane free). No reproduction check due (SC-2 is read-only; last booking PX5b/PX6
+  verified 19:2x or internally self-cross-checking). Foreign-live strays NOT touched (Casey's farm lane:
+  M farm/RECEIPTS.md, ?? farm/state.json, commit a38403c 21:06 — PW-1 precedent). Rotation next wake:
+  (A) SUPERINSTANCE SCOUT or top open CPU item (SIG-1 design note Casey-gated, JH-1/QC-JEV3 residual,
+  QG1d recon); GPU open for QG4 phase diagram.

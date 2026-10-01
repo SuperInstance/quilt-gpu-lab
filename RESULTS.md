@@ -3317,3 +3317,28 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
   under us between the 17:5x booking and this repro). Numbers unaffected; sklearn
   DecisionTreeClassifier(random_state=0) is deterministic.
 - Manifest re-sealed after this ledger change.
+
+## SC-2 — arXiv-ID integrity check (2026-09-30 21:1x AKDT): BOOKED — ALL IDs RESOLVE (CPU, read-only)
+
+- Pre-registered gates (in words) frozen in SCOUT-9 before firing: an ID that 404s or title-mismatches its
+  claimed source => mark the citing proposal's spawn-premise UNVERIFIED in place; spawned item blocked
+  until re-sourced. export.arxiv.org API, one query per ID, no retry loops. (First curl attempt over
+  http:// returned empty bodies with exit 0 — https:// worked; noted as a fail-loud trap: exit code alone
+  would have "confirmed" nothing.)
+- Verified IDs (title match vs claim):
+  - **2404.04616** = "Vanishing Variance Problem in Fully Decentralized Neural-Network Systems" — matches
+    fleet-triage 50a5d66's correction citation exactly. SCOUT-9's downgraded FT-2 framing stands on a real ID.
+  - **2609.35432** = "Self-Evolving Coding Agents: From Digital Programs to Physical-World Intelligence"
+    — the PhysicalCoding tech report cited in proposals/physicalcoding-recon-2026-09-30.md. Title differs
+    from the repo brand but is consistent with the recon's description; SOURCE verified.
+  - **2602.17997** = "Whole-Brain Connectomic Graph Model Enables Whole-Body Locomotion Control in Fruit
+    Fly" — matches the FlyGM citation in docs/quilt-insect-brain-2026-09-28.md.
+- **The SCOUT-1 hand-waved "EvE 2609.36xxx": RESOLVED, not fabricated.** Title search "alternate optimizer
+  to Adam" returns exactly one hit: **arXiv 2609.35614, "EvE: An Alternate Optimizer to Adam", published
+  2026-09-28.** Honest note: SCOUT-1's "36xxx" guess was numerically wrong (actual 35614) — the id-half
+  hand-wave is exactly the pattern fleet-triage caught as fabrication elsewhere, and this check is the only
+  reason QO4's premise is now clean. **QO4 UNBLOCKED: premise SOURCED** (cheap-config early-ranking for
+  oracle features; reading item, low priority).
+- Verdict: **ALL PASS — zero fabricated or dead IDs among our own citations.** Fleet's fabricated-ID threat
+  class does not currently touch our ledger. Doctrine: SC-2 becomes a standing pre-fire check for any
+  scout-spawned READING item (verify the ID before the premise is consumed).
