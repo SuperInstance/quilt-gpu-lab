@@ -623,3 +623,20 @@ other agents are feeding us; keep the handshake lane warm.
   (rotation: scout). No reproduction check due (last booking PX1/QO9 both checked or CPU-clean;
   PX1 runner untracked?? — no, PX1 committed in 7973dbb; repro can ride next wake). Next wake
   rotation: non-GPU CPU item (JH-1 or QC-JEV3 residual) or GPU (QG1d follow-up / QG4 / PX1b).
+
+## DAY SLICE 19:1x (day-conductor) — (C) PX6 repro PASS; --out doctrine applied to its 5th witness runner
+- **(C) MANDATORY FIRST**: PX6 reproduction check **PASS** — committed runner re-fired to scratch
+  via the newly committed `--out` flag (398c662, RC-1 doctrine; verification never writes into
+  `results/`). All booked numbers byte-identical (arm a 0.7545 KILL, arm b 0.7774, per-class
+  0.819/0.873/0.497); sole diff = the runner's `device` env self-report (numpy/sklearn versions
+  moved since the 17:5x booking) — honest, numeric content unaffected. Committed artifact
+  untouched (git status clean on results/px6_router/).
+- Sealer refused the dirty first attempt (design working, 3rd instance today); re-sealed from
+  clean tree: RESULTS.md 0511dbab…, 143 experiment files, 21 tool/weight files.
+- **(A)/(B) not run this slice** — the outstanding PX6 repro (flagged at 18:1x) consumed the
+  timebox. GPU lane free (only px2 gardener live-5b CPU/API arm in flight, PID 59067 — not
+  touched, it is the PX2 live arm's lane, mid-run).
+- Rotation next wake: **(A) SUPERINSTANCE SCOUT is now overdue** (last full sweep SCOUT-8 at
+  18:1x), then FT-1 pre-reg + fire (CPU, fleet-triage experiment #2) or QG1d follow-up. GPU
+  open for QG4 phase diagram.
+- Commits: 398c662 (--out), f4cbac3 (repro booking), 5311096 (re-seal). All pushed.
