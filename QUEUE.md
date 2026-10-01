@@ -137,3 +137,6 @@
 - [ ] **AB-1** (low, reading ~15m): analytic-bound re-derivation pattern for gates with analytic thresholds (chiaroscuro #10 arcsin-bound class). Note until a live instance exists.
 
 - **XP-A2 (spawned by XP-A verdict): instrument-transfer at n>=6 instruments (2026-10-01).** The rho gate is binary at n=3 (0.50 is the only value below 1.0). Extend the grid with >=3 more instruments (digest-manifest checker, G7 receipt-field validator, typesafe JEV cell as an instrument, schema-lint) to make the rank correlation meaningful; rerun the same frozen KEEP/KILL gates. Cheap CPU + one penny API.
+- [ ] QG1e-CPU — audit results/xp_a/ grid with the ported control_beam + spread_vs_gap primitives; byte-repro x2; does the n>=6 grid survive its own gate?
+- [ ] QG1f-CPU — label QG1c's swap-only 28 misses with repair_label; GPU successor only if a NEW swap family surfaces
+- [ ] ADOPT spread_vs_gap as 4th refusal class in tools/verdict_gate.py beside DEGENERATE/TRUNC-B (would have blocked fleet-triage's max-over-4 table AND flagged XP-A's binary rho gate)
