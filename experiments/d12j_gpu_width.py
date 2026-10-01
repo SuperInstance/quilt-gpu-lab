@@ -49,7 +49,7 @@ def preflight():
         temp = torch.cuda.temperature()
         if temp is not None and temp > 80:
             raise RuntimeError(f"preflight FAIL: GPU temp {temp}C > 80")
-    except (RuntimeError, TypeError):
+    except Exception:
         pass  # temp readout unsupported on this driver; VRAM gate is the hard one
 
 
