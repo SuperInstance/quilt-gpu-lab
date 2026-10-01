@@ -52,7 +52,7 @@ SIGMA = 0.15                              # label noise; ceiling r2 = 0.9779
 N_TRAIN = 512
 N_TEST = 4096
 RIDGE_ALPHA = 1e-3
-ANCHOR_LAM = 1.0                          # fine-tune anchor strength (phase 2)
+ANCHOR_LAM = float(N_TRAIN)             # fine-tune anchor = data-term strength
 ORDER_MARGIN = 0.02                       # required gap for the C>A, C>B order
 
 TASKS = ("blob", "direction")             # task-1 / task-2 family names (IE3)

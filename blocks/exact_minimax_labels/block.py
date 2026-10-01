@@ -290,9 +290,15 @@ def labels(board: tuple[int, ...], n: int | None = None) -> set[int]:
 
 
 def to_key(board: tuple[int, ...]) -> str:
-    """Stable string key over '0','1','2' (value + 1) — feedable to a hash
-    splitter such as blocks/board_disjoint_cv (FNV-1a-64 high-32)."""
-    return "".join(str(v + 1) for v in board)
+    """Stable single-byte string key for hash splitting: us -> '!' (0x21, odd),
+    them -> '#' (0x23, odd), empty -> '.' (0x2E, even). The two stone chars are
+    the lowbit-odd ones, so a key with an even number of stones — every
+    our-to-move board — hashes ODD under FNV-1a-64, exactly the parity
+    structure of the receipt's raw board_bytes ({0xFF, 0, 1}); feedable to
+    blocks/board_disjoint_cv (high-32 scheme). To reproduce the receipt's
+    LITERAL bucket counts, hash the raw bytes instead:
+    fnv1a64(bytes((int(v) & 0xFF) for v in board)) >> 32."""
+    return "".join({-1: "#", 0: ".", 1: "!"}[v] for v in board)
 
 
 # ----------------------------------------------------------------------------
