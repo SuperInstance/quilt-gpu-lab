@@ -1,0 +1,1 @@
+# Farm receipts (append-only)
