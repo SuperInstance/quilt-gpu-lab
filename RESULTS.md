@@ -3588,3 +3588,15 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
     order-of-magnitude, ramps >=0.3s as the safe recipe).
 - Runner defect (3rd instance of the class): OUT_PATH hardcoded to results/ — verification must run in a copied
   scratch tree (done) until runners grow --out (RC-1 spec).
+
+## [DONE 12:09 GPU Oct 1] **FT-A1 / pie-minimax closure: P1 FAIL-HIGH, P2 FAIL — the receipt is the point**
+- Lane: RTX4050 worklist #1 (fleet-triage PR #1, merged). Spec: docs/RTX4050-BUILDSPECS.md "pie-minimax A1 build spec".
+- **REPRODUCE BEFORE EXTEND: exact.** `sweep.py` linear 9→9 = **0.1807** top-1, floor 0.1431, set-recall 0.1748 — byte-for-byte match, 13.1s CPU.
+- **COMPOSED mask** (≥2 distinct immediate wins): **320 / 2,423 distinct boards = 13.21% share** (304× double-win, 16× triple-win); 11,520 rows (6.39%) path-weighted in the 180,361-row artifact.
+- **MLP 9→64→9 (1,225 params), CUDA, seeds [1,2,3] pinned (torch+numpy+cuda+data), set-valued loss, early-stop plateau:**
+  - per-seed global top-1 = **0.9996 / 0.9996 / 0.9996** (std 0.0); composed top-1 = **1.000 / 1.000 / 1.000**; train-loss → 1e-4, ~10-13s/seed.
+  - **P1 FAIL-HIGH** (0.9996 ≫ 0.40), **P2 FAIL** (composed = 1.00 ≮ 0.70×global). Frozen mapping applied, reported anyway per spec.
+- **Supplementary 5-fold held-out CV** (run3.py-style folds, seeds 100-104): **0.980 ± 0.004 top-1, composed 0.991** → FAIL-HIGH is *generalization*, not train/test interpolation (sweep.py protocol samples w/ replacement from 2,423 distinct boards, so test ⊆ train w.h.p.).
+- **Interpretation:** the "local-voting ceiling" thesis **weakens decisively** at rung 1 — a 1.2k-param nonlinear student absorbs the exact minimax policy nearly completely. The README's own suspicion is confirmed: its h=8/h=32 non-monotone results were *optimizer-conditioning artifacts, not capacity limits*. Nuance: run3.py's tree "ceiling" (0.79) was trained on single-move tie-break labels (the README's label problem) — MLP > tree is explained by the set-valued loss, not evaluation leakage.
+- **Spec-vs-repo surprises:** (1) spec expected ~180,361-row table; `enumerate_reachable()` literally returns 180,361 rows but these are tree-path duplicates of **2,423 distinct boards** — repo README/GPU-EXPERIMENT.md carry a CORRECTION to this effect (3^9 sanity); multi-optimal is 48.6%, not 14.7%. Labels unaffected (exact either way). (2) Repo already contains a 5-fold CV harness (run3.py/ceiling2.py) postdating the README table.
+- Hygiene: INSTRUMENT-01 ramp 1.137s synced CUDA before timing; device `cuda:0 (RTX 4050, 6GB)` recorded; wall-clock 36.4s (3 seeds) + ~2min CV5 + 13.1s repro. Runner `lanes/pie_minimax_closure.py` (+ `_cv5.py`), receipt `results/pie_minimax_closure.json`. **Local commit only — no push; pie-minimax repo untouched remotely; receipt PR handled centrally.**
