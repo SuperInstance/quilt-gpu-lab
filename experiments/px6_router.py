@@ -27,10 +27,15 @@ from px5_disagreement_map import top1_in_opt
 
 DEPTHS = (1, 2, 3, 4, 5, 6)
 OUT_DIR = os.path.expanduser("~/projects/quilt-gpu-lab/results/px6_router")
+# RC-1 doctrine: verification re-runs must NEVER write into results/ (5th-witness fix,
+# 2026-09-30). Default OUT_DIR preserves the booked-fire behavior; repro passes --out.
 CONF_THRESHOLD = 0.5  # frozen in pre-reg
 
 
 def main() -> None:
+    global OUT_DIR
+    if "--out" in sys.argv:
+        OUT_DIR = os.path.expanduser(sys.argv[sys.argv.index("--out") + 1])
     states, (tr, te), cells, meta = build_registry(seed=0, depths=DEPTHS)
     B, M = matrices(states)
     Btr, Mtr, Bte, Mte = B[tr], M[tr], B[te], M[te]
