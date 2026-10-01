@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-01T13:14:54.435496+00:00",
+  "generated_at": "2026-10-01T14:15:21.455395+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "6803ddf0a4a742a70bb1afb07fbf9e3e2f5dbbca3d8e710bd6e8a12b2c2d2aae",
+    "RESULTS.md": "61831d3bc078868a2b5438da35c32f7b3402e96ba881825dc11b44fb1b546a62",
     "QUEUE.md": "9284eac5f2373879e0731d24c80ba9b5cb524a4fb72b025d7a36e1018f652ef2"
   },
   "experiments": {
@@ -40,6 +40,7 @@
     "d12g_cell_count_scaling.py": "76f257ecae413206e6b1dd04233a9e1f0b960e6a6460d0193533036207f606ba",
     "d12h_t_floor_surface.py": "868713337c4d635d295ea9268e16f27f651b56d9399b093ca6937a483c383b39",
     "d12i_width_scaling.py": "501cb7051bb938dfdc581ef4b901616289cdd80dfd1fdaa5ee091eded034a2b1",
+    "d12j_gpu_width.py": "9c33458d20d92ae01bccf085fa7029d3a49fd06472e1043381920345fd36dfc0",
     "d13_relational_growing.py": "6376b3753b41f5f29a0f7ed5abed72d9451350ba3089c828a7fdcea5d85c1a08",
     "d13b_relational_confidence.py": "ddac65b0b0883c07ec81bf2f8fafc9426e60f8435d4b368c586afacd534ae618",
     "d13c_relational_reinforce.py": "f0f60d742b14aae52542afeeb57061921b961583a113af9b65d3801d03d158dd",
