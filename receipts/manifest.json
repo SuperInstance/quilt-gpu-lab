@@ -1,13 +1,15 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-01T04:14:56.949511+00:00",
+  "generated_at": "2026-10-01T07:14:36.055769+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "78b94964cac67f5e4b3b5380cbe035b4996d88de561c266959837e66ba2682a3",
-    "QUEUE.md": "ae33246333b2d7d902d780e9c5016d7333d8eb13045b5e5abb854d046de24bf6"
+    "RESULTS.md": "068f6034d2a11131e7fdce622d9d055eeb38593f4b4a1ee4051095462369bafc",
+    "QUEUE.md": "9a61accc2043e7e9022fa1e8801835b4d3baf99a2fe75fbb79dd8304fec3a2c3"
   },
   "experiments": {
     "ag1_aggregation_rules.py": "39107b302b6855a3bf65ee7e012de32b7da0c2d396f18df824b661c50227ebe6",
+    "av1_glyph_atlas.py": "9267e7c2fdac389b8a4b504763661c458f14d34480298fcd27c7fff546a2b459",
+    "av1_train.py": "ec6bad1bd5dd9f9d69860907c2e6f874918bde9fc025833ccac8d5fdcb3e59d3",
     "c1_cosmos_boots.py": "e95e86fc7dd90dfaa37ba3d2ce16f640a2e73dcd01d00b3a2668b450648f36ee",
     "c2_probe_skip_tower.py": "afa061ca49da4f9ca514286eae04a0ddb1d5fad26d8df2df19cc93cef33b12c5",
     "c2_probe_vision_path.py": "b3dafeea576de01f2108329098b9fafa4ba7642926ed117fff415a80b0f33dd8",
@@ -16,6 +18,7 @@
     "c3_make_data.py": "37ca847894136102b16ce887ef0bc105ed76f554a31d98497c8d0bf233440cac",
     "c3_probe.py": "c080017b9f2941298836f840d5505a6767f2d302da0294727d2dbb5e4d7219c8",
     "c4_action_probe.py": "483ab3fd2cf72078915fc6a451b5e2084d750e432ac8d0e4f82495ac3ca19c3d",
+    "c5_paired_action.py": "3b75d52b858bb67b181746f5849f64871be1b3fa6e9d87633d199151331dc9fa",
     "cg1_canon_gate_local.py": "81f6c4c19aad32fdfec2a4298a0a5ea4057394498c5d2026fd544e0e01d10848",
     "cg1b_elicitation.py": "4db075c2e589b1c97522f72c73e19238b41d0b5a7de7ee82d8d59eaaae9228a8",
     "cm1_relay.py": "6714b8853bc263a74f9c1b9e82bb2e9a769254cad5fb947da9fb868aedd017d2",
@@ -24,6 +27,7 @@
     "cm1_relay_r4.py": "3c8140936cf8afcf0fc27b0f9d346f06165d287eacfa1a92124c24580ed4ff35",
     "common.py": "af08f672c78f4934e69fb0e240f22928ff3e65a9848ca9a55a8d07293b69db33",
     "cudaclaw_spool.py": "27c46de3212019739da35015c5b59520905f155b2c6d80235fd1d8dd35683537",
+    "curl1_mesh.py": "12f20b6173eaf237ce25ce77e8cc03f10c06f8479aca5f52449948bb30cc2754",
     "d10_cell_kernel.py": "82c6b1748a9e484a58e6175ca3075386f7b19d45b56ba36207c563a4975cddc6",
     "d11_don_contract.py": "9a6cb117d817a35cd0bbebb868155c8988f73023279edd8e0c06b0a8bc486409",
     "d11_don_contract_hard.py": "466dceec74fa7e22550b7d57e5141b673bd16c9bcad99d79f892a48bb89068fd",
@@ -33,6 +37,7 @@
     "d12e_correlation_key_delta.py": "36482bbf0fb5be2969138c1ca4c4b48bd95d89a3d2c19e64b2e5a9530468467d",
     "d12f_t_floor_sweep.py": "6347097ecede8df965d02cf48ba27e91c2140b1a100a239661a5ab42792874f1",
     "d12g_cell_count_scaling.py": "76f257ecae413206e6b1dd04233a9e1f0b960e6a6460d0193533036207f606ba",
+    "d12h_t_floor_surface.py": "868713337c4d635d295ea9268e16f27f651b56d9399b093ca6937a483c383b39",
     "d13_relational_growing.py": "6376b3753b41f5f29a0f7ed5abed72d9451350ba3089c828a7fdcea5d85c1a08",
     "d13b_relational_confidence.py": "ddac65b0b0883c07ec81bf2f8fafc9426e60f8435d4b368c586afacd534ae618",
     "d13c_relational_reinforce.py": "f0f60d742b14aae52542afeeb57061921b961583a113af9b65d3801d03d158dd",
