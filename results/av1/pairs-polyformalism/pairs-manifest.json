@@ -1,0 +1,613 @@
+{
+ "schema": "av1-pairs/v0",
+ "video": "/home/eileen/projects/jev-quilt/assets/polyformalism_12_ports.mp4",
+ "fps": 10,
+ "duration": 12,
+ "seek": 0,
+ "cols": 100,
+ "rows": 50,
+ "n": 120,
+ "ramp": " .:-=+*#%@",
+ "frames": [
+  {
+   "i": 0,
+   "ascii": "pair0000.txt",
+   "frame": "frame0000.png"
+  },
+  {
+   "i": 1,
+   "ascii": "pair0001.txt",
+   "frame": "frame0001.png"
+  },
+  {
+   "i": 2,
+   "ascii": "pair0002.txt",
+   "frame": "frame0002.png"
+  },
+  {
+   "i": 3,
+   "ascii": "pair0003.txt",
+   "frame": "frame0003.png"
+  },
+  {
+   "i": 4,
+   "ascii": "pair0004.txt",
+   "frame": "frame0004.png"
+  },
+  {
+   "i": 5,
+   "ascii": "pair0005.txt",
+   "frame": "frame0005.png"
+  },
+  {
+   "i": 6,
+   "ascii": "pair0006.txt",
+   "frame": "frame0006.png"
+  },
+  {
+   "i": 7,
+   "ascii": "pair0007.txt",
+   "frame": "frame0007.png"
+  },
+  {
+   "i": 8,
+   "ascii": "pair0008.txt",
+   "frame": "frame0008.png"
+  },
+  {
+   "i": 9,
+   "ascii": "pair0009.txt",
+   "frame": "frame0009.png"
+  },
+  {
+   "i": 10,
+   "ascii": "pair0010.txt",
+   "frame": "frame0010.png"
+  },
+  {
+   "i": 11,
+   "ascii": "pair0011.txt",
+   "frame": "frame0011.png"
+  },
+  {
+   "i": 12,
+   "ascii": "pair0012.txt",
+   "frame": "frame0012.png"
+  },
+  {
+   "i": 13,
+   "ascii": "pair0013.txt",
+   "frame": "frame0013.png"
+  },
+  {
+   "i": 14,
+   "ascii": "pair0014.txt",
+   "frame": "frame0014.png"
+  },
+  {
+   "i": 15,
+   "ascii": "pair0015.txt",
+   "frame": "frame0015.png"
+  },
+  {
+   "i": 16,
+   "ascii": "pair0016.txt",
+   "frame": "frame0016.png"
+  },
+  {
+   "i": 17,
+   "ascii": "pair0017.txt",
+   "frame": "frame0017.png"
+  },
+  {
+   "i": 18,
+   "ascii": "pair0018.txt",
+   "frame": "frame0018.png"
+  },
+  {
+   "i": 19,
+   "ascii": "pair0019.txt",
+   "frame": "frame0019.png"
+  },
+  {
+   "i": 20,
+   "ascii": "pair0020.txt",
+   "frame": "frame0020.png"
+  },
+  {
+   "i": 21,
+   "ascii": "pair0021.txt",
+   "frame": "frame0021.png"
+  },
+  {
+   "i": 22,
+   "ascii": "pair0022.txt",
+   "frame": "frame0022.png"
+  },
+  {
+   "i": 23,
+   "ascii": "pair0023.txt",
+   "frame": "frame0023.png"
+  },
+  {
+   "i": 24,
+   "ascii": "pair0024.txt",
+   "frame": "frame0024.png"
+  },
+  {
+   "i": 25,
+   "ascii": "pair0025.txt",
+   "frame": "frame0025.png"
+  },
+  {
+   "i": 26,
+   "ascii": "pair0026.txt",
+   "frame": "frame0026.png"
+  },
+  {
+   "i": 27,
+   "ascii": "pair0027.txt",
+   "frame": "frame0027.png"
+  },
+  {
+   "i": 28,
+   "ascii": "pair0028.txt",
+   "frame": "frame0028.png"
+  },
+  {
+   "i": 29,
+   "ascii": "pair0029.txt",
+   "frame": "frame0029.png"
+  },
+  {
+   "i": 30,
+   "ascii": "pair0030.txt",
+   "frame": "frame0030.png"
+  },
+  {
+   "i": 31,
+   "ascii": "pair0031.txt",
+   "frame": "frame0031.png"
+  },
+  {
+   "i": 32,
+   "ascii": "pair0032.txt",
+   "frame": "frame0032.png"
+  },
+  {
+   "i": 33,
+   "ascii": "pair0033.txt",
+   "frame": "frame0033.png"
+  },
+  {
+   "i": 34,
+   "ascii": "pair0034.txt",
+   "frame": "frame0034.png"
+  },
+  {
+   "i": 35,
+   "ascii": "pair0035.txt",
+   "frame": "frame0035.png"
+  },
+  {
+   "i": 36,
+   "ascii": "pair0036.txt",
+   "frame": "frame0036.png"
+  },
+  {
+   "i": 37,
+   "ascii": "pair0037.txt",
+   "frame": "frame0037.png"
+  },
+  {
+   "i": 38,
+   "ascii": "pair0038.txt",
+   "frame": "frame0038.png"
+  },
+  {
+   "i": 39,
+   "ascii": "pair0039.txt",
+   "frame": "frame0039.png"
+  },
+  {
+   "i": 40,
+   "ascii": "pair0040.txt",
+   "frame": "frame0040.png"
+  },
+  {
+   "i": 41,
+   "ascii": "pair0041.txt",
+   "frame": "frame0041.png"
+  },
+  {
+   "i": 42,
+   "ascii": "pair0042.txt",
+   "frame": "frame0042.png"
+  },
+  {
+   "i": 43,
+   "ascii": "pair0043.txt",
+   "frame": "frame0043.png"
+  },
+  {
+   "i": 44,
+   "ascii": "pair0044.txt",
+   "frame": "frame0044.png"
+  },
+  {
+   "i": 45,
+   "ascii": "pair0045.txt",
+   "frame": "frame0045.png"
+  },
+  {
+   "i": 46,
+   "ascii": "pair0046.txt",
+   "frame": "frame0046.png"
+  },
+  {
+   "i": 47,
+   "ascii": "pair0047.txt",
+   "frame": "frame0047.png"
+  },
+  {
+   "i": 48,
+   "ascii": "pair0048.txt",
+   "frame": "frame0048.png"
+  },
+  {
+   "i": 49,
+   "ascii": "pair0049.txt",
+   "frame": "frame0049.png"
+  },
+  {
+   "i": 50,
+   "ascii": "pair0050.txt",
+   "frame": "frame0050.png"
+  },
+  {
+   "i": 51,
+   "ascii": "pair0051.txt",
+   "frame": "frame0051.png"
+  },
+  {
+   "i": 52,
+   "ascii": "pair0052.txt",
+   "frame": "frame0052.png"
+  },
+  {
+   "i": 53,
+   "ascii": "pair0053.txt",
+   "frame": "frame0053.png"
+  },
+  {
+   "i": 54,
+   "ascii": "pair0054.txt",
+   "frame": "frame0054.png"
+  },
+  {
+   "i": 55,
+   "ascii": "pair0055.txt",
+   "frame": "frame0055.png"
+  },
+  {
+   "i": 56,
+   "ascii": "pair0056.txt",
+   "frame": "frame0056.png"
+  },
+  {
+   "i": 57,
+   "ascii": "pair0057.txt",
+   "frame": "frame0057.png"
+  },
+  {
+   "i": 58,
+   "ascii": "pair0058.txt",
+   "frame": "frame0058.png"
+  },
+  {
+   "i": 59,
+   "ascii": "pair0059.txt",
+   "frame": "frame0059.png"
+  },
+  {
+   "i": 60,
+   "ascii": "pair0060.txt",
+   "frame": "frame0060.png"
+  },
+  {
+   "i": 61,
+   "ascii": "pair0061.txt",
+   "frame": "frame0061.png"
+  },
+  {
+   "i": 62,
+   "ascii": "pair0062.txt",
+   "frame": "frame0062.png"
+  },
+  {
+   "i": 63,
+   "ascii": "pair0063.txt",
+   "frame": "frame0063.png"
+  },
+  {
+   "i": 64,
+   "ascii": "pair0064.txt",
+   "frame": "frame0064.png"
+  },
+  {
+   "i": 65,
+   "ascii": "pair0065.txt",
+   "frame": "frame0065.png"
+  },
+  {
+   "i": 66,
+   "ascii": "pair0066.txt",
+   "frame": "frame0066.png"
+  },
+  {
+   "i": 67,
+   "ascii": "pair0067.txt",
+   "frame": "frame0067.png"
+  },
+  {
+   "i": 68,
+   "ascii": "pair0068.txt",
+   "frame": "frame0068.png"
+  },
+  {
+   "i": 69,
+   "ascii": "pair0069.txt",
+   "frame": "frame0069.png"
+  },
+  {
+   "i": 70,
+   "ascii": "pair0070.txt",
+   "frame": "frame0070.png"
+  },
+  {
+   "i": 71,
+   "ascii": "pair0071.txt",
+   "frame": "frame0071.png"
+  },
+  {
+   "i": 72,
+   "ascii": "pair0072.txt",
+   "frame": "frame0072.png"
+  },
+  {
+   "i": 73,
+   "ascii": "pair0073.txt",
+   "frame": "frame0073.png"
+  },
+  {
+   "i": 74,
+   "ascii": "pair0074.txt",
+   "frame": "frame0074.png"
+  },
+  {
+   "i": 75,
+   "ascii": "pair0075.txt",
+   "frame": "frame0075.png"
+  },
+  {
+   "i": 76,
+   "ascii": "pair0076.txt",
+   "frame": "frame0076.png"
+  },
+  {
+   "i": 77,
+   "ascii": "pair0077.txt",
+   "frame": "frame0077.png"
+  },
+  {
+   "i": 78,
+   "ascii": "pair0078.txt",
+   "frame": "frame0078.png"
+  },
+  {
+   "i": 79,
+   "ascii": "pair0079.txt",
+   "frame": "frame0079.png"
+  },
+  {
+   "i": 80,
+   "ascii": "pair0080.txt",
+   "frame": "frame0080.png"
+  },
+  {
+   "i": 81,
+   "ascii": "pair0081.txt",
+   "frame": "frame0081.png"
+  },
+  {
+   "i": 82,
+   "ascii": "pair0082.txt",
+   "frame": "frame0082.png"
+  },
+  {
+   "i": 83,
+   "ascii": "pair0083.txt",
+   "frame": "frame0083.png"
+  },
+  {
+   "i": 84,
+   "ascii": "pair0084.txt",
+   "frame": "frame0084.png"
+  },
+  {
+   "i": 85,
+   "ascii": "pair0085.txt",
+   "frame": "frame0085.png"
+  },
+  {
+   "i": 86,
+   "ascii": "pair0086.txt",
+   "frame": "frame0086.png"
+  },
+  {
+   "i": 87,
+   "ascii": "pair0087.txt",
+   "frame": "frame0087.png"
+  },
+  {
+   "i": 88,
+   "ascii": "pair0088.txt",
+   "frame": "frame0088.png"
+  },
+  {
+   "i": 89,
+   "ascii": "pair0089.txt",
+   "frame": "frame0089.png"
+  },
+  {
+   "i": 90,
+   "ascii": "pair0090.txt",
+   "frame": "frame0090.png"
+  },
+  {
+   "i": 91,
+   "ascii": "pair0091.txt",
+   "frame": "frame0091.png"
+  },
+  {
+   "i": 92,
+   "ascii": "pair0092.txt",
+   "frame": "frame0092.png"
+  },
+  {
+   "i": 93,
+   "ascii": "pair0093.txt",
+   "frame": "frame0093.png"
+  },
+  {
+   "i": 94,
+   "ascii": "pair0094.txt",
+   "frame": "frame0094.png"
+  },
+  {
+   "i": 95,
+   "ascii": "pair0095.txt",
+   "frame": "frame0095.png"
+  },
+  {
+   "i": 96,
+   "ascii": "pair0096.txt",
+   "frame": "frame0096.png"
+  },
+  {
+   "i": 97,
+   "ascii": "pair0097.txt",
+   "frame": "frame0097.png"
+  },
+  {
+   "i": 98,
+   "ascii": "pair0098.txt",
+   "frame": "frame0098.png"
+  },
+  {
+   "i": 99,
+   "ascii": "pair0099.txt",
+   "frame": "frame0099.png"
+  },
+  {
+   "i": 100,
+   "ascii": "pair0100.txt",
+   "frame": "frame0100.png"
+  },
+  {
+   "i": 101,
+   "ascii": "pair0101.txt",
+   "frame": "frame0101.png"
+  },
+  {
+   "i": 102,
+   "ascii": "pair0102.txt",
+   "frame": "frame0102.png"
+  },
+  {
+   "i": 103,
+   "ascii": "pair0103.txt",
+   "frame": "frame0103.png"
+  },
+  {
+   "i": 104,
+   "ascii": "pair0104.txt",
+   "frame": "frame0104.png"
+  },
+  {
+   "i": 105,
+   "ascii": "pair0105.txt",
+   "frame": "frame0105.png"
+  },
+  {
+   "i": 106,
+   "ascii": "pair0106.txt",
+   "frame": "frame0106.png"
+  },
+  {
+   "i": 107,
+   "ascii": "pair0107.txt",
+   "frame": "frame0107.png"
+  },
+  {
+   "i": 108,
+   "ascii": "pair0108.txt",
+   "frame": "frame0108.png"
+  },
+  {
+   "i": 109,
+   "ascii": "pair0109.txt",
+   "frame": "frame0109.png"
+  },
+  {
+   "i": 110,
+   "ascii": "pair0110.txt",
+   "frame": "frame0110.png"
+  },
+  {
+   "i": 111,
+   "ascii": "pair0111.txt",
+   "frame": "frame0111.png"
+  },
+  {
+   "i": 112,
+   "ascii": "pair0112.txt",
+   "frame": "frame0112.png"
+  },
+  {
+   "i": 113,
+   "ascii": "pair0113.txt",
+   "frame": "frame0113.png"
+  },
+  {
+   "i": 114,
+   "ascii": "pair0114.txt",
+   "frame": "frame0114.png"
+  },
+  {
+   "i": 115,
+   "ascii": "pair0115.txt",
+   "frame": "frame0115.png"
+  },
+  {
+   "i": 116,
+   "ascii": "pair0116.txt",
+   "frame": "frame0116.png"
+  },
+  {
+   "i": 117,
+   "ascii": "pair0117.txt",
+   "frame": "frame0117.png"
+  },
+  {
+   "i": 118,
+   "ascii": "pair0118.txt",
+   "frame": "frame0118.png"
+  },
+  {
+   "i": 119,
+   "ascii": "pair0119.txt",
+   "frame": "frame0119.png"
+  }
+ ]
+}
