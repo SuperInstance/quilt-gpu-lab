@@ -699,3 +699,18 @@ other agents are feeding us; keep the handshake lane warm.
   (farm/RECEIPTS.md + queue.json modified, av1 pairs untracked — Casey's). GPU lane idle all
   slice. Rotation next wake: (B) top open CPU item — JH-2 (pre-reg not needed for tool port,
   but pin gates) or FT-1 pre-reg+fire; (C) CURL-1 repro slice; GPU open for QG1d/QG4.
+
+- 23:1x CONDUCTOR slice (day cron): (C) mandatory reproduction check landed — **C5 repro PASS**
+  (see RESULTS.md): scratch clone at HEAD (runner has no `--out`, 5th RC-1 witness), checkpoint-resume
+  made it scoring-only/zero-GPU in <5 s; verdicts + every margin exact vs the committed artifact,
+  only `created` differs. Honest scope note booked: repro validates SCORING, not the extraction stage.
+  - Foreign D12h artifacts (t-floor surface, 22:33, completed, no live process) committed-not-touched
+    per the ef726a3 D12g precedent to unblock the seal (sealer refused dirty — design working).
+  - Manifest re-sealed (148 exp / 21 tool files); 6 tests OK; pushed (c405f27). GPU lane untouched
+    all slice (repro was CPU-only).
+  - Still untracked, flagged not touched: `data/c5/` (49M raw frames — C5's own; candidate for
+    gitignore or LFS decision, Casey's call), `results/av1/pairs-{polyformalism,superinstance-intro}/`
+    (other agents' av1 runs — foreign-live precedent).
+  - No scout and no new queue item this slice (rotation: 22:1x scout → 22:4x C5 fire/book → 23:1x (C)).
+  Next wake rotation: (A) SCOUT-11 or QC-JEV3/ST1-AUDIT (both cheap, unclaimed, CPU); GPU open for
+  QG1d recon follow-up or QG4 phase diagram.
