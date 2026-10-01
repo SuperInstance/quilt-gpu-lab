@@ -1,0 +1,87 @@
+{
+  "experiment": "instrument_ramp_law",
+  "device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "burst_design": "30x matmul 2048^3 fp32, one sync",
+  "hot_baseline_s": 0.08401,
+  "R1": {
+    "pass": true,
+    "draws": 4,
+    "slow_gt_1p5": 4,
+    "threshold": 3,
+    "shape": [
+      {
+        "idle_s": 5,
+        "burst_s": 0.08122,
+        "slowdown": 0.967
+      },
+      {
+        "idle_s": 10,
+        "burst_s": 0.28565,
+        "slowdown": 3.4
+      },
+      {
+        "idle_s": 20,
+        "burst_s": 0.37198,
+        "slowdown": 4.428
+      },
+      {
+        "idle_s": 40,
+        "burst_s": 0.37857,
+        "slowdown": 4.506
+      },
+      {
+        "idle_s": 80,
+        "burst_s": 0.37578,
+        "slowdown": 4.473
+      }
+    ]
+  },
+  "R2": {
+    "pass": true,
+    "trials": [
+      {
+        "ramp_s": 0.1,
+        "trial": 0,
+        "burst_s": 0.08506,
+        "pct_of_hot": 98.8
+      },
+      {
+        "ramp_s": 0.3,
+        "trial": 0,
+        "burst_s": 0.08208,
+        "pct_of_hot": 102.3
+      },
+      {
+        "ramp_s": 0.6,
+        "trial": 0,
+        "burst_s": 0.08371,
+        "pct_of_hot": 100.4
+      },
+      {
+        "ramp_s": 0.6,
+        "trial": 1,
+        "burst_s": 0.08284,
+        "pct_of_hot": 101.4
+      },
+      {
+        "ramp_s": 0.6,
+        "trial": 2,
+        "burst_s": 0.08103,
+        "pct_of_hot": 103.7
+      },
+      {
+        "ramp_s": 1.2,
+        "trial": 0,
+        "burst_s": 0.07873,
+        "pct_of_hot": 106.7
+      }
+    ]
+  },
+  "R3_exploratory": {
+    "elementwise_hot_s": 0.05857,
+    "elementwise_after_20s_idle_s": 0.31219,
+    "slowdown": 5.33
+  },
+  "verdict": "LAW_CALIBRATED",
+  "pre_registered": "proposals/runs/INSTRUMENT-01-ramp-law-prereg.md"
+}
