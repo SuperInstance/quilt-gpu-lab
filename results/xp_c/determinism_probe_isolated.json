@@ -1,0 +1,43 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "ok": true,
+      "rc": 0,
+      "stderr_tail": ""
+    }
+  ],
+  "byte_identical": false,
+  "differing_prompts": [
+    15
+  ],
+  "diffs": [
+    {
+      "cell_id": "cell_a15",
+      "digests": [
+        "d29f4b50e79a1c17",
+        "fb8ad68a9032df6d",
+        "fb8ad68a9032df6d"
+      ],
+      "raws": [
+        "{\"cell_id\": \"cell_a15\", \"z_in_digest\": \"cfc8ffbc59b73eba\", \"z_out\": \"spring\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a15\", \"z_in_digest\": \"cfc8ffbc59b73eba\", \"z_out\": \"summer\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a15\", \"z_in_digest\": \"cfc8ffbc59b73eba\", \"z_out\": \"summer\", \"provider\": \"local\", \"seed\": 2718}"
+      ]
+    }
+  ],
+  "diffs_recomputed_note": "the earlier 'diffs' block printed the wrong list index; this artifact is recomputed from probe_raw_runs.json (no new model traffic)",
+  "error": null,
+  "g7_gate": "PASS",
+  "model": "qwen2.5:3b-instruct-q4_K_M",
+  "probe": "isolated 3-replay determinism probe under guard",
+  "receipt_id": "g7-wr-xp-c-envelope-local-1790892402",
+  "seed": 2718,
+  "status": "RUN",
+  "temperature": 0.0,
+  "well_formed_per_replay": [
+    28,
+    28,
+    28
+  ]
+}

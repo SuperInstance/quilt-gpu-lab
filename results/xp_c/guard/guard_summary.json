@@ -1,0 +1,18 @@
+{
+  "breach": null,
+  "g7": {
+    "gpu_seconds": 61.103,
+    "joules": 8231.1238,
+    "mean_power_w": 27.99,
+    "power_samples": 57,
+    "util_samples": 57,
+    "wall_seconds": 294.048,
+    "watt_hours": 2.2864232777777778,
+    "windows": 1
+  },
+  "max_temp_c": 74,
+  "min_free_vram_mib": 1828,
+  "samples": 58,
+  "task_id": "XP-C-envelope-local",
+  "timed_out": false
+}
