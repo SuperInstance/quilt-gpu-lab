@@ -1,0 +1,17 @@
+{
+  "breach": null,
+  "g7": {
+    "gpu_seconds": 21.493,
+    "joules": 1455.1401,
+    "mean_power_w": 67.7,
+    "power_samples": 5,
+    "util_samples": 5,
+    "wall_seconds": 21.493,
+    "watt_hours": 0.40420558333333334
+  },
+  "max_temp_c": 74,
+  "min_free_vram_mib": 5471,
+  "samples": 6,
+  "task_id": "G7-watt-receipt-instrumentation",
+  "timed_out": false
+}
