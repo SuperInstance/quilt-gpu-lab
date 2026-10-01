@@ -1,0 +1,25 @@
+{
+  "purpose": "repair + re-run of the JS/torch port control after the mixed-side defect",
+  "law_equivalence_switch_vs_pristine": {
+    "ok": true,
+    "n": 4000,
+    "max_abs_diff": 0,
+    "n_diff": 0
+  },
+  "port": [
+    {
+      "side": "left",
+      "n": 45465,
+      "max_abs_diff_js_vs_torch": 7.152626303463805e-07,
+      "mean_abs_diff": 7.821760356694609e-08
+    },
+    {
+      "side": "right",
+      "n": 45465,
+      "max_abs_diff_js_vs_torch": 6.280709225481296e-07,
+      "mean_abs_diff": 7.869445773560316e-08
+    }
+  ],
+  "port_pass": true,
+  "tolerance": 1e-06
+}

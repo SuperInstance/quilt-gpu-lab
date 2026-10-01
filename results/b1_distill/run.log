@@ -1,0 +1,31 @@
+inner rc=0
+[trace   0] ticks=869 closed=True
+[trace  40] ticks=1177 closed=True
+[trace  80] ticks=619 closed=True
+[trace 120] ticks=1200 closed=False
+[trace 160] ticks=692 closed=True
+[trace 200] ticks=1200 closed=False
+[label   0] n=1738
+[label  40] n=2354
+[label  80] n=1238
+[label 120] n=2400
+[label 160] n=1384
+[label 200] n=2400
+[data] train=366346 holdout=90930
+[train 2718] mse 0.19129 -> 0.0038518
+[train 2719] mse 0.195957 -> 0.00591234
+[train 2720] mse 0.187935 -> 0.00241058
+[gateA 2718] agree1e-3=0.056703 letter=0.921071 rms=0.06237 maxerr=0.801
+[gateA 2719] agree1e-3=0.067557 letter=0.920994 rms=0.07897 maxerr=0.785
+[gateA 2720] agree1e-3=0.046101 letter=0.921786 rms=0.04766 maxerr=0.782
+[sens 300ep] rms=0.02077 a1e-3=0.3492 a1e-1=0.9952
+[h2h control] law-vs-law swapped win-rate=0.5 draws=0
+[gateB 2718] win_rate=0.535 wins=107 draws=0 games=200
+[gateB 2719] win_rate=0.58 wins=116 draws=0 games=200
+[gateB 2720] win_rate=0.535 wins=107 draws=0 games=200
+RESULT {"verdict": "KILL", "gpu_peak_vram_mb": 64.8, "elapsed_s": 571.0}
+GATE_A {"verdict": "FAIL", "agreement_mean": 0.05678727226071337, "agreement_std": 0.008759604788584098, "letter_mean": 0.9212837713992448, "direction_mean": 1.0}
+GATE_B {"verdict": "PASS", "win_rate_mean": 0.5499999999999999, "win_rate_std": 0.021213203435596392}
+
+guard receipt: /home/eileen/projects/quilt-gpu-lab/results/b1_distill/guard/g7-wr-b1-pong-law-distill-1790894147.json valid=True OK (exit 0): /home/eileen/projects/quilt-gpu-lab/results/b1_distill/guard/g7-wr-b1-pong-law-distill-1790894147.json is a valid g7-watt-receipt@1 watt-receipt
+ENERGY: 7.419865555555555 Wh (26711.516 J); gate={'rule': 'no receipt → run VOID', 'verdict': 'PASS'}

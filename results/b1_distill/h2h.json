@@ -1,0 +1,41 @@
+{
+  "per_seed": [
+    {
+      "seed": 2718,
+      "wins": 107,
+      "draws": 0,
+      "games": 200,
+      "win_rate": 0.535
+    },
+    {
+      "seed": 2719,
+      "wins": 116,
+      "draws": 0,
+      "games": 200,
+      "win_rate": 0.58
+    },
+    {
+      "seed": 2720,
+      "wins": 107,
+      "draws": 0,
+      "games": 200,
+      "win_rate": 0.535
+    }
+  ],
+  "seeds": [
+    2718,
+    2817
+  ],
+  "n_seeds": 100,
+  "max_ticks": 20000,
+  "protocol": "per seed two matches with sides swapped; win = first to 7; rates use closed games only (draws booked)",
+  "mean": 0.5499999999999999,
+  "std": 0.021213203435596392,
+  "control": {
+    "wins": 100,
+    "draws": 0,
+    "games": 200,
+    "left_win_rate": 0.5
+  },
+  "verdict": "PASS"
+}

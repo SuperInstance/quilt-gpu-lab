@@ -4446,3 +4446,34 @@ a post-hoc goalpost move — and it did **not** rescue the local arm.
 seed 2718 · fail loud (2 recon corrections + 1 harness bug booked) · receipt or VOID (receipt sealed) ·
 no shell=True (list-form subprocess only) · O(chunk) data-gen (finite complete set, streamed to shard checkpoints on ext4)
 · no commit · other lanes' lines untouched.
+
+---
+
+## B1-DISTILL — policy distillation of the pong derived law (2026-10-01 14:37 AKDT)
+
+- ran: `experiments/b1_distill.py` under `guard.py` (G7 receipt), prereg `proposals/runs/B1-pong-law-distill.md` (FROZEN before fire)
+- **verdict: KILL as stated** — Gate A FAIL, Gate B PASS
+- result:
+```json
+{
+  "lane": "B1-DISTILL", "seed": 2718,
+  "teacher": "shipped quilt-arcade games/pong ai.track (labels executed by the engine)",
+  "frame": "uniform-random reachable states (engine-driven), held out by whole trace",
+  "n_train": 366346, "n_holdout": 90930,
+  "model": "3-64-64-1 tanh, 4481 params, CUDA, peak VRAM 64.8 MB",
+  "gate_a_agreement_1e-3": {"mean": 0.056787, "std": 0.008760, "verdict": "FAIL",
+                            "per_seed": [0.056703, 0.067557, 0.046101]},
+  "gate_a_secondary": {"direction_where_law_moves": 1.0000, "letter": 0.9213,
+                       "curve_mean": {"1e-6": 0.0000367, "1e-4": 0.00548, "1e-3": 0.0568,
+                                      "1e-2": 0.6163, "5e-2": 0.8715, "1e-1": 0.9114, "2e-1": 0.9658}},
+  "exploratory_300ep_control": {"rms": 0.0208, "1e-3": 0.3492, "1e-2": 0.8803, "5e-2": 0.9904, "1e-1": 0.9952},
+  "gate_b_h2h_vs_law": {"mean": 0.5500, "std": 0.0212, "verdict": "PASS",
+                        "per_seed": [0.535, 0.580, 0.535], "games": 600, "draws": 0,
+                        "control_law_vs_law": 0.5000, "aggregate_z_vs_0.5": 2.45},
+  "controls": {"law_equiv_pristine_vs_switch_max_abs_diff": 0.0,
+               "js_vs_torch_port_max_abs_diff": [7.15e-07, 6.28e-07]},
+  "g7_receipt": "g7-wr-b1-pong-law-distill-1790894147", "energy_Wh": 7.4199
+}
+```
+- note: the derived law is a **kinked** control map (deadzone 1.5 + saturation at the side speed + clamp `[6,54]`). A 64x64 tanh MLP distills its **behaviour** exactly (step **direction 1.0000** on every law-moving tick; **letter 0.9213 = 1 − 0.0792**, the whole deficit being the deadzone where the law is at rest and the net emits a small non-zero) — and is h2h-indistinguishable (0.55 ∈ [0.40,0.60], control 0.5000 exact) — but **not its exact float action** at the pre-registered 1e-3 (0.057 ± 0.009). The gap is partly optimization (300-epoch control: 0.349 @1e-3) and partly representational (still 0.349, not 1.0); near-100% (0.990) is reached only at 5e-2. Booked defect: the JS/torch port control first ran mixed-side rows → a false FAIL (0.162); fixed per-side → ≤7.2e-07, measured gates unaffected.
+- full entry: `results/b1_distill/RESULTS-ENTRY.md`

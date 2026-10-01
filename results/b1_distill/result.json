@@ -1,0 +1,214 @@
+{
+  "lane": "B1-DISTILL",
+  "claim": "tiny MLP distilled from exact law traces reaches near-100% per-tick action agreement and is h2h-indistinguishable from the law",
+  "verdict": "KILL",
+  "prereg": "/home/eileen/projects/quilt-gpu-lab/proposals/runs/B1-pong-law-distill.md",
+  "device": "cuda",
+  "device_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "gpu_peak_vram_mb": 64.8,
+  "gate_a": {
+    "verdict": "FAIL",
+    "agreement_mean": 0.05678727226071337,
+    "agreement_std": 0.008759604788584098,
+    "per_seed": [
+      {
+        "seed": 2718,
+        "n": 90930,
+        "agreement_1e-3": 0.056702958319586494,
+        "agreement_1e-6": 1.0997470581766193e-05,
+        "agreement_letter": 0.9210711536346641,
+        "agreement_direction_where_law_moves": 1.0,
+        "mean_abs_err": 0.02742069400846958,
+        "rms_err": 0.0623745322227478,
+        "max_abs_err": 0.8013952374458313,
+        "max_abs_pred": 0.9137940406799316,
+        "curve": {
+          "1e-06": 1.0997470581766193e-05,
+          "0.0001": 0.004893874408885957,
+          "0.001": 0.056702958319586494,
+          "0.01": 0.6532827449686572,
+          "0.05": 0.8662817551963049,
+          "0.1": 0.9098647311118443,
+          "0.2": 0.9669745958429561
+        }
+      },
+      {
+        "seed": 2719,
+        "n": 90930,
+        "agreement_1e-3": 0.06755746178378973,
+        "agreement_1e-6": 5.498735290883097e-05,
+        "agreement_letter": 0.9209941713405917,
+        "agreement_direction_where_law_moves": 1.0,
+        "mean_abs_err": 0.035920534282922745,
+        "rms_err": 0.07896587997674942,
+        "max_abs_err": 0.7853949069976807,
+        "max_abs_pred": 0.8989456295967102,
+        "curve": {
+          "1e-06": 5.498735290883097e-05,
+          "0.0001": 0.007104365995820961,
+          "0.001": 0.06755746178378973,
+          "0.01": 0.5517650940283735,
+          "0.05": 0.8459804245023644,
+          "0.1": 0.8800065984823491,
+          "0.2": 0.9406686462113714
+        }
+      },
+      {
+        "seed": 2720,
+        "n": 90930,
+        "agreement_1e-3": 0.04610139667876388,
+        "agreement_1e-6": 4.398988232706477e-05,
+        "agreement_letter": 0.9217859892224788,
+        "agreement_direction_where_law_moves": 1.0,
+        "mean_abs_err": 0.02072012983262539,
+        "rms_err": 0.047663215547800064,
+        "max_abs_err": 0.7822900414466858,
+        "max_abs_pred": 0.9048159718513489,
+        "curve": {
+          "1e-06": 4.398988232706477e-05,
+          "0.0001": 0.004431980644451776,
+          "0.001": 0.04610139667876388,
+          "0.01": 0.6438689101506654,
+          "0.05": 0.9021884966457715,
+          "0.1": 0.9444407786209172,
+          "0.2": 0.9898273397118663
+        }
+      }
+    ],
+    "letter_mean": 0.9212837713992448,
+    "tol": 0.001,
+    "direction_mean": 1.0,
+    "curve_mean": {
+      "1e-06": 3.6658235272553976e-05,
+      "0.0001": 0.005476740349719564,
+      "0.001": 0.05678727226071337,
+      "0.01": 0.616305583049232,
+      "0.05": 0.8714835587814802,
+      "0.1": 0.911437369405037,
+      "0.2": 0.9658235272553979
+    },
+    "holdout_delta_zero_frac": 0.07922577807104365,
+    "note": "frozen tol 1e-3 FAIL. Where the law MOVES, direction agreement is 1.0000/exact (sign of the step is always right); the 7.9% holdout fraction with \u0394law==0 (deadzone/clamp-at-rest) is where the tiny net emits a small non-zero -> the 0.921 letter score = 1 - 0.079. Non-gated 300-epoch control: 0.349@1e-3, 0.880@1e-2, 0.990@5e-2, 0.995@1e-1 -> near-100% holds at 5e-2, not at 1e-3."
+  },
+  "gate_b": {
+    "verdict": "PASS",
+    "win_rate_mean": 0.5499999999999999,
+    "win_rate_std": 0.021213203435596392,
+    "per_seed": [
+      {
+        "seed": 2718,
+        "wins": 107,
+        "draws": 0,
+        "games": 200,
+        "win_rate": 0.535
+      },
+      {
+        "seed": 2719,
+        "wins": 116,
+        "draws": 0,
+        "games": 200,
+        "win_rate": 0.58
+      },
+      {
+        "seed": 2720,
+        "wins": 107,
+        "draws": 0,
+        "games": 200,
+        "win_rate": 0.535
+      }
+    ],
+    "control": {
+      "wins": 100,
+      "draws": 0,
+      "games": 200,
+      "left_win_rate": 0.5
+    },
+    "aggregate_wins": 330,
+    "aggregate_games": 600,
+    "aggregate_win_rate": 0.55,
+    "z_vs_0.5": 2.44948974278318,
+    "note": "control law-vs-law swapped = 0.5000 (200 games, 0 draws) -> protocol exact. Distilled aggregate 0.55 sits inside the frozen [0.40,0.60] PASS band but 2.4-2.5 sigma above 0.50: a mild hint the inexact policy edges the exact law. Booked as secondary, not adjudicated."
+  },
+  "controls": {
+    "law_equivalence_switch_vs_pristine": {
+      "ok": true,
+      "n": 4000,
+      "max_abs_diff": 0,
+      "n_diff": 0
+    },
+    "js_port_tolerance": 1e-06,
+    "law_equiv_pass": true,
+    "js_port_pass": true,
+    "js_vs_torch_port_defective_attempt": [
+      {
+        "seed": 2718,
+        "n": 50000,
+        "max_abs_diff_js_vs_torch": 0.16203385488907396
+      }
+    ],
+    "defect_1": "control bug, booked: the first port attempt fed `netforward` a state list mixing left- and right-side rows while the command applies ONE side flag to every pair, so JS encoded right-side rows with the left encoding -> max|dJs-dTorch|=0.1620, a false FAIL. Fixed to per-side comparison; both sides now <= 7.2e-07. The defect did NOT touch the measured gates: h2h calls mlpForward with the correct per-side flag.",
+    "js_vs_torch_port": [
+      {
+        "side": "left",
+        "n": 45465,
+        "max_abs_diff_js_vs_torch": 7.152626303463805e-07,
+        "mean_abs_diff": 7.821760356694609e-08
+      },
+      {
+        "side": "right",
+        "n": 45465,
+        "max_abs_diff_js_vs_torch": 6.280709225481296e-07,
+        "mean_abs_diff": 7.869445773560316e-08
+      }
+    ],
+    "js_port_rerun": "results/b1_distill/port_control_rerun.json (script experiments/../tmp)"
+  },
+  "train": [
+    {
+      "seed": 2718,
+      "n_params": 4481,
+      "final_train_mse": 0.0038517994354201435,
+      "first_train_mse": 0.19128958366353152,
+      "epochs": 40,
+      "batch": 4096,
+      "lr": 0.001
+    },
+    {
+      "seed": 2719,
+      "n_params": 4481,
+      "final_train_mse": 0.005912343574076177,
+      "first_train_mse": 0.19595739704815615,
+      "epochs": 40,
+      "batch": 4096,
+      "lr": 0.001
+    },
+    {
+      "seed": 2720,
+      "n_params": 4481,
+      "final_train_mse": 0.0024105841808922295,
+      "first_train_mse": 0.1879353035552591,
+      "epochs": 40,
+      "batch": 4096,
+      "lr": 0.001
+    }
+  ],
+  "elapsed_s": 571.0,
+  "artifacts": [
+    "agreement.json",
+    "controls.json",
+    "guard",
+    "h2h.json",
+    "holdout_samples.npz",
+    "model_seed2718.pt",
+    "model_seed2719.pt",
+    "model_seed2720.pt",
+    "port_control_rerun.json",
+    "result.json",
+    "run_config.json",
+    "sensitivity.json",
+    "traces_meta.json"
+  ],
+  "booked_defects": [
+    "control bug, booked: the first port attempt fed `netforward` a state list mixing left- and right-side rows while the command applies ONE side flag to every pair, so JS encoded right-side rows with the left encoding -> max|dJs-dTorch|=0.1620, a false FAIL. Fixed to per-side comparison; both sides now <= 7.2e-07. The defect did NOT touch the measured gates: h2h calls mlpForward with the correct per-side flag."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "breach": null,
+  "g7": {
+    "gpu_seconds": 381.425,
+    "joules": 26711.516,
+    "mean_power_w": 46.87,
+    "power_samples": 110,
+    "util_samples": 110,
+    "wall_seconds": 569.924,
+    "watt_hours": 7.419865555555555,
+    "windows": 1
+  },
+  "max_temp_c": 76,
+  "min_free_vram_mib": 1587,
+  "samples": 111,
+  "task_id": "B1-pong-law-distill",
+  "timed_out": false
+}
