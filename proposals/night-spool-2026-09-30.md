@@ -45,6 +45,11 @@
 - [spawned by QG2] QG4: budget/gens phase diagram (W x gens grid, 1024 streams/cell) — map the crossing frontier. Directly serves "cells are dedicated; routing happens between cells".
 - [spawned by PR-SWEEP #1] RECEIPT-CITE: amend QG1/QG2 receipts (proposals/runs/*.md) to cite SuperInstance repos by name (weight law; see MicroMoth-quilt PR #29). Docs-only, no re-run.
 
+## SCOUT-10 SPAWNED ITEMS (2026-10-01 1811Z)
+- [ ] **RC-1b dead-branch census** (CPU ~45m): every runner a booked verdict depends on must have its gate-computation branches exercised by a committed test or the verified repro run (logtensor never-executed homing term; QG1c radians was a live instance). UNCOVERED gate branch on a BOOKED result = RED. Fold in pong #92 no-claim-marker-in-source pattern.
+- [ ] **JC-1** (CPU ~10m, LOW): reformat QC-JEV(/QC-JEV2) numbers into fleet-seeds wave-63 jev calibration ledger shape, staged locally for Casey to push. No filing.
+- RC-1 priority RAISED (canons PR #4: quilt-cell-bridges 44/63 bridges hardcode /workspace output paths — our 4-instance class, fleet-wide).
+
 ## FINDINGS (append-only)
 - 00:0x CONDUCTOR-0 (main): QG2 headline above. qcell-sim gained crx + receipt-anchored selftest. Vectorized lane = gathers + bmm chains; ANCHOR-VEC 2e-34.
 - 00:2x PR-SWEEP #1 (conductor): 6 repos swept; only MicroMoth-quilt active. **PR #29 OPEN** — docs-only provenance: qcells lab canonical home = SuperInstance/micrograd-quilt; cite repo not local path in receipts. Clean (fail-first pins, 248/249; 1 pre-existing main-tip manifest drift, remedy already in PR #25 stack). Merged highlights: #28 exp022 train-visible crossing census (tie-break-invariant), #27 rate-not-wall + desert-extends-to-cloud, #26 tie-band-diversity replicated, #25 archive-assembly + manifest regen, #24 fitness desert at birth cloud (29/31/37). **Steals:** (a) weight-law by-name citation -> spawned RECEIPT-CITE item; (b) exp018 desert-at-birth-cloud independently corroborates QG2 structural-desert — desert is upstream of selection, now two lanes agreeing; (c) note bookkeeping discipline: my first spool edit clobbered the QG4 queue line; caught + restored same wake. Always re-read the file after structural edits.
@@ -843,3 +848,16 @@ other agents are feeding us; keep the handshake lane warm.
   both cheap) or GPU QG1d p_target rebuild / QG4 phase diagram. Foreign untracked farm-lane pre-regs
   (INSTRUMENT-01/S6a/S6b/XQ0) untouched per PW-1 precedent. No repro due this slice (SCOUT item, non-GPU;
   last GPU landing D12j already reproduced bit-exact 06:2x).
+
+- 10:1x Oct 1 CONDUCTOR slice (day cron): SCOUT-10 (A-rotation, non-GPU; GPU lane free, no GPU item fired,
+  no repro due — D12j already reproduced bit-exact 06:2x). Full text:
+  proposals/runs/SCOUT-10-fleet-push-2026-10-01-1811Z.md. HEADLINES: (1) canons PR #4 — quilt-cell-bridges
+  44/63 bridges hardcode /workspace output paths and die on final write in a clean clone: our 4-instance
+  RC-1 hardcoded-output-path defect is FLEET-WIDE, RC-1 priority RAISED. (2) logtensor: 88 tests green with
+  the homing term never executed by any test -> spawned RC-1b dead-branch census (uncovered gate branch on a
+  booked result = RED). (3) fleet-seeds wave-63 jev calibration ledger v1 -> spawned JC-1 (formatting only).
+  (4) pong C1 scaling v0: horizon, not population, moves learning — CORROBORATES QG3/QG6 time-law on an
+  independent substrate. (5) fleet-triage Exp 3 redirected, MMX-1/FT-D1 unchanged. (6) [EMBASSY] pong #49
+  now has 7 comments — lane moved, Casey item likely retired, not acted. Re-seal used --allow-dirty
+  (foreign farm-lane files, PW-1 precedent). Spawned: RC-1b, JC-1. Rotation next wake: cheap CPU items
+  RC-1b or JC-1, or GPU QG1d p_target rebuild / QG4 phase diagram.
