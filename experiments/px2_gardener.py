@@ -345,7 +345,8 @@ def live_chat_move(prompt: str, endpoint: str, model: str, key_file: str,
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
         "temperature": 0.2,
-        "max_tokens": 2048,  # GLM-5.3 thinking eats budget; 400 starved content to empty
+        "max_tokens": 2048,
+        "thinking": {"type": "disabled"},  # coding endpoint honors it; thinking starved content -> abstain cascade
         "stream": False,
     }).encode("utf-8")
     req = urllib.request.Request(
