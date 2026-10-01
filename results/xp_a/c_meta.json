@@ -1,0 +1,8 @@
+{
+  "device": "cpu-fallback",
+  "final_loss": 0.020008567720651627,
+  "train_n": 6000,
+  "threshold": 0.8,
+  "val_balanced_acc": 0.648,
+  "fallback": true
+}
