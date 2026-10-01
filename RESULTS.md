@@ -3275,3 +3275,12 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
 - Router ceiling: any-cell-correct 0.8698 vs composition 0.7437 → **+12.6pts headroom** for a signature-conditional router cell (feeds CM1 r4+ / superinstance-api reflex).
 - Pinch pre-empts 72.5% of the space (66.35% correct / 6.15% wrong), abstains 27.5%.
 - Runner `experiments/px5_disagreement_map.py`; results `results/px5_disagreement/px5_map.json`.
+
+## PX6 — signature-router: KILL on arm (a); routing wins on BLOCK, dies on NON_LOCAL (2026-09-30 17:5x AKDT): BOOKED — CPU
+
+- Pre-reg FROZEN commit-first before scoring (both arms + threshold frozen; KILL declared a real outcome).
+- Arm (a) pure DT(d6) board→best-cell router: **0.7545** test top1 vs composition 0.7437 — claims 8.6% of the +12.6pt headroom → **KILL branch** (< 0.759). The PX5 headroom stays measured-but-unclaimable by a shallow board router.
+- Arm (b) confidence-gated router (proba < 0.5 → majority fallback): **0.7774** — 26.7% of headroom; the fallback does the work, pure routing does not.
+- **The content is per-class (arm a): WIN 0.819, BLOCK 0.873, NON_LOCAL 0.497.** The defensive override — the exact thing PX1b said voting cannot do — IS board-routable. Positional play is not, at this depth. The wall is NON_LOCAL, matching PX5's class-blind basin.
+- Router not degenerate (no cell >95% of predictions). Reflex-coverage probe: pinch already fires on **88.9%** of the 37,838 train all-correct states — the compile-back lane would add little; existing reflex owns the reflex-compile partition.
+- Runner `experiments/px6_router.py`; results `results/px6_router/px6_result.json`.
