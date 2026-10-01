@@ -1,0 +1,18 @@
+{
+  "breach": null,
+  "g7": {
+    "gpu_seconds": 1110.237,
+    "joules": 75915.2204,
+    "mean_power_w": 46.29,
+    "power_samples": 315,
+    "util_samples": 315,
+    "wall_seconds": 1640.033,
+    "watt_hours": 21.087561222222224,
+    "windows": 1
+  },
+  "max_temp_c": 76,
+  "min_free_vram_mib": 1507,
+  "samples": 316,
+  "task_id": "C1-playtest-pong",
+  "timed_out": false
+}

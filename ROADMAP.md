@@ -21,17 +21,18 @@
 ## Wave board (2026-10-01 ~14:15)
 
 **Landing:**
-- `C1-PLAYTEST` (deepseek, running) — local playtester across quilt-arcade games via engine API. On land: book, commit, then C2-CHAMPIONS unlocks.
+- `C1-PLAYTEST` ✅ PARTIAL (14:39) — 7/40 games, **law 7/7** (all shutouts-ish: 7-0×3, 7-1×3, 7-2), agreement 0.0917, zero parse-fails/violations/crashes, 21.09 Wh PASS. Gate NOT adjudicated (CI [0.61,1.00]). Root cause of partial: OLLAMA_MAX_LOADED_MODELS=1 + concurrent XP-C 3b/7b probe forced reloads in early attempts (archived); clean-rate is ~4 min/game ⇒ full gate ≈ 2.5–3 h. → **C1b queued: finish 33 games in a fleet-clean serialized-seat window.** C2-CHAMPIONS still unlocks on the booked h2h harness.
 
 **Launching now (GPU-light, co-tenant safe):**
 - `A2-HARVEST` (deepseek) — ga4444 4×4 composition: data-gen harness + smoke arm. Does A1's composition-absorption finding hold at the 4×4 rung (complete ground truth)?
-- `B1-DISTILL` (deepseek) — pong derived-law distillation: tiny MLP ← exact teacher traces, 3 seeds; receipts = per-tick action agreement + h2h vs law.
 - `A5-PARITY` (kimi/tmux `lab-a5`) — quilt-mojo-lab CuPy parity receipt on 4050: bit-parity @16/512/1024², cells/s next to their datacenter numbers. Consumer-silicon conformance node.
 - `D2-DESIGN` (GLM-5.3, serial flagship lane) — pre-register D2-STOCHASTIC: quilt-dba transfer-gap under 1000 seeded worlds; fold in XP-C serialization law.
 
-- `HY3-CACHE` (deepseek curator + **tencent/Hy3 via DeepInfra**, Casey 14:19) — dog-food Hy3 into a caching-domain expert: 5-surface idea expansion (tile tiers, pinch compile-back, prompt-cache economics, /near dedup, cells-as-caches) → top-3 rough-out designs → honest expert-seat verdict. Deliverable: superinstance-api/docs/cache-ideas-hy3-2026-10-01.md.
+- `HY3-CACHE` ✅ DONE (585e126 superinstance-api, 4e15cf2 lab) — **Hy3 KEEP as standing expert, B+** (expansion A−, design B, self-critique A, factual B−; rider: verify quotas/columns, no unprompted trigger/cron authoring). Top-3: lane-cache accounting + serving-window epochs (80.3% prefix-hit on the lane's own thread), negative-intent cache + compile-back-at-CONFIRM, re-derive test = cache proof. Hallucinations: invented lamport columns + platform quotas. 60 raw ideas, 328-line doc, prereg seed HY3C-rederive-coherence. **HY4-TRIAL dispatched** (Surface-3 head-to-head, ≤6 calls/model).
 
 **Queue (next waves, in order):**
+1. `B1b` — re-prereg at 1e-2/5e-2 tol (stated rationale) + ReLU/learned-kink head; per-region deadzone/ramp/saturation/clamp agreement breakdown. (B1 KILL-at-1e-3 but step-direction 1.0000 exact.)
+2. `C1b` — finish the 33 remaining pre-registered games in a clean serialized-seat window (~2.5–3 h lane, overnight-shape); adjudicate the ≥90% gate at N=40.
 1. `XP-C2` — serialized-seat determinism gate (7B + grammar/JSON-mode, ≥0.95 well-formed). Unblocked by XP-C; needs the seat after C1 releases it.
 2. `C2-CHAMPIONS` (kimi/tmux) — pong trained champions vs derived law, h2h receipts. Needs C1 booked.
 3. `G1e` — battery-v2 with the corrected key (from G1d commit: seat was RIGHT, key was WRONG).
@@ -41,7 +42,7 @@
 7. `A4-DETERMINISM` — where GPU parallelism breaks bit-determinism (canon rule candidate; overlaps XP-C2 learnings — schedule after).
 
 **Harvest ledger (fleet-triage RTX4050-WORKLIST):**
-A1 ✅ KILL-of-prediction (d835e71) · C1 🔄 landing · A2/B1/A5/D2 🚀 this wave · A3/A4/D3 queued · B2-B6, C3, C4 unassigned backlog.
+A1 ✅ KILL-of-prediction (d835e71) · A2 ✅ smoke INCONCLUSIVE-gate/BREAKS-secondary (4635d8d — linear does NOT collapse at 4×4; COMPOSED class near-degenerate by construction; follow-up = *designed* double-threat boards, A2b) · C1 🔄 landing · B1 🚀 running · A5 🚀 running · D2 ✅ prereg committed (b1a98d9) · A3/A4/D3 queued · B2-B6, C3, C4 unassigned backlog.
 
 ## Watch items
 
