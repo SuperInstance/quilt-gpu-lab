@@ -125,3 +125,8 @@
 - Check-that-cannot-fail class: logtensor 88 green with homing term zeroed (never executed by any test);
   voxelglyph "verification layer did not verify the product" (7 pins never executed the product, now 11
   tests, 3 previously-invisible mutations fail). Both via canons PR #4 / voxelglyph main 425b746.
+
+## SCOUT-11 SPAWNED ITEMS (2026-10-01 11:1x slice)
+- [ ] **QO6-EV evidence-in-receipt** (CPU ~30m): extend QO6 eproc receipt rows with inline admission evidence {stat, threshold, sigma, n, seed} at decision time + replay-verifier re-deriving each verdict from embedded evidence alone (atlas wave-76 M3 R5 receipt shape). Gates: existing QO6 V1-V4 cases re-derive identical verdicts evidence-only; any evidence-less row = VOID. Improves: QO2 gate, QO7 scoreboard input.
+- [ ] **TRUNC-B completeness pin** (CPU ~10m; folds into DEGENERATE-gate spec): verdicts extracted from produced output must ship a completeness/termination check; truncated-but-plausible = INCONCLUSIVE, never PASS. Sources: canons judge_gate truncation blind spot 10:30Z; our 09:1x tmpfs tail incident.
+- [ ] **AB-1** (low, reading ~15m): analytic-bound re-derivation pattern for gates with analytic thresholds (chiaroscuro #10 arcsin-bound class). Note until a live instance exists.
