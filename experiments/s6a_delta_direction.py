@@ -95,21 +95,29 @@ def _auc(scores, labels):
 
 
 def main():
-    rows, unparsed = [], []
+    rows, unparsed, parsed_files = [], [], 0
     for path in sorted(glob.glob(os.path.join(RESULTS_DIR, "*.json"))):
-        if os.path.basename(path).startswith("s6a"):
+        base = os.path.basename(path)
+        if base.startswith("s6a"):
+            continue
+        if "harness-invalid" in base or "KILL" in base:
+            unparsed.append({"file": base,
+                             "reason": "validity filter: invalid/KILL receipt excluded"})
             continue
         try:
             with open(path) as fh:
                 data = json.load(fh)
         except Exception:
-            unparsed.append({"file": os.path.basename(path), "reason": "bad json"})
+            unparsed.append({"file": base, "reason": "bad json"})
             continue
         got, how = extract_rows(path, data)
         if got:
             rows.extend(got)
+            parsed_files += 1
         else:
-            unparsed.append({"file": os.path.basename(path), "reason": how})
+            unparsed.append({"file": base, "reason": how})
+    d_line = sorted({r["family"] for r in rows if r["family"].startswith("d1")})
+    rows = [r for r in rows if r["family"].startswith("d1")]
     if len(rows) < 40:
         raise RuntimeError(f"corpus too small: {len(rows)} rows — aborting, no fake data")
 
@@ -118,6 +126,8 @@ def main():
     texts = [f"experiment {r['family']} width {r['W']} channels {r['N']} "
              f"corr_prob {r['p']} timesteps {r['T']}" for r in rows]
     X = np.stack([embed(t) for t in texts])
+    if not np.isfinite(X).all():
+        raise RuntimeError("non-finite embedding values — aborting (no garbage science)")
     scal1 = np.array([r["T"] * r["W"] for r in rows], dtype=np.float64)
     corner = np.array([f"{r['N']}|{r['p']}" for r in rows])
 
@@ -131,7 +141,7 @@ def main():
         mu_k, mu_m = X[tr & (labels == 1)].mean(0), X[tr & (labels == 0)].mean(0)
         u = mu_k - mu_m
         nrm = np.linalg.norm(u)
-        if nrm == 0:
+        if not np.isfinite(nrm) or nrm == 0:
             continue
         u /= nrm
         center = X[tr].mean(0)
@@ -181,6 +191,9 @@ def main():
         verdict = "SPLIT"
     result = {
         "experiment": "s6a_delta_direction",
+        "runner_status": "reviewed 2026-10-01 (two-witness); validity filter + D-line restriction + NaN guards applied",
+        "corpus": {"n_rows": len(rows), "n_files_parsed": parsed_files,
+                   "families": d_line, "d_line_only": True},
         "n_rows": len(rows), "folds": folds,
         "excluded_unparsed": unparsed,
         "AUC": {"geom": round(geom_m, 4), "scalar_TW": round(s1_m, 4),
@@ -198,8 +211,11 @@ if __name__ == "__main__":
     try:
         main()
     except Exception:
-        with open(OUT_PATH, "w") as fh:
+        kill_path = OUT_PATH.replace(
+            ".json", f".harness-invalid-{int(time.time())}.json")
+        with open(kill_path, "w") as fh:
             json.dump({"experiment": "s6a_delta_direction",
+                       "kill_receipt": kill_path,
                        "verdict": "KILL-harness",
                        "error": traceback.format_exc(),
                        "python": sys.executable}, fh, indent=2)
