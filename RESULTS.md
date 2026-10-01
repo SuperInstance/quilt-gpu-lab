@@ -4657,3 +4657,42 @@ Lane d2_first_build twin (deepseek, 5ad1daf2). Same prereg, independent executio
   core.mjs), H-GROWTH receipts per world, F5/F9 asserts, deferred reward-drift injection point.
 - Artifacts: results/d2_build/mini_*.json, wdet_ed1_replay.log, smoke_13of13.log,
   d2_stochastic_core.patch, twins_guard.log (coexisting with build A's fb_* artifacts, both kept).
+
+## COMP0 — federation of dedicated micro-trunks, between-cell routing (lane COMPOSITE-0)
+- ran: 2026-10-01 15:2x AKDT (pre-reg proposals/runs/COMP0-federation.md, on disk BEFORE build/fire)
+- verdict: **INCONCLUSIVE** (all three frozen gates hit the std==0 degeneracy rule; directionally positive on all three)
+- result: ```json
+{
+  "experiment": "COMP0 federation of dedicated micro-trunks (between-cell routing)",
+  "composed_of": {"IE3": "dedicated specialist trunks (dilution)",
+                  "D13d": "correlation router (not reward)",
+                  "D1b": "look-again to independent-reach second choice"},
+  "corpus": "D5 probes.jsonl reused (149 train / 66 held-out, sha256 hash-split, K=2 regimes)",
+  "chance_majority": 0.5909,
+  "router_acc": {"train": 1.0, "heldout": 1.0, "mean_top1_top2_corr_gap": 0.4878},
+  "aggregate_full_board_mean_std": {
+    "JOINT_4225p": {"mean": 0.803, "std": 0.0},
+    "SINGLE_2113p": {"mean": 0.7778, "std": 0.0072},
+    "FED_4226p": {"mean": 0.8182, "std": 0.0},
+    "FED_LA_4226p": {"mean": 0.8434, "std": 0.0072}
+  },
+  "gates": {"G1_fed_gt_single": {"diff": 0.0404, "required": 0.05, "verdict": "INCONCLUSIVE (FED std==0)"},
+            "G2_la_gt_fed": {"diff": 0.0252, "required": 0.01, "verdict": "INCONCLUSIVE (FED std==0)"},
+            "G3_fed_gt_joint": {"diff": 0.0152, "required": 0.05, "verdict": "INCONCLUSIVE (both std==0)"}},
+  "la_texture": "tau~0.31 (train-calibrated 20th pct); 17-19 triggers/seed, ALL flipped to 2nd cell",
+  "per_regime": "semantic saturates (FED 1.0, others 0.9615); counting-address is the contested regime (SINGLE 0.65-0.675, JOINT/FED 0.70, FED_LA 0.725-0.75)",
+  "ramp_receipt": {"ramp_s": 0.665, "synced": true},
+  "g7_receipt": "g7-wr-comp0-federation-1790896454 (valid, 0.939 Wh, 60.7 gpu-seconds)",
+  "verdict": "INCONCLUSIVE"
+}
+```
+- note: the COMPOSITE-0 probe of "cells are dedicated; routing happens BETWEEN cells." Direction reads all three ways at matched params (FED>SINGLE +0.040, FED>JOINT +0.015, LA>FED +0.025) but the frozen degeneracy law (std==0 -> INCONCLUSIVE never PASS) bit exactly the saturated arms: FED pinned at 0.8182 all 3 seeds (same ~12 counting misses), JOINT at 0.803. Not gate-shopping — more seeds would be laundering. Texture worth keeping: (1) the D13d correlation router is PERFECT on this corpus (1.0/1.0, gap 0.49) with ZERO parameters and zero reward — routing saturated, so the federation's ceiling = its weakest cell and the LA escape hatch fired only on cell uncertainty, not routing error; (2) LA's second choice on uncertain counting items was the SEMANTIC specialist (off-regime!) and it still net-won +2-3 items/seed — independent reach beats expertise when the expert is unsure (D1b doctrine survives, with the caveat that LA buys confidence, not regime knowledge); (3) dilution shows only in the hard regime (counting: SINGLE 0.66 vs FED 0.70) — semantic saturates for everyone, so full-board margins compress. Why std==0: fixed hash-split board + converged tiny nets + 66-item granularity (1 item = 0.0152). COMPOSITE-1 hooks: harder multi-regime corpus where routing is NOT saturated (K>=4, blurred regimes), a capacity-starved board where JOINT dilutes visibly, LA with a true independent-reach second cell (different featurization, not just different training), and report per-regime boards as primary (full-board compresses saturation).
+
+## [KEEPER FOLD 15:2x COMPOSITE-0 Oct 1] INCONCLUSIVE (honest) — all three pairwise directions held, nothing cleared its frozen bar; std==0 is a 66-item granularity artifact, not a model property
+
+Keeper verified comp0_results.json + guard receipt; lane booked its own entry. Fold notes:
+- Direction pattern at matched budget (4225/4226p): FED 0.8182 > SINGLE 0.7778 (+0.0404), FED+LA 0.8434 > FED (+0.0252), FED > JOINT (+0.0152). LA gate cleared its +0.01 bar but FED std==0 (pinned 0.8182 all seeds) → INCONCLUSIVE by law, correctly applied.
+- **Measurement fix for COMPOSITE-1:** ≥200-item held-out + item-level bootstrap CIs — integer granularity 1/66 = 0.0152 cannot distinguish arms this close; the law caught the metric, not the model.
+- Free findings banked: (1) centroid-correlation routing saturated 1.0/1.0 — corpus gave the router a free pass, routing was never stress-tested; (2) LA triggers 17-19/seed, all to the SEMANTIC cell, net +2-3 items — independent reach wins where the expert is unsure; (3) dilution localized to counting (SINGLE 0.66 / FED 0.70 / LA 0.75).
+- COMPOSITE-1 spec (from lane + keeper): K≥4 regimes, blurred boundaries, capacity-starved board where JOINT visibly dilutes, LA second cell with DIFFERENT FEATURIZATION (true independent reach), per-regime primary gates, bootstrap CIs.
+- Receipt g7-wr-comp0-federation-1790896454 (0.939 Wh, beside resident 7B).

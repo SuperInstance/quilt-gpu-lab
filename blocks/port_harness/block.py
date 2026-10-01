@@ -303,7 +303,8 @@ def self_test() -> int:
     # lesson encoded as a check: shuffling the port's dict insertion order must
     # not change the report — alignment is by (row_id, side), not list order
     import random
-    shuffled = dict(random.Random(DEFAULT_SEED).sample(sorted(good_out.items()), len(good_out)))
+    shuffled = dict(random.Random(DEFAULT_SEED).sample(
+        sorted(good_out.items(), key=lambda kv: kv[0]), len(good_out)))
     report_shuffled = compare(ref_out, shuffled)
     order_invariant = (report_shuffled.max_abs_diff == report.max_abs_diff
                        and report_shuffled.first_divergent == report.first_divergent)

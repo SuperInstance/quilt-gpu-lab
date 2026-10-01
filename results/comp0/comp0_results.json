@@ -1,0 +1,174 @@
+{
+  "experiment": "COMP0 federation of dedicated micro-trunks (between-cell routing)",
+  "prereg": "proposals/runs/COMP0-federation.md",
+  "composed_of": {
+    "IE3": "dedicated specialist trunks (dilution)",
+    "D13d": "correlation router (not reward)",
+    "D1b": "look-again to independent-reach second choice"
+  },
+  "device": "cuda",
+  "torch": "2.14.0+cu126",
+  "corpus": {
+    "source": "probes.jsonl (D5 foundry, seed 2718, reused)",
+    "n_train": 149,
+    "n_heldout": 66,
+    "regimes": [
+      "counting-address",
+      "semantic"
+    ]
+  },
+  "chance_baseline_majority": 0.5909,
+  "router_audit": {
+    "train_acc": 1.0,
+    "heldout_acc": 1.0
+  },
+  "aggregate_full_board": {
+    "JOINT": {
+      "mean": 0.803,
+      "std": 0.0
+    },
+    "SINGLE": {
+      "mean": 0.7778,
+      "std": 0.0072
+    },
+    "FED": {
+      "mean": 0.8182,
+      "std": 0.0
+    },
+    "FED_LA": {
+      "mean": 0.8434,
+      "std": 0.0072
+    }
+  },
+  "gates": {
+    "G1_fed_gt_single": {
+      "diff": 0.0404,
+      "margin_required": 0.05,
+      "degenerate_std0": true,
+      "verdict": "INCONCLUSIVE"
+    },
+    "G2_la_gt_fed": {
+      "diff": 0.0252,
+      "margin_required": 0.01,
+      "degenerate_std0": true,
+      "verdict": "INCONCLUSIVE"
+    },
+    "G3_fed_gt_joint_secondary": {
+      "diff": 0.0152,
+      "margin_required": 0.05,
+      "degenerate_std0": true,
+      "verdict": "INCONCLUSIVE"
+    }
+  },
+  "per_seed": [
+    {
+      "seed": 2718,
+      "boards": {
+        "JOINT": {
+          "full": 0.803,
+          "counting-address": 0.7,
+          "semantic": 0.9615
+        },
+        "SINGLE": {
+          "full": 0.7879,
+          "counting-address": 0.675,
+          "semantic": 0.9615
+        },
+        "FED": {
+          "full": 0.8182,
+          "counting-address": 0.7,
+          "semantic": 1.0
+        },
+        "FED_LA": {
+          "full": 0.8485,
+          "counting-address": 0.75,
+          "semantic": 1.0
+        }
+      },
+      "tau_la": 0.3216,
+      "la_triggers": 19,
+      "la_flips": 19,
+      "params": {
+        "JOINT": 4225,
+        "SINGLE": 2113,
+        "FED": 4226,
+        "FED_LA": 4226
+      }
+    },
+    {
+      "seed": 2719,
+      "boards": {
+        "JOINT": {
+          "full": 0.803,
+          "counting-address": 0.7,
+          "semantic": 0.9615
+        },
+        "SINGLE": {
+          "full": 0.7727,
+          "counting-address": 0.65,
+          "semantic": 0.9615
+        },
+        "FED": {
+          "full": 0.8182,
+          "counting-address": 0.7,
+          "semantic": 1.0
+        },
+        "FED_LA": {
+          "full": 0.8333,
+          "counting-address": 0.725,
+          "semantic": 1.0
+        }
+      },
+      "tau_la": 0.31,
+      "la_triggers": 17,
+      "la_flips": 17,
+      "params": {
+        "JOINT": 4225,
+        "SINGLE": 2113,
+        "FED": 4226,
+        "FED_LA": 4226
+      }
+    },
+    {
+      "seed": 2720,
+      "boards": {
+        "JOINT": {
+          "full": 0.803,
+          "counting-address": 0.7,
+          "semantic": 0.9615
+        },
+        "SINGLE": {
+          "full": 0.7727,
+          "counting-address": 0.65,
+          "semantic": 0.9615
+        },
+        "FED": {
+          "full": 0.8182,
+          "counting-address": 0.7,
+          "semantic": 1.0
+        },
+        "FED_LA": {
+          "full": 0.8485,
+          "counting-address": 0.75,
+          "semantic": 1.0
+        }
+      },
+      "tau_la": 0.3208,
+      "la_triggers": 18,
+      "la_flips": 18,
+      "params": {
+        "JOINT": 4225,
+        "SINGLE": 2113,
+        "FED": 4226,
+        "FED_LA": 4226
+      }
+    }
+  ],
+  "ramp_receipt": {
+    "ramp_s": 0.665,
+    "synced": true
+  },
+  "wall_seconds": 73.8,
+  "seeds_complete": 3,
+  "verdict": "INCONCLUSIVE"
+}
