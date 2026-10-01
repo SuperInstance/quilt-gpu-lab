@@ -19,13 +19,13 @@
    "id": "c5-paired-action",
    "kind": "experiment",
    "status": "queued",
-   "prereg": null,
+   "prereg": "proposals/runs/C5-paired-action-plan.md",
    "cmd": [
     "~/venvs/elephant-gpu/bin/python",
     "experiments/c5_paired_action.py"
    ],
    "cwd": "/home/eileen/projects/quilt-gpu-lab",
-   "note": "BLOCKED: needs pre-reg written (paired-condition action probe, C-line). Write prereg, commit, flip prereg path in \u2014 the runner will not fire it before then (by design)."
+   "note": "C5 paired-condition action probe \u2014 pre-reg pushed before fire (this commit). Farm fires when committed."
   },
   {
    "id": "cm1-r4",
@@ -58,7 +58,9 @@
    ],
    "cwd": "/home/eileen/projects/quilt-gpu-lab",
    "cooldown_min": 1440,
-   "note": "held-out cross-video corpus for AV1 (CPU work, keeps the dataset growing)"
+   "note": "held-out cross-video corpus for AV1 (CPU work, keeps the dataset growing)",
+   "status": "done",
+   "last_run": 1790834986966
   },
   {
    "id": "pairs-superinstance-intro",
@@ -77,7 +79,9 @@
    ],
    "cwd": "/home/eileen/projects/quilt-gpu-lab",
    "cooldown_min": 1440,
-   "note": "second corpus video"
+   "note": "second corpus video",
+   "status": "done",
+   "last_run": 1790835049799
   },
   {
    "id": "daily-render",
@@ -94,7 +98,9 @@
    ],
    "cwd": "/home/eileen/projects/quilt-gpu-lab",
    "cooldown_min": 1440,
-   "note": "one render from the other side, every day \u2014 the farm keeps making images even between experiments"
+   "note": "one render from the other side, every day \u2014 the farm keeps making images even between experiments",
+   "status": "running",
+   "last_run": 1790835113129
   }
  ]
 }

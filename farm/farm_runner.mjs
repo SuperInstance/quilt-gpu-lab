@@ -54,18 +54,27 @@ const preregCommitted = (rel) => {
 };
 
 // fire one entry: stream to farm/logs/<id>.log, on exit receipt; caller owns entry.status
+const HOME = process.env.HOME || '/home/eileen';
+const expandTilde = (a) => a.startsWith('~/') ? path.join(HOME, a.slice(2)) : a;
 function fire(entry) {
   const logf = path.join(FARM, 'logs', `${entry.id}.log`);
   fs.mkdirSync(path.dirname(logf), { recursive: true });
   const t0 = Date.now();
   receipt(`FIRE ${entry.id} (${entry.kind}) → ${entry.cmd.join(' ')} cwd=${entry.cwd}`);
   log(`firing ${entry.id}`);
-  const p = spawn(entry.cmd[0], entry.cmd.slice(1), { cwd: entry.cwd, stdio: ['ignore', fs.openSync(logf, 'a'), fs.openSync(logf, 'a')] });
+  const argv = entry.cmd.map(expandTilde); // node spawn does not shell-expand ~
+  const p = spawn(argv[0], argv.slice(1), { cwd: entry.cwd, stdio: ['ignore', fs.openSync(logf, 'a'), fs.openSync(logf, 'a')] });
   return new Promise((resolve) => {
+    let settled = false;
+    const fin = (r) => { if (!settled) { settled = true; resolve(r); } };
     p.on('exit', (code, sig) => {
       const mins = ((Date.now() - t0) / 60000).toFixed(1);
       receipt(`${code === 0 ? 'DONE' : `EXIT-${code ?? 'sig' + sig}`} ${entry.id} in ${mins}min — log: farm/logs/${entry.id}.log`);
-      resolve({ ok: code === 0, code, sig });
+      fin({ ok: code === 0, code, sig });
+    });
+    p.on('error', (err) => { // spawn ENOENT etc. — must not hang the fire promise
+      receipt(`SPAWN-ERROR ${entry.id}: ${err.message}`);
+      fin({ ok: false, code: null, sig: 'spawn-error' });
     });
   });
 }
