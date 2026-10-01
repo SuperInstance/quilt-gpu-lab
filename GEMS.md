@@ -116,3 +116,36 @@
 | M12 | the improver process itself is searched | 3 | 2 | 2 | **12** | ASSAYED — parked |
 
 *Rubric honesty: 3/5 cleared 27 this wave — the haul was unusually well-matched to our assets (QO6 evidence gates, delta-stream ternary lineage, keep/kill D-ledger). M13 passed at exactly 27 with no axis inflated; M9 died honestly on local-uniqueness. No gate loosened.*
+
+## Wave 7 — the steering-and-weight-geometry harvest (2026-10-01: edge-mine scout, focus rotated to weights-as-data + representation steering + depth-as-loop — Wave 0's unassayed mines — plus fresh listings, since Wave 6 was reward-free RSI/precision/skills)
+
+*Search focus this wave: weight-space learning/metanetworks · activation vs weight steering · looped/recurrent-depth transformers · heterogeneous precision · RSI harness regularization · GitHub trending agent repos. Sources are search-roundup-grade — flagged for re-verification before canon (same caveat as Waves 0/5/6).*
+
+### Abstraction mines (status MINED → ASSAYED below)
+
+- **M14 — Steering is a vector field, not a vector.** The 2026 steering literature converged on the same correction from five directions: Steering Vector Fields (the direction is the local gradient of a learned concept-scoring function, not a constant), Directer (strength modulated dynamically via KV scaling in a decoding loop), Spherical Steering (rotate along geodesics instead of adding — preserve magnitude), GCAD (token-level gating against KV-cache contamination), EmoVec (latent directions injected per-position). Essence: *a static steering vector is the zeroth-order approximation of a context-dependent control policy.*
+  - https://arxiv.org/abs/2602.01654 (SVF) · https://www.alphaxiv.org/abs/2608.25198 (Directer class) · https://arxiv.org/html/2602.08169v2 (spherical/gated cluster)
+
+- **M15 — Behavior directions live in weight space and generalize OOD.** Contrastive weight steering (subtract the deltas of two opposite-polarity fine-tunes → a weight-space direction; add/remove it to steer) reportedly beats activation steering on out-of-distribution behavioral control while preserving general capability, and weight-delta projections double as training-time monitors for emerging traits. This unifies Wave 0's "weights as data" mine with the steering literature: task arithmetic (deltas as composable skills), metanetworks (weights as input modality, NeurIPS 2026 workshop #2), and weight steering are one program — *the weight delta is the unit of behavior.* Direct collision with our assets: the keep/kill D-ledger is a labeled weight-delta corpus.
+  - https://arxiv.org/abs/2511.05408 (Steering LMs with Weight Arithmetic, ICLR 2026) · https://github.com/Zehong-Wang/Awesome-Weight-Space-Learning · https://weight-space-learning.github.io/
+
+- **M16 — Looped depth needs a scratchpad.** The 2026 recurrent-depth harvest: "Universal Transformers Need Memory" (recursive reasoning fails combinatorial tasks without learned memory tokens — a depth-state trade-off), adaptive-depth diagnosis reframes halting as joint trajectory-formation + exit-readout, "Simply Stabilizing the Loop" (training instability of deep-looped nets), Recurrent Looped Transformer (unbounded temporal depth + model-hardware co-design). Essence: *weight sharing buys effective depth only when the loop has somewhere to write; the open design space is the loop's external state, not the halting rule.* This is the 2026 receipt that upgrades gem #2 from "does loop survive weight-sharing?" to "what does the loop need?"
+  - https://arxiv.org/abs/2607.20519 (UT Need Memory class) · https://arxiv.org/abs/2604.21215 (adaptive depth halting diagnosis) · https://arxiv.org/html/2605.18797v2 (stabilizing the loop)
+
+- **M17 — Precision is learned and heterogeneous, not assigned.** VBQ (learnable per-group bit-widths, self-organizing to ~1.78-bit mean with a 4/8-bit minority), BITCOS (zeros reach 51.5% in real ternary models → distribution-adaptive storage below the 1.58-bit barrier), BTC-LLM (sub-1-bit via learnable transform + binary codebook), BIT-BY-BIT (progressive QAT with outlier-channel splitting). Convergence with Wave 6's M11 (lifetime-scaled precision): the field has moved from "pick a bit-width" to *precision is an allocated, learnable, structured quantity* — allocated by lifetime (M11), by learned per-group policy (VBQ), and exploited at the storage layer via zero-structure (BITCOS).
+  - https://arxiv.org/html/2607.02893v1 (VBQ) · https://arxiv.org/pdf/2609.16338 (BITCOS, Breaking the 1.58-bit Barrier) · https://openreview.net/pdf?id=wy5IaDDmun (BIT-BY-BIT)
+
+- **M18 — The self-improvement trajectory needs regularization (and parallel workers need merging).** google-research's RRSI ("Regularized Recursive Self-Improvement of Agent Harnesses" — regularize the search trajectory against harness overfitting) and AgentDescent (evolve skills/prompts/harness modules by *merging differences from parallel workers* against held-out reward) extend Wave 6's M12 (branch-diverse RSI): the improver is now treated like an RL policy was in 2017 — its optimization trajectory is the object that overfits, and the fixes are regularization + population methods, not better agents.
+  - https://github.com/google-research/rrsi · https://github.com/Gen-Verse/ScienceBuddy (recursive-in-recursive harness improvement) · https://medium.com/codetodeploy/10-github-repos-trending-because-every-ai-agent-suddenly-needs-skills-fb4549205289
+
+### ASSAY — Wave 7 scoring (novelty × local-uniqueness × falsifiability, per `docs/assayer-spec.md`)
+
+| # | abstraction | N | U | F | score | status |
+|---|------------|---|---|---|-------|--------|
+| M15 | behavior directions in weight space (deltas as the unit of behavior) | 3 | 4 | 4 | **48** | SEEDED (SPOOL Wave 6) |
+| M16 | looped depth needs a scratchpad (memory tokens / loop state) | 3 | 3 | 4 | **36** | SEEDED (SPOOL Wave 6; extension arm of gem #2) |
+| M17 | precision is learned + heterogeneous + storage-exploited | 2 | 3 | 3 | **18** | ASSAYED — parked; incremental over Wave 6 M11/W5b (same local asset, weaker question: learned-vs-ranked allocation is a secondary arm of W5b, not a new gem) |
+| M14 | steering as context-dependent vector field | 3 | 2 | 2 | **12** | ASSAYED — parked, U-starved (frontier-scale LLM substrate; nothing on our 6GB metal that can show the effect) |
+| M18 | regularized/parallelized self-improvement trajectory | 3 | 2 | 2 | **12** | ASSAYED — parked, U-starved (needs API-scale agent populations, same kill reason as M9/M12) |
+
+*Rubric honesty: 2/5 cleared 27 — and both passers share a property worth naming: they are the two mines that collide with artifacts we already own (the D-ledger; the nursery skeleton). The pattern across all 7 waves: our ≥27 scores come almost exclusively from literature×receipt collisions, never from raw novelty. The rubric does not need recalibration; the mine's query budget should keep targeting our asset list. No gate loosened.*
