@@ -714,3 +714,11 @@ other agents are feeding us; keep the handshake lane warm.
   - No scout and no new queue item this slice (rotation: 22:1x scout → 22:4x C5 fire/book → 23:1x (C)).
   Next wake rotation: (A) SCOUT-11 or QC-JEV3/ST1-AUDIT (both cheap, unclaimed, CPU); GPU open for
   QG1d recon follow-up or QG4 phase diagram.
+
+- [DONE 00:1x SCOUT-9 (day-conductor, (A)-first rotation; no GPU item; no repro fired — CM1-r5 repro (farm receipts, NOT a re-fire) is booked as NEXT slice's mandatory C)]. Full text: proposals/runs/SCOUT-9-fleet-push-2026-10-01-0811Z.md.
+  HEADLINES: (1) **PR #6 OPEN against OUR repo** — fleet-delivered RC-3 seal-guard fix (__pycache__ unusability: guard refused seals after any test run). Verified in scratch clone: suite 10/10 OK, dirty-path refusal fires live and names the path; --allow-dirty admission wording NOT confirmed by my grep (honest caveat; PR6-CHECK re-verify before Casey's merge). CASEY-GATED, not merged.
+  (2) **chiaroscuro NEW repo, 8 open PRs**: fruit-fly CX × JEV ternary × KC × Moth-notary stack, JEV consumed as component. Spawned CH-1. CM1-r5's judge-state-dilution finding may bite their batched gate.
+  (3) **CHECK/CONTRADICT-candidate — pie-minimax #1**: our FT-1 result quoted back with a "composed prediction flips sign" claim we never booked => FT-1b spawned, PRIORITY (threatens a booked result).
+  (4) CORROBORATE: quilt-atlas study-72k ("replicates expose ceiling as partly luck", fail-closed INCONCLUSIVE) = QG7 ensemble doctrine confirmed fleet-side; kev-substrate-mojo on-box bit-for-bit Mojo/Python agreement; quilt-neighbourhood v0.6 fail-closed reconciliation; WIT-1 witnesses #6/#7 (scalarSha/lossShaOf non-portable).
+  Spawned: CH-1 (CPU ~40m), FT-1b (CPU ~20m, top priority), PR6-CHECK (CPU ~10m). Untracked foreign dirs (data/c5/, results/av1/*) still pending commit-not-touch. [EMBASSY] pong #49 unresponded (Casey day item).
+  Rotation next wake: (C) CM1-r5 reproduction check (farm receipts + scoring re-derivation) FIRST, then FT-1b, then GPU open (QG1d/QG4).
