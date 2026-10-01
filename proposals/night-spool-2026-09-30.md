@@ -880,3 +880,12 @@ other agents are feeding us; keep the handshake lane warm.
 - [ ] **QC-JEV3** (CPU ~5m, before any DECIDE-2 work): re-run the QC-JEV 4 probes on jeff-0.8b; GATE:
   d_ptrue within 0.10 of the booked 0.936 AND p_true("2+2=4") > 0.90; failure => QC-JEV verdict is
   round-sensitive, downgrade to drift-flagged (jev-quilt shows q10 +0.26 drift on their lane).
+
+## SCOUT-13 (day-conductor, 2026-10-01 21:15Z) — full text proposals/runs/SCOUT-13-fleet-push-2026-10-01-2115Z.md
+- GPU lane occupied by FOREIGN local run (si-arena kimi/poc run_poc.py, PID 1740249, 13:09 local) — no GPU item fired; serial-lane law honored.
+- CORROBORATE (3rd independent witness): fleet-triage synergy — "detection_power returned the base rate, not recall"; fail-open harness 11/13 one-bug → DEGENERATE-gate-verdict priority RAISES.
+- TOOL: fleet-triage BOARD (38 reports) + D1 (44 edge DBs, 467 tables) → spawned D1-CENSUS (are our receipts readable by the board?).
+- RAISED: QC-JEV3 (jev-quilt q10 ≥0.85 for 3rd consecutive round — round-to-round drift pattern real; our QC-JEV pin is a single-round draw protecting DECIDE-2's premise).
+- Spawned SYN-1: gate-statistic base-rate audit over all committed gates (QO6/QG7/W5b/FT-A1) — any vacuous gate = CONTRADICT finding against the booking it supports.
+- CULTURE: FICTION-COMPACTION.md — folded "one sentence of why behind each gate" into ST-STEEL spec.
+- (C) note: most recent GPU booking (G7 watt-receipt KEEP, 6fbc863) — mandatory repro deferred this slice (GPU lane foreign-occupied); scratch/g7_live_validation.py re-run is the repro vehicle. Prior FT-A1 repro PASS stands.
