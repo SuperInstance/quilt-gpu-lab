@@ -91,3 +91,12 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
 - `qcell_oracle.pt`: QO1 MLP (64x3) predicting P(stream crosses bar 0.45 | champion state: gen/len/v/cv + 67-gate hist). Val AUC 0.9510. Input norms: gen/12, len/6, hist/6; v,cv raw. See results/qo1_oracle/.
 - systemone_proxy.py — System One API wrapper; every teacher call HMAC-booked to ~/.config/systemone/call-ledger.jsonl (state, questions, answers, probabilities, latency). ask()/ledger_stats(); CLI --stats / --state. The distillation corpus grows by using the teacher (wide-scope P-1).
 - `deepinfra_ideate.py` — multi-model ideation rounds over the DeepInfra cheap/cached roster (prompt in, JSONL out; captures reasoning_content for reasoning-channel models; token read at use-time). LIVE lane 09-30 (Casey-directed): rounds in scratch/ideation/. Do NOT archive as stray.
+
+- **corpus-filter** — `tools/corpus_filter.py` — validity filter for results-corpus
+  receipts (pattern lifted from the S6a two-witness reconciliation): scans a dir of
+  JSON receipts, excludes harness-invalid/KILL files, bad JSON, and non-finite (NaN/Inf)
+  values — every exclusion booked with a reason, never silent. Tolerant row extraction
+  (grid: / probe: like s6a), `--min-rows` fail-loud gate (exit 2), `--selftest`. Stdlib-only.
+  `python tools/corpus_filter.py --dir results --out corpus.json [--min-rows 40] [--selftest]`
+  TEST receipt 2026-10-01: selftest OK (1 kept / 3 excluded incl. NaN + KILL) + live run
+  on results/ — 1243 rows kept, 60 files excluded, corpus JSON written.
