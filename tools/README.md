@@ -82,6 +82,16 @@ more than a copy to use, it's not grabbable yet.
   `python tools/farm_queue_flip.py --id <id> --status queued [--note n] [--dry-run|--list]`
   TEST receipt 2026-10-01: live flip on copy of real queue (gate pass), uncommitted-prereg refused rc=2, malformed JSON refused rc=1, queue stayed valid JSON.
 
+- **perm-ci** — `tools/perm_ci.py` — two-sample significance in one stdlib-only
+  file (pattern lifted from E3 perm-exact + COMPOSITE-0 bootstrap lanes):
+  permutation p-value (exact when C(n,na) small, else seeded Monte-Carlo with
+  add-one so p never claims 0) + percentile bootstrap CI on mean/median diff,
+  with a KEEP/KILL/NULL-BOOKED verdict — nulls are first-class, non-finite
+  input fails loud (rc=2). Seeded, deterministic, booked receipts.
+  `python tools/perm_ci.py --a 1,2,3 --b 10,11,12 [--stat median] [--out r.json]` | `--selftest`
+  TEST receipt 2026-10-01: selftest OK (4 checks incl. honest-null + p=1/3 exact
+  small-n + NaN rc=2); worked example live, receipt written.
+
 ### qcell_sim.py — exact small-circuit cell evaluator (GPU, batched)
 Batched statevector evaluator for qcell genomes (n<=12 qubits). Returns exact p(targets), balance,
 best_target, union, and optional shot samples with a sha256 receipt_id. One file, one job, cell-slot ready.
