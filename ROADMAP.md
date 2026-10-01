@@ -24,17 +24,23 @@
 - `C1-PLAYTEST` ✅ PARTIAL (14:39) — 7/40 games, **law 7/7** (all shutouts-ish: 7-0×3, 7-1×3, 7-2), agreement 0.0917, zero parse-fails/violations/crashes, 21.09 Wh PASS. Gate NOT adjudicated (CI [0.61,1.00]). Root cause of partial: OLLAMA_MAX_LOADED_MODELS=1 + concurrent XP-C 3b/7b probe forced reloads in early attempts (archived); clean-rate is ~4 min/game ⇒ full gate ≈ 2.5–3 h. → **C1b queued: finish 33 games in a fleet-clean serialized-seat window.** C2-CHAMPIONS still unlocks on the booked h2h harness.
 
 **Launching now (GPU-light, co-tenant safe):**
-- `A2-HARVEST` (deepseek) — ga4444 4×4 composition: data-gen harness + smoke arm. Does A1's composition-absorption finding hold at the 4×4 rung (complete ground truth)?
-- `A5-PARITY` (kimi/tmux `lab-a5`) — quilt-mojo-lab CuPy parity receipt on 4050: bit-parity @16/512/1024², cells/s next to their datacenter numbers. Consumer-silicon conformance node.
-- `D2-DESIGN` (GLM-5.3, serial flagship lane) — pre-register D2-STOCHASTIC: quilt-dba transfer-gap under 1000 seeded worlds; fold in XP-C serialization law.
+- `C1b-FINISH-GATE` (deepseek, ~2.5 h, owns the seat) — remaining 33 pong games in the clean window; N=40 adjudication of the ≥90% gate.
+- `B1b-KINK-HEAD` (deepseek, tiny) — honest-tolerance re-prereg + ReLU/kink head + per-region breakdown.
+- `D2-FIRST-BUILD` (deepseek, ≤20 min GPU) — prereg first-build scope: patch+smoke, W-DET hash canary, 16-world mini, 18 twins, G7 sealed.
+- `A2-HARVEST` ✅ DONE 14:28 (4635d8d) — INCONCLUSIVE at the gate (natural-walk boards starve double-threats) but three real findings: R1 trajectory-mixing gives the exact ordering; R2 ceiling intact (93.5% on generated double-threat boards); R3 **ga4444 upstream bug** (7.5% self-play wins contradicts their exact-solver receipt). → A2b queued.
+- `A5-PARITY` ✅ DONE 14:18 (kimi/tmux lab-a5) — bit-parity 0.0 at 16²/512²/1024² (stronger than their P1 claim), 3.06G cells/s @1024² = within 1.3% of receipt; INSTRUMENT-01 ramp receipted on independent harness (13× @16²); **kimi honesty catch: wave-73 was 4050-class, not datacenter** — our box matches their hardware class. Booked + PUSHED (f805ef8).
+- `D2-DESIGN` ✅ DONE 14:17 — prereg frozen (H1-H6 gates, F1-F10 failure modes, W-DET canary 8c8a54a43f10); D2-FIRST-BUILD executing the wiring scope now.
+- `BLOCKS-HARVEST` (kimi/tmux `lab-blocks`, 14:58) — Casey directive: pieces from successful runs as building blocks. 8-12 proven pieces → blocks/<name>/{BLOCK.md, block.py + passing self-test} + composition map in blocks/README.md. CPU-only.
+- `COMPOSITE-0` (GLM-5.3, STAGED — spawns on next free slot) — the decompositional-growth probe: federation of DEDICATED micro-trunks (IE3) + between-cell routing trained by correlation not reward (D13d) + look-again reach (D1b), vs joint trunk / best-single at matched params, hash-split CV, 3 seeds, G7. Direct test of "cells are dedicated; routing happens BETWEEN cells."
+- `SEER-0` ❌ CANCELLED (Casey correction 15:04: seedream-5-0-flash is an IMAGE model, not text — no seer seat there). Brief archived: scratch/SEER-0-brief.cancelled-20261001. **Reassignment: big-picture ideation/synthesis = GLM-5.3 flagship seat** (SYNTH-0, staged after COMPOSITE-0 — reads all booked results + open questions, ideates highest-leverage directions with bet/probe/kill discipline). Scope law remains: seedream-5-0-flash is the ONLY OpenRouter model, unused for now.
 
 - `HY3-CACHE` ✅ DONE (585e126 superinstance-api, 4e15cf2 lab) — **Hy3 KEEP as standing expert, B+** (expansion A−, design B, self-critique A, factual B−; rider: verify quotas/columns, no unprompted trigger/cron authoring). - `HY4-TRIAL` ✅ DONE (14:55, superinstance-api) — **PROMOTE Hy4-preview for economics surfaces as fact-bearing author (0 fabricated facts vs Hy3 2✓/4✗, unprompted abstention + self-red-team); Hy3 STAYS for bulk/cost.** Punchline: Hy4 costs 6.4× in / 4.7× out / **1.27× cache-read** — better at reasoning about cache economics, worse as a cache-read unit. Arch null: 1M ctx never exercised (5.7k prompt); delta is post-training not architecture. Riders: ≥12k output budget (15k hidden reasoning chars), diff schemas vs schema.sql, re-test on a 2nd surface before standing routing rule. Lane "terminated" post-write — deliverable complete, keeper verified + committed.
 
 **Queue (next waves, in order):**
-1. `B1b` — re-prereg at 1e-2/5e-2 tol (stated rationale) + ReLU/learned-kink head; per-region deadzone/ramp/saturation/clamp agreement breakdown. (B1 KILL-at-1e-3 but step-direction 1.0000 exact.)
-2. `C1b` — finish the 33 remaining pre-registered games in a clean serialized-seat window (~2.5–3 h lane, overnight-shape); adjudicate the ≥90% gate at N=40.
-1. `XP-C2` — serialized-seat determinism gate (7B + grammar/JSON-mode, ≥0.95 well-formed). Unblocked by XP-C; needs the seat after C1 releases it.
-2. `C2-CHAMPIONS` (kimi/tmux) — pong trained champions vs derived law, h2h receipts. Needs C1 booked.
+1. `XP-C2` — serialized-seat determinism gate (7B + grammar/JSON-mode, ≥0.95 well-formed). After C1b releases the seat.
+2. `A2b` — generated double-threat boards + matched controls (fixes the degenerate-natural-walk defect A2 exposed).
+3. `HY3C-rederive-coherence` — the re-derive-test-as-cache-proof probe, prereg seed from HY3-CACHE.
+4. `C2-CHAMPIONS` (kimi/tmux) — pong trained champions vs derived law, h2h receipts. Needs C1b booked.
 3. `G1e` — battery-v2 with the corrected key (from G1d commit: seat was RIGHT, key was WRONG).
 4. `CM1 r4` — judge swap jev-latest, bigger GENs, roster diversity (in-house cell-mesh line).
 5. `D2-STOCHASTIC` — execute the D2-DESIGN prereg (big; needs seat serialization respected).

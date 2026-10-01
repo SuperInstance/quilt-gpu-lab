@@ -1,0 +1,95 @@
+# D2-FIRST-BUILD stochastic patch (driver-side). Generated from quilt-dba@5bbd99c.
+# New files: dba/stochastic.mjs, experiments/d2_fb_worlds.mjs, experiments/d2_fb_twins.py, experiments/d2_fb_twins_guard.py
+
+diff --git a/dba/core.mjs b/dba/core.mjs
+index ea67e52..66414c3 100644
+--- a/dba/core.mjs
++++ b/dba/core.mjs
+@@ -21,6 +21,7 @@ import {
+ } from './kernels.mjs';
+ import * as K from './kernels.mjs';
+ import { fnv1a64 } from './receipts.mjs';
++import { STO_DEFAULTS as STO } from './stochastic.mjs';
+ 
+ const sorted = (obj) => Object.keys(obj).sort().reduce((o, k) => (o[k] = obj[k], o), {});
+ function idx(x, y) { return y * GRID + x; }
+@@ -65,6 +66,10 @@ export class Driver {
+       ? opts.worldSeed >>> 0
+       : (opts.vault ? opts.vault.u32(`world:seed:${opts.seed}`) : (Math.imul(opts.seed, 0x9E3779B1) >>> 0));
+     this.state = Driver.freshState({ arm: this.arm, seed: this.seed, gain: this.gain, worldSeed });
++    // D2-STOCHASTIC patch (driver-side, behind --stochastic). Default false =>
++    // the unmodified path stays byte-identical (W-DET canary).
++    this.stochastic = !!opts.stochastic;
++    this.state.stochastic = this.stochastic;
+   }
+ 
+   static freshState({ arm, seed, gain, worldSeed }) {
+@@ -109,6 +114,7 @@ export class Driver {
+       food: s.food.slice(),
+       respawnQ: s.respawnQ.map(r => [r[0], r[1]]),
+       hazards: s.hazards.slice(),
++      ...(s.stochastic ? { stochastic: true } : {}),
+       jepaWin: sorted(s.jepaWin), jepaErr: sorted(s.jepaErr),
+       ledger: { gamma: s.ledger.gamma, eta: s.ledger.eta, sum: s.ledger.sum },
+       sPrev: s.sPrev,
+@@ -132,6 +138,7 @@ export class Driver {
+   static restoreState(b) {
+     const st = Driver.freshState({ arm: b.arm, seed: b.seed, gain: b.gain, worldSeed: b.worldSeed });
+     st.eval = b.eval; st.stage = b.stage; st.rngState = b.rngState;
++    if (b.stochastic) st.stochastic = true;
+     st.env = { x: b.env.x, y: b.env.y, energy: b.env.energy };
+     st.food = b.food.slice();
+     st.respawnQ = b.respawnQ.map(r => [r[0], r[1]]);
+@@ -165,6 +172,7 @@ export class Driver {
+ export function driverFromBundle(b) {
+   const d = Object.create(Driver.prototype);
+   d.arm = b.arm; d.seed = b.seed; d.gain = b.gain; d.maxEvals = Infinity;
++  d.stochastic = !!b.stochastic;
+   d.state = Driver.restoreState(b);
+   return d;
+ }
+@@ -194,11 +202,26 @@ export function step(d, opts = {}) {
+     s.food[pellet] = c; s.foodSet.add(c);
+     s.respawnQ.splice(qi, 1); qi--;
+   }
++  if (s.stochastic) {
++    // STO: the tick's stochastic draws live ONLY here (world rng).
++    s.stoSalJitter = Math.round((rng.fn() * 2 - 1) * STO.sensorNoise * SCALE); // +/-NOISE salience
++    s.stoRespawnJitter = Math.floor(rng.fn() * (STO.respawnJitter + 1)) - Math.floor(STO.respawnJitter / 2);
++    s.stoSwitchDraw = rng.fn();                               // probabilistic curriculum
++  }
+   s.rngState = rng.state;
+ 
+   // ---- 1. sensors fire (Z_in) --------------------------------------------
+   const obs = K.observe(s, fnv1a64);
+-  if (trace) trace.obs = { salience: obs.salience, flicked: obs.flicked };
++  obs.salienceClean = obs.salience;
++  // STO hook: world-side noise on the DELIVERED salience only; the
++  // clean channel is preserved as the socket's declared input (F8 measure).
++  if (s.stochastic) {
++    const raw = Math.round(obs.salience * SCALE);
++    let pert = raw + s.stoSalJitter;
++    if ((raw - 800) * (pert - 800) < 0) pert = raw; // never cross the reflex boundary
++    obs.salience = Math.max(0, Math.min(SCALE, pert)) / SCALE;
++  }
++  if (trace) trace.obs = { salience: obs.salience, salienceClean: obs.salienceClean, flicked: obs.flicked };
+ 
+   // ---- 2. reflex.orient (pincher listener; salience > 0.8, no teacher) ----
+   const orient = K.reflexOrient(obs);
+@@ -267,7 +290,7 @@ export function step(d, opts = {}) {
+       s.food[pellet] = -1; s.foodSet.delete(cell);
+       s.env.energy = Math.min(ENERGY_MAX, s.env.energy + FOOD_ENERGY);
+       s.metrics.foodEaten++;
+-      s.respawnQ.push([s.eval + RESPAWN_DELAY, pellet]);
++      s.respawnQ.push([s.eval + RESPAWN_DELAY + (s.stochastic ? s.stoRespawnJitter : 0), pellet]);
+     }
+     const obs2 = K.observe(s, fnv1a64);
+     const mse = K.mseOf(action.predWin, obs2.win);
+@@ -335,6 +358,7 @@ export function step(d, opts = {}) {
+         let execute = false;
+         if (verdict.verdict === 'execute') execute = true;
+         else if (verdict.verdict === 'escalate') execute = K.jevEscalateRule(desc); // offline adjudication
++        if (execute && s.stochastic) execute = s.stoSwitchDraw < STO.teacherP; // D2: probabilistic switch
+         if (execute) { s.teacher.zone = to; s.teacher.label = `zone:${to}`; s.teacher.sinceEval = s.eval; }
+         else s.teacher.sinceEval = s.eval; // discarded: settle to avoid re-propose storm (receipted)
+       } else s.teacher.sinceEval = s.eval;

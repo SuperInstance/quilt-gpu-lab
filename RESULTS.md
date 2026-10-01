@@ -4601,3 +4601,27 @@ G7 adoption for this lane shape; INSTRUMENT-01 ramp receipt included instead).
   their hardware class, which makes the 1.3% @1024² reading cleaner, not worse.
 - Artifacts: results/a5_parity/{a5_parity_receipt.json, a5_parity_repro.py, README.md};
   CuPy 14.2.0, driver 616.92 (WSL2), elephant-gpu venv python 3.14.
+
+## [DONE 15:08 D2-FIRST-BUILD Oct 1] stochastic-worlds wiring receipt — ALL WIRING GATES PASS, v1 unblocked (not a thesis verdict)
+
+Lane D2-FIRST-BUILD (deepseek; parallel twin's artifacts folded intact). Scope: the frozen prereg's
+first-build wiring only. quilt-dba pinned @5bbd99c read-only.
+
+- **W-DET canary PASS:** deterministic arm reproduces E-D1's exact hash `8c8a54a43f10`, var_A=0,
+  R5 replay byte-identical — the harness is honest before any stochastic claim is allowed.
+- **F-gates:** F10 smoke 13/13 (with patch present, default-off), F3 16/16 unique world hashes,
+  F8 leak 0.000 (reflex determinacy identical det vs sto; salience-projection dip booked as
+  measurement artifact), F6 KS p=0.0 vs real.
+- **H-wiring:** H4 PASS (std_pos 8.83, std_growthAt 216.25), H5/H6 spreads 0.000/0.109 range 0.715.
+- **Mini determinacy:** reflex.orient 1.000, memory.episodic 0.285 (prediction ~0.9/~0.1 held).
+- **18 twin trainings** (2 sockets × 3 frames × 3 seeds) in 46.4 GPU-s: reflex gap_sim 0.000 /
+  gap_mis +0.400; episodic gap_sim −0.063 / gap_mis −0.071. **H3 widened PASS (+0.165) via reflex
+  only; GPU-SEED LAW applied: reflex std==0 → INCONCLUSIVE never PASS; episodic PASS.**
+- **H-GROWTH mini REPORT/PARTIAL:** gated 15/16 vs unguided 14/16 — and unpatched arm D also 14/16,
+  so R2's "unguided never grows" fails on fresh seeds regardless of patch (seed-vacuity datum).
+- **0.756 Wh measured** (G7 receipt PASS, 47.0 W mean, $0.000174), co-tenant 7B resident, no breach.
+- **v1 needs next:** freeze all 6 socket input channels + re-check H5; fix reflex twin target
+  (seeds indistinguishable → std==0); then 200 worlds (140/60, F5 assert) × 6 sockets × 54 twins
+  with bootstrap-ρ CI; 1000-world extension only if H4 passes and CI width > 0.40.
+- Artifacts: results/d2_build/ (RESULTS-ENTRY, fb_* JSONs, guard/, fb_patch.diff; scripts in
+  scratch/d2/fb/quilt-dba/experiments/ + dba/stochastic.mjs).

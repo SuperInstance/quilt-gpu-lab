@@ -1,0 +1,41 @@
+{
+ "task": "D2-FIRST-BUILD",
+ "gate": "W-DET",
+ "role": "wiring canary (not a data point)",
+ "repo_pin": "SuperInstance/quilt-dba@5bbd99c99ab885fd8009655ddfbd5a3a58742364",
+ "citation": "E-D1 caveat per prereg \u00a70: seeds 101/118/135 produce identical state hashes 8c8a54a43f10, var_A: var_D: 0",
+ "smoke": "13/13 (node experiments/smoke.mjs)",
+ "smoke_with_patch_present": "13/13 (patch default-off, byte-identical path)",
+ "hashes_A": [
+  "8c8a54a43f10"
+ ],
+ "hashes_B": [
+  "8c8a54a43f10"
+ ],
+ "hashes_D": [
+  "c20dbef339c9"
+ ],
+ "var_A": 0,
+ "var_D": 0,
+ "mean_pos_A": 24500,
+ "mean_pos_D": 10,
+ "r1": "CONFIRMED",
+ "r5": {
+  "full": "1de2f9c27e8d",
+  "resumed": "1de2f9c27e8d",
+  "byte_identical": true
+ },
+ "r2_verdict": "CONFIRMED",
+ "expected_hash": "8c8a54a43f10",
+ "hash_match": true,
+ "var_zero": true,
+ "gate_result": "PASS",
+ "summary_sha256": "80f7028f3a4a8acd6b706bf62ea74a45fbc98e67a0ebc06103dbfcb80f9e5489",
+ "run_log_tail": [
+  "R5 replay: BYTE-IDENTICAL",
+  "chain: OK tip 0xffb91f3b6acebf0e",
+  "wrote experiments/outputs/e_d1_summary.json + receipts_ed1.jsonl",
+  "WALL 3.71 s"
+ ],
+ "note": "any deviation would be a wiring bug => run VOID with no verdict; none observed"
+}

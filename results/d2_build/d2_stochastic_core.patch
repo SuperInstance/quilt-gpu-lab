@@ -1,0 +1,88 @@
+diff --git a/dba/core.mjs b/dba/core.mjs
+index ea67e52..e28f79a 100644
+--- a/dba/core.mjs
++++ b/dba/core.mjs
+@@ -65,6 +65,14 @@ export class Driver {
+       ? opts.worldSeed >>> 0
+       : (opts.vault ? opts.vault.u32(`world:seed:${opts.seed}`) : (Math.imul(opts.seed, 0x9E3779B1) >>> 0));
+     this.state = Driver.freshState({ arm: this.arm, seed: this.seed, gain: this.gain, worldSeed });
++    // ── D2-STOCHASTIC patch (driver-side, behind the flag) ──────────────────
++    // Default false keeps the unmodified path byte-identical (W-DET canary).
++    // When true, world dynamics gain real cross-world variance: respawn-delay
++    // jitter, probabilistic curriculum switching, ±sensor salience noise.
++    // Every draw is taken in the WORLD TICK (step §0) so env.rng never enters
++    // cell internals — the agent's determinacy stays a measured quantity (F8).
++    this.stochastic = !!opts.stochastic;
++    this.state.stochastic = this.stochastic;
+   }
+ 
+   static freshState({ arm, seed, gain, worldSeed }) {
+@@ -109,6 +117,7 @@ export class Driver {
+       food: s.food.slice(),
+       respawnQ: s.respawnQ.map(r => [r[0], r[1]]),
+       hazards: s.hazards.slice(),
++      ...(s.stochastic ? { stochastic: true } : {}),
+       jepaWin: sorted(s.jepaWin), jepaErr: sorted(s.jepaErr),
+       ledger: { gamma: s.ledger.gamma, eta: s.ledger.eta, sum: s.ledger.sum },
+       sPrev: s.sPrev,
+@@ -132,6 +141,7 @@ export class Driver {
+   static restoreState(b) {
+     const st = Driver.freshState({ arm: b.arm, seed: b.seed, gain: b.gain, worldSeed: b.worldSeed });
+     st.eval = b.eval; st.stage = b.stage; st.rngState = b.rngState;
++    if (b.stochastic) st.stochastic = true;
+     st.env = { x: b.env.x, y: b.env.y, energy: b.env.energy };
+     st.food = b.food.slice();
+     st.respawnQ = b.respawnQ.map(r => [r[0], r[1]]);
+@@ -165,6 +175,7 @@ export class Driver {
+ export function driverFromBundle(b) {
+   const d = Object.create(Driver.prototype);
+   d.arm = b.arm; d.seed = b.seed; d.gain = b.gain; d.maxEvals = Infinity;
++  d.stochastic = !!b.stochastic;
+   d.state = Driver.restoreState(b);
+   return d;
+ }
+@@ -194,10 +205,27 @@ export function step(d, opts = {}) {
+     s.food[pellet] = c; s.foodSet.add(c);
+     s.respawnQ.splice(qi, 1); qi--;
+   }
++  if (s.stochastic) {
++    // D2-STOCHASTIC: the ONLY rng draws for the tick live here.
++    s.salJitter = Math.round((rng.fn() * 2 - 1) * 60);   // ±60 / 1000 salience
++    s.respawnJitter = Math.floor(rng.fn() * 11) - 5;     // -5..+5 evals delay
++    s.switchDraw = rng.fn();                             // probabilistic curriculum
++  }
+   s.rngState = rng.state;
+ 
+   // ---- 1. sensors fire (Z_in) --------------------------------------------
+   const obs = K.observe(s, fnv1a64);
++  if (s.stochastic) {
++    // D2-STOCHASTIC sensor noise — but it may NOT cross the reflex decision
++    // boundary (salience>0.8): F8 forbids the patch from leaking noise into
++    // the high-determinacy reflex socket. The clip keeps reflex fire a
++    // function of the underlying world state while still perturbing the
++    // salience channel the policy/vision sockets read.
++    const raw = Math.round(obs.salience * SCALE);
++    let pert = raw + s.salJitter;
++    if ((raw - 800) * (pert - 800) < 0) pert = raw; // never cross the 0.8 threshold
++    obs.salience = Math.max(0, Math.min(SCALE, pert)) / SCALE;
++  }
+   if (trace) trace.obs = { salience: obs.salience, flicked: obs.flicked };
+ 
+   // ---- 2. reflex.orient (pincher listener; salience > 0.8, no teacher) ----
+@@ -267,7 +295,7 @@ export function step(d, opts = {}) {
+       s.food[pellet] = -1; s.foodSet.delete(cell);
+       s.env.energy = Math.min(ENERGY_MAX, s.env.energy + FOOD_ENERGY);
+       s.metrics.foodEaten++;
+-      s.respawnQ.push([s.eval + RESPAWN_DELAY, pellet]);
++      s.respawnQ.push([s.eval + RESPAWN_DELAY + (s.stochastic ? s.respawnJitter : 0), pellet]);
+     }
+     const obs2 = K.observe(s, fnv1a64);
+     const mse = K.mseOf(action.predWin, obs2.win);
+@@ -335,6 +363,7 @@ export function step(d, opts = {}) {
+         let execute = false;
+         if (verdict.verdict === 'execute') execute = true;
+         else if (verdict.verdict === 'escalate') execute = K.jevEscalateRule(desc); // offline adjudication
++        if (execute && s.stochastic) execute = s.switchDraw < 0.9; // D2: probabilistic switch
+         if (execute) { s.teacher.zone = to; s.teacher.label = `zone:${to}`; s.teacher.sinceEval = s.eval; }
+         else s.teacher.sinceEval = s.eval; // discarded: settle to avoid re-propose storm (receipted)
+       } else s.teacher.sinceEval = s.eval;
