@@ -2,11 +2,16 @@
 // farm_runner.mjs — the always-at-capacity keeper (Casey, 09-30 21:06: "a farm that's
 // always at capacity and your job is to keep it fruitful").
 //
-// Loop: GPU free? → fire the next QUEUED experiment whose pre-reg is committed.
-// Doctrine enforced by the scheduler: an entry without a COMMITTED pre-reg path never
-// fires — pre-registration is not a suggestion, it is a gate in the code.
-// When nothing big is ready → run a filler (dataset builds, evals, renders, embeddings).
-// Every fire/exit/receipt appends to farm/RECEIPTS.md (append-only) and farm/state.json.
+// Loop: GPU free (nvidia-smi is the ONLY fire gate)? → fire the next QUEUED experiment
+// whose pre-reg is committed. The doctrine is a gate in the code: an entry without a
+// COMMITTED pre-reg path never fires — push-before-fire is the scheduler, not a convention.
+// Nothing big ready → run a filler (dataset builds, evals, renders, embeddings).
+//
+// v2 (2026-09-30 21:14 bug, fixed same night): external runs (started outside the farm,
+// e.g. subagent lanes) are NOTED, never PINNED — a stale "running" entry can no longer
+// starve the queue (the ADOPT bug). Filler + experiment state persists in queue.json
+// across restarts. Orphaned farm-fired entries from a dead runner life are marked,
+// not auto-refired.
 //
 // zero deps · list-form spawn only (red lines) · fail-loud · single instance via lock.
 import { execFileSync, spawn } from 'node:child_process';
@@ -35,6 +40,8 @@ fs.writeFileSync(LOCK, String(process.pid));
 process.on('SIGTERM', () => { fs.rmSync(LOCK, { force: true }); process.exit(0); });
 
 const readJSON = (f, dflt) => { try { return JSON.parse(fs.readFileSync(f, 'utf8')); } catch { return dflt; } };
+const saveQueue = (q) => fs.writeFileSync(QUEUE, JSON.stringify(q, null, 1) + '\n');
+const writeState = (s) => fs.writeFileSync(STATE, JSON.stringify(s, null, 1) + '\n');
 const gpuBusy = () => {
   try {
     const out = execFileSync(NVIDIASM, ['--query-compute-apps=pid', '--format=csv,noheader'], { timeout: 10000 }).toString().trim();
@@ -45,9 +52,8 @@ const preregCommitted = (rel) => {
   try { execFileSync('git', ['-C', ROOT, 'log', '-1', '--format=%H', '--', rel], { timeout: 10000 }); return true; }
   catch { return false; }
 };
-const writeState = (s) => fs.writeFileSync(STATE, JSON.stringify(s, null, 1) + '\n');
 
-// fire one entry: spawn detached-ish, stream to farm/logs/<id>.log, on exit receipt + mark
+// fire one entry: stream to farm/logs/<id>.log, on exit receipt; caller owns entry.status
 function fire(entry) {
   const logf = path.join(FARM, 'logs', `${entry.id}.log`);
   fs.mkdirSync(path.dirname(logf), { recursive: true });
@@ -58,44 +64,67 @@ function fire(entry) {
   return new Promise((resolve) => {
     p.on('exit', (code, sig) => {
       const mins = ((Date.now() - t0) / 60000).toFixed(1);
-      const status = code === 0 ? 'DONE' : `EXIT-${code ?? 'sig' + sig}`;
-      entry.status = code === 0 ? 'done' : 'failed';
-      entry.last_exit = { code, mins, at: new Date().toISOString() };
-      receipt(`${status} ${entry.id} in ${mins}min — log: farm/logs/${entry.id}.log`);
-      resolve();
+      receipt(`${code === 0 ? 'DONE' : `EXIT-${code ?? 'sig' + sig}`} ${entry.id} in ${mins}min — log: farm/logs/${entry.id}.log`);
+      resolve({ ok: code === 0, code, sig });
     });
   });
 }
 
 log(`farm runner up (pid ${process.pid}), tick ${TICK_S}s`);
-let current = null;
+let current = null;                // what THIS runner life fired; the only pin that can gate
+const notedExternal = new Set();   // receipt-once per life per external entry
 while (true) {
   try {
     const q = readJSON(QUEUE, { queue: [], fillers: [] });
-    if (!current) {
-      current = q.queue.find((e) => e.status === 'running') || null; // adopt externally-started (e.g. av1-train)
-      if (current) receipt(`ADOPT ${current.id} (already running outside the farm)`);
+
+    // reconcile entries this life does not own
+    for (const e of q.queue) {
+      if (e.status === 'running' && e.farm_fired && current?.id !== e.id) {
+        e.status = 'orphaned'; e.farm_fired = false;
+        receipt(`ORPHAN ${e.id} — fired by a dead runner life; marked, NOT auto-refired`);
+      } else if (e.status === 'running' && !e.farm_fired && !notedExternal.has(e.id)) {
+        notedExternal.add(e.id);
+        receipt(`NOTE ${e.id} running outside the farm — noted, never pinned`);
+      }
     }
+    const blocked = q.queue
+      .filter((e) => e.status === 'queued' && (!e.prereg || !preregCommitted(e.prereg)))
+      .map((e) => e.id);
+
     if (!current && !gpuBusy()) {
       const next = q.queue.find((e) => e.status === 'queued' && e.prereg && preregCommitted(e.prereg));
       if (next) {
-        next.status = 'running'; current = next;
-        fs.writeFileSync(QUEUE, JSON.stringify(q, null, 1) + '\n');
-        fire(next).then(() => { fs.writeFileSync(QUEUE, JSON.stringify(q, null, 1) + '\n'); current = null; });
+        next.status = 'running'; next.farm_fired = true; current = next;
+        saveQueue(q);
+        fire(next).then((r) => {
+          next.farm_fired = false;
+          saveQueue(q);
+          current = null;
+          log(`experiment ${next.id} finished: ${r.ok ? 'done' : `exit ${r.code ?? r.sig}`}`);
+        });
       } else {
-        const blocked = q.queue.filter((e) => e.status === 'queued' && (!e.prereg || !preregCommitted(e.prereg)));
         const filler = q.fillers.find((f) => f.status !== 'running' && (!f.last_run || Date.now() - f.last_run > (f.cooldown_min || 240) * 60000));
         if (filler) {
           filler.status = 'running'; filler.last_run = Date.now();
+          saveQueue(q);
           receipt(`FILLER ${filler.id} → ${filler.cmd.join(' ')}`);
-          await fire({ ...filler, kind: 'filler' }).then(() => { filler.status = 'done'; });
+          const r = await fire({ ...filler, kind: 'filler' });
+          filler.status = r.ok ? 'done' : 'failed';
+          saveQueue(q); // filler state persists across restarts (runbook 21:14)
+          log(`filler ${filler.id} finished: ${r.ok ? 'done' : `exit ${r.code ?? r.sig}`}`);
         }
-        writeState({ at: new Date().toISOString(), gpu_busy: gpuBusy(), running: current?.id ?? null,
-          queue: q.queue.map((e) => ({ id: e.id, status: e.status, prereg: e.prereg || null })),
-          blocked_needs_prereg: blocked.map((e) => e.id), fillers_today: q.fillers.filter((f) => Date.now() - (f.last_run || 0) < 86400000).map((f) => f.id) });
       }
     }
-    if (current) writeState({ at: new Date().toISOString(), gpu_busy: gpuBusy(), running: current.id, queue: q.queue.map((e) => ({ id: e.id, status: e.status })) });
+
+    writeState({
+      at: new Date().toISOString(),
+      gpu_busy: gpuBusy(),
+      running: current?.id ?? null,
+      external_running: q.queue.filter((e) => e.status === 'running' && !e.farm_fired).map((e) => e.id),
+      queue: q.queue.map((e) => ({ id: e.id, status: e.status, prereg: e.prereg || null })),
+      blocked_needs_prereg: blocked,
+      fillers: q.fillers.map((f) => ({ id: f.id, status: f.status, last_run: f.last_run ? new Date(f.last_run).toISOString() : null })),
+    });
   } catch (e) { log('tick error: ' + e.message); receipt(`TICK-ERROR ${e.message}`); }
   await new Promise((r) => setTimeout(r, TICK_S * 1000));
 }
