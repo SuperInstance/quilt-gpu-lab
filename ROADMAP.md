@@ -37,7 +37,8 @@
 
 - `HY3-CACHE` ✅ DONE (585e126 superinstance-api, 4e15cf2 lab) — **Hy3 KEEP as standing expert, B+** (expansion A−, design B, self-critique A, factual B−; rider: verify quotas/columns, no unprompted trigger/cron authoring). - `HY4-TRIAL` ✅ DONE (14:55, superinstance-api) — **PROMOTE Hy4-preview for economics surfaces as fact-bearing author (0 fabricated facts vs Hy3 2✓/4✗, unprompted abstention + self-red-team); Hy3 STAYS for bulk/cost.** Punchline: Hy4 costs 6.4× in / 4.7× out / **1.27× cache-read** — better at reasoning about cache economics, worse as a cache-read unit. Arch null: 1M ctx never exercised (5.7k prompt); delta is post-training not architecture. Riders: ≥12k output budget (15k hidden reasoning chars), diff schemas vs schema.sql, re-test on a 2nd surface before standing routing rule. Lane "terminated" post-write — deliverable complete, keeper verified + committed.
 
-- `EST-FREEZE` (deepseek, 15:2x, Casey: "try different ways") — the D2 v1 blocker is an estimator disagreement between two independent builds; this lane builds ≥4 DIFFERENT determinacy estimators behind one interface, cross-validates on the W-DET canary (zero false variance required) + mini traces across alphabet sizes 2→6, and freezes whichever passes — or books loudly that H5/H6 thresholds need re-derivation.
+- `EST-FREEZE` ✅ DONE 15:2x (8a18341) — the D2 A/B disagreement was the ENCODER, not the estimator (fire|salience impure, purity 0.833; fire|full-channel pure, spread 0.000). FROZEN-V1=NONE honest; synthetic control proved real spread is input-distribution sensitivity — H5 as written conflated the two. E3 frozen primary / E0 reserve; H6 UNBLOCKED (0.648 ≥ 0.5 with declared encoders). All three D2-V1 prerequisites met.
+- `D2-V1` (deepseek, fired 15:2x) — the payoff run: 200 worlds (140/60 F5) × 6 sockets × 54 twins, E3 estimator + declared frozen encoders, bootstrap-ρ CI, H6 re-adjudicated, H5 re-derived. 1000-world extension only if H4 passes + CI width > 0.40.
 
 **Queue (next waves, in order):**
 1. `B1C` — different ways to close value fidelity now that kink heads lost (ensembles of tanh nets, capacity, deadzone-loss reweighting, binned targets). B1b's falsification defines the arms.
@@ -60,3 +61,5 @@ A1 ✅ KILL-of-prediction (d835e71) · A2 ✅ smoke INCONCLUSIVE-gate/BREAKS-sec
 - z.ai payg endpoint 429/1113 persists — cloud arms use the coding endpoint (shape per G1c).
 - moth-seal: pool=53, retry loop, n=4, direct; --stream=prf broken today.
 - tmux: session `3` idle (10:40) — claim or kill next housekeeping; `canvas-ctl` is system.
+
+- `KIMI SUSPENDED` (Casey 15:26, until further notice) — lab-blocks runner died with it. blocks/ status: 3/5 complete (envelope_guard, format_first_gate, port_harness committed); exact_minimax_labels + ternary_transition_kernel dirs incomplete. Continuation queued: deepseek lane finishes the last 2 blocks + composition map (blocks/README.md) on next slot.
