@@ -1,0 +1,339 @@
+[G] typesafe JEV: {"status": "ok", "model": "jev-preview", "n_sample": 24, "n_answered": 24, "errors": 0, "min_noul": 0.5, "known_power": 1.0, "unknown_power": 0.6667, "note": "supplementary only; small stratified sample, NOT in the frozen rho"}
+corpus: eval=600 (clean 200, known 240, heldout 160), train=6000, val=1500; identity_cases=4
+{
+  "experiment": "XP-A2-instrument-transfer-grid",
+  "pre_reg": "lanes XP-A2 (extend XP-A to >=6 instruments); gates verbatim from experiments/xp_a_instrument_transfer.py",
+  "master_seed": 2718,
+  "claim": "known-failure detection power predicts unknown-failure detection power",
+  "frozen_gates": {
+    "chance": 0.5,
+    "beats_chance": 0.6,
+    "high_known_power": 0.65,
+    "flunks_held_out": 0.5,
+    "rho_min": 0.7,
+    "min_full_instruments": 6
+  },
+  "known_ops": [
+    "sign_flip",
+    "wins_over",
+    "verdict_flip",
+    "tau_off",
+    "seed_drop",
+    "denom_swap"
+  ],
+  "heldout_ops": [
+    "nan_injection",
+    "dtype_cast",
+    "split_boundary",
+    "receipt_copy_prior"
+  ],
+  "digest_bound_fields": [
+    "wins",
+    "n_pairs",
+    "mean_rel_improvement",
+    "tau",
+    "seeds",
+    "rule"
+  ],
+  "grid_recall_per_op": {
+    "verdict_gate_pins": {
+      "CLEAN": 0.0,
+      "sign_flip": 0.05,
+      "wins_over": 0.2,
+      "verdict_flip": 0.25,
+      "tau_off": 1.0,
+      "seed_drop": 1.0,
+      "denom_swap": 0.9,
+      "nan_injection": 0.0,
+      "dtype_cast": 0.0,
+      "split_boundary": 0.0,
+      "receipt_copy_prior": 0.0
+    },
+    "step_parser": {
+      "CLEAN": 0.0,
+      "sign_flip": 0.175,
+      "wins_over": 0.275,
+      "verdict_flip": 1.0,
+      "tau_off": 1.0,
+      "seed_drop": 1.0,
+      "denom_swap": 0.9,
+      "nan_injection": 1.0,
+      "dtype_cast": 1.0,
+      "split_boundary": 1.0,
+      "receipt_copy_prior": 0.975
+    },
+    "digest_manifest": {
+      "CLEAN": 0.0,
+      "sign_flip": 1.0,
+      "wins_over": 1.0,
+      "verdict_flip": 0.0,
+      "tau_off": 1.0,
+      "seed_drop": 1.0,
+      "denom_swap": 0.9,
+      "nan_injection": 1.0,
+      "dtype_cast": 1.0,
+      "split_boundary": 1.0,
+      "receipt_copy_prior": 0.0
+    },
+    "g7_field_validator": {
+      "CLEAN": 0.0,
+      "sign_flip": 0.0,
+      "wins_over": 0.2,
+      "verdict_flip": 0.0,
+      "tau_off": 1.0,
+      "seed_drop": 1.0,
+      "denom_swap": 0.9,
+      "nan_injection": 1.0,
+      "dtype_cast": 1.0,
+      "split_boundary": 0.0,
+      "receipt_copy_prior": 0.0
+    },
+    "schema_lint": {
+      "CLEAN": 0.0,
+      "sign_flip": 0.0,
+      "wins_over": 0.0,
+      "verdict_flip": 0.0,
+      "tau_off": 0.0,
+      "seed_drop": 1.0,
+      "denom_swap": 0.0,
+      "nan_injection": 1.0,
+      "dtype_cast": 1.0,
+      "split_boundary": 0.0,
+      "receipt_copy_prior": 0.0
+    },
+    "trained_classifier": {
+      "CLEAN": 0.225,
+      "sign_flip": 0.25,
+      "wins_over": 0.2,
+      "verdict_flip": 0.425,
+      "tau_off": 0.625,
+      "seed_drop": 0.675,
+      "denom_swap": 0.275,
+      "nan_injection": 0.375,
+      "dtype_cast": 0.275,
+      "split_boundary": 0.35,
+      "receipt_copy_prior": 0.15
+    }
+  },
+  "instrument_summary": {
+    "verdict_gate_pins": {
+      "family": "invariant-pin",
+      "known_power": 0.5667,
+      "unknown_power": 0.0,
+      "clean_fpr": 0.0
+    },
+    "step_parser": {
+      "family": "invariant-parser",
+      "known_power": 0.725,
+      "unknown_power": 0.9938,
+      "clean_fpr": 0.0
+    },
+    "digest_manifest": {
+      "family": "digest-checker",
+      "known_power": 0.8167,
+      "unknown_power": 0.75,
+      "clean_fpr": 0.0
+    },
+    "g7_field_validator": {
+      "family": "schema-lint",
+      "known_power": 0.5167,
+      "unknown_power": 0.5,
+      "clean_fpr": 0.0
+    },
+    "schema_lint": {
+      "family": "schema-lint",
+      "known_power": 0.1667,
+      "unknown_power": 0.5,
+      "clean_fpr": 0.0
+    },
+    "trained_classifier": {
+      "family": "trained-classifier",
+      "known_power": 0.4083,
+      "unknown_power": 0.2875,
+      "clean_fpr": 0.225
+    }
+  },
+  "instrument_stats": {
+    "verdict_gate_pins": {
+      "heldout_recall": 0.0,
+      "heldout_recall_wilson95": [
+        0.0,
+        0.0234
+      ],
+      "p_ge_vs_chance_0.50": 1.0,
+      "p_ge_vs_gate_0.60": 1.0,
+      "clean_fpr": 0.0,
+      "balanced_accuracy_heldout": 0.5,
+      "beats_chance": false,
+      "beats_chance_gate": false,
+      "high_known_power": false,
+      "flunks_held_out": true
+    },
+    "step_parser": {
+      "heldout_recall": 0.9938,
+      "heldout_recall_wilson95": [
+        0.9655,
+        0.9989
+      ],
+      "p_ge_vs_chance_0.50": 0.0,
+      "p_ge_vs_gate_0.60": 0.0,
+      "clean_fpr": 0.0,
+      "balanced_accuracy_heldout": 0.9969,
+      "beats_chance": true,
+      "beats_chance_gate": true,
+      "high_known_power": true,
+      "flunks_held_out": false
+    },
+    "digest_manifest": {
+      "heldout_recall": 0.75,
+      "heldout_recall_wilson95": [
+        0.6776,
+        0.8107
+      ],
+      "p_ge_vs_chance_0.50": 0.0,
+      "p_ge_vs_gate_0.60": 4.812e-05,
+      "clean_fpr": 0.0,
+      "balanced_accuracy_heldout": 0.875,
+      "beats_chance": true,
+      "beats_chance_gate": true,
+      "high_known_power": true,
+      "flunks_held_out": false
+    },
+    "g7_field_validator": {
+      "heldout_recall": 0.5,
+      "heldout_recall_wilson95": [
+        0.4234,
+        0.5766
+      ],
+      "p_ge_vs_chance_0.50": 0.53148992,
+      "p_ge_vs_gate_0.60": 0.99584208,
+      "clean_fpr": 0.0,
+      "balanced_accuracy_heldout": 0.75,
+      "beats_chance": false,
+      "beats_chance_gate": false,
+      "high_known_power": false,
+      "flunks_held_out": true
+    },
+    "schema_lint": {
+      "heldout_recall": 0.5,
+      "heldout_recall_wilson95": [
+        0.4234,
+        0.5766
+      ],
+      "p_ge_vs_chance_0.50": 0.53148992,
+      "p_ge_vs_gate_0.60": 0.99584208,
+      "clean_fpr": 0.0,
+      "balanced_accuracy_heldout": 0.75,
+      "beats_chance": false,
+      "beats_chance_gate": false,
+      "high_known_power": false,
+      "flunks_held_out": true
+    },
+    "trained_classifier": {
+      "heldout_recall": 0.2875,
+      "heldout_recall_wilson95": [
+        0.223,
+        0.362
+      ],
+      "p_ge_vs_chance_0.50": 0.99999999,
+      "p_ge_vs_gate_0.60": 1.0,
+      "clean_fpr": 0.225,
+      "balanced_accuracy_heldout": 0.5312,
+      "beats_chance": false,
+      "beats_chance_gate": false,
+      "high_known_power": false,
+      "flunks_held_out": true
+    }
+  },
+  "design_family_rollup": {
+    "invariant-pin": {
+      "n_instruments": 1,
+      "mean_unknown_power": 0.0,
+      "mean_known_power": 0.5667,
+      "members": [
+        "verdict_gate_pins"
+      ]
+    },
+    "invariant-parser": {
+      "n_instruments": 1,
+      "mean_unknown_power": 0.9938,
+      "mean_known_power": 0.725,
+      "members": [
+        "step_parser"
+      ]
+    },
+    "digest-checker": {
+      "n_instruments": 1,
+      "mean_unknown_power": 0.75,
+      "mean_known_power": 0.8167,
+      "members": [
+        "digest_manifest"
+      ]
+    },
+    "schema-lint": {
+      "n_instruments": 2,
+      "mean_unknown_power": 0.5,
+      "mean_known_power": 0.3417,
+      "members": [
+        "g7_field_validator",
+        "schema_lint"
+      ]
+    },
+    "trained-classifier": {
+      "n_instruments": 1,
+      "mean_unknown_power": 0.2875,
+      "mean_known_power": 0.4083,
+      "members": [
+        "trained_classifier"
+      ]
+    }
+  },
+  "spearman_known_unknown": 0.4928,
+  "spearman_n": 6,
+  "spearman_exact_permutation_p_ge": 0.172222,
+  "spearman_permutation_space": 720,
+  "verdict": "INCONCLUSIVE",
+  "verdict_reasons": [
+    "rho=0.4928 vs 0.7; all_beat=False \u2014 neither KEEP nor KILL fired"
+  ],
+  "classifier_meta": {
+    "device": "cpu-fallback",
+    "final_loss": 0.017165517434477806,
+    "train_n": 6000,
+    "threshold": 0.91,
+    "val_balanced_acc": 0.614
+  },
+  "judgment_api_supplementary": {
+    "status": "ok",
+    "model": "jev-preview",
+    "n_sample": 24,
+    "n_answered": 24,
+    "errors": 0,
+    "min_noul": 0.5,
+    "known_power": 1.0,
+    "unknown_power": 0.6667,
+    "note": "supplementary only; small stratified sample, NOT in the frozen rho"
+  },
+  "op_identity_cases": [
+    {
+      "index": 407,
+      "reason": "wins==n_pairs (denom_swap no-op)"
+    },
+    {
+      "index": 432,
+      "reason": "wins==n_pairs (denom_swap no-op)"
+    },
+    {
+      "index": 435,
+      "reason": "wins==n_pairs (denom_swap no-op)"
+    },
+    {
+      "index": 439,
+      "reason": "wins==n_pairs (denom_swap no-op)"
+    }
+  ],
+  "n_eval": 600,
+  "n_train": 6000,
+  "n_val": 1500,
+  "design_family_question": "Which instrument DESIGN FAMILY (invariant-parser, digest-checker, schema-lint, trained-classifier, judgment-API) transfers to unknown failure classes?"
+}
