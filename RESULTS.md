@@ -3342,3 +3342,20 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
 - Verdict: **ALL PASS — zero fabricated or dead IDs among our own citations.** Fleet's fabricated-ID threat
   class does not currently touch our ledger. Doctrine: SC-2 becomes a standing pre-fire check for any
   scout-spawned READING item (verify the ID before the premise is consumed).
+
+## AV1 — ascii→video (2026-09-30 21:13 AKDT)
+- setup: pre-reg frozen (proposals/runs/AV1-ascii-to-video.md, pushed before fire). 49 usable hero pairs
+  (pair0 frame missing — ffmpeg 1-index; train 1–39, held-out 40–49), eval res H100×W200 for A/B/truth alike.
+  Model B: glyph-embed(32)+lum → conv → PixelShuffle(2), **667,491 params** (0.67M, <5M bar). fp32, Adam 2e-3,
+  batch 8; plateau rule (<1% over 20 ep) stopped run1 at 40 ep; run2 = matched compute (same 40-ep budget).
+- numbers (held-out 40–49): PSNR / SSIM / ΔL1-coh (L1(Δgen,Δtruth)):
+  - A atlas floor: **11.62 dB / 0.2752 / 0.03048**
+  - B run1 (frame L1, 40 ep, loss 0.0628): **17.89 dB / 0.3591 / 0.04150**
+  - B run2 (+0.5·Δ loss, 40 ep, loss 0.0366): **18.49 dB / 0.3888 / 0.03675**
+- verdicts: **H1 KEEP** (B beats A by +6.28 dB ≥ +1.5 bar) · **H2 KEEP** (coh ↓11.4% ≥10% bar; PSNR *gains*
+  0.59 dB, no drop). Honest caveat: run2 was still improving when the matched-compute cap hit; A's near-zero
+  |Δgen| (0.0042 vs truth 0.0297) means the atlas floor is temporally frozen, not coherent.
+- warm-up D: ddpm-cifar10-32, 8 imgs × 8 DDIM steps = **1.94 it/s** on the 4050 (not a hypothesis; receipts
+  in results/av1/av1-receipt.json, samples in results/av1/av1-samples.png). Total wall: 42.6 s.
+- next: scale B on the porter's full clip set + cross-video probe (polyformalism, pre-reg H1 clause), then
+  H3 dial policy; move training onto quilt G-cells with JEV-curl gating per the pre-reg fabric plan.

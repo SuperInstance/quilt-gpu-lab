@@ -1,0 +1,88 @@
+{
+ "schema": "av1-receipt/v1",
+ "pre_reg": "proposals/runs/AV1-ascii-to-video.md (frozen)",
+ "config": {
+  "stage": "all",
+  "pairs": "/home/eileen/projects/quilt-gpu-lab/results/av1/pairs-hero",
+  "out": "/home/eileen/projects/quilt-gpu-lab/results/av1",
+  "epochs": 300,
+  "batch": 8,
+  "lr": 0.002,
+  "lambda_t": 0.5,
+  "device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "torch": "2.14.0+cu126",
+  "seed": 0,
+  "fp": "fp32"
+ },
+ "data_notes": [
+  "pair0 frame missing on disk (manifest lists frame0000.png; ffmpeg 1-index) \u2014 train = pairs 1\u201339",
+  "eval resolution H100\u00d7W200 for ALL of A/run1/run2/truth (2\u00d7 grid; truth bilinear-resized from 400\u00d7200)",
+  "atlas cell 4\u00d74 (task's 4\u00d710 arithmetic gives 400\u00d7500 \u2260 400\u00d7200; corrected, supersampled \u00d716)",
+  "\u0394L1 metrics: dl1_gen=mean|\u0394gen|, dl1_truth=mean|\u0394truth|, dl1_coh=L1(\u0394gen,\u0394truth) \u2014 coh is the H2 metric"
+ ],
+ "timings": {
+  "baseline_A_s": 3.15,
+  "warmup_D_s": 10.14,
+  "run1_s": 8.39,
+  "run2_s": 19.53
+ },
+ "warmup_D": {
+  "stage": "D-warmup",
+  "ok": true,
+  "steps": 8,
+  "images": 8,
+  "seconds": 4.132166385650635,
+  "it_per_s": 1.9360304628053722,
+  "device": "NVIDIA GeForce RTX 4050 Laptop GPU"
+ },
+ "params": {
+  "run1": 667491,
+  "run2": 667491
+ },
+ "runs": {
+  "run1": {
+   "epochs": 40,
+   "final_loss": 0.06280703321099282,
+   "lr": 0.002,
+   "mode": "frame",
+   "seconds": 8.329676628112793,
+   "diverged": false
+  },
+  "run2": {
+   "epochs": 40,
+   "final_loss": 0.0365660848794505,
+   "lr": 0.002,
+   "mode": "temporal",
+   "seconds": 19.47904634475708,
+   "diverged": false
+  }
+ },
+ "metrics": {
+  "A": {
+   "psnr": 11.617482,
+   "ssim": 0.275176,
+   "dl1_gen": 0.00421,
+   "dl1_truth": 0.029727,
+   "dl1_coh": 0.030477
+  },
+  "run1": {
+   "psnr": 17.894773,
+   "ssim": 0.359066,
+   "dl1_gen": 0.029567,
+   "dl1_truth": 0.029727,
+   "dl1_coh": 0.041502
+  },
+  "run2": {
+   "psnr": 18.486168,
+   "ssim": 0.388839,
+   "dl1_gen": 0.021721,
+   "dl1_truth": 0.029727,
+   "dl1_coh": 0.036752
+  }
+ },
+ "verdicts": {
+  "H1": "KEEP (\u0394PSNR vs A = +6.28 dB, bar \u2265 +1.5 dB)",
+  "H2": "KEEP (\u0394L1 coh \u2193 11.4% (bar \u226510%), PSNR drop -0.59 dB (bar \u22640.5))"
+ },
+ "wall_s": 42.6
+}
