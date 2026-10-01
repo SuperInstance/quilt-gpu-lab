@@ -1,0 +1,43 @@
+inner rc=1
+[trace   0] ticks=869 closed=True
+[trace  40] ticks=1177 closed=True
+[trace  80] ticks=619 closed=True
+[trace 120] ticks=1200 closed=False
+[trace 160] ticks=692 closed=True
+[trace 200] ticks=1200 closed=False
+[label   0] n=1738
+[label  40] n=2354
+[label  80] n=1238
+[label 120] n=2400
+[label 160] n=1384
+[label 200] n=2400
+[data] train=366346 holdout=90930
+[C4 frame cross-check] ok=True dX=0.0 dY=0.0
+[C1 laweq] {'ok': True, 'n': 4000, 'max_abs_diff': 0, 'n_diff': 0}
+[train tanh         2718] mse 0.19106 -> 0.0027127 (deployed, 4481p)
+[train tanh         2719] mse 0.19587 -> 0.0051102 (deployed, 4481p)
+[train tanh         2720] mse 0.18782 -> 0.0011246 (deployed, 4481p)
+[train relu         2718] mse 0.18318 -> 0.0042109 (deployed, 4481p)
+[train relu         2719] mse 0.21938 -> 0.0010539 (deployed, 4481p)
+[train relu         2720] mse 0.19336 -> 0.00035838 (deployed, 4481p)
+[train kink         2718] mse 1.3614 -> 0.0080267 (deployed, 26p)
+[train kink         2719] mse 4.4589 -> 0.015329 (deployed, 26p)
+[train kink         2720] mse 9.5857 -> 0.010239 (deployed, 26p)
+[train tanh_b1exact 2718] mse 0.19129 -> 0.0038518 (raw, 4481p)
+[train tanh_b1exact 2719] mse 0.19596 -> 0.0059123 (raw, 4481p)
+[train tanh_b1exact 2720] mse 0.18794 -> 0.0024106 (raw, 4481p)
+
+stderr tail: Traceback (most recent call last):
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/b1b_kink.py", line 649, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/b1b_kink.py", line 644, in main
+    return run_inner(out_dir)
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/b1b_kink.py", line 420, in run_inner
+    "max_abs_diff_js_vs_torch": float(np.max(np.abs(js - tpred64))),
+                                                    ~~~^~~~~~~~~
+ValueError: operands could not be broadcast together with shapes (25000,) (50000,) 
+
+guard receipt: /home/eileen/projects/quilt-gpu-lab/results/b1b_kink/guard/g7-wr-b1b-kink-head-1790896121.json valid=True OK (exit 0): /home/eileen/projects/quilt-gpu-lab/results/b1b_kink/guard/g7-wr-b1b-kink-head-1790896121.json is a valid g7-watt-receipt@1 watt-receipt — self-declared VOID by its own gate
+info: unknown field 'void_reason' tolerated (not schema-checked)
+ENERGY: 3.232015527777778 Wh (11635.2559 J); gate={'rule': 'no receipt → run VOID', 'verdict': 'VOID'}

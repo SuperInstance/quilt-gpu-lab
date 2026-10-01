@@ -4625,3 +4625,35 @@ first-build wiring only. quilt-dba pinned @5bbd99c read-only.
   with bootstrap-ρ CI; 1000-world extension only if H4 passes and CI width > 0.40.
 - Artifacts: results/d2_build/ (RESULTS-ENTRY, fb_* JSONs, guard/, fb_patch.diff; scripts in
   scratch/d2/fb/quilt-dba/experiments/ + dba/stochastic.mjs).
+
+## [DONE 15:15 B1b-KINK-HEAD Oct 1] KEEP — sensitivity law confirmed, kink-precision FALSIFIED (learned kink LOSES to tanh), per-region ladders banked
+
+Lane B1b-KINK-HEAD (deepseek). Prereg proposals/runs/B1b-kink-head.md frozen before build.
+
+- **Gates 6/12 PASS** → KEEP with a falsification inside: the sensitivity law (B1's curve) CONFIRMED
+  2-5x over book tolerance; the kink-precision claim **KILLED** — the learned-kink/ReLU arms did
+  NOT beat the tanh baseline at 5e-2 (0.9991 vs 0.9998, p~0.0082 — a real, replicated inversion).
+- **nerr_min @5e-2 = 0.0007** — deadzone/clamp value fidelity is closable at honest tolerances;
+  B1's knife-edge 1e-3 measured the basis, exactly as suspected.
+- Per-region deadzone/ramp/saturation/clamp agreement ladders banked for all arms (3 seeds each).
+- Composite-0 synergy datum: shared-prefix training hits 0.9996 — feeds the federation probe.
+- Artifacts: results/b1b_kink/ (own RESULTS entry folded by keeper). Receipt per lane report.
+
+## [DONE 15:16 D2-FIRST-BUILD-B Oct 1] second independent build — wiring canary + F-gates corroborate, H5/H6 ESTIMATOR DISAGREES with build A: the measure is the prerequisite
+
+Lane d2_first_build twin (deepseek, 5ad1daf2). Same prereg, independent execution.
+
+- **Corroborates build A:** W-DET canary PASS (8c8a54a43f10 x3 seeds, var=0, R5 byte-identical),
+  F10 smoke 13/13, F3 16/16 unique, H4 std>0, F6 KS p=0.000, GPU-SEED-LAW clean, G7 valid (0.9741 Wh).
+- **F8 honesty receipt:** first patch LEAKED (reflex det 0.970→0.723 → VOID) — ±60/1000 sensor
+  jitter crossed the reflex 0.8 threshold; fixed by boundary-clipping; residual identified as F4
+  estimator artifact. The leak the prereg feared was real and was caught by the gate.
+- **DISAGREES with build A on H5/H6:** H5 NOT STABLE (spread 0.50/0.52 > 0.15), H6 FAIL 0.118 with
+  fire-output (PASS 0.648 with rule-output), F4 FLAG at boundary. Build A booked H5 0.000/0.109,
+  H6 PASS 0.715. Two builds, same pin, different estimator paths → **the determinacy ESTIMATOR is
+  the prerequisite, not the worlds: v1 is blocked on freezing the measure** (small alphabets break it).
+- Mini-arm direction (n=2, not adjudicated): gap rises as determinacy falls — matches predicted negative rho.
+- v1 additions: resolve the path split (E-D1 canary on engine-sheet path vs stochastic injection on
+  core.mjs), H-GROWTH receipts per world, F5/F9 asserts, deferred reward-drift injection point.
+- Artifacts: results/d2_build/mini_*.json, wdet_ed1_replay.log, smoke_13of13.log,
+  d2_stochastic_core.patch, twins_guard.log (coexisting with build A's fb_* artifacts, both kept).

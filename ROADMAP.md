@@ -26,7 +26,7 @@
 **Launching now (GPU-light, co-tenant safe):**
 - `C1b-FINISH-GATE` (deepseek, ~2.5 h, owns the seat) — remaining 33 pong games in the clean window; N=40 adjudication of the ≥90% gate.
 - `B1b-KINK-HEAD` (deepseek, tiny) — honest-tolerance re-prereg + ReLU/kink head + per-region breakdown.
-- `D2-FIRST-BUILD` (deepseek, ≤20 min GPU) — prereg first-build scope: patch+smoke, W-DET hash canary, 16-world mini, 18 twins, G7 sealed.
+- `D2-FIRST-BUILD` ✅ DONE 15:08 (939590c) — wiring receipt ALL PASS: W-DET canary reproduces E-D1 exact hash (var=0, byte-identical), F3/F8/F6 clean, 18 twins in 46.4 GPU-s, H3 widened via reflex (GPU-SEED LAW: reflex std==0 → INCONCLUSIVE), H-GROWTH PARTIAL w/ seed-vacuity datum, 0.756 Wh. v1 requirements booked (freeze 6 socket channels, fix reflex twin target, 200 worlds × 6 sockets × 54 twins w/ bootstrap-ρ).
 - `A2-HARVEST` ✅ DONE 14:28 (4635d8d) — INCONCLUSIVE at the gate (natural-walk boards starve double-threats) but three real findings: R1 trajectory-mixing gives the exact ordering; R2 ceiling intact (93.5% on generated double-threat boards); R3 **ga4444 upstream bug** (7.5% self-play wins contradicts their exact-solver receipt). → A2b queued.
 - `A5-PARITY` ✅ DONE 14:18 (kimi/tmux lab-a5) — bit-parity 0.0 at 16²/512²/1024² (stronger than their P1 claim), 3.06G cells/s @1024² = within 1.3% of receipt; INSTRUMENT-01 ramp receipted on independent harness (13× @16²); **kimi honesty catch: wave-73 was 4050-class, not datacenter** — our box matches their hardware class. Booked + PUSHED (f805ef8).
 - `D2-DESIGN` ✅ DONE 14:17 — prereg frozen (H1-H6 gates, F1-F10 failure modes, W-DET canary 8c8a54a43f10); D2-FIRST-BUILD executing the wiring scope now.

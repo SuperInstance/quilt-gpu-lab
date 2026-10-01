@@ -255,7 +255,13 @@ def run_match(eng: Engine, gi: int, model_side: str, out_rows, row_cap_hit: list
 
 
 # ── inner (guarded) run ──────────────────────────────────────────────────────
-def run_inner(out_dir: Path, n_games: int, budget_s: float | None = None) -> int:
+def run_inner(out_dir: Path, n_games: int, budget_s: float | None = None,
+              start_game: int = 0) -> int:
+    # start_game: resume offset (lane C1b, 2026-10-01). Games 0-6 were already
+    # measured in the first window; this offset re-enters the SAME pre-registered
+    # loop at index 7 so seeds 2718+gi, the arm split (gi<20 -> model RIGHT) and
+    # every apparatus cell are byte-identical to a full run. Nothing measured
+    # about games 7-39 depends on it; it only skips already-booked games.
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "run_config.json").write_text(json.dumps({
         "model": MODEL, "temperature": TEMP, "num_ctx": NUM_CTX,
@@ -263,7 +269,7 @@ def run_inner(out_dir: Path, n_games: int, budget_s: float | None = None) -> int
                          "concurrent lane forces a per-call model reload under "
                          "OLLAMA_MAX_LOADED_MODELS=1 (ops fix, see RESULTS-ENTRY.md)",
         "num_predict": NUM_PREDICT, "master_seed": MASTER_SEED,
-        "n_games": n_games, "max_ticks": MAX_TICKS,
+        "n_games": n_games, "start_game": start_game, "max_ticks": MAX_TICKS,
         "seed_policy": "engine seed = 2718+i ; ollama seed = 2718+i",
         "substituted_cell": "ai.track (control switch law|model; movement budget identical)",
         "harness": str(HARNESS),
@@ -282,7 +288,7 @@ def run_inner(out_dir: Path, n_games: int, budget_s: float | None = None) -> int
     matches = []
     t_start = time.time()
     try:
-        for gi in range(n_games):
+        for gi in range(start_game, n_games):
             if budget_s and (time.time() - t_start) > budget_s:
                 print(f"[budget] wall-clock budget {budget_s}s reached after {len(matches)}"
                       f" games — halting gracefully (status PARTIAL)", flush=True)
@@ -308,7 +314,12 @@ def run_inner(out_dir: Path, n_games: int, budget_s: float | None = None) -> int
     oe = sum(m.get("ollama_errors", 0) for m in matches)
     ee = sum(m.get("engine_errors", 0) for m in matches)
     rate = law_wins / len(matches) if matches else None
-    complete = len(matches) == n_games and not any(m.get("crashed") for m in matches)
+    # "complete" means the FULL pre-registered set (indices 0..n_games-1) was
+    # covered: a resumed segment (start_game>0) is deliberately NOT complete,
+    # so its gate_outcome stays NOT-ADJUDICATED-PARTIAL (the N=40 gate is
+    # adjudicated by the keeper over the union of both segments).
+    complete = (start_game == 0 and len(matches) == n_games
+                and not any(m.get("crashed") for m in matches))
 
     summary = {
         "status": "RUN" if complete else "PARTIAL",
@@ -344,7 +355,8 @@ def run_inner(out_dir: Path, n_games: int, budget_s: float | None = None) -> int
 
 
 # ── outer (guarded) run ──────────────────────────────────────────────────────
-def run_outer(out_dir: Path, n_games: int, budget_s: float | None = None) -> int:
+def run_outer(out_dir: Path, n_games: int, budget_s: float | None = None,
+              start_game: int = 0) -> int:
     g = guard.Guard(timeout_s=10800.0, task_id="C1-playtest-pong",
                     agent="quilt-gpu-lab keeper (Lucineer, main Super Z)",
                     seed=str(MASTER_SEED),
@@ -355,7 +367,8 @@ def run_outer(out_dir: Path, n_games: int, budget_s: float | None = None) -> int
         return 2
 
     cmd = [sys.executable, str(Path(__file__).resolve()),
-           "--inner", "--out", str(out_dir), "--games", str(n_games)]
+           "--inner", "--out", str(out_dir), "--games", str(n_games),
+           "--start", str(start_game)]
     if budget_s:
         cmd += ["--budget-s", str(budget_s)]
     rc, out, err = g.run(cmd, cwd=str(LAB), env=dict(os.environ))
@@ -387,9 +400,10 @@ def main() -> int:
     if "--games" in args:
         n_games = int(args[args.index("--games") + 1])
     budget = float(args[args.index("--budget-s") + 1]) if "--budget-s" in args else BUDGET_S
+    start_game = int(args[args.index("--start") + 1]) if "--start" in args else 0
     if inner:
-        return run_inner(out_dir, n_games, budget)
-    return run_outer(out_dir, n_games, budget)
+        return run_inner(out_dir, n_games, budget, start_game)
+    return run_outer(out_dir, n_games, budget, start_game)
 
 
 if __name__ == "__main__":

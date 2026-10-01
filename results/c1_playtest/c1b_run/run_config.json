@@ -1,0 +1,14 @@
+{
+  "model": "qwen2.5:7b-instruct-q4_K_M",
+  "temperature": 0.7,
+  "num_ctx": null,
+  "num_ctx_note": "None = ollama server default (4096); a differing ctx with a concurrent lane forces a per-call model reload under OLLAMA_MAX_LOADED_MODELS=1 (ops fix, see RESULTS-ENTRY.md)",
+  "num_predict": 8,
+  "master_seed": 2718,
+  "n_games": 40,
+  "start_game": 7,
+  "max_ticks": 3000,
+  "seed_policy": "engine seed = 2718+i ; ollama seed = 2718+i",
+  "substituted_cell": "ai.track (control switch law|model; movement budget identical)",
+  "harness": "/home/eileen/projects/quilt-gpu-lab/experiments/c1_pong_engine.mjs"
+}

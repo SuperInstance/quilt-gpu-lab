@@ -1,0 +1,50 @@
+{
+  "prereg": "/home/eileen/projects/quilt-gpu-lab/proposals/runs/B1b-kink-head.md",
+  "harness": "/home/eileen/projects/quilt-gpu-lab/experiments/b1b_kink_engine.mjs",
+  "device": "cuda",
+  "device_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "torch": "2.14.0+cu126",
+  "master_seed": 2718,
+  "train_seeds": [
+    2718,
+    2719,
+    2720
+  ],
+  "frame": "uniform-random reachable states (engine-driven, both paddles U{-1,0,+1}) \u2014 B1's frame verbatim",
+  "traces_n": 240,
+  "trace_ticks": 1200,
+  "trace_seed_base": 900000,
+  "holdout_rule": "trace index % 5 == 0",
+  "arms": [
+    "tanh",
+    "relu",
+    "kink"
+  ],
+  "control_arm": "tanh_b1exact",
+  "tol_gates": [
+    0.01,
+    0.05
+  ],
+  "tol_gate_min": 0.99,
+  "tol_b1_reported": 0.001,
+  "prediction_convention": "Delta_pred = clamp(p + raw, 6, 54) - p (deployed)",
+  "model": {
+    "tanh/relu": "3-64-64-1",
+    "kink": "hinge spline K=8, knot init (0.5, 1.0, 1.5, 2.0, 3.0, 4.5, 6.5, 9.0)",
+    "epochs": 40,
+    "batch": 4096,
+    "lr": 0.001
+  },
+  "regions": "clamp / deadzone (u<=1.5) / saturation (u>=s+1.5) / ramp, from law ground truth",
+  "gate_b": {
+    "lo": 0.4,
+    "hi": 0.6,
+    "seeds": [
+      2718,
+      2817
+    ],
+    "max_ticks": 20000,
+    "games_per_arm": 600
+  },
+  "vram_ceiling_mb": 1500.0
+}
