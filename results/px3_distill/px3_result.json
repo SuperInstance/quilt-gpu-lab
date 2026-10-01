@@ -1,0 +1,164 @@
+{
+  "experiment": "PX3-judge-distillation",
+  "pre_reg": "proposals/runs/PX3-judge-distillation.md (FROZEN, commit 0b5b88d)",
+  "ts": "2026-09-30 17:28:31 AKDT",
+  "provenance": {
+    "judge_model": "jev-1.13.0",
+    "judge_base_url": "https://api.typesafe.ai/v1/systemone",
+    "field_seeds": [
+      1
+    ],
+    "budgets": [
+      6,
+      12,
+      24
+    ],
+    "embed_model": "nomic-embed-text",
+    "ollama": "http://127.0.0.1:11434",
+    "embed_dim": 768,
+    "head": "logistic-regression numpy L2=0.1 lr=0.5 iters=3000 zero-init (deterministic)",
+    "jsonl_fnv1a64": "0x29ebeffdce727a44",
+    "total_calls": 576,
+    "errored_calls": 0,
+    "error_fraction": 0.0,
+    "unique_states_per_field": {
+      "BLIND_SPLIT": 96,
+      "BLIND_UNIFORM": 96
+    }
+  },
+  "reproduction_vs_JUDGE-RUN.txt": {
+    "calls_per_field": {
+      "BLIND_SPLIT": 288,
+      "BLIND_UNIFORM": 288
+    },
+    "calls_per_field_match": true,
+    "controls": "5/5",
+    "free_stat_corr": {
+      "BLIND_SPLIT": -0.067,
+      "BLIND_UNIFORM": -0.156
+    },
+    "judge_minus_noise_by_budget": {
+      "BLIND_SPLIT": [
+        {
+          "budget": 6,
+          "judge": 0.1467,
+          "noise": 0.1576,
+          "judge_minus_noise": -0.011,
+          "oracle": 0.1398
+        },
+        {
+          "budget": 12,
+          "judge": 0.1415,
+          "noise": 0.1455,
+          "judge_minus_noise": -0.0039,
+          "oracle": 0.1191
+        },
+        {
+          "budget": 24,
+          "judge": 0.1123,
+          "noise": 0.1274,
+          "judge_minus_noise": -0.0151,
+          "oracle": 0.0798
+        }
+      ],
+      "BLIND_UNIFORM": [
+        {
+          "budget": 6,
+          "judge": 0.1641,
+          "noise": 0.1641,
+          "judge_minus_noise": 0.0,
+          "oracle": 0.1641
+        },
+        {
+          "budget": 12,
+          "judge": 0.1531,
+          "noise": 0.1531,
+          "judge_minus_noise": 0.0,
+          "oracle": 0.1531
+        },
+        {
+          "budget": 24,
+          "judge": 0.1313,
+          "noise": 0.1313,
+          "judge_minus_noise": 0.0,
+          "oracle": 0.1312
+        }
+      ]
+    },
+    "stored_headline_deltas": {
+      "BLIND_SPLIT": [
+        -0.0052,
+        -0.005,
+        -0.0111
+      ],
+      "BLIND_UNIFORM": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "headline_reproduced": false
+  },
+  "instrument_stability_dup_agreement": 1.0,
+  "dup_states_checked": 192,
+  "evals": {
+    "within_field": {
+      "BLIND_SPLIT": {
+        "n": 96,
+        "agreement": 0.9583,
+        "f1_class0": 0.5,
+        "support_class0": 3,
+        "f1_class1": 0.9783,
+        "support_class1": 93,
+        "bootstrap_mean": 0.9586,
+        "bootstrap_std": 0.01925,
+        "ci95": [
+          0.9167,
+          0.9896
+        ],
+        "resamples": 1000,
+        "seed": 0,
+        "degenerate": false,
+        "label_std": 0.17399
+      },
+      "BLIND_UNIFORM": {
+        "n": 96,
+        "agreement": 1.0,
+        "f1_class0": 0.0,
+        "support_class0": 0,
+        "f1_class1": 1.0,
+        "support_class1": 96,
+        "bootstrap_mean": 1.0,
+        "bootstrap_std": 0.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "resamples": 1000,
+        "seed": 0,
+        "degenerate": true,
+        "label_std": 0.0
+      }
+    },
+    "cross_field": {
+      "n": 96,
+      "agreement": 0.9167,
+      "f1_class0": 0.0,
+      "support_class0": 0,
+      "f1_class1": 0.9565,
+      "support_class1": 96,
+      "bootstrap_mean": 0.9171,
+      "bootstrap_std": 0.02926,
+      "ci95": [
+        0.8542,
+        0.9688
+      ],
+      "resamples": 1000,
+      "seed": 0,
+      "degenerate": false,
+      "label_std": 0.0
+    }
+  },
+  "ruling": "INCONCLUSIVE",
+  "ruling_why": "cross-field test labels single-class or bootstrap std==0; agreement cannot distinguish the student from a constant (non-degeneracy house rule)"
+}
