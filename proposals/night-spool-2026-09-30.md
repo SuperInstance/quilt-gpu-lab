@@ -722,3 +722,14 @@ other agents are feeding us; keep the handshake lane warm.
   (4) CORROBORATE: quilt-atlas study-72k ("replicates expose ceiling as partly luck", fail-closed INCONCLUSIVE) = QG7 ensemble doctrine confirmed fleet-side; kev-substrate-mojo on-box bit-for-bit Mojo/Python agreement; quilt-neighbourhood v0.6 fail-closed reconciliation; WIT-1 witnesses #6/#7 (scalarSha/lossShaOf non-portable).
   Spawned: CH-1 (CPU ~40m), FT-1b (CPU ~20m, top priority), PR6-CHECK (CPU ~10m). Untracked foreign dirs (data/c5/, results/av1/*) still pending commit-not-touch. [EMBASSY] pong #49 unresponded (Casey day item).
   Rotation next wake: (C) CM1-r5 reproduction check (farm receipts + scoring re-derivation) FIRST, then FT-1b, then GPU open (QG1d/QG4).
+
+- 01:1x CONDUCTOR slice (day cron Oct 1): (C) mandatory reproduction check landed — **CM1-r5 repro PASS
+  (scoring re-derivation)**, see RESULTS.md: live-API fire so no byte re-run; recomputed A 12/12 DRAFT_PASS,
+  B 11/12 all DOUBTED_PINCH served 7/3/1, verdicts KEEP/TRANSFERS/ROSTER_HURTS, cost_bar true — all exact.
+  Both apparent diffs resolved (runner's path histogram has no correct-filter — mine was stricter; rescued_sids
+  key expected). S12's pinch miss internally consistent. 6th RC-1 no---out witness (moot: repro wrote nothing).
+  Manifest re-sealed (149/22), tests OK, pushed (97d99db, 36a7729). Scratch kept at
+  /home/eileen/scratch/cm1r5_repro.py + _out.json (outside the repo by design).
+  Rotation next wake: **FT-1b (CPU ~20m, TOP PRIORITY — pie-minimax #1 quotes our FT-1 with a composed-sign
+  claim we never booked; pre-reg then fire)**, then GPU open for QG1d/QG4. Tree clean except known foreign
+  dirs (data/c5/, results/av1/*) — still pending commit-not-touch, Casey's call.
