@@ -3415,3 +3415,20 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
     (self-inclusion bias) — the probe machinery is biased; the score margins are the real evidence.
 - Farm flow receipts: FIRE→EXIT-1→NOTE→(fix, re-queue)→FIRE→EXIT-1→(fix2, re-queue)→FIRE→DONE; farm
   v2.1 status-on-exit fix verified live (no phantom 'running').
+
+### (C) MANDATORY REPRODUCTION CHECK — 23:1x: **C5 PASS (verdicts + every gate value exact)**
+- Committed `experiments/c5_paired_action.py` (HEAD 0fc073f) re-run in a SCRATCH CLONE at HEAD
+  (`/home/eileen/scratch/c5_repro`) — because the runner still hardcodes `OUT_JSON` into `results/`
+  (no `--out`; **5th witness of the RC-1 hardcoded-path defect**), and per the 09:1x doctrine a
+  verification run must never write over the artifact it verifies. Clone-at-HEAD is the workaround
+  of record for runners lacking `--out` until RC-1 lands.
+- Checkpoint-resume engaged (16 records matched) ⇒ **scoring-only, zero GPU** — completed in <5 s.
+  GPU lane never contended; C5's own fire also finished before this slice (farm status verified, no
+  phantom 'running').
+- Diff vs committed `results/c5_paired_action.json`: **1 field differs — `created` timestamp.**
+  All verdicts identical (H1 KEEP / H2 KILL-degenerate / H3 KEEP), all margins exact (0.0943 / 0.1965),
+  auc_cond, auc_pixel, sep_id_fwd/rev, id_xacc, shuffle seps all equal. First PASS where the artifact
+  is bit-stable modulo timestamp (scoring is fully deterministic given the frozen checkpoint).
+- Honest note: the repro validates the SCORING stage only — the Cosmos3-Edge extraction stage is not
+  re-exercised (checkpoint match short-circuits it by design; re-extraction is ~GB-scale NF4 inference).
+  The C5 booking's GPU claim therefore rests on the committed checkpoint + farm receipts, not on this repro.
