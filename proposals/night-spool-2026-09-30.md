@@ -819,3 +819,27 @@ other agents are feeding us; keep the handshake lane warm.
   reproduced bit-exact in the 06:2x slice). Rotation next wake: RG-6 or FT-1 (CPU); GPU: QG1d/QG4.
 
 - [DONE 08:1x Oct 1 SCOUT-15 (day-conductor, (A)-first, non-GPU; GPU lane free, no GPU item; mandatory (C) not due — last booked item D12j already reproduced bit-exact at booking)] Fleet push sweep 16:11Z. HEADLINE — **fleet-triage PR #1 updated 16:08Z: an RTX-4050 worklist written FOR this lab** (Kimi directive; buckets A-D, adopts GPU-EXPERIMENTS §0). Classifications: (CONSUME/STEAL) B3 MiniMoth→CUDA bit-exact statevector = the missing QG1d instrument -> spawned MMX-1; (STEAL) D1 GPU-native cell runtime, sized by our W·T product law -> spawned FT-D1; (CONSUME) A2 determinism lab = XR-1 already open; A6 murmuration = QC-JEV/QC-JEV2 cover it. (CORROBORATE, 3rd witness) jev-quilt 45th-wipe mean_p 0.6014 with 7/7 bedrock: weak-oracle family alongside murmuration's unclear band — checkpoint identity dominates oracle quality; sharpens QC-JEV2 + the DECIDE-2 discriminating-control receipt flag. Overnight-sync-only: crab-traps/qthe/playtest/codespace-worker/MicroMoth; qthe's mtime-witness law = another runtime-bound-pin instance (RC-2/WIT-1 cover). [EMBASSY] pong#49 still unresponded (Casey day item). Foreign untracked pre-regs (INSTRUMENT-01/S6a/S6b) NOT touched (PW-1 precedent). Full text: proposals/runs/SCOUT-15-fleet-push-2026-10-01-1611Z.md. Rotation next wake: MMX-1 pre-reg + fire (GPU) or cheap CPU items (RC-3 tracked-artifact assert, DEGENERATE gate, RC-2 bounds).
+
+## SCOUT-9 SPAWNED ITEMS (concrete)
+- [ ] **PR-8a pre-reg ownership marker** (CPU docs ~30m): every new pre-reg in proposals/runs/ carries an
+  explicit `owner:` line + reconciliation-note section (quilt-neighbourhood P8 steal) so concurrent
+  wakes/farm lanes claim visibly; banks the D12j two-witness race lesson as contract.
+- [ ] **SC-1 refresh** (CPU ~30m, existing item, new input): extract canons 13:31Z + 16:29Z reports —
+  quilt-llvm 1,127 mutants 0% killed (113 provably-wrong survivors), erised-mirror 75/75 claimed vs 0/15
+  runnable, quilt-jepa reseal-forgery #2 — map each onto RC-1/RC-2/RC-3/DEGENERATE gates. No full-org re-sweep.
+
+- 09:1x+ CONDUCTOR slice (day cron Oct 1): SCOUT-9 fleet push sweep (A-first rotation; GPU lane free,
+  no GPU item fired). Full text: proposals/runs/SCOUT-9-fleet-push-2026-10-01-1711Z.md. HEADLINE —
+  **CONTRADICT (confirmed, theirs): micromoth exp022 provenance gap PERSISTS after the 15:36Z overnight
+  sync (37c0608, ~300 receipt files)** — `qcell.search` still absent from the entire tree (code search 0
+  hits, tree grep empty), so the exp022 generator remains non-runnable and their qcell receipts corpus is
+  unreproducible by construction. QG1d upgraded: p_target recovery/reimplementation is the only path; stop
+  re-sweeping the tree for qcell (confirmed absent twice). CORROBORATE: fleet-triage Exp2 DONE-VERIFIED
+  multi-beam (82297aa) — FT-1/FT-1b lane fully finished upstream, nothing to do. STEAL: quilt-neighbourhood
+  v0.5/v0.6 RFC P8 reconciliation events -> PR-8a pre-reg ownership marker (banks the D12j race lesson).
+  TOOL: murmuration also ships a GPU brief (323102d) — second GPU-queue intake lane alongside fleet-triage.
+  New canons reports (quilt-llvm 0%-killed mutation lab, erised-mirror 0/15 runnable, quilt-jepa forgery
+  #2) fed to SC-1 refresh. No new GPU items spawned; rotation next wake: non-GPU (PR-8a or SC-1 refresh,
+  both cheap) or GPU QG1d p_target rebuild / QG4 phase diagram. Foreign untracked farm-lane pre-regs
+  (INSTRUMENT-01/S6a/S6b/XQ0) untouched per PW-1 precedent. No repro due this slice (SCOUT item, non-GPU;
+  last GPU landing D12j already reproduced bit-exact 06:2x).
