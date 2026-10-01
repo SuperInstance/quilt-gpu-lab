@@ -338,14 +338,15 @@ def parse_live_move(content: str, registry: dict, composition: list[str]):
 
 
 def live_chat_move(prompt: str, endpoint: str, model: str, key_file: str,
-                   timeout_s: int = 120) -> str:
-    """One HTTP chat call. Key read at call time, Bearer header only, never logged."""
+                   timeout_s: int = 120) -> tuple[str, dict]:
+    """One HTTP chat call. Key read at call time, Bearer header only, never logged.
+    Returns (content, meta) — meta carries reasoning_len/finish/raw_head for abstain receipts."""
     key = read_zai_key(key_file)
     payload = json.dumps({
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
         "temperature": 0.2,
-        "max_tokens": 2048,
+        "max_tokens": 4096,
         "thinking": {"type": "disabled"},  # coding endpoint honors it; thinking starved content -> abstain cascade
         "stream": False,
     }).encode("utf-8")
@@ -355,7 +356,15 @@ def live_chat_move(prompt: str, endpoint: str, model: str, key_file: str,
     )
     with urllib.request.urlopen(req, timeout=timeout_s) as resp:
         data = json.loads(resp.read().decode("utf-8"))
-    return str(data["choices"][0]["message"].get("content", ""))
+    ch = data["choices"][0]
+    msg = ch["message"]
+    meta = {
+        "reasoning_len": len(msg.get("reasoning_content") or ""),
+        "finish_reason": ch.get("finish_reason"),
+        "usage": data.get("usage", {}),
+        "raw_head": (msg.get("content") or "")[:300],
+    }
+    return str(msg.get("content", "")), meta
 
 
 # --------------------------------------------------------------------------
@@ -500,14 +509,25 @@ def run_session(args) -> dict:
             move = generate_blind_move(gardener_rng, registry, composition, visible_registry)
         else:
             prompt = render_live_prompt(composition, registry, history, args.prompt_context)
-            content = live_chat_move(prompt, args.endpoint, args.model, args.key_file)
+            content, meta = live_chat_move(prompt, args.endpoint, args.model, args.key_file)
             move, abstain_reason = parse_live_move(content, registry, composition)
+            attempts = [{"content_head": meta["raw_head"], "reasoning_len": meta["reasoning_len"],
+                         "finish_reason": meta["finish_reason"]}]
+            if move is None:
+                # one same-prompt retry on unparseable — no outcome info has been seen,
+                # so the re-roll is epistemically clean; both raws logged.
+                content2, meta2 = live_chat_move(prompt, args.endpoint, args.model, args.key_file)
+                attempts.append({"content_head": meta2["raw_head"], "reasoning_len": meta2["reasoning_len"],
+                                 "finish_reason": meta2["finish_reason"]})
+                move, abstain_reason = parse_live_move(content2, registry, composition)
             if move is None:
                 consecutive_abstains += 1
                 emit({"type": "abstain", "session_id": session_id, "move_index": move_index,
-                      "reason": abstain_reason, "consecutive": consecutive_abstains})
+                      "reason": abstain_reason, "consecutive": consecutive_abstains,
+                      "attempts": attempts})
                 print(f"move {move_index}: ABSTAIN ({abstain_reason}) "
-                      f"[{consecutive_abstains}/{MAX_CONSECUTIVE_ABSTAINS}]", flush=True)
+                      f"[{consecutive_abstains}/{MAX_CONSECUTIVE_ABSTAINS}] "
+                      f"raw_heads={[a['content_head'][:60] for a in attempts]}", flush=True)
                 if consecutive_abstains >= MAX_CONSECUTIVE_ABSTAINS:
                     receipts.close()
                     fail(f"{MAX_CONSECUTIVE_ABSTAINS} consecutive abstains — session abort, fail loud")
