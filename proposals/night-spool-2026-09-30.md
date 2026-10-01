@@ -640,3 +640,26 @@ other agents are feeding us; keep the handshake lane warm.
   18:1x), then FT-1 pre-reg + fire (CPU, fleet-triage experiment #2) or QG1d follow-up. GPU
   open for QG4 phase diagram.
 - Commits: 398c662 (--out), f4cbac3 (repro booking), 5311096 (re-seal). All pushed.
+
+## DAY SLICE 20:1x (day-conductor, 8:11pm AKDT) — SCOUT-9 landed (A-rotation; no repro due)
+- SCOUT-9 (A SUPERINSTANCE SCOUT, non-GPU; PX6 repro already PASS 19:2x so (C) clean). Full text:
+  proposals/runs/SCOUT-9-fleet-push-2026-10-01-0411Z.md. HEADLINE — **fleet-triage CORRECTED its own
+  F1/F2 variance-collapse thesis (50a5d66): sigma^2/2k is classical mutation-selection balance
+  ("vanishing variance", arXiv:2404.04616), and TWO arXiv IDs the fleet cites are FABRICATED.**
+  - (CONTRADICT-resolved) FT-2 aimed at the pre-correction text — DOWNGRADED to optional reading;
+    QG6 (variance flat-to-harmful in qcells) untouched.
+  - (NEW THREAT CLASS) fabricated IDs + our SCOUT-1 cited "EvE 2609.36xxx" (hand-waved ID) and spawned
+    QO4 off it => spawned **SC-2** (arXiv-ID integrity check; 404 => premise UNVERIFIED in place).
+  - (TOOL/STEAL) quilt-canvas-tui identity plane v1 (c49fdb3): HMAC-signed receipts, key OUTSIDE the
+    agent process, chain-repair attack pinned (verifyChain passes / verifySignatures refuses), unsigned
+    declared never backfilled, 27/27 green => spawned **SIG-1** (design note only; Casey-gated on key
+    management — sha256-only seals cannot resist the agent-that-reseals adversary our own slices keep
+    demonstrating).
+  - (CORROBORATE x3) canons PR #4 + voxelglyph: quilt-cell-bridges 44/63 hardcoded /workspace output
+    paths die on final write in clean clone (fleet-scale validation of RC-1 `--out`); logtensor 88
+    green with homing term zeroed; voxelglyph "verification layer did not verify the product". All
+    feed the open DEGENERATE/QC-JEV3/RC-1 pins with independent citations.
+  - Watch: chiaroscuro round-5-lane-abcd branch (uninspected), Patchwork-experts push (uninspected).
+    pong #88 routine; selectlib #1 not ours; quilt-atlas routine. [EMBASSY] pong #49 unchanged.
+- GPU lane idle all slice. Next wake: top open CPU item (SC-2 ~15m, QC-JEV3, DEGENERATE gate) or GPU
+  QG1d/QG4 per queue order.
