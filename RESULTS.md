@@ -3293,3 +3293,16 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
 - Miller-Madow bias: ~0.00028 bits (T1, 15×2 cells) / ~0.00056 bits (T2, 15×3) at N=36,073 — orders of magnitude below both observations. Effective cardinality: 15 OBSERVED signature values (not 64).
 - Exact test-split class counts (from per_state.npz): WIN 21,922 / BLOCK 5,924 / NON_LOCAL 8,227; all-6-wrong∩BLOCK = 2,392/5,924 = 40.4% (reconciles with d6 BLOCK wrong-rate 42.25%: all-6-wrong ⊂ d6-wrong, stricter). Mixed (non-unanimous) signatures: 18,708 = 51.9%.
 - Runner `experiments/px5_permtest.py` (numpy only, seed 0); results `results/px5_disagreement/permtest.json` + `per_state.npz`.
+
+## (C) MANDATORY REPRODUCTION CHECK — 19:2x (day-conductor): **PX6 PASS (numbers bit-exact; env-metadata line differs honestly)**
+- Committed `experiments/px6_router.py` re-run to scratch via the new `--out` flag →
+  `/home/eileen/scratch/px6_repro/px6_result.json` (committed artifact NEVER touched — first
+  PX-lane runner to carry the RC-1 `--out` doctrine; flag committed BEFORE the repro fired,
+  398c662).
+- **All booked numbers byte-identical**: arm (a) 0.7545 KILL branch, arm (b) 0.7774, per-class
+  WIN 0.819 / BLOCK 0.873 / NON_LOCAL 0.497, composition 0.7437, ceiling 0.8698, reflex
+  coverage 37838/0.8889, degenerate_flag unchanged. Sole diff: the runner's `device`
+  environment self-report line (numpy 2.4.6→2.5.3, sklearn 1.9.0→1.9.1 — environment moved
+  under us between the 17:5x booking and this repro). Numbers unaffected; sklearn
+  DecisionTreeClassifier(random_state=0) is deterministic.
+- Manifest re-sealed after this ledger change.
