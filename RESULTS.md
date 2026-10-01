@@ -3493,3 +3493,21 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
 - 12 tests, all PASS (`tests/test_verdict_gate.py`); the suite's 1 failure is the expected manifest-drift guard on the new unsealed tool (re-seal below).
 - Forward convention: new runners route their final verdict through `tools.verdict_gate.finalize`; existing bookings stand (their receipts carry gates + evidence, but retrofit is QO6-EV's job).
 - Rotation honored: CPU item per 03:1x handoff; GPU lane untouched; no repro due (last bookings analysis-only or already PASS'd).
+
+## [DONE 05:1x CPU Oct 1] **D12i BOOKED: verdict KEEP** (width-scaling lane; QO6 dead-fire pattern #3, booked by recovery wake)
+- Orphaned dead-fire found at 05:11 wake: runner + results.json untracked, no pre-reg commit, no booking —
+  prior wake fired and died before landing anything. Pre-reg is embedded in the runner docstring (declared
+  RETROACTIVE per the QO5 precedent; honest flag booked).
+- **Deterministic replication FIRST**: pure-python `random`, seed 2718, single-threaded → re-ran to
+  /home/eileen/scratch/d12i_repro/out.json (ext4, never touched results/ — 09:1x doctrine) → output
+  **IDENTICAL (a==b deep-equal, True)**. Booking rests on a verified artifact.
+- Gates: (a) T_floor(W) non-increasing at every (N, p) — monotonicity_inversions **[]** (0 inversions);
+  (b) hardest corner W=16, N=64, p=0.3: partner_id_acc at T=25 = **1.0** ≥ 0.9. **BOTH PASS → KEEP.**
+- Headline: **the D12h "T≥50 universal" is a width artifact** — it holds only at W≤4. T_floor drops with
+  width roughly one grid rung per W doubling (W2→W16 at N64/p0.3: 100→25; N8/p0.3: 50→10). Width buys back
+  observation time nearly linearly. Caveat: W16/N64/p0.3 floor 25 vs W8's 25 — the clean halving saturates at
+  the largest (N,p) corner (correlated-subchannel count vs pair-brightness tradeoff visible at W16, N64).
+- Provenance: runner sha256 501cb7051bb938df…; no runner_sha256 field in the artifact (pre-pin-era runner,
+  RC-1/DEGENERATE-era convention not yet applied); verdict route through tools.verdict_gate not retrofitted
+  (existing bookings stand per TRUNC-B convention).
+- Booking: this entry + runner + results committed together; manifest re-sealed after. QUEUE line backfilled.
