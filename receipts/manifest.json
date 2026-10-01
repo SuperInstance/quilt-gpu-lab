@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-01T00:14:07.565539+00:00",
+  "generated_at": "2026-10-01T01:14:04.473373+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "887d5a5fa7ba7ec0a22a29a60c00dcef8f2db3f10ff7e7c5bf8097ed13041c4b",
+    "RESULTS.md": "8277d903053541f8002062683d2bf91765abaa25406959560601babb844a78b8",
     "QUEUE.md": "8337a086bbd2be0ebf435ee2bd9ca737d636a29b12c16920f3b849273d1e55f4"
   },
   "experiments": {
@@ -31,6 +31,7 @@
     "d12_substrate_falsification.py": "a65977dd393f77a8897b948aba90fc53124ab9d08e0b5e4eeee498ff6dc56651",
     "d12e_correlation_key_delta.py": "36482bbf0fb5be2969138c1ca4c4b48bd95d89a3d2c19e64b2e5a9530468467d",
     "d12f_t_floor_sweep.py": "6347097ecede8df965d02cf48ba27e91c2140b1a100a239661a5ab42792874f1",
+    "d12g_cell_count_scaling.py": "76f257ecae413206e6b1dd04233a9e1f0b960e6a6460d0193533036207f606ba",
     "d13_relational_growing.py": "6376b3753b41f5f29a0f7ed5abed72d9451350ba3089c828a7fdcea5d85c1a08",
     "d13b_relational_confidence.py": "ddac65b0b0883c07ec81bf2f8fafc9426e60f8435d4b368c586afacd534ae618",
     "d13c_relational_reinforce.py": "f0f60d742b14aae52542afeeb57061921b961583a113af9b65d3801d03d158dd",
@@ -103,6 +104,10 @@
     "px0_h3_refire.py": "d3f9fc941b8c647f134e666b4bd4995e9ff4ee38d55fc3899ab0c5c01db42bc0",
     "px0_ideation_round1.py": "95f9088a7f8d2ee593e590d60d12cfe28eb7ebc36290ae3645425f45ba46ddf2",
     "px1_tree_ceiling.py": "34fa28ea127630e91474b6286c50c764ca013f1dbd11f0d96bf3ef2704819b3c",
+    "px1b_threat_locality.py": "4c95a3d3c688730d220d2a276cf6f41ef8b1e2f5a25a9813dcb5b89d513f6454",
+    "px2_cells.py": "12075bfcfa288dfbc840d12d13d4ce9326d873e94dcea1e83d50652fe3ffe4a7",
+    "px2_gardener.py": "0fa710c56daa536e8af4ecb27cc88d9adb57b9b5510dc451dbe6a11478535728",
+    "px2_smoke.py": "f6acabc736cea6c7da2856d70b6937642037250d732e528ab740c9a94822715b",
     "qc_jev_control.py": "95cba5985274ff4a8da4fc320f632bab6f500ef47079d1a20504c2ad852da397",
     "qg1_exact_census.py": "d8ed337f9611ffb7ca7962f6bb4829b9653f8c7201ce4986b47d937a3fc8a122",
     "qg1_residual.py": "136dafc33fb1dbfd0dba2817028ad928269b8228daa0613755e5dea0abdb533b",
