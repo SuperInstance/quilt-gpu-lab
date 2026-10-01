@@ -1,0 +1,876 @@
+{
+ "prompts": 96,
+ "parse_ok": 96,
+ "verdict_correct": 50,
+ "accuracy": 0.5208,
+ "completion_rate": 1.0,
+ "truncated": 0,
+ "mean_eval_tokens": 30.1,
+ "max_eval_tokens": 47,
+ "rows": [
+  {
+   "id": "g1b-arith-0000",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 33,
+   "wall_ms": 1989
+  },
+  {
+   "id": "g1b-arith-0001",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 28,
+   "wall_ms": 1667
+  },
+  {
+   "id": "g1b-arith-0002",
+   "expected": "SUPPORTED",
+   "got": "SUPPORTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 26,
+   "wall_ms": 1575
+  },
+  {
+   "id": "g1b-arith-0003",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 31,
+   "wall_ms": 1938
+  },
+  {
+   "id": "g1b-arith-0004",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 32,
+   "wall_ms": 1697
+  },
+  {
+   "id": "g1b-arith-0005",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 31,
+   "wall_ms": 1632
+  },
+  {
+   "id": "g1b-arith-0006",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 30,
+   "wall_ms": 1567
+  },
+  {
+   "id": "g1b-arith-0007",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 32,
+   "wall_ms": 1656
+  },
+  {
+   "id": "g1b-arith-0008",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 31,
+   "wall_ms": 1622
+  },
+  {
+   "id": "g1b-arith-0009",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 35,
+   "wall_ms": 1832
+  },
+  {
+   "id": "g1b-arith-0010",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 29,
+   "wall_ms": 1556
+  },
+  {
+   "id": "g1b-arith-0011",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 28,
+   "wall_ms": 1465
+  },
+  {
+   "id": "g1b-arith-0012",
+   "expected": "SUPPORTED",
+   "got": "SUPPORTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 26,
+   "wall_ms": 1375
+  },
+  {
+   "id": "g1b-arith-0013",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 37,
+   "wall_ms": 1878
+  },
+  {
+   "id": "g1b-arith-0014",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 28,
+   "wall_ms": 1467
+  },
+  {
+   "id": "g1b-arith-0015",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 32,
+   "wall_ms": 1663
+  },
+  {
+   "id": "g1b-seq-0100",
+   "expected": "REFUTED",
+   "got": "SUPPORTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 25,
+   "wall_ms": 1350
+  },
+  {
+   "id": "g1b-seq-0101",
+   "expected": "SUPPORTED",
+   "got": "SUPPORTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 25,
+   "wall_ms": 1311
+  },
+  {
+   "id": "g1b-seq-0102",
+   "expected": "SUPPORTED",
+   "got": "SUPPORTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 25,
+   "wall_ms": 1357
+  },
+  {
+   "id": "g1b-seq-0103",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 31,
+   "wall_ms": 1602
+  },
+  {
+   "id": "g1b-seq-0104",
+   "expected": "REFUTED",
+   "got": "SUPPORTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 23,
+   "wall_ms": 1220
+  },
+  {
+   "id": "g1b-seq-0105",
+   "expected": "REFUTED",
+   "got": "SUPPORTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 23,
+   "wall_ms": 1221
+  },
+  {
+   "id": "g1b-seq-0106",
+   "expected": "REFUTED",
+   "got": "SUPPORTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 23,
+   "wall_ms": 1244
+  },
+  {
+   "id": "g1b-seq-0107",
+   "expected": "SUPPORTED",
+   "got": "SUPPORTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 25,
+   "wall_ms": 1310
+  },
+  {
+   "id": "g1b-seq-0108",
+   "expected": "REFUTED",
+   "got": "SUPPORTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 23,
+   "wall_ms": 1226
+  },
+  {
+   "id": "g1b-seq-0109",
+   "expected": "SUPPORTED",
+   "got": "SUPPORTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 23,
+   "wall_ms": 1338
+  },
+  {
+   "id": "g1b-seq-0110",
+   "expected": "REFUTED",
+   "got": "SUPPORTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 23,
+   "wall_ms": 1277
+  },
+  {
+   "id": "g1b-seq-0111",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 29,
+   "wall_ms": 1538
+  },
+  {
+   "id": "g1b-seq-0112",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 28,
+   "wall_ms": 1220
+  },
+  {
+   "id": "g1b-seq-0113",
+   "expected": "SUPPORTED",
+   "got": "SUPPORTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 31,
+   "wall_ms": 1167
+  },
+  {
+   "id": "g1b-seq-0114",
+   "expected": "SUPPORTED",
+   "got": "SUPPORTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 23,
+   "wall_ms": 948
+  },
+  {
+   "id": "g1b-seq-0115",
+   "expected": "REFUTED",
+   "got": "SUPPORTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 25,
+   "wall_ms": 925
+  },
+  {
+   "id": "g1b-xref-0200",
+   "expected": "REFUTED",
+   "got": "SUPPORTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 29,
+   "wall_ms": 1189
+  },
+  {
+   "id": "g1b-xref-0201",
+   "expected": "SUPPORTED",
+   "got": "SUPPORTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 22,
+   "wall_ms": 969
+  },
+  {
+   "id": "g1b-xref-0202",
+   "expected": "SUPPORTED",
+   "got": "SUPPORTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 30,
+   "wall_ms": 1196
+  },
+  {
+   "id": "g1b-xref-0203",
+   "expected": "SUPPORTED",
+   "got": "SUPPORTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 29,
+   "wall_ms": 1190
+  },
+  {
+   "id": "g1b-xref-0204",
+   "expected": "SUPPORTED",
+   "got": "SUPPORTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 29,
+   "wall_ms": 1162
+  },
+  {
+   "id": "g1b-xref-0205",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 30,
+   "wall_ms": 1170
+  },
+  {
+   "id": "g1b-xref-0206",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 36,
+   "wall_ms": 1432
+  },
+  {
+   "id": "g1b-xref-0207",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 30,
+   "wall_ms": 1177
+  },
+  {
+   "id": "g1b-xref-0208",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 28,
+   "wall_ms": 1107
+  },
+  {
+   "id": "g1b-xref-0209",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 33,
+   "wall_ms": 1281
+  },
+  {
+   "id": "g1b-xref-0210",
+   "expected": "SUPPORTED",
+   "got": "SUPPORTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 35,
+   "wall_ms": 1405
+  },
+  {
+   "id": "g1b-xref-0211",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 43,
+   "wall_ms": 1635
+  },
+  {
+   "id": "g1b-xref-0212",
+   "expected": "SUPPORTED",
+   "got": "SUPPORTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 29,
+   "wall_ms": 1147
+  },
+  {
+   "id": "g1b-xref-0213",
+   "expected": "SUPPORTED",
+   "got": "SUPPORTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 28,
+   "wall_ms": 1144
+  },
+  {
+   "id": "g1b-xref-0214",
+   "expected": "SUPPORTED",
+   "got": "SUPPORTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 29,
+   "wall_ms": 1179
+  },
+  {
+   "id": "g1b-xref-0215",
+   "expected": "SUPPORTED",
+   "got": "SUPPORTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 37,
+   "wall_ms": 1610
+  },
+  {
+   "id": "g1b-contra-0300",
+   "expected": "REFUTED",
+   "got": "SUPPORTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 22,
+   "wall_ms": 863
+  },
+  {
+   "id": "g1b-contra-0301",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 21,
+   "wall_ms": 866
+  },
+  {
+   "id": "g1b-contra-0302",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 21,
+   "wall_ms": 785
+  },
+  {
+   "id": "g1b-contra-0303",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 26,
+   "wall_ms": 938
+  },
+  {
+   "id": "g1b-contra-0304",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 21,
+   "wall_ms": 779
+  },
+  {
+   "id": "g1b-contra-0305",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 21,
+   "wall_ms": 771
+  },
+  {
+   "id": "g1b-contra-0306",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 21,
+   "wall_ms": 783
+  },
+  {
+   "id": "g1b-contra-0307",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 31,
+   "wall_ms": 1116
+  },
+  {
+   "id": "g1b-contra-0308",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 21,
+   "wall_ms": 778
+  },
+  {
+   "id": "g1b-contra-0309",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 26,
+   "wall_ms": 958
+  },
+  {
+   "id": "g1b-contra-0310",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 21,
+   "wall_ms": 772
+  },
+  {
+   "id": "g1b-contra-0311",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 26,
+   "wall_ms": 926
+  },
+  {
+   "id": "g1b-contra-0312",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 23,
+   "wall_ms": 882
+  },
+  {
+   "id": "g1b-contra-0313",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 21,
+   "wall_ms": 847
+  },
+  {
+   "id": "g1b-contra-0314",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 31,
+   "wall_ms": 1132
+  },
+  {
+   "id": "g1b-contra-0315",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 21,
+   "wall_ms": 782
+  },
+  {
+   "id": "g1b-count-0400",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 33,
+   "wall_ms": 1183
+  },
+  {
+   "id": "g1b-count-0401",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 25,
+   "wall_ms": 945
+  },
+  {
+   "id": "g1b-count-0402",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 27,
+   "wall_ms": 1023
+  },
+  {
+   "id": "g1b-count-0403",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 28,
+   "wall_ms": 1086
+  },
+  {
+   "id": "g1b-count-0404",
+   "expected": "REFUTED",
+   "got": "SUPPORTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 28,
+   "wall_ms": 1064
+  },
+  {
+   "id": "g1b-count-0405",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 29,
+   "wall_ms": 1119
+  },
+  {
+   "id": "g1b-count-0406",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 31,
+   "wall_ms": 1162
+  },
+  {
+   "id": "g1b-count-0407",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 38,
+   "wall_ms": 1387
+  },
+  {
+   "id": "g1b-count-0408",
+   "expected": "REFUTED",
+   "got": "SUPPORTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 26,
+   "wall_ms": 1013
+  },
+  {
+   "id": "g1b-count-0409",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 29,
+   "wall_ms": 1095
+  },
+  {
+   "id": "g1b-count-0410",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 23,
+   "wall_ms": 891
+  },
+  {
+   "id": "g1b-count-0411",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 26,
+   "wall_ms": 985
+  },
+  {
+   "id": "g1b-count-0412",
+   "expected": "SUPPORTED",
+   "got": "SUPPORTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 28,
+   "wall_ms": 1039
+  },
+  {
+   "id": "g1b-count-0413",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 24,
+   "wall_ms": 946
+  },
+  {
+   "id": "g1b-count-0414",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 25,
+   "wall_ms": 974
+  },
+  {
+   "id": "g1b-count-0415",
+   "expected": "SUPPORTED",
+   "got": "REFUTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 25,
+   "wall_ms": 940
+  },
+  {
+   "id": "g1b-date-0500",
+   "expected": "SUPPORTED",
+   "got": "SUPPORTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 45,
+   "wall_ms": 1601
+  },
+  {
+   "id": "g1b-date-0501",
+   "expected": "REFUTED",
+   "got": "SUPPORTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 43,
+   "wall_ms": 1546
+  },
+  {
+   "id": "g1b-date-0502",
+   "expected": "REFUTED",
+   "got": "SUPPORTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 45,
+   "wall_ms": 1597
+  },
+  {
+   "id": "g1b-date-0503",
+   "expected": "REFUTED",
+   "got": "SUPPORTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 46,
+   "wall_ms": 1658
+  },
+  {
+   "id": "g1b-date-0504",
+   "expected": "SUPPORTED",
+   "got": "SUPPORTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 44,
+   "wall_ms": 1551
+  },
+  {
+   "id": "g1b-date-0505",
+   "expected": "SUPPORTED",
+   "got": "SUPPORTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 46,
+   "wall_ms": 1617
+  },
+  {
+   "id": "g1b-date-0506",
+   "expected": "REFUTED",
+   "got": "SUPPORTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 45,
+   "wall_ms": 1677
+  },
+  {
+   "id": "g1b-date-0507",
+   "expected": "REFUTED",
+   "got": "SUPPORTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 22,
+   "wall_ms": 840
+  },
+  {
+   "id": "g1b-date-0508",
+   "expected": "REFUTED",
+   "got": "REFUTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 47,
+   "wall_ms": 1865
+  },
+  {
+   "id": "g1b-date-0509",
+   "expected": "REFUTED",
+   "got": "SUPPORTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 46,
+   "wall_ms": 1835
+  },
+  {
+   "id": "g1b-date-0510",
+   "expected": "SUPPORTED",
+   "got": "SUPPORTED",
+   "correct": true,
+   "done_reason": null,
+   "eval_count": 45,
+   "wall_ms": 1641
+  },
+  {
+   "id": "g1b-date-0511",
+   "expected": "REFUTED",
+   "got": "SUPPORTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 44,
+   "wall_ms": 1726
+  },
+  {
+   "id": "g1b-date-0512",
+   "expected": "REFUTED",
+   "got": "SUPPORTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 43,
+   "wall_ms": 1650
+  },
+  {
+   "id": "g1b-date-0513",
+   "expected": "REFUTED",
+   "got": "SUPPORTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 23,
+   "wall_ms": 964
+  },
+  {
+   "id": "g1b-date-0514",
+   "expected": "REFUTED",
+   "got": "SUPPORTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 46,
+   "wall_ms": 1886
+  },
+  {
+   "id": "g1b-date-0515",
+   "expected": "REFUTED",
+   "got": "SUPPORTED",
+   "correct": false,
+   "done_reason": null,
+   "eval_count": 47,
+   "wall_ms": 1764
+  }
+ ]
+}
