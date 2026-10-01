@@ -1,0 +1,10 @@
+from,to,relation
+curl1.enc1,curl1.jepa1,latent-stream
+curl1.enc1,curl1.persist1,latent-stream
+curl1.enc1,curl1.jev1,window-stats
+curl1.jepa1,curl1.jev1,pred-err
+curl1.persist1,curl1.jev1,base-err
+curl1.jev1,curl1.router1,graded-verdict
+curl1.router1,curl1.jepa1,gate:serving+learning
+curl1.router1,curl1.led1,route-events
+curl1.jev1,curl1.led1,raw-verdicts

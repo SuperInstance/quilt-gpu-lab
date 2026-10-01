@@ -1,0 +1,7 @@
+addr,kind,dials
+curl1.enc1,perception,seed=7;proj=256->64;pool=16x16;norm=unit
+curl1.jepa1,prediction,model=ridge;lambda=0.001;warmup=24;buffer_k=40;target=latent-curl
+curl1.persist1,baseline,curl=zero
+curl1.jev1,judgment,provider=typesafe;model=jev-latest;type=noul;theta=0.6
+curl1.router1,pinch,window=10;bad_to_pinch=2;good_to_readmit=2
+curl1.led1,receipt,sink=results/curl1

@@ -3359,3 +3359,34 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
   in results/av1/av1-receipt.json, samples in results/av1/av1-samples.png). Total wall: 42.6 s.
 - next: scale B on the porter's full clip set + cross-video probe (polyformalism, pre-reg H1 clause), then
   H3 dial policy; move training onto quilt G-cells with JEV-curl gating per the pre-reg fabric plan.
+
+## CURL-1 — JEV↔JEPA curl mesh (2026-09-30 ~21:40 AKDT)
+- Casey 21:17: "experiment with your quilt arrangement of different cells and how jepa and jev and
+  others relate" → six-cell mesh as a real run, not a simulation. Pre-reg pushed before fire (1bd74be).
+  One run, no rerolls. Data: 141 consecutive hero.mp4 frames → 16×16 → seeded random proj (seed 7) →
+  64-d unit latents. Cells: enc1 → {jepa1 = online ridge λ1e-3 (sliding K=40 admitted buffer),
+  persist1 = zero curl}; jev1 = REAL typesafe jev-latest noul per 10-step window; router1 =
+  2-bad-window pinch / 2-good readmit, gates serving AND learning; pre-registered sick-cell injection
+  on steps 81–100 (seed 13 input scramble). Receipts: results/curl1/ (results.json, trace.png,
+  cells.csv + links.csv = the arrangement as a portable quilt record).
+- numbers (117 post-warmup steps; error = 1−cos on unit latents):
+  - persist mean 0.0122 — clip is mostly small motion (injected span nearly static: 0.00099)
+  - jepa mean 0.0179, clean hit-rate **43.3%** — the learned linear curl LOST to zero-curl
+  - routed mean **0.0126** — JEV pinched jepa at step 54 (noul 0.05); mesh fell back to persist
+  - JEV: 13 calls, 4,962 in / 260 out tokens, 3.7 s wall, **12/12 windows agree with local arithmetic**
+- frozen verdicts: **H1 KILL** (43.3% < 55 bar) · **H2 KEEP** (routed 0.0126 ≤ always-jepa 0.0179) ·
+  **H3 KILL-per-bars, honest confound** (gate had already pinched jepa at step 54, before the
+  injection window opened — the mesh served persist through 81–100, so the injection test never
+  engaged; and 2-good hysteresis never re-admitted a weak-but-alive learner).
+- the RELATION findings (the point of the round):
+  - **JEV-at-the-metal works** (Casey 20:32): graded noul on window curl-stats is a cheap, faithful
+    monitor of a predictor — perfect agreement, ~380 tokens/call. The clunk was downstream, not in the JEV connection.
+  - **The gate converts a bad learner into baseline service** — CM1 r1's "pinch carried it," now proven
+    for prediction cells: mesh ≈ persist floor + small warmup tax, never worse than the known-answer path.
+  - **But a gate tuned for broken cells evicts mediocre-but-real learners**: H1-weak jepa never got
+    served long enough to matter and strict 2/2 readmit froze it out. Admission policy must match
+    expected competence — hard pinch is a judge for broken cells, not for weak ones. Soft gating
+    (noul-weighted blend) is the candidate fix.
+  - Dedicated cells + routing BETWEEN cells reconfirmed from the prediction side (IE-line echo).
+- next: CURL-2 pre-reg — learned encoder (GPU idle: av1 trunk encoder or PCA latents), soft-gate
+  blend routed = w·jepa + (1−w)·persist by noul, 1-good readmit, jepa re-tested only when it can win.
