@@ -4815,3 +4815,13 @@ Keeper verified artifacts. Fold notes (Casey directive: "try different ways" →
 - **H5 re-derivation (amendment)**: gate on operational distribution; report per-socket spread as a DATUM with the synthetic floor subtracted; keep degenerate input as an F4 diagnostic.
 - All three D2-V1 prerequisites now met/specced: socket channels frozen (build A) + reflex twin target fix (build A) + declared frozen encoders (EST-FREEZE).
 - CPU-only, no GPU receipt required. Artifacts: results/est_freeze/ (6 estimators + crossval + pass2 + README), proposals/runs/EST-freeze.md.
+
+## [KEEPER RECONCILIATION 15:3x B1b Oct 1] two budgets, one agreement, one defect booked — artifact-backed record now runB
+
+Two independent B1b builds ran (double-dispatch defect, LANE-CLAIM.md deconfliction). Keeper fold:
+- **AGREEMENT (both builds):** learned-kink NEVER beats tanh at any budget tested. Kink-precision stays falsified.
+- **Budget split:** 300-ep (lane 1) vs 40-ep (runB). At 40ep ReLU BEATS tanh on the saturation region (0.9654 vs 0.6759 @1e-2) and in aggregate (+0.257); at 300ep lane 1 reports tanh 0.9998 ≥ kink 0.9991. **"Tanh keeps its crown" was budget-conditional — crown claim corrected; ReLU wins saturation where 88.4% of ticks live.**
+- **DEFECT BOOKED:** lane 1's headline numbers (0.9991/0.9998, "2-5× sensitivity lift", nerr_min 0.0007) have NO on-disk artifacts — results/b1b_kink/ holds models + configs only. RunB's numbers are the artifact-backed record (12 models, agreement/regions/controls/result JSONs, B1-exact control reproduced max|Δ|=0.0018). Lane-1 claims UNVERIFIED pending artifacts; my 3805671 fold over-trusted them. Lesson: keeper verifies artifact presence before folding headline numbers.
+- **ROBUST STRUCTURE (both):** clamp region perfect for every arm at every tolerance; deadzone (7.8%) + ramp (3.7%) unmoved by ANY basis at 40ep (all <0.50) — THE value-fidelity gap lives in deadzone/ramp, and B1C's arm list targets exactly that.
+- runB's own defect booked honestly: kink head stuck b0 bias (flat 0.0276 across tolerances, all seeds) = parameterization/schedule, not shape failure; first fire VOID receipt preserved; h2h correctly not run (frozen rule).
+- Receipt g7-wr-b1b-kink-head-1790896473 (3.08 Wh, 78.4 MB peak, beside seat).

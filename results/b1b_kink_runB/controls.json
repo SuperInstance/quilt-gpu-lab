@@ -1,0 +1,85 @@
+{
+  "frame_cross_check_b1": {
+    "ok": true,
+    "n": 90930,
+    "shape_match": true,
+    "max_abs_dX": 0.0,
+    "max_abs_dY": 0.0,
+    "max_abs_dMETA": 0.0
+  },
+  "law_equivalence_switch_vs_pristine": {
+    "ok": true,
+    "n": 4000,
+    "max_abs_diff": 0,
+    "n_diff": 0
+  },
+  "law_equiv_pass": true,
+  "js_vs_torch_port": [
+    {
+      "arm": "tanh",
+      "side": "left",
+      "n": 25000,
+      "max_abs_diff_js_vs_torch": 1.7763568394002505e-15,
+      "max_abs_diff_js_vs_torch_f32": 1.3417806336013527e-06,
+      "max_abs_js": 0.903537984646843
+    },
+    {
+      "arm": "tanh",
+      "side": "right",
+      "n": 25000,
+      "max_abs_diff_js_vs_torch": 1.8318679906315083e-15,
+      "max_abs_diff_js_vs_torch_f32": 9.669901034348172e-07,
+      "max_abs_js": 0.7618628917388407
+    },
+    {
+      "arm": "relu",
+      "side": "left",
+      "n": 25000,
+      "max_abs_diff_js_vs_torch": 2.3869795029440866e-15,
+      "max_abs_diff_js_vs_torch_f32": 1.289554674266391e-06,
+      "max_abs_js": 0.8651629658828667
+    },
+    {
+      "arm": "relu",
+      "side": "right",
+      "n": 25000,
+      "max_abs_diff_js_vs_torch": 1.3322676295501878e-15,
+      "max_abs_diff_js_vs_torch_f32": 6.897567073060884e-07,
+      "max_abs_js": 0.7230774238719866
+    },
+    {
+      "arm": "kink",
+      "side": "left",
+      "n": 25000,
+      "max_abs_diff_js_vs_torch": 3.4416913763379853e-15,
+      "max_abs_diff_js_vs_torch_f32": 1.5290286219382665e-06,
+      "max_abs_js": 0.8954930150812923
+    },
+    {
+      "arm": "kink",
+      "side": "right",
+      "n": 25000,
+      "max_abs_diff_js_vs_torch": 4.218847493575595e-15,
+      "max_abs_diff_js_vs_torch_f32": 2.518620378588743e-06,
+      "max_abs_js": 0.7263324486808447
+    },
+    {
+      "arm": "tanh_b1exact",
+      "side": "left",
+      "n": 25000,
+      "max_abs_diff_js_vs_torch": 1.5543122344752192e-15,
+      "max_abs_diff_js_vs_torch_f32": 1.138436628744799e-06,
+      "max_abs_js": 0.9128864168409758
+    },
+    {
+      "arm": "tanh_b1exact",
+      "side": "right",
+      "n": 25000,
+      "max_abs_diff_js_vs_torch": 1.6653345369377348e-15,
+      "max_abs_diff_js_vs_torch_f32": 8.569013666970271e-07,
+      "max_abs_js": 0.7736053032916247
+    }
+  ],
+  "js_port_tolerance": 1e-06,
+  "js_port_pass": true
+}
