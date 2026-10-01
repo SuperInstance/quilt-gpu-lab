@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-01T18:15:45.442576+00:00",
+  "generated_at": "2026-10-01T19:20:53.486673+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "52cd5ea1099372a9414b6acd6c6bf01abf31e30e350812c40abd18320507552c",
+    "RESULTS.md": "f0f2fb237cdaa478ada423d99cf834659351a54fd26dd86739724d5b4095fbb9",
     "QUEUE.md": "9284eac5f2373879e0731d24c80ba9b5cb524a4fb72b025d7a36e1018f652ef2"
   },
   "experiments": {
@@ -182,6 +182,7 @@
     "ideation_banter_gpu.py": "5eba10d0cbe2cf5276e02b9a463b395f6d8f5314edc988f310303c720e63ab11",
     "local_jev_bench.py": "f3ff1dc606a2eeeb5206b49e75925853e1ab26cc054d95b859e6384a2d84107a",
     "overnight_gpu.sh": "e3a6de06d14b927fd45b55c5622ca2ad37b32d50a9d02d1de1d64545de3bb61d",
+    "pr_sweep.py": "e8f483d8ed6d86b08b537975107859ac1ff67decdb14e83104b16e3b8406301c",
     "proj_lattice.py": "52cec2eee97fd649442be0d857810465df3007220e1d736b48d4f8fd61d95a2c",
     "qcell_oracle.pt": "fed2c15fb506899fdc0fb86a7656d965c4b0aae8bceda28d11d6850aec201eed",
     "qcell_sim.py": "8c82d4bcc88370c01870238a006fa62bdb6fe571f5c8951bcdae6f3cf7920962",
@@ -190,14 +191,5 @@
     "transition_kernel.py": "8364ec79e6e866fbf78d4fbd80a3514bf14f11394c4048a1dff30889e7796443",
     "typesafe_batch.py": "6f4a470a02d262c2877748670aeb6ae1ca74a98f6b395864bb84dd8ec2d30381",
     "verdict_gate.py": "b1b431f643635b881fb770b72b66429cc3189f9cabb07506371de4fbc8d8f8f8"
-  },
-  "sealed_from_dirty_tree": {
-    "admission": true,
-    "paths": [
-      "?? experiments/instrument_ramp_law.py",
-      "?? experiments/s6a_delta_direction.py",
-      "?? experiments/s6b_memory_tokens.py",
-      "?? experiments/xq0_substrate_consolidation.py"
-    ]
   }
 }
