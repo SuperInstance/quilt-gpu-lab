@@ -124,11 +124,36 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
 
 - **skill-store** — `tools/skill_store.py` — grabbable Voyager-style verified-skill
   library (pattern lifted from `experiments/skill_library.py`, VOYAGER-SKILLLIB
-  purity 39/39): JSON-backed store of prompt+code+family skills with deterministic
-  token-overlap (Jaccard) retrieval — no embeddings, no ollama, stdlib-only, runs
-  anywhere. Dedupe by sha256, atomic fsync'd writes, archive-by-rename --reset,
+  purity 39/39): JSON-backed store of prompt+code+family skills. **Retrieval is
+  semantic by default** — at store time the skill's name+description+when-to-use
+  text is embedded once with Cloudflare Workers AI `@cf/baai/bge-m3` (1024-d,
+  free tier) and the vector is cached inside the record via the same atomic
+  temp+fsync+rename write; **if CF is unreachable the record is written with
+  `vector: null` and the write is NEVER blocked on the network** (`--embed`
+  backfills later, resume-safe: it skips already-embedded skills). At search time
+  the query is embedded once and ranked by cosine. **Ranking contract (blend
+  rule): cosine primary, Jaccard token-overlap as tiebreak — and as the sole
+  score when embeddings are unavailable.** If embeddings fail (offline / no
+  credential / no cached vectors) retrieval falls back to the pre-upgrade
+  deterministic Jaccard ranking transparently, and the output line is marked
+  `MODE: JACCARD-FALLBACK (<reason>)` so a caller can never mistake a fallback
+  for a semantic result. `--no-semantic` forces the Jaccard-only control path.
+  Credentials read at use time and never echoed/hardcoded: env `CF_API_TOKEN` ->
+  `/mnt/c/Users/casey/key.txt` -> wrangler OAuth (auto-refresh on 401); every
+  error string is scrubbed of any credential read. Stdlib-only (urllib for CF),
+  no pip deps, no ollama, runs anywhere; O(batch) memory (48-text embed batches).
+  Dedupe by sha256, atomic fsync'd writes, archive-by-rename `--reset`,
   fail-loud rc=2. Verification stays the caller's gate (store only what passed).
-  `python tools/skill_store.py --db sk.json --add "prompt" --file skill.py --family text [--tag t] | --search "q" --k 3 | --get id | --list | --reset | --selftest`
-  TEST receipt 2026-10-02: selftest OK 5/5 (add+dedupe, top-1 retrieval, verbatim
-  --get, missing-file/bad-JSON rc=2, archive-on-reset) + live worked example:
-  stored fa9cf3ff475f, search ranked it top-1 on paraphrased query.
+  `python tools/skill_store.py --db sk.json --add "prompt" --file skill.py --family text [--when "..."] [--tag t] | --search "q" --k 3 [--no-semantic] | --embed | --get id | --list | --reset | --selftest`
+  TEST receipt 2026-10-02 (semantic upgrade): selftest OK 6/6 hermetic +
+  `tools/test_skill_semantic.py` 6/6 FAIL-FIRST pins PASS (each pin carries a
+  positive control that exhibits the failure it guards). Pin 1 live-CF proof:
+  query "keep receipts honest" ranks "verify claims against re-executed evidence"
+  above a "receipt format" keyword decoy under semantic mode (cos 0.633 vs 0.585)
+  while the Jaccard-only control inverts the ranking (decoy first) — the upgrade
+  is real, not cosmetic. Pins also cover offline fallback marking, store-with-
+  network-down (`vector: null`), no-token-leak on error paths, resume-safe embed
+  cache, and the mixed cosine/Jaccard blend rule. **Honest boundary: semantic
+  ranking *quality* is probed, not gated, here** — the evidence base for bge-m3
+  intent->artifact retrieval is pinch0's 10/10 rank-1 probes (commit b639aea);
+  this tool ships the retrieval path + fallback semantics, not a quality gate.
