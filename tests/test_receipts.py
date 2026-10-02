@@ -118,13 +118,14 @@ class RC5PushCheck(unittest.TestCase):
         import copy
         sealed = json.loads(MANIFEST.read_text())
         sealed["ledgers"]["RESULTS.md"] = "0" * 64
+        original = MANIFEST.read_bytes()  # restore the live file, NOT the git
+        # index: a fresh seal not yet committed is legitimate state (RC-5 fix,
+        # the index-restore clobbered the seal made moments earlier)
         MANIFEST.write_text(json.dumps(sealed, indent=2) + "\n")
         try:
             drift = receipt_manifest.check()
         finally:
-            import subprocess
-            subprocess.run(["git", "checkout", "--", "receipts/manifest.json"],
-                           cwd=LAB, check=True)
+            MANIFEST.write_bytes(original)
         self.assertTrue(any("RESULTS.md" in ln and "DRIFT" in ln for ln in drift),
                         f"tampered RESULTS.md digest not named: {drift}")
 

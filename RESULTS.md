@@ -5353,3 +5353,12 @@ Lane D2-V1b resumed the mid-killed D2-V1 lane. **Scripts unchanged — no defect
   committed script reproduced its committed result directly (dirty-tree instance count unchanged at 5, the
   b1g one being the latest).
 - Scratch artifacts preserved at `/home/eileen/scratch/c2il_repro_20261001_2011/` (receipt-less, ext4).
+
+## RC-5 — PUSH-TIME SEAL-PIN `--check` (the un-resealed auto-push goes red at push, 2026-10-02 06:2x UTC)
+- ran: CPU-only, 0 GPU-Wh, no guard window; prereg `proposals/runs/RC-5-push-check.md` frozen + pushed before fire. NOT COMMITTED yet at fire time (feature bytes landed, then seal — dirty-seal guard exercised honestly, see META).
+- verdict: **KEEP — all gates PASS.** NOT COMMITTED.
+- landed: `tools/receipt_manifest.py` gains read-only `check()` + `--check` CLI (exit 0 clean / exit 2 drift; names path + sealed-vs-live digests per section, catches UNSEALED new files too; never writes); opt-in hook TEMPLATE `tools/hooks/pre-push` (bash -n valid, never auto-installed, header instructs `cp` into .git/hooks); 2 unit pins in `tests/test_receipts.py` (`RC5PushCheck`).
+- G1 PASS (clean committed tree → exit 0). G2 PASS (one-byte RESULTS.md tamper on a scratch copy → exit 2, drift line names `ledgers/RESULTS.md`, tree restored byte-identical). G3 PASS (full suite 23/23 OK after seal). G4 PASS (bash -n).
+- FAIL-first honored twice: (1) tamper arm is red against any module lacking the drift diff; (2) the pre-commit unsealed feature bytes went red on BOTH the existing `ReceiptManifestMatches` pin and the new `test_clean_tree_checks_clean` — the pin caught RC-5's own author mid-flight.
+- META (bug found by our own pin, fixed in-place): the tamper unit originally restored the manifest via `git checkout -- receipts/manifest.json`, which pulls the git INDEX — silently clobbering a legitimate fresher seal made after commit but before booking (manifest kept reverting to the pre-RC-5 digest c71be7 across two seals). Fixed to byte-save/restore of the live file. Lesson: **index-restore is not a neutral undo for stateful seal files.**
+- SCOPE DISCIPLINE: seal-time dirty refusal NOT re-implemented (already landed b2d24bb/585c893); RC-5 is push-time only, per the 19:2x narrowing. Closes RC-5. RC-4 (seal-chain / reseal-forgery resistance) remains the next seal-doctrine item.
