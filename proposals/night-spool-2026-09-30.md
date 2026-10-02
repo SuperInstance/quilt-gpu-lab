@@ -1064,3 +1064,12 @@ other agents are feeding us; keep the handshake lane warm.
   PASS-repro'd). HEADLINE: CONTRADICT-class reporter-defaults-to-PASS mechanism #3 ⇒ REPORTER-DEFAULT
   spawned as booking-blocker; RC-4 raised (3rd reseal-forgery instance). Rotation next wake:
   (C) then (B) REPORTER-DEFAULT pre-reg+fire (top blocker) or next cheap open item.
+
+- 11:5x CONDUCTOR slice (day-cron Oct 2; (A) was SCOUT-23 at 10:4x so this slice took (B): REPORTER-DEFAULT
+  pre-reg 60a8ddb committed+pushed BEFORE firing, then tool fired, booked b8ac1dd CLEAN — RED=0/15 probes/
+  7 sites, blocker lifted; G3 coverage-gap finding recorded (per-experiment verdict functions unpinned but
+  fail-loud). (C) no repro due (REST-EM INCOMPLETE-HELD claims no verdict; GATE-MARGIN self-verifying).
+  Manifest re-seal REFUSED as expected on foreign live-lane untracked files (d12k2/d12l/rest_em*, tools/
+  sym_verify.py) — left untouched per precedent; 3 seal-pin tests RED on same files = pins working as
+  designed. Rotation next wake: (C) repro check if REST-EM overnight retry lands a verdict, then (A) SCOUT
+  per rotation or RC-4 (top cheap open, raised 3x).
