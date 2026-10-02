@@ -1,0 +1,505 @@
+{
+  "experiment": "RING-CX-1 (SYNTH-0 wildcard closing probe): untrained ANSWER-MARGIN-gated ring",
+  "reused_machinery": "experiments/ring_cx0.py (Ring64 DoD kernel, featurization, router) wholesale",
+  "repro_lineage": {
+    "harvested_engine": "results/ring_cx0/repro/fly_cx.py",
+    "receipt": "results/ring_cx0/repro/fly_cx_receipt.json",
+    "verdict": "PASS 4/4 (r0, reused by reference; ring dynamics identical)"
+  },
+  "device": "cpu",
+  "gpu_used": false,
+  "training_used": false,
+  "numpy_only": true,
+  "structure_note": "ring update is positively homogeneous (relu) => L2-normalized fixed point and R depend only on cue-vector DIRECTION; ring.read([0.1,0,0,0])==ring.read([1,0,0,0])==0.6702 exactly. So any per-sensor-margin gate routed through this ring is provably a cue-SHAPE gate, blind to absolute margin LEVEL.",
+  "gate_swap": "cue_s: softmax(rho_s/T) [r0 certainty] -> |2*sigma(rho_s/T)-1| [r1 per-sensor answer margin]",
+  "corpus": {
+    "path": "results/comp1/corpus.jsonl",
+    "n_train": 1810,
+    "n_heldout": 590,
+    "seeds": [
+      2718,
+      2719,
+      2720,
+      2721,
+      2722
+    ]
+  },
+  "wiring": {
+    "reproduced_router_heldout_top1": 0.7356,
+    "comp1_booked_router_heldout_top1": 0.7356,
+    "T_margin_median_train_top1_rho": 0.7374,
+    "tau_ring_20pct_train": 0.0246,
+    "R_flat_equal_margins": 0.0,
+    "R_single_cue": 0.6702
+  },
+  "G_A_prime_ring_ge_trained_minus_0.02": {
+    "threshold": 0.7156,
+    "overall_acc": {
+      "mean": 0.3268,
+      "std": 0.0125
+    },
+    "acc_commit": {
+      "mean": 0.3356,
+      "std": 0.0138
+    },
+    "pass_": false
+  },
+  "G_B_prime_negation_reject_ge_2x_mean": {
+    "negation_rate": 0.0203,
+    "mean_across_regimes": 0.0257,
+    "ratio": 0.789,
+    "pass_": false
+  },
+  "G_C_prime_seed_std_ok": true,
+  "reject_by_regime_ring_seedmean": {
+    "semantic": {
+      "mean": 0.0184,
+      "std": 0.0057
+    },
+    "counting-address": {
+      "mean": 0.0259,
+      "std": 0.0058
+    },
+    "negation-scope": {
+      "mean": 0.0203,
+      "std": 0.0128
+    },
+    "agent-role": {
+      "mean": 0.0383,
+      "std": 0.0143
+    }
+  },
+  "ring_R_by_regime_seedmean": {
+    "semantic": {
+      "mean": 0.1249,
+      "std": 0.0041
+    },
+    "counting-address": {
+      "mean": 0.126,
+      "std": 0.0018
+    },
+    "negation-scope": {
+      "mean": 0.125,
+      "std": 0.0037
+    },
+    "agent-role": {
+      "mean": 0.1228,
+      "std": 0.0026
+    }
+  },
+  "router_acc_by_regime": {
+    "semantic": {
+      "mean": 0.7589,
+      "std": 0.0
+    },
+    "counting-address": {
+      "mean": 0.8921,
+      "std": 0.0
+    },
+    "negation-scope": {
+      "mean": 0.7027,
+      "std": 0.0
+    },
+    "agent-role": {
+      "mean": 0.6111,
+      "std": 0.0
+    }
+  },
+  "operationalization_robustness_5_defs": {
+    "routing_softmax_top1_minus_top2": {
+      "tau": 0.1125,
+      "reject_by_regime": {
+        "semantic": 0.2837,
+        "counting-address": 0.0935,
+        "negation-scope": 0.1081,
+        "agent-role": 0.2469
+      },
+      "negation_rate": 0.1081,
+      "mean_across_regimes": 0.1831,
+      "ratio": 0.591,
+      "negation_top_reject": false,
+      "pass_B": false
+    },
+    "raw_rho_top1_minus_top2": {
+      "tau": 0.0094,
+      "reject_by_regime": {
+        "semantic": 0.2979,
+        "counting-address": 0.0935,
+        "negation-scope": 0.1081,
+        "agent-role": 0.2593
+      },
+      "negation_rate": 0.1081,
+      "mean_across_regimes": 0.1897,
+      "ratio": 0.57,
+      "negation_top_reject": false,
+      "pass_B": false
+    },
+    "signed_top1_minus_field_mean": {
+      "tau": 0.0024,
+      "reject_by_regime": {
+        "semantic": 0.2979,
+        "counting-address": 0.0935,
+        "negation-scope": 0.1081,
+        "agent-role": 0.2593
+      },
+      "negation_rate": 0.1081,
+      "mean_across_regimes": 0.1897,
+      "ratio": 0.57,
+      "negation_top_reject": false,
+      "pass_B": false
+    },
+    "abs_sigmoid_margin_mean": {
+      "tau": 0.3884,
+      "reject_by_regime": {
+        "semantic": 0.1348,
+        "counting-address": 0.5252,
+        "negation-scope": 0.0676,
+        "agent-role": 0.0309
+      },
+      "negation_rate": 0.0676,
+      "mean_across_regimes": 0.1896,
+      "ratio": 0.356,
+      "negation_top_reject": false,
+      "pass_B": false
+    },
+    "abs_sigmoid_margin_min": {
+      "tau": 0.3527,
+      "reject_by_regime": {
+        "semantic": 0.1844,
+        "counting-address": 0.4748,
+        "negation-scope": 0.1149,
+        "agent-role": 0.037
+      },
+      "negation_rate": 0.1149,
+      "mean_across_regimes": 0.2028,
+      "ratio": 0.566,
+      "negation_top_reject": false,
+      "pass_B": false
+    }
+  },
+  "operationalization_robustness_summary": {
+    "n_defs": 5,
+    "n_pass_B": 0,
+    "note": "5 untrained answer-margin definitions; none place Reject on negation"
+  },
+  "exploratory_absolute_margin_gates": {
+    "agg": {
+      "tau": 0.3884,
+      "acc_all": 0.3644,
+      "reject_by_regime": {
+        "semantic": 0.1348,
+        "counting-address": 0.5252,
+        "negation-scope": 0.0676,
+        "agent-role": 0.0309
+      },
+      "negation_rate": 0.0676,
+      "mean_across_regimes": 0.1896,
+      "ratio": 0.356,
+      "pass_": false
+    },
+    "min": {
+      "tau": 0.3527,
+      "acc_all": 0.378,
+      "reject_by_regime": {
+        "semantic": 0.1844,
+        "counting-address": 0.4748,
+        "negation-scope": 0.1149,
+        "agent-role": 0.037
+      },
+      "negation_rate": 0.1149,
+      "mean_across_regimes": 0.2028,
+      "ratio": 0.566,
+      "pass_": false
+    }
+  },
+  "matched_protocol_diagnostic": {
+    "tau_matched": 0.0671,
+    "reject_overall": 0.1966,
+    "reject_by_regime": {
+      "semantic": 0.1986,
+      "counting-address": 0.1799,
+      "negation-scope": 0.1757,
+      "agent-role": 0.2284
+    },
+    "negation_rate": 0.1757,
+    "mean_across_regimes": 0.1956,
+    "ratio": 0.898,
+    "negation_top_reject": false,
+    "acc_all": 0.2898,
+    "pass_B": false
+  },
+  "robustness_grid_9cells": [
+    {
+      "T_mult": 0.5,
+      "T": 0.3687,
+      "tau_pct": 10,
+      "tau": 0.0107,
+      "reject_by_regime": {
+        "semantic": 0.0,
+        "counting-address": 0.0072,
+        "negation-scope": 0.0068,
+        "agent-role": 0.0185
+      },
+      "negation_rate": 0.0068,
+      "mean_across_regimes": 0.0081,
+      "ratio": 0.832,
+      "negation_top_reject": false
+    },
+    {
+      "T_mult": 0.5,
+      "T": 0.3687,
+      "tau_pct": 20,
+      "tau": 0.017,
+      "reject_by_regime": {
+        "semantic": 0.0071,
+        "counting-address": 0.0072,
+        "negation-scope": 0.0203,
+        "agent-role": 0.0185
+      },
+      "negation_rate": 0.0203,
+      "mean_across_regimes": 0.0133,
+      "ratio": 1.528,
+      "negation_top_reject": true
+    },
+    {
+      "T_mult": 0.5,
+      "T": 0.3687,
+      "tau_pct": 30,
+      "tau": 0.0223,
+      "reject_by_regime": {
+        "semantic": 0.0284,
+        "counting-address": 0.036,
+        "negation-scope": 0.027,
+        "agent-role": 0.0432
+      },
+      "negation_rate": 0.027,
+      "mean_across_regimes": 0.0336,
+      "ratio": 0.803,
+      "negation_top_reject": false
+    },
+    {
+      "T_mult": 1.0,
+      "T": 0.7374,
+      "tau_pct": 10,
+      "tau": 0.0156,
+      "reject_by_regime": {
+        "semantic": 0.0071,
+        "counting-address": 0.0072,
+        "negation-scope": 0.0068,
+        "agent-role": 0.0309
+      },
+      "negation_rate": 0.0068,
+      "mean_across_regimes": 0.013,
+      "ratio": 0.521,
+      "negation_top_reject": false
+    },
+    {
+      "T_mult": 1.0,
+      "T": 0.7374,
+      "tau_pct": 20,
+      "tau": 0.0246,
+      "reject_by_regime": {
+        "semantic": 0.0213,
+        "counting-address": 0.0216,
+        "negation-scope": 0.0203,
+        "agent-role": 0.0494
+      },
+      "negation_rate": 0.0203,
+      "mean_across_regimes": 0.0281,
+      "ratio": 0.721,
+      "negation_top_reject": false
+    },
+    {
+      "T_mult": 1.0,
+      "T": 0.7374,
+      "tau_pct": 30,
+      "tau": 0.033,
+      "reject_by_regime": {
+        "semantic": 0.0709,
+        "counting-address": 0.036,
+        "negation-scope": 0.0405,
+        "agent-role": 0.0617
+      },
+      "negation_rate": 0.0405,
+      "mean_across_regimes": 0.0523,
+      "ratio": 0.775,
+      "negation_top_reject": false
+    },
+    {
+      "T_mult": 2.0,
+      "T": 1.4749,
+      "tau_pct": 10,
+      "tau": 0.0172,
+      "reject_by_regime": {
+        "semantic": 0.0142,
+        "counting-address": 0.0072,
+        "negation-scope": 0.0068,
+        "agent-role": 0.0309
+      },
+      "negation_rate": 0.0068,
+      "mean_across_regimes": 0.0147,
+      "ratio": 0.458,
+      "negation_top_reject": false
+    },
+    {
+      "T_mult": 2.0,
+      "T": 1.4749,
+      "tau_pct": 20,
+      "tau": 0.0274,
+      "reject_by_regime": {
+        "semantic": 0.0284,
+        "counting-address": 0.0288,
+        "negation-scope": 0.027,
+        "agent-role": 0.0494
+      },
+      "negation_rate": 0.027,
+      "mean_across_regimes": 0.0334,
+      "ratio": 0.809,
+      "negation_top_reject": false
+    },
+    {
+      "T_mult": 2.0,
+      "T": 1.4749,
+      "tau_pct": 30,
+      "tau": 0.0367,
+      "reject_by_regime": {
+        "semantic": 0.078,
+        "counting-address": 0.0432,
+        "negation-scope": 0.0473,
+        "agent-role": 0.0988
+      },
+      "negation_rate": 0.0473,
+      "mean_across_regimes": 0.0668,
+      "ratio": 0.708,
+      "negation_top_reject": false
+    }
+  ],
+  "robustness_summary": {
+    "negation_top_reject_cells": 1,
+    "negation_ge_2x_cells": 0,
+    "n_cells": 9
+  },
+  "per_seed": [
+    {
+      "seed": 2718,
+      "acc_all": 0.3440677966101695,
+      "acc_commit": 0.3542757417102967,
+      "reject_overall": 0.0288135593220339,
+      "reject_by_regime": {
+        "semantic": 0.02127659574468085,
+        "counting-address": 0.02158273381294964,
+        "negation-scope": 0.02027027027027027,
+        "agent-role": 0.04938271604938271
+      },
+      "ring_R_by_regime": {
+        "semantic": 0.1299899938560161,
+        "counting-address": 0.12278738682213898,
+        "negation-scope": 0.1252544125549099,
+        "agent-role": 0.12699246241751053
+      },
+      "router_acc_by_regime": {
+        "semantic": 0.7588652482269503,
+        "counting-address": 0.8920863309352518,
+        "negation-scope": 0.7027027027027027,
+        "agent-role": 0.6111111111111112
+      }
+    },
+    {
+      "seed": 2719,
+      "acc_all": 0.31186440677966104,
+      "acc_commit": 0.31833910034602075,
+      "reject_overall": 0.020338983050847456,
+      "reject_by_regime": {
+        "semantic": 0.028368794326241134,
+        "counting-address": 0.02158273381294964,
+        "negation-scope": 0.006756756756756757,
+        "agent-role": 0.024691358024691357
+      },
+      "ring_R_by_regime": {
+        "semantic": 0.1298234701686089,
+        "counting-address": 0.12759401751741872,
+        "negation-scope": 0.1259728307934157,
+        "agent-role": 0.12322029081272108
+      },
+      "router_acc_by_regime": {
+        "semantic": 0.7588652482269503,
+        "counting-address": 0.8920863309352518,
+        "negation-scope": 0.7027027027027027,
+        "agent-role": 0.6111111111111112
+      }
+    },
+    {
+      "seed": 2720,
+      "acc_all": 0.31864406779661014,
+      "acc_commit": 0.33098591549295775,
+      "reject_overall": 0.03728813559322034,
+      "reject_by_regime": {
+        "semantic": 0.014184397163120567,
+        "counting-address": 0.03597122302158273,
+        "negation-scope": 0.04054054054054054,
+        "agent-role": 0.05555555555555555
+      },
+      "ring_R_by_regime": {
+        "semantic": 0.12223386929343245,
+        "counting-address": 0.1259633667043467,
+        "negation-scope": 0.13095444074990548,
+        "agent-role": 0.1206369860231042
+      },
+      "router_acc_by_regime": {
+        "semantic": 0.7588652482269503,
+        "counting-address": 0.8920863309352518,
+        "negation-scope": 0.7027027027027027,
+        "agent-role": 0.6111111111111112
+      }
+    },
+    {
+      "seed": 2721,
+      "acc_all": 0.3389830508474576,
+      "acc_commit": 0.34904013961605584,
+      "reject_overall": 0.0288135593220339,
+      "reject_by_regime": {
+        "semantic": 0.014184397163120567,
+        "counting-address": 0.02877697841726619,
+        "negation-scope": 0.02702702702702703,
+        "agent-role": 0.043209876543209874
+      },
+      "ring_R_by_regime": {
+        "semantic": 0.12109052819412475,
+        "counting-address": 0.12624727470867025,
+        "negation-scope": 0.1193696316878883,
+        "agent-role": 0.11950160235038035
+      },
+      "router_acc_by_regime": {
+        "semantic": 0.7588652482269503,
+        "counting-address": 0.8920863309352518,
+        "negation-scope": 0.7027027027027027,
+        "agent-role": 0.6111111111111112
+      }
+    },
+    {
+      "seed": 2722,
+      "acc_all": 0.32033898305084746,
+      "acc_commit": 0.3253012048192771,
+      "reject_overall": 0.015254237288135594,
+      "reject_by_regime": {
+        "semantic": 0.014184397163120567,
+        "counting-address": 0.02158273381294964,
+        "negation-scope": 0.006756756756756757,
+        "agent-role": 0.018518518518518517
+      },
+      "ring_R_by_regime": {
+        "semantic": 0.12122377502603696,
+        "counting-address": 0.12755547339496476,
+        "negation-scope": 0.12357351942313619,
+        "agent-role": 0.12389092763893522
+      },
+      "router_acc_by_regime": {
+        "semantic": 0.7588652482269503,
+        "counting-address": 0.8920863309352518,
+        "negation-scope": 0.7027027027027027,
+        "agent-role": 0.6111111111111112
+      }
+    }
+  ],
+  "verdict": "FAIL"
+}

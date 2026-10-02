@@ -4982,3 +4982,45 @@ Lane D2-V1b resumed the mid-killed D2-V1 lane. **Scripts unchanged — no defect
   gate, or only to the trained FED−SINGLE disagreement? full: results/ring_cx0/RESULTS-ENTRY.md
 - **Artifacts:** results/ring_cx0/{ring_cx0_results.json, RESULTS-ENTRY.md, repro/fly_cx.py,
   repro/fly_cx_receipt.json}. Code: experiments/ring_cx0.py. **NOT COMMITTED.** ~3 s wall, 0 Wh.
+
+## RING-CX-1 — untrained ANSWER-MARGIN-gated ring (SYNTH-0 wildcard, closing probe) (2026-10-01 16:24 AKDT)
+- lane: RING-CX-1 (SYNTH-0 wildcard) · device: **CPU only, numpy** (no GPU, no training) · seeds 2718..2722
+- reuses `experiments/ring_cx0.py` + `results/ring_cx0/repro/` **wholesale**; wiring = frozen COMP1 word-view
+  featurization + 0-param D13d router on TRAIN only → held-out top-1 **0.7356 == booked 0.7356**.
+- gate swap: `cue_s` `softmax(ρ_s/T)` [r0 certainty] → **per-sensor answer margin**
+  `margin_s = |p_top1 − p_top2| = |2·σ(ρ_s/T) − 1|`, T = median TRAIN top-1 ρ = 0.7374 (label-free).
+  Ring integrates margins **exactly as before** (same N=64 DoD kernel, τ = 20th pct TRAIN R, same jitter/grid).
+- **structural pre-note:** ring update is positively homogeneous (`relu`), so R is **scale-invariant** in the
+  cue vector — `ring.read([0.1,0,0,0]) == ring.read([1,0,0,0]) == 0.6702` exactly, all-equal cues R=0.0000 at any
+  level. **Any margin gate routed through this ring is provably a cue-SHAPE gate, blind to margin level.** The
+  level-aware absolute-margin gates are reported as labelled exploratory.
+- result: ```json
+{
+  "G_A_prime": {"threshold": 0.7156, "overall_acc": [0.3268, 0.0125], "acc_commit": [0.3356, 0.0138], "verdict": "FAIL"},
+  "G_B_prime": {"negation_reject": 0.0203, "regime_mean": 0.0257, "ratio": 0.789, "need": 2.0, "verdict": "FAIL"},
+  "G_C_prime": {"all_deciding_seed_std_gt0": true, "verdict": "OK"},
+  "reject_by_regime": {"semantic": [0.0184,0.0057], "counting-address": [0.0259,0.0058],
+                       "negation-scope": [0.0203,0.0128], "agent-role": [0.0383,0.0143]},
+  "ring_R_by_regime": {"semantic": 0.125, "counting-address": 0.126, "negation-scope": 0.125, "agent-role": 0.123},
+  "matched_protocol": {"tau": 0.0671, "overall_reject": 0.1966, "negation": 0.1757, "mean": 0.1956, "ratio": 0.898, "top_reject": "agent-role 0.2284"},
+  "opr_robustness_5_defs": {"pass_B": 0, "n_defs": 5, "negation_rate_range": [0.068, 0.108]},
+  "absolute_agg_margin_gate": {"counting-address": 0.525, "semantic": 0.135, "negation-scope": 0.068, "agent-role": 0.031, "ratio": 0.356},
+  "grid_9cells": {"negation_top_reject": "1/9", "negation_ge_2x": "0/9"}
+}
+```
+- note: **NO untrained gate sees the blind regime.** G-A′ collapses to **chance (0.327)**: the per-sensor
+  margin is near-flat across sensors (within-item spread 0.074 on a base of 0.426), so the cue vector is almost
+  uniform and the ring resultant near-collapses (R ≈ 0.125 for every regime, vs r0's 0.42–0.53) → θ̂ is noise →
+  routing accuracy = chance. The margin map is *compressive* where r0's softmax (τ-temperature 0.0321) is
+  *sharpening*. G-B′ FAILs and is robust: matched-protocol τ (rules out an inert gate) still gives negation
+  0.176 vs mean 0.196 (ratio 0.898, top-reject agent-role); 1/9 grid cells make negation top-reject, 0/9 reach
+  2×; **0/5** alternative untrained margin definitions place Reject on negation; and even the level-aware
+  absolute-margin gate fires on **counting-address** (0.525 — regime-atypical items), never on the blind regime.
+  **WILDCARD THREAD CLOSES NEGATIVE: only the TRAINED FED−SINGLE disagreement sees the blind regime** —
+  every untrained gate is a function of corpus geometry, and that geometry is blind to the axis the blind regime
+  lives on; the ring's Reject is *provably* scale-invariant (homogeneity of relu), so no per-sensor margin level
+  can reach it at all. Next question: is the blindness reachable by a **cheap TRAINED** gate (single logistic on
+  the 4 margins / on the 2-arm disagreement) — cheapness lives in the gate, not the geometry?
+  full: results/ring_cx1/RESULTS-ENTRY.md
+- **Artifacts:** results/ring_cx1/{ring_cx1_results.json, RESULTS-ENTRY.md}. Code: experiments/ring_cx1.py.
+  Repro lineage: results/ring_cx0/repro/fly_cx.py (PASS 4/4, reused by reference). **NOT COMMITTED.** ~12 s wall, 0 Wh.
