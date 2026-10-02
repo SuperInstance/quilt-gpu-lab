@@ -10,3 +10,9 @@ farm/state.json
 farm/logs/
 scratch/grader_blindspots/repo/
 scratch/dogfood/workers/edge-lab-buggy/
+
+# PINCH0 lane 2 — embeddings (21MB) + cred cache stay local
+scratch/pinch0/embeddings/
+scratch/pinch0/.cf_account
+scratch/pinch0/_raw/
+scratch/pinch0/_api/

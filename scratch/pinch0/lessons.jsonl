@@ -1,0 +1,403 @@
+{"id": "AI-Writings#1", "repo": "AI-Writings", "lesson": "algebra.md defines the five-opcode spine and its laws (BIND idempotent; do not add opcodes) — the fleet WAL canon everything else cites.", "source": "seed node aw-quint-opcode", "topic": "writing"}
+{"id": "AI-Writings#2", "repo": "AI-Writings", "lesson": "Canon instruments are pinned by bytes: AI-Writings#70 shipped the canonical KAT instrument, consumed by jev-quilt at pinned commit 3f840588 + sha256.", "source": "seed edge aw-jev-kat (jev-quilt#47)", "topic": "verifier"}
+{"id": "BusinessLog#1", "repo": "BusinessLog", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "CCC#1", "repo": "CCC", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "CRDT_Research#1", "repo": "CRDT_Research", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "ChainForgeLegend-Quilt#1", "repo": "ChainForgeLegend-Quilt", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "Edge-Native#1", "repo": "Edge-Native", "lesson": "every claim carries a falsification condition", "source": "README.md", "topic": "other"}
+{"id": "Equipment-Consensus-Engine-Ruby#1", "repo": "Equipment-Consensus-Engine-Ruby", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "ExocortexTDA.jl#1", "repo": "ExocortexTDA.jl", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "MicroMoth-quilt#1", "repo": "MicroMoth-quilt", "lesson": "Sealed receipts are immutable: provenance notes amend (audit note naming the lab's canonical home) without rewriting history — the citation pin lives in tests.", "source": "seed edge mgq-qcells-lab (MicroMoth-quilt#29)", "topic": "memory"}
+{"id": "MicroMoth-quilt#2", "repo": "MicroMoth-quilt", "lesson": "A seal naming its producer by workspace path ('workspace/labs/qcells') is a doctrinal citation, not currency: it identifies the work, not the repo — name the repo.", "source": "seed edge mgq-qcells-lab claim", "topic": "prereg"}
+{"id": "acg_protocol#1", "repo": "acg_protocol", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "agent-harness-generator#1", "repo": "agent-harness-generator", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "agent-identity#1", "repo": "agent-identity", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "agent-identity-rs#1", "repo": "agent-identity-rs", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "agent-rhythm-rs#1", "repo": "agent-rhythm-rs", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "agents-platform#1", "repo": "agents-platform", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "ai-smart-notifications-archive#1", "repo": "ai-smart-notifications-archive", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "aider#1", "repo": "aider", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "animal-ai#1", "repo": "animal-ai", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "api-orchestra#1", "repo": "api-orchestra", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "api-orchestra#2", "repo": "api-orchestra", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "api-orchestra#3", "repo": "api-orchestra", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "archive-writer#1", "repo": "archive-writer", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "arm-neon-eisenstein-bench#1", "repo": "arm-neon-eisenstein-bench", "lesson": "Yes, we can compute 4 Eisenstein norms in parallel using NEON. The key insight is that E12 coordinates within HexDisk(R=36) fit in i16, enabling SMULL (signed multiply long) on 4×i16 lanes to produce 4×i32 results — exac", "source": "RESULTS.md", "topic": "other"}
+{"id": "asset-ranch#1", "repo": "asset-ranch", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "async-gpu-dispatch#1", "repo": "async-gpu-dispatch", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "async-gpu-dispatch#2", "repo": "async-gpu-dispatch", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "audit-trail#1", "repo": "audit-trail", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "audit-trail#2", "repo": "audit-trail", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "ax-quilt#1", "repo": "ax-quilt", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "backpressure-regulator#1", "repo": "backpressure-regulator", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "backward-holdem#1", "repo": "backward-holdem", "lesson": "Strict type-safe tick WAL: the parser rejects unknown event kinds outright rather than coercing.", "source": "seed node bh-wal-ticks", "topic": "game"}
+{"id": "backward-holdem#2", "repo": "backward-holdem", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "backward-holdem#3", "repo": "backward-holdem", "lesson": "Statement. At equal API-call budget per session, narrow-fast-blindered", "source": "LEDGER.md", "topic": "other"}
+{"id": "baton-router#1", "repo": "baton-router", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "baton-skill#1", "repo": "baton-skill", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "baton-system#1", "repo": "baton-system", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "batten-spline#1", "repo": "batten-spline", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "bech32-encode#1", "repo": "bech32-encode", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "beta-test-alex#1", "repo": "beta-test-alex", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "beta-test-elena#1", "repo": "beta-test-elena", "lesson": "every claim carries a falsification condition", "source": "README.md", "topic": "other"}
+{"id": "beta-test-elena#2", "repo": "beta-test-elena", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "beta-test-marcus#1", "repo": "beta-test-marcus", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "bid-engine#1", "repo": "bid-engine", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "bid-engine-rs#1", "repo": "bid-engine-rs", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "bloom-filter-extended#1", "repo": "bloom-filter-extended", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "bloom-filter-scalable#1", "repo": "bloom-filter-scalable", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "boltzmann-agent#1", "repo": "boltzmann-agent", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "breakthrough-prospector#1", "repo": "breakthrough-prospector", "lesson": "hypotheses are pre-registered before runs", "source": "README.md", "topic": "other"}
+{"id": "breakthrough-prospector#2", "repo": "breakthrough-prospector", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "brothers-keeper#1", "repo": "brothers-keeper", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "brownian-motion#1", "repo": "brownian-motion", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "canary-3lang#1", "repo": "canary-3lang", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "canary-release#1", "repo": "canary-release", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "candor#1", "repo": "candor", "lesson": "hermetic vendored deps; runs offline", "source": "README.md", "topic": "other"}
+{"id": "captain#1", "repo": "captain", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "captain-console#1", "repo": "captain-console", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "cargo-line-tycoon#1", "repo": "cargo-line-tycoon", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "cargo-line-tycoon#2", "repo": "cargo-line-tycoon", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "cargo-line-tycoon-substrate-ts#1", "repo": "cargo-line-tycoon-substrate-ts", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "categorical-agents-rs#1", "repo": "categorical-agents-rs", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "cech-complex#1", "repo": "cech-complex", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "cell-doctrine#1", "repo": "cell-doctrine", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "cell-doctrine#2", "repo": "cell-doctrine", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "cellforge#1", "repo": "cellforge", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "cellgraph#1", "repo": "cellgraph", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "cellgraph#2", "repo": "cellgraph", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "cf-deployments#1", "repo": "cf-deployments", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "cf-deployments#2", "repo": "cf-deployments", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "cf-native-backend#1", "repo": "cf-native-backend", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "cf-native-backend#2", "repo": "cf-native-backend", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "chart-system#1", "repo": "chart-system", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "cheetahclaws#1", "repo": "cheetahclaws", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "clockwork-schedule#1", "repo": "clockwork-schedule", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "cns-echo#1", "repo": "cns-echo", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "cns-monitor#1", "repo": "cns-monitor", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "co-captain-git-agent#1", "repo": "co-captain-git-agent", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "cocapn-browser-agent#1", "repo": "cocapn-browser-agent", "lesson": "hermetic vendored deps; runs offline", "source": "README.md", "topic": "other"}
+{"id": "cocapn-foundation#1", "repo": "cocapn-foundation", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "cocapn-foundation#2", "repo": "cocapn-foundation", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "cocapn-marine#1", "repo": "cocapn-marine", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "cocapn-zig#1", "repo": "cocapn-zig", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "codex-budget-guard#1", "repo": "codex-budget-guard", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "coev#1", "repo": "coev", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "coev#2", "repo": "coev", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "cog-lab#1", "repo": "cog-lab", "lesson": "refusal events are first-class receipts", "source": "README.md", "topic": "other"}
+{"id": "cog-lab#2", "repo": "cog-lab", "lesson": "hypotheses are pre-registered before runs", "source": "README.md", "topic": "other"}
+{"id": "cog-lab#3", "repo": "cog-lab", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "collaborative-realtime-drawing-system-quilt#1", "repo": "collaborative-realtime-drawing-system-quilt", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "concrete-token-demo#1", "repo": "concrete-token-demo", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "connect4#1", "repo": "connect4", "lesson": "hypotheses are pre-registered before runs", "source": "README.md", "topic": "other"}
+{"id": "connect4#2", "repo": "connect4", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "consensus#1", "repo": "consensus", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "conservation-checker#1", "repo": "conservation-checker", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "conservation-compiler#1", "repo": "conservation-compiler", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "conservation-languages#1", "repo": "conservation-languages", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "conservation-law-rs#1", "repo": "conservation-law-rs", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "conservation-lint#1", "repo": "conservation-lint", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "conservation-lint#2", "repo": "conservation-lint", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "conservation-matrix-c#1", "repo": "conservation-matrix-c", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "conservation-matrix-rs#1", "repo": "conservation-matrix-rs", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "conservation-matrix-rs#2", "repo": "conservation-matrix-rs", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "conservation-papers#1", "repo": "conservation-papers", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "conservation-papers#2", "repo": "conservation-papers", "lesson": "negative results are first-class findings", "source": "README.md", "topic": "other"}
+{"id": "conservation-reproducibility#1", "repo": "conservation-reproducibility", "lesson": "All experiments test aspects of the Conservation Spectral Framework: the hypothesis that structural operators (graph Laplacians, tension operators) on real-world systems exhibit spectral conservation — their eigenvalues ", "source": "RESULTS.md", "topic": "other"}
+{"id": "conservation-spectral-ada#1", "repo": "conservation-spectral-ada", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "conservation-spectral-lisp#1", "repo": "conservation-spectral-lisp", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "conservation-spectral-mojo#1", "repo": "conservation-spectral-mojo", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "conservation-spectral-python#1", "repo": "conservation-spectral-python", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "conservation-spectral-python#2", "repo": "conservation-spectral-python", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "conservation-spectral-topology-rs#1", "repo": "conservation-spectral-topology-rs", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "conservation-verify#1", "repo": "conservation-verify", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "constraint-crdt#1", "repo": "constraint-crdt", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "constraint-dynamics#1", "repo": "constraint-dynamics", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "constraint-inference#1", "repo": "constraint-inference", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "constraint-kernel-verify#1", "repo": "constraint-kernel-verify", "lesson": "every claim carries a falsification condition", "source": "README.md", "topic": "other"}
+{"id": "constraint-mux#1", "repo": "constraint-mux", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "constraint-schedule#1", "repo": "constraint-schedule", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "constraint-substrate#1", "repo": "constraint-substrate", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "constraint-synth#1", "repo": "constraint-synth", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "constraint-theory-ecosystem#1", "repo": "constraint-theory-ecosystem", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "constraint-theory-math#1", "repo": "constraint-theory-math", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "constraint-theory-mlir#1", "repo": "constraint-theory-mlir", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "constraint-theory-research#1", "repo": "constraint-theory-research", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "construct-coordination#1", "repo": "construct-coordination", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "construct-supply-chain#1", "repo": "construct-supply-chain", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "construct-supply-chain#2", "repo": "construct-supply-chain", "lesson": "hermetic vendored deps; runs offline", "source": "README.md", "topic": "other"}
+{"id": "coordination-topology#1", "repo": "coordination-topology", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "cost-analysis#1", "repo": "cost-analysis", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "cost-optimizer#1", "repo": "cost-optimizer", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "cot-quilt-lab#1", "repo": "cot-quilt-lab", "lesson": "negative results are first-class findings", "source": "README.md", "topic": "other"}
+{"id": "cqrs-framework#1", "repo": "cqrs-framework", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "crab-traps#1", "repo": "crab-traps", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "crab-traps#2", "repo": "crab-traps", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "crab-traps-audit#1", "repo": "crab-traps-audit", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "crackle-runtime-c#1", "repo": "crackle-runtime-c", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "craftmind-ranch#1", "repo": "craftmind-ranch", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "craftmind-researcher#1", "repo": "craftmind-researcher", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "credential-store#1", "repo": "credential-store", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "ct-lab#1", "repo": "ct-lab", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "ctl-model#1", "repo": "ctl-model", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "cuda-confidence#1", "repo": "cuda-confidence", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "cuda-dream-cycle#1", "repo": "cuda-dream-cycle", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "cuda-edge-lint#1", "repo": "cuda-edge-lint", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "cuda-edge-runtime#1", "repo": "cuda-edge-runtime", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "cuda-vm-scheduler#1", "repo": "cuda-vm-scheduler", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "cudaclaw#1", "repo": "cudaclaw", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "cudaclaw-1#1", "repo": "cudaclaw-1", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "delta-shape#1", "repo": "delta-shape", "lesson": "The hash IS the identity: witnessDrift() refuses to witness vendored bytes whose sha256 does not match the pinned digest — mismatched instruments refuse to witness.", "source": "seed edge ds-esign-drift (delta-shape#1)", "topic": "verifier"}
+{"id": "delta-shape#2", "repo": "delta-shape", "lesson": "Delta-shape is the sixth to-node born after seeding and entered the view at full VERIFIED mass — new repos can enter the mesh immediately when a merge lands the citation.", "source": "seed edge qe-eproc-witness claim", "topic": "routing"}
+{"id": "delta-shape#3", "repo": "delta-shape", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "dify-budget-watchdog#1", "repo": "dify-budget-watchdog", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "discovery-mad-libs#1", "repo": "discovery-mad-libs", "lesson": "every claim carries a falsification condition", "source": "README.md", "topic": "other"}
+{"id": "dissertation-engine#1", "repo": "dissertation-engine", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "dissertation-engine#2", "repo": "dissertation-engine", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "distributed-algos#1", "repo": "distributed-algos", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "dockside-exam#1", "repo": "dockside-exam", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "dog-food-audit#1", "repo": "dog-food-audit", "lesson": "every claim carries a falsification condition", "source": "README.md", "topic": "other"}
+{"id": "dog-food-audit#2", "repo": "dog-food-audit", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "dog-food-audit#3", "repo": "dog-food-audit", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "domain-agent-base#1", "repo": "domain-agent-base", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "doubt-ledger#1", "repo": "doubt-ledger", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "doubt-ledger#2", "repo": "doubt-ledger", "lesson": "negative results are first-class findings", "source": "README.md", "topic": "other"}
+{"id": "dynamical-systems#1", "repo": "dynamical-systems", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "ecosystem-dashboard#1", "repo": "ecosystem-dashboard", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "ecosystem-graph#1", "repo": "ecosystem-graph", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "edge-compiler#1", "repo": "edge-compiler", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "edge-conservation-rs#1", "repo": "edge-conservation-rs", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "edge-ledger#1", "repo": "edge-ledger", "lesson": "negative results are first-class findings", "source": "README.md", "topic": "other"}
+{"id": "edge-relay-agent#1", "repo": "edge-relay-agent", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "edge-relay-agent#2", "repo": "edge-relay-agent", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "education#1", "repo": "education", "lesson": "refusal events are first-class receipts", "source": "README.md", "topic": "other"}
+{"id": "education#2", "repo": "education", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "education#3", "repo": "education", "lesson": "hermetic vendored deps; runs offline", "source": "README.md", "topic": "other"}
+{"id": "educationgamecocapn#1", "repo": "educationgamecocapn", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "educationgamecocapn#2", "repo": "educationgamecocapn", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "eisenstein#1", "repo": "eisenstein", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "eisenstein-bench#1", "repo": "eisenstein-bench", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "eisenstein-embed#1", "repo": "eisenstein-embed", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "eisenstein-fuzz#1", "repo": "eisenstein-fuzz", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "eisenstein-triples#1", "repo": "eisenstein-triples", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "elliptic-curve-ops#1", "repo": "elliptic-curve-ops", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "embeddings-engine#1", "repo": "embeddings-engine", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "emergency-dispatch-simulation-system#1", "repo": "emergency-dispatch-simulation-system", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "entropy-lint#1", "repo": "entropy-lint", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "eos-seed#1", "repo": "eos-seed", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "erised-mirror#1", "repo": "erised-mirror", "lesson": "refusal events are first-class receipts", "source": "README.md", "topic": "other"}
+{"id": "erised-mirror#2", "repo": "erised-mirror", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "erised-mirror#3", "repo": "erised-mirror", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "erised-sequencer#1", "repo": "erised-sequencer", "lesson": "hypotheses are pre-registered before runs", "source": "README.md", "topic": "other"}
+{"id": "erised-sequencer#2", "repo": "erised-sequencer", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "escalation-engine#1", "repo": "escalation-engine", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "exocortex#1", "repo": "exocortex", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "exocortex#2", "repo": "exocortex", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "exocortex-memory-zig#1", "repo": "exocortex-memory-zig", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "feature-flag#1", "repo": "feature-flag", "lesson": "every claim carries a falsification condition", "source": "README.md", "topic": "other"}
+{"id": "federated-tinyml-vessel#1", "repo": "federated-tinyml-vessel", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "federated-tinyml-vessel#2", "repo": "federated-tinyml-vessel", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "fibration-timing#1", "repo": "fibration-timing", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fisher-rao#1", "repo": "fisher-rao", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "fleet-agent-api#1", "repo": "fleet-agent-api", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-agent-early-version#1", "repo": "fleet-agent-early-version", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-arm-compat#1", "repo": "fleet-arm-compat", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-budget#1", "repo": "fleet-budget", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-conductor#1", "repo": "fleet-conductor", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-connections#1", "repo": "fleet-connections", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-conservation#1", "repo": "fleet-conservation", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-cross-study#1", "repo": "fleet-cross-study", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-ecosystem#1", "repo": "fleet-ecosystem", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-edge-worker#1", "repo": "fleet-edge-worker", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-energy-spec#1", "repo": "fleet-energy-spec", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-experiments#1", "repo": "fleet-experiments", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "fleet-health-monitor#1", "repo": "fleet-health-monitor", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "fleet-holographic#1", "repo": "fleet-holographic", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-i2i-protocol#1", "repo": "fleet-i2i-protocol", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-integration#1", "repo": "fleet-integration", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "fleet-keel#1", "repo": "fleet-keel", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-blend#1", "repo": "fleet-midi-blend", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-bridge#1", "repo": "fleet-midi-bridge", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-collab#1", "repo": "fleet-midi-collab", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-cycle#1", "repo": "fleet-midi-cycle", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-decode#1", "repo": "fleet-midi-decode", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-delay#1", "repo": "fleet-midi-delay", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-drone#1", "repo": "fleet-midi-drone", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-encode#1", "repo": "fleet-midi-encode", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-feed#1", "repo": "fleet-midi-feed", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-filter#1", "repo": "fleet-midi-filter", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-genetic#1", "repo": "fleet-midi-genetic", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-gliss#1", "repo": "fleet-midi-gliss", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-grammar#1", "repo": "fleet-midi-grammar", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-live#1", "repo": "fleet-midi-live", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-mapper#1", "repo": "fleet-midi-mapper", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-pattern#1", "repo": "fleet-midi-pattern", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-pedagogy#1", "repo": "fleet-midi-pedagogy", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-phase#1", "repo": "fleet-midi-phase", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-quantum#1", "repo": "fleet-midi-quantum", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-resonance#1", "repo": "fleet-midi-resonance", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-reverb#1", "repo": "fleet-midi-reverb", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-script#1", "repo": "fleet-midi-script", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-swarm#1", "repo": "fleet-midi-swarm", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-midi-tremolo#1", "repo": "fleet-midi-tremolo", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-murmur#1", "repo": "fleet-murmur", "lesson": "Transport-honesty contract: a black-hole transport must not score 100% delivery coverage — honesty REFUSAL receipts name it.", "source": "seed edge fm-honesty-receipts (moth-waveform#1)", "topic": "verifier"}
+{"id": "fleet-murmur#2", "repo": "fleet-murmur", "lesson": "Adapter against a live sibling API: the pre-merge adapter raised TypeError against the real quality-gate-stream package — stale-API broken at birth; fix shipped with live glue pins (4 live, labeled skips when uninstalled, never fake green).", "source": "seed edge fm-qgs-adapter (fleet-murmur#3)", "topic": "ci"}
+{"id": "fleet-murmur#3", "repo": "fleet-murmur", "lesson": "refusal events are first-class receipts", "source": "README.md", "topic": "other"}
+{"id": "fleet-murmur#4", "repo": "fleet-murmur", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-murmur#5", "repo": "fleet-murmur", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "fleet-orchestra#1", "repo": "fleet-orchestra", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-org#1", "repo": "fleet-org", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-phase#1", "repo": "fleet-phase", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-rooms#1", "repo": "fleet-rooms", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "fleet-scribe#1", "repo": "fleet-scribe", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-seeds#1", "repo": "fleet-seeds", "lesson": "hermetic vendored deps; runs offline", "source": "README.md", "topic": "other"}
+{"id": "fleet-simulation#1", "repo": "fleet-simulation", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "fleet-spread#1", "repo": "fleet-spread", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "fleet-static-host#1", "repo": "fleet-static-host", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-static-host#2", "repo": "fleet-static-host", "lesson": "hermetic vendored deps; runs offline", "source": "README.md", "topic": "other"}
+{"id": "fleet-stitch#1", "repo": "fleet-stitch", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-survey#1", "repo": "fleet-survey", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-topology-rs#1", "repo": "fleet-topology-rs", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fleet-triage#1", "repo": "fleet-triage", "lesson": "Doc citation census across 244 quilt-family repos found 222 FILE_MISSING citations (canons cluster) and 25 LINE_OOR (all in quilt-tournament referee/ docs) — the family's largest doc-to-file drift surfaces.", "source": "seed nodes qc-fm-surface / qt-lineoor-surface", "topic": "infrastructure"}
+{"id": "fleet-triage#2", "repo": "fleet-triage", "lesson": "hypotheses are pre-registered before runs", "source": "README.md", "topic": "other"}
+{"id": "fleet-triage#3", "repo": "fleet-triage", "lesson": "hermetic vendored deps; runs offline", "source": "README.md", "topic": "other"}
+{"id": "fleet-witness-marks#1", "repo": "fleet-witness-marks", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "fluid-sim#1", "repo": "fluid-sim", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-asm#1", "repo": "flux-asm", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-autoscale#1", "repo": "flux-autoscale", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-bottle-protocol#1", "repo": "flux-bottle-protocol", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-certify#1", "repo": "flux-certify", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-cobol#1", "repo": "flux-cobol", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "flux-compiler#1", "repo": "flux-compiler", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-compiler-agentic#1", "repo": "flux-compiler-agentic", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-disasm#1", "repo": "flux-disasm", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-dream-cycle#1", "repo": "flux-dream-cycle", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-dream-cycle-c#1", "repo": "flux-dream-cycle-c", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-emergence-research#1", "repo": "flux-emergence-research", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "flux-fleet-stdlib#1", "repo": "flux-fleet-stdlib", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-flow-state#1", "repo": "flux-flow-state", "lesson": "self-checking harness; green is the only accepted color", "source": "README.md", "topic": "other"}
+{"id": "flux-hardware#1", "repo": "flux-hardware", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-isa#1", "repo": "flux-isa", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-isa-unified#1", "repo": "flux-isa-unified", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-llama#1", "repo": "flux-llama", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "flux-mesh#1", "repo": "flux-mesh", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-papers#1", "repo": "flux-papers", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-pli#1", "repo": "flux-pli", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "flux-policy-tester-rs#1", "repo": "flux-policy-tester-rs", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-registry-rs#1", "repo": "flux-registry-rs", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-research#1", "repo": "flux-research", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-router#1", "repo": "flux-router", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "flux-runtime-lat#1", "repo": "flux-runtime-lat", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-runtime-san#1", "repo": "flux-runtime-san", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-sandbox#1", "repo": "flux-sandbox", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "flux-showcase#1", "repo": "flux-showcase", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "flux-sim#1", "repo": "flux-sim", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "flux-studio#1", "repo": "flux-studio", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-tui#1", "repo": "flux-tui", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-vm-classic#1", "repo": "flux-vm-classic", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flux-vm-classic#2", "repo": "flux-vm-classic", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "flux-vm-dispatch#1", "repo": "flux-vm-dispatch", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "flux-wasm#1", "repo": "flux-wasm", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "flux-wasm#2", "repo": "flux-wasm", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "flx-cuda#1", "repo": "flx-cuda", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "flx-cuda#2", "repo": "flx-cuda", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fm-experiments#1", "repo": "fm-experiments", "lesson": "Question: What's the smallest unit of work an agent can pick up zero-shot?", "source": "RESULTS.md", "topic": "other"}
+{"id": "forge-quilt#1", "repo": "forge-quilt", "lesson": "refusal events are first-class receipts", "source": "README.md", "topic": "other"}
+{"id": "forge-quilt#2", "repo": "forge-quilt", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "forgecode#1", "repo": "forgecode", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "fragment-reassembler#1", "repo": "fragment-reassembler", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "frozen-clock-lab#1", "repo": "frozen-clock-lab", "lesson": "negative results are first-class findings", "source": "README.md", "topic": "other"}
+{"id": "futhark-lab#1", "repo": "futhark-lab", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "galois-unification-proofs#1", "repo": "galois-unification-proofs", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "ghost-track#1", "repo": "ghost-track", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "git-agent#1", "repo": "git-agent", "lesson": "An agent citation that names the doctrine but not the source repo stays PENDING ('doctrinal only'); currency arrived when git-agent#4 named AI-Writings/algebra.md by name and URL in-repo.", "source": "seed edge aw-quint-opcode (git-agent#4)", "topic": "prereg"}
+{"id": "git-agent#2", "repo": "git-agent", "lesson": "quilt_emit.py: vessel events map one-to-one onto the five-opcode spine — the fleet WAL is language-agnostic JSONL.", "source": "seed node ga-quilt-emit", "topic": "infrastructure"}
+{"id": "git-agent-standard#1", "repo": "git-agent-standard", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "git-native-mud#1", "repo": "git-native-mud", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "glyphcast#1", "repo": "glyphcast", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "glyphspace#1", "repo": "glyphspace", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "gno#1", "repo": "gno", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "gossip-protocol#1", "repo": "gossip-protocol", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "gossip-suspicion#1", "repo": "gossip-suspicion", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "gpu-annealing#1", "repo": "gpu-annealing", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "gpu-experiments#1", "repo": "gpu-experiments", "lesson": "- Total experiments: 32", "source": "RESULTS.md", "topic": "other"}
+{"id": "gpu-optimizer#1", "repo": "gpu-optimizer", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "grand-pattern-mono#1", "repo": "grand-pattern-mono", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "graph-coloring-rs#1", "repo": "graph-coloring-rs", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "graph-coloring-rs#2", "repo": "graph-coloring-rs", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "gravity-well-protocol#1", "repo": "gravity-well-protocol", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "greenhorn-onboarding#1", "repo": "greenhorn-onboarding", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "guard2mask-gpu#1", "repo": "guard2mask-gpu", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "guardc#1", "repo": "guardc", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "harness-experiments#1", "repo": "harness-experiments", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "herdr-cocapn#1", "repo": "herdr-cocapn", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "hermes-avatar#1", "repo": "hermes-avatar", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "hermit#1", "repo": "hermit", "lesson": "refusal events are first-class receipts", "source": "README.md", "topic": "other"}
+{"id": "hermit-crab-ecology#1", "repo": "hermit-crab-ecology", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "hermit-zed#1", "repo": "hermit-zed", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "holodeck-c#1", "repo": "holodeck-c", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "holodeck-rust#1", "repo": "holodeck-rust", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "holodeck-session-manager#1", "repo": "holodeck-session-manager", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "holodeck-zig#1", "repo": "holodeck-zig", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "i2i-protocol#1", "repo": "i2i-protocol", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "i2i-vessel#1", "repo": "i2i-vessel", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "innovation-portfolio#1", "repo": "innovation-portfolio", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "insight-engine#1", "repo": "insight-engine", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "integration-c#1", "repo": "integration-c", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "intelligence-marketplace#1", "repo": "intelligence-marketplace", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "jetson-compass#1", "repo": "jetson-compass", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "jetson-grand-design#1", "repo": "jetson-grand-design", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "jev-fusion#1", "repo": "jev-fusion", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "jev-gan#1", "repo": "jev-gan", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "jev-garden#1", "repo": "jev-garden", "lesson": "hypotheses are pre-registered before runs", "source": "README.md", "topic": "other"}
+{"id": "jev-garden#2", "repo": "jev-garden", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "jev-harness#1", "repo": "jev-harness", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "jev-net#1", "repo": "jev-net", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "jev-quilt#1", "repo": "jev-quilt", "lesson": "Substance gate: admit generated text at jev_substance >= 0.6 (noul reads VERIFIABLE) — replaced length-only admission proxies.", "source": "seed edge qb-jev-gate (quilt-cowboy#1)", "topic": "gating"}
+{"id": "jev-quilt#2", "repo": "jev-quilt", "lesson": "G11 commons: trust_weighted()/provenance_merge() re-scale cross-fleet gluing by earned trust — weight alone is cheap to inflate.", "source": "seed edge jq-commons-g11 (jev-quilt#37)", "topic": "verifier"}
+{"id": "jev-quilt#3", "repo": "jev-quilt", "lesson": "KAT bridge pins the canonical AI-Writings instrument by repo+commit+sha256; tests assert the citation string survives in source so a drifted upstream cannot be bridged silently.", "source": "seed edge jq-kat-bridge (jev-quilt#47)", "topic": "verifier"}
+{"id": "jev-quilt#4", "repo": "jev-quilt", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "jev-ultrafast-quilt#1", "repo": "jev-ultrafast-quilt", "lesson": "refusal events are first-class receipts", "source": "README.md", "topic": "other"}
+{"id": "jev-ultrafast-quilt#2", "repo": "jev-ultrafast-quilt", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "jeviter#1", "repo": "jeviter", "lesson": "refusal events are first-class receipts", "source": "README.md", "topic": "other"}
+{"id": "jeviter#2", "repo": "jeviter", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "keel-early-version#1", "repo": "keel-early-version", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "kev-receipts#1", "repo": "kev-receipts", "lesson": "refusal events are first-class receipts", "source": "README.md", "topic": "other"}
+{"id": "kev-receipts#2", "repo": "kev-receipts", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "kev-substrate-mojo#1", "repo": "kev-substrate-mojo", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "kung-fu#1", "repo": "kung-fu", "lesson": "claim weight law: PENDING speculation vs VERIFIED cross-use", "source": "README.md", "topic": "other"}
+{"id": "kungfu-ai#1", "repo": "kungfu-ai", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "lattice-hamiltonian#1", "repo": "lattice-hamiltonian", "lesson": "four-verdict honesty idiom: CONFIRMED/REFUTED/SIMULATED/honest absence", "source": "README.md", "topic": "other"}
+{"id": "micrograd-quilt#1", "repo": "micrograd-quilt", "lesson": "Lab findings earn currency when a merged PR in the ledger repo consumes them: micrograd-quilt#7 earned ledger-to-lab mass, mirrored six hours later by MicroMoth-quilt#29 — the mesh's first VERIFIED-in-both-directions pair.", "source": "seed edges mm/mgq pair", "topic": "prereg"}
+{"id": "moth-waveform#1", "repo": "moth-waveform", "lesson": "A gate that passes without a live floor measurement passes vacuously — the no-op floor is measured in-run and absent noop rows fail.", "source": "seed edge mw-floor-gate (moth-waveform#1)", "topic": "verifier"}
+{"id": "pong-quilt#1", "repo": "pong-quilt", "lesson": "Equal-fitness champion ties are broken by a receipted quantum coin (coin-toss-v1) with every flip journaled — silent index order is an unwitnessed collapse.", "source": "seed edge qq-quantum-tiebreak (pong-quilt#28)", "topic": "quantum"}
+{"id": "pong-quilt#2", "repo": "pong-quilt", "lesson": "Refusal events are named first-class (QA-REFUSAL, byo-qpam-fallback, WAL-EXPORT/REFUSED+EMPTY): a claim must name how it knows.", "source": "seed node pq-named-refusals", "topic": "verifier"}
+{"id": "pong-quilt#3", "repo": "pong-quilt", "lesson": "R26 session-WAL: live receipt-panel rows re-anchor into the fleet five-opcode quilt WAL so one verifier can read every fleet ledger.", "source": "seed edge pq-session-wal (fleet-murmur#2)", "topic": "memory"}
+{"id": "pong-quilt#4", "repo": "pong-quilt", "lesson": "R36/R39: wal-export toStoneV1() made pong-quilt the first stone-v1 forward-format adopter; prerun staples the birth-seal chain tip via quilt-stone signTip (signs a copy, canonical stays unsigned).", "source": "seed edges stone-forward-adopt / pq-sign-pilot", "topic": "infrastructure"}
+{"id": "quality-gate-stream#1", "repo": "quality-gate-stream", "lesson": "Strict-mode scoring: sub-threshold items REFUSE (named refusal receipts) instead of silently degrading.", "source": "seed node qgs-strict-gate", "topic": "gating"}
+{"id": "quilt-adjudication#1", "repo": "quilt-adjudication", "lesson": "Disputes are worth recording: this fork preserves the disagreement record that a normal merge erases.", "source": "seed node qad-dispute-query", "topic": "infrastructure"}
+{"id": "quilt-arcade#1", "repo": "quilt-arcade", "lesson": "Every game is a two-file plugin (module + manifest) with receipt-rendered run_all — plugin manifests are the natural on-disk shape for a node's identity.", "source": "quilt-tools seed node qa-plugins", "topic": "game"}
+{"id": "quilt-arcade#2", "repo": "quilt-arcade", "lesson": "NEGATIVE_SPACE doctrine: declined patches and divergences are documented, never silently dropped (declined patch 12 with cost rationale).", "source": "quilt-tools seed node qa-negspace", "topic": "prereg"}
+{"id": "quilt-cowboy#1", "repo": "quilt-cowboy", "lesson": "1,745 papers entered the canon on synthesis_len >= 300 alone — the length-as-concreteness proxy is a stand-in and was replaced by substance scoring.", "source": "seed edge qb-jev-gate claim", "topic": "gating"}
+{"id": "quilt-ewitness#1", "repo": "quilt-ewitness", "lesson": "Anytime-valid e-process witnesses: Ville bound 1/delta with sigma pre-registered under refusal and retraction built in — training claims can be witnessed, not asserted.", "source": "seed node qe-eproc-witness", "topic": "verifier"}
+{"id": "quilt-in-git#1", "repo": "quilt-in-git", "lesson": "Verifiable coverage queries (divergence / trusted-but-unaudited / attest) make merge-time coverage checkable rather than assumed.", "source": "seed node qig-wave4-query", "topic": "infrastructure"}
+{"id": "quilt-overhead#1", "repo": "quilt-overhead", "lesson": "feed.v1: a minimal cell+deltas dialect for overhead boards, born with its first merged receipt.", "source": "seed node qo-feed-v1", "topic": "infrastructure"}
+{"id": "quilt-quant#1", "repo": "quilt-quant", "lesson": "coin-toss-v1: the receipted quantum coin — verdicts need pre-outcome witnessed states, every flip journaled.", "source": "seed node quant-coin-toss", "topic": "quantum"}
+{"id": "quilt-research-canons#1", "repo": "quilt-research-canons", "lesson": "Legibility census of 100 fleet repos: L4 (what this does NOT do) missing in 55, L5 (what to do when it fails) missing in 59 — the two obligations that only cost something once a reader is inside.", "source": "quilt-tools/LEGIBILITY.md", "topic": "writing"}
+{"id": "quilt-show#1", "repo": "quilt-show", "lesson": "Demonstrate, don't assert: Episode 2's verifyChain discipline is load-bearing for the referral graph's weight law.", "source": "quilt-tools seed node qs-ep2", "topic": "writing"}
+{"id": "quilt-show#2", "repo": "quilt-show", "lesson": "First currency earner in the mesh: quilt-show#1 merged the E3 verification record citing quilt-tools#3 in-repo, flipping qt-s2-driftwatch→qs-ep2 to VERIFIED.", "source": "quilt-tools/experiments/REFERRAL_GRAPH.md", "topic": "verifier"}
+{"id": "quilt-stone#1", "repo": "quilt-stone", "lesson": "An export format nobody verifies through is a dialect, not a standard: stone smoke 12b pins the producer's EXACT bytes (generated live, not retyped), catches post-seal edits as hash_mismatch, breaks on row splice.", "source": "seed edge stone-forward-adopt (quilt-stone#1)", "topic": "verifier"}
+{"id": "quilt-stone#2", "repo": "quilt-stone", "lesson": "A signature primitive nobody staples with is a library, not a doctrine: the sign lane earned currency when pong-quilt's prerun stapled the chain tip with verifyTipSignature BEFORE write (a refused staple bricks the run, exit 1).", "source": "seed edge pq-sign-pilot (pong-quilt#51)", "topic": "verifier"}
+{"id": "quilt-tools#1", "repo": "quilt-tools", "lesson": "Weight law: PENDING=0.05 is speculation; VERIFIED=1.0 only via a merged PR in the TARGET repo citing the technique; REFUTED stays in the chain as scar tissue with zero mass.", "source": "src/referral_graph.mjs", "topic": "routing"}
+{"id": "quilt-tools#2", "repo": "quilt-tools", "lesson": "Trust is the lever, not weight: viewTrusted() re-scales every edge by the target repo's earned trust and unseen sources default to 0, so junk-citation PRs cannot buy view mass (G11 port).", "source": "src/referral_graph.mjs", "topic": "verifier"}
+{"id": "quilt-tools#3", "repo": "quilt-tools", "lesson": "Scores are ordinal ranks, not interval: a 6-point evidential continuum collapses to 3 usable rungs {10,50,100} on the live oracle; never key policy on absolute score deltas.", "source": "experiments/API_LIMITS_R1.md", "topic": "verifier"}
+{"id": "quilt-tools#4", "repo": "quilt-tools", "lesson": "Receipts flip credit 1/4 to 4/4 whether or not the underlying claim is true — inline receipts change judged credit; verifyChain discipline is the counter-move.", "source": "experiments/REFERRAL_GRAPH.md", "topic": "verifier"}
+{"id": "quilt-tools#5", "repo": "quilt-tools", "lesson": "Shape beats threshold and it is not prompt-visible: drift detection needs oracle variance-collapse maps (S2), thresholds asserted in prose do not transfer.", "source": "experiments/REFERRAL_GRAPH.md", "topic": "verifier"}
+{"id": "quilt-tools#6", "repo": "quilt-tools", "lesson": "Falsification is mechanical: every edge books a falsification_condition and probe() kills it on observed evidence, keeping the REFUSED scar in the chain.", "source": "src/referral_graph.mjs", "topic": "prereg"}
+{"id": "quilt-tools#7", "repo": "quilt-tools", "lesson": "Live-oracle boundary findings: auto-close class dissolves live (model never picks it), page-gate under-fires on heuristics, score calibration lives at the top of the scale.", "source": "experiments/README.md", "topic": "verifier"}
+{"id": "quilt-tools#8", "repo": "quilt-tools", "lesson": "Tools are hermetic and self-grading: 94 checks across the set, green is the only accepted color, engine dist vendored so no laptop paths.", "source": "README.md", "topic": "ci"}
+{"id": "quilt-tools#9", "repo": "quilt-tools", "lesson": "refusal events are first-class receipts", "source": "README.md", "topic": "other"}
+{"id": "quilt-tools#10", "repo": "quilt-tools", "lesson": "witness-booking (hash-chained receipts) for claims", "source": "README.md", "topic": "other"}
+{"id": "quilt-tools#11", "repo": "quilt-tools", "lesson": "every claim carries a falsification condition", "source": "README.md", "topic": "other"}
+{"id": "quilt-tools#12", "repo": "quilt-tools", "lesson": "self-checking harness; green is the only accepted color", "source": "README.md", "topic": "other"}
+{"id": "quilt-tournament#1", "repo": "quilt-tournament", "lesson": "All 25 LINE_OOR doc citations in the quilt family live in this repo's referee/ docs — doc line references past EOF are a recurring drift class.", "source": "seed node qt-lineoor-surface", "topic": "writing"}

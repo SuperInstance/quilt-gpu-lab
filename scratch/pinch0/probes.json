@@ -1,0 +1,12 @@
+[
+ {"query": "book a hash-chained deterministic receipt for the duke-lab instrument booking layer", "target": "jev-receipts"},
+ {"query": "schedule recurring fleet health checks and batch processing as a cron job scheduler", "target": "fleet-cron"},
+ {"query": "marketplace for sharing and discovering fleet skills and equipment", "target": "skill-exchange"},
+ {"query": "precision drift analyzer for constraint systems - which boat sinks first", "target": "drift-analyzer"},
+ {"query": "record the disputes that merges usually erase, adjudication query lane", "target": "quilt-adjudication"},
+ {"query": "cryptographic append-only witness log ledger for canon events", "target": "quilt-canon-witness"},
+ {"query": "pareto tournament selection multi-objective optimization for agent population dynamics", "target": "pareto-tournament"},
+ {"query": "ledger where trust relocates blindness, novel mechanism lab", "target": "doubt-ledger"},
+ {"query": "mine skill patterns from Mavis memory and propose new skills to build", "target": "mavis-skill-miner"},
+ {"query": "fleet skill self-evolution from error patterns to proposals to commits", "target": "skill-evolver"}
+]

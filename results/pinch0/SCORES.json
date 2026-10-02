@@ -1,0 +1,506 @@
+{
+  "crawl": {
+    "n_cards": 5138,
+    "n_embedded": 5138,
+    "coverage": 1.0,
+    "dim": 1024,
+    "model": "@cf/baai/bge-m3"
+  },
+  "gate_preregistered": {
+    "precision@1_min": 0.5,
+    "mrr_min": 0.6,
+    "primary_set": "24 delivered edge rows"
+  },
+  "edges": {
+    "n": 24,
+    "precision@1": 0.0,
+    "mrr": 0.10655673233958683,
+    "bysubset": {
+      "verified_labeled": {
+        "n": 18,
+        "p@1": 0.0,
+        "mrr": 0.13669184096633302
+      },
+      "pending_labeled": {
+        "n": 6,
+        "p@1": 0.0,
+        "mrr": 0.016151406459348303
+      }
+    },
+    "rows": [
+      {
+        "from": "quilt-ewitness",
+        "to": "delta-shape",
+        "status": "VERIFIED",
+        "rank": 16,
+        "p@1": 0,
+        "rr": 0.0625,
+        "top1": "quilt-ewitness",
+        "top3": [
+          "quilt-ewitness",
+          "substrate-trainer",
+          "substrate-witness-log"
+        ]
+      },
+      {
+        "from": "quilt-stone",
+        "to": "pong-quilt",
+        "status": "VERIFIED",
+        "rank": 1383,
+        "p@1": 0,
+        "rr": 0.0007230657989877079,
+        "top1": "quilt-stone",
+        "top3": [
+          "quilt-stone",
+          "three-forms-of-evidence",
+          "quilt-canon-witness"
+        ]
+      },
+      {
+        "from": "pong-quilt",
+        "to": "quilt-stone",
+        "status": "VERIFIED",
+        "rank": 124,
+        "p@1": 0,
+        "rr": 0.008064516129032258,
+        "top1": "pong-quilt",
+        "top3": [
+          "pong-quilt",
+          "quilt-quant",
+          "quilt-tournament"
+        ]
+      },
+      {
+        "from": "jev-quilt",
+        "to": "quilt-tools",
+        "status": "VERIFIED",
+        "rank": 324,
+        "p@1": 0,
+        "rr": 0.0030864197530864196,
+        "top1": "jev-quilt",
+        "top3": [
+          "jev-quilt",
+          "kev-substrate",
+          "jev-harness"
+        ]
+      },
+      {
+        "from": "quality-gate-stream",
+        "to": "fleet-murmur",
+        "status": "VERIFIED",
+        "rank": 4,
+        "p@1": 0,
+        "rr": 0.25,
+        "top1": "quality-gate-stream",
+        "top3": [
+          "quality-gate-stream",
+          "moth-honest",
+          "plato-tile-validate"
+        ]
+      },
+      {
+        "from": "fleet-murmur",
+        "to": "moth-waveform",
+        "status": "VERIFIED",
+        "rank": 319,
+        "p@1": 0,
+        "rr": 0.003134796238244514,
+        "top1": "fleet-murmur",
+        "top3": [
+          "fleet-murmur",
+          "quality-gate-stream",
+          "gossip-member"
+        ]
+      },
+      {
+        "from": "pong-quilt",
+        "to": "fleet-murmur",
+        "status": "VERIFIED",
+        "rank": 320,
+        "p@1": 0,
+        "rr": 0.003125,
+        "top1": "pong-quilt",
+        "top3": [
+          "pong-quilt",
+          "quilt-quant",
+          "quilt-tournament"
+        ]
+      },
+      {
+        "from": "pong-quilt",
+        "to": "fleet-murmur",
+        "status": "VERIFIED",
+        "rank": 320,
+        "p@1": 0,
+        "rr": 0.003125,
+        "top1": "pong-quilt",
+        "top3": [
+          "pong-quilt",
+          "quilt-quant",
+          "quilt-tournament"
+        ]
+      },
+      {
+        "from": "jev-quilt",
+        "to": "quilt-cowboy",
+        "status": "VERIFIED",
+        "rank": 27,
+        "p@1": 0,
+        "rr": 0.037037037037037035,
+        "top1": "jev-quilt",
+        "top3": [
+          "jev-quilt",
+          "kev-substrate",
+          "jev-harness"
+        ]
+      },
+      {
+        "from": "quilt-quant",
+        "to": "pong-quilt",
+        "status": "VERIFIED",
+        "rank": 368,
+        "p@1": 0,
+        "rr": 0.002717391304347826,
+        "top1": "quilt-quant",
+        "top3": [
+          "quilt-quant",
+          "quantum-coin",
+          "moth-corpus"
+        ]
+      },
+      {
+        "from": "quilt-tools",
+        "to": "quilt-show",
+        "status": "VERIFIED",
+        "rank": 460,
+        "p@1": 0,
+        "rr": 0.002173913043478261,
+        "top1": "quilt-tools",
+        "top3": [
+          "quilt-tools",
+          "erised-mirror",
+          "quilt-learn"
+        ]
+      },
+      {
+        "from": "quilt-tools",
+        "to": "quilt-show",
+        "status": "PENDING",
+        "rank": 460,
+        "p@1": 0,
+        "rr": 0.002173913043478261,
+        "top1": "quilt-tools",
+        "top3": [
+          "quilt-tools",
+          "erised-mirror",
+          "quilt-learn"
+        ]
+      },
+      {
+        "from": "quilt-tools",
+        "to": "quilt-arcade",
+        "status": "PENDING",
+        "rank": 1485,
+        "p@1": 0,
+        "rr": 0.0006734006734006734,
+        "top1": "quilt-tools",
+        "top3": [
+          "quilt-tools",
+          "erised-mirror",
+          "quilt-learn"
+        ]
+      },
+      {
+        "from": "quilt-arcade",
+        "to": "quilt-tools",
+        "status": "PENDING",
+        "rank": 601,
+        "p@1": 0,
+        "rr": 0.0016638935108153079,
+        "top1": "quilt-arcade",
+        "top3": [
+          "quilt-arcade",
+          "quilt-canvas-adversary",
+          "quilt-conformance"
+        ]
+      },
+      {
+        "from": "quilt-show",
+        "to": "quilt-arcade",
+        "status": "PENDING",
+        "rank": 11,
+        "p@1": 0,
+        "rr": 0.09090909090909091,
+        "top1": "quilt-show",
+        "top3": [
+          "quilt-show",
+          "quilt-lab",
+          "forge-quilt"
+        ]
+      },
+      {
+        "from": "AI-Writings",
+        "to": "git-agent",
+        "status": "VERIFIED",
+        "rank": 698,
+        "p@1": 0,
+        "rr": 0.0014326647564469914,
+        "top1": "AI-Writings",
+        "top3": [
+          "AI-Writings",
+          "quilt-research-canons",
+          "jev-quilt"
+        ]
+      },
+      {
+        "from": "AI-Writings",
+        "to": "jev-quilt",
+        "status": "VERIFIED",
+        "rank": 3,
+        "p@1": 0,
+        "rr": 0.3333333333333333,
+        "top1": "AI-Writings",
+        "top3": [
+          "AI-Writings",
+          "quilt-research-canons",
+          "jev-quilt"
+        ]
+      },
+      {
+        "from": "MicroMoth-quilt",
+        "to": "micrograd-quilt",
+        "status": "VERIFIED",
+        "rank": 3,
+        "p@1": 0,
+        "rr": 0.3333333333333333,
+        "top1": "MicroMoth-quilt",
+        "top3": [
+          "MicroMoth-quilt",
+          "moth-waveform",
+          "micrograd-quilt"
+        ]
+      },
+      {
+        "from": "micrograd-quilt",
+        "to": "MicroMoth-quilt",
+        "status": "VERIFIED",
+        "rank": 2,
+        "p@1": 0,
+        "rr": 0.5,
+        "top1": "micrograd-quilt",
+        "top3": [
+          "micrograd-quilt",
+          "MicroMoth-quilt",
+          "futhark-lab"
+        ]
+      },
+      {
+        "from": "fleet-triage",
+        "to": "quilt-research-canons",
+        "status": "VERIFIED",
+        "rank": 2,
+        "p@1": 0,
+        "rr": 0.5,
+        "top1": "fleet-triage",
+        "top3": [
+          "fleet-triage",
+          "quilt-research-canons",
+          "fleet-bench"
+        ]
+      },
+      {
+        "from": "fleet-triage",
+        "to": "quilt-tournament",
+        "status": "VERIFIED",
+        "rank": 6,
+        "p@1": 0,
+        "rr": 0.16666666666666666,
+        "top1": "fleet-triage",
+        "top3": [
+          "fleet-triage",
+          "quilt-research-canons",
+          "fleet-bench"
+        ]
+      },
+      {
+        "from": "git-agent",
+        "to": "backward-holdem",
+        "status": "PENDING",
+        "rank": 3252,
+        "p@1": 0,
+        "rr": 0.0003075030750307503,
+        "top1": "git-agent",
+        "top3": [
+          "git-agent",
+          "fleet-agent-early-version",
+          "fleet-code-agent"
+        ]
+      },
+      {
+        "from": "backward-holdem",
+        "to": "quilt-overhead",
+        "status": "PENDING",
+        "rank": 847,
+        "p@1": 0,
+        "rr": 0.0011806375442739079,
+        "top1": "backward-holdem",
+        "top3": [
+          "backward-holdem",
+          "tap-frontend",
+          "fleet-midi-cycle"
+        ]
+      },
+      {
+        "from": "quilt-in-git",
+        "to": "quilt-adjudication",
+        "status": "VERIFIED",
+        "rank": 4,
+        "p@1": 0,
+        "rr": 0.25,
+        "top1": "quilt-in-git",
+        "top3": [
+          "quilt-in-git",
+          "quilt-core-os",
+          "quilt-subleq"
+        ]
+      }
+    ],
+    "secondary_descriptive_POSTHOC_not_the_gate": {
+      "note": "Computed after the gate was evaluated. Src excluded from candidates (src always ranks #1 on its own query text). Descriptive only - does NOT change the verdict.",
+      "all_24_src_excluded": {
+        "n": 24,
+        "precision@1": 0.0833,
+        "mrr": 0.1711
+      },
+      "verified_18_src_excluded": {
+        "n": 18,
+        "precision@1": 0.1111,
+        "mrr": 0.2222
+      },
+      "distinct_pairs_22_src_excluded": {
+        "n": 22,
+        "precision@1": 0.0909,
+        "mrr": 0.1864
+      }
+    },
+    "observation": "Top-1 is the edge's own source repo for 24/24 edges (query text derives from the src card, which is in the index). dst ranks range: min 2, max 3252."
+  },
+  "probes": {
+    "n": 10,
+    "precision@1": 1.0,
+    "mrr": 1.0,
+    "rows": [
+      {
+        "query": "book a hash-chained deterministic receipt for the duke-lab instrument booking layer",
+        "target": "jev-receipts",
+        "rank": 1,
+        "p@1": 1,
+        "top3": [
+          "jev-receipts",
+          "delta-shape",
+          "duke-lab"
+        ]
+      },
+      {
+        "query": "schedule recurring fleet health checks and batch processing as a cron job scheduler",
+        "target": "fleet-cron",
+        "rank": 1,
+        "p@1": 1,
+        "top3": [
+          "fleet-cron",
+          "fleet-metrics-cron",
+          "fleet-auto-ingest"
+        ]
+      },
+      {
+        "query": "marketplace for sharing and discovering fleet skills and equipment",
+        "target": "skill-exchange",
+        "rank": 1,
+        "p@1": 1,
+        "top3": [
+          "skill-exchange",
+          "skill-cartridge-registry",
+          "fleet-wiki"
+        ]
+      },
+      {
+        "query": "precision drift analyzer for constraint systems - which boat sinks first",
+        "target": "drift-analyzer",
+        "rank": 1,
+        "p@1": 1,
+        "top3": [
+          "drift-analyzer",
+          "fleet-orchestrator",
+          "proof-physics-sim"
+        ]
+      },
+      {
+        "query": "record the disputes that merges usually erase, adjudication query lane",
+        "target": "quilt-adjudication",
+        "rank": 1,
+        "p@1": 1,
+        "top3": [
+          "quilt-adjudication",
+          "plato-tile-merge",
+          "diff-merge"
+        ]
+      },
+      {
+        "query": "cryptographic append-only witness log ledger for canon events",
+        "target": "quilt-canon-witness",
+        "rank": 1,
+        "p@1": 1,
+        "top3": [
+          "quilt-canon-witness",
+          "quilt-tracker",
+          "quilt-canon-fed"
+        ]
+      },
+      {
+        "query": "pareto tournament selection multi-objective optimization for agent population dynamics",
+        "target": "pareto-tournament",
+        "rank": 1,
+        "p@1": 1,
+        "top3": [
+          "pareto-tournament",
+          "evolutionary-strategy",
+          "ternary-pareto"
+        ]
+      },
+      {
+        "query": "ledger where trust relocates blindness, novel mechanism lab",
+        "target": "doubt-ledger",
+        "rank": 1,
+        "p@1": 1,
+        "top3": [
+          "doubt-ledger",
+          "oxide-journal",
+          "plato-trust-beacon"
+        ]
+      },
+      {
+        "query": "mine skill patterns from Mavis memory and propose new skills to build",
+        "target": "mavis-skill-miner",
+        "rank": 1,
+        "p@1": 1,
+        "top3": [
+          "mavis-skill-miner",
+          "madlibs-gan-turbovec",
+          "mavis-self-review"
+        ]
+      },
+      {
+        "query": "fleet skill self-evolution from error patterns to proposals to commits",
+        "target": "skill-evolver",
+        "rank": 1,
+        "p@1": 1,
+        "top3": [
+          "skill-evolver",
+          "fleet-experiments",
+          "swarm-intuition"
+        ]
+      }
+    ]
+  },
+  "verdict": "NOT_VIABLE"
+}
