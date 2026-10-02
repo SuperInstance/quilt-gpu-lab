@@ -1,0 +1,4 @@
+analysis sockets done 490.8s
+VERDICT: NO-REPAIR-PASSES
+Instability IS the finding: I/O determinacy is DISTRIBUTION-RELATIVE, not a state property of the socket. The static-I/O construct of COG-THESIS 3/4.2 does not exist as a socket-level scalar at D2 scope (estimator intrinsic spread 0.039, data spreads up to 0.924); D2-V1's H1 FAIL is therefore evidence against the MEASURE, not against the thesis.
+wrote h5_repair_result.json  wall 491.0s
