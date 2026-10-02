@@ -1,1 +1,0 @@
-{"model": "ibm-granite/granite-4.2-30b", "finish_reason": "stop", "content_chars": 433, "reasoning_chars": 10368, "usage": {"prompt_tokens": 396, "total_tokens": 6213, "completion_tokens": 5817, "estimated_cost": 0.00381945, "prompt_tokens_details": {"cached_tokens": 208, "cache_write_tokens": null}}}

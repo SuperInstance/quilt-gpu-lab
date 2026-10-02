@@ -1,1 +1,0 @@
-{"model": "nvidia/NVIDIA-Nemotron-3.5-Lightning", "finish_reason": "stop", "usage": {"prompt_tokens": 2324, "total_tokens": 4172, "completion_tokens": 1848, "estimated_cost": 0.00043511999999999994, "prompt_tokens_details": {"cached_tokens": 0, "cache_write_tokens": null}}}

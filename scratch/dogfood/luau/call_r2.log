@@ -1,1 +1,0 @@
-{"model": "inclusionAI/Ling-3.0-flash", "finish_reason": "length", "usage": {"prompt_tokens": 862, "total_tokens": 6862, "completion_tokens": 6000, "estimated_cost": 0.00113172, "prompt_tokens_details": null, "reasoning_tokens": 5461}}
