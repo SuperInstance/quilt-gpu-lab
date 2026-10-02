@@ -1,0 +1,18 @@
+{
+  "breach": null,
+  "g7": {
+    "gpu_seconds": 741.245,
+    "joules": 42350.0132,
+    "mean_power_w": 46.28,
+    "power_samples": 175,
+    "util_samples": 175,
+    "wall_seconds": 915.176,
+    "watt_hours": 11.763892555555556,
+    "windows": 1
+  },
+  "max_temp_c": 78,
+  "min_free_vram_mib": 1475,
+  "samples": 176,
+  "task_id": "COMP1-federation2",
+  "timed_out": false
+}

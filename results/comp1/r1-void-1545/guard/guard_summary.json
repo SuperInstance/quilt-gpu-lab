@@ -1,0 +1,18 @@
+{
+  "breach": "free VRAM 1018 MiB < 1024",
+  "g7": {
+    "gpu_seconds": 270.977,
+    "joules": 14894.6853,
+    "mean_power_w": 47.9,
+    "power_samples": 59,
+    "util_samples": 59,
+    "wall_seconds": 310.931,
+    "watt_hours": 4.137412583333333,
+    "windows": 1
+  },
+  "max_temp_c": 77,
+  "min_free_vram_mib": 1018,
+  "samples": 60,
+  "task_id": "COMP1-federation2",
+  "timed_out": false
+}

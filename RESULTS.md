@@ -4868,3 +4868,43 @@ Lane D2-V1b resumed the mid-killed D2-V1 lane. **Scripts unchanged — no defect
 - Energy booked: **0.586 Wh valid** (PASS receipt) + 4.397 Wh VOID-run cost (not a measurement). Total lane spend ~4.98 Wh; measurement-of-record 0.586 Wh.
 
 **Artifacts (append-only):** `results/d2_v1/{d2_v1_guard_run3.out, d2_v1_analysis_run3.out, d2_v1_result.json, d2_v1_twins_result.json (54/54, PASS), guard/g7-wr-d2-v1-twins-1790898417.json, guard/ledger.jsonl (both rows)}` + preserved `*_PRIOR-VOID-1790897485.*` and `d2_v1_wdet_canary.json`. NOT COMMITTED.
+
+## COMP1 — federation v2: blurred K=4, capacity-starved, item-level bootstrap (lane COMPOSITE-1, r2 re-fire)
+- ran: 2026-10-01 16:0x AKDT (pre-reg proposals/runs/COMP1-federation2.md, frozen 15:21 + A1 15:29 + r2 addendum 15:51; r1 fired 15:31, killed 15:45 by guard breach free VRAM 1018<1024 MiB from resident 7B seat drift — VOID receipt g7-wr-comp1-federation2-1790897485, evidence preserved results/comp1/r1-void-1545/, no arm results lost)
+- verdict: **INCONCLUSIVE** (1 of 5 gates PASS — G1R-negation; conservative code lattice governs; prereg prose allowed SPLIT_KEEP_ naming for partials, frozen code prints INCONCLUSIVE — discrepancy disclosed, conservative branch stands)
+- result: ```json
+{
+  "experiment": "COMP1 federation v2 (blurred K=4, starved cells, bootstrap CIs)",
+  "corpus": {"seed": 2718, "n_train": 1810, "n_heldout": 590, "blur_beta": 0.35,
+             "overlay_rate": 0.3412, "per_kind_heldout": {"semantic": 141, "counting-address": 139,
+             "negation-scope": 148, "agent-role": 162}, "canon_frac": 0.4831, "validity_ok": true},
+  "router_audit": {"train_acc": 0.7514, "heldout_acc": 0.7356,
+                   "mean_top1_top2_corr_gap_heldout": 0.0412},
+  "router_in_band": true,
+  "chance_majority_full": 0.5169,
+  "boards_seedmean": {"JOINT": 0.5469, "SINGLE": 0.5503, "FED": 0.5605,
+                      "FED_LA": 0.5621, "JOINT_LA": 0.5475},
+  "seed_std_full": {"JOINT": 0.0068, "SINGLE": 0.0068, "FED": 0.0056,
+                    "FED_LA": 0.0032, "JOINT_LA": 0.0086},
+  "gates": {
+    "G1_FED-SINGLE_full":      {"diff": 0.0102,  "ci95": [-0.0339, 0.0548], "verdict": "FAIL"},
+    "G1R_FED-SINGLE_counting": {"diff": 0.0024,  "ci95": [-0.0984, 0.1031], "verdict": "FAIL"},
+    "G1R_FED-SINGLE_negation": {"diff": 0.1261,  "ci95": [ 0.0338, 0.2185], "verdict": "PASS"},
+    "G2_FEDLA-FED_full":       {"diff": 0.0017,  "ci95": [-0.0169, 0.0209], "verdict": "FAIL"},
+    "G3_FED-JOINT_full_sec":   {"diff": 0.0136,  "ci95": [-0.0305, 0.0582], "verdict": "FAIL"}},
+  "regime_texture": {
+    "negation": {"SINGLE": 0.4279, "JOINT": 0.4234, "FED": 0.5541, "FED_LA": 0.5631,
+                 "note": "monoliths BELOW their 0.50 regime chance; FED-JOINT +0.1306 ci [0.0405, 0.2230] sig."},
+    "semantic":  {"SINGLE": 0.6407, "JOINT": 0.6383, "FED": 0.5816, "FED-SINGLE -0.0591 ci [-0.1395, 0.0260]"},
+    "counting":  {"all ~0.57, no separation"},
+    "agent-role":{"all ~0.55-0.57, no separation"}},
+  "la_v2": {"triggers/seed": "109-121 of 590", "flips": "97-104",
+            "premium_full": 0.0017, "g2c_control_gap": 0.0011, "CONTROL_OK"},
+  "ramp_receipt": {"ramp_s": 0.642, "synced": true},
+  "g7_receipt": "g7-wr-comp1-federation2-1790899575 (valid, 11.76 Wh, 741.2 gpu-s, max 78 C, min-free 1475 MiB)",
+  "wall_s": 910.7, "seeds_complete": 3, "verdict": "INCONCLUSIVE"
+}
+```
+- note: the re-run of COMP0's federation thesis where it could be judged. **The measurement fix WORKED**: 590-item held-out + item-level paired bootstrap (B=2000) — no arm hit std==0 (all 0.003-0.009), the degeneracy law never fired, CIs are the decision mechanism as designed. Router desaturated exactly to spec: held-out 0.7356, top1-top2 gap 0.041 (COMP0: 1.0/0.49) — routing finally faced ambiguity and was merely decent. Findings at matched params: (1) **federation's win is regime-localized, not full-board** — FED>SINGLE only on negation-scope (+0.126, CI excludes 0; also FED>JOINT +0.131 CI [0.041,0.223]) where BOTH monolith arms sit BELOW regime chance (0.423/0.428 vs 0.50): the dedicated cell fixes a structural blindness (polarity is word-order; BoW cannot see it; regime-exclusive training lets the tiny cell key on the local cue anyway). Elsewhere FED buys nothing (semantic -0.059 direction, counting +0.002). (2) **LA-v2's different-featurization twin bought ~nothing** (+0.0017, CI spans 0; 109-121 triggers/seed): a char-trigram second view on the same corpus shares the blindness — independent reach requires the second sensor to see what the first misses, not merely differ. D1b doctrine: refined, not refuted — COMP0's LA win was on a saturated corpus (cheap wins); here, mid-difficulty, the escape hatch has nothing to escape TO. (3) **Floor effect is the new compression**: all arms 0.547-0.562 on a 0.517 chance board — corpus harder than intended (A1 blur + BoW D=64); full-board margins have little room to move. COMP0's disease (ceiling) inverted into a floor. (4) G2C control: LA premium 0.0017 in-federation vs 0.0006 in-joint — CONTROL_OK but both ~0; capacity premium unexercised either way.
+- COMPOSITE-2 hooks: (a) make VIEW the manipulated variable — heterogeneous-sensor cells (word-BoW + char-ngram + position/polarity-aware) as primary arms, so the router picks sensor-not-just-expert; the negation result says that's where federation value lives; (b) retune corpus difficulty to mid-band (0.65-0.85 boards) so full-board gates have room; (c) price the LA twin at primary-cell capacity (not 8-hidden) before retiring the look-again doctrine.
+- **Artifacts:** results/comp1/{comp1_results.json, corpus.jsonl (determinism-checked == r1 artifact), guard/g7-wr-comp1-federation2-1790899575.json + guard_summary.json + ledger.jsonl} + r1 evidence results/comp1/r1-void-1545/{corpus.jsonl, guard/}. NOT COMMITTED.
