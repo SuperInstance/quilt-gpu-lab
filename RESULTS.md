@@ -5395,3 +5395,22 @@ Lane D2-V1b resumed the mid-killed D2-V1 lane. **Scripts unchanged — no defect
   memory of the booking sentence.
 - Verdict: KEEP. GATE-MARGIN closes. No booked verdict threatened; instance count of the false-pass
   class in our tree: 0.
+
+## SCOUT-23 — fleet push sweep (day-conductor A-slot, 2026-10-02 10:4x AKDT)
+- CPU-only, 0 GPU-Wh, read-only gh sweep. Full text: proposals/runs/SCOUT-23-fleet-push-2026-10-02-1840Z.md.
+- **HEADLINE — CONTRADICT-CLASS (mechanism #3, fail-closed family): canons e7b3d79 1617Z — "a guard
+  that fires and a reporter that forgives it"** (quilt-adjudication): `on()` guard aborts correctly
+  (env-fragile fixture: no `main` w/o init.defaultBranch), but `verdict_of()` attributes by pin-id
+  prefix while the abort message is prose ⇒ abort unattributed, default PASS, exit gate counts pins
+  not checks; 26/59 checks (44%) never ran, `ALL PASS`, exit 0. Their guard-the-guard pin (P11)
+  tests only synthetic ids. GATE-MARGIN (this morning) audited gate arithmetic + vacuity — NOT
+  abort/skip fall-through. Class threat to all booked gate verdicts ⇒ spawned **REPORTER-DEFAULT**
+  (must run before the next gate-bearing booking).
+- RC-4 priority RAISED AGAIN: 3rd independent reseal-forgery instance (jev-receipts, canons 1017Z).
+- STEAL/READ: fleet-triage JEV-CONTRACT (7ba6600, verified-live primitive contracts) folded into
+  QC-JEV as read-first citation ⇒ spawned JEVC-1 (low). Two-notary dual-anchor (organ-workers
+  a794c18) = RC-4 prior art. WATCH: warp #1 (new receipts-platform PR). CORROBORATE: jev-quilt
+  54th wipe, 9 consecutive bedrock-clean.
+- GPU lane: untracked live-lane artifacts present (rest_em_full*, d12k2/d12l + a rebootkill log) —
+  NOT touched, NOT booked; nothing GPU fired this slice. No other CONTRADICT; no booked verdict
+  retracted this sweep.

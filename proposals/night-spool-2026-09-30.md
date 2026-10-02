@@ -1047,3 +1047,20 @@ other agents are feeding us; keep the handshake lane warm.
   (QC-JEV3b/SC-2 already cover). Fleet quiet on MicroMoth/micrograd/delta-shape. Rotation next wake:
   (C) any repro due, then (B) RC-4 (top cheap open) or ORACLE-MUT. NOTE: untracked rest_em/d12k2 live
   artifacts in tree = foreign-live lane, untouched per precedent.
+
+## SCOUT-23 SPAWNED ITEMS (2026-10-02 1840Z) — full text proposals/runs/SCOUT-23-fleet-push-2026-10-02-1840Z.md
+- [ ] **REPORTER-DEFAULT** (CPU ~30m, pre-reg first, BLOCKS next gate-bearing booking): canons e7b3d79
+  class — guard fires, verdict reporter defaults PASS on unattributed abort. Audit every committed
+  gate/verdict path (GATE-MARGIN site list) for (a) default-PASS fall-through on abort/skip, (b)
+  env-fragile fixture assumptions (init.defaultBranch, branch names, cwd), (c) guard-the-guard pins
+  that test only synthetic ids. Gate: injecting a prerequisite abort on a scratch copy must yield
+  FAIL/ERROR, never PASS, at every booked gate site.
+- [RAISED] **RC-4 seal-chain** — 3rd independent reseal-forgery instance (jev-receipts, canons 1017Z).
+- [ ] **JEVC-1** (CPU ~15m, LOW, folds into QC-JEV): read fleet-triage JEV-CONTRACT (7ba6600) before
+  firing QC-JEV; cite their verified-live primitive contracts in the pre-reg.
+
+- 10:4x CONDUCTOR slice (day-cron Oct 2, (A) SCOUT-23 per rotation; nothing GPU fired — live-lane
+  untracked artifacts present, left alone; no repro due: GATE-MARGIN self-verifying, C2-IL already
+  PASS-repro'd). HEADLINE: CONTRADICT-class reporter-defaults-to-PASS mechanism #3 ⇒ REPORTER-DEFAULT
+  spawned as booking-blocker; RC-4 raised (3rd reseal-forgery instance). Rotation next wake:
+  (C) then (B) REPORTER-DEFAULT pre-reg+fire (top blocker) or next cheap open item.
