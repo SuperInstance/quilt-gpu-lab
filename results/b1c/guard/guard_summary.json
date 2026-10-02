@@ -1,0 +1,18 @@
+{
+  "breach": null,
+  "g7": {
+    "gpu_seconds": 979.822,
+    "joules": 57999.1567,
+    "mean_power_w": 45.57,
+    "power_samples": 244,
+    "util_samples": 244,
+    "wall_seconds": 1272.847,
+    "watt_hours": 16.110876861111112,
+    "windows": 1
+  },
+  "max_temp_c": 79,
+  "min_free_vram_mib": 1475,
+  "samples": 245,
+  "task_id": "B1C-value-fidelity",
+  "timed_out": false
+}

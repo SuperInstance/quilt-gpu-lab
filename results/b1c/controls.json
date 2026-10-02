@@ -1,0 +1,107 @@
+{
+  "C1_law_equivalence": {
+    "ok": true,
+    "n": 4000,
+    "max_abs_diff": 0,
+    "n_diff": 0
+  },
+  "C1_pass": true,
+  "C2_js_vs_torch_port": [
+    {
+      "arm": "relu_ref",
+      "side": "left",
+      "n": 25000,
+      "max_abs_diff_js_vs_torch": 2.3869795029440866e-15,
+      "max_abs_diff_js_vs_torch_f32": 1.289554674266391e-06,
+      "max_abs_js": 0.8651629658828667
+    },
+    {
+      "arm": "relu_ref",
+      "side": "right",
+      "n": 25000,
+      "max_abs_diff_js_vs_torch": 1.3322676295501878e-15,
+      "max_abs_diff_js_vs_torch_f32": 6.897567073060884e-07,
+      "max_abs_js": 0.7230774238719866
+    },
+    {
+      "arm": "reweight",
+      "side": "left",
+      "n": 25000,
+      "max_abs_diff_js_vs_torch": 2.1094237467877974e-15,
+      "max_abs_diff_js_vs_torch_f32": 1.1855527379811548e-06,
+      "max_abs_js": 0.8897151130210565
+    },
+    {
+      "arm": "reweight",
+      "side": "right",
+      "n": 25000,
+      "max_abs_diff_js_vs_torch": 1.5265566588595902e-15,
+      "max_abs_diff_js_vs_torch_f32": 8.492837206275361e-07,
+      "max_abs_js": 0.74587704140193
+    },
+    {
+      "arm": "cap",
+      "side": "left",
+      "n": 25000,
+      "max_abs_diff_js_vs_torch": 3.608224830031759e-15,
+      "max_abs_diff_js_vs_torch_f32": 3.1491478135192708e-06,
+      "max_abs_js": 0.8581191265814184
+    },
+    {
+      "arm": "cap",
+      "side": "right",
+      "n": 25000,
+      "max_abs_diff_js_vs_torch": 4.107825191113079e-15,
+      "max_abs_diff_js_vs_torch_f32": 3.4212299402369695e-06,
+      "max_abs_js": 0.7086825323154564
+    },
+    {
+      "arm": "binned",
+      "side": "left",
+      "n": 25000,
+      "max_abs_diff_js_vs_torch": 0.0,
+      "max_abs_diff_js_vs_torch_f32": 0.0,
+      "max_abs_js": 0.8480769395828247
+    },
+    {
+      "arm": "binned",
+      "side": "right",
+      "n": 25000,
+      "max_abs_diff_js_vs_torch": 0.0,
+      "max_abs_diff_js_vs_torch_f32": 0.0,
+      "max_abs_js": 0.7067307829856873
+    }
+  ],
+  "C2_tol": 1e-06,
+  "C2_pass": true,
+  "C4_frame_cross_check": {
+    "vs_runB": {
+      "ok": true,
+      "shape_match": true,
+      "max_abs_dX": 0.0,
+      "max_abs_dY": 0.0,
+      "max_abs_dMETA": 0.0
+    },
+    "vs_b1": {
+      "ok": true,
+      "shape_match": true,
+      "max_abs_dX": 0.0,
+      "max_abs_dY": 0.0,
+      "max_abs_dMETA": 0.0
+    }
+  },
+  "C5_ref_reproduction": {
+    "ok": true,
+    "max_abs_delta": 0.0,
+    "per_cell": {
+      "deadzone@0.01": 0.0,
+      "deadzone@0.05": 0.0,
+      "ramp@0.01": 0.0,
+      "ramp@0.05": 0.0,
+      "saturation@0.01": 0.0,
+      "saturation@0.05": 0.0
+    },
+    "tol": 0.05,
+    "ref_budget_ep": 40
+  }
+}
