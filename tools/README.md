@@ -110,3 +110,14 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   `python tools/corpus_filter.py --dir results --out corpus.json [--min-rows 40] [--selftest]`
   TEST receipt 2026-10-01: selftest OK (1 kept / 3 excluded incl. NaN + KILL) + live run
   on results/ — 1243 rows kept, 60 files excluded, corpus JSON written.
+
+- **ci-gate** — `tools/ci_gate.py` — paired bootstrap CI gate for KEEP/KILL
+  calls (pattern lifted from B1H-CODA's tail gate): two paired score vectors ->
+  bootstrap mean-delta CI, PASS only if CI clears 0 in the positive direction
+  (a fully-negative CI books FAIL, not PASS). Fail-loud FAIL-INPUT on length
+  mismatch / n<min_n / non-finite scores. Stdlib-only (no numpy), seeded,
+  deterministic. Exit codes: 0=PASS, 1=FAIL, 2=FAIL-INPUT.
+  `python tools/ci_gate.py --base 0.61,0.55,0.70 --treat 0.65,0.53,0.82 [--alpha 0.05 --n 5000 --seed 7]` (or `--pairs-file scores.json`, `--selftest`)
+  TEST receipt 2026-10-01: selftest OK (up-shift PASS / down-shift FAIL — caught
+  and fixed the signed-CI bug live: constant negative delta must FAIL, not PASS)
+  + 2x5-question smoke: mean_delta 0.05, CI [0.008, 0.092] excl 0 -> PASS rc=0.
