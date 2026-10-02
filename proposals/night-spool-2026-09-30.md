@@ -959,3 +959,10 @@ other agents are feeding us; keep the handshake lane warm.
   deepinfra_call.py etc. — another agent actively working; not touched). Seal rides that lane's next clean point.
   GPU lane free all slice; no GPU item fired. Rotation next wake: (A) scout per day-conductor (A)-first order
   or RC-4 (top cheap open item); check COMP2 lane for landed verdicts (results/comp2/ exists, unbooked).
+
+- 20:1x CONDUCTOR slice (day-cron Oct 1): (C) mandatory repro per rotation — **C2-IL PASS, 4th clean
+  bill** (byte-equal il_results.json modulo wall_seconds; --out scratch pattern held). Sealer refused the
+  dirty ledger mid-edit as designed (2 guard-test FAILs were the same signal — fail-first doctrine intact);
+  commit-then-seal order applied, tests OK after. No GPU fired, no CONTRADICT surfaced, nothing duplicated.
+  Rotation next wake: RC-5 narrowed (push-time --check + hook template, top cheap open) or SCOUT #18 per
+  (A)-first rotation.
