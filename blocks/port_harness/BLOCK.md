@@ -94,7 +94,7 @@ book its max_abs_diff next to the port, as b1 booked controls.json). The
 paired-row generator feeds both runners; the comparator's report and the frozen
 gate slot into board_disjoint_cv-style frozen gates (bar fixed before the run,
 fail loud on missing bar); the run metadata books runner digests the way the
-G7 watt receipt (via `g7_wrapper`) books energy — receipt-or-VOID discipline
+G7 watt receipt (via `g7_watt_wrapper`) books energy — receipt-or-VOID discipline
 applies to anything downstream that consumes the port. Contracts the consumer
 must honor: pass identical paired rows to both runners; never realign by list
 order; freeze `tol` before firing; treat a std==0 multi-seed port stat as

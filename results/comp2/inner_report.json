@@ -1,0 +1,863 @@
+{
+  "phase": "inner",
+  "device": "cuda",
+  "torch": "2.14.0+cu126",
+  "corpus": "/home/eileen/projects/quilt-gpu-lab/results/comp2_corpus/corpus.jsonl",
+  "corpus_sha256": "e87c7e3c32e8fcde1bd85ee484b318e707069dc910310e4459eea0503e5a2959",
+  "n_train": 18379,
+  "n_heldout": 6221,
+  "regimes": [
+    "semantic",
+    "counting-address",
+    "negation-scope",
+    "agent-role"
+  ],
+  "slice_sizes": {
+    "semantic": 4571,
+    "counting-address": 4563,
+    "negation-scope": 4627,
+    "agent-role": 4618
+  },
+  "sensors": [
+    "S1",
+    "S2",
+    "S3",
+    "S4"
+  ],
+  "match_table": {
+    "semantic": "S2",
+    "counting-address": "S1",
+    "negation-scope": "S4",
+    "agent-role": "S3"
+  },
+  "epochs_all": 30,
+  "epochs_slice": 30,
+  "batch": 16,
+  "lr": 0.001,
+  "seeds": [
+    2718,
+    2719,
+    2720
+  ],
+  "n_banks": 45,
+  "total_updates": 14886990,
+  "banks": [
+    {
+      "hid": 64,
+      "epochs": 30,
+      "updates": 551370,
+      "loss_first": 0.6905,
+      "loss_last": 0.56492,
+      "loss_decreased": true,
+      "seed": 2718,
+      "bank": "JOINT",
+      "sensor": "S1",
+      "kind": "all",
+      "regime": null,
+      "n_items": 18379
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 551370,
+      "loss_first": 0.69123,
+      "loss_last": 0.56275,
+      "loss_decreased": true,
+      "seed": 2718,
+      "bank": "SINGLE",
+      "sensor": "S1",
+      "kind": "all",
+      "regime": null,
+      "n_items": 18379
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 551370,
+      "loss_first": 0.68387,
+      "loss_last": 0.52064,
+      "loss_decreased": true,
+      "seed": 2718,
+      "bank": "S4MONO",
+      "sensor": "S4",
+      "kind": "all",
+      "regime": null,
+      "n_items": 18379
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 137130,
+      "loss_first": 0.69202,
+      "loss_last": 0.40036,
+      "loss_decreased": true,
+      "seed": 2718,
+      "bank": "FEDWORD:semantic",
+      "sensor": "S1",
+      "kind": "slice",
+      "regime": "semantic",
+      "n_items": 4571
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 136890,
+      "loss_first": 0.69272,
+      "loss_last": 0.56427,
+      "loss_decreased": true,
+      "seed": 2718,
+      "bank": "FEDWORD:counting-address",
+      "sensor": "S1",
+      "kind": "slice",
+      "regime": "counting-address",
+      "n_items": 4563
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 138810,
+      "loss_first": 0.69373,
+      "loss_last": 0.66966,
+      "loss_decreased": true,
+      "seed": 2718,
+      "bank": "FEDWORD:negation-scope",
+      "sensor": "S1",
+      "kind": "slice",
+      "regime": "negation-scope",
+      "n_items": 4627
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 138540,
+      "loss_first": 0.69343,
+      "loss_last": 0.57331,
+      "loss_decreased": true,
+      "seed": 2718,
+      "bank": "FEDWORD:agent-role",
+      "sensor": "S1",
+      "kind": "slice",
+      "regime": "agent-role",
+      "n_items": 4618
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 551370,
+      "loss_first": 0.69123,
+      "loss_last": 0.56275,
+      "loss_decreased": true,
+      "seed": 2718,
+      "bank": "HETERO:S1",
+      "sensor": "S1",
+      "kind": "all",
+      "regime": null,
+      "n_items": 18379
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 551370,
+      "loss_first": 0.69241,
+      "loss_last": 0.59421,
+      "loss_decreased": true,
+      "seed": 2718,
+      "bank": "HETERO:S2",
+      "sensor": "S2",
+      "kind": "all",
+      "regime": null,
+      "n_items": 18379
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 551370,
+      "loss_first": 0.69235,
+      "loss_last": 0.64248,
+      "loss_decreased": true,
+      "seed": 2718,
+      "bank": "HETERO:S3",
+      "sensor": "S3",
+      "kind": "all",
+      "regime": null,
+      "n_items": 18379
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 551370,
+      "loss_first": 0.68387,
+      "loss_last": 0.52064,
+      "loss_decreased": true,
+      "seed": 2718,
+      "bank": "HETERO:S4",
+      "sensor": "S4",
+      "kind": "all",
+      "regime": null,
+      "n_items": 18379
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 137130,
+      "loss_first": 0.69311,
+      "loss_last": 0.62196,
+      "loss_decreased": true,
+      "seed": 2718,
+      "bank": "HEMATCH:semantic",
+      "sensor": "S2",
+      "kind": "slice",
+      "regime": "semantic",
+      "n_items": 4571
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 136890,
+      "loss_first": 0.69272,
+      "loss_last": 0.56427,
+      "loss_decreased": true,
+      "seed": 2718,
+      "bank": "HEMATCH:counting-address",
+      "sensor": "S1",
+      "kind": "slice",
+      "regime": "counting-address",
+      "n_items": 4563
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 138810,
+      "loss_first": 0.68399,
+      "loss_last": 0.13097,
+      "loss_decreased": true,
+      "seed": 2718,
+      "bank": "HEMATCH:negation-scope",
+      "sensor": "S4",
+      "kind": "slice",
+      "regime": "negation-scope",
+      "n_items": 4627
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 138540,
+      "loss_first": 0.69422,
+      "loss_last": 0.67604,
+      "loss_decreased": true,
+      "seed": 2718,
+      "bank": "HEMATCH:agent-role",
+      "sensor": "S3",
+      "kind": "slice",
+      "regime": "agent-role",
+      "n_items": 4618
+    },
+    {
+      "hid": 64,
+      "epochs": 30,
+      "updates": 551370,
+      "loss_first": 0.68994,
+      "loss_last": 0.56353,
+      "loss_decreased": true,
+      "seed": 2719,
+      "bank": "JOINT",
+      "sensor": "S1",
+      "kind": "all",
+      "regime": null,
+      "n_items": 18379
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 551370,
+      "loss_first": 0.69304,
+      "loss_last": 0.56217,
+      "loss_decreased": true,
+      "seed": 2719,
+      "bank": "SINGLE",
+      "sensor": "S1",
+      "kind": "all",
+      "regime": null,
+      "n_items": 18379
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 551370,
+      "loss_first": 0.68381,
+      "loss_last": 0.52029,
+      "loss_decreased": true,
+      "seed": 2719,
+      "bank": "S4MONO",
+      "sensor": "S4",
+      "kind": "all",
+      "regime": null,
+      "n_items": 18379
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 137130,
+      "loss_first": 0.69439,
+      "loss_last": 0.38889,
+      "loss_decreased": true,
+      "seed": 2719,
+      "bank": "FEDWORD:semantic",
+      "sensor": "S1",
+      "kind": "slice",
+      "regime": "semantic",
+      "n_items": 4571
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 136890,
+      "loss_first": 0.69443,
+      "loss_last": 0.56201,
+      "loss_decreased": true,
+      "seed": 2719,
+      "bank": "FEDWORD:counting-address",
+      "sensor": "S1",
+      "kind": "slice",
+      "regime": "counting-address",
+      "n_items": 4563
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 138810,
+      "loss_first": 0.6943,
+      "loss_last": 0.66839,
+      "loss_decreased": true,
+      "seed": 2719,
+      "bank": "FEDWORD:negation-scope",
+      "sensor": "S1",
+      "kind": "slice",
+      "regime": "negation-scope",
+      "n_items": 4627
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 138540,
+      "loss_first": 0.69443,
+      "loss_last": 0.56397,
+      "loss_decreased": true,
+      "seed": 2719,
+      "bank": "FEDWORD:agent-role",
+      "sensor": "S1",
+      "kind": "slice",
+      "regime": "agent-role",
+      "n_items": 4618
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 551370,
+      "loss_first": 0.69304,
+      "loss_last": 0.56217,
+      "loss_decreased": true,
+      "seed": 2719,
+      "bank": "HETERO:S1",
+      "sensor": "S1",
+      "kind": "all",
+      "regime": null,
+      "n_items": 18379
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 551370,
+      "loss_first": 0.69362,
+      "loss_last": 0.59483,
+      "loss_decreased": true,
+      "seed": 2719,
+      "bank": "HETERO:S2",
+      "sensor": "S2",
+      "kind": "all",
+      "regime": null,
+      "n_items": 18379
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 551370,
+      "loss_first": 0.69374,
+      "loss_last": 0.64244,
+      "loss_decreased": true,
+      "seed": 2719,
+      "bank": "HETERO:S3",
+      "sensor": "S3",
+      "kind": "all",
+      "regime": null,
+      "n_items": 18379
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 551370,
+      "loss_first": 0.68381,
+      "loss_last": 0.52029,
+      "loss_decreased": true,
+      "seed": 2719,
+      "bank": "HETERO:S4",
+      "sensor": "S4",
+      "kind": "all",
+      "regime": null,
+      "n_items": 18379
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 137130,
+      "loss_first": 0.6944,
+      "loss_last": 0.60872,
+      "loss_decreased": true,
+      "seed": 2719,
+      "bank": "HEMATCH:semantic",
+      "sensor": "S2",
+      "kind": "slice",
+      "regime": "semantic",
+      "n_items": 4571
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 136890,
+      "loss_first": 0.69443,
+      "loss_last": 0.56201,
+      "loss_decreased": true,
+      "seed": 2719,
+      "bank": "HEMATCH:counting-address",
+      "sensor": "S1",
+      "kind": "slice",
+      "regime": "counting-address",
+      "n_items": 4563
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 138810,
+      "loss_first": 0.68032,
+      "loss_last": 0.13095,
+      "loss_decreased": true,
+      "seed": 2719,
+      "bank": "HEMATCH:negation-scope",
+      "sensor": "S4",
+      "kind": "slice",
+      "regime": "negation-scope",
+      "n_items": 4627
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 138540,
+      "loss_first": 0.69421,
+      "loss_last": 0.67565,
+      "loss_decreased": true,
+      "seed": 2719,
+      "bank": "HEMATCH:agent-role",
+      "sensor": "S3",
+      "kind": "slice",
+      "regime": "agent-role",
+      "n_items": 4618
+    },
+    {
+      "hid": 64,
+      "epochs": 30,
+      "updates": 551370,
+      "loss_first": 0.68987,
+      "loss_last": 0.56391,
+      "loss_decreased": true,
+      "seed": 2720,
+      "bank": "JOINT",
+      "sensor": "S1",
+      "kind": "all",
+      "regime": null,
+      "n_items": 18379
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 551370,
+      "loss_first": 0.69131,
+      "loss_last": 0.56185,
+      "loss_decreased": true,
+      "seed": 2720,
+      "bank": "SINGLE",
+      "sensor": "S1",
+      "kind": "all",
+      "regime": null,
+      "n_items": 18379
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 551370,
+      "loss_first": 0.68151,
+      "loss_last": 0.52071,
+      "loss_decreased": true,
+      "seed": 2720,
+      "bank": "S4MONO",
+      "sensor": "S4",
+      "kind": "all",
+      "regime": null,
+      "n_items": 18379
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 137130,
+      "loss_first": 0.69221,
+      "loss_last": 0.39566,
+      "loss_decreased": true,
+      "seed": 2720,
+      "bank": "FEDWORD:semantic",
+      "sensor": "S1",
+      "kind": "slice",
+      "regime": "semantic",
+      "n_items": 4571
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 136890,
+      "loss_first": 0.69343,
+      "loss_last": 0.56342,
+      "loss_decreased": true,
+      "seed": 2720,
+      "bank": "FEDWORD:counting-address",
+      "sensor": "S1",
+      "kind": "slice",
+      "regime": "counting-address",
+      "n_items": 4563
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 138810,
+      "loss_first": 0.69301,
+      "loss_last": 0.6722,
+      "loss_decreased": true,
+      "seed": 2720,
+      "bank": "FEDWORD:negation-scope",
+      "sensor": "S1",
+      "kind": "slice",
+      "regime": "negation-scope",
+      "n_items": 4627
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 138540,
+      "loss_first": 0.69292,
+      "loss_last": 0.57252,
+      "loss_decreased": true,
+      "seed": 2720,
+      "bank": "FEDWORD:agent-role",
+      "sensor": "S1",
+      "kind": "slice",
+      "regime": "agent-role",
+      "n_items": 4618
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 551370,
+      "loss_first": 0.69131,
+      "loss_last": 0.56185,
+      "loss_decreased": true,
+      "seed": 2720,
+      "bank": "HETERO:S1",
+      "sensor": "S1",
+      "kind": "all",
+      "regime": null,
+      "n_items": 18379
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 551370,
+      "loss_first": 0.69235,
+      "loss_last": 0.59493,
+      "loss_decreased": true,
+      "seed": 2720,
+      "bank": "HETERO:S2",
+      "sensor": "S2",
+      "kind": "all",
+      "regime": null,
+      "n_items": 18379
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 551370,
+      "loss_first": 0.69218,
+      "loss_last": 0.64249,
+      "loss_decreased": true,
+      "seed": 2720,
+      "bank": "HETERO:S3",
+      "sensor": "S3",
+      "kind": "all",
+      "regime": null,
+      "n_items": 18379
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 551370,
+      "loss_first": 0.68151,
+      "loss_last": 0.52071,
+      "loss_decreased": true,
+      "seed": 2720,
+      "bank": "HETERO:S4",
+      "sensor": "S4",
+      "kind": "all",
+      "regime": null,
+      "n_items": 18379
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 137130,
+      "loss_first": 0.69311,
+      "loss_last": 0.62379,
+      "loss_decreased": true,
+      "seed": 2720,
+      "bank": "HEMATCH:semantic",
+      "sensor": "S2",
+      "kind": "slice",
+      "regime": "semantic",
+      "n_items": 4571
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 136890,
+      "loss_first": 0.69343,
+      "loss_last": 0.56342,
+      "loss_decreased": true,
+      "seed": 2720,
+      "bank": "HEMATCH:counting-address",
+      "sensor": "S1",
+      "kind": "slice",
+      "regime": "counting-address",
+      "n_items": 4563
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 138810,
+      "loss_first": 0.67867,
+      "loss_last": 0.13193,
+      "loss_decreased": true,
+      "seed": 2720,
+      "bank": "HEMATCH:negation-scope",
+      "sensor": "S4",
+      "kind": "slice",
+      "regime": "negation-scope",
+      "n_items": 4627
+    },
+    {
+      "hid": 16,
+      "epochs": 30,
+      "updates": 138540,
+      "loss_first": 0.6929,
+      "loss_last": 0.67606,
+      "loss_decreased": true,
+      "seed": 2720,
+      "bank": "HEMATCH:agent-role",
+      "sensor": "S3",
+      "kind": "slice",
+      "regime": "agent-role",
+      "n_items": 4618
+    }
+  ],
+  "ramp_receipt": {
+    "ramp_s": 0.609,
+    "synced": true
+  },
+  "wall_seconds": 813.4,
+  "wall_marks": [
+    {
+      "bank": "JOINT_seed2718",
+      "t": 37.6
+    },
+    {
+      "bank": "SINGLE_seed2718",
+      "t": 68.3
+    },
+    {
+      "bank": "S4MONO_seed2718",
+      "t": 101.2
+    },
+    {
+      "bank": "FEDWORD_semantic_seed2718",
+      "t": 109.6
+    },
+    {
+      "bank": "FEDWORD_counting-address_seed2718",
+      "t": 117.2
+    },
+    {
+      "bank": "FEDWORD_negation-scope_seed2718",
+      "t": 124.9
+    },
+    {
+      "bank": "FEDWORD_agent-role_seed2718",
+      "t": 132.7
+    },
+    {
+      "bank": "HETERO_S1_seed2718",
+      "t": 163.4
+    },
+    {
+      "bank": "HETERO_S2_seed2718",
+      "t": 201.3
+    },
+    {
+      "bank": "HETERO_S3_seed2718",
+      "t": 235.8
+    },
+    {
+      "bank": "HETERO_S4_seed2718",
+      "t": 262.9
+    },
+    {
+      "bank": "HEMATCH_semantic_seed2718",
+      "t": 269.4
+    },
+    {
+      "bank": "HEMATCH_counting-address_seed2718",
+      "t": 276.1
+    },
+    {
+      "bank": "HEMATCH_negation-scope_seed2718",
+      "t": 282.7
+    },
+    {
+      "bank": "HEMATCH_agent-role_seed2718",
+      "t": 289.4
+    },
+    {
+      "bank": "JOINT_seed2719",
+      "t": 316.6
+    },
+    {
+      "bank": "SINGLE_seed2719",
+      "t": 343.9
+    },
+    {
+      "bank": "S4MONO_seed2719",
+      "t": 371.0
+    },
+    {
+      "bank": "FEDWORD_semantic_seed2719",
+      "t": 377.9
+    },
+    {
+      "bank": "FEDWORD_counting-address_seed2719",
+      "t": 384.9
+    },
+    {
+      "bank": "FEDWORD_negation-scope_seed2719",
+      "t": 391.9
+    },
+    {
+      "bank": "FEDWORD_agent-role_seed2719",
+      "t": 398.7
+    },
+    {
+      "bank": "HETERO_S1_seed2719",
+      "t": 425.8
+    },
+    {
+      "bank": "HETERO_S2_seed2719",
+      "t": 457.4
+    },
+    {
+      "bank": "HETERO_S3_seed2719",
+      "t": 485.0
+    },
+    {
+      "bank": "HETERO_S4_seed2719",
+      "t": 513.5
+    },
+    {
+      "bank": "HEMATCH_semantic_seed2719",
+      "t": 520.4
+    },
+    {
+      "bank": "HEMATCH_counting-address_seed2719",
+      "t": 528.2
+    },
+    {
+      "bank": "HEMATCH_negation-scope_seed2719",
+      "t": 536.1
+    },
+    {
+      "bank": "HEMATCH_agent-role_seed2719",
+      "t": 543.7
+    },
+    {
+      "bank": "JOINT_seed2720",
+      "t": 573.9
+    },
+    {
+      "bank": "SINGLE_seed2720",
+      "t": 600.7
+    },
+    {
+      "bank": "S4MONO_seed2720",
+      "t": 631.6
+    },
+    {
+      "bank": "FEDWORD_semantic_seed2720",
+      "t": 639.3
+    },
+    {
+      "bank": "FEDWORD_counting-address_seed2720",
+      "t": 646.2
+    },
+    {
+      "bank": "FEDWORD_negation-scope_seed2720",
+      "t": 653.2
+    },
+    {
+      "bank": "FEDWORD_agent-role_seed2720",
+      "t": 660.4
+    },
+    {
+      "bank": "HETERO_S1_seed2720",
+      "t": 688.9
+    },
+    {
+      "bank": "HETERO_S2_seed2720",
+      "t": 716.8
+    },
+    {
+      "bank": "HETERO_S3_seed2720",
+      "t": 748.3
+    },
+    {
+      "bank": "HETERO_S4_seed2720",
+      "t": 783.8
+    },
+    {
+      "bank": "HEMATCH_semantic_seed2720",
+      "t": 792.0
+    },
+    {
+      "bank": "HEMATCH_counting-address_seed2720",
+      "t": 799.8
+    },
+    {
+      "bank": "HEMATCH_negation-scope_seed2720",
+      "t": 806.6
+    },
+    {
+      "bank": "HEMATCH_agent-role_seed2720",
+      "t": 813.3
+    }
+  ]
+}

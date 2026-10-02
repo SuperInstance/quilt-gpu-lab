@@ -1,0 +1,136 @@
+local pass, fails = 0, 0
+
+local function eq(got, want, label)
+	if got ~= want then
+		fails = fails + 1
+		print(string.format("FAIL %s: got=%s want=%s", label, tostring(got), tostring(want)))
+	else
+		pass = pass + 1
+	end
+end
+
+local function near(got, want, label, tol)
+	tol = tol or 1e-6
+	if math.abs(got - want) > tol then
+		fails = fails + 1
+		print(string.format("FAIL %s: got=%s want=%s", label, tostring(got), tostring(want)))
+	else
+		pass = pass + 1
+	end
+end
+
+local function clamp(v, lo, hi)
+	if v < lo then return lo end
+	if v > hi then return hi end
+	return v
+end
+
+local function sign(n)
+	if n > 0 then return 1 elseif n < 0 then return -1 else return 0 end
+end
+
+local function track(side, paddleY, ballY)
+	local speed = (side == "left") and 0.85 or 0.70
+	local dead = 1.5
+	local y = paddleY
+	local diff = ballY - y
+	if math.abs(diff) > dead then
+		y = y + sign(diff) * math.min(speed, math.abs(diff) - dead)
+	end
+	return clamp(y, 6, 54)
+end
+
+local function wallBounce(y, vy)
+	local fired = false
+	if y < 1 then
+		fired = true
+		y = 1 + (1 - y)
+		vy = -vy
+	elseif y > 59 then
+		fired = true
+		y = 59 - (y - 59)
+		vy = -vy
+	end
+	return y, vy, fired
+end
+
+local function paddleReturn(x, vx, ballY, paddleY, side)
+	local face = (side == "left") and 2 or 98
+	local reach = math.abs(ballY - paddleY) <= 7
+	local atFace, approaching
+	if side == "left" then
+		atFace = (x - 1 <= face) and (x > face - 2.5)
+		approaching = vx < 0
+	else
+		atFace = (x + 1 >= face) and (x < face + 2.5)
+		approaching = vx > 0
+	end
+	local nvx, nvy, fired = vx, vx, false
+	if atFace and reach and approaching then
+		local speed = math.min(math.abs(vx) * 1.04, 2.6)
+		nvx = (side == "left") and speed or -speed
+		nvy = (ballY - paddleY) * 0.12
+		fired = true
+	end
+	return nvx, nvy, fired
+end
+
+local function score(x, side)
+	if side == "left" and x < -3 then return "right" end
+	if side == "right" and x > 103 then return "left" end
+	return nil
+end
+
+-- track tests
+eq(track("left", 30, 30), 30, "track inside deadzone L")
+eq(track("right", 30, 30), 30, "track inside deadzone R")
+near(track("left", 30, 35), 30.85, "track ramp up L")
+near(track("left", 30, 25), 29.15, "track ramp down L")
+near(track("left", 30, 60), 34.5, "track saturation L (speed cap)")
+eq(track("left", 6, 100), 6, "track clamp at 6")
+eq(track("left", 54, -100), 54, "track clamp at 54")
+near(track("left", 30, 40), 30.85, "track L speed 0.85")
+near(track("right", 30, 40), 30.70, "track R speed 0.70")
+
+-- wallBounce tests
+local y, vy, fired = wallBounce(0, 3)
+eq(fired, true, "wall floor fired")
+near(y, 2, "wall floor y")
+near(vy, -3, "wall floor vy")
+y, vy, fired = wallBounce(60, -3)
+eq(fired, true, "wall ceiling fired")
+near(y, 58, "wall ceiling y")
+near(vy, 3, "wall ceiling vy")
+y, vy, fired = wallBounce(30, 2)
+eq(fired, false, "wall neither fired")
+eq(y, 30, "wall neither y")
+eq(vy, 2, "wall neither vy")
+y, vy, fired = wallBounce(1, 5)
+eq(fired, false, "wall y=1 no bounce")
+y, vy, fired = wallBounce(59, 5)
+eq(fired, false, "wall y=59 no bounce")
+
+-- paddleReturn tests
+local nvx, nvy, fired = paddleReturn(2, -1, 10, 10, "left")
+eq(fired, true, "paddle fire left")
+near(nvx, 1.04, "paddle fire left nvx")
+near(nvy, 0, "paddle fire left nvy")
+nvx, nvy, fired = paddleReturn(98, 1, 10, 10, "right")
+eq(fired, true, "paddle fire right")
+near(nvx, -1.04, "paddle fire right nvx")
+near(nvy, 0, "paddle fire right nvy")
+nvx, nvy, fired = paddleReturn(98, 1, 10, 20, "right")
+eq(fired, false, "paddle reach miss")
+nvx, nvy, fired = paddleReturn(50, -1, 10, 10, "left")
+eq(fired, false, "paddle face miss")
+nvx, nvy, fired = paddleReturn(2, 1, 10, 10, "left")
+eq(fired, false, "paddle wrong direction")
+
+-- score tests
+eq(score(-4, "left"), "right", "score left goal")
+eq(score(104, "right"), "left", "score right goal")
+eq(score(50, "left"), nil, "score in play L")
+eq(score(50, "right"), nil, "score in play R")
+
+print(string.format("PASS %d/%d", pass, pass + fails))
+os.exit(fails == 0 and 0 or 1)

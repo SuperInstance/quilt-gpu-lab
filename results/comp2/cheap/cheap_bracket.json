@@ -1,0 +1,98 @@
+{
+  "experiment": "COMPOSITE-2 P4 cheap-arm 361p bracket (dual corpus)",
+  "prereg": "proposals/runs/COMPOSITE-2-federation3.md \u00a74 + \u00a76 P4",
+  "G4a_comp1": {
+    "boards_fed_cheap": {
+      "full": 0.5712,
+      "semantic": 0.5248,
+      "counting-address": 0.5324,
+      "negation-scope": 0.6892,
+      "agent-role": 0.537
+    },
+    "board_single_cheap": {
+      "full": 0.5271,
+      "semantic": 0.5461,
+      "counting-address": 0.554,
+      "negation-scope": 0.4459,
+      "agent-role": 0.5617
+    },
+    "booked_comp1_fed_boards": {
+      "full": 0.5605,
+      "semantic": 0.5816,
+      "counting-address": 0.5731,
+      "negation-scope": 0.5541,
+      "agent-role": 0.537
+    },
+    "delta_vs_booked": {
+      "semantic": -0.0568,
+      "counting-address": -0.0407,
+      "negation-scope": 0.1351,
+      "agent-role": 0.0
+    },
+    "max_abs_delta": 0.1351,
+    "max_abs_delta_bar": 0.02,
+    "negation_fed_minus_single": {
+      "diff": 0.2432,
+      "ci95": [
+        0.1554,
+        0.3243
+      ]
+    },
+    "negation_bar": 0.126,
+    "verdict": "FAIL",
+    "params": {
+      "single": 65,
+      "fed_cells": 260,
+      "router": 36,
+      "total": 361
+    },
+    "comp1_corpus_sha256": "c195e558f49c98c81c33eecf6ce07a7e37d3b452663bf796e510c03deaac604f"
+  },
+  "G4b_c2": {
+    "boards_fed_cheap": {
+      "full": 0.6968,
+      "semantic": 0.7638,
+      "counting-address": 0.6427,
+      "negation-scope": 0.7676,
+      "agent-role": 0.6136
+    },
+    "board_single_cheap": {
+      "full": 0.7172,
+      "semantic": 0.8607,
+      "counting-address": 0.6572,
+      "negation-scope": 0.6303,
+      "agent-role": 0.718
+    },
+    "fed_word_seedmean_boards": {
+      "semantic": 0.8446,
+      "counting-address": 0.6931,
+      "negation-scope": 0.6529,
+      "agent-role": 0.6736
+    },
+    "delta_vs_fed_word": {
+      "semantic": -0.0808,
+      "counting-address": -0.0504,
+      "negation-scope": 0.1147,
+      "agent-role": -0.06
+    },
+    "max_abs_delta": 0.1147,
+    "max_abs_delta_bar": 0.02,
+    "negation_fed_minus_single": {
+      "diff": 0.1372,
+      "ci95": [
+        0.1077,
+        0.1641
+      ]
+    },
+    "negation_bar": 0.126,
+    "verdict": "FAIL",
+    "params": {
+      "single": 65,
+      "fed_cells": 260,
+      "router": 36,
+      "total": 361
+    }
+  },
+  "verdict": "NOT-RETIRED (G4a FAIL / G4b FAIL)",
+  "retirement": "NOT-RETIRED"
+}

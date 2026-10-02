@@ -18,12 +18,24 @@ nothing here is stronger than its receipt.
 | **format_first_gate** | judge-answer gating: one batched call, N named questions; strict parse BEFORE any trust (format-first), retry-once, pinch-to-fallback honestly booked, flow-state receipt with token ledger | CM1 r3/r4/r5 (2026-09-29/30, RESULTS.md): rule-rich batch 12/12 DRAFT_PASS, 25x wall / 4.5x token cut | frozen `questions` + injected `JudgeClient` + `state` → `GateReceipt` (answers/flow/counts/tokens/wall) or `GateError`; `mean_agreement(gold, answers)` |
 | **exact_minimax_labels** | exact SET-VALUED ground truth for game states: full memoized NxN tic-tac-toe minimax, M(b) = the set of optimal moves, both COMPOSED partitions, chance/floor baselines, FNV-parity-safe board keys | A1-PIE (2026-10-01, RESULTS.md L4105–4220): 180,361 path rows / 2,423 boards; MLP 0.9494 board-disjoint kills the "local rules can't compose" prediction | `solve(n)` → `LabelSet` (`.rows()`, `.labels(board)`, `.stats()`, `.chance()`); `to_key(board)` for hash splits |
 | **ternary_transition_kernel** | relational transition kernel: maps continuous pair-state to the {-1,0,+1} ternary codec (`sign` + deadband) and proves it predicts field transitions as well as the continuous oracle — ternarization is ~free | D19 + D20 (2026-09-27, RESULTS.md L831–871): ternary 0.01012 vs markov1 0.01786, shuffled control collapses; linear is sufficient | `FieldWorld.step()` records + `KernelArm` list → `run_arms` receipt (MSEs/gates) → `judge()` KEEP/KILL; `ternary_corr(a,b)` is the standalone codec |
+| **pinch_fallback** | graded-confidence safety net: `min(noul) < threshold` → one complaint-carrying retry → PINCH to a DETERMINISTIC known-answer path; every pinch a first-class flow state, zero-engagement thresholds INCONCLUSIVE | CM1 r1/r2/r3 (2026-09-29) + RING-CX-2 (2026-10-01): broken cell rescued 11/12 by the keyword router; p0.7 {11 RETRY, 1 PINCHED}, accuracy held 12/12 | `PinchFallback(primary, grader, fallback, threshold)` → `run`/`run_corpus` → flow receipts + counts; `sweep` applies the frost law; `pinch_threshold_for_rate` (τ doctrine) |
+| **ie3_dedicated_trunks** | the dedicated-specialist ARM LAYOUT in closed form: one shared rank-m trunk dilutes two orthogonal rank-k tasks under BOTH joint and sequential training; two dedicated width-k trunks do not | IE3 (2026-09-29) DILUTION_CONFIRMS: C-split 0.987/0.984 @ density 32; COMP0/COMP1 texture — FED>SINGLE only on negation (+0.126, CI excl. 0) | `make_dataset(seed, d)` → `arm_A_joint`/`arm_B_sequential`/`arm_C_split` → r² per task; ordering gate @ density 32 over 5 seeds, std==0 ⇒ INCONCLUSIVE |
+| **d13d_correlation_keys** | between-cell routing keys by CORRELATION, not reward: atom-stream partner discovery at 1.0 with zero parameters and zero reward (pair polarity = the shared key), plus the COMP0/COMP1 0-param centroid-Pearson router | D13d KEEP (2026-09-27; D13/b/c RL all KILL) + D18 (floor ~0.25, "consistent relational target is the primitive") + COMP0/COMP1 routing | `make_atom_world` → `key_matrix`/`discover_partners`/`key_margin`; `build_centroid_keys` + `route` for feature-space routing |
+| **g7_watt_wrapper** | the G7 seal as an importable context manager: preflight gate (VRAM/thermal), watt-sampled energy window, ALWAYS a `g7-watt-receipt@1` — PASS / KILL (breach/exception, traceback booked) / VOID (fail-closed unmeasured) — digest-bound summary, append-only ledger, tamper-evident | G7 watt-receipt instrumentation KEEP (2026-10-01, RESULTS.md L3637) + E6 receipt-drift KEEP: "no receipt → run VOID"; 67.7 W × 21.493 s live proof | `with watt_window(task_id, probe=...) as g:` → sealed receipt; `G7Wrapper.run_window(fn)`; `verify_integrity(path)`; `FakePowerProbe` for tests |
+| **est_freeze_interface** | six determinacy estimators behind ONE validated interface plus the frozen C1–C5 battery; measure pair frozen E3 primary / E0 reserve; FROZEN-V1 = NONE reproduced (the spread is input-distribution sensitivity, not estimator bias) | EST-FREEZE (2026-10-01, RESULTS.md L4763–4818): the ENCODER, not the formula, was the D2 blocker; H6 0.648 with declared encoders | `score(records, spec, est, weight, seed, nperm) -> [0,1]` (frozen signature); `synthetic_atoms` / `noisy_channels` / `stationary_control` / `sensitivity_socket` / `frozen_v1` |
+
+The r2 harvest list named a `d19_ternary_kernel` piece; that machinery was
+already landed as **ternary_transition_kernel** above (D19 + D20, self-test
+re-verified during this harvest: KEEP, booked numbers reproduced at source
+scale) — no duplicate node was created.
 
 Pending harvest (code-only dirs, no BLOCK.md yet — interfaces usable but
 unbooked here): `board_disjoint_cv` (hash-based disjoint k-fold splitter —
-the FNV high-32 scheme), `g7_wrapper` (guard/watt-receipt pattern),
-`provider_seam` (provider interface over envelope_guard), `parity_harness`
-(cross-implementation conformance), `dedicated_trunks`, `look_again`.
+the FNV high-32 scheme), `provider_seam` (provider interface over
+envelope_guard), `parity_harness` (cross-implementation conformance),
+`look_again`. (The r1 stubs `dedicated_trunks` and `g7_wrapper` were
+landed by the r2 harvest as `ie3_dedicated_trunks` and `g7_watt_wrapper`
+and the stub dirs removed.)
 
 ## How they combine
 
@@ -44,6 +56,22 @@ Roles, in one line each:
 - **exact_minimax_labels GIVES GROUND TRUTH FOR GAME STATES** — exact
   optimal-move sets (both COMPOSED partitions, chance baselines) that any
   learner or judge is scored against.
+- **pinch_fallback SAFETY-NETS ANY GRADED PATH** — graded noul below
+  threshold routes to a deterministic known-answer path after one
+  complaint retry; the pinch is booked, the blind spots are declared, and
+  a threshold that never engages is INCONCLUSIVE evidence.
+- **ie3_dedicated_trunks WIRES DEDICATED CAPACITY** — the arm layout:
+  one cell one job; a shared trunk dilutes two specialists under joint
+  AND sequential training (the COMP0/COMP1 federation lanes inherit it).
+- **d13d_correlation_keys ROUTES BETWEEN CELLS** — partner discovery and
+  item routing by correlation with zero parameters and zero reward (the
+  missing half of every federation lane: which dedicated cell sees this).
+- **g7_watt_wrapper SEALS GPU RUNS** — `with watt_window(...):` and the
+  run cannot end receiptless: PASS measured clean, KILL booked with
+  traceback, VOID fail-closed when unmeasurable; no receipt → run VOID.
+- **est_freeze_interface MEASURES DETERMINACY** — one frozen signature,
+  six estimators, E3 primary / E0 reserve; declare the encoder or the
+  number is an artifact, not a measurement.
 
 The natural spine of a lane is:
 
@@ -51,9 +79,14 @@ The natural spine of a lane is:
 [engine]--verified-by--> port_harness
 [data/labels]--ground-truth-from--> exact_minimax_labels (boards ARE {-1,0,+1} vectors)
 [perception]--ternary-encode-via--> ternary_corr (ternary_transition_kernel)
+[discovered partners]--drive--> FieldWorld(edge_source=...)   (d13d_correlation_keys -> ternary_transition_kernel)
+[dedicated cells]--laid-out-by--> ie3_dedicated_trunks
+[items]--routed-between-cells-by--> d13d_correlation_keys (build_centroid_keys + route)
 [GEN/judge text]--parsed-by--> format_first_gate
+[graded noul]--doubted-and-pinched-by--> pinch_fallback (fallback may BE exact_minimax_labels)
 [provider cells]--bracketed-by--> envelope_guard
-[everything]--receipted-to--> RESULTS.md (+ g7_wrapper for watt receipts)
+[cell determinacy]--measured-by--> est_freeze_interface (declare the encoder!)
+[everything]--receipted-to--> RESULTS.md (+ g7_watt_wrapper for watt receipts; no receipt → run VOID)
 ```
 
 Shared vocabulary that makes them composable: seed 2718 everywhere; single
@@ -123,7 +156,7 @@ env = guard.validate_output(raw_provider_text,
                                            provider="glm-5.3-flash", seed=2718))
 # z_in_digest binds the envelope to the EXACT judged state — the receipt,
 # not decoration. Fold stats + receipt.to_dict() + env into the lane's
-# RESULTS.md entry (g7_wrapper if a watt receipt is owed).
+# RESULTS.md entry (g7_watt_wrapper if a watt receipt is owed).
 ```
 
 Alternate wiring for perception lanes: `exact_minimax_labels` boards are
@@ -136,7 +169,10 @@ frozen judge.
 ## Booked results pointer
 
 Every block cites its entry; the receipts live in RESULTS.md (and per-lane
-artifact dirs): B1-DISTILL (L4452–4479), XP-C (L4221–4348), CM1 r3/r4/r5,
-A1-PIE (L4105–4220), D19 + D20 (L831–871). Run any block's self-test from
+artifact dirs): B1-DISTILL (L4452–4479), XP-C (L4221–4348), CM1 r1/r2/r3
+(2026-09-29) + RING-CX-2 (L5028–5055), A1-PIE (L4105–4220), D19 + D20
+(L831–871), IE3 (L2596) + COMP0 (L4661) / COMP1 (L4872), D13d + D18
+(L591–620 / L718–739), G7 watt-receipt instrumentation (L3637), EST-FREEZE
+(L4763–4818). Run any block's self-test from
 the lab root — `python3 blocks/<name>/block.py` — and it re-proves its own
 receipt on CPU in seconds.

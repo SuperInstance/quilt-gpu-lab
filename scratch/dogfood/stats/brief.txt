@@ -1,0 +1,28 @@
+You are auditing the fleet's statistics/adjudication code for ONE bug class: an estimated interval or a search/bisection whose DIRECTION, TAIL, or INDEXING is wrong. Two CI bugs hit this week: (1) an INVERTED Clopper-Pearson bisection (a legacy helper solved the binomial CDF inequality the wrong way and reported 0.9994 for 40/40 when the correct exact lower bound is 0.9119); (2) a "seal-drift RED" in a gate. Your job: produce a reusable STATS-AUDIT CHECKLIST, then apply it and report CONCRETE catches with file:line refs.
+
+TWO IMPLEMENTATIONS TO AUDIT:
+
+(A) experiments/c1b_finalize.py  lines 34-72 — clopper_pearson(k,n,alpha=0.05) via bisection:
+    lower(): solves P(X >= k | n, L) = alpha/2  ->  loop: if (1.0 - cdf(k-1,n,mid)) > alpha/2: ... (see below)
+    upper(): solves P(X <= k | n, U) = alpha/2
+    where cdf(x,n,p) = sum_{i=0..x} comb(n,i) p^i (1-p)^(n-i), computed with exact floats.
+    KNOWN-GOOD reference: the true CP 95% CI is [0.8308, 0.9939] for k=38,n=40 and [0.9119, 1.0] for k=40,n=40 (scipy.stats.beta.ppf). This file is BELIEVED CORRECT — verify it and flag anything subtle (e.g. the k==0 / k==n early returns, the direction of each bisection branch, bisection convergence tolerance, the cdf index off-by-one).
+
+(B) experiments/c1b_adjudicate.py lines 22-52 — the LEGACY helper that WAS inverted. For reference it read, in lower(): `if binom_cdf(k - 1, n, mid) > alpha / 2: lo = mid; else: hi = mid`. State, with the calculus/ordering argument, WHY this is wrong (which direction the bisection walks, which tail it targets), and what it returns for k=38,n=40 (report the observed wrong numbers: lower ~0.9843, upper 0.0).
+
+(C) experiments/comp2_corpus_gate.py — the F-gate calibration loop. Audit ONLY the statistical/gate machinery, lines ~300-380: `direction(m)` (multi-constraint bisection on the knob k1 near_miss), `gate_verdict(pb)`, `validity(...)`, the MARGIN_MIN = 0.02 clearance logic, the `mg = max(MARGIN_MIN, 5.0*pb["full_std"])` margin, and the bisection update `nm = round(((a + best["near_miss"])/2.0) if best else ((a+b)/2.0), 3)` with a,b known-hard/known-easy. Look for: inverted bound comparisons, wrong bound (lower vs upper), off-by-one in the refit-std > 0 check, degenerate cases where best is set but nm update can stall, and whether "hard"/"easy" directions are consistent with the monotonicity claim (up = easier).
+
+(D) guard.py — lines 47-99 (`sample`, `sample_power`, `sample_full`) and the receipt/energy window machinery (lines ~169-380: `run`, `_close_window`, `_energy`, `emit_receipt`, `validate_receipt`). Audit for: unit/off-by-one errors in window accounting, bootstrap/percentile direction errors, energy (Wh) integration errors (e.g. summing power samples vs integrating over dt), and any place a GREEN/FAIL verdict could be inverted. Report file:line for anything concrete.
+
+DELIVERABLES — emit EXACTLY these three delimited sections, nothing before the first marker:
+
+=== CHECKLIST.md ===
+A reusable STATS-AUDIT CHECKLIST (12-20 items) for interval/gate/bisection code. Each item: a one-line TEST and the FAILURE it catches. Group under: Bounds & Tails; Bisection & Search; Indexing & Off-by-one; Degenerate Inputs; Integration/Accumulation; Verdict Inversion.
+
+=== CATCHES.md ===
+Concrete findings, each with file:line, the code, verdict (BUG / RISK / OK), and the corrected form or the exact check that would catch it. Include: (i) the argument that c1b_adjudicate.py's bisection is inverted and its wrong numbers; (ii) your verification verdict on c1b_finalize.py (expected: correct — say so with the two numbers above); (iii) anything you find in comp2_corpus_gate.py and guard.py. If a file is CLEAN, say "CLEAN — <reason>" rather than inventing a bug.
+
+=== NOTES ===
+3-6 lines: confidence, what you could not verify without running, and the single highest-value fix.
+
+Be exact and terse. No prose outside the three sections. Do NOT invent line numbers you cannot see in the quoted material.

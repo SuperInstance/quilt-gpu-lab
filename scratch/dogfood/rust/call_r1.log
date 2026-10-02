@@ -1,0 +1,2 @@
+{"model": "ibm-granite/granite-4.2-30b", "finish_reason": "length", "usage": {"prompt_tokens": 1054, "total_tokens": 9054, "completion_tokens": 8000, "estimated_cost": 0.005368639999999999, "prompt_tokens_details": {"cached_tokens": 0, "cache_write_tokens": null}}}
+WARN: empty content (finish_reason=length, usage={'prompt_tokens': 1054, 'total_tokens': 9054, 'completion_tokens': 8000, 'estimated_cost': 0.005368639999999999, 'prompt_tokens_details': {'cached_tokens': 0, 'cache_write_tokens': None}})

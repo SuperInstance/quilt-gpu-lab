@@ -1,0 +1,4 @@
+[package]
+name = "granite-check"
+version = "0.0.0"
+edition = "2021"

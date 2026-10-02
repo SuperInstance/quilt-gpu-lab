@@ -1,0 +1,93 @@
+ZCode Built-in missing
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+Harvest complete: **5 new blocks landed + the 6th list item verified as already landed — all 10 landed self-tests pass (exit 0), the full run booked in `blocks_zcode2_run.log`.**
+
+## The 6 pieces
+
+1. **`pinch_fallback`** (PASS 18/18, <1s) — graded `min(noul) < threshold` → one complaint-carrying retry → PINCH to a deterministic known-answer path, every pinch a first-class flow state. Sources: CM1 r1/r2/r3 relay wiring + the RING-CX-2 frost law (a threshold nothing engages is INCONCLUSIVE, never PASS). Ships the CM1 keyword router + 12 stimuli verbatim as the canonical fallback; the self-test reproduces the r1 rescue (broken cell: 12/12 PINCHED, fallback 11/12, ungated arm 0/12), the r2 format-first route (grader never called), and the r3 p0.7 texture exactly ({11 RETRY_PASS, 1 PINCHED_FALLBACK}, accuracy held 12/12), plus the τ-doctrine threshold helper.
+
+2. **`ie3_dedicated_trunks`** (PASS, ~4s) — the IE3 DILUTION_CONFIRMS arm layout in closed form: a shared rank-m trunk dilutes two orthogonal rank-k tasks under joint *and* sequential training; dedicated trunks don't (measured C−A ≈ +0.33 r², C−B ≈ +1.1, forgetting 1.09). Upgraded from the r1 code-only stub (verdict vocabulary FAIL→KILL; 5 seeds; std==0 ⇒ INCONCLUSIVE kept) and books the COMP0/COMP1 federation texture.
+
+3. **`d13d_correlation_keys`** (PASS 9/9, <2s) — partner discovery by max |correlation| with zero parameters and zero reward (D13d KEEP at 1.0; the D13/b/c RL rungs all KILLed), pair polarity as the shared key, a D18 grid subset (all 1.0), a chance control, and the COMP0/COMP1 centroid-Pearson router. Two instructive corrections made en route: `p_corr=0.5` is *not* chance (that's D18's "stronger than claimed" finding — true chance is `p_corr=0`), and Pearson routes across feature dimensions, not 2-D geometry.
+
+4. **`d19_ternary_kernel` — already landed.** The D19+D20 machinery is exactly what r1 landed as `ternary_transition_kernel`; "disk is truth," so I did **not** create a duplicate node. Its self-test was re-run this harvest: KEEP at the booked numbers (markov1 0.01786 / ternary 0.01012 / shuffled 0.01801), 0.6s. The README now states the equivalence, and the `shared_key_discovery` upstream edge the ternary block anticipated is concrete: `d13d_correlation_keys --edge_source--> FieldWorld`.
+
+5. **`g7_watt_wrapper`** (PASS 13/13, ~1.5s) — the G7 watt-receipt seal as an importable context manager (`with watt_window(task_id, probe=...) as g:`), per the spec. Upgraded from the r1 stub with the CM API, `GuardRefusal`, and guard.py's fail-closed **VOID** law (zero valid power samples → VOID, "declared, never faked"; the builtin validator rejects a PASS with 0 samples). Receipt contract intact: digest-bound `guard_summary.json`, append-only ledger, E6 tamper detection, list-form subprocess only; self-test runs in a removed tempdir.
+
+6. **`est_freeze_interface`** (PASS 10/10, <1s) — the six determinacy estimators behind the frozen `score(records, spec, est, weight, seed=0, nperm=120) → [0,1]` signature (seed=0 default is part of the frozen contract) plus the validation battery. The self-test reproduces the bookings on synthetic material: frozen pair E3/E0 exact on atoms, bias ≤ 0.058, the stationary floor, the H5 conflation (input-distribution sensitivity, not estimator bias), the conjunctive **FROZEN-V1 = NONE**, and the H6 range ≥ 0.5 with a declared encoder.
+
+## Map and housekeeping
+
+`blocks/README.md` gained 5 table rows + the d19 equivalence note, 5 new role lines, 5 new spine edges, and an extended booked-results pointer; the pending list shrank to `board_disjoint_cv`, `provider_seam`, `parity_harness`, `look_again`. The superseded r1 stub dirs `dedicated_trunks/` and `g7_wrapper/` were removed after grep confirmed no importers, and stale `g7_wrapper` mentions in two landed BLOCK.md files were updated.
+
+Laws honored: no git, no network, writes confined to `blocks/` and the log; std==0 ⇒ INCONCLUSIVE is implemented in every new self-test that gates a seed-mean (ie3's per-arm std table, d13d's key margin, est_freeze's stationary spread, pinch via the zero-engagement frost law). Repeat-run check: the stochastic new blocks produce byte-identical final receipts across runs (ie3 differs only in its `seconds` timing field).
+..6, bias
+     <= 0.058 (booked 0.049), stationary floor E3 0.0027/E0 0.049,
+     the H5 conflation (sensitivity socket: E3 spread 0.56 > 0.15 with
+     per-bin truth fixed), conjunctive FROZEN-V1 = NONE reproduced,
+     H6-style range 0.733 >= 0.5 with declared encoder, frost law on
+     the 3-seed stationary spread.
+
+MAP UPDATED (blocks/README.md): 5 new table rows + explicit note that
+d19_ternary_kernel == ternary_transition_kernel (already landed,
+re-verified); pending-harvest list now board_disjoint_cv, provider_seam,
+parity_harness, look_again; 5 new role lines; spine extended with 5 new
+edges (d13d->ternary edge_source, ie3<->d13d federation wiring,
+pinch_fallback on the graded-noul edge with exact_minimax_labels as a
+candidate fallback, est_freeze_interface as the determinacy meter,
+g7_watt_wrapper as the seal); booked-results pointer extended (CM1 r1/r2
++ RING-CX-2 L5028, IE3/COMP0/COMP1, D13d/D18, G7 L3637, EST-FREEZE
+L4763-4818). Stale g7_wrapper mentions in port_harness/ternary
+BLOCK.md updated to g7_watt_wrapper.
+
+STUB RETIREMENT: blocks/dedicated_trunks/ and blocks/g7_wrapper/
+(code-only r1 stubs, no importers — verified by grep before deletion)
+removed after their content landed under the canonical r2 names.
+
+SELF-TEST SWEEP (final, lab root, CPU):
+  envelope_guard            PASS  exit 0
+  exact_minimax_labels      PASS  exit 0
+  format_first_gate         PASS  exit 0
+  port_harness              PASS  exit 0
+  ternary_transition_kernel KEEP  exit 0
+  pinch_fallback            PASS  exit 0   (NEW)
+  ie3_dedicated_trunks      PASS  exit 0   (NEW)
+  d13d_correlation_keys     PASS  exit 0   (NEW)
+  g7_watt_wrapper           PASS  exit 0   (NEW)
+  est_freeze_interface      PASS  exit 0   (NEW)
+Repeat-run determinism: pinch/d13d/est_freeze final receipts byte-identical
+across runs; ie3 differs only in its "seconds" timing field (behavioral
+receipts identical — checked field-wise).
+
+LAWS: no git commands; no network; read-only outside blocks/ and this
+log (writes: the 5 new block dirs, blocks/README.md, 2 BLOCK.md name-fix
+edits inside blocks/, stub-dir removal inside blocks/, this log).
+std==0-on-gated-seed-mean => INCONCLUSIVE implemented in every new
+self-test that gates a seed-mean (ie3 per-arm std table, d13d margin,
+est_freeze stationary spread; pinch via the zero-engagement frost law).
+ZCODE-EXIT:0

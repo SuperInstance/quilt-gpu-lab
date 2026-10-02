@@ -133,7 +133,7 @@ only, never `shell=True`) · never reads or prints secrets.
   two streams to `ternary_corr` to get the {-1,0,+1} percept (the codec is
   dependency-free; deadband is the only knob and is booked at 0.15).
 - **Downstream — receipt wrapping:** `run_arms`' receipt dict is plain JSON
-  and folds straight into a g7-watt-receipt wrapper (`g7_wrapper`) /
+  and folds straight into a g7-watt-receipt wrapper (`g7_watt_wrapper`) /
   envelope (`envelope_guard`) — seed, arm MSEs, gates, and the booked
   reference all survive serialization; `judge()`'s verdict/reason pair is
   the gate section.

@@ -1,0 +1,1 @@
+{"model": "XiaomiMiMo/MiMo-V2.6-Flash", "finish_reason": "length", "usage": {"prompt_tokens": 1312, "total_tokens": 7312, "completion_tokens": 6000, "estimated_cost": 0.0018636800000000002, "prompt_tokens_details": {"cached_tokens": 0, "cache_write_tokens": null}, "completion_tokens_details": {"reasoning_tokens": 3600}}}

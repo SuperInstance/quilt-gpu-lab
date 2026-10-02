@@ -1,0 +1,479 @@
+{
+  "experiment": "COMPOSITE-2 federation v3 (6 MLP banks, heterogeneous sensors, learned sensor-picking router, difficulty-wired corpus)",
+  "prereg": "proposals/runs/COMPOSITE-2-federation3.md",
+  "phase": "2-arms",
+  "seeds": [
+    2718,
+    2719,
+    2720
+  ],
+  "device_note": "banks trained GPU (inner)",
+  "corpus": "/home/eileen/projects/quilt-gpu-lab/results/comp2_corpus/corpus.jsonl",
+  "corpus_sha256": "e87c7e3c32e8fcde1bd85ee484b318e707069dc910310e4459eea0503e5a2959",
+  "n_train": 18379,
+  "n_heldout": 6221,
+  "regime_counts_heldout": {
+    "semantic": 1579,
+    "counting-address": 1587,
+    "negation-scope": 1523,
+    "agent-role": 1532
+  },
+  "chance_majority": {
+    "full": 0.5068,
+    "semantic": 0.5104,
+    "counting-address": 0.5135,
+    "negation-scope": 0.5194,
+    "agent-role": 0.5163
+  },
+  "match_table": {
+    "semantic": "S2",
+    "counting-address": "S1",
+    "negation-scope": "S4",
+    "agent-role": "S3"
+  },
+  "params": {
+    "JOINT": 4225,
+    "SINGLE": 1057,
+    "S4MONO": 1057,
+    "FED_WORD": 4228,
+    "FED_HETERO": 4264,
+    "FED_HE_MATCHED": 4264,
+    "FED_LA": 0
+  },
+  "router_audit": {
+    "n_params": 36,
+    "learned_top1_heldout": 0.6832,
+    "learned_top1_train": 0.6901,
+    "centroid_comp1_top1_heldout": 0.7491,
+    "centroid_comp1_top1_train": 0.7513,
+    "centroid_persensor_top1_heldout": 0.5343,
+    "centroid_persensor_top1_train": 0.54,
+    "band": [
+      0.4,
+      0.95
+    ],
+    "chance": 0.25,
+    "learned_in_band": true,
+    "centroid_in_band": true,
+    "centroid_persensor_in_band": true,
+    "within_disagreement_routing_acc": 0.6007,
+    "within_disagreement_n": 4292,
+    "within_disagreement_target": 0.6
+  },
+  "router_ok": true,
+  "boards_seedmean": {
+    "JOINT": {
+      "full": 0.7184,
+      "semantic": 0.8554,
+      "counting-address": 0.6593,
+      "negation-scope": 0.6354,
+      "agent-role": 0.7211
+    },
+    "SINGLE": {
+      "full": 0.7211,
+      "semantic": 0.8619,
+      "counting-address": 0.6587,
+      "negation-scope": 0.6376,
+      "agent-role": 0.7237
+    },
+    "S4MONO": {
+      "full": 0.7192,
+      "semantic": 0.7488,
+      "counting-address": 0.6715,
+      "negation-scope": 0.8002,
+      "agent-role": 0.6575
+    },
+    "FED_WORD": {
+      "full": 0.7169,
+      "semantic": 0.8446,
+      "counting-address": 0.6931,
+      "negation-scope": 0.6529,
+      "agent-role": 0.6736
+    },
+    "FED_HETERO": {
+      "full": 0.6944,
+      "semantic": 0.7501,
+      "counting-address": 0.6436,
+      "negation-scope": 0.7713,
+      "agent-role": 0.6131
+    },
+    "FED_HE_MATCHED": {
+      "full": 0.6714,
+      "semantic": 0.647,
+      "counting-address": 0.6879,
+      "negation-scope": 0.7956,
+      "agent-role": 0.5561
+    },
+    "FED_LA": {
+      "full": 0.7202,
+      "semantic": 0.7904,
+      "counting-address": 0.6604,
+      "negation-scope": 0.7783,
+      "agent-role": 0.6521
+    }
+  },
+  "seed_std": {
+    "JOINT": {
+      "full": 0.0018,
+      "semantic": 0.0006,
+      "counting-address": 0.0035,
+      "negation-scope": 0.0057,
+      "agent-role": 0.0017
+    },
+    "SINGLE": {
+      "full": 0.0002,
+      "semantic": 0.0019,
+      "counting-address": 0.0003,
+      "negation-scope": 0.0056,
+      "agent-role": 0.0033
+    },
+    "S4MONO": {
+      "full": 0.0019,
+      "semantic": 0.0034,
+      "counting-address": 0.0084,
+      "negation-scope": 0.0057,
+      "agent-role": 0.0066
+    },
+    "FED_WORD": {
+      "full": 0.0013,
+      "semantic": 0.0053,
+      "counting-address": 0.0072,
+      "negation-scope": 0.009,
+      "agent-role": 0.0097
+    },
+    "FED_HETERO": {
+      "full": 0.0022,
+      "semantic": 0.0026,
+      "counting-address": 0.0012,
+      "negation-scope": 0.0045,
+      "agent-role": 0.0081
+    },
+    "FED_HE_MATCHED": {
+      "full": 0.0064,
+      "semantic": 0.0159,
+      "counting-address": 0.0084,
+      "negation-scope": 0.0094,
+      "agent-role": 0.0086
+    },
+    "FED_LA": {
+      "full": 0.0013,
+      "semantic": 0.0018,
+      "counting-address": 0.0062,
+      "negation-scope": 0.0025,
+      "agent-role": 0.004
+    }
+  },
+  "P1": {
+    "diff": 0.1337,
+    "ci95": [
+      0.1053,
+      0.1604
+    ],
+    "bar": 0.08,
+    "std0_a": false,
+    "std0_b": false,
+    "verdict": "PASS"
+  },
+  "P2": {
+    "diff": 0.1427,
+    "ci95": [
+      0.1134,
+      0.1731
+    ],
+    "bar": null,
+    "std0_a": false,
+    "std0_b": false,
+    "verdict": "PASS"
+  },
+  "P3": {
+    "diff": 0.007,
+    "ci95": [
+      -0.0026,
+      0.0164
+    ],
+    "bar": null,
+    "std0_a": false,
+    "std0_b": false,
+    "verdict": "FAIL"
+  },
+  "P1_topup": null,
+  "secondary_full_board": {
+    "full_FED_HETERO_vs_SINGLE": {
+      "diff": -0.0267,
+      "ci95": [
+        -0.0388,
+        -0.0145
+      ],
+      "bar": null,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "full_FED_HETERO_vs_JOINT": {
+      "diff": -0.0241,
+      "ci95": [
+        -0.0361,
+        -0.0122
+      ],
+      "bar": null,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "full_FED_LA_vs_FED_HETERO": {
+      "diff": 0.0258,
+      "ci95": [
+        0.0201,
+        0.0318
+      ],
+      "bar": null,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "PASS"
+    },
+    "full_FED_HE_MATCHED_vs_FED_WORD": {
+      "diff": -0.0455,
+      "ci95": [
+        -0.0579,
+        -0.0332
+      ],
+      "bar": null,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "G2b_FED_HETERO_vs_HE_MATCHED_full": {
+      "diff": 0.0229,
+      "ci95": [
+        0.0116,
+        0.0334
+      ],
+      "bar": null,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "PASS"
+    },
+    "G2b_FED_HETERO_vs_HE_MATCHED_negation": {
+      "diff": -0.0243,
+      "ci95": [
+        -0.0429,
+        -0.0048
+      ],
+      "bar": null,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    }
+  },
+  "per_regime_ci": {
+    "FED_HETERO_vs_SINGLE@semantic": {
+      "diff": -0.1119,
+      "ci95": [
+        -0.1364,
+        -0.088
+      ],
+      "bar": null,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED_HETERO_vs_SINGLE@counting-address": {
+      "diff": -0.0151,
+      "ci95": [
+        -0.0273,
+        -0.0029
+      ],
+      "bar": null,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED_HETERO_vs_SINGLE@negation-scope": {
+      "diff": 0.1337,
+      "ci95": [
+        0.1053,
+        0.1604
+      ],
+      "bar": null,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "PASS"
+    },
+    "FED_HETERO_vs_SINGLE@agent-role": {
+      "diff": -0.1105,
+      "ci95": [
+        -0.1384,
+        -0.0816
+      ],
+      "bar": null,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED_HE_MATCHED_vs_FED_WORD@semantic": {
+      "diff": -0.1976,
+      "ci95": [
+        -0.2219,
+        -0.172
+      ],
+      "bar": null,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED_HE_MATCHED_vs_FED_WORD@counting-address": {
+      "diff": -0.0053,
+      "ci95": [
+        -0.021,
+        0.0107
+      ],
+      "bar": null,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED_HE_MATCHED_vs_FED_WORD@negation-scope": {
+      "diff": 0.1427,
+      "ci95": [
+        0.1134,
+        0.1731
+      ],
+      "bar": null,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "PASS"
+    },
+    "FED_HE_MATCHED_vs_FED_WORD@agent-role": {
+      "diff": -0.1175,
+      "ci95": [
+        -0.1434,
+        -0.092
+      ],
+      "bar": null,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED_LA_vs_FED_HETERO@semantic": {
+      "diff": 0.0403,
+      "ci95": [
+        0.0289,
+        0.0521
+      ],
+      "bar": null,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "PASS"
+    },
+    "FED_LA_vs_FED_HETERO@counting-address": {
+      "diff": 0.0168,
+      "ci95": [
+        0.008,
+        0.0256
+      ],
+      "bar": null,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "PASS"
+    },
+    "FED_LA_vs_FED_HETERO@negation-scope": {
+      "diff": 0.007,
+      "ci95": [
+        -0.0026,
+        0.0164
+      ],
+      "bar": null,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED_LA_vs_FED_HETERO@agent-role": {
+      "diff": 0.0389,
+      "ci95": [
+        0.0237,
+        0.0548
+      ],
+      "bar": null,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "PASS"
+    },
+    "FED_HETERO_vs_JOINT@semantic": {
+      "diff": -0.1053,
+      "ci95": [
+        -0.1303,
+        -0.0823
+      ],
+      "bar": null,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED_HETERO_vs_JOINT@counting-address": {
+      "diff": -0.0158,
+      "ci95": [
+        -0.0277,
+        -0.0038
+      ],
+      "bar": null,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED_HETERO_vs_JOINT@negation-scope": {
+      "diff": 0.1359,
+      "ci95": [
+        0.1077,
+        0.1617
+      ],
+      "bar": null,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "PASS"
+    },
+    "FED_HETERO_vs_JOINT@agent-role": {
+      "diff": -0.1079,
+      "ci95": [
+        -0.1356,
+        -0.0798
+      ],
+      "bar": null,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    }
+  },
+  "s4_mono_readout": {
+    "boards": {
+      "semantic": 0.7488,
+      "counting-address": 0.6715,
+      "negation-scope": 0.8002,
+      "agent-role": 0.6575
+    },
+    "full": 0.7192,
+    "ge_fed_hetero_minus_0.02": 4
+  },
+  "la": [
+    {
+      "seed": 2718,
+      "tau": 0.0779,
+      "triggers": 1236,
+      "flips": 1092
+    },
+    {
+      "seed": 2719,
+      "tau": 0.076,
+      "triggers": 1234,
+      "flips": 1092
+    },
+    {
+      "seed": 2720,
+      "tau": 0.0742,
+      "triggers": 1211,
+      "flips": 1046
+    }
+  ],
+  "verdict": "KEEP",
+  "interpretation": "NARROWED: S4-MONO (single right sensor, 1057p) is within 0.02 of FED-HETERO on 4/4 regimes -> the win re-reads as 'buy the right sensor once'; federation thesis narrowed honestly. | P3 FAIL: LA closed to a D1b footnote (booked).",
+  "wall_seconds": 13.6
+}

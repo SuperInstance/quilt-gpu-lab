@@ -1,0 +1,465 @@
+[
+ {
+  "op": "add",
+  "args": [
+   [
+    1,
+    2
+   ],
+   [
+    3,
+    -1
+   ]
+  ],
+  "expect": [
+   4,
+   1
+  ],
+  "why": "componentwise"
+ },
+ {
+  "op": "add",
+  "args": [
+   [
+    0,
+    0
+   ],
+   [
+    -5,
+    7
+   ]
+  ],
+  "expect": [
+   -5,
+   7
+  ],
+  "why": "identity"
+ },
+ {
+  "op": "add",
+  "args": [
+   [
+    3,
+    3
+   ],
+   [
+    3,
+    -3
+   ]
+  ],
+  "expect": [
+   6,
+   0
+  ],
+  "why": "b cancels"
+ },
+ {
+  "op": "sub",
+  "args": [
+   [
+    1,
+    2
+   ],
+   [
+    3,
+    -1
+   ]
+  ],
+  "expect": [
+   -2,
+   3
+  ],
+  "why": "componentwise"
+ },
+ {
+  "op": "sub",
+  "args": [
+   [
+    -4,
+    5
+   ],
+   [
+    -1,
+    -2
+   ]
+  ],
+  "expect": [
+   -3,
+   7
+  ],
+  "why": "negatives"
+ },
+ {
+  "op": "mul",
+  "args": [
+   [
+    1,
+    1
+   ],
+   [
+    1,
+    1
+   ]
+  ],
+  "expect": [
+   0,
+   1
+  ],
+  "why": "(1+w)^2 = w using w^2=-1-w"
+ },
+ {
+  "op": "mul",
+  "args": [
+   [
+    3,
+    -2
+   ],
+   [
+    1,
+    1
+   ]
+  ],
+  "expect": [
+   5,
+   3
+  ],
+  "why": "(3-2w)(1+w)"
+ },
+ {
+  "op": "mul",
+  "args": [
+   [
+    2,
+    1
+   ],
+   [
+    0,
+    1
+   ]
+  ],
+  "expect": [
+   -1,
+   1
+  ],
+  "why": "(2+w)*w = -1+w"
+ },
+ {
+  "op": "norm_mult",
+  "args": [
+   [
+    3,
+    -2
+   ],
+   [
+    1,
+    1
+   ]
+  ],
+  "expect": [
+   19,
+   1,
+   19
+  ],
+  "why": "norm(zw)=norm z * norm w"
+ },
+ {
+  "op": "conj",
+  "args": [
+   [
+    3,
+    -2
+   ]
+  ],
+  "expect": [
+   5,
+   2
+  ],
+  "why": "a+bw -> (a-b)-bw"
+ },
+ {
+  "op": "conj",
+  "args": [
+   [
+    1,
+    1
+   ]
+  ],
+  "expect": [
+   0,
+   -1
+  ],
+  "why": "conj(1+w) = -w"
+ },
+ {
+  "op": "conj",
+  "args": [
+   [
+    -2,
+    5
+   ]
+  ],
+  "expect": [
+   -7,
+   -5
+  ],
+  "why": "negative a"
+ },
+ {
+  "op": "norm",
+  "args": [
+   [
+    3,
+    -2
+   ]
+  ],
+  "expect": [
+   19
+  ],
+  "why": "9+6+4"
+ },
+ {
+  "op": "norm",
+  "args": [
+   [
+    0,
+    0
+   ]
+  ],
+  "expect": [
+   0
+  ],
+  "why": "origin"
+ },
+ {
+  "op": "norm",
+  "args": [
+   [
+    2,
+    3
+   ]
+  ],
+  "expect": [
+   7
+  ],
+  "why": "4-6+9"
+ },
+ {
+  "op": "norm",
+  "args": [
+   [
+    -1,
+    -1
+   ]
+  ],
+  "expect": [
+   1
+  ],
+  "why": "unit w^2"
+ },
+ {
+  "op": "hexdist",
+  "args": [
+   [
+    0,
+    0
+   ],
+   [
+    2,
+    1
+   ]
+  ],
+  "expect": [
+   2
+  ],
+  "why": "same-sign max"
+ },
+ {
+  "op": "hexdist",
+  "args": [
+   [
+    0,
+    0
+   ],
+   [
+    2,
+    -1
+   ]
+  ],
+  "expect": [
+   3
+  ],
+  "why": "opposite-sign sum"
+ },
+ {
+  "op": "hexdist",
+  "args": [
+   [
+    1,
+    1
+   ],
+   [
+    4,
+    4
+   ]
+  ],
+  "expect": [
+   3
+  ],
+  "why": "diagonal"
+ },
+ {
+  "op": "hexdist",
+  "args": [
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    5
+   ]
+  ],
+  "expect": [
+   5
+  ],
+  "why": "axis"
+ },
+ {
+  "op": "rotate_60_omega",
+  "args": [
+   [
+    1,
+    0
+   ]
+  ],
+  "expect": [
+   0,
+   1
+  ],
+  "why": "1*w = w"
+ },
+ {
+  "op": "rotate_60_omega",
+  "args": [
+   [
+    3,
+    -2
+   ]
+  ],
+  "expect": [
+   2,
+   5
+  ],
+  "why": "(-b, a-b)"
+ },
+ {
+  "op": "rotate_60_omega",
+  "args": [
+   [
+    0,
+    3
+   ]
+  ],
+  "expect": [
+   -3,
+   -3
+  ],
+  "why": "w-axis -> w^2 direction"
+ },
+ {
+  "op": "div_rem",
+  "args": [
+   [
+    7,
+    2
+   ],
+   [
+    2,
+    1
+   ]
+  ],
+  "expect": [
+   [
+    3,
+    -1
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "why": "exact division, r=0"
+ },
+ {
+  "op": "div_rem",
+  "args": [
+   [
+    6,
+    -3
+   ],
+   [
+    2,
+    1
+   ]
+  ],
+  "expect": [
+   [
+    1,
+    -4
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "why": "exact division, r=0"
+ },
+ {
+  "op": "div_rem",
+  "args": [
+   [
+    1,
+    0
+   ],
+   [
+    2,
+    0
+   ]
+  ],
+  "expect": [
+   [
+    1,
+    0
+   ],
+   [
+    -1,
+    0
+   ]
+  ],
+  "why": "ROUNDING EDGE: 0.5 rounds away from zero"
+ },
+ {
+  "op": "div_rem",
+  "args": [
+   [
+    1,
+    0
+   ],
+   [
+    0,
+    2
+   ]
+  ],
+  "expect": [
+   [
+    -1,
+    -1
+   ],
+   [
+    -1,
+    0
+   ]
+  ],
+  "why": "ROUNDING EDGE: -0.5,-0.5"
+ }
+]
