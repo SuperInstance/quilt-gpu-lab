@@ -62,3 +62,10 @@ the ramp law their receipt cites).
 
 ## Costs
 0 GPU-Wh, CPU-only sweep + writes. No rate limits hit (one 404 on repo name guess, not retried).
+
+## SEAL STATUS (post-booking)
+Manifest re-seal REFUSED by the sealer (correct): live D12K2 lane carries untracked
+experiments/d12k2_entangled_certified.py + results/d12k2_entangled_certified.json (another agent's
+active work; untouched per 18:1x precedent). `--check` at HEAD is RED as designed: RESULTS.md drift
+(sealed df9ba8… live aec182…) + the UNSEALED d12k2 file. Seal rides the D12K2 lane's next clean
+point; the RED is the honest state, not a failure to hide.
