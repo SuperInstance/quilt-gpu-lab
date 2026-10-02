@@ -103,6 +103,32 @@ class ReceiptManifestMatches(unittest.TestCase):
                          "(tools/receipt_manifest.py) and commit it WITH your change")
 
 
+class RC5PushCheck(unittest.TestCase):
+    """RC-5 (2026-10-02, MicroMoth #32 auto-push class): the push-time layer
+    of the seal pin — an un-resealed landing goes red at push time, not
+    red-on-next-clone. FAIL-first: check() did not exist before this feature;
+    the tamper arm below is red against any module lacking the drift diff."""
+
+    def test_clean_tree_checks_clean(self):
+        drift = receipt_manifest.check()
+        self.assertEqual(drift, [],
+                         f"sealed manifest drifted from tree: {drift}")
+
+    def test_tampered_digest_is_named(self):
+        import copy
+        sealed = json.loads(MANIFEST.read_text())
+        sealed["ledgers"]["RESULTS.md"] = "0" * 64
+        MANIFEST.write_text(json.dumps(sealed, indent=2) + "\n")
+        try:
+            drift = receipt_manifest.check()
+        finally:
+            import subprocess
+            subprocess.run(["git", "checkout", "--", "receipts/manifest.json"],
+                           cwd=LAB, check=True)
+        self.assertTrue(any("RESULTS.md" in ln and "DRIFT" in ln for ln in drift),
+                        f"tampered RESULTS.md digest not named: {drift}")
+
+
 class DoctrineProvenance(unittest.TestCase):
     def test_readme_names_canonical_source(self):
         text = (LAB / "README.md").read_text()

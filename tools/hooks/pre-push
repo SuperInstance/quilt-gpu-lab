@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# RC-5 push-time seal-pin hook TEMPLATE (2026-10-02, spawned by SCOUT-17 off
+# MicroMoth #32's RED-at-HEAD auto-push). OPT-IN: this repo never auto-installs
+# hooks. To arm it:
+#
+#   cp tools/hooks/pre-push .git/hooks/pre-push && chmod +x .git/hooks/pre-push
+#
+# Behavior: refuses the push (exit 2) if receipts/manifest.json no longer
+# matches the sealed paths (RESULTS.md, QUEUE.md, experiments/, tools/).
+# Fix is always the same: `python tools/receipt_manifest.py` and commit the
+# regenerated manifest WITH your ledger change. Never hand-edit the manifest.
+set -eu
+cd "$(git rev-parse --show-toplevel)"
+exec python3 tools/receipt_manifest.py --check

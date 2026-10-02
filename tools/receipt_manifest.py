@@ -90,8 +90,45 @@ def build() -> dict:
     }
 
 
+def check() -> list[str]:
+    """RC-5 push-time seal-pin (2026-10-02, spawned by SCOUT-17 off MicroMoth
+    #32's RED-at-HEAD auto-push): compare the sealed digests in
+    receipts/manifest.json against the live tree WITHOUT writing. A push that
+    lands ledger bytes without a re-seal goes red at push time instead of
+    red-on-next-clone. Returns drift lines; empty list = clean.
+    Read-only by construction — never touches the manifest."""
+    if not MANIFEST.exists():
+        return [f"{MANIFEST.relative_to(LAB)}: MISSING — never sealed"]
+    sealed = json.loads(MANIFEST.read_text())
+    live = build()
+    drift: list[str] = []
+    for section in ("ledgers", "experiments", "tools"):
+        want = sealed.get(section, {})
+        got = live[section]
+        for name in sorted(set(want) | set(got)):
+            if name not in want:
+                drift.append(f"{section}/{name}: UNSEALED (new file) {got[name][:12]}…")
+            elif name not in got:
+                drift.append(f"{section}/{name}: MISSING from tree")
+            elif want[name] != got[name]:
+                drift.append(f"{section}/{name}: DRIFT sealed {want[name][:12]}… live {got[name][:12]}…")
+    return drift
+
+
 def main() -> None:
     allow_dirty = "--allow-dirty" in sys.argv
+    if "--check" in sys.argv:  # RC-5: read-only drift gate, exit 0/2
+        drift = check()
+        if drift:
+            print("DRIFT: sealed manifest does not match the working tree.")
+            print("Re-seal via `python tools/receipt_manifest.py` and commit the")
+            print("manifest WITH the ledger change (regeneration is the declared")
+            print("re-embed) — or this is tamper, which is worse.")
+            for ln in drift:
+                print(f"  {ln}")
+            raise SystemExit(2)
+        print("check: sealed manifest matches the working tree (exit 0).")
+        return
     dirty = dirty_sealed_paths()
     if dirty and not allow_dirty:
         print("REFUSED: sealed paths are dirty — commit (or stash) first.")
