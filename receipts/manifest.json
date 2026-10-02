@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-02T05:13:48.818513+00:00",
+  "generated_at": "2026-10-02T06:16:47.503868+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "d7a84bb17681233aa8ac8cd112ed4c38d30a7f2cf1fc7fadb58a76324bc47d7f",
+    "RESULTS.md": "df9ba8be8fc81bcb618d71f882acdf4cb4672b394ad6a6eed60fa8ad06f1c0de",
     "QUEUE.md": "325394bc5e3c6c559c1189a45dec10ec45816e6f99782f0e6d8c6f722b174e85"
   },
   "experiments": {
@@ -232,7 +232,7 @@
     "proj_lattice.py": "52cec2eee97fd649442be0d857810465df3007220e1d736b48d4f8fd61d95a2c",
     "qcell_oracle.pt": "fed2c15fb506899fdc0fb86a7656d965c4b0aae8bceda28d11d6850aec201eed",
     "qcell_sim.py": "8c82d4bcc88370c01870238a006fa62bdb6fe571f5c8951bcdae6f3cf7920962",
-    "receipt_manifest.py": "c71be759252b34ef1da57a3613215c577ce88fd9321f245e7e0f4f42a7280f4d",
+    "receipt_manifest.py": "e9cd725889ab44af19423f136d16515065f12318895e1ea9bec7a2116311cb87",
     "systemone_proxy.py": "0fb09d57ab77c285ff39db7113c759bc334e17e9ce6b1cb98b76981b1ff66782",
     "transition_kernel.py": "8364ec79e6e866fbf78d4fbd80a3514bf14f11394c4048a1dff30889e7796443",
     "typesafe_batch.py": "6f4a470a02d262c2877748670aeb6ae1ca74a98f6b395864bb84dd8ec2d30381",
