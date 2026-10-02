@@ -1,18 +1,18 @@
 {
-  "breach": null,
+  "breach": "free VRAM 1018 MiB < 1024",
   "g7": {
-    "gpu_seconds": 196.263,
-    "joules": 11635.2559,
-    "mean_power_w": 47.3,
-    "power_samples": 47,
-    "util_samples": 47,
-    "wall_seconds": 245.986,
-    "watt_hours": 3.232015527777778,
+    "gpu_seconds": 1030.315,
+    "joules": 63293.1168,
+    "mean_power_w": 48.12,
+    "power_samples": 252,
+    "util_samples": 252,
+    "wall_seconds": 1315.262,
+    "watt_hours": 17.581421333333335,
     "windows": 1
   },
   "max_temp_c": 78,
-  "min_free_vram_mib": 1218,
-  "samples": 48,
+  "min_free_vram_mib": 1018,
+  "samples": 253,
   "task_id": "B1b-kink-head",
   "timed_out": false
 }

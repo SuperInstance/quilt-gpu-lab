@@ -1,31 +1,37 @@
-// b1b_pong_law_engine.mjs — lane B1b-KINK-HEAD engine harness.
+// b1c_value_fidelity_engine.mjs — lane B1C-VALUE-FIDELITY engine harness.
 //
-// Extends experiments/b1_pong_law_engine.mjs (B1-DISTILL) with THREE head
-// classes so the same engine can play any B1b arm:
-//   arch 'tanh' — 3-64-64-1, tanh hidden, linear head  (B1's exact net)
-//   arch 'relu' — 3-64-64-1, ReLU hidden, linear head  (piecewise-linear basis)
-//   arch 'kink' — ReLU trunk -> learned deadzone d / reflex speed k (softplus)
-//                 + linear residual r -> clamp(p + kink + r, [6,54]) - p
+// This is B1b-KINK-HEAD's harness (experiments/b1b_kink_engine.mjs) with a
+// STRICTLY ADDITIVE change: two new `kind` tags are added to the net dispatch —
+//   * 'mlp'    — a generic MLP with an arbitrary list of relu/tanh hidden
+//                layers + one linear output (the capacity-bump arm `cap`);
+//   * 'binned' — a generic relu body + a softmax-over-bins head evaluated at
+//                ARGMODE and returned as the chosen bin CENTRE (the binned arm).
+// The PRISTINE/SWITCH sheets, the shipped TRACK body, the existing
+// 'tanh'/'relu'/'kink' forwards, and every other command (collect / h2h /
+// labels / laweq / netforward) are byte-identical in behaviour to B1b's, so
+// B1b/B1 port controls still reproduce. Nets with no `kind` behave as B1 (tanh).
 //
-// The Python driver owns the protocol, training and receipts; THIS process owns
-// the quilt-arcade engine tick (list-form subprocess, one JSON object per line on
-// stdin, one per line on stdout).
+// b1_pong_law_engine.mjs — lane B1-DISTILL engine harness.
+//
+// The Python driver owns the protocol, training and receipts; THIS process
+// owns the quilt-arcade engine tick (list-form subprocess, one JSON object per
+// line on stdin, one per line on stdout).
 //
 // Two sheets live here:
-//   * PRISTINE — quilt-arcade games/pong buildSheet() UNMODIFIED. Its `ai.track`
-//     is the exact derived law and is the ONLY label source.
-//   * SWITCH   — the same sheet with `ai.track` swapped for a control switch whose
-//     'law' branch is character-for-character the shipped TRACK body, plus
-//     'random' and 'net' branches. The switch sheet plays the games. `laweq`
-//     measures switch-law vs pristine-law on any state set.
+//   * PRISTINE — quilt-arcade games/pong buildSheet() UNMODIFIED. Its
+//     `ai.track` is the exact derived law and is the ONLY label source.
+//   * SWITCH   — the same sheet with `ai.track` swapped for a control switch
+//     whose 'law' branch is character-for-character the shipped TRACK body,
+//     plus 'random' and 'net' branches. The switch sheet plays the games.
+//     `laweq` measures switch-law vs pristine-law on any state set; the B1
+//     prereg requires bit-identical before any measured number is trusted.
 //
 // Commands:
-//   {"cmd":"setnet","side":"left"|"right","net":{arch,W1,b1,W2,b2,W3,b3}|null}
-//   {"cmd":"setnet","side":"left"|"right","net":{arch:'kink',W1,b1,W2,b2,Wd,bd,Wk,bk,Wr,br}}
+//   {"cmd":"setnet","side":"left"|"right","net":{W1,b1,W2,b2,W3,b3}|null}
+//   {"cmd":"newgame","seed":N,"left":M,"right":M}       M in law|random|net
 //   {"cmd":"collect","seed":N,"left":M,"right":M,"ticks":T,"rngSeed":R}
 //   {"cmd":"h2h","seed":N,"left":M,"right":M,"maxTicks":T}
 //   {"cmd":"labels","engine":"pristine"|"switchlaw","states":[{p,b,side}]}
-//   {"cmd":"netforward","side":"left"|"right","pairs":[[p,b],...]}
 //   {"cmd":"laweq","states":[{p,b,side}]}
 //   {"cmd":"quit"}
 
@@ -35,6 +41,7 @@ import { buildSheet } from '/home/eileen/projects/quilt-arcade/games/pong/sheet.
 import { v } from '/home/eileen/projects/quilt-arcade/shared/kit.mjs';
 
 const PH = 6, H = 60;
+const SIDE_SPEED = { left: 0.85, right: 0.70 };
 
 // The shipped TRACK body (quilt-arcade games/pong/sheet.mjs) is reproduced
 // verbatim in the 'law' branch; the extras are strictly additive branches.
@@ -71,12 +78,12 @@ function makeSwitchSheet() {
 }
 
 const bootPristine = () => {
-  const e = new QuiltEngine('b1b-pristine', { eager: true });
+  const e = new QuiltEngine('b1-pristine', { eager: true });
   e.loadSheet(buildSheet());
   return e;
 };
 const bootSwitch = () => {
-  const e = new QuiltEngine('b1b-switch', { eager: true });
+  const e = new QuiltEngine('b1-switch', { eager: true });
   e.loadSheet(makeSwitchSheet());
   return e;
 };
@@ -99,13 +106,12 @@ function mulberry32(seed) {
   };
 }
 
-const softplus = (z) => (z > 20 ? z : Math.log1p(Math.exp(z)));
-
-// ── B1b nets, evaluated in JS (verified against torch in controls) ──────────
+// ── distilled net, evaluated in JS (verified against torch in controls) ─────
 function mlpForward(net, p, b, side) {
+  // B1's forward, with an additive activation switch: kind === 'relu' -> ReLU,
+  // anything else (incl. missing kind, i.e. a B1 net) -> tanh.
+  const act = net.kind === 'relu' ? (x) => (x > 0 ? x : 0) : Math.tanh;
   const x = [(p - 30) / 30, (b - 30) / 30, side];
-  const piecewise = net.arch === 'relu' || net.arch === 'kink';
-  const act = piecewise ? (z) => (z > 0 ? z : 0) : Math.tanh;
   const h1 = new Array(64);
   for (let j = 0; j < 64; j++) {
     let s = net.b1[j];
@@ -120,28 +126,80 @@ function mlpForward(net, p, b, side) {
     for (let k = 0; k < 64; k++) s += w[k] * h1[k];
     h2[j] = act(s);
   }
-  if (net.arch === 'kink') {
-    let sd = net.bd[0], sk = net.bk[0], sr = net.br[0];
-    const wd = net.Wd[0], wk = net.Wk[0], wr = net.Wr[0];
-    for (let k = 0; k < 64; k++) {
-      sd += wd[k] * h2[k];
-      sk += wk[k] * h2[k];
-      sr += wr[k] * h2[k];
-    }
-    const d = softplus(sd), kk = softplus(sk), r = sr;
-    const raw = b - p;
-    const g = Math.sign(raw) * Math.min(kk, Math.max(0, Math.abs(raw) - d));
-    return Math.max(PH, Math.min(H - PH, p + g + r)) - p;
-  }
   let out = net.b3[0];
   const w3 = net.W3[0];
   for (let k = 0; k < 64; k++) out += w3[k] * h2[k];
   return out;
 }
 
+// B1b learned-kink head, evaluated RAW (the paddle box clamp is applied by the
+// game itself, exactly as for every other net in play).
+//   u = |b-p|, sg = sign(b-p);  g_side(u) = b0[side] + sum_k W[side][k]*relu(u-d[k])
+//   raw = sg * g_side(u)
+function kinkForward(net, p, b, side) {
+  const z = b - p;
+  const u = Math.abs(z);
+  const sg = z > 0 ? 1 : (z < 0 ? -1 : 0);
+  const s = side === 'left' || side === 0 ? 0 : 1;
+  let g = net.b0[s];
+  const w = net.W[s];
+  for (let k = 0; k < net.d.length; k++) {
+    const h = u - net.d[k];
+    if (h > 0) g += w[k] * h;
+  }
+  return sg * g;
+}
+
+// B1C additive: generic MLP body (list of hidden layers, relu|tanh), used by
+// the capacity-bump ('mlp') and binned ('binned') arms.
+function genericBody(net, p, b, side) {
+  let h = [(p - 30) / 30, (b - 30) / 30, side];
+  for (const L of net.layers) {
+    const act = L.act === 'tanh' ? Math.tanh : (x) => (x > 0 ? x : 0);
+    const o = new Array(L.b.length);
+    for (let j = 0; j < L.b.length; j++) {
+      let s = L.b[j];
+      const w = L.W[j];
+      for (let k = 0; k < w.length; k++) s += w[k] * h[k];
+      o[j] = act(s);
+    }
+    h = o;
+  }
+  return h;
+}
+
+function capForward(net, p, b, side) {
+  const h = genericBody(net, p, b, side);
+  let out = net.bout[0];
+  const w = net.Wout[0];
+  for (let k = 0; k < w.length; k++) out += w[k] * h[k];
+  return out;
+}
+
+// B1C additive: binned head evaluated at argmax, returned as bin centre.
+function binnedForward(net, p, b, side) {
+  const h = genericBody(net, p, b, side);
+  let best = 0, bestv = -Infinity;
+  for (let j = 0; j < net.bk.length; j++) {
+    let s = net.bk[j];
+    const w = net.Wk[j];
+    for (let k = 0; k < w.length; k++) s += w[k] * h[k];
+    if (s > bestv) { bestv = s; best = j; }
+  }
+  return net.bins[best];
+}
+
+function netRaw(net, p, b, side) {
+  const s = side === 'left' || side === 0 ? 0 : 1;
+  if (net.kind === 'kink') return kinkForward(net, p, b, s);
+  if (net.kind === 'mlp') return capForward(net, p, b, s);
+  if (net.kind === 'binned') return binnedForward(net, p, b, s);
+  return mlpForward(net, p, b, s);
+}
+
 const nets = { left: null, right: null };
 
-function preState(e) {
+function preState(e, sw) {
   const bx = V(e, 'ball.x'), by = V(e, 'ball.y');
   const pl = V(e, 'paddle.left'), pr = V(e, 'paddle.right');
   return {
@@ -153,8 +211,8 @@ function preState(e) {
   };
 }
 
-const sw = bootSwitch();
-const pr = bootPristine();
+let sw = bootSwitch();
+let pr = bootPristine();
 
 async function applyControls(e, left, right) {
   await e.set('control.left', left);
@@ -165,7 +223,9 @@ async function applyControls(e, left, right) {
   await e.set('netdelta.right', 0);
 }
 
-async function primeControls(e, left, right, rng, lastState) {
+// Compute the moves/deltas the given controls want for the CURRENT state, and
+// write them into the sheet. 'law' needs nothing (its branch reads state).
+async function primeControls(e, left, right, p, rng, lastState) {
   if (left === 'random') {
     const u = rng();
     await e.set('move.left', u < 1 / 3 ? -1 : (u < 2 / 3 ? 0 : 1));
@@ -175,10 +235,10 @@ async function primeControls(e, left, right, rng, lastState) {
     await e.set('move.right', u < 1 / 3 ? -1 : (u < 2 / 3 ? 0 : 1));
   }
   if (left === 'net') {
-    await e.set('netdelta.left', mlpForward(nets.left, lastState.left, lastState.ballY, 0));
+    await e.set('netdelta.left', netRaw(nets.left, lastState.left, lastState.ballY, 0));
   }
   if (right === 'net') {
-    await e.set('netdelta.right', mlpForward(nets.right, lastState.right, lastState.ballY, 1));
+    await e.set('netdelta.right', netRaw(nets.right, lastState.right, lastState.ballY, 1));
   }
 }
 
@@ -205,13 +265,18 @@ const handlers = {
     const side = msg.side;
     if (side !== 'left' && side !== 'right') return { ok: false, error: 'bad side' };
     nets[side] = msg.net ?? null;
-    return { ok: true, side, installed: nets[side] !== null,
-             arch: nets[side] ? nets[side].arch : null };
+    return { ok: true, side, installed: nets[side] !== null };
+  },
+  async newgame(msg) {
+    await applyControls(sw, msg.left, msg.right);
+    const r = await sw.call('new_game', { seed: msg.seed });
+    if (r.status === 'error') return { ok: false, error: r.error?.message ?? 'new_game error' };
+    return { ok: true, state: preState(sw) };
   },
   async collect(msg) {
     const left = msg.left, right = msg.right;
     await applyControls(sw, left, right);
-    const r = await sw.call('new_game', { seed: msg.seed });
+    let r = await sw.call('new_game', { seed: msg.seed });
     if (r.status === 'error') return { ok: false, error: r.error?.message ?? 'new_game error' };
     const rng = mulberry32(msg.rngSeed ?? msg.seed);
     const samples = [];
@@ -220,7 +285,7 @@ const handlers = {
     for (let i = 0; i < ticks; i++) {
       const s = preState(sw);
       samples.push(s);
-      await primeControls(sw, left, right, rng, s);
+      await primeControls(sw, left, right, null, rng, s);
       const step = await sw.call('match.step');
       if (step.status === 'error') return { ok: false, error: step.error?.message ?? 'match.step error' };
       if (step.data?.over) { over = true; break; }
@@ -230,14 +295,14 @@ const handlers = {
   async h2h(msg) {
     const left = msg.left, right = msg.right;
     await applyControls(sw, left, right);
-    const r = await sw.call('new_game', { seed: msg.seed });
+    let r = await sw.call('new_game', { seed: msg.seed });
     if (r.status === 'error') return { ok: false, error: r.error?.message ?? 'new_game error' };
     const maxTicks = msg.maxTicks ?? 20000;
     const rng = mulberry32((msg.seed * 2654435761) >>> 0);
     let n = 0, over = false, last = null;
     while (n < maxTicks) {
       const s = preState(sw);
-      await primeControls(sw, left, right, rng, s);
+      await primeControls(sw, left, right, null, rng, s);
       const step = await sw.call('match.step');
       if (step.status === 'error') return { ok: false, error: step.error?.message ?? 'match.step error' };
       last = step.data;
@@ -260,8 +325,8 @@ const handlers = {
     const net = nets[side];
     if (!net) return { ok: false, error: 'no net installed for ' + side };
     const s = side === 'left' ? 0 : 1;
-    const out = msg.pairs.map(([p, b]) => mlpForward(net, p, b, s));
-    return { ok: true, deltas: out, arch: net.arch };
+    const out = msg.pairs.map(([p, b]) => netRaw(net, p, b, s));
+    return { ok: true, deltas: out };
   },
   async laweq(msg) {
     const a = await labelStates(pr, msg.states);
@@ -296,4 +361,4 @@ rl.on('line', (line) => {
   });
 });
 rl.on('close', () => process.exit(0));
-out({ ok: true, ready: true, ph: PH, h: H, lane: 'B1b' });
+out({ ok: true, ready: true, ph: PH, h: H });

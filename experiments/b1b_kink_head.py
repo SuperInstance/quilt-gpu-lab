@@ -626,6 +626,15 @@ def run_inner(out_dir: Path) -> int:
             verdict = "KILL"
         else:
             verdict = "INCONCLUSIVE"
+        # FROZEN control gate (prereg §controls 3): a frame-drift mismatch VOIDs the
+        # whole run — the numbers were measured on a different frame than B1's.
+        void_reason = None
+        if not repl.get("pass"):
+            void_reason = ("B1 control replication FAILED (frame drift): arm (a) seed 2718 at "
+                           f"{EPOCHS} epochs did not reproduce B1's sensitivity control within "
+                           f"{REPL_TOL} — " + json.dumps(repl["deltas"]) + ". Run VOID, not a verdict.")
+            verdict = "VOID"
+            print("VOID: " + void_reason, flush=True)
 
         vram_mb = torch.cuda.max_memory_allocated() / 1e6
         result = {
@@ -635,6 +644,9 @@ def run_inner(out_dir: Path) -> int:
                      "learned-kink head reaches near-100% per-tick action agreement "
                      "where the converged tanh basis floors.",
             "verdict": verdict, "prereg": str(PREREG),
+            "void_reason": void_reason,
+            "frame_identity_control": {"b1_control_replication": repl,
+                                      "pass": bool(repl.get("pass"))},
             "device": device, "device_name": dev_name,
             "gpu_peak_vram_mb": round(vram_mb, 1),
             "tols": {"lo": TOL_LO, "hi": TOL_HI}, "gate_min": GATE_MIN,
