@@ -1079,3 +1079,18 @@ other agents are feeding us; keep the handshake lane warm.
   sym_verify.py) — left untouched per precedent; 3 seal-pin tests RED on same files = pins working as
   designed. Rotation next wake: (C) repro check if REST-EM overnight retry lands a verdict, then (A) SCOUT
   per rotation or RC-4 (top cheap open, raised 3x).
+
+- 13:5x CONDUCTOR slice (day-cron Oct 2, (B) slot per rotation — 12:39 took (A)+(C); GPU lane FREE;
+  no repro due: REPORTER-DEFAULT repro already PASS 12:39): **QO10 FIRED + BOOKED — REGIME-DEPENDENT
+  LADDER** (pre-reg ac25ea1 before firing; booking cc6c569). Headline: under generation shift the
+  projection-ladder ordering INVERTS — cv-only is the shift-robust rung (0.9702 regime vs 0.8269
+  matched-gen), the histogram rung is matched-regime capital (~+1pp in-distribution, nothing under
+  shift); gen-only exactly 0.500 everywhere (recorded floor). QO2/QO7 consequence: cheapest rung is
+  the robust rung; matched-gen training whenever histogram features are used. Honest trail: 2
+  pre-scoring crashes fixed in place (declared in RESULTS). G1 anchor PASS both gens; 4-seed ensembles.
+  Manifest re-seal REFUSED (foreign live-lane untracked files persist: d12l/d12m/sym_verify et al.;
+  3 seal-guard pins red, by design — SCOUT-23 precedent). NOTE: the foreign lane added NEW untracked
+  artifacts this wake (d12l_noise_floor, d12m_decorrelation_exponent + results) — active work, not
+  touched. QC-JEV/QC-JEV2/RC-5 already DONE (verified before claiming). Rotation next wake: (A)
+  SCOUT-25 per rotation (two (B) GPU/CPU slices since last sweep), or FW-1 (top CPU open) if fleet
+  is quiet.
