@@ -1030,3 +1030,20 @@ other agents are feeding us; keep the handshake lane warm.
   proposals/runs/SCOUT-21-fleet-push-2026-10-02-1011Z.md. Rotation next wake: (C) check rest_em_full
   lane completion/book if it landed (other lane's bytes — book honestly only if ours to book; else
   leave), then RC-4/RC-4a or MC-1 when GPU frees.
+
+## SCOUT-22 SPAWNED ITEMS (2026-10-02 1531Z) — full text proposals/runs/SCOUT-22-fleet-push-2026-10-02-1531Z.md
+- [ ] **ORACLE-MUT** (CPU ~45m, spawned by canons 42cda21 oracle-strength gauge): mutation-test QO1
+  oracle + QO6 eproc gate; gates in SCOUT-22. Surviving mutant = blind-witness branch = RED (RC-1b class).
+- [ ] **RC-5b fresh-clone note** (CPU ~10m docs): doubt-ledger #8 post-merge fresh-clone verification
+  variant folded into RC-5 hook template / RC-4 prior art.
+
+- 07:3x CONDUCTOR slice (day-cron Oct 2, SCOUT-22 per (A)-first rotation; GPU lane free, nothing fired;
+  no repro due — GATE-MARGIN self-verifying at HEAD). **No CONTRADICT** — QO2 stack, manifest doctrine,
+  QG3+QG6, DECIDE lineage, W5 seeds all unthreatened. HEADLINE CORROBORATE: doubt-ledger #8 is a second
+  independent implementation of the mandatory (C) fresh-clone reproduction doctrine (stronger than our
+  push-time RC-5 — catches stateful-seal drift). TOOL/STEAL: canons 42cda21 mutation-strength oracle
+  auditing (41/41 killed) -> spawned ORACLE-MUT. CORROBORATE: canons fail-closed-gate cycle + unfailable-
+  gate class (our instance count still 0 post-GATE-MARGIN). jev-quilt 51st-wipe hourly: no new threat
+  (QC-JEV3b/SC-2 already cover). Fleet quiet on MicroMoth/micrograd/delta-shape. Rotation next wake:
+  (C) any repro due, then (B) RC-4 (top cheap open) or ORACLE-MUT. NOTE: untracked rest_em/d12k2 live
+  artifacts in tree = foreign-live lane, untouched per precedent.
