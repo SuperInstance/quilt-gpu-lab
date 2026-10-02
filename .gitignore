@@ -8,3 +8,5 @@ data/c4/
 
 farm/state.json
 farm/logs/
+scratch/grader_blindspots/repo/
+scratch/dogfood/workers/edge-lab-buggy/
