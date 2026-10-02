@@ -5476,3 +5476,15 @@ rate 0.5718; torch nondeterminism vs booked 0.5789 as expected). G1 anchor PASS 
 - Honest trail: two mechanical crashes fixed in place pre-scoring (ladder loop reused anchor features;
   fit_mlp_seed read a stale global test-label array) — fixed before any verdict was read, declared here.
   Std==0 arms are tiny-input arms (cv single-feature, gen constant) — expected, not G2 alarms.
+
+### (C) MANDATORY REPRODUCTION CHECK — 14:4x: **QO10 PASS (verdict-level, not byte-exact)**
+- Re-ran COMMITTED `experiments/qo10_projection_ladder.py` (47 s, GPU) — **fifth witness of the hardcoded
+  output-path defect** (writes straight into `results/qo10_projection_ladder/results.json`, no `--out`);
+  safe pattern used: committed artifact backed up to ext4 (`/home/eileen/qo10_committed_ref.json`,
+  sha 605d1da9…), repro run, diff, then `git checkout` restored the booking artifact byte-identically.
+- Result: **NOT byte-identical** (repro sha e00e2276…) — expected, lane torch nondeterminism: G1 rate
+  0.5828 vs booked 0.5718 (spread 0.011, slightly above the ±0.006 band previously noted for crossing-rate
+  draws — recorded honestly, no gate depends on it). **All gates reproduce**: G1_lane true, both anchors
+  PASS (gen1 0.8946 vs 0.8922, gen3 0.9357 vs 0.9355), every ladder-arm mean within 0.01 of booking
+  (no adjacent-ordering flips; L_gen still exactly 0.5000 everywhere; cv-rung std-0 arms reproduce).
+  **REGIME-DEPENDENT LADDER verdict STANDS.** Subpopulation/AUC verdicts remain ensemble-protected per QG7.

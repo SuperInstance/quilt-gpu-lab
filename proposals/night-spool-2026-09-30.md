@@ -1094,3 +1094,11 @@ other agents are feeding us; keep the handshake lane warm.
   touched. QC-JEV/QC-JEV2/RC-5 already DONE (verified before claiming). Rotation next wake: (A)
   SCOUT-25 per rotation (two (B) GPU/CPU slices since last sweep), or FW-1 (top CPU open) if fleet
   is quiet.
+
+- 14:4x CONDUCTOR slice (day cron): (C) mandatory repro of newest booking QO10 — **PASS verdict-level, not
+  byte-exact** (lane nondeterminism, G1 rate spread 0.011 vs the ±0.006 band — recorded; all gates/anchors/
+  ladder orderings reproduce; booking artifact restored byte-identical post-verify). Hardcoded-output-path
+  defect 5th witness (RC-1 `--out` spec item stands). (A) skipped per rotation (SCOUT-24 fresh at 12:39);
+  GPU lane idle all slice. Foreign live lane noted: scratch/receiptd processes started 14:38 (untracked,
+  NOT touched — PW-1 precedent). Rotation next wake: (B) top open item — FW-1 field-write census (CPU ~40m,
+  may split into two slices) or RC-5 narrowed push-time --check (CPU ~20m); GPU free for QG4/QG1d/MC-1.
