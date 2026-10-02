@@ -149,3 +149,36 @@
 | M18 | regularized/parallelized self-improvement trajectory | 3 | 2 | 2 | **12** | ASSAYED — parked, U-starved (needs API-scale agent populations, same kill reason as M9/M12) |
 
 *Rubric honesty: 2/5 cleared 27 — and both passers share a property worth naming: they are the two mines that collide with artifacts we already own (the D-ledger; the nursery skeleton). The pattern across all 7 waves: our ≥27 scores come almost exclusively from literature×receipt collisions, never from raw novelty. The rubric does not need recalibration; the mine's query budget should keep targeting our asset list. No gate loosened.*
+
+## Wave 8 — the data-schedule-and-router-object harvest (2026-10-02: edge-mine scout, focus rotated to data curation/schedules + routing-vs-calibration + synthetic-data grounding, since Wave 7 was weight-geometry)
+
+*Search focus this wave: data curation/curriculum schedules · small-GPU training efficiency · routing/calibration under distribution shift · synthetic-data model collapse · RSI news check · GitHub trending (weak returns). 7 searches; one query was refused by the search provider (error "new_sensitive"), reported honestly. Sources are search-roundup-grade — flagged for re-verification before canon (same caveat as Waves 0/5/6/7).*
+
+### Abstraction mines (status MINED → ASSAYED below)
+
+- **M19 — The router is a post-hoc object; routing and calibration are separable failure axes.** The routing literature converged from three directions: R2-T2 (test-time re-routing of multimodal MoE with zero parameter updates, consistent gains), ParetoBandit / BEST-Route (routers replaced by online/bandit learners at deploy time), and "Calibrated MoE under Distribution Shift" (soft routing introduces a calibration failure mode that hard routing does not have). Essence: *expert selection is a deploy-time policy, not an architecture property — and its failures split into a choice axis (which expert) and a confidence axis (how calibrated the pick is).* Direct collision with COMPOSITE: C2-IL booked oracle headroom **+0.2191** with router-oracle agreement 0.707, and G-IL2b booked that the entire FED−S4-MONO gap (**+0.1045**) is refit-vs-frozen *calibration*, not routing. Our frozen prediction dumps (20 arms × 3 seeds, 0 GPU-Wh) are the testbed.
+  - https://arxiv.org/abs/2502.20395 (R2-T2) · https://arxiv.org/html/2604.00136v1 (ParetoBandit) · https://openreview.net/forum?id=L6wxelezWk (Calibrated MoE under shift) · https://icml.cc/virtual/2026/poster/63152 (VMoER)
+
+- **M20 — Data value is schedule-dependent, not intrinsic.** "How Learning Rate Decay Wastes Your Best Data" (ascending-quality curricula interact with the decay window — the best data's value depends on *when* it arrives), PPT (pre-pretraining on synthetic non-natural data improves token efficiency), data-centric training surveys (selection/composition/weighting as one program). Essence: *the "quality" of a data point is a function of the training schedule that consumes it — there is no dataset-quality ordering independent of the optimizer's clock.*
+  - https://openreview.net/forum?id=T5wkZJqzkz · https://arxiv.org/list/cs.CL/new (PPT entry, 2026-10-02 listing)
+
+- **M21 — Synthetic corpora need a grounding anchor, and the anchor's job is to calibrate the drift measure.** The 2026 collapse literature converged: collapse is provably avoidable by accumulating real data alongside synthetic ("Learning from Synthetic Data without Model Collapse" — token-level *semi-synthetic* editing keeps a real anchor; "mathematically grounded" synthetic data is defensible because the generator, not the sample, carries the truth). Essence: *synthetic data safety is not a property of the data — it is the presence of an external reference that makes drift measurable.* Unusual local angle: our glyph/grammar corpora are generated from known laws (COMP1-A1 grammar, the B1 law k=1.5), so we own the ground truth most labs lack — drift can be measured exactly, and the anchor question becomes a *measure-calibration* question, the same shape H1B-VISION died on (no stable measure without an external reference).
+  - https://arxiv.org/html/2607.17043v1 · https://pub.towardsai.net/why-2026-is-the-year-synthetic-data-becomes-non-negotiable-b5a2a84d1b1b · https://www.digitalapplied.com/blog/synthetic-data-generation-llm-training-decision-guide-2026
+
+- **M22 — RSI went institutional (corroboration, not a new mine).** Anthropic launched an RSI institute ("When AI builds itself": Claude agents recovered 97% of a performance gap in a week vs humans' 23%), Lilian Weng published "Harness Engineering for Self-Improvement", and SIA updates *both* harness and weights. This confirms Waves 5–7's M5/M9/M18 line from the top down. Not a new abstraction for us — the field caught up to our gate discipline.
+  - https://www.anthropic.com/institute/recursive-self-improvement · https://lilianweng.github.io/posts/2026-07-04-harness/ · https://www.philschmid.de/recursive-self-improvement
+
+- **M23 — Environments at scale: synthetic executable worlds as the RL supply chain.** Agent World Model (infinity synthetic environments with fully executable states and reliable rewards), automated high-performance RL-environment generation, sandbox-as-a-service (ProRL Rollout-as-a-Service). Essence: *environments are becoming generated artifacts, shifting the bottleneck from environment scarcity to environment verification* — which is exactly the part our falsifier discipline treats as the whole game.
+  - https://arxiv.org/html/2602.10090v2 · https://huggingface.co/papers/2603.12145 · https://arxiv.org/html/2603.18815v1
+
+### ASSAY — Wave 8 scoring (novelty × local-uniqueness × falsifiability, per `docs/assayer-spec.md`)
+
+| # | abstraction | N | U | F | score | status |
+|---|------------|---|---|---|-------|--------|
+| M19 | router as post-hoc object (routing ⊥ calibration, both test-time-fixable) | 3 | 4 | 4 | **48** | SEEDED (SPOOL Wave 7, entry W8a) |
+| M21 | synthetic corpora need a grounding anchor that calibrates the drift measure | 3 | 4 | 4 | **48** | SEEDED (SPOOL Wave 7, entry W8b) |
+| M20 | data value is schedule-dependent | 3 | 2 | 4 | **24** | ASSAYED — parked, U-starved (anyone can run a curriculum ablation; nothing in our asset list makes the answer ours) |
+| M23 | environments as generated artifacts; verification is the bottleneck | 2 | 2 | 3 | **12** | ASSAYED — parked (corroborates our practice; no falsifier we can run that the field can't) |
+| M22 | RSI institutionalized | 1 | 2 | 2 | **4** | ASSAYED — KILLED as a gem (corroboration of W5 M5; zero new question) |
+
+*Rubric honesty: 2/5 cleared 27, and again both passers are literature×receipt collisions (C2-IL's frozen prediction corpus + booked +0.219/+0.1045 numbers; our owned generative laws). GitHub-trending searches returned only stale listicles — no mine taken from them. One provider-refused query disclosed above. No gate loosened.*
