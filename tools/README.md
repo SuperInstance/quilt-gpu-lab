@@ -176,3 +176,15 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   `python tools/wt_floor.py --p 0.6 --eps 0.05 --w 4 --n 16 --ts 25,50,100 --draws 3 [--out r.json] | --selftest`
   TEST receipt 2026-10-02: selftest OK (4 checks incl. J1 noise-hurts);
   live run p=0.6/eps=0.05/W=4/N=16 -> T_floor=25, within_bound=True, receipt written.
+
+- **sym-verify** — `tools/sym_verify.py` — standalone executable answer
+  verifier for generate-then-check loops (pattern lifted PROVEN from
+  `experiments/rest_em_loop.py`: 8/8 accept + 12/12 reject smoke). No LLM
+  judge: regex `Answer:` extraction, strict int equality (arith) or sympy
+  simplify + frozen rational-probe property test (symb, optional dep).
+  One JSON receipt, exit 0=accept / 1=reject / 2=FAIL-INPUT, `--selftest`
+  negative-control battery, stdin mode.
+  `python tools/sym_verify.py --kind arith --target 132 --text 'Answer: 132' | --kind symb --target '4*x - 3' --text 'Answer: 4x-3' | --stdin | --selftest`
+  TEST receipt 2026-10-02: selftest OK (8 accept / 12 reject, 0 failures);
+  live examples: arith exact rc=0, symb exact_simplify rc=0 ('-3 + 4*x' ==
+  '4*x - 3'), off-by-one wrong_value rc=1.
