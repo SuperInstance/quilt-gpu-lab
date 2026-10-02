@@ -1,0 +1,44 @@
+{
+  "single_knot": {
+    "arm": "b1g h96_mse_ep160 (reused)",
+    "ramp@1e-3": 0.8246869409660107,
+    "ramp@5e-2": 0.9979129397734049,
+    "deadzone@5e-2": null
+  },
+  "two_knot": {
+    "arm": "w96_2knot_ep160",
+    "ramp@1e-3": 0.41741204531902204,
+    "ramp@5e-2": 0.998211091234347,
+    "deadzone@5e-2": 1.0,
+    "learned": {
+      "learned_a1": 1.0066529512405396,
+      "learned_k1": 1.5028828382492065,
+      "learned_a2": -0.019751232117414474,
+      "learned_k2": 3.0885517597198486
+    },
+    "n_params": 19303
+  },
+  "paired_gain@1e-3": {
+    "point": -0.40727489564698865,
+    "ci_low": -0.42457513416815745,
+    "ci_high": -0.3887820512820513,
+    "boot_std": 0.009372499863975725,
+    "B": 1000,
+    "seed": 2718,
+    "n_ramp": 3354
+  },
+  "ref_single_knot_ramp@1e-3": 0.8246869409660107,
+  "single_knot_n_params": 19301,
+  "two_knot_n_params": 19303,
+  "param_budget_pct": 0.010362157401170923,
+  "param_budget_ok": true,
+  "gates": {
+    "gain_bar": 0.05,
+    "ci_excl_0": false,
+    "deadzone_no_regress_bar": 0.99,
+    "deadzone@5e-2": 1.0,
+    "crossing_ramp_bar": 0.9,
+    "ramp@5e-2": 0.998211091234347,
+    "inconclusive_boot_std0": false
+  }
+}

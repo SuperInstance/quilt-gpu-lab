@@ -253,3 +253,33 @@
   Next: bisect the **hybrid ramp atom-gate crossing {64,80,96}** (w64 0.2930 → w96 0.9562) to name the hybrid's
   own floor, and ask whether the residual @1e-3 ramp tail (0.825 @160ep) yields to a two-knot atom or is the
   map's intrinsic quantization.
+
+- [x] **B1H-CODA — NAME THE HYBRID'S OWN RAMP FLOOR, AND DOES A TWO-KNOT ATOM BUY THE @1e-3 TAIL?** (the
+  B1-family coda, GPU ~5m, 1.42 Wh, spawned by B1G's hand-off 2026-10-01 18:2x): prereg
+  proposals/runs/B1H-coda.md frozen before fire. B1G reversed B1F (ramp = epochs/loss-shaped) and named the
+  **crossing width** as the dominant lever, leaving two follow-ups. Part A bisects the hybrid ramp atom-gate
+  crossing **{64,72,80,88}** at the best recipe (MSE, 160ep); Part B replaces the single-knot ramp atom with a
+  **two-knot** variant (k2 = k1+softplus(gap) > k1 structural; a2 init 0 ⇒ first forward bit-identical to the
+  single-knot family) at w96/160ep. Driver = B1G imported wholesale + B1C engine unchanged (C4/C6/C7 verbatim;
+  B1D w128 anchor nets reused; B1G `h96_mse_ep160` checkpoint reused as the Part B single-knot arm).
+  — 2026-10-01 18:3x **DONE (results/b1h/, 285.3 s wall / 91.7 GPU-s, receipt
+  `g7-wr-b1h-coda-1790908561` valid PASS; peak VRAM 123.5 MB, max temp 61 C, INSTRUMENT-01 ramp 0.657 s; seat
+  FREE).** **VERDICT: KILL (TAIL-QUANTIZED).** **PART A — hybrid ramp atom-gate floor = 72** (deadzone/ramp
+  @5e-2, seed 2718): w64 **0.9748/0.8933 [CI 0.8831,0.9034]** · **w72 0.9779/0.9401 [0.9317,0.9484] ✅** · w80
+  **0.9784/0.8852 [0.8745,0.8962]** · w88 **1.0000/0.9997 [0.9991,1.0000] ✅** (ref h96 B1G 1.0000/0.9979).
+  **Non-monotone: w80 is a local trough** (CI disjoint from w72) — the "floor" is a by-width curve, not a step.
+  B1F's hybrid w64 **0.2930 @40ep → 0.8933 @160ep** (epochs move w64 a lot but it still does not cross 0.90);
+  **the hybrid floor (72) sits BELOW the plain crossing (96)** — the ramp atom-gate buys the ramp at less width
+  than the linear head. **PART B — the two-knot atom FAILS, and backwards:** paired ramp@1e-3 **0.4174 vs
+  0.8247 ⇒ gain −0.4073 CI[−0.4246,−0.3888]** (B=1000 paired boot, ramp n=3,354; CI excludes 0 on the NEGATIVE
+  side), deadzone 1.0000 (no regression), crossing 0.9982 intact, params 19,303 vs 19,301 (+0.010 %). Learned
+  knot story: the two-knot atom **found the law's single knot** (k1 **1.5029**, a1 **1.0067**) and made the
+  second knot **inert and out-of-band** (a2 **−0.0198**, k2 **3.0886** — beyond the saturation edge) ⇒
+  **the @1e-3 tail is NOT interface-shaped; it is the composed map's residual (gate blend + head), i.e. intrinsic
+  quantization, not a missing knot.** ⇒ books **"the tail is the map's intrinsic quantization — B1 closes with the
+  tail booked as a limit."** Controls all pass: C1 max|Δ|=0; C4 frame bit-identical ×4 lanes; C6 4.7015e-05; C7
+  0.0 (bit-exact reuse). Safeguards: verdict asserts counted set == the 5 prereg arms; append-window guard
+  snapshot. Artifacts: results/b1h/. NOT COMMITTED. **The B1 family closes** (capacity/crossing width gates the
+  ramp; the atom-gate names its floor at w72; the sharp tail is the composed map's floor). Next: none for B1; if
+  the sharp tail ever matters again it is a **composition** question (g_r/g_dz blend or a hard-routed non-blended
+  ramp branch), not another knot.

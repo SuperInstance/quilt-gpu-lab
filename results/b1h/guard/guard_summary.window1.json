@@ -1,0 +1,18 @@
+{
+  "breach": null,
+  "g7": {
+    "gpu_seconds": 91.652,
+    "joules": 5112.9677,
+    "mean_power_w": 17.92,
+    "power_samples": 55,
+    "util_samples": 55,
+    "wall_seconds": 285.339,
+    "watt_hours": 1.4202688055555557,
+    "windows": 1
+  },
+  "max_temp_c": 61,
+  "min_free_vram_mib": 5344,
+  "samples": 56,
+  "task_id": "B1H-coda",
+  "timed_out": false
+}
