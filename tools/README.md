@@ -121,3 +121,14 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   TEST receipt 2026-10-01: selftest OK (up-shift PASS / down-shift FAIL — caught
   and fixed the signed-CI bug live: constant negative delta must FAIL, not PASS)
   + 2x5-question smoke: mean_delta 0.05, CI [0.008, 0.092] excl 0 -> PASS rc=0.
+
+- **skill-store** — `tools/skill_store.py` — grabbable Voyager-style verified-skill
+  library (pattern lifted from `experiments/skill_library.py`, VOYAGER-SKILLLIB
+  purity 39/39): JSON-backed store of prompt+code+family skills with deterministic
+  token-overlap (Jaccard) retrieval — no embeddings, no ollama, stdlib-only, runs
+  anywhere. Dedupe by sha256, atomic fsync'd writes, archive-by-rename --reset,
+  fail-loud rc=2. Verification stays the caller's gate (store only what passed).
+  `python tools/skill_store.py --db sk.json --add "prompt" --file skill.py --family text [--tag t] | --search "q" --k 3 | --get id | --list | --reset | --selftest`
+  TEST receipt 2026-10-02: selftest OK 5/5 (add+dedupe, top-1 retrieval, verbatim
+  --get, missing-file/bad-JSON rc=2, archive-on-reset) + live worked example:
+  stored fa9cf3ff475f, search ranked it top-1 on paraphrased query.
