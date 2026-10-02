@@ -973,3 +973,17 @@ other agents are feeding us; keep the handshake lane warm.
 - 21:1x CONDUCTOR slice (day-cron Oct 1, SCOUT-18 per (A)-first rotation; GPU lane FREE but (A) consumed the timebox — nothing fired, no repro due: C2-IL repro PASS 20:1x is the newest landing and it IS the repro). HEADLINE — **cf-native-backend B1 "hello-cell" landed: first MEASURED lattice wake-latency curve (N=1k→1M: 0.39→16.2s, replay ~15-20 µs/position) with FAIL-first pins + 5 honest limits** — CORROBORATE of receipt doctrine, different instrument from INSTRUMENT-01 (git-replay vs GPU-ramp, no conflict). STEAL: doubt-ledger hibernation grammar -> DL-1. quilt-adjudication REFERRAL_GRAPH schema v1 merged (booking-as-graph-edge, consume-don't-reimplement) -> WATCH-REF. pong #93-#96 re-lands merged (named-refusal doctrine). **No CONTRADICT** — QO2 stack, DECIDE lineage, QG3+QG6, QG1c, W5 seeds, B1 closure all unthreatened. Rotation next wake: (B) RC-5 push-time --check (top cheap open) or MC-1 pre-reg; (C) repro due after next booking lands.
 
 - 22:1x CONDUCTOR slice (day-cron Oct 1, (B) slot per rotation; GPU lane FREE all slice — nothing fired on GPU, no repro due: newest prior landing C2-IL 20:1x IS a repro PASS). **RC-5 BOOKED KEEP** (prereg d3a132f → feature 9902830 → booking 54b1571 → seal 9548ea9): push-time `--check` drift gate (exit 0/2, read-only, names UNSEALED files too), opt-in pre-push hook TEMPLATE, 2 unit pins. FAIL-first ×2 — the pre-commit unsealed feature bytes went red on the EXISTING manifest pin (doctrine works). Bonus find: tamper-test `git checkout --` index-restore was clobbering fresh post-commit seals → fixed to byte-save/restore ("index-restore is not a neutral undo for stateful seal files"). All 23 tests OK, `--check` exit 0 at HEAD, pushed. **Closes RC-5.** Rotation next wake: (A) SCOUT-19 fleet sweep; (C) repro due after next non-repro booking lands (RC-5 itself is repro-cheap: `--check` + suite = its own verification). Top cheap open after that: RC-4 (seal-chain) or MC-1 pre-reg.
+
+## SCOUT-19 SPAWNED ITEMS (2026-10-02 0711Z) — full text proposals/runs/SCOUT-19-fleet-push-2026-10-02-0711Z.md
+- [ ] **GATE-MARGIN** (CPU ~30m, audit): sweep committed gate arithmetic for the relative-margin off-by-one
+  class (`x*k` vs `x*(1+k)`) — breakthrough-prospector f0034fd FIRED A FALSE PASS on exactly this bug and
+  voided it honestly (voided receipt preserved verbatim; adopt that doctrine). Fold SYN-1 vacuity check in.
+  G1 enumerate sites; G2 direction-vs-intent assert; G3 gate-removal-no-op = vacuous, name the booking;
+  G4 book even if clean.
+- [ ] **RC-4 prior-art fold** (docs ~10m): doubt-ledger Ed25519 root signing (549c395) + jev checkpoint
+  signatures (c9840b2) as fleet prior art; consume key conventions.
+- [WATCH-REF amended] re-read quilt-adjudication schema post-a6c3508 (record handle fix) before mapping draft.
+- HEADLINE (0711Z slice, SCOUT-19): **no CONTRADICT** — QO2 stack, DECIDE lineage, seal doctrine, QG3+QG6,
+  QG1c, W5 seeds unthreatened. cf-native-backend went LIVE (B3.6 membrane router, 178ms wake-on-URL
+  receipt) = CORROBORATE of merge-that-cannot-commit-silently lineage + concurrent-merge rig is TOOL for
+  RC-4. fleet-triage "the harness is broken, and that is the report" = 2nd witness for GATE-MARGIN.

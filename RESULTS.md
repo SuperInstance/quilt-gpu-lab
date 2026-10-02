@@ -5362,3 +5362,16 @@ Lane D2-V1b resumed the mid-killed D2-V1 lane. **Scripts unchanged — no defect
 - FAIL-first honored twice: (1) tamper arm is red against any module lacking the drift diff; (2) the pre-commit unsealed feature bytes went red on BOTH the existing `ReceiptManifestMatches` pin and the new `test_clean_tree_checks_clean` — the pin caught RC-5's own author mid-flight.
 - META (bug found by our own pin, fixed in-place): the tamper unit originally restored the manifest via `git checkout -- receipts/manifest.json`, which pulls the git INDEX — silently clobbering a legitimate fresher seal made after commit but before booking (manifest kept reverting to the pre-RC-5 digest c71be7 across two seals). Fixed to byte-save/restore of the live file. Lesson: **index-restore is not a neutral undo for stateful seal files.**
 - SCOPE DISCIPLINE: seal-time dirty refusal NOT re-implemented (already landed b2d24bb/585c893); RC-5 is push-time only, per the 19:2x narrowing. Closes RC-5. RC-4 (seal-chain / reseal-forgery resistance) remains the next seal-doctrine item.
+
+## SCOUT-19 — fleet push sweep (A-slot, 0711Z Oct 2 UTC) — 2026-10-02 00:1x AKDT — 2026-10-01 23:1x AKDT
+- CPU-only, 0 GPU-Wh, read-only gh sweep. Full text: proposals/runs/SCOUT-19-fleet-push-2026-10-02-0711Z.md.
+- **No CONTRADICT.** Headline STEAL: breakthrough-prospector f0034fd false-pass gate bug (relative-margin
+  off-by-one `x*k` vs `x*(1+k)`, fired + voided with receipt preserved) -> spawned **GATE-MARGIN** audit
+  over our committed gates (QO6/QG3/QG6/comp2 sites) with SYN-1 vacuity folded in.
+- CORROBORATE: cf-native-backend B3.6 live membrane router (178ms wake-on-URL receipt); fleet-triage
+  "the harness is broken, and that is the report". TOOL: doubt-ledger Ed25519 + jev checkpoint signatures
+  folded as RC-4 prior art. WATCH-REF amended post-a6c3508.
+- Repro status: newest booking RC-5 is self-verifying (--check exit 0 + 23/23 suite at HEAD, per its
+  booking); no separate repro due. GPU lane free all slice, nothing fired (A-slot consumed timebox).
+- Rotation next wake: (B) GATE-MARGIN (top cheap open) or RC-4; (C) repro of next non-self-verifying
+  booking that lands.
