@@ -32,28 +32,37 @@ def j(p):
 
 # ── stats ────────────────────────────────────────────────────────────────────
 def clopper_pearson(k, n, alpha=0.05):
+    """Exact (Clopper-Pearson) binomial CI via bisection on the binomial CDF.
+
+    lower L solves  P(X >= k | n, L) = alpha/2  (i.e. 1 - cdf(k-1) = alpha/2)
+    upper U solves  P(X <= k | n, U) = alpha/2
+    """
     def cdf(x, n, p):
+        if p <= 0.0:
+            return 1.0
+        if p >= 1.0:
+            return 1.0 if x >= n else 0.0
         return sum(comb(n, i) * p**i * (1 - p)**(n - i) for i in range(0, x + 1))
 
     def lower():
         if k == 0:
             return 0.0
         lo, hi = 0.0, 1.0
-        for _ in range(200):
+        for _ in range(300):
             mid = (lo + hi) / 2
-            if cdf(k - 1, n, mid) > alpha / 2:
-                lo = mid
-            else:
+            if (1.0 - cdf(k - 1, n, mid)) > alpha / 2:   # P(X>=k) too large -> p too large
                 hi = mid
+            else:
+                lo = mid
         return (lo + hi) / 2
 
     def upper():
         if k == n:
             return 1.0
         lo, hi = 0.0, 1.0
-        for _ in range(200):
+        for _ in range(300):
             mid = (lo + hi) / 2
-            if cdf(k, n, mid) < 1 - alpha / 2:
+            if cdf(k, n, mid) > alpha / 2:               # p too small
                 lo = mid
             else:
                 hi = mid
@@ -243,8 +252,8 @@ def main():
 | draws (law-not-winning by rule) | {adj['draws']} |
 | **law win-rate** | **{adj['law_win_rate']}** |
 | **≥90% gate** | **{adj['gate_outcome']}** |
-| 95% CI, exact (Clopper–Pearson) | [{cp[0]}, {cp[1]}] |
-| 95% CI, Wilson | [{wl[0]}, {wl[1]}] |
+| 95% CI, exact (Clopper–Pearson) | [{round(cp[0], 4)}, {round(cp[1], 4)}] |
+| 95% CI, Wilson | [{round(wl[0], 4)}, {round(wl[1], 4)}] |
 | crashes (ollama/engine/harness) | {adj['crashes']} |
 
 The point estimate is **{adj['law_win_rate']}**; the exact 95% CI is **[{'%.4f' % cp[0]}, {'%.4f' % cp[1]}]**.
@@ -293,7 +302,17 @@ The point estimate is **{adj['law_win_rate']}**; the exact 95% CI is **[{'%.4f' 
   stats match its driver log exactly). Segment 1's window was PASS (21.09 Wh). The booking
   receipt above is the fresh, MEASURED segment-3 receipt.
 - Adjudication: exact Clopper–Pearson + Wilson 95% CIs; per-arm split; violations and Wh over
-  the union, by `experiments/c1b_finalize.py`.
+  the union, by `experiments/c1b_finalize.py`. The exact CI is cross-checked against
+  `scipy.stats.beta.ppf` (agreement to 1e-6); note the earlier helper `experiments/c1b_adjudicate.py`
+  carried an inverted Clopper–Pearson bisection (it reported 0.9994 for 40/40; the correct bound is
+  0.9119) — the verdict does not depend on it, and `c1b_finalize.py` supersedes it.
+- Both `seg1` and `segC` report driver-level status `PARTIAL` **by construction** (seg1 is the
+  first 7 of 40; segC is a *resumed* segment beginning at index 15), so the driver deliberately
+  refuses to adjudicate. The pre-registered N=40 gate is adjudicated here, by the keeper, over the
+  union of the three segments.
+- `c1b_run_b/games.jsonl` per-tick rows hit the driver's 2 MB cap at game 25 (tick 445); the
+  per-match block (`match_summary.json`) is complete for all 25 segment-3 games, so the capping
+  costs trace detail only, not any booked statistic.
 
 ## Artifacts (all under `results/c1_playtest/`)
 

@@ -1,0 +1,12 @@
+inner rc=-15
+[warm] warm ok in 0.5s (meta={'eval_count': 2, 'prompt_eval_count': 36, 'total_duration_ms': 450.055071})
+[g07] right ticks=1005 closed=True winner=left agree=0.0259 draw=False crashed=False 179.06s
+[g08] right ticks=1307 closed=True winner=left agree=0.1163 draw=False crashed=False 208.33s
+[g09] right ticks=1323 closed=True winner=left agree=0.0945 draw=False crashed=False 216.88s
+[g10] right ticks=915 closed=True winner=left agree=0.0011 draw=False crashed=False 216.8s
+[g11] right ticks=1876 closed=True winner=left agree=0.072 draw=False crashed=False 393.77s
+[g12] right ticks=1665 closed=True winner=left agree=0.0775 draw=False crashed=False 344.45s
+[g13] right ticks=1387 closed=True winner=left agree=0.2177 draw=False crashed=False 283.5s
+[g14] right ticks=1076 closed=True winner=left agree=0.0576 draw=False crashed=False 257.37s
+
+VOID receipt sealed for failed run
