@@ -5395,3 +5395,12 @@ Lane D2-V1b resumed the mid-killed D2-V1 lane. **Scripts unchanged — no defect
   memory of the booking sentence.
 - Verdict: KEEP. GATE-MARGIN closes. No booked verdict threatened; instance count of the false-pass
   class in our tree: 0.
+
+## SCOUT-24 — fleet push sweep (A-slot, 09:37 AKDT 2026-10-02)
+- CPU-only, 0 GPU-Wh, read-only gh sweep (events >=15:00Z). Full text: proposals/runs/SCOUT-24-fleet-push-2026-10-02-1737Z.md.
+- HEADLINE: fleet-triage 17:20Z landed Casey's GH-DUNGEONS-SEEDS brief — four round-1 lanes in one shared gh-dungeons harness (SYNCOPATION / TYPEFUNC / JEVSAMPLER / NOENGINE), with the unobserved-policy-window as the load-bearing evaluation idea and an explicit do-NOT-fix-the-lag prohibition. Plus the VM-IS-FILES substrate essay.
+- CORROBORATE: NOENGINE's "mutation harness that watches its own checks fail" = fleet-level RC-1b/GATE-MARGIN doctrine, now a funded lane. VM-IS-FILES corroborates receipt doctrine (files canonical, vantage point is the product).
+- STEAL/TOOL: SYNCOPATION unobserved-window evaluation -> spawned **QO6-BLIND** (replay committed QO6 eproc with checkpoint-digest-only gate; gates pre-registered in SCOUT-24; CPU, existing pinned data; tests whether QO2 gate telemetry is over-provisioned). No CONTRADICT — QO2 stack, QG3+QG6, receipt doctrine, QG1c, W5a/W5b unthreatened.
+- Hygiene: our repo main gained PR #7 (merged, skill-store semantic) + open-terminal fork-survey receipt d0cd181 — other agents landing in OUR repo (handshake lane warm). Local checkout on skill-semantic branch; RC-5 --check exit 2 (unsealed new files + modified rest_em_loop.py from the live rest_em lane, no process). Dirty tree NOT sealed (D-2 discipline); day item: reconcile branch + clean-tree seal.
+- Repro status: newest booking GATE-MARGIN has an independent G2 recompute in its own booking (self-verifying); no further repro due. GPU lane free all slice (A-slot consumed timebox).
+- Rotation next wake: (B) QO6-BLIND pre-reg + fire (top cheap open), or RC-4 seal-chain; (C) repro of next non-self-verifying booking that lands.
