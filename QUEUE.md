@@ -283,3 +283,32 @@
   ramp; the atom-gate names its floor at w72; the sharp tail is the composed map's floor). Next: none for B1; if
   the sharp tail ever matters again it is a **composition** question (g_r/g_dz blend or a hard-routed non-blended
   ramp branch), not another knot.
+
+- [x] **C2-IL — COMPOSITE-2 phase 3: the ITEM-LOCAL sensor corpus** (CPU ~11 s, **0 GPU-Wh**, no guard, no new banks;
+  lane C2-LOCALSENSOR, spawned by COMP2 §10's pre-booked next question 2026-10-01 18:3x): prereg
+  `proposals/runs/C2-item-local.md` frozen before build **+ AMENDMENT 1** (pre-run, disclosed). Builds the ONLY corpus
+  COMP2 §10 said could reward federation: same COMP1-A1 grammar, but **the target is a conjunction of two sensor views
+  inside the item** (canon iff the polarity channel AND the second channel agree), every distortion violating **EXACTLY
+  ONE** channel with the violated channel drawn **i.i.d. per item and independent of the regime tag** ⇒ the correct
+  sensor is item-local, so no regime→sensor table can carry it. N=12,000 (3,000/regime), seed 2718, W1 identical,
+  sha-seq `b1886f9de868e11a…`; 8,918/3,082 split; canon 0.5026; polarity share of distortions 0.468–0.523/regime.
+  — 2026-10-01 18:4x **DONE (results/comp2_itemlocal/, wall 10.9 s, 0 Wh).** **VERDICT: FAIL — NO FEDERATION PREMIUM
+  EVEN ITEM-LOCAL.** **G-IL1 PASS** (8/8 single-view arms > chance+0.02; best `PV-cheap-S4` 0.7783). **G-IL2 FAIL:
+  `FED-CHEAP-GATE` (20p learned item-local router) − `BEST-SINGLE` = +0.0022 CI[+0.0004,+0.0040] vs the +0.05 bar**;
+  the best federation arm of any kind (`FED-CHEAP-STACK`, a 5p combiner) reaches +0.0239 CI[+0.0127,+0.0356] — still
+  2× short; every router (min-p join −0.195, 2S join −0.102, majority −0.139, argmax-margin −0.082, learned 4-view
+  −0.105, 8-view −0.026, JOINT −0.192) is ≤ the best single view. **G-IL2b PASSes (+0.1045 over `S4-MONO`) but it is
+  calibration, not routing:** `FED-CHEAP-GATE` ≡ `PV-cheap-S4` at +0.0022, so the entire gap is refit-vs-frozen on the
+  S4 view — "buy the right sensor once (and recalibrate it)" survives its hardest test. **Decisive diagnostic: the
+  premium exists but is unreadable — best fixed single 0.7783 vs oracle per-item best single cell 0.9974 (headroom
+  +0.2191), margin router agrees with the oracle only 0.7070, and 27.7 % of items are ones where the fixed best view is
+  wrong but another view is right.** Per-channel: S4 near-perfect on canon 0.966 / polarity 1.000, near-blind on cargo
+  0.109 / dock 0.255; S1 best semantic 0.390/0.604, anti-polarity 0.341 — complementarity is real, but the join buys
+  distortions (0.876/0.951/0.956) by firing on 76 % of canon items and no router recovers it. AMENDMENT 1 (disclosed):
+  the count channel is at chance for every view (frozen 0.502/0.422/0.563/0.146; cheap 0.460/0.424/0.452/0.086) ⇒
+  nominally-dual-view only; variants A/B/C all piloted, same qualitative answer, amendment biases toward the negative.
+  **BOOKS: "no federation premium even item-local — the thesis narrows to sensor selection, full stop."** This **closes
+  COMPOSITE** (strike ledger untouched — a clean negative, not a strike). Next: (a) 2-param per-channel margin
+  recalibration — routing failure or calibration failure?; (b) re-ask in a structurally complementary view space
+  (order-only vs bag-only). Artifacts: results/comp2_itemlocal/ (il_results.json, corpus.jsonl, per_item_stub.jsonl,
+  predictions 20 arms × 3 × 3,082 = 184,920 rows, wh_receipt.json, pilots/). NOT COMMITTED.

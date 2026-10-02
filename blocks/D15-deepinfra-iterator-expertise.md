@@ -196,6 +196,58 @@ the lane — gated by the standing rule that it never performs a free-form sweep
    canonical-check harness — is 18/18 a sample or a rate?
 
 ---
-*Artifacts: `scratch/dogfood/{rust,luau,workers,stats}/`, README.md.
+
+## 6. Follow-up lane DOGFOOD-LING2 (2026-10-01) — second-seat answer
+
+Full evidence: `scratch/dogfood/luau2/RECEIPTS.md` + `scratch/dogfood/rust/vectors200/RECEIPTS.md`.
+
+### 6.1 Ling on a SECOND, unrelated module — the Roblox-side QUILT CELL API
+
+Not pong; the bridge's real cell API: registry (`qm_bind`/`qm_link`, find-or-create + coldest-edge
+ eviction at cap 8), dial read/write with 0..1 clamp, `qm_effect` (link-before-effect),
+`qm_tick` (leak), `qm_view`. ~200 lines, pure Luau.
+
+- **G-L2a PASS.** `src/cell_api.luau` parses/runs clean under a REAL Luau interpreter
+  (`~/.local/bin/luau`, exit 0) — an upgrade over r1, which only had `luac` 5.1; the 5.1 harness is
+  `luac -p` clean. No Luau-vs-5.1 shim was needed (the module is pure Luau, the harness pure 5.1).
+- **G-L2b PASS 50/50 (100 %)** after round 2. Round 1's own harness **aborted** (`lua5.1:
+  cell_api_test.lua:186: attempt to index field '?' (a nil value)`; `FAIL evict_at_cap_eight: got 1
+  want 8`). Root cause = ONE misunderstanding (`qm_link` is find-or-create, so relinking the same
+  `(src,dst)` updates rather than appends) → 4 wrong numeric oracles. Lane proof: patching only the
+  4 oracles makes the untouched mirror PASS 51/51.
+- **G-L2a (module) cross-check:** lane's own driver `lane_verify.luau` = **60/60** against the real
+  module; a **differential** trace (module under `luau` vs Ling's Lua-5.1 mirror under `lua5.1`)
+  is **byte-identical over 33 lines** → the harness mirrors the module faithfully.
+- **G-L2c:** r1 NOTES claimed 47 assertions all passing; lane found 19 executed, **17 pass / 2 FAIL**,
+  no PASS line → **30 phantom passes**. r2c NOTES' "50/50" matched the run (delta 0).
+
+**Verdict: HOLD the Luau/Roblox seat for Ling.** Two-for-two on unrelated modules; failures stay
+cheap, numeric, and single-round-correctable; logic never needed a fix. Standing rules unchanged:
+recompute its numeric expectations, force "emit sections / no deliberation", never trust a
+self-reported pass.
+
+**New Ling instrument law (supersedes part of §2.2):** on DeepInfra, Ling-3.0-flash **does not
+reliably separate `reasoning_content`** — with a large or "reconstruct-this" brief it burns the
+entire budget deliberating *inside the visible content* (r2: 16 k cap, no sections; r2b: 20 k cap,
+54 594 chars, no sections). Lean single-artifact briefs (r1, r2c) behave. Also: because
+`tools/deepinfra_call.py` is **stateless per call**, any multi-round lane must **inline the frozen
+prior artifact** — the model has no memory of round 1.
+
+### 6.2 Granite at scale — 200 ℤ[ω] vectors (seed 2718)
+
+**Rate, not luck.** add **200/200**, mul **200/200**, conj **200/200**, norm **199/200**
+(one miss: `z=(−1,−5)` → 31, canonical 21) = **799/800 (99.875 %)**. 18/18 was a genuine rate.
+
+**Instrument law (reconfirms §2.1, now quantified):** a **50-vector** call deterministically returns
+**empty content** with all 32 k tokens in `reasoning_content`; among ten-vector calls, ~1 in 20 also
+blows out (batch 6: 42 997 reasoning chars, 0 content). Rule: **batch ≤ 10 vectors, escalate the
+budget and retry on empty, always capture `reasoning_content`.** Cost of the whole 200-vector effort
+≈ **$0.124** (lane total ≈ $0.134).
+
+**Open item 4 and 5 are now answered.**
+
+---
+*Artifacts: `scratch/dogfood/{rust,luau,workers,stats}/`, README.md,
+`scratch/dogfood/luau2/`, `scratch/dogfood/rust/vectors200/`.
 Ground truth: `canonical_ref.py`, `verify_cp.py`, `grounded_sweep.py`, `cargo`,
-`lua5.1`, `node`. Nothing committed.*
+`lua5.1`, `luau`, `node`. Nothing committed.*

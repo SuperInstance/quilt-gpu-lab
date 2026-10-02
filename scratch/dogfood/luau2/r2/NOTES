@@ -1,0 +1,4 @@
+50/50
+FIX1 evict: 8 distinct srcs→#edges=8; p9 replaces coldest(w0.2→0.25)
+FIX2 crash gone; FIX3 s1 0.4+s2 0.3=0.7; FIX4 0.3+0.6·clamp(10)=0.9
+CLAIMS: qm_link is FIND-OR-CREATE (same src,dst updates edge, no append)

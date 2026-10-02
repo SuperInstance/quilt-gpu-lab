@@ -1,0 +1,574 @@
+{
+  "experiment": "COMPOSITE-2 phase 3 \u2014 C2-IL item-local sensor corpus",
+  "prereg": "proposals/runs/C2-item-local.md",
+  "mode": "pilot",
+  "variant": "B",
+  "cpu_only": true,
+  "gpu_wh": 0.0,
+  "new_banks": 0,
+  "corpus": {
+    "seed": 2718,
+    "n_target": 12000,
+    "per_regime": 100,
+    "sha_sequence": "0f703a4e9af759a70f706a3a2cca8989870691484b7c45416001b2fe4ef61ed5",
+    "n_raw": 400,
+    "n_unique": 400,
+    "regen_collisions": 0,
+    "n_train": 282,
+    "n_heldout": 118,
+    "per_regime_heldout": {
+      "semantic": 32,
+      "counting-address": 31,
+      "negation-scope": 33,
+      "agent-role": 22
+    },
+    "canon_frac_heldout": 0.5,
+    "per_regime_canon_frac": {
+      "semantic": 0.625,
+      "counting-address": 0.5161,
+      "negation-scope": 0.4545,
+      "agent-role": 0.3636
+    },
+    "per_regime_polarity_viol_frac": {
+      "semantic": 0.25,
+      "counting-address": 0.5333,
+      "negation-scope": 0.3333,
+      "agent-role": 0.5
+    },
+    "determinism_w1": true
+  },
+  "chance_majority": {
+    "full": 0.5,
+    "semantic": 0.625,
+    "counting-address": 0.5161,
+    "negation-scope": 0.5455,
+    "agent-role": 0.6364
+  },
+  "sensors": [
+    "S1",
+    "S2",
+    "S3",
+    "S4"
+  ],
+  "regimes": [
+    "semantic",
+    "counting-address",
+    "negation-scope",
+    "agent-role"
+  ],
+  "arms": [
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S4-MONO",
+    "JOINT",
+    "FED-IL",
+    "FED-IL-2S",
+    "FED-IL-MARGIN",
+    "FED-IL-MAJ",
+    "PV-cheap-S1",
+    "PV-cheap-S2",
+    "PV-cheap-S3",
+    "PV-cheap-S4",
+    "S1-cheap",
+    "FED-cheap-IL",
+    "BEST-SINGLE"
+  ],
+  "boards_seedmean": {
+    "S1": {
+      "full": 0.6186,
+      "semantic": 0.75,
+      "counting-address": 0.5484,
+      "negation-scope": 0.5657,
+      "agent-role": 0.6061,
+      "canon": 0.7119,
+      "dist_cargo": 0.537,
+      "dist_dock": 0.7647,
+      "dist_polarity": 0.3472
+    },
+    "S2": {
+      "full": 0.5537,
+      "semantic": 0.4479,
+      "counting-address": 0.6344,
+      "negation-scope": 0.6465,
+      "agent-role": 0.4545,
+      "canon": 0.5085,
+      "dist_cargo": 0.7222,
+      "dist_dock": 0.7451,
+      "dist_polarity": 0.4028
+    },
+    "S3": {
+      "full": 0.5876,
+      "semantic": 0.6458,
+      "counting-address": 0.5269,
+      "negation-scope": 0.5556,
+      "agent-role": 0.6364,
+      "canon": 0.5876,
+      "dist_cargo": 0.6667,
+      "dist_dock": 0.5882,
+      "dist_polarity": 0.5278
+    },
+    "S4": {
+      "full": 0.6243,
+      "semantic": 0.6042,
+      "counting-address": 0.6989,
+      "negation-scope": 0.6263,
+      "agent-role": 0.5455,
+      "canon": 0.8531,
+      "dist_cargo": 0.1667,
+      "dist_dock": 0.2941,
+      "dist_polarity": 0.6389
+    },
+    "S4-MONO": {
+      "full": 0.6243,
+      "semantic": 0.6042,
+      "counting-address": 0.6989,
+      "negation-scope": 0.6263,
+      "agent-role": 0.5455,
+      "canon": 0.8531,
+      "dist_cargo": 0.1667,
+      "dist_dock": 0.2941,
+      "dist_polarity": 0.6389
+    },
+    "JOINT": {
+      "full": 0.6215,
+      "semantic": 0.7396,
+      "counting-address": 0.5591,
+      "negation-scope": 0.5556,
+      "agent-role": 0.6364,
+      "canon": 0.7006,
+      "dist_cargo": 0.537,
+      "dist_dock": 0.7647,
+      "dist_polarity": 0.3889
+    },
+    "FED-IL": {
+      "full": 0.5678,
+      "semantic": 0.4479,
+      "counting-address": 0.6344,
+      "negation-scope": 0.5455,
+      "agent-role": 0.6818,
+      "canon": 0.2034,
+      "dist_cargo": 0.9259,
+      "dist_dock": 1.0,
+      "dist_polarity": 0.8889
+    },
+    "FED-IL-2S": {
+      "full": 0.6751,
+      "semantic": 0.6979,
+      "counting-address": 0.7312,
+      "negation-scope": 0.5657,
+      "agent-role": 0.7273,
+      "canon": 0.6215,
+      "dist_cargo": 0.6481,
+      "dist_dock": 0.8039,
+      "dist_polarity": 0.7361
+    },
+    "FED-IL-MARGIN": {
+      "full": 0.6582,
+      "semantic": 0.7292,
+      "counting-address": 0.6559,
+      "negation-scope": 0.6566,
+      "agent-role": 0.5606,
+      "canon": 0.8362,
+      "dist_cargo": 0.4444,
+      "dist_dock": 0.4118,
+      "dist_polarity": 0.5556
+    },
+    "FED-IL-MAJ": {
+      "full": 0.6525,
+      "semantic": 0.6667,
+      "counting-address": 0.6989,
+      "negation-scope": 0.5758,
+      "agent-role": 0.6818,
+      "canon": 0.5932,
+      "dist_cargo": 0.7222,
+      "dist_dock": 0.8039,
+      "dist_polarity": 0.6389
+    },
+    "PV-cheap-S1": {
+      "full": 0.548,
+      "semantic": 0.3958,
+      "counting-address": 0.4731,
+      "negation-scope": 0.7071,
+      "agent-role": 0.6364,
+      "canon": 0.3333,
+      "dist_cargo": 0.8148,
+      "dist_dock": 0.8235,
+      "dist_polarity": 0.6806
+    },
+    "PV-cheap-S2": {
+      "full": 0.5565,
+      "semantic": 0.4375,
+      "counting-address": 0.5054,
+      "negation-scope": 0.6263,
+      "agent-role": 0.697,
+      "canon": 0.2881,
+      "dist_cargo": 0.8889,
+      "dist_dock": 0.7843,
+      "dist_polarity": 0.8056
+    },
+    "PV-cheap-S3": {
+      "full": 0.5226,
+      "semantic": 0.3854,
+      "counting-address": 0.4194,
+      "negation-scope": 0.6162,
+      "agent-role": 0.7273,
+      "canon": 0.2655,
+      "dist_cargo": 0.8333,
+      "dist_dock": 0.8039,
+      "dist_polarity": 0.7222
+    },
+    "PV-cheap-S4": {
+      "full": 0.6017,
+      "semantic": 0.4271,
+      "counting-address": 0.6237,
+      "negation-scope": 0.6364,
+      "agent-role": 0.7727,
+      "canon": 0.4011,
+      "dist_cargo": 0.7407,
+      "dist_dock": 0.6863,
+      "dist_polarity": 0.9306
+    },
+    "S1-cheap": {
+      "full": 0.548,
+      "semantic": 0.3958,
+      "counting-address": 0.4731,
+      "negation-scope": 0.7071,
+      "agent-role": 0.6364,
+      "canon": 0.3333,
+      "dist_cargo": 0.8148,
+      "dist_dock": 0.8235,
+      "dist_polarity": 0.6806
+    },
+    "FED-cheap-IL": {
+      "full": 0.5395,
+      "semantic": 0.375,
+      "counting-address": 0.4839,
+      "negation-scope": 0.6162,
+      "agent-role": 0.7424,
+      "canon": 0.1469,
+      "dist_cargo": 0.9444,
+      "dist_dock": 0.9216,
+      "dist_polarity": 0.9306
+    },
+    "BEST-SINGLE": {
+      "full": 0.6243,
+      "semantic": 0.6042,
+      "counting-address": 0.6989,
+      "negation-scope": 0.6263,
+      "agent-role": 0.5455,
+      "canon": 0.8531,
+      "dist_cargo": 0.1667,
+      "dist_dock": 0.2941,
+      "dist_polarity": 0.6389
+    }
+  },
+  "seed_std": {
+    "S1": 0.012,
+    "S2": 0.0106,
+    "S3": 0.008,
+    "S4": 0.0106,
+    "S4-MONO": 0.0106,
+    "JOINT": 0.008,
+    "FED-IL": 0.0183,
+    "FED-IL-2S": 0.008,
+    "FED-IL-MARGIN": 0.004,
+    "FED-IL-MAJ": 0.0138,
+    "PV-cheap-S1": 0.0174,
+    "PV-cheap-S2": 0.0381,
+    "PV-cheap-S3": 0.028,
+    "PV-cheap-S4": 0.036,
+    "S1-cheap": 0.0174,
+    "FED-cheap-IL": 0.0262,
+    "BEST-SINGLE": 0.0106
+  },
+  "best_single_view": "S4",
+  "single_view_acc": {
+    "S1": 0.6186,
+    "S2": 0.5537,
+    "S3": 0.5876,
+    "S4": 0.6243
+  },
+  "G_IL1": {
+    "pass": true,
+    "bar": 0.52,
+    "hits": {
+      "S1": 0.6186,
+      "S2": 0.5537,
+      "S3": 0.5876,
+      "S4": 0.6243,
+      "PV-cheap-S1": 0.548,
+      "PV-cheap-S2": 0.5565,
+      "PV-cheap-S3": 0.5226,
+      "PV-cheap-S4": 0.6017
+    }
+  },
+  "G_IL2": {
+    "comparison": "FED-IL - BEST-SINGLE (full board)",
+    "diff": -0.0565,
+    "ci95": [
+      -0.1949,
+      0.082
+    ],
+    "bar": 0.05,
+    "std_a": 0.0183,
+    "std_b": 0.0106,
+    "std0_a": false,
+    "std0_b": false,
+    "verdict": "FAIL"
+  },
+  "G_IL2b": {
+    "comparison": "FED-IL - S4-MONO (full board)",
+    "diff": -0.0565,
+    "ci95": [
+      -0.1949,
+      0.082
+    ],
+    "bar": 0.05,
+    "std_a": 0.0183,
+    "std_b": 0.0106,
+    "std0_a": false,
+    "std0_b": false,
+    "verdict": "FAIL"
+  },
+  "secondary": {
+    "FED-IL-MARGIN - BEST-SINGLE": {
+      "comparison": "FED-IL-MARGIN - BEST-SINGLE",
+      "diff": 0.0339,
+      "ci95": [
+        -0.0395,
+        0.1102
+      ],
+      "bar": null,
+      "std_a": 0.004,
+      "std_b": 0.0106,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED-IL - S1": {
+      "comparison": "FED-IL - S1",
+      "diff": -0.0508,
+      "ci95": [
+        -0.1695,
+        0.0678
+      ],
+      "bar": null,
+      "std_a": 0.0183,
+      "std_b": 0.012,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED-IL - S4": {
+      "comparison": "FED-IL - S4",
+      "diff": -0.0565,
+      "ci95": [
+        -0.1949,
+        0.082
+      ],
+      "bar": null,
+      "std_a": 0.0183,
+      "std_b": 0.0106,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED-IL-2S - BEST-SINGLE": {
+      "comparison": "FED-IL-2S - BEST-SINGLE",
+      "diff": 0.0508,
+      "ci95": [
+        -0.0396,
+        0.1441
+      ],
+      "bar": null,
+      "std_a": 0.008,
+      "std_b": 0.0106,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED-IL-MAJ - BEST-SINGLE": {
+      "comparison": "FED-IL-MAJ - BEST-SINGLE",
+      "diff": 0.0282,
+      "ci95": [
+        -0.0707,
+        0.1328
+      ],
+      "bar": null,
+      "std_a": 0.0138,
+      "std_b": 0.0106,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED-IL - JOINT": {
+      "comparison": "FED-IL - JOINT",
+      "diff": -0.0537,
+      "ci95": [
+        -0.1723,
+        0.0622
+      ],
+      "bar": null,
+      "std_a": 0.0183,
+      "std_b": 0.008,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED-cheap-IL - S1-cheap": {
+      "comparison": "FED-cheap-IL - S1-cheap",
+      "diff": -0.0085,
+      "ci95": [
+        -0.0593,
+        0.0424
+      ],
+      "bar": null,
+      "std_a": 0.0262,
+      "std_b": 0.0174,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    }
+  },
+  "per_regime_ci": {
+    "FED-IL - BEST-SINGLE @semantic": {
+      "comparison": "FED-IL - BEST-SINGLE",
+      "diff": -0.1563,
+      "ci95": [
+        -0.4062,
+        0.1042
+      ],
+      "bar": null,
+      "std_a": 0.039,
+      "std_b": 0.0147,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED-IL - BEST-SINGLE @counting-address": {
+      "comparison": "FED-IL - BEST-SINGLE",
+      "diff": -0.0645,
+      "ci95": [
+        -0.3226,
+        0.1828
+      ],
+      "bar": null,
+      "std_a": 0.0152,
+      "std_b": 0.0152,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED-IL - BEST-SINGLE @negation-scope": {
+      "comparison": "FED-IL - BEST-SINGLE",
+      "diff": -0.0808,
+      "ci95": [
+        -0.3437,
+        0.2121
+      ],
+      "bar": null,
+      "std_a": 0.0,
+      "std_b": 0.0143,
+      "std0_a": true,
+      "std0_b": false,
+      "verdict": "INCONCLUSIVE (std==0 law)"
+    },
+    "FED-IL - BEST-SINGLE @agent-role": {
+      "comparison": "FED-IL - BEST-SINGLE",
+      "diff": 0.1364,
+      "ci95": [
+        -0.1367,
+        0.4242
+      ],
+      "bar": null,
+      "std_a": 0.0371,
+      "std_b": 0.0643,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    }
+  },
+  "per_channel": {
+    "canon": {
+      "BEST-SINGLE": 0.8531,
+      "FED-IL": 0.2034,
+      "FED-IL-2S": 0.6215,
+      "FED-IL-MAJ": 0.5932,
+      "FED-IL-MARGIN": 0.8362,
+      "FED-cheap-IL": 0.1469,
+      "JOINT": 0.7006,
+      "PV-cheap-S1": 0.3333,
+      "PV-cheap-S2": 0.2881,
+      "PV-cheap-S3": 0.2655,
+      "PV-cheap-S4": 0.4011,
+      "S1": 0.7119,
+      "S1-cheap": 0.3333,
+      "S2": 0.5085,
+      "S3": 0.5876,
+      "S4": 0.8531,
+      "S4-MONO": 0.8531
+    },
+    "dist_cargo": {
+      "BEST-SINGLE": 0.1667,
+      "FED-IL": 0.9259,
+      "FED-IL-2S": 0.6481,
+      "FED-IL-MAJ": 0.7222,
+      "FED-IL-MARGIN": 0.4444,
+      "FED-cheap-IL": 0.9444,
+      "JOINT": 0.537,
+      "PV-cheap-S1": 0.8148,
+      "PV-cheap-S2": 0.8889,
+      "PV-cheap-S3": 0.8333,
+      "PV-cheap-S4": 0.7407,
+      "S1": 0.537,
+      "S1-cheap": 0.8148,
+      "S2": 0.7222,
+      "S3": 0.6667,
+      "S4": 0.1667,
+      "S4-MONO": 0.1667
+    },
+    "dist_dock": {
+      "BEST-SINGLE": 0.2941,
+      "FED-IL": 1.0,
+      "FED-IL-2S": 0.8039,
+      "FED-IL-MAJ": 0.8039,
+      "FED-IL-MARGIN": 0.4118,
+      "FED-cheap-IL": 0.9216,
+      "JOINT": 0.7647,
+      "PV-cheap-S1": 0.8235,
+      "PV-cheap-S2": 0.7843,
+      "PV-cheap-S3": 0.8039,
+      "PV-cheap-S4": 0.6863,
+      "S1": 0.7647,
+      "S1-cheap": 0.8235,
+      "S2": 0.7451,
+      "S3": 0.5882,
+      "S4": 0.2941,
+      "S4-MONO": 0.2941
+    },
+    "dist_polarity": {
+      "BEST-SINGLE": 0.6389,
+      "FED-IL": 0.8889,
+      "FED-IL-2S": 0.7361,
+      "FED-IL-MAJ": 0.6389,
+      "FED-IL-MARGIN": 0.5556,
+      "FED-cheap-IL": 0.9306,
+      "JOINT": 0.3889,
+      "PV-cheap-S1": 0.6806,
+      "PV-cheap-S2": 0.8056,
+      "PV-cheap-S3": 0.7222,
+      "PV-cheap-S4": 0.9306,
+      "S1": 0.3472,
+      "S1-cheap": 0.6806,
+      "S2": 0.4028,
+      "S3": 0.5278,
+      "S4": 0.6389,
+      "S4-MONO": 0.6389
+    }
+  },
+  "verdict": "PILOT-FAIL-NO-PREMIUM",
+  "booked_sentence": "PILOT (disclosed direction-finding; NOT a booking)",
+  "wall_seconds": 0.3
+}

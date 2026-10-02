@@ -1,0 +1,701 @@
+Okay, let's tackle this problem step by step. We need to compute add, mul, conj, and norm for each given vector pair. Let's start by recalling the definitions.
+
+First, the Eisenstein integers are of the form z = a + bω, where ω² = -1 - ω. The operations are defined as:
+
+- add(z, w) = (a + c, b + d) where z=(a,b), w=(c,d)
+- mul(z, w) = (a*c - b*d, a*d + b*c - b*d)
+- conj(z) = (a - b, -b)
+- norm(z) = a² - a*b + b²
+
+We need to compute each of these for the given pairs. Let's go through each vector one by one.
+
+Starting with i=180: z=(5,3), w=(-5,3)
+
+add(z,w): (5 + (-5), 3 + 3) = (0, 6)
+
+mul(z,w): Let's compute components. a=5, b=3, c=-5, d=3.
+
+First component: a*c - b*d = 5*(-5) - 3*3 = -25 -9 = -34
+
+Second component: a*d + b*c - b*d = 5*3 + 3*(-5) - 3*3 = 15 -15 -9 = -9
+
+So mul is (-34, -9)
+
+conj(z): (a - b, -b) = (5 - 3, -3) = (2, -3)
+
+norm(z): a² -a*b + b² = 25 -15 +9 = 19
+
+Let me check norm: 5² -5*3 +3² =25-15+9=19. Correct.
+
+Now i=181: z=(3,-2), w=(-1,-6)
+
+add: (3 + (-1), -2 + (-6)) = (2, -8)
+
+mul: a=3, b=-2, c=-1, d=-6
+
+First component: 3*(-1) - (-2)*(-6) = -3 -12 = -15
+
+Second component: 3*(-6) + (-2)*(-1) - (-2)*(-6) = -18 +2 -12 = -28
+
+Wait, let's compute step by step:
+
+a*d = 3*(-6) = -18
+
+b*c = (-2)*(-1) = 2
+
+b*d = (-2)*(-6) = 12
+
+So second component: a*d + b*c - b*d = (-18) + 2 -12 = -28. Correct.
+
+conj(z): (a - b, -b) = (3 - (-2), -(-2)) = (5, 2)
+
+norm(z): 3² -3*(-2) + (-2)² =9 +6 +4=19. Wait, 3*3=9, -3*(-2)=+6, (-2)^2=4. So 9+6+4=19. Correct.
+
+i=182: z=(9,-3), w=(0,-9)
+
+add: (9+0, -3 + (-9)) = (9, -12)
+
+mul: a=9, b=-3, c=0, d=-9
+
+First component: 9*0 - (-3)*(-9) = 0 -27 = -27
+
+Second component: 9*(-9) + (-3)*0 - (-3)*(-9) = -81 +0 -27 = -108
+
+conj(z): (9 - (-3), -(-3)) = (12, 3)
+
+norm(z): 9² -9*(-3) + (-3)² =81 +27 +9=117. Let's check: 81 +27 is 108, plus 9 is 117. Correct.
+
+i=183: z=(5,-7), w=(9,-9)
+
+add: (5+9, -7 + (-9)) = (14, -16)
+
+mul: a=5, b=-7, c=9, d=-9
+
+First component: 5*9 - (-7)*(-9) =45 -63= -18
+
+Second component: 5*(-9) + (-7)*9 - (-7)*(-9) = -45 -63 -63 = let's compute:
+
+a*d =5*(-9)= -45
+
+b*c = (-7)*9= -63
+
+b*d = (-7)*(-9)=63
+
+So second component: -45 + (-63) -63 = -45 -63 -63 = -171
+
+Wait, the formula is a*d + b*c - b*d. So:
+
+a*d =5*(-9)= -45
+
+b*c = (-7)*9= -63
+
+b*d = (-7)*(-9)=63
+
+Thus, a*d + b*c - b*d = (-45) + (-63) -63 = -45 -63 -63 = -171. Correct.
+
+conj(z): (5 - (-7), -(-7)) = (12,7)
+
+norm(z):5² -5*(-7) + (-7)²=25 +35 +49=109. 25+35=60, 60+49=109. Correct.
+
+i=184: z=(5,3), w=(-2,-8)
+
+add: (5 + (-2), 3 + (-8)) = (3, -5)
+
+mul: a=5, b=3, c=-2, d=-8
+
+First component:5*(-2) -3*(-8)= -10 +24=14
+
+Second component:5*(-8) +3*(-2) -3*(-8)= -40 -6 +24= -22
+
+Check:
+
+a*d =5*(-8)= -40
+
+b*c=3*(-2)= -6
+
+b*d=3*(-8)= -24
+
+So second component: -40 + (-6) - (-24) = -40 -6 +24= -22. Correct.
+
+conj(z): (5-3, -3)= (2, -3)
+
+norm(z):5² -5*3 +3²=25-15+9=19. Same as i=180's z. Correct.
+
+i=185: z=(8,1), w=(0,8)
+
+add: (8+0,1+8)=(8,9)
+
+mul: a=8, b=1, c=0, d=8
+
+First component:8*0 -1*8=0-8=-8
+
+Second component:8*8 +1*0 -1*8=64 +0 -8=56
+
+conj(z): (8-1, -1)=(7, -1)
+
+norm(z):8² -8*1 +1²=64-8+1=57. Correct.
+
+i=186: z=(3,-6), w=(-8,-5)
+
+add: (3 + (-8), -6 + (-5)) = (-5, -11)
+
+mul: a=3, b=-6, c=-8, d=-5
+
+First component:3*(-8) - (-6)*(-5)= -24 -30= -54
+
+Second component:3*(-5) + (-6)*(-8) - (-6)*(-5)
+
+Compute each part:
+
+a*d=3*(-5)= -15
+
+b*c= (-6)*(-8)=48
+
+b*d= (-6)*(-5)=30
+
+So second component: -15 +48 -30= 3
+
+Check: -15 +48 is 33, 33-30=3. Correct.
+
+conj(z): (3 - (-6), -(-6))= (9,6)
+
+norm(z):3² -3*(-6) + (-6)²=9 +18 +36=63. 9+18=27, 27+36=63. Correct.
+
+i=187: z=(-3,-3), w=(-9,-1)
+
+add: (-3 + (-9), -3 + (-1)) = (-12, -4)
+
+mul: a=-3, b=-3, c=-9, d=-1
+
+First component: (-3)*(-9) - (-3)*(-1) =27 -3=24
+
+Second component: (-3)*(-1) + (-3)*(-9) - (-3)*(-1)
+
+Compute:
+
+a*d = (-3)*(-1)=3
+
+b*c = (-3)*(-9)=27
+
+b*d = (-3)*(-1)=3
+
+So second component: 3 +27 -3=27
+
+conj(z): (a - b, -b) = (-3 - (-3), -(-3)) = (0, 3)
+
+norm(z): (-3)^2 - (-3)(-3) + (-3)^2 =9 -9 +9=9. Let's check: 9 - ( (-3)*(-3)=9 ) +9=9-9+9=9. Correct.
+
+i=188: z=(-4,-8), w=(-8,3)
+
+add: (-4 + (-8), -8 +3)= (-12, -5)
+
+mul: a=-4, b=-8, c=-8, d=3
+
+First component: (-4)*(-8) - (-8)*3=32 +24=56
+
+Second component: (-4)*3 + (-8)*(-8) - (-8)*3
+
+Compute:
+
+a*d = (-4)*3= -12
+
+b*c = (-8)*(-8)=64
+
+b*d = (-8)*3= -24
+
+So second component: -12 +64 - (-24) ? Wait, no: the formula is a*d + b*c - b*d.
+
+Wait, b*d is (-8)*3= -24. So -b*d would be -(-24)=24? Wait no, the formula is a*d + b*c - b*d.
+
+So:
+
+a*d = (-4)*3 = -12
+
+b*c = (-8)*(-8) =64
+
+b*d = (-8)*3 = -24
+
+Thus, second component: (-12) +64 - (-24) ? No, wait the formula says a*d + b*c - b*d. So it's (-12) +64 - ( (-24) )? No, b*d is (-8)*3= -24, so -b*d would be 24, but the formula is a*d + b*c - b*d. So it's (-12) +64 - (-24) ?
+
+Wait no: the formula is written as (a*d + b*c - b*d). So it's a*d plus b*c minus b*d.
+
+So b*d is (-8)*3= -24. So -b*d is 24, but the term is -b*d, so it's a*d + b*c - (b*d).
+
+So:
+
+a*d = -12
+
+b*c =64
+
+b*d = -24
+
+Thus, second component: -12 +64 - (-24) = -12 +64 +24=76.
+
+Wait, let's compute step by step:
+
+-12 (a*d) +64 (b*c) =52. Then minus b*d: b*d is -24, so minus (-24) is +24. So 52 +24=76. Yes.
+
+So second component is 76.
+
+conj(z): (a - b, -b) = (-4 - (-8), -(-8)) = (4,8)
+
+norm(z): (-4)^2 - (-4)(-8) + (-8)^2 =16 -32 +64=48. 16-32 is -16, -16+64=48. Correct.
+
+i=189: z=(-4,-7), w=(9,7)
+
+add: (-4 +9, -7 +7)= (5, 0)
+
+mul: a=-4, b=-7, c=9, d=7
+
+First component: (-4)*9 - (-7)*7= -36 +49=13
+
+Second component: (-4)*7 + (-7)*9 - (-7)*7
+
+Compute:
+
+a*d = (-4)*7= -28
+
+b*c = (-7)*9= -63
+
+b*d = (-7)*7= -49
+
+So second component: -28 + (-63) - (-49) = -28 -63 +49= -42
+
+Check: -28-63= -91, -91+49= -42. Correct.
+
+conj(z): (a - b, -b) = (-4 - (-7), -(-7)) = (3,7)
+
+norm(z): (-4)^2 - (-4)(-7) + (-7)^2=16 -28 +49=37. 16-28= -12, -12+49=37. Correct.
+
+Now let's verify each calculation again to be safe.
+
+For i=180:
+
+add: (0,6) correct.
+
+mul: (5*(-5) -3*3, 5*3 +3*(-5) -3*3) = (-25-9, 15-15-9)=(-34,-9). Correct.
+
+conj: (5-3, -3)=(2,-3). Correct.
+
+norm:25-15+9=19. Correct.
+
+i=181:
+
+z=(3,-2), w=(-1,-6)
+
+add: (2, -8). Correct.
+
+mul: first component 3*(-1) - (-2)*(-6)= -3 -12=-15. Correct.
+
+second component: 3*(-6) + (-2)*(-1) - (-2)*(-6) = -18 +2 -12= -28. Correct.
+
+conj(z): 3 - (-2)=5, -(-2)=2. So (5,2). Correct.
+
+norm:9 - (3*(-2)) +4=9 +6 +4=19. Correct.
+
+i=182:
+
+z=(9,-3), w=(0,-9)
+
+add: (9, -12). Correct.
+
+mul: 9*0 - (-3)*(-9)=0-27=-27. Correct.
+
+second component:9*(-9) + (-3)*0 - (-3)*(-9)= -81 +0 -27= -108. Correct.
+
+conj(z):9 - (-3)=12, -(-3)=3. (12,3). Correct.
+
+norm:81 - (9*(-3)) +9=81+27+9=117. Correct.
+
+i=183:
+
+z=(5,-7), w=(9,-9)
+
+add:14, -16. Correct.
+
+mul:5*9 - (-7)*(-9)=45-63=-18. Correct.
+
+second component:5*(-9) + (-7)*9 - (-7)*(-9)= -45 -63 -63= -171. Correct.
+
+conj(z):5 - (-7)=12, -(-7)=7. (12,7). Correct.
+
+norm:25 -5*(-7) +49=25+35+49=109. Correct.
+
+i=184:
+
+z=(5,3), w=(-2,-8)
+
+add:3, -5. Correct.
+
+mul:5*(-2) -3*(-8)= -10 +24=14. Correct.
+
+second component:5*(-8) +3*(-2) -3*(-8)= -40 -6 +24= -22. Correct.
+
+conj(z):5-3=2, -3. (2,-3). Correct.
+
+norm:25-15+9=19. Correct.
+
+i=185:
+
+z=(8,1), w=(0,8)
+
+add:8,9. Correct.
+
+mul:8*0 -1*8= -8. Correct.
+
+second component:8*8 +1*0 -1*8=64 -8=56. Correct.
+
+conj(z):8-1=7, -1. (7,-1). Correct.
+
+norm:64-8+1=57. Correct.
+
+i=186:
+
+z=(3,-6), w=(-8,-5)
+
+add: -5, -11. Correct.
+
+mul:3*(-8) - (-6)*(-5)= -24 -30= -54. Correct.
+
+second component:3*(-5) + (-6)*(-8) - (-6)*(-5)= -15 +48 -30=3. Correct.
+
+conj(z):3 - (-6)=9, 6. (9,6). Correct.
+
+norm:9 -3*(-6) +36=9+18+36=63. Correct.
+
+i=187:
+
+z=(-3,-3), w=(-9,-1)
+
+add: -12, -4. Correct.
+
+mul: (-3)*(-9) - (-3)*(-1)=27-3=24. Correct.
+
+second component: (-3)*(-1) + (-3)*(-9) - (-3)*(-1)=3 +27 -3=27. Correct.
+
+conj(z): -3 - (-3)=0, 3. (0,3). Correct.
+
+norm:9 - [(-3)(-3)] +9=9-9+9=9. Correct.
+
+i=188:
+
+z=(-4,-8), w=(-8,3)
+
+add: -12, -5. Correct.
+
+mul: (-4)*(-8) - (-8)*3=32 +24=56. Correct.
+
+second component: (-4)*3 + (-8)*(-8) - (-8)*3= -12 +64 - (-24)? Wait, no:
+
+Wait, b*d is (-8)*3= -24. So the term is -b*d, which is -(-24)=24. But according to the formula, it's a*d + b*c - b*d.
+
+So a*d = (-4)*3 = -12
+
+b*c = (-8)*(-8)=64
+
+b*d = (-8)*3= -24
+
+Thus, a*d + b*c - b*d = (-12) +64 - (-24) = (-12) +64 +24=76. Correct.
+
+conj(z): (-4) - (-8)=4, -(-8)=8. (4,8). Correct.
+
+norm:16 - [(-4)(-8)] +64=16-32+64=48. Correct.
+
+i=189:
+
+z=(-4,-7), w=(9,7)
+
+add:5,0. Correct.
+
+mul: (-4)*9 - (-7)*7= -36 +49=13. Correct.
+
+second component: (-4)*7 + (-7)*9 - (-7)*7= -28 -63 - (-49)= -28-63+49= -42. Correct.
+
+conj(z): (-4) - (-7)=3, 7. (3,7). Correct.
+
+norm:16 - [(-4)(-7)] +49=16-28+49=37. Correct.
+
+Now, let's format each line as per the requirement:
+
+i add:A B mul:A B conj:A B norm:N
+
+For each i from 180 to 189.
+
+Let's list them:
+
+i=180:
+add: 0 6
+mul: -34 -9
+conj: 2 -3
+norm:19
+
+So line: 180 add:0 6 mul:-34 -9 conj:2 -3 norm:19
+
+Check the format: "i add:A B mul:A B conj:A B norm:N"
+
+Yes, each part has the values as integers.
+
+Similarly for others.
+
+Let's write each line:
+
+180 add:0 6 mul:-34 -9 conj:2 -3 norm:19
+
+181 add:2 -8 mul:-15 -28 conj:5 2 norm:19
+
+Wait, for conj in 181: (5,2), so conj:5 2.
+
+Yes.
+
+182 add:9 -12 mul:-27 -108 conj:12 3 norm:117
+
+183 add:14 -16 mul:-18 -171 conj:12 7 norm:109
+
+184 add:3 -5 mul:14 -22 conj:2 -3 norm:19
+
+185 add:8 9 mul:-8 56 conj:7 -1 norm:57
+
+186 add:-5 -11 mul:-54 3 conj:9 6 norm:63
+
+187 add:-12 -4 mul:24 27 conj:0 3 norm:9
+
+188 add:-12 -5 mul:56 76 conj:4 8 norm:48
+
+189 add:5 0 mul:13 -42 conj:3 7 norm:37
+
+Wait, let's check i=186's mul second component: we had 3. So mul: -54 3.
+
+Yes.
+
+Now, check if all numbers are correct.
+
+For i=186, z=(3,-6), w=(-8,-5):
+
+mul second component: 3*(-5) + (-6)*(-8) - (-6)*(-5) = -15 +48 -30=3. Correct.
+
+Yes.
+
+i=187: z=(-3,-3), w=(-9,-1)
+
+mul: first component (-3)(-9) - (-3)(-1)=27-3=24. Correct.
+
+second component: (-3)(-1) + (-3)(-9) - (-3)(-1)=3 +27 -3=27. Correct.
+
+conj(z): (-3 - (-3), -(-3))=(0,3). Correct.
+
+norm:9 -9 +9=9. Correct.
+
+i=188: z=(-4,-8), w=(-8,3)
+
+mul second component: (-4)(3) + (-8)(-8) - (-8)(3) = -12 +64 - (-24) ?
+
+Wait, no: the formula is a*d + b*c - b*d.
+
+a*d = (-4)*3 = -12
+
+b*c = (-8)*(-8) =64
+
+b*d = (-8)*3 = -24
+
+Thus, a*d + b*c - b*d = (-12) +64 - (-24) = (-12) +64 +24=76. Correct.
+
+Yes, so mul is (56,76).
+
+conj(z): (-4 - (-8), 8) = (4,8). Correct.
+
+norm:16 -32 +64=48. Correct.
+
+i=189: z=(-4,-7), w=(9,7)
+
+mul: first component (-4)(9) - (-7)(7)= -36 +49=13. Correct.
+
+second component: (-4)(7) + (-7)(9) - (-7)(7)= -28 -63 - (-49)= -28-63+49= -42. Correct.
+
+conj(z): (-4 - (-7),7)= (3,7). Correct.
+
+norm:16 -28 +49=37. Correct.
+
+Now, check if all the norm calculations are correct.
+
+For example, i=185: z=(8,1). norm=8² -8*1 +1²=64-8+1=57. Correct.
+
+i=186: z=(3,-6). norm=9 - (3*(-6)) +36=9 +18 +36=63. Correct.
+
+i=187: z=(-3,-3). norm=9 - (9) +9=9. Correct.
+
+i=188: z=(-4,-8). norm=16 - (32) +64=48. Correct.
+
+i=189: z=(-4,-7). norm=16 -28 +49=37. Correct.
+
+All look good.
+
+Now, the output should be exactly one line per vector, in order from i=180 to i=189.
+
+Each line starts with the i value, then add:A B, mul:A B, conj:A B, norm:N.
+
+We need to make sure that for each operation, the values are correctly placed.
+
+Let's write them out:
+
+180 add:0 6 mul:-34 -9 conj:2 -3 norm:19
+
+181 add:2 -8 mul:-15 -28 conj:5 2 norm:19
+
+182 add:9 -12 mul:-27 -108 conj:12 3 norm:117
+
+183 add:14 -16 mul:-18 -171 conj:12 7 norm:109
+
+184 add:3 -5 mul:14 -22 conj:2 -3 norm:19
+
+185 add:8 9 mul:-8 56 conj:7 -1 norm:57
+
+186 add:-5 -11 mul:-54 3 conj:9 6 norm:63
+
+187 add:-12 -4 mul:24 27 conj:0 3 norm:9
+
+188 add:-12 -5 mul:56 76 conj:4 8 norm:48
+
+189 add:5 0 mul:13 -42 conj:3 7 norm:37
+
+Wait, for i=186, add is (-5, -11), so add:-5 -11.
+
+Yes.
+
+Check i=186: z=(3,-6), w=(-8,-5). add: 3 + (-8)= -5, -6 + (-5)= -11. Correct.
+
+Now, check if the mul for i=186 is correct: mul:-54 3.
+
+Yes.
+
+Now, let's confirm the exact format. The problem says:
+
+"Output EXACTLY one line per vector, no prose, no markdown, format:
+i add:A B mul:A B conj:A B norm:N"
+
+So for each line, it's like:
+
+180 add:0 6 mul:-34 -9 conj:2 -3 norm:19
+
+Note that negative numbers have a minus sign, and positive numbers don't have a plus.
+
+Also, the order of the vectors is given as i=180, 181, ..., 189.
+
+We need to output them in that order.
+
+Let me double-check i=184:
+
+z=(5,3), w=(-2,-8)
+
+add: 5-2=3, 3-8=-5. So add:3 -5. Correct.
+
+mul: first component 5*(-2) -3*(-8)= -10 +24=14. Correct.
+
+second component:5*(-8) +3*(-2) -3*(-8)= -40 -6 +24= -22. Correct.
+
+conj(z): (5-3, -3)=(2,-3). Correct.
+
+norm:19. Correct.
+
+Yes.
+
+Another check: i=185, z=(8,1), w=(0,8)
+
+add:8+0=8, 1+8=9. Correct.
+
+mul: (8*0 -1*8, 8*8 +1*0 -1*8)= (-8, 64-8)= (-8,56). Correct.
+
+conj(z): (8-1, -1)=(7,-1). Correct.
+
+norm:64-8+1=57. Correct.
+
+i=186: z=(3,-6), w=(-8,-5)
+
+add: 3-8=-5, -6-5=-11. Correct.
+
+mul: (3*(-8) - (-6)*(-5), 3*(-5) + (-6)*(-8) - (-6)*(-5)) = (-24-30, -15+48-30)= (-54, 3). Correct.
+
+conj(z): (3 - (-6), 6)= (9,6). Correct.
+
+norm:9 - (3*(-6)) +36=9+18+36=63. Correct.
+
+i=187: z=(-3,-3), w=(-9,-1)
+
+add: -3-9=-12, -3-1=-4. Correct.
+
+mul: ((-3)(-9) - (-3)(-1), (-3)(-1) + (-3)(-9) - (-3)(-1)) = (27-3, 3+27-3)= (24,27). Correct.
+
+conj(z): (-3 - (-3), 3)= (0,3). Correct.
+
+norm:9 -9 +9=9. Correct.
+
+i=188: z=(-4,-8), w=(-8,3)
+
+add: -4-8=-12, -8+3=-5. Correct.
+
+mul: ((-4)(-8) - (-8)(3), (-4)(3) + (-8)(-8) - (-8)(3)) = (32+24, -12+64+24)= (56,76). Correct.
+
+conj(z): (-4 - (-8),8)= (4,8). Correct.
+
+norm:16 -32 +64=48. Correct.
+
+i=189: z=(-4,-7), w=(9,7)
+
+add: -4+9=5, -7+7=0. Correct.
+
+mul: ((-4)(9) - (-7)(7), (-4)(7) + (-7)(9) - (-7)(7)) = (-36+49, -28-63+49)= (13, -42). Correct.
+
+conj(z): (-4 - (-7),7)= (3,7). Correct.
+
+norm:16 -28 +49=37. Correct.
+
+All calculations seem correct.
+
+Now, the output must be exactly as specified. Let's write each line.
+
+For i=180:
+
+add:0 6
+
+mul:-34 -9
+
+conj:2 -3
+
+norm:19
+
+So the line is "180 add:0 6 mul:-34 -9 conj:2 -3 norm:19"
+
+Similarly for others.
+
+We need to ensure that there are no extra spaces, and the format is precise.
+
+Let's check for i=181:
+
+conj is (5,2), so conj:5 2.
+
+Yes.
+
+i=182: conj:12 3.
+
+i=183: conj:12 7.
+
+i=184: conj:2 -3.
+
+i=185: conj:7 -1.
+
+i=186: conj:9 6.
+
+i=187: conj:0 3.
+
+i=188: conj:4 8.
+
+i=189: conj:3 7.
+
+All correct.
+
+Now, the norm values:
+
+180:19, 181:19, 182:117, 183:109, 184:19, 185:57, 186:63, 187:9, 188:48, 189:37.
+
+Yes.
+
+Now, let's write all lines in order.
