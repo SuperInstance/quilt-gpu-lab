@@ -1,0 +1,308 @@
+{
+  "experiment": "RING-CX-2 (SYNTH-0 wildcard trilogy, FINAL): cheap TRAINED gate on COMP1 corpus",
+  "reused_machinery": "experiments/ring_cx0.py (featurization/router) + ring_cx1 answer-margin doctrine",
+  "device": "cpu",
+  "gpu_used": false,
+  "torch_used": false,
+  "numpy_sklearn": true,
+  "seed": 2718,
+  "blind_regime": "negation-scope",
+  "corpus": {
+    "path": "results/comp1/corpus.jsonl",
+    "n_train": 1810,
+    "n_heldout": 590,
+    "negation_heldout": 148,
+    "negation_frac_heldout": 0.2508
+  },
+  "wiring": {
+    "reproduced_router_heldout_top1": 0.7356,
+    "comp1_booked_router_heldout_top1": 0.7356,
+    "match": false,
+    "T_margin_median_train_top1_rho": 0.7374
+  },
+  "cheap_two_arm": {
+    "SINGLE": "1 logistic on 64-dim word view",
+    "FED": "4 per-regime logistic cells + frozen 0-param router",
+    "two_arm_params": 325,
+    "accuracy": {
+      "SINGLE_acc_heldout": 0.5441,
+      "FED_acc_heldout": 0.5814,
+      "SINGLE_acc@semantic": 0.6525,
+      "FED_acc@semantic": 0.5957,
+      "SINGLE_acc@counting-address": 0.5612,
+      "FED_acc@counting-address": 0.5612,
+      "SINGLE_acc@negation-scope": 0.4122,
+      "FED_acc@negation-scope": 0.6081,
+      "SINGLE_acc@agent-role": 0.5556,
+      "FED_acc@agent-role": 0.5617
+    }
+  },
+  "gate_target": "blindness alert = 1 iff regime == negation-scope",
+  "params": {
+    "a_margins": 5,
+    "b_disagree": 2,
+    "c_both": 6
+  },
+  "gates": {
+    "a_margins": {
+      "n_features": 4,
+      "n_params": 5,
+      "alert_by_regime": {
+        "semantic": 0.0071,
+        "counting-address": 0.0288,
+        "negation-scope": 0.6689,
+        "agent-role": 0.1173
+      },
+      "negation_rate": 0.6689,
+      "mean_rate": 0.2055,
+      "ratio": 3.255,
+      "n_alerts": 123,
+      "precision_negation": 0.8049,
+      "auc_heldout": 0.8782,
+      "auc_train": 0.9196,
+      "degradation": 0.0414,
+      "G_T1": {
+        "negation_rate": 0.6689,
+        "mean_rate": 0.2055,
+        "ratio": 3.255,
+        "pass_": true
+      },
+      "G_T2": {
+        "precision_negation": 0.8049,
+        "pass_": true
+      },
+      "G_T3": {
+        "auc_train": 0.9196,
+        "auc_heldout": 0.8782,
+        "degradation": 0.0414,
+        "pass_": true
+      },
+      "G_T4": {
+        "boot_std_negation_rate": 0.0131,
+        "boot_std_ratio": 0.0695,
+        "boot_std_auc": 0.0026,
+        "boot_negation_rates": [
+          0.6351,
+          0.6622,
+          0.6689,
+          0.6486,
+          0.6689
+        ],
+        "pass_": true
+      },
+      "verdict": "PASS"
+    },
+    "b_disagree": {
+      "n_features": 1,
+      "n_params": 2,
+      "alert_by_regime": {
+        "semantic": 0.0,
+        "counting-address": 0.0,
+        "negation-scope": 0.0,
+        "agent-role": 0.0
+      },
+      "negation_rate": 0.0,
+      "mean_rate": 0.0,
+      "ratio": null,
+      "n_alerts": 0,
+      "precision_negation": null,
+      "auc_heldout": 0.5489,
+      "auc_train": 0.5301,
+      "degradation": -0.0188,
+      "G_T1": {
+        "negation_rate": 0.0,
+        "mean_rate": 0.0,
+        "ratio": null,
+        "pass_": false
+      },
+      "G_T2": {
+        "precision_negation": null,
+        "pass_": false
+      },
+      "G_T3": {
+        "auc_train": 0.5301,
+        "auc_heldout": 0.5489,
+        "degradation": -0.0188,
+        "pass_": true
+      },
+      "G_T4": {
+        "boot_std_negation_rate": 0.0,
+        "boot_std_ratio": NaN,
+        "boot_std_auc": 0.0,
+        "boot_negation_rates": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass_": false
+      },
+      "verdict": "INCONCLUSIVE"
+    },
+    "c_both": {
+      "n_features": 5,
+      "n_params": 6,
+      "alert_by_regime": {
+        "semantic": 0.0071,
+        "counting-address": 0.0216,
+        "negation-scope": 0.6554,
+        "agent-role": 0.1111
+      },
+      "negation_rate": 0.6554,
+      "mean_rate": 0.1988,
+      "ratio": 3.297,
+      "n_alerts": 119,
+      "precision_negation": 0.8151,
+      "auc_heldout": 0.8774,
+      "auc_train": 0.9195,
+      "degradation": 0.042,
+      "G_T1": {
+        "negation_rate": 0.6554,
+        "mean_rate": 0.1988,
+        "ratio": 3.297,
+        "pass_": true
+      },
+      "G_T2": {
+        "precision_negation": 0.8151,
+        "pass_": true
+      },
+      "G_T3": {
+        "auc_train": 0.9195,
+        "auc_heldout": 0.8774,
+        "degradation": 0.042,
+        "pass_": true
+      },
+      "G_T4": {
+        "boot_std_negation_rate": 0.0184,
+        "boot_std_ratio": 0.0906,
+        "boot_std_auc": 0.0031,
+        "boot_negation_rates": [
+          0.6351,
+          0.6486,
+          0.6689,
+          0.6284,
+          0.6757
+        ],
+        "pass_": true
+      },
+      "verdict": "PASS"
+    }
+  },
+  "prevalence_matched_protocol": {
+    "a_margins": {
+      "threshold": 0.4208,
+      "alert_rate": 0.2424,
+      "alert_by_regime": {
+        "semantic": 0.0213,
+        "counting-address": 0.0432,
+        "negation-scope": 0.6959,
+        "agent-role": 0.1914
+      },
+      "negation_rate": 0.6959,
+      "mean_rate": 0.2379,
+      "ratio": 2.925,
+      "precision_negation": 0.7203,
+      "pass_T1_T2": true
+    },
+    "b_disagree": {
+      "threshold": 0.2866,
+      "alert_rate": 0.3119,
+      "alert_by_regime": {
+        "semantic": 0.2837,
+        "counting-address": 0.2734,
+        "negation-scope": 0.3851,
+        "agent-role": 0.3025
+      },
+      "negation_rate": 0.3851,
+      "mean_rate": 0.3112,
+      "ratio": 1.238,
+      "precision_negation": 0.3098,
+      "pass_T1_T2": false
+    },
+    "c_both": {
+      "threshold": 0.4196,
+      "alert_rate": 0.2407,
+      "alert_by_regime": {
+        "semantic": 0.0213,
+        "counting-address": 0.0432,
+        "negation-scope": 0.7027,
+        "agent-role": 0.179
+      },
+      "negation_rate": 0.7027,
+      "mean_rate": 0.2365,
+      "ratio": 2.971,
+      "precision_negation": 0.7324,
+      "pass_T1_T2": true
+    }
+  },
+  "control_router_argmax_baseline": {
+    "alert_by_regime": {
+      "semantic": 0.1773,
+      "counting-address": 0.0,
+      "negation-scope": 0.7027,
+      "agent-role": 0.2407
+    },
+    "negation_rate": 0.7027,
+    "mean_rate": 0.2802,
+    "ratio": 2.508,
+    "precision_negation": 0.619
+  },
+  "disagreement_definition_sensitivity": {
+    "d_ans": {
+      "negation_rate": 0.0,
+      "mean_rate": 0.0,
+      "ratio": null,
+      "auc_heldout": 0.5489
+    },
+    "d_conf": {
+      "negation_rate": 0.0,
+      "mean_rate": 0.0,
+      "ratio": null,
+      "auc_heldout": 0.539
+    },
+    "d_corr": {
+      "negation_rate": 0.0,
+      "mean_rate": 0.0,
+      "ratio": null,
+      "auc_heldout": 0.5903
+    }
+  },
+  "disagreement_by_regime": {
+    "d_ans": {
+      "semantic": 0.2837,
+      "counting-address": 0.2734,
+      "negation-scope": 0.3851,
+      "agent-role": 0.3025
+    },
+    "d_corr": {
+      "semantic": -0.0567,
+      "counting-address": 0.0,
+      "negation-scope": 0.1959,
+      "agent-role": 0.0062
+    }
+  },
+  "feature_corr_with_blindness_heldout": {
+    "d_ans": 0.0915,
+    "d_conf": 0.0675,
+    "d_corr": 0.1648,
+    "a_margins_mean": 0.2047,
+    "a_margins_max": 0.2285
+  },
+  "which_feature_set_carries_signal": {
+    "a_margins": "PASS",
+    "b_disagree": "INCONCLUSIVE",
+    "c_both": "PASS"
+  },
+  "winner_cheapest_pass": "a_margins",
+  "prior": {
+    "ring_cx0": "untrained certainty gate FAIL (neg Reject 0.127)",
+    "ring_cx1": "untrained margin gate FAIL (ratio 0.789); ring relu-homogeneous"
+  },
+  "verdict": "PASS",
+  "summary": {
+    "n_gate_feature_sets": 3,
+    "n_pass": 2,
+    "headline": "cheap trained gate reaches the blind regime"
+  }
+}

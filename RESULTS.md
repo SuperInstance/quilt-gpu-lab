@@ -5024,3 +5024,31 @@ Lane D2-V1b resumed the mid-killed D2-V1 lane. **Scripts unchanged — no defect
   full: results/ring_cx1/RESULTS-ENTRY.md
 - **Artifacts:** results/ring_cx1/{ring_cx1_results.json, RESULTS-ENTRY.md}. Code: experiments/ring_cx1.py.
   Repro lineage: results/ring_cx0/repro/fly_cx.py (PASS 4/4, reused by reference). **NOT COMMITTED.** ~12 s wall, 0 Wh.
+
+## RING-CX-2 — CHEAP TRAINED gate (SYNTH-0 wildcard trilogy, FINAL) (2026-10-01 16:4x AKDT)
+- lane: RING-CX-2 (SYNTH-0 wildcard trilogy, final probe) · device: **CPU only, numpy+sklearn** (no GPU,
+  no torch) · seed 2718 · **~2.3 s wall, 0 Wh** · reuses `experiments/ring_cx0.py` + ring_cx1 margin doctrine.
+- wiring: frozen COMP1 word-view featurization + 0-param router on TRAIN only → held-out top-1 **0.7356 ==
+  booked 0.7356** (EXACT, third consecutive lane). Same split as cx0/1: 1810 train / 590 held-out (neg 148, 25.1 %).
+- **CHEAP two-arm build (325 params, 0 GPU, sklearn logistics):** SINGLE = 1 logistic on the 64-dim word view;
+  FED = 4 per-regime logistic cells + the frozen 0-param router (vs COMP1's trained FED **4228p / 11.76 Wh**).
+  Held-out acc: SINGLE 0.5441 / FED 0.5814; **@negation SINGLE 0.412 vs FED 0.608 = +0.196** (COMP1's trained
+  nets: +0.126). **Federation value is reproducible by cheap linear cells at 1/13 the params and 0 GPU.**
+- **GATES (target = blindness alert = held item's regime == negation-scope; alert = p≥0.5, StandardScaler→LogReg):**
+  **(a) 4 per-sensor MARGINS [5 params]: PASS** — G-T1 neg **0.6689** vs mean 0.2055 → **3.255 ≥2×** ✅;
+  G-T2 precision **0.805 ≥0.5** ✅; G-T3 AUC 0.9196→0.8782, degr **0.041 ≤0.10** ✅; G-T4 boot std **0.0131 >0** ✅.
+  **(b) 2-arm disagreement `d_ans` [2 params]: INCONCLUSIVE** — degenerate at 0.5 (0 alerts → G-T4 std 0.0000,
+  frost law); held-out AUC **0.549**; prevalence-matched (house τ doctrine) ratio **1.238**, precision **0.310**
+  (T1/T2 fail). Sensitivities `d_conf` AUC 0.539 / `d_corr` 0.590. **The cheap per-item disagreement is dead.**
+  **(c) margins+disagreement [6 params]: PASS** — ratio **3.297**, precision **0.815**, degr 0.042, std 0.0184 —
+  **identical to (a): the disagreement feature is inert, margins are NOT riders.**
+- control: 0-param **router-argmax baseline** (top sensor == negation sensor) already gives ratio **2.508**,
+  precision 0.619 — the signal the margin gate reads is corpus **regime identifiability**, not the disagreement.
+- **HEADLINE: cheapness DOES live in the gate — a 5-parameter trained logistic on the *untrained* 4-margin
+  geometry reaches the blind regime (0.669 = 3.26× mean, precision 0.805).** Resolves the trilogy negative:
+  the untrained ring failed because relu homogeneity makes its Reject a SHAPE gate (scale-invariant, level-blind);
+  a trained linear readout reads the levels and the regime geometry is trivially recoverable. **Caveat (visible
+  in the gates): the gate detects the REGIME (≈ the 0-param router), NOT the per-item FED−SINGLE answer win.**
+  Next question: can a cheap gate predict the per-item FED−SINGLE win (not the regime) at AUC ≥0.70 — and does
+  the 325-param logistic two-arm make COMP1's 4228-param FED MLP unnecessary? full: results/ring_cx2/RESULTS-ENTRY.md
+- **Artifacts:** results/ring_cx2/{ring_cx2_results.json, RESULTS-ENTRY.md}. Code: experiments/ring_cx2.py. **NOT COMMITTED.**
