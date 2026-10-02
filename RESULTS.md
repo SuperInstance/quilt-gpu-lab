@@ -5086,3 +5086,46 @@ Lane D2-V1b resumed the mid-killed D2-V1 lane. **Scripts unchanged — no defect
   regime-conditioned cheap gate recover the MLP's regime-flatness without 4228p? full: results/cx_cheap0/RESULTS-ENTRY.md
 - **Artifacts:** results/cx_cheap0/{cx_cheap0_results.json, RESULTS-ENTRY.md}. Code: experiments/cx_cheap0.py.
   Repro lineage: experiments/ring_cx2.py (+ ring_cx0.py helpers). **NOT COMMITTED.**
+
+## B1D — CAPACITY FLOOR (2026-10-01 16:4x AKDT)
+- ran: `experiments/b1d_capacity_floor.py` under `guard.py` (G7 receipt, 2 windows), prereg `proposals/runs/B1D-capacity-floor.md` frozen before fire. Follow-up to B1C: sweep the B1C body width {24,32,48,64} at FIXED 40ep (the non-degenerate regime) to find the minimum capacity clearing both per-region gates, x {plain, reweight} x 3 seeds.
+- verdict: **PARTIAL** (no sweep arm PASS; reweighting is a mechanism win at w48/w64 but not to the bar). NOT COMMITTED.
+- result (3-seed mean±std @5e-2 on the B1/B1b/B1C bit-identical frame, n=90,930):
+  plain w24 0.1692±0.0107/0.1733±0.0109 · w32 0.1712±0.0136/0.1744±0.0131 · w48 0.3295±0.1915/0.2415±0.0640 · w64 0.2441±0.1213/0.2137±0.0407 (deadzone/ramp) — **all FAIL**;
+  reweight w24 0.2055/0.1539 · w32 0.2628/0.2467 · **w48 0.6965±0.3464/0.5139±0.2776** · w64 0.5275/0.4288 — **all FAIL, mech win at w48 (+0.367/+0.272) and w64 (+0.283/+0.215)**;
+  optional **hybrid** (regression + deadzone atom gate) at w64: deadzone **0.9998±0.0002** (atom exact, std>0) but ramp **0.8042±0.1290 → FAIL**;
+  CONTROL anchor (width-128, depth-3, LINEAR head = B1C's cap arm): 0.9957±0.0061/0.9186±0.1109 → **PASS**, reproducing B1C's booked `cap@ep40` with **max|Δ|=4.7e-05** (C6).
+- note: **the capacity floor is > 64 at 40ep under the frozen tanh head, for both plain and reweight** — and within 24→64 the plain arms barely move with width (non-monotone, seed std up to 0.19), while B1C's width-64 *linear*-head ref sat at 0.4951/0.3205: **the head, not the width, dominates this range.** So the floor is bracketed **(64, 128] for the linear head** (C6's 128 PASS; B1C's 64 FAIL) and **> 64 for the tanh head**; the linear-head 24–64 sweep was NOT run (outside the frozen design) and is the named next question. Reweighting reliably shrinks the deficit (~3x at w48) but does not clear it ≤64. The **deadzone is an interface problem and the ramp is the real floor**: the hybrid atom gate nails the deadzone (0.9998 at w64, where plain tanh gets 0.244) and *keeps* a continuous ramp (0.804 >> binned's 0.120@40ep) — the opposite-direction twin of B1C's binned-head ramp trap — yet ramp still misses 0.90. No degeneracy anywhere (min gated std 0.00018 > 0) — the first B1 lane with no INCONCLUSIVE cell. Aggregate inverts again (hybrid 0.9911 aggregate but FAIL; reweight_w64 worst @1e-2 aggregate 0.4658 yet better ramp than plain_w64). Controls all pass: C1 laweq max|Δ|=0; C4 bit-identical vs **B1C, B1b-runB AND B1**; C6 anchor max|Δ|=4.7e-05. ⚠ BOOKED: the anchor is a CONTROL, not a sweep arm — a first-fire code bug counted it as passing (lane read KEEP); fixed and re-emitted via `--resume` (30 nets reused, 0 retrained) → corrected verdict **PARTIAL**. ⚠ BOOKED: two Guard windows share `receipt_dir`, so the resume window's `guard_summary.json` overwrote the fire window's (receipt …068's state_digest no longer resolves on disk; both receipts schema-valid/PASS; energy booked as the sum of both). ⚠ BOOKED (frozen before fire): the brief's "body width varied, tanh head" was read literally; B1C's cap used a LINEAR head, so absolute cells are not comparable — the cross-lane tie is C6. **7.21 Wh measured ≤ 18 Wh envelope**, 399.6 GPU-s, peak VRAM 122.7 MB, min free VRAM 1820 MiB, max temp ≤79 C. Receipts `g7-wr-b1d-capacity-floor-1790901068` + `g7-wr-b1d-capacity-floor-1790901166` (both valid, PASS). Next: linear-head capacity sweep 24–64 @40ep (the B1C-recipe floor), then does ramp close with capacity alone. full: results/b1d/RESULTS-ENTRY.md
+
+## CX-CHEAP-1 — within-disagreement learnability + regime-conditioned cheap gate (2026-10-01 16:5x AKDT)
+- lane: CX-CHEAP-1 (closing move of the cheap-gate thread; spawned by CX-CHEAP-0) · device: **CPU only,
+  numpy+sklearn** (no GPU, no torch) · seed 2718 · **~3.1 s wall, 0 Wh** · reuses `experiments/cx_cheap0.py`
+  wholesale (fit_gate/answer_margins/youden/2-arm recipe) + `experiments/ring_cx0.py` (feat_word/pearson/REGIMES).
+- wiring: router held-out top-1 **0.735593 → 0.7356 == booked 0.7356** (match at 4 dp). Split 1810 / 590.
+- **Q1′ (within-disagreement learnability; held-out FED≠SINGLE, n=184, 103 wins, win-rate|disagree 0.5598):**
+  fit on TRAIN-disagreement, eval on HELD-OUT-disagreement — within-set AUC (logistic / tree-d2):
+  regime one-hots (router) **0.5003/0.4975** · confidences 0.5370/0.5454 · margins 0.4345/0.5120 ·
+  d_ans **0.5000 (degenerate ≡1 inside the set)** · ALL deployable (12f) 0.5337/**0.5448**. Boot std (5 refits)
+  0.035/0.024/0.010, all > 0 (not a frost-law artefact). **G-D1 → FAIL for every DEPLOYABLE set**
+  (best 0.5448 < 0.60). **Oracle twist:** TRUE-regime one-hots DO carry signal — negation one-hot AUC
+  **0.6223**, true-regime 4-way logistic **0.6173** (train→held-out) ≥ 0.60 — but non-deployable: the frozen
+  0-param router is **chance inside the disagreement set (0.5003)**. win-rate|disagree by regime: semantic
+  **0.400** (16/40) · counting-address **0.500** (19/38) · **negation-scope 0.754** (43/57) · agent-role
+  **0.510** (25/49). **Booked: per-item win is chance within disagreement for any deployable feature —
+  cheap gates localize the boundary, never the wins** (the win-rate IS regime-modulated, but the router
+  cannot resolve regime where it matters).
+- **Q2′ (regime-conditioned cheap gate; Δ = cheap − COMP1 booked 4228p FED):** **G-E3 PASS all** (boot full-acc
+  std v1 0.0140, v4 0.0200, v2 0.0216, v2+int 0.0116). **G-E1 literal two-sided |Δ|≤0.02 → FAIL for every
+  variant.** v1 cells (325p) full +0.0209 / semantic +0.0141 / **counting-addr −0.0119** / **negation +0.0540** /
+  agent +0.0247, worst Δ −0.0119, **neg win +0.1959 ✅**; v4 cells+intercept (329p) max|Δ| 0.0309, worst
+  −0.0263, neg win +0.1554; **v2 regime-conditioned pooled [word64+4 router one-hots] (69p)** recovers
+  **counting-address to −0.0048** (the stated goal!) but **destroys the negation win → −0.0068 (G-E2 ❌)**;
+  v2+intercept (73p) neg +0.0203; TRUE-regime oracle (69p) neg −0.1149 — so it is **not** a routing error.
+  **Verdict as pre-registered: FAIL — MLP not retired.** Unmatchable named: **simultaneous regime-flatness AND
+  the +0.126 negation win** — they are the same specialist structure. Under the weaker one-sided drop-in reading
+  the unchanged **325p v1 PASSES** (worst Δ −0.0119 ≥ −0.02, G-E2 ✅): the 4228p MLP buys **regime-symmetry,
+  not accuracy**. Economics: 69–329p CPU 0 Wh / ~3 s vs 4228p GPU 11.76 Wh (57.9× at 73p).
+  Next: is the per-regime board even the right target (negation win alone?), and can a 0-param router repair
+  recover the oracle's true-regime signal (0.617)? full: results/cx_cheap1/RESULTS-ENTRY.md
+- **Artifacts:** results/cx_cheap1/{cx_cheap1_results.json, RESULTS-ENTRY.md}. Code: experiments/cx_cheap1.py.
+  Repro lineage: cx_cheap0.py → ring_cx2.py → ring_cx0.py. **NOT COMMITTED.**
