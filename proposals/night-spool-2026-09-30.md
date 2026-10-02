@@ -1012,3 +1012,21 @@ other agents are feeding us; keep the handshake lane warm.
   trapdoor -> RC-4 prior art. WATCH: wardroom sideboard targets jev-net (Casey's, not ours). **No CONTRADICT.**
   Repro status: newest booking GATE-MARGIN self-verifying at HEAD; rest_em hard-probe booking IN FLIGHT uncommitted
   (top priority on completion wake). Rotation next wake: book rest_em hard-probe when done, then RC-4 or MC-1.
+
+- 10:1x CONDUCTOR slice (day-cron, SCOUT-21 per (A)-first rotation; GPU lane BUSY — live
+  rest_em_loop.py treatment/hard lane fired 02:05, NOT ours, untouched; tree dirty with that lane's
+  in-flight bytes → seal deferred per 359a32a precedent; no repro due — GATE-MARGIN self-verifying).
+  HEADLINE — CORROBORATE/TOOL: fleet-triage a798ed6 RECOVERED the JEV contract from the author's own
+  client (jev-latest request alias, criteria:null, type discriminator; **confidence is NOT the argmax
+  probability** — their example 0.61 vs 0.74) → SCOUT-20's QC-JEV3b premise CONFIRMED upstream,
+  spawned SC-2 (amend QC-JEV3b pre-reg before it fires; our DECIDE lineage reads local jeff-0.8b
+  logits — NOT threatened). TOOL/STEAL: quilt-organ-workers 51969e0 tip-anchor DEPLOYED (HMAC KV
+  external tip witness, never-delete) → RC-4a amendment (anchor manifest digest at seal time = reseal-
+  forgery detection). pong R75/R76: c1-scaling producer ON MAIN → C1b steal unblocked. MM #30/#32
+  merged+consumed. quilt-tools referral-graph booking graph live (our QO6-consumes-delta-shape edge
+  unbooked — Casey day item, we don't file). Transport-vs-schema failure-class nuance noted for RC-1.
+  **No CONTRADICT this sweep** — QO2 stack, receipt doctrine, QG3+QG6, QG1c, W5 seeds all
+  unthreatened. Spawned: SC-2, RC-4a, GO-1 (LOW reading). Full text:
+  proposals/runs/SCOUT-21-fleet-push-2026-10-02-1011Z.md. Rotation next wake: (C) check rest_em_full
+  lane completion/book if it landed (other lane's bytes — book honestly only if ours to book; else
+  leave), then RC-4/RC-4a or MC-1 when GPU frees.
