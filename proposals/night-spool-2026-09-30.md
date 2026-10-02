@@ -998,3 +998,17 @@ other agents are feeding us; keep the handshake lane warm.
   lane's clean point (SCOUT-19 precedent).
 - GPU lane untouched this slice (CPU-only audit). Rotation next wake: (A) SCOUT-20 fleet sweep, then
   RC-4 (seal-chain) or MC-1.
+
+## SCOUT-20 SPAWNED ITEMS (2026-10-02 0911Z) — full text proposals/runs/SCOUT-20-fleet-push-2026-10-02-0911Z.md
+- [ ] **QC-JEV3b field-semantics gate** (CPU docs ~10m): confidence-vs-argmax separation, shuffle control,
+  transport-fail non-evidence rule. cite fleet-triage a798ed6.
+- [ ] **RC-4 amendment**: quilt-canvas-tui#1 PoEM FORGET-trapdoor prior art (seal-state auditable after mutation).
+- 09:1x CONDUCTOR slice (day-cron Oct 2, (A)-first rotation; GPU lane BUSY — live rest_em hard-probe PID 2254342,
+  uncommitted lane bytes, seal correctly refused/deferred — nothing fired). PR sweep QUIET (0 open across 17 repos,
+  first ever). HEADLINE: fleet-triage a798ed6 JEV-CONTRACT recovered from author's client — **confidence != argmax
+  probability** (0.61 vs 0.74 live) -> spawned QC-JEV3b; CORROBORATES QC-JEV null-oracle caution (no booked result
+  threatened: our DECIDE lineage reads jeff-0.8b logits directly). canons 0731Z unfailable-gate = 3rd fleet instance
+  of false-pass class; our GATE-MARGIN KEEP (0 instances) externally corroborated. TOOL: quilt-canvas-tui#1 seal
+  trapdoor -> RC-4 prior art. WATCH: wardroom sideboard targets jev-net (Casey's, not ours). **No CONTRADICT.**
+  Repro status: newest booking GATE-MARGIN self-verifying at HEAD; rest_em hard-probe booking IN FLIGHT uncommitted
+  (top priority on completion wake). Rotation next wake: book rest_em hard-probe when done, then RC-4 or MC-1.
