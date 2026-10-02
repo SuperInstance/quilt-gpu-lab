@@ -5340,3 +5340,16 @@ Lane D2-V1b resumed the mid-killed D2-V1 lane. **Scripts unchanged — no defect
 - **AMENDMENT 1 (pre-run, disclosed):** the prereg froze the second channel as **count**; every view is at chance on count-violations (frozen cells 0.502/0.422/0.563/0.146; cheap cells 0.460/0.424/0.452/0.086) ⇒ the item would be only *nominally* dual-view. Variants A/B/C (count/semantic/agent) were all piloted (premiums ≈ +0.00/+0.02–0.03/+0.02) — same qualitative answer; the amendment **raises** the baseline, biasing toward the negative. Router params declared 20p/72p (prereg guessed 36p) — smaller than the guess, bar unchanged.
 - artifacts: `results/comp2_itemlocal/` (il_results.json; corpus.jsonl 12,000; per_item_stub.jsonl 12,000; predictions/ **20 arms × 3 seeds × 3,082 = 184,920 rows**, boards recompute max|Δ|<5e-5; wh_receipt.json; pilots/ disclosed). Full entry: `results/comp2_itemlocal/RESULTS-ENTRY.md`.
 - **The lane closes COMPOSITE.** Next (both cheap, both corpus/calibration questions, not federation): (a) does a 2-parameter per-channel margin recalibration close the 0.219 routing gap (routing failure vs calibration failure)? (b) re-ask in a **structurally complementary** view space (order-only vs bag-only, where one view is at chance on the other's channel by geometry) — the only setting where "the sensor that carries the answer" is identifiable.
+
+### (C) MANDATORY REPRODUCTION CHECK — 20:1x Oct 1: **C2-IL PASS (byte-equal modulo wall_seconds)**
+- Re-ran the COMMITTED `experiments/comp2_itemlocal.py` (sha256 a60e83a4ad1be395…, booking commit 89cb6f3)
+  with `--out /home/eileen/scratch/c2il_repro_20261001_2011` (RC-1 `--out` pattern; verification run kept
+  entirely OFF the results tree).
+- Deep-diff of `il_results.json` repro vs committed: **single differing key = `wall_seconds`** (8.8 → 9.2).
+  All gates (G_IL1 8/8, G_IL2 FAIL +0.0022 vs +0.05 bar, G_IL2b PASS +0.1045), all 20 full-board arms,
+  routing diagnostics (oracle 0.9974, headroom +0.2191, agreement 0.7070), and sha256 corpus sequence
+  identical. Wall 15.5 s total ≈ booked 10.9 s.
+- Fourth clean bill under the mandatory rule (QG1c, W5a, B1G prior). NOTE: script was NOT dirty this time —
+  committed script reproduced its committed result directly (dirty-tree instance count unchanged at 5, the
+  b1g one being the latest).
+- Scratch artifacts preserved at `/home/eileen/scratch/c2il_repro_20261001_2011/` (receipt-less, ext4).
