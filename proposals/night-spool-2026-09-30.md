@@ -987,3 +987,14 @@ other agents are feeding us; keep the handshake lane warm.
   QG1c, W5 seeds unthreatened. cf-native-backend went LIVE (B3.6 membrane router, 178ms wake-on-URL
   receipt) = CORROBORATE of merge-that-cannot-commit-silently lineage + concurrent-merge rig is TOOL for
   RC-4. fleet-triage "the harness is broken, and that is the report" = 2nd witness for GATE-MARGIN.
+
+## DAY SLICE 2026-10-02 00:1x-00:4x AKDT (day-cron conductor)
+- (B) **GATE-MARGIN BOOKED KEEP, closes** (SCOUT-19 spawn): prereg committed before audit; G1 re-read
+  + G2 independent recompute (verdicts reproduce exactly) + G3 vacuity census — all CLEAN, 0 instances
+  of the prospector false-pass class in our tree. See RESULTS.md. No booked verdict threatened.
+- (C) repro: newest booking RC-5 is self-verifying; comp2 repro already PASS 20:1x Oct 1 — no repro due.
+- SEAL DEFERRED (honest): sealer refused — untracked in-flight lane files (experiments/rest_em_loop.py,
+  experiments/skill_library.py) are another lane's bytes; not committed by this slice. Seal rides that
+  lane's clean point (SCOUT-19 precedent).
+- GPU lane untouched this slice (CPU-only audit). Rotation next wake: (A) SCOUT-20 fleet sweep, then
+  RC-4 (seal-chain) or MC-1.
