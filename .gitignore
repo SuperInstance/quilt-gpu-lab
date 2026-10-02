@@ -16,3 +16,6 @@ scratch/pinch0/embeddings/
 scratch/pinch0/.cf_account
 scratch/pinch0/_raw/
 scratch/pinch0/_api/
+
+# receiptd now lives in its own repo (canonical): SuperInstance/receiptd
+scratch/receiptd/

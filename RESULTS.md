@@ -5422,3 +5422,17 @@ Lane D2-V1b resumed the mid-killed D2-V1 lane. **Scripts unchanged — no defect
   SealGuardLive) firing RED on those same untracked files ⇒ pins working as designed, NOT a
   regression from this slice (docs+scout-file commit 0c6d45e only). Suite returns green when the
   live lane lands or archives its files; manifest re-seal then.
+
+## REST-EM-001 attempt-2 gate: INCOMPLETE-HELD (booked 10:52 AKDT 2026-10-02)
+
+T / C1 / C2 arms completed cleanly (07:55 / 08:17 / 08:20; JSONs on disk,
+committed). N2 FAILED-TO-RUN x3 in one afternoon, three distinct causes:
+(1) host GSOD ~08:31 post-base-eval; (2) bitsandbytes OOM at train step
+20/30 (relaunch-2b, allocator); (3) CUDA driver "device not ready"
+(relaunch-2c). Attempt-3 (10:16, expandable_segments, solo GPU) died the
+same driver death. Three strikes = environment verdict: the box cannot
+sustain NF4 training today. NO GATE VERDICT IS CLAIMED. Overnight retry
+armed (00:30 AKDT cron, GPU-health-gated: torch smoke must pass or it
+stands down). Deviations so far are annotated in rest_em_full.log
+(relaunch markers; env-level allocator fix only, zero harness change —
+verified: N2 path never touches the C2 oracle pool).
