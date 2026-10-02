@@ -1,0 +1,43 @@
+{
+  "prereg": "/home/eileen/projects/quilt-gpu-lab/proposals/runs/B1E-linear-head-floor.md",
+  "harness": "/home/eileen/projects/quilt-gpu-lab/experiments/b1c_value_fidelity_engine.mjs",
+  "device": "cuda",
+  "device_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "torch": "2.14.0+cu126",
+  "master_seed": 2718,
+  "train_seeds": [
+    2718,
+    2719,
+    2720
+  ],
+  "frame": "B1/B1b/B1C's frame verbatim (reused engine, unchanged)",
+  "traces_n": 240,
+  "trace_ticks": 1200,
+  "trace_seed_base": 900000,
+  "holdout_rule": "trace index % 5 == 0",
+  "widths": [
+    24,
+    32,
+    48,
+    64
+  ],
+  "depth": 3,
+  "weightings": [
+    "plain",
+    "reweight"
+  ],
+  "epochs": 40,
+  "head": "LINEAR (identity) head = B1C cap arm; body = 3 hidden ReLU layers x width w",
+  "primary_gate": "deadzone >= 0.9 AND ramp >= 0.9 @ 0.05, 3-seed mean, both std>0",
+  "mechanism_bar": {
+    "deadzone_lift_vs_plain": 0.15,
+    "ramp_lift_vs_plain": 0.2
+  },
+  "control_anchor": "width-128 linear-head plain == B1C cap arm, C6 reused from B1D nets, |d|<0.05 vs B1C booked + B1D booked",
+  "verdict_counts": "PREREGISTERED SWEEP ARMS ONLY (8 linear arms); anchor = control",
+  "prediction_convention": "Delta_pred = clamp(p + raw, 6, 54) - p (deployed)",
+  "regions": "clamp / deadzone (u<=1.5) / saturation (u>=s+1.5) / ramp, from law ground truth",
+  "wh_envelope": 6.0,
+  "vram_ceiling_mb": 1500.0,
+  "smoke": false
+}

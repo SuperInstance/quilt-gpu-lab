@@ -1,0 +1,18 @@
+{
+  "breach": null,
+  "g7": {
+    "gpu_seconds": 277.658,
+    "joules": 17687.8738,
+    "mean_power_w": 47.78,
+    "power_samples": 71,
+    "util_samples": 71,
+    "wall_seconds": 370.212,
+    "watt_hours": 4.913298277777778,
+    "windows": 1
+  },
+  "max_temp_c": 76,
+  "min_free_vram_mib": 1661,
+  "samples": 72,
+  "task_id": "B1E-linear-head-floor",
+  "timed_out": false
+}
