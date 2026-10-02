@@ -1,0 +1,299 @@
+{
+  "experiment": "COMP1 federation v2 (blurred K=4, starved cells, bootstrap CIs)",
+  "prereg": "proposals/runs/COMP1-federation2.md",
+  "device": "cuda",
+  "torch": "2.14.0+cu126",
+  "corpus": {
+    "seed": 2718,
+    "n_target": 2400,
+    "blur_beta": 0.35,
+    "n_train": 1810,
+    "n_heldout": 590,
+    "per_kind_heldout": {
+      "agent-role": 162,
+      "counting-address": 139,
+      "negation-scope": 148,
+      "semantic": 141
+    },
+    "canon_frac_heldout": 0.4831,
+    "overlay_items": 819,
+    "overlay_rate": 0.3412,
+    "per_kind_canon_frac": {
+      "agent-role": 0.4877,
+      "counting-address": 0.4676,
+      "negation-scope": 0.5,
+      "semantic": 0.4752
+    },
+    "validity_ok": true
+  },
+  "router_audit": {
+    "train_acc": 0.7514,
+    "heldout_acc": 0.7356,
+    "mean_top1_top2_corr_gap_heldout": 0.0412
+  },
+  "router_band": [
+    0.4,
+    0.95
+  ],
+  "router_in_band": true,
+  "params": {
+    "JOINT": 4225,
+    "SINGLE": 1057,
+    "FED": 4228,
+    "FED_LA": 6344,
+    "JOINT_LA_control": 6341
+  },
+  "chance_majority": {
+    "full": 0.5169,
+    "agent-role": 0.5123,
+    "counting-address": 0.5324,
+    "negation-scope": 0.5,
+    "semantic": 0.5248
+  },
+  "boards_seedmean": {
+    "JOINT": {
+      "full": 0.5469,
+      "agent-role": 0.5658,
+      "counting-address": 0.5635,
+      "negation-scope": 0.4234,
+      "semantic": 0.6383
+    },
+    "SINGLE": {
+      "full": 0.5503,
+      "agent-role": 0.5658,
+      "counting-address": 0.5707,
+      "negation-scope": 0.4279,
+      "semantic": 0.6407
+    },
+    "FED": {
+      "full": 0.5605,
+      "agent-role": 0.537,
+      "counting-address": 0.5731,
+      "negation-scope": 0.5541,
+      "semantic": 0.5816
+    },
+    "FED_LA": {
+      "full": 0.5621,
+      "agent-role": 0.5494,
+      "counting-address": 0.5779,
+      "negation-scope": 0.5631,
+      "semantic": 0.5603
+    },
+    "JOINT_LA": {
+      "full": 0.5475,
+      "agent-role": 0.5741,
+      "counting-address": 0.5612,
+      "negation-scope": 0.4212,
+      "semantic": 0.6359
+    }
+  },
+  "seed_std": {
+    "JOINT": {
+      "full": 0.0068
+    },
+    "SINGLE": {
+      "full": 0.0068
+    },
+    "FED": {
+      "full": 0.0056
+    },
+    "FED_LA": {
+      "full": 0.0032
+    },
+    "JOINT_LA": {
+      "full": 0.0086
+    }
+  },
+  "gates": {
+    "G1_fed_gt_single_full": {
+      "diff": 0.0102,
+      "ci95": [
+        -0.0339,
+        0.0548
+      ],
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "G1R_fed_gt_single_counting": {
+      "diff": 0.0024,
+      "ci95": [
+        -0.0984,
+        0.1031
+      ],
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "G1R_fed_gt_single_negation": {
+      "diff": 0.1261,
+      "ci95": [
+        0.0338,
+        0.2185
+      ],
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "PASS"
+    },
+    "G2_la_gt_fed_full": {
+      "diff": 0.0017,
+      "ci95": [
+        -0.0169,
+        0.0209
+      ],
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "G3_fed_gt_joint_full_secondary": {
+      "diff": 0.0136,
+      "ci95": [
+        -0.0305,
+        0.0582
+      ],
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    }
+  },
+  "capacity_control": {
+    "fed_la_premium": {
+      "diff": 0.0017,
+      "ci95": [
+        -0.0169,
+        0.0209
+      ]
+    },
+    "joint_la_premium": {
+      "diff": 0.0006,
+      "ci95": [
+        -0.0158,
+        0.0169
+      ]
+    },
+    "g2c_premium_gap": 0.0011,
+    "verdict": "CONTROL_OK (LA buys more in federation)"
+  },
+  "per_regime_ci": {
+    "FED_vs_SINGLE@agent-role": {
+      "diff": -0.0288,
+      "ci95": [
+        -0.1132,
+        0.0597
+      ]
+    },
+    "FED_vs_SINGLE@counting-address": {
+      "diff": 0.0024,
+      "ci95": [
+        -0.0984,
+        0.1031
+      ]
+    },
+    "FED_vs_SINGLE@negation-scope": {
+      "diff": 0.1261,
+      "ci95": [
+        0.0338,
+        0.2185
+      ]
+    },
+    "FED_vs_SINGLE@semantic": {
+      "diff": -0.0591,
+      "ci95": [
+        -0.1395,
+        0.026
+      ]
+    },
+    "FED_vs_JOINT@agent-role": {
+      "diff": -0.0288,
+      "ci95": [
+        -0.1132,
+        0.0597
+      ]
+    },
+    "FED_vs_JOINT@counting-address": {
+      "diff": 0.0096,
+      "ci95": [
+        -0.0936,
+        0.1103
+      ]
+    },
+    "FED_vs_JOINT@negation-scope": {
+      "diff": 0.1306,
+      "ci95": [
+        0.0405,
+        0.223
+      ]
+    },
+    "FED_vs_JOINT@semantic": {
+      "diff": -0.0567,
+      "ci95": [
+        -0.1371,
+        0.0284
+      ]
+    },
+    "FED_LA_vs_FED@agent-role": {
+      "diff": 0.0123,
+      "ci95": [
+        -0.0247,
+        0.0494
+      ]
+    },
+    "FED_LA_vs_FED@counting-address": {
+      "diff": 0.0048,
+      "ci95": [
+        -0.0336,
+        0.0432
+      ]
+    },
+    "FED_LA_vs_FED@negation-scope": {
+      "diff": 0.009,
+      "ci95": [
+        -0.0293,
+        0.0495
+      ]
+    },
+    "FED_LA_vs_FED@semantic": {
+      "diff": -0.0213,
+      "ci95": [
+        -0.0592,
+        0.0142
+      ]
+    }
+  },
+  "per_seed_meta": [
+    {
+      "seed": 2718,
+      "tau_la": 0.0363,
+      "tau_joint_la": 0.0276,
+      "la_triggers": 118,
+      "la_flips": 103,
+      "joint_la_triggers": 106,
+      "joint_la_flips": 98
+    },
+    {
+      "seed": 2719,
+      "tau_la": 0.0371,
+      "tau_joint_la": 0.0294,
+      "la_triggers": 109,
+      "la_flips": 97,
+      "joint_la_triggers": 122,
+      "joint_la_flips": 112
+    },
+    {
+      "seed": 2720,
+      "tau_la": 0.0375,
+      "tau_joint_la": 0.0272,
+      "la_triggers": 121,
+      "la_flips": 104,
+      "joint_la_triggers": 99,
+      "joint_la_flips": 97
+    }
+  ],
+  "ramp_receipt": {
+    "ramp_s": 0.642,
+    "synced": true
+  },
+  "wall_seconds": 910.7,
+  "seeds_complete": 3,
+  "verdict": "INCONCLUSIVE"
+}

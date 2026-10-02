@@ -1,0 +1,18 @@
+{
+  "breach": null,
+  "g7": {
+    "gpu_seconds": 213.726,
+    "joules": 13917.5307,
+    "mean_power_w": 45.14,
+    "power_samples": 59,
+    "util_samples": 59,
+    "wall_seconds": 308.327,
+    "watt_hours": 3.86598075,
+    "windows": 2
+  },
+  "max_temp_c": 74,
+  "min_free_vram_mib": 1507,
+  "samples": 60,
+  "task_id": "A2-ga4444-4x4",
+  "timed_out": false
+}

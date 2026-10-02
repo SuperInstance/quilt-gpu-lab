@@ -1,0 +1,64 @@
+inner rc=0
+[env] device=cuda NVIDIA GeForce RTX 4050 Laptop GPU torch=2.14.0+cu126 smoke=False
+[trace   0] ticks=869 closed=True
+[trace  40] ticks=1177 closed=True
+[trace  80] ticks=619 closed=True
+[trace 120] ticks=1200 closed=False
+[trace 160] ticks=692 closed=True
+[trace 200] ticks=1200 closed=False
+[label   0] n=1738
+[label  40] n=2354
+[label  80] n=1238
+[label 120] n=2400
+[label 160] n=1384
+[label 200] n=2400
+[data] train=366346 holdout=90930
+[C4] {"vs_runB": {"ok": true, "shape_match": true, "max_abs_dX": 0.0, "max_abs_dY": 0.0, "max_abs_dMETA": 0.0}, "vs_b1": {"ok": true, "shape_match": true, "max_abs_dX": 0.0, "max_abs_dY": 0.0, "max_abs_dMETA": 0.0}}
+[C1 laweq] {'ok': True, 'n': 4000, 'max_abs_diff': 0, 'n_diff': 0}
+[reweight] train region freq={'clamp': 0.0017, 'deadzone': 0.069, 'saturation': 0.8954, 'ramp': 0.034} mean_w={'clamp': 9.838, 'deadzone': 4.756, 'saturation': 0.366, 'ramp': 9.651}
+[reuse relu_ref  2718 ep 40] loaded model_relu_ref_seed2718_ep40.pt
+[reuse relu_ref  2719 ep 40] loaded model_relu_ref_seed2719_ep40.pt
+[reuse relu_ref  2720 ep 40] loaded model_relu_ref_seed2720_ep40.pt
+[reuse reweight  2718 ep 40] loaded model_reweight_seed2718_ep40.pt
+[reuse reweight  2719 ep 40] loaded model_reweight_seed2719_ep40.pt
+[reuse reweight  2720 ep 40] loaded model_reweight_seed2720_ep40.pt
+[reuse cap       2718 ep 40] loaded model_cap_seed2718_ep40.pt
+[reuse cap       2719 ep 40] loaded model_cap_seed2719_ep40.pt
+[reuse cap       2720 ep 40] loaded model_cap_seed2720_ep40.pt
+[reuse binned    2718 ep 40] loaded model_binned_seed2718_ep40.pt
+[reuse binned    2719 ep 40] loaded model_binned_seed2719_ep40.pt
+[reuse binned    2720 ep 40] loaded model_binned_seed2720_ep40.pt
+[train relu_ref  2718 ep300] loss 0.18318 -> 1.0642e-05 (deployed_mse, 4481p)
+[train relu_ref  2719 ep300] loss 0.21938 -> 5.9088e-06 (deployed_mse, 4481p)
+[train relu_ref  2720 ep300] loss 0.19336 -> 7.3083e-06 (deployed_mse, 4481p)
+[train reweight  2718 ep300] loss 0.11863 -> 1.1126e-05 (weighted_mse, 4481p)
+[train reweight  2719 ep300] loss 0.1318 -> 9.8709e-07 (weighted_mse, 4481p)
+[train reweight  2720 ep300] loss 0.12116 -> 5.8924e-06 (weighted_mse, 4481p)
+[train cap       2718 ep300] loss 0.1171 -> 9.3369e-06 (deployed_mse, 33665p)
+[train cap       2719 ep300] loss 0.1158 -> 9.852e-07 (deployed_mse, 33665p)
+[train cap       2720 ep300] loss 0.11017 -> 2.362e-06 (deployed_mse, 33665p)
+[train binned    2718 ep300] loss 2.528 -> 0.067367 (cross_entropy, 11241p)
+[train binned    2719 ep300] loss 2.7046 -> 0.073573 (cross_entropy, 11241p)
+[train binned    2720 ep300] loss 2.6965 -> 0.068988 (cross_entropy, 11241p)
+[C2 port relu_ref  left ] f64 max|d|=2.39e-15 f32=1.29e-06
+[C2 port relu_ref  right] f64 max|d|=1.33e-15 f32=6.9e-07
+[C2 port reweight  left ] f64 max|d|=2.11e-15 f32=1.19e-06
+[C2 port reweight  right] f64 max|d|=1.53e-15 f32=8.49e-07
+[C2 port cap       left ] f64 max|d|=3.61e-15 f32=3.15e-06
+[C2 port cap       right] f64 max|d|=4.11e-15 f32=3.42e-06
+[C2 port binned    left ] f64 max|d|=0 f32=0
+[C2 port binned    right] f64 max|d|=0 f32=0
+[regions] {"clamp": 0.0013, "deadzone": 0.078, "saturation": 0.8839, "ramp": 0.0369}
+[gate relu_ref  ep 40] aggregate5e-2=0.9192 | deadzone=0.4951±0.3102 ramp=0.3205±0.0987 | sat=0.9815 -> FAIL
+[gate reweight  ep 40] aggregate5e-2=0.9533 | deadzone=0.7553±0.3413 ramp=0.6950±0.3669 | sat=0.9815 -> FAIL
+[gate cap       ep 40] aggregate5e-2=0.9959 | deadzone=0.9957±0.0061 ramp=0.9186±0.1109 | sat=0.9992 -> PASS
+[gate binned    ep 40] aggregate5e-2=0.9670 | deadzone=1.0000±0.0000 ramp=0.1200±0.0012 | sat=0.9994 -> INCONCLUSIVE
+[gate relu_ref  ep300] aggregate5e-2=1.0000 | deadzone=1.0000±0.0000 ramp=1.0000±0.0000 | sat=1.0000 -> INCONCLUSIVE
+[gate reweight  ep300] aggregate5e-2=1.0000 | deadzone=1.0000±0.0000 ramp=1.0000±0.0000 | sat=1.0000 -> INCONCLUSIVE
+[gate cap       ep300] aggregate5e-2=1.0000 | deadzone=1.0000±0.0000 ramp=1.0000±0.0000 | sat=1.0000 -> INCONCLUSIVE
+[gate binned    ep300] aggregate5e-2=0.9951 | deadzone=1.0000±0.0000 ramp=0.8670±0.0300 | sat=1.0000 -> INCONCLUSIVE
+[C5 relu_ref repro] max|Δ|=0.0000 ok=True
+RESULT {"verdict": "KEEP", "passing": ["cap@ep40"], "mech": ["reweight@ep40", "cap@ep40"], "vram_mb": 124.1, "elapsed_s": 1271.6}
+
+guard receipt: results/b1c/guard/g7-wr-b1c-value-fidelity-1790899870.json valid=True OK (exit 0): results/b1c/guard/g7-wr-b1c-value-fidelity-1790899870.json is a valid g7-watt-receipt@1 watt-receipt
+ENERGY: 16.110876861111112 Wh (57999.1567 J); gate={'rule': 'no receipt → run VOID', 'verdict': 'PASS'}

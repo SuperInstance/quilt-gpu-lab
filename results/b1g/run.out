@@ -1,0 +1,40 @@
+inner rc=0
+[env] device=cuda NVIDIA GeForce RTX 4050 Laptop GPU torch=2.14.0+cu126 smoke=False
+[trace   0] ticks=869 closed=True
+[trace  40] ticks=1177 closed=True
+[trace  80] ticks=619 closed=True
+[trace 120] ticks=1200 closed=False
+[trace 160] ticks=692 closed=True
+[trace 200] ticks=1200 closed=False
+[label   0] n=1738
+[label  40] n=2354
+[label  80] n=1238
+[label 120] n=2400
+[label 160] n=1384
+[label 200] n=2400
+[data] train=366346 holdout=90930
+[C4] {"vs_b1c": {"ok": true, "shape_match": true, "max_abs_dX": 0.0, "max_abs_dY": 0.0, "max_abs_dMETA": 0.0}, "vs_b1e": {"ok": true, "shape_match": true, "max_abs_dX": 0.0, "max_abs_dY": 0.0, "max_abs_dMETA": 0.0}, "vs_runB": {"ok": true, "shape_match": true, "max_abs_dX": 0.0, "max_abs_dY": 0.0, "max_abs_dMETA": 0.0}, "vs_b1": {"ok": true, "shape_match": true, "max_abs_dX": 0.0, "max_abs_dY": 0.0, "m
+[C1 laweq] {'ok': True, 'n': 4000, 'max_abs_diff': 0, 'n_diff': 0}
+[atoms] train deadzone=25261 ramp=12448 ramp_frac=0.0340 ramp_mse_mass=0.2790
+[ckpt h96_mse_ep40     2718] trloss=0.01267 a=0.970 k=1.467
+[ckpt h96_mse_ep80     2718] trloss=0.0088831 a=0.971 k=1.489
+[ckpt h96_mse_ep160    2718] trloss=0.0057608 a=0.999 k=1.499
+[ckpt h96_rw_ep40      2718] trloss=0.015004 a=0.970 k=1.490
+[ckpt h96_rw_ep80      2718] trloss=0.032932 a=0.971 k=1.497
+[ckpt h96_rw_ep160     2718] trloss=0.043502 a=0.984 k=1.499
+[regions] {"clamp": 0.0013, "deadzone": 0.078, "saturation": 0.8839, "ramp": 0.0369}
+[gate h96_mse_ep40    ] dz=0.9958 CI[0.9944,0.9972] ramp=0.9562 CI[0.9487,0.9630] k=1.467 a=0.970 crossing=PASS
+[gate h96_mse_ep80    ] dz=0.9999 CI[0.9996,1.0000] ramp=0.9943 CI[0.9917,0.9967] k=1.489 a=0.971 crossing=PASS
+[gate h96_mse_ep160   ] dz=1.0000 CI[1.0000,1.0000] ramp=0.9979 CI[0.9961,0.9994] k=1.499 a=0.999 crossing=PASS
+[gate h96_rw_ep40     ] dz=0.9932 CI[0.9913,0.9951] ramp=0.9940 CI[0.9911,0.9964] k=1.490 a=0.970 crossing=PASS
+[gate h96_rw_ep80     ] dz=0.9760 CI[0.9725,0.9795] ramp=0.9416 CI[0.9335,0.9496] k=1.497 a=0.971 crossing=PASS
+[gate h96_rw_ep160    ] dz=0.9886 CI[0.9862,0.9911] ramp=0.9502 CI[0.9430,0.9574] k=1.499 a=0.984 crossing=PASS
+[reuse anchor_cap128 2718] loaded model_anchor_cap128_seed2718_ep40.pt
+[reuse anchor_cap128 2719] loaded model_anchor_cap128_seed2719_ep40.pt
+[reuse anchor_cap128 2720] loaded model_anchor_cap128_seed2720_ep40.pt
+[C6 anchor repro vs B1C] max|Δ|=0.00005 ok=True
+[C7 anchor vs B1D booked] max|Δ|=0 ok=True
+RESULT {"verdict": "KEEP", "grain": "RAMP-CLOSES", "sentence": "the ramp is epochs/loss-shaped after all \u2014 B1F's representational call was undertrained", "G_B1G1": true, "G_B1G2": true, "g1_arms": ["h96_mse_ep40", "h96_mse_ep80", "h96_mse_ep160", "h96_rw_ep40", "h96_rw_ep80", "h96_rw_ep160"], "g2_arms": ["h96_mse_ep40", "h96_mse_ep80", "h96_mse_ep160", "h96_rw_ep40", "h96_rw_ep80", "h96_rw_ep160"], "best": "h96_mse_ep160", "best_ramp": 0.9979, "best_dz": 1.0, "trajectories": {"mse": [{"epochs": 40, "ramp@5e-2": 0.9561717352415027, "learned_k": 1.4670648574829102}, {"epochs": 80, "ramp@5e-2": 0.994335122242099, "learned_k": 1.4890364408493042}, {"epochs": 160, "ramp@5e-2": 0.9979129397734049, "learned_k": 1.4992605447769165}], "rw": [{"epochs": 40, "ramp@5e-2": 0.9940369707811568, "learned_k": 1.490318775177002}, {"epochs": 80, "ramp@5e-2": 0.9415623136553369, "learned_k": 1.4965780973434448}, {"epochs": 160, "ramp@5e-2": 0.9502087060226595, "learned_k": 1.4992811679840088}]}, "vram_mb": 125.2, "elapsed_s": 262.1}
+
+guard receipt: /home/eileen/projects/quilt-gpu-lab/results/b1g/guard/g7-wr-b1g-epochs-vs-ramp-loss-1790905374.json valid=True OK (exit 0): /home/eileen/projects/quilt-gpu-lab/results/b1g/guard/g7-wr-b1g-epochs-vs-ramp-loss-1790905374.json is a valid g7-watt-receipt@1 watt-receipt
+ENERGY: 0.7501979166666667 Wh (2700.7125 J); gate={'rule': 'no receipt → run VOID', 'verdict': 'PASS'}

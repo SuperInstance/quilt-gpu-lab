@@ -1,0 +1,211 @@
+{
+  "schema": "g1c-routing-table/v1",
+  "seed": 2718,
+  "arms": {
+    "local": "qwen2.5:7b Q4_K_M via ollama (results/g1/run1)",
+    "jev": "typesafe jev-preview System One noul, thr=0.5",
+    "glm": "z.ai glm-5.3-flash coding endpoint, temp 0, seed 2718"
+  },
+  "cost_rank": {
+    "local": 0,
+    "jev": 1,
+    "glm": 2
+  },
+  "gate": "cheapest arm with class accuracy >= 0.75",
+  "against_shipped_key": {
+    "per_class": {
+      "local": {
+        "arith": 0.5625,
+        "contra": 0.3125,
+        "count": 0.4375,
+        "date": 0.3125,
+        "seq": 0.5625,
+        "xref": 0.9375
+      },
+      "jev": {
+        "arith": 0.9375,
+        "contra": 0.3125,
+        "count": 0.5,
+        "date": 0.875,
+        "seq": 1.0,
+        "xref": 1.0
+      },
+      "glm": {
+        "arith": 1.0,
+        "contra": 0.3125,
+        "count": 0.5,
+        "date": 1.0,
+        "seq": 1.0,
+        "xref": 1.0
+      }
+    },
+    "overall": {
+      "local": 0.5208,
+      "jev": 0.7708,
+      "glm": 0.8021
+    },
+    "routing": {
+      "arith": {
+        "winner": "jev",
+        "reason": "cheapest arm >=0.75",
+        "acc": {
+          "local": 0.5625,
+          "jev": 0.9375,
+          "glm": 1.0
+        }
+      },
+      "contra": {
+        "winner": null,
+        "reason": "no arm >=0.75",
+        "acc": {
+          "local": 0.3125,
+          "jev": 0.3125,
+          "glm": 0.3125
+        }
+      },
+      "count": {
+        "winner": null,
+        "reason": "no arm >=0.75",
+        "acc": {
+          "local": 0.4375,
+          "jev": 0.5,
+          "glm": 0.5
+        }
+      },
+      "date": {
+        "winner": "jev",
+        "reason": "cheapest arm >=0.75",
+        "acc": {
+          "local": 0.3125,
+          "jev": 0.875,
+          "glm": 1.0
+        }
+      },
+      "seq": {
+        "winner": "jev",
+        "reason": "cheapest arm >=0.75",
+        "acc": {
+          "local": 0.5625,
+          "jev": 1.0,
+          "glm": 1.0
+        }
+      },
+      "xref": {
+        "winner": "local",
+        "reason": "cheapest arm >=0.75",
+        "acc": {
+          "local": 0.9375,
+          "jev": 1.0,
+          "glm": 1.0
+        }
+      }
+    }
+  },
+  "against_recomputed_truth": {
+    "per_class": {
+      "local": {
+        "arith": 0.5625,
+        "contra": 1.0,
+        "count": 0.8125,
+        "date": 0.3125,
+        "seq": 0.5625,
+        "xref": 0.9375
+      },
+      "jev": {
+        "arith": 0.9375,
+        "contra": 1.0,
+        "count": 1.0,
+        "date": 0.875,
+        "seq": 1.0,
+        "xref": 1.0
+      },
+      "glm": {
+        "arith": 1.0,
+        "contra": 1.0,
+        "count": 1.0,
+        "date": 1.0,
+        "seq": 1.0,
+        "xref": 1.0
+      }
+    },
+    "overall": {
+      "local": 0.6979,
+      "jev": 0.9688,
+      "glm": 1.0
+    },
+    "routing": {
+      "arith": {
+        "winner": "jev",
+        "reason": "cheapest arm >=0.75",
+        "acc": {
+          "local": 0.5625,
+          "jev": 0.9375,
+          "glm": 1.0
+        }
+      },
+      "contra": {
+        "winner": "local",
+        "reason": "cheapest arm >=0.75",
+        "acc": {
+          "local": 1.0,
+          "jev": 1.0,
+          "glm": 1.0
+        }
+      },
+      "count": {
+        "winner": "local",
+        "reason": "cheapest arm >=0.75",
+        "acc": {
+          "local": 0.8125,
+          "jev": 1.0,
+          "glm": 1.0
+        }
+      },
+      "date": {
+        "winner": "jev",
+        "reason": "cheapest arm >=0.75",
+        "acc": {
+          "local": 0.3125,
+          "jev": 0.875,
+          "glm": 1.0
+        }
+      },
+      "seq": {
+        "winner": "jev",
+        "reason": "cheapest arm >=0.75",
+        "acc": {
+          "local": 0.5625,
+          "jev": 1.0,
+          "glm": 1.0
+        }
+      },
+      "xref": {
+        "winner": "local",
+        "reason": "cheapest arm >=0.75",
+        "acc": {
+          "local": 0.9375,
+          "jev": 1.0,
+          "glm": 1.0
+        }
+      }
+    }
+  },
+  "jev_noul_threshold_sweep_vs_recomputed_truth": {
+    "0.1": 0.8542,
+    "0.2": 0.875,
+    "0.3": 0.9167,
+    "0.4": 0.9583,
+    "0.5": 0.9688,
+    "0.6": 0.9792,
+    "0.7": 0.9792,
+    "0.8": 0.9688,
+    "0.9": 0.9479
+  },
+  "key_audit": {
+    "mismatches_total": 19,
+    "by_class": {
+      "contra": 11,
+      "count": 8
+    }
+  }
+}

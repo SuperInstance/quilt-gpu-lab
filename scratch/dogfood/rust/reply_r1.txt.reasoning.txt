@@ -1,0 +1,1241 @@
+We are to create a cross-language conformance test for the Eisenstein integer ring Z[ω] in Rust.
+ We are given authoritative definitions.
+
+ Steps:
+ 1. Pick 8-10 operations: add, sub, mul, conj, norm, hexdist, div_rem, rotate_60_omega.
+    We must cover:
+      - add, sub, mul, conj, norm, hexdist, div_rem (with exact divisions and rounding edge cases), rotate_60_omega.
+      - at least one vector where norm(mul(z,w)) == norm(z)*norm(w) (multiplicativity).
+
+ 2. For each operation, produce 2-3 concrete test vectors with small integer inputs and exact expected output.
+    We must compute by hand carefully.
+
+ 3. Output format: three delimited sections.
+
+ Let's plan the test vectors:
+
+ Operation: add
+   Example: z = (1,2), w = (3,-1) -> (1+3, 2+(-1)) = (4,1)
+
+ Operation: sub
+   Example: z = (5,3), w = (2,4) -> (5-2, 3-4) = (3,-1)
+
+ Operation: mul
+   We need to compute: (a,b) * (c,d) = (a*c - b*d, a*d + b*c - b*d)
+   Example: z = (1,0), w = (0,1) -> (1*0 - 0*1, 1*1 + 0*0 - 0*1) = (0, 1) -> but note: (1,0) is 1, (0,1) is ω, so 1*ω = ω -> (0,1) is correct.
+   But let's do a non-trivial one: z = (1,1), w = (1,1)
+        a=1, b=1, c=1, d=1
+        real: 1*1 - 1*1 = 0
+        imag: 1*1 + 1*1 - 1*1 = 1
+        so (0,1) -> but note: (1+ω)^2 = 1 + 2ω + ω^2 = 1 + 2ω + (-1-ω) = ω -> so (0,1) is correct.
+
+   Also, we need one for multiplicativity: norm(z) = a² - a b + b², norm(w)=c² - c d + d², norm(z*w)=norm(z)*norm(w)
+   Example: z=(2,1), w=(1,0) -> norm(z)=4-2+1=3, norm(w)=1, norm(z*w)=norm((2,1))=3 -> 3=3*1 -> holds.
+   But we want a non-trivial one: z=(2,1), w=(1,1)
+        norm(z)=4-2+1=3, norm(w)=1-1+1=1 -> product=3.
+        z*w = (2*1 - 1*1, 2*1 + 1*1 - 1*1) = (1, 2) -> norm(1,2)=1-2+4=3 -> holds.
+
+ Operation: conj
+   conj(z) = (a-b, -b)
+   Example: z=(3,4) -> (3-4, -4) = (-1, -4)
+
+ Operation: norm
+   Example: z=(2,3) -> 4 - 6 + 9 = 7
+
+ Operation: hexdist
+   hexdist(z,w): da = a-c, db = b-d.
+   Rule: if sign(da)==sign(db) or da==0 or db==0 -> max(|da|,|db|), else |da|+|db|
+
+   Example 1: z=(0,0), w=(1,1) -> da= -1, db=-1 -> signs same (both negative) -> max(1,1)=1.
+   Example 2: z=(0,0), w=(1,-1) -> da=-1, db=1 -> signs different, and neither zero -> |da|+|db|=2.
+
+ Operation: div_rem
+   We need two kinds: exact division (r=(0,0)) and rounding edge cases.
+
+   Exact division: 
+        We know that if w divides z, then there exists q such that z = w*q and r=0.
+        Example: take w=(1,0) (the integer 1), then for any z, q=z, r=0.
+        But let's take a non-trivial one: w=(2,0) and z=(4,0) -> q=(2,0), r=(0,0).
+        But better: use units. The units in Z[ω] are: ±1, ±ω, ±ω² (which is -1-ω). 
+        Example: w=(0,1) (which is ω), z=(0,2) (which is 2ω) -> then q=(0,2) * conj(w) / norm(w) 
+          conj(w) = (-1, -1) [since conj(0,1) = (0-1, -1) = (-1,-1)]
+          norm(w)=1
+          z * conj(w) = (0,2)*(-1,-1) = (0*(-1) - 2*(-1), 0*(-1)+2*(-1) - 2*(-1)) = (0+2, 0 -2 +2) = (2,0)
+          then q = (2,0) (since divided by norm(w)=1) -> but we need to round? Actually, since it's exact, the division should give integer coordinates.
+
+        However, the definition: q = round_half_away_from_zero(z * conj(w) / N(w)) coordinatewise.
+
+        But note: for exact division, z * conj(w) should be divisible by N(w) in the ring? Actually, the algorithm is: 
+          q = round( (z * conj(w)) / N(w) )   [where the division is componentwise real division?]
+
+        However, the definition says: q = round_half_away_from_zero(z·conj(w) · (1/N(w))) coordinatewise.
+
+        So for z=(0,2), w=(0,1):
+          z * conj(w) = (0,2) * (-1,-1) = (2,0) as above.
+          N(w)=1, so (z * conj(w)) * (1/N(w)) = (2,0).
+          Then q = (2,0) (since rounding half away from zero of integers is the integer itself).
+          Then r = z - w*q = (0,2) - (0,1)*(2,0) = (0,2) - (0*2 - 1*0, 0*0+1*2 - 1*0) = (0,2) - (0,2) = (0,0).
+
+        So that's an exact division.
+
+   Rounding edge case: we need a case where (z * conj(w)) / N(w) has a half-integer coordinate.
+
+        We know that the rounding rule is "round_half_away_from_zero".
+
+        How to get a half-integer? 
+          We need: (a*c - b*d) / N(w) to be a half-integer, i.e., the numerator must be odd and N(w) even? But note: N(w) is always nonnegative integer.
+
+        However, note: the norm N(w) = c² - c d + d². It can be even or odd.
+
+        Example: w = (1,0) -> N(w)=1, then we can't get half-integer? 
+        Let w = (1,1): N(w)=1-1+1=1 -> same.
+
+        Let w = (2,0): N(w)=4. Then we can have numerators that are 2 mod 4? But we want half-integer: so numerator must be 2 mod 4? Actually, we want the value to be k.5.
+
+        Consider z = (1,0) and w = (2,0):
+          z * conj(w) = (1,0) * (2,0) [since conj(2,0) = (2,0)]? 
+          Actually, conj(2,0) = (2-0, -0) = (2,0).
+          So z * conj(w) = (1*2 - 0*0, 1*0 + 0*2 - 0*0) = (2,0).
+          Then (z * conj(w)) / N(w) = (2/4, 0/4) = (0.5, 0).
+          Then q = round_half_away_from_zero(0.5, 0) = (1,0) [since 0.5 rounds away from zero to 1? But note: round_half_away_from_zero(0.5) is 1, and for negative it would be -1 for -0.5].
+
+          Then r = z - w*q = (1,0) - (2,0)*(1,0) = (1,0) - (2,0) = (-1,0).
+          Check norm(r)= (-1)^2 - (-1)*0 + 0^2 = 1, which is less than norm(w)=4 -> valid.
+
+        But note: the definition of div_rem: q = round(z * conj(w) / N(w)) coordinatewise. So we round each coordinate independently.
+
+        However, the problem: the ring is not Euclidean with respect to the hexagonal distance? But the definition given is for a specific algorithm.
+
+        We'll use: z=(1,0), w=(2,0) as a rounding edge case.
+
+        But note: the problem says "ROUNDING-EDGE cases where z·conj(w)/N(w) lands on a half-integer or near the hexagonal Voronoi boundary".
+
+        Another example: w=(1,2) -> N(w)=1 - 2 + 4 = 3.
+        We want to get a half-integer? But 1/3 is not half-integer. How about w=(2,2): N(w)=4-4+4=4.
+        Then if we have z=(1,0) and w=(2,2):
+          conj(w) = (2-2, -2) = (0,-2)
+          z * conj(w) = (1,0)*(0,-2) = (1*0 - 0*(-2), 1*(-2) + 0*0 - 0*(-2)) = (0, -2)
+          Then (z * conj(w)) / N(w) = (0, -2/4) = (0, -0.5)
+          Then q = (0, -1) [because round_half_away_from_zero(-0.5) = -1]
+          Then r = z - w*q = (1,0) - (2,2)*(-1,0) ??? Wait, we have q=(0,-1). 
+          Actually: w*q = (2,2)*(0,-1) = (2*0 - 2*(-1), 2*(-1)+2*0 - 2*(-1)) = (0+2, -2+0+2) = (2,0)
+          Then r = (1,0) - (2,0) = (-1,0) -> norm(r)=1 < 4.
+
+        But note: the example above with w=(2,0) is simpler.
+
+        We'll use:
+          Exact: z=(4,0), w=(2,0) -> q=(2,0), r=(0,0)
+          Rounding: z=(1,0), w=(2,0) -> q=(1,0) [because 0.5 rounds to 1] but wait: 
+             Actually, (z * conj(w)) = (2,0) as above, divided by 4 -> (0.5,0). 
+             Rounding 0.5 away from zero: for positive, 0.5 -> 1, for negative, -0.5 -> -1.
+             So q = (1,0) for the real part? But note: the complex number is (0.5, 0) -> so both coordinates: real=0.5, imag=0.
+             So q = (round(0.5), round(0)) = (1,0).
+
+        However, note: the definition says "coordinatewise". So we round each coordinate independently.
+
+        But the problem: the ring element is represented as (a,b) meaning a + bω. The division algorithm is defined by rounding the two real numbers (the coordinates of the vector in the complex plane after multiplying by conj(w) and scaling by 1/N(w)) to the nearest integer (with half away from zero).
+
+        So the example is valid.
+
+ Operation: rotate_60_omega
+   rotate_60_omega(z) = z * ω = (a,b) * (0,1) [since ω = (0,1)] 
+        = (a*0 - b*1, a*1 + b*0 - b*1) = (-b, a - b)
+
+   Example: z=(1,2) -> (-2, 1-2)=(-2,-1)
+
+   We should check consistency: 
+        Also, we can compute by multiplying by ω: (1+2ω)*ω = ω + 2ω² = ω + 2(-1-ω) = ω -2 -2ω = -2 -ω -> which is (-2) + (-1)ω -> so (-2,-1) is correct.
+
+   We must also check if this matches the definition: rotate_60_omega(z) = ( -b, a-b )
+
+   We'll have a test: z=(1,2) -> (-2, -1)
+
+ Additional requirement: at least one vector for norm multiplicativity. We already have one for mul: (2,1) and (1,1) as above.
+
+ But note: the test for mul should be separate, and then we have a dedicated test for norm multiplicativity on 3 random-ish fixed pairs.
+
+ However, the task says: "Include at least one vector where norm is multiplicative: norm(mul(z,w)) == norm(z)*norm(w)."
+
+ So in the mul test, we can have one such example. But we are also to have a separate test for norm multiplicativity on 3 pairs.
+
+ So we'll design:
+
+   For mul: we have two examples: 
+        Example 1: (1,0) * (0,1) = (0,1) -> norm(1,0)=1, norm(0,1)=1, norm(0,1)=1 -> 1=1*1.
+        Example 2: (2,1) * (1,1) = (1,2) -> as above, norms: 3,1,3 -> 3=3*1.
+
+   But the task says: "at least one vector" for multiplicativity. So we can have one of these in the mul test.
+
+   Then, we have a separate test (a #[test] function) that checks norm multiplicativity on 3 random-ish fixed pairs.
+
+   We can choose:
+        Pair1: (1,0) and (0,1) -> as above.
+        Pair2: (2,1) and (1,1) -> as above.
+        Pair3: (3,2) and (1,-1)
+            norm(3,2)=9-6+4=7
+            norm(1,-1)=1+1+1=3? Wait: a=1, b=-1 -> 1 - (1*(-1)) + (-1)^2 = 1+1+1=3.
+            mul: (3,2)*(1,-1) = (3*1 - 2*(-1), 3*(-1)+2*1 - 2*(-1)) = (3+2, -3+2+2) = (5,1)
+            norm(5,1)=25-5+1=21 = 7*3.
+
+   So we can use these three.
+
+ Now, let's list the test vectors for each operation (we need 8-10 operations? Actually, the operations are: add, sub, mul, conj, norm, hexdist, div_rem, rotate_60_omega. That's 8 operations. We can do 2-3 per op -> 16-24 vectors? But the task says 8-10 operations (meaning 8-10 test cases? or 8-10 operations to cover?).
+
+ The task: "Pick 8-10 operations covering: ..."
+
+ It says: "For each op produce 2-3 concrete test vectors"
+
+ So we have 8 operations, and for each we do 2-3 vectors -> about 16-24 vectors. But the task says "8-10 operations" (which might be a bit ambiguous). However, the list of operations to cover is fixed: add, sub, mul, conj, norm, hexdist, div_rem, rotate_60_omega. That's 8 operations. So we'll do 8 operations, and for each 2-3 vectors.
+
+ But note: the task says "8-10 operations" meaning we must cover at least 8-10 operation instances? But the operations are named. We have exactly 8 operation types. So we'll do 8 operation types, and for each 2-3 vectors.
+
+ However, the task says: "Pick 8-10 operations covering: ..."
+
+ So we interpret: we are to pick 8-10 test cases (each test case is for one operation) but then it says "for each op produce 2-3 concrete test vectors". So it's per operation.
+
+ Therefore, we'll have:
+
+   add: 2 vectors
+   sub: 2 vectors
+   mul: 3 vectors (to include the multiplicativity example)
+   conj: 2 vectors
+   norm: 2 vectors
+   hexdist: 2 vectors
+   div_rem: 3 vectors (to include exact and rounding edge)
+   rotate_60_omega: 2 vectors
+
+ That totals 8 operations * at least 2 = 16 vectors, but we are to have 8-10 operations? Actually, the task says "8-10 operations" meaning 8-10 operation types? But we have exactly 8. So we do all 8.
+
+ But the task says: "Pick 8-10 operations covering: ..."
+
+ So we are to cover all the listed operations? Then we have 8. So we do 8.
+
+ Now, let's write the vectors by hand:
+
+ add:
+   [1] args: [[1,2],[3,-1]] -> [4,1] (componentwise)
+   [2] args: [[0,0],[0,0]] -> [0,0]
+
+ sub:
+   [1] args: [[5,3],[2,4]] -> [3,-1]
+   [2] args: [[0,0],[1,1]] -> [-1,-1]
+
+ mul:
+   [1] args: [[1,0],[0,1]] -> [0,1]   (1 * ω = ω)
+   [2] args: [[1,1],[1,1]] -> [0,1]   (as computed: (1+ω)^2 = ω)
+   [3] args: [[2,1],[1,1]] -> [1,2]   (and we know norm multiplicativity holds: 3=3*1)
+
+ conj:
+   [1] args: [[3,4]] -> [-1,-4]   (since conj(3,4) = (3-4, -4) = (-1,-4))
+   [2] args: [[0,0]] -> [0,0]
+
+ norm:
+   [1] args: [[2,3]] -> 7   (4 - 6 + 9 = 7)
+   [2] args: [[1,0]] -> 1
+
+ hexdist:
+   [1] args: [[0,0],[1,1]] -> 1   (da=-1, db=-1: same sign -> max(1,1)=1)
+   [2] args: [[0,0],[1,-1]] -> 2   (da=-1, db=1: different signs -> |da|+|db|=2)
+
+ div_rem:
+   We need to give (z,w) and expect (q,r).
+   [1] exact: z=[4,0], w=[2,0] -> q=[2,0], r=[0,0]
+   [2] rounding: z=[1,0], w=[2,0] -> 
+          conj(w)=[2,0] (since conj(2,0)=(2,0)), 
+          z*conj(w)=[1*2 - 0*0, 1*0+0*2 - 0*0] = [2,0]
+          N(w)=4
+          so (z*conj(w))/N(w) = [0.5, 0]
+          q = round_half_away_from_zero([0.5,0]) = [1,0]   (because 0.5 rounds to 1, 0 rounds to 0)
+          r = z - w*q = [1,0] - [2,0]*[1,0] = [1,0] - [2,0] = [-1,0]
+          So expect: q=[1,0], r=[-1,0]
+   [3] another rounding? Maybe with negative? 
+        z=[-1,0], w=[2,0] -> 
+          z*conj(w) = [-1,0]*(2,0) = [-2,0]
+          (z*conj(w))/N(w) = [-0.5,0]
+          q = round_half_away_from_zero([-0.5,0]) = [-1,0]   (because -0.5 rounds away from zero to -1)
+          r = z - w*q = [-1,0] - [2,0]*[-1,0] = [-1,0] - [-2,0] = [1,0]
+          So expect: q=[-1,0], r=[1,0]
+
+ rotate_60_omega:
+   [1] args: [[1,2]] -> [-2,-1]
+   [2] args: [[0,0]] -> [0,0]
+
+ But note: the task says "at least one vector where norm is multiplicative" for the mul operation. We have one in mul [3] (the (2,1) and (1,1) example). However, the task also requires a separate test for norm multiplicativity on 3 random-ish fixed pairs. So we'll have a dedicated test for that.
+
+ Now, we must output:
+
+ === VECTORS.json ===
+ [ ... list of objects ... ]
+
+ Each object: {"op": "add", "args": [[a,b],[c,d]], "expect": [e,f], "why": "explanation"}
+
+ We must compute by hand.
+
+ Let's write the vectors:
+
+ add:
+   [{"op":"add","args":[[1,2],[3,-1]],"expect":[4,1],"why":"componentwise addition"},
+    {"op":"add","args":[[0,0],[0,0]],"expect":[0,0],"why":"zero vector"}]
+
+ sub:
+   [{"op":"sub","args":[[5,3],[2,4]],"expect":[3,-1],"why":"componentwise subtraction"},
+    {"op":"sub","args":[[0,0],[1,1]],"expect":[-1,-1],"why":"subtract (1,1) from zero"}]
+
+ mul:
+   [{"op":"mul","args":[[1,0],[0,1]],"expect":[0,1],"why":"1 * ω = ω"},
+    {"op":"mul","args":[[1,1],[1,1]],"expect":[0,1],"why":"(1+ω)^2 = ω"},
+    {"op":"mul","args":[[2,1],[1,1]],"expect":[1,2],"why":"example for norm multiplicativity: norm(2,1)=3, norm(1,1)=1, norm(1,2)=3"}]
+
+ conj:
+   [{"op":"conj","args":[[3,4]],"expect":[-1,-4],"why":"conjugate of 3+4ω is (3-4)-4ω = -1-4ω"},
+    {"op":"conj","args":[[0,0]],"expect":[0,0],"why":"conjugate of zero is zero"}]
+
+ norm:
+   [{"op":"norm","args":[[2,3]],"expect":7,"why":"2² - 2*3 + 3² = 4-6+9=7"},
+    {"op":"norm","args":[[1,0]],"expect":1,"why":"norm of (1,0) is 1"}]
+
+ hexdist:
+   [{"op":"hexdist","args":[[0,0],[1,1]],"expect":1,"why":"da=-1, db=-1: same sign -> max(1,1)=1"},
+    {"op":"hexdist","args":[[0,0],[1,-1]],"expect":2,"why":"da=-1, db=1: different signs -> |da|+|db|=2"}]
+
+ div_rem:
+   [{"op":"div_rem","args":[[4,0],[2,0]],"expect":[[2,0],[-0,0]???] -> but we must write exact: q=[2,0], r=[0,0] -> but note: [0,0] is [0,0]. 
+        However, the problem: the vector for div_rem expects two outputs: q and r. So in the JSON, we have to represent the expected result as [q, r]? 
+        But the problem says: "expect" field. How to represent?
+
+        The problem says: for each op produce ... the exact expected output.
+
+        For div_rem, the output is (q, r). So we must have a structure that can hold two vectors.
+
+        However, the example format: 
+          {"op":"add","args":[[1,2],[3,-1]],"expect":[4,1],"why":"..."}
+
+        For div_rem, we have two outputs. So we must decide:
+
+          Option: "expect" could be [[q_a, q_b], [r_a, r_b]]
+
+        But the problem does not specify. However, the task says: "the exact expected output".
+
+        So for div_rem, we'll have:
+          "expect": [[[2,0],[0,0]]] for the first example? But that would be a list of two vectors.
+
+        However, the problem says: "args" is a list of two vectors for add/sub/mul, but for div_rem, args is [z, w] and expect should be [q, r] (each a vector).
+
+        So we'll do: 
+          "expect": [[[2,0],[0,0]]]
+
+        But note: the problem says "expect" is the expected output. The output of div_rem is a tuple (q, r). So we represent as a list of two vectors.
+
+        Therefore:
+          [{"op":"div_rem","args":[[4,0],[2,0]],"expect":[[2,0],[0,0]],"why":"exact division: 4/2=2, remainder 0"},
+           {"op":"div_rem","args":[[1,0],[2,0]],"expect":[[1,0],[-1,0]],"why":"rounding: (1,0)/ (2,0) -> q=(1,0) because 0.5 rounds to 1, r=(-1,0)"},
+           {"op":"div_rem","args":[[-1,0],[2,0]],"expect":[[-1,0],[1,0]],"why":"rounding negative: (-1,0)/ (2,0) -> q=(-1,0) because -0.5 rounds to -1, r=(1,0)"}]
+
+ rotate_60_omega:
+   [{"op":"rotate_60_omega","args":[[1,2]],"expect":[-2,-1],"why":"(1,2) * ω = -2 - ω"},
+    {"op":"rotate_60_omega","args":[[0,0]],"expect":[0,0],"why":"rotating zero"}]
+
+ But note: the task says "hexdist(z,w): ...". So hexdist takes two vectors.
+
+ Now, we have 2+2+3+2+2+2+3+2 = 18 vectors. But the task says 8-10 operations? It might be that they mean 8-10 test cases (each test case is one operation with one set of args). But the instruction says: "For each op produce 2-3 concrete test vectors". So we are producing 2-3 per op, and there are 8 ops -> 16-24 test cases. That's acceptable.
+
+ However, the task says: "Pick 8-10 operations covering: ..."
+
+ We have 8 operation types. So we are covering 8 operations. And we are producing 2-3 test vectors per operation.
+
+ Now, the output format for VECTORS.json: we must output a JSON array of objects.
+
+ Important: the problem says "COMPUTE THE ARITHMETIC BY HAND CAREFULLY".
+
+ Let's double-check a few:
+
+   mul: (1,1)*(1,1) = (1*1 - 1*1, 1*1 + 1*1 - 1*1) = (0, 1) -> correct.
+
+   div_rem: [1,0] and [2,0]:
+        z = (1,0), w = (2,0)
+        conj(w) = (2,0)   [since conj(2,0) = (2-0, -0) = (2,0)]
+        z * conj(w) = (1,0)*(2,0) = (1*2 - 0*0, 1*0 + 0*2 - 0*0) = (2,0)
+        N(w)=4
+        so (z * conj(w)) / N(w) = (0.5, 0)
+        q = (round(0.5), round(0)) = (1,0)   [round_half_away_from_zero: 0.5 -> 1, 0 -> 0]
+        r = z - w*q = (1,0) - (2,0)*(1,0) = (1,0) - (2,0) = (-1,0)
+
+   div_rem: [-1,0] and [2,0]:
+        z = (-1,0), w=(2,0)
+        z * conj(w) = (-1,0)*(2,0) = (-2,0)
+        (z * conj(w)) / N(w) = (-0.5, 0)
+        q = (round(-0.5), round(0)) = (-1,0)   [because -0.5 rounds away from zero to -1]
+        r = z - w*q = (-1,0) - (2,0)*(-1,0) = (-1,0) - (-2,0) = (1,0)
+
+   hexdist: [0,0] and [1,1]:
+        da = 0-1 = -1, db=0-1=-1 -> signs same (both negative) -> max(|-1|,|-1|)=1.
+
+   hexdist: [0,0] and [1,-1]:
+        da = -1, db = 1 -> signs: da negative, db positive -> different -> |da|+|db|=2.
+
+   rotate_60_omega: [1,2] -> (-2, 1-2)=(-2,-1)
+
+ Now, we write the VECTORS.json.
+
+ But note: the problem says "use exactly these definitions". So we must use the given formulas.
+
+ One more: conj(3,4) = (3-4, -4) = (-1,-4) -> correct.
+
+ Now, the Rust_tests.rs:
+
+   We are to write a complete Rust integration-test module.
+
+   We must:
+      - Prefer defining a minimal local `E12` struct inside the test with the ops above, but also commented assertions against the real `EisensteinPoint` API.
+
+   However, the problem says: "but PREFER defining a minimal local E12 struct INSIDE the test with the ops above, PLUS commented assertions against the real EisensteinPoint API (new/from pairs)."
+
+   So we'll define a local struct `Eisenstein` (or `E12`?) but the problem says "E12" — but the problem says: "a minimal local `E12` struct". So we'll call it `E12`.
+
+   But note: the real type in slackwater-rust is `EisensteinPoint { a: i32, b: i32 }`.
+
+   We are to write tests that can run without external deps (so we define our own if necessary). But we are also to have commented assertions against the real API.
+
+   Steps for the test module:
+
+     1. Define a struct `E12` with fields `a: i32, b: i32`.
+     2. Implement the operations as per the definitions (add, sub, mul, conj, norm, hexdist, div_rem, rotate_60_omega) — but note: the task says "with the ops above", so we implement them exactly as defined.
+     3. Then, for each test, we test both our `E12` and (commented out) the real `EisensteinPoint` if we are to check against the real one? But the problem says: "PLUS commented assertions against the real EisensteinPoint API".
+
+     4. However, the test must be compilable under edition 2021 with no external deps. So we cannot depend on slackwater-rust. Therefore, we must define our own `E12` and then have commented code that would be for the real type.
+
+     5. The problem: "If you assert against the real type `EisensteinPoint { a: i32, b: i32 }` with methods ... then ensure field/method names match EXACTLY those signatures."
+
+     6. But since we cannot depend on slackwater-rust, we will write the tests for our own `E12`, and then in comments, we show how it would look for the real type.
+
+   So in the test module:
+
+      mod eisenstein_conformance {
+        // Define our own E12
+        #[derive(Debug, Clone, Copy, PartialEq, Eq)]
+        struct E12 {
+            a: i32,
+            b: i32,
+        }
+
+        impl E12 {
+            fn add(&self, other: &E12) -> Self {
+                E12 { a: self.a + other.a, b: self.b + other.b }
+            }
+            ... implement all ops ...
+
+            fn norm(&self) -> i64 {
+                (self.a as i64) * (self.a as i64) - (self.a as i64) * (self.b as i32) + (self.b as i64) * (self.b as i64);
+            }
+
+            // Note: the norm formula: a² - a b + b². But note: a and b are i32, so we do in i64 to avoid overflow for small numbers? But the test vectors are small.
+        }
+
+        // Then, we have tests that use E12.
+
+        // And then, in comments, we show for the real type:
+        // use slackwater_lattice_core::eisenstein_lattice::EisensteinPoint;
+        // let z = EisensteinPoint { a: 1, b: 2 };
+        // let w = EisensteinPoint { a: 3, b: -1 };
+        // assert_eq!(z.add(&w).a, 4);
+        // ...
+
+        // But we are not to run the real type tests because of no external deps, so we comment them.
+
+   However, the problem says: "It must: ... one #[test] per op, asserting every vector above."
+
+   So we have to write tests for each op using our E12.
+
+   Also, we must have:
+        a #[test] that checks norm multiplicativity on 3 random-ish fixed pairs.
+        a #[test] that checks div_rem invariant: z == w*q + r and norm(r) < norm(w) for every vector with |w| != 0.
+
+   We'll write:
+
+        #[test]
+        fn test_add() {
+            // test vectors for add
+        }
+
+        ... similarly for others ...
+
+        #[test]
+        fn test_norm_multiplicativity() {
+            // test the three pairs we chose
+        }
+
+        #[test]
+        fn test_div_rem_invariant() {
+            // for each div_rem test vector (with w != (0,0)), check:
+            //   z == w * q + r   (componentwise)
+            //   norm(r) < norm(w)
+        }
+
+   But note: the div_rem test vectors we have are 3. We must skip if w is zero? But our vectors for div_rem have w non-zero.
+
+   How to get the div_rem vectors? We can have a list of (z, w) for the div_rem tests, and then in the invariant test, we iterate over that list.
+
+   However, the task says: "a #[test] that checks div_rem invariant: z == w*q + r logically (via a,b components) and norm(r) < norm(w) for every vector with |w| != 0."
+
+   So we can have a separate list for the div_rem vectors that we use in the invariant test.
+
+   But to avoid duplication, we can define the test vectors for div_rem in a const or as a list, and then use in both the div_rem test (to check q and r) and in the invariant test.
+
+   However, the problem does not require that, so we can simply duplicate the vectors in the invariant test? But the problem says: "for every vector with |w| != 0" — meaning the vectors we used in the div_rem test.
+
+   So we'll have in the invariant test:
+
+        let vectors = [
+            (E12 { a: 4, b: 0 }, E12 { a: 2, b: 0 }),
+            (E12 { a: 1, b: 0 }, E12 { a: 2, b: 0 }),
+            (E12 { a: -1, b: 0 }, E12 { a: 2, b: 0 }),
+        ];
+
+        for (z, w) in vectors.iter() {
+            if w.norm() == 0 { continue; } // but we know they are non-zero
+            let (q, r) = div_rem(z, w);
+            assert_eq!(z, w.mul(&q).add(&r)); // or implement an add method for E12? We have add.
+            assert!(r.norm() < w.norm());
+        }
+
+   But note: our E12 has methods, so we can write:
+
+        let z_plus = w.mul(&q).add(r);
+        assert_eq!(z, &z_plus);
+
+   However, we must be cautious: the div_rem function we implement returns (q, r). We'll have a function:
+
+        fn div_rem(z: &E12, w: &E12) -> (E12, E12) { ... }
+
+   But the problem says: "div_rem(z,w): ...". So we implement it as a function.
+
+   Now, the notes section:
+
+        We must write 3-8 lines: any op whose semantics we were unsure about; any vector we could not verify; anything we flag as a likely BUG.
+
+        We are confident in the hand computations, but one point:
+
+          For div_rem: the rounding rule "round_half_away_from_zero" is critical. We assumed that for positive 0.5 we round to 1, for negative -0.5 we round to -1.
+
+          However, we must ensure that the rounding is done coordinatewise independently.
+
+          Also, note: the definition of hexdist: 
+             "if sign(da)==sign(db) or da==0 or db==0 -> max(|da|,|db|), else |da|+|db|"
+
+          We interpreted sign(da)==sign(db) as: both positive or both negative. But what about zero? The condition says "or da==0 or db==0", so if one is zero, we use max. So our examples are safe.
+
+          But note: if da=0 and db=5, then we use max(0,5)=5. Similarly, if da=5, db=0 -> max(5,0)=5.
+
+          And if da=0, db=0 -> max(0,0)=0.
+
+          So our examples are correct.
+
+        However, we did not test a case where da and db are both zero? But that's trivial.
+
+        One potential bug: in the real implementation, the hexdist might be implemented differently? But we are to test against the definitions.
+
+        Also, for div_rem: the formula for q: 
+            q = round_half_away_from_zero( (z * conj(w)) * (1/N(w)) ) coordinatewise.
+
+        But note: (z * conj(w)) is an Eisenstein integer? Yes, because it's the product of two Eisenstein integers. And then we divide by N(w) (an integer) to get a rational point.
+
+        However, the rounding is done on the two real numbers (the coordinates) independently.
+
+        We must be cautious: the rounding rule for half-integers: away from zero.
+
+        We'll assume that the rounding function for a single coordinate is:
+
+            fn round_half_away_from_zero(x: f64) -> i32 {
+                if x >= 0.0 {
+                    (x + 0.5).floor() as i32
+                } else {
+                    (x - 0.5).ceil() as i32
+                }
+            }
+
+        But we are doing by hand.
+
+        We'll note: in the div_rem test, we have a case with 0.5 and -0.5.
+
+        But the problem: the slackwater-rust implementation might have a bug in rounding? We don't know. But our test is for the definitions.
+
+        So in the NOTES, we can say:
+
+          "Verified div_rem rounding for positive and negative half-integers: 0.5 rounds to 1, -0.5 rounds to -1. If slackwater-rust uses round_half_up (which rounds away from zero for positive but towards zero for negative?) then there might be a discrepancy. But the definition says 'round_half_away_from_zero'."
+
+        However, the problem says: "any likely BUG in slackwater-rust". So if we suspect that the rounding might be implemented differently, we note it.
+
+        But without seeing the code, we cannot be sure. So we'll note:
+
+          "Assumed round_half_away_from_zero for div_rem; if slackwater-rust uses a different rounding (e.g., round_half_up which is towards +infinity) then the test for negative half-integers may fail."
+
+        But the problem says: "use exactly these definitions". So we follow the definition.
+
+        Also, for hexdist: the condition "if sign(da)==sign(db) or da==0 or db==0" — note that if da=0, then sign(da) is 0? But the condition says "or da==0 or db==0", so we don't need to worry about sign(0). Our examples avoid da=0 or db=0 in the condition by having the explicit checks.
+
+        We'll note: the hexdist condition is correctly implemented as: 
+            if da == 0 || db == 0 || (da > 0) == (db > 0) { ... }
+
+        But we are not implementing, just testing.
+
+        So in NOTES, we can write:
+
+          "div_rem rounding: confirmed hand calculation for half-integers; ensure slackwater-rust uses round_half_away_from_zero (not round_half_up) for both coordinates independently. hexdist: condition must check da==0 or db==0 before comparing signs to avoid sign(0) ambiguity."
+
+        But the problem says: "any op whose semantics you were unsure about". We are sure, but we note the rounding and hexdist condition as critical.
+
+        Also, we did not test a vector for hexdist where da and db are both non-zero and same sign but one positive and one negative? Actually, same sign means both positive or both negative. We tested both.
+
+        We'll keep NOTES short.
+
+ Now, we write the three sections.
+
+ Important: the problem says "Use temperature 0 behavior; be terse and exact. No prose outside the three sections."
+
+ So we output exactly:
+
+ === VECTORS.json ===
+ [ ... ]
+
+ === RUST_TESTS.rs ===
+ ... rust code ...
+
+ === NOTES ===
+ ... notes ...
+
+ Let's write VECTORS.json:
+
+   We have 18 vectors. We'll list them.
+
+   Note: the problem says "exactly these three delimited sections, nothing before the first marker".
+
+   So we start with "=== VECTORS.json ===".
+
+   We must output valid JSON.
+
+   We'll write:
+
+        [
+          {"op":"add","args":[[1,2],[3,-1]],"expect":[4,1],"why":"componentwise addition"},
+          {"op":"add","args":[[0,0],[0,0]],"expect":[0,0],"why":"zero vector"},
+          ... and so on ...
+        ]
+
+   But note: the problem says "args" for unary operations (like conj, norm) will have one vector? But the JSON structure: for conj, we have one argument. So:
+
+        {"op":"conj","args":[[3,4]],"expect":[-1,-4],"why":"..."}
+
+   But the problem's example: 
+        {"op":"add","args":[[1,2],[3,-1]],"expect":[4,1],"why":"componentwise"}
+
+   So for unary, args is a list of one vector.
+
+   We must be consistent.
+
+   Now, write the list:
+
+   add: 2
+   sub: 2
+   mul: 3
+   conj: 2
+   norm: 2
+   hexdist: 2
+   div_rem: 3
+   rotate_60_omega: 2
+
+   Total: 18.
+
+   We'll order by op.
+
+   But the problem does not require order.
+
+   Now, RUST_TESTS.rs:
+
+      We must write a complete Rust module.
+
+      We'll define:
+
+        #![allow(dead_code)]
+
+        mod eisenstein_conformance {
+            #[derive(Debug, Clone, Copy, PartialEq, Eq)]
+            struct E12 {
+                a: i32,
+                b: i32,
+            }
+
+            impl E12 {
+                fn add(&self, other: &E12) -> Self {
+                    E12 { a: self.a + other.a, b: self.b + other.b }
+                }
+
+                fn sub(&self, other: &E12) -> Self {
+                    E12 { a: self.a - other.a, b: self.b - other.b }
+                }
+
+                fn mul(&self, other: &E12) -> Self {
+                    let a = self.a * other.a - self.b * other.b;
+                    let b = self.a * other.b + self.b * other.a - self.b * other.b;
+                    E12 { a, b }
+                }
+
+                fn conj(&self) -> Self {
+                    E12 { a: self.a - self.b, b: -self.b }
+                }
+
+                fn norm(&self) -> i64 {
+                    (self.a as i64) * (self.a as i64) - (self.a as i64) * (self.b as i32) + (self.b as i64) * (self.b as i64);
+                }
+
+                fn hexdist(&self, other: &E12) -> u32 {
+                    let da = self.a - other.a;
+                    let db = self.b - other.b;
+                    // Note: the condition: if sign(da)==sign(db) or da==0 or db==0 -> max(|da|,|db|), else |da|+|db|
+                    if da == 0 || db == 0 || (da > 0) == (db > 0) {
+                        max(da.abs(), db.abs()) as u32
+                    } else {
+                        (da.abs() + db.abs()) as u32
+                    }
+                }
+
+                fn rotate_60_omega(&self) -> Self {
+                    // (a,b) -> (-b, a-b)
+                    E12 { a: -self.b, b: self.a - self.b }
+                }
+            }
+
+            // div_rem function
+            fn div_rem(z: &E12, w: &E12) -> (E12, E12) {
+                let nw = w.norm();
+                // z * conj(w)
+                let zwc = z.mul(&w.conj());
+                // Now, we need to compute: (zwc.a / nw, zwc.b / nw) as real numbers, then round each coordinate.
+                // But note: nw is i64, and zwc.a, zwc.b are i32 -> we convert to f64 for division?
+                // However, the problem says: round_half_away_from_zero.
+                // We do: for each coordinate, compute value = (coordinate) as f64 / nw as f64, then round.
+                // But note: nw might be zero? But the problem says divisor 0 -> undefined. We assume w != (0,0) in our tests.
+                let real = zwc.a as f64 / nw as f64;
+                let imag = zwc.b as f64 / nw as f64;
+                // Round half away from zero.
+                let ra = if real >= 0.0 {
+                    (real + 0.5).floor() as i32
+                } else {
+                    (real - 0.5).ceil() as i32
+                };
+                let ri = if imag >= 0.0 {
+                    (imag + 0.5).floor() as i32
+                } else {
+                    (imag - 0.5).ceil() as i32
+                };
+                let q = E12 { a: ra, b: ri };
+                let r = z.sub(&w.mul(&q));
+                (q, r)
+            }
+
+            // Now, the tests.
+
+            #[test]
+            fn test_add() {
+                let v1 = E12 { a: 1, b: 2 };
+                let v2 = E12 { a: 3, b: -1 };
+                assert_eq!(v1.add(&v2), E12 { a: 4, b: 1 });
+
+                let v3 = E12 { a: 0, b: 0 };
+                let v4 = E12 { a: 0, b: 0 };
+                assert_eq!(v3.add(&v4), E12 { a: 0, b: 0 });
+            }
+
+            ... similarly for others ...
+
+        }
+
+      But note: the problem says "one #[test] per op, asserting every vector above."
+
+      So we have to write a test for each op that covers all the vectors for that op.
+
+      We'll write:
+
+        #[test]
+        fn test_add() {
+            // vector 1
+            let z = E12 { a: 1, b: 2 };
+            let w = E12 { a: 3, b: -1 };
+            assert_eq!(z.add(&w), E12 { a: 4, b: 1 });
+
+            // vector 2
+            let z = E12 { a: 0, b: 0 };
+            let w = E12 { a: 0, b: 0 };
+            assert_eq!(z.add(&w), E12 { a: 0, b: 0 });
+        }
+
+        #[test]
+        fn test_sub() {
+            let z = E12 { a: 5, b: 3 };
+            let w = E12 { a: 2, b: 4 };
+            assert_eq!(z.sub(&w), E12 { a: 3, b: -1 });
+
+            let z = E12 { a: 0, b: 0 };
+            let w = E12 { a: 1, b: 1 };
+            assert_eq!(z.sub(&w), E12 { a: -1, b: -1 });
+        }
+
+        ... etc.
+
+      For div_rem, we have a separate function, so:
+
+        #[test]
+        fn test_div_rem() {
+            // vector 1: exact
+            let z = E12 { a: 4, b: 0 };
+            let w = E12 { a: 2, b: 0 };
+            let (q, r) = div_rem(&z, &w);
+            assert_eq!(q, E12 { a: 2, b: 0 });
+            assert_eq!(r, E12 { a: 0, b: 0 });
+
+            // vector 2: rounding positive
+            let z = E12 { a: 1, b: 0 };
+            let w = E12 { a: 2, b: 0 };
+            let (q, r) = div_rem(&z, &w);
+            assert_eq!(q, E12 { a: 1, b: 0 });
+            assert_eq!(r, E12 { a: -1, b: 0 });
+
+            // vector 3: rounding negative
+            let z = E12 { a: -1, b: 0 };
+            let w = E12 { a: 2, b: 0 };
+            let (q, r) = div_rem(&z, &w);
+            assert_eq!(q, E12 { a: -1, b: 0 });
+            assert_eq!(r, E12 { a: 1, b: 0 });
+        }
+
+      Then, the norm multiplicativity test:
+
+        #[test]
+        fn test_norm_multiplicativity() {
+            // pair1: (1,0) and (0,1)
+            let z = E12 { a: 1, b: 0 };
+            let w = E12 { a: 0, b: 1 };
+            assert_eq!(z.mul(&w).norm(), z.norm() * w.norm());
+
+            // pair2: (2,1) and (1,1)
+            let z = E12 { a: 2, b: 1 };
+            let w = E12 { a: 1, b: 1 };
+            assert_eq!(z.mul(&w).norm(), z.norm() * w.norm());
+
+            // pair3: (3,2) and (1,-1)
+            let z = E12 { a: 3, b: 2 };
+            let w = E12 { a: 1, b: -1 };
+            assert_eq!(z.mul(&w).norm(), z.norm() * w.norm());
+        }
+
+      Then, the div_rem invariant test:
+
+        #[test]
+        fn test_div_rem_invariant() {
+            let vectors = [
+                (E12 { a: 4, b: 0 }, E12 { a: 2, b: 0 }),
+                (E12 { a: 1, b: 0 }, E12 { a: 2, b: 0 }),
+                (E12 { a: -1, b: 0 }, E12 { a: 2, b: 0 }),
+            ];
+            for (z, w) in vectors.iter() {
+                // We know w is not zero in these vectors.
+                let nw = w.norm();
+                if nw == 0 {
+                    continue;
+                }
+                let (q, r) = div_rem(z, w);
+                // Check: z = w * q + r
+                let wq = w.mul(&q);
+                let sum = wq.add(&r);
+                assert_eq!(z, &sum, "z != w*q + r for z={z}, w={w}, q={q}, r={r}",);
+                // Check: norm(r) < norm(w)
+                assert!(r.norm() < nw, "norm(r) = {r_norm} >= norm(w) = {nw}", r_norm = r.norm(), nw = nw);
+            }
+        }
+
+      But note: the problem says "for every vector with |w| != 0". Our vectors have w non-zero.
+
+      Also, we must have tests for conj, norm, hexdist, rotate_60_omega.
+
+      For conj:
+
+        #[test]
+        fn test_conj() {
+            let z = E12 { a: 3, b: 4 };
+            assert_eq!(z.conj(), E12 { a: -1, b: -4 });
+
+            let z = E12 { a: 0, b: 0 };
+            assert_eq!(z.conj(), E12 { a: 0, b: 0 });
+        }
+
+      For norm:
+
+        #[test]
+        fn test_norm() {
+            let z = E12 { a: 2, b: 3 };
+            assert_eq!(z.norm(), 7);
+
+            let z = E12 { a: 1, b: 0 };
+            assert_eq!(z.norm(), 1);
+        }
+
+      For hexdist:
+
+        #[test]
+        fn test_hexdist() {
+            let z = E12 { a: 0, b: 0 };
+            let w = E12 { a: 1, b: 1 };
+            assert_eq!(z.hexdist(&w), 1);
+
+            let z = E12 { a: 0, b: 0 };
+            let w = E12 { a: 1, b: -1 };
+            assert_eq!(z.hexdist(&w), 2);
+        }
+
+      For rotate_60_omega:
+
+        #[test]
+        fn test_rotate_60_omega() {
+            let z = E12 { a: 1, b: 2 };
+            assert_eq!(z.rotate_60_omega(), E12 { a: -2, b: -1 });
+
+            let z = E12 { a: 0, b: 0 };
+            assert_eq!(z.rotate_60_omega(), E12 { a: 0, b: 0 });
+        }
+
+      And for mul, we have:
+
+        #[test]
+        fn test_mul() {
+            let z = E12 { a: 1, b: 0 };
+            let w = E12 { a: 0, b: 1 };
+            assert_eq!(z.mul(&w), E12 { a: 0, b: 1 });
+
+            let z = E12 { a: 1, b: 1 };
+            let w = E12 { a: 1, b: 1 };
+            assert_eq!(z.mul(&w), E12 { a: 0, b: 1 });
+
+            let z = E12 { a: 2, b: 1 };
+            let w = E12 { a: 1, b: 1 };
+            assert_eq!(z.mul(&w), E12 { a: 1, b: 2 });
+        }
+
+      But note: the problem says "one #[test] per op", so we have 8 test functions.
+
+      However, the problem also requires two additional tests: test_norm_multiplicativity and test_div_rem_invariant.
+
+      So total tests: 8 (one per op) + 2 = 10 tests.
+
+      But the problem says: "a #[test] that checks norm multiplicativity ... a #[test] that checks div_rem invariant"
+
+      So we have 10 tests.
+
+      Now, the problem says: "It must: ... one #[test] per op, asserting every vector above."
+
+      So the 8 tests (add, sub, mul, conj, norm, hexdist, div_rem, rotate_60_omega) cover the vectors for that op.
+
+      And then the two extra tests.
+
+      We must not forget the extra tests.
+
+      Also, note: the problem says "a complete Rust integration-test module (file to drop in crates/lattice-core/tests/eisenstein_conformance.rs)".
+
+      So we write the entire file.
+
+      We must use edition 2021.
+
+      We'll start with:
+
+        //! Cross-language conformance test for Eisenstein integers.
+        //! Based on authoritative definitions.
+
+        #![allow(dead_code)]
+
+        use std::cmp::max;
+
+        mod eisenstein_conformance {
+            ... our struct and impl ...
+
+            ... tests ...
+        }
+
+        // If we were to test the real slackwater-rust type, we would uncomment and adjust:
+        /*
+        use slackwater_lattice_core::eisenstein_lattice::{EisensteinPoint, ...};
+        */
+
+      But the problem says: "PREFER defining a minimal local E12 struct ... PLUS commented assertions against the real EisensteinPoint API"
+
+      So we add comments in the test functions? Or at the top?
+
+      We can add in comments above each test:
+
+        // For real EisensteinPoint API (commented out):
+        // let z = EisensteinPoint { a: 1, b: 2 };
+        // let w = EisensteinPoint { a: 3, b: -1 };
+        // assert_eq!(z.add(&w).a, 4);
+        // ...
+
+      But the problem does not require the real tests to be runnable, so we can put in comments.
+
+      We'll add in the test functions as comments? But the problem says "PLUS commented assertions against the real EisensteinPoint API".
+
+      We can do:
+
+        #[test]
+        fn test_add() {
+            // Using local E12
+            let z = E12 { a: 1, b: 2 };
+            let w = E12 { a: 3, b: -1 };
+            assert_eq!(z.add(&w), E12 { a: 4, b: 1 });
+
+            // Real API (commented):
+            /*
+            let z = EisensteinPoint { a: 1, b: 2 };
+            let w = EisensteinPoint { a: 3, b: -1 };
+            assert_eq!(z.add(&w).a, 4);
+            assert_eq!(z.add(&w).b, 1);
+            */
+            ...
+        }
+
+      But the problem says: "ensure field/method names match EXACTLY those signatures".
+
+      So we must use the exact method names: add, sub, etc.
+
+      We'll assume the real API has:
+
+        fn add(&self, other: &Self) -> Self { ... }
+
+      So the comment is as above.
+
+      However, the problem does not require us to write the real API calls, just to have them commented and to ensure the names match.
+
+      So we can write a comment at the top of the file:
+
+        /*
+        Real API field and method names to match:
+          struct EisensteinPoint { a: i32, b: i32 }
+          methods: 
+            add(&self, &Self) -> Self
+            sub(&self, &Self) -> Self
+            mul(&self, &Self) -> Self
+            conjugate(&self) -> Self   [but note: our definition says conj, but the problem says: "conjugate(self)->Self"]
+            norm(&self) -> i64
+            rotate_60(&self) -> Self
+            lattice_distance(&self, &Self) -> u32   [for hexdist?]
+        However, the problem says: "conjugate(self)->Self", but our definition uses "conj". 
+        But the problem says: "If you assert against the real type ... with methods ... ensure field/method names match EXACTLY".
+
+        So we must use the real method names in the comments.
+
+        The problem says: "conjugate(self)->Self", so we use .conjugate().
+
+        But our local E12 uses .conj().
+
+        So in the comments for conj test, we write:
+
+            // Real API: .conjugate() method
+            /*
+            assert_eq!(z.conjugate().a, ...);
+            */
+
+        But the problem says: "conjugate(self)->Self", so the method is called conjugate.
+
+        Therefore, in the comments, we use .conjugate().
+
+        Similarly, for rotate: the problem says "rotate_60(self)->Self", but our definition is rotate_60_omega. 
+        The problem says: "rotate_60_omega(z) = z·ω", and the real method is called rotate_60.
+
+        So we must note: the real method for rotation by 60 degrees is called rotate_60, but our definition is rotate_60_omega.
+
+        We'll assume they are the same operation.
+
+        So in the comment for rotate_60_omega test:
+
+            // Real API: .rotate_60()
+            /*
+            assert_eq!(z.rotate_60().a, ...);
+            */
+
+        And for hexdist: the problem says "lattice_distance(&self,&Self)->u32", so we use .lattice_distance().
+
+        So in the hexdist test comment:
+
+            // Real API: .lattice_distance()
+            /*
+            assert_eq!(z.lattice_distance(&w), ...);
+            */
+
+        But the problem says: "lattice_distance(&self,&Self)->u32", so we use that.
+
+        Therefore, we must adjust the comments to use the real method names.
+
+        However, our local E12 has:
+
+            hexdist -> but the real method is called lattice_distance.
+
+        So in the test for hexdist, we have:
+
+            // Using local E12: .hexdist()
+            // Real API: .lattice_distance()
+
+        We'll write the comments accordingly.
+
+      Given the complexity, and to be safe, we'll write at the top of the test module:
+
+        /*
+        Expected real API in slackwater-rust (as per problem statement):
+          struct EisensteinPoint { a: i32, b: i32 }
+          methods:
+            add(&self, &Self) -> Self
+            sub(&self, &Self) -> Self
+            mul(&self, &Self) -> Self
+            conjugate(&self) -> Self
+            norm(&self) -> i64
+            rotate_60(&self) -> Self
+            lattice_distance(&self, &Self) -> u32
+        Note: our local E12 uses:
+          add, sub, mul, conj, norm, hexdist, rotate_60_omega.
+        So:
+          conj -> conjugate
+          hexdist -> lattice_distance
+          rotate_60_omega -> rotate_60
+        */
+
+      Then in the tests, we can have comments per test.
+
+      But the problem does not require the real tests to be runnable, so we can skip detailed comments in each test? 
+      The problem says: "PLUS commented assertions against the real EisensteinPoint API".
+
+      So we must have at least one commented assertion per op? 
+
+      We'll do:
+
+        In test_add:
+            // For real API:
+            /*
+            let z = EisensteinPoint { a: 1, b: 2 };
+            let w = EisensteinPoint { a: 3, b: -1 };
+            let sum = z.add(&w);
+            assert_eq!(sum.a, 4);
+            assert_eq!(sum.b, 1);
+            */
+
+      But we don't want to write 18 commented blocks. The problem says "PLUS commented assertions against the real EisensteinPoint API (new/from pairs)".
+
+      We'll interpret: we need to show how the test would look for the real type, but not necessarily for every vector.
+
+      So we can do one example per op in comments at the top.
+
+      Given the constraints, we'll write a comment block at the top of the file for each op.
+
+      But the problem says: "in the test module".
+
+      We'll write:
+
+        // add: real API example
+        /*
+        let z = EisensteinPoint { a: 1, b: 2 };
+        let w = EisensteinPoint { a: 3, b: -1 };
+        assert_eq!(z.add(&w).a, 4);
+        assert_eq!(z.add(&w).b, 1);
+        */
+
+      But the problem does not specify the exact format.
+
+      To be safe, we'll include one commented example per op in the test module as a comment block at the beginning.
+
+      However, the problem says: "no prose outside the three sections", but this is inside the RUST_TESTS.rs section.
+
+      We are allowed to have comments in the Rust code.
+
+      So we'll add a comment block at the top of the Rust_tests.rs section.
+
+      But the problem says: "exactly these three delimited sections".
+
+      So in the RUST_TESTS.rs section, we can have:
+
+        /*
+        Expected real API in slackwater-rust (as per problem statement):
+          struct EisensteinPoint { a: i32, b: i32 }
+          methods:
+            add(&self, &Self) -> Self
+            sub(&self, &Self) -> Self
+            mul(&self, &Self) -> Self
+            conjugate(&self) -> Self
+            norm(&self) -> i64
+            rotate_60(&self) -> Self
+            lattice_distance(&self, &Self) -> u32
+        Note the mapping:
+          E12::add -> EisensteinPoint::add
+          E12::sub -> EisensteinPoint::sub
+          E12::mul -> EisensteinPoint::mul
+          E12::conj -> EisensteinPoint::conjugate
+          E12::norm -> EisensteinPoint::norm
+          E12::hexdist -> EisensteinPoint::lattice_distance
+          E12::rotate_60_omega -> EisensteinPoint::rotate_60
+        The following tests for E12 are structured to match the real API.
+        For each operation, a commented example of the real API usage is provided.
+        */
+
+        #![allow(dead_code)]
+        use std::cmp::max;
+
+        ... 
+
+      And then in each test, we don't need to repeat, but the problem says "PLUS commented assertions against the real EisensteinPoint API".
+
+      So we'll add in each test a commented block for one vector.
+
+      Given time, we'll do one vector per op in comments in the test.
+
+      But the problem does not specify how many. We'll do one.
+
+      For example, in test_add:
+
+        #[test]
+        fn test_add() {
+            // Using local E12
+            let z = E12 { a: 1, b: 2 };
+            let w = E12 { a: 3, b: -1 };
+            assert_eq!(z.add(&w), E12 { a: 4, b: 1 });
+
+            // Real API example (commented):
+            /*
+            let z = EisensteinPoint { a: 1, b: 2 };
+            let w = EisensteinPoint { a: 3, b: -1 };
+            let sum = z.add(&w);
+            assert_eq!(sum.a, 4);
+            assert_eq!(sum.b, 1);
+            */
+
+            // ... rest of test ...
+        }
+
+      We'll do this for each test.
+
+      But the problem says: "no prose", so we keep the comments terse.
+
+      Now, NOTES section:
+
+        We'll write:
+
+          "div_rem rounding uses round_half_away_from_zero; ensure slackwater-rust implementation matches this rounding mode for both coordinates independently. hexdist condition must check da==0 or db==0 before comparing signs to avoid sign(0) ambiguity. rotate_60_omega should equal multiplication by ω; if slackwater-rust's rotate_60 does not commute with multiplication, there may be a discrepancy."
+
+        But we are not sure about the real implementation.
+
+        Also, we did not test a vector for hexdist where da and db are both non-zero and same sign but not both positive or both negative? Actually, same sign means both positive or both negative. We tested both.
+
+        So we keep to 3-8 lines.
+
+      Final NOTES:
+
+        "Assumed round_half_away_from_zero for div_rem; if slackwater-rust uses different rounding (e.g., round_half_up) results may differ for negative half-integers. hexdist: condition must handle da=0 or db=0 before sign comparison. Verify rotate_60 matches ω-multiplication identity."
+
+      Now, we write the three sections.
+
+      Important: the problem says "Use temperature 0 behavior; be terse and exact."
+
+      We must be precise.
+
+      Let's write.

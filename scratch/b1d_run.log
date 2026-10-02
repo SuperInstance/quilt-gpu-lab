@@ -1,0 +1,65 @@
+inner rc=0
+[env] device=cuda NVIDIA GeForce RTX 4050 Laptop GPU torch=2.14.0+cu126 smoke=False
+[trace   0] ticks=869 closed=True
+[trace  40] ticks=1177 closed=True
+[trace  80] ticks=619 closed=True
+[trace 120] ticks=1200 closed=False
+[trace 160] ticks=692 closed=True
+[trace 200] ticks=1200 closed=False
+[label   0] n=1738
+[label  40] n=2354
+[label  80] n=1238
+[label 120] n=2400
+[label 160] n=1384
+[label 200] n=2400
+[data] train=366346 holdout=90930
+[C4] {"vs_b1c": {"ok": true, "shape_match": true, "max_abs_dX": 0.0, "max_abs_dY": 0.0, "max_abs_dMETA": 0.0}, "vs_runB": {"ok": true, "shape_match": true, "max_abs_dX": 0.0, "max_abs_dY": 0.0, "max_abs_dMETA": 0.0}, "vs_b1": {"ok": true, "shape_match": true, "max_abs_dX": 0.0, "max_abs_dY": 0.0, "max_abs_dMETA": 0.0}}
+[C1 laweq] {'ok': True, 'n': 4000, 'max_abs_diff': 0, 'n_diff': 0}
+[reweight] train freq={'clamp': 0.0017, 'deadzone': 0.069, 'saturation': 0.8954, 'ramp': 0.034} mean_w={'clamp': 9.838, 'deadzone': 4.756, 'saturation': 0.366, 'ramp': 9.651}
+[train anchor_cap128  2718] 0.1171 -> 1.3453e-05 (33665p, deployed_mse)
+[train anchor_cap128  2719] 0.1158 -> 3.3695e-05 (33665p, deployed_mse)
+[train anchor_cap128  2720] 0.11017 -> 0.00020272 (33665p, deployed_mse)
+[train plain_w24      2718] 0.3323 -> 0.005463 (1321p, deployed_mse)
+[train plain_w24      2719] 0.29119 -> 0.0056484 (1321p, deployed_mse)
+[train plain_w24      2720] 0.34985 -> 0.0042718 (1321p, deployed_mse)
+[train plain_w32      2718] 0.29853 -> 0.0053796 (2273p, deployed_mse)
+[train plain_w32      2719] 0.30018 -> 0.0055222 (2273p, deployed_mse)
+[train plain_w32      2720] 0.25075 -> 0.0042132 (2273p, deployed_mse)
+[train plain_w48      2718] 0.22042 -> 0.0041608 (4945p, deployed_mse)
+[train plain_w48      2719] 0.21107 -> 0.0014997 (4945p, deployed_mse)
+[train plain_w48      2720] 0.21144 -> 0.0039198 (4945p, deployed_mse)
+[train plain_w64      2718] 0.14558 -> 0.0056981 (8641p, deployed_mse)
+[train plain_w64      2719] 0.17896 -> 0.0044897 (8641p, deployed_mse)
+[train plain_w64      2720] 0.15244 -> 0.0023162 (8641p, deployed_mse)
+[train reweight_w24   2718] 0.18375 -> 0.021886 (1321p, weighted_deployed_mse)
+[train reweight_w24   2719] 0.16299 -> 0.021347 (1321p, weighted_deployed_mse)
+[train reweight_w24   2720] 0.18874 -> 0.021959 (1321p, weighted_deployed_mse)
+[train reweight_w32   2718] 0.1733 -> 0.012272 (2273p, weighted_deployed_mse)
+[train reweight_w32   2719] 0.18301 -> 0.020503 (2273p, weighted_deployed_mse)
+[train reweight_w32   2720] 0.14606 -> 0.018156 (2273p, weighted_deployed_mse)
+[train reweight_w48   2718] 0.14425 -> 0.0042734 (4945p, weighted_deployed_mse)
+[train reweight_w48   2719] 0.1255 -> 0.00038802 (4945p, weighted_deployed_mse)
+[train reweight_w48   2720] 0.1235 -> 0.019997 (4945p, weighted_deployed_mse)
+[train reweight_w64   2718] 0.10136 -> 0.017111 (8641p, weighted_deployed_mse)
+[train reweight_w64   2719] 0.1084 -> 0.00051115 (8641p, weighted_deployed_mse)
+[train reweight_w64   2720] 0.094517 -> 0.015755 (8641p, weighted_deployed_mse)
+[regions] {"clamp": 0.0013, "deadzone": 0.078, "saturation": 0.8839, "ramp": 0.0369}
+[gate anchor_cap128 ] dz=0.9957±0.0061 ramp=0.9186±0.1109 sat=0.9992 agg=0.9959 -> PASS
+[gate plain_w24     ] dz=0.1692±0.0107 ramp=0.1733±0.0109 sat=0.9421 agg=0.8536 -> FAIL
+[gate plain_w32     ] dz=0.1712±0.0136 ramp=0.1744±0.0131 sat=0.9417 agg=0.8534 -> FAIL
+[gate plain_w48     ] dz=0.3295±0.1915 ramp=0.2415±0.0640 sat=0.9615 agg=0.8857 -> FAIL
+[gate plain_w64     ] dz=0.2441±0.1213 ramp=0.2137±0.0407 sat=0.9525 agg=0.8701 -> FAIL
+[gate reweight_w24  ] dz=0.2055±0.0033 ramp=0.1539±0.0021 sat=0.8856 agg=0.8058 -> FAIL
+[gate reweight_w32  ] dz=0.2628±0.0712 ramp=0.2467±0.1001 sat=0.9144 agg=0.8390 -> FAIL
+[gate reweight_w48  ] dz=0.6965±0.3464 ramp=0.5139±0.2776 sat=0.9587 agg=0.9219 -> FAIL
+[gate reweight_w64  ] dz=0.5275±0.3338 ramp=0.4288±0.3514 sat=0.9392 agg=0.8884 -> FAIL
+[C6 anchor repro] max|Δ|=0.0000 ok=True
+[train hybrid_w64     2718] 0.56303 -> 0.0042362 (8706p)
+[train hybrid_w64     2719] 0.6357 -> 0.0036113 (8706p)
+[train hybrid_w64     2720] 0.5672 -> 0.0032873 (8706p)
+[gate hybrid_w64    ] dz=0.9998±0.0002 ramp=0.8042±0.1290 -> FAIL
+RESULT {"verdict": "KEEP", "floor": {"plain": null, "reweight": null}, "passing": ["anchor_cap128"], "mech": ["w48", "w64"], "hybrid": "FAIL", "vram_mb": 122.7, "elapsed_s": 510.9}
+
+guard receipt: /home/eileen/projects/quilt-gpu-lab/results/b1d/guard/g7-wr-b1d-capacity-floor-1790901068.json valid=True OK (exit 0): /home/eileen/projects/quilt-gpu-lab/results/b1d/guard/g7-wr-b1d-capacity-floor-1790901068.json is a valid g7-watt-receipt@1 watt-receipt
+ENERGY: 6.790507027777778 Wh (24445.8253 J); gate={'rule': 'no receipt → run VOID', 'verdict': 'PASS'}
+EXIT=0

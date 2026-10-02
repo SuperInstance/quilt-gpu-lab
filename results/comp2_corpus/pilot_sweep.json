@@ -1,0 +1,157 @@
+{
+  "note": "pilot direction-finding, small N; NOT the F-gate calibration loop",
+  "rows": [
+    {
+      "setting": "p00_default",
+      "near_miss": 1,
+      "beta": 0.35,
+      "vocab_frac": 1.0,
+      "style_mix": 0.5,
+      "per_kind": 600,
+      "full": 0.5243,
+      "full_std": 0.01884,
+      "per_regime": {
+        "semantic": 0.5366,
+        "counting-address": 0.5468,
+        "negation-scope": 0.4572,
+        "agent-role": 0.5556
+      },
+      "near_miss_dist": 0.5558,
+      "verdict": "VIOLATION",
+      "sec": 0.1
+    },
+    {
+      "setting": "p01_nm2",
+      "near_miss": 2,
+      "beta": 0.35,
+      "vocab_frac": 1.0,
+      "style_mix": 0.5,
+      "per_kind": 600,
+      "full": 0.5759,
+      "full_std": 0.024953,
+      "per_regime": {
+        "semantic": 0.6242,
+        "counting-address": 0.5749,
+        "negation-scope": 0.5287,
+        "agent-role": 0.572
+      },
+      "near_miss_dist": 0.6042,
+      "verdict": "VIOLATION",
+      "sec": 0.1
+    },
+    {
+      "setting": "p02_nm3",
+      "near_miss": 3,
+      "beta": 0.35,
+      "vocab_frac": 1.0,
+      "style_mix": 0.5,
+      "per_kind": 600,
+      "full": 0.7303,
+      "full_std": 0.01205,
+      "per_regime": {
+        "semantic": 0.8207,
+        "counting-address": 0.6748,
+        "negation-scope": 0.6645,
+        "agent-role": 0.7761
+      },
+      "near_miss_dist": 0.6684,
+      "verdict": "GREEN",
+      "sec": 0.1
+    },
+    {
+      "setting": "p03_nm2_b20",
+      "near_miss": 2,
+      "beta": 0.2,
+      "vocab_frac": 1.0,
+      "style_mix": 0.5,
+      "per_kind": 600,
+      "full": 0.6216,
+      "full_std": 0.011281,
+      "per_regime": {
+        "semantic": 0.7181,
+        "counting-address": 0.5839,
+        "negation-scope": 0.5791,
+        "agent-role": 0.5965
+      },
+      "near_miss_dist": 0.5837,
+      "verdict": "VIOLATION",
+      "sec": 0.1
+    },
+    {
+      "setting": "p04_nm2_b05",
+      "near_miss": 2,
+      "beta": 0.05,
+      "vocab_frac": 1.0,
+      "style_mix": 0.5,
+      "per_kind": 600,
+      "full": 0.6132,
+      "full_std": 0.010377,
+      "per_regime": {
+        "semantic": 0.7222,
+        "counting-address": 0.5976,
+        "negation-scope": 0.5548,
+        "agent-role": 0.58
+      },
+      "near_miss_dist": 0.5674,
+      "verdict": "VIOLATION",
+      "sec": 0.1
+    },
+    {
+      "setting": "p05_nm3_b20",
+      "near_miss": 3,
+      "beta": 0.2,
+      "vocab_frac": 1.0,
+      "style_mix": 0.5,
+      "per_kind": 600,
+      "full": 0.7583,
+      "full_std": 0.012739,
+      "per_regime": {
+        "semantic": 0.8095,
+        "counting-address": 0.6895,
+        "negation-scope": 0.6886,
+        "agent-role": 0.8491
+      },
+      "near_miss_dist": 0.6509,
+      "verdict": "GREEN",
+      "sec": 0.1
+    },
+    {
+      "setting": "p06_nm1_b35_v60",
+      "near_miss": 1,
+      "beta": 0.35,
+      "vocab_frac": 0.6,
+      "style_mix": 0.5,
+      "per_kind": 600,
+      "full": 0.514,
+      "full_std": 0.006885,
+      "per_regime": {
+        "semantic": 0.5263,
+        "counting-address": 0.4844,
+        "negation-scope": 0.5141,
+        "agent-role": 0.5285
+      },
+      "near_miss_dist": 0.5593,
+      "verdict": "VIOLATION",
+      "sec": 0.1
+    },
+    {
+      "setting": "p07_nm1_sm10",
+      "near_miss": 1,
+      "beta": 0.35,
+      "vocab_frac": 1.0,
+      "style_mix": 0.1,
+      "per_kind": 600,
+      "full": 0.5168,
+      "full_std": 0.00977,
+      "per_regime": {
+        "semantic": 0.5503,
+        "counting-address": 0.5282,
+        "negation-scope": 0.4903,
+        "agent-role": 0.4979
+      },
+      "near_miss_dist": 0.5581,
+      "verdict": "VIOLATION",
+      "sec": 0.1
+    }
+  ]
+}

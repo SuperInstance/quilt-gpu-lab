@@ -58,6 +58,40 @@ more than a copy to use, it's not grabbable yet.
   EFFECT through the socket — and found two upstream bugs (argv/env drift,
   peer divergence) reported with receipts.
 
+- **typesafe-batch** — `tools/typesafe_batch.py` — one-call batched
+  typesafe/System One judge: state + named questions JSON -> answers, with
+  the retry-once / fail-loud / flat-latency pattern from cm1_relay_r4/r5.
+  `python tools/typesafe_batch.py --state s.json --questions q.json [--model jev-latest] [--out r.json]`
+  Token read at use-time from ~/.config/typesafe/token (never echoed).
+  LIVE receipt 2026-10-01: 2-question smoke vs jev-1.13.0, 0.41s, both noul returned.
+
+- **checkpoint-guard** — `tools/checkpoint_guard.py` — reusable
+  embedding-checkpoint save/verify/resume (pattern lifted from
+  `experiments/c5_paired_action.py`): atomic fsync'd save, exact-key match
+  before resume (input fingerprint, key-order insensitive), archive-by-rename
+  invalidation, corrupt-file fails safe to full run. Stdlib-only.
+  `CheckpointGuard(path, key).try_resume()` / `.save(records)`;
+  CLI `--path ck.json --info | --invalidate | --selftest`.
+  SELFTEST receipt 2026-10-01: selftest OK + live save/resume/example + info.
+
+- **farm-queue-flip** — `tools/farm_queue_flip.py` — safe `farm/queue.json` entry
+  flipper: JSON validation, atomic write + archive copy, `--set-farm-fired`, `--note`,
+  `--list`, `--dry-run`, and the doctrine as a gate — experiments can't be armed
+  (`blocked` -> `queued`/`running`) unless their `prereg` is committed in git
+  (exit 2, refuses loudly). Stdlib-only.
+  `python tools/farm_queue_flip.py --id <id> --status queued [--note n] [--dry-run|--list]`
+  TEST receipt 2026-10-01: live flip on copy of real queue (gate pass), uncommitted-prereg refused rc=2, malformed JSON refused rc=1, queue stayed valid JSON.
+
+- **perm-ci** — `tools/perm_ci.py` — two-sample significance in one stdlib-only
+  file (pattern lifted from E3 perm-exact + COMPOSITE-0 bootstrap lanes):
+  permutation p-value (exact when C(n,na) small, else seeded Monte-Carlo with
+  add-one so p never claims 0) + percentile bootstrap CI on mean/median diff,
+  with a KEEP/KILL/NULL-BOOKED verdict — nulls are first-class, non-finite
+  input fails loud (rc=2). Seeded, deterministic, booked receipts.
+  `python tools/perm_ci.py --a 1,2,3 --b 10,11,12 [--stat median] [--out r.json]` | `--selftest`
+  TEST receipt 2026-10-01: selftest OK (4 checks incl. honest-null + p=1/3 exact
+  small-n + NaN rc=2); worked example live, receipt written.
+
 ### qcell_sim.py — exact small-circuit cell evaluator (GPU, batched)
 Batched statevector evaluator for qcell genomes (n<=12 qubits). Returns exact p(targets), balance,
 best_target, union, and optional shot samples with a sha256 receipt_id. One file, one job, cell-slot ready.
@@ -67,3 +101,23 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
 - `qcell_oracle.pt`: QO1 MLP (64x3) predicting P(stream crosses bar 0.45 | champion state: gen/len/v/cv + 67-gate hist). Val AUC 0.9510. Input norms: gen/12, len/6, hist/6; v,cv raw. See results/qo1_oracle/.
 - systemone_proxy.py — System One API wrapper; every teacher call HMAC-booked to ~/.config/systemone/call-ledger.jsonl (state, questions, answers, probabilities, latency). ask()/ledger_stats(); CLI --stats / --state. The distillation corpus grows by using the teacher (wide-scope P-1).
 - `deepinfra_ideate.py` — multi-model ideation rounds over the DeepInfra cheap/cached roster (prompt in, JSONL out; captures reasoning_content for reasoning-channel models; token read at use-time). LIVE lane 09-30 (Casey-directed): rounds in scratch/ideation/. Do NOT archive as stray.
+
+- **corpus-filter** — `tools/corpus_filter.py` — validity filter for results-corpus
+  receipts (pattern lifted from the S6a two-witness reconciliation): scans a dir of
+  JSON receipts, excludes harness-invalid/KILL files, bad JSON, and non-finite (NaN/Inf)
+  values — every exclusion booked with a reason, never silent. Tolerant row extraction
+  (grid: / probe: like s6a), `--min-rows` fail-loud gate (exit 2), `--selftest`. Stdlib-only.
+  `python tools/corpus_filter.py --dir results --out corpus.json [--min-rows 40] [--selftest]`
+  TEST receipt 2026-10-01: selftest OK (1 kept / 3 excluded incl. NaN + KILL) + live run
+  on results/ — 1243 rows kept, 60 files excluded, corpus JSON written.
+
+- **ci-gate** — `tools/ci_gate.py` — paired bootstrap CI gate for KEEP/KILL
+  calls (pattern lifted from B1H-CODA's tail gate): two paired score vectors ->
+  bootstrap mean-delta CI, PASS only if CI clears 0 in the positive direction
+  (a fully-negative CI books FAIL, not PASS). Fail-loud FAIL-INPUT on length
+  mismatch / n<min_n / non-finite scores. Stdlib-only (no numpy), seeded,
+  deterministic. Exit codes: 0=PASS, 1=FAIL, 2=FAIL-INPUT.
+  `python tools/ci_gate.py --base 0.61,0.55,0.70 --treat 0.65,0.53,0.82 [--alpha 0.05 --n 5000 --seed 7]` (or `--pairs-file scores.json`, `--selftest`)
+  TEST receipt 2026-10-01: selftest OK (up-shift PASS / down-shift FAIL — caught
+  and fixed the signed-CI bug live: constant negative delta must FAIL, not PASS)
+  + 2x5-question smoke: mean_delta 0.05, CI [0.008, 0.092] excl 0 -> PASS rc=0.

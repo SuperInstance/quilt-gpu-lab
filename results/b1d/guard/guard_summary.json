@@ -1,0 +1,18 @@
+{
+  "breach": null,
+  "g7": {
+    "gpu_seconds": 17.439,
+    "joules": 1494.71,
+    "mean_power_w": 47.81,
+    "power_samples": 6,
+    "util_samples": 6,
+    "wall_seconds": 31.264,
+    "watt_hours": 0.4151972222222222,
+    "windows": 1
+  },
+  "max_temp_c": 75,
+  "min_free_vram_mib": 1820,
+  "samples": 7,
+  "task_id": "B1D-capacity-floor",
+  "timed_out": false
+}

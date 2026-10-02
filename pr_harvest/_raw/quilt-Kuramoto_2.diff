@@ -1,0 +1,61 @@
+diff --git a/docs/REFERRAL-fleet-triage-resolver.md b/docs/REFERRAL-fleet-triage-resolver.md
+new file mode 100644
+index 0000000..2aae4f2
+--- /dev/null
++++ b/docs/REFERRAL-fleet-triage-resolver.md
+@@ -0,0 +1,55 @@
++# REFERRAL EDGE — quilt-Kuramoto → fleet-triage resolver
++
++- **Edge:** `quilt-Kuramoto -> fleet-triage-resolver` (CANDIDATE)
++- **Status:** PENDING — upgrades to VERIFIED only on merge of the PR carrying
++  this file (weight law: never self-upgraded).
++- **Filed by:** kimi1 snowball lane, 2026-10-02 (pulse ~06:15 CST).
++- **Source run:** SuperInstance/fleet-triage resolver, scoped quilt-family census
++  (244 repos searched, 243 indexed, 15,880 files; 5,852 docs / 7,790 citation
++  sites scanned in 162s; digest on branch `quilt-family-triage-2026-10-02`,
++  PR fleet-triage#2; audit `resolver_audit.json`, 513 findings independently
++  re-verified at 0.0% FP on hard outcomes).
++
++## What the resolver found here
++
++quilt-Kuramoto carries the **largest FILE_MISSING surface in the quilt family:
++253 FILE_MISSING citations** (of 1,355 family-wide), alongside 17 RESOLVES /
++24 AMBIGUOUS / 9 PATH_PRECISE_ONLY / 3 REPO_MISMATCH. This repo is an
++archive-heavy tree (`archive/`, `results/`, `repo-readmes/`, `upstream-issues/`)
++whose citations point at files that have since moved into archive layers,
++been renamed by the abandoned-work organization pass, or never existed under
++the cited path.
++
++Read: the fix lane for the family's largest single citation-debt starts
++HERE, not in the smaller-surface repos.
++
++## Why this edge exists (the referral, not the fix)
++
++fleet-triage does not patch these paths — the repo owns its docs. This file
++is the referral surface so a docs-repair sweep knows: 253 FILE_MISSING, the
++triage map ranks this repo #1 by surface, and the resolver's `audit`
++subcommand already provides the independently re-verified outcome taxonomy
++(hard outcomes 0.0% FP; PATH_PRECISE_ONLY downgraded advisory-only at 49.2%
++FP — do not trust path-only matches without opening the file).
++
++Boundary notes (honest limits, carried from the family triage digest):
++- Index is shallow-HEAD: findings reflect HEAD at scan time (2026-10-02 ~01:30 CST).
++- FILE_MISSING hard outcomes were in the audit's re-verified set (0.0% FP on
++  513 checks), but every repair should re-run the resolver against the
++  post-repair HEAD rather than trusting this snapshot.
++- resolver consume, don't rival: any future citation-hygiene tooling in this
++  repo should call the fleet-triage resolver, not re-implement it.
++
++## Sibling edges (same source run)
++
++- Source-side twin: `docs/REFERRAL-quilt-kuramoto.md` in fleet-triage
++  (PR fleet-triage#3, OPEN) — deeper read of this repo's census row: the 253 FM
++  independently cross-checks this repo's own docs/MISSING.md archival-loss list
++  (12/12 spot-verified absent), and the fixable class is the 264 AMBIGUOUS
++  bare-basename citations (8/8 spot-verified multi-repo → basename-pinning
++  doc-lint sweep). This pair = the edge's two filing surfaces, source + target.
++- `fleet-triage-resolver -> quilt-research-canons` — 222 FILE_MISSING surface
++  (PR quilt-research-canons#5, OPEN).
++- `fleet-triage-resolver -> quilt-tournament` — sole holder of all 25
++  LINE_OOR (PR quilt-tournament#1, MERGED 2026-10-02; VERIFIED flip booked in
++  quilt-tools#34).

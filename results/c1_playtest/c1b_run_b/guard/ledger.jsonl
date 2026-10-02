@@ -1,0 +1,1 @@
+{"receipt_id": "g7-wr-c1-playtest-pong-1790904047", "path": "results/c1_playtest/c1b_run_b/guard/g7-wr-c1-playtest-pong-1790904047.json", "schema_valid": true, "gate_verdict": "PASS", "validator": "OK (exit 0): results/c1_playtest/c1b_run_b/guard/g7-wr-c1-playtest-pong-1790904047.json is a valid g7-watt-receipt@1 watt-receipt", "sealed_at": 1790904047.5004883}

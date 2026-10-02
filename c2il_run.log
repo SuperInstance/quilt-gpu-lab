@@ -1,0 +1,10 @@
+VERDICT FAIL-NO-PREMIUM
+SENTENCE no federation premium even item-local — the thesis narrows to sensor selection, full stop.
+G_IL1 {"S1": 0.5831, "S2": 0.5676, "S3": 0.5459, "S4": 0.676, "PV-cheap-S1": 0.6034, "PV-cheap-S2": 0.5772, "PV-cheap-S3": 0.5559, "PV-cheap-S4": 0.7783}
+G_IL2 {"comparison": "FED-CHEAP-GATE - BEST-SINGLE (full board)", "diff": 0.0022, "ci95": [0.0004, 0.004], "bar": 0.05, "std_a": 0.0032, "std_b": 0.0033, "std0_a": false, "std0_b": false, "verdict": "FAIL"}
+G_IL2b {"comparison": "FED-CHEAP-GATE - S4-MONO", "diff": 0.1045, "ci95": [0.0894, 0.119], "bar": 0.05, "std_a": 0.0032, "std_b": 0.0038, "std0_a": false, "std0_b": false, "verdict": "PASS"}
+within {"best_mlp_single": "S4", "best_cheap_single": "PV-cheap-S4", "FED-IL-GATE - best_mlp_single": {"comparison": "FED-IL-GATE - S4", "diff": -0.0025, "ci95": [-0.0061, 0.0012], "bar": null, "std_a": 0.0089, "std_b": 0.0038, "std0_a": false, "std0_b": false, "verdict": "FAIL"}, "FED-CHEAP-GATE - best_cheap_single": {"comparison": "FED-CHEAP-GATE - PV-cheap-S4", "diff": 0.0022, "ci95": [0.0004, 0.004], "bar": null, "std_a": 0.0032, "std_b": 0.0033, "std0_a": false, "std0_b": false, "verdict": "PASS"}}
+routing {"oracle_best_single_cell_acc_all8": 0.9974, "best_fixed_single_acc": 0.7783, "perfect_router_headroom_all8": 0.2191, "margin_router_pick_agreement_with_oracle_mlp4": 0.707, "frac_items_where_fixed_best_is_wrong_but_some_view_is_right": 0.2771, "n_single_arms": 8}
+full_boards {"BEST-SINGLE": 0.7783, "FED-CHEAP-GATE": 0.7804, "FED-CHEAP-STACK": 0.8022, "FED-GATE-8": 0.7525, "FED-IL": 0.5837, "FED-IL-2S": 0.6767, "FED-IL-GATE": 0.6735, "FED-IL-MAJ": 0.6393, "FED-IL-MARGIN": 0.6966, "JOINT": 0.586, "PV-cheap-S1": 0.6034, "PV-cheap-S2": 0.5772, "PV-cheap-S3": 0.5559, "PV-cheap-S4": 0.7783, "S1": 0.5831, "S1-cheap": 0.6034, "S2": 0.5676, "S3": 0.5459, "S4": 0.676, "S4-MONO": 0.676}
+oracle 0.9974
+wall 10.9s

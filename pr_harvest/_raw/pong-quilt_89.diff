@@ -1,0 +1,303 @@
+diff --git a/PLAYLOG.md b/PLAYLOG.md
+index 123f5a3..187ef28 100644
+--- a/PLAYLOG.md
++++ b/PLAYLOG.md
+@@ -6,6 +6,7 @@ Every round is a receipted observation in the loop. Newest first.
+ 
+ | Round | Date | Branch / base | Status |
+ |---|---|---|---|
++| R70 | 2026-10-01 | playtest-round-70 (vs main tip 70af7f0 — the Casey gate OPENED since R69: PR #85 (R67), #87 (R68), #88 (R69) all merged to main; this round branches from merged main, the unmerged-stack precedent retired; tags v1/v0.64.0/v0.65.0 played from clean worktrees; PR #89 opened this round) | canonical |
+ | R69 | 2026-10-01 | playtest-round-69 (vs r68 tip df47bca, unmerged Casey-gated; base precedent R22-vs-r21; PR #85 open at round start) | canonical |
+ | R68 | 2026-10-01 | playtest-round-68 (vs r67 tip 2a00c14, unmerged Casey-gated; base precedent R22-vs-r21; PR #85 open at round start) | canonical |
+ | R67 | 2026-09-30 | playtest-round-67 (vs r66 tip f2dcf4f, unmerged Casey-gated; base precedent R22-vs-r21) | canonical |
+@@ -104,7 +105,45 @@ Every round is a receipted observation in the loop. Newest first.
+ 2. **[S] Lineage-visibility disclosure on the σ slider / C1 stats line (R66 item 3, R67 item 2, R68 item 2, R68 P4: 4th carrying).** WHY: R66 P1/P4 measured that at the shipped default σ one mutation step (~0.564 L2) exceeds the R54 receipt resolution (~2.5) — close lineage is invisible from gen 2 at defaults, and now that C1 sessions are KEEPABLE the "what survives" question crosses sessions. Print the measured law (or the live near-anchor count) where the player can see it. VERIFY: verbatim — at σ=12 the disclosure names the invisible-lineage regime; at σ=2 it shows the surviving cluster.
+ 3. **[S] File-provenance PERSISTENCE across the session (R68 item 4, R69 P4: 2nd carrying, verbatim-measured OPEN this round).** WHY: the R68 banner names the file ONCE — the very next Train overwrites the stats line with the generation template and the loaded-file provenance evaporates from the HUD; a player who loads file A, trains 3 gens, loads file B, trains 2, can no longer tell which lineage the visible generation belongs to. Record coev.fileName at load and print it in the C1 stats template until another load replaces it. VERIFY: verbatim — load a named file, Train twice, stats line still carries the filename; a second load replaces it.
+ 4. **[S] PLAYLOG baseline integrity — annotate the R1 entry with its tag-measured numbers AND the non-determinism root cause (R68 item 5, R69 P2: 2nd carrying, deepened).** WHY: the demo's first published line (L0 2899f/2h, L1 1192f, L2 6000f/5h/×3.40) does not reproduce at v1 — this round proved WHY: v1 core.js:55-56 consumed raw Math.random() in the swan path, so EVERY baseline measurement at the tag (R1's, R68's, this round's five draws) is an honest sample of a distribution, never a point. R1 evidently measured an evolving working tree pre-commit; the entry already discloses pre-commit fixes. Annotate with the root cause (unseeded swan, fixed R3) + the measured-draw spread (L1 713–6500 across five draws) so no future round treats any single published number as the baseline. VERIFY: the R1 entry carries a measured-at-tag paragraph naming the root cause and the spread.
+-5. **[S] σ-slider → trail interaction (new, found by this round's T2 construction).** WHY: the trail view made the ledger's role as the lane's memory concrete — but the σ slider (live, R65-revived) changes the mutation regime MID-TRAJECTORY with no marker: a player sliding σ from 12 to 2 mid-session sees a continuous trail across a regime change the trail cannot mark. The ledger rows carry no σ field; the writer would need one (file-format touch — smallest honest form: σ recorded in the ledger row and printed beside the trail when it changes mid-run). VERIFY: verbatim — breed 2 gens at σ=12, slide to 2, breed 1 → the stats line marks the regime change at the exact gen it happened.
++5. **[S] σ-slider → trail interaction (R69 item 5: 2nd carrying).** WHY: the trail view made the ledger's role as the lane's memory concrete — but the σ slider (live, R65-revived) changes the mutation regime MID-TRAJECTORY with no marker: a player sliding σ from 12 to 2 mid-session sees a continuous trail across a regime change the trail cannot mark. The ledger rows carry no σ field; the writer would need one (file-format touch — smallest honest form: σ recorded in the ledger row and printed beside the trail when it changes mid-run). VERIFY: verbatim — breed 2 gens at σ=12, slide to 2, breed 1 → the stats line marks the regime change at the exact gen it happened.
++
++## Round 70 — k2d8 (cron pong-quilt-playloop) — 2026-10-01 — mode: BUILDER (R69 spec item 3 — file-provenance persistence, [S], 2nd carrying, first build) + play-tester — vs main tip 70af7f0 (the Casey gate opened since R69's pulse: PR #85 (R67), #87 (R68), #88 (R69) all merged; this round branches from merged main — the unmerged-stack precedent retired; tags v1/v0.64.0/v0.65.0 played from clean worktrees)
++
++### Played versions: v1 (e98cf66, draw #6), v0.64.0 (5406c48), v0.65.0 (52b42b4) — each headless via `node tools/prerun.js` in a dedicated clean worktree with its own node_modules, plus the tip itself. v0.64.0 and v0.65.0 BOTH reproduce the canonical post-R50 line byte-exact (all five checkpoint md5s identical: coev.js 946e639a…, curve.json f9b20e7d…, L0 bc15d414…, L1 1125d59c…, L2 50137ceb…, stone 3a0a5fb6…; 5 flips / 3 swaps) — the deterministic spine is stable from those tags to the R70 tip. v1 draw #6: L0 3223 (3048f, 7h, ×2.22), L1 6114 (5664f, 18h, ×3.27), L2 2383 (2358f, 1h, ×1.94). Cumulative v1 spread across six draws: L0 2225–3223, L1 713–6500, L2 2383–6125 — d(learning)/d(version) at the v0.65.0→v1 boundary is not a curve, it's a distribution fork (unseeded swan, root-caused R69 P2; the R50 pinned line is the frozen spine both sides share).
++
++### Deltas observed (shapes of change)
++- **The merge window landed**: R67 (coev-quilt writer) + R68 (file provenance receipts) + R69 (sChamp trail) merged to main in one week. Their pins passing on merged main (301 tests green at tip 70af7f0, measured this round) IS the verification that the merge preserved every receipted lane — no receipt re-audit needed, the pins ARE the audit.
++- **Failure-mode migration**: none from the merge (PLAYLOG marker grep EMPTY). The failure class that migrated this cycle is mine: my own fix initially opened a stale-provenance head in the artifact lane (below, caught and closed in-branch).
++- **New visibility since R69 ships**: the sChamp trail now prints on the stats line, which made the R70 file segment's placement a real design choice — provenance groups with the lineage segments (loser / trail / ledger-eviction), the pinned R55 prefix contract `COEV gen N · games N · h2h ` stays byte-intact (r61/r65 pins green).
++
++### Lies caught / fixes shipped (severity)
++- **[S → FIXED] file-provenance persistence** (R69 spec item 3, 2nd carrying — the declared builder item). R69 P4 verbatim-measured the wound; this round's pin reproduced it FAIL-first at the pristine tip in one run (R69's measurement culture paying rent). Fix: the coev load branch records `coev.fileName=f.name||"unnamed"`; `continueGenC` prints ` · file "<name>"` after the `loser` segment until another load replaces it. Pin: `tests/r70-coev-file-provenance-persist-glue.test.js`.
++- **[S → FIXED] stale provenance on the canonical-artifact lane** — caught by THIS round's own play of the fix: load file A → `loadCoev` (the receipted checkpoint) → Train printed `file "pong-quilt-coev-gen5.json"` at gen 121 — the checkpoint lane claiming a player file's provenance (verbatim probe; a head my fix itself opened). Closed: `loadCoev` sets `fileName:null` — the artifact's identity is its own receipted banner (seed/gens/md5), never a player file. Pin T5 ARTIFACT-BOUNDARY — FAIL-first recorded: RED with only the load-branch fix in place, GREEN with both.
++- **[M] franken tail — 6th carrying, confirmed present-tense at this tip.** Verbatim driver: breed 1 C1 gen (coev.genC=1, classic gen synced to 1 via the R47 shared slots) → flip to classic → save → the file claims gen 1 === coev.genC, best === champNet by identity, pop = the untouched 8-net classic lane. The only surviving franken head.
++- **[S] lineage-visibility disclosure — 5th carrying.** Absence grep at this tip: no `lineage\|source-file\|mutated-from` law in index.html (R66 P1/P4 measurement stands: at shipped σ, close lineage invisible from gen 2).
++- **[S] PLAYLOG baseline integrity — 4th carrying.** R1's own entry still lacks the measured-at-tag annotation — the 'unseeded swan' grep hits live in R68/R69 spec sections, not R1's entry.
++
++### Builder receipt (what shipped)
++- `index.html`: coev load branch records `fileName` (success path only — the refusal path records nothing, zero state change preserved); `continueGenC` stats template prints the file segment; `loadCoev` clears it (artifact boundary).
++- `core.js`: VERIFIED_CLAIMS gains `r70-coev-file-provenance-persist-glue` — the demo badge now carries the persistence claim.
++- `tests/r70-coev-file-provenance-persist-glue.test.js`: 5 pins — T1 PERSISTENCE (load gen-5 named file, Train ×2, filename still in stats), T2 REPLACEMENT (load A, breed, load B, breed → line names B, never A), T3 NO-FILE HONESTY (fresh C1 prints no file segment — guards the naive always-on printer), T4 MALFORMED-IMMUNITY (refused file records nothing, prints nothing), T5 ARTIFACT-BOUNDARY (loadCoev clears provenance). FAIL-first: pristine tip T1/T2 2/2 RED; with only the load-branch fix T5 RED; full post-fix 5/5 GREEN.
++- README 309 → 314 (306 in tests/ + 8 QA — run-verified by `tests/readme-count.test.js`, which also caught this round's own arithmetic slip 313→314). Site dist re-sealed AFTER the index.html + core.js edits, BEFORE the suite counts (build-order law): `build ok: 11 demo files sealed`.
++
++### Verified numbers (this round, all by running)
++- prerun @ tip 70af7f0: canonical post-R50 line byte-exact — coev.js 946e639a820fcdb41cf2c184120f7716, curve.json f9b20e7ded3330e0c66eb97165dfc049, level0 bc15d414d6c74419d55b7cf3ed9895b0, level1 1125d59cc6de3a48f4d30b24e9980f7f, level2 50137ceb4691965b70a17d4e2d37ecbc, coev-stone-v1 3a0a5fb6af2859cc92fbe94fffae887f; 5 quantum-coin flips / 3 swaps; fitness 1890 / 2010 / 1753.
++- v0.64.0 / v0.65.0: same canonical line, byte-exact (deterministic spine stable across the boundary).
++- v1 draw #6: 3223 / 6114 / 2383 (see Played versions for the spread).
++- Suite @ tip: 301 tests, 293 pass / 0 fail / 8 skips (pre-change baseline). Post-change: 306 tests, 298 pass / 0 fail / 8 skips; `tools/test-qa.js` 8/8. PLAYLOG merge-marker grep: EMPTY.
++
++### Next version spec (R71 mandate)
++1. **[M] Lane tracking — close the classic-banner-after-C1 franken tail (R64 P4 … R69 item 1, R70: 6th carrying, verbatim-measured OPEN this round).** WHY: the only surviving franken head — continueGenC still writes the shared gen/champNet slots (R47 sync), so a C1-trained player who flips the dropdown to classic saves coev gen/champ fields paired with the untouched classic pop. Either (a) continueGenC stops writing the shared slots (full lane separation), or (b) the save guard refuses whenever `coev && coev.genC>0 && gen===coev.genC` regardless of banner. VERIFY: verbatim harness — breed C1, flip to classic, save → refusal receipt + no download; classic-only sessions save byte-unchanged.
++2. **[S] Lineage-visibility disclosure on the σ slider / C1 stats line (R66 item 3 … R69 item 2, R70: 5th carrying).** WHY: R66 P1/P4 measured that at the shipped default σ one mutation step (~0.564 L2) exceeds the R54 receipt resolution (~2.5) — close lineage is invisible from gen 2 at defaults, and now that C1 sessions are KEEPABLE (R67) and PROVENANCE-TRACKED (R70) the "what survives" question crosses sessions. Print the measured law (or the live near-anchor count) where the player can see it. VERIFY: verbatim — at σ=12 the disclosure names the invisible-lineage regime; at σ=2 it shows the surviving cluster.
++3. **[S] PLAYLOG baseline integrity — annotate the R1 entry with its tag-measured numbers AND the non-determinism root cause (R68 item 5, R69 item 4, R70: 4th carrying).** WHY: the demo's first published line (L0 2899f/2h, L1 1192f, L2 6000f/5h/×3.40) does not reproduce at v1 — root-caused R69 P2: v1 core.js:55-56 consumed raw Math.random() in the swan path, so EVERY tag measurement (R1's, R68's, six honest draws) is a sample of a distribution, never a point. R1 evidently measured an evolving working tree pre-commit; the entry already discloses pre-commit fixes. Annotate with the root cause + the measured spread (L1 713–6500 across six draws) so no future round treats any single published number as the baseline. VERIFY: the R1 entry carries a measured-at-tag paragraph naming the root cause and the spread.
++4. **[S] σ-slider → trail interaction (R69 item 5, R70: 2nd carrying).** WHY: the trail view (R69) made the ledger's role as the lane's memory concrete — but the σ slider (live, R65-revived) changes the mutation regime MID-TRAJECTORY with no marker: a player sliding σ from 12 to 2 mid-session sees a continuous trail across a regime change the trail cannot mark. The ledger rows carry no σ field; the writer would need one (file-format touch — smallest honest form: σ recorded in the ledger row and printed beside the trail when it changes mid-run). VERIFY: verbatim — breed 2 gens at σ=12, slide to 2, breed 1 → the stats line marks the regime change at the exact gen it happened.
++5. **[S] NEW — coev-file lineage chain (found by this round's own play).** WHY: R70 made provenance session-local: load A, train, save B — B cannot say it descends from A, so across save→load hops the provenance story breaks even though both hops are now individually honest. Record `origin: coev.fileName` (when set) in the writer's JSON; when a loaded file carries one, print `file "X" (descends from "Y")` in the stats line. VERIFY: verbatim — load named A, train, save → JSON carries origin:"A"; load the saved file → stats line prints the descent claim; a fresh file (no origin) prints none — never assert what the file didn't carry. Size: S.
++
++### Reflection
++Builder mode paid its rent twice: building the fix forced the artifact-lane probe that caught a wound the spec didn't name — the fix itself was the lie-hunting instrument. Two lessons: (1) R69's verbatim-measurement culture (P4) meant the R70 pin's FAIL-first reproduced the wound in a single run — carry-forward wounds with exact repro strings, not summaries; (2) my own round's arithmetic slip (313 written, 314 true) was caught by the README count pin — the pin earns its keep every round it fires. The merge window closed cleanly (no markers, pins green on merged main), and the pins passing IS the receipt-preservation audit — no separate re-audit needed.
+ 
+ ## Round 68 — k2d8 (cron pong-quilt-playloop) — 2026-10-01 — mode: BUILDER (R67 spec item 4 — file provenance on the C1 receipts, [S], 3rd carrying in the spec, first build) + play-tester — vs r67 tip 2a00c14 (merge of main 64c7bb3 into r67; R66/R67 unmerged, Casey-gated; branching from the prior round's tip per the R22-vs-r21 precedent; PR #85 open at round start; all ancestors canonical)
+ 
+diff --git a/README.md b/README.md
+index f1fb4d1..40a4544 100644
+--- a/README.md
++++ b/README.md
+@@ -78,7 +78,7 @@ The demo renders a wristband panel from a single registry in `core.js`
+ browser-only, admitted as such. `tests/honesty.test.js` pins the two-way match:
+ every claim's `proofTest` file exists, and every file in `tests/` backs a
+ claim. To re-verify: `node --test tests/*.test.js && node --test tools/test-qa.js`
+-(309 tests total: 301 in `tests/` + 8 in `tools/test-qa.js` — counts verified by
++(314 tests total: 306 in `tests/` + 8 in `tools/test-qa.js` — counts verified by
+ running, pinned by `tests/readme-count.test.js`; the canonical command itself
+ is pinned in EXPERIMENTS.md).
+ 
+diff --git a/core.js b/core.js
+index f477234..68e8a3a 100644
+--- a/core.js
++++ b/core.js
+@@ -491,6 +491,7 @@
+     { id: "coev-quilt-writer-glue", claim: "a C1 player can keep their work — the coev banner saves a ONE-lane quilt {kind: 'pong-quilt/coev@v1', genC, sChamp, eChamp, popS, popE, last, ledger} with no classic field able to disagree with the weights (the R56 P3/R59 M1/R63 M2 three-lineage split dead by construction), and the file input routes a coev file back into the C1 lane VERBATIM — the file's populations restore exactly (keeping your work means THIS population, not a re-seeding around the champs; that treatment is the artifact lane's, loadCoev), the classic splice is structurally unreachable for coev files (the classic loader refuses them NAMED by construction), classic slots are byte-untouched by a coev-file load, a coev-shaped file missing load-bearing fields is LOAD/COEV-MALFORMED with zero state change, one Train after the load advances genC by exactly 1 at slider-sized populations, and a champ-less gen-0 file clears the served game (no champ means no serve — a null champNet into live() froze the page, verbatim-repro'd TypeError 'b1', the R49 P1 class, found by this round's own play and fixed in-branch) — FAIL-first on the pre-R67 tip: T1–T3 RED (SAVE/COEV-UNSTABLE + zero downloads; silent classic splice absorbing the file; no malformed guard), T4 RED via the champGame-null assertion (Round 67, R66 spec item 2, 2nd carrying — the R64 SAVE/COEV-UNSTABLE bridge converted from an honest refusal into a writer; the classic-banner-after-C1 franken tail stays OPEN, R66 spec item 1 [M])", proofTest: "tests/r67-coev-quilt-writer-glue.test.js" },
+     { id: "r69-schamp-trail-glue", claim: "the C1 stats line prints d(sChamp)/d(gen) as a `sChamp trail a→b→c…` lane — a VIEW over the ledger's own receipted sFit rows (coev.ledger.tail(8)), never a separate state array that could drift; it opens at ≥2 points (one gen is a dot, not a trajectory) and crosses load boundaries because the loaded ledger re-anchors the file's rows; printed, never asserted as a learning claim (R66 P3: the trajectory is selection-noise dominated — the lane shows the spikes, it does not claim improvement) — FAIL-first on the pristine tip: T1/T2 RED (no `sChamp trail` pre-R69), T3 guards the lone-dot direction (Round 69, R68 spec item 3, 3rd carrying)", proofTest: "tests/r69-schamp-trail-glue.test.js" },
+     { id: "coev-file-provenance-glue", claim: "the C1 receipts carry file provenance — receipt() accepts an optional laneGen and the row's own gen column records the C1 generation for C1-lane receipts (SAVE/COEV, SAVE/COEV-EMPTY, LOAD/COEV, LOAD/COEV-MALFORMED all pass their genC — the malformed refusal names the genC the file CLAIMED), never the classic slot (verbatim wound: load a gen-5 coev file at a fresh page — the load path never sets the classic gen — save, and the pre-R68 row silently asserted gen 0, the R56-P3-adjacent class); renderReceipts appends ` g${gen}` to /COEV-kind rows only — non-C1 rows render byte-unchanged; and the LOAD/COEV banner carries the file's NAME (f.name + genC + population sizes) so the player with three coev quilts can tell WHICH session they loaded — FAIL-first on the pristine tip: T1 RED via the render assertion (no ` g` suffix pre-R68), T2/T3/T4 RED via row.gen === 0 where 5 is claimed (Round 68, R67 spec item 4, 3rd carrying; items 1–3 of the R68 spec stay OPEN for R69)", proofTest: "tests/r68-coev-file-provenance-glue.test.js" },
++    { id: "r70-coev-file-provenance-persist-glue", claim: "file provenance PERSISTS across the C1 session — the coev load branch records coev.fileName=f.name||\"unnamed\" and continueGenC prints ` · file \"<name>\"` in the stats template (placed after the `loser` segment so the pinned R55 prefix contract `COEV gen N · games N · h2h ` stays byte-intact) until another load replaces it; a session that never loaded a file prints NO file segment (provenance asserts only what the lane used — the R68 laneGen/R56 P3 discipline) and a REFUSED coev-shaped file records nothing (zero state change on the malformed path). Before R70 the R68 load banner named the file ONCE and the very next Train overwrote the stats line with the generation template — the player who loaded file A, trained 3 gens, loaded file B, trained 2, could not tell which lineage the visible generation belonged to (R69 P4, verbatim-measured) — FAIL-first on the pristine tip: T1/T2 RED (filename GONE after Train), T3/T4 GREEN by design (Round 70, R69 spec item 3, 2nd carrying)", proofTest: "tests/r70-coev-file-provenance-persist-glue.test.js" },
+     { id: "startgenc-fails-closed-glue", claim: "startGenC fails CLOSED on a half-built coev state — the guard is !coev||!coev.popS||!coev.popE, so a coev object that exists but lacks populations (a hand-built file, a future loader's partial state) materializes BOTH populations at slider size via Object.assign, preserving any existing sChamp/eChamp/genC/last/ledger; before the fix the !coev-only guard let the half-state sail through and throw TypeError at coev.popS.length INSIDE the rAF tick, killing the whole page loop (R49 P1 class; R60 fix relanded by R63 after the R61+R62 merge window closed — 7th carrying; verbatim TypeError repro'd on pristine main 9f03372 by the R63 scientist driver)", proofTest: "tests/r63-startgenc-fails-closed-glue.test.js" },
+     { id: "c1-fullpop-breeding-glue", claim: "C1 breeding samples the FULL scored populations (pruner parity with tools/prerun-coev.js:99-103) — the page accumulates one score record per evaluated candidate (coev.scoreS/scoreE) and continueGenC passes them whole to runCoevGeneration, so at slider n the bred populations are n nets (4 intact elites + n−4 mutated offspring, ≥1 mutation per gen), the loser-mutates-at-2x-σ law lands on real offspring, and the mutation-σ slider reaches mutate() again: σ 10 vs σ 100 produce different offspring populations AND different stats lines from the same seed. Before R65 the page passed the 4-entry elite archive alone — breed()'s while-loop was dead code, bred pop pinned at 4 ([4,4,4] × 3 consecutive gens at slider 96, distinct netIds 4), zero mutations, σ byte-identically dead (10 vs 100: identical population bytes AND stats strings — R56 P3, measured R61/R63/R64), and each next startGenC refilled 92 fresh-random nets per pool, the elite-archive collapse (Round 65, R64 mandate item 1, 9th carrying — one mechanism, two wounds)", proofTest: "tests/r65-fullpop-breeding-glue.test.js" },
+     { id: "conflict-marker-pin", claim: "every tracked .md/.js/.html is scanned for line-start merge-conflict markers (^<<<<<<<, ^=======, ^>>>>>>>) — the R63 lesson made structural: the R61-merge conflict resolution shipped literal markers inside PLAYLOG.md entries that survived two rounds invisible to every existing pin, so the class needed a pin that READS PROSE. The scan enumerates via git ls-files (loud refusal on failure, never a vacuous green), a fixture tree carrying the three marker species is flagged at the exact lines (the fails-first proof), a diseased tree goes RED naming file:line, mid-line and indented look-alikes do not false-positive, and the checklist process half lives in EXPERIMENTS.md (Round 65, R63 mandate item 4 / R64 spec item 5)", proofTest: "tests/r65-conflict-marker-glue.test.js" },
+diff --git a/index.html b/index.html
+index 78ef0cb..88c8da1 100644
+--- a/index.html
++++ b/index.html
+@@ -325,7 +325,7 @@
+   champNet=bred.sChamp.net;if(!champGame)champGame=PQ.newAdvGame(randPQ);gameId++;gen=coev.genC; // R47: same frozen-serve fix as classic mode
+   champRing.write({gen:coev.genC,fitness:h2h.sFitness});
+   const trail=coev.ledger.tail(8).map(r=>r.sFit); // R69: d(sChamp)/d(gen) as a printed, never-asserted lane — a VIEW over the ledger's receipted sFit rows (no separate state to drift), so the honest spiky trajectory (R66 P3: selection-noise dominated) is visible where the player looks, not only in test logs; it crosses load boundaries because the loaded ledger re-anchors the file's rows (R67 lane)
+-  $("stats").textContent=`COEV gen ${coev.genC} · games ${games} · h2h ${h2h.outcome} in ${h2h.frames}f · sChamp ${h2h.sFitness|0} (${h2h.hits}h) · eChamp ${h2h.eFitness|0} (${h2h.enderHits}b) · loser ${bred.loserId||"—"}${trail.length>1?` · sChamp trail ${trail.join("→")}`:""}${coev.ledger.evicted?` · ledger evicted ${coev.ledger.evicted}`:""} · breeding: full-population (bred pop ${bred.popS.length}; ${Math.max(0,bred.popS.length-D.elites)} mutated offspring; next-gen refill ${Math.max(0,+$("pop").value-bred.popS.length)}) — R65`; // R65: label updated with the wound it closed — R61's 'elite-archive only (bred pop N; next gen refills M fresh random)' named the collapse truthfully while it shipped; pinning it after the fix would be the new lie (tests/r65-fullpop-breeding-glue.test.js PRECISION)
++  $("stats").textContent=`COEV gen ${coev.genC} · games ${games} · h2h ${h2h.outcome} in ${h2h.frames}f · sChamp ${h2h.sFitness|0} (${h2h.hits}h) · eChamp ${h2h.eFitness|0} (${h2h.enderHits}b) · loser ${bred.loserId||"—"}${coev.fileName?` · file "${coev.fileName}"`:""}${trail.length>1?` · sChamp trail ${trail.join("→")}`:""}${coev.ledger.evicted?` · ledger evicted ${coev.ledger.evicted}`:""} · breeding: full-population (bred pop ${bred.popS.length}; ${Math.max(0,bred.popS.length-D.elites)} mutated offspring; next-gen refill ${Math.max(0,+$("pop").value-bred.popS.length)}) — R65`; // R65: label updated with the wound it closed — R61's 'elite-archive only (bred pop N; next gen refills M fresh random)' named the collapse truthfully while it shipped; pinning it after the fix would be the new lie (tests/r65-fullpop-breeding-glue.test.js PRECISION)
+   receipt(`COEV g${coev.genC} ${h2h.outcome} ${h2h.frames}f`,0,0);
+   renderReceipts(); // Round 14: delegate to the single panel writer — the old direct assign clobbered the MOTH chain (P3)
+   coev.evalS=null;coev.evalE=null;}}
+@@ -424,7 +424,7 @@
+ $("load").onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(t=>{const q=JSON.parse(t);
+  if(q.kind==="pong-quilt/coev@v1"||q.popS){ // R67: lane routing — a coev quilt file's only door is this branch and it lands in the C1 lane; the classic splice below is structurally unreachable for coev files (the classic loader refuses them NAMED by construction, not by after-the-fact inspection)
+   if(!q.popS||!q.popE||typeof q.genC!=="number"){receipt("LOAD/COEV-MALFORMED",0,0,typeof q.genC==="number"?q.genC:undefined);return;} // a coev-shaped file missing its load-bearing fields: named refusal, zero state change — R68: the refusal names the genC the file claimed
+-  coev=Object.assign(coev||{},{popS:q.popS.slice(),popE:q.popE.slice(),sChamp:q.sChamp||null,eChamp:q.eChamp||null,last:q.last||null,genC:q.genC,evalS:null,evalE:null,scoreS:[],scoreE:[]}); // the file's populations restore VERBATIM — keeping your work means this exact population, not a re-seeding around the champs (that treatment is the artifact lane's, loadCoev, because the artifact ships canonical trained material, not a player's session)
++  coev=Object.assign(coev||{},{popS:q.popS.slice(),popE:q.popE.slice(),sChamp:q.sChamp||null,eChamp:q.eChamp||null,last:q.last||null,genC:q.genC,evalS:null,evalE:null,scoreS:[],scoreE:[],fileName:f.name||"unnamed"}); // the file's populations restore VERBATIM — keeping your work means this exact population, not a re-seeding around the champs (that treatment is the artifact lane's, loadCoev, because the artifact ships canonical trained material, not a player's session) — R70: the file's NAME is recorded on the lane and printed on the C1 stats line until another load replaces it (provenance persistence, R69 spec item 3; pinned tests/r70-coev-file-provenance-persist-glue.test.js)
+   coev.ledger=PQ.makeLedger(300);(q.ledger||[]).forEach(r=>coev.ledger.write(r)); // re-anchored at genesis — the same honest treatment the artifact lane gives its rows (loadCoev names the re-anchor in its banner; this one does too)
+   champNet=(coev.sChamp&&coev.sChamp.net)||null;if(champNet){champGame=PQ.newAdvGame(randPQ);}else{champGame=null;}gameId++;evalGen=null; // the loadCoev precedent, minus the unconditional game (a gen-0 file may have no champ yet) — and the game's mirror: no champ means NO SERVED GAME, else live() forwards a null champNet while a classic rally is still alive and the rAF loop dies (verbatim repro: TypeError reading 'b1' at PQ.forward(null) — the R49 P1 frozen-page class)
+   $("mode").value="coev";
+@@ -445,7 +445,7 @@
+  const seedSig=+$("sig").value/100; // R54: seed AROUND the loaded champs, not from noise. R53 unblocked the lane (Train no longer freezes) but the artifact's 120-gen lineage was discarded the moment gen 121 bred random nets — the continuation cliff, measured by running: gen-121 champion benchmarked K=30 vs the artifact ender = 239.6 fitness (random seed) vs 1099.9 (champ-seeded) vs 1259.1 (the artifact champ itself); L2 to the artifact champ 11.91 vs 0.455. Pinned tests/r54-loadcoev-continuation-glue.test.js.
+  coev=Object.assign(coev||{},{popS:Array.from({length:n},()=>PQ.mutate(cp.sChamp.net,randPQ,seedSig)),
+   popE:Array.from({length:n},()=>PQ.mutate(cp.eChamp.net,randPQ,seedSig)),
+-  sChamp:{net:cp.sChamp.net},eChamp:{net:cp.eChamp.net},last:null,genC:cp.gens,evalS:null,evalE:null});
++  sChamp:{net:cp.sChamp.net},eChamp:{net:cp.eChamp.net},last:null,genC:cp.gens,evalS:null,evalE:null,fileName:null}); // R70: the artifact's provenance is the receipted checkpoint (its banner names seed/gens/md5), NOT a player file — a stale coev.fileName from an earlier file load would otherwise ride the artifact lane's stats line (verbatim-measured: load file A → load artifact → Train printed file "A" at gen 121)
+  coev.ledger=PQ.makeLedger(300);(cp.ledger||[]).slice(-12).forEach(r=>coev.ledger.write(r));
+  champNet=cp.sChamp.net;champGame=PQ.newAdvGame(randPQ);gameId++;
+  $("mode").value="coev";
+diff --git a/tests/r70-coev-file-provenance-persist-glue.test.js b/tests/r70-coev-file-provenance-persist-glue.test.js
+new file mode 100644
+index 0000000..f8179e9
+--- /dev/null
++++ b/tests/r70-coev-file-provenance-persist-glue.test.js
+@@ -0,0 +1,182 @@
++// Round 70 pin — file-provenance PERSISTENCE on the C1 stats line
++// (R69 spec item 3, [S], 2nd carrying in the spec, first build). R69 P4
++// verbatim-measured the wound at the tip: the R68 load banner names the file
++// ONCE, and the very next Train overwrites the stats line with the generation
++// template — the loaded-file provenance evaporates from the HUD. A player who
++// loads file A, trains 3 gens, loads file B, trains 2, can no longer tell
++// which lineage the visible generation belongs to.
++// The fix (R70): the coev load branch records coev.fileName=f.name||"unnamed"
++// and continueGenC prints ` · file "<name>"` in the stats template until
++// another load replaces it. Placed AFTER the `loser` segment so the pinned
++// R55 prefix contract (`COEV gen N · games N · h2h ` — r61/r65 pins) is
++// byte-untouched. A session that never loaded a file prints no file segment —
++// provenance asserts only what the lane actually used (the R68 laneGen/R56 P3
++// discipline).
++// FAIL-first on the pristine tip: T1/T2 RED (filename GONE after Train),
++// T3/T4 GREEN by design (their FAIL-first direction is the naive always-on
++// printer and state-changing refusal).
++"use strict";
++const test = require("node:test");
++const assert = require("node:assert/strict");
++const fs = require("fs");
++const path = require("path");
++const PQ = require("../core.js");
++
++function extract(fnStart, endMarker) {
++  const lines = fs.readFileSync(path.join(__dirname, "../index.html"), "utf8").split("\n");
++  const s = lines.findIndex((l) => l.startsWith(fnStart));
++  if (s < 0) throw new Error("missing " + fnStart);
++  let e = s;
++  while (e < lines.length && !lines[e].includes(endMarker)) e++;
++  if (e >= lines.length) throw new Error("no end marker for " + fnStart);
++  return lines.slice(s, e + 1).join("\n");
++}
++function extractReceiptPanel() {
++  const lines = fs.readFileSync(path.join(__dirname, "../index.html"), "utf8").split("\n");
++  const s = lines.findIndex((l) => l.startsWith("function renderReceipts("));
++  if (s < 0) throw new Error("index.html must define renderReceipts()");
++  let e = s;
++  while (e < lines.length && !lines[e].includes("renderReceipts();}")) e++;
++  if (e >= lines.length) throw new Error("receipt() must immediately follow renderReceipts()");
++  return lines.slice(s, e + 1).join("\n");
++}
++
++function makeDemo(seed) {
++  const els = {
++    stats: { textContent: "" }, mode: { value: "classic" }, pop: { value: "96" },
++    sub: { value: "1" }, sig: { value: "10" }, dec: { value: "4" }, receipts: { textContent: "" },
++  };
++  const $ = (id) => els[id] || (els[id] = { textContent: "", value: "" });
++  const capture = { downloads: [], blobs: [] };
++  const BlobShim = class { constructor(parts, opts) { this.parts = parts; this.type = opts && opts.type; capture.blobs.push(this); } };
++  const URLShim = { createObjectURL: () => "blob:mock" };
++  const documentShim = { createElement: () => { const el = { click() { capture.downloads.push(el); } }; return el; } };
++  const src = [
++    extract("function startGenC(){", "eliteK:D.elites});}"),
++    extract("function continueGenC(){", "coev.evalS=null;coev.evalE=null;}}"),
++    extract('$(\"save\").onclick', 'receipt(\"SAVE\",0,1);};'),
++    extract('$(\"load\").onchange', 'receipt(\"LOAD\",0,1);});};'),
++  ].join("\n");
++  const factory = new Function("window", "alert", "PQ", "D", "$", "randPQ", "Blob", "URL", "document", "capture", "hash",
++    "let champNet=null,champGame=null,gameId=0,gen=0,games=0,pop=Array.from({length:96},()=>PQ.makeNet(randPQ)),evalGen=null,lastSnap=null,champRing=PQ.makeRing(4),coev=null;" +
++    "let receipts=[],receiptHead='0'.repeat(64),receiptEvicted=0;" +
++    src + "\n" + extractReceiptPanel() +
++    "\nreturn {startGenC,continueGenC,$save:$('save'),$load:$('load'),$mode:$('mode'),$pop:$('pop'),get coev(){return coev},get gen(){return gen},get champNet(){return champNet},get pop(){return pop},get capture(){return capture},get receipts(){return receipts},renderPanel:renderReceipts};");
++  const demo = factory({}, (m) => { throw new Error("alert:" + m); }, PQ, PQ.DEFAULTS, $, PQ.rng(seed), BlobShim, URLShim, documentShim, capture, PQ.hash8);
++  demo.els = els;
++  return demo;
++}
++
++function breedOneCoevGen(d) {
++  d.startGenC();
++  const pre = d.coev.genC;
++  for (let k = 0; k < 24 && d.coev.genC === pre; k++) d.continueGenC();
++  if (d.coev.genC === pre) throw new Error("C1 generation did not complete in 24 drives");
++}
++
++function coevFile(genC, seed) {
++  return { kind: "pong-quilt/coev@v1", genC, sChamp: null, eChamp: null,
++    popS: Array.from({ length: 32 }, () => PQ.makeNet(PQ.rng(seed))), popE: Array.from({ length: 32 }, () => PQ.makeNet(PQ.rng(seed + 1))), last: null, ledger: [] };
++}
++
++function loadFile(d, obj, name) {
++  d.$load.onchange({ target: { files: [{ name, text: () => Promise.resolve(JSON.stringify(obj)) }] } });
++  return new Promise((r) => setImmediate(r));
++}
++
++test("PERSISTENCE: the loaded file's name survives Train — after 2 gens the stats line still names the lineage's file", async () => {
++  const d = makeDemo(20261001);
++  await loadFile(d, coevFile(5, 1), "pong-quilt-coev-gen5.json");
++  assert.match(d.els.stats.textContent, /loaded C1 file "pong-quilt-coev-gen5\.json"/, "the R68 load banner names the file once");
++  d.$mode.value = "coev";
++  breedOneCoevGen(d); // gen 6
++  breedOneCoevGen(d); // gen 7
++  const stats = d.els.stats.textContent;
++  assert.match(stats, /COEV gen 7 /, "training advanced two generations past the load");
++  assert.ok(stats.includes('file "pong-quilt-coev-gen5.json"'), "FAIL-first on the pristine tip: the filename evaporated the moment Train overwrote the stats line (R69 P4 verbatim measurement)");
++});
++
++test("REPLACEMENT: a second load replaces the printed provenance — the stats line names file B, never the stale file A", async () => {
++  const d = makeDemo(777);
++  d.$mode.value = "coev";
++  await loadFile(d, coevFile(3, 10), "pong-quilt-coev-gen3.json");
++  breedOneCoevGen(d);
++  const afterA = d.els.stats.textContent;
++  assert.ok(afterA.includes('file "pong-quilt-coev-gen3.json"'), "FAIL-first on the pristine tip: file A's name is gone after one Train");
++  await loadFile(d, coevFile(8, 20), "pong-quilt-coev-gen8.json");
++  breedOneCoevGen(d);
++  const afterB = d.els.stats.textContent;
++  assert.ok(afterB.includes('file "pong-quilt-coev-gen8.json"'), "FAIL-first on the pristine tip: file B's name never persists either");
++  assert.ok(!afterB.includes("pong-quilt-coev-gen3.json"), "the stale file A name must not linger beside file B's (replacement, not accumulation)");
++});
++
++test("NO-FILE HONESTY: a session that never loaded a file prints no file segment — provenance asserts only what the lane used", () => {
++  const d = makeDemo(4242);
++  d.$mode.value = "coev";
++  breedOneCoevGen(d); // fresh C1, no load
++  const stats = d.els.stats.textContent;
++  assert.ok(!/file "/.test(stats), "a fresh session printing `file` would claim provenance it never had — the naive always-on printer is the FAIL-first direction of this test");
++  assert.match(stats, /COEV gen 1 · games \d+ · h2h /, "R55 stats prefix contract byte-intact");
++});
++
++test("MALFORMED-IMMUNITY: a refused coev-shaped file leaves provenance untouched — no fileName recorded, no file segment printed", async () => {
++  const d = makeDemo(999);
++  const bad = { kind: "pong-quilt/coev@v1", genC: 4 }; // missing popS/popE — the R67/R68 malformed class
++  await loadFile(d, bad, "corrupt-coev.json");
++  assert.ok(d.receipts.some((r) => r.kind === "LOAD/COEV-MALFORMED"), "the refusal is receipted NAMED (R68 contract)");
++  assert.equal(d.coev, null, "zero state change on the refusal path");
++  d.$mode.value = "coev";
++  breedOneCoevGen(d);
++  const stats = d.els.stats.textContent;
++  assert.ok(!/file "/.test(stats), "a refused file must not leak its name into the HUD — the refusal names the genC it CLAIMED (R68), never a provenance it granted");
++});
++
++test("ARTIFACT-BOUNDARY: the canonical-artifact lane (loadCoev) clears file provenance — the checkpoint's identity is its receipted banner, never a stale player file", () => {
++  const d = makeDemo(31337);
++  const W = { PONG_QUILT_COEV: {
++    seed: 20260926, gens: 120, pop: 48,
++    sChamp: { net: PQ.makeNet(PQ.rng(5)), netId: "artS", fitness: 900 },
++    eChamp: { net: PQ.makeNet(PQ.rng(6)), netId: "artE", fitness: 800 },
++    ledger: [{ gen: 118, sId: "x", eId: "y", outcome: "ENDER-KILL", frames: 100, sFit: 700, eFit: 650, loserId: null }],
++    ledgerHead: "deadbeef",
++  } };
++  const els2 = { stats: { textContent: "" }, mode: { value: "classic" }, pop: { value: "96" }, sub: { value: "1" }, sig: { value: "10" }, receipts: { textContent: "" } };
++  const $2 = (id) => els2[id] || (els2[id] = { textContent: "", value: "" });
++  const capture2 = { downloads: [], blobs: [] };
++  const BlobShim2 = class { constructor(parts, opts) { this.parts = parts; this.type = opts && opts.type; capture2.blobs.push(this); } };
++  const URLShim2 = { createObjectURL: () => "blob:mock" };
++  const documentShim2 = { createElement: () => { const el = { click() { capture2.downloads.push(el); } }; return el; } };
++  const fs2 = require("fs"), path2 = require("path");
++  const lines2 = fs2.readFileSync(path2.join(__dirname, "../index.html"), "utf8").split("\n");
++  const lcS = lines2.findIndex((l) => l.startsWith("function loadCoev(){"));
++  if (lcS < 0) throw new Error("index.html must define loadCoev()");
++  let lcE = lcS;
++  while (lcE < lines2.length && !lines2[lcE].includes('receipt("LOAD/COEV",0,1);}')) lcE++;
++  const loadCoevSrc = lines2.slice(lcS, lcE + 1).join("\n");
++  const html2 = fs2.readFileSync(path2.join(__dirname, "../index.html"), "utf8");
++  const ex2 = (start, end) => {
++    const L = html2.split("\n");
++    const s = L.findIndex((l) => l.startsWith(start));
++    let e = s;
++    while (e < L.length && !L[e].includes(end)) e++;
++    return L.slice(s, e + 1).join("\n");
++  };
++  const factory2 = new Function("window", "alert", "PQ", "D", "$", "randPQ", "Blob", "URL", "document", "capture", "hash",
++    "let champNet=null,champGame=null,gameId=0,gen=0,games=0,pop=Array.from({length:96},()=>PQ.makeNet(randPQ)),evalGen=null,lastSnap=null,champRing=PQ.makeRing(4),coev=null;" +
++    "let receipts=[],receiptHead='0'.repeat(64),receiptEvicted=0;" +
++    [ex2("function startGenC(){", "eliteK:D.elites});}"), ex2("function continueGenC(){", "coev.evalS=null;coev.evalE=null;}}"), ex2("$(\"load\").onchange", 'receipt("LOAD",0,1);});};'), loadCoevSrc].join("\n") + "\n" +
++    (() => { const L = html2.split("\n"); const s = L.findIndex((l) => l.startsWith("function renderReceipts(")); let e = s; while (e < L.length && !L[e].includes("renderReceipts();}")) e++; return L.slice(s, e + 1).join("\n"); })() +
++    "\nreturn {startGenC,continueGenC,loadCoev,$load:$('load'),$mode:$('mode'),get coev(){return coev},get receipts(){return receipts}};");
++  const d2 = factory2(W, (m) => { throw new Error("alert:" + m); }, PQ, PQ.DEFAULTS, $2, PQ.rng(31337), BlobShim2, URLShim2, documentShim2, capture2, PQ.hash8);
++  d2.els = els2;
++  (async () => {
++    await loadFile(d2, coevFile(5, 1), "pong-quilt-coev-gen5.json");
++    d2.$mode.value = "coev";
++    breedOneCoevGen(d2);
++    d2.loadCoev();
++    breedOneCoevGen(d2); // gen 121
++    const stats = d2.els.stats.textContent;
++    assert.equal(/file "/.test(stats), false, "FAIL-first on the unfixed line: the artifact lane served file A's stale provenance at gen 121 (verbatim: load file A → load artifact → Train printed file \"pong-quilt-coev-gen5.json\") — the checkpoint's identity is its own receipted banner, never a player file");
++    assert.match(stats, /COEV gen 121 /, "the artifact lane trained past its loaded generation");
++  })();
++});

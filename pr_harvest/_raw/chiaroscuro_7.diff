@@ -1,0 +1,655 @@
+diff --git a/edge/nl_route_core.mjs b/edge/nl_route_core.mjs
+new file mode 100644
+index 0000000..8c0b178
+--- /dev/null
++++ b/edge/nl_route_core.mjs
+@@ -0,0 +1,162 @@
++// =====================================================================
++// nl_route_core.mjs — ESM port of the canonical synonym-graph router
++// (edge/nl_route.js, measured 50/50 on the pre-registered eval set,
++// tools/edge_graph_receipt.json). Consumed by edge/worker.ts (the
++// production Cloudflare Worker) and pinned to the reference by
++// tools/nl_parity.mjs — two implementations, one behavior.
++// Zero deps. Framework-free (no fs, no process): data arrives via import.
++// =====================================================================
++import { GRAPH, GRAPH_SHA256 } from "./synonym_graph.mjs";
++
++function flatten(graph) {
++  const out = [];
++  const w = graph.config.weights;
++  for (const [cls, body] of Object.entries(graph.classes)) {
++    for (const [band, terms] of Object.entries(body.terms)) {
++      for (const t of terms) {
++        out.push({ term: t, cls, weight: w[band], phrase: t.includes(" ") });
++      }
++    }
++  }
++  out.sort((a, b) => b.term.length - a.term.length); // phrase/longest first
++  return out;
++}
++
++function editDistance1(a, b) {
++  if (Math.abs(a.length - b.length) > 1) return false;
++  let i = 0, j = 0, diff = 0;
++  while (i < a.length && j < b.length) {
++    if (a[i] === b[j]) { i++; j++; continue; }
++    diff++;
++    if (diff > 1) return false;
++    if (a.length === b.length) { i++; j++; }
++    else if (a.length < b.length) { j++; }
++    else { i++; }
++  }
++  return diff + (a.length - i) + (b.length - j) <= 1;
++}
++
++function tokenize(prompt) {
++  const toks = [];
++  const re = /\S+/g;
++  let m;
++  while ((m = re.exec(prompt)) !== null) toks.push({ w: m[0], i: m.index });
++  return toks;
++}
++
++// match graph against prompt. Returns [{cls, term, weight, pos, fuzzy}]
++function match(graph, flat, prompt) {
++  const p = prompt.toLowerCase();
++  const toks = tokenize(p);
++  const covered = new Array(p.length).fill(false);
++  const hits = [];
++  const cover = (s, e) => { for (let k = s; k < e; k++) covered[k] = true; };
++
++  // 1. phrases (contiguous word spans, substring match); skip spans already
++  // covered by an earlier (longer) phrase — no overlapping-phrase double count
++  for (const { term, cls, weight } of flat.filter(x => x.phrase)) {
++    let idx = p.indexOf(term);
++    while (idx !== -1) {
++      let overlap = false;
++      for (let k = idx; k < idx + term.length; k++) if (covered[k]) { overlap = true; break; }
++      if (!overlap) {
++        hits.push({ cls, term, weight, pos: idx, fuzzy: false });
++        cover(idx, idx + term.length);
++      }
++      idx = p.indexOf(term, idx + 1);
++    }
++  }
++  // 2. whole-word single terms on uncovered text
++  for (const { term, cls, weight } of flat.filter(x => !x.phrase)) {
++    const re = new RegExp(`\\b${term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "g");
++    let m;
++    while ((m = re.exec(p)) !== null) {
++      let ok = true;
++      for (let k = m.index; k < m.index + term.length; k++) if (covered[k]) { ok = false; break; }
++      if (ok) { hits.push({ cls, term, weight, pos: m.index, fuzzy: false }); cover(m.index, m.index + term.length); }
++    }
++  }
++  // 3. fuzzy-1 on uncovered word tokens vs single-word terms
++  const singles = flat.filter(x => !x.phrase);
++  for (const t of toks) {
++    const word = t.w.replace(/^[^a-z0-9\-]+|[^a-z0-9\-]+$/g, "");
++    if (word.length < graph.config.fuzzy_min_term_len) continue;
++    let anyCovered = false;
++    for (let k = t.i; k < t.i + t.w.length; k++) if (covered[k]) { anyCovered = true; break; }
++    if (anyCovered) continue;
++    if (hits.some(h => h.pos <= t.i && t.i < h.pos + h.term.length)) continue;
++    for (const { term, cls, weight } of singles) {
++      if (term.length < graph.config.fuzzy_min_term_len) continue;
++      if (editDistance1(word, term)) {
++        hits.push({ cls, term: `${word}~${term}`, weight, pos: t.i, fuzzy: true });
++        break;
++      }
++    }
++  }
++  return hits;
++}
++
++function routePrompt(graph, flat, prompt) {
++  const cfg = graph.config;
++  const p = (prompt || "").toLowerCase();
++  let hits = match(graph, flat, p);
++
++  // intent-position: negation window suppresses the matched term
++  const toks = tokenize(p);
++  const negOffsets = [];
++  for (const t of toks) {
++    if (cfg.negation_markers.some(n => t.w === n || t.w.endsWith(n))) negOffsets.push(t.i);
++  }
++  hits = hits.filter(h => {
++    if (h.fuzzy) return true;
++    const neg = negOffsets.find(no => no < h.pos && h.pos - no <= 16 && (p.slice(no, h.pos).trim().split(/\s+/).length - 1) <= cfg.negation_window_words);
++    return neg === undefined;
++  });
++
++  // intent-position: "but"-pivot promotes trailing clause
++  const pivot = p.search(/\bbut\b/);
++  const trailingClasses = new Set();
++  if (pivot !== -1) {
++    for (const h of hits) if (h.pos > pivot) trailingClasses.add(h.cls);
++  }
++
++  // score
++  const scores = {};
++  const firstPos = {};
++  for (const h of hits) {
++    let w = h.weight;
++    if (pivot !== -1 && h.pos > pivot && trailingClasses.size > 0) w *= cfg.but_pivot_multiplier;
++    scores[h.cls] = (scores[h.cls] || 0) + w;
++    if (!(h.cls in firstPos) || h.pos < firstPos[h.cls]) firstPos[h.cls] = h.pos;
++  }
++
++  let candidates = Object.keys(scores);
++  if (trailingClasses.size > 0) candidates = candidates.filter(c => trailingClasses.has(c));
++
++  let best = null;
++  for (const c of candidates) {
++    if (scores[c] < cfg.route_threshold) continue;
++    if (best === null) { best = c; continue; }
++    if (scores[c] > scores[best]) best = c;
++    else if (scores[c] === scores[best] && firstPos[c] < firstPos[best]) best = c; // pre-registered tiebreak
++  }
++
++  const cls = best || "default";
++  return {
++    class: cls,
++    dials: (graph.classes[cls] || {}).dials || graph.default_dials,
++    score: best ? scores[best] : 0,
++    hits: hits.map(h => `${h.cls}:${h.term}${h.fuzzy ? "(fuzzy)" : ""}@${h.pos}`),
++  };
++}
++
++export function makeRouter(graph = GRAPH) {
++  const flat = flatten(graph);
++  return {
++    graph,
++    graphSha256: GRAPH_SHA256,
++    route: (prompt) => routePrompt(graph, flat, prompt),
++  };
++}
++
++export { routePrompt, flatten, GRAPH, GRAPH_SHA256 };
+diff --git a/edge/score_eval.py b/edge/score_eval.py
+index 6e94710..63be107 100644
+--- a/edge/score_eval.py
++++ b/edge/score_eval.py
+@@ -1,10 +1,13 @@
+ #!/usr/bin/env python3
+ """
+-score_eval.py — score edge/worker.ts STYLE_RULES against the pre-registered
+-eval set (edge/eval_prompts.json, R2).
+-
+-MIRROR OF edge/worker.ts STYLE_RULES — update both.
+-Rules copied verbatim from edge/worker.ts (first keyword match wins):
++score_eval.py — score the ORIGINAL keyword table (edge/worker.ts STYLE_RULES
++as of Round 3) against the pre-registered eval set (edge/eval_prompts.json, R2).
++HISTORICAL BASELINE INSTRUMENT: measured 0.560 (tools/edge_eval_receipt.json).
++The worker no longer carries this table — it routes through the synonym-graph
++router (edge/nl_route_core.mjs, parity-pinned by tools/nl_parity.mjs, measured
++50/50 via edge/score_graph.py -> tools/edge_graph_receipt.json). This file stays
++as the frozen baseline so the graph router's lift remains re-derivable.
++Rules copied verbatim from the Round-3 keyword worker (first keyword match wins):
+   woodcut/carve/engraving -> {contrast:1.8, blackPoint:0.40, trailDecay:0.4, edgePaint:0.9}
+   terminal/lo-fi/phosphor/retro -> {contrast:1.4, blackPoint:0.25, trailDecay:0.8, edgePaint:0.1}
+   soft/ambient/fog -> {contrast:0.9, blackPoint:0.05, trailDecay:0.9, edgePaint:0.0}
+diff --git a/edge/synonym_graph.mjs b/edge/synonym_graph.mjs
+new file mode 100644
+index 0000000..d2b4c0a
+--- /dev/null
++++ b/edge/synonym_graph.mjs
+@@ -0,0 +1,181 @@
++// GENERATED from edge/synonym_graph.json — do not edit by hand.
++// Regenerate: node -e '(require graph gen one-liner — see tools/nl_parity.mjs pin 1)'
++// Pin: tools/nl_parity.mjs recomputes sha256(synonym_graph.json) and refuses
++// any drift between this module and the canonical JSON.
++export const GRAPH_SHA256 = "b57f29b0b2c4c2a760325a7ee05f6b3cc27a0a7217a19ad269f6d7de98cff393";
++export const GRAPH = {
++  "_meta": {
++    "name": "chiaroscuro-edge-synonym-graph v1",
++    "date": "2026-10-01",
++    "pre_registered": "receipts/lane-c-edge.md R2 hypothesis — committed BEFORE the measured run that cites it (R1)",
++    "target": ">=0.85 top-1 on edge/eval_prompts.json (pinned sha256 32a35de2...)",
++    "baseline": "keyword table = 0.560 (tools/edge_eval_receipt.json)",
++    "canonical_implementation": "edge/nl_route.js (node); worker.ts is a mirror pinned by tools/nl_parity.js"
++  },
++  "config": {
++    "weights": {
++      "strong": 2,
++      "medium": 1.5,
++      "weak": 1
++    },
++    "route_threshold": 1,
++    "fuzzy_edit_distance": 1,
++    "fuzzy_min_term_len": 4,
++    "negation_window_words": 2,
++    "negation_markers": [
++      "not",
++      "n't",
++      "never",
++      "no"
++    ],
++    "but_pivot_multiplier": 1.5,
++    "tiebreak": "equal scores -> class whose FIRST matched term appears EARLIEST in the prompt"
++  },
++  "classes": {
++    "woodcut": {
++      "dials": {
++        "contrast": 1.8,
++        "blackPoint": 0.4,
++        "trailDecay": 0.4,
++        "edgePaint": 0.9
++      },
++      "terms": {
++        "strong": [
++          "woodcut",
++          "carve",
++          "carved",
++          "carving",
++          "engraving",
++          "engraved",
++          "woodblock",
++          "linocut"
++        ],
++        "medium": [
++          "gouge",
++          "gouged",
++          "chisel",
++          "chiseled",
++          "etching",
++          "incised",
++          "block print",
++          "relief print"
++        ],
++        "weak": [
++          "oak",
++          "copper plate",
++          "cuts"
++        ]
++      }
++    },
++    "terminal": {
++      "dials": {
++        "contrast": 1.4,
++        "blackPoint": 0.25,
++        "trailDecay": 0.8,
++        "edgePaint": 0.1
++      },
++      "terms": {
++        "strong": [
++          "terminal",
++          "phosphor",
++          "crt",
++          "lo-fi",
++          "lofi",
++          "retro",
++          "scanlines",
++          "scanline",
++          "amber"
++        ],
++        "medium": [
++          "computer screen",
++          "screen glow",
++          "monitor",
++          "bloom",
++          "green screen",
++          "command line"
++        ],
++        "weak": [
++          "vga",
++          "ansi"
++        ]
++      }
++    },
++    "soft": {
++      "dials": {
++        "contrast": 0.9,
++        "blackPoint": 0.05,
++        "trailDecay": 0.9,
++        "edgePaint": 0
++      },
++      "terms": {
++        "strong": [
++          "soft",
++          "ambient",
++          "misty",
++          "haze",
++          "hazy",
++          "dreamy",
++          "gentle",
++          "gently",
++          "diffuse",
++          "cotton-wool"
++        ],
++        "medium": [
++          "fog",
++          "foggy",
++          "mist",
++          "quiet",
++          "ethereal",
++          "delicate",
++          "serene",
++          "bleak"
++        ],
++        "weak": [
++          "glow",
++          "calm"
++        ]
++      }
++    },
++    "harsh": {
++      "dials": {
++        "contrast": 2.1,
++        "blackPoint": 0.5,
++        "trailDecay": 0.2,
++        "edgePaint": 1
++      },
++      "terms": {
++        "strong": [
++          "harsh",
++          "noir",
++          "hard",
++          "brutal",
++          "stark",
++          "severe",
++          "unforgiving",
++          "bleached"
++        ],
++        "medium": [
++          "crushed blacks",
++          "crushed black",
++          "deep shadow",
++          "high contrast",
++          "hard light",
++          "hard shadow",
++          "punishing"
++        ],
++        "weak": [
++          "exposure",
++          "detective",
++          "dramatic",
++          "cold"
++        ]
++      }
++    }
++  },
++  "default_dials": {
++    "contrast": 1.3,
++    "blackPoint": 0.15,
++    "trailDecay": 0.5,
++    "edgePaint": 0.3
++  }
++};
+diff --git a/edge/worker.ts b/edge/worker.ts
+index 253f1d0..6933f6f 100644
+--- a/edge/worker.ts
++++ b/edge/worker.ts
+@@ -9,6 +9,8 @@
+ 
+ export interface Env {}
+ 
++import { makeRouter } from "./nl_route_core.mjs";
++
+ const CORS = {
+   "Access-Control-Allow-Origin": "*",
+   "Access-Control-Allow-Methods": "POST, OPTIONS",
+@@ -16,24 +18,13 @@ const CORS = {
+   "Content-Type": "application/json",
+ };
+ 
+-const DEFAULT_DIALS = {
+-  contrast: 1.3,
+-  blackPoint: 0.15,
+-  trailDecay: 0.5,
+-  edgePaint: 0.3,
+-};
+-
+ // EVAL SET: edge/eval_prompts.json (50 prompts, pre-registered R2).
+-// Mirror in edge/score_eval.py RULES — update both.
+-// Measured 2026-10-01: overall top-1 = 0.560 (tools/edge_eval_receipt.json).
+-// Keyword table — Round 3 replaces with a bounded mapping model.
+-// Each entry: [trigger words, dial delta].
+-const STYLE_RULES: [string[], Partial<typeof DEFAULT_DIALS>][] = [
+-  [["woodcut", "carve", "engraving"], { contrast: 1.8, blackPoint: 0.40, trailDecay: 0.4, edgePaint: 0.9 }],
+-  [["terminal", "lo-fi", "phosphor", "retro"], { contrast: 1.4, blackPoint: 0.25, trailDecay: 0.8, edgePaint: 0.1 }],
+-  [["soft", "ambient", "fog"], { contrast: 0.9, blackPoint: 0.05, trailDecay: 0.9, edgePaint: 0.0 }],
+-  [["harsh", "noir", "hard"], { contrast: 2.1, blackPoint: 0.50, trailDecay: 0.2, edgePaint: 1.0 }],
+-];
++// Measured 2026-10-01: keyword table 0.560 (tools/edge_eval_receipt.json);
++// synonym-graph router 50/50 (tools/edge_graph_receipt.json).
++// The worker routes through the SAME graph router as edge/nl_route.js —
++// two implementations, one behavior, pinned by tools/nl_parity.mjs.
++// default fallback dials come from the graph itself (graph.default_dials).
++const router = makeRouter();
+ 
+ export default {
+   async fetch(request: Request, _env: Env): Promise<Response> {
+@@ -43,21 +34,14 @@ export default {
+     }
+     try {
+       const body = (await request.json()) as { prompt?: string };
+-      const prompt = (body.prompt || "").toLowerCase();
+-
+-      let dials = { ...DEFAULT_DIALS };
+-      for (const [words, delta] of STYLE_RULES) {
+-        if (words.some(w => prompt.includes(w))) {
+-          dials = { ...dials, ...delta };
+-          break; // first match wins; deterministic
+-        }
+-      }
++      const r = router.route(body.prompt || "");
++      const dials = { ...r.dials };
+ 
+       return new Response(
+         JSON.stringify({ status: "MORPH_SUCCESS", active_ledger_delta: dials }),
+         { headers: CORS }
+       );
+-    } catch (e: any) {
++    } catch (e) {
+       return new Response(JSON.stringify({ error: e.message }), { status: 500, headers: CORS });
+     }
+   },
+diff --git a/tools/nl_parity.mjs b/tools/nl_parity.mjs
+new file mode 100644
+index 0000000..bd063b3
+--- /dev/null
++++ b/tools/nl_parity.mjs
+@@ -0,0 +1,150 @@
++// =====================================================================
++// nl_parity.mjs — pin the edge worker's graph router to the canonical
++// reference implementation, per the pre-registered design
++// (edge/synonym_graph.json _meta + edge/nl_route.js header):
++//   edge/worker.ts is a MIRROR of edge/nl_route.js, pinned HERE, not
++//   by aspiration. Two implementations, one behavior.
++//
++// Pins:
++//   1. DATA   — edge/synonym_graph.mjs sha256 == sha256(edge/synonym_graph.json)
++//               (generated module can never drift from canonical JSON)
++//   2. EVAL   — core router output === reference router output on all 50
++//               pre-registered eval prompts (class, score, hits)
++//   3. FUZZ   — core router output === reference on adversarial extra probes
++//               (negation, but-pivot, fuzzy-1, zero-hit, phrase overlap)
++//   4. WORKER — edge/worker.ts imports ./nl_route_core.mjs, carries NO
++//               STYLE_RULES keyword table, still answers MORPH_SUCCESS with
++//               active_ledger_delta
++//   5. DEFAULTS — graph.default_dials deep-equals the baseline the keyword
++//               worker pinned (edge_eval_receipt.json: 1.3/0.15/0.5/0.3)
++//
++// Zero deps. Node >= 18. Run: node tools/nl_parity.mjs  (exit 0 = all pins)
++// Receipt: tools/nl_parity_receipt.json
++// =====================================================================
++import { createRequire } from "module";
++import { readFileSync } from "fs";
++import { createHash } from "crypto";
++import { fileURLToPath } from "url";
++import { dirname, join } from "path";
++
++const here = dirname(fileURLToPath(import.meta.url));
++const root = join(here, "..");
++const results = [];
++const pin = (name, ok, detail) => {
++  results.push({ pin: name, ok: !!ok, detail });
++  console.log(`${ok ? "PASS" : "FAIL"}  ${name}  ${detail}`);
++  return ok;
++};
++
++// ---- 1. DATA: generated graph module hashes to canonical JSON ----------
++const canonicalJson = readFileSync(join(root, "edge", "synonym_graph.json"), "utf8");
++const canonicalSha = createHash("sha256").update(canonicalJson).digest("hex");
++let graphMod = null;
++try {
++  graphMod = await import(join(root, "edge", "synonym_graph.mjs"));
++  pin("data:graph-module-hash",
++    graphMod.GRAPH_SHA256 === canonicalSha,
++    `module=${graphMod.GRAPH_SHA256?.slice(0, 16)}… json=${canonicalSha.slice(0, 16)}…`);
++} catch (e) {
++  pin("data:graph-module-hash", false, `edge/synonym_graph.mjs not importable: ${e.message}`);
++}
++
++// ---- load both implementations ------------------------------------------
++const require = createRequire(import.meta.url);
++const ref = require(join(root, "edge", "nl_route.js")); // canonical (measured 1.0)
++const refGraph = ref.loadGraph(join(root, "edge", "synonym_graph.json"));
++const refFlat = ref.flatten(refGraph);
++
++let core = null;
++try {
++  core = await import(join(root, "edge", "nl_route_core.mjs"));
++} catch (e) {
++  pin("eval:core-vs-reference", false, `edge/nl_route_core.mjs not importable: ${e.message}`);
++  pin("fuzz:core-vs-reference", false, "skipped — core missing");
++}
++const coreRouter = core ? core.makeRouter(graphMod ? graphMod.GRAPH : null) : null;
++
++const sameRoute = (a, b) =>
++  a.class === b.class && a.score === b.score && JSON.stringify(a.hits) === JSON.stringify(b.hits);
++
++// ---- 2. EVAL: all 50 pre-registered prompts ------------------------------
++{
++  const ev = JSON.parse(readFileSync(join(root, "edge", "eval_prompts.json"), "utf8"));
++  let bad = [];
++  if (coreRouter) {
++    for (const p of ev.prompts) {
++      const r = ref.routePrompt(refGraph, refFlat, p.prompt);
++      const c = coreRouter.route(p.prompt);
++      if (!sameRoute({ class: r.class, score: r.score, hits: r.hits }, c)) {
++        bad.push(p.id);
++      }
++    }
++    pin("eval:core-vs-reference", bad.length === 0,
++      bad.length === 0
++        ? `${ev.prompts.length}/${ev.prompts.length} prompts identical (class, score, hits)`
++        : `divergent: ${bad.join(",")}`);
++  }
++}
++
++// ---- 3. FUZZ: adversarial extra probes ------------------------------------
++{
++  const probes = [
++    "not a woodcut at all, keep it soft",        // negation window
++    "soft fog but carve it like a woodcut",      // but-pivot promotion
++    "wooodcutt texture on the oak",              // fuzzy-1 near-misses
++    "make everything louder and brighter",       // zero-hit -> default
++    "crushed blacks, crushed black shadows",     // overlapping phrase single-count
++    "lo-fi phosphor glow, never harsh",          // negation on trailing term
++    "OAK and COPPER PLATE, heavy gouge work",    // case + multi-phrase cover
++    "",                                          // empty prompt -> default
++    "hard noir shadows",                          // multi-term single class
++    "ambient fog, soft ambience, but hard edges",// pivot with trailing class
++  ];
++  let bad = [];
++  if (coreRouter) {
++    for (const p of probes) {
++      const r = ref.routePrompt(refGraph, refFlat, p);
++      const c = coreRouter.route(p);
++      if (!sameRoute({ class: r.class, score: r.score, hits: r.hits }, c)) bad.push(JSON.stringify(p));
++    }
++    pin("fuzz:core-vs-reference", bad.length === 0,
++      bad.length === 0 ? `${probes.length}/${probes.length} probes identical` : `divergent: ${bad.join(" | ")}`);
++  }
++}
++
++// ---- 4. WORKER: source pins ------------------------------------------------
++{
++  const src = readFileSync(join(root, "edge", "worker.ts"), "utf8");
++  pin("worker:imports-core", /from\s+"\.\/nl_route_core\.mjs"/.test(src),
++    'edge/worker.ts imports ./nl_route_core.mjs');
++  pin("worker:no-keyword-table", !/STYLE_RULES/.test(src),
++    "STYLE_RULES first-match keyword table removed from worker");
++  pin("worker:response-shape", /MORPH_SUCCESS/.test(src) && /active_ledger_delta/.test(src),
++    "response still { status: MORPH_SUCCESS, active_ledger_delta }");
++}
++
++// ---- 5. DEFAULTS: graph fallback === pinned baseline -----------------------
++{
++  const g = graphMod ? graphMod.GRAPH : {};
++  const d = g.default_dials || {};
++  pin("defaults:match-baseline",
++    d.contrast === 1.3 && d.blackPoint === 0.15 && d.trailDecay === 0.5 && d.edgePaint === 0.3,
++    `graph.default_dials=${JSON.stringify(d)} vs baseline 1.3/0.15/0.5/0.3 (edge_eval_receipt.json)`);
++}
++
++// ---- receipt ---------------------------------------------------------------
++const nFail = results.filter(r => !r.ok).length;
++const receipt = {
++  receipt: "chiaroscuro edge NL worker graph-port parity pins",
++  date: new Date().toISOString().slice(0, 10),
++  branch: "edge-worker-graph-port",
++  reference: "edge/nl_route.js (canonical, measured 50/50, tools/edge_graph_receipt.json)",
++  core: "edge/nl_route_core.mjs (ESM port consumed by edge/worker.ts)",
++  pins: results,
++  all_pass: nFail === 0,
++  provenance: "edge/synonym_graph.json _meta: 'worker.ts is a mirror pinned by tools/nl_parity' — this file is that pin, made executable",
++};
++const { writeFileSync } = await import("fs");
++writeFileSync(join(root, "tools", "nl_parity_receipt.json"), JSON.stringify(receipt, null, 2) + "\n");
++console.log(`\n${results.length - nFail}/${results.length} pins green — receipt -> tools/nl_parity_receipt.json`);
++process.exit(nFail === 0 ? 0 : 1);
+diff --git a/tools/nl_parity_receipt.json b/tools/nl_parity_receipt.json
+new file mode 100644
+index 0000000..316fba4
+--- /dev/null
++++ b/tools/nl_parity_receipt.json
+@@ -0,0 +1,46 @@
++{
++  "receipt": "chiaroscuro edge NL worker graph-port parity pins",
++  "date": "2026-10-01",
++  "branch": "edge-worker-graph-port",
++  "reference": "edge/nl_route.js (canonical, measured 50/50, tools/edge_graph_receipt.json)",
++  "core": "edge/nl_route_core.mjs (ESM port consumed by edge/worker.ts)",
++  "pins": [
++    {
++      "pin": "data:graph-module-hash",
++      "ok": true,
++      "detail": "module=b57f29b0b2c4c2a7… json=b57f29b0b2c4c2a7…"
++    },
++    {
++      "pin": "eval:core-vs-reference",
++      "ok": true,
++      "detail": "50/50 prompts identical (class, score, hits)"
++    },
++    {
++      "pin": "fuzz:core-vs-reference",
++      "ok": true,
++      "detail": "10/10 probes identical"
++    },
++    {
++      "pin": "worker:imports-core",
++      "ok": true,
++      "detail": "edge/worker.ts imports ./nl_route_core.mjs"
++    },
++    {
++      "pin": "worker:no-keyword-table",
++      "ok": true,
++      "detail": "STYLE_RULES first-match keyword table removed from worker"
++    },
++    {
++      "pin": "worker:response-shape",
++      "ok": true,
++      "detail": "response still { status: MORPH_SUCCESS, active_ledger_delta }"
++    },
++    {
++      "pin": "defaults:match-baseline",
++      "ok": true,
++      "detail": "graph.default_dials={\"contrast\":1.3,\"blackPoint\":0.15,\"trailDecay\":0.5,\"edgePaint\":0.3} vs baseline 1.3/0.15/0.5/0.3 (edge_eval_receipt.json)"
++    }
++  ],
++  "all_pass": true,
++  "provenance": "edge/synonym_graph.json _meta: 'worker.ts is a mirror pinned by tools/nl_parity' — this file is that pin, made executable"
++}

@@ -1,0 +1,45 @@
+ROUND 2. Your MODULE is accepted as-is — it loads under the real Luau parser and passes the lane's
+independent 60/60 assertion driver. DO NOT change src/cell_api.luau's logic (you may re-emit it
+verbatim). The DEFECTS are all in your LUA_TEST.
+
+FACT: the lane ran your harness under lua5.1. It did NOT print PASS; it ABORTED:
+  lua5.1: cell_api_test.lua:186: attempt to index field '?' (a nil value)
+  FAIL evict_at_cap_eight: got 1 want 8
+  FAIL evict_stays_at_cap: got 1 want 8
+
+ROOT CAUSE (one misunderstanding, four bad oracles): qm_link is FIND-OR-CREATE. Linking the SAME
+(src,dst) pair again UPDATES the one edge; it does not add a second one. Your tests assumed each
+call adds an edge.
+
+FIX THESE EXACTLY:
+1. Eviction test: you did `for i=1,8 do qm_link(reg, s.id, d.id, ws[i]) end` — that is ONE edge,
+   so #d.edges == 1. To fill dst to the cap of 8 you need 8 DISTINCT source cells:
+     local srcs = {}
+     for i = 1, 8 do srcs[i] = qm_bind(reg, "p"..i); qm_link(reg, srcs[i].id, d.id, ws[i]) end
+   Assert #d.edges == 8. With ws = {0.9,0.5,0.8,0.3,0.7,0.6,0.4,0.2} the COLDEST is index 8
+   (weight 0.2). Link a 9th distinct src with weight 0.25 and assert: #d.edges still 8, and
+   d.edges[8].dst == that 9th src, d.edges[8].weight == 0.25.
+2. `d.edges[8]` no longer exists once #1 is fixed — that crash disappears.
+3. view_wsum: you did qm_link(s,d,0.4) then qm_link(s,d,0.3) and expected 0.7. Same src twice
+   UPDATES to 0.3. Use TWO distinct srcs (0.4 + 0.3) to get 0.7.
+4. effect_saturates_at_one: after act == 0.3 you sent activation 10 (clamped to 1.0) on weight 0.6:
+   act = clamp01(0.3 + 0.6*1.0) = 0.9, NOT 1.0. Correct the expectation to 0.9 (or change the case).
+
+ALSO: your NOTES said "Total assertions: 47" but the file contains 50 eq/near calls, and your
+CLAIMS list claimed passes for checks that never ran (the harness aborted at the 20th). State the
+TRUE final count, and list ONLY checks that actually printed nothing (i.e. passed) when run.
+
+REQUIREMENTS (unchanged): self-contained plain Lua 5.1 (no require, no types, no `+=`, no `//`),
+runnable to a final "PASS n/m" line with os.exit(fails==0 and 0 or 1). Emit EXACTLY the three
+delimited sections, terse, no prose outside them.
+
+=== LUAU_MODULE ===
+(re-emit src/cell_api.luau verbatim — do not modify it)
+
+=== LUA_TEST ===
+(tests/cell_api_test.lua, corrected, complete, self-contained)
+
+=== NOTES ===
+(total assertion count; the 4 oracle corrections with their arithmetic; the exact CLAIMS line)
+
+No prose outside the sections.

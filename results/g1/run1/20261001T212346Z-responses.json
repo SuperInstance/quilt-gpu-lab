@@ -1,0 +1,1262 @@
+{
+  "battery": {
+    "battery_id": "g1-battery-96@1",
+    "certified": true,
+    "seed": {
+      "source": "moth-seal comet-qrng-v1 master seed, certified-direct stream, label g1-battery-96-master (fleet-seeds docs/g1/battery-96-seed.json); prompts are a deterministic documented expansion: per-prompt rng = sha256('g1b96'|master|prompt_id) via quilt-gpu-lab experiments/g1_battery_build.py",
+      "cert": "moth-seal comet-qrng-v1 certified-direct | label=g1-battery-96-master | ts=2026-10-01T21:17:38.729Z | chosen=[31, 50, 23, 51] | sha256=3d14599a91c25318… | healthPassed=True",
+      "value": "31,50,23,51"
+    }
+  },
+  "prompts": 96,
+  "responses": [
+    {
+      "prompt_id": "g1b-arith-0000",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1989,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 33,
+        "eval_duration_ns": 1601851000,
+        "prompt_eval_count": 96
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"84+53=137, not 127.\"}"
+    },
+    {
+      "prompt_id": "g1b-arith-0001",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1667,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 28,
+        "eval_duration_ns": 1479509000,
+        "prompt_eval_count": 96
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"33 + 82 ≠ 115\"}"
+    },
+    {
+      "prompt_id": "g1b-arith-0002",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1575,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 26,
+        "eval_duration_ns": 1362450000,
+        "prompt_eval_count": 95
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"34 - 19 = 15\"}"
+    },
+    {
+      "prompt_id": "g1b-arith-0003",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1938,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 31,
+        "eval_duration_ns": 1740101000,
+        "prompt_eval_count": 95
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"64-31=33, not 34.\"}"
+    },
+    {
+      "prompt_id": "g1b-arith-0004",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1697,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 32,
+        "eval_duration_ns": 1496121000,
+        "prompt_eval_count": 95
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"15-35 = -20, not -10.\"}"
+    },
+    {
+      "prompt_id": "g1b-arith-0005",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1632,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 31,
+        "eval_duration_ns": 1452274000,
+        "prompt_eval_count": 95
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"85-24=61, not 51.\"}"
+    },
+    {
+      "prompt_id": "g1b-arith-0006",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1567,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 30,
+        "eval_duration_ns": 1389481000,
+        "prompt_eval_count": 95
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"58 + 21 = 79, incorrect.\"}"
+    },
+    {
+      "prompt_id": "g1b-arith-0007",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1656,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 32,
+        "eval_duration_ns": 1466004000,
+        "prompt_eval_count": 97
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"65 x 69 = 4485, incorrect.\"}"
+    },
+    {
+      "prompt_id": "g1b-arith-0008",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1622,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 31,
+        "eval_duration_ns": 1452404000,
+        "prompt_eval_count": 96
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"93 + 19 = 112 is incorrect.\"}"
+    },
+    {
+      "prompt_id": "g1b-arith-0009",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1832,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 35,
+        "eval_duration_ns": 1664998000,
+        "prompt_eval_count": 96
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"14 x 29 = 406, not 416.\"}"
+    },
+    {
+      "prompt_id": "g1b-arith-0010",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1556,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 29,
+        "eval_duration_ns": 1339646000,
+        "prompt_eval_count": 96
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"67 + 95 = 162.\"}"
+    },
+    {
+      "prompt_id": "g1b-arith-0011",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1465,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 28,
+        "eval_duration_ns": 1287926000,
+        "prompt_eval_count": 95
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"78-51=27 is incorrect.\"}"
+    },
+    {
+      "prompt_id": "g1b-arith-0012",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1375,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 26,
+        "eval_duration_ns": 1164673000,
+        "prompt_eval_count": 95
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"33 - 20 = 13\"}"
+    },
+    {
+      "prompt_id": "g1b-arith-0013",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1878,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 37,
+        "eval_duration_ns": 1700796000,
+        "prompt_eval_count": 97
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"78 x 51 = 3978, not 3979.\"}"
+    },
+    {
+      "prompt_id": "g1b-arith-0014",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1467,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 28,
+        "eval_duration_ns": 1294434000,
+        "prompt_eval_count": 96
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"66 + 94 ≠ 160\"}"
+    },
+    {
+      "prompt_id": "g1b-arith-0015",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1663,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 32,
+        "eval_duration_ns": 1498655000,
+        "prompt_eval_count": 97
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"30 x 77 = 2310, incorrect.\"}"
+    },
+    {
+      "prompt_id": "g1b-seq-0100",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1350,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 25,
+        "eval_duration_ns": 1153249000,
+        "prompt_eval_count": 123
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"The sequence increases by 9 each time.\"}"
+    },
+    {
+      "prompt_id": "g1b-seq-0101",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1311,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 25,
+        "eval_duration_ns": 1144324000,
+        "prompt_eval_count": 123
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"The sequence increases by 7 each time.\"}"
+    },
+    {
+      "prompt_id": "g1b-seq-0102",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1357,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 25,
+        "eval_duration_ns": 1137448000,
+        "prompt_eval_count": 122
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"The sequence increases by 8 each time.\"}"
+    },
+    {
+      "prompt_id": "g1b-seq-0103",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1602,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 31,
+        "eval_duration_ns": 1417274000,
+        "prompt_eval_count": 123
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"The sequence increments by 4, next term is 49.\"}"
+    },
+    {
+      "prompt_id": "g1b-seq-0104",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1220,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 23,
+        "eval_duration_ns": 1030412000,
+        "prompt_eval_count": 123
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"The sequence increases by 3.\"}"
+    },
+    {
+      "prompt_id": "g1b-seq-0105",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1221,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 23,
+        "eval_duration_ns": 1052424000,
+        "prompt_eval_count": 122
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"The sequence increases by 9.\"}"
+    },
+    {
+      "prompt_id": "g1b-seq-0106",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1244,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 23,
+        "eval_duration_ns": 1056422000,
+        "prompt_eval_count": 123
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"The sequence increases by 5.\"}"
+    },
+    {
+      "prompt_id": "g1b-seq-0107",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1310,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 25,
+        "eval_duration_ns": 1131704000,
+        "prompt_eval_count": 122
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"The sequence increases by 9 each time.\"}"
+    },
+    {
+      "prompt_id": "g1b-seq-0108",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1226,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 23,
+        "eval_duration_ns": 1055917999,
+        "prompt_eval_count": 123
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"The sequence is consecutive odd numbers.\"}"
+    },
+    {
+      "prompt_id": "g1b-seq-0109",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1338,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 23,
+        "eval_duration_ns": 1139689000,
+        "prompt_eval_count": 123
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"The sequence is consecutive odd numbers.\"}"
+    },
+    {
+      "prompt_id": "g1b-seq-0110",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1277,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 23,
+        "eval_duration_ns": 1073777000,
+        "prompt_eval_count": 123
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"The sequence increases by 5.\"}"
+    },
+    {
+      "prompt_id": "g1b-seq-0111",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1538,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 29,
+        "eval_duration_ns": 1367865000,
+        "prompt_eval_count": 123
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"The sequence increments by 4, not by 5.\"}"
+    },
+    {
+      "prompt_id": "g1b-seq-0112",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1220,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 28,
+        "eval_duration_ns": 1028941000,
+        "prompt_eval_count": 123
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"The sequence increments by 6, not 5.\"}"
+    },
+    {
+      "prompt_id": "g1b-seq-0113",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1167,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 31,
+        "eval_duration_ns": 1020411000,
+        "prompt_eval_count": 123
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"The sequence increases by 4 each time, so 42 follows.\"}"
+    },
+    {
+      "prompt_id": "g1b-seq-0114",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 948,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 23,
+        "eval_duration_ns": 790868000,
+        "prompt_eval_count": 123
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"The sequence increases by 7.\"}"
+    },
+    {
+      "prompt_id": "g1b-seq-0115",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 925,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 25,
+        "eval_duration_ns": 790449000,
+        "prompt_eval_count": 123
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"The sequence increases by 7 each time.\"}"
+    },
+    {
+      "prompt_id": "g1b-xref-0200",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1189,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 29,
+        "eval_duration_ns": 985786000,
+        "prompt_eval_count": 244
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"Tova assigned to D4 (Refit, Kodiak)\"}"
+    },
+    {
+      "prompt_id": "g1b-xref-0201",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 969,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 22,
+        "eval_duration_ns": 743401000,
+        "prompt_eval_count": 242
+      },
+      "text": "{\"claim_id\":\"Rosa\",\"verdict\":\"SUPPORTED\",\"reason\":\"Correct department and location.\"}"
+    },
+    {
+      "prompt_id": "g1b-xref-0202",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1196,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 30,
+        "eval_duration_ns": 980494000,
+        "prompt_eval_count": 237
+      },
+      "text": "{\"claim_id\":\"ivo_department\",\"verdict\":\"SUPPORTED\",\"reason\":\"Ivo assigned to D5 (Provisioning, Homer).\"}"
+    },
+    {
+      "prompt_id": "g1b-xref-0203",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1190,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 29,
+        "eval_duration_ns": 963668000,
+        "prompt_eval_count": 242
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"Hana assigned to D4 (Refit, Kodiak).\"}"
+    },
+    {
+      "prompt_id": "g1b-xref-0204",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1162,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 29,
+        "eval_duration_ns": 963012000,
+        "prompt_eval_count": 237
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"Gus assigned to D5 (Provisioning, Homer).\"}"
+    },
+    {
+      "prompt_id": "g1b-xref-0205",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1170,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 30,
+        "eval_duration_ns": 977711000,
+        "prompt_eval_count": 244
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"Quin assigned to D1, Juneau, not Homer.\"}"
+    },
+    {
+      "prompt_id": "g1b-xref-0206",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1432,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 36,
+        "eval_duration_ns": 1232194000,
+        "prompt_eval_count": 237
+      },
+      "text": "{\"claim_id\":\"alma_department\",\"verdict\":\"REFUTED\",\"reason\":\"Alma works in D5 (Provisioning, Homer), not Harbor Ops.\"}"
+    },
+    {
+      "prompt_id": "g1b-xref-0207",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1177,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 30,
+        "eval_duration_ns": 986020000,
+        "prompt_eval_count": 239
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"Sven assigned to D3, Anchorage, not Homer.\"}"
+    },
+    {
+      "prompt_id": "g1b-xref-0208",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1107,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 28,
+        "eval_duration_ns": 916907000,
+        "prompt_eval_count": 237
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"Omar works in D2, not Anchorage.\"}"
+    },
+    {
+      "prompt_id": "g1b-xref-0209",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1281,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 33,
+        "eval_duration_ns": 1089748000,
+        "prompt_eval_count": 243
+      },
+      "text": "{\"claim_id\":\"Nell\",\"verdict\":\"REFUTED\",\"reason\":\"Nell works in D5, not D5 (Anchorage).\"}"
+    },
+    {
+      "prompt_id": "g1b-xref-0210",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1405,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 35,
+        "eval_duration_ns": 1210347000,
+        "prompt_eval_count": 238
+      },
+      "text": "{\"claim_id\":\"Lena_D4_Kodiak\",\"verdict\":\"SUPPORTED\",\"reason\":\"Lena assigned to D4 (Refit, Kodiak).\"}"
+    },
+    {
+      "prompt_id": "g1b-xref-0211",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1635,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 43,
+        "eval_duration_ns": 1440017000,
+        "prompt_eval_count": 243
+      },
+      "text": "{\"claim_id\":\"Bo works in department D2 (Refit), stationed in Sitka\",\"verdict\":\"REFUTED\",\"reason\":\"Bo works in D2 (Rigging, Sitka)\"}"
+    },
+    {
+      "prompt_id": "g1b-xref-0212",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1147,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 29,
+        "eval_duration_ns": 946233000,
+        "prompt_eval_count": 237
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"Tova assigned to D5 (Provisioning, Homer).\"}"
+    },
+    {
+      "prompt_id": "g1b-xref-0213",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1144,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 28,
+        "eval_duration_ns": 949478000,
+        "prompt_eval_count": 235
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"Lena assigned to D3, Dispatch, Anchorage.\"}"
+    },
+    {
+      "prompt_id": "g1b-xref-0214",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1179,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 29,
+        "eval_duration_ns": 986332000,
+        "prompt_eval_count": 245
+      },
+      "text": "{\"claim_id\":\"Hana\",\"verdict\":\"SUPPORTED\",\"reason\":\"Matches assignment to D4 (Refit, Kodiak)\"}"
+    },
+    {
+      "prompt_id": "g1b-xref-0215",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1610,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 37,
+        "eval_duration_ns": 1400600000,
+        "prompt_eval_count": 243
+      },
+      "text": "{\"claim_id\":\"omar_rigging_sitka\",\"verdict\":\"SUPPORTED\",\"reason\":\"Omar assigned to D2 (Rigging, Sitka).\"}"
+    },
+    {
+      "prompt_id": "g1b-contra-0300",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 863,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 22,
+        "eval_duration_ns": 706702000,
+        "prompt_eval_count": 125
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"No conflict in items listed.\"}"
+    },
+    {
+      "prompt_id": "g1b-contra-0301",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 866,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 21,
+        "eval_duration_ns": 728838000,
+        "prompt_eval_count": 129
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"Statements directly contradict.\"}"
+    },
+    {
+      "prompt_id": "g1b-contra-0302",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 785,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 21,
+        "eval_duration_ns": 652128000,
+        "prompt_eval_count": 127
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"Statements directly contradict.\"}"
+    },
+    {
+      "prompt_id": "g1b-contra-0303",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 938,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 26,
+        "eval_duration_ns": 808614000,
+        "prompt_eval_count": 125
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"Statements contradict on the presence of a compass.\"}"
+    },
+    {
+      "prompt_id": "g1b-contra-0304",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 779,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 21,
+        "eval_duration_ns": 642830000,
+        "prompt_eval_count": 127
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"Statements directly contradict.\"}"
+    },
+    {
+      "prompt_id": "g1b-contra-0305",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 771,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 21,
+        "eval_duration_ns": 640981000,
+        "prompt_eval_count": 130
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"Statements directly contradict.\"}"
+    },
+    {
+      "prompt_id": "g1b-contra-0306",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 783,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 21,
+        "eval_duration_ns": 651516000,
+        "prompt_eval_count": 129
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"Statements directly contradict.\"}"
+    },
+    {
+      "prompt_id": "g1b-contra-0307",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1116,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 31,
+        "eval_duration_ns": 980264000,
+        "prompt_eval_count": 132
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"B states oilskin mitts NOT on list, A includes them.\"}"
+    },
+    {
+      "prompt_id": "g1b-contra-0308",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 778,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 21,
+        "eval_duration_ns": 650184000,
+        "prompt_eval_count": 128
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"Statements directly contradict.\"}"
+    },
+    {
+      "prompt_id": "g1b-contra-0309",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 958,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 26,
+        "eval_duration_ns": 814162000,
+        "prompt_eval_count": 128
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"Statements contradict on the presence of two coils.\"}"
+    },
+    {
+      "prompt_id": "g1b-contra-0310",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 772,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 21,
+        "eval_duration_ns": 643037000,
+        "prompt_eval_count": 128
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"Statements directly contradict.\"}"
+    },
+    {
+      "prompt_id": "g1b-contra-0311",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 926,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 26,
+        "eval_duration_ns": 797873000,
+        "prompt_eval_count": 126
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"Statements contradict on the presence of a compass.\"}"
+    },
+    {
+      "prompt_id": "g1b-contra-0312",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 882,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 23,
+        "eval_duration_ns": 741592000,
+        "prompt_eval_count": 131
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"Statements directly contradict each other.\"}"
+    },
+    {
+      "prompt_id": "g1b-contra-0313",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 847,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 21,
+        "eval_duration_ns": 692412000,
+        "prompt_eval_count": 129
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"Statements directly contradict.\"}"
+    },
+    {
+      "prompt_id": "g1b-contra-0314",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1132,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 31,
+        "eval_duration_ns": 987193000,
+        "prompt_eval_count": 131
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"B states oilskin mitts NOT on list, A includes them.\"}"
+    },
+    {
+      "prompt_id": "g1b-contra-0315",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 782,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 21,
+        "eval_duration_ns": 650354000,
+        "prompt_eval_count": 129
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"Statements directly contradict.\"}"
+    },
+    {
+      "prompt_id": "g1b-count-0400",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1183,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 33,
+        "eval_duration_ns": 1040175000,
+        "prompt_eval_count": 149
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"Manifest lists spare lanyards 4 times, not oilskin mitts.\"}"
+    },
+    {
+      "prompt_id": "g1b-count-0401",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 945,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 25,
+        "eval_duration_ns": 780164000,
+        "prompt_eval_count": 160
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"The tide table is listed only once.\"}"
+    },
+    {
+      "prompt_id": "g1b-count-0402",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1023,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 27,
+        "eval_duration_ns": 879632000,
+        "prompt_eval_count": 147
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"'a gaff' not listed in manifest.\"}"
+    },
+    {
+      "prompt_id": "g1b-count-0403",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1086,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 28,
+        "eval_duration_ns": 915106000,
+        "prompt_eval_count": 174
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"The manifest does not list 'a gaff'.\"}"
+    },
+    {
+      "prompt_id": "g1b-count-0404",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1064,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 28,
+        "eval_duration_ns": 898673000,
+        "prompt_eval_count": 162
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"Bait jars listed 4 times, not 8.\"}"
+    },
+    {
+      "prompt_id": "g1b-count-0405",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1119,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 29,
+        "eval_duration_ns": 948250000,
+        "prompt_eval_count": 185
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"'Spare lanyards' not listed in manifest.\"}"
+    },
+    {
+      "prompt_id": "g1b-count-0406",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1162,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 31,
+        "eval_duration_ns": 1006292000,
+        "prompt_eval_count": 138
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"'two coils' not listed, barometer listed 3 times.\"}"
+    },
+    {
+      "prompt_id": "g1b-count-0407",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1387,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 38,
+        "eval_duration_ns": 1235291000,
+        "prompt_eval_count": 149
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"'gaff' and 'tide table' listed 5 times, not 'coils'.\"}"
+    },
+    {
+      "prompt_id": "g1b-count-0408",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1013,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 26,
+        "eval_duration_ns": 844474000,
+        "prompt_eval_count": 186
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"Spare lanyards listed 7 times.\"}"
+    },
+    {
+      "prompt_id": "g1b-count-0409",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1095,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 29,
+        "eval_duration_ns": 929565000,
+        "prompt_eval_count": 169
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"The manifest lists 'a gaff' 0 times.\"}"
+    },
+    {
+      "prompt_id": "g1b-count-0410",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 891,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 23,
+        "eval_duration_ns": 736810000,
+        "prompt_eval_count": 147
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"Tide table not listed.\"}"
+    },
+    {
+      "prompt_id": "g1b-count-0411",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 985,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 26,
+        "eval_duration_ns": 838381000,
+        "prompt_eval_count": 149
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"Oilskin mitts listed 3 times.\"}"
+    },
+    {
+      "prompt_id": "g1b-count-0412",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1039,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 28,
+        "eval_duration_ns": 897873000,
+        "prompt_eval_count": 121
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"The manifest lists 'a compass' exactly 3 times.\"}"
+    },
+    {
+      "prompt_id": "g1b-count-0413",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 946,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 24,
+        "eval_duration_ns": 773765000,
+        "prompt_eval_count": 183
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"The logbook is not listed.\"}"
+    },
+    {
+      "prompt_id": "g1b-count-0414",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 974,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 25,
+        "eval_duration_ns": 805607000,
+        "prompt_eval_count": 173
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"The barometer appears 3 times.\"}"
+    },
+    {
+      "prompt_id": "g1b-count-0415",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 940,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 25,
+        "eval_duration_ns": 792268000,
+        "prompt_eval_count": 148
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"REFUTED\",\"reason\":\"Items listed more than 5 times.\"}"
+    },
+    {
+      "prompt_id": "g1b-date-0500",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1601,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 45,
+        "eval_duration_ns": 1456515000,
+        "prompt_eval_count": 113
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"2026-01-23 to 2026-02-18 is exactly 26 days.\"}"
+    },
+    {
+      "prompt_id": "g1b-date-0501",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1546,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 43,
+        "eval_duration_ns": 1402760000,
+        "prompt_eval_count": 113
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"2026-06-18 + 42 days = 2026-07-27\"}"
+    },
+    {
+      "prompt_id": "g1b-date-0502",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1597,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 45,
+        "eval_duration_ns": 1454004000,
+        "prompt_eval_count": 113
+      },
+      "text": "{\"claim_id\":\"<id>\",\"verdict\":\"SUPPORTED\",\"reason\":\"46 days after 2026-06-04 is 2026-07-19\"}"
+    },
+    {
+      "prompt_id": "g1b-date-0503",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1658,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 46,
+        "eval_duration_ns": 1523031000,
+        "prompt_eval_count": 113
+      },
+      "text": "{\"claim_id\":\"<id>\",\"verdict\":\"SUPPORTED\",\"reason\":\"18 days after 2026-07-03 is 2026-07-20.\"}"
+    },
+    {
+      "prompt_id": "g1b-date-0504",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1551,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 44,
+        "eval_duration_ns": 1403735000,
+        "prompt_eval_count": 113
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"12 days after 2026-02-22 is 2026-03-06.\"}"
+    },
+    {
+      "prompt_id": "g1b-date-0505",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1617,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 46,
+        "eval_duration_ns": 1481715000,
+        "prompt_eval_count": 113
+      },
+      "text": "{\"claim_id\":\"<id>\",\"verdict\":\"SUPPORTED\",\"reason\":\"2026-03-25 + 64 days is 2026-05-28.\"}"
+    },
+    {
+      "prompt_id": "g1b-date-0506",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1677,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 45,
+        "eval_duration_ns": 1540889000,
+        "prompt_eval_count": 113
+      },
+      "text": "{\"claim_id\":\"<id>\",\"verdict\":\"SUPPORTED\",\"reason\":\"65 days after 2026-06-26 is 2026-08-27\"}"
+    },
+    {
+      "prompt_id": "g1b-date-0507",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 840,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 22,
+        "eval_duration_ns": 704015000,
+        "prompt_eval_count": 113
+      },
+      "text": "{\"claim_id\":\"<id>\",\"verdict\":\"SUPPORTED\",\"reason\":\"Correct date calculation.\"}"
+    },
+    {
+      "prompt_id": "g1b-date-0508",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1865,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 47,
+        "eval_duration_ns": 1697153000,
+        "prompt_eval_count": 113
+      },
+      "text": "{\"claim_id\":\"<id>\",\"verdict\":\"REFUTED\",\"reason\":\"49 days after 2026-07-01 is 2026-08-07.\"}"
+    },
+    {
+      "prompt_id": "g1b-date-0509",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1835,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 46,
+        "eval_duration_ns": 1645638000,
+        "prompt_eval_count": 113
+      },
+      "text": "{\"claim_id\":\"<id>\",\"verdict\":\"SUPPORTED\",\"reason\":\"12 days after 2026-06-09 is 2026-06-23.\"}"
+    },
+    {
+      "prompt_id": "g1b-date-0510",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1641,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 45,
+        "eval_duration_ns": 1501618000,
+        "prompt_eval_count": 113
+      },
+      "text": "{\"claim_id\":\"<id>\",\"verdict\":\"SUPPORTED\",\"reason\":\"44 days after 2026-06-29 is 2026-08-12\"}"
+    },
+    {
+      "prompt_id": "g1b-date-0511",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1726,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 44,
+        "eval_duration_ns": 1582919000,
+        "prompt_eval_count": 113
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"17 days after 2026-05-01 is 2026-05-18.\"}"
+    },
+    {
+      "prompt_id": "g1b-date-0512",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1650,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 43,
+        "eval_duration_ns": 1504074000,
+        "prompt_eval_count": 113
+      },
+      "text": "{\"claim_id\":\"1\",\"verdict\":\"SUPPORTED\",\"reason\":\"2026-03-28 + 48 days = 2026-05-17\"}"
+    },
+    {
+      "prompt_id": "g1b-date-0513",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 964,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 23,
+        "eval_duration_ns": 799089000,
+        "prompt_eval_count": 113
+      },
+      "text": "{\"claim_id\":\"<id>\",\"verdict\":\"SUPPORTED\",\"reason\":\"Arithmetic matches calendar.\"}"
+    },
+    {
+      "prompt_id": "g1b-date-0514",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1886,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 46,
+        "eval_duration_ns": 1743257000,
+        "prompt_eval_count": 113
+      },
+      "text": "{\"claim_id\":\"<id>\",\"verdict\":\"SUPPORTED\",\"reason\":\"2026-05-26 + 19 days is 2026-06-14.\"}"
+    },
+    {
+      "prompt_id": "g1b-date-0515",
+      "max_tokens": 2000,
+      "temperature": 0,
+      "wall_ms": 1764,
+      "engine": "ollama:qwen2.5:7b-instruct-q4_K_M",
+      "timing": {
+        "eval_count": 47,
+        "eval_duration_ns": 1620670000,
+        "prompt_eval_count": 113
+      },
+      "text": "{\"claim_id\":\"<id>\",\"verdict\":\"SUPPORTED\",\"reason\":\"2026-02-13 to 2026-04-22 is exactly 66 days.\"}"
+    }
+  ]
+}

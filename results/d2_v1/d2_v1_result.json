@@ -1,0 +1,322 @@
+{
+ "task": "D2-V1",
+ "lane": "D2-V1",
+ "prereg": "proposals/runs/D2-stochastic-worlds-prereg.md",
+ "amendments": [
+  "estimator E3 (perm-exact norm-MI) primary, E0 reserve \u2014 E3 used",
+  "encoders declared+frozen per socket; determinacy on FULL-CHANNEL path only",
+  "H5 re-derived: gate on operational; per-socket spread is a DATUM with the synthetic floor (0.04) subtracted; degenerate input = F4 diagnostic",
+  "reflex twin target/input FIXED (operational delivered channel) so seeds are distinguishable",
+  "H6 re-adjudicated under frozen encoders (bar 0.648 >= 0.5 already booked)"
+ ],
+ "verdict": "INCONCLUSIVE",
+ "gates": {
+  "H1": "FAIL",
+  "H2": "PASS",
+  "H3": "PASS",
+  "H4": "PASS",
+  "H5": "INCONCLUSIVE",
+  "H6": "PASS"
+ },
+ "H1": {
+  "rho": -0.3714,
+  "rho_ci95": [
+   -0.6,
+   0.6
+  ],
+  "gate": "FAIL"
+ },
+ "H2": {
+  "near1_sockets": [
+   "reflex.orient",
+   "policy.action"
+  ],
+  "mean_gap_sim": -0.0071,
+  "gate": "PASS"
+ },
+ "H3": {
+  "mean_gap_sim": 0.0071,
+  "mean_gap_sim_mis": 0.1498,
+  "delta": 0.1427,
+  "gate": "PASS"
+ },
+ "H4": {
+  "std_pos_sto": 11.14209759109254,
+  "std_growthAt_sto": 332.82987091756075,
+  "std_pos_real": 12.063574151455287,
+  "std_growthAt_real": 325.6719023419122,
+  "gate": "PASS"
+ },
+ "H5": {
+  "spreads": {
+   "reflex.orient": 0.0,
+   "world.surprise": 0.4477,
+   "sensors.vision": 0.2813,
+   "policy.action": 0.9238,
+   "memory.semantic": 0.5873,
+   "memory.episodic": 0.0764
+  },
+  "excess_over_synth_floor": {
+   "reflex.orient": 0.0,
+   "world.surprise": 0.4077,
+   "sensors.vision": 0.2413,
+   "policy.action": 0.8838,
+   "memory.semantic": 0.5473,
+   "memory.episodic": 0.0364
+  },
+  "offenders": [
+   "world.surprise",
+   "sensors.vision",
+   "policy.action",
+   "memory.semantic"
+  ],
+  "n_sockets": 6,
+  "gate": "INCONCLUSIVE"
+ },
+ "H6": {
+  "range": 0.8799,
+  "gate": "PASS"
+ },
+ "H-GROWTH": {
+  "gated_grown": 166,
+  "unguided_grown": 176,
+  "n": 200,
+  "gated_frac": 0.83,
+  "unguided_frac": 0.88,
+  "gate": "PARTIAL/REPORT",
+  "receipt_purpose": "H-GROWTH gated/unguided receipts per world (v1)",
+  "booked": "R2 DOES NOT SURVIVE (unguided grows too \u2014 seed-vacuity confirmed)"
+ },
+ "F6": {
+  "ks_sim_vs_real": {
+   "D": 0.03153000000000003,
+   "p": 7.679113207496826e-87
+  },
+  "ks_mismatch_vs_real": {
+   "D": 0.6741250000000001,
+   "p": 0.0
+  },
+  "gate": "PASS"
+ },
+ "F8": {
+  "reflex_det_real": 1.0,
+  "reflex_det_sto": 1.0,
+  "delta": 0.0,
+  "gate": "PASS"
+ },
+ "determinacy": {
+  "reflex.orient": {
+   "operational": 1.0,
+   "uniform": 1.0,
+   "degenerate": 1.0,
+   "real_operational": 1.0,
+   "O": 2,
+   "log2O": 1.0,
+   "spread": 0.0,
+   "spread_excess_over_synth_floor": 0.0,
+   "h5_amended_stable": true,
+   "degenerate_role": "F4 diagnostic only (per amendment)"
+  },
+  "world.surprise": {
+   "operational": 0.4477,
+   "uniform": 0.0,
+   "degenerate": 0.0,
+   "real_operational": 0.4063,
+   "O": 5,
+   "log2O": 2.322,
+   "spread": 0.4477,
+   "spread_excess_over_synth_floor": 0.4077,
+   "h5_amended_stable": false,
+   "degenerate_role": "F4 diagnostic only (per amendment)"
+  },
+  "sensors.vision": {
+   "operational": 0.6162,
+   "uniform": 0.5264,
+   "degenerate": 0.335,
+   "real_operational": 0.6027,
+   "O": 512,
+   "log2O": 9.0,
+   "spread": 0.2813,
+   "spread_excess_over_synth_floor": 0.2413,
+   "h5_amended_stable": false,
+   "degenerate_role": "F4 diagnostic only (per amendment)"
+  },
+  "policy.action": {
+   "operational": 0.9012,
+   "uniform": 0.9816,
+   "degenerate": 0.0578,
+   "real_operational": 0.8833,
+   "O": 5,
+   "log2O": 2.322,
+   "spread": 0.9238,
+   "spread_excess_over_synth_floor": 0.8838,
+   "h5_amended_stable": false,
+   "degenerate_role": "F4 diagnostic only (per amendment)"
+  },
+  "memory.semantic": {
+   "operational": 0.1201,
+   "uniform": 0.0,
+   "degenerate": 0.5873,
+   "real_operational": 0.1235,
+   "O": 64,
+   "log2O": 6.0,
+   "spread": 0.5873,
+   "spread_excess_over_synth_floor": 0.5473,
+   "h5_amended_stable": false,
+   "degenerate_role": "F4 diagnostic only (per amendment)"
+  },
+  "memory.episodic": {
+   "operational": 0.1832,
+   "uniform": 0.1068,
+   "degenerate": 0.1275,
+   "real_operational": 0.1728,
+   "O": 16,
+   "log2O": 4.0,
+   "spread": 0.0764,
+   "spread_excess_over_synth_floor": 0.0364,
+   "h5_amended_stable": true,
+   "degenerate_role": "F4 diagnostic only (per amendment)"
+  }
+ },
+ "per_socket": {
+  "reflex.orient": {
+   "nerr_real_mean": 0.13626953333333333,
+   "nerr_sim_mean": 0.11914685555555554,
+   "nerr_sim_mis_mean": 0.1684183333333333,
+   "gap_sim": -0.0171,
+   "gap_sim_ci95": [
+    -0.0496,
+    0.0106
+   ],
+   "gap_sim_mis": 0.0321,
+   "gap_sim_mis_ci95": [
+    -0.0232,
+    0.0823
+   ],
+   "gap_seed_std": 0.0001937630293508281,
+   "seed_law": "PASS",
+   "determinacy_operational": 1.0,
+   "h5_amended_stable": true
+  },
+  "world.surprise": {
+   "nerr_real_mean": 0.16015555555555552,
+   "nerr_sim_mean": 0.14752222222222222,
+   "nerr_sim_mis_mean": 0.18443888888888887,
+   "gap_sim": -0.0126,
+   "gap_sim_ci95": [
+    -0.0626,
+    0.0331
+   ],
+   "gap_sim_mis": 0.0243,
+   "gap_sim_mis_ci95": [
+    -0.0361,
+    0.0854
+   ],
+   "gap_seed_std": 0.02389282008997372,
+   "seed_law": "PASS",
+   "determinacy_operational": 0.4477,
+   "h5_amended_stable": false
+  },
+  "sensors.vision": {
+   "nerr_real_mean": 0.8020499999999998,
+   "nerr_sim_mean": 0.8635833333333333,
+   "nerr_sim_mis_mean": 0.8618222222222222,
+   "gap_sim": 0.0615,
+   "gap_sim_ci95": [
+    0.0104,
+    0.1196
+   ],
+   "gap_sim_mis": 0.0598,
+   "gap_sim_mis_ci95": [
+    -0.0001,
+    0.1203
+   ],
+   "gap_seed_std": 0.00883189715788218,
+   "seed_law": "PASS",
+   "determinacy_operational": 0.6162,
+   "h5_amended_stable": false
+  },
+  "policy.action": {
+   "nerr_real_mean": 0.09158333333333334,
+   "nerr_sim_mean": 0.09455555555555553,
+   "nerr_sim_mis_mean": 0.7993555555555556,
+   "gap_sim": 0.003,
+   "gap_sim_ci95": [
+    -0.0016,
+    0.0096
+   ],
+   "gap_sim_mis": 0.7078,
+   "gap_sim_mis_ci95": [
+    0.6229,
+    0.7843
+   ],
+   "gap_seed_std": 0.002896816046951643,
+   "seed_law": "PASS",
+   "determinacy_operational": 0.9012,
+   "h5_amended_stable": false
+  },
+  "memory.semantic": {
+   "nerr_real_mean": 0.2808777777777777,
+   "nerr_sim_mean": 0.2884222222222222,
+   "nerr_sim_mis_mean": 0.36708888888888885,
+   "gap_sim": 0.0075,
+   "gap_sim_ci95": [
+    -0.0138,
+    0.0313
+   ],
+   "gap_sim_mis": 0.0862,
+   "gap_sim_mis_ci95": [
+    0.0348,
+    0.1382
+   ],
+   "gap_seed_std": 0.006800957630463376,
+   "seed_law": "PASS",
+   "determinacy_operational": 0.1201,
+   "h5_amended_stable": false
+  },
+  "memory.episodic": {
+   "nerr_real_mean": 0.9406555555555556,
+   "nerr_sim_mean": 0.9407277777777778,
+   "nerr_sim_mis_mean": 0.9293111111111112,
+   "gap_sim": 0.0001,
+   "gap_sim_ci95": [
+    -0.0212,
+    0.0219
+   ],
+   "gap_sim_mis": -0.0113,
+   "gap_sim_mis_ci95": [
+    -0.0483,
+    0.0163
+   ],
+   "gap_seed_std": 0.0023081712070354876,
+   "seed_law": "PASS",
+   "determinacy_operational": 0.1832,
+   "h5_amended_stable": true
+  }
+ },
+ "seed_law_offenders": [],
+ "extension": {
+  "h4_pass": true,
+  "rho_ci_width": 1.2,
+  "triggers": true,
+  "decision": "FIRE x5 extension (H4 pass + CI width 1.20 > 0.40)"
+ },
+ "bootstrap_B": 1000,
+ "bootstrap_note": "resample held-out REAL test worlds (n=60) for gaps; determinacy held at pooled operational value",
+ "world_report": {
+  "f3": {
+   "unique_sto": 1,
+   "n_unique_sto": 200,
+   "n": 200,
+   "gate": "PASS"
+  },
+  "h4": {
+   "std_pos_sto": 11.14209759109254,
+   "std_growthAt_sto": 332.82987091756075,
+   "std_pos_real": 12.063574151455287,
+   "std_growthAt_real": 325.6719023419122,
+   "gate": "PASS"
+  },
+  "pct_grown_sto": 0.83
+ }
+}

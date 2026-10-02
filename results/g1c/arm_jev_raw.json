@@ -1,0 +1,1250 @@
+{
+  "g1b-arith-0000": {
+    "id": "g1b-arith-0000",
+    "http": 200,
+    "state_sent": "Claim: 84 + 53 = 127.\nEvidence: none supplied \u2014 verify by computation.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.95}},\"usage\":{\"input_tokens\":351,\"output_tokens\":22}}",
+    "noul": 0.95,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 351,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-arith-0001": {
+    "id": "g1b-arith-0001",
+    "http": 200,
+    "state_sent": "Claim: 33 + 82 = 115.\nEvidence: none supplied \u2014 verify by computation.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.98}},\"usage\":{\"input_tokens\":351,\"output_tokens\":22}}",
+    "noul": 0.98,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 351,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-arith-0002": {
+    "id": "g1b-arith-0002",
+    "http": 200,
+    "state_sent": "Claim: 34 - 19 = 15.\nEvidence: none supplied \u2014 verify by computation.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.97}},\"usage\":{\"input_tokens\":350,\"output_tokens\":22}}",
+    "noul": 0.97,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 350,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-arith-0003": {
+    "id": "g1b-arith-0003",
+    "http": 200,
+    "state_sent": "Claim: 64 - 31 = 34.\nEvidence: none supplied \u2014 verify by computation.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.04}},\"usage\":{\"input_tokens\":350,\"output_tokens\":22}}",
+    "noul": 0.04,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 350,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-arith-0004": {
+    "id": "g1b-arith-0004",
+    "http": 200,
+    "state_sent": "Claim: 15 - 35 = -10.\nEvidence: none supplied \u2014 verify by computation.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.03}},\"usage\":{\"input_tokens\":350,\"output_tokens\":22}}",
+    "noul": 0.03,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 350,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-arith-0005": {
+    "id": "g1b-arith-0005",
+    "http": 200,
+    "state_sent": "Claim: 85 - 24 = 51.\nEvidence: none supplied \u2014 verify by computation.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.3}},\"usage\":{\"input_tokens\":350,\"output_tokens\":22}}",
+    "noul": 0.3,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 350,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-arith-0006": {
+    "id": "g1b-arith-0006",
+    "http": 200,
+    "state_sent": "Claim: 58 + 21 = 79.\nEvidence: none supplied \u2014 verify by computation.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.97}},\"usage\":{\"input_tokens\":350,\"output_tokens\":22}}",
+    "noul": 0.97,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 350,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-arith-0007": {
+    "id": "g1b-arith-0007",
+    "http": 200,
+    "state_sent": "Claim: 65 x 69 = 4485.\nEvidence: none supplied \u2014 verify by computation.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.84}},\"usage\":{\"input_tokens\":352,\"output_tokens\":22}}",
+    "noul": 0.84,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 352,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-arith-0008": {
+    "id": "g1b-arith-0008",
+    "http": 200,
+    "state_sent": "Claim: 93 + 19 = 112.\nEvidence: none supplied \u2014 verify by computation.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.99}},\"usage\":{\"input_tokens\":351,\"output_tokens\":22}}",
+    "noul": 0.99,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 351,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-arith-0009": {
+    "id": "g1b-arith-0009",
+    "http": 200,
+    "state_sent": "Claim: 14 x 29 = 416.\nEvidence: none supplied \u2014 verify by computation.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.21}},\"usage\":{\"input_tokens\":351,\"output_tokens\":22}}",
+    "noul": 0.21,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 351,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-arith-0010": {
+    "id": "g1b-arith-0010",
+    "http": 200,
+    "state_sent": "Claim: 67 + 95 = 163.\nEvidence: none supplied \u2014 verify by computation.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.12}},\"usage\":{\"input_tokens\":351,\"output_tokens\":22}}",
+    "noul": 0.12,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 351,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-arith-0011": {
+    "id": "g1b-arith-0011",
+    "http": 200,
+    "state_sent": "Claim: 78 - 51 = 27.\nEvidence: none supplied \u2014 verify by computation.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.85}},\"usage\":{\"input_tokens\":350,\"output_tokens\":22}}",
+    "noul": 0.85,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 350,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-arith-0012": {
+    "id": "g1b-arith-0012",
+    "http": 200,
+    "state_sent": "Claim: 33 - 20 = 13.\nEvidence: none supplied \u2014 verify by computation.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.98}},\"usage\":{\"input_tokens\":350,\"output_tokens\":22}}",
+    "noul": 0.98,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 350,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-arith-0013": {
+    "id": "g1b-arith-0013",
+    "http": 200,
+    "state_sent": "Claim: 78 x 51 = 3979.\nEvidence: none supplied \u2014 verify by computation.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.09}},\"usage\":{\"input_tokens\":352,\"output_tokens\":22}}",
+    "noul": 0.09,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 352,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-arith-0014": {
+    "id": "g1b-arith-0014",
+    "http": 200,
+    "state_sent": "Claim: 66 + 94 = 160.\nEvidence: none supplied \u2014 verify by computation.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.98}},\"usage\":{\"input_tokens\":351,\"output_tokens\":22}}",
+    "noul": 0.98,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 351,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-arith-0015": {
+    "id": "g1b-arith-0015",
+    "http": 200,
+    "state_sent": "Claim: 30 x 77 = 2310.\nEvidence: none supplied \u2014 verify by computation.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.97}},\"usage\":{\"input_tokens\":352,\"output_tokens\":22}}",
+    "noul": 0.97,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 352,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-seq-0100": {
+    "id": "g1b-seq-0100",
+    "http": 200,
+    "state_sent": "Claim: the next term of the sequence [16, 25, 34, 43, 52, 61, 70, 79] is 89.\nEvidence: the sequence itself.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.31}},\"usage\":{\"input_tokens\":378,\"output_tokens\":22}}",
+    "noul": 0.31,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 378,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-seq-0101": {
+    "id": "g1b-seq-0101",
+    "http": 200,
+    "state_sent": "Claim: the next term of the sequence [22, 29, 36, 43, 50, 57, 64, 71] is 78.\nEvidence: the sequence itself.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.97}},\"usage\":{\"input_tokens\":378,\"output_tokens\":22}}",
+    "noul": 0.97,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 378,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-seq-0102": {
+    "id": "g1b-seq-0102",
+    "http": 200,
+    "state_sent": "Claim: the next term of the sequence [4, 12, 20, 28, 36, 44, 52, 60] is 68.\nEvidence: the sequence itself.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.96}},\"usage\":{\"input_tokens\":377,\"output_tokens\":22}}",
+    "noul": 0.96,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 377,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-seq-0103": {
+    "id": "g1b-seq-0103",
+    "http": 200,
+    "state_sent": "Claim: the next term of the sequence [17, 21, 25, 29, 33, 37, 41, 45] is 48.\nEvidence: the sequence itself.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.03}},\"usage\":{\"input_tokens\":378,\"output_tokens\":22}}",
+    "noul": 0.03,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 378,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-seq-0104": {
+    "id": "g1b-seq-0104",
+    "http": 200,
+    "state_sent": "Claim: the next term of the sequence [28, 31, 34, 37, 40, 43, 46, 49] is 51.\nEvidence: the sequence itself.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.06}},\"usage\":{\"input_tokens\":378,\"output_tokens\":22}}",
+    "noul": 0.06,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 378,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-seq-0105": {
+    "id": "g1b-seq-0105",
+    "http": 200,
+    "state_sent": "Claim: the next term of the sequence [3, 12, 21, 30, 39, 48, 57, 66] is 76.\nEvidence: the sequence itself.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.03}},\"usage\":{\"input_tokens\":377,\"output_tokens\":22}}",
+    "noul": 0.03,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 377,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-seq-0106": {
+    "id": "g1b-seq-0106",
+    "http": 200,
+    "state_sent": "Claim: the next term of the sequence [12, 17, 22, 27, 32, 37, 42, 47] is 51.\nEvidence: the sequence itself.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.04}},\"usage\":{\"input_tokens\":378,\"output_tokens\":22}}",
+    "noul": 0.04,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 378,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-seq-0107": {
+    "id": "g1b-seq-0107",
+    "http": 200,
+    "state_sent": "Claim: the next term of the sequence [6, 15, 24, 33, 42, 51, 60, 69] is 78.\nEvidence: the sequence itself.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.98}},\"usage\":{\"input_tokens\":377,\"output_tokens\":22}}",
+    "noul": 0.98,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 377,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-seq-0108": {
+    "id": "g1b-seq-0108",
+    "http": 200,
+    "state_sent": "Claim: the next term of the sequence [35, 37, 39, 41, 43, 45, 47, 49] is 53.\nEvidence: the sequence itself.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.08}},\"usage\":{\"input_tokens\":378,\"output_tokens\":22}}",
+    "noul": 0.08,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 378,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-seq-0109": {
+    "id": "g1b-seq-0109",
+    "http": 200,
+    "state_sent": "Claim: the next term of the sequence [21, 23, 25, 27, 29, 31, 33, 35] is 37.\nEvidence: the sequence itself.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.95}},\"usage\":{\"input_tokens\":378,\"output_tokens\":22}}",
+    "noul": 0.95,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 378,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-seq-0110": {
+    "id": "g1b-seq-0110",
+    "http": 200,
+    "state_sent": "Claim: the next term of the sequence [17, 22, 27, 32, 37, 42, 47, 52] is 58.\nEvidence: the sequence itself.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.03}},\"usage\":{\"input_tokens\":378,\"output_tokens\":22}}",
+    "noul": 0.03,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 378,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-seq-0111": {
+    "id": "g1b-seq-0111",
+    "http": 200,
+    "state_sent": "Claim: the next term of the sequence [38, 42, 46, 50, 54, 58, 62, 66] is 71.\nEvidence: the sequence itself.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.03}},\"usage\":{\"input_tokens\":378,\"output_tokens\":22}}",
+    "noul": 0.03,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 378,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-seq-0112": {
+    "id": "g1b-seq-0112",
+    "http": 200,
+    "state_sent": "Claim: the next term of the sequence [38, 44, 50, 56, 62, 68, 74, 80] is 85.\nEvidence: the sequence itself.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.04}},\"usage\":{\"input_tokens\":378,\"output_tokens\":22}}",
+    "noul": 0.04,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 378,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-seq-0113": {
+    "id": "g1b-seq-0113",
+    "http": 200,
+    "state_sent": "Claim: the next term of the sequence [10, 14, 18, 22, 26, 30, 34, 38] is 42.\nEvidence: the sequence itself.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.95}},\"usage\":{\"input_tokens\":378,\"output_tokens\":22}}",
+    "noul": 0.95,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 378,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-seq-0114": {
+    "id": "g1b-seq-0114",
+    "http": 200,
+    "state_sent": "Claim: the next term of the sequence [37, 44, 51, 58, 65, 72, 79, 86] is 93.\nEvidence: the sequence itself.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.97}},\"usage\":{\"input_tokens\":378,\"output_tokens\":22}}",
+    "noul": 0.97,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 378,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-seq-0115": {
+    "id": "g1b-seq-0115",
+    "http": 200,
+    "state_sent": "Claim: the next term of the sequence [10, 17, 24, 31, 38, 45, 52, 59] is 67.\nEvidence: the sequence itself.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.09}},\"usage\":{\"input_tokens\":378,\"output_tokens\":22}}",
+    "noul": 0.09,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 378,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-xref-0200": {
+    "id": "g1b-xref-0200",
+    "http": 200,
+    "state_sent": "Roster:\n  Tova \u2014 badge 236\n  Cira \u2014 badge 255\n  Eno \u2014 badge 256\n  Dov \u2014 badge 515\n  Omar \u2014 badge 626\n  Hana \u2014 badge 840\n\nAssignments:\n  Tova \u2192 department D4 (Refit, Kodiak)\n  Cira \u2192 department D4 (Refit, Kodiak)\n  Eno \u2192 department D4 (Refit, Kodiak)\n  Dov \u2192 department D4 (Refit, Kodiak)\n  Omar \u2192 department D5 (Provisioning, Homer)\n  Hana \u2192 department D1 (Harbor Ops, Juneau)\n\nClaim: Tova works in department D4 (Refit), stationed in Anchorage, per the assignments list.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.12}},\"usage\":{\"input_tokens\":505,\"output_tokens\":22}}",
+    "noul": 0.12,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 505,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-xref-0201": {
+    "id": "g1b-xref-0201",
+    "http": 200,
+    "state_sent": "Roster:\n  Bo \u2014 badge 224\n  Pia \u2014 badge 436\n  Rosa \u2014 badge 272\n  Kip \u2014 badge 605\n  Fay \u2014 badge 708\n  Quin \u2014 badge 461\n\nAssignments:\n  Bo \u2192 department D5 (Provisioning, Homer)\n  Pia \u2192 department D3 (Dispatch, Anchorage)\n  Rosa \u2192 department D2 (Rigging, Sitka)\n  Kip \u2192 department D1 (Harbor Ops, Juneau)\n  Fay \u2192 department D1 (Harbor Ops, Juneau)\n  Quin \u2192 department D1 (Harbor Ops, Juneau)\n\nClaim: Rosa works in department D2 (Rigging), stationed in Sitka, per the assignments list.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.99}},\"usage\":{\"input_tokens\":495,\"output_tokens\":22}}",
+    "noul": 0.99,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 495,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-xref-0202": {
+    "id": "g1b-xref-0202",
+    "http": 200,
+    "state_sent": "Roster:\n  Cira \u2014 badge 525\n  June \u2014 badge 879\n  Bo \u2014 badge 907\n  Ivo \u2014 badge 848\n  Fay \u2014 badge 776\n  Nell \u2014 badge 687\n\nAssignments:\n  Cira \u2192 department D4 (Refit, Kodiak)\n  June \u2192 department D5 (Provisioning, Homer)\n  Bo \u2192 department D3 (Dispatch, Anchorage)\n  Ivo \u2192 department D5 (Provisioning, Homer)\n  Fay \u2192 department D4 (Refit, Kodiak)\n  Nell \u2192 department D3 (Dispatch, Anchorage)\n\nClaim: Ivo works in department D5 (Provisioning), stationed in Homer, per the assignments list.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.99}},\"usage\":{\"input_tokens\":499,\"output_tokens\":22}}",
+    "noul": 0.99,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 499,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-xref-0203": {
+    "id": "g1b-xref-0203",
+    "http": 200,
+    "state_sent": "Roster:\n  Hana \u2014 badge 848\n  Rosa \u2014 badge 403\n  Nell \u2014 badge 567\n  Quin \u2014 badge 765\n  Cira \u2014 badge 164\n  Lena \u2014 badge 232\n\nAssignments:\n  Hana \u2192 department D4 (Refit, Kodiak)\n  Rosa \u2192 department D2 (Rigging, Sitka)\n  Nell \u2192 department D5 (Provisioning, Homer)\n  Quin \u2192 department D3 (Dispatch, Anchorage)\n  Cira \u2192 department D4 (Refit, Kodiak)\n  Lena \u2192 department D1 (Harbor Ops, Juneau)\n\nClaim: Hana works in department D4 (Refit), stationed in Kodiak, per the assignments list.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.99}},\"usage\":{\"input_tokens\":497,\"output_tokens\":22}}",
+    "noul": 0.99,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 497,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-xref-0204": {
+    "id": "g1b-xref-0204",
+    "http": 200,
+    "state_sent": "Roster:\n  Gus \u2014 badge 639\n  Bo \u2014 badge 896\n  Fay \u2014 badge 451\n  June \u2014 badge 952\n  Ivo \u2014 badge 737\n  Dov \u2014 badge 515\n\nAssignments:\n  Gus \u2192 department D5 (Provisioning, Homer)\n  Bo \u2192 department D3 (Dispatch, Anchorage)\n  Fay \u2192 department D1 (Harbor Ops, Juneau)\n  June \u2192 department D5 (Provisioning, Homer)\n  Ivo \u2192 department D4 (Refit, Kodiak)\n  Dov \u2192 department D1 (Harbor Ops, Juneau)\n\nClaim: Gus works in department D5 (Provisioning), stationed in Homer, per the assignments list.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.99}},\"usage\":{\"input_tokens\":499,\"output_tokens\":22}}",
+    "noul": 0.99,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 499,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-xref-0205": {
+    "id": "g1b-xref-0205",
+    "http": 200,
+    "state_sent": "Roster:\n  Pia \u2014 badge 455\n  Quin \u2014 badge 220\n  June \u2014 badge 834\n  Fay \u2014 badge 459\n  Cira \u2014 badge 249\n  Eno \u2014 badge 399\n\nAssignments:\n  Pia \u2192 department D1 (Harbor Ops, Juneau)\n  Quin \u2192 department D1 (Harbor Ops, Juneau)\n  June \u2192 department D4 (Refit, Kodiak)\n  Fay \u2192 department D4 (Refit, Kodiak)\n  Cira \u2192 department D4 (Refit, Kodiak)\n  Eno \u2192 department D1 (Harbor Ops, Juneau)\n\nClaim: Quin works in department D1 (Harbor Ops), stationed in Homer, per the assignments list.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.04}},\"usage\":{\"input_tokens\":499,\"output_tokens\":22}}",
+    "noul": 0.04,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 499,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-xref-0206": {
+    "id": "g1b-xref-0206",
+    "http": 200,
+    "state_sent": "Roster:\n  Lena \u2014 badge 261\n  Bo \u2014 badge 388\n  Nell \u2014 badge 239\n  Quin \u2014 badge 631\n  Rosa \u2014 badge 304\n  Alma \u2014 badge 348\n\nAssignments:\n  Lena \u2192 department D5 (Provisioning, Homer)\n  Bo \u2192 department D4 (Refit, Kodiak)\n  Nell \u2192 department D5 (Provisioning, Homer)\n  Quin \u2192 department D5 (Provisioning, Homer)\n  Rosa \u2192 department D1 (Harbor Ops, Juneau)\n  Alma \u2192 department D5 (Provisioning, Homer)\n\nClaim: Alma works in department D5 (Harbor Ops), stationed in Homer, per the assignments list.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.05}},\"usage\":{\"input_tokens\":495,\"output_tokens\":22}}",
+    "noul": 0.05,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 495,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-xref-0207": {
+    "id": "g1b-xref-0207",
+    "http": 200,
+    "state_sent": "Roster:\n  Sven \u2014 badge 974\n  Tova \u2014 badge 122\n  Fay \u2014 badge 333\n  Ivo \u2014 badge 283\n  Gus \u2014 badge 743\n  Alma \u2014 badge 962\n\nAssignments:\n  Sven \u2192 department D3 (Dispatch, Anchorage)\n  Tova \u2192 department D4 (Refit, Kodiak)\n  Fay \u2192 department D4 (Refit, Kodiak)\n  Ivo \u2192 department D1 (Harbor Ops, Juneau)\n  Gus \u2192 department D1 (Harbor Ops, Juneau)\n  Alma \u2192 department D1 (Harbor Ops, Juneau)\n\nClaim: Sven works in department D3 (Dispatch), stationed in Homer, per the assignments list.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.04}},\"usage\":{\"input_tokens\":496,\"output_tokens\":22}}",
+    "noul": 0.04,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 496,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-xref-0208": {
+    "id": "g1b-xref-0208",
+    "http": 200,
+    "state_sent": "Roster:\n  Omar \u2014 badge 497\n  Gus \u2014 badge 486\n  Sven \u2014 badge 828\n  Bo \u2014 badge 333\n  Kip \u2014 badge 606\n  Alma \u2014 badge 100\n\nAssignments:\n  Omar \u2192 department D2 (Rigging, Sitka)\n  Gus \u2192 department D4 (Refit, Kodiak)\n  Sven \u2192 department D1 (Harbor Ops, Juneau)\n  Bo \u2192 department D5 (Provisioning, Homer)\n  Kip \u2192 department D3 (Dispatch, Anchorage)\n  Alma \u2192 department D3 (Dispatch, Anchorage)\n\nClaim: Omar works in department D2 (Rigging), stationed in Anchorage, per the assignments list.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.03}},\"usage\":{\"input_tokens\":495,\"output_tokens\":22}}",
+    "noul": 0.03,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 495,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-xref-0209": {
+    "id": "g1b-xref-0209",
+    "http": 200,
+    "state_sent": "Roster:\n  Ivo \u2014 badge 529\n  Hana \u2014 badge 961\n  Nell \u2014 badge 393\n  Sven \u2014 badge 664\n  Gus \u2014 badge 793\n  Pia \u2014 badge 926\n\nAssignments:\n  Ivo \u2192 department D2 (Rigging, Sitka)\n  Hana \u2192 department D3 (Dispatch, Anchorage)\n  Nell \u2192 department D5 (Provisioning, Homer)\n  Sven \u2192 department D3 (Dispatch, Anchorage)\n  Gus \u2192 department D4 (Refit, Kodiak)\n  Pia \u2192 department D4 (Refit, Kodiak)\n\nClaim: Nell works in department D5 (Provisioning), stationed in Anchorage, per the assignments list.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.03}},\"usage\":{\"input_tokens\":498,\"output_tokens\":22}}",
+    "noul": 0.03,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 498,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-xref-0210": {
+    "id": "g1b-xref-0210",
+    "http": 200,
+    "state_sent": "Roster:\n  Hana \u2014 badge 606\n  June \u2014 badge 155\n  Pia \u2014 badge 405\n  Quin \u2014 badge 483\n  Fay \u2014 badge 476\n  Lena \u2014 badge 192\n\nAssignments:\n  Hana \u2192 department D3 (Dispatch, Anchorage)\n  June \u2192 department D4 (Refit, Kodiak)\n  Pia \u2192 department D5 (Provisioning, Homer)\n  Quin \u2192 department D2 (Rigging, Sitka)\n  Fay \u2192 department D4 (Refit, Kodiak)\n  Lena \u2192 department D4 (Refit, Kodiak)\n\nClaim: Lena works in department D4 (Refit), stationed in Kodiak, per the assignments list.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.99}},\"usage\":{\"input_tokens\":495,\"output_tokens\":22}}",
+    "noul": 0.99,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 495,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-xref-0211": {
+    "id": "g1b-xref-0211",
+    "http": 200,
+    "state_sent": "Roster:\n  Kip \u2014 badge 441\n  Nell \u2014 badge 534\n  Dov \u2014 badge 352\n  Gus \u2014 badge 615\n  Bo \u2014 badge 398\n  Quin \u2014 badge 242\n\nAssignments:\n  Kip \u2192 department D4 (Refit, Kodiak)\n  Nell \u2192 department D1 (Harbor Ops, Juneau)\n  Dov \u2192 department D1 (Harbor Ops, Juneau)\n  Gus \u2192 department D3 (Dispatch, Anchorage)\n  Bo \u2192 department D2 (Rigging, Sitka)\n  Quin \u2192 department D2 (Rigging, Sitka)\n\nClaim: Bo works in department D2 (Refit), stationed in Sitka, per the assignments list.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.07}},\"usage\":{\"input_tokens\":496,\"output_tokens\":22}}",
+    "noul": 0.07,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 496,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-xref-0212": {
+    "id": "g1b-xref-0212",
+    "http": 200,
+    "state_sent": "Roster:\n  Fay \u2014 badge 499\n  Bo \u2014 badge 400\n  Cira \u2014 badge 953\n  Tova \u2014 badge 604\n  Gus \u2014 badge 913\n  Lena \u2014 badge 314\n\nAssignments:\n  Fay \u2192 department D2 (Rigging, Sitka)\n  Bo \u2192 department D5 (Provisioning, Homer)\n  Cira \u2192 department D3 (Dispatch, Anchorage)\n  Tova \u2192 department D5 (Provisioning, Homer)\n  Gus \u2192 department D4 (Refit, Kodiak)\n  Lena \u2192 department D5 (Provisioning, Homer)\n\nClaim: Tova works in department D5 (Provisioning), stationed in Homer, per the assignments list.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.99}},\"usage\":{\"input_tokens\":500,\"output_tokens\":22}}",
+    "noul": 0.99,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 500,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-xref-0213": {
+    "id": "g1b-xref-0213",
+    "http": 200,
+    "state_sent": "Roster:\n  Lena \u2014 badge 471\n  Gus \u2014 badge 110\n  Mose \u2014 badge 543\n  June \u2014 badge 740\n  Bo \u2014 badge 554\n  Fay \u2014 badge 143\n\nAssignments:\n  Lena \u2192 department D3 (Dispatch, Anchorage)\n  Gus \u2192 department D1 (Harbor Ops, Juneau)\n  Mose \u2192 department D2 (Rigging, Sitka)\n  June \u2192 department D2 (Rigging, Sitka)\n  Bo \u2192 department D1 (Harbor Ops, Juneau)\n  Fay \u2192 department D3 (Dispatch, Anchorage)\n\nClaim: Lena works in department D3 (Dispatch), stationed in Anchorage, per the assignments list.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.99}},\"usage\":{\"input_tokens\":493,\"output_tokens\":22}}",
+    "noul": 0.99,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 493,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-xref-0214": {
+    "id": "g1b-xref-0214",
+    "http": 200,
+    "state_sent": "Roster:\n  Dov \u2014 badge 299\n  Tova \u2014 badge 293\n  Hana \u2014 badge 406\n  Omar \u2014 badge 414\n  Nell \u2014 badge 851\n  Sven \u2014 badge 837\n\nAssignments:\n  Dov \u2192 department D3 (Dispatch, Anchorage)\n  Tova \u2192 department D1 (Harbor Ops, Juneau)\n  Hana \u2192 department D4 (Refit, Kodiak)\n  Omar \u2192 department D2 (Rigging, Sitka)\n  Nell \u2192 department D4 (Refit, Kodiak)\n  Sven \u2192 department D1 (Harbor Ops, Juneau)\n\nClaim: Hana works in department D4 (Refit), stationed in Kodiak, per the assignments list.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.99}},\"usage\":{\"input_tokens\":499,\"output_tokens\":22}}",
+    "noul": 0.99,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 499,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-xref-0215": {
+    "id": "g1b-xref-0215",
+    "http": 200,
+    "state_sent": "Roster:\n  Cira \u2014 badge 538\n  Bo \u2014 badge 165\n  Sven \u2014 badge 904\n  Eno \u2014 badge 406\n  Tova \u2014 badge 587\n  Omar \u2014 badge 351\n\nAssignments:\n  Cira \u2192 department D2 (Rigging, Sitka)\n  Bo \u2192 department D2 (Rigging, Sitka)\n  Sven \u2192 department D3 (Dispatch, Anchorage)\n  Eno \u2192 department D3 (Dispatch, Anchorage)\n  Tova \u2192 department D2 (Rigging, Sitka)\n  Omar \u2192 department D2 (Rigging, Sitka)\n\nClaim: Omar works in department D2 (Rigging), stationed in Sitka, per the assignments list.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.99}},\"usage\":{\"input_tokens\":500,\"output_tokens\":22}}",
+    "noul": 0.99,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 500,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-contra-0300": {
+    "id": "g1b-contra-0300",
+    "http": 200,
+    "state_sent": "Statement A: The locker contains exactly these items: two coils, bait jars, a kettle, a gaff.\nStatement B: The spare lanyards is NOT on the locker list.\n\nClaim: Statements A and B are mutually consistent (both can be true).",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.9}},\"usage\":{\"input_tokens\":381,\"output_tokens\":22}}",
+    "noul": 0.9,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 381,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-contra-0301": {
+    "id": "g1b-contra-0301",
+    "http": 200,
+    "state_sent": "Statement A: The locker contains exactly these items: oilskin mitts, a gaff, a kettle, bait jars, the tide table.\nStatement B: The a kettle is NOT on the locker list.\n\nClaim: Statements A and B are mutually consistent (both can be true).",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.01}},\"usage\":{\"input_tokens\":385,\"output_tokens\":22}}",
+    "noul": 0.01,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 385,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-contra-0302": {
+    "id": "g1b-contra-0302",
+    "http": 200,
+    "state_sent": "Statement A: The locker contains exactly these items: the logbook, a compass, the barometer, oilskin mitts.\nStatement B: The the barometer is NOT on the locker list.\n\nClaim: Statements A and B are mutually consistent (both can be true).",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.01}},\"usage\":{\"input_tokens\":385,\"output_tokens\":22}}",
+    "noul": 0.01,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 385,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-contra-0303": {
+    "id": "g1b-contra-0303",
+    "http": 200,
+    "state_sent": "Statement A: The locker contains exactly these items: spare lanyards, a compass, the logbook, two coils.\nStatement B: The a compass is NOT on the locker list.\n\nClaim: Statements A and B are mutually consistent (both can be true).",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.02}},\"usage\":{\"input_tokens\":381,\"output_tokens\":22}}",
+    "noul": 0.02,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 381,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-contra-0304": {
+    "id": "g1b-contra-0304",
+    "http": 200,
+    "state_sent": "Statement A: The locker contains exactly these items: the barometer, the tide table, a compass, oilskin mitts.\nStatement B: The the barometer is NOT on the locker list.\n\nClaim: Statements A and B are mutually consistent (both can be true).",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.03}},\"usage\":{\"input_tokens\":385,\"output_tokens\":22}}",
+    "noul": 0.03,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 385,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-contra-0305": {
+    "id": "g1b-contra-0305",
+    "http": 200,
+    "state_sent": "Statement A: The locker contains exactly these items: the barometer, a gaff, bait jars, the logbook, the tide table.\nStatement B: The the logbook is NOT on the locker list.\n\nClaim: Statements A and B are mutually consistent (both can be true).",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.01}},\"usage\":{\"input_tokens\":387,\"output_tokens\":22}}",
+    "noul": 0.01,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 387,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-contra-0306": {
+    "id": "g1b-contra-0306",
+    "http": 200,
+    "state_sent": "Statement A: The locker contains exactly these items: oilskin mitts, two coils, the logbook, the barometer, a compass.\nStatement B: The a compass is NOT on the locker list.\n\nClaim: Statements A and B are mutually consistent (both can be true).",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.02}},\"usage\":{\"input_tokens\":386,\"output_tokens\":22}}",
+    "noul": 0.02,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 386,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-contra-0307": {
+    "id": "g1b-contra-0307",
+    "http": 200,
+    "state_sent": "Statement A: The locker contains exactly these items: the barometer, a gaff, the logbook, bait jars, oilskin mitts.\nStatement B: The oilskin mitts is NOT on the locker list.\n\nClaim: Statements A and B are mutually consistent (both can be true).",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.01}},\"usage\":{\"input_tokens\":389,\"output_tokens\":22}}",
+    "noul": 0.01,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 389,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-contra-0308": {
+    "id": "g1b-contra-0308",
+    "http": 200,
+    "state_sent": "Statement A: The locker contains exactly these items: the tide table, a kettle, the logbook, a compass, the barometer.\nStatement B: The a compass is NOT on the locker list.\n\nClaim: Statements A and B are mutually consistent (both can be true).",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.01}},\"usage\":{\"input_tokens\":385,\"output_tokens\":22}}",
+    "noul": 0.01,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 385,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-contra-0309": {
+    "id": "g1b-contra-0309",
+    "http": 200,
+    "state_sent": "Statement A: The locker contains exactly these items: spare lanyards, the barometer, a kettle, a compass, two coils.\nStatement B: The two coils is NOT on the locker list.\n\nClaim: Statements A and B are mutually consistent (both can be true).",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.02}},\"usage\":{\"input_tokens\":385,\"output_tokens\":22}}",
+    "noul": 0.02,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 385,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-contra-0310": {
+    "id": "g1b-contra-0310",
+    "http": 200,
+    "state_sent": "Statement A: The locker contains exactly these items: a gaff, a kettle, the logbook, spare lanyards.\nStatement B: The spare lanyards is NOT on the locker list.\n\nClaim: Statements A and B are mutually consistent (both can be true).",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.01}},\"usage\":{\"input_tokens\":384,\"output_tokens\":22}}",
+    "noul": 0.01,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 384,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-contra-0311": {
+    "id": "g1b-contra-0311",
+    "http": 200,
+    "state_sent": "Statement A: The locker contains exactly these items: the logbook, the tide table, a compass, oilskin mitts.\nStatement B: The a compass is NOT on the locker list.\n\nClaim: Statements A and B are mutually consistent (both can be true).",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.02}},\"usage\":{\"input_tokens\":382,\"output_tokens\":22}}",
+    "noul": 0.02,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 382,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-contra-0312": {
+    "id": "g1b-contra-0312",
+    "http": 200,
+    "state_sent": "Statement A: The locker contains exactly these items: two coils, oilskin mitts, the barometer, spare lanyards, bait jars.\nStatement B: The the barometer is NOT on the locker list.\n\nClaim: Statements A and B are mutually consistent (both can be true).",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.01}},\"usage\":{\"input_tokens\":389,\"output_tokens\":22}}",
+    "noul": 0.01,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 389,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-contra-0313": {
+    "id": "g1b-contra-0313",
+    "http": 200,
+    "state_sent": "Statement A: The locker contains exactly these items: a compass, spare lanyards, the logbook, a kettle, the barometer.\nStatement B: The a kettle is NOT on the locker list.\n\nClaim: Statements A and B are mutually consistent (both can be true).",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.01}},\"usage\":{\"input_tokens\":386,\"output_tokens\":22}}",
+    "noul": 0.01,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 386,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-contra-0314": {
+    "id": "g1b-contra-0314",
+    "http": 200,
+    "state_sent": "Statement A: The locker contains exactly these items: bait jars, a gaff, oilskin mitts, a compass, the tide table.\nStatement B: The oilskin mitts is NOT on the locker list.\n\nClaim: Statements A and B are mutually consistent (both can be true).",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.01}},\"usage\":{\"input_tokens\":387,\"output_tokens\":22}}",
+    "noul": 0.01,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 387,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-contra-0315": {
+    "id": "g1b-contra-0315",
+    "http": 200,
+    "state_sent": "Statement A: The locker contains exactly these items: bait jars, a kettle, oilskin mitts, a compass, the tide table.\nStatement B: The the tide table is NOT on the locker list.\n\nClaim: Statements A and B are mutually consistent (both can be true).",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.01}},\"usage\":{\"input_tokens\":385,\"output_tokens\":22}}",
+    "noul": 0.01,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 385,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-count-0400": {
+    "id": "g1b-count-0400",
+    "http": 200,
+    "state_sent": "Manifest states: spare lanyards; bait jars; the tide table; a compass; spare lanyards; spare lanyards; the tide table; spare lanyards; bait jars; the barometer; a kettle; a compass; the barometer; a compass; the logbook.\n\nClaim: the manifest lists 'oilskin mitts' exactly 4 times.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.01}},\"usage\":{\"input_tokens\":407,\"output_tokens\":22}}",
+    "noul": 0.01,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 407,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-count-0401": {
+    "id": "g1b-count-0401",
+    "http": 200,
+    "state_sent": "Manifest states: a kettle; a gaff; a kettle; the barometer; bait jars; a compass; the barometer; spare lanyards; the logbook; the barometer; the barometer; bait jars; spare lanyards; oilskin mitts; the logbook; oilskin mitts; a compass; the tide table.\n\nClaim: the manifest lists 'the tide table' exactly 6 times.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.01}},\"usage\":{\"input_tokens\":420,\"output_tokens\":22}}",
+    "noul": 0.01,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 420,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-count-0402": {
+    "id": "g1b-count-0402",
+    "http": 200,
+    "state_sent": "Manifest states: the logbook; a kettle; oilskin mitts; the barometer; a kettle; a compass; oilskin mitts; the barometer; oilskin mitts; the logbook; two coils; a compass; oilskin mitts; a compass; a compass.\n\nClaim: the manifest lists 'a gaff' exactly 6 times.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.01}},\"usage\":{\"input_tokens\":405,\"output_tokens\":22}}",
+    "noul": 0.01,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 405,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-count-0403": {
+    "id": "g1b-count-0403",
+    "http": 200,
+    "state_sent": "Manifest states: oilskin mitts; two coils; bait jars; the barometer; the tide table; a compass; two coils; a kettle; a compass; the logbook; a compass; the logbook; oilskin mitts; bait jars; a kettle; a compass; the barometer; two coils; a kettle; the barometer; bait jars; bait jars; the tide table; the logbook.\n\nClaim: the manifest lists 'a gaff' exactly 8 times.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.01}},\"usage\":{\"input_tokens\":433,\"output_tokens\":22}}",
+    "noul": 0.01,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 433,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-count-0404": {
+    "id": "g1b-count-0404",
+    "http": 200,
+    "state_sent": "Manifest states: a compass; the logbook; oilskin mitts; spare lanyards; a compass; a kettle; bait jars; a compass; two coils; two coils; a kettle; a compass; two coils; two coils; bait jars; spare lanyards; a compass; a compass; the tide table; the tide table; a compass.\n\nClaim: the manifest lists 'bait jars' exactly 8 times.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.01}},\"usage\":{\"input_tokens\":417,\"output_tokens\":22}}",
+    "noul": 0.01,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 417,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-count-0405": {
+    "id": "g1b-count-0405",
+    "http": 200,
+    "state_sent": "Manifest states: the tide table; a kettle; the tide table; the logbook; two coils; the logbook; a kettle; the tide table; oilskin mitts; the logbook; a gaff; a gaff; bait jars; a gaff; two coils; a kettle; the logbook; a gaff; oilskin mitts; oilskin mitts; the barometer; the barometer; a gaff; a gaff.\n\nClaim: the manifest lists 'spare lanyards' exactly 7 times.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.01}},\"usage\":{\"input_tokens\":443,\"output_tokens\":22}}",
+    "noul": 0.01,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 443,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-count-0406": {
+    "id": "g1b-count-0406",
+    "http": 200,
+    "state_sent": "Manifest states: the logbook; the logbook; oilskin mitts; spare lanyards; a compass; the barometer; the barometer; spare lanyards; a gaff; the barometer; the tide table; bait jars.\n\nClaim: the manifest lists 'two coils' exactly 4 times.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.02}},\"usage\":{\"input_tokens\":397,\"output_tokens\":22}}",
+    "noul": 0.02,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 397,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-count-0407": {
+    "id": "g1b-count-0407",
+    "http": 200,
+    "state_sent": "Manifest states: a gaff; a compass; a gaff; a compass; spare lanyards; the tide table; the barometer; the logbook; the tide table; a gaff; a kettle; the logbook; spare lanyards; the tide table; spare lanyards.\n\nClaim: the manifest lists 'two coils' exactly 5 times.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.02}},\"usage\":{\"input_tokens\":406,\"output_tokens\":22}}",
+    "noul": 0.02,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 406,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-count-0408": {
+    "id": "g1b-count-0408",
+    "http": 200,
+    "state_sent": "Manifest states: oilskin mitts; the logbook; a compass; two coils; bait jars; spare lanyards; a compass; a gaff; bait jars; a gaff; a kettle; oilskin mitts; the tide table; the logbook; oilskin mitts; bait jars; spare lanyards; the barometer; two coils; spare lanyards; oilskin mitts; two coils; oilskin mitts; a kettle.\n\nClaim: the manifest lists 'spare lanyards' exactly 7 times.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.02}},\"usage\":{\"input_tokens\":443,\"output_tokens\":22}}",
+    "noul": 0.02,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 443,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-count-0409": {
+    "id": "g1b-count-0409",
+    "http": 200,
+    "state_sent": "Manifest states: oilskin mitts; two coils; the tide table; a compass; two coils; the logbook; bait jars; the barometer; a compass; the barometer; bait jars; oilskin mitts; the barometer; the logbook; bait jars; the tide table; the tide table; spare lanyards; the logbook; the tide table; two coils.\n\nClaim: the manifest lists 'a gaff' exactly 7 times.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.01}},\"usage\":{\"input_tokens\":428,\"output_tokens\":22}}",
+    "noul": 0.01,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 428,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-count-0410": {
+    "id": "g1b-count-0410",
+    "http": 200,
+    "state_sent": "Manifest states: a gaff; a compass; oilskin mitts; a gaff; bait jars; two coils; oilskin mitts; a compass; a compass; the barometer; a compass; oilskin mitts; oilskin mitts; the logbook; two coils.\n\nClaim: the manifest lists 'the tide table' exactly 6 times.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.01}},\"usage\":{\"input_tokens\":404,\"output_tokens\":22}}",
+    "noul": 0.01,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 404,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-count-0411": {
+    "id": "g1b-count-0411",
+    "http": 200,
+    "state_sent": "Manifest states: a compass; the barometer; a compass; a compass; spare lanyards; spare lanyards; oilskin mitts; two coils; a compass; oilskin mitts; the logbook; the tide table; two coils; the tide table; a gaff.\n\nClaim: the manifest lists 'oilskin mitts' exactly 5 times.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.01}},\"usage\":{\"input_tokens\":406,\"output_tokens\":22}}",
+    "noul": 0.01,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 406,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-count-0412": {
+    "id": "g1b-count-0412",
+    "http": 200,
+    "state_sent": "Manifest states: the logbook; two coils; oilskin mitts; spare lanyards; a compass; two coils; a compass; a kettle; a kettle.\n\nClaim: the manifest lists 'a compass' exactly 3 times.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.03}},\"usage\":{\"input_tokens\":377,\"output_tokens\":22}}",
+    "noul": 0.03,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 377,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-count-0413": {
+    "id": "g1b-count-0413",
+    "http": 200,
+    "state_sent": "Manifest states: bait jars; spare lanyards; the barometer; a compass; spare lanyards; a gaff; spare lanyards; bait jars; two coils; the barometer; oilskin mitts; spare lanyards; bait jars; oilskin mitts; a kettle; bait jars; the barometer; the tide table; a kettle; bait jars; a kettle; a kettle; spare lanyards; oilskin mitts.\n\nClaim: the manifest lists 'the logbook' exactly 7 times.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.01}},\"usage\":{\"input_tokens\":442,\"output_tokens\":22}}",
+    "noul": 0.01,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 442,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-count-0414": {
+    "id": "g1b-count-0414",
+    "http": 200,
+    "state_sent": "Manifest states: a kettle; spare lanyards; the tide table; oilskin mitts; the tide table; the logbook; a gaff; a compass; a gaff; a compass; the barometer; a kettle; the barometer; the logbook; the tide table; two coils; a gaff; oilskin mitts; a gaff; oilskin mitts; the tide table.\n\nClaim: the manifest lists 'the barometer' exactly 8 times.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.01}},\"usage\":{\"input_tokens\":432,\"output_tokens\":22}}",
+    "noul": 0.01,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 432,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-count-0415": {
+    "id": "g1b-count-0415",
+    "http": 200,
+    "state_sent": "Manifest states: bait jars; oilskin mitts; a kettle; oilskin mitts; bait jars; the barometer; a kettle; a compass; the logbook; spare lanyards; the tide table; a gaff; oilskin mitts; spare lanyards; bait jars.\n\nClaim: the manifest lists 'two coils' exactly 5 times.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.01}},\"usage\":{\"input_tokens\":405,\"output_tokens\":22}}",
+    "noul": 0.01,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 405,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-date-0500": {
+    "id": "g1b-date-0500",
+    "http": 200,
+    "state_sent": "Claim: 26 days after 2026-01-23 is 2026-02-18.\nEvidence: none supplied \u2014 verify by calendar arithmetic.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.97}},\"usage\":{\"input_tokens\":368,\"output_tokens\":22}}",
+    "noul": 0.97,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 368,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-date-0501": {
+    "id": "g1b-date-0501",
+    "http": 200,
+    "state_sent": "Claim: 42 days after 2026-06-18 is 2026-07-27.\nEvidence: none supplied \u2014 verify by calendar arithmetic.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.04}},\"usage\":{\"input_tokens\":368,\"output_tokens\":22}}",
+    "noul": 0.04,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 368,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-date-0502": {
+    "id": "g1b-date-0502",
+    "http": 200,
+    "state_sent": "Claim: 46 days after 2026-06-04 is 2026-07-19.\nEvidence: none supplied \u2014 verify by calendar arithmetic.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.29}},\"usage\":{\"input_tokens\":368,\"output_tokens\":22}}",
+    "noul": 0.29,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 368,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-date-0503": {
+    "id": "g1b-date-0503",
+    "http": 200,
+    "state_sent": "Claim: 18 days after 2026-07-03 is 2026-07-20.\nEvidence: none supplied \u2014 verify by calendar arithmetic.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.3}},\"usage\":{\"input_tokens\":368,\"output_tokens\":22}}",
+    "noul": 0.3,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 368,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-date-0504": {
+    "id": "g1b-date-0504",
+    "http": 200,
+    "state_sent": "Claim: 12 days after 2026-02-22 is 2026-03-06.\nEvidence: none supplied \u2014 verify by calendar arithmetic.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.95}},\"usage\":{\"input_tokens\":368,\"output_tokens\":22}}",
+    "noul": 0.95,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 368,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-date-0505": {
+    "id": "g1b-date-0505",
+    "http": 200,
+    "state_sent": "Claim: 64 days after 2026-03-25 is 2026-05-28.\nEvidence: none supplied \u2014 verify by calendar arithmetic.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.88}},\"usage\":{\"input_tokens\":368,\"output_tokens\":22}}",
+    "noul": 0.88,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 368,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-date-0506": {
+    "id": "g1b-date-0506",
+    "http": 200,
+    "state_sent": "Claim: 65 days after 2026-06-26 is 2026-08-27.\nEvidence: none supplied \u2014 verify by calendar arithmetic.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.08}},\"usage\":{\"input_tokens\":368,\"output_tokens\":22}}",
+    "noul": 0.08,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 368,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-date-0507": {
+    "id": "g1b-date-0507",
+    "http": 200,
+    "state_sent": "Claim: 85 days after 2026-05-09 is 2026-08-04.\nEvidence: none supplied \u2014 verify by calendar arithmetic.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.2}},\"usage\":{\"input_tokens\":368,\"output_tokens\":22}}",
+    "noul": 0.2,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 368,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-date-0508": {
+    "id": "g1b-date-0508",
+    "http": 200,
+    "state_sent": "Claim: 49 days after 2026-07-01 is 2026-08-18.\nEvidence: none supplied \u2014 verify by calendar arithmetic.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.51}},\"usage\":{\"input_tokens\":368,\"output_tokens\":22}}",
+    "noul": 0.51,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 368,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-date-0509": {
+    "id": "g1b-date-0509",
+    "http": 200,
+    "state_sent": "Claim: 12 days after 2026-06-09 is 2026-06-23.\nEvidence: none supplied \u2014 verify by calendar arithmetic.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.8}},\"usage\":{\"input_tokens\":368,\"output_tokens\":22}}",
+    "noul": 0.8,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 368,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-date-0510": {
+    "id": "g1b-date-0510",
+    "http": 200,
+    "state_sent": "Claim: 44 days after 2026-06-29 is 2026-08-12.\nEvidence: none supplied \u2014 verify by calendar arithmetic.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.71}},\"usage\":{\"input_tokens\":368,\"output_tokens\":22}}",
+    "noul": 0.71,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 368,
+      "output_tokens": 22
+    },
+    "verdict": "SUPPORTED"
+  },
+  "g1b-date-0511": {
+    "id": "g1b-date-0511",
+    "http": 200,
+    "state_sent": "Claim: 17 days after 2026-05-01 is 2026-05-15.\nEvidence: none supplied \u2014 verify by calendar arithmetic.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.04}},\"usage\":{\"input_tokens\":368,\"output_tokens\":22}}",
+    "noul": 0.04,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 368,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-date-0512": {
+    "id": "g1b-date-0512",
+    "http": 200,
+    "state_sent": "Claim: 48 days after 2026-03-28 is 2026-05-17.\nEvidence: none supplied \u2014 verify by calendar arithmetic.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.25}},\"usage\":{\"input_tokens\":368,\"output_tokens\":22}}",
+    "noul": 0.25,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 368,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-date-0513": {
+    "id": "g1b-date-0513",
+    "http": 200,
+    "state_sent": "Claim: 86 days after 2026-01-01 is 2026-03-29.\nEvidence: none supplied \u2014 verify by calendar arithmetic.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.47}},\"usage\":{\"input_tokens\":368,\"output_tokens\":22}}",
+    "noul": 0.47,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 368,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-date-0514": {
+    "id": "g1b-date-0514",
+    "http": 200,
+    "state_sent": "Claim: 19 days after 2026-05-26 is 2026-06-16.\nEvidence: none supplied \u2014 verify by calendar arithmetic.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.06}},\"usage\":{\"input_tokens\":368,\"output_tokens\":22}}",
+    "noul": 0.06,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 368,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  },
+  "g1b-date-0515": {
+    "id": "g1b-date-0515",
+    "http": 200,
+    "state_sent": "Claim: 66 days after 2026-02-13 is 2026-04-22.\nEvidence: none supplied \u2014 verify by calendar arithmetic.",
+    "raw": "{\"model\":\"jev-1.13.0\",\"answers\":{\"claim_holds\":{\"type\":\"noul\",\"noul\":0.32}},\"usage\":{\"input_tokens\":368,\"output_tokens\":22}}",
+    "noul": 0.32,
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 368,
+      "output_tokens": 22
+    },
+    "verdict": "REFUTED"
+  }
+}

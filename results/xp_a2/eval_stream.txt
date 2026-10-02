@@ -1,0 +1,5400 @@
+### entry 0 op=CLEAN heldout=False
+receipt judg_r4_s8070
+verdict: KILL
+mean_rel_improvement: +0.1781
+wins: 4 of 7 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 1035-7629
+rule: cell-mesh-relay
+digest: 78b16f0449c822bfb02283312af86606e24b6341352c4f5d31cc66bc21887029
+### entry 1 op=CLEAN heldout=False
+receipt anti_r2_s5509
+verdict: KILL
+mean_rel_improvement: +0.1824
+wins: 1 of 6 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 6388-5621
+rule: claim-ratio
+digest: 8699397ca3920dd14602125aff500cf32edf0022cdcbb08af5a7ae9356badeb8
+### entry 2 op=CLEAN heldout=False
+receipt cell_r9_s8553
+verdict: KILL
+mean_rel_improvement: -0.0089
+wins: 5 of 9 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 5904-6682
+rule: claim-ratio
+digest: cf07642f9998f13cc0fb0d0158c0dd6f51ea63054667c9f502eab6d7525ad8e6
+### entry 3 op=CLEAN heldout=False
+receipt fron_r7_s1945
+verdict: KILL
+mean_rel_improvement: +0.1912
+wins: 2 of 4 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 8216-7229
+rule: claim-ratio
+digest: 0f2bb93cc8d85bfabc3e28b597f842068507a87c38f5cc7ec5d182410aa6edc9
+### entry 4 op=CLEAN heldout=False
+receipt anti_r4_s4503
+verdict: KEEP
+mean_rel_improvement: +0.0576
+wins: 5 of 5 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 5290-8990
+rule: antirank-primacy
+digest: f4258036702c7300c508160d22881d6fc82ae61a90891a989f6e66805be9146a
+### entry 5 op=CLEAN heldout=False
+receipt anti_r1_s1558
+verdict: KILL
+mean_rel_improvement: -0.0947
+wins: 2 of 4 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 8428-6870
+rule: antirank-primacy
+digest: 9c4b21f31cab8ce883e0ece4985d101a2ebefdee21c33079abdcd1fa7bcb2adc
+### entry 6 op=CLEAN heldout=False
+receipt anti_r1_s7999
+verdict: KILL
+mean_rel_improvement: +0.0592
+wins: 0 of 4 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 5525-4807
+rule: judgment-holonomy
+digest: c3ceec469f47068e68167dc229e134e08f7d43b1f8509f7b4c2226fe8a8d5e13
+### entry 7 op=CLEAN heldout=False
+receipt judg_r7_s4068
+verdict: KILL
+mean_rel_improvement: +0.1685
+wins: 3 of 8 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 8082-9852
+rule: antirank-primacy
+digest: 1d9caa54163227e3532c48bf90c056aed5325b460d0ad139f855da7849989e33
+### entry 8 op=CLEAN heldout=False
+receipt cell_r7_s8426
+verdict: KEEP
+mean_rel_improvement: +0.1875
+wins: 7 of 8 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 9993-3263
+rule: frontier-distillation
+digest: 477afdbff1573fcb039f8a08a1db9ea50e3149b104db23a68905a8813efab020
+### entry 9 op=CLEAN heldout=False
+receipt judg_r7_s5104
+verdict: KEEP
+mean_rel_improvement: +0.1651
+wins: 5 of 5 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 5239-9548
+rule: cell-mesh-relay
+digest: 26ff38d0a001eda016643cb4bc7a05f0f29252dbf23f4bc8ea6d481659935940
+### entry 10 op=CLEAN heldout=False
+receipt judg_r6_s6572
+verdict: KILL
+mean_rel_improvement: -0.0066
+wins: 11 of 12 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 3643-9272
+rule: cell-mesh-relay
+digest: 60cf3adc57e0f2d1441ab6dff943c470f4659fb33f94919cb914728d836fc472
+### entry 11 op=CLEAN heldout=False
+receipt clai_r6_s3799
+verdict: KILL
+mean_rel_improvement: +0.1010
+wins: 1 of 4 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 3087-5616
+rule: judgment-holonomy
+digest: 93352b9a6f3bbfa5329eebb290de4febf991991fe621580bbc6440f828289d3a
+### entry 12 op=CLEAN heldout=False
+receipt judg_r1_s7998
+verdict: KILL
+mean_rel_improvement: +0.1227
+wins: 4 of 9 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 8287-9869
+rule: antirank-primacy
+digest: ab04a401cca6ef6872dabe2868b67c18e22ad3f3075110ffc3bb8547897d8b28
+### entry 13 op=CLEAN heldout=False
+receipt judg_r2_s5026
+verdict: KEEP
+mean_rel_improvement: +0.2202
+wins: 8 of 9 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 8875-6044
+rule: antirank-primacy
+digest: 187807040af1afd8d51aa4d571ce96d96b1bd0b65433d38225cfb476fcaf492f
+### entry 14 op=CLEAN heldout=False
+receipt anti_r1_s8381
+verdict: KILL
+mean_rel_improvement: -0.0550
+wins: 7 of 7 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 8652-4427
+rule: antirank-primacy
+digest: d1d8e184464404f80b88be9c2956cae0e30eb099abd924f34373deb9956563b5
+### entry 15 op=CLEAN heldout=False
+receipt judg_r7_s4157
+verdict: KILL
+mean_rel_improvement: -0.0911
+wins: 1 of 9 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 5433-7666
+rule: judgment-holonomy
+digest: 48c1eb7fb5f5cd88577f6b809aa83f3dfe11220b3c4303f3db18e033fd8d43ea
+### entry 16 op=CLEAN heldout=False
+receipt clai_r9_s8653
+verdict: KILL
+mean_rel_improvement: -0.0522
+wins: 8 of 8 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 7888-2840
+rule: judgment-holonomy
+digest: 31a2bc6ab77f990f134d872b347620189643b687fcabd6b0a6fd24d8fbe0d7f5
+### entry 17 op=CLEAN heldout=False
+receipt anti_r1_s9096
+verdict: KILL
+mean_rel_improvement: +0.0367
+wins: 2 of 10 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 2649-8180
+rule: antirank-primacy
+digest: 322062e2910db09a4b521aa75a3e8586bd53e5464ce6f00ba1fc7401ca70bfdd
+### entry 18 op=CLEAN heldout=False
+receipt anti_r4_s7921
+verdict: KILL
+mean_rel_improvement: -0.0366
+wins: 6 of 6 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 2323-4403
+rule: antirank-primacy
+digest: 6c70ab8e5f4c5924abb44d0002c5237173d18fc3114069f3b16c8982e5d7dfe9
+### entry 19 op=CLEAN heldout=False
+receipt judg_r9_s5126
+verdict: KILL
+mean_rel_improvement: -0.0576
+wins: 10 of 11 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 9974-9969
+rule: judgment-holonomy
+digest: cacbf89edcf4ad4b669809695240c905220b24cee8bf2d1f9aeab2e95a191656
+### entry 20 op=CLEAN heldout=False
+receipt cell_r6_s1333
+verdict: KILL
+mean_rel_improvement: -0.0142
+wins: 9 of 10 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 6784-7591
+rule: cell-mesh-relay
+digest: 91ab25c8e05b88b5b218fe34c11a8818740b232795031ec904972e8c22f39c52
+### entry 21 op=CLEAN heldout=False
+receipt cell_r5_s1090
+verdict: KILL
+mean_rel_improvement: +0.1244
+wins: 5 of 9 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 3683-4285
+rule: frontier-distillation
+digest: 0ebb1b2d1acf2435592450acf644bfaac6f11b3b0e6e42db116c487532cb9dc9
+### entry 22 op=CLEAN heldout=False
+receipt fron_r4_s9269
+verdict: KILL
+mean_rel_improvement: -0.0918
+wins: 6 of 6 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 7774-9139
+rule: claim-ratio
+digest: f2acae5f7b99b7dea7ffc014af6e69066d284b81a0f5f794b5a778a8356e25c9
+### entry 23 op=CLEAN heldout=False
+receipt clai_r6_s5673
+verdict: KILL
+mean_rel_improvement: -0.0927
+wins: 1 of 6 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 4965-5448
+rule: judgment-holonomy
+digest: 302188c11a12b952bfd4cca3f2d54929b4e73f01a8214e79e631a9a1351ce3ce
+### entry 24 op=CLEAN heldout=False
+receipt anti_r2_s9720
+verdict: KILL
+mean_rel_improvement: +0.0569
+wins: 1 of 9 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 5867-2151
+rule: antirank-primacy
+digest: 80356d439653db04f484bf94e5fac7a1807d414e3db187fa937a9eb4fdef7a16
+### entry 25 op=CLEAN heldout=False
+receipt clai_r9_s5319
+verdict: KILL
+mean_rel_improvement: +0.1464
+wins: 5 of 8 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 7441-1342
+rule: judgment-holonomy
+digest: 193a77e43c982d9deda415186e9b6a310a495e48c3910ba816e93ac2d1297fb3
+### entry 26 op=CLEAN heldout=False
+receipt clai_r1_s4547
+verdict: KILL
+mean_rel_improvement: -0.0986
+wins: 4 of 4 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 7475-3695
+rule: judgment-holonomy
+digest: c2e160562b4ad41686317618062f09b6f2186ad391e9c24d31a87308055009cd
+### entry 27 op=CLEAN heldout=False
+receipt fron_r1_s7268
+verdict: KILL
+mean_rel_improvement: +0.0912
+wins: 1 of 4 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 5924-4489
+rule: judgment-holonomy
+digest: 1e738ca017256dc2f37eb1d9dba74c901f0d4a61267cee7589d01a5553d84941
+### entry 28 op=CLEAN heldout=False
+receipt clai_r2_s2951
+verdict: KILL
+mean_rel_improvement: +0.1991
+wins: 4 of 7 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 7170-6922
+rule: frontier-distillation
+digest: 8ffaaa3f5158e75e40a1073dab4f0b43222c114dd4e0678378d747eb7c0e5bed
+### entry 29 op=CLEAN heldout=False
+receipt cell_r5_s4998
+verdict: KILL
+mean_rel_improvement: +0.0605
+wins: 1 of 6 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 3054-9049
+rule: judgment-holonomy
+digest: 80ac53f87dd01af4053a593bd7adc6a574b352563643d8163280747fb1457b7d
+### entry 30 op=CLEAN heldout=False
+receipt clai_r6_s4473
+verdict: KILL
+mean_rel_improvement: -0.0875
+wins: 11 of 11 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 7339-7960
+rule: antirank-primacy
+digest: 249b54119c51c9ba7449bf9ac01dd363f4d759a048cf95db0fb104820e19d9e0
+### entry 31 op=CLEAN heldout=False
+receipt cell_r6_s6836
+verdict: KILL
+mean_rel_improvement: -0.0701
+wins: 3 of 9 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 5659-9923
+rule: cell-mesh-relay
+digest: f9c50b9b82b160b7d1f36bb1ed921bd8529699fd6a093b0a996e5c7be6dca782
+### entry 32 op=CLEAN heldout=False
+receipt clai_r5_s4476
+verdict: KILL
+mean_rel_improvement: -0.0007
+wins: 7 of 12 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 2830-6099
+rule: claim-ratio
+digest: 50ba1e68a49a6771bb0528637e70e22eb18092f79ddb7b615af3d370b7218d37
+### entry 33 op=CLEAN heldout=False
+receipt anti_r8_s8591
+verdict: KILL
+mean_rel_improvement: -0.0399
+wins: 2 of 7 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 8324-3205
+rule: claim-ratio
+digest: 541f1aa517a6dc41705cf4db20f3712c605c9bb95e973296aff52417d09956dc
+### entry 34 op=CLEAN heldout=False
+receipt cell_r7_s5286
+verdict: KILL
+mean_rel_improvement: +0.0109
+wins: 1 of 4 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1927-9932
+rule: frontier-distillation
+digest: 0f0de4b55fdc7ade3eb04b17c3c62b2da8510871a88febb5d5c78c0dfcc96435
+### entry 35 op=CLEAN heldout=False
+receipt judg_r3_s3691
+verdict: KILL
+mean_rel_improvement: -0.0566
+wins: 2 of 10 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 8535-6725
+rule: antirank-primacy
+digest: 410b27b5a30d16631d57959e5c8849da805b7e2ab04f56f17142b595c4709fc4
+### entry 36 op=CLEAN heldout=False
+receipt anti_r7_s7986
+verdict: KILL
+mean_rel_improvement: -0.0425
+wins: 5 of 8 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 1414-2394
+rule: judgment-holonomy
+digest: d29331bd03d6f37be21d593d464060a77731274695905c0c589248581a348621
+### entry 37 op=CLEAN heldout=False
+receipt anti_r8_s7217
+verdict: KILL
+mean_rel_improvement: -0.0761
+wins: 7 of 10 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 7148-2211
+rule: frontier-distillation
+digest: 2a0526d27b808597a66426e272de2eb7d4883cec8a2cde65081b1354e77859d2
+### entry 38 op=CLEAN heldout=False
+receipt fron_r2_s4983
+verdict: KEEP
+mean_rel_improvement: +0.0832
+wins: 10 of 11 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 2783-3578
+rule: cell-mesh-relay
+digest: b74eb9d1c779e28669e8a8f251f70192494138e2b3b1a37be7f29d4b71ce2bc4
+### entry 39 op=CLEAN heldout=False
+receipt cell_r7_s3418
+verdict: KILL
+mean_rel_improvement: +0.0872
+wins: 2 of 12 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 9743-6527
+rule: judgment-holonomy
+digest: 72a065f3d67738b102c35822411e006cb4f2d2a77d35ce8429236a28eb3a172c
+### entry 40 op=CLEAN heldout=False
+receipt clai_r3_s1665
+verdict: KILL
+mean_rel_improvement: +0.2356
+wins: 7 of 10 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 5145-6932
+rule: cell-mesh-relay
+digest: 201158a69b1d741df433b7ef84dbe5c26243c23350b5dc68b4f02a8d5d6374e7
+### entry 41 op=CLEAN heldout=False
+receipt clai_r4_s2193
+verdict: KILL
+mean_rel_improvement: -0.0300
+wins: 2 of 4 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 8252-5261
+rule: judgment-holonomy
+digest: 4d43dcced8ff063807894b61245c41cfee0ef1a42673b0dd912c5b25f98f78a5
+### entry 42 op=CLEAN heldout=False
+receipt cell_r2_s4405
+verdict: KILL
+mean_rel_improvement: +0.0380
+wins: 0 of 7 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 6406-8487
+rule: claim-ratio
+digest: 08478c04333ad6dc0dbeb946cbdc723db516368668199bae2ec55e0edefb6605
+### entry 43 op=CLEAN heldout=False
+receipt judg_r5_s3132
+verdict: KILL
+mean_rel_improvement: +0.0052
+wins: 1 of 5 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 9040-5680
+rule: cell-mesh-relay
+digest: 2aa76b7fbf75cb69275db1faa07deb4de2c49c2d188cbd850fcd8323fdd1a913
+### entry 44 op=CLEAN heldout=False
+receipt fron_r6_s7258
+verdict: KILL
+mean_rel_improvement: +0.2453
+wins: 1 of 11 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 3299-4768
+rule: frontier-distillation
+digest: 23c746859fada0f88c86357c9431ba91f48537e3c9499f8e7a5847417070c4a8
+### entry 45 op=CLEAN heldout=False
+receipt judg_r2_s2453
+verdict: KILL
+mean_rel_improvement: -0.0097
+wins: 0 of 5 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 9719-1097
+rule: claim-ratio
+digest: aa59458e538d36ec4288ca4cbe13ca4dcccc3bb2ae4a8a1a26a8ea872bf11cf3
+### entry 46 op=CLEAN heldout=False
+receipt judg_r8_s6946
+verdict: KEEP
+mean_rel_improvement: +0.0458
+wins: 4 of 5 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 4605-7786
+rule: frontier-distillation
+digest: 143a44a21e19c609c49d2dc9bffc47c127fa02995df2d0bf413a993572b25c56
+### entry 47 op=CLEAN heldout=False
+receipt anti_r5_s8022
+verdict: KILL
+mean_rel_improvement: +0.0496
+wins: 1 of 10 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 8250-2296
+rule: cell-mesh-relay
+digest: 96e743cf0e350673c26d09180a14ef9c8881652f79b7210b8dafeb8c409b42d7
+### entry 48 op=CLEAN heldout=False
+receipt fron_r9_s9980
+verdict: KILL
+mean_rel_improvement: -0.0100
+wins: 3 of 4 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 1316-4916
+rule: claim-ratio
+digest: 1df2aedd694a53035f208836db101240800cd6423f5abefd80f8e852fdb16ac8
+### entry 49 op=CLEAN heldout=False
+receipt cell_r9_s1867
+verdict: KILL
+mean_rel_improvement: -0.0087
+wins: 0 of 4 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1813-3052
+rule: claim-ratio
+digest: 85141cdcad3846f40ba8ae086f7650c305f594d63c177ca27c08268e89671f9a
+### entry 50 op=CLEAN heldout=False
+receipt fron_r5_s7017
+verdict: KILL
+mean_rel_improvement: -0.0381
+wins: 3 of 5 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 2505-6110
+rule: claim-ratio
+digest: 01e0e91a56a3ed87d278f327283fbbea124fefe19f7ec0cb0f4fb7b591ac89de
+### entry 51 op=CLEAN heldout=False
+receipt anti_r8_s1632
+verdict: KEEP
+mean_rel_improvement: +0.0502
+wins: 5 of 5 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 6501-7348
+rule: claim-ratio
+digest: e8caf5d7e8ada868ce891f26156d33ba0ca5760e9808a9be0d8b5c19ef734b08
+### entry 52 op=CLEAN heldout=False
+receipt cell_r3_s4182
+verdict: KILL
+mean_rel_improvement: +0.2145
+wins: 8 of 11 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 4467-2139
+rule: claim-ratio
+digest: 50c3cfe16ff0c4e4dc882bc3f0f93accdf584ed1df1e690bfde68638d6cbea96
+### entry 53 op=CLEAN heldout=False
+receipt anti_r1_s5796
+verdict: KILL
+mean_rel_improvement: +0.1594
+wins: 3 of 8 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 5350-6317
+rule: claim-ratio
+digest: f1aa5b75bc1b5371a737c5ccadb7491ad5e4a782121d1246aa9d54822f5d5bc4
+### entry 54 op=CLEAN heldout=False
+receipt anti_r2_s6758
+verdict: KILL
+mean_rel_improvement: +0.1468
+wins: 4 of 9 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 5809-3845
+rule: antirank-primacy
+digest: eb84050a9454cf4a21588d4feddda5ac1192ecb61868179dbbb19b987f09fb31
+### entry 55 op=CLEAN heldout=False
+receipt clai_r9_s1342
+verdict: KEEP
+mean_rel_improvement: +0.0999
+wins: 10 of 11 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 3278-6903
+rule: frontier-distillation
+digest: eb2934f94c8dc010b0bd71b3d91242e37030e52b0d9f9211834b840c2ee9b547
+### entry 56 op=CLEAN heldout=False
+receipt cell_r8_s4523
+verdict: KEEP
+mean_rel_improvement: +0.1455
+wins: 10 of 11 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 8439-1894
+rule: cell-mesh-relay
+digest: 12e6eccbfa66cf2f425cd7a925850a3b46e41cf2de62f8b63dcdad1b5a261116
+### entry 57 op=CLEAN heldout=False
+receipt clai_r8_s2091
+verdict: KILL
+mean_rel_improvement: -0.0116
+wins: 0 of 4 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 8429-3044
+rule: judgment-holonomy
+digest: 37c76ca057772cdb4f6ebf30e41c7f9f5b408b300b2da0099d16c0630b7124bf
+### entry 58 op=CLEAN heldout=False
+receipt cell_r3_s1043
+verdict: KILL
+mean_rel_improvement: +0.0733
+wins: 3 of 4 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 4768-7058
+rule: antirank-primacy
+digest: 2242c58022070b5d474357a338a2e78ae33c256a56668302e94e19bdca6b2993
+### entry 59 op=CLEAN heldout=False
+receipt fron_r9_s3725
+verdict: KILL
+mean_rel_improvement: +0.0403
+wins: 3 of 9 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 8026-8387
+rule: cell-mesh-relay
+digest: cde3a751bbbf7a325ada0fc45fac25df3532a64dabc8daa6ce2ff43685dd8aef
+### entry 60 op=CLEAN heldout=False
+receipt fron_r5_s1397
+verdict: KILL
+mean_rel_improvement: +0.1585
+wins: 2 of 7 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 4755-8247
+rule: judgment-holonomy
+digest: d8001682ee35753db549731587a2609ef5e980321f9f3f39e283b02bab73e069
+### entry 61 op=CLEAN heldout=False
+receipt judg_r2_s9651
+verdict: KILL
+mean_rel_improvement: -0.0189
+wins: 0 of 7 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 5330-3141
+rule: cell-mesh-relay
+digest: 2f59d7a12b8cf8d6513f0fb3a4b23ba17cc59220be6cb7aa7a2c230de9c94e51
+### entry 62 op=CLEAN heldout=False
+receipt clai_r8_s5065
+verdict: KEEP
+mean_rel_improvement: +0.2131
+wins: 12 of 12 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 9218-3796
+rule: cell-mesh-relay
+digest: 35e170e2e29a3985d388df8d51fb957a3205cfbffce2707c205c768989e88d33
+### entry 63 op=CLEAN heldout=False
+receipt clai_r6_s1563
+verdict: KILL
+mean_rel_improvement: -0.0411
+wins: 3 of 4 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 7298-3055
+rule: antirank-primacy
+digest: 18bdfc28eaca4ac2dc2db92790776a9dd6af9b89374a0fa3e642bddc6276dbc3
+### entry 64 op=CLEAN heldout=False
+receipt anti_r2_s5238
+verdict: KILL
+mean_rel_improvement: +0.2467
+wins: 3 of 5 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 6960-2671
+rule: cell-mesh-relay
+digest: 91eea7ce663ac3a89b47c0910af112c3330db21540de447727d00ac9986a8c8c
+### entry 65 op=CLEAN heldout=False
+receipt cell_r5_s6554
+verdict: KILL
+mean_rel_improvement: +0.1465
+wins: 3 of 7 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 7430-2049
+rule: judgment-holonomy
+digest: 818e221de240fb82d30f50165c89b0243aaea590cecbed8600f69378cd7b7975
+### entry 66 op=CLEAN heldout=False
+receipt cell_r2_s4101
+verdict: KILL
+mean_rel_improvement: +0.2229
+wins: 5 of 10 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 2127-3593
+rule: judgment-holonomy
+digest: 697a9a3154b5232deb1c9c154e9ecc299ad43e76988197bf794ed31c6c7f5571
+### entry 67 op=CLEAN heldout=False
+receipt fron_r8_s2733
+verdict: KILL
+mean_rel_improvement: +0.0126
+wins: 1 of 4 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 5778-2234
+rule: claim-ratio
+digest: 095b6f21720aa7975cbbe5825dee4787b05f0c15093eed440268b1e37932015a
+### entry 68 op=CLEAN heldout=False
+receipt judg_r3_s4539
+verdict: KILL
+mean_rel_improvement: +0.2084
+wins: 2 of 6 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 2845-9733
+rule: judgment-holonomy
+digest: 6f16cc39aec95f8ec832b2f8fea70fc69aaee5972f15cbfc73bc7b0def00de42
+### entry 69 op=CLEAN heldout=False
+receipt cell_r4_s8975
+verdict: KILL
+mean_rel_improvement: +0.0694
+wins: 2 of 6 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 7679-4176
+rule: judgment-holonomy
+digest: 380f198e69bdef800893c246e9d15ce6d71ccb314b324ad559216d40dfba4daf
+### entry 70 op=CLEAN heldout=False
+receipt fron_r5_s6203
+verdict: KILL
+mean_rel_improvement: +0.0511
+wins: 0 of 9 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 4895-8100
+rule: claim-ratio
+digest: d3354063a1b2118286128c2b9dc7359f649bacb37f6d1db2513850a5f193950c
+### entry 71 op=CLEAN heldout=False
+receipt anti_r3_s1484
+verdict: KILL
+mean_rel_improvement: -0.0752
+wins: 11 of 11 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 3242-5716
+rule: judgment-holonomy
+digest: d65ddbb25670ee0c1979d417aadf2f766b34ce466b07a15556aa73b6de0b383f
+### entry 72 op=CLEAN heldout=False
+receipt judg_r8_s5266
+verdict: KILL
+mean_rel_improvement: +0.2105
+wins: 1 of 10 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 7246-6138
+rule: claim-ratio
+digest: e641b329e849b2552711b0d015aebf61464af036529f5b13d4f9ca6b07eb028d
+### entry 73 op=CLEAN heldout=False
+receipt fron_r8_s2631
+verdict: KEEP
+mean_rel_improvement: +0.1468
+wins: 6 of 6 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 1660-1993
+rule: antirank-primacy
+digest: c57ffba34a6e5b2d614952b6120a4188006cc3bbb69fd0f38468418b49fe62ab
+### entry 74 op=CLEAN heldout=False
+receipt cell_r3_s4043
+verdict: KILL
+mean_rel_improvement: -0.0599
+wins: 3 of 5 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 7231-5687
+rule: frontier-distillation
+digest: e17e44fe86060c97121d4c9b87098957b38d7866044c704aafd3658a66894a19
+### entry 75 op=CLEAN heldout=False
+receipt cell_r8_s6821
+verdict: KILL
+mean_rel_improvement: +0.0109
+wins: 5 of 9 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 7933-7691
+rule: antirank-primacy
+digest: 69e049775fba7ad092e559578dee81db65105e0d6df6abf0ebc27c76278d4fe6
+### entry 76 op=CLEAN heldout=False
+receipt anti_r3_s1210
+verdict: KILL
+mean_rel_improvement: +0.1273
+wins: 2 of 5 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 5519-5486
+rule: frontier-distillation
+digest: 8fb38ab81958caf16ebbd598b87567c18c13da0b45143fd4aba9425aa85b6b8c
+### entry 77 op=CLEAN heldout=False
+receipt cell_r3_s1588
+verdict: KILL
+mean_rel_improvement: -0.0703
+wins: 8 of 10 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 7360-8460
+rule: claim-ratio
+digest: da4f7e6713594bb768fb15bff403b0d5ffbe212f7819d7ea7eaa9c0a666eae7e
+### entry 78 op=CLEAN heldout=False
+receipt anti_r4_s8877
+verdict: KILL
+mean_rel_improvement: -0.0410
+wins: 5 of 5 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1623-1810
+rule: judgment-holonomy
+digest: 4a897805a9827293e926198668fce721f3f112252c6031eb671335550c04e6ce
+### entry 79 op=CLEAN heldout=False
+receipt anti_r4_s7366
+verdict: KILL
+mean_rel_improvement: +0.0186
+wins: 0 of 6 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 1829-9304
+rule: claim-ratio
+digest: 37d2bb421c20774bb276c3b9146821ab57f7c3a1c8bde1deb96b0069bb3671a0
+### entry 80 op=CLEAN heldout=False
+receipt anti_r3_s5019
+verdict: KILL
+mean_rel_improvement: +0.2207
+wins: 0 of 8 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 1234-3147
+rule: claim-ratio
+digest: 6b3eecaaab3511f350847d1dfb8a9e5bf906fb128a7059531e88e3e55f9059a7
+### entry 81 op=CLEAN heldout=False
+receipt judg_r6_s7934
+verdict: KEEP
+mean_rel_improvement: +0.0659
+wins: 8 of 8 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 5256-7276
+rule: antirank-primacy
+digest: 29196eeeda8a6c7199a05bc63b146552a274cfe2e6fa2a966c137197208ac190
+### entry 82 op=CLEAN heldout=False
+receipt fron_r1_s8419
+verdict: KILL
+mean_rel_improvement: +0.0412
+wins: 3 of 4 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 3558-1835
+rule: antirank-primacy
+digest: 18181b07e737a8a98d1137029627feb764b0fab6945240a286a7b614711d6a16
+### entry 83 op=CLEAN heldout=False
+receipt judg_r3_s6253
+verdict: KILL
+mean_rel_improvement: -0.0519
+wins: 1 of 4 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 8240-7247
+rule: antirank-primacy
+digest: fe2de898072bc9591ff4c53ef66476cc8aee420a278ee98e40dd22c4003dc034
+### entry 84 op=CLEAN heldout=False
+receipt anti_r3_s8262
+verdict: KILL
+mean_rel_improvement: +0.0908
+wins: 5 of 8 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 8514-3275
+rule: claim-ratio
+digest: ccae93b131b3858f90e5affe1290630be182e15c1f0de8c063bbb297695d5e0e
+### entry 85 op=CLEAN heldout=False
+receipt fron_r3_s3754
+verdict: KILL
+mean_rel_improvement: +0.1143
+wins: 0 of 9 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 7840-2458
+rule: frontier-distillation
+digest: b48ff0ce2ec168ff72db5e2319e444657dcb557a3e5492de869429c88d87f478
+### entry 86 op=CLEAN heldout=False
+receipt judg_r4_s5063
+verdict: KILL
+mean_rel_improvement: +0.0315
+wins: 0 of 7 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 6902-8750
+rule: claim-ratio
+digest: afd00ec3d5b8601402dbc991932f6975494a39e08f25a3fb7a3bcd459f31ff04
+### entry 87 op=CLEAN heldout=False
+receipt fron_r7_s6025
+verdict: KILL
+mean_rel_improvement: +0.1623
+wins: 3 of 7 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 3072-8523
+rule: antirank-primacy
+digest: c4eba8bef71f3ac0a6b15f9a9704ff1e776c1f2d0fabb1cc120e079e8a851ea4
+### entry 88 op=CLEAN heldout=False
+receipt judg_r6_s4194
+verdict: KILL
+mean_rel_improvement: -0.0532
+wins: 9 of 10 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 7733-2318
+rule: frontier-distillation
+digest: d1e7b3b7c7c201daff3f26afbd1685a48d2ac95a7bf231918358caac1d3832bd
+### entry 89 op=CLEAN heldout=False
+receipt clai_r4_s2724
+verdict: KILL
+mean_rel_improvement: +0.0368
+wins: 4 of 7 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 7886-3728
+rule: antirank-primacy
+digest: 7924cf2b0b1b9d54169f4ac8a4f56c66ac604a889251a384a2888bafd74e8991
+### entry 90 op=CLEAN heldout=False
+receipt judg_r8_s3981
+verdict: KEEP
+mean_rel_improvement: +0.2054
+wins: 5 of 5 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 1568-8933
+rule: cell-mesh-relay
+digest: c638e5240d2a86daca29b6a5e175dbe841c484dd4239aa098e20a4358ab9d952
+### entry 91 op=CLEAN heldout=False
+receipt anti_r2_s5419
+verdict: KILL
+mean_rel_improvement: -0.0943
+wins: 2 of 9 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1978-7632
+rule: judgment-holonomy
+digest: 6a24b21621e83c6ca3d4380c3264aab85426e930ea9d8a58a75d597ab5ad2b44
+### entry 92 op=CLEAN heldout=False
+receipt clai_r1_s9329
+verdict: KILL
+mean_rel_improvement: -0.0478
+wins: 11 of 11 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 3226-5482
+rule: frontier-distillation
+digest: e0c23c765098128aa9cd5da7b7448ea624f83066ef2b2b7e30d3aa6e7f243c4d
+### entry 93 op=CLEAN heldout=False
+receipt judg_r2_s3959
+verdict: KILL
+mean_rel_improvement: +0.1126
+wins: 8 of 12 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 4272-5984
+rule: antirank-primacy
+digest: 93da5c40f0cf963e50a4dfcbea60819fa7de374f230332f044f2d59bbe5681b5
+### entry 94 op=CLEAN heldout=False
+receipt fron_r9_s9492
+verdict: KILL
+mean_rel_improvement: +0.1017
+wins: 0 of 11 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 7458-4303
+rule: claim-ratio
+digest: b7398308eea5b8d7006c8b3c9c3456e549357ff45cacc7f1fcd09b5219bc1a65
+### entry 95 op=CLEAN heldout=False
+receipt fron_r6_s8652
+verdict: KILL
+mean_rel_improvement: +0.0938
+wins: 0 of 8 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 5343-2120
+rule: antirank-primacy
+digest: 717830e7efe78eb4be724f9ba11ead936d38e7700b192b27fe6df179c5d412b2
+### entry 96 op=CLEAN heldout=False
+receipt clai_r9_s8952
+verdict: KILL
+mean_rel_improvement: +0.0945
+wins: 3 of 4 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 3453-5645
+rule: antirank-primacy
+digest: 967361361f5544e18938e5cb691e8ee962f7943827abcbb8a5120af6231397a9
+### entry 97 op=CLEAN heldout=False
+receipt anti_r5_s6253
+verdict: KILL
+mean_rel_improvement: -0.0321
+wins: 0 of 11 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 2717-2628
+rule: frontier-distillation
+digest: 97cda363839e417b90d390db3bfbb92a3a871da76375fc0482f995f8e65afa60
+### entry 98 op=CLEAN heldout=False
+receipt anti_r4_s2094
+verdict: KILL
+mean_rel_improvement: -0.0930
+wins: 7 of 8 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 5164-2383
+rule: antirank-primacy
+digest: 91827aa3a95033fcc29f75de4c9ff8a7af2ce4fca63806c94c9e94d17d47d47d
+### entry 99 op=CLEAN heldout=False
+receipt cell_r2_s3338
+verdict: KILL
+mean_rel_improvement: +0.2112
+wins: 5 of 7 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 3122-6799
+rule: antirank-primacy
+digest: a103bad7d1a46dbe26a4fc526df5a8ea3e1c40377ff9c5eda055ab0f7e3f8291
+### entry 100 op=CLEAN heldout=False
+receipt anti_r3_s8221
+verdict: KILL
+mean_rel_improvement: +0.1359
+wins: 4 of 7 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 1092-1011
+rule: claim-ratio
+digest: cee5b54d4bee18bd4d38c9f30eab80339477bfeb85d26737aad2cb2c5f4a9b64
+### entry 101 op=CLEAN heldout=False
+receipt anti_r4_s9472
+verdict: KEEP
+mean_rel_improvement: +0.1532
+wins: 8 of 9 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 5620-7249
+rule: frontier-distillation
+digest: 558de4be1d00c1e5bfd8cd351c91db2768c1428682a96c48a5697a6f5a31e7fb
+### entry 102 op=CLEAN heldout=False
+receipt clai_r3_s3223
+verdict: KILL
+mean_rel_improvement: -0.0629
+wins: 2 of 7 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 2316-8245
+rule: judgment-holonomy
+digest: 72ff3333ea0a6a85b6436d822542b0eb18175fe7005933388f82a0a8cc1b765e
+### entry 103 op=CLEAN heldout=False
+receipt judg_r3_s3232
+verdict: KILL
+mean_rel_improvement: +0.0220
+wins: 0 of 7 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 6367-9011
+rule: frontier-distillation
+digest: 5dad89c8e193429f6422d5685ac74ff89584c62fde1f622f71d911b4c1262918
+### entry 104 op=CLEAN heldout=False
+receipt cell_r8_s9094
+verdict: KILL
+mean_rel_improvement: +0.2337
+wins: 3 of 11 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 1037-2477
+rule: frontier-distillation
+digest: d17f359b4513ac2b50f018fdb3f7b0f578f1056ab05059f25f5d24184f270df5
+### entry 105 op=CLEAN heldout=False
+receipt cell_r5_s4686
+verdict: KILL
+mean_rel_improvement: +0.1846
+wins: 0 of 5 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 1755-3909
+rule: judgment-holonomy
+digest: edc1a7d6bdeccf2a2edd2353c41cedd64e7ab6b1d42a65927b04305480922196
+### entry 106 op=CLEAN heldout=False
+receipt cell_r9_s9969
+verdict: KILL
+mean_rel_improvement: -0.0155
+wins: 1 of 5 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 2719-4035
+rule: frontier-distillation
+digest: c9ff8266a9280538f046e0af060ca8b370ba2c33f704fa2b22e450c85b72189d
+### entry 107 op=CLEAN heldout=False
+receipt cell_r6_s2837
+verdict: KEEP
+mean_rel_improvement: +0.0876
+wins: 8 of 9 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 9604-9429
+rule: judgment-holonomy
+digest: b9fe7ffafe1dbdf6ffad573a7dd8cffa87dd23d09106c0efbf81f09302fe0796
+### entry 108 op=CLEAN heldout=False
+receipt clai_r3_s5531
+verdict: KILL
+mean_rel_improvement: -0.0504
+wins: 4 of 6 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1188-8436
+rule: cell-mesh-relay
+digest: 62991b27cbafc20ecab31492a8c8a04d5f8f3db47c767b5ed11d51da4d4c3424
+### entry 109 op=CLEAN heldout=False
+receipt anti_r9_s9210
+verdict: KEEP
+mean_rel_improvement: +0.0583
+wins: 7 of 8 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 4378-9998
+rule: antirank-primacy
+digest: 4b683d0064c15a1a486ff5393360a03fbea330b2d7ae34af8edd5ef046f71aa8
+### entry 110 op=CLEAN heldout=False
+receipt clai_r1_s7924
+verdict: KEEP
+mean_rel_improvement: +0.1218
+wins: 5 of 5 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 3777-3004
+rule: frontier-distillation
+digest: 36f4836140871a5485409cebe9f94c4380b7de5c52ada0603cb5425dce6d93d9
+### entry 111 op=CLEAN heldout=False
+receipt clai_r3_s1754
+verdict: KILL
+mean_rel_improvement: +0.0612
+wins: 7 of 12 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 4305-6843
+rule: frontier-distillation
+digest: 512110968f43a8b9f926b86bf89f2e758d954a05d2b77307d16814aec925b668
+### entry 112 op=CLEAN heldout=False
+receipt fron_r7_s5804
+verdict: KEEP
+mean_rel_improvement: +0.2409
+wins: 9 of 10 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 9681-7305
+rule: cell-mesh-relay
+digest: 7caa12185f9b51bce26ec07e43331bc85ea8137909044cc908e041083c74e605
+### entry 113 op=CLEAN heldout=False
+receipt judg_r7_s8184
+verdict: KILL
+mean_rel_improvement: +0.0683
+wins: 2 of 4 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 9505-1904
+rule: frontier-distillation
+digest: 4f3c51724db923186a1c2443352079f40756cd2c9593558f515f30b800d05e50
+### entry 114 op=CLEAN heldout=False
+receipt anti_r8_s2512
+verdict: KILL
+mean_rel_improvement: +0.2072
+wins: 8 of 12 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 2527-3273
+rule: judgment-holonomy
+digest: b9b1a6d7c6abead18e4d2cf65562aab594837371f7d2ce01efdb024f75d80bb3
+### entry 115 op=CLEAN heldout=False
+receipt anti_r1_s2741
+verdict: KILL
+mean_rel_improvement: +0.1722
+wins: 3 of 8 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 4765-7369
+rule: antirank-primacy
+digest: e516d09ace1b6731691f743cba21eb9930a74f05337d17ed46a44282a3e936ff
+### entry 116 op=CLEAN heldout=False
+receipt clai_r6_s6081
+verdict: KILL
+mean_rel_improvement: +0.1853
+wins: 2 of 7 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 2274-7252
+rule: antirank-primacy
+digest: f3f403a6c284aae13013b7038d6350afc0a47a96f49df9965f1414759c3b3cb2
+### entry 117 op=CLEAN heldout=False
+receipt clai_r5_s8385
+verdict: KILL
+mean_rel_improvement: -0.0971
+wins: 5 of 7 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 3853-4493
+rule: judgment-holonomy
+digest: 910aa0fee309dbaebcf2c9c6bd20d989e2d16aafe95af3d4906dc08ba2ea5066
+### entry 118 op=CLEAN heldout=False
+receipt cell_r8_s5938
+verdict: KILL
+mean_rel_improvement: +0.1415
+wins: 2 of 5 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 1561-6283
+rule: frontier-distillation
+digest: 1f5853026acf5c6f2f28163083390e65e1b32fb26a283691e5096786c39e7cbc
+### entry 119 op=CLEAN heldout=False
+receipt clai_r8_s1601
+verdict: KEEP
+mean_rel_improvement: +0.1134
+wins: 8 of 9 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 9568-5247
+rule: judgment-holonomy
+digest: b7d90e54712aad8697518cf0babb2c9ee864605fd5e00d6a60857418a34b8198
+### entry 120 op=CLEAN heldout=False
+receipt cell_r9_s1985
+verdict: KILL
+mean_rel_improvement: +0.0842
+wins: 2 of 7 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 4676-2034
+rule: claim-ratio
+digest: adc256dcd6e540f431cf9ff08f26ec4333e558819a8b49eb6e71a871d5513f05
+### entry 121 op=CLEAN heldout=False
+receipt cell_r8_s2152
+verdict: KILL
+mean_rel_improvement: +0.2156
+wins: 2 of 4 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1053-8745
+rule: antirank-primacy
+digest: 43f328df3e646c332e1ca8c6b0b2520c5021c77f41d323f2d3f6981a7cb448bc
+### entry 122 op=CLEAN heldout=False
+receipt judg_r5_s3252
+verdict: KILL
+mean_rel_improvement: +0.2032
+wins: 2 of 11 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 2385-2129
+rule: claim-ratio
+digest: 541a36e7bc845b56dc9d931f1c327c7da1a34c0ee547e63b14648397f963ad71
+### entry 123 op=CLEAN heldout=False
+receipt clai_r2_s9565
+verdict: KEEP
+mean_rel_improvement: +0.0507
+wins: 9 of 9 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 3159-2882
+rule: frontier-distillation
+digest: 6554d128de8658afb126867716cd7cfa5540a4aca31e44789e2cd2803e344de0
+### entry 124 op=CLEAN heldout=False
+receipt judg_r9_s6010
+verdict: KILL
+mean_rel_improvement: +0.1996
+wins: 1 of 4 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 3342-4453
+rule: claim-ratio
+digest: 761283f4c96a0dfe2b4d7e4abe5d9d61c22b776c2b615f0db9cce5663744866c
+### entry 125 op=CLEAN heldout=False
+receipt fron_r4_s1587
+verdict: KEEP
+mean_rel_improvement: +0.1643
+wins: 9 of 9 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 9429-8603
+rule: frontier-distillation
+digest: 74eae2ebc405dc36ba2464efadc40ed40d3a3fafa80e6e13f2760e1ce06dbaf1
+### entry 126 op=CLEAN heldout=False
+receipt anti_r1_s2747
+verdict: KILL
+mean_rel_improvement: +0.0264
+wins: 6 of 8 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 5450-1202
+rule: claim-ratio
+digest: 3160ca72562f8ff52cf1ce40db14da5b72d7c94c3f8a639099aac4ad480a6a23
+### entry 127 op=CLEAN heldout=False
+receipt clai_r2_s4739
+verdict: KILL
+mean_rel_improvement: -0.0079
+wins: 3 of 5 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 5484-9354
+rule: judgment-holonomy
+digest: 6344dc79b3b292ba213af67993862e5744c1db7b8f2c595fbc62a0c679100d4b
+### entry 128 op=CLEAN heldout=False
+receipt judg_r5_s8330
+verdict: KEEP
+mean_rel_improvement: +0.0151
+wins: 4 of 5 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 5157-3065
+rule: antirank-primacy
+digest: 81a2e8b0277af74f0da50637b5f227c715aa406b1a825ab49fea5810dc904a63
+### entry 129 op=CLEAN heldout=False
+receipt clai_r8_s9276
+verdict: KILL
+mean_rel_improvement: +0.0800
+wins: 4 of 12 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 5265-5295
+rule: frontier-distillation
+digest: f579c7f793c5abe61d74e6c0cf134a69b28e8648f0907c04cfbf772dc53af3e8
+### entry 130 op=CLEAN heldout=False
+receipt anti_r5_s8803
+verdict: KEEP
+mean_rel_improvement: +0.1315
+wins: 12 of 12 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 4963-2369
+rule: antirank-primacy
+digest: d05120667a10dc875a65668566647ea29152bb5b8c10740a83090608df7ecfa2
+### entry 131 op=CLEAN heldout=False
+receipt fron_r1_s1386
+verdict: KEEP
+mean_rel_improvement: +0.0613
+wins: 9 of 10 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 6825-5591
+rule: antirank-primacy
+digest: f5e86e06185dbf02957196138d3bdd61a5d799c63623fa3c29452b8271f78025
+### entry 132 op=CLEAN heldout=False
+receipt cell_r4_s3813
+verdict: KEEP
+mean_rel_improvement: +0.0218
+wins: 8 of 8 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 8673-1015
+rule: antirank-primacy
+digest: c01af289cb9c0df2286173c6ded51841c03960b81b1e7df127092bcb58488cf6
+### entry 133 op=CLEAN heldout=False
+receipt anti_r3_s9014
+verdict: KILL
+mean_rel_improvement: -0.0261
+wins: 0 of 10 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 1420-5337
+rule: cell-mesh-relay
+digest: fe581b8927da318f4d701bc0ac9391c257e199a63a3e8976f6f496d49e052b9a
+### entry 134 op=CLEAN heldout=False
+receipt cell_r2_s5668
+verdict: KILL
+mean_rel_improvement: +0.0220
+wins: 1 of 7 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 9305-5543
+rule: cell-mesh-relay
+digest: 82229661435763bb6854a6cd13f683522a69584b431a95de4f580634839ee9a1
+### entry 135 op=CLEAN heldout=False
+receipt anti_r4_s2296
+verdict: KEEP
+mean_rel_improvement: +0.1436
+wins: 10 of 11 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 4044-1217
+rule: claim-ratio
+digest: 73f58a84da1efe05c2ca22a36db83092ab4549e88853607741b18dfd490de471
+### entry 136 op=CLEAN heldout=False
+receipt anti_r2_s6765
+verdict: KILL
+mean_rel_improvement: +0.0822
+wins: 8 of 12 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 5920-7353
+rule: claim-ratio
+digest: 1e5825a3e9507b676d0f5e48f09826f8cb525cd6cb58fd28691c3682da9e0db5
+### entry 137 op=CLEAN heldout=False
+receipt judg_r1_s4620
+verdict: KEEP
+mean_rel_improvement: +0.2111
+wins: 8 of 8 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 2612-5766
+rule: antirank-primacy
+digest: f0dece9b746e86c7cc77297bfa83661bc75acb7ea0a384c1b31c7caa365ee135
+### entry 138 op=CLEAN heldout=False
+receipt judg_r6_s3405
+verdict: KILL
+mean_rel_improvement: +0.2237
+wins: 2 of 10 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 5635-6400
+rule: frontier-distillation
+digest: c91d03f5663beac5be13b21f841a1c0f52e45c5dca8b89822fe6a487f751764b
+### entry 139 op=CLEAN heldout=False
+receipt clai_r1_s3936
+verdict: KILL
+mean_rel_improvement: +0.0733
+wins: 3 of 4 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 1939-8700
+rule: frontier-distillation
+digest: e10594a37ecec203d06f7487bd1dc2312c38655ecf49a669ce50c5b23501abbd
+### entry 140 op=CLEAN heldout=False
+receipt anti_r3_s1714
+verdict: KILL
+mean_rel_improvement: +0.2266
+wins: 3 of 8 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 9506-5551
+rule: frontier-distillation
+digest: 02da280c435cedba2305b4ec5ebb84d335123abf9d7e0b4b5db7fea904951edb
+### entry 141 op=CLEAN heldout=False
+receipt judg_r3_s5771
+verdict: KEEP
+mean_rel_improvement: +0.0488
+wins: 8 of 10 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 4458-5924
+rule: claim-ratio
+digest: a374bbed8486a804cafca74b16a3fb420efcec9e1c93667846b7cb4f4d06b00f
+### entry 142 op=CLEAN heldout=False
+receipt fron_r9_s7837
+verdict: KILL
+mean_rel_improvement: +0.0558
+wins: 1 of 5 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 9728-7423
+rule: antirank-primacy
+digest: 153025fc3b0657b9acbb7deadd72702e9ab77ec731f7a5104931d306600fe87b
+### entry 143 op=CLEAN heldout=False
+receipt judg_r1_s1022
+verdict: KILL
+mean_rel_improvement: -0.0384
+wins: 0 of 7 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 6228-5945
+rule: antirank-primacy
+digest: 4e75e750accebf82a3a307f706bf896b6366b7ac7f12acecc389cebd1d081b31
+### entry 144 op=CLEAN heldout=False
+receipt cell_r7_s6415
+verdict: KILL
+mean_rel_improvement: -0.0175
+wins: 6 of 6 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1149-6422
+rule: frontier-distillation
+digest: 79f5de975a2810272a55249850a48aff1ef2dd42e3933e4c3991596879bb388a
+### entry 145 op=CLEAN heldout=False
+receipt clai_r8_s1274
+verdict: KILL
+mean_rel_improvement: +0.1759
+wins: 3 of 10 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 1062-6300
+rule: judgment-holonomy
+digest: e49a0a41b20cba76a7e0de2cac45671cdea04a8d78d760162d8d74bf765a4d55
+### entry 146 op=CLEAN heldout=False
+receipt fron_r4_s6168
+verdict: KEEP
+mean_rel_improvement: +0.0320
+wins: 8 of 10 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1948-4265
+rule: judgment-holonomy
+digest: 123b2d1621a63b201865a48812292b431411cd5f7ac94c23605e2d714d0971f7
+### entry 147 op=CLEAN heldout=False
+receipt clai_r6_s1199
+verdict: KEEP
+mean_rel_improvement: +0.0361
+wins: 6 of 7 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 3938-5404
+rule: antirank-primacy
+digest: b5797cb4ad4e0dbbeafd6559005739833d7f3d2bdab7d724230926550b987b46
+### entry 148 op=CLEAN heldout=False
+receipt anti_r3_s8057
+verdict: KILL
+mean_rel_improvement: +0.0476
+wins: 0 of 8 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 9940-5662
+rule: antirank-primacy
+digest: a2d2228fb4de32aed6a49b1e92a89188b184dc920fb211e0f46da15b9c6f29d6
+### entry 149 op=CLEAN heldout=False
+receipt fron_r4_s1764
+verdict: KILL
+mean_rel_improvement: -0.0930
+wins: 3 of 9 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 2253-9971
+rule: cell-mesh-relay
+digest: 4fe7de27c8ff3ed8a98f5d4a34b8eb0efd9594685ae68935d9b86d42edd61db6
+### entry 150 op=CLEAN heldout=False
+receipt cell_r6_s4062
+verdict: KEEP
+mean_rel_improvement: +0.1412
+wins: 4 of 4 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 9443-5436
+rule: claim-ratio
+digest: fcec232f18d58c9f12a0313131f35caafcab0e66744ee9553e8e6158e8a80626
+### entry 151 op=CLEAN heldout=False
+receipt fron_r3_s4558
+verdict: KILL
+mean_rel_improvement: -0.0530
+wins: 0 of 5 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 4933-7451
+rule: judgment-holonomy
+digest: b57b4c8278ec8f83bfd09c98a0e6bf1e82b46160ad151b01af31abd8bd51cef8
+### entry 152 op=CLEAN heldout=False
+receipt fron_r7_s1476
+verdict: KILL
+mean_rel_improvement: +0.0339
+wins: 5 of 8 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 1542-1233
+rule: claim-ratio
+digest: ba83708d4f33ea56aa10f6d5cfdab85d1e1d635a9b0a6eed4bd6c5b75d262007
+### entry 153 op=CLEAN heldout=False
+receipt fron_r2_s2881
+verdict: KILL
+mean_rel_improvement: +0.1350
+wins: 1 of 10 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 1986-1405
+rule: frontier-distillation
+digest: 2c6cd97c186b38c82095238be116652983e6ecbd0c6f453dcbd39623aed9738c
+### entry 154 op=CLEAN heldout=False
+receipt fron_r7_s4110
+verdict: KILL
+mean_rel_improvement: +0.1479
+wins: 3 of 11 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 9725-7144
+rule: frontier-distillation
+digest: e97974d20389dfa0053adf9cb5ed0134aa3793b3ba5e8095a05a2a660b0473a3
+### entry 155 op=CLEAN heldout=False
+receipt fron_r9_s9548
+verdict: KILL
+mean_rel_improvement: +0.1717
+wins: 3 of 4 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 5520-3101
+rule: judgment-holonomy
+digest: a01b8dde9117247a59da7d49321cdbc12e22c1cf3805afc9dd190342e5765f72
+### entry 156 op=CLEAN heldout=False
+receipt cell_r4_s6185
+verdict: KILL
+mean_rel_improvement: +0.0142
+wins: 4 of 6 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 9825-4122
+rule: cell-mesh-relay
+digest: 63babcdfeae7dcacf4ae9ba38bd88b589c16019e478c2d7932ccbac329886f98
+### entry 157 op=CLEAN heldout=False
+receipt cell_r8_s6886
+verdict: KEEP
+mean_rel_improvement: +0.2035
+wins: 6 of 6 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 9288-6213
+rule: frontier-distillation
+digest: 42e9e168957c29bad869467b3c377183fe2ea8d4d87be96b53bd3fbbca91ec6f
+### entry 158 op=CLEAN heldout=False
+receipt cell_r5_s4480
+verdict: KILL
+mean_rel_improvement: -0.0749
+wins: 3 of 4 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 6211-5195
+rule: frontier-distillation
+digest: d5a0943ab0fa5d7ef52c5469254972672d13976e4403389a36245f2cc3db806b
+### entry 159 op=CLEAN heldout=False
+receipt judg_r9_s7177
+verdict: KILL
+mean_rel_improvement: +0.0447
+wins: 3 of 7 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 6227-1569
+rule: frontier-distillation
+digest: c8036989b0dd1bf9aeb991f5f6e0a80001e588e4540b693faea9370d449e161d
+### entry 160 op=CLEAN heldout=False
+receipt judg_r1_s9788
+verdict: KILL
+mean_rel_improvement: +0.2047
+wins: 4 of 11 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 8565-3433
+rule: judgment-holonomy
+digest: a01da7801fa56d3c28c3622bd64443f454f512a77e49b3501d0c798d9ab197e4
+### entry 161 op=CLEAN heldout=False
+receipt clai_r6_s9966
+verdict: KEEP
+mean_rel_improvement: +0.1592
+wins: 4 of 4 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 5570-1619
+rule: frontier-distillation
+digest: 3afec7b124eb3b0c56dcc8ef780b4f5fcd5b04bb66669f8d3c5af2e2b2d78212
+### entry 162 op=CLEAN heldout=False
+receipt clai_r4_s8342
+verdict: KILL
+mean_rel_improvement: -0.0827
+wins: 2 of 6 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 4504-9792
+rule: frontier-distillation
+digest: c0e9f3ce5e5b4d5b32469c85ed3cf83213943f5a5e203280270234c8d10ef8e6
+### entry 163 op=CLEAN heldout=False
+receipt clai_r3_s5098
+verdict: KEEP
+mean_rel_improvement: +0.1884
+wins: 4 of 5 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 1946-9062
+rule: cell-mesh-relay
+digest: 26e51315f4e92572b020cc406f573aee75b2ad134982d98a3d88d678937eee5c
+### entry 164 op=CLEAN heldout=False
+receipt anti_r2_s6417
+verdict: KEEP
+mean_rel_improvement: +0.1315
+wins: 10 of 10 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 2650-9609
+rule: frontier-distillation
+digest: 25831c97bbb415253f35f9b0198ababb26f615355de5da743aff04722cf1be5b
+### entry 165 op=CLEAN heldout=False
+receipt fron_r7_s2198
+verdict: KEEP
+mean_rel_improvement: +0.0512
+wins: 4 of 5 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 8756-3900
+rule: judgment-holonomy
+digest: bf5f8b1bd4d39c93b773a2d0cdf27a2306f6f63245d87736c9824fb96b67182c
+### entry 166 op=CLEAN heldout=False
+receipt fron_r8_s9182
+verdict: KILL
+mean_rel_improvement: -0.0714
+wins: 3 of 4 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 3167-4172
+rule: judgment-holonomy
+digest: 3a99f1c6445ade7bf267d1c700b6801eb1d44c087fc4cb1f8439aaf9caada541
+### entry 167 op=CLEAN heldout=False
+receipt anti_r5_s1667
+verdict: KILL
+mean_rel_improvement: -0.0340
+wins: 8 of 8 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 1883-6450
+rule: judgment-holonomy
+digest: 7fb31e013a521f4e320b9ccd3602017883e3b002d57a70d8ffa379c0c4c87df8
+### entry 168 op=CLEAN heldout=False
+receipt anti_r7_s7672
+verdict: KEEP
+mean_rel_improvement: +0.1861
+wins: 9 of 9 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 4270-8507
+rule: cell-mesh-relay
+digest: cc1731954e7da3b24fd568a61724374f4884c5b996e5da51dfc93e056a92bb96
+### entry 169 op=CLEAN heldout=False
+receipt judg_r1_s6518
+verdict: KILL
+mean_rel_improvement: -0.0235
+wins: 1 of 10 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 8588-8832
+rule: frontier-distillation
+digest: 22582d29c235477cd1dbbf815fa4b6d95c475dac888912ffe9e0845a19128b9d
+### entry 170 op=CLEAN heldout=False
+receipt cell_r1_s6694
+verdict: KILL
+mean_rel_improvement: -0.0372
+wins: 2 of 4 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 3606-1660
+rule: antirank-primacy
+digest: a65fbd9f3626c11927ad5b9d3846f6939ff13621d4935199be52be235057a7f7
+### entry 171 op=CLEAN heldout=False
+receipt anti_r6_s8102
+verdict: KILL
+mean_rel_improvement: +0.1628
+wins: 1 of 7 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 7118-3049
+rule: antirank-primacy
+digest: ce75115d28561cf9bf21e8a9e37825463de82304d85dd7d784cd5069c1ff9e5a
+### entry 172 op=CLEAN heldout=False
+receipt fron_r5_s6529
+verdict: KILL
+mean_rel_improvement: +0.0944
+wins: 2 of 9 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 1267-4005
+rule: claim-ratio
+digest: 8ddb57a1c4359cd0d7ef553aed57a8c1a70844389b7bcf4fc3001dd7b848cbc2
+### entry 173 op=CLEAN heldout=False
+receipt anti_r4_s4704
+verdict: KILL
+mean_rel_improvement: +0.0047
+wins: 2 of 10 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 4203-9751
+rule: judgment-holonomy
+digest: d2cce1eb17d1203429c768afffbc2bb16e10d6ba47bde765427d8601b92d10a8
+### entry 174 op=CLEAN heldout=False
+receipt clai_r6_s8332
+verdict: KILL
+mean_rel_improvement: +0.2255
+wins: 0 of 8 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 5488-1572
+rule: claim-ratio
+digest: a8fd45a22a4254c0decd0ed2b92a6f48925b01fd6530228c48d33e420230ba1b
+### entry 175 op=CLEAN heldout=False
+receipt fron_r6_s6335
+verdict: KEEP
+mean_rel_improvement: +0.0658
+wins: 10 of 11 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 5886-5290
+rule: antirank-primacy
+digest: 4e0cd81c71c1f3c8dba7bde98b118a10f1865dafec5f2d3da63aef57e5495927
+### entry 176 op=CLEAN heldout=False
+receipt clai_r2_s3763
+verdict: KILL
+mean_rel_improvement: -0.0857
+wins: 8 of 9 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 1728-3054
+rule: judgment-holonomy
+digest: 541826246744e9aa692fa828f5dc4db1af5d6ba73a0c0cce1d491559b5c58c93
+### entry 177 op=CLEAN heldout=False
+receipt judg_r5_s1501
+verdict: KILL
+mean_rel_improvement: +0.1136
+wins: 8 of 11 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 4372-4622
+rule: claim-ratio
+digest: c42ef787fe1a1f8ebc7c667bff21a2ef2592a96660716c06ef0e8c1a78bdcd10
+### entry 178 op=CLEAN heldout=False
+receipt fron_r8_s1684
+verdict: KILL
+mean_rel_improvement: +0.1235
+wins: 7 of 10 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 4799-3409
+rule: frontier-distillation
+digest: 09ba8c12836e03a2502e731c6cf2f8123061790e7f43e9c8c2da3924b7a42c31
+### entry 179 op=CLEAN heldout=False
+receipt judg_r8_s1112
+verdict: KEEP
+mean_rel_improvement: +0.1767
+wins: 4 of 4 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 5685-6445
+rule: antirank-primacy
+digest: ebeb362c99b30b6798896150911d1c2b3d37d41d4dcb1a7d7aed0459ea39d456
+### entry 180 op=CLEAN heldout=False
+receipt cell_r7_s1113
+verdict: KILL
+mean_rel_improvement: +0.2192
+wins: 5 of 11 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 2869-6559
+rule: frontier-distillation
+digest: 1fd5e8d92b8ef02b9d9f5ee6e23d114e96c152f8951a4b5559e199994b5f534f
+### entry 181 op=CLEAN heldout=False
+receipt anti_r1_s7284
+verdict: KILL
+mean_rel_improvement: +0.0273
+wins: 1 of 5 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 5426-5038
+rule: judgment-holonomy
+digest: 7e509fa245e268298927b755787e8472d349047ca3fc7c0d496f6f4e5311c6ec
+### entry 182 op=CLEAN heldout=False
+receipt fron_r6_s3408
+verdict: KILL
+mean_rel_improvement: +0.1828
+wins: 2 of 11 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 2832-9132
+rule: cell-mesh-relay
+digest: 484d3aaf7a48d47504270c65cf4a18498bfcfdd77ae026141538d81ea58280a5
+### entry 183 op=CLEAN heldout=False
+receipt clai_r7_s4258
+verdict: KILL
+mean_rel_improvement: +0.0612
+wins: 1 of 9 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 4357-1456
+rule: claim-ratio
+digest: 54cb90c536a361ba7069cfa275a0197a91173c4611eb1454e5e514606abf2960
+### entry 184 op=CLEAN heldout=False
+receipt cell_r5_s2140
+verdict: KILL
+mean_rel_improvement: +0.0354
+wins: 2 of 4 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 5977-2207
+rule: antirank-primacy
+digest: ab4666724436ba633172a3b531f9d94dc40fe35f80e233e482de9578c34b5b9a
+### entry 185 op=CLEAN heldout=False
+receipt judg_r2_s1636
+verdict: KEEP
+mean_rel_improvement: +0.0155
+wins: 5 of 6 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 6914-8558
+rule: cell-mesh-relay
+digest: 93b16815e7a3e245c13826c64bcc566cdfc1c960a4b09e404e760a80620ad6c5
+### entry 186 op=CLEAN heldout=False
+receipt anti_r6_s7816
+verdict: KILL
+mean_rel_improvement: -0.0564
+wins: 0 of 5 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 4605-3180
+rule: cell-mesh-relay
+digest: 8935b1aa0e41d43baaf72ce863d86d02e8a64a42aa9cf1b5d84679d2c7028d74
+### entry 187 op=CLEAN heldout=False
+receipt cell_r8_s6029
+verdict: KILL
+mean_rel_improvement: +0.2174
+wins: 3 of 7 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 9322-5244
+rule: cell-mesh-relay
+digest: 773982d3d41dd8906a0cb2f983a26cf9936b46ae6bd14edbb55c12400724c112
+### entry 188 op=CLEAN heldout=False
+receipt fron_r2_s2165
+verdict: KILL
+mean_rel_improvement: +0.1719
+wins: 2 of 4 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 5746-1204
+rule: claim-ratio
+digest: 09578378111be342bfdf1b607d9fc214c0853beeb490ccdd373e0c9794e1103e
+### entry 189 op=CLEAN heldout=False
+receipt fron_r7_s3791
+verdict: KEEP
+mean_rel_improvement: +0.2222
+wins: 12 of 12 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 4494-9239
+rule: frontier-distillation
+digest: d994bdb6fcf68aa20a9be82ff73739980d366e32c8cf19cedde81d68a2a0336c
+### entry 190 op=CLEAN heldout=False
+receipt anti_r1_s9110
+verdict: KILL
+mean_rel_improvement: +0.1002
+wins: 0 of 4 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 8274-8234
+rule: cell-mesh-relay
+digest: 96ada76f6833137751971604e74adb66c560a4248e5e7510401dd319b7d254d2
+### entry 191 op=CLEAN heldout=False
+receipt clai_r5_s5474
+verdict: KEEP
+mean_rel_improvement: +0.2397
+wins: 12 of 12 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 4885-4126
+rule: claim-ratio
+digest: e5722afd12f2259417862243568866d6a8a7e15e51848651211d3c8ad099d7b0
+### entry 192 op=CLEAN heldout=False
+receipt clai_r8_s7687
+verdict: KILL
+mean_rel_improvement: -0.0700
+wins: 1 of 12 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 7742-5026
+rule: antirank-primacy
+digest: 29f44acb57cd86b9e2d01c7dee791b740a2f586e949f8cc28bf766eb584d8c0d
+### entry 193 op=CLEAN heldout=False
+receipt cell_r6_s4450
+verdict: KILL
+mean_rel_improvement: +0.0103
+wins: 1 of 4 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 2348-6769
+rule: claim-ratio
+digest: f2830c69f34e1d849c882259b2a7116ceaa56c18c55edbe35e1ed40a52bf31d9
+### entry 194 op=CLEAN heldout=False
+receipt clai_r2_s6817
+verdict: KEEP
+mean_rel_improvement: +0.2210
+wins: 5 of 6 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 3812-4366
+rule: judgment-holonomy
+digest: 13d36244416fa3f38b0636d1f97fbda27616c4a1516f29883a99769114bf20ef
+### entry 195 op=CLEAN heldout=False
+receipt fron_r9_s3061
+verdict: KILL
+mean_rel_improvement: +0.2049
+wins: 3 of 8 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 1596-7164
+rule: judgment-holonomy
+digest: 522221542a465c0c58403f6488c603e6957d22f665e718f1b1921ce37ead6df3
+### entry 196 op=CLEAN heldout=False
+receipt anti_r1_s1150
+verdict: KILL
+mean_rel_improvement: +0.0627
+wins: 0 of 4 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 4238-7009
+rule: antirank-primacy
+digest: 0373a062e7fe4f2eb6d0d07fbed24d214cab005e2961dfe17f3fe45b3b4a88e2
+### entry 197 op=CLEAN heldout=False
+receipt clai_r4_s3911
+verdict: KEEP
+mean_rel_improvement: +0.2489
+wins: 7 of 8 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 5493-1535
+rule: judgment-holonomy
+digest: 0a3cdf83daf07aa51a0a441d5a2bd072f0e564c139120b75cdc590b4ca90c3f2
+### entry 198 op=CLEAN heldout=False
+receipt clai_r6_s6078
+verdict: KILL
+mean_rel_improvement: -0.0870
+wins: 1 of 10 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 5536-9952
+rule: judgment-holonomy
+digest: 6b6b0c83922775f95fdebd30a58c2d215eac39bec00a47069f53bde65be4a821
+### entry 199 op=CLEAN heldout=False
+receipt fron_r8_s5892
+verdict: KILL
+mean_rel_improvement: +0.1879
+wins: 0 of 8 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 8751-1610
+rule: claim-ratio
+digest: eb25fe33cb7d229468935bb6f863329fd45221c3f43654de2b74012b3663938e
+### entry 200 op=sign_flip heldout=False
+receipt judg_r7_s9733
+verdict: KILL
+mean_rel_improvement: +0.0611
+wins: 1 of 4 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1974-3681
+rule: claim-ratio
+digest: b063d41e8214405894b5a15f7c466e50634a770cf5c0fe6f2dc5eba4dd267a7c
+### entry 201 op=sign_flip heldout=False
+receipt clai_r4_s7119
+verdict: KILL
+mean_rel_improvement: +0.0794
+wins: 8 of 10 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 6122-7250
+rule: antirank-primacy
+digest: 8eadd2396d69414d33ce46d64cdc4bbd2cbc3e391dec274b44d3a7d46ce0b161
+### entry 202 op=sign_flip heldout=False
+receipt fron_r4_s1158
+verdict: KILL
+mean_rel_improvement: +0.0683
+wins: 3 of 7 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 9820-8972
+rule: judgment-holonomy
+digest: 207e40390e10cad0158a65e5fff56fa717284efa15033e715dfec0fe816ea8cb
+### entry 203 op=sign_flip heldout=False
+receipt judg_r6_s6340
+verdict: KILL
+mean_rel_improvement: -0.2486
+wins: 0 of 9 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 2090-6139
+rule: cell-mesh-relay
+digest: 1d058185f7f5be59af865c82c6aad5904055b480f6944cac858b49e10abdbea3
+### entry 204 op=sign_flip heldout=False
+receipt cell_r4_s6590
+verdict: KEEP
+mean_rel_improvement: -0.0785
+wins: 10 of 10 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 2496-5551
+rule: antirank-primacy
+digest: de0d5c50d43f95e2a6bccf52250d057536aecaa64f4b3e1d886522c5a584a17b
+### entry 205 op=sign_flip heldout=False
+receipt clai_r3_s4937
+verdict: KILL
+mean_rel_improvement: -0.1735
+wins: 5 of 10 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1408-5928
+rule: cell-mesh-relay
+digest: 9517dcd8a0e6e1ba24c528395d76fee790acca206d710824a6d2b702d0e5f9a7
+### entry 206 op=sign_flip heldout=False
+receipt judg_r5_s6920
+verdict: KEEP
+mean_rel_improvement: -0.0683
+wins: 4 of 4 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 2333-9819
+rule: frontier-distillation
+digest: 6822d45f1e517810370277b0d4029bb099bbcb31ad2038eb5eb2df0f5a5f7ba6
+### entry 207 op=sign_flip heldout=False
+receipt anti_r1_s9266
+verdict: KILL
+mean_rel_improvement: +0.0530
+wins: 9 of 11 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 1994-2385
+rule: antirank-primacy
+digest: fdaf657200829ae645bc585616c6af1e39b3210729244a3c2d901474d5d3ce5f
+### entry 208 op=sign_flip heldout=False
+receipt anti_r8_s5393
+verdict: KILL
+mean_rel_improvement: -0.1657
+wins: 5 of 9 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 4048-1800
+rule: judgment-holonomy
+digest: ca8c7cb6486953bd0398005537ef1dacba6289ed25b8eb05eef2792197d9e2f9
+### entry 209 op=sign_flip heldout=False
+receipt anti_r6_s3671
+verdict: KILL
+mean_rel_improvement: -0.2354
+wins: 1 of 11 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 3611-9696
+rule: antirank-primacy
+digest: c5ed97897f9e15d95be35842d3a8007bfb47fefaacc8e9a7d8e6a3017c655a6b
+### entry 210 op=sign_flip heldout=False
+receipt anti_r8_s1016
+verdict: KILL
+mean_rel_improvement: -0.2204
+wins: 3 of 7 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 3717-2813
+rule: claim-ratio
+digest: d059dd1a1ee37c594bd801b7a97bad83acc92d26b5872f5893440d6efcf44dc2
+### entry 211 op=sign_flip heldout=False
+receipt anti_r8_s9368
+verdict: KILL
+mean_rel_improvement: -0.0239
+wins: 3 of 7 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 5339-2739
+rule: judgment-holonomy
+digest: 72c982c27e4de00b48464e20c8d101f5eeb479ba29efb1e5f0e83b52db075df1
+### entry 212 op=sign_flip heldout=False
+receipt judg_r5_s3727
+verdict: KILL
+mean_rel_improvement: -0.2414
+wins: 3 of 10 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 9006-9260
+rule: frontier-distillation
+digest: 2f1e1341c852c014ac632903ce1cdbbc0f738df564e38c463e943602da9eb8dc
+### entry 213 op=sign_flip heldout=False
+receipt anti_r5_s4786
+verdict: KILL
+mean_rel_improvement: -0.1311
+wins: 9 of 12 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 9747-6693
+rule: claim-ratio
+digest: dd517d17dd1ad7a3304f8e58fdec06cd31333b79199885acaa281789264aa7dd
+### entry 214 op=sign_flip heldout=False
+receipt cell_r9_s7764
+verdict: KILL
+mean_rel_improvement: +0.0318
+wins: 1 of 10 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 5610-3643
+rule: antirank-primacy
+digest: 6787d3da1c4f2555e22c54ed5fbb08c1e59377a81ec8b9ea6a84bf2128bbf5f7
+### entry 215 op=sign_flip heldout=False
+receipt judg_r7_s2180
+verdict: KILL
+mean_rel_improvement: -0.1166
+wins: 0 of 10 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 2494-2159
+rule: claim-ratio
+digest: b6ebe2b0622f2899523be8a7ece598496d1ebcf349e01e1d45cb450843d32076
+### entry 216 op=sign_flip heldout=False
+receipt clai_r2_s8288
+verdict: KILL
+mean_rel_improvement: -0.0660
+wins: 8 of 12 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 6653-8972
+rule: judgment-holonomy
+digest: cf9aa2815523fc9dca4b41997e85999b7ffc3d492aaed255f52b2f34ac852695
+### entry 217 op=sign_flip heldout=False
+receipt cell_r6_s7689
+verdict: KILL
+mean_rel_improvement: -0.0607
+wins: 2 of 10 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 9970-4795
+rule: judgment-holonomy
+digest: 0d289a71c8c6b60c637736486fc10b7035667bb89c2923ff04f876a339a8872b
+### entry 218 op=sign_flip heldout=False
+receipt clai_r6_s9756
+verdict: KILL
+mean_rel_improvement: -0.0233
+wins: 0 of 5 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 3028-3427
+rule: claim-ratio
+digest: f7dfdb11459277db849cba35d6d9ffc6eb46872b3ebb4a7de6c5d89d0d4c85cb
+### entry 219 op=sign_flip heldout=False
+receipt cell_r9_s2982
+verdict: KILL
+mean_rel_improvement: +0.0373
+wins: 3 of 12 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 6559-2190
+rule: judgment-holonomy
+digest: 468ce7a0a6529612a42fc51e024107dcc5331d40a711460d1d5aa9f34c02178e
+### entry 220 op=sign_flip heldout=False
+receipt clai_r1_s3923
+verdict: KILL
+mean_rel_improvement: -0.2450
+wins: 7 of 11 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 2966-8249
+rule: antirank-primacy
+digest: be64e3225cd518998f94c3cdfb8453323cf80b2a474f85b043a851a0fe11849a
+### entry 221 op=sign_flip heldout=False
+receipt fron_r7_s8605
+verdict: KILL
+mean_rel_improvement: +0.0339
+wins: 8 of 8 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 5322-9524
+rule: antirank-primacy
+digest: cfe1e55602fb299c798a4c199c5a6c8a50ca1cbb72c7577b944f9de31e0aa575
+### entry 222 op=sign_flip heldout=False
+receipt judg_r2_s2420
+verdict: KILL
+mean_rel_improvement: -0.1129
+wins: 4 of 12 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 8145-1858
+rule: cell-mesh-relay
+digest: 515a44406fb009fd12aaedb8d05aa23ef15d71cfbbd3aca781bd34076cf41c26
+### entry 223 op=sign_flip heldout=False
+receipt clai_r3_s7328
+verdict: KILL
+mean_rel_improvement: +0.0688
+wins: 4 of 9 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 7911-3026
+rule: antirank-primacy
+digest: 6338cac04663e3781041e447efe30e8094afd2aa748b36a26834533070a6cd7d
+### entry 224 op=sign_flip heldout=False
+receipt anti_r8_s3790
+verdict: KILL
+mean_rel_improvement: -0.2298
+wins: 3 of 7 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 7346-3310
+rule: frontier-distillation
+digest: 50fe12a433249e6586516e25def30eea7b0db9a19b07587c9e76f14ae39fc7d0
+### entry 225 op=sign_flip heldout=False
+receipt judg_r3_s4532
+verdict: KILL
+mean_rel_improvement: -0.1221
+wins: 0 of 4 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 9713-8129
+rule: judgment-holonomy
+digest: 0d63d727f15c28afee12e9ef1a68cf9cb45e70b8431be291bdc642a281a7a078
+### entry 226 op=sign_flip heldout=False
+receipt clai_r7_s5086
+verdict: KILL
+mean_rel_improvement: +0.0056
+wins: 8 of 10 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 7882-4744
+rule: judgment-holonomy
+digest: 6168e4676a8fd3d5b2392fecd1061583d9acf592ccfe4ad94c5feb2945dbfa2b
+### entry 227 op=sign_flip heldout=False
+receipt clai_r7_s4566
+verdict: KILL
+mean_rel_improvement: -0.1489
+wins: 6 of 8 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 3054-4180
+rule: cell-mesh-relay
+digest: 20a3a1748d664eee88320ca40a9b71933b9ceee66148f8c5c4d0cc45701b575e
+### entry 228 op=sign_flip heldout=False
+receipt anti_r9_s8845
+verdict: KILL
+mean_rel_improvement: -0.2426
+wins: 2 of 5 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 6648-3305
+rule: claim-ratio
+digest: 91c778a46a14ddab0a586f96db51355ce9c2b134b65eff55ff2363a541cd725a
+### entry 229 op=sign_flip heldout=False
+receipt judg_r5_s5439
+verdict: KILL
+mean_rel_improvement: -0.0781
+wins: 5 of 9 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 6241-8086
+rule: claim-ratio
+digest: 4ffec03216edeb430829eed6708cbb3f7f82ebab61473c6be9c07dcaa71aeaf9
+### entry 230 op=sign_flip heldout=False
+receipt anti_r2_s5895
+verdict: KILL
+mean_rel_improvement: -0.1016
+wins: 2 of 5 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 5769-3033
+rule: frontier-distillation
+digest: d3db10d1ddf0a5af2add22d427a14a84598b590bf078bc632c1ab97d7ccbbc40
+### entry 231 op=sign_flip heldout=False
+receipt clai_r9_s2496
+verdict: KILL
+mean_rel_improvement: -0.0927
+wins: 1 of 6 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 4183-2137
+rule: cell-mesh-relay
+digest: 4ea287dd0bbc6927d71b29669359fff17f81645d610349dfe1c57efac442282b
+### entry 232 op=sign_flip heldout=False
+receipt cell_r3_s6520
+verdict: KILL
+mean_rel_improvement: -0.1262
+wins: 1 of 6 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 8277-9464
+rule: frontier-distillation
+digest: 4e9a4103569e681acb551a322fff0d3ea15ca76efc79272d0ac4a05c7bfc0a02
+### entry 233 op=sign_flip heldout=False
+receipt anti_r8_s8472
+verdict: KILL
+mean_rel_improvement: +0.0111
+wins: 6 of 7 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 2676-2261
+rule: cell-mesh-relay
+digest: 6ac173a2fff2dbc559ed95ef2f544c9dbcf5766f5b4cb093ce41a00459512a5e
+### entry 234 op=sign_flip heldout=False
+receipt fron_r2_s7770
+verdict: KILL
+mean_rel_improvement: -0.1140
+wins: 2 of 11 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 7699-4231
+rule: cell-mesh-relay
+digest: 0386fd1d8978fca5ecb90641e0b22a5a4f88164612a58281fc349da7d6d7eed7
+### entry 235 op=sign_flip heldout=False
+receipt anti_r6_s3952
+verdict: KILL
+mean_rel_improvement: -0.1754
+wins: 1 of 9 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 2359-6166
+rule: antirank-primacy
+digest: 276e1048a9fae7cd7bde9f7282a1aeaadc3cdec5bd261f977466402a39a106a1
+### entry 236 op=sign_flip heldout=False
+receipt cell_r9_s4633
+verdict: KILL
+mean_rel_improvement: -0.1946
+wins: 0 of 5 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 9363-9554
+rule: cell-mesh-relay
+digest: 78721811e851c41b9c57abbd45c16e3727b3c0f3dfc0c34b5fd1dc2469989988
+### entry 237 op=sign_flip heldout=False
+receipt judg_r1_s3536
+verdict: KILL
+mean_rel_improvement: +0.0060
+wins: 4 of 10 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 6190-2912
+rule: cell-mesh-relay
+digest: e1f597d0dece4c73bda4527d56e36f30e8980643913c16995304143eb795a208
+### entry 238 op=sign_flip heldout=False
+receipt cell_r2_s7030
+verdict: KILL
+mean_rel_improvement: -0.2163
+wins: 5 of 8 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 2198-5749
+rule: frontier-distillation
+digest: 23176b373c6e8f82aac6818525b04a8e16ec600be54f3a65f1598f5407a56bc9
+### entry 239 op=sign_flip heldout=False
+receipt cell_r5_s7824
+verdict: KILL
+mean_rel_improvement: -0.1844
+wins: 5 of 7 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 4555-2465
+rule: antirank-primacy
+digest: 95e50ef1300f6afa89142b6e40ad68741e2aa777c95623f816e1034d98f651c7
+### entry 240 op=wins_over heldout=False
+receipt anti_r9_s3975
+verdict: KILL
+mean_rel_improvement: +0.2083
+wins: 2 of 4 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 9705-1087
+rule: cell-mesh-relay
+digest: 7f2d85be958ffe66f3b8d65d400dcd09432d30c51f44aa55ebab6d23dd308120
+### entry 241 op=wins_over heldout=False
+receipt anti_r1_s8665
+verdict: KILL
+mean_rel_improvement: +0.0188
+wins: 2 of 8 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 3654-3388
+rule: claim-ratio
+digest: 31be7a622ee735710d9d6b36bf6a1aa9eef0ce3de1736449e9a18b0ff26bb697
+### entry 242 op=wins_over heldout=False
+receipt fron_r6_s9669
+verdict: KILL
+mean_rel_improvement: -0.0732
+wins: 9 of 8 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 5775-6068
+rule: frontier-distillation
+digest: 4d3489a6d6286d119f8300650fa72332ab7da991e5890788f6869bc644a9207d
+### entry 243 op=wins_over heldout=False
+receipt cell_r9_s7102
+verdict: KILL
+mean_rel_improvement: +0.2311
+wins: 2 of 11 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 2262-5526
+rule: cell-mesh-relay
+digest: f94b09887acbcbb65226f4ee1dec85570aed24dd0c6b87646ad758ec84a6fadb
+### entry 244 op=wins_over heldout=False
+receipt clai_r5_s5464
+verdict: KEEP
+mean_rel_improvement: +0.1592
+wins: 6 of 4 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 4865-4567
+rule: judgment-holonomy
+digest: e09cdf90b0c157fe8c0d67fd21acf430b6acee2151852a07c372a8eaf1161932
+### entry 245 op=wins_over heldout=False
+receipt clai_r8_s9977
+verdict: KEEP
+mean_rel_improvement: +0.1483
+wins: 10 of 9 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 5872-9609
+rule: cell-mesh-relay
+digest: f8b92e15e58eee68658b2a0cd48dcab81fead8adeb7be8559795833e80ef23c4
+### entry 246 op=wins_over heldout=False
+receipt cell_r4_s2989
+verdict: KILL
+mean_rel_improvement: -0.0792
+wins: 5 of 5 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 3031-3921
+rule: judgment-holonomy
+digest: ac5de99ab2c859f1a69af4584fa3e9e918940d9b0f4a66978b333a379ae3f30c
+### entry 247 op=wins_over heldout=False
+receipt fron_r9_s1799
+verdict: KILL
+mean_rel_improvement: +0.0124
+wins: 4 of 4 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 9909-6182
+rule: cell-mesh-relay
+digest: 191e9cf9004ac484a6da107f031153f13aeb9f3306d38799e890e7c018e7dece
+### entry 248 op=wins_over heldout=False
+receipt clai_r6_s7543
+verdict: KEEP
+mean_rel_improvement: +0.2066
+wins: 13 of 12 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 8812-4458
+rule: judgment-holonomy
+digest: 4f7bc81daee51da85d423c8422a011da2a11da288f882807a3f03e194e88b9ec
+### entry 249 op=wins_over heldout=False
+receipt fron_r4_s6388
+verdict: KILL
+mean_rel_improvement: +0.1362
+wins: 5 of 6 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 9458-2501
+rule: frontier-distillation
+digest: ae24ed8b3bfa01477319e8fc6b114ccb092f0e617e22589009a273f1822c7381
+### entry 250 op=wins_over heldout=False
+receipt anti_r8_s1272
+verdict: KILL
+mean_rel_improvement: -0.0942
+wins: 7 of 8 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 5147-5532
+rule: antirank-primacy
+digest: 803c8bd98878a4367e82e8eb189faac688ac1515283529d70abbc9838ab07046
+### entry 251 op=wins_over heldout=False
+receipt clai_r5_s4794
+verdict: KILL
+mean_rel_improvement: -0.0016
+wins: 1 of 6 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 5048-4406
+rule: claim-ratio
+digest: f61717d89e5c61de438960508c65d282db8bbdd553628dea92693289b0bc589b
+### entry 252 op=wins_over heldout=False
+receipt anti_r5_s7766
+verdict: KILL
+mean_rel_improvement: +0.0282
+wins: 6 of 9 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 5230-9358
+rule: antirank-primacy
+digest: ca2447b9d9c69cda8db240c11c02cea58aa771145f406cedd65070f6d53444e4
+### entry 253 op=wins_over heldout=False
+receipt judg_r2_s5769
+verdict: KILL
+mean_rel_improvement: -0.0709
+wins: 7 of 7 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 6242-7216
+rule: judgment-holonomy
+digest: dd8617b06d01407cd8c447f20997a20a5225f9e43645386d7b055ef81aa1373d
+### entry 254 op=wins_over heldout=False
+receipt fron_r4_s8982
+verdict: KILL
+mean_rel_improvement: -0.0938
+wins: 10 of 12 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 6033-3682
+rule: claim-ratio
+digest: 874b7eae32f4f76f58fa4d86da75c66c7f6c6ba2b5f37be496492a01a5d090e8
+### entry 255 op=wins_over heldout=False
+receipt clai_r7_s4499
+verdict: KILL
+mean_rel_improvement: +0.0940
+wins: 3 of 4 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 8675-3242
+rule: frontier-distillation
+digest: 9a6ace4b06905e03bfd3471b4e0f9d80be0a42cc0cc6cd5bff01cdee75064bfb
+### entry 256 op=wins_over heldout=False
+receipt cell_r7_s1473
+verdict: KILL
+mean_rel_improvement: -0.0744
+wins: 11 of 12 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 1368-5872
+rule: judgment-holonomy
+digest: 60605bd42bb27884178158fe4888ffc70acc76490db13ae989107d8ac7ef6c8a
+### entry 257 op=wins_over heldout=False
+receipt fron_r1_s4081
+verdict: KEEP
+mean_rel_improvement: +0.1292
+wins: 11 of 10 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1216-3456
+rule: frontier-distillation
+digest: 462a02457dc947be13328f3e83e07eda44870ff998242653e181de3b7e353c0b
+### entry 258 op=wins_over heldout=False
+receipt anti_r8_s8970
+verdict: KILL
+mean_rel_improvement: -0.0449
+wins: 8 of 9 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 5646-6593
+rule: judgment-holonomy
+digest: a5fb48f722a57998612ee3fea19756fa0add0f8d862de2608898552a0c1b3ac4
+### entry 259 op=wins_over heldout=False
+receipt clai_r8_s6091
+verdict: KILL
+mean_rel_improvement: +0.2318
+wins: 6 of 8 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 7157-9491
+rule: frontier-distillation
+digest: 2550133cffed0e85573503e06f73e8c31f18a7630d99c73064cd0a96da2417aa
+### entry 260 op=wins_over heldout=False
+receipt cell_r4_s1075
+verdict: KILL
+mean_rel_improvement: -0.0178
+wins: 3 of 4 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 8733-3385
+rule: frontier-distillation
+digest: 1fef9d87027de5e3a4f2c5ac9f38777eb4a87d67ea8acef381465c1d0c582ae7
+### entry 261 op=wins_over heldout=False
+receipt cell_r1_s8128
+verdict: KILL
+mean_rel_improvement: -0.0941
+wins: 11 of 12 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 2081-5728
+rule: cell-mesh-relay
+digest: e731e831b0cac7e75c58d1233f5bd13455dd5ed4a42eda62a52e45c55d7c4606
+### entry 262 op=wins_over heldout=False
+receipt judg_r2_s3222
+verdict: KILL
+mean_rel_improvement: +0.1381
+wins: 2 of 12 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 2445-8470
+rule: frontier-distillation
+digest: b6bf21a3e9118fdf454913da4a9fd5869cac278d213a8620543d9d4339b5bc15
+### entry 263 op=wins_over heldout=False
+receipt judg_r1_s9653
+verdict: KILL
+mean_rel_improvement: +0.1001
+wins: 6 of 11 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 1043-5979
+rule: cell-mesh-relay
+digest: e642cfaa22fa0d41e623ffc050be287641973205fd6ab9fa4f6458ff635ee585
+### entry 264 op=wins_over heldout=False
+receipt judg_r9_s8820
+verdict: KILL
+mean_rel_improvement: +0.2474
+wins: 3 of 12 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 7036-9932
+rule: frontier-distillation
+digest: ce3f9e690cb5b937ed6dc35320cd4ae321e156bf6a29c76522f46cbbc8c6effa
+### entry 265 op=wins_over heldout=False
+receipt clai_r4_s3637
+verdict: KILL
+mean_rel_improvement: +0.0195
+wins: 8 of 8 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 5326-7833
+rule: cell-mesh-relay
+digest: 4ef62d18dc6d0c14f724e6beedbdc8eab8efd8bf5e86216fbb9be814a29559cc
+### entry 266 op=wins_over heldout=False
+receipt cell_r2_s2014
+verdict: KILL
+mean_rel_improvement: -0.0278
+wins: 3 of 4 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 8141-3547
+rule: cell-mesh-relay
+digest: a5c55e49b4a9d18b5cfb48cee2b6b77e22457ed50f3371fb391c3ed201576fcd
+### entry 267 op=wins_over heldout=False
+receipt fron_r5_s1090
+verdict: KILL
+mean_rel_improvement: -0.0897
+wins: 1 of 8 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1288-1370
+rule: judgment-holonomy
+digest: 942d109d12a051f2b8d558b1cc5613b87f641fb3aedce95c1491398471a12951
+### entry 268 op=wins_over heldout=False
+receipt fron_r8_s7586
+verdict: KILL
+mean_rel_improvement: -0.0068
+wins: 8 of 10 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 3555-3163
+rule: frontier-distillation
+digest: 7549b0f97a4ea4d75120c7f1643b6569174cc02fb0afd94beefef0d67efefe8d
+### entry 269 op=wins_over heldout=False
+receipt clai_r5_s1427
+verdict: KILL
+mean_rel_improvement: +0.0796
+wins: 3 of 4 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 3961-7504
+rule: judgment-holonomy
+digest: 4a5e7947b1311e689375f7fa78b170a391cd414d0eb8af1d01f0c5ec672d58cd
+### entry 270 op=wins_over heldout=False
+receipt anti_r7_s9759
+verdict: KILL
+mean_rel_improvement: -0.0747
+wins: 2 of 9 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 1580-4699
+rule: judgment-holonomy
+digest: 4aee27532eb9a7d25924595d5f8cf9c721c53c755fa79c1afe27a5e7f6c9426a
+### entry 271 op=wins_over heldout=False
+receipt cell_r4_s1681
+verdict: KILL
+mean_rel_improvement: +0.0514
+wins: 4 of 11 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 1974-3729
+rule: frontier-distillation
+digest: f7994a599c7e43fdafce7146ad0cdea3a7a6695c11a4c88811af0eca930c88eb
+### entry 272 op=wins_over heldout=False
+receipt cell_r2_s6910
+verdict: KILL
+mean_rel_improvement: +0.2411
+wins: 3 of 11 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 8469-9074
+rule: antirank-primacy
+digest: 7a508e4b2b66f206ed2d792790603e1dc5993f8889b8fe0b54231fd90508e31a
+### entry 273 op=wins_over heldout=False
+receipt anti_r9_s3244
+verdict: KILL
+mean_rel_improvement: +0.1065
+wins: 4 of 10 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 4819-5338
+rule: claim-ratio
+digest: 7ed0ae5254f617ac2221d9fe98f9f8e98cb3669b94c602e38c1514fc652f8786
+### entry 274 op=wins_over heldout=False
+receipt anti_r9_s6026
+verdict: KILL
+mean_rel_improvement: -0.0656
+wins: 6 of 7 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 7713-3508
+rule: frontier-distillation
+digest: 1de5f9f0e8a7834bbe0dbfd4cb58383c0636fc6bd4281b9dfbb91ca758fe2f1e
+### entry 275 op=wins_over heldout=False
+receipt clai_r6_s7587
+verdict: KILL
+mean_rel_improvement: +0.1482
+wins: 5 of 11 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 6611-7091
+rule: cell-mesh-relay
+digest: 915694a5ad013685be28e12fb30461310c059b735d96867a6de5f82bcc17eb93
+### entry 276 op=wins_over heldout=False
+receipt clai_r5_s8996
+verdict: KEEP
+mean_rel_improvement: +0.0844
+wins: 9 of 7 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 2271-4420
+rule: frontier-distillation
+digest: 24efd0b82f2a81ee3878ec757b9c2841befeb2617799a1e45c552b95761a3dc0
+### entry 277 op=wins_over heldout=False
+receipt cell_r9_s5611
+verdict: KEEP
+mean_rel_improvement: +0.1921
+wins: 10 of 9 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 3987-3322
+rule: antirank-primacy
+digest: 67fabfda9d527ca50a5ad4e2d0132d67624b4ebee6ed306f948e373f45953955
+### entry 278 op=wins_over heldout=False
+receipt anti_r1_s7240
+verdict: KILL
+mean_rel_improvement: -0.0089
+wins: 1 of 9 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 3484-5994
+rule: claim-ratio
+digest: f9ed0b973567e7614401285ac371ac3fbb24e7c946d91cbf7d95ca3ffbbc71e3
+### entry 279 op=wins_over heldout=False
+receipt clai_r1_s4310
+verdict: KEEP
+mean_rel_improvement: +0.0434
+wins: 12 of 10 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 6684-6873
+rule: antirank-primacy
+digest: 2c3a0f67d66b38b94156dffa1731937f2be63645926bed076d8000ec068dc356
+### entry 280 op=verdict_flip heldout=False
+receipt cell_r2_s5308
+verdict: KILL
+mean_rel_improvement: +0.1343
+wins: 4 of 4 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 1064-5845
+rule: judgment-holonomy
+digest: c18e11625435b3be7d7fc2dbeccba38181cddd2e7567e230985a1fc50c492b1c
+### entry 281 op=verdict_flip heldout=False
+receipt anti_r3_s5558
+verdict: KEEP
+mean_rel_improvement: +0.2375
+wins: 4 of 11 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 2032-3118
+rule: antirank-primacy
+digest: dc894c6b38072bce3f7e94031fbfc39346f4efdd47b7bca4115b88527e0d6a0b
+### entry 282 op=verdict_flip heldout=False
+receipt fron_r4_s6370
+verdict: KEEP
+mean_rel_improvement: -0.0672
+wins: 7 of 8 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 7595-3121
+rule: claim-ratio
+digest: 9ea8dc070159617c78370052cb068252cd3afb4a3df9bf9738fc0386c9699a74
+### entry 283 op=verdict_flip heldout=False
+receipt fron_r5_s8657
+verdict: KEEP
+mean_rel_improvement: -0.0778
+wins: 3 of 10 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 4760-1194
+rule: frontier-distillation
+digest: c043a3cebf65d9f71ebdbe72c84377379a61cd4fdfe71f4a85c2582dce14f2dc
+### entry 284 op=verdict_flip heldout=False
+receipt fron_r3_s7045
+verdict: KEEP
+mean_rel_improvement: +0.1415
+wins: 4 of 10 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 2179-5717
+rule: frontier-distillation
+digest: bdca76a3255b8dbb0519d37aae105967fad29f7af2b7f750c0f0d045d4414841
+### entry 285 op=verdict_flip heldout=False
+receipt fron_r6_s6597
+verdict: KEEP
+mean_rel_improvement: +0.0732
+wins: 5 of 10 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 2281-1594
+rule: cell-mesh-relay
+digest: 0fc82a74e0084789e942ae612b2e7e8535e9255efd084a100dd62713f1076aa9
+### entry 286 op=verdict_flip heldout=False
+receipt cell_r3_s4064
+verdict: KEEP
+mean_rel_improvement: +0.0499
+wins: 1 of 6 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 9509-9642
+rule: antirank-primacy
+digest: 2b7bc93c9039d0b08cb65eceff0a85875cc988af2fce2a47971b50602aa4a005
+### entry 287 op=verdict_flip heldout=False
+receipt clai_r7_s4184
+verdict: KEEP
+mean_rel_improvement: +0.0113
+wins: 4 of 7 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 1587-5312
+rule: frontier-distillation
+digest: 19f89d77501fc42dd6ebb3002588a054400434c008b0c7fba1f2189911fd4ef8
+### entry 288 op=verdict_flip heldout=False
+receipt clai_r5_s2959
+verdict: KEEP
+mean_rel_improvement: +0.1759
+wins: 3 of 11 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 8961-4932
+rule: judgment-holonomy
+digest: f2f4a6e7d75b24da3b58f0193fadc2f51e69d27fa3d39636acd87a41e5b5d6a0
+### entry 289 op=verdict_flip heldout=False
+receipt anti_r7_s7096
+verdict: KEEP
+mean_rel_improvement: +0.2389
+wins: 6 of 9 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 7866-5095
+rule: judgment-holonomy
+digest: f6500563be4578346e60e01a51126a7684ab5b5872a7b529352b992af39b627c
+### entry 290 op=verdict_flip heldout=False
+receipt fron_r6_s2959
+verdict: KEEP
+mean_rel_improvement: -0.0836
+wins: 8 of 9 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 4666-9531
+rule: antirank-primacy
+digest: 366c2b31da7b168f081bc7ade9386dbc54424dbd82d9e6db91519671b2f26524
+### entry 291 op=verdict_flip heldout=False
+receipt anti_r6_s7546
+verdict: KEEP
+mean_rel_improvement: -0.0210
+wins: 3 of 5 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 7667-2166
+rule: cell-mesh-relay
+digest: 85fd40edac91456b8c9582c00f70aa352342b89faef5ecbfd93c48815c6016c1
+### entry 292 op=verdict_flip heldout=False
+receipt fron_r3_s4303
+verdict: KEEP
+mean_rel_improvement: +0.1116
+wins: 4 of 12 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 9370-8763
+rule: judgment-holonomy
+digest: e2808c1dfc8471154883785485a7e90b4490c7ff46c6bb8d68f0ac03b977ab5a
+### entry 293 op=verdict_flip heldout=False
+receipt anti_r6_s7420
+verdict: KEEP
+mean_rel_improvement: +0.1143
+wins: 0 of 7 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 2276-9051
+rule: judgment-holonomy
+digest: d956e8250dabdd381830ec5cdb2eefe586f2d28c1f64543e893471dcf07229ee
+### entry 294 op=verdict_flip heldout=False
+receipt cell_r1_s5085
+verdict: KEEP
+mean_rel_improvement: +0.2146
+wins: 9 of 12 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 9551-9616
+rule: frontier-distillation
+digest: 95017658e0575e886e76ff59b57fe38c915f851535a8497bd6841e073ddb32a5
+### entry 295 op=verdict_flip heldout=False
+receipt fron_r9_s6096
+verdict: KEEP
+mean_rel_improvement: +0.2246
+wins: 7 of 10 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 1699-3951
+rule: antirank-primacy
+digest: f787e813cd9fa22219e17d6814f1530faf17a9607be037e4a6c3d1938404bd9f
+### entry 296 op=verdict_flip heldout=False
+receipt fron_r3_s8670
+verdict: KEEP
+mean_rel_improvement: +0.0561
+wins: 6 of 10 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 9062-1230
+rule: frontier-distillation
+digest: c327cdd960ca488ddae0a7f514184cfea35710bbb8e145a42859945a67c49d6a
+### entry 297 op=verdict_flip heldout=False
+receipt clai_r3_s6451
+verdict: KEEP
+mean_rel_improvement: +0.0897
+wins: 1 of 4 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 5875-4674
+rule: antirank-primacy
+digest: 5ada761685fe883e8691a45f7f34f7f668ef150d7bd60682254c964757830a25
+### entry 298 op=verdict_flip heldout=False
+receipt judg_r8_s8434
+verdict: KILL
+mean_rel_improvement: +0.2253
+wins: 8 of 9 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 4673-3412
+rule: cell-mesh-relay
+digest: 90d152d6b8c75b1a02387c929372838a318335751b2bcf3d71cba902fe518741
+### entry 299 op=verdict_flip heldout=False
+receipt cell_r8_s4529
+verdict: KEEP
+mean_rel_improvement: -0.0409
+wins: 1 of 9 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 3619-3894
+rule: frontier-distillation
+digest: d73c501cb90201a93bb1ff227935d3cd6f677c99435e8d6c3de93cb12ce4b97c
+### entry 300 op=verdict_flip heldout=False
+receipt judg_r6_s3611
+verdict: KEEP
+mean_rel_improvement: -0.0733
+wins: 1 of 11 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 7377-4107
+rule: claim-ratio
+digest: 612ac0b119bde1ee4bfe2aaeef1e117e9e66f3484715f6f79e22ea621722f74a
+### entry 301 op=verdict_flip heldout=False
+receipt anti_r1_s4776
+verdict: KEEP
+mean_rel_improvement: +0.2057
+wins: 2 of 4 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 4990-1928
+rule: frontier-distillation
+digest: 651d68629121fa2489ae20f16f64da8b05877dbc46f06c72d1dbd9b9f5c4d3e6
+### entry 302 op=verdict_flip heldout=False
+receipt judg_r4_s5317
+verdict: KEEP
+mean_rel_improvement: +0.0273
+wins: 2 of 4 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 6276-8101
+rule: antirank-primacy
+digest: 088d2a9d455a525978f495b8d9a6be4b318e8616bd1d266f4cdbd92e73826cf3
+### entry 303 op=verdict_flip heldout=False
+receipt cell_r9_s3102
+verdict: KEEP
+mean_rel_improvement: +0.1984
+wins: 1 of 6 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 4131-1495
+rule: frontier-distillation
+digest: f911a1264d163700d1868abb6920a5412afa3dfbe58fd8badb6c709e71bd3d9b
+### entry 304 op=verdict_flip heldout=False
+receipt cell_r9_s4336
+verdict: KEEP
+mean_rel_improvement: +0.2198
+wins: 0 of 4 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 6832-2353
+rule: frontier-distillation
+digest: 4eecef1500a2271c7b84bbe032f017218f5d0f68b2ff7998445db64e2bb2bbd1
+### entry 305 op=verdict_flip heldout=False
+receipt clai_r3_s4759
+verdict: KEEP
+mean_rel_improvement: +0.0829
+wins: 2 of 8 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 3963-9592
+rule: frontier-distillation
+digest: e99a9004506919c9ffc0546aa5a7ad605f6e353e1bf3578b69c14bd6843c9268
+### entry 306 op=verdict_flip heldout=False
+receipt anti_r7_s3145
+verdict: KEEP
+mean_rel_improvement: +0.2043
+wins: 5 of 9 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 1027-7692
+rule: judgment-holonomy
+digest: 3f78247b9f51103cae783bffe2a691e40b119bfb3f32054076cf36e2f6771c7f
+### entry 307 op=verdict_flip heldout=False
+receipt judg_r3_s3819
+verdict: KEEP
+mean_rel_improvement: +0.0028
+wins: 1 of 10 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 5427-3762
+rule: antirank-primacy
+digest: 204090bb8467a556476971047b5fcac17f24ef643847786b9b8a0d008c63a960
+### entry 308 op=verdict_flip heldout=False
+receipt anti_r5_s8943
+verdict: KEEP
+mean_rel_improvement: +0.1766
+wins: 4 of 9 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1455-8257
+rule: cell-mesh-relay
+digest: b13aab4b6c25798c1f06933f464f94cb80dcefcc8fa451fb579fa79650577a47
+### entry 309 op=verdict_flip heldout=False
+receipt clai_r2_s8581
+verdict: KEEP
+mean_rel_improvement: +0.0168
+wins: 1 of 5 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 2351-6406
+rule: cell-mesh-relay
+digest: fad43467069e7595099b1cb66a9fa4328a943b006981c7321fb6377f36c4a4cb
+### entry 310 op=verdict_flip heldout=False
+receipt cell_r8_s4858
+verdict: KEEP
+mean_rel_improvement: +0.0046
+wins: 7 of 12 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 1394-3596
+rule: cell-mesh-relay
+digest: 18471ecdc880181e8981a96a261752b0872773e64125b864fad73aec35239cfd
+### entry 311 op=verdict_flip heldout=False
+receipt fron_r1_s7047
+verdict: KEEP
+mean_rel_improvement: +0.0633
+wins: 5 of 8 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 6929-1277
+rule: judgment-holonomy
+digest: 0ca91c545c89f839d7ec779959fdc77d2fef83baa0774fe879dc6b96198fa286
+### entry 312 op=verdict_flip heldout=False
+receipt clai_r4_s4265
+verdict: KEEP
+mean_rel_improvement: -0.0366
+wins: 0 of 11 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 1206-5990
+rule: frontier-distillation
+digest: 5c7338f4275556e4aff619965f017bf75fee66dc04d0a8fc9e94efade60ce80e
+### entry 313 op=verdict_flip heldout=False
+receipt judg_r9_s4916
+verdict: KEEP
+mean_rel_improvement: +0.1585
+wins: 2 of 5 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 9331-4748
+rule: judgment-holonomy
+digest: cb90f1eba045fff714f0a006a20bc3c93887ec2f017cb4b744a84421553a2822
+### entry 314 op=verdict_flip heldout=False
+receipt judg_r6_s4159
+verdict: KEEP
+mean_rel_improvement: -0.0479
+wins: 5 of 12 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 3412-4232
+rule: antirank-primacy
+digest: 9016d8ca317a37b903b2d02714e14ab00dc9177b3d74bd43b5b0d361040d7a32
+### entry 315 op=verdict_flip heldout=False
+receipt cell_r7_s1524
+verdict: KEEP
+mean_rel_improvement: +0.1845
+wins: 3 of 8 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 5530-4261
+rule: claim-ratio
+digest: 0bec3ba9d79e51dd8ebd0c2c35589c7a24e0a3f0a6da0e63204e3c0db5a8afc9
+### entry 316 op=verdict_flip heldout=False
+receipt judg_r3_s2727
+verdict: KILL
+mean_rel_improvement: +0.1542
+wins: 10 of 10 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 9472-3989
+rule: cell-mesh-relay
+digest: 1cd4d9e9c9058dc9010c58dedf369f56f0f69fc5520e5d6a8807f9c80436f173
+### entry 317 op=verdict_flip heldout=False
+receipt anti_r4_s5956
+verdict: KEEP
+mean_rel_improvement: -0.0348
+wins: 10 of 11 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 3125-4030
+rule: cell-mesh-relay
+digest: 5a3cde5828dffe2e4588fd15de924a69f33bfd458036ff9797d44e2a0389bcd7
+### entry 318 op=verdict_flip heldout=False
+receipt clai_r9_s4872
+verdict: KEEP
+mean_rel_improvement: +0.1439
+wins: 0 of 4 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 4040-6547
+rule: cell-mesh-relay
+digest: d55329df72d1b78b0b5ae338cdb39dea36c57807254f2bb3c82654d67e491c8a
+### entry 319 op=verdict_flip heldout=False
+receipt fron_r7_s2342
+verdict: KEEP
+mean_rel_improvement: -0.0835
+wins: 6 of 8 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 7109-5183
+rule: claim-ratio
+digest: 5209650babe73b12ecede907d2e8649d9a79ef37604001629cf1ea281853fcb5
+### entry 320 op=tau_off heldout=False
+receipt clai_r6_s3545
+verdict: KILL
+mean_rel_improvement: -0.0302
+wins: 6 of 6 pairs
+tau: 0.30 (grid 0.40-0.60)
+seeds: 1607-6241
+rule: cell-mesh-relay
+digest: 30a423ef597e4a47f2a2d010c62b9db7028838e1c70c7b016ccfb392ae780cb4
+### entry 321 op=tau_off heldout=False
+receipt cell_r4_s1605
+verdict: KILL
+mean_rel_improvement: +0.1683
+wins: 1 of 5 pairs
+tau: 0.70 (grid 0.40-0.60)
+seeds: 7040-5508
+rule: judgment-holonomy
+digest: 411d10290b718c6bce05743a4691dc42e872634fdf8d205495a3c521e4a2d635
+### entry 322 op=tau_off heldout=False
+receipt fron_r8_s3984
+verdict: KILL
+mean_rel_improvement: +0.1273
+wins: 0 of 4 pairs
+tau: 0.30 (grid 0.40-0.60)
+seeds: 8201-9246
+rule: antirank-primacy
+digest: 6b6fcfb87667abd9fdeb1964da37bf1229f8b90f080cdb3b07282ebdb70bc9de
+### entry 323 op=tau_off heldout=False
+receipt cell_r5_s1919
+verdict: KILL
+mean_rel_improvement: -0.0877
+wins: 5 of 11 pairs
+tau: 0.35 (grid 0.40-0.60)
+seeds: 1490-5853
+rule: antirank-primacy
+digest: 9af4499873e1b2aa9d8bde991aee70145390e1bc0b7c59d7389dc382ce463490
+### entry 324 op=tau_off heldout=False
+receipt fron_r5_s2855
+verdict: KILL
+mean_rel_improvement: +0.2331
+wins: 3 of 8 pairs
+tau: 0.99 (grid 0.40-0.60)
+seeds: 6025-7683
+rule: antirank-primacy
+digest: 229bb3a5009c77b04c31a59c37523864cfa4586256db452406ace4dcaf3b0ef5
+### entry 325 op=tau_off heldout=False
+receipt cell_r4_s6163
+verdict: KILL
+mean_rel_improvement: -0.0733
+wins: 2 of 7 pairs
+tau: 0.99 (grid 0.40-0.60)
+seeds: 8835-2493
+rule: cell-mesh-relay
+digest: a0b9a4fd36c16d37b21736771d948fa99195f4d0e21fb67ab4cc086ca83cbc0d
+### entry 326 op=tau_off heldout=False
+receipt fron_r3_s4441
+verdict: KEEP
+mean_rel_improvement: +0.2266
+wins: 4 of 4 pairs
+tau: 0.65 (grid 0.40-0.60)
+seeds: 8109-8628
+rule: antirank-primacy
+digest: 288939e5987d16dd0fda134c401ec67d2c7bb69f1a93e31c9d635e58b43b64fe
+### entry 327 op=tau_off heldout=False
+receipt clai_r9_s6423
+verdict: KEEP
+mean_rel_improvement: +0.0747
+wins: 8 of 9 pairs
+tau: 0.99 (grid 0.40-0.60)
+seeds: 1395-9357
+rule: judgment-holonomy
+digest: 8cfe2581c24770ec82404c85e38278eb47338459be2f900cccb2cb827bea9dfa
+### entry 328 op=tau_off heldout=False
+receipt judg_r5_s8240
+verdict: KILL
+mean_rel_improvement: +0.0981
+wins: 8 of 12 pairs
+tau: 0.30 (grid 0.40-0.60)
+seeds: 3493-2490
+rule: cell-mesh-relay
+digest: c14f392bd0d50cff529a3e33fc8e83f0c47beb07805e3f31bded1607e2a7684b
+### entry 329 op=tau_off heldout=False
+receipt fron_r5_s5105
+verdict: KEEP
+mean_rel_improvement: +0.0939
+wins: 10 of 12 pairs
+tau: 0.30 (grid 0.40-0.60)
+seeds: 9585-5266
+rule: frontier-distillation
+digest: 78b0a9975ead896a257232fff48a3b771240c8598cb2110a80edca4a472f2b8c
+### entry 330 op=tau_off heldout=False
+receipt judg_r2_s5275
+verdict: KILL
+mean_rel_improvement: -0.0006
+wins: 4 of 7 pairs
+tau: 0.35 (grid 0.40-0.60)
+seeds: 7872-6347
+rule: frontier-distillation
+digest: d48e684255499918dce8f839ade2ea56d8ecf72e5aa492458285a0de0ba9bac5
+### entry 331 op=tau_off heldout=False
+receipt judg_r7_s8689
+verdict: KILL
+mean_rel_improvement: +0.0458
+wins: 2 of 9 pairs
+tau: 0.35 (grid 0.40-0.60)
+seeds: 4169-2464
+rule: claim-ratio
+digest: d019baf412be50f584f7cc738fb1ad2c1107f0d6e4cdd3d14d225981fa263116
+### entry 332 op=tau_off heldout=False
+receipt cell_r7_s3333
+verdict: KEEP
+mean_rel_improvement: +0.0244
+wins: 6 of 7 pairs
+tau: 0.30 (grid 0.40-0.60)
+seeds: 5911-9607
+rule: cell-mesh-relay
+digest: cc0caa8f2f0c140a8e2e728c0329636789daf1b541d2c9f6de4e16e45915f792
+### entry 333 op=tau_off heldout=False
+receipt anti_r2_s6857
+verdict: KILL
+mean_rel_improvement: -0.0726
+wins: 8 of 12 pairs
+tau: 0.70 (grid 0.40-0.60)
+seeds: 2031-3461
+rule: judgment-holonomy
+digest: 526111072e204c2f630d752174eb88a5d3f6b1c4135a8d90b54eb84071c430a6
+### entry 334 op=tau_off heldout=False
+receipt clai_r4_s5057
+verdict: KEEP
+mean_rel_improvement: +0.0245
+wins: 7 of 7 pairs
+tau: 0.99 (grid 0.40-0.60)
+seeds: 4847-6131
+rule: cell-mesh-relay
+digest: 450aac8328e832ddb719e2686b79dd374d7332b0028aa8ae494bfb086032c5c6
+### entry 335 op=tau_off heldout=False
+receipt anti_r8_s6566
+verdict: KEEP
+mean_rel_improvement: +0.1186
+wins: 6 of 6 pairs
+tau: 0.35 (grid 0.40-0.60)
+seeds: 1736-1818
+rule: frontier-distillation
+digest: 01ae35d97f7a5362077351210622aeed0927047686b96c27a9f4e9d8d1ca8d4a
+### entry 336 op=tau_off heldout=False
+receipt anti_r2_s5120
+verdict: KILL
+mean_rel_improvement: +0.1230
+wins: 7 of 10 pairs
+tau: 0.65 (grid 0.40-0.60)
+seeds: 1213-4796
+rule: judgment-holonomy
+digest: 03aa7c5c50e1329a8d9b4d0b84726365883d761d1403bf7da39a628c755184a0
+### entry 337 op=tau_off heldout=False
+receipt cell_r5_s8476
+verdict: KILL
+mean_rel_improvement: +0.0723
+wins: 2 of 5 pairs
+tau: 0.99 (grid 0.40-0.60)
+seeds: 6781-7672
+rule: claim-ratio
+digest: f9e8aa88ae397291950bdf65a3846c12137c7b070fd5102241571aa5071bd3a0
+### entry 338 op=tau_off heldout=False
+receipt fron_r3_s1731
+verdict: KILL
+mean_rel_improvement: +0.1340
+wins: 6 of 9 pairs
+tau: 0.35 (grid 0.40-0.60)
+seeds: 1368-8373
+rule: cell-mesh-relay
+digest: f76399583adab1bd2c8a0b882691ecf8412782c35c4c509a8a2194483dfc393b
+### entry 339 op=tau_off heldout=False
+receipt cell_r5_s9720
+verdict: KEEP
+mean_rel_improvement: +0.0430
+wins: 6 of 7 pairs
+tau: 0.30 (grid 0.40-0.60)
+seeds: 4394-6684
+rule: claim-ratio
+digest: 6b8553c063c17d4466c9068013dde09432b776c6131ea72356e4b1a017172e14
+### entry 340 op=tau_off heldout=False
+receipt cell_r9_s1028
+verdict: KILL
+mean_rel_improvement: +0.2059
+wins: 3 of 12 pairs
+tau: 0.70 (grid 0.40-0.60)
+seeds: 7259-6968
+rule: claim-ratio
+digest: b51c758ed50fb9e61d8438fea3bc0ba4391c35ebf7d69d16a84338cbafb505db
+### entry 341 op=tau_off heldout=False
+receipt clai_r1_s7818
+verdict: KILL
+mean_rel_improvement: +0.1570
+wins: 1 of 9 pairs
+tau: 0.65 (grid 0.40-0.60)
+seeds: 5502-9133
+rule: cell-mesh-relay
+digest: ce0284fc95d5236a27e3d82f9fbf1ffd804c50494590c1e87ba6468465cbc0b2
+### entry 342 op=tau_off heldout=False
+receipt clai_r1_s6292
+verdict: KILL
+mean_rel_improvement: +0.0373
+wins: 2 of 7 pairs
+tau: 0.70 (grid 0.40-0.60)
+seeds: 3174-6201
+rule: antirank-primacy
+digest: 6d864248e4c4f7d3fc63cc4304233fab6b4f765d5985ed56c7ff9172e34b6dbd
+### entry 343 op=tau_off heldout=False
+receipt clai_r3_s2911
+verdict: KILL
+mean_rel_improvement: +0.1070
+wins: 1 of 4 pairs
+tau: 0.70 (grid 0.40-0.60)
+seeds: 8646-6780
+rule: claim-ratio
+digest: d4fb544f22cd094d32336a7caed5a5225669148db15ac833aa724e8aa0de8363
+### entry 344 op=tau_off heldout=False
+receipt anti_r9_s6116
+verdict: KEEP
+mean_rel_improvement: +0.0850
+wins: 4 of 5 pairs
+tau: 0.30 (grid 0.40-0.60)
+seeds: 5675-5443
+rule: antirank-primacy
+digest: da3eb2bd9c3b780e8c21e3fc7d4b56e8f956e250180fd943113ec75d37118829
+### entry 345 op=tau_off heldout=False
+receipt clai_r3_s6376
+verdict: KILL
+mean_rel_improvement: +0.0531
+wins: 0 of 4 pairs
+tau: 0.70 (grid 0.40-0.60)
+seeds: 5577-2922
+rule: claim-ratio
+digest: d80a733f8bad3ba25b1b4d3340ee675792c152945400151987b5744b06c8d439
+### entry 346 op=tau_off heldout=False
+receipt clai_r5_s3140
+verdict: KEEP
+mean_rel_improvement: +0.0087
+wins: 4 of 5 pairs
+tau: 0.35 (grid 0.40-0.60)
+seeds: 8101-1079
+rule: cell-mesh-relay
+digest: fd27029ce0c0a5ae884f8c6ede766987b2330e292f7d2ea5527f5d10bd9d2c46
+### entry 347 op=tau_off heldout=False
+receipt anti_r3_s8886
+verdict: KILL
+mean_rel_improvement: +0.1530
+wins: 0 of 10 pairs
+tau: 0.35 (grid 0.40-0.60)
+seeds: 9477-4991
+rule: judgment-holonomy
+digest: f0a98dcf7b9774a05689dcb85d73068477c543323f500fac8f0ca1af50fe6944
+### entry 348 op=tau_off heldout=False
+receipt judg_r4_s1455
+verdict: KILL
+mean_rel_improvement: +0.0626
+wins: 6 of 10 pairs
+tau: 0.35 (grid 0.40-0.60)
+seeds: 5288-9753
+rule: cell-mesh-relay
+digest: 27c9d5e809f7113d4811235484e37f18eb86ade66eb2a14b9c42aab4abf895ad
+### entry 349 op=tau_off heldout=False
+receipt judg_r1_s2034
+verdict: KEEP
+mean_rel_improvement: +0.0085
+wins: 10 of 10 pairs
+tau: 0.70 (grid 0.40-0.60)
+seeds: 6289-6110
+rule: claim-ratio
+digest: 0fcc75c70a83411d3ed03870bde859726a453274fd8f45db52689a94a59902aa
+### entry 350 op=tau_off heldout=False
+receipt anti_r9_s4117
+verdict: KILL
+mean_rel_improvement: +0.1381
+wins: 2 of 6 pairs
+tau: 0.70 (grid 0.40-0.60)
+seeds: 8143-1410
+rule: judgment-holonomy
+digest: 2ea2e870617059da88cb7a10189be6de3fb754d5510b3e3f95018cee197b0dfc
+### entry 351 op=tau_off heldout=False
+receipt fron_r3_s9695
+verdict: KILL
+mean_rel_improvement: -0.0968
+wins: 9 of 10 pairs
+tau: 0.70 (grid 0.40-0.60)
+seeds: 2630-3928
+rule: cell-mesh-relay
+digest: 68f56dc3d3c54aa04b73514157f2ff38a5d69fd329213c55018860b9160245b7
+### entry 352 op=tau_off heldout=False
+receipt anti_r1_s5652
+verdict: KILL
+mean_rel_improvement: +0.1383
+wins: 3 of 6 pairs
+tau: 0.65 (grid 0.40-0.60)
+seeds: 2671-5362
+rule: claim-ratio
+digest: 9ead780071d88cba0c6c02ea5335ae6dffa4e5172cd6d0bb19703958cbf195f0
+### entry 353 op=tau_off heldout=False
+receipt clai_r5_s3394
+verdict: KILL
+mean_rel_improvement: +0.1570
+wins: 3 of 6 pairs
+tau: 0.99 (grid 0.40-0.60)
+seeds: 6671-1434
+rule: claim-ratio
+digest: d5660ea746544755969a99f60fb2682937bcd66c26f9376083b2cc8a4bdd75d2
+### entry 354 op=tau_off heldout=False
+receipt clai_r3_s1497
+verdict: KEEP
+mean_rel_improvement: +0.0699
+wins: 12 of 12 pairs
+tau: 0.65 (grid 0.40-0.60)
+seeds: 4450-9075
+rule: claim-ratio
+digest: dad3eb5c5069830baa560c5bfece8cd5a26db818df185d14b6ef96a8660cf8e7
+### entry 355 op=tau_off heldout=False
+receipt anti_r6_s1625
+verdict: KILL
+mean_rel_improvement: +0.1248
+wins: 1 of 10 pairs
+tau: 0.35 (grid 0.40-0.60)
+seeds: 3299-3338
+rule: antirank-primacy
+digest: 5139fcda06b249444413de9dadc4b3b1bde1232ebcd96aaf6c28528470f3bab7
+### entry 356 op=tau_off heldout=False
+receipt clai_r9_s4616
+verdict: KEEP
+mean_rel_improvement: +0.2156
+wins: 4 of 5 pairs
+tau: 0.70 (grid 0.40-0.60)
+seeds: 2396-7176
+rule: antirank-primacy
+digest: 20ec93b23d0f622c5611eeee70ac985d8fada448b3adfabda9d79569140cd76e
+### entry 357 op=tau_off heldout=False
+receipt fron_r5_s6951
+verdict: KEEP
+mean_rel_improvement: +0.1514
+wins: 10 of 12 pairs
+tau: 0.30 (grid 0.40-0.60)
+seeds: 6820-1707
+rule: judgment-holonomy
+digest: 523e5e4e20b4fe58adadb9133e2f0d07740f0b1d18dd55ba1ba297dc8a940b2f
+### entry 358 op=tau_off heldout=False
+receipt judg_r4_s7835
+verdict: KEEP
+mean_rel_improvement: +0.1907
+wins: 4 of 5 pairs
+tau: 0.30 (grid 0.40-0.60)
+seeds: 9056-2541
+rule: cell-mesh-relay
+digest: e45ea3fd422d68cbefbbc8f1122a6a45e9ed53e12ed7b5a464b329aeb70edd32
+### entry 359 op=tau_off heldout=False
+receipt judg_r5_s7535
+verdict: KEEP
+mean_rel_improvement: +0.1998
+wins: 6 of 6 pairs
+tau: 0.99 (grid 0.40-0.60)
+seeds: 5484-4750
+rule: claim-ratio
+digest: e0a1f410432dfa66ed73accc2a416217e5ea0249c1554174226f701366256ca7
+### entry 360 op=seed_drop heldout=False
+receipt cell_r3_s6566
+verdict: KILL
+mean_rel_improvement: -0.0113
+wins: 4 of 8 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 
+rule: cell-mesh-relay
+digest: c6a276874ea1d87774973530e63ac325ef526d17028c49ac375827b0d3feffe8
+### entry 361 op=seed_drop heldout=False
+receipt anti_r2_s7205
+verdict: KILL
+mean_rel_improvement: -0.0035
+wins: 3 of 5 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 
+rule: antirank-primacy
+digest: 5485816275d09d2be059bb429d1450b0aa74fd8d99cf78f6bef6793562974f9a
+### entry 362 op=seed_drop heldout=False
+receipt clai_r3_s6688
+verdict: KILL
+mean_rel_improvement: -0.0910
+wins: 6 of 6 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 
+rule: claim-ratio
+digest: e6c70101248c5af3df0a59f2b3169ccbf9d7d41a2b867e1b7bf30672ca88139c
+### entry 363 op=seed_drop heldout=False
+receipt judg_r1_s3828
+verdict: KILL
+mean_rel_improvement: -0.0397
+wins: 2 of 5 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 
+rule: judgment-holonomy
+digest: bfab3612fcf3f0782108f339079b6c3eaec6bbed55d44c193c3e6265db5a57f0
+### entry 364 op=seed_drop heldout=False
+receipt judg_r5_s8538
+verdict: KILL
+mean_rel_improvement: +0.0425
+wins: 2 of 9 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 
+rule: antirank-primacy
+digest: 3e1502033a2fac76c1aed1fa3ea1e4b09266436bc84bafc5cafe9f92238cef1e
+### entry 365 op=seed_drop heldout=False
+receipt judg_r9_s2006
+verdict: KILL
+mean_rel_improvement: +0.1934
+wins: 5 of 7 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 
+rule: cell-mesh-relay
+digest: 9437d97f240bc0490d0cd3d83eb25016c1a53851f6802c09dc2c39c56e966a72
+### entry 366 op=seed_drop heldout=False
+receipt fron_r3_s5427
+verdict: KILL
+mean_rel_improvement: +0.1992
+wins: 9 of 12 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 
+rule: cell-mesh-relay
+digest: e5a8ed9f0eaa6911c30ca36972fa10459d333d3a25bbcf16b753f9b133911c53
+### entry 367 op=seed_drop heldout=False
+receipt anti_r1_s4721
+verdict: KEEP
+mean_rel_improvement: +0.2430
+wins: 5 of 5 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 
+rule: cell-mesh-relay
+digest: f60301476f648aa7cb81bf2efb4fd943ee6030dd701ba34fb8b1450a45fd3f0e
+### entry 368 op=seed_drop heldout=False
+receipt clai_r2_s6816
+verdict: KILL
+mean_rel_improvement: +0.0687
+wins: 0 of 11 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 
+rule: judgment-holonomy
+digest: 9f2e000a6ee3ff3a2bfde01f22400a74571f75737a112280e5e70b8f1a298580
+### entry 369 op=seed_drop heldout=False
+receipt anti_r1_s6883
+verdict: KILL
+mean_rel_improvement: +0.1654
+wins: 5 of 9 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 
+rule: antirank-primacy
+digest: 90991cce6d20d82a14a8b82554b1c69d06ee796a1d13c3556d7eef1f3c04a7fc
+### entry 370 op=seed_drop heldout=False
+receipt judg_r6_s6044
+verdict: KILL
+mean_rel_improvement: +0.0067
+wins: 1 of 9 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 
+rule: judgment-holonomy
+digest: 43c2b31c4eda8e46d8e26c0fcb3b1e5bf2f40f2ea6faedccf3cf0957d1527122
+### entry 371 op=seed_drop heldout=False
+receipt clai_r5_s6397
+verdict: KILL
+mean_rel_improvement: -0.0178
+wins: 1 of 7 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 
+rule: cell-mesh-relay
+digest: 0e4ce50b5e1252a49d6db496d822bb16bb90767eb169d109f554a0141ebed82a
+### entry 372 op=seed_drop heldout=False
+receipt cell_r1_s3653
+verdict: KILL
+mean_rel_improvement: +0.2004
+wins: 0 of 8 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 
+rule: claim-ratio
+digest: 41e73fe1b1d5bccbdf0635f46f492e48eef252254a77ecec0e73cb708233477c
+### entry 373 op=seed_drop heldout=False
+receipt clai_r2_s3397
+verdict: KILL
+mean_rel_improvement: +0.1205
+wins: 6 of 9 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 
+rule: judgment-holonomy
+digest: 5c67f260db7261ceacec356866e111a3f4d464acd08095d436ecb00a1dacd7f3
+### entry 374 op=seed_drop heldout=False
+receipt clai_r7_s5225
+verdict: KILL
+mean_rel_improvement: +0.0181
+wins: 3 of 8 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 
+rule: claim-ratio
+digest: e0fb356530a779e4f305c1434ad09e58a2ace3d77a535bcbd876daa5f0dd1857
+### entry 375 op=seed_drop heldout=False
+receipt clai_r8_s5206
+verdict: KILL
+mean_rel_improvement: -0.0246
+wins: 1 of 4 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 
+rule: judgment-holonomy
+digest: c0e2c804f2b4703d34cc2a465893202ee6ffc7d50a55d4a617372b8424647987
+### entry 376 op=seed_drop heldout=False
+receipt cell_r5_s2438
+verdict: KILL
+mean_rel_improvement: +0.2061
+wins: 1 of 6 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 
+rule: cell-mesh-relay
+digest: fdc4a58cdd1f9aa46df9dcb2b4ff1a20b040be1dd68f82e8ef48a5835f9e997c
+### entry 377 op=seed_drop heldout=False
+receipt anti_r7_s8187
+verdict: KILL
+mean_rel_improvement: -0.0915
+wins: 8 of 8 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 
+rule: cell-mesh-relay
+digest: 5e84a4e566e396f0de5114d0833307101fcf76cf25cb7f384d07d863c68b960e
+### entry 378 op=seed_drop heldout=False
+receipt anti_r7_s7421
+verdict: KILL
+mean_rel_improvement: -0.0729
+wins: 9 of 10 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 
+rule: judgment-holonomy
+digest: 9271940672553bfcdb8fa629ff596b1256f9ca3ce4fba3bae68605fb35697738
+### entry 379 op=seed_drop heldout=False
+receipt judg_r8_s7447
+verdict: KILL
+mean_rel_improvement: +0.1776
+wins: 2 of 11 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 
+rule: cell-mesh-relay
+digest: e47f47fdb595a930152a29359221aece50a343dedf440fb4c1de6d63d9caf8dc
+### entry 380 op=seed_drop heldout=False
+receipt anti_r3_s5512
+verdict: KEEP
+mean_rel_improvement: +0.1101
+wins: 9 of 11 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 
+rule: claim-ratio
+digest: 1134e92ca03ed310068020a4e57a63fdf6698e5631c25221be3e246e2c142e06
+### entry 381 op=seed_drop heldout=False
+receipt clai_r2_s1135
+verdict: KILL
+mean_rel_improvement: +0.2487
+wins: 2 of 11 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 
+rule: claim-ratio
+digest: ae7cea8c462e094687be7d3275545c7e4cb3b95a721b7c059314c8f7195d7766
+### entry 382 op=seed_drop heldout=False
+receipt clai_r7_s9580
+verdict: KILL
+mean_rel_improvement: +0.2199
+wins: 2 of 10 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 
+rule: judgment-holonomy
+digest: b3e979e4edb345d442f6e6eb922f88eb1d295b4bd40785834c4db4a5da51f3e6
+### entry 383 op=seed_drop heldout=False
+receipt fron_r5_s9980
+verdict: KILL
+mean_rel_improvement: +0.1355
+wins: 3 of 6 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 
+rule: antirank-primacy
+digest: a0e866771bf2230180bae9bece15820b2eaafb9a679c4434b27cab5192f5afe9
+### entry 384 op=seed_drop heldout=False
+receipt cell_r2_s9570
+verdict: KILL
+mean_rel_improvement: +0.1587
+wins: 0 of 5 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 
+rule: cell-mesh-relay
+digest: 18d2edf9ee7ddcef05436a104cfc5b6629f6383345bac6f6beceef03444a8176
+### entry 385 op=seed_drop heldout=False
+receipt fron_r3_s6477
+verdict: KILL
+mean_rel_improvement: -0.0996
+wins: 3 of 9 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 
+rule: frontier-distillation
+digest: 54d8dfbab0c5bad1c7bd6af5f2a5c526f54652d4bb2d978a313aea642690eee6
+### entry 386 op=seed_drop heldout=False
+receipt clai_r3_s4420
+verdict: KILL
+mean_rel_improvement: +0.1305
+wins: 0 of 7 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 
+rule: claim-ratio
+digest: 2d5deb0ce30886de21bf94eb4be9ad8f1ff0057024b75bc05c30bbc2cb639dae
+### entry 387 op=seed_drop heldout=False
+receipt judg_r1_s6345
+verdict: KILL
+mean_rel_improvement: -0.0409
+wins: 0 of 12 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 
+rule: cell-mesh-relay
+digest: 1d4a0c9197c8c550da4e299755b0005be488d73231f0cb9bedcb2e0a63b19ad9
+### entry 388 op=seed_drop heldout=False
+receipt fron_r8_s2395
+verdict: KILL
+mean_rel_improvement: +0.2026
+wins: 2 of 7 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 
+rule: cell-mesh-relay
+digest: a0b76688e1307d83a17b839e41b21b851ee1b9c99f5155c4c537134f1e01ff5a
+### entry 389 op=seed_drop heldout=False
+receipt judg_r5_s3876
+verdict: KILL
+mean_rel_improvement: +0.1215
+wins: 5 of 8 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 
+rule: judgment-holonomy
+digest: 6d2cd7e60311594b308fc8733654af359c27395a60eedded1dcee8edf52239c7
+### entry 390 op=seed_drop heldout=False
+receipt anti_r4_s9826
+verdict: KEEP
+mean_rel_improvement: +0.0654
+wins: 6 of 6 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 
+rule: frontier-distillation
+digest: 515865dba7ec9871a2ca30f737c3b59c0c1e0c9c232be01b949fa934a15b3fe8
+### entry 391 op=seed_drop heldout=False
+receipt judg_r4_s3726
+verdict: KILL
+mean_rel_improvement: +0.0738
+wins: 5 of 8 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 
+rule: cell-mesh-relay
+digest: e782a58a6d4061e25dc073231e82cd8a1e34ec9d141e1149f794f7039ee3950c
+### entry 392 op=seed_drop heldout=False
+receipt anti_r9_s5546
+verdict: KILL
+mean_rel_improvement: +0.2154
+wins: 4 of 6 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 
+rule: claim-ratio
+digest: b840e0d3740357b300a2fb2ca1eec4531301ed177053e6c38c6237a1a85f6483
+### entry 393 op=seed_drop heldout=False
+receipt cell_r5_s5616
+verdict: KILL
+mean_rel_improvement: +0.0813
+wins: 5 of 7 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 
+rule: antirank-primacy
+digest: 7f753693775c1df833b13a36451dc5eeaea881647139d7197a00ac247b8c444e
+### entry 394 op=seed_drop heldout=False
+receipt judg_r7_s2216
+verdict: KILL
+mean_rel_improvement: +0.0219
+wins: 4 of 6 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 
+rule: frontier-distillation
+digest: 9d8672a42300abe05ac4f135ea6d97e48973b2bdb34df775e446880c0231d1e8
+### entry 395 op=seed_drop heldout=False
+receipt judg_r2_s1688
+verdict: KEEP
+mean_rel_improvement: +0.0522
+wins: 12 of 12 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 
+rule: cell-mesh-relay
+digest: bc170f2f93c7eae35a79ba758e9ac929c107653a6df598f40285445a0b5f2a75
+### entry 396 op=seed_drop heldout=False
+receipt clai_r2_s1673
+verdict: KEEP
+mean_rel_improvement: +0.0380
+wins: 4 of 4 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 
+rule: cell-mesh-relay
+digest: 44e1aea33e432cc89178875080cd82fff46060029a81733cd6d78afaced52f35
+### entry 397 op=seed_drop heldout=False
+receipt judg_r7_s4786
+verdict: KILL
+mean_rel_improvement: +0.0737
+wins: 0 of 10 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 
+rule: claim-ratio
+digest: 5a97e8560dcfcb1f7a143ffb9f7385878c7d30a1bbd400c52bbcd98bbcaf1364
+### entry 398 op=seed_drop heldout=False
+receipt anti_r8_s4648
+verdict: KILL
+mean_rel_improvement: +0.0751
+wins: 0 of 10 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 
+rule: antirank-primacy
+digest: 190cadd29a19d66aa5a2341d3c8773850322ed8edb3ded4a77398065340ea386
+### entry 399 op=seed_drop heldout=False
+receipt judg_r4_s5823
+verdict: KILL
+mean_rel_improvement: -0.0399
+wins: 11 of 11 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 
+rule: cell-mesh-relay
+digest: 12cc3752f05e57fd170d1713a83c3756179bfb78f06196db6de92e207e89a118
+### entry 400 op=denom_swap heldout=False
+receipt clai_r7_s1406
+verdict: KILL
+mean_rel_improvement: +0.2322
+wins: 7 of 0 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 7125-9865
+rule: claim-ratio
+digest: 61cd5a6efd02c37b3c99fcb9537abfe4b93291b6fdbd1fe3d57345c6fc7a5d64
+### entry 401 op=denom_swap heldout=False
+receipt clai_r8_s8292
+verdict: KILL
+mean_rel_improvement: +0.0093
+wins: 4 of 3 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 7267-2731
+rule: judgment-holonomy
+digest: 6652576e2297a76da0cede26f40c19e95a35a214568987e65bb69fc667ccc3aa
+### entry 402 op=denom_swap heldout=False
+receipt cell_r9_s4124
+verdict: KILL
+mean_rel_improvement: +0.0553
+wins: 9 of 6 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 4941-9558
+rule: frontier-distillation
+digest: 22b99eae7f0ca9e1d9518596b4e78e8ea0e9cda3b76189ac76f3c039128d17b1
+### entry 403 op=denom_swap heldout=False
+receipt judg_r4_s4178
+verdict: KILL
+mean_rel_improvement: +0.0938
+wins: 5 of 2 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 5779-6342
+rule: judgment-holonomy
+digest: 1e7559c391956bf0c724e38967985b938c9a68589ce3805a119406391116b435
+### entry 404 op=denom_swap heldout=False
+receipt cell_r9_s4573
+verdict: KILL
+mean_rel_improvement: -0.0891
+wins: 12 of 2 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 8064-5249
+rule: claim-ratio
+digest: 3c77093828d601b5c44ea545048169837028753b23f79a9aa8b2dc0694d932cf
+### entry 405 op=denom_swap heldout=False
+receipt cell_r4_s8250
+verdict: KILL
+mean_rel_improvement: +0.0347
+wins: 8 of 0 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 2199-3258
+rule: claim-ratio
+digest: 68ce4f6d1f19657c59f53e33817e9276333e5df9d517d88722d2171e43f940eb
+### entry 406 op=denom_swap heldout=False
+receipt clai_r3_s1745
+verdict: KILL
+mean_rel_improvement: +0.1404
+wins: 9 of 5 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 8325-9938
+rule: antirank-primacy
+digest: f23f0a51d6f80d5526fdfd7fb549270b62eff5b1ccdb2305af87bdc072ea466b
+### entry 407 op=denom_swap heldout=False
+receipt anti_r5_s9047
+verdict: KEEP
+mean_rel_improvement: +0.1724
+wins: 9 of 9 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 7899-4623
+rule: frontier-distillation
+digest: 6e182c63dbbd46724eea5f8a13f5b627c9a465115976cd3ee03ac7c9ef2a810c
+### entry 408 op=denom_swap heldout=False
+receipt cell_r7_s6011
+verdict: KEEP
+mean_rel_improvement: +0.0557
+wins: 5 of 4 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 5268-3901
+rule: claim-ratio
+digest: b99ef90c6c99eb272e4bb89ecd59ec123816620a2ea06043475d280e2d7d3a8c
+### entry 409 op=denom_swap heldout=False
+receipt cell_r8_s6853
+verdict: KILL
+mean_rel_improvement: +0.2364
+wins: 8 of 5 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 6934-8028
+rule: frontier-distillation
+digest: c8265f9e92d98fdfad423782b19e18580c192601889fd5b161276ef2a6adc90f
+### entry 410 op=denom_swap heldout=False
+receipt clai_r6_s9512
+verdict: KEEP
+mean_rel_improvement: +0.0997
+wins: 5 of 4 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 4356-2047
+rule: frontier-distillation
+digest: f3a7b3349287a7a6141963459c7de17d6109cbeddc4b07810a4be26a10808a09
+### entry 411 op=denom_swap heldout=False
+receipt clai_r2_s9343
+verdict: KEEP
+mean_rel_improvement: +0.2329
+wins: 9 of 8 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 2638-5867
+rule: antirank-primacy
+digest: e5f8c8fd18b8b39bc939f1246a3eea7cb63ec75ba57d9462516e3b87b33c5559
+### entry 412 op=denom_swap heldout=False
+receipt cell_r7_s3043
+verdict: KILL
+mean_rel_improvement: -0.0213
+wins: 6 of 1 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 3008-3662
+rule: frontier-distillation
+digest: 1cc742388892ac9ec69a5a66ae23a101e246e826950683614cec4d9ffcaa8caa
+### entry 413 op=denom_swap heldout=False
+receipt cell_r1_s5683
+verdict: KILL
+mean_rel_improvement: +0.0785
+wins: 9 of 4 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 7071-6099
+rule: antirank-primacy
+digest: 30dd5e384cbc712fab30a00058663f1c2abfbf0a71b9775c4ab75b8574fd0acf
+### entry 414 op=denom_swap heldout=False
+receipt judg_r9_s9151
+verdict: KEEP
+mean_rel_improvement: +0.0301
+wins: 10 of 9 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 1375-6870
+rule: cell-mesh-relay
+digest: c943ac956dd178495b71cdc14ed20869dd9629c2714d6a3c442ab9c58dcac797
+### entry 415 op=denom_swap heldout=False
+receipt fron_r5_s3269
+verdict: KILL
+mean_rel_improvement: -0.0652
+wins: 10 of 0 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 3837-6077
+rule: claim-ratio
+digest: 98a57d3ccf4a8ac248d64afec4603ce0395d625700f5b4f477873b82d76aec49
+### entry 416 op=denom_swap heldout=False
+receipt clai_r3_s6389
+verdict: KILL
+mean_rel_improvement: -0.0680
+wins: 5 of 3 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 5534-1038
+rule: claim-ratio
+digest: 02f5bc80ed8a714add885c3f27f33fb2938c0df8eeb3af2bfec31b70d5925e1a
+### entry 417 op=denom_swap heldout=False
+receipt judg_r4_s4073
+verdict: KILL
+mean_rel_improvement: +0.0004
+wins: 10 of 7 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 1495-7038
+rule: judgment-holonomy
+digest: 52179a3b5db72100bf045344c873d4c3856fd29658f85ade0b69aff845a023c7
+### entry 418 op=denom_swap heldout=False
+receipt clai_r9_s9565
+verdict: KEEP
+mean_rel_improvement: +0.2411
+wins: 6 of 5 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1836-4724
+rule: frontier-distillation
+digest: 9f1883d9780889770c480a8f3b5fee2fad8e852f1cdd7a2878ef67f258684b6d
+### entry 419 op=denom_swap heldout=False
+receipt clai_r9_s5481
+verdict: KILL
+mean_rel_improvement: +0.0933
+wins: 5 of 3 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 3969-6160
+rule: frontier-distillation
+digest: 734a4fc5ede50d6ce10f7cbc9f1d7258f1cab83132044b59f8c5e93a706ca831
+### entry 420 op=denom_swap heldout=False
+receipt clai_r3_s4650
+verdict: KILL
+mean_rel_improvement: -0.0929
+wins: 8 of 1 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 8261-8497
+rule: cell-mesh-relay
+digest: 4d6007ac137caddf48b10bd410d4cb738854d7042cca15b5c32cfc9f151a1e98
+### entry 421 op=denom_swap heldout=False
+receipt fron_r1_s1294
+verdict: KILL
+mean_rel_improvement: +0.1950
+wins: 4 of 3 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 1072-3193
+rule: claim-ratio
+digest: 6a088c233d76241a5f6c4c33c39c416a75f65ed92f811be4fce17e1d75e86197
+### entry 422 op=denom_swap heldout=False
+receipt cell_r3_s4199
+verdict: KILL
+mean_rel_improvement: -0.0575
+wins: 11 of 9 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 7915-7227
+rule: judgment-holonomy
+digest: af61554ffa4a3d0c6219cbdbf6bde6b07708b7c78d2a8b3f562535e45f68e757
+### entry 423 op=denom_swap heldout=False
+receipt cell_r6_s4647
+verdict: KILL
+mean_rel_improvement: +0.2311
+wins: 5 of 3 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 1782-1340
+rule: cell-mesh-relay
+digest: 6832a27690da71af27ad60d2bfbdfa9cb089e4a37c5da7b7a9c65ff698de3c13
+### entry 424 op=denom_swap heldout=False
+receipt cell_r4_s6220
+verdict: KEEP
+mean_rel_improvement: +0.1943
+wins: 5 of 4 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 5100-3960
+rule: frontier-distillation
+digest: ab676b796282ee1a2cb83c6a574e44d37621b6386f3a8ef24c0705b98a2b99ca
+### entry 425 op=denom_swap heldout=False
+receipt clai_r6_s2876
+verdict: KILL
+mean_rel_improvement: +0.0521
+wins: 4 of 3 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 2868-2084
+rule: claim-ratio
+digest: 8df4404d8532fcb31bb1e42b5bd05374fe689422a63bab26e6834cf42cc9d99c
+### entry 426 op=denom_swap heldout=False
+receipt anti_r9_s4444
+verdict: KILL
+mean_rel_improvement: +0.1297
+wins: 4 of 0 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 8465-7596
+rule: cell-mesh-relay
+digest: 01e757751030a4e1524fa4bab10d961f6fa2337da2d919e2beccab8d9ee3d278
+### entry 427 op=denom_swap heldout=False
+receipt fron_r1_s3873
+verdict: KILL
+mean_rel_improvement: -0.0112
+wins: 12 of 1 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 6957-3042
+rule: cell-mesh-relay
+digest: 05b64351fa18a29e3aaff722a98a7f7446341575839c5fdf9df87742a80e65af
+### entry 428 op=denom_swap heldout=False
+receipt fron_r6_s4869
+verdict: KILL
+mean_rel_improvement: -0.0220
+wins: 8 of 2 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 4115-7400
+rule: judgment-holonomy
+digest: d46b5d81577a88c9ea73d247373824bafc055eb4b063d6526fadbe1b3e724c7a
+### entry 429 op=denom_swap heldout=False
+receipt judg_r4_s1593
+verdict: KILL
+mean_rel_improvement: +0.2241
+wins: 8 of 5 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 8008-5336
+rule: claim-ratio
+digest: 9eedc5d78cc27adb28b827804ed76caf5f36aab1e8662b3c477331880a1b7cff
+### entry 430 op=denom_swap heldout=False
+receipt fron_r2_s8411
+verdict: KILL
+mean_rel_improvement: +0.0309
+wins: 6 of 4 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 2015-4726
+rule: antirank-primacy
+digest: fc7e541e667ef989cc26306ece7d8ca639b63c55607c46d3fdde5828c91dd2d3
+### entry 431 op=denom_swap heldout=False
+receipt judg_r5_s6159
+verdict: KILL
+mean_rel_improvement: +0.2107
+wins: 7 of 3 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1199-3294
+rule: judgment-holonomy
+digest: 4aa17eb1a7c59c0a4140839467dfd29552a2f91fb10fe7447aabb95b4b7eaeab
+### entry 432 op=denom_swap heldout=False
+receipt cell_r7_s9912
+verdict: KEEP
+mean_rel_improvement: +0.1857
+wins: 5 of 5 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 8360-5515
+rule: antirank-primacy
+digest: ec64ee08a99fbfe13c081fc37cbef74aeb23f245264dbf11e4e7a105f2c2b519
+### entry 433 op=denom_swap heldout=False
+receipt clai_r9_s4983
+verdict: KEEP
+mean_rel_improvement: +0.0987
+wins: 9 of 8 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 3590-5659
+rule: cell-mesh-relay
+digest: d4ad6a8ff39f063edd321a8a39907c640b8c4b9d50a8976332145b995a8df1c3
+### entry 434 op=denom_swap heldout=False
+receipt anti_r7_s9038
+verdict: KILL
+mean_rel_improvement: -0.0461
+wins: 9 of 6 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 7117-5716
+rule: claim-ratio
+digest: 95a3bccf89ed796f75587012322bb6428d6f8a6059d9e8ac228f081779fff8fa
+### entry 435 op=denom_swap heldout=False
+receipt anti_r7_s5092
+verdict: KILL
+mean_rel_improvement: -0.0218
+wins: 6 of 6 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 6088-7861
+rule: cell-mesh-relay
+digest: 4fe1a6b540e5d456e4be3e8afd8b736da027b1cecc4b27c199d905ccd966a8d1
+### entry 436 op=denom_swap heldout=False
+receipt clai_r4_s8081
+verdict: KILL
+mean_rel_improvement: +0.1733
+wins: 9 of 5 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1444-6992
+rule: judgment-holonomy
+digest: 54c30da3d4d660407b5466b43f3bfdc1173901a05b72b176b081d89ed7e7d3c8
+### entry 437 op=denom_swap heldout=False
+receipt fron_r2_s6416
+verdict: KILL
+mean_rel_improvement: +0.0658
+wins: 12 of 8 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1018-6660
+rule: judgment-holonomy
+digest: 34507b7de7be81255a78ade72b84b1ba4f0dc913154891ee8de5a0a2224d68a9
+### entry 438 op=denom_swap heldout=False
+receipt anti_r5_s9940
+verdict: KILL
+mean_rel_improvement: +0.2451
+wins: 9 of 4 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 5866-2994
+rule: cell-mesh-relay
+digest: c24a1ff4aecd198c29b530d4dbe3dd3a5c9edb264f1f293ccea093607b6adbf6
+### entry 439 op=denom_swap heldout=False
+receipt clai_r8_s7390
+verdict: KILL
+mean_rel_improvement: -0.0529
+wins: 7 of 7 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 4781-7331
+rule: judgment-holonomy
+digest: 2a381b6fb661002b8d105a1afdbb6100d79c30b45dfb8a23f4653fd60acc4805
+### entry 440 op=nan_injection heldout=True
+receipt judg_r8_s4432
+verdict: KILL
+mean_rel_improvement: +nan
+wins: 6 of 9 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 7473-8214
+rule: judgment-holonomy
+digest: 7357345eea9bfe67ee343f07854ec8f01cbf4dfb619f548f5131b81743ff0898
+### entry 441 op=nan_injection heldout=True
+receipt clai_r7_s2100
+verdict: KILL
+mean_rel_improvement: +nan
+wins: 3 of 6 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 4207-6002
+rule: cell-mesh-relay
+digest: e9c5622d407a36d4d8fc4160e661dfa5c69d89c5225dab7329bce5585537b87c
+### entry 442 op=nan_injection heldout=True
+receipt cell_r6_s3944
+verdict: KILL
+mean_rel_improvement: +nan
+wins: 1 of 11 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 1260-1153
+rule: judgment-holonomy
+digest: 8410a27a03e12b95640b79aa7b45ed5509a5f723360eadd0c1e04a570ef07315
+### entry 443 op=nan_injection heldout=True
+receipt anti_r8_s6207
+verdict: KILL
+mean_rel_improvement: +nan
+wins: 3 of 10 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 7991-7185
+rule: cell-mesh-relay
+digest: bf9251b82765b5152aeec81082a9da195283b80df8b26a59013d763d72180be9
+### entry 444 op=nan_injection heldout=True
+receipt judg_r1_s2642
+verdict: KILL
+mean_rel_improvement: -0.0587
+wins: 6 of 7 pairs
+tau: nan (grid 0.40-0.60)
+seeds: 1737-2961
+rule: antirank-primacy
+digest: cf687b85bfb2b4ed32267b8754efffbc193efde65cfb5822bb1ddacb4e9c02a6
+### entry 445 op=nan_injection heldout=True
+receipt anti_r5_s7037
+verdict: KILL
+mean_rel_improvement: -0.0111
+wins: 6 of 12 pairs
+tau: nan (grid 0.40-0.60)
+seeds: 3417-2255
+rule: judgment-holonomy
+digest: c74cd18e9e8953e1e9dd298c96d4f7bf04049d04a721a01a74c96fba994841bc
+### entry 446 op=nan_injection heldout=True
+receipt fron_r7_s1925
+verdict: KEEP
+mean_rel_improvement: +0.1888
+wins: 4 of 4 pairs
+tau: nan (grid 0.40-0.60)
+seeds: 2602-4308
+rule: cell-mesh-relay
+digest: a22642b4a85af140337beda0b73a1976429fc53e31a19aaa60e13873c0d20134
+### entry 447 op=nan_injection heldout=True
+receipt judg_r9_s1199
+verdict: KILL
+mean_rel_improvement: +nan
+wins: 1 of 12 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 5568-8415
+rule: cell-mesh-relay
+digest: c1d447c2a3780dee61ab754661c378621d364971ec75dc7a13355ccb7554e9f6
+### entry 448 op=nan_injection heldout=True
+receipt judg_r9_s7067
+verdict: KILL
+mean_rel_improvement: +nan
+wins: 1 of 4 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 9638-2695
+rule: frontier-distillation
+digest: 773aea8013881f222a47f6375c58da609cec93a8b4aa457ce63f680531a0a34f
+### entry 449 op=nan_injection heldout=True
+receipt cell_r4_s6168
+verdict: KEEP
+mean_rel_improvement: +nan
+wins: 7 of 7 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 7681-2271
+rule: frontier-distillation
+digest: 4102adc8d85be99e709cfbea1d052df9cc2b3843f6c93f4d615bddd1b6bdae7f
+### entry 450 op=nan_injection heldout=True
+receipt judg_r4_s2635
+verdict: KILL
+mean_rel_improvement: +nan
+wins: 6 of 8 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 7330-6627
+rule: frontier-distillation
+digest: 4c337dc3232c9bade280913bb23329a438356fef520a4d18cf070f136fdc16c4
+### entry 451 op=nan_injection heldout=True
+receipt anti_r1_s4340
+verdict: KILL
+mean_rel_improvement: +0.1786
+wins: 7 of 9 pairs
+tau: nan (grid 0.40-0.60)
+seeds: 4172-6223
+rule: frontier-distillation
+digest: a9dbcdcf7be51f8315fd14b3044e07240697a69843b8edb6e3bbb6b7cc9be662
+### entry 452 op=nan_injection heldout=True
+receipt anti_r4_s8566
+verdict: KEEP
+mean_rel_improvement: +nan
+wins: 9 of 11 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 1847-7649
+rule: antirank-primacy
+digest: 5dfed3aedcca1bae1b1acd19ca3f103ae547c608b834b07fc2a2ac70b9d32315
+### entry 453 op=nan_injection heldout=True
+receipt anti_r9_s5187
+verdict: KEEP
+mean_rel_improvement: +nan
+wins: 7 of 7 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 1075-9988
+rule: claim-ratio
+digest: 9407996f52757d45645bc52dea5aaae1595e1739613a4265db964e254ffb3d2a
+### entry 454 op=nan_injection heldout=True
+receipt clai_r9_s4037
+verdict: KILL
+mean_rel_improvement: -0.0811
+wins: 2 of 7 pairs
+tau: nan (grid 0.40-0.60)
+seeds: 4703-7277
+rule: frontier-distillation
+digest: bc47de96a7c9a8974200e69fb527fbea2942c10bb96bd90ed02d4178b3850a84
+### entry 455 op=nan_injection heldout=True
+receipt anti_r1_s7669
+verdict: KEEP
+mean_rel_improvement: +0.0582
+wins: 4 of 5 pairs
+tau: nan (grid 0.40-0.60)
+seeds: 9567-3297
+rule: cell-mesh-relay
+digest: f0d05362c493a36e654c8262071894f11b7c2a0dd17e520a4ade275c4e8a0c7f
+### entry 456 op=nan_injection heldout=True
+receipt judg_r4_s8185
+verdict: KILL
+mean_rel_improvement: -0.0810
+wins: 9 of 11 pairs
+tau: nan (grid 0.40-0.60)
+seeds: 8632-8245
+rule: antirank-primacy
+digest: 45717a60948e573388b2610998bdd39cc719c15020ded5cc948cebaf8492b8d6
+### entry 457 op=nan_injection heldout=True
+receipt anti_r5_s2151
+verdict: KILL
+mean_rel_improvement: +0.2050
+wins: 2 of 4 pairs
+tau: nan (grid 0.40-0.60)
+seeds: 7831-8953
+rule: antirank-primacy
+digest: 6e1628b20cbd5af2b15ec4d5022a74a60ae81e796853f61c3f46d74f2828f4f5
+### entry 458 op=nan_injection heldout=True
+receipt anti_r1_s1223
+verdict: KILL
+mean_rel_improvement: +0.2051
+wins: 0 of 10 pairs
+tau: nan (grid 0.40-0.60)
+seeds: 6334-1277
+rule: antirank-primacy
+digest: 28ddc00f8ac6502d9fad90330ed56500af7d32f639ec3df01b4db07319faf7d2
+### entry 459 op=nan_injection heldout=True
+receipt clai_r4_s2281
+verdict: KILL
+mean_rel_improvement: +0.0786
+wins: 3 of 5 pairs
+tau: nan (grid 0.40-0.60)
+seeds: 8099-7139
+rule: frontier-distillation
+digest: 5d1a98270ef132b20215187edc9e7e9bf0d7e64b9fda32df2f2bca54e6f38823
+### entry 460 op=nan_injection heldout=True
+receipt anti_r4_s7068
+verdict: KILL
+mean_rel_improvement: +nan
+wins: 4 of 6 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 5435-6770
+rule: judgment-holonomy
+digest: e6efe384276df97ed5e0acbe7d1b7845ce915519ada76f1d722c67dbcfd9d6fa
+### entry 461 op=nan_injection heldout=True
+receipt fron_r1_s9054
+verdict: KILL
+mean_rel_improvement: +nan
+wins: 1 of 6 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 3182-3641
+rule: antirank-primacy
+digest: ba79ab453cec3bbb53c8ffa373adfee4a81358ea52530a03106b24b3b31927b0
+### entry 462 op=nan_injection heldout=True
+receipt clai_r1_s4992
+verdict: KILL
+mean_rel_improvement: +0.2453
+wins: 2 of 8 pairs
+tau: nan (grid 0.40-0.60)
+seeds: 1424-4745
+rule: frontier-distillation
+digest: b7c7beaa9cb5c628ac584c2f813fec42ea791abf826f0867c1ad332ac04476cf
+### entry 463 op=nan_injection heldout=True
+receipt anti_r1_s8862
+verdict: KILL
+mean_rel_improvement: -0.0699
+wins: 1 of 7 pairs
+tau: nan (grid 0.40-0.60)
+seeds: 3000-5525
+rule: claim-ratio
+digest: e5ad81ee20526c74973ead876388c90a0ec46b1aca24400502d509adeadde1a0
+### entry 464 op=nan_injection heldout=True
+receipt cell_r2_s8171
+verdict: KILL
+mean_rel_improvement: -0.0318
+wins: 0 of 8 pairs
+tau: nan (grid 0.40-0.60)
+seeds: 1726-8094
+rule: antirank-primacy
+digest: 4f85fb8e4d704b4b13d316d5b782df2d922d79c6fe9dc1316b41d1a5d4e393d6
+### entry 465 op=nan_injection heldout=True
+receipt clai_r4_s2114
+verdict: KEEP
+mean_rel_improvement: +nan
+wins: 5 of 6 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 2714-6139
+rule: claim-ratio
+digest: 81dd53752796d3b7071bdbf060700eeaa1f562d224e787703a9dddcc05598490
+### entry 466 op=nan_injection heldout=True
+receipt cell_r1_s4061
+verdict: KILL
+mean_rel_improvement: +nan
+wins: 12 of 12 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 4958-2813
+rule: cell-mesh-relay
+digest: 0aeff533487804269b41d7fdeb533a43d086ab088c56e2bfedd5079de55e79c7
+### entry 467 op=nan_injection heldout=True
+receipt fron_r2_s1394
+verdict: KILL
+mean_rel_improvement: +0.1950
+wins: 2 of 5 pairs
+tau: nan (grid 0.40-0.60)
+seeds: 6555-5909
+rule: cell-mesh-relay
+digest: d7241e18aaead4b07ae3eb4600e773b5dd5c96a18902671de5e27a4c2d7195b9
+### entry 468 op=nan_injection heldout=True
+receipt clai_r3_s1123
+verdict: KILL
+mean_rel_improvement: +0.0548
+wins: 5 of 10 pairs
+tau: nan (grid 0.40-0.60)
+seeds: 9030-5699
+rule: claim-ratio
+digest: bc4d2f82a96b5fc165df107621c7022b9901eda3e9aa9f6b18c44c1033f7bbc5
+### entry 469 op=nan_injection heldout=True
+receipt fron_r4_s2283
+verdict: KEEP
+mean_rel_improvement: +nan
+wins: 5 of 5 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 8555-5022
+rule: frontier-distillation
+digest: ed75befb2225f13a8aadc848518d4d2f2bd15907b8c0059fc253e3699a5a0e62
+### entry 470 op=nan_injection heldout=True
+receipt cell_r9_s1285
+verdict: KILL
+mean_rel_improvement: +nan
+wins: 1 of 4 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 9110-4759
+rule: claim-ratio
+digest: cfe8922cb623cfbfa6ee5211f7c10725415f9dbaaab202a0872bfbab45e490d0
+### entry 471 op=nan_injection heldout=True
+receipt cell_r4_s2428
+verdict: KILL
+mean_rel_improvement: +0.0724
+wins: 8 of 11 pairs
+tau: nan (grid 0.40-0.60)
+seeds: 4770-9020
+rule: frontier-distillation
+digest: 657962b8cc22a088db5d1770945ea2397b5aa9e683d5c810d2ba1010adaf6487
+### entry 472 op=nan_injection heldout=True
+receipt clai_r2_s4458
+verdict: KILL
+mean_rel_improvement: +nan
+wins: 0 of 9 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 9159-9828
+rule: cell-mesh-relay
+digest: 861c8c2e944a01313594abc826d8edb3b2ce12899309e4a70773272595f2c68c
+### entry 473 op=nan_injection heldout=True
+receipt clai_r8_s5322
+verdict: KEEP
+mean_rel_improvement: +nan
+wins: 12 of 12 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 9989-1297
+rule: claim-ratio
+digest: 9bd0d5a69fb0234dc47fad042739ffbce7f7c5876f40854f088dba1bc9bbe8e0
+### entry 474 op=nan_injection heldout=True
+receipt fron_r7_s7084
+verdict: KILL
+mean_rel_improvement: +nan
+wins: 2 of 4 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 8337-1314
+rule: frontier-distillation
+digest: 3d823d19668c15bd21809e89486eb9f6cc93ccd989c5e1efa5b090626b64ed40
+### entry 475 op=nan_injection heldout=True
+receipt clai_r1_s7793
+verdict: KEEP
+mean_rel_improvement: +0.0252
+wins: 9 of 9 pairs
+tau: nan (grid 0.40-0.60)
+seeds: 8457-2883
+rule: frontier-distillation
+digest: 2e1f039678aac417f623e2cc8452a2a85e4a6e55c58547f9c3fb4f7a3164af3c
+### entry 476 op=nan_injection heldout=True
+receipt judg_r5_s8391
+verdict: KILL
+mean_rel_improvement: +0.0513
+wins: 7 of 9 pairs
+tau: nan (grid 0.40-0.60)
+seeds: 4710-9043
+rule: claim-ratio
+digest: 80096b6790225e52ebf083f78350af7052bf90829a861670a2ff42a5ebee2804
+### entry 477 op=nan_injection heldout=True
+receipt cell_r4_s1067
+verdict: KILL
+mean_rel_improvement: -0.0141
+wins: 2 of 4 pairs
+tau: nan (grid 0.40-0.60)
+seeds: 8875-2613
+rule: cell-mesh-relay
+digest: 0d378b9e1765ef86ffd73d6327338c22c6133fcfe1ff3a36ab39d90f07239aa7
+### entry 478 op=nan_injection heldout=True
+receipt fron_r7_s9525
+verdict: KILL
+mean_rel_improvement: +nan
+wins: 3 of 7 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 1306-4330
+rule: judgment-holonomy
+digest: 6d4fc3261ab08712609e996966be0bb1da9c0ab4f4c9b8d92f3dc04eb7c27746
+### entry 479 op=nan_injection heldout=True
+receipt clai_r6_s9803
+verdict: KILL
+mean_rel_improvement: +0.1176
+wins: 7 of 11 pairs
+tau: nan (grid 0.40-0.60)
+seeds: 4414-8869
+rule: claim-ratio
+digest: fc909973f0efa7d768b0ba243c03c4b8bfd7dbbff1d620cc7f6ea89b19f96f9a
+### entry 480 op=dtype_cast heldout=True
+receipt clai_r1_s1343
+verdict: KILL
+mean_rel_improvement: +0.2067
+wins: 6.0 of 12 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 6281-1015
+rule: cell-mesh-relay
+digest: a36472a2d391203ba7dbc82e8396c2582794de0f6ef21de35c920c1c559c714c
+### entry 481 op=dtype_cast heldout=True
+receipt fron_r9_s7173
+verdict: KEEP
+mean_rel_improvement: +0.1638
+wins: 4.0 of 4 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 6180-7427
+rule: frontier-distillation
+digest: cd97119cec1d21cc3164e08b807c0fd054956a33e26ebcf9f15a3191f7c93294
+### entry 482 op=dtype_cast heldout=True
+receipt cell_r7_s9696
+verdict: KILL
+mean_rel_improvement: +0.0101
+wins: 4.0 of 6 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 3229-6513
+rule: claim-ratio
+digest: 0240538cbf0d2ca1ca7468ba53ee4d2fa89b552e169f3f73fddeb716037fbef6
+### entry 483 op=dtype_cast heldout=True
+receipt anti_r5_s2473
+verdict: KILL
+mean_rel_improvement: +0.0689
+wins: 7.0 of 10 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1082-3105
+rule: cell-mesh-relay
+digest: 1fc30256403639691e3d8a6c466f25237a213d8c91467f76aa6101fdb3cbfd2c
+### entry 484 op=dtype_cast heldout=True
+receipt cell_r6_s8825
+verdict: KILL
+mean_rel_improvement: +0.0621
+wins: 3.0 of 5 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 8726-6758
+rule: frontier-distillation
+digest: acc45356e70e5f24b21198d7f45944b6edad5f961c7a6893dcd4f87a0b572142
+### entry 485 op=dtype_cast heldout=True
+receipt judg_r7_s9766
+verdict: KILL
+mean_rel_improvement: +0.2440
+wins: 3.0 of 6 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 2158-1071
+rule: cell-mesh-relay
+digest: 3bef7a5b4c59560ac08815007d96e5d5beba7af730e5c2665aa3a840a7ecae8d
+### entry 486 op=dtype_cast heldout=True
+receipt clai_r9_s8513
+verdict: KILL
+mean_rel_improvement: +0.1138
+wins: 3.0 of 6 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 1517-7465
+rule: cell-mesh-relay
+digest: 3f971e4aa2098183cd5506ddb3b3bb896db0291cee531b687fecbf2e3d36175a
+### entry 487 op=dtype_cast heldout=True
+receipt cell_r3_s6109
+verdict: KILL
+mean_rel_improvement: -0.0300
+wins: 4.0 of 11 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 6072-2058
+rule: antirank-primacy
+digest: 88161e297b240f78c3c3e810baf563303062b4fbc2c9ff88f88945590a0dbc0e
+### entry 488 op=dtype_cast heldout=True
+receipt anti_r6_s9376
+verdict: KILL
+mean_rel_improvement: +0.1647
+wins: 3.0 of 5 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 5578-8486
+rule: claim-ratio
+digest: c7e5c08459d7ce3445e7021e2c0ee1574f8bee4d781d5ebf31dce0acea629873
+### entry 489 op=dtype_cast heldout=True
+receipt cell_r6_s8276
+verdict: KILL
+mean_rel_improvement: +0.1427
+wins: 1.0 of 4 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 7269-5628
+rule: antirank-primacy
+digest: 43e0f5dfbc05ad2ab1b5d6894dc027cf210e5195bd14dccdb448b153cc43cf14
+### entry 490 op=dtype_cast heldout=True
+receipt anti_r4_s8501
+verdict: KILL
+mean_rel_improvement: +0.1907
+wins: 3.0 of 6 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 1921-1769
+rule: judgment-holonomy
+digest: c08e6a132ebd10e67254a84b0bbe39a7e8a4159f394abbcae04525c7a7565cb1
+### entry 491 op=dtype_cast heldout=True
+receipt cell_r5_s3110
+verdict: KILL
+mean_rel_improvement: +0.2198
+wins: 2.0 of 9 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 7358-5104
+rule: cell-mesh-relay
+digest: b5afd1d9881c4b328b56ea49da0c6719e1c3a1561dd5f4bd0ca77869bc8aa45c
+### entry 492 op=dtype_cast heldout=True
+receipt fron_r2_s7379
+verdict: KILL
+mean_rel_improvement: +0.2086
+wins: 3.0 of 9 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 4547-1810
+rule: cell-mesh-relay
+digest: 44bf00ae1c25e995fde3b5d146ecdc4b7049f1482d33a8e553abc4e8f28d73d0
+### entry 493 op=dtype_cast heldout=True
+receipt clai_r7_s8051
+verdict: KILL
+mean_rel_improvement: +0.0855
+wins: 3.0 of 12 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 6481-5340
+rule: frontier-distillation
+digest: 739f58a6ef16d5f4e31679da3860d0b4718a93228c1806f1656e0338d6298c78
+### entry 494 op=dtype_cast heldout=True
+receipt judg_r3_s3065
+verdict: KEEP
+mean_rel_improvement: +0.0813
+wins: 9.0 of 11 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 8243-6729
+rule: cell-mesh-relay
+digest: 4e4385db9d6c890c0317b165e92c41e5303479de024c7759cdecdb834df90360
+### entry 495 op=dtype_cast heldout=True
+receipt judg_r1_s8435
+verdict: KILL
+mean_rel_improvement: +0.0976
+wins: 0.0 of 9 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 2913-3262
+rule: frontier-distillation
+digest: 30e2a751d2ec0c1bbcd71c17b285bf77664feff8bc37403d92fac4392d92d065
+### entry 496 op=dtype_cast heldout=True
+receipt cell_r8_s4722
+verdict: KILL
+mean_rel_improvement: +0.0761
+wins: 7.0 of 11 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 9542-9207
+rule: frontier-distillation
+digest: b05eaac993239d6a3fbe3278745b60ea5126cce1ba69a0f9ad7923f853701348
+### entry 497 op=dtype_cast heldout=True
+receipt clai_r6_s5339
+verdict: KEEP
+mean_rel_improvement: +0.0844
+wins: 7.0 of 7 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 9462-7062
+rule: cell-mesh-relay
+digest: c414b7a097cfacdc94e6f8744f1fed5127eedb02dbedfa5bbaec3ea5de538f27
+### entry 498 op=dtype_cast heldout=True
+receipt cell_r9_s8809
+verdict: KILL
+mean_rel_improvement: -0.0040
+wins: 1.0 of 7 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 4437-9959
+rule: antirank-primacy
+digest: 275e62aa2618dc3399dc054a7ad034ce8edd1c9d8d81c724da14d458edc95118
+### entry 499 op=dtype_cast heldout=True
+receipt cell_r3_s9040
+verdict: KILL
+mean_rel_improvement: +0.2194
+wins: 1.0 of 6 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 6339-8165
+rule: frontier-distillation
+digest: 3bbb8912bf2d41a93b70e2160b6d2ee5d8a687b2e5b4c784a9ec1d752c2e1a0b
+### entry 500 op=dtype_cast heldout=True
+receipt anti_r9_s5249
+verdict: KILL
+mean_rel_improvement: +0.1665
+wins: 2.0 of 8 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 6768-6488
+rule: cell-mesh-relay
+digest: c180eb498acebb2934a3d4c05cf5ff259691d42ba2a8729d3f4ce59fb618fda9
+### entry 501 op=dtype_cast heldout=True
+receipt anti_r3_s3972
+verdict: KILL
+mean_rel_improvement: +0.0142
+wins: 3.0 of 9 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 8450-6797
+rule: claim-ratio
+digest: 82a15fb7efaa407ac92be3ddb84df3f0390159f7ad508e06b127d9abe65a59e3
+### entry 502 op=dtype_cast heldout=True
+receipt anti_r2_s5977
+verdict: KILL
+mean_rel_improvement: +0.1946
+wins: 2.0 of 6 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 7492-5635
+rule: antirank-primacy
+digest: 7ffcbbe5d6855433c296b19185563cda089a3a520c96e5abed88ab98948db138
+### entry 503 op=dtype_cast heldout=True
+receipt judg_r2_s3229
+verdict: KEEP
+mean_rel_improvement: +0.2387
+wins: 4.0 of 4 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 3326-2317
+rule: judgment-holonomy
+digest: d2e085c6aac7d720c0d3d7e9ebafedc583c89fcb30cf2631b6d2906264556295
+### entry 504 op=dtype_cast heldout=True
+receipt fron_r7_s6351
+verdict: KILL
+mean_rel_improvement: +0.0576
+wins: 5.0 of 7 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 7659-6840
+rule: claim-ratio
+digest: 2b276be5914772d3948f4bd456e6fc02646903defd2b17b99d92cda920483e8c
+### entry 505 op=dtype_cast heldout=True
+receipt anti_r4_s8924
+verdict: KEEP
+mean_rel_improvement: +0.2382
+wins: 5.0 of 5 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 2343-5504
+rule: cell-mesh-relay
+digest: b19802019be88b2fa53bcfb98164696be7c899cc28782f1e0b04d0e688504719
+### entry 506 op=dtype_cast heldout=True
+receipt judg_r8_s9443
+verdict: KILL
+mean_rel_improvement: -0.0585
+wins: 0.0 of 5 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 5221-2157
+rule: claim-ratio
+digest: 87dc3ca6dcce9a65eb7664f58f55c81aebb1f482c55da837501e77b52078523a
+### entry 507 op=dtype_cast heldout=True
+receipt fron_r1_s9778
+verdict: KEEP
+mean_rel_improvement: +0.0713
+wins: 8.0 of 10 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 5008-5997
+rule: claim-ratio
+digest: a0c41d88fde2e4c9fa30b55c482f1311023d5d33d1855ecf9ea6f2e375bc47de
+### entry 508 op=dtype_cast heldout=True
+receipt clai_r8_s2966
+verdict: KILL
+mean_rel_improvement: +0.2369
+wins: 5.0 of 9 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1389-4968
+rule: frontier-distillation
+digest: 17fc990c31aa108f38eb2077218e9448fef38c3b0019ad22c6ea4d962080fba8
+### entry 509 op=dtype_cast heldout=True
+receipt cell_r9_s1772
+verdict: KEEP
+mean_rel_improvement: +0.0648
+wins: 5.0 of 6 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1269-4988
+rule: antirank-primacy
+digest: 6135dea6fb3b0c89f476805a2642596bb9df6aa2f12b08fa51888dd92c084866
+### entry 510 op=dtype_cast heldout=True
+receipt anti_r6_s3645
+verdict: KEEP
+mean_rel_improvement: +0.0034
+wins: 12.0 of 12 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 2213-8669
+rule: judgment-holonomy
+digest: 8757e90c214565e30bda429917733c07b00ff2fb6ddb5e42ac5b4b92acf857aa
+### entry 511 op=dtype_cast heldout=True
+receipt anti_r8_s7583
+verdict: KILL
+mean_rel_improvement: +0.0336
+wins: 5.0 of 7 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 4711-2549
+rule: cell-mesh-relay
+digest: a7f24b3efc1fe17b2b39b04d0d7513c702b476992fb25118a96bc11fcef85149
+### entry 512 op=dtype_cast heldout=True
+receipt judg_r6_s8961
+verdict: KILL
+mean_rel_improvement: +0.0521
+wins: 4.0 of 9 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 7271-3056
+rule: cell-mesh-relay
+digest: a94c96906824765cbf6bd5b035c5ea817b20920211fc7797248c098834f0593b
+### entry 513 op=dtype_cast heldout=True
+receipt clai_r2_s1540
+verdict: KILL
+mean_rel_improvement: +0.0115
+wins: 3.0 of 11 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 4097-9637
+rule: claim-ratio
+digest: be42e6720c76286cf9d5b0111200ceb0e966234c819491d9a493a222dfb95063
+### entry 514 op=dtype_cast heldout=True
+receipt fron_r9_s5652
+verdict: KILL
+mean_rel_improvement: +0.0712
+wins: 1.0 of 7 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 8071-4701
+rule: claim-ratio
+digest: fa4cd3b5b1f112c215c44fde96e7618e724f79c7a3148f6dbde44ab68d59a85b
+### entry 515 op=dtype_cast heldout=True
+receipt clai_r1_s3751
+verdict: KILL
+mean_rel_improvement: +0.0330
+wins: 4.0 of 9 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 8979-5075
+rule: frontier-distillation
+digest: 676c3f89f1f1889b5fcbe97b40e9d7abe5aa253ed8e355e14f3ed6950a27b229
+### entry 516 op=dtype_cast heldout=True
+receipt cell_r1_s7435
+verdict: KILL
+mean_rel_improvement: +0.1630
+wins: 2.0 of 5 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 8948-5607
+rule: claim-ratio
+digest: 4030d9cc08fc6cca349cd677877e66dacf36e206e44874d3fb3853cf0b514e5f
+### entry 517 op=dtype_cast heldout=True
+receipt anti_r3_s9353
+verdict: KEEP
+mean_rel_improvement: +0.2420
+wins: 5.0 of 6 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 8258-3905
+rule: frontier-distillation
+digest: ffbf406659771ca48cce0b7384b6ab6ace9034103cae829319f930599fd21dd5
+### entry 518 op=dtype_cast heldout=True
+receipt clai_r9_s2671
+verdict: KEEP
+mean_rel_improvement: +0.1902
+wins: 10.0 of 12 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 9307-3400
+rule: antirank-primacy
+digest: 7b9f7971d4457d78cdb2267c5cae99171dc7f0c3e387757b853542373e91da66
+### entry 519 op=dtype_cast heldout=True
+receipt judg_r7_s3792
+verdict: KILL
+mean_rel_improvement: +0.1309
+wins: 1.0 of 5 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 8810-5020
+rule: judgment-holonomy
+digest: 9696cb2ce87c4faeb8bac67492d519155ab3932c75726304b635a78d5cad8a0e
+### entry 520 op=split_boundary heldout=True
+receipt clai_r9_s6992
+verdict: KEEP
+mean_rel_improvement: +0.0632
+wins: 3 of 4 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 7272-7458
+rule: antirank-primacy
+digest: f95ffd67cdeb27f367bcaa5a0659406b96ab6a1ba34432bab440c68ef2accde6
+### entry 521 op=split_boundary heldout=True
+receipt anti_r3_s2249
+verdict: KEEP
+mean_rel_improvement: +0.1406
+wins: 7 of 9 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 2334-2740
+rule: frontier-distillation
+digest: 7f47faa40f9f235b9fe05cf6f3f4387c906aa15576f6b5f3ec29f5a03db2dcb5
+### entry 522 op=split_boundary heldout=True
+receipt cell_r8_s2161
+verdict: KEEP
+mean_rel_improvement: +0.0830
+wins: 4 of 6 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 9947-8334
+rule: frontier-distillation
+digest: dfc1fd331596d725968c516e2c8068e1e2446d0cdf5c0dde60f94ca3be869a53
+### entry 523 op=split_boundary heldout=True
+receipt judg_r8_s8758
+verdict: KEEP
+mean_rel_improvement: +0.1702
+wins: 3 of 5 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 9365-9177
+rule: cell-mesh-relay
+digest: c2ac8fe461e9abef70e7f3080c9f78e49beb71e2aaec1dd0e1e6e6908a589e15
+### entry 524 op=split_boundary heldout=True
+receipt cell_r5_s5704
+verdict: KEEP
+mean_rel_improvement: +0.2176
+wins: 3 of 4 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 3298-2152
+rule: judgment-holonomy
+digest: cd02964dfd30d93ce82b3909788a4ed3fa95f6cb061a835c9bad25c3e1fc6343
+### entry 525 op=split_boundary heldout=True
+receipt fron_r9_s9737
+verdict: KEEP
+mean_rel_improvement: +0.0386
+wins: 8 of 11 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 3074-7463
+rule: antirank-primacy
+digest: 70e9ba249b7cceccf170e0cb963241d1e1ccff9e79c6fd98f9ad8f32f5cd1d1f
+### entry 526 op=split_boundary heldout=True
+receipt anti_r4_s7233
+verdict: KEEP
+mean_rel_improvement: +0.1470
+wins: 7 of 9 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 4201-1163
+rule: antirank-primacy
+digest: f0afe2e4b42922a61b758aa41237c3f93aeeaf48e2578511415e38704c6d76b0
+### entry 527 op=split_boundary heldout=True
+receipt judg_r8_s3310
+verdict: KEEP
+mean_rel_improvement: +0.0830
+wins: 5 of 7 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 6617-2603
+rule: claim-ratio
+digest: 6b0879d6d27fb50d94a26051547b9548e8aaa357b1e58c6927b9b11278cb0735
+### entry 528 op=split_boundary heldout=True
+receipt clai_r7_s7908
+verdict: KEEP
+mean_rel_improvement: +0.0860
+wins: 9 of 12 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 3388-7574
+rule: antirank-primacy
+digest: 2d56622e28db5f3ef529ae219997fce6511fa73b8f53c2b69b59e05d0906d4e5
+### entry 529 op=split_boundary heldout=True
+receipt fron_r1_s4049
+verdict: KEEP
+mean_rel_improvement: +0.0705
+wins: 9 of 12 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 7071-1429
+rule: cell-mesh-relay
+digest: 80409e42994769f5916e3c7e1826de3ddbc28b17136532aaab9ca014c918686f
+### entry 530 op=split_boundary heldout=True
+receipt fron_r8_s5232
+verdict: KEEP
+mean_rel_improvement: +0.2082
+wins: 4 of 6 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 8434-9972
+rule: antirank-primacy
+digest: 3af035cffeb01abc6f67e8f74705ca139b7957f2f5c27df89ba09e15567fff22
+### entry 531 op=split_boundary heldout=True
+receipt cell_r8_s5677
+verdict: KEEP
+mean_rel_improvement: +0.2077
+wins: 5 of 7 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 9636-9808
+rule: antirank-primacy
+digest: a61956dec99403a185e53e99499e7cd38384ec6efad32e188f38552193e92e82
+### entry 532 op=split_boundary heldout=True
+receipt judg_r3_s8701
+verdict: KEEP
+mean_rel_improvement: +0.0945
+wins: 9 of 12 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 5813-2859
+rule: frontier-distillation
+digest: b305915e5e493a8792cfaa14697e6074538f73bc9c418584ad447bed8e06e2da
+### entry 533 op=split_boundary heldout=True
+receipt judg_r2_s6055
+verdict: KEEP
+mean_rel_improvement: +0.1111
+wins: 9 of 12 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 7921-5075
+rule: judgment-holonomy
+digest: 76a653c55d6e996f2d998f328f96d3213f3ce5875cc8a9d6a082eae4d6c2b01f
+### entry 534 op=split_boundary heldout=True
+receipt anti_r4_s4407
+verdict: KEEP
+mean_rel_improvement: +0.0323
+wins: 6 of 8 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 1501-1565
+rule: frontier-distillation
+digest: e89ddae56c387176988b75d26dd7ed819627f7eae995fa73e1f69b5ae8fe7e1e
+### entry 535 op=split_boundary heldout=True
+receipt clai_r2_s3414
+verdict: KEEP
+mean_rel_improvement: +0.0572
+wins: 7 of 10 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 7865-6967
+rule: cell-mesh-relay
+digest: c312d3bf611c15df98e0ccbbe3e93a7b324e8fd8f0e136dd3acb3cce9ffa45a5
+### entry 536 op=split_boundary heldout=True
+receipt clai_r7_s9852
+verdict: KEEP
+mean_rel_improvement: +0.1335
+wins: 3 of 4 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 4310-4802
+rule: cell-mesh-relay
+digest: fddf02a9ca52c6ed6578db947f8463dd7c8a4960b343dc259d52fd0b68d6a4c9
+### entry 537 op=split_boundary heldout=True
+receipt anti_r4_s2913
+verdict: KEEP
+mean_rel_improvement: +0.1820
+wins: 9 of 12 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 5141-6368
+rule: judgment-holonomy
+digest: a5a0ecc4f1c2cb736325ae905ba1aa00d0540f8cfac34e88f0530177af653de4
+### entry 538 op=split_boundary heldout=True
+receipt cell_r4_s8433
+verdict: KEEP
+mean_rel_improvement: +0.0146
+wins: 7 of 9 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 5833-5361
+rule: cell-mesh-relay
+digest: b563354ec1854befec93f4021dbcc386013fa9ad28a1eba070b9601f8566da1c
+### entry 539 op=split_boundary heldout=True
+receipt judg_r6_s4675
+verdict: KEEP
+mean_rel_improvement: +0.0753
+wins: 3 of 5 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 1819-1360
+rule: frontier-distillation
+digest: f52387c25204b3ed8ac2d23f637fe6721ad72f7f178485434136f84a862befd4
+### entry 540 op=split_boundary heldout=True
+receipt anti_r9_s5945
+verdict: KEEP
+mean_rel_improvement: +0.0818
+wins: 3 of 5 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 2502-2581
+rule: frontier-distillation
+digest: eeb71c48031c9471512ff49e3e9dda257bd0a4d349e782c44361a3716646ed96
+### entry 541 op=split_boundary heldout=True
+receipt judg_r5_s3984
+verdict: KEEP
+mean_rel_improvement: +0.0510
+wins: 3 of 5 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 6309-1292
+rule: judgment-holonomy
+digest: 1e0c2f8909deb0e6eba7a09db397ca77106bb3fcdb47ecb651e1ad74ed792594
+### entry 542 op=split_boundary heldout=True
+receipt judg_r7_s3162
+verdict: KEEP
+mean_rel_improvement: +0.0632
+wins: 8 of 11 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 2140-9750
+rule: frontier-distillation
+digest: 6d2df50b4d03356376a3ddaadccf268e103bb4be8f233e245d0f296a1baa52b5
+### entry 543 op=split_boundary heldout=True
+receipt judg_r4_s2069
+verdict: KEEP
+mean_rel_improvement: +0.0054
+wins: 9 of 12 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 9215-9933
+rule: claim-ratio
+digest: 7b6df118acd410e3b3c7dd88dfe9f721a145af4f7df0cb62d300e2074c63d1a5
+### entry 544 op=split_boundary heldout=True
+receipt clai_r3_s1732
+verdict: KEEP
+mean_rel_improvement: +0.1188
+wins: 7 of 9 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 2333-7960
+rule: claim-ratio
+digest: 55452372404aee0a7167d095c2d1ff367fb4d7291ead60b76e500f91b2d80fa2
+### entry 545 op=split_boundary heldout=True
+receipt cell_r6_s8739
+verdict: KEEP
+mean_rel_improvement: +0.2460
+wins: 9 of 12 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 8053-1290
+rule: claim-ratio
+digest: 5829d15b9978e815154724b82de674924038fc698f57a92e31f347e12fd14b33
+### entry 546 op=split_boundary heldout=True
+receipt judg_r6_s9541
+verdict: KEEP
+mean_rel_improvement: +0.0485
+wins: 7 of 10 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 2813-1559
+rule: frontier-distillation
+digest: 3e49a3bc8803d03a89f52cef5302fbbe4da84aba1e21fec1580a6365f4b3733f
+### entry 547 op=split_boundary heldout=True
+receipt judg_r6_s6280
+verdict: KEEP
+mean_rel_improvement: +0.0746
+wins: 4 of 6 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 6556-7908
+rule: cell-mesh-relay
+digest: 71a3ca250cda0ffe2551c0f8665f65a7929599b90f6ca206af2be5fe260f2e54
+### entry 548 op=split_boundary heldout=True
+receipt cell_r8_s2687
+verdict: KEEP
+mean_rel_improvement: +0.2492
+wins: 3 of 5 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 3753-7978
+rule: antirank-primacy
+digest: 5af5d65171de8f62ff7ed4842afa36808a760e1ef46ee8e97ae59570efbcf997
+### entry 549 op=split_boundary heldout=True
+receipt fron_r3_s1443
+verdict: KEEP
+mean_rel_improvement: +0.2437
+wins: 5 of 7 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 8379-4593
+rule: cell-mesh-relay
+digest: bc9770acfbbcf801b20bbf50fcbf1b9de8565cdcb8800db979dc64f649a833cf
+### entry 550 op=split_boundary heldout=True
+receipt anti_r9_s7139
+verdict: KEEP
+mean_rel_improvement: +0.1281
+wins: 8 of 11 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 3065-8663
+rule: frontier-distillation
+digest: d99337c2b984ef9709049dd3e5e67546a37a9d5f453e4815902f694a02d53ad4
+### entry 551 op=split_boundary heldout=True
+receipt clai_r7_s7680
+verdict: KEEP
+mean_rel_improvement: +0.1164
+wins: 7 of 9 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 3413-5301
+rule: frontier-distillation
+digest: 16591604b5dc07e09df8b84e85357ffc8ca929edc8b6af1810f9ec8fb9fe0397
+### entry 552 op=split_boundary heldout=True
+receipt cell_r3_s8623
+verdict: KEEP
+mean_rel_improvement: +0.0871
+wins: 3 of 5 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 3533-9882
+rule: antirank-primacy
+digest: 467e3a78f05bbef4b66435f3e3838deba4393428b5bf232b104747f1c265ae95
+### entry 553 op=split_boundary heldout=True
+receipt clai_r9_s8793
+verdict: KEEP
+mean_rel_improvement: +0.2321
+wins: 7 of 9 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 9572-3076
+rule: antirank-primacy
+digest: d898e1923793d901e52b535b826be7f955374a7c2fb66683412f5545ef0cd13b
+### entry 554 op=split_boundary heldout=True
+receipt fron_r8_s9807
+verdict: KEEP
+mean_rel_improvement: +0.0021
+wins: 6 of 8 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 4333-2561
+rule: claim-ratio
+digest: dd55ed7736792eb429d08d8dd11dc54ffcc875044ea63aadb07c2fd9f6fb926f
+### entry 555 op=split_boundary heldout=True
+receipt anti_r7_s4582
+verdict: KEEP
+mean_rel_improvement: +0.2099
+wins: 5 of 7 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 9229-2411
+rule: claim-ratio
+digest: 6111bc84622632beab04946c93defa2ee554b1ac2e435954dbb84034943366e4
+### entry 556 op=split_boundary heldout=True
+receipt cell_r1_s8008
+verdict: KEEP
+mean_rel_improvement: +0.1046
+wins: 7 of 10 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 4837-6587
+rule: claim-ratio
+digest: a9df0f8889693720421faf60fc4ed806e4957aeca7045b29206adda81362b8e0
+### entry 557 op=split_boundary heldout=True
+receipt judg_r5_s6672
+verdict: KEEP
+mean_rel_improvement: +0.1602
+wins: 3 of 5 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 3302-8787
+rule: claim-ratio
+digest: 737d29d7a1e68a1d6efa0b5931160b831bf74cf6ee244950d9f60e4025758a90
+### entry 558 op=split_boundary heldout=True
+receipt judg_r9_s7716
+verdict: KEEP
+mean_rel_improvement: +0.1233
+wins: 9 of 12 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 2418-1008
+rule: cell-mesh-relay
+digest: 850870e5a3007ebda255868d1f86660057894b85b7d3e88903db6f3d7020e80a
+### entry 559 op=split_boundary heldout=True
+receipt anti_r1_s9696
+verdict: KEEP
+mean_rel_improvement: +0.0832
+wins: 6 of 8 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1222-8064
+rule: antirank-primacy
+digest: 2b93c00b8ee2c019050bbba8a1cf1b4e9ee0dff1cef67861768fd20a8e2aaba6
+### entry 560 op=receipt_copy_prior heldout=True
+receipt cell_r5_s8476
+verdict: KILL
+mean_rel_improvement: +0.2380
+wins: 5 of 10 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 4853-4747
+rule: antirank-primacy
+digest: 72da597f6fa2c8eaecc598825aac0a817c1566c3ab61624e1c33ab91c8f1b8b1
+### entry 561 op=receipt_copy_prior heldout=True
+receipt clai_r2_s3763
+verdict: KILL
+mean_rel_improvement: +0.0020
+wins: 6 of 10 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 8500-8642
+rule: frontier-distillation
+digest: 7868cc4daf14a3aaefeff04b3bc4cf26478279e7002b4050a7e146052d577e73
+### entry 562 op=receipt_copy_prior heldout=True
+receipt fron_r5_s6529
+verdict: KILL
+mean_rel_improvement: +0.1761
+wins: 6 of 11 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 6324-2358
+rule: frontier-distillation
+digest: b47ec2de947eaffbe68d629b434f250f9a0d3bb8f0dc9f6d0e0f15800205449f
+### entry 563 op=receipt_copy_prior heldout=True
+receipt fron_r4_s6168
+verdict: KEEP
+mean_rel_improvement: +0.1450
+wins: 5 of 6 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 1320-7130
+rule: frontier-distillation
+digest: 56df2373a575366d28e3f685a067adca9f8093b7415277c5316f572f24858fae
+### entry 564 op=receipt_copy_prior heldout=True
+receipt clai_r3_s1754
+verdict: KILL
+mean_rel_improvement: +0.0955
+wins: 1 of 8 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 9405-4020
+rule: antirank-primacy
+digest: 827173af5d8bde199e02309206ee8e2a0b7f57df3fdab98c92ef77012d9fc3c9
+### entry 565 op=receipt_copy_prior heldout=True
+receipt cell_r7_s9696
+verdict: KILL
+mean_rel_improvement: +0.0537
+wins: 1 of 10 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1055-4868
+rule: frontier-distillation
+digest: 18043c8b6a068e88c4bebf83f3733f926a53231fdea9a8ae6e5e5531ae426c5f
+### entry 566 op=receipt_copy_prior heldout=True
+receipt anti_r8_s7583
+verdict: KILL
+mean_rel_improvement: +0.2303
+wins: 3 of 5 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 7057-9578
+rule: frontier-distillation
+digest: fc57f507f42385be2bae7b6fcd8bd13fff84d590f207abf1e04d388fa643b8a0
+### entry 567 op=receipt_copy_prior heldout=True
+receipt clai_r1_s1343
+verdict: KILL
+mean_rel_improvement: +0.2356
+wins: 2 of 11 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 1971-2693
+rule: cell-mesh-relay
+digest: ddbd6065006ae0e1eb5bce65ad2bcf91bfcc65891e22aa43499ab877ffb2277d
+### entry 568 op=receipt_copy_prior heldout=True
+receipt anti_r2_s6758
+verdict: KILL
+mean_rel_improvement: +0.0707
+wins: 8 of 12 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 5141-3114
+rule: frontier-distillation
+digest: aa9f38d3b7125ffd0c426e24f2d69c9b0524f10c92bd22e05ee60b72c153cf4c
+### entry 569 op=receipt_copy_prior heldout=True
+receipt cell_r1_s7435
+verdict: KILL
+mean_rel_improvement: -0.0395
+wins: 3 of 11 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 9972-9632
+rule: cell-mesh-relay
+digest: af28cdc7e3a20642832d900ce15e3a041a19fdfa51b41df73a230bc7c2de4776
+### entry 570 op=receipt_copy_prior heldout=True
+receipt cell_r6_s8276
+verdict: KILL
+mean_rel_improvement: -0.0965
+wins: 6 of 11 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 2262-1548
+rule: claim-ratio
+digest: e4ca31d85bd169b255c7e7fd7a11fdfc0e24ceda4663b338c20c596fac73fc10
+### entry 571 op=receipt_copy_prior heldout=True
+receipt cell_r7_s1113
+verdict: KEEP
+mean_rel_improvement: +0.1948
+wins: 10 of 12 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 2433-6793
+rule: judgment-holonomy
+digest: 749a400e15604dfcabd2d64189c1535be80a06e1d85d3f306659ab1ec9d61f1b
+### entry 572 op=receipt_copy_prior heldout=True
+receipt judg_r1_s2034
+verdict: KEEP
+mean_rel_improvement: +0.2215
+wins: 9 of 10 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 8848-3591
+rule: frontier-distillation
+digest: c34b9cffad53fce81773026d92fcf5c9f2939066ee401e1adf1cfd6b29fbff98
+### entry 573 op=receipt_copy_prior heldout=True
+receipt judg_r9_s7716
+verdict: KEEP
+mean_rel_improvement: +0.1162
+wins: 7 of 8 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 3836-5609
+rule: antirank-primacy
+digest: dcdb6b6c4d9e182c377dd0c18e865a9dc6f4603115678201b6d83a36a1a82774
+### entry 574 op=receipt_copy_prior heldout=True
+receipt clai_r6_s9966
+verdict: KILL
+mean_rel_improvement: +0.0209
+wins: 1 of 6 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 8623-5520
+rule: frontier-distillation
+digest: 64106815bf61521abdd0da1bb0af7d6b61a67361a7a422643c6ff9cadc3ac3f5
+### entry 575 op=receipt_copy_prior heldout=True
+receipt anti_r8_s9368
+verdict: KILL
+mean_rel_improvement: +0.1083
+wins: 4 of 9 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 4281-8774
+rule: claim-ratio
+digest: 8fef076dd881e790a8b958d7e41a16c9331c39c8e063ea83b8dedf8cd6de8a48
+### entry 576 op=receipt_copy_prior heldout=True
+receipt cell_r4_s6163
+verdict: KILL
+mean_rel_improvement: +0.0941
+wins: 8 of 12 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 4696-4200
+rule: frontier-distillation
+digest: 5062546792b05a2b7faf7008e5cef3c4a4d3a0f35a072da071a006baee869d3c
+### entry 577 op=receipt_copy_prior heldout=True
+receipt anti_r4_s4503
+verdict: KEEP
+mean_rel_improvement: +0.1325
+wins: 5 of 5 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 4717-5373
+rule: cell-mesh-relay
+digest: 9318dcdd46184c2d1d3dcdec4e238f458d25089d7f8153a7f3bcdeadfd98dc07
+### entry 578 op=receipt_copy_prior heldout=True
+receipt clai_r2_s3763
+verdict: KEEP
+mean_rel_improvement: +0.0454
+wins: 9 of 9 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 7943-6094
+rule: frontier-distillation
+digest: c8e92b8f5ff5ab1b455e963e48d49f4b6e7ab723902bfcd137a05349e5b707df
+### entry 579 op=receipt_copy_prior heldout=True
+receipt anti_r7_s9038
+verdict: KILL
+mean_rel_improvement: +0.2232
+wins: 2 of 7 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 4407-2298
+rule: antirank-primacy
+digest: 7833b877afa577418138140264b15ebbf739b65ebec09b2548fa047797edb21e
+### entry 580 op=receipt_copy_prior heldout=True
+receipt cell_r8_s6886
+verdict: KILL
+mean_rel_improvement: +0.0889
+wins: 0 of 5 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 6784-9236
+rule: antirank-primacy
+digest: c0115a14742eb0c155967e426302ec05f5078f719be041fd0b186adcbb03c59d
+### entry 581 op=receipt_copy_prior heldout=True
+receipt clai_r9_s5481
+verdict: KILL
+mean_rel_improvement: -0.0689
+wins: 3 of 9 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 9043-9319
+rule: antirank-primacy
+digest: 399e9e2074170737faa11cdcaddd621b10f75cba813f5286eb6f403cff5cbec8
+### entry 582 op=receipt_copy_prior heldout=True
+receipt anti_r9_s3975
+verdict: KILL
+mean_rel_improvement: +0.2226
+wins: 6 of 11 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 9976-5526
+rule: cell-mesh-relay
+digest: e84fe42006b60cc9ab79fb9da6b7f797580435774cae24dd771ca9155c122a4f
+### entry 583 op=receipt_copy_prior heldout=True
+receipt anti_r2_s6758
+verdict: KEEP
+mean_rel_improvement: +0.0440
+wins: 6 of 7 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 8102-9389
+rule: judgment-holonomy
+digest: 90c252b2535f5dde7f1fc029fbb8a30c189e9b37b379fe99c057e884e212d43b
+### entry 584 op=receipt_copy_prior heldout=True
+receipt clai_r9_s6992
+verdict: KEEP
+mean_rel_improvement: +0.0313
+wins: 5 of 6 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 6891-4262
+rule: frontier-distillation
+digest: 7abc0e1a11cd5068b1805f060fdca9bb18b8fa7b8f9b56e54e7827289b63512e
+### entry 585 op=receipt_copy_prior heldout=True
+receipt clai_r6_s9966
+verdict: KILL
+mean_rel_improvement: -0.0259
+wins: 5 of 8 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 4005-2316
+rule: antirank-primacy
+digest: 91eb14d6244d7fba9fa12f14bb9b129ee7789a36c5b2a625e546650cc6547110
+### entry 586 op=receipt_copy_prior heldout=True
+receipt clai_r7_s4499
+verdict: KILL
+mean_rel_improvement: -0.0062
+wins: 8 of 8 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 8701-6472
+rule: cell-mesh-relay
+digest: d1936e6f27b5316744ea2be53ca819343eac5ac50beba2c598d40af777fee5e4
+### entry 587 op=receipt_copy_prior heldout=True
+receipt anti_r2_s5977
+verdict: KILL
+mean_rel_improvement: +0.2102
+wins: 3 of 4 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 3511-4616
+rule: judgment-holonomy
+digest: 06d52ca66387848c2864b1eecea8692daf307a162aceb384d4cab3696444cb9a
+### entry 588 op=receipt_copy_prior heldout=True
+receipt fron_r5_s1090
+verdict: KILL
+mean_rel_improvement: +0.0195
+wins: 0 of 12 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 4822-9656
+rule: antirank-primacy
+digest: 1b1a86f20394692bf19f8e213108aa11a7cac01c33776716825e1cfc77e81f28
+### entry 589 op=receipt_copy_prior heldout=True
+receipt clai_r5_s8385
+verdict: KILL
+mean_rel_improvement: -0.0206
+wins: 1 of 7 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 3441-4381
+rule: frontier-distillation
+digest: 16c686e7415cef8435b9b8ee67897c3faa9634d1c1b4cdd8f590b64ffca76913
+### entry 590 op=receipt_copy_prior heldout=True
+receipt judg_r1_s6345
+verdict: KEEP
+mean_rel_improvement: +0.1547
+wins: 12 of 12 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 4632-3680
+rule: judgment-holonomy
+digest: 2240c7192bda990c1845175bdb731112dc782433c1ce25e79e94c20d53102c45
+### entry 591 op=receipt_copy_prior heldout=True
+receipt anti_r5_s2473
+verdict: KILL
+mean_rel_improvement: +0.0905
+wins: 3 of 11 pairs
+tau: 0.45 (grid 0.40-0.60)
+seeds: 6564-5842
+rule: antirank-primacy
+digest: f1dc9ff699a942304637b9e2fef73e60e7a24fc31a022732383c097eb0bcf92c
+### entry 592 op=receipt_copy_prior heldout=True
+receipt judg_r8_s3310
+verdict: KILL
+mean_rel_improvement: -0.0274
+wins: 3 of 4 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 1816-8035
+rule: judgment-holonomy
+digest: 22dfbc14111c8990496ef8c2247d5b56246de81f6acbd72d1a9816919738c7b2
+### entry 593 op=receipt_copy_prior heldout=True
+receipt cell_r3_s4064
+verdict: KEEP
+mean_rel_improvement: +0.0034
+wins: 4 of 5 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 5071-3443
+rule: claim-ratio
+digest: 747bed9d53d69a489a4f617b9fc112e664e6bf4367856031e90dc9916b897932
+### entry 594 op=receipt_copy_prior heldout=True
+receipt anti_r2_s5509
+verdict: KILL
+mean_rel_improvement: -0.0740
+wins: 3 of 9 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 4398-5314
+rule: cell-mesh-relay
+digest: d98a835066e07683318b24470bbba9d290ee80037447e83a8f58a8daf8b14e8b
+### entry 595 op=receipt_copy_prior heldout=True
+receipt fron_r2_s7770
+verdict: KEEP
+mean_rel_improvement: +0.0730
+wins: 11 of 12 pairs
+tau: 0.40 (grid 0.40-0.60)
+seeds: 5967-9226
+rule: judgment-holonomy
+digest: 872320bb3eced231b8c75cae82dc5b401d22d91a6da9b7065f3f0879fd6da2ea
+### entry 596 op=receipt_copy_prior heldout=True
+receipt clai_r6_s2876
+verdict: KILL
+mean_rel_improvement: +0.0350
+wins: 1 of 5 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 1002-9994
+rule: cell-mesh-relay
+digest: bbf4736f73e39213463b33531008626727266b43fda5908aa45297f1b7e4c461
+### entry 597 op=receipt_copy_prior heldout=True
+receipt clai_r9_s4037
+verdict: KILL
+mean_rel_improvement: +0.0650
+wins: 2 of 7 pairs
+tau: 0.60 (grid 0.40-0.60)
+seeds: 2439-6222
+rule: claim-ratio
+digest: 268c02eff46fcf374ed340ea91fbe74f15a260b5ab67b22c566264ff598f98fc
+### entry 598 op=receipt_copy_prior heldout=True
+receipt clai_r9_s4872
+verdict: KILL
+mean_rel_improvement: +0.1612
+wins: 2 of 8 pairs
+tau: 0.50 (grid 0.40-0.60)
+seeds: 2668-3349
+rule: claim-ratio
+digest: 837278e565152fd48f99ddface8d46e36f6a0f282635aaa7448052b016cebb43
+### entry 599 op=receipt_copy_prior heldout=True
+receipt cell_r7_s1524
+verdict: KEEP
+mean_rel_improvement: +0.0891
+wins: 11 of 12 pairs
+tau: 0.55 (grid 0.40-0.60)
+seeds: 1243-3495
+rule: antirank-primacy
+digest: 1e6f9a4c5a459eb7aa4111dc0f82eccef141fdd81bb1690da5301748024557a4

@@ -1,0 +1,23 @@
+Eisenstein integers Z[omega]: omega^2 = -1 - omega. Write z = a + b*omega.
+Given z=(a,b) and w=(c,d):
+  add(z,w)  = (a+c, b+d)
+  mul(z,w)  = (a*c - b*d, a*d + b*c - b*d)
+  conj(z)   = (a - b, -b)
+  norm(z)   = a*a - a*b + b*b
+All results are integers (norm is a plain integer, not a pair).
+
+Compute add(z,w), mul(z,w), conj(z), norm(z) for EACH vector below.
+Output EXACTLY one line per vector, no prose, no markdown, format:
+  i add:A B mul:A B conj:A B norm:N
+
+Vectors:
+  i=40 z=(8,-1) w=(-5,9)
+  i=41 z=(6,3) w=(0,-1)
+  i=42 z=(9,0) w=(7,4)
+  i=43 z=(7,7) w=(0,-3)
+  i=44 z=(-2,-3) w=(2,-4)
+  i=45 z=(6,-3) w=(-8,-6)
+  i=46 z=(4,-3) w=(2,7)
+  i=47 z=(-9,7) w=(-7,7)
+  i=48 z=(6,-4) w=(0,5)
+  i=49 z=(5,-2) w=(2,4)

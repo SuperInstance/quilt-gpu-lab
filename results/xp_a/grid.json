@@ -1,0 +1,119 @@
+{
+  "experiment": "XP-A-instrument-transfer",
+  "pre_reg": "scratch/scout-2026-10-01-pushwave.md \u00a71c; frozen gates in script docstring",
+  "master_seed": 2718,
+  "claim": "known-failure detection power predicts unknown-failure detection power",
+  "frozen_gates": {
+    "chance": 0.5,
+    "beats_chance": 0.6,
+    "high_known_power": 0.65,
+    "flunks_held_out": 0.5,
+    "rho_min": 0.7
+  },
+  "known_ops": [
+    "sign_flip",
+    "wins_over",
+    "verdict_flip",
+    "tau_off",
+    "seed_drop",
+    "denom_swap"
+  ],
+  "heldout_ops": [
+    "nan_injection",
+    "dtype_cast",
+    "split_boundary",
+    "receipt_copy_prior"
+  ],
+  "grid_recall_per_op": {
+    "verdict_gate_pins": {
+      "CLEAN": 0.0,
+      "sign_flip": 0.05,
+      "wins_over": 0.2,
+      "verdict_flip": 0.25,
+      "tau_off": 1.0,
+      "seed_drop": 1.0,
+      "denom_swap": 0.9,
+      "nan_injection": 0.0,
+      "dtype_cast": 0.0,
+      "split_boundary": 0.0,
+      "receipt_copy_prior": 0.0
+    },
+    "step_parser": {
+      "CLEAN": 0.0,
+      "sign_flip": 0.175,
+      "wins_over": 0.275,
+      "verdict_flip": 1.0,
+      "tau_off": 1.0,
+      "seed_drop": 1.0,
+      "denom_swap": 0.9,
+      "nan_injection": 1.0,
+      "dtype_cast": 1.0,
+      "split_boundary": 1.0,
+      "receipt_copy_prior": 0.975
+    },
+    "trained_classifier": {
+      "CLEAN": 0.255,
+      "sign_flip": 0.3,
+      "wins_over": 0.425,
+      "verdict_flip": 0.425,
+      "tau_off": 0.8,
+      "seed_drop": 0.875,
+      "denom_swap": 0.425,
+      "nan_injection": 0.525,
+      "dtype_cast": 0.325,
+      "split_boundary": 0.5,
+      "receipt_copy_prior": 0.3
+    }
+  },
+  "instrument_summary": {
+    "verdict_gate_pins": {
+      "known_power": 0.5667,
+      "unknown_power": 0.0,
+      "clean_fpr": 0.0
+    },
+    "step_parser": {
+      "known_power": 0.725,
+      "unknown_power": 0.9938,
+      "clean_fpr": 0.0
+    },
+    "trained_classifier": {
+      "known_power": 0.5417,
+      "unknown_power": 0.4125,
+      "clean_fpr": 0.255
+    }
+  },
+  "spearman_known_unknown": 0.5,
+  "verdict": "INCONCLUSIVE",
+  "verdict_reasons": [
+    "rho=0.5 vs 0.7; all_beat=False \u2014 neither KEEP nor KILL gate fired"
+  ],
+  "classifier_meta": {
+    "device": "cpu-fallback",
+    "final_loss": 0.020008567720651627,
+    "train_n": 6000,
+    "threshold": 0.8,
+    "val_balanced_acc": 0.648,
+    "fallback": true
+  },
+  "op_identity_cases": [
+    {
+      "index": 407,
+      "reason": "wins==n_pairs (denom_swap no-op)"
+    },
+    {
+      "index": 432,
+      "reason": "wins==n_pairs (denom_swap no-op)"
+    },
+    {
+      "index": 435,
+      "reason": "wins==n_pairs (denom_swap no-op)"
+    },
+    {
+      "index": 439,
+      "reason": "wins==n_pairs (denom_swap no-op)"
+    }
+  ],
+  "n_eval": 600,
+  "n_train": 6000,
+  "n_val": 1500
+}

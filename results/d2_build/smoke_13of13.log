@@ -1,0 +1,15 @@
+  ✓ all 13 canonical cells present (13)
+  ✓ sensors.vision in [0,1000] (440)
+  ✓ world.predict shape ({"x":8,"y":8,"pred_reward":0})
+  ✓ boundary: gamma+eta 1585 ok / 1586 refuse
+  ✓ live gate consistent (sum=250 ok)
+  ✓ policy legal step (0,-1)
+  ✓ policy deterministic under fixed state
+  ✓ no-lookahead: policy blind to non-causal writes
+  ✓ jev mock labeled + executes at high success (p=0.98)
+  ✓ jev discards at low success (p=0.00)
+  ✓ growth: sensors.language live, beta1 -1 -> 1
+  ✓ qrc labeled live:false (a mock never pretends to be quantum)
+  ✓ receipt chain seals + verifies
+
+SMOKE OK (13/13 checks)

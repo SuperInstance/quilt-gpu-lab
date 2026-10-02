@@ -1,0 +1,6 @@
+{
+  "lane": "A1-PIE",
+  "status": "VOID",
+  "rc": 1,
+  "stderr_tail": "Traceback (most recent call last):\n  File \"/home/eileen/projects/quilt-gpu-lab/results/a1_pie/a1_pie_closure.py\", line 383, in <module>\n    sys.exit(main())\n             ~~~~^^\n  File \"/home/eileen/projects/quilt-gpu-lab/results/a1_pie/a1_pie_closure.py\", line 289, in main\n    return worker(out)\n  File \"/home/eileen/projects/quilt-gpu-lab/results/a1_pie/a1_pie_closure.py\", line 109, in worker\n    te_simp = ~te_comp\n              ^^^^^^^^\nTypeError: ufunc 'invert' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''\n"
+}

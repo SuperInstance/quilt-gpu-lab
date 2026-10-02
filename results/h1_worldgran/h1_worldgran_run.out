@@ -1,0 +1,14 @@
+per-world determinacy done 59.2s
+POWER (n=60, alpha=.05, power=.80): detectable |rho| 2-sided=0.355 1-sided=0.318; power@bar(-0.30) 1s=0.756
+
+socket             rho_op det_std                   ci95  excl0  gap_std stability
+reflex.orient      0.0000  0.0000  [ 0.0000, 0.0000]  False   0.1290    explor
+world.surprise     0.4394  0.2237  [ 0.1857, 0.6708]   True   0.1913    explor
+sensors.vision    -0.3252  0.2107  [-0.5803,-0.0566]   True   0.2185    explor
+policy.action     -0.0898  0.1464  [-0.4056, 0.1838]  False   0.0236   PRIMARY
+memory.semantic   -0.4657  0.3182  [-0.6764,-0.2310]   True   0.0858    explor
+memory.episodic   -0.1901  0.3924  [-0.4331, 0.0600]  False   0.0853    explor
+
+verdict: G-W1 = DEATH  (rho=-0.0898 CI [-0.4056, 0.1838], power-bar pass=False)
+books: no world-level relationship either - the determinacy->transfer story is dead at every granularity.
+wrote h1_worldgran_result.json  wall 59.5s

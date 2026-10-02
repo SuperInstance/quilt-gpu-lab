@@ -1,0 +1,18 @@
+{
+  "breach": null,
+  "g7": {
+    "gpu_seconds": 0.771,
+    "joules": 106.5019,
+    "mean_power_w": 10.51,
+    "power_samples": 2,
+    "util_samples": 2,
+    "wall_seconds": 10.138,
+    "watt_hours": 0.029583861111111113,
+    "windows": 1
+  },
+  "max_temp_c": 54,
+  "min_free_vram_mib": 3531,
+  "samples": 3,
+  "task_id": "A1-pie-closure",
+  "timed_out": false
+}

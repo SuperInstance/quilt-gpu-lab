@@ -1,0 +1,48 @@
+{
+  "C1_law_equivalence": {
+    "ok": true,
+    "n": 4000,
+    "max_abs_diff": 0,
+    "n_diff": 0
+  },
+  "C1_pass": true,
+  "C4_frame_cross_check": {
+    "vs_b1c": {
+      "ok": true,
+      "shape_match": true,
+      "max_abs_dX": 0.0,
+      "max_abs_dY": 0.0,
+      "max_abs_dMETA": 0.0
+    },
+    "vs_runB": {
+      "ok": true,
+      "shape_match": true,
+      "max_abs_dX": 0.0,
+      "max_abs_dY": 0.0,
+      "max_abs_dMETA": 0.0
+    },
+    "vs_b1": {
+      "ok": true,
+      "shape_match": true,
+      "max_abs_dX": 0.0,
+      "max_abs_dY": 0.0,
+      "max_abs_dMETA": 0.0
+    }
+  },
+  "C4_pass": true,
+  "C6_anchor_reproduction": {
+    "ok": true,
+    "max_abs_delta": 4.701457451816715e-05,
+    "per_cell": {
+      "deadzone@0.01": 4.701457451816715e-05,
+      "deadzone@0.05": 0.0,
+      "ramp@0.01": 0.0,
+      "ramp@0.05": 0.0,
+      "saturation@0.01": 4.147381343466705e-06,
+      "saturation@0.05": 0.0
+    },
+    "tol": 0.05,
+    "booked_ref": "results/b1c cap@ep40"
+  },
+  "C6_pass": true
+}

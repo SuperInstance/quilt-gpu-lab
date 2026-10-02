@@ -1,0 +1,36 @@
+{
+  "schema": "g7-watt-receipt@1",
+  "receipt_id": "g7-wr-a1-pie-closure-1790891323",
+  "task_id": "A1-pie-closure",
+  "agent": "quilt-gpu-lab keeper (Lucineer, main Super Z)",
+  "device": {
+    "model": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "vram_gb": 6.0,
+    "driver": "616.92 / WSL2 (/usr/lib/wsl/lib/nvidia-smi)"
+  },
+  "energy": {
+    "joules": 0.0,
+    "watt_hours": 0.0,
+    "source": "tdp_derived",
+    "sampling_method": "nvidia-smi --query-gpu=power.draw,utilization.gpu on the guard's poll thread every 5s across the run window under guard; integral = mean_power_W x wall_seconds; idle floor NOT subtracted \u2014 receipt reports the whole window the job held the GPU (WSL2 NVML); gpu_seconds fell back to wall seconds (no utilization samples)",
+    "instrument": null,
+    "derivation": "no valid power.draw samples in window (instrument N/A or nvidia-smi unavailable); 0 J booked is NOT an energy claim \u2014 run VOIDed by sampling failure"
+  },
+  "compute": {
+    "gpu_seconds": 0.0
+  },
+  "cost": {
+    "currency": "USD",
+    "amount": 0.0,
+    "rate_source": "host marginal grid rate $0.23/kWh (Alaska residential average, quoted 2026-10-01); gifted compute priced, not billed"
+  },
+  "determinism": {
+    "seed": "2718",
+    "state_digest": "59ddbed48fa8fcc198165e71974cabb74bf80eda52a638f727afd97df7b69c26"
+  },
+  "gate": {
+    "rule": "no receipt \u2192 run VOID",
+    "verdict": "VOID"
+  },
+  "void_reason": "worker exit 1"
+}

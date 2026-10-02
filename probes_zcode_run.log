@@ -1,0 +1,40 @@
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+PROBE-BATTERY complete: **6 PASS / 1 FAIL** (the FAIL is our own ledger's probe, and it's the most useful result). All 7 probes ran CPU-only, seed 2718, well under 3 min each (longest 52s); bookings in `results/probe_battery/*.json` + `RESULTS-ENTRY.md`; no commit made, nothing outside `experiments/probe_*` and `results/probe_battery/` touched.
+
+| # | Probe | Verdict | Deciding number |
+|---|-------|---------|-----------------|
+| 4 | distinct-board re-eval | **PASS** | top-1 on 2,423 distinct boards 0.9992±0.0003 (composed-320 0.9990) — P1 FAIL-HIGH is NOT a duplicate artifact |
+| 5 | second reader vs drift | **PASS** | self-path conf drop −0.06 (≤5%) while different-path agreement drops 0.738/0.737 at 76% store drift (≥20%) |
+| 6 | worktree-vs-index loader | **PASS** | worktree silently wrong 99/100 under 50% drop; index digest-exact 100/100; store-damage → refuses loudly, never silent |
+| 7 | OUR ledger row-hash | **FAIL** | agreement 100% only via python-quirk mirror (natural-JS 0/215); key-order flips 0/215 — scheme canonicalizes order away; real weakness = unkeyed path (transplant verifies) |
+| 8 | baseline re-measure | **PASS** | state-space priors exact (180,361/2,423/320, 0% drift); 5-fold 0.13%; cross-lab linear prior drifts 42% (informational) |
+| 9 | canon lex-min rotation | **PASS** | naive diverges 100%, canon invariant 100% periodic; canon diverges 100% under fixed boundaries (both-sided bound holds) |
+| 10 | dispatch-skip accounting | **PASS** | saved FLOPs == abstain fraction exactly at p∈{.1,.3,.6}; wall-clock within ±7 pts; no-abstain output bitwise == dense |
+
+Three things worth the board's attention beyond the table:
+
+- **#7's FAIL is a finding, not a loss.** The gate expected key-order sensitivity; our scheme has none (`sort_keys` canonicalizes). What the probe actually exposed: the canonical form is python-json-bound (an independent JS implementation must mirror `", "`/`": "` separators or agree on 0/215 rows), and the digest binds nothing — a row transplanted into any other context verifies intact. That confirms SUMMARY's "STEAL #1" as the cheapest real fix: bind rows to policy-version/host/run-id + add the independent verifier.
+- **#4 settles the pie-minimax thesis question** the card called "almost free": the 0.9996 closure survives distinct-board training/eval AND board-disjoint held-out (~0.99), so it wasn't a sampling leak.
+- Two instrument bugs were caught and fixed *before* booking, both by impossible outputs: #9's lex-min had a uint8 sentinel wrap (256→0 resurrected eliminated rotations → canon invariance 0/1500, impossible for equivariant rule 150), and #5's first drift mechanism violated its own premise (external relabel hurt the self reader) and was rewritten to write-path drift. Both are documented in RESULTS-ENTRY.md.
+
+Environment note: torch was a broken partial install in this env (dist-info without the package); I installed `torch==2.14.1+cpu --user` to run the pie and dispatch probes as specified.

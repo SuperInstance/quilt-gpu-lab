@@ -1,0 +1,94 @@
+{
+  "experiment": "XP-A-supplementary",
+  "note": "advisory only; frozen verdict lives in grid.json",
+  "n_heldout": 160,
+  "n_known": 240,
+  "n_clean": 200,
+  "per_instrument": {
+    "verdict_gate_pins": {
+      "known_power_recall": 0.5667,
+      "known_recall_wilson95": [
+        0.5034,
+        0.6278
+      ],
+      "heldout_recall": 0.0,
+      "heldout_recall_wilson95": [
+        0.0,
+        0.0234
+      ],
+      "clean_fpr": 0.0,
+      "clean_fpr_wilson95": [
+        0.0,
+        0.0188
+      ],
+      "balanced_accuracy_heldout": 0.5,
+      "p_ge_vs_chance_0.50": 1.0,
+      "p_ge_vs_gate_0.60": 1.0,
+      "beats_chance_recall": false,
+      "beats_chance_balanced": false,
+      "gap_zone_known_ge_0.50_and_heldout_le_0.50": true
+    },
+    "step_parser": {
+      "known_power_recall": 0.725,
+      "known_recall_wilson95": [
+        0.6653,
+        0.7776
+      ],
+      "heldout_recall": 0.9938,
+      "heldout_recall_wilson95": [
+        0.9655,
+        0.9989
+      ],
+      "clean_fpr": 0.0,
+      "clean_fpr_wilson95": [
+        0.0,
+        0.0188
+      ],
+      "balanced_accuracy_heldout": 0.9969,
+      "p_ge_vs_chance_0.50": 0.0,
+      "p_ge_vs_gate_0.60": 0.0,
+      "beats_chance_recall": true,
+      "beats_chance_balanced": true,
+      "gap_zone_known_ge_0.50_and_heldout_le_0.50": false
+    },
+    "trained_classifier": {
+      "known_power_recall": 0.5417,
+      "known_recall_wilson95": [
+        0.4785,
+        0.6036
+      ],
+      "heldout_recall": 0.4125,
+      "heldout_recall_wilson95": [
+        0.3391,
+        0.49
+      ],
+      "clean_fpr": 0.255,
+      "clean_fpr_wilson95": [
+        0.1996,
+        0.3196
+      ],
+      "balanced_accuracy_heldout": 0.5787,
+      "p_ge_vs_chance_0.50": 0.989213,
+      "p_ge_vs_gate_0.60": 0.999999,
+      "beats_chance_recall": false,
+      "beats_chance_balanced": true,
+      "gap_zone_known_ge_0.50_and_heldout_le_0.50": true
+    }
+  },
+  "frozen_spearman_rho": 0.5,
+  "spearman_n3_exact_permutation": {
+    "distinct_rho_values": [
+      -1.0,
+      -0.5,
+      0.5,
+      1.0
+    ],
+    "p_value_ge_observed": 0.5,
+    "note": "at n=3 instruments rho is drawn from a 4-value support; the frozen bar rho>=0.70 is satisfiable only at rho=1.0 (perfect rank agreement) \u2014 the gate is effectively binary here."
+  },
+  "frozen_verdict": "INCONCLUSIVE",
+  "frozen_verdict_reasons": [
+    "rho=0.5 vs 0.7; all_beat=False \u2014 neither KEEP nor KILL gate fired"
+  ],
+  "reading": "verdict_gate_pins (A) transfers ZERO held-out power (0/160) despite non-trivial known recall; trained_classifier (C) is below the 0.50 recall bar held-out (66/160) and its balanced accuracy barely clears chance; only step_parser (B) transfers (159/160). A and C sit in the KILL 'gap zone' (known >=0.50, held-out <=0.50) but just BELOW the frozen HIGH_KNOWN_POWER=0.65 bar, so the KILL existence clause does not fire. Frozen verdict stands (INCONCLUSIVE); the shape the KILL gate targets is present at a lower known-power level."
+}

@@ -1,0 +1,18 @@
+{
+  "breach": null,
+  "g7": {
+    "gpu_seconds": 206.927,
+    "joules": 13497.9312,
+    "mean_power_w": 49.86,
+    "power_samples": 52,
+    "util_samples": 52,
+    "wall_seconds": 270.722,
+    "watt_hours": 3.7494253333333334,
+    "windows": 1
+  },
+  "max_temp_c": 77,
+  "min_free_vram_mib": 1635,
+  "samples": 53,
+  "task_id": "B1F-crossing-and-ramp-interface",
+  "timed_out": false
+}

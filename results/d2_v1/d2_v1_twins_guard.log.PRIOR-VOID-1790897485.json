@@ -1,0 +1,70 @@
+{
+ "co_tenants_before": [
+  "1878999, [Not Found], [N/A]",
+  "1875342, [Not Found], [N/A]"
+ ],
+ "co_tenants_after": [
+  "1875342, [Not Found], [N/A]"
+ ],
+ "inner_rc": -15,
+ "guard": {
+  "samples": 64,
+  "min_free_vram_mib": 1018,
+  "max_temp_c": 77,
+  "breach": "free VRAM 1018 MiB < 1024",
+  "timed_out": false,
+  "g7": {
+   "wall_seconds": 330.084,
+   "power_samples": 63,
+   "mean_power_w": 47.95,
+   "joules": 15828.9732,
+   "watt_hours": 4.396937,
+   "gpu_seconds": 286.206,
+   "util_samples": 63,
+   "windows": 1
+  },
+  "task_id": "D2-V1-twins"
+ },
+ "receipt_path": "/home/eileen/projects/quilt-gpu-lab/results/d2_v1/guard/g7-wr-d2-v1-twins-1790897485.json",
+ "receipt": {
+  "schema": "g7-watt-receipt@1",
+  "receipt_id": "g7-wr-d2-v1-twins-1790897485",
+  "task_id": "D2-V1-twins",
+  "agent": "quilt-gpu-lab lane D2-V1 (subagent)",
+  "device": {
+   "model": "NVIDIA GeForce RTX 4050 Laptop GPU",
+   "vram_gb": 6.0,
+   "driver": "616.92 / WSL2 (/usr/lib/wsl/lib/nvidia-smi)"
+  },
+  "energy": {
+   "joules": 15828.9732,
+   "watt_hours": 4.396937,
+   "source": "measured",
+   "sampling_method": "nvidia-smi --query-gpu=power.draw,utilization.gpu on the guard's poll thread every 5s across the run window under guard; integral = mean_power_W x wall_seconds; idle floor NOT subtracted \u2014 receipt reports the whole window the job held the GPU (WSL2 NVML)",
+   "instrument": "nvidia-smi (NVML power.draw counters) on the WSL2 host",
+   "derivation": null
+  },
+  "compute": {
+   "gpu_seconds": 286.206
+  },
+  "cost": {
+   "currency": "USD",
+   "amount": 0.001011,
+   "rate_source": "host marginal grid rate $0.23/kWh (Alaska residential average, quoted 2026-10-01); gifted compute priced, not billed"
+  },
+  "determinism": {
+   "seed": "2718",
+   "state_digest": "1ec1674e7c0670dbf1d71efd2094930ae45e6582e6bcbed405d612432166419b"
+  },
+  "gate": {
+   "rule": "no receipt \u2192 run VOID",
+   "verdict": "VOID"
+  },
+  "void_reason": "inner rc=-15 breach=free VRAM 1018 MiB < 1024"
+ },
+ "validator_ok": true,
+ "validator_msg": "OK (exit 0): /home/eileen/projects/quilt-gpu-lab/results/d2_v1/guard/g7-wr-d2-v1-twins-1790897485.json is a valid g7-watt-receipt@1 watt-receipt \u2014 self-declared VOID by its own gate\ninfo: unknown field 'void_reason' tolerated (not schema-checked)",
+ "gpu_seconds": 286.206,
+ "watt_hours": 4.396937,
+ "result": "RAN"
+}

@@ -1,0 +1,287 @@
+{
+  "experiment": "RING-CX-0 (SYNTH-0 wildcard): training-free certainty-gated ring-attractor router",
+  "source_mechanism": "pr_harvest/_raw/chiaroscuro_6.diff :: tools/fly_cx.py (chiaroscuro #6, flycx v2 certainty-gated)",
+  "repro": {
+    "file": "results/ring_cx0/repro/fly_cx.py",
+    "verdict": "PASS",
+    "tests_all_pass": true,
+    "null_control_displacement_deg": 71.999,
+    "trajectory_hash_fnv1a64": "41c8af26ba55cb03",
+    "note": "verbatim extraction (169 lines) from the harvest diff; ran unchanged, flycx 4/4"
+  },
+  "device": "cpu",
+  "gpu_used": false,
+  "training_used": false,
+  "numpy_only": true,
+  "corpus": {
+    "path": "results/comp1/corpus.jsonl",
+    "n_train": 1810,
+    "n_heldout": 590,
+    "seeds": [
+      2718,
+      2719,
+      2720,
+      2721,
+      2722
+    ]
+  },
+  "wiring": {
+    "featurization": "COMP1 word view (sha1 BoW D=64, L2-normalized) rebuilt from corpus",
+    "router": "COMP1 D13d 0-param regime-centroid Pearson, train-only keys",
+    "reproduced_router_heldout_top1": 0.7356,
+    "comp1_booked_router_heldout_top1": 0.7356,
+    "confidence_map": "softmax(Pearson / T), T = median TRAIN top1-top2 gap = 0.0321",
+    "ring": "N=64 DoG kernel sE=16.0 JE=5.0 JI=1.0 sC=30.0",
+    "tau_ring": 0.3615,
+    "tau_pct": 20,
+    "R_flat": 0.0,
+    "R_single_cue": 0.6702,
+    "seeded_jitter": "cue-angle N(0,5.0) + conf lognormal(cv=0.1)"
+  },
+  "G_A_ring_ge_trained_minus_0.02": {
+    "threshold": 0.7156,
+    "overall_acc": {
+      "mean": 0.6224,
+      "std": 0.0042
+    },
+    "acc_commit": {
+      "mean": 0.78,
+      "std": 0.0057
+    },
+    "pass_": false
+  },
+  "G_B_negation_reject_ge_2x_mean": {
+    "negation_rate": 0.127,
+    "mean_across_regimes": 0.2065,
+    "ratio": 0.615,
+    "pass_": false
+  },
+  "G_C_seed_std_ok": true,
+  "reject_by_regime_ring_seedmean": {
+    "semantic": {
+      "mean": 0.3688,
+      "std": 0.0168
+    },
+    "counting-address": {
+      "mean": 0.2216,
+      "std": 0.0115
+    },
+    "negation-scope": {
+      "mean": 0.127,
+      "std": 0.0079
+    },
+    "agent-role": {
+      "mean": 0.1086,
+      "std": 0.003
+    }
+  },
+  "ring_R_by_regime_seedmean": {
+    "semantic": {
+      "mean": 0.42,
+      "std": 0.0039
+    },
+    "counting-address": {
+      "mean": 0.5257,
+      "std": 0.003
+    },
+    "negation-scope": {
+      "mean": 0.49,
+      "std": 0.0013
+    },
+    "agent-role": {
+      "mean": 0.4968,
+      "std": 0.0025
+    }
+  },
+  "router_acc_by_regime": {
+    "semantic": {
+      "mean": 0.7589,
+      "std": 0.0
+    },
+    "counting-address": {
+      "mean": 0.8921,
+      "std": 0.0
+    },
+    "negation-scope": {
+      "mean": 0.7027,
+      "std": 0.0
+    },
+    "agent-role": {
+      "mean": 0.6111,
+      "std": 0.0
+    }
+  },
+  "reject_by_regime_flycooked_seedmean": {
+    "semantic": {
+      "mean": 0.1702,
+      "std": 0.0142
+    },
+    "counting-address": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "negation-scope": {
+      "mean": 0.9662,
+      "std": 0.0
+    },
+    "agent-role": {
+      "mean": 0.9815,
+      "std": 0.0
+    }
+  },
+  "flycooked_ratio": 1.24,
+  "flycooked_note": "Engine B: harvested fly_cx constants verbatim on discrete 4-way cues",
+  "per_seed": [
+    {
+      "seed": 2718,
+      "acc_all": 0.6254237288135593,
+      "acc_commit": 0.7768421052631579,
+      "reject_overall": 0.19491525423728814,
+      "reject_by_regime": {
+        "semantic": 0.3404255319148936,
+        "counting-address": 0.2302158273381295,
+        "negation-scope": 0.12162162162162163,
+        "agent-role": 0.10493827160493827
+      },
+      "ring_R_by_regime": {
+        "semantic": 0.4271432554589764,
+        "counting-address": 0.5244032423260345,
+        "negation-scope": 0.4897344573128702,
+        "agent-role": 0.49942473873744275
+      },
+      "router_acc_by_regime": {
+        "semantic": 0.7588652482269503,
+        "counting-address": 0.8920863309352518,
+        "negation-scope": 0.7027027027027027,
+        "agent-role": 0.6111111111111112
+      },
+      "fly_reject_by_regime": {
+        "semantic": 0.16312056737588654,
+        "counting-address": 1.0,
+        "negation-scope": 0.9662162162162162,
+        "agent-role": 0.9814814814814815
+      }
+    },
+    {
+      "seed": 2719,
+      "acc_all": 0.6152542372881356,
+      "acc_commit": 0.7723404255319148,
+      "reject_overall": 0.2033898305084746,
+      "reject_by_regime": {
+        "semantic": 0.375886524822695,
+        "counting-address": 0.2158273381294964,
+        "negation-scope": 0.13513513513513514,
+        "agent-role": 0.10493827160493827
+      },
+      "ring_R_by_regime": {
+        "semantic": 0.4163941516632441,
+        "counting-address": 0.5292764653400405,
+        "negation-scope": 0.48941104597943674,
+        "agent-role": 0.4971965680494781
+      },
+      "router_acc_by_regime": {
+        "semantic": 0.7588652482269503,
+        "counting-address": 0.8920863309352518,
+        "negation-scope": 0.7027027027027027,
+        "agent-role": 0.6111111111111112
+      },
+      "fly_reject_by_regime": {
+        "semantic": 0.14893617021276595,
+        "counting-address": 1.0,
+        "negation-scope": 0.9662162162162162,
+        "agent-role": 0.9814814814814815
+      }
+    },
+    {
+      "seed": 2720,
+      "acc_all": 0.6271186440677966,
+      "acc_commit": 0.7805907172995781,
+      "reject_overall": 0.19661016949152543,
+      "reject_by_regime": {
+        "semantic": 0.375886524822695,
+        "counting-address": 0.2014388489208633,
+        "negation-scope": 0.11486486486486487,
+        "agent-role": 0.1111111111111111
+      },
+      "ring_R_by_regime": {
+        "semantic": 0.4206762420888933,
+        "counting-address": 0.5289971482431275,
+        "negation-scope": 0.49250878690588534,
+        "agent-role": 0.4920826241602295
+      },
+      "router_acc_by_regime": {
+        "semantic": 0.7588652482269503,
+        "counting-address": 0.8920863309352518,
+        "negation-scope": 0.7027027027027027,
+        "agent-role": 0.6111111111111112
+      },
+      "fly_reject_by_regime": {
+        "semantic": 0.19148936170212766,
+        "counting-address": 1.0,
+        "negation-scope": 0.9662162162162162,
+        "agent-role": 0.9814814814814815
+      }
+    },
+    {
+      "seed": 2721,
+      "acc_all": 0.6237288135593221,
+      "acc_commit": 0.7896995708154506,
+      "reject_overall": 0.21016949152542372,
+      "reject_by_regime": {
+        "semantic": 0.3900709219858156,
+        "counting-address": 0.2302158273381295,
+        "negation-scope": 0.12837837837837837,
+        "agent-role": 0.1111111111111111
+      },
+      "ring_R_by_regime": {
+        "semantic": 0.41695208291516384,
+        "counting-address": 0.5216502686266069,
+        "negation-scope": 0.4888735754635726,
+        "agent-role": 0.49764099479963736
+      },
+      "router_acc_by_regime": {
+        "semantic": 0.7588652482269503,
+        "counting-address": 0.8920863309352518,
+        "negation-scope": 0.7027027027027027,
+        "agent-role": 0.6111111111111112
+      },
+      "fly_reject_by_regime": {
+        "semantic": 0.1773049645390071,
+        "counting-address": 1.0,
+        "negation-scope": 0.9662162162162162,
+        "agent-role": 0.9814814814814815
+      }
+    },
+    {
+      "seed": 2722,
+      "acc_all": 0.6203389830508474,
+      "acc_commit": 0.7803837953091685,
+      "reject_overall": 0.20508474576271185,
+      "reject_by_regime": {
+        "semantic": 0.3617021276595745,
+        "counting-address": 0.2302158273381295,
+        "negation-scope": 0.13513513513513514,
+        "agent-role": 0.1111111111111111
+      },
+      "ring_R_by_regime": {
+        "semantic": 0.41890329406113375,
+        "counting-address": 0.5243145348476665,
+        "negation-scope": 0.48929753080670224,
+        "agent-role": 0.49748296838683537
+      },
+      "router_acc_by_regime": {
+        "semantic": 0.7588652482269503,
+        "counting-address": 0.8920863309352518,
+        "negation-scope": 0.7027027027027027,
+        "agent-role": 0.6111111111111112
+      },
+      "fly_reject_by_regime": {
+        "semantic": 0.1702127659574468,
+        "counting-address": 1.0,
+        "negation-scope": 0.9662162162162162,
+        "agent-role": 0.9814814814814815
+      }
+    }
+  ],
+  "verdict": "FAIL"
+}

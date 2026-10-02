@@ -1,0 +1,54 @@
+{
+  "rows": {
+    "linear_plain_w80": {
+      "kind": "linear",
+      "width": 16,
+      "weighting": "plain",
+      "ramp@5e-2": 0.0625,
+      "ramp@5e-2_std": 0.05103103630798288,
+      "ramp@1e-2": 0.0,
+      "ramp@1e-2_std": 0.0,
+      "ramp@1e-3": 0.0,
+      "ramp@1e-3_std": 0.0,
+      "clears_ramp_gate@5e-2": false
+    },
+    "linear_plain_w96": {
+      "kind": "linear",
+      "width": 16,
+      "weighting": "plain",
+      "ramp@5e-2": 0.0625,
+      "ramp@5e-2_std": 0.05103103630798288,
+      "ramp@1e-2": 0.0,
+      "ramp@1e-2_std": 0.0,
+      "ramp@1e-3": 0.0,
+      "ramp@1e-3_std": 0.0,
+      "clears_ramp_gate@5e-2": false
+    },
+    "linear_reweight_w80": {
+      "kind": "linear",
+      "width": 16,
+      "weighting": "reweight",
+      "ramp@5e-2": 0.041666666666666664,
+      "ramp@5e-2_std": 0.02946278254943948,
+      "ramp@1e-2": 0.0,
+      "ramp@1e-2_std": 0.0,
+      "ramp@1e-3": 0.0,
+      "ramp@1e-3_std": 0.0,
+      "clears_ramp_gate@5e-2": false
+    },
+    "hybridv2_w64": {
+      "kind": "hybridv2",
+      "width": 16,
+      "weighting": "plain",
+      "ramp@5e-2": 0.1875,
+      "ramp@5e-2_std": 0.08838834764831845,
+      "ramp@1e-2": 0.020833333333333332,
+      "ramp@1e-2_std": 0.02946278254943948,
+      "ramp@1e-3": 0.0,
+      "ramp@1e-3_std": 0.0,
+      "clears_ramp_gate@5e-2": false
+    }
+  },
+  "note": "ramp-region fidelity per arm (3-seed mean\u00b1std)",
+  "best_ramp_arm": "hybridv2_w64"
+}

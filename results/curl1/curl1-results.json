@@ -1,0 +1,706 @@
+{
+ "experiment": "CURL-1",
+ "prereg": "proposals/runs/curl1-plan.md",
+ "prereg_commit": "1bd74be",
+ "config": {
+  "seed_enc": 7,
+  "seed_inject": 13,
+  "latent_dim": 64,
+  "grid": 16,
+  "warmup": 24,
+  "window": 10,
+  "theta": 0.6,
+  "bad_to_pinch": 2,
+  "good_to_readmit": 2,
+  "inject": [
+   81,
+   100
+  ],
+  "buffer_k": 40,
+  "ridge_lambda": 0.001,
+  "jev_model": "jev-latest",
+  "jev_budget": 16
+ },
+ "n_frames": 141,
+ "spans": {
+  "all": {
+   "n": 117,
+   "jepa_mean": 0.017945035077450718,
+   "persist_mean": 0.012184099235626343,
+   "routed_mean": 0.012617757466145487,
+   "clean_hitrate": 0.4333,
+   "clean_jepa_mean": 0.017945035077450718,
+   "clean_persist_mean": 0.014492940690773861
+  },
+  "injected": {
+   "n": 20,
+   "jepa_mean": null,
+   "persist_mean": 0.000986218178160897,
+   "routed_mean": 0.000986218178160897,
+   "clean_hitrate": 0.0,
+   "clean_jepa_mean": null,
+   "clean_persist_mean": null
+  },
+  "clean": {
+   "n": 97,
+   "jepa_mean": 0.017945035077450718,
+   "persist_mean": 0.014492940690773861,
+   "routed_mean": 0.015016012989441278,
+   "clean_hitrate": 0.4333,
+   "clean_jepa_mean": 0.017945035077450718,
+   "clean_persist_mean": 0.014492940690773861
+  }
+ },
+ "verdicts": {
+  "H1": {
+   "name": "jepa beats persistence on clean steps",
+   "value": 0.4333,
+   "bar": ">= 0.55",
+   "keep": false
+  },
+  "H2": {
+   "name": "routed <= always-jepa (gating free when competent)",
+   "routed_mean": 0.012617757466145487,
+   "always_jepa_mean": 0.017945035077450718,
+   "keep": true
+  },
+  "H3": {
+   "name": "gate catches sick cell + recovers",
+   "pinch_during_or_1window": false,
+   "routed_le_1_1x_persist_injected": true,
+   "readmit_within_2windows": false,
+   "pinch_steps": [
+    54
+   ],
+   "readmit_step": null,
+   "keep": false
+  }
+ },
+ "route_events": [
+  {
+   "step": 54,
+   "action": "PINCH",
+   "reason": "2 bad windows",
+   "jev_noul": 0.05
+  }
+ ],
+ "jev_usage": {
+  "calls": 13,
+  "input_tokens": 4962,
+  "output_tokens": 260,
+  "wall_s": 3.710000000000001
+ },
+ "jev_windows": [
+  {
+   "state": {
+    "window_steps": [
+     25,
+     34
+    ],
+    "n": 10,
+    "jepa_mean_err": 0.0026,
+    "persist_mean_err": 0.004,
+    "jepa_wins": "7/10",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.94,
+   "good": true,
+   "truth_arithmetic": true,
+   "jev_agrees": true,
+   "admitted_after": true
+  },
+  {
+   "state": {
+    "window_steps": [
+     35,
+     44
+    ],
+    "n": 10,
+    "jepa_mean_err": 0.0071,
+    "persist_mean_err": 0.0064,
+    "jepa_wins": "3/10",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.06,
+   "good": false,
+   "truth_arithmetic": false,
+   "jev_agrees": true,
+   "admitted_after": true
+  },
+  {
+   "state": {
+    "window_steps": [
+     45,
+     54
+    ],
+    "n": 10,
+    "jepa_mean_err": 0.0441,
+    "persist_mean_err": 0.0383,
+    "jepa_wins": "3/10",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.05,
+   "good": false,
+   "truth_arithmetic": false,
+   "jev_agrees": true,
+   "admitted_after": false
+  },
+  {
+   "state": {
+    "window_steps": [
+     55,
+     64
+    ],
+    "n": 10,
+    "jepa_mean_err": null,
+    "persist_mean_err": 0.0745,
+    "jepa_wins": "0/0",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.1,
+   "good": false,
+   "truth_arithmetic": false,
+   "jev_agrees": true,
+   "admitted_after": false
+  },
+  {
+   "state": {
+    "window_steps": [
+     65,
+     74
+    ],
+    "n": 10,
+    "jepa_mean_err": null,
+    "persist_mean_err": 0.0006,
+    "jepa_wins": "0/0",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.1,
+   "good": false,
+   "truth_arithmetic": false,
+   "jev_agrees": true,
+   "admitted_after": false
+  },
+  {
+   "state": {
+    "window_steps": [
+     75,
+     84
+    ],
+    "n": 10,
+    "jepa_mean_err": null,
+    "persist_mean_err": 0.0009,
+    "jepa_wins": "0/0",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.1,
+   "good": false,
+   "truth_arithmetic": false,
+   "jev_agrees": true,
+   "admitted_after": false
+  },
+  {
+   "state": {
+    "window_steps": [
+     85,
+     94
+    ],
+    "n": 10,
+    "jepa_mean_err": null,
+    "persist_mean_err": 0.001,
+    "jepa_wins": "0/0",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.09,
+   "good": false,
+   "truth_arithmetic": false,
+   "jev_agrees": true,
+   "admitted_after": false
+  },
+  {
+   "state": {
+    "window_steps": [
+     95,
+     104
+    ],
+    "n": 10,
+    "jepa_mean_err": null,
+    "persist_mean_err": 0.001,
+    "jepa_wins": "0/0",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.09,
+   "good": false,
+   "truth_arithmetic": false,
+   "jev_agrees": true,
+   "admitted_after": false
+  },
+  {
+   "state": {
+    "window_steps": [
+     105,
+     114
+    ],
+    "n": 10,
+    "jepa_mean_err": null,
+    "persist_mean_err": 0.0017,
+    "jepa_wins": "0/0",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.1,
+   "good": false,
+   "truth_arithmetic": false,
+   "jev_agrees": true,
+   "admitted_after": false
+  },
+  {
+   "state": {
+    "window_steps": [
+     115,
+     124
+    ],
+    "n": 10,
+    "jepa_mean_err": null,
+    "persist_mean_err": 0.0028,
+    "jepa_wins": "0/0",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.09,
+   "good": false,
+   "truth_arithmetic": false,
+   "jev_agrees": true,
+   "admitted_after": false
+  },
+  {
+   "state": {
+    "window_steps": [
+     125,
+     134
+    ],
+    "n": 10,
+    "jepa_mean_err": null,
+    "persist_mean_err": 0.0068,
+    "jepa_wins": "0/0",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.11,
+   "good": false,
+   "truth_arithmetic": false,
+   "jev_agrees": true,
+   "admitted_after": false
+  },
+  {
+   "state": {
+    "window_steps": [
+     132,
+     141
+    ],
+    "n": 10,
+    "jepa_mean_err": null,
+    "persist_mean_err": 0.007,
+    "jepa_wins": "0/0",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.1,
+   "good": false,
+   "truth_arithmetic": false,
+   "jev_agrees": true,
+   "admitted_after": false
+  }
+ ],
+ "jev_agreement": 1.0,
+ "raw_windows": [
+  {
+   "state": {
+    "window_steps": [
+     25,
+     34
+    ],
+    "n": 10,
+    "jepa_mean_err": 0.0026,
+    "persist_mean_err": 0.004,
+    "jepa_wins": "7/10",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.94,
+   "good": true,
+   "truth_arithmetic": true,
+   "jev_agrees": true,
+   "admitted_after": true,
+   "raw": {
+    "model": "jev-1.13.0",
+    "answers": {
+     "gate": {
+      "type": "noul",
+      "noul": 0.94
+     }
+    },
+    "usage": {
+     "input_tokens": 389,
+     "output_tokens": 20
+    }
+   }
+  },
+  {
+   "state": {
+    "window_steps": [
+     35,
+     44
+    ],
+    "n": 10,
+    "jepa_mean_err": 0.0071,
+    "persist_mean_err": 0.0064,
+    "jepa_wins": "3/10",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.06,
+   "good": false,
+   "truth_arithmetic": false,
+   "jev_agrees": true,
+   "admitted_after": true,
+   "raw": {
+    "model": "jev-1.13.0",
+    "answers": {
+     "gate": {
+      "type": "noul",
+      "noul": 0.06
+     }
+    },
+    "usage": {
+     "input_tokens": 390,
+     "output_tokens": 20
+    }
+   }
+  },
+  {
+   "state": {
+    "window_steps": [
+     45,
+     54
+    ],
+    "n": 10,
+    "jepa_mean_err": 0.0441,
+    "persist_mean_err": 0.0383,
+    "jepa_wins": "3/10",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.05,
+   "good": false,
+   "truth_arithmetic": false,
+   "jev_agrees": true,
+   "admitted_after": false,
+   "raw": {
+    "model": "jev-1.13.0",
+    "answers": {
+     "gate": {
+      "type": "noul",
+      "noul": 0.05
+     }
+    },
+    "usage": {
+     "input_tokens": 390,
+     "output_tokens": 20
+    }
+   }
+  },
+  {
+   "state": {
+    "window_steps": [
+     55,
+     64
+    ],
+    "n": 10,
+    "jepa_mean_err": null,
+    "persist_mean_err": 0.0745,
+    "jepa_wins": "0/0",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.1,
+   "good": false,
+   "truth_arithmetic": false,
+   "jev_agrees": true,
+   "admitted_after": false,
+   "raw": {
+    "model": "jev-1.13.0",
+    "answers": {
+     "gate": {
+      "type": "noul",
+      "noul": 0.1
+     }
+    },
+    "usage": {
+     "input_tokens": 384,
+     "output_tokens": 20
+    }
+   }
+  },
+  {
+   "state": {
+    "window_steps": [
+     65,
+     74
+    ],
+    "n": 10,
+    "jepa_mean_err": null,
+    "persist_mean_err": 0.0006,
+    "jepa_wins": "0/0",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.1,
+   "good": false,
+   "truth_arithmetic": false,
+   "jev_agrees": true,
+   "admitted_after": false,
+   "raw": {
+    "model": "jev-1.13.0",
+    "answers": {
+     "gate": {
+      "type": "noul",
+      "noul": 0.1
+     }
+    },
+    "usage": {
+     "input_tokens": 384,
+     "output_tokens": 20
+    }
+   }
+  },
+  {
+   "state": {
+    "window_steps": [
+     75,
+     84
+    ],
+    "n": 10,
+    "jepa_mean_err": null,
+    "persist_mean_err": 0.0009,
+    "jepa_wins": "0/0",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.1,
+   "good": false,
+   "truth_arithmetic": false,
+   "jev_agrees": true,
+   "admitted_after": false,
+   "raw": {
+    "model": "jev-1.13.0",
+    "answers": {
+     "gate": {
+      "type": "noul",
+      "noul": 0.1
+     }
+    },
+    "usage": {
+     "input_tokens": 384,
+     "output_tokens": 20
+    }
+   }
+  },
+  {
+   "state": {
+    "window_steps": [
+     85,
+     94
+    ],
+    "n": 10,
+    "jepa_mean_err": null,
+    "persist_mean_err": 0.001,
+    "jepa_wins": "0/0",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.09,
+   "good": false,
+   "truth_arithmetic": false,
+   "jev_agrees": true,
+   "admitted_after": false,
+   "raw": {
+    "model": "jev-1.13.0",
+    "answers": {
+     "gate": {
+      "type": "noul",
+      "noul": 0.09
+     }
+    },
+    "usage": {
+     "input_tokens": 383,
+     "output_tokens": 20
+    }
+   }
+  },
+  {
+   "state": {
+    "window_steps": [
+     95,
+     104
+    ],
+    "n": 10,
+    "jepa_mean_err": null,
+    "persist_mean_err": 0.001,
+    "jepa_wins": "0/0",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.09,
+   "good": false,
+   "truth_arithmetic": false,
+   "jev_agrees": true,
+   "admitted_after": false,
+   "raw": {
+    "model": "jev-1.13.0",
+    "answers": {
+     "gate": {
+      "type": "noul",
+      "noul": 0.09
+     }
+    },
+    "usage": {
+     "input_tokens": 384,
+     "output_tokens": 20
+    }
+   }
+  },
+  {
+   "state": {
+    "window_steps": [
+     105,
+     114
+    ],
+    "n": 10,
+    "jepa_mean_err": null,
+    "persist_mean_err": 0.0017,
+    "jepa_wins": "0/0",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.1,
+   "good": false,
+   "truth_arithmetic": false,
+   "jev_agrees": true,
+   "admitted_after": false,
+   "raw": {
+    "model": "jev-1.13.0",
+    "answers": {
+     "gate": {
+      "type": "noul",
+      "noul": 0.1
+     }
+    },
+    "usage": {
+     "input_tokens": 386,
+     "output_tokens": 20
+    }
+   }
+  },
+  {
+   "state": {
+    "window_steps": [
+     115,
+     124
+    ],
+    "n": 10,
+    "jepa_mean_err": null,
+    "persist_mean_err": 0.0028,
+    "jepa_wins": "0/0",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.09,
+   "good": false,
+   "truth_arithmetic": false,
+   "jev_agrees": true,
+   "admitted_after": false,
+   "raw": {
+    "model": "jev-1.13.0",
+    "answers": {
+     "gate": {
+      "type": "noul",
+      "noul": 0.09
+     }
+    },
+    "usage": {
+     "input_tokens": 386,
+     "output_tokens": 20
+    }
+   }
+  },
+  {
+   "state": {
+    "window_steps": [
+     125,
+     134
+    ],
+    "n": 10,
+    "jepa_mean_err": null,
+    "persist_mean_err": 0.0068,
+    "jepa_wins": "0/0",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.11,
+   "good": false,
+   "truth_arithmetic": false,
+   "jev_agrees": true,
+   "admitted_after": false,
+   "raw": {
+    "model": "jev-1.13.0",
+    "answers": {
+     "gate": {
+      "type": "noul",
+      "noul": 0.11
+     }
+    },
+    "usage": {
+     "input_tokens": 386,
+     "output_tokens": 20
+    }
+   }
+  },
+  {
+   "state": {
+    "window_steps": [
+     132,
+     141
+    ],
+    "n": 10,
+    "jepa_mean_err": null,
+    "persist_mean_err": 0.007,
+    "jepa_wins": "0/0",
+    "note": "errors = 1 - cosine on 64-d unit latents; baseline predicts next latent = current latent (zero curl)"
+   },
+   "noul": 0.1,
+   "good": false,
+   "truth_arithmetic": false,
+   "jev_agrees": true,
+   "admitted_after": false,
+   "raw": {
+    "model": "jev-1.13.0",
+    "answers": {
+     "gate": {
+      "type": "noul",
+      "noul": 0.1
+     }
+    },
+    "usage": {
+     "input_tokens": 385,
+     "output_tokens": 20
+    }
+   }
+  }
+ ],
+ "ledger": [
+  {
+   "event": "jev_smoke",
+   "ok": true,
+   "raw": {
+    "model": "jev-1.13.0",
+    "answers": {
+     "gate": {
+      "type": "noul",
+      "noul": 0.92
+     }
+    },
+    "usage": {
+     "input_tokens": 331,
+     "output_tokens": 20
+    }
+   }
+  }
+ ],
+ "buffer_note": "buffer = sliding last-K admitted pairs (K=40): pre-reg said 'gated buffer' without length; sliding window lets poison wash out and is recorded here as the concrete reading."
+}

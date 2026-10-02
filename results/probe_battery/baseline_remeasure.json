@@ -1,0 +1,58 @@
+{
+  "probe": "same-run baseline re-measurement",
+  "source": "pr_harvest/SUMMARY.md #8 / CARDS.md chiaroscuro #11",
+  "gate": "re-measured prior == published prior <=1% (deterministic priors A-C and 5-fold prior D are gated; E is informational); std==0 on seed-mean -> INCONCLUSIVE",
+  "verdict": "PASS",
+  "numbers": {
+    "arms_gated": [
+      {
+        "arm": "A path_rows",
+        "published": 180361,
+        "remeasured": 180361,
+        "drift_rel": 0.0,
+        "within_1pct": true
+      },
+      {
+        "arm": "B distinct_boards",
+        "published": 2423,
+        "remeasured": 2423,
+        "drift_rel": 0.0,
+        "within_1pct": true
+      },
+      {
+        "arm": "C composed_boards",
+        "published": 320,
+        "remeasured": 320,
+        "drift_rel": 0.0,
+        "within_1pct": true
+      }
+    ],
+    "D_5fold_prior": {
+      "published": 0.9798,
+      "remeasured_mean": 0.9811,
+      "remeasured_std": 0.0036,
+      "fold_top1": [
+        0.9833,
+        0.9788,
+        0.9775,
+        0.9871,
+        0.9788
+      ],
+      "drift_rel": 0.001326,
+      "within_1pct": true
+    },
+    "E_linear_prior_informational": {
+      "published": 0.1807,
+      "remeasured": 0.1046,
+      "drift_rel": 0.421002,
+      "note": "independent linear trainer on their leaky path-row split; the remeasured 0.1046 sits BELOW their published chance floor (0.1431) \u2014 this instrument is itself poor (optimizer-quality sensitive), which is part of the finding. Our own A1 parity arm (their linear_expert code, seed 2718) measured 0.1919 \u2014 6.2% drift even WITH their instrument. The 0.1807 prior is a draw of a distribution (pong #88 lesson): cross-lab priors without the original validated instrument are quote-only; same-run re-measurement is the fix being probed."
+    }
+  },
+  "reading": "deterministic state-space priors reproduce exactly (drift 0%): the subject run's dataset claims are re-derivable. The 5-fold prior reproduces within 1% only if protocol+seed match \u2014 measured drift 0.1326%. The linear prior drifts 42.10% under an independent instrument, confirming citation-without-instrument is the invalid-comparison failure mode the card warns about.",
+  "seed": [
+    2718,
+    "folds use 100-104 per published protocol"
+  ],
+  "runtime_seconds": 31.1,
+  "device": "cpu"
+}

@@ -1,0 +1,206 @@
+{
+  "experiment": "CX-CHEAP-2: zero-parameter surface regime repair of the unreachable signal",
+  "device": "cpu",
+  "gpu_used": false,
+  "torch_used": false,
+  "numpy_sklearn": true,
+  "seed": 2718,
+  "energy_wh": 0.0,
+  "reused_machinery": "experiments/cx_cheap1.py (COMP1 featurization, margins, 2-arm, within-set FED!=SINGLE restriction, win label) + cx_cheap0/ring_cx0 helpers",
+  "surface_classifier": {
+    "kind": "0 parameters (deterministic regex/token heuristics over raw item text)",
+    "preregistered_rule_order": [
+      "R1 NEGATION: claim matches \\bnot\\b|n't|\\bnever\\b|\\bno\\b -> negation-scope",
+      "R2 COUNTING-ADDRESS: claim has a count word (number-word {one..twelve} or digit) directly quantifying the cargo noun ('N crates') or 'crates of' -> counting-address",
+      "R3 AGENT-ROLE: claim has the cargo/role noun 'crates' -> agent-role",
+      "R4 RESIDUAL: else -> semantic"
+    ],
+    "note": "rules fixed from TRAIN surface statistics; first-hit-wins tie-break; claim-only primary (evidence scanned only in the classifier signature check)"
+  },
+  "wiring": {
+    "reproduced_router_heldout_top1": 0.735593,
+    "comp1_booked_router_heldout_top1": 0.7356,
+    "match_4dp": true,
+    "n_train": 1810,
+    "n_heldout": 590,
+    "T_margin_median_train": 0.7374,
+    "n_disagree_heldout": 184,
+    "n_win_in_disagree": 103,
+    "win_rate_given_disagree": 0.5598
+  },
+  "G_R1": {
+    "held_out_acc": 0.8729,
+    "need": 0.7,
+    "pass_": true,
+    "train_acc": 0.8862,
+    "within_disagreement_acc": 0.8098,
+    "router_within_disagreement_acc": 0.6522
+  },
+  "G_R1_per_regime_acc_heldout": {
+    "semantic": 1.0,
+    "counting-address": 1.0,
+    "negation-scope": 0.4932,
+    "agent-role": 1.0
+  },
+  "G_R1_confusion_heldout_full": {
+    "semantic": {
+      "semantic": 141,
+      "counting-address": 0,
+      "negation-scope": 0,
+      "agent-role": 0
+    },
+    "counting-address": {
+      "semantic": 0,
+      "counting-address": 139,
+      "negation-scope": 0,
+      "agent-role": 0
+    },
+    "negation-scope": {
+      "semantic": 75,
+      "counting-address": 0,
+      "negation-scope": 73,
+      "agent-role": 0
+    },
+    "agent-role": {
+      "semantic": 0,
+      "counting-address": 0,
+      "negation-scope": 0,
+      "agent-role": 162
+    }
+  },
+  "G_R1_confusion_heldout_within_disagreement": {
+    "semantic": {
+      "semantic": 40,
+      "counting-address": 0,
+      "negation-scope": 0,
+      "agent-role": 0
+    },
+    "counting-address": {
+      "semantic": 0,
+      "counting-address": 38,
+      "negation-scope": 0,
+      "agent-role": 0
+    },
+    "negation-scope": {
+      "semantic": 35,
+      "counting-address": 0,
+      "negation-scope": 22,
+      "agent-role": 0
+    },
+    "agent-role": {
+      "semantic": 0,
+      "counting-address": 0,
+      "negation-scope": 0,
+      "agent-role": 49
+    }
+  },
+  "G_R2": {
+    "model": "logistic on surface regime one-hots (fit TRAIN-disagree)",
+    "within_auc": 0.5334,
+    "tree_within_auc": 0.5403,
+    "best_within_auc": 0.5403,
+    "need": 0.6,
+    "pass_": false,
+    "reference_true_regime_oracle_auc": 0.6173,
+    "reference_frozen_router_auc": 0.5003
+  },
+  "G_R2_detail": {
+    "repaired_logistic": {
+      "auc": 0.5334,
+      "brier": 0.2466,
+      "n_train": 551,
+      "n_heldout": 184,
+      "base_rate": 0.5598
+    },
+    "repaired_tree": {
+      "auc": 0.5403,
+      "brier": 0.2466,
+      "n_train": 551,
+      "n_heldout": 184,
+      "base_rate": 0.5598
+    },
+    "oracle_true_regime_logistic": {
+      "auc": 0.6173,
+      "brier": 0.2355,
+      "n_train": 551,
+      "n_heldout": 184,
+      "base_rate": 0.5598
+    },
+    "frozen_router_logistic": {
+      "auc": 0.5003,
+      "brier": 0.2476,
+      "n_train": 551,
+      "n_heldout": 184,
+      "base_rate": 0.5598
+    }
+  },
+  "G_R2_sensitivity_rich_surface_cue": {
+    "note": "post-hoc; richer surface cue (negation-scope cargo form 'load' + evidence negation)",
+    "board_acc": 0.9339,
+    "within_disagreement_acc": 0.8913,
+    "within_auc_logistic": 0.5826,
+    "need": 0.6,
+    "pass_": false,
+    "ceiling_perfect_labels_auc": 0.6173
+  },
+  "G_R3": {
+    "boot_aucs": [
+      0.5334,
+      0.5543,
+      0.5334,
+      0.5471,
+      0.5471
+    ],
+    "boot_std_auc": 0.0083,
+    "pass_": true
+  },
+  "regime_winrate_table_true": {
+    "semantic": {
+      "n_disagree": 40,
+      "n_win": 16,
+      "win_rate_given_disagree": 0.4
+    },
+    "counting-address": {
+      "n_disagree": 38,
+      "n_win": 19,
+      "win_rate_given_disagree": 0.5
+    },
+    "negation-scope": {
+      "n_disagree": 57,
+      "n_win": 43,
+      "win_rate_given_disagree": 0.7544
+    },
+    "agent-role": {
+      "n_disagree": 49,
+      "n_win": 25,
+      "win_rate_given_disagree": 0.5102
+    }
+  },
+  "regime_winrate_table_repaired": {
+    "semantic": {
+      "n_disagree": 75,
+      "n_win": 45,
+      "win_rate_given_disagree": 0.6
+    },
+    "counting-address": {
+      "n_disagree": 38,
+      "n_win": 19,
+      "win_rate_given_disagree": 0.5
+    },
+    "negation-scope": {
+      "n_disagree": 22,
+      "n_win": 14,
+      "win_rate_given_disagree": 0.6364
+    },
+    "agent-role": {
+      "n_disagree": 49,
+      "n_win": 25,
+      "win_rate_given_disagree": 0.5102
+    }
+  },
+  "verdict": "G-R1 PASS but G-R2 FAIL: the repaired labels do NOT carry the win-signal (regime identity != the structure the oracle read).",
+  "prior": {
+    "cx_cheap1": "oracle TRUE-regime within-set AUC 0.6173; frozen router 0.5003; win-rate|disagree negation 0.754 vs 0.40-0.51 elsewhere",
+    "ring_cx2": "cheap trained logistic detects the REGIME (3.26x, prec 0.805)"
+  }
+}

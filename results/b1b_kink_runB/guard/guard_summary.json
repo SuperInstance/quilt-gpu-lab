@@ -1,0 +1,18 @@
+{
+  "breach": null,
+  "g7": {
+    "gpu_seconds": 190.499,
+    "joules": 11097.463,
+    "mean_power_w": 47.33,
+    "power_samples": 45,
+    "util_samples": 45,
+    "wall_seconds": 234.488,
+    "watt_hours": 3.082628611111111,
+    "windows": 1
+  },
+  "max_temp_c": 76,
+  "min_free_vram_mib": 1338,
+  "samples": 46,
+  "task_id": "B1b-kink-head",
+  "timed_out": false
+}

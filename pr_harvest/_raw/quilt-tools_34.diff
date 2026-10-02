@@ -1,0 +1,244 @@
+diff --git a/experiments/REFERRAL_GRAPH.md b/experiments/REFERRAL_GRAPH.md
+index fe19c41..922fd16 100644
+--- a/experiments/REFERRAL_GRAPH.md
++++ b/experiments/REFERRAL_GRAPH.md
+@@ -455,3 +455,35 @@ repo reduces exactly to the blind view (pinned).
+    git-agent 7.1% · jev-quilt 7.1% · micrograd-quilt 7.1% · MicroMoth-quilt
+    7.1% · moth-waveform 7.1% · quilt-cowboy 7.1% · quilt-stone 7.1% ·
+    quilt-arcade 0.7%.
++- **Sixteenth + seventeenth edges VERIFIED 2026-10-02 (04:27 snowball
++   pulse) — the fleet-triage resolver census pair; the two mints Casey's
++   2026-10-01T20:07Z merge burst earned land together.** The fleet-triage
++   resolver's scoped quilt-family census (244 repos, 15,880 files indexed,
++   5,852 docs / 7,790 citation sites in 162s; audit subcommand re-verified
++   513 findings by filesystem scan at 0.0% FP on hard outcomes) filed two
++   CANDIDATE edges on 2026-10-02 (02:26 pulse) with the weight-law upgrade
++   path recorded: PENDING → VERIFIED on a merged PR in each target repo.
++   Both merges landed ~20:07 UTC 2026-10-01 — **quilt-research-canons PR
++   #5** ("REFERRAL — fleet-triage resolver", MERGED 2026-10-01T20:07:58Z,
++   merge `62f18ff7`) naming the canon cluster's **222 FILE_MISSING**
++   citations (the family's largest single doc→file drift surface), and
++   **quilt-tournament PR #1** ("REFERRAL EDGE — fleet-triage resolver →
++   quilt-tournament", MERGED 2026-10-01T20:07:46Z, merge `2f6daf21`) holding
++   **all 25 LINE_OOR citations family-wide** (referee/ docs, line-past-EOF
++   vs quilt-canvas-tui core.c, quilt-verilog quf.rs, quilt-fleet-tools
++   seal.py). Each merged PR lands `docs/REFERRAL-fleet-triage-resolver.md`
++   in its own repo citing **SuperInstance/fleet-triage and resolver.py by
++   name**, with honest boundary notes carried verbatim (shallow-HEAD index;
++   PATH_PRECISE_ONLY advisory-only at 49.2% FP; LINE_OOR spot-verified by
++   direct wc/grep, not audit-sealed). Weight law met in both citing repos'
++   merges: edges `ft-resolver → qc-fm-surface` and `ft-resolver →
++   qt-lineoor-surface` are **VERIFIED=1.0**, receipts
++   `SuperInstance/quilt-research-canons#5` and
++   `SuperInstance/quilt-tournament#1`. Never self-upgraded; both to-repos
++   take their first inbound edge, and fleet-triage opens the graph's first
++   instrument→surface pair — two VERIFIED edges from one instrument, one
++   run. Branch pins: 129/129 offline, 130/130 --live (25→27 receipts
++   audited) green; the branch's updated count pins trip on main tip
++   (FAIL-first). The view now: **fleet-murmur** (solo triple lead) ·
++   pong-quilt · quilt-show · quilt-tools · ten single-VERIFIED repos
++   (delta-shape → quilt-tournament by name) · quilt-arcade closes.
+diff --git a/experiments/referral_graph.pins.mjs b/experiments/referral_graph.pins.mjs
+index 6a5053e..18c47eb 100644
+--- a/experiments/referral_graph.pins.mjs
++++ b/experiments/referral_graph.pins.mjs
+@@ -25,7 +25,7 @@ for (const n of (await import('./referral_graph.seed.mjs')).SEED.nodes) seed.add
+ let seedBooked = 0;
+ for (const e of (await import('./referral_graph.seed.mjs')).SEED.edges) { seed.book(e); seedBooked++; }
+ 
+-check('seed: all edges booked', seedBooked === 19 && seed.rows.length === 19, `${seedBooked} edges`);
++check('seed: all edges booked', seedBooked === 21 && seed.rows.length === 21, `${seedBooked} edges`);
+ 
+ // Pin 1 — missing required field is a loud REFUSAL, never a silent drop.
+ {
+@@ -46,16 +46,19 @@ check('seed: all edges booked', seedBooked === 19 && seed.rows.length === 19, `$
+   check('seed: tampered claim -> verify fails at that row', bad.ok === false && bad.brokenAt === 2, bad.ok ? 'TAMPER ACCEPTED' : `caught row ${bad.brokenAt}: prev_hash ${bad.got} != ${bad.expected}`);
+ }
+ 
+-// Pin 3 — the VIEW: ranked distribution; fifteen VERIFIED edges (20x an
++// Pin 3 — the VIEW: ranked distribution; seventeen VERIFIED edges (20x an
+ // epsilon) — fleet-murmur carries TRIPLE mass (first repo with three
+ // inbound: honesty #2 + qgs adapter #3 + refusal ledger #8) and pong-quilt
+ // carries double mass (the quantum-coin tiebreak + the stone-v2 sign pilot),
+ // quilt-show and quilt-tools hold VERIFIED + PENDING, git-agent,
+-// jev-quilt, micrograd-quilt, MicroMoth-quilt, moth-waveform, quilt-cowboy
+-// and quilt-stone hold single VERIFIED mass (jev-quilt's KAT edge FLIPPED
+-// 2026-09-30 on jev-quilt#47 merging — its first INBOUND currency; the
+-// mm⇄mgq lab↔ledger pair is VERIFIED in BOTH directions — micrograd-quilt#7
+-// earned ledger→lab, MicroMoth-quilt#29 earned lab→ledger six hours later),
++// jev-quilt, micrograd-quilt, MicroMoth-quilt, moth-waveform, quilt-cowboy,
++// quilt-research-canons, quilt-stone and quilt-tournament hold single
++// VERIFIED mass (qc/qt enter 2026-10-02 on the fleet-triage resolver census
++// pair — canons#5 earns the FILE_MISSING surface, tournament#1 earns the
++// LINE_OOR surface; jev-quilt's KAT edge FLIPPED 2026-09-30 on jev-quilt#47
++// merging — its first INBOUND currency; the mm⇄mgq lab↔ledger pair is
++// VERIFIED in BOTH directions — micrograd-quilt#7 earned ledger→lab,
++// MicroMoth-quilt#29 earned lab→ledger six hours later),
+ // and quilt-arcade holds double PENDING; delta-shape enters the view for
+ // the first time carrying the FOURTEENTH edge's VERIFIED mass (qe-witness →
+ // ds-esign-drift, booked at VERIFIED 2026-10-01 on delta-shape#1's merge
+@@ -67,10 +70,10 @@ check('seed: all edges booked', seedBooked === 19 && seed.rows.length === 19, `$
+ // Removed here; the currency flip below is what this PR is for.)
+ {
+   const v = seed.view();
+-  check('seed: view ranks all thirteen mass-carrying repos', v.length === 13, v.map(x => `${x.repo}=${x.share.toFixed(3)}`).join(' '));  const shares = v.map(x => x.share);
++  check('seed: view ranks all fifteen mass-carrying repos', v.length === 15, v.map(x => `${x.repo}=${x.share.toFixed(3)}`).join(' '));  const shares = v.map(x => x.share);
+   check('seed: view shares sum to 1', Math.abs(shares.reduce((a, b) => a + b, 0) - 1) < 1e-9, `Σ=${shares.reduce((a, b) => a + b, 0)}`);
+   const byRepo = Object.fromEntries(v.map(x => [x.repo, x.weight]));
+-  check('seed: view mass — fm = 3×VERIFIED (first triple-inbound), pq = 2×VERIFIED, qs/qt = VERIFIED + PENDING, ga/jq/mgq/mm/mw/qb/stone = VERIFIED (the mm⇄mgq pair both VERIFIED), qa = 2×PENDING (from-node-only repos: no view mass)',
++  check('seed: view mass — fm = 3×VERIFIED (first triple-inbound), pq = 2×VERIFIED, qs/qt = VERIFIED + PENDING, ga/jq/mgq/mm/mw/qb/qc-arcade… qc-canons/qt-tournament = VERIFIED (the mm⇄mgq pair both VERIFIED), qa = 2×PENDING (from-node-only repos: no view mass)',
+     Math.abs(byRepo['fleet-murmur'] - 3 * VERIFIED_WEIGHT) < 1e-9 &&
+     Math.abs(byRepo['pong-quilt'] - 2 * VERIFIED_WEIGHT) < 1e-9 &&
+     Math.abs(byRepo['quilt-show'] - (VERIFIED_WEIGHT + PENDING_WEIGHT)) < 1e-9 &&
+@@ -81,6 +84,8 @@ check('seed: all edges booked', seedBooked === 19 && seed.rows.length === 19, `$
+     Math.abs(byRepo['MicroMoth-quilt'] - VERIFIED_WEIGHT) < 1e-9 &&
+     Math.abs(byRepo['moth-waveform'] - VERIFIED_WEIGHT) < 1e-9 &&
+     Math.abs(byRepo['quilt-stone'] - VERIFIED_WEIGHT) < 1e-9 &&
++    Math.abs(byRepo['quilt-research-canons'] - VERIFIED_WEIGHT) < 1e-9 &&
++    Math.abs(byRepo['quilt-tournament'] - VERIFIED_WEIGHT) < 1e-9 &&
+     !('quality-gate-stream' in byRepo) &&
+     !('quilt-ewitness' in byRepo) &&
+     Math.abs(byRepo['quilt-arcade'] - 2 * PENDING_WEIGHT) < 1e-9 &&
+@@ -89,7 +94,7 @@ check('seed: all edges booked', seedBooked === 19 && seed.rows.length === 19, `$
+     JSON.stringify(byRepo));
+   const sorted = [...v].sort((a, b) => b.share - a.share || a.repo.localeCompare(b.repo));
+   check('seed: view is sorted by share desc', JSON.stringify(v) === JSON.stringify(sorted), 'sorted');
+-  check('seed: fm leads solo with triple mass (first triple-inbound repo); pq second with double mass; then the two VERIFIED+PENDING repos (quilt-show, quilt-tools); the eight single-VERIFIED repos tie, broken by name (delta-shape first — the e-witness booking whose merge outran it; git-agent … quilt-stone; micrograd-quilt and MicroMoth-quilt enter via the lab↔ledger pair, both directions VERIFIED; the KAT edge now VERIFIED); quilt-arcade double-PENDING closes the view',
++  check('seed: fm leads solo with triple mass (first triple-inbound repo); pq second with double mass; then the two VERIFIED+PENDING repos (quilt-show, quilt-tools); the ten single-VERIFIED repos tie, broken by name (delta-shape first — the e-witness booking whose merge outran it; git-agent … quilt-tournament last of the single-mass tier, quilt-research-canons and quilt-tournament entering 2026-10-02 on the resolver census pair; micrograd-quilt and MicroMoth-quilt enter via the lab↔ledger pair, both directions VERIFIED; the KAT edge now VERIFIED); quilt-arcade double-PENDING closes the view',
+     v[0].repo === 'fleet-murmur' && v[0].weight === 3 * VERIFIED_WEIGHT &&
+     v[1].repo === 'pong-quilt' && v[1].weight === 2 * VERIFIED_WEIGHT &&
+     v[2].repo === 'quilt-show' && v[2].weight === VERIFIED_WEIGHT + PENDING_WEIGHT &&
+@@ -101,9 +106,11 @@ check('seed: all edges booked', seedBooked === 19 && seed.rows.length === 19, `$
+     v[8].repo === 'MicroMoth-quilt' && v[8].weight === VERIFIED_WEIGHT &&
+     v[9].repo === 'moth-waveform' && v[9].weight === VERIFIED_WEIGHT &&
+     v[10].repo === 'quilt-cowboy' && v[10].weight === VERIFIED_WEIGHT &&
+-    v[11].repo === 'quilt-stone' && v[11].weight === VERIFIED_WEIGHT &&
+-    v[12].repo === 'quilt-arcade' && v[12].weight === 2 * PENDING_WEIGHT,
+-    `${v[0].repo} ${(v[0].share * 100).toFixed(1)}% · ${v[1].repo} ${(v[1].share * 100).toFixed(1)}% · ${v[2].repo} ${(v[2].share * 100).toFixed(1)}% · ${v[3].repo} ${(v[3].share * 100).toFixed(1)}% · ${v[4].repo} ${(v[4].share * 100).toFixed(1)}% · ${v[5].repo} ${(v[5].share * 100).toFixed(1)}% · ${v[6].repo} ${(v[6].share * 100).toFixed(1)}% · ${v[7].repo} ${(v[7].share * 100).toFixed(1)}% · ${v[8].repo} ${(v[8].share * 100).toFixed(1)}% · ${v[9].repo} ${(v[9].share * 100).toFixed(1)}% · ${v[10].repo} ${(v[10].share * 100).toFixed(1)}% · ${v[11].repo} ${(v[11].share * 100).toFixed(1)}% · ${v[12].repo} ${(v[12].share * 100).toFixed(1)}%`);
++    v[11].repo === 'quilt-research-canons' && v[11].weight === VERIFIED_WEIGHT &&
++    v[12].repo === 'quilt-stone' && v[12].weight === VERIFIED_WEIGHT &&
++    v[13].repo === 'quilt-tournament' && v[13].weight === VERIFIED_WEIGHT &&
++    v[14].repo === 'quilt-arcade' && v[14].weight === 2 * PENDING_WEIGHT,
++    `${v[0].repo} ${(v[0].share * 100).toFixed(1)}% · ${v[1].repo} ${(v[1].share * 100).toFixed(1)}% · ${v[2].repo} ${(v[2].share * 100).toFixed(1)}% · ${v[3].repo} ${(v[3].share * 100).toFixed(1)}% · ${v[4].repo} ${(v[4].share * 100).toFixed(1)}% · ${v[5].repo} ${(v[5].share * 100).toFixed(1)}% · ${v[6].repo} ${(v[6].share * 100).toFixed(1)}% · ${v[7].repo} ${(v[7].share * 100).toFixed(1)}% · ${v[8].repo} ${(v[8].share * 100).toFixed(1)}% · ${v[9].repo} ${(v[9].share * 100).toFixed(1)}% · ${v[10].repo} ${(v[10].share * 100).toFixed(1)}% · ${v[11].repo} ${(v[11].share * 100).toFixed(1)}% · ${v[12].repo} ${(v[12].share * 100).toFixed(1)}% · ${v[13].repo} ${(v[13].share * 100).toFixed(1)}% · ${v[14].repo} ${(v[14].share * 100).toFixed(1)}%`);
+ }
+ 
+ // Pin 3c — the SECOND currency event (FAIL-first: on main tip the quantum-coin
+@@ -115,8 +122,8 @@ check('seed: all edges booked', seedBooked === 19 && seed.rows.length === 19, `$
+     row.weight === 'VERIFIED' && row.receipt === 'SuperInstance/pong-quilt#28',
+     row ? `weight=${row.weight} receipt=${row.receipt}` : 'edge not found');
+   const verified = seed.rows.filter(r => r.op === 'LINK' && r.weight === 'VERIFIED');
+-  check('seed: exactly fifteen VERIFIED edges across fifteen distinct to-nodes — monopoly broken, doctrine arc complete; the mm⇄mgq pair VERIFIED in both directions (ledger→lab via micrograd-quilt#7, lab→ledger via MicroMoth-quilt#29), jev-quilt holds its KAT inbound (jev-quilt#47), pong-quilt double INBOUND (coin + sign pilot) and now THREE outgoing (wal-honesty, stone-v1 export, named refusals), fleet-murmur TRIPLE inbound (honesty#2 + qgs-adapter#3 + refusal-ledger#8), delta-shape holds the e-witness inbound (delta-shape#1 — the booking the merge outran)',
+-    verified.length === 15 && new Set(verified.map(r => r.to)).size === 15,
++  check('seed: exactly seventeen VERIFIED edges across seventeen distinct to-nodes — monopoly broken, doctrine arc complete; the mm⇄mgq pair VERIFIED in both directions (ledger→lab via micrograd-quilt#7, lab→ledger via MicroMoth-quilt#29), jev-quilt holds its KAT inbound (jev-quilt#47), pong-quilt double INBOUND (coin + sign pilot) and THREE outgoing (wal-honesty, stone-v1 export, named refusals), fleet-murmur TRIPLE inbound (honesty#2 + qgs-adapter#3 + refusal-ledger#8), delta-shape holds the e-witness inbound (delta-shape#1 — the booking the merge outran), quilt-research-canons and quilt-tournament hold their FIRST inbound edges from the fleet-triage resolver census (canons#5 FILE_MISSING surface, tournament#1 LINE_OOR surface) — fleet-triage opens the graph\'s first instrument→surface pair with two outgoing VERIFIED edges from one run',
++    verified.length === 17 && new Set(verified.map(r => r.to)).size === 17,
+     verified.map(r => `${r.from}->${r.to}`).join(' '));
+ }
+ 
+@@ -527,6 +534,57 @@ check('seed: all edges booked', seedBooked === 19 && seed.rows.length === 19, `$
+     row?.receipt.split('#')[0] === `SuperInstance/${fml?.repo}`, row?.receipt);
+ }
+ 
++// Pin 3q — the SIXTEENTH + SEVENTEENTH edges VERIFIED 2026-10-02 (04:27
++// snowball pulse): the fleet-triage resolver census pair. FAIL-first: on
++// main tip these edges do not exist (the currency pins above trip). Both
++// receipts landed in Casey\'s 2026-10-01T20:07Z merge burst:
++// quilt-research-canons#5 ("REFERRAL — fleet-triage resolver", MERGED
++// 2026-10-01T20:07:58Z, merge 62f18ff7) and quilt-tournament#1 ("REFERRAL
++// EDGE — fleet-triage resolver → quilt-tournament", MERGED
++// 2026-10-01T20:07:46Z, merge 2f6daf21) each land
++// docs/REFERRAL-fleet-triage-resolver.md IN THE TO-NODE\'S REPO citing
++// SuperInstance/fleet-triage and its resolver.py BY NAME, with the census
++// counts (222 FILE_MISSING in the canon cluster; ALL 25 LINE_OOR family-wide
++// in quilt-tournament referee/ docs) and honest boundary notes (shallow-HEAD
++// index; PATH_PRECISE_ONLY advisory-only at 49.2% FP; LINE_OOR spot-verified
++// by direct wc/grep, not audit-sealed).
++{
++  const rowA = seed.rows.find(r => r.op === 'LINK' && r.from === 'ft-resolver' && r.to === 'qc-fm-surface');
++  check('seed: resolver→canons edge is VERIFIED with quilt-research-canons#5 receipt in the to-node\'s repo',
++    rowA?.weight === 'VERIFIED' && rowA?.receipt === 'SuperInstance/quilt-research-canons#5',
++    rowA ? `weight=${rowA.weight} receipt=${rowA.receipt}` : 'edge not found');
++  check('seed: resolver→canons claim records the currency event and the merge sha',
++    rowA?.claim.includes('CURRENCY EARNED 2026-10-01') && rowA?.claim.includes('62f18ff7'),
++    rowA ? 'claim carries the merge receipt' : 'edge not found');
++  check('seed: resolver→canons declares a falsification condition (kill switch)',
++    typeof rowA?.falsification_condition === 'string' && rowA.falsification_condition.length > 20,
++    rowA?.falsification_condition ?? 'none');
++  const rowB = seed.rows.find(r => r.op === 'LINK' && r.from === 'ft-resolver' && r.to === 'qt-lineoor-surface');
++  check('seed: resolver→tournament edge is VERIFIED with quilt-tournament#1 receipt in the to-node\'s repo',
++    rowB?.weight === 'VERIFIED' && rowB?.receipt === 'SuperInstance/quilt-tournament#1',
++    rowB ? `weight=${rowB.weight} receipt=${rowB.receipt}` : 'edge not found');
++  check('seed: resolver→tournament claim records the currency event and the merge sha',
++    rowB?.claim.includes('CURRENCY EARNED 2026-10-01') && rowB?.claim.includes('2f6daf21'),
++    rowB ? 'claim carries the merge receipt' : 'edge not found');
++  check('seed: resolver→tournament declares a falsification condition (kill switch)',
++    typeof rowB?.falsification_condition === 'string' && rowB.falsification_condition.length > 20,
++    rowB?.falsification_condition ?? 'none');
++  const ft = seed.nodes.get('ft-resolver'), qc = seed.nodes.get('qc-fm-surface'), qtN = seed.nodes.get('qt-lineoor-surface');
++  check('seed: all three endpoints exist in their own repos',
++    ft?.repo === 'fleet-triage' && qc?.repo === 'quilt-research-canons' && qtN?.repo === 'quilt-tournament', `${ft?.repo} -> ${qc?.repo} + ${qtN?.repo}`);
++  check('seed: both receipts target their to-node\'s repo (weight law, substrate-enforced)',
++    rowA?.receipt.split('#')[0] === `SuperInstance/${qc?.repo}` && rowB?.receipt.split('#')[0] === `SuperInstance/${qtN?.repo}`,
++    `${rowA?.receipt} · ${rowB?.receipt}`);
++  const fromFt = seed.rows.filter(r => r.op === 'LINK' && seed.nodes.get(r.from)?.repo === 'fleet-triage');
++  check('seed: fleet-triage carries two outgoing VERIFIED edges from ONE census run — the graph\'s first instrument→surface pair',
++    fromFt.length === 2 && fromFt.every(r => r.weight === 'VERIFIED') && fromFt.some(r => r.to === 'qc-fm-surface') && fromFt.some(r => r.to === 'qt-lineoor-surface'),
++    fromFt.map(r => `${r.from}->${r.to}`).join(' '));
++  check('seed: both to-repos hold their FIRST inbound edge',
++    seed.rows.filter(r => r.op === 'LINK' && seed.nodes.get(r.to)?.repo === 'quilt-research-canons').length === 1 &&
++    seed.rows.filter(r => r.op === 'LINK' && seed.nodes.get(r.to)?.repo === 'quilt-tournament').length === 1,
++    'qc + qt first-inbound');
++}
++
+ // Pin 4 — provenance live audit: every cited PR must actually be merged.
+ // gh absence -> skip labeled SKIPPED (honest), never pass silently.
+ {
+@@ -773,8 +831,8 @@ function fixture() {
+ }
+ 
+ panel('referral-graph v1 — the mesh answers as a distribution', [
+-  kv('nodes', '32 (17 repos)'), kv('edges', '19 — 15 VERIFIED · 4 PENDING'),
+-  kv('currency', '15 VERIFIED (show#1 cites S2 · pong#28 cites coin-toss-v1 · git-agent#4 cites algebra.md · cowboy#1 cites jev-quilt · fleet-murmur#2 cites pong-quilt · moth-waveform#1 cites the fm vacuity scar · fleet-murmur#3 cites quality-gate-stream · quilt-tools#17 cites jev-quilt commons.py G11 · quilt-stone#1 cites pong-quilt R36 toStoneV1 · pong-quilt#51 staples with quilt-stone#4\'s signTip · jev-quilt#47 cites the AI-Writings KAT instrument · micrograd-quilt#7 cites the MicroMoth-quilt ledger by name across the qcells lab · MicroMoth-quilt#29 cites SuperInstance/micrograd-quilt as the qcells lab canonical home · delta-shape#1 cites SuperInstance/quilt-ewitness as a sha256-pinned vendored e-witness instrument · fleet-murmur#8 cites pong-quilt\'s named-refusal corpus at a pinned main merge) — doctrine flows outward fifteen ways; the mm⇄mgq pair is the graph\'s first bidirectional pair and both directions now carry VERIFIED mass — ledger→lab earned by the lab\'s merged FINDINGS (micrograd-quilt#7) and lab→ledger earned by the ledger\'s merged AUDIT canonical-home note with a citation pin (MicroMoth-quilt#29; sealed receipts untouched, provenance amended not rewritten); jev-quilt holds its KAT inbound (flipped on jev-quilt#47 merge); the qe→ds edge booked PENDING twice (a /tmp wipe took 7ddd151, a main reset took 812a644) and the delta-shape#1 merge outran the booking — landed directly at VERIFIED 2026-10-01; pong-quilt remains double-INBOUND with three outgoing edges while fleet-murmur is the fleet\'s first TRIPLE-inbound repo (honesty#2 + qgs-adapter#3 + refusal-ledger#8); from-node-only repos carry no view mass; to-nodes born after seeding: fleet-murmur, moth-waveform, quilt-stone, micrograd-quilt, MicroMoth-quilt, delta-shape, fm-refusal-ledger'),
++  kv('nodes', '35 (20 repos)'), kv('edges', '21 — 17 VERIFIED · 4 PENDING'),
++  kv('currency', '15 VERIFIED (show#1 cites S2 · pong#28 cites coin-toss-v1 · git-agent#4 cites algebra.md · cowboy#1 cites jev-quilt · fleet-murmur#2 cites pong-quilt · moth-waveform#1 cites the fm vacuity scar · fleet-murmur#3 cites quality-gate-stream · quilt-tools#17 cites jev-quilt commons.py G11 · quilt-stone#1 cites pong-quilt R36 toStoneV1 · pong-quilt#51 staples with quilt-stone#4\'s signTip · jev-quilt#47 cites the AI-Writings KAT instrument · micrograd-quilt#7 cites the MicroMoth-quilt ledger by name across the qcells lab · MicroMoth-quilt#29 cites SuperInstance/micrograd-quilt as the qcells lab canonical home · delta-shape#1 cites SuperInstance/quilt-ewitness as a sha256-pinned vendored e-witness instrument · fleet-murmur#8 cites pong-quilt\'s named-refusal corpus at a pinned main merge · canons#5 cites the fleet-triage resolver for the canon cluster\'s 222 FILE_MISSING surface · tournament#1 cites the same resolver for the family\'s 25 LINE_OOR sites) — doctrine flows outward seventeen ways; the mm⇄mgq pair is the graph\'s first bidirectional pair and both directions now carry VERIFIED mass — ledger→lab earned by the lab\'s merged FINDINGS (micrograd-quilt#7) and lab→ledger earned by the ledger\'s merged AUDIT canonical-home note with a citation pin (MicroMoth-quilt#29; sealed receipts untouched, provenance amended not rewritten); jev-quilt holds its KAT inbound (flipped on jev-quilt#47 merge); the qe→ds edge booked PENDING twice (a /tmp wipe took 7ddd151, a main reset took 812a644) and the delta-shape#1 merge outran the booking — landed directly at VERIFIED 2026-10-01; pong-quilt remains double-INBOUND with three outgoing edges while fleet-murmur is the fleet\'s first TRIPLE-inbound repo (honesty#2 + qgs-adapter#3 + refusal-ledger#8); from-node-only repos carry no view mass; to-nodes born after seeding: fleet-murmur, moth-waveform, quilt-stone, micrograd-quilt, MicroMoth-quilt, delta-shape, fm-refusal-ledger, qc-fm-surface, qt-lineoor-surface'),
+   kv('view', seed.view().map(x => `${x.repo} ${(x.share * 100).toFixed(1)}%`).join(' · ')),
+ ]);
+ done();
+diff --git a/experiments/referral_graph.seed.mjs b/experiments/referral_graph.seed.mjs
+index a9fffbc..62754aa 100644
+--- a/experiments/referral_graph.seed.mjs
++++ b/experiments/referral_graph.seed.mjs
+@@ -291,6 +291,12 @@ export const SEED = {
+       summary: 'quality_gate_adapter: fleet-murmur\'s mill gate routed through the REAL quality-gate-stream package (CustomCheck/evaluate API, closed-by-default, absence returns None never faked), pinned by 4 live package-run pins + weight-law citation naming SuperInstance/quality-gate-stream' },
+     { id: 'fm-refusal-ledger', repo: 'fleet-murmur', kind: 'integration',
+       summary: 'the IETF refusal-events ledger lane: docs/ietf-kamimura-refusal-events-ledger.md audits pong-quilt main\'s named refusal-events corpus against draft-kamimura-scitt-refusal-events-03 (abstract sha-pinned; source re-verified still -03 on datatracker 2026-10-01), FAIL-first corpus pin via tests/test_refusal_events_ledger.py (fleet-murmur#8, merged 2026-09-30T19:31:12Z)' },
++    { id: 'ft-resolver', repo: 'fleet-triage', kind: 'instrument',
++      summary: 'the 3-stage doc citation resolver (index → scan → audit) and its scoped quilt-family census run 2026-10-02: 244 repos (226 quilt- prefixed), 243 shallow-indexed (15,880 files), 5,852 docs / 7,790 citation sites scanned in 162s; audit subcommand independently re-verified 513 findings by filesystem scan (hard outcomes FILE_MISSING/REPO_UNKNOWN/REPO_MISMATCH/LINE_OOR/numeric at 0.0% false-positive; PATH_PRECISE_ONLY 49.2% FP → advisory-only) — digest docs/QUILT-FAMILY-TRIAGE-2026-10-02.md (fleet-triage#2, merged 2026-10-01T20:07:41Z)' },
++    { id: 'qc-fm-surface', repo: 'quilt-research-canons', kind: 'integration',
++      summary: 'the canon cluster\'s 222 FILE_MISSING doc citations — the quilt family\'s largest single doc→file drift surface; the merged referral doc adopts the resolver as a consume-don\'t-rival scan gate over projects/research/sprints with honest boundary notes (shallow-HEAD index; PATH_PRECISE_ONLY advisory-only) (quilt-research-canons#5, merged 2026-10-01T20:07:58Z)' },
++    { id: 'qt-lineoor-surface', repo: 'quilt-tournament', kind: 'integration',
++      summary: 'ALL 25 LINE_OOR citations in the entire 244-repo quilt family live here (referee/ docs, line-past-EOF vs quilt-canvas-tui core.c, quilt-verilog quf.rs, quilt-fleet-tools seal.py) — one sweep fixes the family\'s entire line-past-EOF class (quilt-tournament#1, merged 2026-10-01T20:07:46Z)' },
+     { id: 'jq-commons-g11', repo: 'jev-quilt', kind: 'commons',
+       summary: 'the G11 trust-weighted commons: jev_quilt/commons.py trust_weighted() / provenance_merge() — cross-fleet gluing re-scaled by earned per-source trust, default 0 for unseen sources (jev-quilt#37, merged 2026-09-27T00:06:03Z)' },
+     { id: 'qt-trust-lever', repo: 'quilt-tools', kind: 'experiment',
+@@ -468,5 +474,21 @@ falsification_condition: 'a MicroMoth-quilt receipt sealing qcells-lab work that
+       receipt: 'SuperInstance/fleet-murmur#8',
+       falsification_condition: 'the SuperInstance/pong-quilt citation removed from the ledger doc or the PQ_PIN corpus-pin test, or a re-audit of the pinned pong-quilt main merge where a named corpus kind is absent from the tree while the pin still reports green (a drifted citation passing silently)',
+     },
++    {
++      from: 'ft-resolver', to: 'qc-fm-surface',
++      claim: 'the fleet-triage resolver\'s scoped quilt-family census (244 repos, 15,880 files indexed, 5,852 docs / 7,790 citation sites in 162s; audit subcommand independently re-verified 513 findings by filesystem scan at 0.0% FP on hard outcomes) names the canon cluster\'s 222 FILE_MISSING citations as the family\'s largest single doc→file drift surface — every one a doc→file claim that no longer resolves, the cheapest honesty fixes in the org. CURRENCY EARNED 2026-10-01: quilt-research-canons PR #5 ("REFERRAL — fleet-triage resolver", MERGED 2026-10-01T20:07:58Z, merge 62f18ff7) lands docs/REFERRAL-fleet-triage-resolver.md IN THE TO-NODE\'S REPO citing SuperInstance/fleet-triage and its resolver.py BY NAME with the run\'s counts and honest boundary notes (shallow-HEAD index — citations to non-default-branch files read FILE_MISSING, verify before deleting prose; PATH_PRECISE_ONLY advisory-only at 49.2% FP), adopting the resolver as a consume-don\'t-rival scan gate over projects/research/sprints. Direction honesty per the substrate\'s receipt-repo rule: the merge is in quilt-research-canons, so the edge books ft-resolver -> qc-fm-surface — currency flows INTO the citing repo. Never self-upgraded: the 02:26 snowball pulse filed the edge CANDIDATE with this exact upgrade path; Casey\'s merge burst earned it. quilt-research-canons\' FIRST inbound edge; fleet-triage\'s first outgoing edge; the graph\'s first instrument→surface pair from a census run.',
++      weight: 'VERIFIED',
++      provenance: 'SuperInstance/fleet-triage#2',
++      receipt: 'SuperInstance/quilt-research-canons#5',
++      falsification_condition: 'the SuperInstance/fleet-triage citation removed from docs/REFERRAL-fleet-triage-resolver.md, or a re-run of the resolver against the canon cluster materially disagreeing with the 222 FILE_MISSING count while the edge still reports green (a drifted census passing silently)',
++    },
++    {
++      from: 'ft-resolver', to: 'qt-lineoor-surface',
++      claim: 'the same census found ALL 25 LINE_OOR citations in the entire 244-repo quilt family inside quilt-tournament\'s referee/ docs — every one a line-past-EOF citation against three repos whose files shrank or were rewritten after the referee round (quilt-canvas-tui core.c 150 lines, cited 234–486; quilt-verilog quf.rs 464 lines, cited 665; quilt-fleet-tools seal.py 116 lines, cited 127) — the single holder of the family\'s entire line-past-EOF class: one sweep here fixes the whole class. CURRENCY EARNED 2026-10-01: quilt-tournament PR #1 ("REFERRAL EDGE — fleet-triage resolver → quilt-tournament", MERGED 2026-10-01T20:07:46Z, merge 2f6daf21) lands docs/REFERRAL-fleet-triage-resolver.md IN THE TO-NODE\'S REPO citing SuperInstance/fleet-triage BY NAME with a per-doc table of all 25 sites and resolved target paths re-verified by direct wc/grep against the indexed clones (the resolver audit could NOT independently re-check LINE_OOR — shallow-HEAD index — so the doc carries that honest limit, spot-verified not audit-sealed). Direction honesty per the receipt-repo rule: ft-resolver -> qt-lineoor-surface. Never self-upgraded; the 02:26 pulse\'s edge #2 mint, landed by the same merge burst. quilt-tournament\'s FIRST inbound edge; fleet-triage\'s second outgoing edge from the same instrument.',
++      weight: 'VERIFIED',
++      provenance: 'SuperInstance/fleet-triage#2',
++      receipt: 'SuperInstance/quilt-tournament#1',
++      falsification_condition: 'the SuperInstance/fleet-triage citation removed from docs/REFERRAL-fleet-triage-resolver.md, or a re-check of the 25 cited referee/ sites where the line-past-EOF reads no longer hold (files re-grown / docs re-pointed) while the edge still reports green',
++    },
+   ],
+ };

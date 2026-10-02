@@ -1,0 +1,63 @@
+{
+  "probe": "distinct-board re-evaluation of minimax closure",
+  "source": "pr_harvest/SUMMARY.md #4 / CARDS.md pie-minimax #2",
+  "gate": "global/composed top-1 on 2,423 distinct boards >=0.99 (or the drop is the finding); std==0 on gated seed-mean -> INCONCLUSIVE",
+  "verdict": "PASS",
+  "branch": "P1 FAIL-HIGH is NOT a duplicate artifact (distinct-only top-1 holds >=0.99)",
+  "numbers": {
+    "state_space_rederived": {
+      "path_rows": 180361,
+      "distinct_our_turn_boards": 2423,
+      "composed_imm2win_boards": 320
+    },
+    "protocol": "MLP 9-64-9 relu, set-valued loss, Adam full-batch lr 0.01, patience 200; train = 20k draws WITH replacement from the 2,423 distinct boards (their run drew from 180,361 path-weighted rows)",
+    "per_seed": [
+      {
+        "seed": 2718,
+        "top1_all_distinct": 0.9988,
+        "top1_composed320": 0.9969,
+        "top1_board_disjoint_heldout": 0.9873,
+        "unseen_boards_n": 237,
+        "top1_unseen_only": 0.9873,
+        "steps": 4000,
+        "final_train_loss": 4.682773330978876e-05
+      },
+      {
+        "seed": 2719,
+        "top1_all_distinct": 0.9996,
+        "top1_composed320": 1.0,
+        "top1_board_disjoint_heldout": 0.9958,
+        "unseen_boards_n": 237,
+        "top1_unseen_only": 0.9958,
+        "steps": 4000,
+        "final_train_loss": 4.780466475229304e-05
+      },
+      {
+        "seed": 2720,
+        "top1_all_distinct": 0.9992,
+        "top1_composed320": 1.0,
+        "top1_board_disjoint_heldout": 0.9916,
+        "unseen_boards_n": 238,
+        "top1_unseen_only": 0.9916,
+        "steps": 4000,
+        "final_train_loss": 4.938776128805884e-05
+      }
+    ],
+    "mean_top1_all_distinct": 0.9992,
+    "std_top1_all_distinct": 0.0003,
+    "mean_top1_composed320": 0.999,
+    "std_top1_composed320": 0.0015,
+    "published_prior": {
+      "mlp_top1_global": 0.9996,
+      "mlp_top1_composed": 1.0,
+      "split": "20k/8k with-replacement from 180,361 path rows"
+    }
+  },
+  "seed": [
+    2718,
+    2719,
+    2720
+  ],
+  "runtime_seconds": 24.5,
+  "device": "cpu"
+}

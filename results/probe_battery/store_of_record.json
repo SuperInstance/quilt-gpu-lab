@@ -1,0 +1,94 @@
+{
+  "probe": "air-gap / worktree-vs-index store-of-record",
+  "source": "pr_harvest/SUMMARY.md #6 / CARDS.md quilt-in-git #4",
+  "gate": "worktree-style loader diverges >=1 under 50% drop (silently); index-style loader digest-exact 100%. Doctrinal extra: with store objects dropped too, index-style refuses loudly 100%, never silently wrong",
+  "verdict": "PASS",
+  "numbers": {
+    "rounds": [
+      {
+        "round": 0,
+        "shards_kept": 63,
+        "shards_dropped": 57,
+        "worktree_silent_wrong": 20,
+        "worktree_divergent_total": 20,
+        "index_exact_digest": 20,
+        "index_loaded": 20,
+        "store_drop_arm": {
+          "refused_loud": 20,
+          "silent_wrong": 0,
+          "fully_loaded_ok": 0
+        }
+      },
+      {
+        "round": 1,
+        "shards_kept": 53,
+        "shards_dropped": 67,
+        "worktree_silent_wrong": 20,
+        "worktree_divergent_total": 20,
+        "index_exact_digest": 20,
+        "index_loaded": 20,
+        "store_drop_arm": {
+          "refused_loud": 20,
+          "silent_wrong": 0,
+          "fully_loaded_ok": 0
+        }
+      },
+      {
+        "round": 2,
+        "shards_kept": 64,
+        "shards_dropped": 56,
+        "worktree_silent_wrong": 20,
+        "worktree_divergent_total": 20,
+        "index_exact_digest": 20,
+        "index_loaded": 20,
+        "store_drop_arm": {
+          "refused_loud": 20,
+          "silent_wrong": 0,
+          "fully_loaded_ok": 0
+        }
+      },
+      {
+        "round": 3,
+        "shards_kept": 53,
+        "shards_dropped": 67,
+        "worktree_silent_wrong": 19,
+        "worktree_divergent_total": 19,
+        "index_exact_digest": 20,
+        "index_loaded": 20,
+        "store_drop_arm": {
+          "refused_loud": 19,
+          "silent_wrong": 0,
+          "fully_loaded_ok": 1
+        }
+      },
+      {
+        "round": 4,
+        "shards_kept": 63,
+        "shards_dropped": 57,
+        "worktree_silent_wrong": 20,
+        "worktree_divergent_total": 20,
+        "index_exact_digest": 20,
+        "index_loaded": 20,
+        "store_drop_arm": {
+          "refused_loud": 20,
+          "silent_wrong": 0,
+          "fully_loaded_ok": 0
+        }
+      }
+    ],
+    "totals": {
+      "worktree_silent_wrong": 99,
+      "index_exact": "100/100",
+      "store_drop_refused_loud": 99,
+      "store_drop_silent_wrong": 0
+    },
+    "gate_clauses": {
+      "worktree_diverges_ge_1": true,
+      "index_exact_100pct": true
+    },
+    "reading": "reading the materialized worktree silently fabricates state for un-materialized shards (zeros prior) \u2014 the exact quilt-in-git #4 sparse-view blindness; resolving every slot through the manifest + content-addressed store is immune to worktree state and refuses loudly when the store itself is damaged"
+  },
+  "seed": 2718,
+  "runtime_seconds": 0.1,
+  "device": "cpu"
+}

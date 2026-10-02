@@ -1,0 +1,689 @@
+{
+ "task": "D2-FIRST-BUILD",
+ "lane": "D2-FIRST-BUILD",
+ "seed_root": 2718,
+ "repo_pin": "SuperInstance/quilt-dba@5bbd99c99ab885fd8009655ddfbd5a3a58742364",
+ "sto_label": "sto:v1-driver-only",
+ "sto_defaults": {
+  "respawnJitter": 16,
+  "teacherP": 0.75,
+  "sensorNoise": 0.08
+ },
+ "n_worlds": 16,
+ "n_train": 12,
+ "evals": 1000,
+ "worldSeeds": [
+  1417055195,
+  3522349082,
+  471120699,
+  2480707129,
+  2040955564,
+  314160489,
+  2875862753,
+  1291780944,
+  2575453403,
+  2411491900,
+  1155115980,
+  1865461520,
+  2409689005,
+  1151951919,
+  288234883,
+  2596034754
+ ],
+ "f3": {
+  "unique_sto": 1,
+  "unique_real": 1,
+  "n_unique_sto": 16,
+  "gate": "PASS"
+ },
+ "h4": {
+  "std_pos_sto": 8.83439452128914,
+  "std_growthAt_sto": 216.2478233271956,
+  "std_pos_real": 14.973856995695298,
+  "std_growthAt_real": 214.95944384929916,
+  "gate": "PASS"
+ },
+ "hgrowth": {
+  "gated_grown": 15,
+  "unguided_grown": 14,
+  "n": 16,
+  "gated_frac": 0.9375,
+  "unguided_frac": 0.875,
+  "gate": "PARTIAL/REPORT"
+ },
+ "determinacy": {
+  "reflex": {
+   "operational": {
+    "determinacy": 1,
+    "Hcond": 0,
+    "inSupport": 110,
+    "O": 2,
+    "log2O": 1
+   },
+   "uniform": {
+    "determinacy": 1,
+    "Hcond": 0,
+    "inSupport": 110,
+    "O": 2,
+    "log2O": 1
+   },
+   "degenerate": {
+    "determinacy": 1,
+    "Hcond": 0,
+    "inSupport": 110,
+    "O": 2,
+    "log2O": 1
+   },
+   "real_operational": {
+    "determinacy": 1,
+    "Hcond": 0,
+    "inSupport": 110,
+    "O": 2,
+    "log2O": 1
+   },
+   "spread": 0,
+   "h5_stable": true
+  },
+  "episodic": {
+   "operational": {
+    "determinacy": 0.28549638744764916,
+    "Hcond": 2.8580144502094034,
+    "inSupport": 256,
+    "O": 16,
+    "log2O": 4
+   },
+   "uniform": {
+    "determinacy": 0.17664713200132798,
+    "Hcond": 3.293411471994688,
+    "inSupport": 256,
+    "O": 16,
+    "log2O": 4
+   },
+   "degenerate": {
+    "determinacy": 0.23415762572849907,
+    "Hcond": 3.0633694970860037,
+    "inSupport": 256,
+    "O": 16,
+    "log2O": 4
+   },
+   "real_operational": {
+    "determinacy": 0.3276199475729854,
+    "Hcond": 2.6895202097080584,
+    "inSupport": 256,
+    "O": 16,
+    "log2O": 4
+   },
+   "spread": 0.10884925544632118,
+   "h5_stable": true
+  }
+ },
+ "h5": {
+  "spread": {
+   "reflex": 0,
+   "episodic": 0.10884925544632118
+  },
+  "offenders": []
+ },
+ "h6": {
+  "range": 0.7145036125523508,
+  "gate": "PASS"
+ },
+ "f8": {
+  "reflex_det_real": 1,
+  "reflex_det_sto": 1,
+  "delta": 0,
+  "reflex_orient_clean_vs_delivered_mismatches": 0,
+  "reflex_lossy_salience_only": {
+   "sto": 0.8403334631906724,
+   "real": 0.9698882007761549
+  },
+  "gate": "PASS"
+ },
+ "f6": {
+  "ks_sim_vs_real": {
+   "D": 0.22200000000000003,
+   "p": 4.4662644824754375e-258
+  },
+  "ks_mismatch_vs_real": {
+   "D": 0.7811666666666667,
+   "p": 0
+  },
+  "gate": "PASS (mismatch distribution rejects equality)"
+ },
+ "worlds": {
+  "real": [
+   {
+    "i": 0,
+    "worldSeed": 1417055195,
+    "hashAt100": "69325b1c9572",
+    "position": 12.286043023449519,
+    "grew": 1,
+    "growthAt": 110,
+    "foodEaten": 64,
+    "orients": 120,
+    "finalHash": "08461dabe266"
+   },
+   {
+    "i": 1,
+    "worldSeed": 3522349082,
+    "hashAt100": "fb5e98060d19",
+    "position": 3.2454386677782177,
+    "grew": 1,
+    "growthAt": 174,
+    "foodEaten": 10,
+    "orients": 501,
+    "finalHash": "176dada3a822"
+   },
+   {
+    "i": 2,
+    "worldSeed": 471120699,
+    "hashAt100": "d5c0d6762bff",
+    "position": 28.776815489438455,
+    "grew": 1,
+    "growthAt": 102,
+    "foodEaten": 126,
+    "orients": 763,
+    "finalHash": "d66b0596f21b"
+   },
+   {
+    "i": 3,
+    "worldSeed": 2480707129,
+    "hashAt100": "b4965530b454",
+    "position": 11.609682726867685,
+    "grew": 1,
+    "growthAt": 108,
+    "foodEaten": 36,
+    "orients": 490,
+    "finalHash": "879a1997b7fa"
+   },
+   {
+    "i": 4,
+    "worldSeed": 2040955564,
+    "hashAt100": "0fe7bc44dd5b",
+    "position": 50.70150898614783,
+    "grew": 1,
+    "growthAt": 100,
+    "foodEaten": 312,
+    "orients": 389,
+    "finalHash": "934425121778"
+   },
+   {
+    "i": 5,
+    "worldSeed": 314160489,
+    "hashAt100": "8f1d65fcc5a2",
+    "position": 10.311603427294406,
+    "grew": 1,
+    "growthAt": 111,
+    "foodEaten": 52,
+    "orients": 912,
+    "finalHash": "7fd945447c88"
+   },
+   {
+    "i": 6,
+    "worldSeed": 2875862753,
+    "hashAt100": "bbc7334251fc",
+    "position": 11.102646140656145,
+    "grew": 1,
+    "growthAt": 109,
+    "foodEaten": 40,
+    "orients": 114,
+    "finalHash": "4cb99d5671a2"
+   },
+   {
+    "i": 7,
+    "worldSeed": 1291780944,
+    "hashAt100": "850f45fc954a",
+    "position": 34.61329179352388,
+    "grew": 1,
+    "growthAt": 116,
+    "foodEaten": 191,
+    "orients": 405,
+    "finalHash": "3bdf7dfa1c4c"
+   },
+   {
+    "i": 8,
+    "worldSeed": 2575453403,
+    "hashAt100": "6d9cbaaf7068",
+    "position": 4.572136556084112,
+    "grew": 1,
+    "growthAt": 132,
+    "foodEaten": 16,
+    "orients": 968,
+    "finalHash": "08b46343df3c"
+   },
+   {
+    "i": 9,
+    "worldSeed": 2411491900,
+    "hashAt100": "0104a0d1d0e2",
+    "position": 4.180003077930215,
+    "grew": 1,
+    "growthAt": 149,
+    "foodEaten": 31,
+    "orients": 962,
+    "finalHash": "f3984f2659ab"
+   },
+   {
+    "i": 10,
+    "worldSeed": 1155115980,
+    "hashAt100": "914f14c5a974",
+    "position": 20.245020394884797,
+    "grew": 1,
+    "growthAt": 103,
+    "foodEaten": 68,
+    "orients": 176,
+    "finalHash": "8f2accee432a"
+   },
+   {
+    "i": 11,
+    "worldSeed": 1865461520,
+    "hashAt100": "ef483dd5597b",
+    "position": 35.16874822867802,
+    "grew": 1,
+    "growthAt": 106,
+    "foodEaten": 198,
+    "orients": 653,
+    "finalHash": "d2d8d84335ca"
+   },
+   {
+    "i": 12,
+    "worldSeed": 2409689005,
+    "hashAt100": "41f98e60e9c3",
+    "position": 43.73331189287645,
+    "grew": 1,
+    "growthAt": 113,
+    "foodEaten": 251,
+    "orients": 435,
+    "finalHash": "9be9d9e7be5d"
+   },
+   {
+    "i": 13,
+    "worldSeed": 1151951919,
+    "hashAt100": "4165b2f5bdea",
+    "position": 11.27185809521701,
+    "grew": 1,
+    "growthAt": 102,
+    "foodEaten": 41,
+    "orients": 113,
+    "finalHash": "046777fa4cde"
+   },
+   {
+    "i": 14,
+    "worldSeed": 288234883,
+    "hashAt100": "2db13778f274",
+    "position": 0,
+    "grew": 0,
+    "growthAt": null,
+    "foodEaten": 0,
+    "orients": 999,
+    "finalHash": "682d8701a202"
+   },
+   {
+    "i": 15,
+    "worldSeed": 2596034754,
+    "hashAt100": "bc546d3690af",
+    "position": 12.695343267633257,
+    "grew": 1,
+    "growthAt": 112,
+    "foodEaten": 47,
+    "orients": 484,
+    "finalHash": "4d7f683d5cf0"
+   }
+  ],
+  "sto": [
+   {
+    "i": 0,
+    "worldSeed": 1417055195,
+    "hashAt100": "d26e7c9726ee",
+    "position": 23.20847413696874,
+    "grew": 1,
+    "growthAt": 104,
+    "foodEaten": 96,
+    "orients": 813,
+    "finalHash": "42da3ea71e4b"
+   },
+   {
+    "i": 1,
+    "worldSeed": 3522349082,
+    "hashAt100": "554716a5f150",
+    "position": 3.2454386677782177,
+    "grew": 1,
+    "growthAt": 174,
+    "foodEaten": 10,
+    "orients": 501,
+    "finalHash": "628e8115abd3"
+   },
+   {
+    "i": 2,
+    "worldSeed": 471120699,
+    "hashAt100": "c653fe61c53f",
+    "position": 7.9601599400752345,
+    "grew": 1,
+    "growthAt": 99,
+    "foodEaten": 31,
+    "orients": 955,
+    "finalHash": "a8000368a0e1"
+   },
+   {
+    "i": 3,
+    "worldSeed": 2480707129,
+    "hashAt100": "59652f9427a9",
+    "position": 9.25216442089582,
+    "grew": 1,
+    "growthAt": 100,
+    "foodEaten": 25,
+    "orients": 487,
+    "finalHash": "feee3ba11adc"
+   },
+   {
+    "i": 4,
+    "worldSeed": 2040955564,
+    "hashAt100": "e356b91baf37",
+    "position": 17.018032478614497,
+    "grew": 1,
+    "growthAt": 100,
+    "foodEaten": 63,
+    "orients": 496,
+    "finalHash": "66c71ee24890"
+   },
+   {
+    "i": 5,
+    "worldSeed": 314160489,
+    "hashAt100": "467312a2373e",
+    "position": 34.61531432309609,
+    "grew": 1,
+    "growthAt": 105,
+    "foodEaten": 162,
+    "orients": 684,
+    "finalHash": "eb5652b278cf"
+   },
+   {
+    "i": 6,
+    "worldSeed": 2875862753,
+    "hashAt100": "00bf4e53eed8",
+    "position": 14.682640366511022,
+    "grew": 1,
+    "growthAt": 107,
+    "foodEaten": 54,
+    "orients": 479,
+    "finalHash": "9aacb0a70f58"
+   },
+   {
+    "i": 7,
+    "worldSeed": 1291780944,
+    "hashAt100": "2c2a036d9b57",
+    "position": 5.31261924349902,
+    "grew": 1,
+    "growthAt": 126,
+    "foodEaten": 23,
+    "orients": 499,
+    "finalHash": "f1527018249a"
+   },
+   {
+    "i": 8,
+    "worldSeed": 2575453403,
+    "hashAt100": "38f687dfb249",
+    "position": 11.433601878349414,
+    "grew": 1,
+    "growthAt": 104,
+    "foodEaten": 53,
+    "orients": 906,
+    "finalHash": "0663d61673d7"
+   },
+   {
+    "i": 9,
+    "worldSeed": 2411491900,
+    "hashAt100": "683d13cd5d46",
+    "position": 14.957008854708748,
+    "grew": 1,
+    "growthAt": 113,
+    "foodEaten": 74,
+    "orients": 876,
+    "finalHash": "a530bf2b8fc0"
+   },
+   {
+    "i": 10,
+    "worldSeed": 1155115980,
+    "hashAt100": "ee1e22ff5f29",
+    "position": 21.941354632407204,
+    "grew": 1,
+    "growthAt": 105,
+    "foodEaten": 113,
+    "orients": 819,
+    "finalHash": "543b4187c5ac"
+   },
+   {
+    "i": 11,
+    "worldSeed": 1865461520,
+    "hashAt100": "3dc63f0e9f7b",
+    "position": 26.60022123211118,
+    "grew": 1,
+    "growthAt": 97,
+    "foodEaten": 129,
+    "orients": 455,
+    "finalHash": "b83df668ced5"
+   },
+   {
+    "i": 12,
+    "worldSeed": 2409689005,
+    "hashAt100": "a4c3d6a80d4b",
+    "position": 21.808558596443312,
+    "grew": 1,
+    "growthAt": 117,
+    "foodEaten": 111,
+    "orients": 797,
+    "finalHash": "916bd0fed7d6"
+   },
+   {
+    "i": 13,
+    "worldSeed": 1151951919,
+    "hashAt100": "ca7d8ddba8d5",
+    "position": 13.147466933249147,
+    "grew": 1,
+    "growthAt": 95,
+    "foodEaten": 45,
+    "orients": 920,
+    "finalHash": "8127e3aa205b"
+   },
+   {
+    "i": 14,
+    "worldSeed": 288234883,
+    "hashAt100": "f500ea7a1096",
+    "position": 0,
+    "grew": 0,
+    "growthAt": null,
+    "foodEaten": 0,
+    "orients": 999,
+    "finalHash": "1ce2387492ad"
+   },
+   {
+    "i": 15,
+    "worldSeed": 2596034754,
+    "hashAt100": "e290799aac64",
+    "position": 17.852848442511867,
+    "grew": 1,
+    "growthAt": 116,
+    "foodEaten": 84,
+    "orients": 132,
+    "finalHash": "c858787599a3"
+   }
+  ],
+  "stoD": [
+   {
+    "i": 0,
+    "worldSeed": 1417055195,
+    "hashAt100": "1e182e9893cd",
+    "position": 7.460014981726627,
+    "grew": 1,
+    "growthAt": 143,
+    "foodEaten": 20,
+    "orients": 20,
+    "finalHash": "fe3abb29e23e"
+   },
+   {
+    "i": 1,
+    "worldSeed": 3522349082,
+    "hashAt100": "3d03f121e776",
+    "position": 7.318873073842371,
+    "grew": 1,
+    "growthAt": 129,
+    "foodEaten": 21,
+    "orients": 21,
+    "finalHash": "99f9342638b5"
+   },
+   {
+    "i": 2,
+    "worldSeed": 471120699,
+    "hashAt100": "b221998efea3",
+    "position": 3.781557903425403,
+    "grew": 1,
+    "growthAt": 175,
+    "foodEaten": 14,
+    "orients": 14,
+    "finalHash": "00bda0e9039c"
+   },
+   {
+    "i": 3,
+    "worldSeed": 2480707129,
+    "hashAt100": "814e1e41b465",
+    "position": 5.088171445849722,
+    "grew": 1,
+    "growthAt": 149,
+    "foodEaten": 15,
+    "orients": 15,
+    "finalHash": "43f968a2977c"
+   },
+   {
+    "i": 4,
+    "worldSeed": 2040955564,
+    "hashAt100": "838c2fdbcace",
+    "position": 7.8512926508750995,
+    "grew": 1,
+    "growthAt": 134,
+    "foodEaten": 15,
+    "orients": 49,
+    "finalHash": "bcd23117194f"
+   },
+   {
+    "i": 5,
+    "worldSeed": 314160489,
+    "hashAt100": "16f3e4a82bdd",
+    "position": 4.914678481352106,
+    "grew": 1,
+    "growthAt": 143,
+    "foodEaten": 14,
+    "orients": 14,
+    "finalHash": "69d84f72e9fe"
+   },
+   {
+    "i": 6,
+    "worldSeed": 2875862753,
+    "hashAt100": "28cc01848392",
+    "position": 6.767064177790593,
+    "grew": 1,
+    "growthAt": 131,
+    "foodEaten": 15,
+    "orients": 16,
+    "finalHash": "c4088a888175"
+   },
+   {
+    "i": 7,
+    "worldSeed": 1291780944,
+    "hashAt100": "0e8da1ceb49c",
+    "position": 6.365891232309759,
+    "grew": 1,
+    "growthAt": 146,
+    "foodEaten": 19,
+    "orients": 19,
+    "finalHash": "9a67469af256"
+   },
+   {
+    "i": 8,
+    "worldSeed": 2575453403,
+    "hashAt100": "6d41e41b895f",
+    "position": 7.844121669959325,
+    "grew": 1,
+    "growthAt": 135,
+    "foodEaten": 20,
+    "orients": 20,
+    "finalHash": "58f05fee7d82"
+   },
+   {
+    "i": 9,
+    "worldSeed": 2411491900,
+    "hashAt100": "e9d50e8a61f5",
+    "position": 0,
+    "grew": 0,
+    "growthAt": null,
+    "foodEaten": 3,
+    "orients": 998,
+    "finalHash": "9b4609babb6c"
+   },
+   {
+    "i": 10,
+    "worldSeed": 1155115980,
+    "hashAt100": "7d6364dc7bfd",
+    "position": 5.827267611627502,
+    "grew": 1,
+    "growthAt": 140,
+    "foodEaten": 13,
+    "orients": 13,
+    "finalHash": "e4dac83307b1"
+   },
+   {
+    "i": 11,
+    "worldSeed": 1865461520,
+    "hashAt100": "7f9713266132",
+    "position": 6.8539903206335335,
+    "grew": 1,
+    "growthAt": 96,
+    "foodEaten": 12,
+    "orients": 16,
+    "finalHash": "98517eb7c4ae"
+   },
+   {
+    "i": 12,
+    "worldSeed": 2409689005,
+    "hashAt100": "cb6082ef6ae0",
+    "position": 3.9378498392085692,
+    "grew": 1,
+    "growthAt": 191,
+    "foodEaten": 10,
+    "orients": 10,
+    "finalHash": "74523218814f"
+   },
+   {
+    "i": 13,
+    "worldSeed": 1151951919,
+    "hashAt100": "703a5c278850",
+    "position": 6.247263912731544,
+    "grew": 1,
+    "growthAt": 117,
+    "foodEaten": 9,
+    "orients": 9,
+    "finalHash": "7b213094531d"
+   },
+   {
+    "i": 14,
+    "worldSeed": 288234883,
+    "hashAt100": "f500ea7a1096",
+    "position": 0,
+    "grew": 0,
+    "growthAt": null,
+    "foodEaten": 0,
+    "orients": 999,
+    "finalHash": "32a2592d9f92"
+   },
+   {
+    "i": 15,
+    "worldSeed": 2596034754,
+    "hashAt100": "c30210c133ec",
+    "position": 4.536230789387198,
+    "grew": 1,
+    "growthAt": 152,
+    "foodEaten": 7,
+    "orients": 7,
+    "finalHash": "510d72d6db8a"
+   }
+  ]
+ }
+}

@@ -1,0 +1,873 @@
+diff --git a/DEBRIEF.md b/DEBRIEF.md
+index 4a58fdb..5079cbf 100644
+--- a/DEBRIEF.md
++++ b/DEBRIEF.md
+@@ -47,6 +47,22 @@ local pin before any cloud number was believed.
+    runs, so a provider-key path is proven in-fleet — the lab needs a secret
+    provisioned (never committed; `wrangler secret put`).
+ 
++## Wave 2 — W2.3 deterministic arm: canon-rotation invariance (2026-10-02, local node)
++
++Ran the deterministic skeleton of W2.3 in pure node (no deploy; `src/worker.js`
++untouched). Prereg sealed (`PREREG.md §W2.3-DET`) and pins executed FAIL-first
++before any run. Result: the naive receipt chain IS origin-sensitive — rotated
++genesis diverges at the very first chained row, 12/12 pairs, 6000/6000 rows.
++Digesting the lexicographic-minimum rotation instead makes the chain exactly
++origin-invariant: 0/6000 divergent rows, identical tails, every tick. Control
++(translation-at-digest, no re-sort) fires via a different code path; rule-30
++rotation equivariance verified observationally on every trajectory. Pins 4/4
++(`experiments/canon-invariance.pins.mjs`); non-degeneracy held (501 distinct
++states/seed) so the arm is PASSED, not INCONCLUSIVE. Canon-rule candidate
++**C-ROT** minted for fleet canon review (see `receipts/wave2-canon-invariance/RESULT.md`).
++Still open in W2.3-proper: the semantic/embedding sort (permutation classes
++beyond rotation) — same shape, different representative function.
++
+ ## Roadmap — wave 2 (in order)
+ 
+ - **W2.1 Cross-colo determinism.** Deploy the same worker to a second route
+diff --git a/PREREG.md b/PREREG.md
+index 828f934..e176a9a 100644
+--- a/PREREG.md
++++ b/PREREG.md
+@@ -46,6 +46,28 @@ without different-path confirmation is INCONCLUSIVE, never PASSED.
+   not provisioned to this lab worker. This wave runs the deterministic arm
+   only; E-CF-5's unblock conditions are named in the wave-1 debrief roadmap.
+ 
++## W2.3-DET · canon-permutation invariance of receipt chains (deterministic arm) — sealed 2026-10-02 before any run
++Question: the quilt receipt chain digests the CA lane in position order; a ring
++state has no privileged origin — rotating the lane is the same world. DOES the
++chain notice? If we canon-sort states under rotation before digesting, the
++chain becomes origin-invariant. Deterministic skeleton of W2.3 (semantic sort
++stands in for embedding sort); a canon-rule candidate either way.
++- **H1 (prediction)**: naive chain DIVERGES under rotation (r_k ≠ r'_k for a
++  rotated genesis) — the chain is origin-sensitive.
++- **H2 (prediction)**: canon-rotation-sorted chain is INVARIANT: for every tick
++  t, digest_k(t) == digest_k'(t) for any rotated genesis, because sort erases
++  the origin before digest.
++- **Control (different path)**: translation instead of rotation — shift the
++  ring by k without re-sorting; naive chain must diverge (fault-detection).
++- **INCONCLUSIVE rule**: if all seeds give identical pre-sort states
++  (degenerate attractor), the arm is INCONCLUSIVE, never PASSED.
++- Protocol: pure local node (no deploy); rule 30, width 128, 500 ticks; seeds
++  {42,7,2026,31337} via mulberry32; rotations {1,17,63}; chain convention =
++  worker lineage (fnv1a-64 rows `${prev}|${t}|${sd}`, head
++  fnv1a64("GENESIS_QUILT_EDGE_LAB"), rows t=1..T). Pins sealed BEFORE the run:
++  experiments/canon-invariance.pins.mjs — P1 naive divergence, P2 canon
++  invariance, P3 translation control, P4 non-degeneracy.
++
+ ## Global rules adopted (GPU-EXPERIMENTS §0, substrate-agnostic)
+ std==0 over same-seed same-path → expected, never evidence; controls vary by a
+ different path; seed everything; device string with every number; FAIL-first:
+diff --git a/experiments/canon-invariance.mjs b/experiments/canon-invariance.mjs
+new file mode 100644
+index 0000000..ace96cb
+--- /dev/null
++++ b/experiments/canon-invariance.mjs
+@@ -0,0 +1,212 @@
++#!/usr/bin/env node
++// experiments/canon-invariance.mjs — W2.3 deterministic arm (lane-3 task).
++// Question (pre-registered, PREREG.md §W2.3-DET): the receipt chain digests the
++// CA lane in position order; a ring state has no privileged origin. Does the
++// chain notice rotation? Arms per seed:
++//   naive    : chain over the raw trajectory (position-order digest)         → H1
++//   rotated  : independently re-run the CA from a rotated-by-r genesis       → H1
++//   canon    : same chains, but each state reduced to its lexicographic
++//              minimum rotation before digest                               → H2
++//   control  : translation — shift each state by k at digest time, NO
++//              re-sort, no second CA run (different path)                   → control
++// Chain convention copied from src/worker.js runExperiment (file NOT modified,
++// same copy-pattern as tools/local-check.mjs): rows `${prev}|${t}|${sd}` chained
++// by fnv1a-64 from head fnv1a64("GENESIS_QUILT_EDGE_LAB"); rows t=1..T — the
++// genesis state itself materializes only the head, so the earliest possible
++// divergence tick between two runs is t=1.
++// Output: /tmp/zlanes/lane3/results.json (+ human table on stdout).
++import assert from "node:assert/strict";
++import { mkdirSync, writeFileSync } from "node:fs";
++import { dirname } from "node:path";
++
++const RULE = 30;
++const WIDTH = 128;
++const TICKS = 500;
++const SEEDS = [42, 7, 2026, 31337];
++const ROTATIONS = [1, 17, 63];
++const OUT = "/tmp/zlanes/lane3/results.json";
++
++// --- seeded primitives (lineage: src/worker.js) ---
++function mulberry32(a) {
++  return function () {
++    a |= 0; a = (a + 0x6d2b79f5) | 0;
++    let t = Math.imul(a ^ (a >>> 15), 1 | a);
++    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
++    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
++  };
++}
++function fnv1a64(str) {
++  let h1 = 0x811c9dc5, h2 = 0x811c9dc5;
++  for (let i = 0; i < str.length; i++) {
++    h1 ^= str.charCodeAt(i); h2 ^= 0;
++    const l1 = h1, l2 = h2;
++    h1 = Math.imul(l1, 0x1b3) >>> 0;
++    h2 = (Math.imul(l2, 0x1b3) + Math.imul(l1, 0x100) + Math.floor(Math.imul(l1, 0x1b3) / 0x100000000)) >>> 0;
++    h2 = (h2 + ((l2 * 0x10000000) >>> 0)) >>> 0;
++  }
++  const pad = (x) => x.toString(16).padStart(8, "0");
++  return pad(h2) + pad(h1);
++}
++function step(state, rule, width) {
++  const next = new Uint8Array(width);
++  for (let i = 0; i < width; i++) {
++    const l = state[(i - 1 + width) % width], c = state[i], r = state[(i + 1) % width];
++    next[i] = (rule >> ((l << 2) | (c << 1) | r)) & 1;
++  }
++  return next;
++}
++
++// --- state helpers ---
++function bitString(state) {
++  let s = "";
++  for (let i = 0; i < state.length; i++) s += state[i] ? "1" : "0";
++  return s;
++}
++function rotLeftStr(s, r) {
++  const n = s.length;
++  r = ((r % n) + n) % n;
++  return s.slice(r) + s.slice(0, r);
++}
++function rotLeftState(state, r) {
++  const n = state.length;
++  const out = new Uint8Array(n);
++  for (let i = 0; i < n; i++) out[i] = state[(i + r) % n];
++  return out;
++}
++// lexicographic minimum rotation — the canon form for a ring under rotation
++function minRotation(s) {
++  const n = s.length;
++  let best = 0;
++  for (let r = 1; r < n; r++) {
++    let smaller = false;
++    for (let i = 0; i < n; i++) {
++      const a = s.charCodeAt((best + i) % n);
++      const b = s.charCodeAt((r + i) % n);
++      if (b !== a) { smaller = b < a; break; }
++    }
++    if (smaller) best = r;
++  }
++  let out = "";
++  for (let i = 0; i < n; i++) out += s[(best + i) % n];
++  return out;
++}
++
++// tool self-checks (hand-verified): a broken canon tool must not produce receipts
++assert.equal(rotLeftStr("abcd", 1), "bcda");
++assert.equal(minRotation("1001"), "0011"); // orbit {1001,0011,0110,1100}
++assert.equal(minRotation("0110"), "0011");
++assert.equal(minRotation("1111"), "1111"); // degenerate orbit: canon still unique
++assert.equal(minRotation("0"), "0");
++
++function genesis(seed) {
++  const rng = mulberry32(seed);
++  const g = new Uint8Array(WIDTH);
++  for (let i = 0; i < WIDTH; i++) g[i] = rng() < 0.5 ? 1 : 0;
++  return g;
++}
++function runCA(state0, ticks) {
++  const states = [state0];
++  let s = state0;
++  for (let t = 0; t < ticks; t++) { s = step(s, RULE, WIDTH); states.push(s); }
++  return states; // [s_0 .. s_ticks]
++}
++const naiveSd = (st) => fnv1a64(bitString(st));
++const canonSd = (st) => fnv1a64(minRotation(bitString(st)));
++function chainRows(states, sd) {
++  let prev = fnv1a64("GENESIS_QUILT_EDGE_LAB");
++  const rows = [];
++  for (let t = 1; t < states.length; t++) {
++    prev = fnv1a64(`${prev}|${t}|${sd(states[t])}`);
++    rows.push(prev);
++  }
++  return rows;
++}
++function compareChains(a, b) {
++  let first = null, divergent = 0;
++  for (let t = 0; t < a.length; t++) {
++    if (a[t] !== b[t]) { if (first === null) first = t + 1; divergent++; }
++  }
++  return { first_divergence_tick: first, divergent_rows: divergent, rows_compared: a.length };
++}
++
++// --- the experiment ---
++const out = {
++  experiment: "canon-invariance",
++  arm: "W2.3-deterministic (semantic sort stands in for embedding sort)",
++  device: `local node ${process.version}, CPU (pure node per task — no deploy)`,
++  generated_at: new Date().toISOString(),
++  params: { rule: RULE, width: WIDTH, ticks: TICKS, seeds: SEEDS, rotations: ROTATIONS,
++    chain: "fnv1a-64 rows `${prev}|${t}|${sd}` from head fnv1a64(GENESIS_QUILT_EDGE_LAB), rows t=1..T (src/worker.js lineage, file untouched)",
++    canon: "lexicographic minimum rotation of the state bit-string (Booth-equivalent scan)" },
++  seeds: {},
++  cross_seed_identical_states: null,
++};
++
++const stateSets = [];
++for (const seed of SEEDS) {
++  const g = genesis(seed);
++  const gStr = bitString(g);
++  const baseTraj = runCA(g, TICKS);
++  const naiveBase = chainRows(baseTraj, naiveSd);
++  const canonBase = chainRows(baseTraj, canonSd);
++  const rawStrings = baseTraj.map(bitString);
++  const canonStrings = rawStrings.map(minRotation);
++  stateSets.push(new Set(rawStrings));
++
++  let genesisRotSymmetric = false;
++  for (let r = 1; r < WIDTH; r++) if (gStr === rotLeftStr(gStr, r)) { genesisRotSymmetric = true; break; }
++
++  const rec = {
++    genesis_popcount: g.reduce((a, b) => a + b, 0),
++    genesis_rotation_symmetric: genesisRotSymmetric,
++    distinct_raw_states: new Set(rawStrings).size,
++    distinct_canon_states: new Set(canonStrings).size,
++    naive_rotation: {},
++    canon_rotation: {},
++    translation_control: {},
++    observations: { rule30_rotation_equivariant: true, translation_content_equals_rotation_run: true },
++  };
++
++  for (const r of ROTATIONS) {
++    const rotTraj = runCA(rotLeftState(g, r), TICKS); // independent re-run, not a re-index of baseTraj
++    const naiveRot = chainRows(rotTraj, naiveSd);
++    const canonRot = chainRows(rotTraj, canonSd);
++    rec.naive_rotation[r] = { ...compareChains(naiveBase, naiveRot),
++      tail_base: naiveBase[naiveBase.length - 1], tail_rot: naiveRot[naiveRot.length - 1] };
++
++    rec.canon_rotation[r] = { ...compareChains(canonBase, canonRot),
++      tail_base: canonBase[canonBase.length - 1], tail_rot: canonRot[canonRot.length - 1] };
++
++    // translation control: shift the ring at digest time, no re-sort, no 2nd CA run
++    const transChain = chainRows(baseTraj.map((st) => rotLeftState(st, r)), naiveSd);
++    rec.translation_control[r] = { ...compareChains(naiveBase, transChain),
++      tail_base: naiveBase[naiveBase.length - 1], tail_shift: transChain[transChain.length - 1] };
++
++    if (!rotTraj.every((st, t) => bitString(st) === rotLeftStr(rawStrings[t], r))) {
++      rec.observations.rule30_rotation_equivariant = false;
++    }
++    if (!transChain.every((h, t) => h === naiveRot[t])) {
++      rec.observations.translation_content_equals_rotation_run = false;
++    }
++  }
++  out.seeds[seed] = rec;
++}
++
++const fingerprints = stateSets.map((set) => [...set].sort().join("|"));
++out.cross_seed_identical_states = fingerprints.every((f) => f === fingerprints[0]);
++
++mkdirSync(dirname(OUT), { recursive: true });
++writeFileSync(OUT, JSON.stringify(out, null, 2) + "\n");
++
++// human table
++const fmt = (d) => (d.first_divergence_tick === null ? "INVARIANT" : `t=${d.first_divergence_tick} (${d.divergent_rows}/${d.rows_compared} rows)`);
++console.log(`canon-invariance · rule ${RULE} · width ${WIDTH} · ticks ${TICKS} · ${out.device}`);
++for (const seed of SEEDS) {
++  const s = out.seeds[seed];
++  console.log(`seed ${seed}: popcount=${s.genesis_popcount} rotSym=${s.genesis_rotation_symmetric} distinctRaw=${s.distinct_raw_states}`);
++  for (const r of ROTATIONS) {
++    console.log(`  r=${String(r).padStart(2)}  naive[${fmt(s.naive_rotation[r])}]  canon[${fmt(s.canon_rotation[r])}]  trans[${fmt(s.translation_control[r])}]`);
++  }
++}
++console.log(`cross_seed_identical_states=${out.cross_seed_identical_states}`);
++console.log(`wrote ${OUT}`);
+diff --git a/experiments/canon-invariance.pins.mjs b/experiments/canon-invariance.pins.mjs
+new file mode 100644
+index 0000000..63774eb
+--- /dev/null
++++ b/experiments/canon-invariance.pins.mjs
+@@ -0,0 +1,83 @@
++// experiments/canon-invariance.pins.mjs — FAIL-first pins, sealed BEFORE the run.
++// Arm: W2.3 deterministic (canon-permutation invariance of receipt chains).
++// Prereg: PREREG.md §W2.3-DET (sealed with this file, before any measured run).
++// Chain rows are t=1..500 (worker lineage: the genesis state materializes only
++// the chain head), so the earliest possible divergence tick is 1; prereg's
++// "nonzero first-divergence tick exists" means: exists AND >= 1.
++// First execution of this file must FAIL (results.json does not exist until the
++// experiment runs) — receipt: receipts/wave2-canon-invariance/pins-failfirst.log
++import { test } from "node:test";
++import assert from "node:assert/strict";
++import { readFileSync } from "node:fs";
++
++const R = JSON.parse(readFileSync("/tmp/zlanes/lane3/results.json", "utf8"));
++const SEEDS = ["42", "7", "2026", "31337"];
++const ROTS = ["1", "17", "63"];
++
++test("P1 · naive chain diverges under rotated genesis (H1: origin-sensitive)", () => {
++  for (const s of SEEDS) {
++    for (const r of ROTS) {
++      const d = R.seeds[s].naive_rotation[r];
++      assert.ok(
++        d.first_divergence_tick !== null,
++        `seed ${s} rot ${r}: naive chains never diverged — H1 would be REFUTED`
++      );
++      assert.ok(
++        Number.isInteger(d.first_divergence_tick) && d.first_divergence_tick >= 1,
++        `seed ${s} rot ${r}: first_divergence_tick=${d.first_divergence_tick} is not a nonzero chain tick`
++      );
++      assert.notEqual(
++        d.tail_base,
++        d.tail_rot,
++        `seed ${s} rot ${r}: tails equal despite row divergence — hash collision or comparator fault`
++      );
++    }
++  }
++});
++
++test("P2 · canon-sorted chain invariant under rotation (H2: zero divergence at every t)", () => {
++  for (const s of SEEDS) {
++    for (const r of ROTS) {
++      const d = R.seeds[s].canon_rotation[r];
++      assert.equal(
++        d.first_divergence_tick,
++        null,
++        `seed ${s} rot ${r}: canon chain diverged at t=${d.first_divergence_tick} — H2 would be REFUTED`
++      );
++      assert.equal(d.divergent_rows, 0, `seed ${s} rot ${r}: ${d.divergent_rows} divergent rows`);
++      assert.equal(
++        d.rows_compared,
++        R.params.ticks,
++        `seed ${s} rot ${r}: compared ${d.rows_compared} rows, expected ${R.params.ticks}`
++      );
++      assert.equal(d.tail_base, d.tail_rot, `seed ${s} rot ${r}: canon tails differ`);
++    }
++  }
++});
++
++test("P3 · translation control diverges (fault-detection control, different path)", () => {
++  for (const s of SEEDS) {
++    for (const k of ROTS) {
++      const d = R.seeds[s].translation_control[k];
++      assert.ok(
++        d.first_divergence_tick !== null && d.first_divergence_tick >= 1,
++        `seed ${s} shift ${k}: control failed to detect the un-sorted shift — detector broken, arm INCONCLUSIVE`
++      );
++      assert.notEqual(d.tail_base, d.tail_shift, `seed ${s} shift ${k}: control tails equal`);
++    }
++  }
++});
++
++test("P4 · non-degeneracy (INCONCLUSIVE guard: >=2 distinct states per run; seeds not clones)", () => {
++  for (const s of SEEDS) {
++    assert.ok(
++      R.seeds[s].distinct_raw_states >= 2,
++      `seed ${s}: degenerate attractor (${R.seeds[s].distinct_raw_states} distinct states) → arm INCONCLUSIVE per prereg`
++    );
++  }
++  assert.equal(
++    R.cross_seed_identical_states,
++    false,
++    "all seeds give identical pre-sort states → arm INCONCLUSIVE per prereg, never PASSED"
++  );
++});
+diff --git a/receipts/wave2-canon-invariance/BOUNDARY.md b/receipts/wave2-canon-invariance/BOUNDARY.md
+new file mode 100644
+index 0000000..adbfbdb
+--- /dev/null
++++ b/receipts/wave2-canon-invariance/BOUNDARY.md
+@@ -0,0 +1,9 @@
++# BOUNDARY NOTE (harvest-pass, post-seal)
++The translation control is DEGENERATE with the rotation arm under periodic
++boundary conditions: on a ring, shifting by k IS rotating by k (verified —
++naive shift-by-1 and rotate-by-1 tails are bit-identical: 320ce8f761c66ac3).
++The control therefore re-tests the naive-rotation arm rather than an
++independent path. The canon-invariance claim does not depend on it (invariance
++holds across three distinct rotation offsets per seed, 6000/6000 rows).
++A non-independent control would require fixed (non-periodic) boundaries —
++wave-3 item. Sealed here so the receipt carries its own limit.
+diff --git a/receipts/wave2-canon-invariance/RESULT.md b/receipts/wave2-canon-invariance/RESULT.md
+new file mode 100644
+index 0000000..64248ad
+--- /dev/null
++++ b/receipts/wave2-canon-invariance/RESULT.md
+@@ -0,0 +1,80 @@
++# RESULT — W2.3 deterministic arm: canon-permutation invariance of receipt chains
++
++Sealed 2026-10-02 · device: `local node v24.16.0, CPU` (pure node, no deploy) ·
++prereg: `PREREG.md §W2.3-DET` (sealed before any run) · pins:
++`experiments/canon-invariance.pins.mjs` (written and executed FAIL-first — see
++receipts) · experiment: `experiments/canon-invariance.mjs` (rule 30, width 128,
++500 ticks, seeds {42,7,2026,31337} via mulberry32, rotations {1,17,63}).
++
++## Verdicts
++
++| Hypothesis | Verdict | Evidence |
++|---|---|---|
++| H1 — naive chain diverges under rotated genesis (origin-sensitive) | **CONFIRMED** | 12/12 pairs diverge; first-divergence tick = 1 in every pair; 6000/6000 chain rows divergent (no re-convergence, no collision) |
++| H2 — canon-sorted chain invariant under rotation | **CONFIRMED** | 12/12 pairs identical at EVERY tick; 0/6000 divergent rows; canon tails equal in every pair |
++| Control — translation (shift, no re-sort) diverges | **CONFIRMED** | 12/12 pairs diverge, t=1, different code path (digest-time shift, no second CA run); control content bit-identical to the rotation arm — rule-30 rotation equivariance verified observationally on every trajectory |
++| INCONCLUSIVE guard (degenerate attractor) | **not triggered** | 501 distinct raw states per seed over the 501-state trajectory; the four seeds' state sets are not identical (`cross_seed_identical_states=false`) |
++
++The arm is therefore **PASSED (not INCONCLUSIVE)** on both hypotheses.
++
++## Divergence-tick table (first tick at which the two chains' rows differ; chain rows are t=1..500, worker lineage — genesis materializes only the chain head)
++
++| seed | popcount | rot-sym genesis? | distinct raw states | naive r=1 | naive r=17 | naive r=63 | canon r=1 | canon r=17 | canon r=63 | trans k=1 | trans k=17 | trans k=63 |
++|---|---|---|---|---|---|---|---|---|---|---|---|---|
++| 42    | 64 | no | 501 | **t=1** (500/500) | **t=1** (500/500) | **t=1** (500/500) | INVARIANT (0/500) | INVARIANT | INVARIANT | **t=1** | **t=1** | **t=1** |
++| 7     | 50 | no | 501 | **t=1** (500/500) | **t=1** (500/500) | **t=1** (500/500) | INVARIANT (0/500) | INVARIANT | INVARIANT | **t=1** | **t=1** | **t=1** |
++| 2026  | 63 | no | 501 | **t=1** (500/500) | **t=1** (500/500) | **t=1** (500/500) | INVARIANT (0/500) | INVARIANT | INVARIANT | **t=1** | **t=1** | **t=1** |
++| 31337 | 52 | no | 501 | **t=1** (500/500) | **t=1** (500/500) | **t=1** (500/500) | INVARIANT (0/500) | INVARIANT | INVARIANT | **t=1** | **t=1** | **t=1** |
++
++Example tails (seed 42): naive base `db5fbcc2e085adfd` vs canon base `7cdf4bd259d0ed69`;
++all four canon tails per seed agree pairwise with their rotated twins, all naive tails differ.
++
++## Why it holds (mechanism, not just counts)
++
++Rule 30 with periodic boundaries commutes with rotation — observed directly:
++the trajectory from a rotated genesis equals the base trajectory rotated, at
++every tick, for all seeds and rotations. The naive chain digests position
++order, so the rotation survives into every row (H1). Reducing each state to
++its rotation-class representative (lexicographic minimum rotation) before
++digesting erases the origin exactly — not statistically — so the chains
++coincide row-for-row (H2). std==0 on same-seed same-path runs is expected and
++is not the evidence; the evidence is the structural reduction plus the
++different-path control (translation detector fires; naive arms never
++re-converge across 6000 rows).
++
++## Canon-rule candidate (for fleet canon review, GPU-EXPERIMENTS §0 style)
++
++CANON-RULE C-ROT (origin-invariance for ring lanes): a receipt chain that
++digests a ring-lane state must digest the state's rotation-class
++representative — the lexicographic minimum rotation of the serialized state —
++never the presented rotation. A chain so constructed is invariant under any
++re-indexing of the ring origin (0/6000 divergent rows across 4 seeds × 3
++rotations × 500 ticks, rule 30, width 128; 6000/6000 divergent without the
++rule) while remaining fully divergence-sensitive to any non-rotation content
++change (sealed by the translation control). The reduction is exact, not
++sampling-based: min-rotation is a function of the orbit, independent of which
++member is presented; ties in degenerate orbits (periodic states) resolve to
++the same representative by construction. Cost at width 128 is O(n²) naive
++(≈0.5 ms per 500-tick chain locally) or O(n) with Booth's algorithm — noise
++next to the chain hash. Boundary: C-ROT covers the rotation symmetry of a
++presentation order only; general permutation classes (the W2.3-semantic
++embedding sort) require their own representative function of the same shape —
++reduce to the orbit representative, then digest. Adoption condition for the
++fleet: re-run these pins (P1–P4 shape) on the adopting substrate before any
++cross-lane receipt-equality claim rests on C-ROT.
++
++## Receipts (commands named)
++
++1. FAIL-first, before any run: `node --test /tmp/zlanes/lane3/wt/experiments/canon-invariance.pins.mjs`
++   → exit 1, ENOENT `/tmp/zlanes/lane3/results.json` (receipt
++   `receipts/wave2-canon-invariance/pins-failfirst.log`).
++2. `node /tmp/zlanes/lane3/wt/experiments/canon-invariance.mjs` → wrote
++   `/tmp/zlanes/lane3/results.json` (0.469 s real).
++3. `node --test /tmp/zlanes/lane3/wt/experiments/canon-invariance.pins.mjs`
++   → 4/4 pass, exit 0 (receipt `receipts/wave2-canon-invariance/pins-final.log`).
++4. Raw numbers: `receipts/wave2-canon-invariance/results.json` (this file is
++   the verbatim experiment output; RESULT.md is its reading).
++
++Failures on the way: none (0 retries; the single FAIL-first pin execution is
++the pre-registered ritual, not an instrument failure). `src/worker.js`
++untouched per task rules.
+diff --git a/receipts/wave2-canon-invariance/pins-failfirst.log b/receipts/wave2-canon-invariance/pins-failfirst.log
+new file mode 100644
+index 0000000..d047d3f
+--- /dev/null
++++ b/receipts/wave2-canon-invariance/pins-failfirst.log
+@@ -0,0 +1,32 @@
++node:fs:441
++    return binding.readFileUtf8(path, stringToFlags(options.flag));
++                   ^
++
++Error: ENOENT: no such file or directory, open '/tmp/zlanes/lane3/results.json'
++    at readFileSync (node:fs:441:20)
++    at file:///tmp/zlanes/lane3/wt/experiments/canon-invariance.pins.mjs:13:22
++    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
++    at async node:internal/modules/esm/loader:633:26
++    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
++  errno: -2,
++  code: 'ENOENT',
++  syscall: 'open',
++  path: '/tmp/zlanes/lane3/results.json'
++}
++
++Node.js v24.16.0
++✖ /tmp/zlanes/lane3/wt/experiments/canon-invariance.pins.mjs (91.86602ms)
++ℹ tests 1
++ℹ suites 0
++ℹ pass 0
++ℹ fail 1
++ℹ cancelled 0
++ℹ skipped 0
++ℹ todo 0
++ℹ duration_ms 112.441416
++
++✖ failing tests:
++
++test at experiments/canon-invariance.pins.mjs:1:1
++✖ /tmp/zlanes/lane3/wt/experiments/canon-invariance.pins.mjs (91.86602ms)
++  'test failed'
+diff --git a/receipts/wave2-canon-invariance/pins-final.log b/receipts/wave2-canon-invariance/pins-final.log
+new file mode 100644
+index 0000000..07db7d0
+--- /dev/null
++++ b/receipts/wave2-canon-invariance/pins-final.log
+@@ -0,0 +1,12 @@
++✔ P1 · naive chain diverges under rotated genesis (H1: origin-sensitive) (2.424377ms)
++✔ P2 · canon-sorted chain invariant under rotation (H2: zero divergence at every t) (0.959072ms)
++✔ P3 · translation control diverges (fault-detection control, different path) (2.728976ms)
++✔ P4 · non-degeneracy (INCONCLUSIVE guard: >=2 distinct states per run; seeds not clones) (0.83365ms)
++ℹ tests 4
++ℹ suites 0
++ℹ pass 4
++ℹ fail 0
++ℹ cancelled 0
++ℹ skipped 0
++ℹ todo 0
++ℹ duration_ms 173.323805
+diff --git a/receipts/wave2-canon-invariance/results.json b/receipts/wave2-canon-invariance/results.json
+new file mode 100644
+index 0000000..b559362
+--- /dev/null
++++ b/receipts/wave2-canon-invariance/results.json
+@@ -0,0 +1,343 @@
++{
++  "experiment": "canon-invariance",
++  "arm": "W2.3-deterministic (semantic sort stands in for embedding sort)",
++  "device": "local node v24.16.0, CPU (pure node per task — no deploy)",
++  "generated_at": "2026-10-01T18:57:14.009Z",
++  "params": {
++    "rule": 30,
++    "width": 128,
++    "ticks": 500,
++    "seeds": [
++      42,
++      7,
++      2026,
++      31337
++    ],
++    "rotations": [
++      1,
++      17,
++      63
++    ],
++    "chain": "fnv1a-64 rows `${prev}|${t}|${sd}` from head fnv1a64(GENESIS_QUILT_EDGE_LAB), rows t=1..T (src/worker.js lineage, file untouched)",
++    "canon": "lexicographic minimum rotation of the state bit-string (Booth-equivalent scan)"
++  },
++  "seeds": {
++    "7": {
++      "genesis_popcount": 50,
++      "genesis_rotation_symmetric": false,
++      "distinct_raw_states": 501,
++      "distinct_canon_states": 501,
++      "naive_rotation": {
++        "1": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "b99d91e548f3cd82",
++          "tail_rot": "188ad193c6f0d8ca"
++        },
++        "17": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "b99d91e548f3cd82",
++          "tail_rot": "094c8949c1f82707"
++        },
++        "63": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "b99d91e548f3cd82",
++          "tail_rot": "f1c1fe128ea7335b"
++        }
++      },
++      "canon_rotation": {
++        "1": {
++          "first_divergence_tick": null,
++          "divergent_rows": 0,
++          "rows_compared": 500,
++          "tail_base": "da03690cc2018325",
++          "tail_rot": "da03690cc2018325"
++        },
++        "17": {
++          "first_divergence_tick": null,
++          "divergent_rows": 0,
++          "rows_compared": 500,
++          "tail_base": "da03690cc2018325",
++          "tail_rot": "da03690cc2018325"
++        },
++        "63": {
++          "first_divergence_tick": null,
++          "divergent_rows": 0,
++          "rows_compared": 500,
++          "tail_base": "da03690cc2018325",
++          "tail_rot": "da03690cc2018325"
++        }
++      },
++      "translation_control": {
++        "1": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "b99d91e548f3cd82",
++          "tail_shift": "188ad193c6f0d8ca"
++        },
++        "17": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "b99d91e548f3cd82",
++          "tail_shift": "094c8949c1f82707"
++        },
++        "63": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "b99d91e548f3cd82",
++          "tail_shift": "f1c1fe128ea7335b"
++        }
++      },
++      "observations": {
++        "rule30_rotation_equivariant": true,
++        "translation_content_equals_rotation_run": true
++      }
++    },
++    "42": {
++      "genesis_popcount": 64,
++      "genesis_rotation_symmetric": false,
++      "distinct_raw_states": 501,
++      "distinct_canon_states": 501,
++      "naive_rotation": {
++        "1": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "db5fbcc2e085adfd",
++          "tail_rot": "320ce8f761c66ac3"
++        },
++        "17": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "db5fbcc2e085adfd",
++          "tail_rot": "b45d0746bcf3bfc5"
++        },
++        "63": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "db5fbcc2e085adfd",
++          "tail_rot": "22fce62e1777d609"
++        }
++      },
++      "canon_rotation": {
++        "1": {
++          "first_divergence_tick": null,
++          "divergent_rows": 0,
++          "rows_compared": 500,
++          "tail_base": "7cdf4bd259d0ed69",
++          "tail_rot": "7cdf4bd259d0ed69"
++        },
++        "17": {
++          "first_divergence_tick": null,
++          "divergent_rows": 0,
++          "rows_compared": 500,
++          "tail_base": "7cdf4bd259d0ed69",
++          "tail_rot": "7cdf4bd259d0ed69"
++        },
++        "63": {
++          "first_divergence_tick": null,
++          "divergent_rows": 0,
++          "rows_compared": 500,
++          "tail_base": "7cdf4bd259d0ed69",
++          "tail_rot": "7cdf4bd259d0ed69"
++        }
++      },
++      "translation_control": {
++        "1": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "db5fbcc2e085adfd",
++          "tail_shift": "320ce8f761c66ac3"
++        },
++        "17": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "db5fbcc2e085adfd",
++          "tail_shift": "b45d0746bcf3bfc5"
++        },
++        "63": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "db5fbcc2e085adfd",
++          "tail_shift": "22fce62e1777d609"
++        }
++      },
++      "observations": {
++        "rule30_rotation_equivariant": true,
++        "translation_content_equals_rotation_run": true
++      }
++    },
++    "2026": {
++      "genesis_popcount": 63,
++      "genesis_rotation_symmetric": false,
++      "distinct_raw_states": 501,
++      "distinct_canon_states": 501,
++      "naive_rotation": {
++        "1": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "5d7e239338856063",
++          "tail_rot": "7d4f478c09fbd5f2"
++        },
++        "17": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "5d7e239338856063",
++          "tail_rot": "02bb57478a94c2ca"
++        },
++        "63": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "5d7e239338856063",
++          "tail_rot": "064c596bf91f4d52"
++        }
++      },
++      "canon_rotation": {
++        "1": {
++          "first_divergence_tick": null,
++          "divergent_rows": 0,
++          "rows_compared": 500,
++          "tail_base": "40b854d7c86db601",
++          "tail_rot": "40b854d7c86db601"
++        },
++        "17": {
++          "first_divergence_tick": null,
++          "divergent_rows": 0,
++          "rows_compared": 500,
++          "tail_base": "40b854d7c86db601",
++          "tail_rot": "40b854d7c86db601"
++        },
++        "63": {
++          "first_divergence_tick": null,
++          "divergent_rows": 0,
++          "rows_compared": 500,
++          "tail_base": "40b854d7c86db601",
++          "tail_rot": "40b854d7c86db601"
++        }
++      },
++      "translation_control": {
++        "1": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "5d7e239338856063",
++          "tail_shift": "7d4f478c09fbd5f2"
++        },
++        "17": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "5d7e239338856063",
++          "tail_shift": "02bb57478a94c2ca"
++        },
++        "63": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "5d7e239338856063",
++          "tail_shift": "064c596bf91f4d52"
++        }
++      },
++      "observations": {
++        "rule30_rotation_equivariant": true,
++        "translation_content_equals_rotation_run": true
++      }
++    },
++    "31337": {
++      "genesis_popcount": 52,
++      "genesis_rotation_symmetric": false,
++      "distinct_raw_states": 501,
++      "distinct_canon_states": 501,
++      "naive_rotation": {
++        "1": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "b0ae177476e649d8",
++          "tail_rot": "4b57138d92e136db"
++        },
++        "17": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "b0ae177476e649d8",
++          "tail_rot": "e1757885c19126da"
++        },
++        "63": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "b0ae177476e649d8",
++          "tail_rot": "941846f23fe66c65"
++        }
++      },
++      "canon_rotation": {
++        "1": {
++          "first_divergence_tick": null,
++          "divergent_rows": 0,
++          "rows_compared": 500,
++          "tail_base": "be2dddb02e3d51d2",
++          "tail_rot": "be2dddb02e3d51d2"
++        },
++        "17": {
++          "first_divergence_tick": null,
++          "divergent_rows": 0,
++          "rows_compared": 500,
++          "tail_base": "be2dddb02e3d51d2",
++          "tail_rot": "be2dddb02e3d51d2"
++        },
++        "63": {
++          "first_divergence_tick": null,
++          "divergent_rows": 0,
++          "rows_compared": 500,
++          "tail_base": "be2dddb02e3d51d2",
++          "tail_rot": "be2dddb02e3d51d2"
++        }
++      },
++      "translation_control": {
++        "1": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "b0ae177476e649d8",
++          "tail_shift": "4b57138d92e136db"
++        },
++        "17": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "b0ae177476e649d8",
++          "tail_shift": "e1757885c19126da"
++        },
++        "63": {
++          "first_divergence_tick": 1,
++          "divergent_rows": 500,
++          "rows_compared": 500,
++          "tail_base": "b0ae177476e649d8",
++          "tail_shift": "941846f23fe66c65"
++        }
++      },
++      "observations": {
++        "rule30_rotation_equivariant": true,
++        "translation_content_equals_rotation_run": true
++      }
++    }
++  },
++  "cross_seed_identical_states": false
++}

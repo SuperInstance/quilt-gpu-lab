@@ -1,0 +1,34 @@
+PREFLIGHT OK free=1659MiB temp=72C
+inner rc=-15
+F5 OK: train ids 0..139 disjoint from test 140..199
+  reflex.orient    real     seed=2718 nerr=0.0000 dev=cuda p=1474 13.0s
+  reflex.orient    real     seed=2719 nerr=0.0000 dev=cuda p=1474 11.2s
+  reflex.orient    real     seed=2720 nerr=0.0000 dev=cuda p=1474 12.3s
+  reflex.orient    sim      seed=2718 nerr=0.0000 dev=cuda p=1474 10.4s
+  reflex.orient    sim      seed=2719 nerr=0.0000 dev=cuda p=1474 12.1s
+  reflex.orient    sim      seed=2720 nerr=0.0000 dev=cuda p=1474 12.2s
+  reflex.orient    sim_mis  seed=2718 nerr=0.3618 dev=cuda p=1474 13.8s
+  reflex.orient    sim_mis  seed=2719 nerr=0.2427 dev=cuda p=1474 12.8s
+  reflex.orient    sim_mis  seed=2720 nerr=0.3858 dev=cuda p=1474 12.6s
+  world.surprise   real     seed=2718 nerr=0.1615 dev=cuda p=1541 13.3s
+  world.surprise   real     seed=2719 nerr=0.1684 dev=cuda p=1541 11.7s
+  world.surprise   real     seed=2720 nerr=0.1851 dev=cuda p=1541 11.0s
+  world.surprise   sim      seed=2718 nerr=0.1397 dev=cuda p=1541 11.6s
+  world.surprise   sim      seed=2719 nerr=0.1412 dev=cuda p=1541 11.8s
+  world.surprise   sim      seed=2720 nerr=0.1891 dev=cuda p=1541 11.4s
+  world.surprise   sim_mis  seed=2718 nerr=0.1682 dev=cuda p=1541 12.2s
+  world.surprise   sim_mis  seed=2719 nerr=0.1803 dev=cuda p=1541 11.8s
+  world.surprise   sim_mis  seed=2720 nerr=0.2158 dev=cuda p=1541 11.2s
+  sensors.vision   real     seed=2718 nerr=0.8309 dev=cuda p=18048 13.2s
+  sensors.vision   real     seed=2719 nerr=0.8124 dev=cuda p=18048 13.1s
+  sensors.vision   real     seed=2720 nerr=0.8176 dev=cuda p=18048 12.3s
+  sensors.vision   sim      seed=2718 nerr=0.8498 dev=cuda p=18048 12.5s
+  sensors.vision   sim      seed=2719 nerr=0.8395 dev=cuda p=18048 12.8s
+  sensors.vision   sim      seed=2720 nerr=0.8735 dev=cuda p=18048 13.6s
+  sensors.vision   sim_mis  seed=2718 nerr=0.8999 dev=cuda p=18048 13.6s
+  sensors.vision   sim_mis  seed=2719 nerr=0.8689 dev=cuda p=18048 14.6s
+
+GUARD: {"samples": 64, "min_free_vram_mib": 1018, "max_temp_c": 77, "breach": "free VRAM 1018 MiB < 1024", "timed_out": false, "g7": {"wall_seconds": 330.084, "power_samples": 63, "mean_power_w": 47.95, "joules": 15828.9732, "watt_hours": 4.396937, "gpu_seconds": 286.206, "util_samples": 63, "windows": 1}, "task_id": "D2-V1-twins"}
+RECEIPT /home/eileen/projects/quilt-gpu-lab/results/d2_v1/guard/g7-wr-d2-v1-twins-1790897485.json verdict=VOID
+G7 VALIDATOR ok=True OK (exit 0): /home/eileen/projects/quilt-gpu-lab/results/d2_v1/guard/g7-wr-d2-v1-twins-1790897485.json is a valid g7-watt-receipt@1 watt-receipt — self-declared VOID by its own gate
+info: unknown field 'void_reason' tolerated (not schema-checked)

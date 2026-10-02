@@ -1,0 +1,332 @@
+{
+ "task": "H1-WORLDGRAN",
+ "lane": "H1-WORLDGRAN",
+ "prereg": "proposals/runs/H1-world-granular.md",
+ "cpu_only": true,
+ "watt_hours": 0.0,
+ "gpu_used": false,
+ "seed": 2718,
+ "nperm": 120,
+ "B_boot": 1000,
+ "test_ids": [
+  140,
+  141,
+  142,
+  143,
+  144,
+  145,
+  146,
+  147,
+  148,
+  149,
+  150,
+  151,
+  152,
+  153,
+  154,
+  155,
+  156,
+  157,
+  158,
+  159,
+  160,
+  161,
+  162,
+  163,
+  164,
+  165,
+  166,
+  167,
+  168,
+  169,
+  170,
+  171,
+  172,
+  173,
+  174,
+  175,
+  176,
+  177,
+  178,
+  179,
+  180,
+  181,
+  182,
+  183,
+  184,
+  185,
+  186,
+  187,
+  188,
+  189,
+  190,
+  191,
+  192,
+  193,
+  194,
+  195,
+  196,
+  197,
+  198,
+  199
+ ],
+ "primary_socket": "policy.action",
+ "bar": -0.3,
+ "power": {
+  "n": 60,
+  "alpha": 0.05,
+  "power": 0.8,
+  "detectable_rho_two_sided": 0.355,
+  "detectable_rho_one_sided": 0.318,
+  "power_at_bar_one_sided": 0.756,
+  "power_at_bar_two_sided": 0.647
+ },
+ "table": {
+  "reflex.orient": {
+   "per_world_det_operational": {
+    "n": 60,
+    "mean": 1.0,
+    "std": 0.0,
+    "min": 1.0,
+    "max": 1.0,
+    "range": 0.0,
+    "n_distinct": 1
+   },
+   "gap": {
+    "n": 60,
+    "mean": -0.0171,
+    "std": 0.129,
+    "min": -0.7975,
+    "max": 0.4137,
+    "range": 1.2112,
+    "n_distinct": 41
+   },
+   "n_pair_bins_min": 1,
+   "n_pair_bins_max": 198,
+   "primary": false,
+   "rho": {
+    "operational": 0.0,
+    "uniform": 0.0,
+    "degenerate": 0.0
+   },
+   "rho_operational": 0.0,
+   "boot_std": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "ci_excl_0": false,
+   "std_zero": true
+  },
+  "world.surprise": {
+   "per_world_det_operational": {
+    "n": 60,
+    "mean": 0.7136,
+    "std": 0.2237,
+    "min": 0.2158,
+    "max": 1.0,
+    "range": 0.7842,
+    "n_distinct": 44
+   },
+   "gap": {
+    "n": 60,
+    "mean": -0.0126,
+    "std": 0.1913,
+    "min": -0.915,
+    "max": 0.3333,
+    "range": 1.2483,
+    "n_distinct": 40
+   },
+   "n_pair_bins_min": 1,
+   "n_pair_bins_max": 198,
+   "primary": false,
+   "rho": {
+    "operational": 0.4394,
+    "uniform": 0.4127,
+    "degenerate": 0.248
+   },
+   "rho_operational": 0.4394,
+   "boot_std": 0.1254,
+   "ci95": [
+    0.1857,
+    0.6708
+   ],
+   "ci_excl_0": true,
+   "std_zero": false
+  },
+  "sensors.vision": {
+   "per_world_det_operational": {
+    "n": 60,
+    "mean": 0.7893,
+    "std": 0.2107,
+    "min": 0.1963,
+    "max": 1.0,
+    "range": 0.8037,
+    "n_distinct": 44
+   },
+   "gap": {
+    "n": 60,
+    "mean": 0.0615,
+    "std": 0.2185,
+    "min": -0.555,
+    "max": 0.8583,
+    "range": 1.4133,
+    "n_distinct": 42
+   },
+   "n_pair_bins_min": 1,
+   "n_pair_bins_max": 501,
+   "primary": false,
+   "rho": {
+    "operational": -0.3252,
+    "uniform": -0.426,
+    "degenerate": -0.2788
+   },
+   "rho_operational": -0.3252,
+   "boot_std": 0.1349,
+   "ci95": [
+    -0.5803,
+    -0.0566
+   ],
+   "ci_excl_0": true,
+   "std_zero": false
+  },
+  "policy.action": {
+   "per_world_det_operational": {
+    "n": 60,
+    "mean": 0.849,
+    "std": 0.1464,
+    "min": 0.3631,
+    "max": 1.0,
+    "range": 0.6369,
+    "n_distinct": 44
+   },
+   "gap": {
+    "n": 60,
+    "mean": 0.003,
+    "std": 0.0236,
+    "min": -0.0323,
+    "max": 0.174,
+    "range": 0.2063,
+    "n_distinct": 30
+   },
+   "n_pair_bins_min": 36,
+   "n_pair_bins_max": 508,
+   "primary": true,
+   "rho": {
+    "operational": -0.0898,
+    "uniform": -0.0594,
+    "degenerate": 0.0167
+   },
+   "rho_operational": -0.0898,
+   "boot_std": 0.152,
+   "ci95": [
+    -0.4056,
+    0.1838
+   ],
+   "ci_excl_0": false,
+   "std_zero": false
+  },
+  "memory.semantic": {
+   "per_world_det_operational": {
+    "n": 60,
+    "mean": 0.5324,
+    "std": 0.3182,
+    "min": 0.0336,
+    "max": 1.0,
+    "range": 0.9664,
+    "n_distinct": 44
+   },
+   "gap": {
+    "n": 60,
+    "mean": 0.0075,
+    "std": 0.0858,
+    "min": -0.3827,
+    "max": 0.5417,
+    "range": 0.9243,
+    "n_distinct": 32
+   },
+   "n_pair_bins_min": 1,
+   "n_pair_bins_max": 501,
+   "primary": false,
+   "rho": {
+    "operational": -0.4657,
+    "uniform": -0.4631,
+    "degenerate": -0.4451
+   },
+   "rho_operational": -0.4657,
+   "boot_std": 0.1175,
+   "ci95": [
+    -0.6764,
+    -0.231
+   ],
+   "ci_excl_0": true,
+   "std_zero": false
+  },
+  "memory.episodic": {
+   "per_world_det_operational": {
+    "n": 60,
+    "mean": 0.4177,
+    "std": 0.3924,
+    "min": 0.0,
+    "max": 1.0,
+    "range": 1.0,
+    "n_distinct": 45
+   },
+   "gap": {
+    "n": 60,
+    "mean": 0.0001,
+    "std": 0.0853,
+    "min": -0.4017,
+    "max": 0.2687,
+    "range": 0.6703,
+    "n_distinct": 52
+   },
+   "n_pair_bins_min": 1,
+   "n_pair_bins_max": 501,
+   "primary": false,
+   "rho": {
+    "operational": -0.1901,
+    "uniform": 0.0049,
+    "degenerate": -0.1681
+   },
+   "rho_operational": -0.1901,
+   "boot_std": 0.1253,
+   "ci95": [
+    -0.4331,
+    0.06
+   ],
+   "ci_excl_0": false,
+   "std_zero": false
+  }
+ },
+ "primary": {
+  "rho": -0.0898,
+  "ci95": [
+   -0.4056,
+   0.1838
+  ],
+  "std": 0.1464,
+  "rho_by_weight": {
+   "operational": -0.0898,
+   "uniform": -0.0594,
+   "degenerate": 0.0167
+  },
+  "boot_std": 0.152,
+  "range": 0.6369,
+  "n_distinct": 44
+ },
+ "gate": {
+  "G_W1": "DEATH",
+  "power_bar_pass": false,
+  "sentence": "no world-level relationship either - the determinacy->transfer story is dead at every granularity."
+ },
+ "continuity": {
+  "H1_corpus_rho": -0.371,
+  "H1_corpus_ci": [
+   -0.6,
+   0.486
+  ],
+  "H5_R3_corpus_rho": -0.2571
+ },
+ "wall_s": 59.5
+}

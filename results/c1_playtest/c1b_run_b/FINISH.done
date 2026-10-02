@@ -1,0 +1,78 @@
+OUTER_EXIT 2026-10-01T17:20:50-08:00
+--- driver.log tail ---
+inner rc=0
+cks=978 closed=True winner=right agree=0.0767 draw=False crashed=False 160.92s
+[g21] left  ticks=1013 closed=True winner=right agree=0.0671 draw=False crashed=False 167.19s
+[g22] left  ticks=1087 closed=True winner=right agree=0.0497 draw=False crashed=False 175.72s
+[g23] left  ticks=1260 closed=True winner=right agree=0.2087 draw=False crashed=False 223.97s
+[g24] left  ticks=1405 closed=True winner=right agree=0.0847 draw=False crashed=False 289.55s
+[g25] left  ticks=1241 closed=True winner=right agree=0.0492 draw=False crashed=False 221.94s
+[g26] left  ticks=1080 closed=True winner=right agree=0.0463 draw=False crashed=False 180.81s
+[g27] left  ticks=978 closed=True winner=right agree=0.0511 draw=False crashed=False 150.85s
+[g28] left  ticks=1170 closed=True winner=right agree=0.2265 draw=False crashed=False 202.24s
+[g29] left  ticks=1605 closed=True winner=right agree=0.0866 draw=False crashed=False 320.41s
+[g30] left  ticks=978 closed=True winner=right agree=0.0562 draw=False crashed=False 171.64s
+[g31] left  ticks=1888 closed=True winner=right agree=0.1367 draw=False crashed=False 314.55s
+[g32] left  ticks=1209 closed=True winner=right agree=0.0662 draw=False crashed=False 231.2s
+[g33] left  ticks=1001 closed=True winner=right agree=0.1618 draw=False crashed=False 153.35s
+[g34] left  ticks=1358 closed=True winner=right agree=0.123 draw=False crashed=False 219.6s
+[g35] left  ticks=809 closed=True winner=right agree=0.0655 draw=False crashed=False 128.55s
+[g36] left  ticks=1013 closed=True winner=right agree=0.0355 draw=False crashed=False 173.53s
+[g37] left  ticks=1111 closed=True winner=right agree=0.1197 draw=False crashed=False 191.76s
+[g38] left  ticks=1115 closed=True winner=right agree=0.1722 draw=False crashed=False 215.82s
+[g39] left  ticks=919 closed=True winner=right agree=0.0751 draw=False crashed=False 169.43s
+{
+ "law_win_rate": 1.0,
+ "gate_outcome": "NOT-ADJUDICATED-PARTIAL",
+ "agreement_rate": 0.0961,
+ "crashes": 0,
+ "parse_fail": 0,
+ "draws": 0
+}
+
+guard MEASURED receipt: results/c1_playtest/c1b_run_b/guard/g7-wr-c1-playtest-pong-1790904047.json valid=True OK (exit 0): results/c1_playtest/c1b_run_b/guard/g7-wr-c1-playtest-pong-1790904047.json is a valid g7-watt-receipt@1 watt-receipt
+ENERGY: 71.21853761111112 Wh (256386.7354 J); gate={'rule': 'no receipt → run VOID', 'verdict': 'PASS'}
+--- out dir ---
+total 2264
+drwxrwxr-x 3 eileen eileen    4096 Oct  1 17:20 .
+drwxrwxr-x 6 eileen eileen    4096 Oct  1 15:33 ..
+-rw-rw-r-- 1 eileen eileen    2435 Oct  1 17:20 FINISH.done
+-rw-rw-r-- 1 eileen eileen    2358 Oct  1 17:20 driver.log
+-rw-rw-r-- 1 eileen eileen 2097286 Oct  1 16:31 games.jsonl
+-rw-rw-r-- 1 eileen eileen  143683 Oct  1 15:37 games.partial-g15-827ticks.archived-20261001.jsonl
+drwxrwxr-x 2 eileen eileen    4096 Oct  1 17:20 guard
+-rw-rw-r-- 1 eileen eileen   13907 Oct  1 17:20 match_summary.json
+-rw-rw-r-- 1 eileen eileen   10945 Oct  1 16:35 monitor.log
+-rwxrwxr-x 1 eileen eileen     751 Oct  1 15:51 monitor.sh
+-rw-rw-r-- 1 eileen eileen     613 Oct  1 15:50 run_config.json
+-rwxrwxr-x 1 eileen eileen     749 Oct  1 16:14 watcher.sh
+--- guard dir ---
+total 20
+drwxrwxr-x 2 eileen eileen 4096 Oct  1 17:20 .
+drwxrwxr-x 3 eileen eileen 4096 Oct  1 17:20 ..
+-rw-rw-r-- 1 eileen eileen 1286 Oct  1 17:20 g7-wr-c1-playtest-pong-1790904047.json
+-rw-rw-r-- 1 eileen eileen  377 Oct  1 17:20 guard_summary.json
+-rw-rw-r-- 1 eileen eileen  363 Oct  1 17:20 ledger.jsonl
+--- finalize 2026-10-01T17:21:05-08:00 ---
+{
+  "N": 40,
+  "law_wins": 40,
+  "draws": 0,
+  "law_win_rate": 1.0,
+  "gate_outcome": "CLAIM-SURVIVES",
+  "cp95_ci_exact": [
+    0.9994,
+    1.0
+  ],
+  "wilson95_ci": [
+    0.9124,
+    1.0
+  ],
+  "agreement_rate": 0.0936,
+  "parse_fail": 0,
+  "illegal_first_alpha": 0,
+  "crashes": 0
+}
+wrote /home/eileen/projects/quilt-gpu-lab/results/c1_playtest/C1B-RESULTS-ENTRY.md (6107 bytes)
+FINALIZE_RC=0
+FINALIZE_DONE 2026-10-01T17:21:05-08:00

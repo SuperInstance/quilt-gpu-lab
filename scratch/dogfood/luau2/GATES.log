@@ -1,0 +1,12 @@
+=== DOGFOOD-LING2 final gates 2026-10-01T18:49:08-08:00 ===
+[G-L2a] luau src/cell_api.luau
+  -> OK exit 0 (real Luau parser/loader)
+[G-L2a] luac5.1 -p tests/cell_api_test.lua
+  -> OK
+[G-L2b] lua5.1 tests/cell_api_test.lua (Ling's own harness)
+PASS 50/50
+  rc=0
+[lane] luau lane_verify.luau (REAL module, lane-authored)
+LANE-PASS 60/60
+[conformance] diff module-trace vs mirror-trace
+  -> IDENTICAL (33 lines)

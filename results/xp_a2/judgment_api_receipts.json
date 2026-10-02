@@ -1,0 +1,170 @@
+[
+  {
+    "op": "CLEAN",
+    "index": 0,
+    "heldout": false,
+    "noul": 0.45,
+    "detect": true
+  },
+  {
+    "op": "CLEAN",
+    "index": 1,
+    "heldout": false,
+    "noul": 0.47,
+    "detect": true
+  },
+  {
+    "op": "CLEAN",
+    "index": 2,
+    "heldout": false,
+    "noul": 0.55,
+    "detect": false
+  },
+  {
+    "op": "CLEAN",
+    "index": 3,
+    "heldout": false,
+    "noul": 0.32,
+    "detect": true
+  },
+  {
+    "op": "CLEAN",
+    "index": 4,
+    "heldout": false,
+    "noul": 0.59,
+    "detect": false
+  },
+  {
+    "op": "CLEAN",
+    "index": 5,
+    "heldout": false,
+    "noul": 0.51,
+    "detect": false
+  },
+  {
+    "op": "sign_flip",
+    "index": 200,
+    "heldout": false,
+    "noul": 0.48,
+    "detect": true
+  },
+  {
+    "op": "wins_over",
+    "index": 240,
+    "heldout": false,
+    "noul": 0.44,
+    "detect": true
+  },
+  {
+    "op": "verdict_flip",
+    "index": 280,
+    "heldout": false,
+    "noul": 0.45,
+    "detect": true
+  },
+  {
+    "op": "tau_off",
+    "index": 320,
+    "heldout": false,
+    "noul": 0.27,
+    "detect": true
+  },
+  {
+    "op": "seed_drop",
+    "index": 360,
+    "heldout": false,
+    "noul": 0.44,
+    "detect": true
+  },
+  {
+    "op": "denom_swap",
+    "index": 400,
+    "heldout": false,
+    "noul": 0.1,
+    "detect": true
+  },
+  {
+    "op": "nan_injection",
+    "index": 440,
+    "heldout": true,
+    "noul": 0.17,
+    "detect": true
+  },
+  {
+    "op": "nan_injection",
+    "index": 441,
+    "heldout": true,
+    "noul": 0.15,
+    "detect": true
+  },
+  {
+    "op": "nan_injection",
+    "index": 442,
+    "heldout": true,
+    "noul": 0.15,
+    "detect": true
+  },
+  {
+    "op": "dtype_cast",
+    "index": 480,
+    "heldout": true,
+    "noul": 0.32,
+    "detect": true
+  },
+  {
+    "op": "dtype_cast",
+    "index": 481,
+    "heldout": true,
+    "noul": 0.48,
+    "detect": true
+  },
+  {
+    "op": "dtype_cast",
+    "index": 482,
+    "heldout": true,
+    "noul": 0.55,
+    "detect": false
+  },
+  {
+    "op": "split_boundary",
+    "index": 520,
+    "heldout": true,
+    "noul": 0.45,
+    "detect": true
+  },
+  {
+    "op": "split_boundary",
+    "index": 521,
+    "heldout": true,
+    "noul": 0.65,
+    "detect": false
+  },
+  {
+    "op": "split_boundary",
+    "index": 522,
+    "heldout": true,
+    "noul": 0.7,
+    "detect": false
+  },
+  {
+    "op": "receipt_copy_prior",
+    "index": 560,
+    "heldout": true,
+    "noul": 0.51,
+    "detect": false
+  },
+  {
+    "op": "receipt_copy_prior",
+    "index": 561,
+    "heldout": true,
+    "noul": 0.4,
+    "detect": true
+  },
+  {
+    "op": "receipt_copy_prior",
+    "index": 562,
+    "heldout": true,
+    "noul": 0.4,
+    "detect": true
+  }
+]

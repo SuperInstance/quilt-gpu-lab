@@ -1,0 +1,13 @@
+{
+  "lane": "C2-LOCALSENSOR (COMPOSITE-2 phase 3, item-local sensor corpus)",
+  "cpu_only": true,
+  "gpu_wh": 0.0,
+  "gpu_enabled": false,
+  "env": {"CUDA_VISIBLE_DEVICES": "", "torch_used_for": "CPU-only tensor load/inference on frozen .pt banks"},
+  "guard_window": null,
+  "guard_reason": "no GPU touched -> no guard.py window, no G7 watt receipt required (prereg §6)",
+  "new_banks_trained": 0,
+  "wall_seconds": 10.9,
+  "python": "/home/eileen/venvs/elephant-gpu/bin/python",
+  "note": "GPU-Wh is exactly 0 by construction: the 45 banks and all cheap logistic refits ran on CPU; no torch.cuda call was made and CUDA was hidden."
+}

@@ -1,0 +1,57 @@
+inner rc=0
+[inner] seed2718 JOINT_seed2718 updates=551370 loss 0.6905->0.56492
+[inner] seed2718 SINGLE_seed2718 updates=551370 loss 0.69123->0.56275
+[inner] seed2718 S4MONO_seed2718 updates=551370 loss 0.68387->0.52064
+[inner] seed2718 FEDWORD_semantic_seed2718 updates=137130 loss 0.69202->0.40036
+[inner] seed2718 FEDWORD_counting-address_seed2718 updates=136890 loss 0.69272->0.56427
+[inner] seed2718 FEDWORD_negation-scope_seed2718 updates=138810 loss 0.69373->0.66966
+[inner] seed2718 FEDWORD_agent-role_seed2718 updates=138540 loss 0.69343->0.57331
+[inner] seed2718 HETERO_S1_seed2718 updates=551370 loss 0.69123->0.56275
+[inner] seed2718 HETERO_S2_seed2718 updates=551370 loss 0.69241->0.59421
+[inner] seed2718 HETERO_S3_seed2718 updates=551370 loss 0.69235->0.64248
+[inner] seed2718 HETERO_S4_seed2718 updates=551370 loss 0.68387->0.52064
+[inner] seed2718 HEMATCH_semantic_seed2718 updates=137130 loss 0.69311->0.62196
+[inner] seed2718 HEMATCH_counting-address_seed2718 updates=136890 loss 0.69272->0.56427
+[inner] seed2718 HEMATCH_negation-scope_seed2718 updates=138810 loss 0.68399->0.13097
+[inner] seed2718 HEMATCH_agent-role_seed2718 updates=138540 loss 0.69422->0.67604
+[inner] seed2719 JOINT_seed2719 updates=551370 loss 0.68994->0.56353
+[inner] seed2719 SINGLE_seed2719 updates=551370 loss 0.69304->0.56217
+[inner] seed2719 S4MONO_seed2719 updates=551370 loss 0.68381->0.52029
+[inner] seed2719 FEDWORD_semantic_seed2719 updates=137130 loss 0.69439->0.38889
+[inner] seed2719 FEDWORD_counting-address_seed2719 updates=136890 loss 0.69443->0.56201
+[inner] seed2719 FEDWORD_negation-scope_seed2719 updates=138810 loss 0.6943->0.66839
+[inner] seed2719 FEDWORD_agent-role_seed2719 updates=138540 loss 0.69443->0.56397
+[inner] seed2719 HETERO_S1_seed2719 updates=551370 loss 0.69304->0.56217
+[inner] seed2719 HETERO_S2_seed2719 updates=551370 loss 0.69362->0.59483
+[inner] seed2719 HETERO_S3_seed2719 updates=551370 loss 0.69374->0.64244
+[inner] seed2719 HETERO_S4_seed2719 updates=551370 loss 0.68381->0.52029
+[inner] seed2719 HEMATCH_semantic_seed2719 updates=137130 loss 0.6944->0.60872
+[inner] seed2719 HEMATCH_counting-address_seed2719 updates=136890 loss 0.69443->0.56201
+[inner] seed2719 HEMATCH_negation-scope_seed2719 updates=138810 loss 0.68032->0.13095
+[inner] seed2719 HEMATCH_agent-role_seed2719 updates=138540 loss 0.69421->0.67565
+[inner] seed2720 JOINT_seed2720 updates=551370 loss 0.68987->0.56391
+[inner] seed2720 SINGLE_seed2720 updates=551370 loss 0.69131->0.56185
+[inner] seed2720 S4MONO_seed2720 updates=551370 loss 0.68151->0.52071
+[inner] seed2720 FEDWORD_semantic_seed2720 updates=137130 loss 0.69221->0.39566
+[inner] seed2720 FEDWORD_counting-address_seed2720 updates=136890 loss 0.69343->0.56342
+[inner] seed2720 FEDWORD_negation-scope_seed2720 updates=138810 loss 0.69301->0.6722
+[inner] seed2720 FEDWORD_agent-role_seed2720 updates=138540 loss 0.69292->0.57252
+[inner] seed2720 HETERO_S1_seed2720 updates=551370 loss 0.69131->0.56185
+[inner] seed2720 HETERO_S2_seed2720 updates=551370 loss 0.69235->0.59493
+[inner] seed2720 HETERO_S3_seed2720 updates=551370 loss 0.69218->0.64249
+[inner] seed2720 HETERO_S4_seed2720 updates=551370 loss 0.68151->0.52071
+[inner] seed2720 HEMATCH_semantic_seed2720 updates=137130 loss 0.69311->0.62379
+[inner] seed2720 HEMATCH_counting-address_seed2720 updates=136890 loss 0.69343->0.56342
+[inner] seed2720 HEMATCH_negation-scope_seed2720 updates=138810 loss 0.67867->0.13193
+[inner] seed2720 HEMATCH_agent-role_seed2720 updates=138540 loss 0.6929->0.67606
+INNER OK updates=14886990 wall=813.4s
+
+guard MEASURED receipt: /home/eileen/projects/quilt-gpu-lab/results/comp2/guard/g7-wr-composite-2-federation3-1790906923.json valid=True OK (exit 0): /home/eileen/projects/quilt-gpu-lab/results/comp2/guard/g7-wr-composite-2-federation3-1790906923.json is a valid g7-watt-receipt@1 watt-receipt
+G7 watt receipt: 1.1112540555555555 Wh (envelope 20.0)
+VERDICT KEEP
+P1 {"diff": 0.1337, "ci95": [0.1053, 0.1604], "bar": 0.08, "std0_a": false, "std0_b": false, "verdict": "PASS"}
+P2 {"diff": 0.1427, "ci95": [0.1134, 0.1731], "bar": null, "std0_a": false, "std0_b": false, "verdict": "PASS"}
+P3 {"diff": 0.007, "ci95": [-0.0026, 0.0164], "bar": null, "std0_a": false, "std0_b": false, "verdict": "FAIL"}
+boards {"JOINT": {"full": 0.7184, "semantic": 0.8554, "counting-address": 0.6593, "negation-scope": 0.6354, "agent-role": 0.7211}, "SINGLE": {"full": 0.7211, "semantic": 0.8619, "counting-address": 0.6587, "negation-scope": 0.6376, "agent-role": 0.7237}, "S4MONO": {"full": 0.7192, "semantic": 0.7488, "counting-address": 0.6715, "negation-scope": 0.8002, "agent-role": 0.6575}, "FED_WORD": {"full": 0.7169, "semantic": 0.8446, "counting-address": 0.6931, "negation-scope": 0.6529, "agent-role": 0.6736}, "FED_HETERO": {"full": 0.6944, "semantic": 0.7501, "counting-address": 0.6436, "negation-scope": 0.7713, "agent-role": 0.6131}, "FED_HE_MATCHED": {"full": 0.6714, "semantic": 0.647, "counting-address": 0.6879, "negation-scope": 0.7956, "agent-role": 0.5561}, "FED_LA": {"full": 0.7202, "semantic": 0.7904, "counting-address": 0.6604, "negation-scope": 0.7783, "agent-role": 0.6521}}
+router {"n_params": 36, "learned_top1_heldout": 0.6832, "learned_top1_train": 0.6901, "centroid_comp1_top1_heldout": 0.7491, "centroid_comp1_top1_train": 0.7513, "centroid_persensor_top1_heldout": 0.5343, "centroid_persensor_top1_train": 0.54, "band": [0.4, 0.95], "chance": 0.25, "learned_in_band": true, "centroid_in_band": true, "centroid_persensor_in_band": true, "within_disagreement_routing_acc": 0.6007, "within_disagreement_n": 4292, "within_disagreement_target": 0.6}
+CHEAP {"G4a": "FAIL", "G4b": "FAIL", "retirement": "NOT-RETIRED"}

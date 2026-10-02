@@ -1,0 +1,82 @@
+{
+  "prereg": "/home/eileen/projects/quilt-gpu-lab/proposals/runs/B1H-coda.md",
+  "harness": "/home/eileen/projects/quilt-gpu-lab/experiments/b1c_value_fidelity_engine.mjs",
+  "device": "cuda",
+  "device_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "torch": "2.14.0+cu126",
+  "master_seed": 2718,
+  "seed": 2718,
+  "frame": "B1/B1b/B1C/B1F/B1G's frame verbatim (reused B1G+ drivers/engine)",
+  "traces_n": 240,
+  "trace_ticks": 1200,
+  "trace_seed_base": 900000,
+  "holdout_rule": "trace index % 5 == 0",
+  "arms": [
+    {
+      "name": "w64_mse_ep160",
+      "kind": "hybridv2",
+      "width": 64,
+      "epochs": 160,
+      "loss": "mse"
+    },
+    {
+      "name": "w72_mse_ep160",
+      "kind": "hybridv2",
+      "width": 72,
+      "epochs": 160,
+      "loss": "mse"
+    },
+    {
+      "name": "w80_mse_ep160",
+      "kind": "hybridv2",
+      "width": 80,
+      "epochs": 160,
+      "loss": "mse"
+    },
+    {
+      "name": "w88_mse_ep160",
+      "kind": "hybridv2",
+      "width": 88,
+      "epochs": 160,
+      "loss": "mse"
+    },
+    {
+      "name": "w96_2knot_ep160",
+      "kind": "hybridv2_2k",
+      "width": 96,
+      "epochs": 160,
+      "loss": "mse"
+    }
+  ],
+  "part_a_widths": [
+    64,
+    72,
+    80,
+    88
+  ],
+  "part_b_width": 96,
+  "two_knot_atom": "sign(b-p)*[a1*relu(u-k1)+a2*relu(u-k2)], k2=k1+softplus(gap)>k1, a2 init 0 (first forward identical to single-knot), (a1,k1,a2,gap) learned",
+  "gates": {
+    "G_B1H1": "some w in [64, 72, 80, 88]: ramp@5e-2 >= 0.9 AND ramp CI_low > 0.9 AND deadzone@5e-2 >= 0.9 AND deadzone CI_low > 0.9 (crossing intact)",
+    "G_B1H2": "two-knot paired ramp@1e-3 gain >= 0.05 AND paired-boot CI_low > 0 AND deadzone@5e-2 >= 0.99 AND ramp@5e-2 >= 0.9"
+  },
+  "reference": {
+    "b1g_h96_mse_ep160_ramp@5e-2": 0.9979129397734049,
+    "b1g_h96_mse_ep160_ramp@1e-3": 0.8246869409660107,
+    "b1f_hybridv2_w64_ramp@5e-2": 0.293,
+    "b1e_plain_w64_ramp@5e-2": 0.5675,
+    "b1f_linear_plain_w96_ramp@5e-2": 0.9617
+  },
+  "bootstrap": {
+    "B": 1000,
+    "seed": 2718,
+    "partB": "paired percentile CI on mean(hit_2k - hit_1k) within ramp"
+  },
+  "control_anchor": "width-128 linear-head plain == B1C cap arm, C6/C7 reused from B1D nets",
+  "verdict_counts": "PREREGISTERED ARMS ONLY (5); anchor + single-knot ref = control",
+  "prediction_convention": "Delta_pred = clamp(p + raw, 6, 54) - p (deployed)",
+  "regions": "clamp / deadzone (u<=1.5) / saturation (u>=s+1.5) / ramp, from law ground truth",
+  "wh_envelope": 3.0,
+  "vram_ceiling_mb": 1500.0,
+  "smoke": false
+}

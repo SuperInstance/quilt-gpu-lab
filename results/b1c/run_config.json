@@ -1,0 +1,43 @@
+{
+  "prereg": "/home/eileen/projects/quilt-gpu-lab/proposals/runs/B1C-value-fidelity.md",
+  "harness": "/home/eileen/projects/quilt-gpu-lab/experiments/b1c_value_fidelity_engine.mjs",
+  "device": "cuda",
+  "device_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "torch": "2.14.0+cu126",
+  "master_seed": 2718,
+  "train_seeds": [
+    2718,
+    2719,
+    2720
+  ],
+  "frame": "uniform-random reachable states (engine-driven, both paddles U{-1,0,+1}) \u2014 B1/B1b's frame verbatim",
+  "traces_n": 240,
+  "trace_ticks": 1200,
+  "trace_seed_base": 900000,
+  "holdout_rule": "trace index % 5 == 0",
+  "arms": [
+    "relu_ref",
+    "reweight",
+    "cap",
+    "binned"
+  ],
+  "epoch_budgets": [
+    40,
+    300
+  ],
+  "prediction_convention": "Delta_pred = clamp(p + raw, 6, 54) - p (deployed)",
+  "primary_gate": "deadzone >= 0.9 AND ramp >= 0.9 @ 0.05, 3-seed mean, both std>0",
+  "mechanism_bar": {
+    "deadzone_lift_vs_ref": 0.15,
+    "ramp_lift_vs_ref": 0.2
+  },
+  "model": {
+    "relu_ref/reweight": "3-64-64-1 ReLU (deployed MSE; reweight=weighted MSE)",
+    "cap": "3-128-128-128-1 ReLU",
+    "binned": "3-64-64 ReLU body + softmax head K=105 on [-1.05,1.05] (bin 0.0202)"
+  },
+  "regions": "clamp / deadzone (u<=1.5) / saturation (u>=s+1.5) / ramp, from law ground truth",
+  "wh_envelope": 12.0,
+  "vram_ceiling_mb": 1500.0,
+  "smoke": false
+}

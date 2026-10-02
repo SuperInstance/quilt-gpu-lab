@@ -1,0 +1,3219 @@
+diff --git a/README.md b/README.md
+index f1fb4d1..00d1da5 100644
+--- a/README.md
++++ b/README.md
+@@ -78,7 +78,7 @@ The demo renders a wristband panel from a single registry in `core.js`
+ browser-only, admitted as such. `tests/honesty.test.js` pins the two-way match:
+ every claim's `proofTest` file exists, and every file in `tests/` backs a
+ claim. To re-verify: `node --test tests/*.test.js && node --test tools/test-qa.js`
+-(309 tests total: 301 in `tests/` + 8 in `tools/test-qa.js` — counts verified by
++(312 tests total: 304 in `tests/` + 8 in `tools/test-qa.js` — counts verified by
+ running, pinned by `tests/readme-count.test.js`; the canonical command itself
+ is pinned in EXPERIMENTS.md).
+ 
+diff --git a/core.js b/core.js
+index f477234..d58ab01 100644
+--- a/core.js
++++ b/core.js
+@@ -489,6 +489,7 @@
+         { id: "fileload-champion-glue", claim: "a file-load resets the VISIBLE champion too, not just the streaming evaluator — the loaded quilt's best net becomes champNet (falling back to the merged pop[0] for best-less quilts) and the stale pre-load game is cleared, mirroring the loadLevel precedent; before R62 the demo kept playing the pre-load champion under the loaded banner (measured L2 4.943 to the loaded pop, the R56-P2 magnitude one lane over) (Round 62, R61 spec item 'File-load champion reset')", proofTest: "tests/r62-fileload-champion-glue.test.js" },
+     { id: "coev-save-refusal-glue", claim: "the Save button's C1-lane guard keys on the mode BANNER (not coev.genC): with no C1 populations the onclick receipts SAVE/COEV-EMPTY (named refusal, no Blob, no anchor, no download — the receipt name was SAVE/COEV-UNSTABLE until the R67 writer superseded the bridge: wherever pops exist the coev banner now WRITES the one-lane file, so the franken-quilt the refusal guarded against — coev gen/champ fields paired with the untouched classic population, R56 P3/R59 M1 — is impossible by construction, not by guard; see coev-quilt-writer-glue). Classic-mode save is shape-unchanged under any banner (Round 64, R59's unmerged refusal design relanded+widened; the C1-trained-then-dropdown-classic tail is named in the R65/R66 spec — lane tracking, beyond the [S] items)", proofTest: "tests/r64-coev-save-refusal-glue.test.js" },
+     { id: "coev-quilt-writer-glue", claim: "a C1 player can keep their work — the coev banner saves a ONE-lane quilt {kind: 'pong-quilt/coev@v1', genC, sChamp, eChamp, popS, popE, last, ledger} with no classic field able to disagree with the weights (the R56 P3/R59 M1/R63 M2 three-lineage split dead by construction), and the file input routes a coev file back into the C1 lane VERBATIM — the file's populations restore exactly (keeping your work means THIS population, not a re-seeding around the champs; that treatment is the artifact lane's, loadCoev), the classic splice is structurally unreachable for coev files (the classic loader refuses them NAMED by construction), classic slots are byte-untouched by a coev-file load, a coev-shaped file missing load-bearing fields is LOAD/COEV-MALFORMED with zero state change, one Train after the load advances genC by exactly 1 at slider-sized populations, and a champ-less gen-0 file clears the served game (no champ means no serve — a null champNet into live() froze the page, verbatim-repro'd TypeError 'b1', the R49 P1 class, found by this round's own play and fixed in-branch) — FAIL-first on the pre-R67 tip: T1–T3 RED (SAVE/COEV-UNSTABLE + zero downloads; silent classic splice absorbing the file; no malformed guard), T4 RED via the champGame-null assertion (Round 67, R66 spec item 2, 2nd carrying — the R64 SAVE/COEV-UNSTABLE bridge converted from an honest refusal into a writer; the classic-banner-after-C1 franken tail stays OPEN, R66 spec item 1 [M])", proofTest: "tests/r67-coev-quilt-writer-glue.test.js" },
++    { id: "c1-scaling-study", claim: "the C1 scaling study tool exists and is pinned honest — tools/c1-scaling.js runs the page's OWN training loop (the tools/prerun-coev.js call sequence, parameterized) at any (population × generations × seed) arm and receipts trajectories + first5/last5 windows to research/; it is DETERMINISTIC (same arm twice = deep-equal, so a scaling difference is never weather), the probe is CONTRASTING (population size measurably changes the trajectory — pop 8 vs pop 24 at one seed diverge), and the receipt contract is DESCRIPTIVE, never a learning claim (R66's selection-noise law carried: trajectories are printed, improvement is not asserted — every summary self-labels noLearningClaim and the source carries the no-claim marker); the study never touches checkpoints/coev.js — the R45 birth seal and the canonical artifacts stay the one canonical training set (queue #2's carried C1 scaling study, bounded slice)", proofTest: "tests/c1-scaling.test.js" },
+     { id: "r69-schamp-trail-glue", claim: "the C1 stats line prints d(sChamp)/d(gen) as a `sChamp trail a→b→c…` lane — a VIEW over the ledger's own receipted sFit rows (coev.ledger.tail(8)), never a separate state array that could drift; it opens at ≥2 points (one gen is a dot, not a trajectory) and crosses load boundaries because the loaded ledger re-anchors the file's rows; printed, never asserted as a learning claim (R66 P3: the trajectory is selection-noise dominated — the lane shows the spikes, it does not claim improvement) — FAIL-first on the pristine tip: T1/T2 RED (no `sChamp trail` pre-R69), T3 guards the lone-dot direction (Round 69, R68 spec item 3, 3rd carrying)", proofTest: "tests/r69-schamp-trail-glue.test.js" },
+     { id: "coev-file-provenance-glue", claim: "the C1 receipts carry file provenance — receipt() accepts an optional laneGen and the row's own gen column records the C1 generation for C1-lane receipts (SAVE/COEV, SAVE/COEV-EMPTY, LOAD/COEV, LOAD/COEV-MALFORMED all pass their genC — the malformed refusal names the genC the file CLAIMED), never the classic slot (verbatim wound: load a gen-5 coev file at a fresh page — the load path never sets the classic gen — save, and the pre-R68 row silently asserted gen 0, the R56-P3-adjacent class); renderReceipts appends ` g${gen}` to /COEV-kind rows only — non-C1 rows render byte-unchanged; and the LOAD/COEV banner carries the file's NAME (f.name + genC + population sizes) so the player with three coev quilts can tell WHICH session they loaded — FAIL-first on the pristine tip: T1 RED via the render assertion (no ` g` suffix pre-R68), T2/T3/T4 RED via row.gen === 0 where 5 is claimed (Round 68, R67 spec item 4, 3rd carrying; items 1–3 of the R68 spec stay OPEN for R69)", proofTest: "tests/r68-coev-file-provenance-glue.test.js" },
+     { id: "startgenc-fails-closed-glue", claim: "startGenC fails CLOSED on a half-built coev state — the guard is !coev||!coev.popS||!coev.popE, so a coev object that exists but lacks populations (a hand-built file, a future loader's partial state) materializes BOTH populations at slider size via Object.assign, preserving any existing sChamp/eChamp/genC/last/ledger; before the fix the !coev-only guard let the half-state sail through and throw TypeError at coev.popS.length INSIDE the rAF tick, killing the whole page loop (R49 P1 class; R60 fix relanded by R63 after the R61+R62 merge window closed — 7th carrying; verbatim TypeError repro'd on pristine main 9f03372 by the R63 scientist driver)", proofTest: "tests/r63-startgenc-fails-closed-glue.test.js" },
+diff --git a/research/c1-scaling-2026-10-01.json b/research/c1-scaling-2026-10-01.json
+new file mode 100644
+index 0000000..ac42f75
+--- /dev/null
++++ b/research/c1-scaling-2026-10-01.json
+@@ -0,0 +1,3016 @@
++{
++ "tool": "tools/c1-scaling.js",
++ "contract": "scaling trajectory receipt — descriptive, no learning claim (R66 law carried)",
++ "arms": [
++  {
++   "config": {
++    "pop": 24,
++    "gens": 40,
++    "seed": 20261001,
++    "sigma": 0.12
++   },
++   "summary": {
++    "pop": 24,
++    "gens": 40,
++    "seed": 20261001,
++    "sigma": 0.12,
++    "rallyFirst5": 351.4,
++    "rallyLast5": 694.4,
++    "sFitFirst5": 391.4,
++    "sFitLast5": 814.4,
++    "kills": 40,
++    "windowNote": "windows rows [1,6) vs [36,41) of 41 h2h rows",
++    "noLearningClaim": true
++   },
++   "rows": [
++    {
++     "gen": 0,
++     "outcome": "ENDER-KILL",
++     "frames": 137,
++     "sFit": 137,
++     "eFit": 1063
++    },
++    {
++     "gen": 1,
++     "outcome": "ENDER-KILL",
++     "frames": 196,
++     "sFit": 196,
++     "eFit": 1004
++    },
++    {
++     "gen": 2,
++     "outcome": "ENDER-KILL",
++     "frames": 621,
++     "sFit": 721,
++     "eFit": 579
++    },
++    {
++     "gen": 3,
++     "outcome": "ENDER-KILL",
++     "frames": 626,
++     "sFit": 726,
++     "eFit": 574
++    },
++    {
++     "gen": 4,
++     "outcome": "ENDER-KILL",
++     "frames": 169,
++     "sFit": 169,
++     "eFit": 1031
++    },
++    {
++     "gen": 5,
++     "outcome": "ENDER-KILL",
++     "frames": 145,
++     "sFit": 145,
++     "eFit": 1055
++    },
++    {
++     "gen": 6,
++     "outcome": "ENDER-KILL",
++     "frames": 613,
++     "sFit": 713,
++     "eFit": 587
++    },
++    {
++     "gen": 7,
++     "outcome": "ENDER-KILL",
++     "frames": 184,
++     "sFit": 184,
++     "eFit": 1016
++    },
++    {
++     "gen": 8,
++     "outcome": "ENDER-KILL",
++     "frames": 364,
++     "sFit": 364,
++     "eFit": 836
++    },
++    {
++     "gen": 9,
++     "outcome": "ENDER-KILL",
++     "frames": 138,
++     "sFit": 138,
++     "eFit": 1062
++    },
++    {
++     "gen": 10,
++     "outcome": "ENDER-KILL",
++     "frames": 167,
++     "sFit": 167,
++     "eFit": 1033
++    },
++    {
++     "gen": 11,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 0
++    },
++    {
++     "gen": 12,
++     "outcome": "ENDER-KILL",
++     "frames": 157,
++     "sFit": 157,
++     "eFit": 1043
++    },
++    {
++     "gen": 13,
++     "outcome": "ENDER-KILL",
++     "frames": 124,
++     "sFit": 124,
++     "eFit": 1076
++    },
++    {
++     "gen": 14,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1200,
++     "eFit": 0
++    },
++    {
++     "gen": 15,
++     "outcome": "ENDER-KILL",
++     "frames": 763,
++     "sFit": 863,
++     "eFit": 437
++    },
++    {
++     "gen": 16,
++     "outcome": "ENDER-KILL",
++     "frames": 212,
++     "sFit": 212,
++     "eFit": 988
++    },
++    {
++     "gen": 17,
++     "outcome": "ENDER-KILL",
++     "frames": 161,
++     "sFit": 161,
++     "eFit": 1039
++    },
++    {
++     "gen": 18,
++     "outcome": "ENDER-KILL",
++     "frames": 680,
++     "sFit": 780,
++     "eFit": 520
++    },
++    {
++     "gen": 19,
++     "outcome": "ENDER-KILL",
++     "frames": 120,
++     "sFit": 120,
++     "eFit": 1080
++    },
++    {
++     "gen": 20,
++     "outcome": "ENDER-KILL",
++     "frames": 646,
++     "sFit": 746,
++     "eFit": 554
++    },
++    {
++     "gen": 21,
++     "outcome": "ENDER-KILL",
++     "frames": 165,
++     "sFit": 165,
++     "eFit": 1035
++    },
++    {
++     "gen": 22,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1400,
++     "eFit": 0
++    },
++    {
++     "gen": 23,
++     "outcome": "ENDER-KILL",
++     "frames": 180,
++     "sFit": 180,
++     "eFit": 1020
++    },
++    {
++     "gen": 24,
++     "outcome": "ENDER-KILL",
++     "frames": 625,
++     "sFit": 625,
++     "eFit": 575
++    },
++    {
++     "gen": 25,
++     "outcome": "ENDER-KILL",
++     "frames": 987,
++     "sFit": 1187,
++     "eFit": 213
++    },
++    {
++     "gen": 26,
++     "outcome": "ENDER-KILL",
++     "frames": 128,
++     "sFit": 128,
++     "eFit": 1072
++    },
++    {
++     "gen": 27,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1400,
++     "eFit": 0
++    },
++    {
++     "gen": 28,
++     "outcome": "ENDER-KILL",
++     "frames": 124,
++     "sFit": 124,
++     "eFit": 1076
++    },
++    {
++     "gen": 29,
++     "outcome": "ENDER-KILL",
++     "frames": 682,
++     "sFit": 782,
++     "eFit": 518
++    },
++    {
++     "gen": 30,
++     "outcome": "ENDER-KILL",
++     "frames": 660,
++     "sFit": 760,
++     "eFit": 540
++    },
++    {
++     "gen": 31,
++     "outcome": "ENDER-KILL",
++     "frames": 158,
++     "sFit": 158,
++     "eFit": 1042
++    },
++    {
++     "gen": 32,
++     "outcome": "ENDER-KILL",
++     "frames": 271,
++     "sFit": 271,
++     "eFit": 929
++    },
++    {
++     "gen": 33,
++     "outcome": "ENDER-KILL",
++     "frames": 129,
++     "sFit": 129,
++     "eFit": 1071
++    },
++    {
++     "gen": 34,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1200,
++     "eFit": 0
++    },
++    {
++     "gen": 35,
++     "outcome": "ENDER-KILL",
++     "frames": 120,
++     "sFit": 120,
++     "eFit": 1080
++    },
++    {
++     "gen": 36,
++     "outcome": "ENDER-KILL",
++     "frames": 760,
++     "sFit": 860,
++     "eFit": 440
++    },
++    {
++     "gen": 37,
++     "outcome": "ENDER-KILL",
++     "frames": 117,
++     "sFit": 117,
++     "eFit": 1083
++    },
++    {
++     "gen": 38,
++     "outcome": "ENDER-KILL",
++     "frames": 729,
++     "sFit": 829,
++     "eFit": 501
++    },
++    {
++     "gen": 39,
++     "outcome": "ENDER-KILL",
++     "frames": 666,
++     "sFit": 766,
++     "eFit": 564
++    },
++    {
++     "gen": 40,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 0
++    }
++   ]
++  },
++  {
++   "config": {
++    "pop": 24,
++    "gens": 40,
++    "seed": 20261002,
++    "sigma": 0.12
++   },
++   "summary": {
++    "pop": 24,
++    "gens": 40,
++    "seed": 20261002,
++    "sigma": 0.12,
++    "rallyFirst5": 455,
++    "rallyLast5": 333.4,
++    "sFitFirst5": 475,
++    "sFitLast5": 373.4,
++    "kills": 40,
++    "windowNote": "windows rows [1,6) vs [36,41) of 41 h2h rows",
++    "noLearningClaim": true
++   },
++   "rows": [
++    {
++     "gen": 0,
++     "outcome": "ENDER-KILL",
++     "frames": 775,
++     "sFit": 875,
++     "eFit": 425
++    },
++    {
++     "gen": 1,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1200,
++     "eFit": 0
++    },
++    {
++     "gen": 2,
++     "outcome": "ENDER-KILL",
++     "frames": 623,
++     "sFit": 723,
++     "eFit": 577
++    },
++    {
++     "gen": 3,
++     "outcome": "ENDER-KILL",
++     "frames": 154,
++     "sFit": 154,
++     "eFit": 1046
++    },
++    {
++     "gen": 4,
++     "outcome": "ENDER-KILL",
++     "frames": 147,
++     "sFit": 147,
++     "eFit": 1053
++    },
++    {
++     "gen": 5,
++     "outcome": "ENDER-KILL",
++     "frames": 151,
++     "sFit": 151,
++     "eFit": 1049
++    },
++    {
++     "gen": 6,
++     "outcome": "ENDER-KILL",
++     "frames": 159,
++     "sFit": 159,
++     "eFit": 1041
++    },
++    {
++     "gen": 7,
++     "outcome": "ENDER-KILL",
++     "frames": 123,
++     "sFit": 123,
++     "eFit": 1077
++    },
++    {
++     "gen": 8,
++     "outcome": "ENDER-KILL",
++     "frames": 955,
++     "sFit": 955,
++     "eFit": 245
++    },
++    {
++     "gen": 9,
++     "outcome": "ENDER-KILL",
++     "frames": 1122,
++     "sFit": 1322,
++     "eFit": 108
++    },
++    {
++     "gen": 10,
++     "outcome": "ENDER-KILL",
++     "frames": 714,
++     "sFit": 814,
++     "eFit": 516
++    },
++    {
++     "gen": 11,
++     "outcome": "ENDER-KILL",
++     "frames": 670,
++     "sFit": 770,
++     "eFit": 530
++    },
++    {
++     "gen": 12,
++     "outcome": "ENDER-KILL",
++     "frames": 264,
++     "sFit": 264,
++     "eFit": 936
++    },
++    {
++     "gen": 13,
++     "outcome": "ENDER-KILL",
++     "frames": 624,
++     "sFit": 724,
++     "eFit": 576
++    },
++    {
++     "gen": 14,
++     "outcome": "ENDER-KILL",
++     "frames": 628,
++     "sFit": 728,
++     "eFit": 572
++    },
++    {
++     "gen": 15,
++     "outcome": "ENDER-KILL",
++     "frames": 119,
++     "sFit": 119,
++     "eFit": 1081
++    },
++    {
++     "gen": 16,
++     "outcome": "ENDER-KILL",
++     "frames": 125,
++     "sFit": 125,
++     "eFit": 1075
++    },
++    {
++     "gen": 17,
++     "outcome": "ENDER-KILL",
++     "frames": 640,
++     "sFit": 740,
++     "eFit": 560
++    },
++    {
++     "gen": 18,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 0
++    },
++    {
++     "gen": 19,
++     "outcome": "ENDER-KILL",
++     "frames": 126,
++     "sFit": 126,
++     "eFit": 1074
++    },
++    {
++     "gen": 20,
++     "outcome": "ENDER-KILL",
++     "frames": 162,
++     "sFit": 162,
++     "eFit": 1038
++    },
++    {
++     "gen": 21,
++     "outcome": "ENDER-KILL",
++     "frames": 1031,
++     "sFit": 1031,
++     "eFit": 169
++    },
++    {
++     "gen": 22,
++     "outcome": "ENDER-KILL",
++     "frames": 160,
++     "sFit": 160,
++     "eFit": 1040
++    },
++    {
++     "gen": 23,
++     "outcome": "ENDER-KILL",
++     "frames": 121,
++     "sFit": 121,
++     "eFit": 1079
++    },
++    {
++     "gen": 24,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1200,
++     "eFit": 0
++    },
++    {
++     "gen": 25,
++     "outcome": "ENDER-KILL",
++     "frames": 123,
++     "sFit": 123,
++     "eFit": 1077
++    },
++    {
++     "gen": 26,
++     "outcome": "ENDER-KILL",
++     "frames": 121,
++     "sFit": 121,
++     "eFit": 1079
++    },
++    {
++     "gen": 27,
++     "outcome": "ENDER-KILL",
++     "frames": 140,
++     "sFit": 140,
++     "eFit": 1060
++    },
++    {
++     "gen": 28,
++     "outcome": "ENDER-KILL",
++     "frames": 183,
++     "sFit": 183,
++     "eFit": 1017
++    },
++    {
++     "gen": 29,
++     "outcome": "ENDER-KILL",
++     "frames": 284,
++     "sFit": 284,
++     "eFit": 916
++    },
++    {
++     "gen": 30,
++     "outcome": "ENDER-KILL",
++     "frames": 123,
++     "sFit": 123,
++     "eFit": 1077
++    },
++    {
++     "gen": 31,
++     "outcome": "ENDER-KILL",
++     "frames": 234,
++     "sFit": 234,
++     "eFit": 966
++    },
++    {
++     "gen": 32,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 0
++    },
++    {
++     "gen": 33,
++     "outcome": "ENDER-KILL",
++     "frames": 160,
++     "sFit": 160,
++     "eFit": 1040
++    },
++    {
++     "gen": 34,
++     "outcome": "ENDER-KILL",
++     "frames": 787,
++     "sFit": 887,
++     "eFit": 413
++    },
++    {
++     "gen": 35,
++     "outcome": "ENDER-KILL",
++     "frames": 641,
++     "sFit": 741,
++     "eFit": 589
++    },
++    {
++     "gen": 36,
++     "outcome": "ENDER-KILL",
++     "frames": 123,
++     "sFit": 123,
++     "eFit": 1077
++    },
++    {
++     "gen": 37,
++     "outcome": "ENDER-KILL",
++     "frames": 662,
++     "sFit": 762,
++     "eFit": 538
++    },
++    {
++     "gen": 38,
++     "outcome": "ENDER-KILL",
++     "frames": 121,
++     "sFit": 121,
++     "eFit": 1079
++    },
++    {
++     "gen": 39,
++     "outcome": "ENDER-KILL",
++     "frames": 116,
++     "sFit": 116,
++     "eFit": 1084
++    },
++    {
++     "gen": 40,
++     "outcome": "ENDER-KILL",
++     "frames": 645,
++     "sFit": 745,
++     "eFit": 555
++    }
++   ]
++  },
++  {
++   "config": {
++    "pop": 96,
++    "gens": 40,
++    "seed": 20261001,
++    "sigma": 0.12
++   },
++   "summary": {
++    "pop": 96,
++    "gens": 40,
++    "seed": 20261001,
++    "sigma": 0.12,
++    "rallyFirst5": 172,
++    "rallyLast5": 685.8,
++    "sFitFirst5": 172,
++    "sFitLast5": 805.8,
++    "kills": 40,
++    "windowNote": "windows rows [1,6) vs [36,41) of 41 h2h rows",
++    "noLearningClaim": true
++   },
++   "rows": [
++    {
++     "gen": 0,
++     "outcome": "ENDER-KILL",
++     "frames": 122,
++     "sFit": 122,
++     "eFit": 1078
++    },
++    {
++     "gen": 1,
++     "outcome": "ENDER-KILL",
++     "frames": 202,
++     "sFit": 202,
++     "eFit": 998
++    },
++    {
++     "gen": 2,
++     "outcome": "ENDER-KILL",
++     "frames": 153,
++     "sFit": 153,
++     "eFit": 1047
++    },
++    {
++     "gen": 3,
++     "outcome": "ENDER-KILL",
++     "frames": 147,
++     "sFit": 147,
++     "eFit": 1053
++    },
++    {
++     "gen": 4,
++     "outcome": "ENDER-KILL",
++     "frames": 189,
++     "sFit": 189,
++     "eFit": 1011
++    },
++    {
++     "gen": 5,
++     "outcome": "ENDER-KILL",
++     "frames": 169,
++     "sFit": 169,
++     "eFit": 1031
++    },
++    {
++     "gen": 6,
++     "outcome": "ENDER-KILL",
++     "frames": 168,
++     "sFit": 168,
++     "eFit": 1032
++    },
++    {
++     "gen": 7,
++     "outcome": "ENDER-KILL",
++     "frames": 204,
++     "sFit": 204,
++     "eFit": 996
++    },
++    {
++     "gen": 8,
++     "outcome": "ENDER-KILL",
++     "frames": 624,
++     "sFit": 724,
++     "eFit": 576
++    },
++    {
++     "gen": 9,
++     "outcome": "ENDER-KILL",
++     "frames": 138,
++     "sFit": 138,
++     "eFit": 1062
++    },
++    {
++     "gen": 10,
++     "outcome": "ENDER-KILL",
++     "frames": 310,
++     "sFit": 310,
++     "eFit": 890
++    },
++    {
++     "gen": 11,
++     "outcome": "ENDER-KILL",
++     "frames": 129,
++     "sFit": 129,
++     "eFit": 1071
++    },
++    {
++     "gen": 12,
++     "outcome": "ENDER-KILL",
++     "frames": 140,
++     "sFit": 140,
++     "eFit": 1060
++    },
++    {
++     "gen": 13,
++     "outcome": "ENDER-KILL",
++     "frames": 120,
++     "sFit": 120,
++     "eFit": 1080
++    },
++    {
++     "gen": 14,
++     "outcome": "ENDER-KILL",
++     "frames": 711,
++     "sFit": 811,
++     "eFit": 489
++    },
++    {
++     "gen": 15,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1200,
++     "eFit": 0
++    },
++    {
++     "gen": 16,
++     "outcome": "ENDER-KILL",
++     "frames": 124,
++     "sFit": 124,
++     "eFit": 1076
++    },
++    {
++     "gen": 17,
++     "outcome": "ENDER-KILL",
++     "frames": 1162,
++     "sFit": 1362,
++     "eFit": 38
++    },
++    {
++     "gen": 18,
++     "outcome": "ENDER-KILL",
++     "frames": 812,
++     "sFit": 912,
++     "eFit": 388
++    },
++    {
++     "gen": 19,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1300,
++     "eFit": 0
++    },
++    {
++     "gen": 20,
++     "outcome": "ENDER-KILL",
++     "frames": 456,
++     "sFit": 456,
++     "eFit": 744
++    },
++    {
++     "gen": 21,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1200,
++     "eFit": 0
++    },
++    {
++     "gen": 22,
++     "outcome": "ENDER-KILL",
++     "frames": 237,
++     "sFit": 237,
++     "eFit": 963
++    },
++    {
++     "gen": 23,
++     "outcome": "ENDER-KILL",
++     "frames": 480,
++     "sFit": 480,
++     "eFit": 720
++    },
++    {
++     "gen": 24,
++     "outcome": "ENDER-KILL",
++     "frames": 119,
++     "sFit": 119,
++     "eFit": 1081
++    },
++    {
++     "gen": 25,
++     "outcome": "ENDER-KILL",
++     "frames": 778,
++     "sFit": 878,
++     "eFit": 422
++    },
++    {
++     "gen": 26,
++     "outcome": "ENDER-KILL",
++     "frames": 131,
++     "sFit": 131,
++     "eFit": 1069
++    },
++    {
++     "gen": 27,
++     "outcome": "ENDER-KILL",
++     "frames": 117,
++     "sFit": 117,
++     "eFit": 1083
++    },
++    {
++     "gen": 28,
++     "outcome": "ENDER-KILL",
++     "frames": 133,
++     "sFit": 133,
++     "eFit": 1067
++    },
++    {
++     "gen": 29,
++     "outcome": "ENDER-KILL",
++     "frames": 217,
++     "sFit": 217,
++     "eFit": 983
++    },
++    {
++     "gen": 30,
++     "outcome": "ENDER-KILL",
++     "frames": 283,
++     "sFit": 283,
++     "eFit": 917
++    },
++    {
++     "gen": 31,
++     "outcome": "ENDER-KILL",
++     "frames": 685,
++     "sFit": 785,
++     "eFit": 545
++    },
++    {
++     "gen": 32,
++     "outcome": "ENDER-KILL",
++     "frames": 115,
++     "sFit": 115,
++     "eFit": 1085
++    },
++    {
++     "gen": 33,
++     "outcome": "ENDER-KILL",
++     "frames": 960,
++     "sFit": 1060,
++     "eFit": 240
++    },
++    {
++     "gen": 34,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1400,
++     "eFit": 0
++    },
++    {
++     "gen": 35,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1300,
++     "eFit": 0
++    },
++    {
++     "gen": 36,
++     "outcome": "ENDER-KILL",
++     "frames": 204,
++     "sFit": 204,
++     "eFit": 996
++    },
++    {
++     "gen": 37,
++     "outcome": "ENDER-KILL",
++     "frames": 691,
++     "sFit": 691,
++     "eFit": 509
++    },
++    {
++     "gen": 38,
++     "outcome": "ENDER-KILL",
++     "frames": 886,
++     "sFit": 1086,
++     "eFit": 344
++    },
++    {
++     "gen": 39,
++     "outcome": "ENDER-KILL",
++     "frames": 521,
++     "sFit": 621,
++     "eFit": 679
++    },
++    {
++     "gen": 40,
++     "outcome": "ENDER-KILL",
++     "frames": 1127,
++     "sFit": 1427,
++     "eFit": 73
++    }
++   ]
++  },
++  {
++   "config": {
++    "pop": 96,
++    "gens": 40,
++    "seed": 20261002,
++    "sigma": 0.12
++   },
++   "summary": {
++    "pop": 96,
++    "gens": 40,
++    "seed": 20261002,
++    "sigma": 0.12,
++    "rallyFirst5": 469.6,
++    "rallyLast5": 637.8,
++    "sFitFirst5": 509.6,
++    "sFitLast5": 737.8,
++    "kills": 40,
++    "windowNote": "windows rows [1,6) vs [36,41) of 41 h2h rows",
++    "noLearningClaim": true
++   },
++   "rows": [
++    {
++     "gen": 0,
++     "outcome": "ENDER-KILL",
++     "frames": 156,
++     "sFit": 156,
++     "eFit": 1044
++    },
++    {
++     "gen": 1,
++     "outcome": "ENDER-KILL",
++     "frames": 120,
++     "sFit": 120,
++     "eFit": 1080
++    },
++    {
++     "gen": 2,
++     "outcome": "ENDER-KILL",
++     "frames": 115,
++     "sFit": 115,
++     "eFit": 1085
++    },
++    {
++     "gen": 3,
++     "outcome": "ENDER-KILL",
++     "frames": 131,
++     "sFit": 131,
++     "eFit": 1069
++    },
++    {
++     "gen": 4,
++     "outcome": "ENDER-KILL",
++     "frames": 1027,
++     "sFit": 1227,
++     "eFit": 173
++    },
++    {
++     "gen": 5,
++     "outcome": "ENDER-KILL",
++     "frames": 955,
++     "sFit": 955,
++     "eFit": 245
++    },
++    {
++     "gen": 6,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1300,
++     "eFit": 0
++    },
++    {
++     "gen": 7,
++     "outcome": "ENDER-KILL",
++     "frames": 814,
++     "sFit": 914,
++     "eFit": 386
++    },
++    {
++     "gen": 8,
++     "outcome": "ENDER-KILL",
++     "frames": 436,
++     "sFit": 436,
++     "eFit": 764
++    },
++    {
++     "gen": 9,
++     "outcome": "ENDER-KILL",
++     "frames": 109,
++     "sFit": 109,
++     "eFit": 1091
++    },
++    {
++     "gen": 10,
++     "outcome": "ENDER-KILL",
++     "frames": 120,
++     "sFit": 120,
++     "eFit": 1080
++    },
++    {
++     "gen": 11,
++     "outcome": "ENDER-KILL",
++     "frames": 125,
++     "sFit": 125,
++     "eFit": 1075
++    },
++    {
++     "gen": 12,
++     "outcome": "ENDER-KILL",
++     "frames": 661,
++     "sFit": 761,
++     "eFit": 539
++    },
++    {
++     "gen": 13,
++     "outcome": "ENDER-KILL",
++     "frames": 532,
++     "sFit": 632,
++     "eFit": 668
++    },
++    {
++     "gen": 14,
++     "outcome": "ENDER-KILL",
++     "frames": 196,
++     "sFit": 196,
++     "eFit": 1004
++    },
++    {
++     "gen": 15,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1400,
++     "eFit": 0
++    },
++    {
++     "gen": 16,
++     "outcome": "ENDER-KILL",
++     "frames": 677,
++     "sFit": 777,
++     "eFit": 523
++    },
++    {
++     "gen": 17,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1600,
++     "eFit": 5
++    },
++    {
++     "gen": 18,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1400,
++     "eFit": 5
++    },
++    {
++     "gen": 19,
++     "outcome": "ENDER-KILL",
++     "frames": 953,
++     "sFit": 1153,
++     "eFit": 277
++    },
++    {
++     "gen": 20,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1300,
++     "eFit": 0
++    },
++    {
++     "gen": 21,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1200,
++     "eFit": 0
++    },
++    {
++     "gen": 22,
++     "outcome": "ENDER-KILL",
++     "frames": 152,
++     "sFit": 152,
++     "eFit": 1048
++    },
++    {
++     "gen": 23,
++     "outcome": "ENDER-KILL",
++     "frames": 120,
++     "sFit": 120,
++     "eFit": 1080
++    },
++    {
++     "gen": 24,
++     "outcome": "ENDER-KILL",
++     "frames": 621,
++     "sFit": 721,
++     "eFit": 579
++    },
++    {
++     "gen": 25,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1300,
++     "eFit": 0
++    },
++    {
++     "gen": 26,
++     "outcome": "ENDER-KILL",
++     "frames": 587,
++     "sFit": 687,
++     "eFit": 613
++    },
++    {
++     "gen": 27,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 0
++    },
++    {
++     "gen": 28,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1600,
++     "eFit": 0
++    },
++    {
++     "gen": 29,
++     "outcome": "ENDER-KILL",
++     "frames": 902,
++     "sFit": 1102,
++     "eFit": 298
++    },
++    {
++     "gen": 30,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1200,
++     "eFit": 0
++    },
++    {
++     "gen": 31,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 0
++    },
++    {
++     "gen": 32,
++     "outcome": "ENDER-KILL",
++     "frames": 864,
++     "sFit": 1064,
++     "eFit": 336
++    },
++    {
++     "gen": 33,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1400,
++     "eFit": 0
++    },
++    {
++     "gen": 34,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 5
++    },
++    {
++     "gen": 35,
++     "outcome": "ENDER-KILL",
++     "frames": 368,
++     "sFit": 368,
++     "eFit": 832
++    },
++    {
++     "gen": 36,
++     "outcome": "ENDER-KILL",
++     "frames": 893,
++     "sFit": 1093,
++     "eFit": 337
++    },
++    {
++     "gen": 37,
++     "outcome": "ENDER-KILL",
++     "frames": 189,
++     "sFit": 189,
++     "eFit": 1011
++    },
++    {
++     "gen": 38,
++     "outcome": "ENDER-KILL",
++     "frames": 797,
++     "sFit": 897,
++     "eFit": 403
++    },
++    {
++     "gen": 39,
++     "outcome": "ENDER-KILL",
++     "frames": 682,
++     "sFit": 782,
++     "eFit": 518
++    },
++    {
++     "gen": 40,
++     "outcome": "ENDER-KILL",
++     "frames": 628,
++     "sFit": 728,
++     "eFit": 572
++    }
++   ]
++  },
++  {
++   "config": {
++    "pop": 192,
++    "gens": 40,
++    "seed": 20261001,
++    "sigma": 0.12
++   },
++   "summary": {
++    "pop": 192,
++    "gens": 40,
++    "seed": 20261001,
++    "sigma": 0.12,
++    "rallyFirst5": 418.8,
++    "rallyLast5": 750.4,
++    "sFitFirst5": 458.8,
++    "sFitLast5": 910.4,
++    "kills": 40,
++    "windowNote": "windows rows [1,6) vs [36,41) of 41 h2h rows",
++    "noLearningClaim": true
++   },
++   "rows": [
++    {
++     "gen": 0,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1300,
++     "eFit": 0
++    },
++    {
++     "gen": 1,
++     "outcome": "ENDER-KILL",
++     "frames": 128,
++     "sFit": 128,
++     "eFit": 1072
++    },
++    {
++     "gen": 2,
++     "outcome": "ENDER-KILL",
++     "frames": 643,
++     "sFit": 743,
++     "eFit": 557
++    },
++    {
++     "gen": 3,
++     "outcome": "ENDER-KILL",
++     "frames": 586,
++     "sFit": 586,
++     "eFit": 614
++    },
++    {
++     "gen": 4,
++     "outcome": "ENDER-KILL",
++     "frames": 612,
++     "sFit": 712,
++     "eFit": 588
++    },
++    {
++     "gen": 5,
++     "outcome": "ENDER-KILL",
++     "frames": 125,
++     "sFit": 125,
++     "eFit": 1075
++    },
++    {
++     "gen": 6,
++     "outcome": "ENDER-KILL",
++     "frames": 986,
++     "sFit": 986,
++     "eFit": 214
++    },
++    {
++     "gen": 7,
++     "outcome": "ENDER-KILL",
++     "frames": 763,
++     "sFit": 763,
++     "eFit": 437
++    },
++    {
++     "gen": 8,
++     "outcome": "ENDER-KILL",
++     "frames": 111,
++     "sFit": 111,
++     "eFit": 1089
++    },
++    {
++     "gen": 9,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1300,
++     "eFit": 0
++    },
++    {
++     "gen": 10,
++     "outcome": "ENDER-KILL",
++     "frames": 680,
++     "sFit": 780,
++     "eFit": 520
++    },
++    {
++     "gen": 11,
++     "outcome": "ENDER-KILL",
++     "frames": 162,
++     "sFit": 162,
++     "eFit": 1038
++    },
++    {
++     "gen": 12,
++     "outcome": "ENDER-KILL",
++     "frames": 112,
++     "sFit": 112,
++     "eFit": 1088
++    },
++    {
++     "gen": 13,
++     "outcome": "ENDER-KILL",
++     "frames": 760,
++     "sFit": 860,
++     "eFit": 470
++    },
++    {
++     "gen": 14,
++     "outcome": "ENDER-KILL",
++     "frames": 568,
++     "sFit": 668,
++     "eFit": 662
++    },
++    {
++     "gen": 15,
++     "outcome": "ENDER-KILL",
++     "frames": 1135,
++     "sFit": 1335,
++     "eFit": 65
++    },
++    {
++     "gen": 16,
++     "outcome": "ENDER-KILL",
++     "frames": 662,
++     "sFit": 762,
++     "eFit": 538
++    },
++    {
++     "gen": 17,
++     "outcome": "ENDER-KILL",
++     "frames": 227,
++     "sFit": 227,
++     "eFit": 973
++    },
++    {
++     "gen": 18,
++     "outcome": "ENDER-KILL",
++     "frames": 126,
++     "sFit": 126,
++     "eFit": 1074
++    },
++    {
++     "gen": 19,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1400,
++     "eFit": 0
++    },
++    {
++     "gen": 20,
++     "outcome": "ENDER-KILL",
++     "frames": 126,
++     "sFit": 126,
++     "eFit": 1074
++    },
++    {
++     "gen": 21,
++     "outcome": "ENDER-KILL",
++     "frames": 123,
++     "sFit": 123,
++     "eFit": 1077
++    },
++    {
++     "gen": 22,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 10
++    },
++    {
++     "gen": 23,
++     "outcome": "ENDER-KILL",
++     "frames": 163,
++     "sFit": 163,
++     "eFit": 1037
++    },
++    {
++     "gen": 24,
++     "outcome": "ENDER-KILL",
++     "frames": 125,
++     "sFit": 125,
++     "eFit": 1075
++    },
++    {
++     "gen": 25,
++     "outcome": "ENDER-KILL",
++     "frames": 601,
++     "sFit": 701,
++     "eFit": 599
++    },
++    {
++     "gen": 26,
++     "outcome": "ENDER-KILL",
++     "frames": 961,
++     "sFit": 961,
++     "eFit": 239
++    },
++    {
++     "gen": 27,
++     "outcome": "ENDER-KILL",
++     "frames": 680,
++     "sFit": 780,
++     "eFit": 550
++    },
++    {
++     "gen": 28,
++     "outcome": "ENDER-KILL",
++     "frames": 110,
++     "sFit": 110,
++     "eFit": 1090
++    },
++    {
++     "gen": 29,
++     "outcome": "ENDER-KILL",
++     "frames": 189,
++     "sFit": 189,
++     "eFit": 1011
++    },
++    {
++     "gen": 30,
++     "outcome": "ENDER-KILL",
++     "frames": 122,
++     "sFit": 122,
++     "eFit": 1078
++    },
++    {
++     "gen": 31,
++     "outcome": "ENDER-KILL",
++     "frames": 122,
++     "sFit": 122,
++     "eFit": 1078
++    },
++    {
++     "gen": 32,
++     "outcome": "ENDER-KILL",
++     "frames": 120,
++     "sFit": 120,
++     "eFit": 1080
++    },
++    {
++     "gen": 33,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 0
++    },
++    {
++     "gen": 34,
++     "outcome": "ENDER-KILL",
++     "frames": 1184,
++     "sFit": 1484,
++     "eFit": 106
++    },
++    {
++     "gen": 35,
++     "outcome": "ENDER-KILL",
++     "frames": 129,
++     "sFit": 129,
++     "eFit": 1071
++    },
++    {
++     "gen": 36,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 5
++    },
++    {
++     "gen": 37,
++     "outcome": "ENDER-KILL",
++     "frames": 236,
++     "sFit": 236,
++     "eFit": 964
++    },
++    {
++     "gen": 38,
++     "outcome": "ENDER-KILL",
++     "frames": 983,
++     "sFit": 1083,
++     "eFit": 217
++    },
++    {
++     "gen": 39,
++     "outcome": "ENDER-KILL",
++     "frames": 133,
++     "sFit": 133,
++     "eFit": 1067
++    },
++    {
++     "gen": 40,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1600,
++     "eFit": 15
++    }
++   ]
++  },
++  {
++   "config": {
++    "pop": 192,
++    "gens": 40,
++    "seed": 20261002,
++    "sigma": 0.12
++   },
++   "summary": {
++    "pop": 192,
++    "gens": 40,
++    "seed": 20261002,
++    "sigma": 0.12,
++    "rallyFirst5": 480.6,
++    "rallyLast5": 271,
++    "sFitFirst5": 540.6,
++    "sFitLast5": 291,
++    "kills": 40,
++    "windowNote": "windows rows [1,6) vs [36,41) of 41 h2h rows",
++    "noLearningClaim": true
++   },
++   "rows": [
++    {
++     "gen": 0,
++     "outcome": "ENDER-KILL",
++     "frames": 640,
++     "sFit": 740,
++     "eFit": 560
++    },
++    {
++     "gen": 1,
++     "outcome": "ENDER-KILL",
++     "frames": 251,
++     "sFit": 251,
++     "eFit": 949
++    },
++    {
++     "gen": 2,
++     "outcome": "ENDER-KILL",
++     "frames": 132,
++     "sFit": 132,
++     "eFit": 1068
++    },
++    {
++     "gen": 3,
++     "outcome": "ENDER-KILL",
++     "frames": 743,
++     "sFit": 843,
++     "eFit": 457
++    },
++    {
++     "gen": 4,
++     "outcome": "ENDER-KILL",
++     "frames": 629,
++     "sFit": 729,
++     "eFit": 601
++    },
++    {
++     "gen": 5,
++     "outcome": "ENDER-KILL",
++     "frames": 648,
++     "sFit": 748,
++     "eFit": 582
++    },
++    {
++     "gen": 6,
++     "outcome": "ENDER-KILL",
++     "frames": 544,
++     "sFit": 544,
++     "eFit": 656
++    },
++    {
++     "gen": 7,
++     "outcome": "ENDER-KILL",
++     "frames": 1071,
++     "sFit": 1071,
++     "eFit": 129
++    },
++    {
++     "gen": 8,
++     "outcome": "ENDER-KILL",
++     "frames": 161,
++     "sFit": 161,
++     "eFit": 1039
++    },
++    {
++     "gen": 9,
++     "outcome": "ENDER-KILL",
++     "frames": 124,
++     "sFit": 124,
++     "eFit": 1076
++    },
++    {
++     "gen": 10,
++     "outcome": "ENDER-KILL",
++     "frames": 604,
++     "sFit": 704,
++     "eFit": 596
++    },
++    {
++     "gen": 11,
++     "outcome": "ENDER-KILL",
++     "frames": 124,
++     "sFit": 124,
++     "eFit": 1076
++    },
++    {
++     "gen": 12,
++     "outcome": "ENDER-KILL",
++     "frames": 130,
++     "sFit": 130,
++     "eFit": 1070
++    },
++    {
++     "gen": 13,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1300,
++     "eFit": 0
++    },
++    {
++     "gen": 14,
++     "outcome": "ENDER-KILL",
++     "frames": 618,
++     "sFit": 718,
++     "eFit": 582
++    },
++    {
++     "gen": 15,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1200,
++     "eFit": 0
++    },
++    {
++     "gen": 16,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1200,
++     "eFit": 0
++    },
++    {
++     "gen": 17,
++     "outcome": "ENDER-KILL",
++     "frames": 1126,
++     "sFit": 1326,
++     "eFit": 134
++    },
++    {
++     "gen": 18,
++     "outcome": "ENDER-KILL",
++     "frames": 145,
++     "sFit": 145,
++     "eFit": 1055
++    },
++    {
++     "gen": 19,
++     "outcome": "ENDER-KILL",
++     "frames": 783,
++     "sFit": 883,
++     "eFit": 417
++    },
++    {
++     "gen": 20,
++     "outcome": "ENDER-KILL",
++     "frames": 704,
++     "sFit": 704,
++     "eFit": 496
++    },
++    {
++     "gen": 21,
++     "outcome": "ENDER-KILL",
++     "frames": 664,
++     "sFit": 664,
++     "eFit": 536
++    },
++    {
++     "gen": 22,
++     "outcome": "ENDER-KILL",
++     "frames": 125,
++     "sFit": 125,
++     "eFit": 1075
++    },
++    {
++     "gen": 23,
++     "outcome": "ENDER-KILL",
++     "frames": 131,
++     "sFit": 131,
++     "eFit": 1069
++    },
++    {
++     "gen": 24,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 5
++    },
++    {
++     "gen": 25,
++     "outcome": "ENDER-KILL",
++     "frames": 654,
++     "sFit": 654,
++     "eFit": 546
++    },
++    {
++     "gen": 26,
++     "outcome": "ENDER-KILL",
++     "frames": 987,
++     "sFit": 1187,
++     "eFit": 213
++    },
++    {
++     "gen": 27,
++     "outcome": "ENDER-KILL",
++     "frames": 512,
++     "sFit": 612,
++     "eFit": 718
++    },
++    {
++     "gen": 28,
++     "outcome": "ENDER-KILL",
++     "frames": 901,
++     "sFit": 901,
++     "eFit": 299
++    },
++    {
++     "gen": 29,
++     "outcome": "ENDER-KILL",
++     "frames": 130,
++     "sFit": 130,
++     "eFit": 1070
++    },
++    {
++     "gen": 30,
++     "outcome": "ENDER-KILL",
++     "frames": 119,
++     "sFit": 119,
++     "eFit": 1081
++    },
++    {
++     "gen": 31,
++     "outcome": "ENDER-KILL",
++     "frames": 124,
++     "sFit": 124,
++     "eFit": 1076
++    },
++    {
++     "gen": 32,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 0
++    },
++    {
++     "gen": 33,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1400,
++     "eFit": 0
++    },
++    {
++     "gen": 34,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1300,
++     "eFit": 0
++    },
++    {
++     "gen": 35,
++     "outcome": "ENDER-KILL",
++     "frames": 960,
++     "sFit": 1160,
++     "eFit": 240
++    },
++    {
++     "gen": 36,
++     "outcome": "ENDER-KILL",
++     "frames": 120,
++     "sFit": 120,
++     "eFit": 1080
++    },
++    {
++     "gen": 37,
++     "outcome": "ENDER-KILL",
++     "frames": 127,
++     "sFit": 127,
++     "eFit": 1073
++    },
++    {
++     "gen": 38,
++     "outcome": "ENDER-KILL",
++     "frames": 209,
++     "sFit": 209,
++     "eFit": 991
++    },
++    {
++     "gen": 39,
++     "outcome": "ENDER-KILL",
++     "frames": 780,
++     "sFit": 880,
++     "eFit": 420
++    },
++    {
++     "gen": 40,
++     "outcome": "ENDER-KILL",
++     "frames": 119,
++     "sFit": 119,
++     "eFit": 1081
++    }
++   ]
++  },
++  {
++   "config": {
++    "pop": 96,
++    "gens": 160,
++    "seed": 20261001,
++    "sigma": 0.12
++   },
++   "summary": {
++    "pop": 96,
++    "gens": 160,
++    "seed": 20261001,
++    "sigma": 0.12,
++    "rallyFirst5": 172,
++    "rallyLast5": 849.4,
++    "sFitFirst5": 172,
++    "sFitLast5": 1009.4,
++    "kills": 160,
++    "windowNote": "windows rows [1,6) vs [156,161) of 161 h2h rows",
++    "noLearningClaim": true
++   },
++   "rows": [
++    {
++     "gen": 0,
++     "outcome": "ENDER-KILL",
++     "frames": 122,
++     "sFit": 122,
++     "eFit": 1078
++    },
++    {
++     "gen": 1,
++     "outcome": "ENDER-KILL",
++     "frames": 202,
++     "sFit": 202,
++     "eFit": 998
++    },
++    {
++     "gen": 2,
++     "outcome": "ENDER-KILL",
++     "frames": 153,
++     "sFit": 153,
++     "eFit": 1047
++    },
++    {
++     "gen": 3,
++     "outcome": "ENDER-KILL",
++     "frames": 147,
++     "sFit": 147,
++     "eFit": 1053
++    },
++    {
++     "gen": 4,
++     "outcome": "ENDER-KILL",
++     "frames": 189,
++     "sFit": 189,
++     "eFit": 1011
++    },
++    {
++     "gen": 5,
++     "outcome": "ENDER-KILL",
++     "frames": 169,
++     "sFit": 169,
++     "eFit": 1031
++    },
++    {
++     "gen": 6,
++     "outcome": "ENDER-KILL",
++     "frames": 168,
++     "sFit": 168,
++     "eFit": 1032
++    },
++    {
++     "gen": 7,
++     "outcome": "ENDER-KILL",
++     "frames": 204,
++     "sFit": 204,
++     "eFit": 996
++    },
++    {
++     "gen": 8,
++     "outcome": "ENDER-KILL",
++     "frames": 624,
++     "sFit": 724,
++     "eFit": 576
++    },
++    {
++     "gen": 9,
++     "outcome": "ENDER-KILL",
++     "frames": 138,
++     "sFit": 138,
++     "eFit": 1062
++    },
++    {
++     "gen": 10,
++     "outcome": "ENDER-KILL",
++     "frames": 310,
++     "sFit": 310,
++     "eFit": 890
++    },
++    {
++     "gen": 11,
++     "outcome": "ENDER-KILL",
++     "frames": 129,
++     "sFit": 129,
++     "eFit": 1071
++    },
++    {
++     "gen": 12,
++     "outcome": "ENDER-KILL",
++     "frames": 140,
++     "sFit": 140,
++     "eFit": 1060
++    },
++    {
++     "gen": 13,
++     "outcome": "ENDER-KILL",
++     "frames": 120,
++     "sFit": 120,
++     "eFit": 1080
++    },
++    {
++     "gen": 14,
++     "outcome": "ENDER-KILL",
++     "frames": 711,
++     "sFit": 811,
++     "eFit": 489
++    },
++    {
++     "gen": 15,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1200,
++     "eFit": 0
++    },
++    {
++     "gen": 16,
++     "outcome": "ENDER-KILL",
++     "frames": 124,
++     "sFit": 124,
++     "eFit": 1076
++    },
++    {
++     "gen": 17,
++     "outcome": "ENDER-KILL",
++     "frames": 1162,
++     "sFit": 1362,
++     "eFit": 38
++    },
++    {
++     "gen": 18,
++     "outcome": "ENDER-KILL",
++     "frames": 812,
++     "sFit": 912,
++     "eFit": 388
++    },
++    {
++     "gen": 19,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1300,
++     "eFit": 0
++    },
++    {
++     "gen": 20,
++     "outcome": "ENDER-KILL",
++     "frames": 456,
++     "sFit": 456,
++     "eFit": 744
++    },
++    {
++     "gen": 21,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1200,
++     "eFit": 0
++    },
++    {
++     "gen": 22,
++     "outcome": "ENDER-KILL",
++     "frames": 237,
++     "sFit": 237,
++     "eFit": 963
++    },
++    {
++     "gen": 23,
++     "outcome": "ENDER-KILL",
++     "frames": 480,
++     "sFit": 480,
++     "eFit": 720
++    },
++    {
++     "gen": 24,
++     "outcome": "ENDER-KILL",
++     "frames": 119,
++     "sFit": 119,
++     "eFit": 1081
++    },
++    {
++     "gen": 25,
++     "outcome": "ENDER-KILL",
++     "frames": 778,
++     "sFit": 878,
++     "eFit": 422
++    },
++    {
++     "gen": 26,
++     "outcome": "ENDER-KILL",
++     "frames": 131,
++     "sFit": 131,
++     "eFit": 1069
++    },
++    {
++     "gen": 27,
++     "outcome": "ENDER-KILL",
++     "frames": 117,
++     "sFit": 117,
++     "eFit": 1083
++    },
++    {
++     "gen": 28,
++     "outcome": "ENDER-KILL",
++     "frames": 133,
++     "sFit": 133,
++     "eFit": 1067
++    },
++    {
++     "gen": 29,
++     "outcome": "ENDER-KILL",
++     "frames": 217,
++     "sFit": 217,
++     "eFit": 983
++    },
++    {
++     "gen": 30,
++     "outcome": "ENDER-KILL",
++     "frames": 283,
++     "sFit": 283,
++     "eFit": 917
++    },
++    {
++     "gen": 31,
++     "outcome": "ENDER-KILL",
++     "frames": 685,
++     "sFit": 785,
++     "eFit": 545
++    },
++    {
++     "gen": 32,
++     "outcome": "ENDER-KILL",
++     "frames": 115,
++     "sFit": 115,
++     "eFit": 1085
++    },
++    {
++     "gen": 33,
++     "outcome": "ENDER-KILL",
++     "frames": 960,
++     "sFit": 1060,
++     "eFit": 240
++    },
++    {
++     "gen": 34,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1400,
++     "eFit": 0
++    },
++    {
++     "gen": 35,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1300,
++     "eFit": 0
++    },
++    {
++     "gen": 36,
++     "outcome": "ENDER-KILL",
++     "frames": 204,
++     "sFit": 204,
++     "eFit": 996
++    },
++    {
++     "gen": 37,
++     "outcome": "ENDER-KILL",
++     "frames": 691,
++     "sFit": 691,
++     "eFit": 509
++    },
++    {
++     "gen": 38,
++     "outcome": "ENDER-KILL",
++     "frames": 886,
++     "sFit": 1086,
++     "eFit": 344
++    },
++    {
++     "gen": 39,
++     "outcome": "ENDER-KILL",
++     "frames": 521,
++     "sFit": 621,
++     "eFit": 679
++    },
++    {
++     "gen": 40,
++     "outcome": "ENDER-KILL",
++     "frames": 1127,
++     "sFit": 1427,
++     "eFit": 73
++    },
++    {
++     "gen": 41,
++     "outcome": "ENDER-KILL",
++     "frames": 1077,
++     "sFit": 1277,
++     "eFit": 123
++    },
++    {
++     "gen": 42,
++     "outcome": "ENDER-KILL",
++     "frames": 521,
++     "sFit": 621,
++     "eFit": 679
++    },
++    {
++     "gen": 43,
++     "outcome": "ENDER-KILL",
++     "frames": 763,
++     "sFit": 863,
++     "eFit": 437
++    },
++    {
++     "gen": 44,
++     "outcome": "ENDER-KILL",
++     "frames": 285,
++     "sFit": 285,
++     "eFit": 915
++    },
++    {
++     "gen": 45,
++     "outcome": "ENDER-KILL",
++     "frames": 110,
++     "sFit": 110,
++     "eFit": 1090
++    },
++    {
++     "gen": 46,
++     "outcome": "ENDER-KILL",
++     "frames": 198,
++     "sFit": 198,
++     "eFit": 1002
++    },
++    {
++     "gen": 47,
++     "outcome": "ENDER-KILL",
++     "frames": 560,
++     "sFit": 660,
++     "eFit": 640
++    },
++    {
++     "gen": 48,
++     "outcome": "ENDER-KILL",
++     "frames": 121,
++     "sFit": 121,
++     "eFit": 1079
++    },
++    {
++     "gen": 49,
++     "outcome": "ENDER-KILL",
++     "frames": 254,
++     "sFit": 254,
++     "eFit": 946
++    },
++    {
++     "gen": 50,
++     "outcome": "ENDER-KILL",
++     "frames": 738,
++     "sFit": 838,
++     "eFit": 492
++    },
++    {
++     "gen": 51,
++     "outcome": "ENDER-KILL",
++     "frames": 131,
++     "sFit": 131,
++     "eFit": 1069
++    },
++    {
++     "gen": 52,
++     "outcome": "ENDER-KILL",
++     "frames": 422,
++     "sFit": 422,
++     "eFit": 778
++    },
++    {
++     "gen": 53,
++     "outcome": "ENDER-KILL",
++     "frames": 123,
++     "sFit": 123,
++     "eFit": 1077
++    },
++    {
++     "gen": 54,
++     "outcome": "ENDER-KILL",
++     "frames": 118,
++     "sFit": 118,
++     "eFit": 1082
++    },
++    {
++     "gen": 55,
++     "outcome": "ENDER-KILL",
++     "frames": 827,
++     "sFit": 927,
++     "eFit": 373
++    },
++    {
++     "gen": 56,
++     "outcome": "ENDER-KILL",
++     "frames": 795,
++     "sFit": 895,
++     "eFit": 405
++    },
++    {
++     "gen": 57,
++     "outcome": "ENDER-KILL",
++     "frames": 469,
++     "sFit": 469,
++     "eFit": 731
++    },
++    {
++     "gen": 58,
++     "outcome": "ENDER-KILL",
++     "frames": 562,
++     "sFit": 662,
++     "eFit": 638
++    },
++    {
++     "gen": 59,
++     "outcome": "ENDER-KILL",
++     "frames": 298,
++     "sFit": 298,
++     "eFit": 902
++    },
++    {
++     "gen": 60,
++     "outcome": "ENDER-KILL",
++     "frames": 161,
++     "sFit": 161,
++     "eFit": 1039
++    },
++    {
++     "gen": 61,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 0
++    },
++    {
++     "gen": 62,
++     "outcome": "ENDER-KILL",
++     "frames": 132,
++     "sFit": 132,
++     "eFit": 1068
++    },
++    {
++     "gen": 63,
++     "outcome": "ENDER-KILL",
++     "frames": 417,
++     "sFit": 417,
++     "eFit": 783
++    },
++    {
++     "gen": 64,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1400,
++     "eFit": 0
++    },
++    {
++     "gen": 65,
++     "outcome": "ENDER-KILL",
++     "frames": 831,
++     "sFit": 1031,
++     "eFit": 369
++    },
++    {
++     "gen": 66,
++     "outcome": "ENDER-KILL",
++     "frames": 591,
++     "sFit": 591,
++     "eFit": 609
++    },
++    {
++     "gen": 67,
++     "outcome": "ENDER-KILL",
++     "frames": 616,
++     "sFit": 716,
++     "eFit": 584
++    },
++    {
++     "gen": 68,
++     "outcome": "ENDER-KILL",
++     "frames": 711,
++     "sFit": 711,
++     "eFit": 489
++    },
++    {
++     "gen": 69,
++     "outcome": "ENDER-KILL",
++     "frames": 458,
++     "sFit": 458,
++     "eFit": 742
++    },
++    {
++     "gen": 70,
++     "outcome": "ENDER-KILL",
++     "frames": 520,
++     "sFit": 620,
++     "eFit": 680
++    },
++    {
++     "gen": 71,
++     "outcome": "ENDER-KILL",
++     "frames": 641,
++     "sFit": 741,
++     "eFit": 559
++    },
++    {
++     "gen": 72,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1400,
++     "eFit": 5
++    },
++    {
++     "gen": 73,
++     "outcome": "ENDER-KILL",
++     "frames": 1084,
++     "sFit": 1284,
++     "eFit": 116
++    },
++    {
++     "gen": 74,
++     "outcome": "ENDER-KILL",
++     "frames": 125,
++     "sFit": 125,
++     "eFit": 1075
++    },
++    {
++     "gen": 75,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 0
++    },
++    {
++     "gen": 76,
++     "outcome": "ENDER-KILL",
++     "frames": 699,
++     "sFit": 699,
++     "eFit": 501
++    },
++    {
++     "gen": 77,
++     "outcome": "ENDER-KILL",
++     "frames": 939,
++     "sFit": 1039,
++     "eFit": 261
++    },
++    {
++     "gen": 78,
++     "outcome": "ENDER-KILL",
++     "frames": 528,
++     "sFit": 628,
++     "eFit": 672
++    },
++    {
++     "gen": 79,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1200,
++     "eFit": 0
++    },
++    {
++     "gen": 80,
++     "outcome": "ENDER-KILL",
++     "frames": 295,
++     "sFit": 295,
++     "eFit": 905
++    },
++    {
++     "gen": 81,
++     "outcome": "ENDER-KILL",
++     "frames": 510,
++     "sFit": 510,
++     "eFit": 690
++    },
++    {
++     "gen": 82,
++     "outcome": "ENDER-KILL",
++     "frames": 590,
++     "sFit": 590,
++     "eFit": 610
++    },
++    {
++     "gen": 83,
++     "outcome": "ENDER-KILL",
++     "frames": 132,
++     "sFit": 132,
++     "eFit": 1068
++    },
++    {
++     "gen": 84,
++     "outcome": "ENDER-KILL",
++     "frames": 130,
++     "sFit": 130,
++     "eFit": 1070
++    },
++    {
++     "gen": 85,
++     "outcome": "ENDER-KILL",
++     "frames": 977,
++     "sFit": 1177,
++     "eFit": 253
++    },
++    {
++     "gen": 86,
++     "outcome": "ENDER-KILL",
++     "frames": 1094,
++     "sFit": 1194,
++     "eFit": 106
++    },
++    {
++     "gen": 87,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 5
++    },
++    {
++     "gen": 88,
++     "outcome": "ENDER-KILL",
++     "frames": 405,
++     "sFit": 405,
++     "eFit": 795
++    },
++    {
++     "gen": 89,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1400,
++     "eFit": 0
++    },
++    {
++     "gen": 90,
++     "outcome": "ENDER-KILL",
++     "frames": 575,
++     "sFit": 675,
++     "eFit": 655
++    },
++    {
++     "gen": 91,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1200,
++     "eFit": 0
++    },
++    {
++     "gen": 92,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 0
++    },
++    {
++     "gen": 93,
++     "outcome": "ENDER-KILL",
++     "frames": 268,
++     "sFit": 268,
++     "eFit": 932
++    },
++    {
++     "gen": 94,
++     "outcome": "ENDER-KILL",
++     "frames": 1104,
++     "sFit": 1304,
++     "eFit": 96
++    },
++    {
++     "gen": 95,
++     "outcome": "ENDER-KILL",
++     "frames": 904,
++     "sFit": 1104,
++     "eFit": 326
++    },
++    {
++     "gen": 96,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 0
++    },
++    {
++     "gen": 97,
++     "outcome": "ENDER-KILL",
++     "frames": 504,
++     "sFit": 604,
++     "eFit": 696
++    },
++    {
++     "gen": 98,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 5
++    },
++    {
++     "gen": 99,
++     "outcome": "ENDER-KILL",
++     "frames": 943,
++     "sFit": 1043,
++     "eFit": 257
++    },
++    {
++     "gen": 100,
++     "outcome": "ENDER-KILL",
++     "frames": 963,
++     "sFit": 1063,
++     "eFit": 237
++    },
++    {
++     "gen": 101,
++     "outcome": "ENDER-KILL",
++     "frames": 958,
++     "sFit": 1158,
++     "eFit": 242
++    },
++    {
++     "gen": 102,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 0
++    },
++    {
++     "gen": 103,
++     "outcome": "ENDER-KILL",
++     "frames": 611,
++     "sFit": 711,
++     "eFit": 589
++    },
++    {
++     "gen": 104,
++     "outcome": "ENDER-KILL",
++     "frames": 827,
++     "sFit": 1027,
++     "eFit": 373
++    },
++    {
++     "gen": 105,
++     "outcome": "ENDER-KILL",
++     "frames": 678,
++     "sFit": 678,
++     "eFit": 522
++    },
++    {
++     "gen": 106,
++     "outcome": "ENDER-KILL",
++     "frames": 567,
++     "sFit": 667,
++     "eFit": 633
++    },
++    {
++     "gen": 107,
++     "outcome": "ENDER-KILL",
++     "frames": 621,
++     "sFit": 721,
++     "eFit": 579
++    },
++    {
++     "gen": 108,
++     "outcome": "ENDER-KILL",
++     "frames": 758,
++     "sFit": 858,
++     "eFit": 442
++    },
++    {
++     "gen": 109,
++     "outcome": "ENDER-KILL",
++     "frames": 900,
++     "sFit": 900,
++     "eFit": 300
++    },
++    {
++     "gen": 110,
++     "outcome": "ENDER-KILL",
++     "frames": 120,
++     "sFit": 120,
++     "eFit": 1080
++    },
++    {
++     "gen": 111,
++     "outcome": "ENDER-KILL",
++     "frames": 1172,
++     "sFit": 1472,
++     "eFit": 28
++    },
++    {
++     "gen": 112,
++     "outcome": "ENDER-KILL",
++     "frames": 162,
++     "sFit": 162,
++     "eFit": 1038
++    },
++    {
++     "gen": 113,
++     "outcome": "ENDER-KILL",
++     "frames": 751,
++     "sFit": 851,
++     "eFit": 449
++    },
++    {
++     "gen": 114,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 0
++    },
++    {
++     "gen": 115,
++     "outcome": "ENDER-KILL",
++     "frames": 555,
++     "sFit": 655,
++     "eFit": 645
++    },
++    {
++     "gen": 116,
++     "outcome": "ENDER-KILL",
++     "frames": 960,
++     "sFit": 1160,
++     "eFit": 240
++    },
++    {
++     "gen": 117,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1300,
++     "eFit": 0
++    },
++    {
++     "gen": 118,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1400,
++     "eFit": 0
++    },
++    {
++     "gen": 119,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 0
++    },
++    {
++     "gen": 120,
++     "outcome": "ENDER-KILL",
++     "frames": 425,
++     "sFit": 425,
++     "eFit": 775
++    },
++    {
++     "gen": 121,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1300,
++     "eFit": 0
++    },
++    {
++     "gen": 122,
++     "outcome": "ENDER-KILL",
++     "frames": 707,
++     "sFit": 807,
++     "eFit": 493
++    },
++    {
++     "gen": 123,
++     "outcome": "ENDER-KILL",
++     "frames": 692,
++     "sFit": 792,
++     "eFit": 508
++    },
++    {
++     "gen": 124,
++     "outcome": "ENDER-KILL",
++     "frames": 447,
++     "sFit": 447,
++     "eFit": 753
++    },
++    {
++     "gen": 125,
++     "outcome": "ENDER-KILL",
++     "frames": 919,
++     "sFit": 1119,
++     "eFit": 311
++    },
++    {
++     "gen": 126,
++     "outcome": "ENDER-KILL",
++     "frames": 989,
++     "sFit": 1189,
++     "eFit": 211
++    },
++    {
++     "gen": 127,
++     "outcome": "ENDER-KILL",
++     "frames": 125,
++     "sFit": 125,
++     "eFit": 1075
++    },
++    {
++     "gen": 128,
++     "outcome": "ENDER-KILL",
++     "frames": 1137,
++     "sFit": 1337,
++     "eFit": 123
++    },
++    {
++     "gen": 129,
++     "outcome": "ENDER-KILL",
++     "frames": 197,
++     "sFit": 197,
++     "eFit": 1003
++    },
++    {
++     "gen": 130,
++     "outcome": "ENDER-KILL",
++     "frames": 778,
++     "sFit": 878,
++     "eFit": 422
++    },
++    {
++     "gen": 131,
++     "outcome": "ENDER-KILL",
++     "frames": 201,
++     "sFit": 201,
++     "eFit": 999
++    },
++    {
++     "gen": 132,
++     "outcome": "ENDER-KILL",
++     "frames": 125,
++     "sFit": 125,
++     "eFit": 1075
++    },
++    {
++     "gen": 133,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 5
++    },
++    {
++     "gen": 134,
++     "outcome": "ENDER-KILL",
++     "frames": 254,
++     "sFit": 254,
++     "eFit": 946
++    },
++    {
++     "gen": 135,
++     "outcome": "ENDER-KILL",
++     "frames": 861,
++     "sFit": 1061,
++     "eFit": 339
++    },
++    {
++     "gen": 136,
++     "outcome": "ENDER-KILL",
++     "frames": 1035,
++     "sFit": 1235,
++     "eFit": 165
++    },
++    {
++     "gen": 137,
++     "outcome": "ENDER-KILL",
++     "frames": 922,
++     "sFit": 1122,
++     "eFit": 308
++    },
++    {
++     "gen": 138,
++     "outcome": "ENDER-KILL",
++     "frames": 832,
++     "sFit": 1032,
++     "eFit": 368
++    },
++    {
++     "gen": 139,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1400,
++     "eFit": 0
++    },
++    {
++     "gen": 140,
++     "outcome": "ENDER-KILL",
++     "frames": 553,
++     "sFit": 653,
++     "eFit": 647
++    },
++    {
++     "gen": 141,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1200,
++     "eFit": 0
++    },
++    {
++     "gen": 142,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1400,
++     "eFit": 5
++    },
++    {
++     "gen": 143,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 0
++    },
++    {
++     "gen": 144,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 5
++    },
++    {
++     "gen": 145,
++     "outcome": "ENDER-KILL",
++     "frames": 516,
++     "sFit": 616,
++     "eFit": 684
++    },
++    {
++     "gen": 146,
++     "outcome": "ENDER-KILL",
++     "frames": 832,
++     "sFit": 1032,
++     "eFit": 368
++    },
++    {
++     "gen": 147,
++     "outcome": "ENDER-KILL",
++     "frames": 197,
++     "sFit": 197,
++     "eFit": 1003
++    },
++    {
++     "gen": 148,
++     "outcome": "ENDER-KILL",
++     "frames": 567,
++     "sFit": 667,
++     "eFit": 633
++    },
++    {
++     "gen": 149,
++     "outcome": "ENDER-KILL",
++     "frames": 1058,
++     "sFit": 1258,
++     "eFit": 142
++    },
++    {
++     "gen": 150,
++     "outcome": "ENDER-KILL",
++     "frames": 299,
++     "sFit": 299,
++     "eFit": 901
++    },
++    {
++     "gen": 151,
++     "outcome": "ENDER-KILL",
++     "frames": 534,
++     "sFit": 634,
++     "eFit": 696
++    },
++    {
++     "gen": 152,
++     "outcome": "ENDER-KILL",
++     "frames": 476,
++     "sFit": 476,
++     "eFit": 724
++    },
++    {
++     "gen": 153,
++     "outcome": "ENDER-KILL",
++     "frames": 785,
++     "sFit": 885,
++     "eFit": 445
++    },
++    {
++     "gen": 154,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 0
++    },
++    {
++     "gen": 155,
++     "outcome": "ENDER-KILL",
++     "frames": 1039,
++     "sFit": 1039,
++     "eFit": 161
++    },
++    {
++     "gen": 156,
++     "outcome": "ENDER-KILL",
++     "frames": 285,
++     "sFit": 285,
++     "eFit": 915
++    },
++    {
++     "gen": 157,
++     "outcome": "ENDER-KILL",
++     "frames": 636,
++     "sFit": 736,
++     "eFit": 564
++    },
++    {
++     "gen": 158,
++     "outcome": "ENDER-KILL",
++     "frames": 926,
++     "sFit": 1126,
++     "eFit": 304
++    },
++    {
++     "gen": 159,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1500,
++     "eFit": 5
++    },
++    {
++     "gen": 160,
++     "outcome": "SURVIVOR-CAP",
++     "frames": 1200,
++     "sFit": 1400,
++     "eFit": 0
++    }
++   ]
++  }
++ ]
++}
+diff --git a/tests/c1-scaling.test.js b/tests/c1-scaling.test.js
+new file mode 100644
+index 0000000..6aba57f
+--- /dev/null
++++ b/tests/c1-scaling.test.js
+@@ -0,0 +1,45 @@
++// C1 scaling study v0 pin (queue #2's carried "C1 scaling study — path to
++// nonzero learning delta", bounded slice). Convention pins:
++//  (1) DETERMINISM — runArm is the page's own training loop (prerun-coev
++//      call sequence, parameterized); two invocations with the same
++//      (pop, gens, seed) must be deep-equal, or a "scaling difference" could
++//      be weather, not scale;
++//  (2) SCALING CONTRAST — the probe is only meaningful if population size
++//      actually changes the trajectory: pop 8 vs pop 24 at one seed must
++//      diverge (different bred populations → different champs);
++//  (3) HONESTY — the receipt contract is descriptive, never a learning
++//      claim (R66 selection-noise law carried): the module source carries
++//      the NO-CLAIM marker and every summary self-labels noLearningClaim.
++// FAIL-first: tools/c1-scaling.js does not exist on main.
++const test = require("node:test");
++const assert = require("node:assert/strict");
++const fs = require("fs");
++const path = require("path");
++const TOOL = require("../tools/c1-scaling.js");
++
++test("DETERMINISM: two runArm invocations with the same (pop, gens, seed) are deep-equal", () => {
++  const a = TOOL.runArm({ pop: 8, gens: 4, seed: 5 });
++  const b = TOOL.runArm({ pop: 8, gens: 4, seed: 5 });
++  assert.deepEqual(a, b);
++  assert.equal(a.rows.length, 5); // probe gen 0 + 4 gens
++});
++
++test("SCALING CONTRAST: pop 8 vs pop 24 at one seed diverge (population size matters to the trajectory)", () => {
++  const small = TOOL.runArm({ pop: 8, gens: 4, seed: 5 });
++  const large = TOOL.runArm({ pop: 24, gens: 4, seed: 5 });
++  assert.notEqual(JSON.stringify(small.rows), JSON.stringify(large.rows));
++});
++
++test("HONESTY: the receipt contract is descriptive — NO-CLAIM marker in source, noLearningClaim on every summary", () => {
++  const src = fs.readFileSync(path.join(__dirname, "..", "tools", "c1-scaling.js"), "utf8");
++  assert.ok(src.includes(TOOL.NO_CLAIM), "tool source must carry the descriptive-contract marker");
++  const study = TOOL.runStudy({ pops: [8], seeds: [5], shortGens: 4, longArm: false });
++  assert.equal(study.contract, TOOL.NO_CLAIM);
++  assert.equal(study.arms.length, 1);
++  for (const arm of study.arms) {
++    assert.equal(arm.summary.noLearningClaim, true);
++    assert.equal(arm.rows.length, 5);
++    assert.ok(Number.isFinite(arm.summary.rallyLast5));
++    assert.ok(Number.isFinite(arm.summary.sFitLast5));
++  }
++});
+diff --git a/tools/c1-scaling.js b/tools/c1-scaling.js
+new file mode 100644
+index 0000000..1efaf24
+--- /dev/null
++++ b/tools/c1-scaling.js
+@@ -0,0 +1,115 @@
++'use strict';
++// Queue #2 — C1 scaling study v0 (bounded slice of the queue's "medium"
++// item). Question carried since the R66 lineage-decay receipt: does ANY
++// scale arm of the shipped C1 coevolution produce a champion-fitness /
++// rally-length trajectory beyond the selection-noise band, or is
++// d(sChamp)/d(gen) noise-dominated at every population size on the horizon
++// the page can actually run? This tool is the path-to-nonzero-learning-delta
++// probe: it runs the page's OWN training loop (the tools/prerun-coev.js
++// pattern, byte-faithful call sequence into core.js) at several
++// (population × generation × seed) arms and receiptes the trajectories.
++//
++// HONESTY CONTRACT (carried from R66, pinned by tests/c1-scaling.test.js):
++// the receipt is DESCRIPTIVE. It prints trajectories and first5/last5
++// windows; it asserts NO learning-improvement claim anywhere — per R66,
++// d(sChamp fitness)/d(gen) is selection-noise dominated at 4–8-gen horizons
++// at shipped σ, and whether longer horizons or larger populations escape
++// that band is exactly what this measurement is for. A run whose last5
++// window rises is data; calling it "learning" is a claim this tool refuses
++// to make. NO-CLAIM MARKER: "scaling trajectory receipt — descriptive, no
++// learning claim (R66 law carried)".
++//
++// Not canonical: this study never touches checkpoints/coev.js — the R45
++// birth seal + R37/R38 canonical artifacts stay the one canonical training
++// set (EXPERIMENTS.md's sixth-artifact law). Output lands in research/ only.
++
++const fs = require("fs");
++const path = require("path");
++const PQ = require("../core.js");
++
++const NO_CLAIM = "scaling trajectory receipt — descriptive, no learning claim (R66 law carried)";
++
++// One training arm: the prerun-coev loop verbatim (probe gen 0, then per-gen
++// scoring vs the standing champ, runCoevGeneration, champ h2h) — the only
++// deltas vs tools/prerun-coev.js are parameterization and array-row tracking
++// instead of the canonical ledger (which belongs to the canonical artifact).
++function runArm({ pop, gens, seed }) {
++  const rand = PQ.rng(seed);
++  let popS = Array.from({ length: pop }, () => PQ.makeNet(rand));
++  let popE = Array.from({ length: pop }, () => PQ.makeNet(rand));
++  let sChamp = { net: popS[0] }, eChamp = { net: popE[0] }, last = null;
++  const rows = [];
++  const probe = PQ.playAdv(popS[0], popE[0], rand, 1200);
++  last = probe.outcome;
++  rows.push({ gen: 0, outcome: probe.outcome, frames: probe.frames, sFit: probe.sFitness, eFit: probe.eFitness });
++  for (let gen = 1; gen <= gens; gen++) {
++    const scoredS = popS.map((net) => { const r = PQ.playAdv(net, eChamp.net, rand, 1200);
++      return { net, sFitness: r.sFitness }; });
++    const scoredE = popE.map((net) => { const r = PQ.playAdv(sChamp.net, net, rand, 1200);
++      return { net, eFitness: r.eFitness }; });
++    const bred = PQ.runCoevGeneration(popS, popE, scoredS, scoredE, rand, PQ.DEFAULTS.sigma, last);
++    popS = bred.popS; popE = bred.popE;
++    const h2h = PQ.playAdv(bred.sChamp.net, bred.eChamp.net, rand, 1200);
++    sChamp = { net: bred.sChamp.net }; eChamp = { net: bred.eChamp.net };
++    last = h2h.outcome;
++    rows.push({ gen, outcome: h2h.outcome, frames: h2h.frames, sFit: h2h.sFitness, eFit: h2h.eFitness });
++  }
++  return { pop, gens, seed, sigma: PQ.DEFAULTS.sigma, rows };
++}
++
++function windowMean(rows, key, from, to) {
++  const w = rows.slice(from, to);
++  return w.reduce((a, r) => a + r[key], 0) / w.length;
++}
++
++// First5/last5 windows over the h2h champion rows — the exact comparison
++// shape R66 used, widened to any horizon. Descriptive only.
++function summarize(arm) {
++  const firstFrom = 1, firstTo = Math.min(6, arm.rows.length);
++  const lastTo = arm.rows.length, lastFrom = Math.max(1, lastTo - 5);
++  return {
++    pop: arm.pop, gens: arm.gens, seed: arm.seed, sigma: arm.sigma,
++    rallyFirst5: windowMean(arm.rows, "frames", firstFrom, firstTo),
++    rallyLast5: windowMean(arm.rows, "frames", lastFrom, lastTo),
++    sFitFirst5: windowMean(arm.rows, "sFit", firstFrom, firstTo),
++    sFitLast5: windowMean(arm.rows, "sFit", lastFrom, lastTo),
++    kills: arm.rows.filter((r) => r.outcome !== "cap" && r.gen > 0).length,
++    windowNote: `windows rows [${firstFrom},${firstTo}) vs [${lastFrom},${lastTo}) of ${arm.rows.length} h2h rows`,
++    noLearningClaim: true,
++  };
++}
++
++// Default study: the three population sizes a page slider can actually
++// express (24 / 96 / 192) at a 40-gen horizon × 2 seeds — enough to see
++// whether the noise band itself shrinks with population — plus one long
++// arm (POP 96 × 160 gens) testing the horizon axis. Runtime ≈ 90s.
++function runStudy(opts = {}) {
++  const pops = opts.pops || [24, 96, 192];
++  const seeds = opts.seeds || [20261001, 20261002];
++  const shortGens = opts.shortGens || 40;
++  const longArm = opts.longArm !== false;
++  const arms = [];
++  for (const pop of pops) for (const seed of seeds) arms.push(runArm({ pop, gens: shortGens, seed }));
++  if (longArm) arms.push(runArm({ pop: 96, gens: 160, seed: 20261001 }));
++  return {
++    tool: "tools/c1-scaling.js",
++    contract: NO_CLAIM,
++    arms: arms.map((a) => ({ config: { pop: a.pop, gens: a.gens, seed: a.seed, sigma: a.sigma }, summary: summarize(a), rows: a.rows })),
++  };
++}
++
++if (require.main === module) {
++  const study = runStudy();
++  const out = path.join(__dirname, "..", "research", "c1-scaling-2026-10-01.json");
++  fs.mkdirSync(path.dirname(out), { recursive: true });
++  fs.writeFileSync(out, JSON.stringify(study, null, 1) + "\n");
++  for (const a of study.arms) {
++    const s = a.summary;
++    console.log(`c1-scale: pop ${String(s.pop).padStart(3)} gens ${String(s.gens).padStart(3)} seed ${s.seed}  ` +
++      `rally ${s.rallyFirst5.toFixed(1)}→${s.rallyLast5.toFixed(1)}  sFit ${s.sFitFirst5.toFixed(1)}→${s.sFitLast5.toFixed(1)}  kills ${s.kills}`);
++  }
++  console.log(`c1-scale: ${study.arms.length} arms -> ${path.relative(process.cwd(), out)}`);
++  console.log(`c1-scale: ${NO_CLAIM}`);
++}
++
++module.exports = { runArm, runStudy, summarize, NO_CLAIM };

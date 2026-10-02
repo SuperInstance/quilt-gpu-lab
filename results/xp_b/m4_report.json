@@ -1,0 +1,67 @@
+{
+  "search": "FNV-1a-64 prefix-state match on top 56 bits (suffix-patch construction)",
+  "rounds": 3,
+  "log2N": 28,
+  "N_per_round": 268435456,
+  "total_evaluations": 805306368,
+  "collisions_per_round": [
+    1,
+    1,
+    1
+  ],
+  "collisions_total": 3,
+  "observed_rate_per_eval": 3.725290298461914e-09,
+  "birthday_model_lambda_per_round": 0.5,
+  "generic_full64_birthday_cost": "~2^32 samples",
+  "construction_cost": "~2^28 samples (16x cheaper) \u2014 last-byte linearity of FNV-1a",
+  "pairs": [
+    {
+      "hashA": "6e092fb79912f305",
+      "hashB": "6e092fb79912f305",
+      "msgA": "c1fdd8b0c28d75e000",
+      "msgB": "d1cefa862707b922c0",
+      "verified": true
+    },
+    {
+      "hashA": "d7734fe9ba8670fa",
+      "hashB": "d7734fe9ba8670fa",
+      "msgA": "6b8922ea626c070200",
+      "msgB": "832287e8426ad418c5",
+      "verified": true
+    },
+    {
+      "hashA": "210713dba0bee423",
+      "hashB": "210713dba0bee423",
+      "msgA": "e4966e59924b6cf800",
+      "msgB": "9d6791c728297a0a03",
+      "verified": true
+    }
+  ],
+  "generation_s": [
+    24.955,
+    26.32,
+    27.8
+  ],
+  "sort_s": [
+    80.879,
+    79.882,
+    78.029
+  ],
+  "avalanche": {
+    "trials": 20000,
+    "fnv1a64": {
+      "ideal_bits": 32,
+      "mean_bits_changed": 28.069,
+      "min": 6,
+      "max": 47
+    },
+    "sha256": {
+      "ideal_bits": 128,
+      "mean_bits_changed": 128.053,
+      "min": 97,
+      "max": 159
+    },
+    "note": "1-bit input flip, 16-byte messages, seed 2718"
+  },
+  "transfer_to_canonical_json_gate": "NO \u2014 the suffix-patch handle needs free trailing bytes; canonical JSON has a fixed tail (prev_receipt + closing braces), so the collision does not transfer to a cell-state forgery. Residual FNV-64 margin is ~2^64 second-preimage, with weak avalanche (28.07/32 bits)."
+}

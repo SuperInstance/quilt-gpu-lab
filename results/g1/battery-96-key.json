@@ -1,0 +1,394 @@
+{
+ "master_seed": [
+  31,
+  50,
+  23,
+  51
+ ],
+ "key": {
+  "g1b-arith-0000": {
+   "expected": "REFUTED",
+   "truth": "84 + 53 = 137"
+  },
+  "g1b-arith-0001": {
+   "expected": "SUPPORTED",
+   "truth": "33 + 82 = 115"
+  },
+  "g1b-arith-0002": {
+   "expected": "SUPPORTED",
+   "truth": "34 - 19 = 15"
+  },
+  "g1b-arith-0003": {
+   "expected": "REFUTED",
+   "truth": "64 - 31 = 33"
+  },
+  "g1b-arith-0004": {
+   "expected": "REFUTED",
+   "truth": "15 - 35 = -20"
+  },
+  "g1b-arith-0005": {
+   "expected": "REFUTED",
+   "truth": "85 - 24 = 61"
+  },
+  "g1b-arith-0006": {
+   "expected": "SUPPORTED",
+   "truth": "58 + 21 = 79"
+  },
+  "g1b-arith-0007": {
+   "expected": "SUPPORTED",
+   "truth": "65 x 69 = 4485"
+  },
+  "g1b-arith-0008": {
+   "expected": "SUPPORTED",
+   "truth": "93 + 19 = 112"
+  },
+  "g1b-arith-0009": {
+   "expected": "REFUTED",
+   "truth": "14 x 29 = 406"
+  },
+  "g1b-arith-0010": {
+   "expected": "REFUTED",
+   "truth": "67 + 95 = 162"
+  },
+  "g1b-arith-0011": {
+   "expected": "SUPPORTED",
+   "truth": "78 - 51 = 27"
+  },
+  "g1b-arith-0012": {
+   "expected": "SUPPORTED",
+   "truth": "33 - 20 = 13"
+  },
+  "g1b-arith-0013": {
+   "expected": "REFUTED",
+   "truth": "78 x 51 = 3978"
+  },
+  "g1b-arith-0014": {
+   "expected": "SUPPORTED",
+   "truth": "66 + 94 = 160"
+  },
+  "g1b-arith-0015": {
+   "expected": "SUPPORTED",
+   "truth": "30 x 77 = 2310"
+  },
+  "g1b-seq-0100": {
+   "expected": "REFUTED",
+   "truth": "next = 88"
+  },
+  "g1b-seq-0101": {
+   "expected": "SUPPORTED",
+   "truth": "next = 78"
+  },
+  "g1b-seq-0102": {
+   "expected": "SUPPORTED",
+   "truth": "next = 68"
+  },
+  "g1b-seq-0103": {
+   "expected": "REFUTED",
+   "truth": "next = 49"
+  },
+  "g1b-seq-0104": {
+   "expected": "REFUTED",
+   "truth": "next = 52"
+  },
+  "g1b-seq-0105": {
+   "expected": "REFUTED",
+   "truth": "next = 75"
+  },
+  "g1b-seq-0106": {
+   "expected": "REFUTED",
+   "truth": "next = 52"
+  },
+  "g1b-seq-0107": {
+   "expected": "SUPPORTED",
+   "truth": "next = 78"
+  },
+  "g1b-seq-0108": {
+   "expected": "REFUTED",
+   "truth": "next = 51"
+  },
+  "g1b-seq-0109": {
+   "expected": "SUPPORTED",
+   "truth": "next = 37"
+  },
+  "g1b-seq-0110": {
+   "expected": "REFUTED",
+   "truth": "next = 57"
+  },
+  "g1b-seq-0111": {
+   "expected": "REFUTED",
+   "truth": "next = 70"
+  },
+  "g1b-seq-0112": {
+   "expected": "REFUTED",
+   "truth": "next = 86"
+  },
+  "g1b-seq-0113": {
+   "expected": "SUPPORTED",
+   "truth": "next = 42"
+  },
+  "g1b-seq-0114": {
+   "expected": "SUPPORTED",
+   "truth": "next = 93"
+  },
+  "g1b-seq-0115": {
+   "expected": "REFUTED",
+   "truth": "next = 66"
+  },
+  "g1b-xref-0200": {
+   "expected": "REFUTED",
+   "truth": "Tova->('D4', 'Refit', 'Kodiak')"
+  },
+  "g1b-xref-0201": {
+   "expected": "SUPPORTED",
+   "truth": "Rosa->('D2', 'Rigging', 'Sitka')"
+  },
+  "g1b-xref-0202": {
+   "expected": "SUPPORTED",
+   "truth": "Ivo->('D5', 'Provisioning', 'Homer')"
+  },
+  "g1b-xref-0203": {
+   "expected": "SUPPORTED",
+   "truth": "Hana->('D4', 'Refit', 'Kodiak')"
+  },
+  "g1b-xref-0204": {
+   "expected": "SUPPORTED",
+   "truth": "Gus->('D5', 'Provisioning', 'Homer')"
+  },
+  "g1b-xref-0205": {
+   "expected": "REFUTED",
+   "truth": "Quin->('D1', 'Harbor Ops', 'Juneau')"
+  },
+  "g1b-xref-0206": {
+   "expected": "REFUTED",
+   "truth": "Alma->('D5', 'Provisioning', 'Homer')"
+  },
+  "g1b-xref-0207": {
+   "expected": "REFUTED",
+   "truth": "Sven->('D3', 'Dispatch', 'Anchorage')"
+  },
+  "g1b-xref-0208": {
+   "expected": "REFUTED",
+   "truth": "Omar->('D2', 'Rigging', 'Sitka')"
+  },
+  "g1b-xref-0209": {
+   "expected": "REFUTED",
+   "truth": "Nell->('D5', 'Provisioning', 'Homer')"
+  },
+  "g1b-xref-0210": {
+   "expected": "SUPPORTED",
+   "truth": "Lena->('D4', 'Refit', 'Kodiak')"
+  },
+  "g1b-xref-0211": {
+   "expected": "REFUTED",
+   "truth": "Bo->('D2', 'Rigging', 'Sitka')"
+  },
+  "g1b-xref-0212": {
+   "expected": "SUPPORTED",
+   "truth": "Tova->('D5', 'Provisioning', 'Homer')"
+  },
+  "g1b-xref-0213": {
+   "expected": "SUPPORTED",
+   "truth": "Lena->('D3', 'Dispatch', 'Anchorage')"
+  },
+  "g1b-xref-0214": {
+   "expected": "SUPPORTED",
+   "truth": "Hana->('D4', 'Refit', 'Kodiak')"
+  },
+  "g1b-xref-0215": {
+   "expected": "SUPPORTED",
+   "truth": "Omar->('D2', 'Rigging', 'Sitka')"
+  },
+  "g1b-contra-0300": {
+   "expected": "REFUTED",
+   "truth": "B contradicts A"
+  },
+  "g1b-contra-0301": {
+   "expected": "SUPPORTED",
+   "truth": "B consistent with A"
+  },
+  "g1b-contra-0302": {
+   "expected": "REFUTED",
+   "truth": "B contradicts A"
+  },
+  "g1b-contra-0303": {
+   "expected": "REFUTED",
+   "truth": "B contradicts A"
+  },
+  "g1b-contra-0304": {
+   "expected": "REFUTED",
+   "truth": "B contradicts A"
+  },
+  "g1b-contra-0305": {
+   "expected": "SUPPORTED",
+   "truth": "B consistent with A"
+  },
+  "g1b-contra-0306": {
+   "expected": "SUPPORTED",
+   "truth": "B consistent with A"
+  },
+  "g1b-contra-0307": {
+   "expected": "SUPPORTED",
+   "truth": "B consistent with A"
+  },
+  "g1b-contra-0308": {
+   "expected": "SUPPORTED",
+   "truth": "B consistent with A"
+  },
+  "g1b-contra-0309": {
+   "expected": "SUPPORTED",
+   "truth": "B consistent with A"
+  },
+  "g1b-contra-0310": {
+   "expected": "REFUTED",
+   "truth": "B contradicts A"
+  },
+  "g1b-contra-0311": {
+   "expected": "REFUTED",
+   "truth": "B contradicts A"
+  },
+  "g1b-contra-0312": {
+   "expected": "SUPPORTED",
+   "truth": "B consistent with A"
+  },
+  "g1b-contra-0313": {
+   "expected": "SUPPORTED",
+   "truth": "B consistent with A"
+  },
+  "g1b-contra-0314": {
+   "expected": "SUPPORTED",
+   "truth": "B consistent with A"
+  },
+  "g1b-contra-0315": {
+   "expected": "SUPPORTED",
+   "truth": "B consistent with A"
+  },
+  "g1b-count-0400": {
+   "expected": "REFUTED",
+   "truth": "oilskin mitts x5"
+  },
+  "g1b-count-0401": {
+   "expected": "SUPPORTED",
+   "truth": "the tide table x6"
+  },
+  "g1b-count-0402": {
+   "expected": "REFUTED",
+   "truth": "a gaff x5"
+  },
+  "g1b-count-0403": {
+   "expected": "SUPPORTED",
+   "truth": "a gaff x8"
+  },
+  "g1b-count-0404": {
+   "expected": "REFUTED",
+   "truth": "bait jars x7"
+  },
+  "g1b-count-0405": {
+   "expected": "REFUTED",
+   "truth": "spare lanyards x8"
+  },
+  "g1b-count-0406": {
+   "expected": "SUPPORTED",
+   "truth": "two coils x4"
+  },
+  "g1b-count-0407": {
+   "expected": "SUPPORTED",
+   "truth": "two coils x5"
+  },
+  "g1b-count-0408": {
+   "expected": "REFUTED",
+   "truth": "spare lanyards x8"
+  },
+  "g1b-count-0409": {
+   "expected": "SUPPORTED",
+   "truth": "a gaff x7"
+  },
+  "g1b-count-0410": {
+   "expected": "REFUTED",
+   "truth": "the tide table x5"
+  },
+  "g1b-count-0411": {
+   "expected": "SUPPORTED",
+   "truth": "oilskin mitts x5"
+  },
+  "g1b-count-0412": {
+   "expected": "SUPPORTED",
+   "truth": "a compass x3"
+  },
+  "g1b-count-0413": {
+   "expected": "REFUTED",
+   "truth": "the logbook x8"
+  },
+  "g1b-count-0414": {
+   "expected": "REFUTED",
+   "truth": "the barometer x7"
+  },
+  "g1b-count-0415": {
+   "expected": "SUPPORTED",
+   "truth": "two coils x5"
+  },
+  "g1b-date-0500": {
+   "expected": "SUPPORTED",
+   "truth": "true date 2026-02-18"
+  },
+  "g1b-date-0501": {
+   "expected": "REFUTED",
+   "truth": "true date 2026-07-30"
+  },
+  "g1b-date-0502": {
+   "expected": "REFUTED",
+   "truth": "true date 2026-07-20"
+  },
+  "g1b-date-0503": {
+   "expected": "REFUTED",
+   "truth": "true date 2026-07-21"
+  },
+  "g1b-date-0504": {
+   "expected": "SUPPORTED",
+   "truth": "true date 2026-03-06"
+  },
+  "g1b-date-0505": {
+   "expected": "SUPPORTED",
+   "truth": "true date 2026-05-28"
+  },
+  "g1b-date-0506": {
+   "expected": "REFUTED",
+   "truth": "true date 2026-08-30"
+  },
+  "g1b-date-0507": {
+   "expected": "REFUTED",
+   "truth": "true date 2026-08-02"
+  },
+  "g1b-date-0508": {
+   "expected": "REFUTED",
+   "truth": "true date 2026-08-19"
+  },
+  "g1b-date-0509": {
+   "expected": "REFUTED",
+   "truth": "true date 2026-06-21"
+  },
+  "g1b-date-0510": {
+   "expected": "SUPPORTED",
+   "truth": "true date 2026-08-12"
+  },
+  "g1b-date-0511": {
+   "expected": "REFUTED",
+   "truth": "true date 2026-05-18"
+  },
+  "g1b-date-0512": {
+   "expected": "REFUTED",
+   "truth": "true date 2026-05-15"
+  },
+  "g1b-date-0513": {
+   "expected": "REFUTED",
+   "truth": "true date 2026-03-28"
+  },
+  "g1b-date-0514": {
+   "expected": "REFUTED",
+   "truth": "true date 2026-06-14"
+  },
+  "g1b-date-0515": {
+   "expected": "REFUTED",
+   "truth": "true date 2026-04-20"
+  }
+ }
+}

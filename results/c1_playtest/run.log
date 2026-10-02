@@ -1,0 +1,21 @@
+inner rc=0
+[warm] warm ok in 0.4s (meta={'eval_count': 2, 'prompt_eval_count': 36, 'total_duration_ms': 387.081231})
+[g00] right ticks=1307 closed=True winner=left agree=0.1094 draw=False crashed=False 206.59s
+[g01] right ticks=1331 closed=True winner=left agree=0.0811 draw=False crashed=False 237.66s
+[g02] right ticks=1303 closed=True winner=left agree=0.1811 draw=False crashed=False 237.62s
+[g03] right ticks=1182 closed=True winner=left agree=0.0431 draw=False crashed=False 254.82s
+[g04] right ticks=1664 closed=True winner=left agree=0.0907 draw=False crashed=False 300.26s
+[g05] right ticks=817 closed=True winner=left agree=0.0588 draw=False crashed=False 140.37s
+[g06] right ticks=1672 closed=True winner=left agree=0.0682 draw=False crashed=False 263.36s
+[budget] wall-clock budget 1500.0s reached after 7 games — halting gracefully (status PARTIAL)
+{
+ "law_win_rate": 1.0,
+ "gate_outcome": "NOT-ADJUDICATED-PARTIAL",
+ "agreement_rate": 0.0917,
+ "crashes": 0,
+ "parse_fail": 0,
+ "draws": 0
+}
+
+guard MEASURED receipt: /home/eileen/projects/quilt-gpu-lab/results/c1_playtest/guard/g7-wr-c1-playtest-pong-1790894210.json valid=True OK (exit 0): /home/eileen/projects/quilt-gpu-lab/results/c1_playtest/guard/g7-wr-c1-playtest-pong-1790894210.json is a valid g7-watt-receipt@1 watt-receipt
+ENERGY: 21.087561222222224 Wh (75915.2204 J); gate={'rule': 'no receipt → run VOID', 'verdict': 'PASS'}

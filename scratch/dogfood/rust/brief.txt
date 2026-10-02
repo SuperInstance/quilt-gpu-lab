@@ -1,0 +1,33 @@
+You are drafting a CROSS-LANGUAGE CONFORMANCE TEST for the Eisenstein-integer ring Z[ω] (ω = e^(2πi/3)) in Rust. This closes a real gap: the repo slackwater-rust has an EisensteinPoint type but NO conformance test pinning its arithmetic against the canonical reference.
+
+DEFINITIONS (authoritative — use exactly these):
+- A lattice point is z = (a,b) meaning a + b·ω. The unit ω satisfies ω² = -1 - ω.
+- add(z,w)   = (a+c, b+d)
+- sub(z,w)   = (a-c, b-d)
+- mul(z,w)   = (a·c - b·d, a·d + b·c - b·d)          [from ω² = -1-ω]
+- conj(z)    = (a-b, -b)                              [conjugate a+bω -> (a-b)-bω]
+- norm(z)    = a² - a·b + b²   (an INTEGER, always >= 0)
+- hexdist(z,w): da=a-c, db=b-d; if sign(da)==sign(db) or da==0 or db==0 -> max(|da|,|db|), else |da|+|db|
+- div_rem(z,w): q = round_half_away_from_zero(z·conj(w) · (1/N(w))) coordinatewise; r = z - w·q. N(w)=norm(w). Returns (q,r) with norm(r) < N(w). Divisor 0 -> undefined.
+- rotate_60_omega(z) = z·ω = (a+bω)·ω = aω + bω² = -b + (a-b)ω  =>  ( -b, a-b )
+
+TASK:
+Pick 8-10 operations covering: add, sub, mul, conj, norm, hexdist, div_rem (incl. EXACT divisions where r=(0,0), and ROUNDING-EDGE cases where z·conj(w)/N(w) lands on a half-integer or near the hexagonal Voronoi boundary), and rotate_60_omega. For each op produce 2-3 concrete test vectors with small integer inputs and the exact expected output — COMPUTE THE ARITHMETIC BY HAND CAREFULLY; correctness is the whole point. Include at least one vector where norm is multiplicative: norm(mul(z,w)) == norm(z)*norm(w).
+
+OUTPUT FORMAT — emit EXACTLY these three delimited sections, nothing before the first marker:
+
+=== VECTORS.json ===
+[{"op":"add","args":[[1,2],[3,-1]],"expect":[4,1],"why":"componentwise"}, ...]
+
+=== RUST_TESTS.rs ===
+A complete Rust integration-test module (file to drop in crates/lattice-core/tests/eisenstein_conformance.rs). It must:
+  - `use slackwater_lattice_core::eisenstein_lattice::...` OR a self-contained module — but PREFER defining a minimal local `E12` struct INSIDE the test with the ops above, PLUS commented assertions against the real `EisensteinPoint` API (new/from pairs). Keep it compilable under edition 2021 with no external deps.
+  - one #[test] per op, asserting every vector above.
+  - a #[test] that checks norm multiplicativity on 3 random-ish fixed pairs.
+  - a #[test] that checks div_rem invariant: z == w*q + r logically (via a,b components) and norm(r) < norm(w) for every vector with |w| != 0.
+  - If you assert against the real type `EisensteinPoint { a: i32, b: i32 }` with methods `norm(self)->i64`, `conjugate(self)->Self`, `add(&self,&Self)->Self`, `sub`, `rotate_60(self)->Self`, `lattice_distance(&self,&Self)->u32`, then ensure field/method names match EXACTLY those signatures.
+
+=== NOTES ===
+3-8 lines: any op whose semantics you were unsure about; any vector you could not verify; anything you flag as a likely BUG in slackwater-rust (e.g. if rotate_60 disagrees with the ω-multiplication identity).
+
+Use temperature 0 behavior; be terse and exact. No prose outside the three sections.

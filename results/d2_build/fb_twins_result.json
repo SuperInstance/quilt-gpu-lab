@@ -1,0 +1,173 @@
+{
+ "task": "D2-FIRST-BUILD-twins",
+ "epochs": 300,
+ "seeds": [
+  2718,
+  2719,
+  2720
+ ],
+ "torch": "2.14.0+cu126",
+ "cuda": true,
+ "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+ "sockets": {
+  "reflex": {
+   "nerr_real": 0.0,
+   "nerr_sim": 0.0,
+   "nerr_sim_mis": 0.40025,
+   "gap_sim": 0.0,
+   "gap_sim_mis": 0.40025,
+   "seed_std": {
+    "real": 0.0,
+    "sim": 0.0,
+    "sim_mis": 0.0
+   },
+   "seed_law": "FAIL(std==0)"
+  },
+  "episodic": {
+   "nerr_real": 0.9734166666666667,
+   "nerr_sim": 0.91,
+   "nerr_sim_mis": 0.9025,
+   "gap_sim": -0.06341666666666668,
+   "gap_sim_mis": -0.07091666666666674,
+   "seed_std": {
+    "real": 0.0030709209621147173,
+    "sim": 0.019462570916162818,
+    "sim_mis": 0.07029580357318635
+   },
+   "seed_law": "PASS"
+  }
+ },
+ "grand": {
+  "mean_gap_sim": -0.03170833333333334,
+  "mean_gap_sim_mis": 0.16466666666666663,
+  "h3_control_widens": true
+ },
+ "runs": {
+  "reflex": {
+   "n_train": 12000,
+   "n_test": 4000,
+   "d_in": 10,
+   "d_out": 2,
+   "runs": [
+    {
+     "cond": "real",
+     "seed": 2718,
+     "nerr": 0.0,
+     "device": "cuda"
+    },
+    {
+     "cond": "real",
+     "seed": 2719,
+     "nerr": 0.0,
+     "device": "cuda"
+    },
+    {
+     "cond": "real",
+     "seed": 2720,
+     "nerr": 0.0,
+     "device": "cuda"
+    },
+    {
+     "cond": "sim",
+     "seed": 2718,
+     "nerr": 0.0,
+     "device": "cuda"
+    },
+    {
+     "cond": "sim",
+     "seed": 2719,
+     "nerr": 0.0,
+     "device": "cuda"
+    },
+    {
+     "cond": "sim",
+     "seed": 2720,
+     "nerr": 0.0,
+     "device": "cuda"
+    },
+    {
+     "cond": "sim_mis",
+     "seed": 2718,
+     "nerr": 0.40025,
+     "device": "cuda"
+    },
+    {
+     "cond": "sim_mis",
+     "seed": 2719,
+     "nerr": 0.40025,
+     "device": "cuda"
+    },
+    {
+     "cond": "sim_mis",
+     "seed": 2720,
+     "nerr": 0.40025,
+     "device": "cuda"
+    }
+   ]
+  },
+  "episodic": {
+   "n_train": 12000,
+   "n_test": 4000,
+   "d_in": 14,
+   "d_out": 16,
+   "runs": [
+    {
+     "cond": "real",
+     "seed": 2718,
+     "nerr": 0.97775,
+     "device": "cuda"
+    },
+    {
+     "cond": "real",
+     "seed": 2719,
+     "nerr": 0.971,
+     "device": "cuda"
+    },
+    {
+     "cond": "real",
+     "seed": 2720,
+     "nerr": 0.9715,
+     "device": "cuda"
+    },
+    {
+     "cond": "sim",
+     "seed": 2718,
+     "nerr": 0.92475,
+     "device": "cuda"
+    },
+    {
+     "cond": "sim",
+     "seed": 2719,
+     "nerr": 0.92275,
+     "device": "cuda"
+    },
+    {
+     "cond": "sim",
+     "seed": 2720,
+     "nerr": 0.8825,
+     "device": "cuda"
+    },
+    {
+     "cond": "sim_mis",
+     "seed": 2718,
+     "nerr": 0.92,
+     "device": "cuda"
+    },
+    {
+     "cond": "sim_mis",
+     "seed": 2719,
+     "nerr": 0.9785,
+     "device": "cuda"
+    },
+    {
+     "cond": "sim_mis",
+     "seed": 2720,
+     "nerr": 0.809,
+     "device": "cuda"
+    }
+   ]
+  }
+ },
+ "wall_s": null,
+ "traces_sha256": "ed008df79795d687a6d943857dd1db903416635cd17465b1438036ebd08b7667"
+}

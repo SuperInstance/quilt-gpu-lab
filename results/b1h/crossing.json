@@ -1,0 +1,107 @@
+{
+  "rows": {
+    "w64_mse_ep160": {
+      "width": 64,
+      "params": 8773,
+      "ramp@5e-2": 0.8932617769827073,
+      "ramp@5e-2_ci": [
+        0.8831171735241503,
+        0.9033989266547406
+      ],
+      "ramp@1e-2": 0.23613595706618962,
+      "ramp@1e-3": 0.011926058437686345,
+      "deadzone@5e-2": 0.97475317348378,
+      "deadzone@5e-2_ci": [
+        0.9709449929478138,
+        0.9784203102961918
+      ],
+      "clears_0.90_ci": false,
+      "clears_0.90_mean": false,
+      "inconclusive": false,
+      "learned_a1": 1.0026628971099854,
+      "learned_k1": 1.5120009183883667
+    },
+    "w72_mse_ep160": {
+      "width": 72,
+      "params": 11021,
+      "ramp@5e-2": 0.9400715563506261,
+      "ramp@5e-2_ci": [
+        0.9317233154442457,
+        0.9484272510435301
+      ],
+      "ramp@1e-2": 0.7513416815742398,
+      "ramp@1e-3": 0.01997614788312463,
+      "deadzone@5e-2": 0.9778561354019746,
+      "deadzone@5e-2_ci": [
+        0.9746121297602257,
+        0.9811001410437236
+      ],
+      "clears_0.90_ci": true,
+      "clears_0.90_mean": true,
+      "inconclusive": false,
+      "learned_a1": 0.9846073985099792,
+      "learned_k1": 1.5010005235671997
+    },
+    "w80_mse_ep160": {
+      "width": 80,
+      "params": 13525,
+      "ramp@5e-2": 0.885211687537269,
+      "ramp@5e-2_ci": [
+        0.8744707811568276,
+        0.8962432915921288
+      ],
+      "ramp@1e-2": 0.06857483601669648,
+      "ramp@1e-3": 0.007155635062611807,
+      "deadzone@5e-2": 0.9784203102961918,
+      "deadzone@5e-2_ci": [
+        0.9751763046544428,
+        0.9818053596614951
+      ],
+      "clears_0.90_ci": false,
+      "clears_0.90_mean": false,
+      "inconclusive": false,
+      "learned_a1": 0.969443142414093,
+      "learned_k1": 1.5193383693695068
+    },
+    "w88_mse_ep160": {
+      "width": 88,
+      "params": 16285,
+      "ramp@5e-2": 0.9997018485390579,
+      "ramp@5e-2_ci": [
+        0.9991055456171736,
+        1.0
+      ],
+      "ramp@1e-2": 0.9749552772808586,
+      "ramp@1e-3": 0.7975551580202743,
+      "deadzone@5e-2": 1.0,
+      "deadzone@5e-2_ci": [
+        1.0,
+        1.0
+      ],
+      "clears_0.90_ci": true,
+      "clears_0.90_mean": true,
+      "inconclusive": false,
+      "learned_a1": 1.001635193824768,
+      "learned_k1": 1.50058114528656
+    }
+  },
+  "note": "width bisection, hybridv2 MSE 160ep, seed 2718 (boot CI over holdout)",
+  "clearing_widths": [
+    72,
+    88
+  ],
+  "clearing_widths_mean_only": [
+    72,
+    88
+  ],
+  "inconclusive_arms": [],
+  "named_hybrid_floor": 72,
+  "named_hybrid_floor_mean_only": 72,
+  "statement": "hybrid ramp atom-gate floor = 72 (ramp@5e-2 >= 0.90 with CI_low > 0.90)",
+  "pairing": {
+    "b1g_w96_mse_ep160_ramp@5e-2": 0.9979129397734049,
+    "b1f_hybridv2_w64_40ep_ramp@5e-2": 0.293,
+    "b1e_plain_w64_ramp@5e-2": 0.5675,
+    "b1f_linear_plain_w96_ramp@5e-2": 0.9617
+  }
+}

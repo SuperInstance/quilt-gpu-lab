@@ -1,0 +1,35 @@
+Traceback (most recent call last):
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/c1b_adjudicate.py", line 129, in <module>
+    main()
+    ~~~~^^
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/c1b_adjudicate.py", line 66, in main
+    s1, s2 = load(SEG1), load(SEG2)
+                         ~~~~^^^^^^
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/c1b_adjudicate.py", line 62, in load
+    return json.loads(p.read_text())
+                      ~~~~~~~~~~~^^
+  File "/usr/lib/python3.14/pathlib/__init__.py", line 788, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/pathlib/__init__.py", line 772, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/eileen/projects/quilt-gpu-lab/results/c1_playtest/c1b_run/match_summary.json'
+Traceback (most recent call last):
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/c1b_book.py", line 119, in <module>
+    main()
+    ~~~~^^
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/c1b_book.py", line 21, in main
+    adj = j(SEG2 / "c1b_adjudication.json")
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/c1b_book.py", line 17, in j
+    return json.loads(Path(p).read_text())
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/json/__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/lib/python3.14/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/json/decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)

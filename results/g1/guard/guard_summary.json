@@ -1,0 +1,17 @@
+{
+  "breach": null,
+  "g7": {
+    "gpu_seconds": 74.774,
+    "joules": 6137.558,
+    "mean_power_w": 53.47,
+    "power_samples": 23,
+    "util_samples": 23,
+    "wall_seconds": 114.779,
+    "watt_hours": 1.7048772222222222
+  },
+  "max_temp_c": 74,
+  "min_free_vram_mib": 1629,
+  "samples": 24,
+  "task_id": "G1-seat-spike",
+  "timed_out": false
+}

@@ -1,0 +1,17 @@
+{
+  "breach": null,
+  "g7": {
+    "gpu_seconds": 24.044,
+    "joules": 1681.0403,
+    "mean_power_w": 64.56,
+    "power_samples": 6,
+    "util_samples": 6,
+    "wall_seconds": 26.038,
+    "watt_hours": 0.46695563888888886
+  },
+  "max_temp_c": 76,
+  "min_free_vram_mib": 5770,
+  "samples": 7,
+  "task_id": "XP-B-hook-gpu-cell",
+  "timed_out": false
+}

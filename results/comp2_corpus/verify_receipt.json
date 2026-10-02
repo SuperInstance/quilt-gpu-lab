@@ -1,0 +1,12 @@
+{
+  "grammar_verbatim": {
+    "checked": 1600,
+    "mismatches": 0,
+    "verbatim": true
+  },
+  "determinism_W1": {
+    "n": 2400,
+    "identical": true,
+    "sha256_of_sequence": "bbe4c72c58771369240b5fc485ce7a88475df2a85205ff5e53b78b444e50913e"
+  }
+}

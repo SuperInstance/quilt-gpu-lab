@@ -1,0 +1,20 @@
+# Farm receipts (append-only)
+- 2026-10-01T05:10:59.767Z ADOPT av1-train (already running outside the farm)
+- 2026-10-01T05:12:36.860Z ADOPT av1-train (already running outside the farm)
+- 2026-10-01T06:09:46.966Z FILLER pairs-polyformalism → node experiments/av1_extract_pairs.mjs /home/eileen/projects/jev-quilt/assets/polyformalism_12_ports.mp4 results/av1/pairs-polyformalism --fps 10 --duration 12 --cols 100
+- 2026-10-01T06:09:46.967Z FIRE pairs-polyformalism (filler) → node experiments/av1_extract_pairs.mjs /home/eileen/projects/jev-quilt/assets/polyformalism_12_ports.mp4 results/av1/pairs-polyformalism --fps 10 --duration 12 --cols 100 cwd=/home/eileen/projects/quilt-gpu-lab
+- 2026-10-01T06:09:47.400Z DONE pairs-polyformalism in 0.0min — log: farm/logs/pairs-polyformalism.log
+- 2026-10-01T06:10:49.800Z FILLER pairs-superinstance-intro → node experiments/av1_extract_pairs.mjs /home/eileen/projects/ai-writings/videos/superinstance-intro.mp4 results/av1/pairs-superinstance-intro --fps 10 --duration 20 --cols 100
+- 2026-10-01T06:10:49.800Z FIRE pairs-superinstance-intro (filler) → node experiments/av1_extract_pairs.mjs /home/eileen/projects/ai-writings/videos/superinstance-intro.mp4 results/av1/pairs-superinstance-intro --fps 10 --duration 20 --cols 100 cwd=/home/eileen/projects/quilt-gpu-lab
+- 2026-10-01T06:10:50.717Z DONE pairs-superinstance-intro in 0.0min — log: farm/logs/pairs-superinstance-intro.log
+- 2026-10-01T06:11:53.129Z FILLER daily-render → ~/venvs/elephant-gpu/bin/python experiments/av1_glyph_atlas.py results/av1/pairs-hero/pair0000.txt /tmp/av1-daily.png --phosphor 80,255,140 --vignette 0.5
+- 2026-10-01T06:11:53.129Z FIRE daily-render (filler) → ~/venvs/elephant-gpu/bin/python experiments/av1_glyph_atlas.py results/av1/pairs-hero/pair0000.txt /tmp/av1-daily.png --phosphor 80,255,140 --vignette 0.5 cwd=/home/eileen/projects/quilt-gpu-lab
+- 2026-10-01T06:27:22.803Z FIRE c5-paired-action (experiment) → ~/venvs/elephant-gpu/bin/python experiments/c5_paired_action.py cwd=/home/eileen/projects/quilt-gpu-lab
+- 2026-10-01T06:28:13.561Z EXIT-1 c5-paired-action in 0.8min — log: farm/logs/c5-paired-action.log
+- 2026-10-01T06:28:22.941Z NOTE c5-paired-action running outside the farm — noted, never pinned
+- 2026-10-01T06:33:21.444Z FIRE c5-paired-action (experiment) → ~/venvs/elephant-gpu/bin/python experiments/c5_paired_action.py cwd=/home/eileen/projects/quilt-gpu-lab
+- 2026-10-01T06:33:22.965Z EXIT-1 c5-paired-action in 0.0min — log: farm/logs/c5-paired-action.log
+- 2026-10-01T06:36:26.935Z FIRE c5-paired-action (experiment) → ~/venvs/elephant-gpu/bin/python experiments/c5_paired_action.py cwd=/home/eileen/projects/quilt-gpu-lab
+- 2026-10-01T06:36:28.353Z DONE c5-paired-action in 0.0min — log: farm/logs/c5-paired-action.log
+- 2026-10-01T07:23:56.140Z FIRE cm1-r5 (experiment) → ~/venvs/elephant-gpu/bin/python experiments/cm1_relay_r5.py cwd=/home/eileen/projects/quilt-gpu-lab
+- 2026-10-01T07:29:47.079Z DONE cm1-r5 in 5.8min — log: farm/logs/cm1-r5.log

@@ -3257,6 +3257,17 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
 - Live saga (fires 1-5, every abort fail-loud, every fix receipt-driven): (1) GLM-5.3 thinking ate max_tokens 400 → empty content → abstain cascade; (2) `thinking: disabled` honored on easy moves but hard wiring moves trigger adaptive thinking that ignores the flag (17k-char reasoning, finish_reason=length) → cap 16384; (3) killed for the cap fix; (4) 120s ssl read timeout → 240s + transport failures become receipted abstains + one clean same-prompt retry (no outcome info seen); (5) in flight. ZAI open-platform key had no balance (429/1113); key is the CODING-plan key — pre-reg intact (GLM-5.3 via api.z.ai/api/coding/paas/v4).
 - Infra lesson: parallel same-second launches collide on timestamped receipts filenames (three seeds, one file) — serial launches or sub-second suffixes.
 
+## PX2 fire-5b — live-arm adjudication (2026-09-30 20:0x AKDT): BOOKED — PARTIAL (live arm did not beat the blind band)
+
+- **Verdict: PARTIAL per the frozen branch table** (`proposals/runs/PX2-patchwork-3x3.md`): final quick-eval top1 0.745 = 1.55× d3 (0.481), inside the 1.3–2× PARTIAL band, far under the ≥0.96 WIN bar.
+- **Booked live-arm bar (beat ~0.75 endpoint AND receipt-direction audit >0.5): NOT MET on the score arm.** 0.745 sits at the blind floor — budget-matched blind runs 0.745/0.745/0.755 (mean 0.748, spread 0.010); live −0.003 vs mean, within seed noise, but the bar was *beat*, not match. Direction-audit raw rates, reported as promised in paper §5: top1-direction **6/10 = 0.600** (39 of 50 moves flat on top1; only nominally above the bar), set_recall-direction **17/34 = 0.500** — exactly chance. The bar's pre-flagged chance-level weakness was real; no post-hoc strengthening.
+- **Composition note: converged to 9× tree_d6** (`tree_d6`..`tree_d6#9`) — the PX1 strongest shallow cell. Nine identical clones cast identical votes (gardener's own move-42 receipt concedes the committee "behaves like a single tree_d6"). Rule-5 cheap-baseline control: 0.745 vs d6 blind 0.7481 — at parity within noise, **not beaten**.
+- Move catalog (PARTIAL branch requirement): 26 wire / 14 create / 9 retire / 1 rearrange across the full 50/50 budget; every non-tree_d6 cell (pinch, format-gate, d3/d4/d5 trees) retired or wired out — only tree_d6 clones earned keep.
+- Immune layer ran throughout: sanity gate passed; **2 live shadow no-ops** (moves 10, 37; sidecar `shadow_nop_log.jsonl`); 1,000-state drift check on schedule (final argmax_change_frac 0.359 receipted); BLOCK split per eval (final: WIN 0.832 / BLOCK 0.610 / NON_LOCAL 0.652).
+- Receipts verified at adjudication: `results/px2_patchwork/gardener_live_20260930-182538.jsonl` = 52 lines (session_header + 50 move receipts + session_footer); footer numbers byte-match the walk log (initial 0.595 → final 0.745 top1, 0.5458 → 0.7196 set_recall, +0.150).
+- **One-line meaning: live arm AT blind floor — rebuilt the PX1 strongest cell (all-tree_d6), matched d6 within noise, did not beat the blind band; gardener wiring ≈ d6 parity from shallow cells, no more.**
+- Adjudicated 2026-10-01T04:0xZ by replacement adjudicator (scheduled cron died without delivering); no re-rolls, no re-interpretation. Paper §5 patched via numbered addendum only.
+
 ## PX3 — selectlib judge distillation (2026-09-30 17:1x-17:3x AKDT): BOOKED — INCONCLUSIVE (guard-fired) + mechanism discovery
 
 - 576/576 jev-1.13.0 calls, 0 errors, digest `0x29ebeffdce727a44`; instrument byte-identical to run_judge's ask(); 5/5 controls fired on both fields.
@@ -3306,3 +3317,2026 @@ Artifacts: experiments/qc_jev_control.py, results/qc_jev_control/results.json, p
   under us between the 17:5x booking and this repro). Numbers unaffected; sklearn
   DecisionTreeClassifier(random_state=0) is deterministic.
 - Manifest re-sealed after this ledger change.
+
+## SC-2 — arXiv-ID integrity check (2026-09-30 21:1x AKDT): BOOKED — ALL IDs RESOLVE (CPU, read-only)
+
+- Pre-registered gates (in words) frozen in SCOUT-9 before firing: an ID that 404s or title-mismatches its
+  claimed source => mark the citing proposal's spawn-premise UNVERIFIED in place; spawned item blocked
+  until re-sourced. export.arxiv.org API, one query per ID, no retry loops. (First curl attempt over
+  http:// returned empty bodies with exit 0 — https:// worked; noted as a fail-loud trap: exit code alone
+  would have "confirmed" nothing.)
+- Verified IDs (title match vs claim):
+  - **2404.04616** = "Vanishing Variance Problem in Fully Decentralized Neural-Network Systems" — matches
+    fleet-triage 50a5d66's correction citation exactly. SCOUT-9's downgraded FT-2 framing stands on a real ID.
+  - **2609.35432** = "Self-Evolving Coding Agents: From Digital Programs to Physical-World Intelligence"
+    — the PhysicalCoding tech report cited in proposals/physicalcoding-recon-2026-09-30.md. Title differs
+    from the repo brand but is consistent with the recon's description; SOURCE verified.
+  - **2602.17997** = "Whole-Brain Connectomic Graph Model Enables Whole-Body Locomotion Control in Fruit
+    Fly" — matches the FlyGM citation in docs/quilt-insect-brain-2026-09-28.md.
+- **The SCOUT-1 hand-waved "EvE 2609.36xxx": RESOLVED, not fabricated.** Title search "alternate optimizer
+  to Adam" returns exactly one hit: **arXiv 2609.35614, "EvE: An Alternate Optimizer to Adam", published
+  2026-09-28.** Honest note: SCOUT-1's "36xxx" guess was numerically wrong (actual 35614) — the id-half
+  hand-wave is exactly the pattern fleet-triage caught as fabrication elsewhere, and this check is the only
+  reason QO4's premise is now clean. **QO4 UNBLOCKED: premise SOURCED** (cheap-config early-ranking for
+  oracle features; reading item, low priority).
+- Verdict: **ALL PASS — zero fabricated or dead IDs among our own citations.** Fleet's fabricated-ID threat
+  class does not currently touch our ledger. Doctrine: SC-2 becomes a standing pre-fire check for any
+  scout-spawned READING item (verify the ID before the premise is consumed).
+
+## AV1 — ascii→video (2026-09-30 21:13 AKDT)
+- setup: pre-reg frozen (proposals/runs/AV1-ascii-to-video.md, pushed before fire). 49 usable hero pairs
+  (pair0 frame missing — ffmpeg 1-index; train 1–39, held-out 40–49), eval res H100×W200 for A/B/truth alike.
+  Model B: glyph-embed(32)+lum → conv → PixelShuffle(2), **667,491 params** (0.67M, <5M bar). fp32, Adam 2e-3,
+  batch 8; plateau rule (<1% over 20 ep) stopped run1 at 40 ep; run2 = matched compute (same 40-ep budget).
+- numbers (held-out 40–49): PSNR / SSIM / ΔL1-coh (L1(Δgen,Δtruth)):
+  - A atlas floor: **11.62 dB / 0.2752 / 0.03048**
+  - B run1 (frame L1, 40 ep, loss 0.0628): **17.89 dB / 0.3591 / 0.04150**
+  - B run2 (+0.5·Δ loss, 40 ep, loss 0.0366): **18.49 dB / 0.3888 / 0.03675**
+- verdicts: **H1 KEEP** (B beats A by +6.28 dB ≥ +1.5 bar) · **H2 KEEP** (coh ↓11.4% ≥10% bar; PSNR *gains*
+  0.59 dB, no drop). Honest caveat: run2 was still improving when the matched-compute cap hit; A's near-zero
+  |Δgen| (0.0042 vs truth 0.0297) means the atlas floor is temporally frozen, not coherent.
+- warm-up D: ddpm-cifar10-32, 8 imgs × 8 DDIM steps = **1.94 it/s** on the 4050 (not a hypothesis; receipts
+  in results/av1/av1-receipt.json, samples in results/av1/av1-samples.png). Total wall: 42.6 s.
+- next: scale B on the porter's full clip set + cross-video probe (polyformalism, pre-reg H1 clause), then
+  H3 dial policy; move training onto quilt G-cells with JEV-curl gating per the pre-reg fabric plan.
+
+## CURL-1 — JEV↔JEPA curl mesh (2026-09-30 ~21:40 AKDT)
+- Casey 21:17: "experiment with your quilt arrangement of different cells and how jepa and jev and
+  others relate" → six-cell mesh as a real run, not a simulation. Pre-reg pushed before fire (1bd74be).
+  One run, no rerolls. Data: 141 consecutive hero.mp4 frames → 16×16 → seeded random proj (seed 7) →
+  64-d unit latents. Cells: enc1 → {jepa1 = online ridge λ1e-3 (sliding K=40 admitted buffer),
+  persist1 = zero curl}; jev1 = REAL typesafe jev-latest noul per 10-step window; router1 =
+  2-bad-window pinch / 2-good readmit, gates serving AND learning; pre-registered sick-cell injection
+  on steps 81–100 (seed 13 input scramble). Receipts: results/curl1/ (results.json, trace.png,
+  cells.csv + links.csv = the arrangement as a portable quilt record).
+- numbers (117 post-warmup steps; error = 1−cos on unit latents):
+  - persist mean 0.0122 — clip is mostly small motion (injected span nearly static: 0.00099)
+  - jepa mean 0.0179, clean hit-rate **43.3%** — the learned linear curl LOST to zero-curl
+  - routed mean **0.0126** — JEV pinched jepa at step 54 (noul 0.05); mesh fell back to persist
+  - JEV: 13 calls, 4,962 in / 260 out tokens, 3.7 s wall, **12/12 windows agree with local arithmetic**
+- frozen verdicts: **H1 KILL** (43.3% < 55 bar) · **H2 KEEP** (routed 0.0126 ≤ always-jepa 0.0179) ·
+  **H3 KILL-per-bars, honest confound** (gate had already pinched jepa at step 54, before the
+  injection window opened — the mesh served persist through 81–100, so the injection test never
+  engaged; and 2-good hysteresis never re-admitted a weak-but-alive learner).
+- the RELATION findings (the point of the round):
+  - **JEV-at-the-metal works** (Casey 20:32): graded noul on window curl-stats is a cheap, faithful
+    monitor of a predictor — perfect agreement, ~380 tokens/call. The clunk was downstream, not in the JEV connection.
+  - **The gate converts a bad learner into baseline service** — CM1 r1's "pinch carried it," now proven
+    for prediction cells: mesh ≈ persist floor + small warmup tax, never worse than the known-answer path.
+  - **But a gate tuned for broken cells evicts mediocre-but-real learners**: H1-weak jepa never got
+    served long enough to matter and strict 2/2 readmit froze it out. Admission policy must match
+    expected competence — hard pinch is a judge for broken cells, not for weak ones. Soft gating
+    (noul-weighted blend) is the candidate fix.
+  - Dedicated cells + routing BETWEEN cells reconfirmed from the prediction side (IE-line echo).
+- next: CURL-2 pre-reg — learned encoder (GPU idle: av1 trunk encoder or PCA latents), soft-gate
+  blend routed = w·jepa + (1−w)·persist by noul, 1-good readmit, jepa re-tested only when it can win.
+
+## C5 — paired-condition action probe (2026-09-30 22:41 AKDT)
+- Casey "go": farm-fed round (first experiment the farm fired end-to-end). Pre-reg pushed before fire.
+  Crashed twice on SCORING-stage harness bugs (list-vs-ndarray ytr → empty-class NaN centroid; pixel
+  baseline 8 rows vs 16 labels) — the checkpoint kept the GPU work both times; fixes were scoring-only,
+  zero re-extraction (checkpoint-resume path added).
+- Design: 16 clips = {av_0, av_1} × 4 frame-aligned windows × {fwd, rev}; rev = exact byte-level frame
+  flip of the fwd clip. Skip-tower NF4 Cosmos3-Edge, 2048-d pooled embeddings (receipt bf16/Parameter).
+- Scoring: explicit-sign (score = cos(x, ĉ1) − cos(x, ĉ0), sep = max(AUC, 1−AUC)). The c3
+  nearest_centroid_scores implicit direction has now bitten C3, C4-booking, and C5 — helper deprecated
+  in-repo (lesson line 3: "convention-by-construction" — the fix belongs in the caller).
+- Verdicts:
+  - **H1 KEEP** — playback direction is linearly decodable in the latent: fwd-vs-rev LOOCV sep 1.00
+    (16/16), margin 0.094, score ranges non-overlapping.
+  - **H3 KEEP** — identity anchor: sep 1.00, margin 0.953 (10× the direction margin); identity SURVIVES
+    reversal — fwd-trained centroids classify all 8 rev clips correctly (100% cross-condition).
+  - **H2 KILL per frozen bar, degenerate at ceiling** — pixel-endpoint baseline ALSO sep 1.00 and
+    carries MORE directional margin (0.197 vs emb 0.094): on this clip set, first/last-frame features
+    beat the pooled embedding for direction. Follow-up: clip set with genuinely ambiguous endpoints
+    (loops, pendula) where H2 becomes measurable.
+  - Harness: single-draw shuffle band fired HARNESS_INVALID at 22:36 — correct call, it caught the sign
+    bug. Replaced with 5-seed median; honest caveat: LOOCV-centroid shuffles still hit sep 1.0 twice
+    (self-inclusion bias) — the probe machinery is biased; the score margins are the real evidence.
+- Farm flow receipts: FIRE→EXIT-1→NOTE→(fix, re-queue)→FIRE→EXIT-1→(fix2, re-queue)→FIRE→DONE; farm
+  v2.1 status-on-exit fix verified live (no phantom 'running').
+
+### (C) MANDATORY REPRODUCTION CHECK — 23:1x: **C5 PASS (verdicts + every gate value exact)**
+- Committed `experiments/c5_paired_action.py` (HEAD 0fc073f) re-run in a SCRATCH CLONE at HEAD
+  (`/home/eileen/scratch/c5_repro`) — because the runner still hardcodes `OUT_JSON` into `results/`
+  (no `--out`; **5th witness of the RC-1 hardcoded-path defect**), and per the 09:1x doctrine a
+  verification run must never write over the artifact it verifies. Clone-at-HEAD is the workaround
+  of record for runners lacking `--out` until RC-1 lands.
+- Checkpoint-resume engaged (16 records matched) ⇒ **scoring-only, zero GPU** — completed in <5 s.
+  GPU lane never contended; C5's own fire also finished before this slice (farm status verified, no
+  phantom 'running').
+- Diff vs committed `results/c5_paired_action.json`: **1 field differs — `created` timestamp.**
+  All verdicts identical (H1 KEEP / H2 KILL-degenerate / H3 KEEP), all margins exact (0.0943 / 0.1965),
+  auc_cond, auc_pixel, sep_id_fwd/rev, id_xacc, shuffle seps all equal. First PASS where the artifact
+  is bit-stable modulo timestamp (scoring is fully deterministic given the frozen checkpoint).
+- Honest note: the repro validates the SCORING stage only — the Cosmos3-Edge extraction stage is not
+  re-exercised (checkpoint match short-circuits it by design; re-extraction is ~GB-scale NF4 inference).
+  The C5 booking's GPU claim therefore rests on the committed checkpoint + farm receipts, not on this repro.
+
+## CM1-r5 — judge swap + roster (2026-09-30 23:29 AKDT, farm-fed, 350.9s)
+- Factors: jev-preview→**jev-latest**; roster = {Seed-2.0-mini, MiMo-V2.6-Flash,
+  Ling-3.0-flash} (all 3 smoke-passed). Plan: proposals/runs/CM1-r5-plan.md (pushed
+  0936af9 before fire). Arm A = r4-winning recipe, single cell. Arm B = 36 drafts,
+  one 72-question batched judge, serve = argmax min(gd,gu) among gate-passing.
+- Verdicts:
+  - **H2 TRANSFERS** — Arm A 12/12 (all DRAFT_PASS), jev 1595/562 tok, batch wall 0.32s:
+    the r4 rule-rich recipe holds under jev-latest.
+  - **H1 KEEP** — Arm B 11/12 ≥ 11 bar, but the PATHS tell the real story:
+    **all 12 stimuli DOUBTED_PINCH** — not one of 36 drafts cleared min(gd,gu) ≥ 0.5;
+    11/12 came from the keyword_router pinch (7/3/1 served-from is router-only).
+  - **H3 ROSTER_HURTS** — B 11 < A 12, zero rescued sids, 3× token cost (4770/1678).
+- **The controlled finding (c0 ≡ A drafts, deterministic gen):** identical Seed drafts
+  passed 12-report/24-question state in Arm A and failed the 36-report/72-question
+  state in Arm B → **jev-latest gate judgment degrades with judge-state size
+  (attention/question dilution), independent of draft quality.** r4's "80q ≈ flat
+  latency" holds for LATENCY, not JUDGMENT QUALITY.
+- **Doctrine receipts:** pinch-fallback carried a round AGAIN (third time: CURL-1 r1,
+  CM1 r1, now r5) — the deterministic router is the load-bearing safety net.
+  Roster earned nothing under a saturated corpus (as pre-registered: expected
+  ROSTER_IDLE; actual ROSTER_HURTS — booked honestly).
+- **r6 candidate:** gate state ≤ 12 reports per batch call (per-cell batches), or
+  serve = argmax min(gd,gu) WITHOUT the 0.5 floor when the batch is large; roster
+  only earns when a cell is DEAD (r1 pattern), not when all are competent.
+- Output: results/cm1/round_005_out.json (schema cm1-round5/1), rounds.jsonl appended.
+
+### (C) MANDATORY REPRODUCTION CHECK — 01:1x Oct 1: **CM1-r5 PASS (scoring re-derivation)**
+- CM1-r5 is a live-API farm fire (DeepInfra cells + jev-latest judge), so a byte-level re-run is neither
+  possible nor meaningful; the valid repro is SCORING-ONLY re-derivation from the committed
+  `results/cm1/round_005_out.json` (scratch script, ext4, never touched results/ — 09:1x doctrine).
+- Recomputed from per-record fields: correct_A **12**, correct_B **11**, A_paths {DRAFT_PASS:12},
+  B_paths {DOUBTED_PINCH:11-correct/12-total}, B_served_from {c0:7,c1:3,c2:1}, verdicts
+  **KEEP / TRANSFERS / ROSTER_HURTS**, cost_bar_ok **true** — ALL match the committed booking exactly.
+- Two apparent diffs, both resolved as non-findings: (1) committed B_paths counts ALL records (runner
+  lines 252-254 have no `correct` filter) vs my scratch filtering correct-only — my filter artifact;
+  the one incorrect record (S12, DOUBTED_PINCH served from c0) is exactly the booked 11/12-with-pinch story.
+  (2) committed verdicts carries the extra `rescued_sids: []` key — expected under ROSTER_HURTS.
+- Honest scope note (same class as C5): this validates the SCORING/verdict stage and per-record internal
+  consistency only; no pinch-floor violations found scanning all correct DRAFT_PASS records (none exist —
+  all B passes were pinch-served, corroborating the dilution finding). Draft-generation and judge calls
+  are NOT re-exercised; the booking rests on the committed artifact + farm receipts.
+- 6th witness of RC-1 hardcoded-path class: cm1_relay_r5.py has no `--out` (OUT_JSON hardcoded); the
+  clone-at-HEAD workaround wasn't needed here only because this repro makes no writes at all.
+
+## FT-1b — pie-minimax #1 composed-sign claim vs our committed PX1 artifact: **CORROBORATE-with-citation + artifact erratum** (2026-10-01 02:1x AKDT): BOOKED — CPU (analysis-only, no re-run)
+
+- Claim under test (pie-minimax issue #1 title/body): "the COMPOSED prediction flips sign" — linear SIMPLE 0.1895 → COMPOSED 0.2640, opposite of fleet-triage's predicted composed collapse. Gate (SCOUT-9): follows from our results.json → booking INCOMPLETE, amend; needs their added math → CORROBORATE-cite; contradicts numbers → fail loud.
+- **Re-derivation from the COMMITTED `results/px1_tree_ceiling/results.json` (no re-run needed — analysis of the sealed artifact):** seed 0 `linear_split` SIMPLE **0.189539** → COMPOSED **0.264040** (delta +0.0745); seed 1 0.1876→0.2894; seed 2 0.2004→0.2738. Direction holds 3/3 seeds; deep tree SIMPLE→COMPOSED 0.9984→1.0000 (seed 0), also improving. Their quoted numbers are seed 0 verbatim. **Claim follows exactly from our own artifact.**
+- **Verdict per gate: CORROBORATE-with-citation, booking NOT contradicted.** The authoritative PX1 booking (RESULTS.md 16:0x) already records P3 correctly as a sign-flip SURPRISE with "+0.0745" (a gain) and spawned PX1b, which then found the real mechanism (BLOCK/defensive override, 0.022). pie-minimax #1's composition comment and PX1b comment are consistent restatements of our own booked lineage.
+- **ARTIFACT ERRATUM (honest, booked-not-silent):** the `branch_rulings` string embedded IN `results/px1_tree_ceiling/results.json` mislabels both deltas as "drop" ("drop -0.0745", "drop -0.0016") for what are improvements. The stored NUMBERS are correct; only the embedded prose polarity is wrong. Erratum noted here rather than editing a sealed result artifact. Lesson: embedded narrative rulings in result artifacts get read without the RESULTS.md alongside — booking prose and artifact prose must agree at fire time (extends the RC-1 class: the artifact should carry pointers, not interpretations).
+- Threat disposition: SCOUT-9's CONTRADICT-candidate on FT-1/PX1 is **DISMISSED** — the fleet's Exp-1 branch-table correction is ours and is already booked. No amendment to PX1/PX1b needed.
+
+## [DONE 04:2x CPU] **TRUNC-B + DEGENERATE pin LANDED** (tools/verdict_gate.py, tool-port — no pre-reg per JH-2 precedent; gates pinned in code + tests)
+- One verdict lattice enforcing the three fleet laws, precedence VOID > DEGENERATE > INCONCLUSIVE > FAIL > PASS:
+  1. **DEGENERATE** (murmuration std==0 law; our F1 G1 degenerate-pass, QO5 g0 AUC exactly 0.500, W5a saturation): a zero-variance (std==0), saturated-attested, or sub-min_n gate statistic can never yield PASS — DEGENERATE instead.
+  2. **TRUNC-B** (canons judge_gate truncation blind spot 10:30Z; our 09:1x tmpfs tail incident): completeness must be explicitly attested True; missing attestation = VOID, attested-incomplete = INCONCLUSIVE — truncated-but-plausible never PASSes.
+  3. **Status-source pin** (CONVERGENCE.md shape 3): caller must attest status_source="own"; an inherited status (exit-code-of-last-command class) = VOID.
+- 12 tests, all PASS (`tests/test_verdict_gate.py`); the suite's 1 failure is the expected manifest-drift guard on the new unsealed tool (re-seal below).
+- Forward convention: new runners route their final verdict through `tools.verdict_gate.finalize`; existing bookings stand (their receipts carry gates + evidence, but retrofit is QO6-EV's job).
+- Rotation honored: CPU item per 03:1x handoff; GPU lane untouched; no repro due (last bookings analysis-only or already PASS'd).
+
+## [DONE 05:1x CPU Oct 1] **D12i BOOKED: verdict KEEP** (width-scaling lane; QO6 dead-fire pattern #3, booked by recovery wake)
+- Orphaned dead-fire found at 05:11 wake: runner + results.json untracked, no pre-reg commit, no booking —
+  prior wake fired and died before landing anything. Pre-reg is embedded in the runner docstring (declared
+  RETROACTIVE per the QO5 precedent; honest flag booked).
+- **Deterministic replication FIRST**: pure-python `random`, seed 2718, single-threaded → re-ran to
+  /home/eileen/scratch/d12i_repro/out.json (ext4, never touched results/ — 09:1x doctrine) → output
+  **IDENTICAL (a==b deep-equal, True)**. Booking rests on a verified artifact.
+- Gates: (a) T_floor(W) non-increasing at every (N, p) — monotonicity_inversions **[]** (0 inversions);
+  (b) hardest corner W=16, N=64, p=0.3: partner_id_acc at T=25 = **1.0** ≥ 0.9. **BOTH PASS → KEEP.**
+- Headline: **the D12h "T≥50 universal" is a width artifact** — it holds only at W≤4. T_floor drops with
+  width roughly one grid rung per W doubling (W2→W16 at N64/p0.3: 100→25; N8/p0.3: 50→10). Width buys back
+  observation time nearly linearly. Caveat: W16/N64/p0.3 floor 25 vs W8's 25 — the clean halving saturates at
+  the largest (N,p) corner (correlated-subchannel count vs pair-brightness tradeoff visible at W16, N64).
+- Provenance: runner sha256 501cb7051bb938df…; no runner_sha256 field in the artifact (pre-pin-era runner,
+  RC-1/DEGENERATE-era convention not yet applied); verdict route through tools.verdict_gate not retrofitted
+  (existing bookings stand per TRUNC-B convention).
+- Booking: this entry + runner + results committed together; manifest re-sealed after. QUEUE line backfilled.
+
+## [DONE 05:1x Oct 1] SCOUT-12 (day-conductor, non-GPU per (A)-first rotation): NEW repo chiaroscuro
+- 13 PRs in ~10h, sealed-pre-reg/receipt/R8-kill discipline — third independent witness of our doctrine.
+  #13 geometric-PN lane CLOSED (G2 PASS, H1-H4 FAIL, no iteration). #5/#6 JevGateV2 HOLD/CAST abstention
+  split INTEGRATE (+10pts degraded, parity clean, pins 6/6) — TOOL for QO2/QO6: we lack an explicit
+  receipted HOLD register distinct from permanent keep; spawned CH-1. #6 finding "vocabulary coverage is
+  the binding constraint" = 4th instance of the VP-1 class. CONTRADICT scan: none — JEV work is gate-side,
+  orthogonal to QC-JEV oracle discrimination; DECIDE-2 unthreatened. Full text:
+  proposals/runs/SCOUT-12-fleet-push-2026-10-01-1311Z.md. Rotation next wake: GPU (QG1d follow-up or QG4).
+
+## [DONE 06:2x GPU Oct 1] **D12j BOOKED: verdict KEEP (product rule survives to W=128)**
+- Pre-reg fired as written (0b2df86 committed+pushed BEFORE fire; runner committed before fire too).
+- Gates: **J1 PASS** (T_floor non-increasing in W at every (N,p); monotonicity_inversions []) and
+  **J2 PASS** — at the hardest corner (N=128, p=0.3): T_floor 5 (W32) -> 3 (W64) -> **2 (W128)** <= 3.
+  **J3 not triggered** (floor still shrinking at W128; no plateau). Mechanical verdict: KEEP.
+- Headline: D12i's W·T product rule EXTENDS to the GPU-scale widths the CPU lane could not reach.
+  At p=0.3 the floor keeps falling ~2x per W doubling (W32->W128 at N128: 5->2); at p>=0.5 the floor
+  is already at the ladder's bottom rung (T=1) for W>=32 — discovery there is limited by the ladder
+  resolution, not the rule. Combined D12h/D12i/D12j law: T_floor ~ C(N,p)/W, saturating at the
+  message-exchange floor which is <= 2 for every tested (N,p) at W=128.
+- Harness notes: 1 mechanical crash pre-scoring (torch.cuda.temperature() raises ModuleNotFoundError
+  when pynvml absent; preflight except-list was too narrow — fixed in place, declared). Preflight
+  VRAM gate PASS (5.3 GiB free). Runtime: single-digit minutes, well under 50 MB device memory.
+- Seed family SEED=2718 per pre-reg formula (torch CUDA generator); NOT bit-matched to D12i
+  (declared in pre-reg). Result: results/d12j_gpu_width.json (+ runner experiments/d12j_gpu_width.py).
+- (C) MANDATORY REPRODUCTION CHECK 06:2x: D12j re-run from the COMMITTED runner to ext4 scratch
+  (/home/eileen/scratch/d12j_repro/, never touched results/) → output IDENTICAL to the committed
+  artifact (gates, floors, grid all deep-equal; device-name field excluded). CUDA generator seeds
+  are version-stable here. Clean bill.
+
+## [06:4x Oct 1] D12j RECONCILIATION — the pre-reg was run TWICE independently; both KEEP (two-witness verdict)
+- Race found at reconciliation: the wheel lane (grabbed 0b2df86 within minutes of push) implemented and
+  fired its own runner (28e2654, preflight fix 7c33add) and booked KEEP (756986c; corner floors
+  5→3→2 at W32/64/128, N128/p0.3) while Lucineer was building an independent implementation at the same
+  paths. Colliding writes: Lucineer's fix commit (3a4ec94) replaced the lane's runner in the tree, and
+  the r2 receipt overwrote the lane's receipt (uncommitted at collision time — nothing lost; lane
+  artifacts restored verbatim from 7c33add / 756986c).
+- Reconciliation: lane's runner + receipt restored to the canonical paths their booking references;
+  Lucineer's implementation + r2 receipt preserved at experiments/d12j_gpu_width_lucineer.py +
+  results/d12j_gpu_width_lucineer-r2.json.
+- Result: TWO independent implementations of the same frozen gates, both **KEEP — J1 PASS (0
+  inversions), J2 PASS (floor(128)=2 ≤ 3), J3 not triggered**. Only divergence: the W32 floor rung
+  (lane 5 vs Lucineer 10 at N128/p0.3) — ladder-resolution-sensitive; the D12i extrapolation
+  (~400/32 ≈ 12.5) sits nearer 10, and both implementations land on identical W64/W128 rungs.
+  Two-witness verdict: **the W·T product rule survives to W=128; the message-exchange floor at W=128
+  is T=2.**
+- Process lesson (banked): pre-regs in proposals/runs/ are implicit claims — main-session self-fires
+  must check the farm/spool first or mark ownership in the pre-reg itself. This race cost nothing
+  (git kept everything) but is a standing collision hazard.
+
+## [DONE 10:4x GPU Oct 1] **INSTRUMENT-01 BOOKED: LAW_CALIBRATED (R1 PASS, R2 PASS — first fire)**
+- Pre-reg fired as written (owner: any; prereg+runner pushed before fire). Receipt: results/instrument_ramp_law.json.
+- The calibrated WSL2 burst-timing law (replaces the morning's single B/C-series estimate):
+  - Idle 5s → **0.97× (SAFE)**; onset between 5-10s idle; saturation ~4.5× by 20s (10s→3.4×, 20s→4.43×, 40s→4.51×, 80s→4.47× — flat after 20s).
+  - Recovery: even a **0.1s sustained synced ramp restores ≥98.8%** of hot; 0.6s → 100.4-103.7%. bench.py's 0.6s ramp RETAINED (margin is free).
+  - R3 (exploratory, no gate): elementwise kernel hits **5.33×** after 20s idle — the law is KERNEL-AGNOSTIC, box-level, as suspected.
+- Mandated follow-ups done: ramp recipe → workspace TOOLS.md; bench.py keeps its ramp implementation (declared: docstring numbers ride on this booking).
+- Verdict: LAW_CALIBRATED — every future GPU measurement on this box ramps first, ramp receipts included.
+
+## [DONE 19:4x Oct 1] SCOUT-11 + (C) INSTRUMENT-01 REPRO: gates reproduce, per-point numbers are single-draw statistics
+- SCOUT-11 (non-GPU per (A)-first rotation): fleet-triage PR #1 RTX4050 worklist read in anger -> spawned FT-A1
+  (pie-minimax nonlinear closure per their buildspec), FT-D3 (determinism lab), QO10 (projection-ladder oracle
+  ablation). RC-1b raised (quilt-llvm 0%-killed mutants). Full text proposals/runs/SCOUT-11-fleet-push-2026-10-01-1911Z.md.
+  NO CONTRADICT findings this sweep.
+- Booking hygiene find: results/instrument_ramp_law.json was UNTRACKED while booking 929065a + the sealed
+  manifest referenced it (D-2 silent-edit class, 2nd local instance; QC-JEV was the first). Committed this wake.
+- (C) MANDATORY REPRO of INSTRUMENT-01 (committed runner to ext4 scratch /home/eileen/scratch/instr01_repro/,
+  output never touched results/): **R1 PASS, R2 PASS, verdict LAW_CALIBRATED — gates reproduce.** Honest
+  deviations (timing law is statistical, not deterministic):
+  - 0.1s ramp restored **76.8%** of hot this draw vs committed 98.8% — the "0.1s restores >=98%" margin is
+    BEST-CASE single-draw, not a floor. (R2 still passed on its own criterion; 0.3s/0.6s trials 97-106%.)
+  - R1 shape noisier: 20s-idle draw 0.98x and 80s draw 2.5x (committed: flat ~4.5x after 20s). Onset 5-10s and
+    "must ramp before measuring" both hold; the per-point slowdown values do NOT.
+  - AMENDED workspace TOOLS.md law wording accordingly (ramp receipt mandatory; treat slowdown magnitudes as
+    order-of-magnitude, ramps >=0.3s as the safe recipe).
+- Runner defect (3rd instance of the class): OUT_PATH hardcoded to results/ — verification must run in a copied
+  scratch tree (done) until runners grow --out (RC-1 spec).
+
+## [DONE 12:09 GPU Oct 1] **FT-A1 / pie-minimax closure: P1 FAIL-HIGH, P2 FAIL — the receipt is the point**
+- Lane: RTX4050 worklist #1 (fleet-triage PR #1, merged). Spec: docs/RTX4050-BUILDSPECS.md "pie-minimax A1 build spec".
+- **REPRODUCE BEFORE EXTEND: exact.** `sweep.py` linear 9→9 = **0.1807** top-1, floor 0.1431, set-recall 0.1748 — byte-for-byte match, 13.1s CPU.
+- **COMPOSED mask** (≥2 distinct immediate wins): **320 / 2,423 distinct boards = 13.21% share** (304× double-win, 16× triple-win); 11,520 rows (6.39%) path-weighted in the 180,361-row artifact.
+- **MLP 9→64→9 (1,225 params), CUDA, seeds [1,2,3] pinned (torch+numpy+cuda+data), set-valued loss, early-stop plateau:**
+  - per-seed global top-1 = **0.9996 / 0.9996 / 0.9996** (std 0.0); composed top-1 = **1.000 / 1.000 / 1.000**; train-loss → 1e-4, ~10-13s/seed.
+  - **P1 FAIL-HIGH** (0.9996 ≫ 0.40), **P2 FAIL** (composed = 1.00 ≮ 0.70×global). Frozen mapping applied, reported anyway per spec.
+- **Supplementary 5-fold held-out CV** (run3.py-style folds, seeds 100-104): **0.980 ± 0.004 top-1, composed 0.991** → FAIL-HIGH is *generalization*, not train/test interpolation (sweep.py protocol samples w/ replacement from 2,423 distinct boards, so test ⊆ train w.h.p.).
+- **Interpretation:** the "local-voting ceiling" thesis **weakens decisively** at rung 1 — a 1.2k-param nonlinear student absorbs the exact minimax policy nearly completely. The README's own suspicion is confirmed: its h=8/h=32 non-monotone results were *optimizer-conditioning artifacts, not capacity limits*. Nuance: run3.py's tree "ceiling" (0.79) was trained on single-move tie-break labels (the README's label problem) — MLP > tree is explained by the set-valued loss, not evaluation leakage.
+- **Spec-vs-repo surprises:** (1) spec expected ~180,361-row table; `enumerate_reachable()` literally returns 180,361 rows but these are tree-path duplicates of **2,423 distinct boards** — repo README/GPU-EXPERIMENT.md carry a CORRECTION to this effect (3^9 sanity); multi-optimal is 48.6%, not 14.7%. Labels unaffected (exact either way). (2) Repo already contains a 5-fold CV harness (run3.py/ceiling2.py) postdating the README table.
+- Hygiene: INSTRUMENT-01 ramp 1.137s synced CUDA before timing; device `cuda:0 (RTX 4050, 6GB)` recorded; wall-clock 36.4s (3 seeds) + ~2min CV5 + 13.1s repro. Runner `lanes/pie_minimax_closure.py` (+ `_cv5.py`), receipt `results/pie_minimax_closure.json`. **Local commit only — no push; pie-minimax repo untouched remotely; receipt PR handled centrally.**
+
+### INSTRUMENT-01 deviation declarations (12:1x — declared per review, not re-run)
+- R3 (exploratory, no gate) ran lighter than frozen: single 20s idle point, torch add_ elementwise rather than a cupy kernel, ~8× longer burst than the standard 30ms. The kernel-agnostic claim rides on this leg — treat as indicative until the A4/D3 Determinism Lab sweeps it properly.
+- hot baseline uses median-of-5 (matmul) vs min-of-3 (elementwise) — inconsistent reference convention; both are baselines only (calibrated gates read R1/R2). Future bench runs use median everywhere.
+- Launch-drain backlog flagged (zcode) as the real wall-clock hazard for GPU timing here; bench.py's sync-then-time pattern already avoids it.
+
+## [DONE 12:1x CPU Oct 1] DAY-CONDUCTOR slice: SCOUT-12 fresh-push sweep + FT-A1 mandatory repro PASS
+- **(A) SCOUT (SuperInstance pushes last 48h, read-only):** wave of merges ~20:05-20:08Z (fleet-triage PR#2
+  quilt-family census digest, 244 repos; canons PR#4 scout-gems + PR#5 referral-resolver; quilt-dba PR#1
+  predictive-paddle referral; quilt-tournament PR#1 "all 25 LINE_OOR in the quilt family live here" — none
+  ours; fleet-triage PR#3 OPEN referral doc re quilt-Kuramoto salvaged-archive, 253 FILE_MISSING independently
+  cross-checking their own docs/MISSING.md). Classifications:
+  - **CORROBORATE — quilt-tools edge14** ("qe-eproc-witness -> ds-esign-drift VERIFIED=1.0 ... **the merge
+    outran the booking**"): fleet-wide 4th independent witness of our D-2/dirty-tree class. Our RC-3
+    sealer + tracked-artifact-at-seal ask is now corroborated three times over.
+  - **TOOL — fleet-triage resolver AMBIGUOUS taxonomy** (PR#3: 264 bare-basename citations multi-repo
+    ambiguous, 8/8 spot-verified; basename-pinning doc lint). Spawned **RP-1** (apply the taxonomy as a
+    lint over OUR receipts' repo citations — we already do repo-name citations since RECEIPT-CITE; this
+    checks for ambiguous bare basenames).
+  - **CHECK — jev-quilt round 48 wipe active** (20:05Z r002 mean_p=0.9020, q10 +0.26 drift flagged; 19:04Z
+    "mean_p 0.7620 lucky draw n=5"). Their lane exhibits round-to-round drift; our QC-JEV pin (p_true
+    0.9606/0.0243) was a single-round draw on jeff-0.8b. Spawned **QC-JEV3** (drift re-probe, cheap).
+  - No CONTRADICT this sweep; our repo not flagged by the 244-repo census (LINE_OOR all in quilt-tournament).
+- **(C) MANDATORY REPRO — FT-A1: PASS.** Committed runner (2978159) re-run with elephant-gpu python, ref
+  copy saved first (sha 74ff62aa…), output diffed: every scored value byte-identical (top1_global 0.9996
+  x3, top1_composed 1.0 x3, composed_test_n 519/557/517, final_train_loss 1e-4, steps_run 4000 x3);
+  ONLY train_secs differ (4.2-4.5s vs committed 10.3-12.7s — timing fields, not measurements). Honest
+  note: byte-identity of the whole file is impossible by construction (embedded wall-clocks); verdict +
+  all gates reproduce exactly. Committed artifact restored via git checkout after the run (runner
+  hardcodes absolute output path — 4th instance of the RC-1 hardcoded-OUT class).
+- Manifest re-sealed after ledger change. No GPU queue item fired this slice (repro + scout timebox);
+  next wake per rotation: GPU item (QG4 phase diagram or QG1d recon) or the cheap CPU pins (RP-1,
+  QC-JEV3, DEGENERATE-gate).
+
+- **G7 watt-receipt instrumentation — KEEP (2026-10-01).** guard.py now samples power.draw + utilization.gpu on the same 5 s poll (`sample_power`/`sample_full`; the `sample()` 2-tuple contract is preserved — e6 harness selftest 6/6). Seals one g7-watt-receipt@1 per run: guard_summary.json written first and sha256-bound as `state_digest`, fleet-seeds validator (../fleet-seeds/scripts/g7_validate.mjs) executed at seal time, receipt + validator output appended to results/g7/ledger.jsonl. Fail-closed by construction: zero valid power samples → source tdp_derived + verdict VOID (sampling failure declared, never faked); unknown device → vram_gb 0.0 → validator refuses the receipt → run VOID. Live proof (scratch/g7_live_validation.py): 25 s bf16 4096² matmul load under guard → 5 power samples, mean 67.7 W × 21.493 s = 1455.1 J = 0.404 Wh = $0.000093 @ $0.23/kWh; receipt g7-wr-g7-watt-receipt-instrume-1790888665 → validator exit 0, gate PASS. VOID-path control: schema-valid, gate self-declares VOID. Canonical void-missing-energy example: refused exit 1. Adoption law live from this run forward: every GPU verdict ships a schema-valid receipt or is VOID. Same-day scout: scratch/scout-2026-10-01-pushwave.md (fleet-triage synergy mechanism — "an instrument reports success unless it has been given a way to fail" — with XP-A/B/C pre-reg seeds queued in QUEUE.md).
+
+- **G1 local-LLM-seat spike — KEEP (seat COMPLETER confirmed; seat-as-VERIFIER falsified at chance) (2026-10-01).** First real local seat run: qwen2.5:7b-instruct-q4_K_M (7.6B, 4.19 GB VRAM-resident) on the 4050 via ollama, certified 96-prompt witness-claim battery g1-battery-96@1 (moth-seal master 31,50,23,51, certified-direct 832 bits, registered fleet-seeds fb58d37 BEFORE any seat traffic). **Completion: 96/96 accepted, 1.0 rate, zero truncations, mean 30.1 eval tokens, 123.1 s total generation — converts the 45-c gateway starvation KILL (0/96 @2000) into a 100% result at the 2000 rung.** S7 CONFIRMED at primary rung (4000/8000 by transitivity + engine-ctx-4096 caveat, reported AS-MEASURED); S4 CONFIRMED (harness receipt g7_validate exit 0, gate PASS); S5/S6/S1/S2/S3 honest N/A this run (single pass, no FP16 arm, no ≥8 GiB host). **Blind verdict accuracy 0.5208 ≈ chance** (confusion symmetric 28/22/24/22); per-class: xref 0.938 (explicit-context retrieval strong), arith 0.562, seq 0.562, count 0.438, contra 0.312, date 0.312 (below chance — consistency checking fails in the wrong direction). **Finding: the local 7B Q4 seat is a completer, not a verifier — verdict work routes through instruments (typesafe JEV) or stronger arms; spawned G1b (S5 determinism) + G1c (seat-vs-instrument routing).** Energy: MEASURED 6137.6 J = 1.705 Wh (guard poll, mean 82.1 W × 74.8 s window) = $0.000392 @ $0.23/kWh; harness receipt (pre-run estimated derivation, declared) + guard MEASURED correction receipt both sealed and validator-green (append-only correction pattern, first live exercise). Artifacts: results/g1/run1/{20261001T212346Z-responses,receipt}.json + score.json, results/g1/guard/ledger.jsonl, experiments/g1_run.py, experiments/g1_battery_build.py.
+
+- **G1b seat determinism (S5) — KEEP (2026-10-01).** Two identical passes over the certified battery's first 8 prompts, temperature 0, seed 31502351 (master-seed-derived), same engine build: outputs **byte-identical 8/8** (sha256-digested per prompt, all match). S5 CONFIRMED at this rung (single-seat, single-engine; cross-engine determinism out of scope). ollama chat API honors seed+temp0 deterministically for Qwen2.5-7B Q4_K_M — the seat is safe for replay-sensitive lanes (hook receipt verification, XP-B M5 class). Artifact: results/g1b-determinism.json. GPU tail-power at rest 51.9 W (idle floor, WSL2).
+
+## [DONE 13:32 CPU Oct 1] **XP-A "instrument-transfer": INCONCLUSIVE — at n=3 instruments the rho gate is binary; KILL shape present but under the frozen bar**
+- Lane XP-A (fleet-triage synergy mechanism, scout `scratch/scout-2026-10-01-pushwave.md` §1c). CLAIM: *an instrument's power against KNOWN failure classes predicts its power against UNKNOWN (held-out) classes* — "an instrument reports success unless it has been given a way to fail."
+- **Setup (seed 2718 everywhere, CPU-only, no CUDA).** 10 seeded corrupt-receipt variants of our own booking schema (from `experiments/st1_quilt_cell_v0.py`): 6 KNOWN (`sign_flip, wins_over, verdict_flip, tau_off, seed_drop, denom_swap`) + 4 HELD-OUT novel (`nan_injection, dtype_cast, split_boundary, receipt_copy_prior`). Eval 600 receipts (200 clean + 240 known + 160 held-out). Three instruments: (A) `tools/verdict_gate.py` static pins; (B) a fresh canfail-style step-parser (frozen invariants B1–B8: field presence, strict-int wins, finite floats, tau∈grid, verdict==honest_verdict, receipt-id uniqueness); (C) char-3gram/token logistic, trained on clean+KNOWN only.
+- **Frozen gates (set pre-fire, no post-hoc loosening):** chance 0.50; BEATS_CHANCE 0.60; HIGH_KNOWN_POWER 0.65; FLUNKS 0.50; RHO_MIN 0.70. KEEP iff rho≥0.70 AND all instruments beat chance held-out; KILL iff any instrument with known≥0.65 has held-out≤0.50; INCONCLUSIVE if grid <3×4.
+- **Result — per-instrument known / held-out recall:** A `verdict_gate_pins` **0.567 / 0.000** (0/160!); B `step_parser` **0.725 / 0.994** (159/160); C `trained_classifier` **0.542 / 0.413** (66/160, clean FPR 0.255). **Spearman rho = 0.50.** → **INCONCLUSIVE** (rho 0.5 < 0.70; all_beat = False: A and C fail the 0.60 recall bar).
+- **Honest reading (frozen verdict stands; gate shape flagged):** the instrument given real *ways to fail* (B — invariants, not op signatures) transfers near-perfectly; the fixed-gate instrument (A) transfers **exactly zero** to every held-out class; the learner (C, trained only on KNOWN) lands below the 0.50 recall bar held-out. A and C are in the KILL "gap zone" (known≥0.50, held-out≤0.50) but just under the frozen 0.65 bar, so the KILL existence clause does **not** fire — a near-miss on the KILL side, NOT a pass of the claim.
+- **Method caveats booked (supplementary.json):** (1) at n=3 instruments Spearman has a 4-value support {−1,−0.5,0.5,1}; rho≥0.70 ⟺ rho=1.0, so the frozen gate is effectively binary and rho=0.5 carries exact permutation p=0.5 — the pre-reg over-specified precision for a 3-instrument grid. (2) The 0.50 chance constant presumes balanced accuracy; A has clean FPR 0.00 so it is *at* chance (bal-acc 0.500), while C is *below* the recall bar but above chance in balanced terms (bal-acc 0.579, FPR 0.255). Kept the frozen recall gate; reported both.
+- Hygiene: `experiments/xp_a_instrument_transfer.py` was present untracked at task start (an interrupted prior attempt); verified **byte-reproducible** — two fresh `--skip-gpu` runs reproduce `grid.json` identically (sha 954fcca8…, 13.0 s each). Docstring amended to record the CPU-lane invocation (no numeric change, grid re-verified identical after the edit). Classifier C via declared CPU-torch child (`device=cpu-fallback`, torch.manual_seed(2718), 300 steps, val bal-acc 0.648). No GPU code, no CUDA calls, no commit (keeper commits + re-seals).
+- Artifacts: `experiments/xp_a_instrument_transfer.py` (sha b086e08c…), `experiments/xp_a_supplementary.py` (sha f14a9e32…), `results/xp_a/{grid.json, supplementary.json, per_receipt_detections.json, c_meta.json, eval_stream.txt, c_*.npz}`.
+
+- **XP-B git-hook receipt gate vs corruption corpus — KEEP (2026-10-01).** Pre-registered in `scratch/scout-2026-10-01-pushwave.md` §2c; pre-reg written BEFORE the build (`experiments/xp_b_hook/prereg.md`). Claim: *a commit-time hook enforces cell honesty — refuses every pre-registered corruption class with ZERO false rejects on clean commits.* **Result: all 5 classes (7 operational ops) REFUSED; all 124 clean commits ACCEPTED (120-commit seeded history + 3 controls + 1 clean GPU cell); verdict KEEP.**
+  - **Corpus:** seeded 2718, 120 commits, receipt = `qthe-receipt@1 seed=2718 sha256=<64> fnv64=<16> prev=<chain>` over canonical-JSON cell state (id/kind/16 dials/seed/body_sha256) + chain link. Pure digests, no keys. Generator is deterministic — a full regeneration reproduced `final_receipt_sha 671fbd80…` byte-for-byte.
+  - **REFUSE table:** M1 dial-changed-no-receipt-update → sha256 mismatch; M2a receipt-reused-from-earlier-commit → chain-link mismatch; M2b forged `prev=` with correct state digest → chain-link mismatch; M3a truncated sha256 → format; M3b missing `fnv64` → format; M4 fnv64-recomputed/sha256-stale → sha256 mismatch; M5 GPU cell replayed at mutated seed → sha256 mismatch. **ACCEPT:** C1 new cell, C2 honest dial update, C3 two cells one commit (and the whole 120-commit history), M5 clean GPU cell.
+  - **M4 — FNV-1a-64 collision rate, documented honestly at 64-bit: FOUND, 3/3 rounds, all independently re-verified in Python.** Construction exploits FNV-1a's last-byte linearity (`h'=(h^b)·P`): two prefixes whose states agree on the top 56 bits are equalised with one free suffix byte each — collision cost **~2^28** vs the generic **2^32** birthday bound (**16× cheaper**). 805,306,368 evaluations → 3 collisions (3.73e-9/eval; model λ=0.5/round). Avalanche: FNV-1a-64 **28.07/32 bits** mean (min 6) vs sha256 128.05/128. **Transfer test: the collision does NOT transfer to the canonical-JSON gate** — suffix-patching needs free trailing bytes and canonical JSON has a fixed tail, so the gate's sha256 pin holds (residual FNV-64 margin only ~2^64 second-preimage).
+  - **Findings (fail-loud):** (1) **Git cannot enforce message-embedded receipts from `pre-commit`** — `.git/COMMIT_EDITMSG` is absent on the first commit and STALE (previous message) afterwards, verified empirically at setup; the gate is therefore installed at **both pre-commit (structural) and commit-msg (full)**. (2) **This is a CONSISTENCY gate, not an authentication gate**: with no keys, a deliberate forger who recomputes a fully consistent receipt is ACCEPTED (boundary probe BP1, measured, out-of-scope by the pre-reg). Adversarial integrity needs keys → SIG-1's `verifySignatures` (Casey-gated). (3) **FNV-64 must not be an adversarial cell address** — see M4. (4) **guard.py defect booked:** `Guard._stop` is a one-shot Event, so one `Guard` watches only its FIRST `run()`; later calls book 0 J. Fixed by running all three ticks in one guarded child. (5) **GPU-cell determinism confirmed** (2 runs, seed 2718, fixed 80k-iteration matmul chain → identical dials and `state_sha256`), which is what makes the M5 replay class meaningful.
+  - **GPU (the only GPU use):** `Guard(task_id="XP-B-hook-gpu-cell")`, preflight ok, 3 ticks ≈ 30 s, **1681.04 J = 0.467 Wh**, gpu_seconds 24.04, INSTRUMENT-01 ramp receipt (cold 149.0 ms → hot 0.148 ms, 2660 ramp iters), receipt `g7-wr-xp-b-hook-gpu-cell-1790890680` gate PASS. Device RTX 4050 Laptop, torch 2.14.0+cu126.
+  - **INCONCLUSIVE trigger did NOT fire** (pre-registered: only if FNV-64 collisions force a digest upgrade mid-run): the gate was pre-registered on sha256, and the found collisions do not transfer to canonical cell states. FNV-primary counterfactual reported beside the verdict.
+  - **Artifacts:** `experiments/xp_b_hook/` (prereg.md, hooks/qthe_receipt_gate.py, qthe_receipt.py, gen_corpus.py, run_all.py, m4_fnv64.c, m4_avalanche.py, m5_gpu_tick.py, m5_gpu_ticks_all.py, m5_run.py, corpus/{cells/,corpus.bundle,history.txt}, clean_history.json) · `results/xp_b/` (summary.json, mutations.json, m4_report.json, m4_avalanche.json, m4_run_11/12/13.json, m5_gpu.json, m5_ticks.json, g7 receipt + guard_summary + ledger.jsonl). Lab copy: `/tmp/xpb-hook-lab`. **Not committed — keeper commits.**
+
+- **G7 defect FIX — guard.py multi-run energy (2026-10-01, found by XP-B finding 4).** `Guard._stop` was a one-shot Event: a second `run()` on the same Guard sampled nothing (watcher exited immediately) → 0 J booked. Fixed: per-run stop Event + per-run energy window (`_close_window`); `emit_receipt`/`_energy` now integrate ALL windows with inter-run gaps EXCLUDED (single-run behavior unchanged; legacy global path preserved for sample-appending callers). Regression test: two 6.5 s runs + 2 s gap on ONE Guard → 2 windows, both sampled (306.3 J + 306.5 J), total wall 10.003 s (gap excluded), mean 61.3 W. e6 selftest 6/6, g7_validate selftest 16/16, both still green. All XP-B M5 ticks had been consolidated into one guarded child as their workaround — now unnecessary. XP-B verdict unaffected (its receipt was single-window).
+
+## [DONE 13:44 CPU Oct 1] QG1d — fleet-triage source recon: degeneracy mechanism CONFIRMED at source, 4-port landed, 3 missing instruments named
+# QG1d — source-level recon: fleet-triage assignment/swap machinery vs our cell contract
+
+- lane (entry authored by lane, folded by keeper): QG1d (read-only recon; NO GPU, NO clone of fleet-triage, no pushes)
+- date: 2026-10-01
+- method: `gh api .../contents/<path> --jq .content | base64 -d` into `results/qg1d/src-snapshots/` (see MANIFEST.md for shas)
+- scope: fleet-triage root (`resolver.py`, `lanes.py`, `triage.py`, BOARD/CORRECTION/D1 docs) + `experiments/` + `sim/`
+- seed: 2718 (nothing was sampled; seed pinned for the ported self-test)
+- **not committed — keeper folds. Not appended to RESULTS.md (parallel lanes live).**
+
+## 0. Recon premise correction (read this first)
+
+The brief expected "a resolver with swap/repair logic **we have never source-read**"
+inside fleet-triage's `experiments/`. That is not where it is:
+
+- `experiments/` holds the **projection-doctrine degeneracy** (`projection_doctrine.py`,
+  `positive_control.py`) and the **n_eff / instrument-transfer** work (`synergy.py`).
+- The citation resolver with the repair ladder is at **repo root**: `resolver.py`
+  (1,815 lines). The lane/assignment machinery is `lanes.py` (root and `tools/`,
+  byte-identical size).
+- There is **no literal "swap" routine** anywhere in fleet-triage. `swap` appears
+  exactly once, as a *bug description* (`lanes.py:100`). "Repair" appears zero times.
+  The closest real machinery is: (a) the resolver's **candidate repair ladder**,
+  (b) the lane **four-beam assignment/verdict**, (c) the tileset **assignment +
+  collision** metric, (d) **Kish n_eff**.
+
+So this lane reports what is actually present, not the expected artifact.
+
+## 1. Q1 — WHY their max-over-4 was degenerate (the mechanism, not the label)
+
+**Mechanism = max-selection over a correlated arm-set, then a leaky split.**
+
+1. **The selection is a max over learners.** `experiments/projection_doctrine.py:336-338`:
+   ```python
+   def best(name):
+       v = [r for (n, _), r in results.items() if n == name]
+       return max(v) if v else float("nan")
+   ```
+   The four arms are stored at `:306` (`logreg`), `:312` (`knn`), `:319` (`mlp`),
+   `:326` (`rf-logreg`). The published number per observation is `best(...)`
+   (`:343-345`). The **same pattern reappears** in the control harness —
+   `positive_control.py:199` (`best0 = max(rows_out["L0 lossless"])`) — so the defect
+   is systemic, not one line.
+
+2. **The four arms are not independent.** `synergy.py:69-79` (`n_eff`, Kish effective
+   sample size = `k / Σ normalised correlation mass`) and the sibling `doctrine-RECHECK`
+   lane computed **n_eff = 1.48 over the four learners** (`BOARD.md:23,59,83`;
+   `CORRECTION-PROJECTION.md:4-8`). So "max over 4" is a max over **≈1.5 effective
+   votes**. A max over correlated arms is upward-biased by roughly the arm spread.
+
+3. **The spread exceeds the gap, so the ordering is a property of the selection.**
+   `CORRECTION-PROJECTION.md:14-38`: L0 spread across the four learners **0.3209**,
+   reported L0>L1 gap **0.0112** — the spread is **29× the gap**. Under the **median**
+   the ordering **reverses** (L1 0.8947 > L0 0.8831). Their rule, verbatim:
+   *"No gap smaller than the spread is a finding."*
+
+4. **Secondary degeneracy: the split leaked.** `projection_doctrine.py:293`
+   (`RNG.shuffle(idx)` random 80/20) vs `:295` (by-ply, honest). Their own
+   `synergy.py:12-15` records the smoking gun: a **64-bit irreversible hash scored
+   0.9586 on the random split vs 0.5045 by-ply** — pure memorisation. The
+   max-over-learners table was read on the optimistic split.
+
+**Mechanism in one sentence:** the reported ordering was `max` over ~1.5 effective
+arms whose selection noise (0.32) swamped the between-observation gap (0.011); the
+max is an upward-biased estimator, and the rank flipped when the biased estimator
+was removed (median).
+
+**Relation to our contract:** this is **not** the same clause as our `verdict_gate`
+DEGENERATE law (`tools/verdict_gate.py:20-27` — *zero variance* may never PASS). It is
+the **complementary** clause the fleet-triage correction supplies: **variance so large
+relative to the gap that the max is not a measurement.** Our law catches std==0; their
+retraction catches `spread >> gap`. Both belong in the same gate. That gap is the
+substance of §3.
+
+## 2. Mechanism → our cell contract map
+
+Our contract (per `experiments/common.py:1-6`, `experiments/d10_cell_kernel.py:1-15`,
+`experiments/d11_don_contract.py:1-16`): a **cell** = pure `z_in→z_out`, seedable
+(2718), deterministic, receiptable (state hash), no hidden state across the boundary.
+A **instrument** = a ways-to-fail detector (its value is that it can go red).
+
+| fleet-triage mechanism | cite | class | disposition |
+|---|---|---|---|
+| Kish `n_eff` | `synergy.py:69-79` | **(a) cell-shaped** (pure, no RNG, deterministic) | **port** |
+| `detection_power` (recall over known-fail) | `synergy.py:52-58` | (a) cell-shaped | port-ready; our XP-A already has the idea |
+| spread-vs-gap **rule** | `CORRECTION-PROJECTION.md:26-40` | **(a) gate, cell-shaped** | **port** (§4) |
+| `max` over learners | `projection_doctrine.py:336-338`, `positive_control.py:199` | **(c) neither** — it is the *defect*, not a tool | do **not** port; adopt the ban |
+| repair ladder (`_suffix_match`/`_name_lives_elsewhere`/`_near_miss`) | `resolver.py:652-733`, `736-750`, `829-856` | **(c) neither as-shipped** — needs the 477-repo index + live fs + GH API; **(a) once reduced to the pure contract** | port the reduced pure form (§4) |
+| four beams EXISTS/SAYS/REPRODUCES/CONTROL | `lanes.py:45-105`, `134-186` | **(b) instrument-shaped** (a ways-to-fail detector; B4 is the whole point) | port as an **instrument**, and it is the gap in XP-A (§3) |
+| `beam_reproduces` (list-form subprocess) | `lanes.py:77-88` (`subprocess.run(cmd, ...)` at `:80`) | (b) instrument | law-compliant already (list form, no shell) |
+| `triage.py` `api()` rate-limit gate + `inspect()` | `triage.py:52-73` / `:75-…` | **(c) neither** — network/IO glue (`urllib`, 403-vs-finding discipline) | no port; note the discipline |
+| tileset `assign_nn` + `roundtrip` (assignment + collision count) | `sim/tileset_sim.py:159-163`, `145-157` | (a) cell-shaped (nearest-slot assign + collision metric) | optional; closest thing to a literal "assignment" primitive |
+
+**Key finding for Q2:** fleet-triage has **no cell-shaped swap/repair primitive to
+copy verbatim.** Its repair logic is **index glue** (it cannot run without the repo
+index + filesystem), and its "swap" is a documented branch-order *bug*, not a routine.
+**Our own `experiments/d11_don_contract.py` already IS the cell-shaped swap/repair
+primitive** — propose a swap of discovered edges → validate on holdout → commit iff
+strictly better else revert with **bit-identical revert fidelity** (docstring
+`:1-16`). fleet-triage adds nothing to that cell. What it *does* add is a **labelling
+discipline** for repairs (§4) that D11 should adopt for its `revert` label.
+
+## 3. Port call (Q2) — **PARTIAL YES** (lint/grab tool, not a cell)
+
+Port **no swap/repair cell** (we already own the better one, D11). Port the three
+**reduced pure contracts** as a grabbable tool, because each is pure, deterministic,
+dependency-free and receiptable, and two of them close real holes in our lab:
+
+- `kish_n_eff(corr)` — the **mechanism** of Q1 as an executable (not a slogan).
+- `spread_vs_gap(gap, spread)` — the **rule** ("no gap smaller than the spread is a
+  finding") + a zero-variance DEGENERATE arm; complements `tools/verdict_gate.py`.
+- `repair_label(cited, candidates)` — the resolver's ladder reduced to a pure
+  contract: `EXACT | REPAIRED_PRECISE | AMBIGUOUS | MISSING`, **never silently
+  upgrading AMBIGUOUS → repaired** (`resolver.py:652-733`).
+- `control_beam(...)` — `lanes.py:91-105` + the tautology guard at `:143-157`.
+
+**Written to** `experiments/ft_grab_swap_repair.py`
+(sha256 `b80ae4f1c4f6baedc09288c40094d6bad8e45c05ba0876156a42437ab986ee43`,
+6,98x B, self-test `python3 experiments/ft_grab_swap_repair.py`, rc=0). No subprocess,
+no RNG, no I/O in the primitives — nothing to trap the shell-reparse law.
+
+Demo output (captured):
+```
+n_eff over 4 correlated learners = 0.29 (of k=4)     # 4 fully-coupled arms collapse
+their retraction: NOT_A_FINDING                       # 0.0112 gap < 0.3209 spread
+exact-path ladder : EXACT
+one-candidate     : REPAIRED_PRECISE
+ambiguous         : AMBIGUOUS
+unfailable control: CONTROL_UNFAILABLE
+tautology control : CONTROL_TAUTOLOGY
+honest control    : CONTROL_OK
+```
+
+**Recommended adoption (keeper's call):** wire `spread_vs_gap` into
+`tools/verdict_gate.py` as a fourth refusal class beside DEGENERATE / TRUNC-B /
+status-source — a **max-selection / spread guard** (`verdict_gate.py:8-27`). This is
+the one change that would have blocked fleet-triage's published table *and* would
+have flagged our own XP-A rho gate (§below).
+
+## 4. Q3 — does BOARD.md's dependency graph imply an instrument our XP-A grid lacks?
+
+**Yes — two.** Our XP-A grid (`experiments/xp_a_instrument_transfer.py:20-45`:
+instruments A `verdict_gate pins`, B `step parser`, C `classifier`; 6 known ops ×
+4 held-out ops; frozen gates at `:46-62`) measures **detection power**. It has **no
+instrument that audits the other instruments' controls**, and **no gate on the gate's
+own precision**.
+
+BOARD.md's weight sits in the **dependency edges**, not the counts
+(`BOARD.md:41-52`): `syn-AUDITORS → "the method that found the above"` and
+`syn-HARNESS → "one rule for all three 'cannot fail' families"`. The missing
+instruments those edges imply:
+
+1. **Control-arm integrity instrument** (`lanes.py:91-105` + `:143-157`). XP-A
+   instrument A scored **known 0.567 / held-out 0.000** (`RESULTS.md` XP-A entry) —
+   A is the "fixed-pin" instrument that **cannot fail** on held-out classes. No control
+   arm in the grid was required to be shown **red on deliberately-broken input**, so
+   A's inertness was discovered only by the outcome, not pre-fire. `control_beam`
+   refuses `CONTROL_UNFAILABLE` and `CONTROL_TAUTOLOGY` (repro==control) up front.
+   This is, precisely, our XP-A applying fleet-triage's own lesson to itself: *"an
+   instrument reports success unless it has been given a way to fail."*
+
+2. **Precision / n_eff instrument on the grid's own statistic.** XP-A flagged, as a
+   caveat, that **at n=3 instruments Spearman has 4-value support {−1,−0.5,0.5,1}, so
+   `rho ≥ 0.70 ⟺ rho = 1.0`** — i.e. the frozen gate is **binary/degenerate** by our
+   own `verdict_gate` DEGENERATE definition. The grid had no instrument to say so
+   before fire. `kish_n_eff` + `spread_vs_gap` are exactly that instrument (their
+   `CORRECTION-PROJECTION.md` is the same failure, caught after publication instead of
+   before).
+
+**Missing-instrument candidates (ranked):**
+(i) control-arm integrity beam on each XP-A instrument (highest value; blocks the
+"known≥0.65 but held-out 0.000" shape pre-fire);
+(ii) n_eff / spread-vs-gap guard on the grid's own gate statistic (would have moved
+XP-A from a confusing INCONCLUSIVE to a correctly-scoped **DEGENERATE gate** finding);
+(iii) an **ambiguity-frontier** score: their `PATH_PRECISE_ONLY` carried **9.0% false
+positives** while hard outcomes carried 0.5% (`sprint-RESOLVER.md` §4) — i.e. repair
+labels are systematically noisier and must be scored as a *separate* population, not
+folded into "resolved". Our QG1c residual is an ambiguity frontier of exactly this kind.
+
+## 5. GPU follow-up? (QG1e) — **NO GPU lane implied; a CPU lane is**
+
+Every finding above is **analysis/CPU**: n_eff is arithmetic, spread-vs-gap is a gate,
+the repair ladder is pure, XP-A is already a booked CPU lane (`xp_a_instrument_transfer.py`
+docstring, `--skip-gpu`), and QG1c's swap residual was resolved without new GPU work.
+**Do not pre-register a GPU QG1e on this evidence.**
+
+The natural successor is **CPU** and would be pre-registerable cheaply:
+- **QG1e-CPU (proposed, not fired):** apply `control_beam` + `spread_vs_gap` as an
+  audit *over* the existing `results/xp_a/` grid (no re-run): (1) for each of A/B/C,
+  require a demonstrated red control or label it `CONTROL_UNFAILABLE`; (2) recompute
+  the rho gate's support size and flag DEGENERATE. Kill-gate: the audit must be
+  reproducible byte-identical x2 at seed 2718.
+- **QG1f-CPU (optional):** decompose QG1c's 28 swap-only misses using `repair_label`
+  to test whether they are `AMBIGUOUS` (two swap maps both admissible) or
+  `REPAIRED_PRECISE` — QG1c found the residual is swap-only at Fisher 7.0e-19
+  (`results/qg1c_swap_convention/results.json`, `C0_current`), so labelling the
+  ambiguity, not a GPU sweep, is the next honest step.
+
+**GPU is only justified if** QG1f surfaces a *new* swap family requiring batched
+exact-state recompute beyond QG1c's six candidates — state that as the explicit
+trigger, and keep the lane parked until it fires.
+
+## 6. Artifacts
+
+- `results/qg1d/src-snapshots/` — 22 fetched sources (root/experiments/sim/lineage), shas in `MANIFEST.md`.
+- `results/qg1d/RESULTS-ENTRY.md` — this file.
+- `experiments/ft_grab_swap_repair.py` — the ported grabbable tool (sha `b80ae4f1…`).
+- `results/qg1d/src-snapshots/root/resolver.py` — the citation resolver whose repair ladder (`:652-733`, `:829-856`) was source-read here.
+
+## 7. Honesty notes (booked)
+
+- **Class-mapping is a judgement, not a measurement.** The (a)/(b)/(c) columns in §2
+  are my reading of the code against our contract; a second reader could class the
+  resolver ladder differently. Flagged, not hidden.
+- **Recon premise was partly wrong** (§0). I did not manufacture a "swap routine" to
+  match the brief; there isn't one.
+- **Not committed, not appended to RESULTS.md** — the keeper folds and re-seals.
+- `results/qg1d/src-snapshots` is a *snapshot*; fleet-triage may move under it (their
+  own `RESOLVER-DEFECT.md` went stale within one sprint — the tool flagged its own
+  auditor, `RESOLVER-FINAL.md` §"Corrections I owe" #3).
+
+# XP-A2 — instrument-transfer grid at n=6 (entry authored by keeper from banked artifacts; lane died at the summary step after run completed)
+
+- lane: XP-A2 (CPU only; follow-up to XP-A, extends grid 3 -> 6 instruments)
+- date: 2026-10-01
+- seed: 2718 everywhere; corpus = XP-A's 600 receipts (200 clean / 240 known / 160 held-out), 10 ops
+- code: experiments/xp_a2_transfer_grid.py; artifacts: results/xp_a2/{grid.json, run.log, per_receipt_detections.json, judgment_api_receipts.json, c_*.npz, eval_stream.txt}
+
+## Verdict: INCONCLUSIVE at the frozen gates — and the rho gate is now measured, not assumed
+
+- **rho(known, unknown) = 0.493, exact-perm p = 0.32 at n=6** (KEEP needs >= 0.70 AND all-beat-chance; KILL clause: no instrument with known >= 0.65 AND held-out <= 0.50 fired)
+- all_beat_chance = **False** (three instruments sit at or below the 0.5/0.6 bars on held-out)
+- The n=6 extension did its job: the gate is no longer binary (rho 0.493 is a measured mid-rank, not a rounding artifact of n=3), and it still misses KEEP. The claim "known-power predicts unknown-power" is NOT supported at the grid level — the spread is by DESIGN FAMILY, not by rank.
+
+## Per-instrument table (known recall / held-out recall / clean FPR)
+
+| instrument | family | known | held-out | clean FPR |
+|---|---|---|---|---|
+| step_parser | invariant-parser | 0.725 | **0.994** | 0.000 |
+| digest_manifest | digest-checker | 0.817 | **0.750** | 0.000 |
+| g7_field_validator | schema-fields | 0.517 | 0.500 | 0.000 |
+| schema_lint | schema-shape | 0.167 | 0.500 | 0.000 |
+| verdict_gate_pins | invariant-pin | 0.567 | **0.000** | 0.000 |
+| trained_classifier | known-only-learner | 0.408 | 0.287 | 0.225 |
+| typesafe JEV (adjunct, n=30 sample) | judgment-API | raw receipts only — see caveat | | |
+
+## Design-family finding (the substantive result, consistent with XP-A)
+
+**Transfer axis = semantic depth, not instrument count.** Two families clear the held-out bar:
+- **invariant-parser** (0.994): checks MEANING-bearing invariants (verdict == honest_verdict, tau in grid, wins are strict ints)
+- **digest-checker** (0.750): recomputes the receipt binding from cell state — catches ANY drift through the hashed fields
+
+Everything shallow or purely syntactic fails held-out: pins (0.000 — exactly the fleet-triage "given no way to fail" mechanism), schema-shape (0.500 = chance), G7-field-validator ported as pure field checks (0.500 = chance on THESE ops — honest note: those ops corrupt semantic content, not envelope fields; the validator is doing its actual job, which is a different op class), known-only learner (0.287, below chance recall, 22.5% FPR). The judgment-API arm needs a semantics fix before it can be scored (below).
+
+## Typesafe JEV adjunct arm — RAW, not gated (lane died before analysis)
+
+30 sampled receipts through the JEV cell per docs/typesafe-judgment-cells.md (noul graded 0..1). Raw receipts banked in judgment_api_receipts.json. **Caveat booked: the lane's detect convention flags CLEAN receipts (noul 0.45-0.59 on clean -> detect=true in 3 of first 6) — "low confidence" is being read as "detection", which inverts the semantics.** A clean-scored run must gate on corrupted-vs-clean SEPARATION (AUC), not raw detect flags. Follow-up queued (XP-A3): rescore the banked receipts with separation semantics + full-corpus JEV pass.
+
+## Housekeeping
+
+- XP-A2 verdict line in QUEUE.md: INCONCLUSIVE (gates) + design-family finding (real)
+- KILL-shape watch: NONE — no instrument with high known-power flunked held-out (digest_manifest, the strongest, transferred at 0.75)
+- Lesson: lanes that die at the summary step still bank their data — the keeper folds. Second DeepSeek timeout today (first: XP-A/B z.ai pair); pattern is provider-side, not task-size.
+
+## [DONE 13:49 API Oct 1] G1c — seat-vs-instrument routing: JEV GATE PASS (0.7708); battery key defect LOUD (19/96 labels contradict prompt text; G1 headline corrected)
+# G1c — seat-vs-instrument verdict routing
+
+**Lane:** G1c (QUEUE.md line 56) · **Date:** 2026-10-01 · **Seed:** 2718
+**Question:** the local seat (qwen2.5:7b Q4_K_M, G1) scores 0.5208 = chance on the
+96-claim battery. Does an *instrument* clear the bar the seat fails?
+
+**Verdict: KEEP (provisional) — with a booked key defect.** Instrument arms clear
+0.75; the seat does not. But 19/96 labels in the certified key are inconsistent
+with the prompt text, so the headline "0.5208 = chance" is partly a key artifact.
+
+---
+
+## 1. Arms (blind; key read only after both arms answered)
+
+| arm | what | call | answered |
+|-----|------|------|----------|
+| LOCAL | qwen2.5:7b Q4_K_M via ollama | (G1 run1, reused) | 96/96 |
+| JEV | typesafe `jev-preview` System One, one `noul` call per claim, thr=0.5 (fleet PINCH default) | `api.typesafe.ai/v1/systemone` | 96/96, 0 errors |
+| GLM | z.ai `glm-5.3-flash`, **exact** battery text, temp 0, seed 2718 | coding endpoint (see §6) | 96/96, 0 errors, no 429 |
+
+Arm I presented the claim body (reply-format boilerplate stripped) as `state`, one
+graded question (`noul`, threshold 0.5 → SUPPORTED/REFUTED). Arm II got the byte-
+identical prompt the local seat saw, so the three arms are comparable.
+
+## 2. Gate results
+
+Frozen gate: **JEV arm is KEEP-material iff overall accuracy ≥ 0.75.**
+
+| | vs shipped key | vs recomputed truth (§4) |
+|---|---|---|
+| LOCAL | 0.5208 | 0.6979 |
+| **JEV** | **0.7708 — PASS** | **0.9688** |
+| GLM | 0.8021 | 1.0000 |
+
+`noul` threshold is not the lever: sweep vs recomputed truth peaks 0.9688 over
+thr ∈ [0.4, 0.8]; the shipped-key sweep peaks 0.7812 at thr 0.6–0.7. The doc's
+default 0.5 is kept.
+
+## 3. Routing table (cheapest arm ≥ 0.75 per class; cost LOCAL < JEV < GLM)
+
+Against the shipped key:
+
+| class | LOCAL | JEV | GLM | winner |
+|---|---|---|---|---|
+| arith | 0.5625 | 0.9375 | 1.0000 | **JEV** |
+| date | 0.3125 | 0.8750 | 1.0000 | **JEV** |
+| seq | 0.5625 | 1.0000 | 1.0000 | **JEV** |
+| xref | 0.9375 | 1.0000 | 1.0000 | **LOCAL** (seat already clears) |
+| contra | 0.3125 | 0.3125 | 0.3125 | — none (defective labels) |
+| count | 0.4375 | 0.5000 | 0.5000 | — none (defective labels) |
+
+Against recomputed truth (§4), which is the one to route on:
+
+| class | LOCAL | JEV | GLM | winner |
+|---|---|---|---|---|
+| arith | 0.5625 | 0.9375 | 1.0000 | **JEV** |
+| date | 0.3125 | 0.8750 | 1.0000 | **JEV** |
+| seq | 0.5625 | 1.0000 | 1.0000 | **JEV** |
+| xref | 0.9375 | 1.0000 | 1.0000 | **LOCAL** |
+| contra | 1.0000 | 1.0000 | 1.0000 | **LOCAL** |
+| count | 0.8125 | 1.0000 | 1.0000 | **LOCAL** |
+
+**Routing recommendation:** route verdicts by claim class — **LOCAL for
+xref / contra / count**, **JEV for arith / date / seq**. GLM is ≥ JEV on every
+class but never the cheapest passing arm; keep it as the escalation tier for
+classes or items where both LOCAL and JEV fall below 0.75.
+
+## 4. Booked defect — the key, not the arms
+
+Recomputing every claim's truth from its prompt text (pure arithmetic / sequence /
+date math / roster lookup / enumeration):
+
+| class | n | shipped-key labels inconsistent with text |
+|---|---|---|
+| arith | 16 | 0 |
+| seq | 16 | 0 |
+| date | 16 | 0 |
+| xref | 16 | 0 |
+| **contra** | 16 | **11** |
+| **count** | 16 | **8** |
+| total | 96 | **19** |
+
+- **contra:** Statement B reads "The {item} is NOT on the locker list" while
+  {item} *is* enumerated in A (15/16 rows) — as rendered these are lexically
+  REFUTED, yet 10 are labelled SUPPORTED.
+- **count:** recomputed from the rendered manifest, **all 16 claims are REFUTED**
+  (claimed count ≠ actual count every time), yet 8 are labelled SUPPORTED.
+- Every arm answers REFUTED to nearly all contra/count claims — including GLM,
+  which is 100% correct on all four sound classes. The unanimous collapse is the
+  tell that the labels, not the judges, are broken (a perfect judge caps at
+  77/96 = 0.802 against the shipped key).
+
+Consequence for G1: the local seat's 0.5208 is contaminated. Against recomputed
+truth it is 0.6979 overall and 0.5938 on the four sound classes — still well
+below the 0.75 bar, so the G1 conclusion (completer, not verifier) stands on the
+sound classes alone; the contra/count columns of the G1 score should be struck.
+
+## 5. Per-claim agreement (shipped key, 96 rows)
+
+`truth` marginal: 50 REFUTED / 46 SUPPORTED.
+
+- local_vs_truth: 50/96 (28 R-R, 22 S-S, 24 R→S, 22 S→R)
+- jev_vs_truth: 74/96 (46 R-R, 28 S-S)
+- glm_vs_truth: 77/96 (49 R-R, 28 S-S)
+- jev_vs_glm: 93/96 agree (both REFUTED 64, both SUPPORTED 29; 3 S↔R)
+
+JEV's confident errors on sound classes: `g1b-arith-0000` (noul 0.95 SUPPORTED;
+truth REFUTED), `g1b-date-0508` (0.51), `g1b-date-0509` (0.80). JEV is
+over-confident when it errs; no abstain channel was available.
+
+## 6. Honesty notes
+
+- **GLM endpoint:** the z.ai pay-as-you-go endpoint returns 429 code 1113
+  ("Insufficient balance") on this key; the account's live plan is the **coding
+  plan**, and `https://api.z.ai/api/coding/paas/v4/chat/completions` answers 200
+  with `glm-5.3-flash`. Not an improvisation — same provider, same key, the
+  base URL the plan is registered on. Booked here so future lanes don't burn
+  10 minutes on 1113.
+- Arm II was NOT booked NOT-RUN: no rate-limit wall was hit (0 × 429).
+- Recomputing truth reimplements the battery builder's logic from the prompt
+  text; where a prompt form was unrecognised the row is left `null` (none in
+  contra/count).
+- Not committed, not appended to RESULTS.md — the keeper folds.
+
+## 7. Artifacts
+
+- `experiments/g1c_verdict_routing.py` — harness (`collect` blind → `score`).
+- `experiments/g1c_key_audit.py` — key-consistency recompute + rescore.
+- `results/g1c/arm_jev_raw.json`, `arm_glm_raw.json` — raw arm outputs.
+- `results/g1c/score_g1c.json` — blind scoring, agreement matrices, noul sweep.
+- `results/g1c/key_audit.json` — recomputed truth vs shipped key, rescored arms.
+- `results/g1c/routing_table.json` — the frozen routing table (both key variants).
+
+## [DONE 13:55 keeper Oct 1] G1d — battery key repair: seat was RIGHT, key was WRONG (0.6979 corrected; contra 16/16); contra/count structurally degenerate in @1 — G1e battery-v2 queued
+# G1d — battery key repair (keeper lane; entry by keeper)
+
+- date: 2026-10-01
+- trigger: G1c's LOUD key defect — 19/96 shipped labels contradict prompt text (contra 11/16, count 8/16)
+- scope: generator fix + corrected key for the BANKED @1 prompts + rescore of all three banked arms + structural finding
+- artifacts: results/g1d/{corrected-key.json, rescore-v-corrected-key.json}; fix in experiments/g1_battery_build.py
+
+## The two generator bugs (source-pinned)
+
+1. **contra (experiments/g1_battery_build.py p_contra):** non-corrupt pairs were labeled SUPPORTED, but B ("X is NOT on the locker list") names a LISTED item there — B is false, so A and B are inconsistent → REFUTED. Corrupt pairs were labeled REFUTED, but when B names the dropped item, B is true → SUPPORTED. Truth now derived from set membership (B-item absent from A's list ⇒ consistent).
+2. **count (p_count):** the manifest builder scattered `target` via rng.choice(FILLER), so the true count was a random variable — the claim "exactly claimed times" was almost always false regardless of the jitter. Fixed: target appended exactly k times.
+
+## Corrected scores on the BANKED @1 responses (no new model traffic)
+
+| arm | overall | arith | seq | xref | contra | count | date |
+|---|---|---|---|---|---|---|---|
+| LOCAL seat | **0.6979** | 9/16 | 9/16 | 15/16 | 16/16 | 13/16 | 5/16 |
+| JEV | **0.9688** | 15/16 | 16/16 | 16/16 | 16/16 | 16/16 | 14/16 |
+| GLM-5.3-flash | **1.0000** | 16/16 | 16/16 | 16/16 | 16/16 | 16/16 | 16/16 |
+
+## THE HEADLINE CORRECTION — the seat was right, the key was wrong
+
+G1's "0.5208 = chance" and G1c's "seat 0.594 on sound classes" both under-credited the seat: against the corrected key it scores **0.6979**, with contra 16/16 (was booked 0.312!) and xref 15/16. The seat was correctly REFUTING the "consistent" claims the generator mislabeled.
+
+## BUT — second-order finding: contra/count are structurally degenerate in @1
+
+Corrected balance: contra **1 S / 15 R**, count **0 S / 16 R** (date 4/12 borderline). A majority-class solver scores 15/16 and 16/16 there — the seat's 16/16 contra and 13/16 count are NOT verifier evidence, and JEV's 16/16s on those classes aren't either. The only sound-evidence classes: arith (9S/7R), seq (6S/10R), xref (9S/7R), date (4S/12R, borderline).
+
+**Seat on sound classes:** arith 0.5625 · seq 0.5625 · xref 0.9375 · date 0.3125. The honest verdict restated: **the seat is a class-dependent verifier — strong on explicit-context retrieval (xref), weak on arithmetic/sequence/date reasoning — and @1 cannot say anything about contra/count.** "Completer, not verifier" is retracted as too strong; the corrected claim is narrower and better-evidenced.
+
+## Routing table v2 (≥0.75 bar, cost order LOCAL < JEV < GLM)
+
+- xref → LOCAL (0.9375)
+- arith, seq, date → JEV (0.9375 / 1.0 / 0.875)
+- contra, count → **NO ROUTING CLAIM** (degenerate classes; G1e battery v2 decides)
+- GLM: 1.0 everywhere = escalation tier (and the only arm proven on degenerate classes)
+
+## Generator fix validation + next
+
+- Fixed p_contra/p_count regenerate balanced classes (50/50 by construction); validated mechanically on a fresh seed-2718 build: all 96 labels re-derive from prompt text 96/96 (audit pattern, results/g1d/).
+- **G1e (queued): battery v2** — certified moth-seal master, balanced classes, all 3 arms re-run; THIS becomes the standing witness-claim battery. @1 is retired to history (responses banked, corrected key shipped, nothing deleted).
+
+# A1-PIE — pie-minimax closure: does a nonlinear local rule close the minimax gap?
+
+- lane: **A1-PIE** (`quilt-gpu-lab`; worklist item **A1** in `fleet-triage/docs/RTX4050-WORKLIST.md`)
+- date: 2026-10-01 · device: `cuda:0 (RTX 4050 Laptop, 6 GB)` · torch 2.14.0+cu126
+- seed **2718** everywhere · reference clone `~/projects/pie-minimax` **read-only**
+- pre-registration: `results/a1_pie/PREREG.md` (written **before** training, same dir)
+- **not committed — keeper folds. NOT appended to RESULTS.md (parallel lanes live).**
+
+## 0. VERDICT (two lines, no goalpost migration)
+
+- **Frozen gate on the PRIMARY spec** (9→64→9, lr 1e-3, batch 1024, **20 epochs**): **INCONCLUSIVE** —
+  `overall = 0.3502` sits *inside* the predicted `[0.25, 0.40]`, **but** `MLP_composed (0.5714)` is
+  **not <** the linear reference's composed (`0.2857`–`0.3571`), so the CONFIRM branch fails.
+- **Declared CONVERGENCE CONTROL** (pre-registered in PREREG §3 *before* running): **KILL-of-prediction** —
+  the same net run to plateau reaches `overall = 0.9494` (5-fold board-disjoint `0.9392 ± 0.0094`),
+  `composed = 0.9643` (CV `0.9790 ± 0.0092`). **Nonlinearity does NOT "close only a little" (0.25–0.40),
+  and it does NOT collapse on the ≥2-win COMPOSED partition. Their prediction is falsified.**
+
+The 20-epoch spec is **underfit** (train top-1 fit `0.3998`, train loss `1.57` vs plateau `0.9881`/`0.135`).
+The frozen INCONCLUSIVE *is* the finding: a 60-step budget measures the optimiser, not capacity —
+the exact confound the repo warns about ("a result that flips with learning rate is a measurement of
+my optimiser"). The pre-registered control supplies the honest number.
+
+## 1. Recon corrections (before any number is trusted)
+
+| claim | what the data says |
+|---|---|
+| "180,361 exact states" | **180,361 is the PATH-ROW count** (the walk re-visits each board once per move order → ~75× duplication). **2,423 distinct our-to-move boards.** Verified: `len(enumerate_reachable())=180361`, `len(set(boards))=2423`. |
+| README "CORRECTION": *180,361 is impossible, `3⁹=19,683`* | **that correction is itself a miscorrection** — it misreads a path-row count as a distinct-state count. Both counts are recorded with every number. |
+| "≥2-simultaneous-win states" | **two non-equivalent partitions exist.** `≥2 immediate WINNING MOVES` = **320** boards; the repo `ceiling2` `threat_count ≥ 2` = **1230** boards; they agree on **1513/2423**. Both are reported for every arm. |
+
+**Instrument bug found and booked (fail loud).** The first split attempt used raw
+`fnv1a64(board) % 10`, which **returned an empty test set**: FNV-1a-64 low bits are weak, every
+3×3 board hashes **odd**, so `mod 10` only ever hits `{1,3,5,7,9}`. That attempt **VOIDed**
+(`g7-wr-a1-pie-closure-1790891323.json`, 0 J, no model trained) before any number existed. Fixed to
+the **high 32 bits** (validated bucket counts 217–261 over 2,423 boards).
+
+## 2. Protocol (frozen, PREREG §2–§3)
+
+- labels **exact + set-valued** (`M[r,m]=1 ⇔ m∈optimal(board)`), loss `−log Σ_{m∈Opt} softmax(z)_m`
+- **PRIMARY split:** board-disjoint **FNV-1a-64 HIGH-32 mod 10**, bucket 0 = test → **train 2186 / test 237** (28 composed-imm, 209 simple)
+- **variance:** 5-fold board-disjoint CV (std across **data folds**, not seeds — the repo showed seed std ≡ 0)
+- arms: MLP `9→64→9` ReLU (1225 params) and **matched** linear `9→9` (81 params) under the *same* optimiser/split;
+  plus their own `linear_expert` as a fair, well-fit linear reference
+- chance = `mean(|optimal| / |empty|)`; floor = random empty cell
+
+## 3. Results — board-disjoint test (n=237 boards), chance overall **0.5566**
+
+| arm | overall | COMPOSED (≥2 wins, n=28) | SIMPLE | COMPOSED (threat_count≥2) | train-fit |
+|---|---|---|---|---|---|
+| MLP 9-64-9, lr1e-3, **20 ep** (frozen PRIMARY) | **0.3502** | 0.5714 | 0.3206 | 0.3226 | 0.3998 |
+| LINEAR 9×9 matched, 20 ep | 0.2363 | 0.3571 | 0.2201 | 0.2339 | 0.2534 |
+| MLP 9-64-9, lr1e-3, **plateau** (control) | **0.9494** | **0.9643** | 0.9474 | 0.9677 | 0.9881 |
+| LINEAR 9×9 matched, plateau | 0.2954 | 0.1429 | 0.3158 | 0.1855 | 0.3532 |
+| MLP 9-64-9, lr1e-2, plateau (supp.) | 0.9789 | 0.9643 | 0.9809 | 0.9758 | 1.0000 |
+| `linear_expert` (their code) on this test set | 0.2911 | 0.2857 | 0.2919 | 0.2177 | — |
+
+**5-fold board-disjoint CV (variance is the point — rule 2):**
+
+| arm | top-1 mean ± std | COMPOSED (≥2 wins) | COMPOSED (threat_count≥2) |
+|---|---|---|---|
+| MLP 20 ep | 0.3443 ± 0.0195 | 0.3711 ± 0.0469 | 0.2621 ± 0.0129 |
+| LINEAR 20 ep | 0.2068 ± 0.0252 | 0.2514 ± 0.0302 | 0.1660 ± 0.0243 |
+| **MLP plateau** | **0.9392 ± 0.0094** | **0.9790 ± 0.0092** | **0.9343 ± 0.0099** |
+
+`std ≠ 0` everywhere → the result is a measurement, not a degeneracy. Identical `overall = 0.3502`
+across three independent PASS runs → reproducibility receipt.
+
+**Headroom fills** (fraction of the gap from chance to 1.0 closed; universe chance: all 0.5865,
+comp-imm 0.7875, simp-imm 0.5559, comp-thr 0.6585, simp-thr 0.5122) — *derived post-hoc, CPU, same corpus*:
+
+| arm | comp-imm | simp-imm | comp-thr | simp-thr |
+|---|---|---|---|---|
+| MLP plateau | 0.832 | 0.882 | 0.905 | 0.855 |
+| MLP 20 ep | −1.02 | −0.53 | −0.98 | −0.27 |
+| LINEAR matched | ≤ 0 | ≤ −0.5 | ≤ 0 | ≤ −0.2 |
+
+**The partitioned prediction is false for the MLP:** normalised, its COMPOSED fills (0.83–0.91) are
+**indistinguishable from**—and slightly *above*—its SIMPLE fills. The composition penalty **is real
+for the linear/additive arm** (linear plateau: comp 0.143 vs simp 0.316; `linear_expert`: comp-thr
+0.218 vs simp-thr 0.372), which is exactly the repo's own CEILING finding.
+
+**Scale:** their decision-tree ceiling `0.7879` (their single-move-label protocol) and exact solver
+`1.0000`. The MLP at `0.9494` **does not exceed the solver** and is not a leak — labels are the exact
+computation and `top-1 ≤ 1.0` trivially; the tree's lower number is the repo's own documented
+tie-break label problem plus depth. Cross-lane corroboration: the reference clone's receipt
+(`receipts/pie_minimax_closure.json`, a prior attempt) got `0.9996` on a leaky same-corpus split and
+`0.9798` on 5-fold held-out boards — consistent with my `0.9392–0.9494`.
+
+## 4. What this means (both halves, honestly)
+
+1. **The linear half of their story survives.** A sum of 81 local votes cannot represent a *count over
+   separate lines*: the linear arms collapse on COMPOSED (0.14–0.36) relative to SIMPLE. `0.1807`
+   was always "a *linear* map is bad at minimax".
+2. **The nonlinear half is falsified.** "Local voting can't count threats" is a claim about
+   **additivity**, not about locality. A 1,225-param ReLU net — still a purely *local* board→scores
+   rule with no search and no tree — absorbs minimax composition to **~0.94 board-disjoint**, with
+   **no COMPOSED collapse**. The proposed mechanism does not survive as a general local-rule limit.
+3. **Transferable lesson (the repo's own §0 rules earn their keep):** an accuracy measured under a
+   fixed, tiny step budget is a *statement about the optimiser*. The frozen 0.25–0.40 band was
+   reachable at 60 steps and abandoned at 1,200 — so any "nonlinearity doesn't help/helps only a
+   little" reading of a short run is unsafe, and a **pre-registered convergence control is the
+   difference between a finding and an artefact**.
+
+## 5. Receipts / energy / artefacts
+
+- G7: **`results/a1_pie/g7-wr-a1-pie-closure-1790891506.json`** — `g7-watt-receipt@1`, gate **PASS**,
+  schema validator exit 0 (also 3 earlier PASS/1 VOID in `ledger.jsonl`).
+- energy: final run **106.5 J = 0.0296 Wh**; **all attempts total 0.386 Wh** (22.94 GPU-seconds),
+  measured `power.draw` (mean 23.8 W) — `source: "measured"`, idle floor not subtracted.
+- artifacts (all in `results/a1_pie/`): `PREREG.md`, `a1_pie_closure.py` (orchestrator + worker),
+  `a1_pie_metrics.json` (all numbers above), `a1_pie_model.pt` (**16 KB** — MLP-20ep, MLP-plateau,
+  LINEAR-20ep state dicts), `guard_summary.json`, `ledger.jsonl`, 5× `g7-wr-*.json`.
+- INSTRUMENT-01 ramp receipt: 0.604 s sustained synced CUDA load before any timing.
+- **VOID-of-record:** the empty-test-set attempt (`g7-wr-…-1790891323.json`) is kept deliberately —
+  a fail-loud instrument bug, not hidden.
+## [DONE 14:12 GPU Oct 1] XP-C — envelope local provider: **KILL** (the local seat does not hold the pure cell contract; guard + cloud arm do)
+
+Lane XP-C, pre-registered in `scratch/scout-2026-10-01-pushwave.md` §3c (`cot-quilt-lab` lane C seam).
+CLAIM UNDER TEST: *the pure `z_in -> z_out` cell contract survives a real model as Provider — local GPU
+arm vs cloud arm vs stub ground truth.* Seed 2718, temperature 0, 30 real prompts, 3 local replays.
+
+### 0. VERDICT (two lines, no goalpost migration)
+
+**KILL.** Two of three frozen gates fail on the LOCAL arm: **B** (byte-identical across 3 replays at
+temp 0 / seed 2718) **FAILED**, and **C** (well-formed envelope rate >= 0.95) **FAILED at 0.9333**.
+**A** (malformed-envelope refusal 100%) **PASSED 20/20** — this is a model/seat failure, not a guard
+bypass. Three arms ran (stub, local, cloud), so the result is not INCONCLUSIVE.
+
+### 1. Frozen gates (as pre-registered)
+
+| gate | bar | measured | verdict |
+|---|---|---|---|
+| A — malformed-envelope refusal | 100% (20/20) | **20/20 = 1.000**, every refusal structured | **PASS** |
+| B — LOCAL byte-identical, 3 replays, T=0, seed 2718 | 3/3 | **FAIL** — 3 of 30 prompts differ across replays | **FAIL** |
+| C — LOCAL well-formed rate | >= 0.95 | **0.9333** (28/30; replays 28, 29, 30) | **FAIL** |
+
+### 2. Per-arm results
+
+| arm | provider | well-formed | determinism | notes |
+|---|---|---|---|---|
+| STUB | pure function of (prompt, seed) | **30/30 = 1.000** | 3/3 identical | ground truth for the contract |
+| LOCAL | `qwen2.5:3b-instruct-q4_K_M`, ollama, GPU | **28/30 = 0.9333** | **FAIL** | both B and C fail here |
+| CLOUD | `glm-5.3-flash`, z.ai | **30/30 = 1.000** | n/a (1 pass, not gated) | comparison arm; see §3 endpoint note |
+
+**Cloud endpoint note (pre-registration honoured).** The registered model `glm-5.3-flash` on the z.ai
+**pay-as-you-go** endpoint returns `429 code 1113 (Insufficient balance or no resource package)` — booked
+`NOT-RUN` with the exact error, no improvisation. The account's live plan is the **coding plan**, and the
+coding endpoint (`https://api.z.ai/api/coding/paas/v4/chat/completions`) is the shape this repo already
+uses (`g1c_verdict_routing.py`, `px2_gardener.py`); the arm was re-run there and scored **30/30, 0 errors**.
+
+### 3. The finding — the local seat is not replay-safe under lab load
+
+- **Gated battery (3 x 30 prompts):** 3 prompts differ across replays — `cell_a08` (r1,r2 vs r3),
+  `cell_a13` (r1 vs r2,r3), `cell_a23` (r1 vs r2,r3).
+- `cell_a08` / `cell_a13` are **compliance flakes**: the model intermittently drops the `provider` and
+  `seed` keys, which the guard refuses (`output.key_set`). The same flake is what costs the well-formed
+  gate (28/30, and it is not even stable across replays: 28, 29, 30).
+- `cell_a23` is well-formed in every replay but the bytes differ in replay 1 — a *semantic* flip, not an
+  omission.
+- **Isolated re-run probe** (`--probe-determinism`, a second 3x30 battery, same prompt/seed/temp, under
+  its own guard + receipt): **still not byte-identical** — `cell_a15` answered `"spring"` in replay 1 and
+  `"summer"` in replays 2-3. Two independent batteries, two independent flake sets.
+- **Counter-probe:** 5 consecutive isolated repeats of each flaky prompt were byte-identical, and cold /
+  after-7-other-prompts / immediate-repeat tests were identical too — so the flake is **intermittent and
+  load/session-dependent**, not a function of (prompt, seed).
+- **Co-tenancy observed:** the guard recorded `min_free_vram_mib` **1860** (gated window) and **1828**
+  (probe window) while our seat needs ~2.2 GB on a 6 GB card — another lane was resident on the GPU
+  during both windows. The most likely mechanism is serving-stack non-determinism under co-tenancy
+  (batch/kernel scheduling), not a seed bug: the same prompt, seed, temperature and model flip a token
+  depending on what else is on the box.
+- **Consequence for the fleet:** byte-identity at a fixed seed is a property of the *whole serving stack
+  in a given window*, not of the model alone. Replay-sensitive lanes (XP-B hook verification, D10/style
+  receipts) must **serialize the seat** or pin determinism per cache/window state. G1b's 8-prompt
+  byte-identical result for the 7B seat is not contradicted — it was a quieter, shorter window; it is
+  simply not sufficient to certify the seat.
+
+### 4. What survived — the envelope contract itself
+
+- The **Guard layer is the strongest part of the build**: 20/20 deliberate malformations refused, each
+  with a structured error (`output.not_json`, `output.empty`, `output.not_object`, `output.key_set`,
+  `output.type.{cell_id,z_out,seed}`, `output.digest_mismatch`, `output.bad_digest_format`,
+  `output.cell_id_mismatch`, `output.provider_mismatch`, `output.seed_mismatch`, `output.empty_z_out`),
+  plus **5/5 extra strictness** cases (markdown fences, JSON embedded in prose, `NaN`, bare scalar,
+  whitespace-only) and **4/4 malformed input cells** refused by the input schema check.
+- Strict parsing is load-bearing: duplicate keys refused, `NaN`/`Infinity` refused, any trailing content
+  refused — there is no lenient path.
+- The **binding** checks are what make an envelope a receipt rather than decoration: `z_in_digest` must
+  digest the *dispatched* `z_in`, and `cell_id`/`provider`/`seed` must match the dispatch. The 3B model
+  never faked a digest; it failed by **omission** — exactly the failure mode the guard is built for.
+- **Cloud held the contract 30/30** — the contract is realizable; the 3B local seat is the weak link at
+  this prompt. Stub (ground truth) 30/30 and byte-identical.
+
+### 5. Prompt honesty note (recorded before the gated run)
+
+Prompt **v1** (no literal shape example) scored **0/5** on a 5-prompt plumbing probe: the 3B model
+returned `{"z_out": ...}` only, or a *string* seed. Prompt **v2** adds one literal shape example and the
+seed-is-a-number rule → **6/6** on a 6-prompt probe. The gated run and the cloud arm both use the frozen
+v2 prompt, **plain chat** (no JSON-mode crutch), same text for every arm. Both probes are recorded in the
+artifact (`prompt_version`, `prompt_notes`). This is a prompt-clarity fix made *before* the gated run, not
+a post-hoc goalpost move — and it did **not** rescue the local arm.
+
+### 6. Receipts / energy / artefacts
+
+- G7 receipts (all `g7-watt-receipt@1`, validator exit 0, `source: measured`, idle floor not subtracted):
+  - `g7-wr-xp-c-envelope-local-1790891436` — gate **PASS**, 6232.28 J = 1.7312 Wh (attempt-1 window, see §7.1)
+  - `g7-wr-xp-c-envelope-local-1790892000` — gate **PASS**, 6654.98 J = 1.8486 Wh (gated local battery)
+  - `g7-wr-xp-c-envelope-local-1790892402` — gate **PASS**, 8231.12 J = 2.2864 Wh (isolated determinism probe)
+- Total **5.87 Wh = $0.00135** @ $0.23/kWh. Guard: no breach, no timeout, max temp **74 C**, min free VRAM
+  1828-1860 MiB (co-tenancy, above the 1024 MiB floor). CPU: refusal battery + stub arm, no GPU.
+- Artefacts: `results/xp_c/xp_c_results.json` (all numbers), `results/xp_c/local/raw_runs.json` (gated
+  battery, per-replay digests + raws), `results/xp_c/determinism_probe_isolated.json`,
+  `results/xp_c/local/probe_raw_runs.json`, `results/xp_c/guard/` (3 receipts + summary + ledger).
+- Code: `experiments/xp_c_envelope.py` (Guard layer, stages/pipeline, cells, arms, gates, verdict),
+  `experiments/xp_c_providers.py` (Provider interface + stub/local/cloud).
+- Secrets: `ZAI_KEY` read at use-time, sent only in an `Authorization` header via a 0600 curl config file
+  (never argv/URL/log). Machine scan of every artifact: `zai_key_present_in_artifacts: false`.
+
+### 7. Lane defects booked (fail loud, mine)
+
+1. **`makedirs` bug (mine).** The local worker wrote to `results/xp_c/local/` without creating the
+   directory: attempts 1 and 2 of the first driver run each executed a full 3x30 battery on the GPU and
+   then died on the artifact write (`FileNotFoundError`, rc=1). The guard receipt for those windows is
+   PASS *and* the arm was booked NOT-RUN — both are true: the calls happened, the artifact did not.
+   Fixed (`os.makedirs`), re-run via `--resume`; the extra energy is in the receipt total above.
+2. **`raws_run1` misnamed (mine).** It held the *last* replay's raws, not replay 1 (verified:
+   `sha256(raws_run1[i]) == per_replay[2].digests[i]`). Documented inside the artifact; code renamed to
+   `raws_last_replay`. No data changed.
+3. **Not a defect:** `Guard.run()`'s single-use stop-event was fixed by the XP-B finding-4 patch (landed
+   13:42 today, before this run). `local_phase` uses a fresh Guard per attempt as belt-and-braces.
+   The probe's first `diffs` block also printed the wrong list index; the recomputed block in
+   `determinism_probe_isolated.json` is authoritative (no new model traffic).
+
+### 8. What XP-C means for the queue
+
+- **KEEP the seam**: Guard + stages + Provider is ~600 lines of stdlib, and three arms plug into it with
+  no contract change. `cot-quilt-lab` lane C's interface is buildable as specified.
+- **KILL the claim as stated for the LOCAL seat**: at 3B, temp 0, seed 2718, on this box, the pure cell
+  contract is neither byte-reproducible (1-3 of 30 prompts flip per battery) nor >= 0.95 well-formed.
+- **XP-C2 (proposed):** (a) re-run the determinism gate in a *serialized* window with co-tenancy declared
+  and the seat unloaded between replays; (b) test `qwen2.5:7b-instruct-q4_K_M` (G1b's byte-identical seat)
+  and schema-constrained decoding (ollama `format: json` / grammar) against the >= 0.95 gate; (c) price the
+  cloud arm per 1k envelopes — it already holds the contract at 30/30.
+
+## DAY SLICE 14:1x (day-conductor) — SCOUT-9 sweep + (C) static audit of XP-C; manifest RED found
+- **(A) SCOUT-9** (full text proposals/runs/SCOUT-9-fleet-push-2026-10-01-2211Z.md): HEADLINE — **pie-minimax PR #2
+  independently replicates OUR A1-PIE KILL-of-prediction** (their MLP composed 1.000 / linear 0.1807 exact repro, CV
+  0.980 held-out; explicit cross-ref of quilt-gpu-lab 2978159). Strongest corroborate of the day; magnitude caveat
+  booked (1.000 vs our 0.9643 — different seeds, same conclusion, both far past P1). New repos: quilt-edge-lab (Wave-1
+  receipts; STEAL: vendored-pin drift-tripwire + P1-sealed-FAIL-kept-sealed doctrine) and cot-quilt-lab (the direct
+  XP-C seam consumer — XPC-W watch item: check their pushes before proposing any XP-C2 serialized-seat re-run).
+  Projectionist = Casey's pocket-cinema app pushes, no signal. Spawned: EDGE-1, XPC-W (watch), PIM-1 (docs-only
+  citation close-the-loop). No CONTRADICT. GPU lane occupied all slice by the live c1_playtest run (PID 1823912,
+  started 14:09, --budget-s 1500; foreign-live, not touched).
+- **(C) XP-C reproduction check — STATIC AUDIT ONLY, honestly scoped.** A behavioral re-fire is non-verifying by the
+  booking's own KILL finding (local seat not byte-reproducible at temp0+seed; co-tenancy serving-window flake), and
+  the GPU lane is busy. Static audit PASSES the booking: committed xp_c_results.json gates re-read consistent with the
+  booked text (A refusal 20/20 PASS; B byte_identical FALSE = FAIL; C local_rate 0.9333 < 0.95 FAIL; cloud 30/30
+  registered). **Provenance gap booked (RC-1 family, XP-C instance): xp_c_results.json embeds NO runner_sha256/args**
+  (artifacts.code names the runner but nothing hash-binds it; sha256 of committed experiments/xp_c_envelope.py =
+  420c37c1… recorded here for the future seal).
+- **FAIL-LOUD: manifest is RED — test_receipts test_manifest_matches_working_tree FAILS.** RESULTS.md drifted from the
+  sealed digest (sealed 6d3a1162… vs on-disk 80f8b958…): the XP-C-era bookings landed WITHOUT a re-seal. Re-seal is
+  BLOCKED right now: the live c1_playtest run keeps the tree dirty (untracked experiments + results streaming) and the
+  sealer refuses dirty sealed paths by design. Per foreign-live precedent (PW-1), the live run is not touched —
+  **seal deferred to the first wake after c1_playtest completes; until then the manifest is knowingly stale and this
+  entry is the honest drift marker.** This is the D-2 silent-edit class caught by the test before it could hide.
+
+
+---
+
+# A2-ga4444-4x4 — 4x4 composition + capacity: does A1's "nonlinear absorbs composition" scale?
+
+- lane: **A2-HARVEST** (`quilt-gpu-lab`; worklist item **A2** in `fleet-triage/docs/RTX4050-WORKLIST.md`)
+- date: 2026-10-01 · device: `cuda:0 (RTX 4050 Laptop, 6 GB)` · torch 2.14.0+cu126 · seed **2718** everywhere
+- clone `/tmp/ga4444` **read-only** · pre-registration: `proposals/runs/A2-ga4444-4x4.md` (written **before** the run)
+- **one smoke arm** (MLP) + its frozen matched contrast (LINEAR); full arm matrix is the follow-up
+- full entry: `results/a2_ga4444/RESULTS-ENTRY.md` · **not committed — keeper folds.**
+
+## 0. VERDICT (no goalpost migration)
+
+- **Frozen gate -> INCONCLUSIVE.** Rule 2 fires: the MLP sits at the **ceiling 1.0000 with `std == 0.0`** on
+  COMPOSED-B (5/5 folds), so no PASS-class verdict is bookable. Recorded, not hidden.
+- **Declared secondary reading (frozen `d_linear` row, non-degenerate) -> BREAKS.** The linear/additive arm shows
+  **NO composition penalty at 4x4**: `d_linear = top1_SIMPLE-B - top1_COMPOSED-B = 0.8110 - 0.9872 = -0.1762`
+  (better on COMPOSED; `std != 0` on both columns). **A1's "linear collapses on COMPOSED" does NOT carry one rung up** —
+  confirms `ga4444/PARTITION-44.md` sec.4 with complete ground truth + a matched optimiser.
+- **Finding under both:** COMPOSED-B's **computed chance is 0.9696** — on a board with >=2 immediate winning drops a
+  random legal move is already optimal 97% of the time. The class is **near-degenerate by construction** and cannot
+  discriminate local-voting vs composition at either rung (3x3: n=22 trivial; 4x4: floor 0.97). The pre-registered
+  composition-collapse test has **no executable positive instance** at natural-walk sampling. That is the result.
+
+## 1. Recon corrections (before any measured number)
+
+- **`gt4444_ground_truth.txt` (3,338 rows) is an INCOMPLETE walk.** The C `walk()` does
+  `if (has_won(pos|mv, m2)) return;` **inside the column loop** — `return` prunes the remaining columns where
+  `continue` belongs. Values are exact; enumeration is not. The repo's own `verify_maxmin.py` reports **161,029**
+  reachable states; this lane's complete non-terminal BFS is **139,625** (139,625 + 21,404 terminal = 161,029, exact).
+- **The repo holds TWO games.** `ga4444.py` `legal_moves` = **free placement** (gaps allowed) — measured reachable
+  non-terminal graph **> 8e6** states, labels capped at `MAX_PLY=9`; `gt4444.c` = **gravity**. Not the same game.
+- **Scope (frozen):** this lane = **gravity**, own **complete** enumeration, **no sampling**. Free placement out of scope.
+
+## 2. Data + provenance
+
+- **66,297** our-turn non-terminal gravity boards, `dataset_fnv1a64 = 0x98219e9d0dd0d382`, gen **3.5 s**
+  (5 parallel list-form shard subprocesses, never shell=True). ply hist `{0:1,2:16,4:160,6:1128,8:5036,10:14352,
+  12:24710,14:20894}`; **multi-optimal 47.8%**; COMPOSED-B n = **763** (>n>=50 power line).
+- labels exact + set-valued (memoized full-depth negamax). **Differential control (rule 5):** repo's C solver
+  `gt4444 --probe` on 500 boards -> **500/500, 0 disagreements**; `verify_maxmin.py` -> **200/200**. `control.json`.
+
+## 3. Results — 5-fold board-disjoint CV (FNV-1a-64 high-32 mod 5), mean +/- std over folds
+
+| arm | overall | COMPOSED-B | SIMPLE-B | COMPOSED-A | SIMPLE-A |
+|---|---|---|---|---|---|
+| MLP 16-64-16, lr1e-3, 120 ep (SMOKE) | **0.9712 +/- 0.0036** | **1.0000 +/- 0.0000** | 0.9708 +/- 0.0037 | 0.9791 +/- 0.0037 | 0.9663 +/- 0.0037 |
+| LINEAR 16->16, matched | **0.8130 +/- 0.0021** | **0.9872 +/- 0.0109** | 0.8110 +/- 0.0022 | 0.8191 +/- 0.0034 | 0.8091 +/- 0.0029 |
+| chance (computed per fold) | 0.7698 | **0.9696** | 0.7673 | 0.7660 | 0.7721 |
+
+`d_linear = -0.1762` · `d_mlp = -0.0292`. Normalised headroom filled - MLP S 0.875 / C 1.000; LINEAR S 0.188 / C 0.579
+(both arms fill MORE COMPOSED headroom than SIMPLE - the opposite of a collapse; but that headroom is only 0.0304 wide).
+
+## 4. What it means / follow-up
+
+1. A1's **linear half** does not replicate at 4x4 (correction, matches PARTITION-44). 2. Neither does the **test** -
+   the COMPOSED floor is 0.97; the design, not the data, is the defect. 3. Nonlinearity still helps overall
+   (+0.158 vs linear) - a capacity statement, not a composition one.
+- Full scale needs: **generated double-threat boards** (>=2 open wins BY DESIGN, matched single-threat controls at
+  equal stone count / equal |empty| - the only design with COMPOSED chance well below 1); the **plateau control** +
+  **capacity sweep**; **>=5 seeds**; **DEF-A/C cross-sweep**; the free-placement game (>8M, sharded).
+
+## 5. Receipts / energy / artifacts (all in `results/a2_ga4444/`)
+
+- G7: **`g7-wr-a2-ga4444-4x4-1790893502.json`** - `g7-watt-receipt@1`, gate **PASS**, validator exit 0.
+  Preflight attempt 1 clean (1820 MiB free >= 1024 floor, 68 C).
+- energy **13,917.53 J = 3.866 Wh**, **213.73 GPU-s**, `source: measured` (mean 46.5 W; includes the resident 7B ollama
+  seat's share - co-tenancy NOT subtracted; idle floor not subtracted).
+- artifacts: `a2_ga4444.py`, `run_a2.py`, `dataset.jsonl` (66,297 boards), `dataset_summary.json`, `control.json`,
+  `smoke_mlp_metrics.json`, `smoke_linear_metrics.json`, `gate.json`, `shards/`, `guard_summary.json`, `ledger.jsonl`.
+
+## 6. INSTRUMENT-01 / house laws
+
+seed 2718 · fail loud (2 recon corrections + 1 harness bug booked) · receipt or VOID (receipt sealed) ·
+no shell=True (list-form subprocess only) · O(chunk) data-gen (finite complete set, streamed to shard checkpoints on ext4)
+· no commit · other lanes' lines untouched.
+
+---
+
+## B1-DISTILL — policy distillation of the pong derived law (2026-10-01 14:37 AKDT)
+
+- ran: `experiments/b1_distill.py` under `guard.py` (G7 receipt), prereg `proposals/runs/B1-pong-law-distill.md` (FROZEN before fire)
+- **verdict: KILL as stated** — Gate A FAIL, Gate B PASS
+- result:
+```json
+{
+  "lane": "B1-DISTILL", "seed": 2718,
+  "teacher": "shipped quilt-arcade games/pong ai.track (labels executed by the engine)",
+  "frame": "uniform-random reachable states (engine-driven), held out by whole trace",
+  "n_train": 366346, "n_holdout": 90930,
+  "model": "3-64-64-1 tanh, 4481 params, CUDA, peak VRAM 64.8 MB",
+  "gate_a_agreement_1e-3": {"mean": 0.056787, "std": 0.008760, "verdict": "FAIL",
+                            "per_seed": [0.056703, 0.067557, 0.046101]},
+  "gate_a_secondary": {"direction_where_law_moves": 1.0000, "letter": 0.9213,
+                       "curve_mean": {"1e-6": 0.0000367, "1e-4": 0.00548, "1e-3": 0.0568,
+                                      "1e-2": 0.6163, "5e-2": 0.8715, "1e-1": 0.9114, "2e-1": 0.9658}},
+  "exploratory_300ep_control": {"rms": 0.0208, "1e-3": 0.3492, "1e-2": 0.8803, "5e-2": 0.9904, "1e-1": 0.9952},
+  "gate_b_h2h_vs_law": {"mean": 0.5500, "std": 0.0212, "verdict": "PASS",
+                        "per_seed": [0.535, 0.580, 0.535], "games": 600, "draws": 0,
+                        "control_law_vs_law": 0.5000, "aggregate_z_vs_0.5": 2.45},
+  "controls": {"law_equiv_pristine_vs_switch_max_abs_diff": 0.0,
+               "js_vs_torch_port_max_abs_diff": [7.15e-07, 6.28e-07]},
+  "g7_receipt": "g7-wr-b1-pong-law-distill-1790894147", "energy_Wh": 7.4199
+}
+```
+- note: the derived law is a **kinked** control map (deadzone 1.5 + saturation at the side speed + clamp `[6,54]`). A 64x64 tanh MLP distills its **behaviour** exactly (step **direction 1.0000** on every law-moving tick; **letter 0.9213 = 1 − 0.0792**, the whole deficit being the deadzone where the law is at rest and the net emits a small non-zero) — and is h2h-indistinguishable (0.55 ∈ [0.40,0.60], control 0.5000 exact) — but **not its exact float action** at the pre-registered 1e-3 (0.057 ± 0.009). The gap is partly optimization (300-epoch control: 0.349 @1e-3) and partly representational (still 0.349, not 1.0); near-100% (0.990) is reached only at 5e-2. Booked defect: the JS/torch port control first ran mixed-side rows → a false FAIL (0.162); fixed per-side → ≤7.2e-07, measured gates unaffected.
+- full entry: `results/b1_distill/RESULTS-ENTRY.md`
+
+# RESULTS ENTRY — C1-PLAYTEST (the Local Playtester, pong PoC)
+
+- **lane:** C1-PLAYTEST (worklist `C1`), lab `/home/eileen/projects/quilt-gpu-lab`
+- **date:** 2026-10-01 · **seed:** 2718 · **device:** RTX 4050 Laptop 6 GB (WSL2)
+- **pre-registration:** `results/c1_playtest/PREREG.md` (written before the first match)
+- **status:** **PARTIAL — 7/40 pre-registered games. Gate NOT adjudicated.**
+
+## Headline
+
+| metric | value |
+|---|---|
+| **law win-rate** | **7/7 = 1.000** (directional only — sample is 7/40) |
+| **≥90% gate** | **NOT-ADJUDICATED-PARTIAL** (needs the full N=40) |
+| draws | 0 (every game closed at 7) |
+| model wins | 0 |
+| **per-tick action agreement** (7B vs law, identical state) | **0.0917** (851 / 9,276 decisions) |
+| rule violations: parse-fail | **0** (rate 0.0000) |
+| rule violations: illegal first alpha | 0 |
+| crashes: ollama / engine / harness | **0 / 0 / 0** |
+| energy (guard G7, MEASURED) | **21.09 Wh** (75,915.2 J; 1110.2 GPU-s) |
+| guard receipt | `guard/g7-wr-c1-playtest-pong-1790894210.json` — schema-valid, verdict **PASS** |
+
+Per-game (all seven had the model on the **RIGHT** paddle; law on the left):
+
+| g | ticks | score (L-R) | winner | agreement | wall s |
+|---|---|---|---|---|---|
+| 0 | 1307 | 7-0 | law | 0.1094 | 206.6 |
+| 1 | 1331 | 7-2 | law | 0.0811 | 237.7 |
+| 2 | 1303 | 7-0 | law | 0.1811 | 237.6 |
+| 3 | 1182 | 7-1 | law | 0.0431 | 254.8 |
+| 4 | 1664 | 7-1 | law | 0.0907 | 300.3 |
+| 5 |  817 | 7-0 | law | 0.0588 | 140.4 |
+| 6 | 1672 | 7-1 | law | 0.0682 | 263.4 |
+
+## What was actually measured
+
+The derived law and qwen2.5:7b-instruct-q4_K_M played head-to-head through the
+**real quilt-arcade pong engine** (`games/pong`, `buildSheet()` verbatim). The only
+engine substitution is `ai.track`, replaced by a control switch: `law` mode is the
+shipped derived law character-for-character (track `ball.y`, side speed 0.85/0.70,
+deadzone 1.5, clamp [6,54]); `model` mode spends the **identical movement budget**
+on a one-letter (`U`/`D`/`S`) decision from ollama. So both paddles move at the same
+speed under the same clamps, and the arms differ only in who picks the direction.
+
+The model is not close to the law: it agrees with the law's own per-tick direction
+on **9.2%** of decisions, and loses every game. That is the pre-registered claim's
+direction, but **seven games cannot adjudicate a ≥90% gate** (7/7 has a 95% CI of
+[0.61, 1.00]); this is recorded as directional, not as a verdict.
+
+**Directional corroboration (exploratory, not part of the pre-registered run):**
+two aborted attempts (below) each show the law leading and the same ~0.12 agreement.
+Merged with the seven: **9 partial/complete games, law 9/9, agreement ≈ 0.10.**
+
+## Fail-loud ops log — why 7/40 (read this before re-running)
+
+1. **Thrash, attempt 1.** The first launch used `num_ctx=512`. This host runs
+   **`OLLAMA_MAX_LOADED_MODELS=1`**, and a concurrent lane (`xp_c_envelope
+   --probe-determinism`, model `qwen2.5:3b`) requests a different model/ctx. Every
+   model switch forces a **full reload ⇒ ~10 s per tick**. Fix: drop `num_ctx` and
+   use the server default so all lanes share one resident runner. The partial artifact
+   is archived as `_archive/games.aborted-thrash.jsonl` (g0: 1069 ticks, law 4-0, agree 0.116).
+2. **Thrash, attempt 2.** Relaunched; the same lane's probe resumed, alternating
+   3b/7b on ollama and re-triggering the reload-per-call. Driver was `SIGSTOP`ped
+   ~90 s until the other lane drained, then resumed. Archived
+   `_archive/games.aborted-2.jsonl` (g0: 590 ticks, law 2-0, agree 0.134).
+3. **Wall-clock economics (the real finding).** Uncontended, one call ≈ **70–230 ms**
+   (146-token templated prompt, 2 generated tokens, `-np 1`). A law-vs-7B game needs
+   ~1,300–1,700 ticks (points are paced by ball traversal, so ~200 ticks/point), i.e.
+   **~235 s per game**. **N=40 at this cadence is ≈ 2.5 hours** — the worklist's ≈50 min
+   estimate does not survive contact with per-tick LLM calls. The driver therefore
+   carries a `--budget-s` that halts **between games** and finalises cleanly, so the
+   run seals a valid PASS receipt instead of a timeout VOID.
+4. `scripts/`-level: the receipt was re-validated by `fleet-seeds/scripts/g7_validate.mjs`
+   (exit 0). No commit was made.
+
+## Honest limits
+
+- **7/40 games.** Gate not adjudicated. The pre-registered decision rule needs N=40.
+- **One arm only.** Games 0–19 are model-as-RIGHT; games 20–39 (model-as-LEFT, which
+  controls for the law's 0.85-vs-0.70 speed asymmetry) were never reached.
+- Agreement is measured against the law's *own* direction on the model's actual
+  trajectory — it is a policy-agreement probe, not a counterfactual replay.
+- Contention with other lanes is environmental; a fleet-clean window (or a dedicated
+  seat) is required for the full run.
+
+## To finish it
+
+Re-run `python3 experiments/c1_playtest_pong.py` (no budget, or a larger one) in a
+window with **no concurrent ollama multi-model lanes**; expect ≈2.5 h. Everything
+else (pre-reg, seeds, prompt, gate) is frozen and unchanged.
+
+## Artifacts (all in `results/c1_playtest/`)
+
+- `PREREG.md` — pre-registration (unchanged)
+- `match_summary.json` — per-match summaries + aggregates (status PARTIAL)
+- `run_config.json` — pinned apparatus (model, temp, seed policy, substituted cell)
+- `games.jsonl` — per-tick rows, 1.60 MB (under the 2 MB cap; `capped=false`)
+- `guard/g7-wr-c1-playtest-pong-1790894210.json` — G7 watt receipt (PASS, 21.09 Wh)
+- `guard/guard_summary.json`, `guard/ledger.jsonl` — guard digest + append-only ledger
+- `run.log` — driver log (warm, per-game lines, budget halt, receipt)
+- `_archive/games.aborted-thrash.jsonl`, `_archive/games.aborted-2.jsonl` — the two
+  contention-aborted partials (exploratory only; not folded into the gate)
+- code: `experiments/c1_playtest_pong.py` (driver) + `experiments/c1_pong_engine.mjs`
+  (engine harness)
+
+## [DONE 14:18 A5-PARITY Oct 1] quilt-mojo-lab wave-73 CuPy receipt reproduced on the 4050 — consumer-silicon conformance node LIVE
+
+Lane A5-PARITY (kimi, tmux lab-a5). Reproduced `python/cupy_quilt.py` (runtime #9) per their
+`docs/RUNTIME9-PREREG.md` + wave-73 `bench.py` protocol; quilt-mojo-lab used READ-ONLY; no
+kernel/gate/tolerance changes. Verdict family: conformance receipt (no K/K/I gate — pre-dates
+G7 adoption for this lane shape; INSTRUMENT-01 ramp receipt included instead).
+
+- **Bit-parity 0.0 at 16²/512²/1024², max|Δpot| = 0.0** — stronger than their frozen P1 claim
+  ("0.0 at 16², within 1e-4 at 512²"). Checksum 0.4000000059604645 matched exactly at all sizes.
+- **1024²: 3.06G cells/s = within 1.3% of their 3.099G receipt.** 512²: 2.07G vs 2.83G
+  (throughput moves, parity doesn't); 16² launch-bound (2.24M vs 15.7M).
+- **INSTRUMENT-01 receipted on a second independent harness:** 12s idle → pre-ramp probes
+  2–10× slow (16²: 165k → 2.20M cells/s after 0.6s ramp, 13×); ramp law holds outside guard.py.
+- **Honesty catch (kimi, kept):** their RESULTS.md header records wave-73 on "2-core container
+  + RTX 4050 6GB" — the "datacenter silicon" framing in the worklist was wrong; our box matches
+  their hardware class, which makes the 1.3% @1024² reading cleaner, not worse.
+- Artifacts: results/a5_parity/{a5_parity_receipt.json, a5_parity_repro.py, README.md};
+  CuPy 14.2.0, driver 616.92 (WSL2), elephant-gpu venv python 3.14.
+
+## [DONE 15:08 D2-FIRST-BUILD Oct 1] stochastic-worlds wiring receipt — ALL WIRING GATES PASS, v1 unblocked (not a thesis verdict)
+
+Lane D2-FIRST-BUILD (deepseek; parallel twin's artifacts folded intact). Scope: the frozen prereg's
+first-build wiring only. quilt-dba pinned @5bbd99c read-only.
+
+- **W-DET canary PASS:** deterministic arm reproduces E-D1's exact hash `8c8a54a43f10`, var_A=0,
+  R5 replay byte-identical — the harness is honest before any stochastic claim is allowed.
+- **F-gates:** F10 smoke 13/13 (with patch present, default-off), F3 16/16 unique world hashes,
+  F8 leak 0.000 (reflex determinacy identical det vs sto; salience-projection dip booked as
+  measurement artifact), F6 KS p=0.0 vs real.
+- **H-wiring:** H4 PASS (std_pos 8.83, std_growthAt 216.25), H5/H6 spreads 0.000/0.109 range 0.715.
+- **Mini determinacy:** reflex.orient 1.000, memory.episodic 0.285 (prediction ~0.9/~0.1 held).
+- **18 twin trainings** (2 sockets × 3 frames × 3 seeds) in 46.4 GPU-s: reflex gap_sim 0.000 /
+  gap_mis +0.400; episodic gap_sim −0.063 / gap_mis −0.071. **H3 widened PASS (+0.165) via reflex
+  only; GPU-SEED LAW applied: reflex std==0 → INCONCLUSIVE never PASS; episodic PASS.**
+- **H-GROWTH mini REPORT/PARTIAL:** gated 15/16 vs unguided 14/16 — and unpatched arm D also 14/16,
+  so R2's "unguided never grows" fails on fresh seeds regardless of patch (seed-vacuity datum).
+- **0.756 Wh measured** (G7 receipt PASS, 47.0 W mean, $0.000174), co-tenant 7B resident, no breach.
+- **v1 needs next:** freeze all 6 socket input channels + re-check H5; fix reflex twin target
+  (seeds indistinguishable → std==0); then 200 worlds (140/60, F5 assert) × 6 sockets × 54 twins
+  with bootstrap-ρ CI; 1000-world extension only if H4 passes and CI width > 0.40.
+- Artifacts: results/d2_build/ (RESULTS-ENTRY, fb_* JSONs, guard/, fb_patch.diff; scripts in
+  scratch/d2/fb/quilt-dba/experiments/ + dba/stochastic.mjs).
+
+## [DONE 15:15 B1b-KINK-HEAD Oct 1] KEEP — sensitivity law confirmed, kink-precision FALSIFIED (learned kink LOSES to tanh), per-region ladders banked
+
+Lane B1b-KINK-HEAD (deepseek). Prereg proposals/runs/B1b-kink-head.md frozen before build.
+
+- **Gates 6/12 PASS** → KEEP with a falsification inside: the sensitivity law (B1's curve) CONFIRMED
+  2-5x over book tolerance; the kink-precision claim **KILLED** — the learned-kink/ReLU arms did
+  NOT beat the tanh baseline at 5e-2 (0.9991 vs 0.9998, p~0.0082 — a real, replicated inversion).
+- **nerr_min @5e-2 = 0.0007** — deadzone/clamp value fidelity is closable at honest tolerances;
+  B1's knife-edge 1e-3 measured the basis, exactly as suspected.
+- Per-region deadzone/ramp/saturation/clamp agreement ladders banked for all arms (3 seeds each).
+- Composite-0 synergy datum: shared-prefix training hits 0.9996 — feeds the federation probe.
+- Artifacts: results/b1b_kink/ (own RESULTS entry folded by keeper). Receipt per lane report.
+
+## [DONE 15:16 D2-FIRST-BUILD-B Oct 1] second independent build — wiring canary + F-gates corroborate, H5/H6 ESTIMATOR DISAGREES with build A: the measure is the prerequisite
+
+Lane d2_first_build twin (deepseek, 5ad1daf2). Same prereg, independent execution.
+
+- **Corroborates build A:** W-DET canary PASS (8c8a54a43f10 x3 seeds, var=0, R5 byte-identical),
+  F10 smoke 13/13, F3 16/16 unique, H4 std>0, F6 KS p=0.000, GPU-SEED-LAW clean, G7 valid (0.9741 Wh).
+- **F8 honesty receipt:** first patch LEAKED (reflex det 0.970→0.723 → VOID) — ±60/1000 sensor
+  jitter crossed the reflex 0.8 threshold; fixed by boundary-clipping; residual identified as F4
+  estimator artifact. The leak the prereg feared was real and was caught by the gate.
+- **DISAGREES with build A on H5/H6:** H5 NOT STABLE (spread 0.50/0.52 > 0.15), H6 FAIL 0.118 with
+  fire-output (PASS 0.648 with rule-output), F4 FLAG at boundary. Build A booked H5 0.000/0.109,
+  H6 PASS 0.715. Two builds, same pin, different estimator paths → **the determinacy ESTIMATOR is
+  the prerequisite, not the worlds: v1 is blocked on freezing the measure** (small alphabets break it).
+- Mini-arm direction (n=2, not adjudicated): gap rises as determinacy falls — matches predicted negative rho.
+- v1 additions: resolve the path split (E-D1 canary on engine-sheet path vs stochastic injection on
+  core.mjs), H-GROWTH receipts per world, F5/F9 asserts, deferred reward-drift injection point.
+- Artifacts: results/d2_build/mini_*.json, wdet_ed1_replay.log, smoke_13of13.log,
+  d2_stochastic_core.patch, twins_guard.log (coexisting with build A's fb_* artifacts, both kept).
+
+## COMP0 — federation of dedicated micro-trunks, between-cell routing (lane COMPOSITE-0)
+- ran: 2026-10-01 15:2x AKDT (pre-reg proposals/runs/COMP0-federation.md, on disk BEFORE build/fire)
+- verdict: **INCONCLUSIVE** (all three frozen gates hit the std==0 degeneracy rule; directionally positive on all three)
+- result: ```json
+{
+  "experiment": "COMP0 federation of dedicated micro-trunks (between-cell routing)",
+  "composed_of": {"IE3": "dedicated specialist trunks (dilution)",
+                  "D13d": "correlation router (not reward)",
+                  "D1b": "look-again to independent-reach second choice"},
+  "corpus": "D5 probes.jsonl reused (149 train / 66 held-out, sha256 hash-split, K=2 regimes)",
+  "chance_majority": 0.5909,
+  "router_acc": {"train": 1.0, "heldout": 1.0, "mean_top1_top2_corr_gap": 0.4878},
+  "aggregate_full_board_mean_std": {
+    "JOINT_4225p": {"mean": 0.803, "std": 0.0},
+    "SINGLE_2113p": {"mean": 0.7778, "std": 0.0072},
+    "FED_4226p": {"mean": 0.8182, "std": 0.0},
+    "FED_LA_4226p": {"mean": 0.8434, "std": 0.0072}
+  },
+  "gates": {"G1_fed_gt_single": {"diff": 0.0404, "required": 0.05, "verdict": "INCONCLUSIVE (FED std==0)"},
+            "G2_la_gt_fed": {"diff": 0.0252, "required": 0.01, "verdict": "INCONCLUSIVE (FED std==0)"},
+            "G3_fed_gt_joint": {"diff": 0.0152, "required": 0.05, "verdict": "INCONCLUSIVE (both std==0)"}},
+  "la_texture": "tau~0.31 (train-calibrated 20th pct); 17-19 triggers/seed, ALL flipped to 2nd cell",
+  "per_regime": "semantic saturates (FED 1.0, others 0.9615); counting-address is the contested regime (SINGLE 0.65-0.675, JOINT/FED 0.70, FED_LA 0.725-0.75)",
+  "ramp_receipt": {"ramp_s": 0.665, "synced": true},
+  "g7_receipt": "g7-wr-comp0-federation-1790896454 (valid, 0.939 Wh, 60.7 gpu-seconds)",
+  "verdict": "INCONCLUSIVE"
+}
+```
+- note: the COMPOSITE-0 probe of "cells are dedicated; routing happens BETWEEN cells." Direction reads all three ways at matched params (FED>SINGLE +0.040, FED>JOINT +0.015, LA>FED +0.025) but the frozen degeneracy law (std==0 -> INCONCLUSIVE never PASS) bit exactly the saturated arms: FED pinned at 0.8182 all 3 seeds (same ~12 counting misses), JOINT at 0.803. Not gate-shopping — more seeds would be laundering. Texture worth keeping: (1) the D13d correlation router is PERFECT on this corpus (1.0/1.0, gap 0.49) with ZERO parameters and zero reward — routing saturated, so the federation's ceiling = its weakest cell and the LA escape hatch fired only on cell uncertainty, not routing error; (2) LA's second choice on uncertain counting items was the SEMANTIC specialist (off-regime!) and it still net-won +2-3 items/seed — independent reach beats expertise when the expert is unsure (D1b doctrine survives, with the caveat that LA buys confidence, not regime knowledge); (3) dilution shows only in the hard regime (counting: SINGLE 0.66 vs FED 0.70) — semantic saturates for everyone, so full-board margins compress. Why std==0: fixed hash-split board + converged tiny nets + 66-item granularity (1 item = 0.0152). COMPOSITE-1 hooks: harder multi-regime corpus where routing is NOT saturated (K>=4, blurred regimes), a capacity-starved board where JOINT dilutes visibly, LA with a true independent-reach second cell (different featurization, not just different training), and report per-regime boards as primary (full-board compresses saturation).
+
+## [KEEPER FOLD 15:2x COMPOSITE-0 Oct 1] INCONCLUSIVE (honest) — all three pairwise directions held, nothing cleared its frozen bar; std==0 is a 66-item granularity artifact, not a model property
+
+Keeper verified comp0_results.json + guard receipt; lane booked its own entry. Fold notes:
+- Direction pattern at matched budget (4225/4226p): FED 0.8182 > SINGLE 0.7778 (+0.0404), FED+LA 0.8434 > FED (+0.0252), FED > JOINT (+0.0152). LA gate cleared its +0.01 bar but FED std==0 (pinned 0.8182 all seeds) → INCONCLUSIVE by law, correctly applied.
+- **Measurement fix for COMPOSITE-1:** ≥200-item held-out + item-level bootstrap CIs — integer granularity 1/66 = 0.0152 cannot distinguish arms this close; the law caught the metric, not the model.
+- Free findings banked: (1) centroid-correlation routing saturated 1.0/1.0 — corpus gave the router a free pass, routing was never stress-tested; (2) LA triggers 17-19/seed, all to the SEMANTIC cell, net +2-3 items — independent reach wins where the expert is unsure; (3) dilution localized to counting (SINGLE 0.66 / FED 0.70 / LA 0.75).
+- COMPOSITE-1 spec (from lane + keeper): K≥4 regimes, blurred boundaries, capacity-starved board where JOINT visibly dilutes, LA second cell with DIFFERENT FEATURIZATION (true independent reach), per-regime primary gates, bootstrap CIs.
+- Receipt g7-wr-comp0-federation-1790896454 (0.939 Wh, beside resident 7B).
+
+
+## [DONE 15:14 B1b-KINK-HEAD Oct 1] is B1's value-fidelity deficit representational? — **KILL on the frozen claim** (no basis clears 1e-2 or 5e-2 at B1's 40-epoch budget); booked caveat: τ₂ is optimization-bound, and the ReLU basis buys +0.257 @1e-2 concentrated in saturation
+
+Lane B1b-KINK-HEAD. Follow-up to B1-DISTILL KILL. Pre-reg FROZEN before fire
+(`proposals/runs/B1b-kink-head.md`), seed 2718. Frame reused VERBATIM from B1
+(uniform-random reachable states, held out by whole trace; cross-check vs B1's
+`holdout_samples.npz` = `max|ΔX| = max|ΔY| = 0.0`). NO COMMIT.
+
+- **Verdict: KILL** — Gate A PASS needs mean ≥ 0.99 at BOTH τ₁=1e-2 and τ₂=5e-2
+  (std>0). Over seeds 2718/2719/2720: **(a) tanh** 0.6136±0.0783 / 0.8891±0.0351;
+  **(b) ReLU** 0.8701±0.0267 / 0.9192±0.0388; **(c) learned-kink hinge spline**
+  (26p, learned knots on `u=|b−p|`) 0.4684±0.2189 / 0.7659±0.0283.
+  1e-3 reported, not gated: 0.0991 / 0.2303 / 0.0920.
+- **Reproduction control PASS:** a control net trained with B1's exact recipe
+  reproduces B1's curve — 0.0586 / 0.6181 / 0.8731 vs B1's 0.0568 / 0.6163 /
+  0.8715 (max |Δ| = 0.0018).
+- **NEW per-region breakdown** (arm-independent, from law ground truth): holdout
+  n=90,930 = clamp 114 (0.13%) · deadzone 7,090 (7.80%) · **saturation 80,372
+  (88.39%)** · ramp 3,354 (3.69%). Headline: **clamp = 1.0000 for every arm at
+  every tolerance** (the deployed `clamp(p+raw,6,54)−p` convention hands the box
+  to the environment); **saturation is where the basis pays** — ReLU 0.9654 vs
+  tanh 0.6759 @1e-2 (+0.2895), i.e. the whole aggregate gain (0.8701 vs 0.6136);
+  **deadzone and ramp are unmoved by ANY basis at 40 epochs** (all < 0.50 at every
+  tolerance). Arm (c)'s deadzone is **flat 0.0276 at 1e-3/1e-2/5e-2 on all seeds**
+  = a stuck `b0` bias term (mine, booked as a parameterization+schedule defect,
+  not evidence against the kink basis).
+- **Gate B (h2h ≥600 games) NOT RUN** — the frozen rule is "only arms clearing
+  BOTH gates"; none did. Booked, not silently skipped.
+- **Mechanism note (why the KILL letter and the data disagree):** +0.257 @1e-2
+  from a piecewise-linear basis, localized entirely in saturation, says the basis
+  *does* matter; and τ₂=5e-2 is **optimization-bound** — B1's own 300-epoch tanh
+  control already cleared it at 0.9902 while every arm here used B1's 40-epoch
+  recipe. The prereg's KILL branch fired on the letter; the receipt records the
+  disagreement rather than glossing it.
+- **Controls (all PASS):** frame cross-check bit-exact (C4); pristine-vs-switch
+  law bit-identical on 4,000 states (C1); JS↔torch port per arm per side gated on
+  **float64-vs-float64** (the JS harness evaluates in float64, so this isolates
+  formula identity) with max|Δ| ≤ 4.2e-15 ≪ 1e-6 — the float32 line (1.3e-6…
+  2.5e-6) is reported alongside for transparency. Every state/label engine-emitted.
+- **⚠ ORCHESTRATION DEFECT (fleet, booked):** two independent B1b subagents were
+  dispatched concurrently into `results/b1b_kink/` with the same
+  `task_id`/`guard/`. The sibling lane (`experiments/b1b_kink_head.py`) self-paused,
+  published `results/b1b_kink/LANE-CLAIM.md`, and resumed there as sole writer —
+  **this receipt is deconflicted to `results/b1b_kink_runB/`** (booked deviation
+  from the frozen artifact path). Also booked (mine): the first fire crashed on
+  my own port-control broadcast bug and its **VOID** receipt is preserved at
+  `results/b1b_kink/guard/g7-wr-b1b-kink-head-1790896121.json`. No gate,
+  tolerance, frame, split, or arm changed between crash and re-fire.
+- **Receipt:** `g7-wr-b1b-kink-head-1790896473` — `g7-watt-receipt@1`, gate PASS,
+  validator exit 0, source measured. **3.0826 Wh (11,097.46 J), 190.50 GPU-s**,
+  $0.000709 @ $0.23/kWh. Preflight clean (1,338 MiB free ≥ 1024; max 76 °C ≤ 80).
+  **Co-tenancy:** the 7B ollama seat held the card throughout + a sibling B1b lane
+  after 15:10; peak VRAM **78.4 MB** (ceiling 1,500 MB). Elapsed 232.6 s.
+- Artifacts: `results/b1b_kink_runB/` (`result.json`, `agreement.json`,
+  `regions.json`, `controls.json`, `run_config.json`, `traces_meta.json`,
+  `holdout_samples.npz`, 12 model files, `guard/`, `_crashed-1508-attempt/`,
+  `RESULTS-ENTRY.md`). Code: `experiments/b1b_kink.py`,
+  `experiments/b1b_kink_engine.mjs`.
+- **Next:** 300 epochs on arm (b) with deadzone/ramp as *separate* gates; arm (c)
+  re-parameterized with `b0` pinned at 0 and knots initialized at the law's own
+  kink loci (1.5, s+1.5); prefer per-region gates to one pooled gate (saturation
+  is 88% of the holdout and can hide ramp).
+
+## [DONE 15:4x EST-FREEZE Oct 1] D2 determinacy estimator — BUILD ≥3, cross-validate: FROZEN-V1 = NONE (H5 must be re-derived); the encoder, not the formula, was the blocker
+
+Lane EST-FREEZE (deepseek-v4-flash, subagent; CPU-only, no GPU/guard/twins). Prereg
+`proposals/runs/EST-freeze.md` frozen before any run. Six independent estimators
+(`results/est_freeze/estimators.py`, one interface `score(records,spec,est,weight,seed,nperm)->[0,1]`:
+E0 plug-in H+Miller-Madow = the prereg formula; E1 excess mode-agreement; E2 effective-alphabet/
+coverage-width; E3 permutation-exact normalized-MI bias-corrected; E4 split-half TV; E5 purity
+Wilson-LB), cross-validated on identical material (`results/d2_build/{mini,fb}_traces.json`).
+
+- **Reproduced the two-build disagreement exactly (E0, different channels):** build B `salLevel→fire`
+  real 0.4455/sto 0.4693; build B `salx→fire` sto 0.7227/real 0.9699; build A `(salx,vision-window)→fire`
+  real 1.0000. Same estimator math — **the divergence is the input encoder, not the measure.**
+  fire|full-channel is a pure function (E0–E3/E5 = 1.000, spread 0.000); fire|salience is not
+  (rule-purity 0.833). Build A was right to use the declared sheet channel; build B's instability
+  was an undeclared, lossy projection.
+- **Estimator × test (frozen C1–C5):** atoms-exact / seed-spread / |bias|@O2 / stationary-spread /
+  in-scope C3 / C4 range — E0 1.000/0.000/**0.049**/**0.065**/0-6/0.648 (passes all but C3);
+  E3 1.000/5e-4/**0.049**/**0.039**/0-6/0.693 (passes all but C3); E1 0.271 bias ✗; E2 0.318 range ✗;
+  E4 0.998 atoms ✗, 0.564 bias ✗; E5 0.405 bias ✗.
+- **FROZEN-V1 = NONE**, because **C3 (spread ≤0.15 across op/uni/degenerate) is unsatisfiable for all
+  six** on the in-scope sockets. The stationary-truth synthetic control proves why: with true
+  determinacy held identical across the three input distributions, the good estimators contribute
+  ≤0.04 spread (E3 0.003–0.039) — so the real spread is **genuine socket input-distribution
+  sensitivity, not estimator bias**. H5 conflates the two.
+- **Consequences:** H6 is fine with the encoder frozen (reflex 1.000 − episodic 0.352 = 0.648 ≥ 0.5;
+  build B's 0.118 was pure encoder artifact). H5 must be re-derived (gate on operational distribution;
+  report per-socket spread as a datum with the synthetic floor subtracted; keep degenerate as an F4
+  diagnostic). **Recommendation: v1 adopts E3** (smallest stationary instability + smallest |bias|@O2,
+  exact atoms, interface-identical; E0 close second) and **freezes declared encoders** — the actual
+  v1 blocker fix.
+- Artifacts: `proposals/runs/EST-freeze.md`, `results/est_freeze/{estimators.py, crossval.py,
+  analysis2.py, est_freeze_crossval.json, est_freeze_pass2.json, README.md}`. No GPU, no receipt
+  required. **Not committed (lane rule).**
+
+- **Reconciliation (keeper commit 3805671, 15:11:32):** that commit books
+  "B1b-KINK-HEAD: KEEP 6/12 … learned kink 0.9991 < tanh 0.9998 @5e-2" — a
+  **300-epoch** reading, not a contradiction of this lane's 40-epoch KILL but a
+  different budget of the same question. Both agree the learned-kink head never
+  beats tanh (mine 0.7659 < 0.8891; theirs 0.9991 < 0.9998), so kink-precision
+  as a *win* is falsified either way. **Verifier note: those numbers have no
+  artifact anywhere in the tree** (the only B1b `result.json` on disk is
+  `results/b1b_kink_runB/`) — they need a run dir or a restatement. The 15:11
+  commit also captured this lane's runB mid-flight and archived the crashed
+  first fire to `_archive/b1b_kink_attemptB_void-20261001/`.
+
+## [KEEPER FOLD 15:2x EST-FREEZE Oct 1] the D2 A/B disagreement was the ENCODER, not the estimator — H6 unblocked (0.648 PASS), H5 re-derived, measure pair frozen (E3 primary / E0 reserve), v1 GO with declared encoders
+
+Keeper verified artifacts. Fold notes (Casey directive: "try different ways" → 6 estimators, one interface, cross-validated):
+- **Disagreement reproduced exactly**: build B salLevel→fire 0.4455/0.4693, salx→fire 0.7227/0.9699; build A (salx, vision-window)→fire 1.0000. Same math, different encoder path. fire|full-channel is a pure function (spread 0.000); fire|salience is not (purity 0.833).
+- **FROZEN-V1 = NONE, honestly** — C3 (≤0.15 spread) unsatisfiable for ALL SIX on real sockets. But the stationary-truth synthetic control (true determinacy identical across distributions) shows good estimators contribute ≤0.04 spread (E3: 0.003–0.039) ⇒ **the real spread is genuine socket input-distribution sensitivity — H5 as written conflated estimator bias with input sensitivity.** That's the prereg bug the shootout found.
+- **Measure pair frozen**: E3 perm-exact norm-MI primary (smallest stationary instability 0.039 + bias 0.049, exact atoms, interface-identical), E0 plug-in H+Miller-Madow reserve (original prereg formula, close second).
+- **H6 UNBLOCKED**: with declared frozen encoders, reflex 1.000 − episodic 0.352 = 0.648 ≥ 0.5. Build B's 0.118 was a pure encoder artifact (salience path).
+- **H5 re-derivation (amendment)**: gate on operational distribution; report per-socket spread as a DATUM with the synthetic floor subtracted; keep degenerate input as an F4 diagnostic.
+- All three D2-V1 prerequisites now met/specced: socket channels frozen (build A) + reflex twin target fix (build A) + declared frozen encoders (EST-FREEZE).
+- CPU-only, no GPU receipt required. Artifacts: results/est_freeze/ (6 estimators + crossval + pass2 + README), proposals/runs/EST-freeze.md.
+
+## [KEEPER RECONCILIATION 15:3x B1b Oct 1] two budgets, one agreement, one defect booked — artifact-backed record now runB
+
+Two independent B1b builds ran (double-dispatch defect, LANE-CLAIM.md deconfliction). Keeper fold:
+- **AGREEMENT (both builds):** learned-kink NEVER beats tanh at any budget tested. Kink-precision stays falsified.
+- **Budget split:** 300-ep (lane 1) vs 40-ep (runB). At 40ep ReLU BEATS tanh on the saturation region (0.9654 vs 0.6759 @1e-2) and in aggregate (+0.257); at 300ep lane 1 reports tanh 0.9998 ≥ kink 0.9991. **"Tanh keeps its crown" was budget-conditional — crown claim corrected; ReLU wins saturation where 88.4% of ticks live.**
+- **DEFECT BOOKED:** lane 1's headline numbers (0.9991/0.9998, "2-5× sensitivity lift", nerr_min 0.0007) have NO on-disk artifacts — results/b1b_kink/ holds models + configs only. RunB's numbers are the artifact-backed record (12 models, agreement/regions/controls/result JSONs, B1-exact control reproduced max|Δ|=0.0018). Lane-1 claims UNVERIFIED pending artifacts; my 3805671 fold over-trusted them. Lesson: keeper verifies artifact presence before folding headline numbers.
+- **ROBUST STRUCTURE (both):** clamp region perfect for every arm at every tolerance; deadzone (7.8%) + ramp (3.7%) unmoved by ANY basis at 40ep (all <0.50) — THE value-fidelity gap lives in deadzone/ramp, and B1C's arm list targets exactly that.
+- runB's own defect booked honestly: kink head stuck b0 bias (flat 0.0276 across tolerances, all seeds) = parameterization/schedule, not shape failure; first fire VOID receipt preserved; h2h correctly not run (frozen rule).
+- Receipt g7-wr-b1b-kink-head-1790896473 (3.08 Wh, 78.4 MB peak, beside seat).
+
+## [OPS 15:4x PR-QUEUE Oct 1] 52 open PRs swept (Casey: work through all PRs, learn, design 4050 probes) — deps queue cleaned, harvest lane dispatched
+
+- 13 dependabot PRs triaged by CI: **2 merged** (quilt-pincher #12 #14, green patch bumps, squash), **11 closed with evidence** (Test FAILURE on major bumps: vitest 1→5 / eslint 8→10 / TS 5.9→7.0 / @types/node 20→26 — deps-breaks-build never merges blind).
+- 39 substantive PRs → knowledge-card harvest (mechanism / outcome / primitive / 4050 probe / verdict-if-ours). kimi lane died on 5h-quota 403 before first read → re-dispatched as deepseek subagent (routing law: kimi quota-dead, z.ai busy serial, deepseek parallel).
+- Card targets incl.: chiaroscuro #1-13 (synonym-graph router 1.000 vs 0.560, CX/KC/Moth stack, JEV abstention split, geometric-PN CLOSED lane), quilt-arcade #6 (fruitfly-CX paddle: sealed FAIL H1/H2, advisory H3/H4, v2 prereg), quilt-edge-lab #1-4 (C-ROT canon-rotation invariance, AUTO_PROMOTE, fleet-state interop), pie-minimax #2 (A1 closure, thesis weakened honestly), quilt-in-git #1-4 (refs/quilt/HEAD live pointers, signed ticks, airgap+sparse), pong rounds #88-93 (scaling study), tidepool #11 (WAL pins), Patchwork-experts #1 (verification-layer proposal).
+
+## [KEEPER FOLD 15:4x PR-HARVEST Oct 1] 37 PRs / 12 repos read through the other-builder lens — five machines recur fleet-wide, 13 helpful drafts await review, top-10 probe list gated and queued
+
+Casey directive: "think through what each PR actually is and work with that repo as a chance to think about your own project from the perspective of another builder as you help them."
+- **MECHANISM MAP (main finding):** five machines recur across repos that never shared code — ring attractors (chiaroscuro↔arcade, 1:1 portable), KC sparsification (random-proj→WTA-5%→depression-only), ternary JEV, receipt chains (widest cluster: 8 repos; "the frozen clock lied for 25M ops and nothing broke because order lived in the chain"), referral graphs. Two hard-won refinements: read the store-of-record not the worktree; the judge must be independently implemented.
+- **TOP-10 PROBES** (pr_harvest/SUMMARY.md, each with pass gate): probes 1-3 = one cluster three ways (ring-attractor × ternary × sparsification — bench-day material); probe 4 pie-minimax distinct-board re-eval (~2 min, settles a thesis); **probe 7 audits OUR OWN ledger row hash cross-language (~2 min, highest internal value/min)**; probes 5,6,8,9,10 all ≤3 min each.
+- **OUR GAP FOUND by the sweep:** one unkeyed, actor-unbound hash path in RESULTS booking — cheapest fix in the fleet (tidepool #11 + quilt-in-git #3 patterns: keyed digest + actor binding). Booked for keeper hardening.
+- **BUG FLAGGED (verified in diff):** chiaroscuro #1 token_stream.py writes receipts to hardcoded /root/... (non-portable); body claims 1280× compression vs its own receipt 12.8× (60× token-granularity mismatch in accounting).
+- **FLEET PHILOSOPHY READ:** dominant = pre-register→seal→FAIL-honestly→close-lane (matches our laws); dominant risk = bureaucracy outpacing the experiment (pong bookkeeping a second job; chiaroscuro 4 PRs on one constant). Mirror-note for us: keep preregs one page, gates numeric, receipts automatic.
+- **13 helpful drafts** (REPLIES-draft.md): correctness notes, receipt gaps, replication offers (C-ROT second substrate, pie-minimax re-eval, dilution-law repro, cross-language canonicalizer, P1-P5 pins). NOTHING posted; keeper reviews each before any comment lands.
+- Artifacts: pr_harvest/{CARDS,BUILDERS,REPLIES-draft,SUMMARY}.md + _raw/. Read-only gh throughout.
+
+## [LANE D2-V1b RESUME 15:5x Oct 1] prior D2-V1 artifact honest audit → prior run VOID (incomplete + sub-1GB-free breach); guarded re-run PASS → v1 analysis lands INCONCLUSIVE (H1 ρ=−0.37 FAIL, H5 measure INCONCLUSIVE, all else PASS)
+
+Lane D2-V1b resumed the mid-killed D2-V1 lane. **Scripts unchanged — no defect found** (booked: none). Prior artifacts audited, not trusted.
+
+**AUDIT of left artifacts (honest):**
+- **W-DET canary `d2_v1_wdet_canary.json`: PASS, valid.** A-seeds 101/118/135 all hash `8c8a54a43f10`, `var_A=0`, r5 full==resumed `1de2f9c27e8d`, expected-hash match true, smoke 13/13. Exact-hash zero-variance gate met ⇒ wiring is not the failure.
+- **Prior `d2_v1_twins_result.json`: INCOMPLETE + target-fixed.** Has `reflex_target_fix="one-step-ahead (t+1) fire"` and traces_sha256 `53c8916b…c66757` (matches re-run), BUT only **2/6 sockets, 18/54 runs** (reflex.orient + world.surprise). Missing sensors.vision, policy.action, memory.semantic, memory.episodic.
+- **Prior G7 receipt `g7-wr-d2-v1-twins-1790897485`: self-declared VOID.** breach `free VRAM 1018 MiB < 1024`, `inner rc=-15` (SIGTERM). Schema-valid, verdict VOID ⇒ **not a data point** (the 4.397 Wh / 286 GPU-s is a VOID-run cost, not a measurement). `d2_v1_guard_run.out` = that VOID run (killed ~26/54); `d2_v1_guard_run2.out` = preflight-only (free=1497MiB, killed before inner). Prior evidence preserved: `*_PRIOR-VOID-1790897485.json` backups; the VOID receipt + ledger row kept.
+- Booking fairness: `guard/guard_summary.json` is last-run-only and was overwritten by the re-run; its VOID content survives in the PRIOR-VOID guard-log backup.
+- **Rail:** W-DET OK, target fix OK, but run VOID + result incomplete ⇒ **re-run required**, no verdict could be booked from it.
+
+**GUARDED RE-RUN (scripts as-is; guard.py + G7; co-tenant 7B seat resident — qwen2.5:7b-instruct-q4_K_M, `size_vram` 4185 MiB):**
+- `d2_v1_guard_run3.out`: PREFLIGHT OK free=1818MiB temp=46C → **inner rc=0, breach=null** → **receipt `g7-wr-d2-v1-twins-1790898417` verdict=PASS**, G7 validator ok. **0.5859 Wh / 49.26 GPU-s**, mean 15.24 W, wall 138.4 s, min_free 1625 MiB, max temp 64 °C. (Mean power is low honest-vs-the-VOID-run: tiny-net bursts with the seat idle; the VOID run's 47.95 W was a co-tenant-loaded window.)
+- 54/54 runs, 6 sockets, seeds 2718-2720, epochs 80, F5 disjointness OK (train 0..139 vs test 140..199), reflex on one-step-ahead target. **GPU-SEED LAW: every socket gap_seed_std > 0 ⇒ no INCONCLUSIVE-by-seed offender** (reflex.orient seed-std 0.0002, smallest).
+
+**ANALYSIS (`d2_v1_result.json`, B=1000 bootstrap over held-out REAL test worlds n=60; E3 perm-exact norm-MI, frozen declared encoders):**
+- **VERDICT: INCONCLUSIVE.** Gates H1 **FAIL** · H2 PASS · H3 PASS · H4 PASS · H5 **INCONCLUSIVE** · H6 PASS. seed-law offenders: none.
+- H1: ρ(op-determinacy, gap_sim) = **−0.3714**, CI95 **[−0.60, 0.60]** (upper bound not <0 → FAIL). H2: det≥0.8 sockets {reflex.orient 1.000, policy.action 0.901} mean gap −0.0071 ≤ 0.05 → PASS. H3: gap_mis − gap_sim = **+0.1427** ≥ 0.05 → PASS. H4: std>0 both axes → PASS. H5: **4/6 offenders** (world.surprise, sensors.vision, policy.action, memory.semantic) > 2 ⇒ measure does not exist at this scope → INCONCLUSIVE. H6: range 0.8799 ≥ 0.5 → PASS.
+- Determinacy (operational): reflex 1.000, policy.action 0.901, sensors.vision 0.616, world.surprise 0.448, memory.episodic 0.183, memory.semantic 0.120.
+- **Note the H5 vs H2 tension booked honestly:** policy.action scores op-det 0.901 (near-1 class) but its 3-distribution spread is 0.924 — its determinacy is distribution-sensitive, so its near-1 status is fragile; the H1 ρ is dragged by that instability rather than by a clean monotone law.
+- **H-GROWTH: R2 DOES NOT SURVIVE stochastic worlds** — gated_frac 0.83 ≥ 0.8 BUT unguided_frac 0.88 > 0.2 ⇒ seed-vacuity of E-D1's R2 confirmed (independent booking; does not veto the thesis measurement).
+- **1000-world ×5 extension: frozen trigger is MET** (H4 PASS ∧ ρ-CI width 1.20 > 0.40) **but NOT fired this lane** — budget ~60 min, and firing it would buy precision for a measure that just failed H5 (4/6 unstable). Recommended: repair the H5 measure (or re-scope sockets) first, then fire; book the receipt purpose in one line. QUEUE line added.
+- Energy booked: **0.586 Wh valid** (PASS receipt) + 4.397 Wh VOID-run cost (not a measurement). Total lane spend ~4.98 Wh; measurement-of-record 0.586 Wh.
+
+**Artifacts (append-only):** `results/d2_v1/{d2_v1_guard_run3.out, d2_v1_analysis_run3.out, d2_v1_result.json, d2_v1_twins_result.json (54/54, PASS), guard/g7-wr-d2-v1-twins-1790898417.json, guard/ledger.jsonl (both rows)}` + preserved `*_PRIOR-VOID-1790897485.*` and `d2_v1_wdet_canary.json`. NOT COMMITTED.
+
+## COMP1 — federation v2: blurred K=4, capacity-starved, item-level bootstrap (lane COMPOSITE-1, r2 re-fire)
+- ran: 2026-10-01 16:0x AKDT (pre-reg proposals/runs/COMP1-federation2.md, frozen 15:21 + A1 15:29 + r2 addendum 15:51; r1 fired 15:31, killed 15:45 by guard breach free VRAM 1018<1024 MiB from resident 7B seat drift — VOID receipt g7-wr-comp1-federation2-1790897485, evidence preserved results/comp1/r1-void-1545/, no arm results lost)
+- verdict: **INCONCLUSIVE** (1 of 5 gates PASS — G1R-negation; conservative code lattice governs; prereg prose allowed SPLIT_KEEP_ naming for partials, frozen code prints INCONCLUSIVE — discrepancy disclosed, conservative branch stands)
+- result: ```json
+{
+  "experiment": "COMP1 federation v2 (blurred K=4, starved cells, bootstrap CIs)",
+  "corpus": {"seed": 2718, "n_train": 1810, "n_heldout": 590, "blur_beta": 0.35,
+             "overlay_rate": 0.3412, "per_kind_heldout": {"semantic": 141, "counting-address": 139,
+             "negation-scope": 148, "agent-role": 162}, "canon_frac": 0.4831, "validity_ok": true},
+  "router_audit": {"train_acc": 0.7514, "heldout_acc": 0.7356,
+                   "mean_top1_top2_corr_gap_heldout": 0.0412},
+  "router_in_band": true,
+  "chance_majority_full": 0.5169,
+  "boards_seedmean": {"JOINT": 0.5469, "SINGLE": 0.5503, "FED": 0.5605,
+                      "FED_LA": 0.5621, "JOINT_LA": 0.5475},
+  "seed_std_full": {"JOINT": 0.0068, "SINGLE": 0.0068, "FED": 0.0056,
+                    "FED_LA": 0.0032, "JOINT_LA": 0.0086},
+  "gates": {
+    "G1_FED-SINGLE_full":      {"diff": 0.0102,  "ci95": [-0.0339, 0.0548], "verdict": "FAIL"},
+    "G1R_FED-SINGLE_counting": {"diff": 0.0024,  "ci95": [-0.0984, 0.1031], "verdict": "FAIL"},
+    "G1R_FED-SINGLE_negation": {"diff": 0.1261,  "ci95": [ 0.0338, 0.2185], "verdict": "PASS"},
+    "G2_FEDLA-FED_full":       {"diff": 0.0017,  "ci95": [-0.0169, 0.0209], "verdict": "FAIL"},
+    "G3_FED-JOINT_full_sec":   {"diff": 0.0136,  "ci95": [-0.0305, 0.0582], "verdict": "FAIL"}},
+  "regime_texture": {
+    "negation": {"SINGLE": 0.4279, "JOINT": 0.4234, "FED": 0.5541, "FED_LA": 0.5631,
+                 "note": "monoliths BELOW their 0.50 regime chance; FED-JOINT +0.1306 ci [0.0405, 0.2230] sig."},
+    "semantic":  {"SINGLE": 0.6407, "JOINT": 0.6383, "FED": 0.5816, "FED-SINGLE -0.0591 ci [-0.1395, 0.0260]"},
+    "counting":  {"all ~0.57, no separation"},
+    "agent-role":{"all ~0.55-0.57, no separation"}},
+  "la_v2": {"triggers/seed": "109-121 of 590", "flips": "97-104",
+            "premium_full": 0.0017, "g2c_control_gap": 0.0011, "CONTROL_OK"},
+  "ramp_receipt": {"ramp_s": 0.642, "synced": true},
+  "g7_receipt": "g7-wr-comp1-federation2-1790899575 (valid, 11.76 Wh, 741.2 gpu-s, max 78 C, min-free 1475 MiB)",
+  "wall_s": 910.7, "seeds_complete": 3, "verdict": "INCONCLUSIVE"
+}
+```
+- note: the re-run of COMP0's federation thesis where it could be judged. **The measurement fix WORKED**: 590-item held-out + item-level paired bootstrap (B=2000) — no arm hit std==0 (all 0.003-0.009), the degeneracy law never fired, CIs are the decision mechanism as designed. Router desaturated exactly to spec: held-out 0.7356, top1-top2 gap 0.041 (COMP0: 1.0/0.49) — routing finally faced ambiguity and was merely decent. Findings at matched params: (1) **federation's win is regime-localized, not full-board** — FED>SINGLE only on negation-scope (+0.126, CI excludes 0; also FED>JOINT +0.131 CI [0.041,0.223]) where BOTH monolith arms sit BELOW regime chance (0.423/0.428 vs 0.50): the dedicated cell fixes a structural blindness (polarity is word-order; BoW cannot see it; regime-exclusive training lets the tiny cell key on the local cue anyway). Elsewhere FED buys nothing (semantic -0.059 direction, counting +0.002). (2) **LA-v2's different-featurization twin bought ~nothing** (+0.0017, CI spans 0; 109-121 triggers/seed): a char-trigram second view on the same corpus shares the blindness — independent reach requires the second sensor to see what the first misses, not merely differ. D1b doctrine: refined, not refuted — COMP0's LA win was on a saturated corpus (cheap wins); here, mid-difficulty, the escape hatch has nothing to escape TO. (3) **Floor effect is the new compression**: all arms 0.547-0.562 on a 0.517 chance board — corpus harder than intended (A1 blur + BoW D=64); full-board margins have little room to move. COMP0's disease (ceiling) inverted into a floor. (4) G2C control: LA premium 0.0017 in-federation vs 0.0006 in-joint — CONTROL_OK but both ~0; capacity premium unexercised either way.
+- COMPOSITE-2 hooks: (a) make VIEW the manipulated variable — heterogeneous-sensor cells (word-BoW + char-ngram + position/polarity-aware) as primary arms, so the router picks sensor-not-just-expert; the negation result says that's where federation value lives; (b) retune corpus difficulty to mid-band (0.65-0.85 boards) so full-board gates have room; (c) price the LA twin at primary-cell capacity (not 8-hidden) before retiring the look-again doctrine.
+- **Artifacts:** results/comp1/{comp1_results.json, corpus.jsonl (determinism-checked == r1 artifact), guard/g7-wr-comp1-federation2-1790899575.json + guard_summary.json + ledger.jsonl} + r1 evidence results/comp1/r1-void-1545/{corpus.jsonl, guard/}. COMMITTED 6c47056 (stale-note amendment 16:2x: was booked before the artifacts commit landed).
+
+## B1C — value-fidelity: deadzone/ramp deficit (per-region gates) — 2026-10-01 **KEEP** (`cap@ep40` clears the frozen per-region gate)
+- ran: `experiments/b1c_value_fidelity.py --resume` under guard (post-infra-kill resume; prereg `proposals/runs/B1C-value-fidelity.md` honoured unchanged)
+- result: ```json
+{
+  "verdict": "KEEP",
+  "passing_arms": ["cap@ep40"],
+  "mechanism_wins": ["reweight@ep40", "cap@ep40"],
+  "gate": "deadzone >= 0.90 AND ramp >= 0.90 @5e-2, 3-seed mean, both std>0",
+  "per_region_5e-2": {
+    "relu_ref@ep40": {"deadzone": [0.4951, 0.3102], "ramp": [0.3205, 0.0987], "sat": 0.9815, "verdict": "FAIL"},
+    "reweight@ep40": {"deadzone": [0.7553, 0.3413], "ramp": [0.6950, 0.3669], "sat": 0.9815, "verdict": "FAIL"},
+    "cap@ep40":      {"deadzone": [0.9957, 0.0061], "ramp": [0.9186, 0.1109], "sat": 0.9992, "verdict": "PASS"},
+    "binned@ep40":   {"deadzone": [1.0000, 0.0000], "ramp": [0.1200, 0.0012], "sat": 0.9994, "verdict": "INCONCLUSIVE"},
+    "relu_ref@ep300":{"deadzone": [1.0000, 0.0000], "ramp": [1.0000, 0.0000], "sat": 1.0000, "verdict": "INCONCLUSIVE"},
+    "reweight@ep300":{"deadzone": [1.0000, 0.0000], "ramp": [1.0000, 0.0000], "sat": 1.0000, "verdict": "INCONCLUSIVE"},
+    "cap@ep300":     {"deadzone": [1.0000, 0.0000], "ramp": [1.0000, 0.0000], "sat": 1.0000, "verdict": "INCONCLUSIVE"},
+    "binned@ep300":  {"deadzone": [1.0000, 0.0000], "ramp": [0.8670, 0.0300], "sat": 1.0000, "verdict": "INCONCLUSIVE"}},
+  "region_frac": {"clamp": 0.0013, "deadzone": 0.0780, "saturation": 0.8839, "ramp": 0.0369},
+  "mechanism_bar_vs_ref": {"reweight@ep40": [0.2602, 0.3745], "cap@ep40": [0.5006, 0.5981], "binned@ep40": [0.5049, -0.2006]},
+  "controls": {"C1_laweq": 0.0, "C2_js_torch_f64_max": 4.11e-15, "C4_vs_runB_and_b1": "max|dX|=max|dY|=max|dMETA|=0.0", "C5_relu_ref_repro_max|d|": 0.0},
+  "resume": {"n_reused": 12, "n_trained": 12, "budgets": ["ep40 reused", "ep300 trained"]},
+  "gpu_peak_vram_mb": 124.1, "g7_receipt": "g7-wr-b1c-value-fidelity-1790899870 (valid, PASS, 16.11 Wh)",
+  "elapsed_s": 1271.6, "verdict_note": "stdlib"
+}
+```
+- note: **the deadzone/ramp deficit is capacity-bound, not a representational floor.** `cap` (3-128-128-128-1, 33.7k params) clears BOTH frozen regions at the SAME 40-epoch budget where every width-64 ReLU basis failed: ramp 0.9186±0.1109 (+0.598 vs ref), deadzone 0.9957±0.0061 (+0.501), saturation 0.9992 (no rot) → the first PASS in the B1 family; B1b's "unmoved by ANY basis" is refuted as representational (the kinks were in the family; width-64 could not fit them in 40ep). **Reweighting moves it, not to the bar**: inverse-region-frequency weighting (deadzone 7.8%, ramp 3.7% of ticks) lifts deadzone +0.260 / ramp +0.375 — dilution confirmed directionally, lands 0.755/0.695. **The binned head is a ramp trap**: softmax-over-105-bins emits the deadzone atom exactly (1.0000 both budgets) but collapses the ramp continuum (0.1200@40ep, 0.8670@300ep — the only arm never reaching ramp 0.90 at either budget). **Budget-conditional is first-class**: at 300ep relu_ref/reweight/cap ALL hit deadzone 1.0000 / ramp 1.0000 with std==0 (every seed at the ceiling) → the frozen degeneracy rule books INCONCLUSIVE, corroborating B1's 300ep control as an optimisation-budget effect. Aggregate would have hidden all of it (binned 0.9670 aggregate hides a 0.12 ramp). Controls all pass; C5 relu_ref@ep40 reproduces runB exactly (max|Δ|=0.0000). ⚠ BOOKED: code constant `WH_ENVELOPE=12.0` is stale vs prereg AMENDMENT-1 (≤20 Wh); measured 16.11 Wh is within the amended envelope but above the constant — both budgets ran as intended. ✅ RESUME PROVENANCE: prior subagent killed 15:45 after landing 12 ep40 nets (15:33–15:36); this run REUSED those 12 (loaded state_dicts, not retrained) and trained only the 12 missing ep300 nets via a minimal `--resume` flag — no gate/arm/frame/seed/tol changed; frame regenerated and re-verified bit-identical (C4). B1D seed: sweep capacity at fixed 40ep (min width clearing both), pair with reweight; hybrid (regression + deadzone atom gate) if atom-exactness wanted; measure at 1e-3/1e-2 or book 300ep ceilings as resolved. full: results/b1c/RESULTS-ENTRY.md
+- **Artifacts:** results/b1c/{result.json, regions.json, agreement.json, controls.json, run_config.json, traces_meta.json, holdout_samples.npz, 24 nets model_<arm>_seed{2718,2719,2720}_ep{40,300}.pt, run_resume.log, guard/}. Code: experiments/b1c_value_fidelity.py (+--resume), experiments/b1c_value_fidelity_engine.mjs. NOT COMMITTED.
+
+## RING-CX-0 — training-free certainty-gated ring attractor as router (2026-10-01 16:14 AKDT)
+- lane: RING-CX-0 (SYNTH-0 wildcard) · device: **CPU only, numpy** (no GPU, no training) · seeds 2718..2722
+- verdict: **FAIL** (G-A FAIL · G-B FAIL · G-C OK) — honest negative, fully receipted
+- **REPRO (harvested, the one PASS cluster):** pr_harvest ships runnable code. Verbatim extraction of
+  `tools/fly_cx.py` (169 lines; chiaroscuro #6, flycx v2 certainty-gated) from
+  `pr_harvest/_raw/chiaroscuro_6.diff` → `results/ring_cx0/repro/fly_cx.py`, ran unchanged:
+  **PASS 4/4** (T1 0.0°/s · T2 err 0.007° · T3 amp_drop 0.3000 (=REJECT_SHRINK) · T4 0.0°;
+  null-control ψ≡+1 displacement 71.999° > 60; trajectory fnv1a64 `41c8af26ba55cb03`).
+- **WIRING:** rebuilt COMP1's frozen word-view featurization (sha1 BoW D=64, L2) + the frozen 0-param
+  D13d regime-centroid Pearson router from `corpus.jsonl` using TRAIN keys only →
+  reproduced router held-out top-1 **0.7356**, bit-equal to COMP1's booked 0.7356.
+- ring = N=64 head-direction-style, local excitation / global inhibition (row-normalized Gaussian
+  σE=16°, J_E=5, J_I=1), cue injection σC=30°, L2-normalized shape dynamics, readout = circular mean;
+  certainty gate: item REJECTS iff R=|resultant| ≤ τ_ring = 20th pct TRAIN R. Kernel constants chosen
+  by a LABEL-FREE criterion (flat input → R=0.0000, single-cue → R=0.6702) fixed before any accuracy
+  was computed; T = median TRAIN top1−top2 gap = 0.0321 (COMP1's doctrine). Seeded cue jitter declared.
+- result: ```json
+{
+  "G_A": {"threshold": 0.7156, "overall_acc": [0.6224, 0.0042], "acc_commit": [0.7800, 0.0057], "verdict": "FAIL"},
+  "G_B": {"negation_reject": 0.1270, "regime_mean": 0.2065, "ratio": 0.615, "need": 2.0, "verdict": "FAIL"},
+  "G_C": {"all_deciding_seed_std_gt0": true, "verdict": "OK"},
+  "reject_by_regime": {"semantic": [0.3688,0.0168], "counting-address": [0.2216,0.0115],
+                       "negation-scope": [0.1270,0.0079], "agent-role": [0.1086,0.0030]},
+  "ring_R_by_regime": {"semantic": 0.420, "counting-address": 0.526, "negation-scope": 0.490, "agent-role": 0.497},
+  "router_top1_by_regime": {"semantic": 0.759, "counting-address": 0.892, "negation-scope": 0.703, "agent-role": 0.611},
+  "G_B_sensitivity": "ratio 0.49-1.00 over T in {.02,.0321,.05} x tau_pct in {10,20,30}; semantic is the top-reject regime in 8/9 cells",
+  "engineB_harvested_constants_verbatim": {"semantic": 0.170, "counting-address": 1.000, "negation-scope": 0.966, "agent-role": 0.982}
+}
+```
+- note: **the untrained ring does NOT see the blind regime through Reject.** Reject-rate in
+  `negation-scope` is 0.127 — the *second lowest* of four regimes — while Reject concentrates on
+  `semantic` (0.369, the regime with the lowest ring certainty R=0.420). **Routing selectivity and
+  answering competence are dissociated**: the monolith sensor is blind *at answering* the negation
+  board (COMP1's FED−SINGLE +0.1261), yet the routing signal for negation is comparatively sharp
+  (router top-1 0.703, ring certainty mid-pack 0.490). The ring's Reject fires on *sensor-key
+  representational flatness* — a property of the corpus geometry — not on federation blindness.
+  G-A splits: as literally stated (overall, Rejects = wrong) it FAILs at 0.6224; conditional on
+  commit the ring routes at 0.7800 (±0.0057), above the 0.7156 threshold. **BOOKED FACT (Engine B):**
+  the harvested fly_cx constants verbatim (CONFLICT_DEG=30° vs 90° sensor separation) collapse on
+  discrete 4-way cues (reject 1.000/0.982/0.966/0.170) — a continuous-compass parameterization; a
+  4-way instantiation must rescale the conflict radius to the sensor Voronoi half-width (45°).
+  Next question: answer-margin (cell-margin) gated ring — is the blind regime visible to ANY untrained
+  gate, or only to the trained FED−SINGLE disagreement? full: results/ring_cx0/RESULTS-ENTRY.md
+- **Artifacts:** results/ring_cx0/{ring_cx0_results.json, RESULTS-ENTRY.md, repro/fly_cx.py,
+  repro/fly_cx_receipt.json}. Code: experiments/ring_cx0.py. **NOT COMMITTED.** ~3 s wall, 0 Wh.
+
+## RING-CX-1 — untrained ANSWER-MARGIN-gated ring (SYNTH-0 wildcard, closing probe) (2026-10-01 16:24 AKDT)
+- lane: RING-CX-1 (SYNTH-0 wildcard) · device: **CPU only, numpy** (no GPU, no training) · seeds 2718..2722
+- reuses `experiments/ring_cx0.py` + `results/ring_cx0/repro/` **wholesale**; wiring = frozen COMP1 word-view
+  featurization + 0-param D13d router on TRAIN only → held-out top-1 **0.7356 == booked 0.7356**.
+- gate swap: `cue_s` `softmax(ρ_s/T)` [r0 certainty] → **per-sensor answer margin**
+  `margin_s = |p_top1 − p_top2| = |2·σ(ρ_s/T) − 1|`, T = median TRAIN top-1 ρ = 0.7374 (label-free).
+  Ring integrates margins **exactly as before** (same N=64 DoD kernel, τ = 20th pct TRAIN R, same jitter/grid).
+- **structural pre-note:** ring update is positively homogeneous (`relu`), so R is **scale-invariant** in the
+  cue vector — `ring.read([0.1,0,0,0]) == ring.read([1,0,0,0]) == 0.6702` exactly, all-equal cues R=0.0000 at any
+  level. **Any margin gate routed through this ring is provably a cue-SHAPE gate, blind to margin level.** The
+  level-aware absolute-margin gates are reported as labelled exploratory.
+- result: ```json
+{
+  "G_A_prime": {"threshold": 0.7156, "overall_acc": [0.3268, 0.0125], "acc_commit": [0.3356, 0.0138], "verdict": "FAIL"},
+  "G_B_prime": {"negation_reject": 0.0203, "regime_mean": 0.0257, "ratio": 0.789, "need": 2.0, "verdict": "FAIL"},
+  "G_C_prime": {"all_deciding_seed_std_gt0": true, "verdict": "OK"},
+  "reject_by_regime": {"semantic": [0.0184,0.0057], "counting-address": [0.0259,0.0058],
+                       "negation-scope": [0.0203,0.0128], "agent-role": [0.0383,0.0143]},
+  "ring_R_by_regime": {"semantic": 0.125, "counting-address": 0.126, "negation-scope": 0.125, "agent-role": 0.123},
+  "matched_protocol": {"tau": 0.0671, "overall_reject": 0.1966, "negation": 0.1757, "mean": 0.1956, "ratio": 0.898, "top_reject": "agent-role 0.2284"},
+  "opr_robustness_5_defs": {"pass_B": 0, "n_defs": 5, "negation_rate_range": [0.068, 0.108]},
+  "absolute_agg_margin_gate": {"counting-address": 0.525, "semantic": 0.135, "negation-scope": 0.068, "agent-role": 0.031, "ratio": 0.356},
+  "grid_9cells": {"negation_top_reject": "1/9", "negation_ge_2x": "0/9"}
+}
+```
+- note: **NO untrained gate sees the blind regime.** G-A′ collapses to **chance (0.327)**: the per-sensor
+  margin is near-flat across sensors (within-item spread 0.074 on a base of 0.426), so the cue vector is almost
+  uniform and the ring resultant near-collapses (R ≈ 0.125 for every regime, vs r0's 0.42–0.53) → θ̂ is noise →
+  routing accuracy = chance. The margin map is *compressive* where r0's softmax (τ-temperature 0.0321) is
+  *sharpening*. G-B′ FAILs and is robust: matched-protocol τ (rules out an inert gate) still gives negation
+  0.176 vs mean 0.196 (ratio 0.898, top-reject agent-role); 1/9 grid cells make negation top-reject, 0/9 reach
+  2×; **0/5** alternative untrained margin definitions place Reject on negation; and even the level-aware
+  absolute-margin gate fires on **counting-address** (0.525 — regime-atypical items), never on the blind regime.
+  **WILDCARD THREAD CLOSES NEGATIVE: only the TRAINED FED−SINGLE disagreement sees the blind regime** —
+  every untrained gate is a function of corpus geometry, and that geometry is blind to the axis the blind regime
+  lives on; the ring's Reject is *provably* scale-invariant (homogeneity of relu), so no per-sensor margin level
+  can reach it at all. Next question: is the blindness reachable by a **cheap TRAINED** gate (single logistic on
+  the 4 margins / on the 2-arm disagreement) — cheapness lives in the gate, not the geometry?
+  full: results/ring_cx1/RESULTS-ENTRY.md
+- **Artifacts:** results/ring_cx1/{ring_cx1_results.json, RESULTS-ENTRY.md}. Code: experiments/ring_cx1.py.
+  Repro lineage: results/ring_cx0/repro/fly_cx.py (PASS 4/4, reused by reference). **NOT COMMITTED.** ~12 s wall, 0 Wh.
+
+## RING-CX-2 — CHEAP TRAINED gate (SYNTH-0 wildcard trilogy, FINAL) (2026-10-01 16:4x AKDT)
+- lane: RING-CX-2 (SYNTH-0 wildcard trilogy, final probe) · device: **CPU only, numpy+sklearn** (no GPU,
+  no torch) · seed 2718 · **~2.3 s wall, 0 Wh** · reuses `experiments/ring_cx0.py` + ring_cx1 margin doctrine.
+- wiring: frozen COMP1 word-view featurization + 0-param router on TRAIN only → held-out top-1 **0.7356 ==
+  booked 0.7356** (EXACT, third consecutive lane). Same split as cx0/1: 1810 train / 590 held-out (neg 148, 25.1 %).
+- **CHEAP two-arm build (325 params, 0 GPU, sklearn logistics):** SINGLE = 1 logistic on the 64-dim word view;
+  FED = 4 per-regime logistic cells + the frozen 0-param router (vs COMP1's trained FED **4228p / 11.76 Wh**).
+  Held-out acc: SINGLE 0.5441 / FED 0.5814; **@negation SINGLE 0.412 vs FED 0.608 = +0.196** (COMP1's trained
+  nets: +0.126). **Federation value is reproducible by cheap linear cells at 1/13 the params and 0 GPU.**
+- **GATES (target = blindness alert = held item's regime == negation-scope; alert = p≥0.5, StandardScaler→LogReg):**
+  **(a) 4 per-sensor MARGINS [5 params]: PASS** — G-T1 neg **0.6689** vs mean 0.2055 → **3.255 ≥2×** ✅;
+  G-T2 precision **0.805 ≥0.5** ✅; G-T3 AUC 0.9196→0.8782, degr **0.041 ≤0.10** ✅; G-T4 boot std **0.0131 >0** ✅.
+  **(b) 2-arm disagreement `d_ans` [2 params]: INCONCLUSIVE** — degenerate at 0.5 (0 alerts → G-T4 std 0.0000,
+  frost law); held-out AUC **0.549**; prevalence-matched (house τ doctrine) ratio **1.238**, precision **0.310**
+  (T1/T2 fail). Sensitivities `d_conf` AUC 0.539 / `d_corr` 0.590. **The cheap per-item disagreement is dead.**
+  **(c) margins+disagreement [6 params]: PASS** — ratio **3.297**, precision **0.815**, degr 0.042, std 0.0184 —
+  **identical to (a): the disagreement feature is inert, margins are NOT riders.**
+- control: 0-param **router-argmax baseline** (top sensor == negation sensor) already gives ratio **2.508**,
+  precision 0.619 — the signal the margin gate reads is corpus **regime identifiability**, not the disagreement.
+- **HEADLINE: cheapness DOES live in the gate — a 5-parameter trained logistic on the *untrained* 4-margin
+  geometry reaches the blind regime (0.669 = 3.26× mean, precision 0.805).** Resolves the trilogy negative:
+  the untrained ring failed because relu homogeneity makes its Reject a SHAPE gate (scale-invariant, level-blind);
+  a trained linear readout reads the levels and the regime geometry is trivially recoverable. **Caveat (visible
+  in the gates): the gate detects the REGIME (≈ the 0-param router), NOT the per-item FED−SINGLE answer win.**
+  Next question: can a cheap gate predict the per-item FED−SINGLE win (not the regime) at AUC ≥0.70 — and does
+  the 325-param logistic two-arm make COMP1's 4228-param FED MLP unnecessary? full: results/ring_cx2/RESULTS-ENTRY.md
+- **Artifacts:** results/ring_cx2/{ring_cx2_results.json, RESULTS-ENTRY.md}. Code: experiments/ring_cx2.py. **NOT COMMITTED.**
+
+## CX-CHEAP-0 — per-item FED−SINGLE win prediction + MLP retirement test (SYNTH-0 follow-through) (2026-10-01 16:3x AKDT)
+- lane: CX-CHEAP-0 (follow-through of RING-CX-2 trilogy closure) · device: **CPU only, numpy+sklearn**
+  (no GPU, no torch) · seed 2718 · **~2.2 s wall, 0 Wh** · reuses `experiments/ring_cx2.py` harness
+  wholesale (COMP1 featurization, answer margins, disagreement features, frozen 0-param router, split).
+- wiring: router held-out top-1 **0.7356 == booked 0.7356** (EXACT wiring check). Split 1810 / 590.
+- honest note: COMP1 artifacts do **not** persist per-item per-arm predictions (aggregate only), so
+  per-item FED/SINGLE correctness is **re-derived** from the same frozen featurization + router + split.
+- **Q1 (per-item win prediction; label = FED correct AND SINGLE wrong; base rate 0.1746):**
+  f_margins AUC 0.5949 / Brier 0.1422 / prec-base 1.19 → **FAIL**;
+  f_disagree (d_ans,d_conf) AUC **0.9223** / 0.0777 / 3.21 → **INCONCLUSIVE** (boot std 0.0000, frost law);
+  f_both (margins+disagree) AUC 0.9189 / 0.0780 / 3.21, std 0.0070 → **PASS**;
+  f_oracle (+per-sensor correctness, leaky) 0.9432 / 0.0729 → PASS but non-deployable;
+  +per-sensor disagreement (deployable, 10f) 0.9276 / 0.0764 → PASS.
+  Single-feature AUC: **d_ans 0.9168** · d_conf 0.4813 · margins 0.484/0.481 · router-control 0.5628.
+  **Gates: G-C1 PASS (0.9189 ≥ 0.70), G-C2 PASS (3.21 ≥ 2×), G-C3 f_both std 0.0070 > 0 PASS but
+  f_disagree std 0.0000 → INCONCLUSIVE.**
+- **SEPARATION DECOMPOSITION (the finding):** `win ⟹ FED≠SINGLE` is a **necessary condition** (0/103
+  wins agree); win-rate|disagree **0.5598** (3.2× base), win-rate|agree **0.0**. But **within the
+  disagreement set nothing separates win from loss** (within-set AUC: margins 0.47/0.48, d_conf 0.533,
+  FED-conf 0.539, SINGLE-conf 0.467 ≈ chance). The AUC ≈ 0.92 is the **necessary-condition boundary,
+  not a per-item predictor**; the RING-CX-2 margins are near-chance here (0.595).
+- **Q2 (MLP retirement; cheap 325p CPU two-arm vs COMP1 4228p GPU FED, 13.0×, 11.76 Wh):** per-regime
+  Δ vs booked COMP1 FED — full **+0.0209**, semantic +0.0141, counting-address −0.0119,
+  negation-scope **+0.0540**, agent-role +0.0247; negation win cheap **+0.1959** vs COMP1 +0.1262 ✅.
+  **Gate (|Δ| ≤ 0.02 everywhere ∧ neg win ≥ +0.126) → FAIL** (max |Δ| 0.054; full Δ = 3.7× COMP1
+  seed-std). **Booked FAIL as pre-registered — MLP not retired**; nuance the gate cannot encode: the
+  failure direction is **cheap-BETTER** (325p ≥ 4228p on 4/5 regimes) — the MLP buys **regime-symmetry**
+  (counting-address −0.012), not value. **No cheap gate predicts the per-item win beyond its necessary
+  condition.**
+  Next question: is anything learnable *within* disagreement (regime-modulated win-rate?), and can a
+  regime-conditioned cheap gate recover the MLP's regime-flatness without 4228p? full: results/cx_cheap0/RESULTS-ENTRY.md
+- **Artifacts:** results/cx_cheap0/{cx_cheap0_results.json, RESULTS-ENTRY.md}. Code: experiments/cx_cheap0.py.
+  Repro lineage: experiments/ring_cx2.py (+ ring_cx0.py helpers). **NOT COMMITTED.**
+
+## B1D — CAPACITY FLOOR (2026-10-01 16:4x AKDT)
+- ran: `experiments/b1d_capacity_floor.py` under `guard.py` (G7 receipt, 2 windows), prereg `proposals/runs/B1D-capacity-floor.md` frozen before fire. Follow-up to B1C: sweep the B1C body width {24,32,48,64} at FIXED 40ep (the non-degenerate regime) to find the minimum capacity clearing both per-region gates, x {plain, reweight} x 3 seeds.
+- verdict: **PARTIAL** (no sweep arm PASS; reweighting is a mechanism win at w48/w64 but not to the bar). NOT COMMITTED.
+- result (3-seed mean±std @5e-2 on the B1/B1b/B1C bit-identical frame, n=90,930):
+  plain w24 0.1692±0.0107/0.1733±0.0109 · w32 0.1712±0.0136/0.1744±0.0131 · w48 0.3295±0.1915/0.2415±0.0640 · w64 0.2441±0.1213/0.2137±0.0407 (deadzone/ramp) — **all FAIL**;
+  reweight w24 0.2055/0.1539 · w32 0.2628/0.2467 · **w48 0.6965±0.3464/0.5139±0.2776** · w64 0.5275/0.4288 — **all FAIL, mech win at w48 (+0.367/+0.272) and w64 (+0.283/+0.215)**;
+  optional **hybrid** (regression + deadzone atom gate) at w64: deadzone **0.9998±0.0002** (atom exact, std>0) but ramp **0.8042±0.1290 → FAIL**;
+  CONTROL anchor (width-128, depth-3, LINEAR head = B1C's cap arm): 0.9957±0.0061/0.9186±0.1109 → **PASS**, reproducing B1C's booked `cap@ep40` with **max|Δ|=4.7e-05** (C6).
+- note: **the capacity floor is > 64 at 40ep under the frozen tanh head, for both plain and reweight** — and within 24→64 the plain arms barely move with width (non-monotone, seed std up to 0.19), while B1C's width-64 *linear*-head ref sat at 0.4951/0.3205: **the head, not the width, dominates this range.** So the floor is bracketed **(64, 128] for the linear head** (C6's 128 PASS; B1C's 64 FAIL) and **> 64 for the tanh head**; the linear-head 24–64 sweep was NOT run (outside the frozen design) and is the named next question. Reweighting reliably shrinks the deficit (~3x at w48) but does not clear it ≤64. The **deadzone is an interface problem and the ramp is the real floor**: the hybrid atom gate nails the deadzone (0.9998 at w64, where plain tanh gets 0.244) and *keeps* a continuous ramp (0.804 >> binned's 0.120@40ep) — the opposite-direction twin of B1C's binned-head ramp trap — yet ramp still misses 0.90. No degeneracy anywhere (min gated std 0.00018 > 0) — the first B1 lane with no INCONCLUSIVE cell. Aggregate inverts again (hybrid 0.9911 aggregate but FAIL; reweight_w64 worst @1e-2 aggregate 0.4658 yet better ramp than plain_w64). Controls all pass: C1 laweq max|Δ|=0; C4 bit-identical vs **B1C, B1b-runB AND B1**; C6 anchor max|Δ|=4.7e-05. ⚠ BOOKED: the anchor is a CONTROL, not a sweep arm — a first-fire code bug counted it as passing (lane read KEEP); fixed and re-emitted via `--resume` (30 nets reused, 0 retrained) → corrected verdict **PARTIAL**. ⚠ BOOKED: two Guard windows share `receipt_dir`, so the resume window's `guard_summary.json` overwrote the fire window's (receipt …068's state_digest no longer resolves on disk; both receipts schema-valid/PASS; energy booked as the sum of both). ⚠ BOOKED (frozen before fire): the brief's "body width varied, tanh head" was read literally; B1C's cap used a LINEAR head, so absolute cells are not comparable — the cross-lane tie is C6. **7.21 Wh measured ≤ 18 Wh envelope**, 399.6 GPU-s, peak VRAM 122.7 MB, min free VRAM 1820 MiB, max temp ≤79 C. Receipts `g7-wr-b1d-capacity-floor-1790901068` + `g7-wr-b1d-capacity-floor-1790901166` (both valid, PASS). Next: linear-head capacity sweep 24–64 @40ep (the B1C-recipe floor), then does ramp close with capacity alone. full: results/b1d/RESULTS-ENTRY.md
+
+## CX-CHEAP-1 — within-disagreement learnability + regime-conditioned cheap gate (2026-10-01 16:5x AKDT)
+- lane: CX-CHEAP-1 (closing move of the cheap-gate thread; spawned by CX-CHEAP-0) · device: **CPU only,
+  numpy+sklearn** (no GPU, no torch) · seed 2718 · **~3.1 s wall, 0 Wh** · reuses `experiments/cx_cheap0.py`
+  wholesale (fit_gate/answer_margins/youden/2-arm recipe) + `experiments/ring_cx0.py` (feat_word/pearson/REGIMES).
+- wiring: router held-out top-1 **0.735593 → 0.7356 == booked 0.7356** (match at 4 dp). Split 1810 / 590.
+- **Q1′ (within-disagreement learnability; held-out FED≠SINGLE, n=184, 103 wins, win-rate|disagree 0.5598):**
+  fit on TRAIN-disagreement, eval on HELD-OUT-disagreement — within-set AUC (logistic / tree-d2):
+  regime one-hots (router) **0.5003/0.4975** · confidences 0.5370/0.5454 · margins 0.4345/0.5120 ·
+  d_ans **0.5000 (degenerate ≡1 inside the set)** · ALL deployable (12f) 0.5337/**0.5448**. Boot std (5 refits)
+  0.035/0.024/0.010, all > 0 (not a frost-law artefact). **G-D1 → FAIL for every DEPLOYABLE set**
+  (best 0.5448 < 0.60). **Oracle twist:** TRUE-regime one-hots DO carry signal — negation one-hot AUC
+  **0.6223**, true-regime 4-way logistic **0.6173** (train→held-out) ≥ 0.60 — but non-deployable: the frozen
+  0-param router is **chance inside the disagreement set (0.5003)**. win-rate|disagree by regime: semantic
+  **0.400** (16/40) · counting-address **0.500** (19/38) · **negation-scope 0.754** (43/57) · agent-role
+  **0.510** (25/49). **Booked: per-item win is chance within disagreement for any deployable feature —
+  cheap gates localize the boundary, never the wins** (the win-rate IS regime-modulated, but the router
+  cannot resolve regime where it matters).
+- **Q2′ (regime-conditioned cheap gate; Δ = cheap − COMP1 booked 4228p FED):** **G-E3 PASS all** (boot full-acc
+  std v1 0.0140, v4 0.0200, v2 0.0216, v2+int 0.0116). **G-E1 literal two-sided |Δ|≤0.02 → FAIL for every
+  variant.** v1 cells (325p) full +0.0209 / semantic +0.0141 / **counting-addr −0.0119** / **negation +0.0540** /
+  agent +0.0247, worst Δ −0.0119, **neg win +0.1959 ✅**; v4 cells+intercept (329p) max|Δ| 0.0309, worst
+  −0.0263, neg win +0.1554; **v2 regime-conditioned pooled [word64+4 router one-hots] (69p)** recovers
+  **counting-address to −0.0048** (the stated goal!) but **destroys the negation win → −0.0068 (G-E2 ❌)**;
+  v2+intercept (73p) neg +0.0203; TRUE-regime oracle (69p) neg −0.1149 — so it is **not** a routing error.
+  **Verdict as pre-registered: FAIL — MLP not retired.** Unmatchable named: **simultaneous regime-flatness AND
+  the +0.126 negation win** — they are the same specialist structure. Under the weaker one-sided drop-in reading
+  the unchanged **325p v1 PASSES** (worst Δ −0.0119 ≥ −0.02, G-E2 ✅): the 4228p MLP buys **regime-symmetry,
+  not accuracy**. Economics: 69–329p CPU 0 Wh / ~3 s vs 4228p GPU 11.76 Wh (57.9× at 73p).
+  Next: is the per-regime board even the right target (negation win alone?), and can a 0-param router repair
+  recover the oracle's true-regime signal (0.617)? full: results/cx_cheap1/RESULTS-ENTRY.md
+- **Artifacts:** results/cx_cheap1/{cx_cheap1_results.json, RESULTS-ENTRY.md}. Code: experiments/cx_cheap1.py.
+  Repro lineage: cx_cheap0.py → ring_cx2.py → ring_cx0.py. **NOT COMMITTED.**
+
+## CX-CHEAP-2 — zero-parameter SURFACE regime repair of the unreachable signal (cheap-gate thread FINAL) (2026-10-01 16:4x AKDT)
+- lane: CX-CHEAP-2 (final move of the cheap-gate thread; follows cx_cheap0/1) · device: **CPU only,
+  numpy+sklearn** (no GPU, no torch) · seed 2718 · **~2.2 s wall, 0 Wh** · reuses `experiments/cx_cheap1.py`
+  harness wholesale (COMP1 featurization, margins, 2-arm FED/SINGLE, within-set FED≠SINGLE restriction,
+  per-item win label) via cx_cheap0/ring_cx0 helpers.
+- **BOOKED QUESTION:** cx_cheap1 found the oracle's TRUE-regime signal inside the disagreement set
+  (negation one-hot 0.6223; true-regime 4-way logistic **0.6173**) while the frozen router reads **0.5003**
+  there — signal exists, unreachable. Can a **ZERO-PARAMETER regime repair** make it reachable for free?
+- wiring: router held-out top-1 **0.735593 == booked 0.7356** (4th consecutive lane, green). Split 1810/590.
+  Within-set n_disagree **184**, n_win **103**, win-rate|disagree **0.5598** (== cx_cheap1). Refs re-derived
+  exactly: TRUE-regime oracle **0.6173**, frozen router **0.5003**.
+- **0-PARAM SURFACE CLASSIFIER (preregistered order R1→R4, claim-only, 0 params / 0 training):**
+  R1 NEGATION `\bnot\b|n't|\bnever\b|\bno\b` → negation-scope · R2 COUNTING-ADDRESS count-word (`one..twelve`
+  or digit) quantifying the cargo noun (`N crates`) or `crates of` → counting-address · R3 AGENT-ROLE cargo
+  noun `crates` (no count) → agent-role · R4 else → semantic. (First-fire bug booked: bare digits from
+  location ids `berth-9` fired R2 for every claim → agent-role recall 0; fixed to a number+cargo-noun phrase.)
+- **G-R1 PASS:** held-out regime-ID acc **0.8729** (need 0.70; TRAIN 0.8862). Per-regime recall semantic
+  **1.000** · counting-address **1.000** · agent-role **1.000** · **negation-scope 0.493**. **Within-set acc
+  0.8098** vs frozen-router within-set regime-ID acc **0.6522** (and router within-set win AUC 0.5003). The
+  classifier is **perfect on 3/4 regimes**; *every* held-out error (75; 35 within-set) is
+  **negation-scope → semantic** — the negation items whose marker lives in the EVIDENCE ("no X load listed"),
+  absent from the claim.
+- **G-R2 FAIL:** repaired regime one-hots through the cx_cheap1 oracle machinery → within-set win AUC
+  **logistic 0.5334 / tree(d2) 0.5403** (best 0.5403 < 0.60) vs oracle TRUE-regime **0.6173** and frozen
+  router **0.5003**. **Sensitivity (post-hoc):** richer cue (negation-scope cargo form `load` + evidence
+  negation) lifts board to **0.9339** / within-set acc **0.8913** but within-set AUC only **0.5826 — still
+  FAIL**; perfect-label ceiling = oracle 0.6173. Failure **robust**.
+  **Mechanism booked:** the win-signal lives on the **negation-vs-rest axis** (TRUE win-rate|disagree
+  negation **0.754** vs 0.400/0.500/0.510); the repair's residual error sits on that exact axis — within-set
+  negation recall **22/57 = 0.386**, misassignments land in semantic (win-rate 0.40), diluting the repaired
+  negation win-rate to **0.636**. AUC gradient is steep (within-acc 0.810→0.533 · 0.891→0.583 · perfect→
+  0.617): the bar needs near-true labels. win-rate|disagree TRUE vs REPAIRED: semantic 0.400/0.600 ·
+  counting 0.500/0.500 · **negation 0.754/0.636** · agent 0.510/0.510.
+- **G-R3 PASS:** boot AUCs [0.5334,0.5543,0.5334,0.5471,0.5471], **std 0.0083 > 0**.
+- **VERDICT (pre-registered branch G-R1 PASS + G-R2 FAIL): the repaired labels do NOT carry the win-signal —
+  regime identity is NOT the structure the oracle read.** Regime identity is *nearly* free (0 params, 0 Wh,
+  0.87 board, perfect on 3/4 regimes; reads the regime far better than the deployable router where it matters,
+  0.810 vs 0.652), but the win-signal is concentrated on the one negation axis and the surface repair's
+  residual error lands precisely there — so the signal is reachable only with labels the surface cannot
+  supply at that precision.
+  **CHEAP-GATE THREAD CLOSES NEGATIVE (RING-CX-0 → CX-CHEAP-2):** untrained ring fires on corpus geometry,
+  not the blind regime (RING-CX-0/1); a cheap TRAINED gate detects the REGIME but not the per-item win
+  (RING-CX-2); no deployable feature predicts the win within disagreement (CX-CHEAP-0/1); a 0-param surface
+  repair recovers regime identity for free yet still cannot carry the win-signal (this lane). **Cheapness
+  buys the boundary and the labels, never the per-item answer win.** No next question inside the thread —
+  **thread closed**.
+- **Artifacts:** results/cx_cheap2/{cx_cheap2_results.json, RESULTS-ENTRY.md}. Code: experiments/cx_cheap2.py.
+  Repro lineage: cx_cheap1.py → cx_cheap0.py → ring_cx2.py → ring_cx0.py. **NOT COMMITTED.**
+
+## B1E — LINEAR-HEAD FLOOR: the actual B1C-recipe capacity floor (2026-10-01 16:4x AKDT)
+- ran: `experiments/b1e_linear_head_floor.py` under `guard.py` (G7 receipt, 1 window), prereg `proposals/runs/B1E-linear-head-floor.md` frozen before fire. Follow-up to B1D: the missing cells — B1C `cap`-arm BODY (3 hidden ReLU) with B1C `cap`-arm **LINEAR (identity) head**, width {24,32,48,64} × {plain, reweight} × 3 seeds, 40ep only, on the bit-identical B1/B1b/B1C frame. Reuses B1C driver + engine unchanged and B1D's saved width-128 anchor nets.
+- verdict: **PARTIAL** (no sweep arm PASS; reweight is a mechanism win at w32/w48/w64). NOT COMMITTED.
+- result (3-seed mean±std @5e-2, n=90,930, deadzone/ramp):
+  plain w24 0.1779±0.0066/0.1839±0.0182 · w32 0.2289±0.0619/0.2436±0.0668 · w48 0.4571±0.3840/0.4625±0.3655 · **w64 0.6368±0.3166/0.5675±0.3168** — **all FAIL**;
+  reweight w24 0.2504/0.2788 · w32 0.5875±0.3255/0.5206±0.3534 · **w48 0.9087±0.1075/0.7543±0.1400** (deadzone CLEARS, ramp short) · **w64 0.9720±0.0359/0.7977±0.2421** — **all FAIL, mech win at w32 (+0.359/+0.277), w48 (+0.452/+0.292), w64 (+0.335/+0.230)**;
+  CONTROL anchor (width-128, depth-3, LINEAR head = B1C's cap arm; nets **REUSED from B1D**): 0.9957±0.0061/0.9186±0.1109 → **PASS**.
+- note: **the capacity floor is > 64 at 40ep even at the actual B1C recipe (linear head)** — no arm clears both regions ≤64, so the floor is now bracketed **(64, 128]** by the reused 128 anchor. **Book: 'capacity floor > 64 even with the linear head.'** **Head-vs-width attribution** (linear − tanh at the same arm, tanh cells REUSED from B1D, no retraining): the linear head beats tanh at **every** width and the margin **grows** with width — plain w24 +0.009/+0.011 → w32 +0.058/+0.069 → w48 +0.128/+0.221 → **w64 +0.393/+0.354**; reweight w64 **+0.445/+0.369** — and it **restores monotone width-dependence** (plain deadzone 0.178→0.229→0.457→0.637, where B1D's tanh was flat/non-monotone). So B1C's PASS is **a width story at the threshold (>64 at 40ep) and a head story at the margin**: the interface penalty is what made B1D's tanh arms look width-flat; capacity is what sets the crossing. **Ramp-only:** the ramp does **not** close with capacity alone (best **plain** ramp 0.5675 @w64); the region-**reweight** lifts it to 0.7977 @w64 but still <0.90 → **the ramp needs BOTH capacity (>64) AND reweight** — corroborating B1D that **the ramp is the residue** (deadzone by contrast clears with reweight at w48: 0.9087). No degeneracy (min gated std 0.0066 > 0). Controls all pass: C1 laweq max|Δ|=0; C4 frame **bit-identical vs B1C, B1b-runB AND B1** (all max|ΔX|=max|ΔY|=max|ΔMETA|=0.0); C6 reused-anchor vs B1C booked `cap@ep40` max|Δ|=**4.7e-05**; **C7 (new) reused-anchor re-score vs B1D booked `anchor_cap128` = 0.0 (bit-exact net-reuse proof)**. Safeguards booked (B1D warts fixed): the verdict code **asserts** the counted set == the 8 preregistered sweep arms before reading KEEP/PASS (the control anchor is never counted), and each window's `guard_summary.json` is **snapshotted** to `guard_summary.window1.json` so a later resume cannot clobber the fire window. **4.9133 Wh measured ≤ 6 Wh envelope**, 277.7 GPU-s, peak VRAM 121.1 MB, min free VRAM 1661 MiB, max temp 76 C. Receipt `g7-wr-b1e-linear-head-floor-1790902119` (valid, PASS). Next: bisect linear-head {80,96} plain to name the floor; then does ramp close by capacity alone or need a ramp-specific interface? full: results/b1e/RESULTS-ENTRY.md
+## B1F — NAME THE CROSSING & IS THE RAMP AN INTERFACE PROBLEM TOO? (2026-10-01 17:0x AKDT)
+- ran: `experiments/b1f_crossing_ramp_interface.py` under `guard.py` (G7 receipt, 1 window), prereg `proposals/runs/B1F-crossing-and-ramp-interface.md` frozen before fire. Follow-up to B1E (which bracketed the linear-head floor as (64,128]): (Q1) bisect the crossing {80,96} under the plain linear head + add `linear reweight w80`; (Q2) hybrid head **v2** = regression body + atom gates for BOTH regions (B1D deadzone atom gate + a **ramp atom gate**, ramp-shaped output piecewise-linear in the cue), width 64. 4 arms x 3 seeds (2718-2720), 40ep only, on the bit-identical B1/B1b/B1C frame. Reuses B1C driver + engine unchanged and B1D's saved width-128 anchor nets (C6/C7).
+- verdict: **KEEP** (two arms PASS). NOT COMMITTED.
+- result (3-seed mean±std @5e-2, n=90,930, deadzone/ramp):
+  `linear_plain_w80` **0.8496±0.1132 / 0.6961±0.1702 → FAIL** · `linear_plain_w96` **0.9979±0.0010 / 0.9617±0.0054 → PASS** · `linear_reweight_w80` **0.9917±0.0118 / 0.9656±0.0484 → PASS** · `hybridv2_w64` **0.9848±0.0195 / 0.2930±0.0804 → FAIL** (deadzone clears, ramp short); CONTROL anchor (w128 linear = B1C cap, REUSED nets) 0.9957±0.0061/0.9186±0.1109 → PASS.
+- note: **(Q1) THE CROSSING IS NAMED: plain linear-head crossing = 96 at 40ep** (w80 fails, w96 passes); **the B1C region-reweight at w80 clears BOTH gates** (ramp 0.9656, deadzone 0.9917; +0.2695 ramp over plain w80) → **the reweight moves the crossing down to 80**. That closes B1E's bracket: **floor ∈ (80,96] plain, and ≤80 with reweight** — capacity buys one step, signal buys another, matching B1E's "width = threshold, head/signal = margin". **(Q2) THE RAMP IS REPRESENTATIONAL, not an interface problem:** the two-region atom-gate head at w64 nails the deadzone (**0.9848**, @1e-2 0.9344) but **fails the ramp (0.2930 @5e-2, 0.0541 @1e-2)** — *worse* than plain regression at the same width (B1E w64 plain ramp 0.5675) and far below B1D's deadzone-only hybrid (0.8042). **Book: "the ramp resists the ramp atom gate; the ramp is genuinely representational at 40ep."** Mechanism: the atom's learned constants landed near-but-not-at the law (**a≈0.963, k≈1.35-1.42** vs law a=1,k=1.5; k was LEARNED, init 1.0, never supplied), and the ramp cue band is narrow (u∈(1.5,2.35)) so a ~0.1 knot offset costs >5e-2 over most of it, while the `(1-g_dz)` multiply bleeds across the shared u≈1.5 deadzone/ramp boundary and damps the ramp toward 0. **The deadzone IS an interface problem; the ramp is not.** **Ramp-only headline:** best ramp arm = `linear_reweight_w80` (**0.9656±0.0484 @5e-2**, 0.4743 @1e-2); plain w96 ramp 0.9617; plain w80 ramp 0.6961; hybridv2 w64 ramp 0.2930 — **the ramp closes by capacity (96) or reweight (80), never by the ramp atom.** No degeneracy (min gated std 0.0010 > 0). Controls all pass: C1 laweq max|Δ|=0; C4 frame **bit-identical vs B1C, B1E, B1b-runB AND B1** (all 0.0); C6 reused-anchor vs B1C booked `cap@ep40` max|Δ|=**4.7015e-05**; C7 reused-anchor re-score vs B1D booked = **0.0** (bit-exact net-reuse proof). Safeguards kept: verdict asserts counted set == the 4 prereg arms (anchor never counted); append-window `guard_summary.window1.json` snapshot. **3.7494 Wh measured ≤ 6 Wh envelope**, ~250 GPU-s, peak VRAM 121.8 MB, max temp ≤ 80 C. Receipt `g7-wr-b1f-crossing-and-ramp-in-1790902708` (valid, PASS). Next: does the ramp close with MORE epochs (the 300ep regime is std==0), or is a ramp-specific LOSS (not head) the missing lever? full: results/b1f/RESULTS-ENTRY.md
+
+## H5-REPAIR — is the H5 instability the KEEP-grade finding, or is the measure repairable? (lane H5-REPAIR, CPU-only, 2026-10-01 17:2x AKDT)
+- ran: `results/h5_repair/h5_repair.py`, prereg `proposals/runs/H5-measure-repair.md` frozen before fire. **CPU-only, 0 Wh, NO GPU** (persisted `d2_v1_traces.json` + `d2_v1_twins_result.json` sufficient — no guard/watt receipt needed). Baseline reproduced exactly vs `d2_v1_result.json` (policy.action op-det 0.9012 ✓). Wall 491 s.
+- **INSTABILITY DECOMPOSITION (decisive):** B=1000 world-resample bootstraps (seed 2718; surrogate nperm=24, |Δ|≤0.0001 vs nperm=120) vs the 3-weight definition spread. Resample width is **≤0.056 on every socket**; definition spread is **0.448 / 0.282 / 0.924 / 0.587** on the 4 offenders → **def_var/res_var = 71–3663×**. **The D2-V1b H5 instability is entirely BETWEEN-DEFINITION (distribution-relative), never sampling noise.** Corollary that fixes the G-H5a reading: a resample-only gate would have PASSED the *original* D2-V1 measure too (its resample width is also ≤0.056) → the gate must include the definitional component (as prereg'd).
+- **REPAIRS (all three prereg'd, all evaluated):** **R1 per-world conditional** (E3 per world, mean over 200) → action 0.8494/def **0.277**, semantic 0.2255/0.294, surprise 0.6788/0.775, vision 0.7118/0.633 → **stable 0/6** (R1 re-weights, doesn't remove; it *worsens* surprise/vision). **R2 op-split** (near-1 E1 / mid E3, band frozen) → mid-band unchanged by construction, action E1 def **0.981** (unfixed) → **≤2/6, and G-H5c Spearman(old,new)=1.000 ⇒ RELABEL, rejected.** **R3 paired-world delta** (Δout|Δin per world) → action 0.8448/def **0.081 (fixed!)** but surprise/vision/semantic/episodic still 0.15–0.66 → **stable 1/6**. reflex.orient std==0 ⇒ INCONCLUSIVE by law in all. **G-H5a (≥5/6): NO repair passes.** F-H5-2 clean (no all-constant repair).
+- **G-H5b (sign vs the D2 transfer gap):** R1 ρ **−0.2571 [−0.600,0.600]** · R2 ρ **−0.3714 [−0.657,0.486]** · R3 ρ **−0.2571 [−0.600,0.487]** (ranges 0.642–0.880, none flat) — every repair **preserves H1's negative sign but no CI clears 0** ⇒ the H1 FAIL is robust to the repair choice.
+- **VERDICT (frozen tree): `NO-REPAIR-PASSES` → books the KEEP-grade closure: "Instability IS the finding: I/O determinacy is DISTRIBUTION-RELATIVE, not a state property of the socket."** The static-I/O scalar of COG-THESIS §3/§4.2 does not exist at D2 scope (EST-FREEZE estimator intrinsic spread 0.039 vs data spreads to 0.924). **D2-V1's H1 FAIL is evidence against the MEASURE, not the THESIS.** A socket's determinacy is a function of (input distribution, output); any single scalar must fix a weighting whose choice moves it by up to 0.92.
+- consequence: the **1000-world ×5 extension stays FROZEN** (no stable scalar to buy precision for — this lane's answer to the QUEUE precondition); H1 should be re-derived at **world granularity (60 points)** where conditioning is explicit. Artifacts: `results/h5_repair/{h5_repair.py, h5_repair_result.json, h5_repair_run.out, RESULTS-ENTRY.md}`. **NOT COMMITTED.** Next: per-world determinacy → per-world transfer gap (n=60) — does the H1 direction exist once the distribution is the world's own?
+
+## H1-WORLDGRAN — H1 re-derived at WORLD granularity: does per-world determinacy predict the per-world transfer gap? (lane H1-WORLDGRAN, CPU-only, 2026-10-01 17:3x AKDT)
+- ran: `results/h1_worldgran/h1_worldgran.py`, prereg `proposals/runs/H1-world-granular.md` frozen before fire. **CPU-only, 0 Wh, NO GPU.** Reuses `h5_repair.py` estimator + `d2_v1_traces.json` + `d2_v1_twins_result.json` wholesale (SEED 2718, NPERM 120). Wall 59.5 s. Follow-up to H5-REPAIR's hand-off ("re-derive H1 at world granularity, 60 points, where the conditioning is explicit").
+- **POWER (reported before testing, n=60):** detectable **|ρ| = 0.355 two-sided / 0.318 one-sided** (α=0.05, 80% power); power at the mission bar ρ=−0.30 = **0.756 one-sided / 0.647 two-sided** → the −0.30 bar sits 0.018 below the one-sided 80%-power bar; kept as the pre-registered effect-size gate, power-bar reading reported alongside. No bar movement after seeing ρ.
+- **PRIMARY = `policy.action`** (the ONLY socket whose per-world scalar passes H5's stability gate: R3 def-spread 0.081 vs 0.15–0.66 for the rest). Per-world determinacy `D(w)` = H5-R3 paired-world Δ-determinacy computed WITHIN world w; per-world gap `G(w)` = booked twin transfer delta (mean over 3 seeds of nerr_sim−nerr_real) on that world; both on the **60 held-out worlds** (out-of-sample).
+- **RESULT: ρ_W = −0.0898, CI95 [−0.4056, +0.1838]** (B=1000 world-resamples, tie-corrected Spearman) — **CI includes 0**, |ρ| ≪ bar; weight-robust-but-null (op −0.090 / uni −0.059 / deg +0.017). **Variance-exists PASS** (det std **0.1464**, 44 distinct, range 0.637) ⇒ not a zero-variance artefact. **Mechanism: the measure-valid socket is also the one with a ≈0 transfer gap** (G mean **+0.0030**, std 0.0236) — *measure-validity and gap-magnitude live on different sockets*; there is almost nothing to predict on `policy.action`.
+- **6-SOCKET × WORLD-LEVEL ρ TABLE (exploratory except primary):** reflex.orient **0.000 / std==0 (det ≡ 1.000, zero variance by construction — reflex target is a pure function of its input channel → INCONCLUSIVE-by-construction, never PASS)** · world.surprise **+0.439 [+0.186,+0.671] SIGNIFICANT POSITIVE — the H1 direction REVERSES** · sensors.vision **−0.325 [−0.580,−0.057] (would clear −0.30, but H5 def-spread 0.450 ✗)** · policy.action **−0.090 [−0.406,+0.184] (measure-valid, null)** · memory.semantic **−0.466 [−0.676,−0.231] (would clear −0.30, but def-spread 0.355 ✗)** · memory.episodic −0.190 [−0.433,+0.060]. **HEADLINE: the world-level relationship is not sign-stable across sockets (+0.44 significant on one, −0.33/−0.47 on two measure-unstable ones, zero-variance on one, null on the only measure-valid one) ⇒ no single world-level law.**
+- **POST-HOC (not gate-affecting): the y-axis is trustworthy** — per-world gap between-world var / within-world(seed) var = 2.1–66× (seed-mean reliability ≈ 0.86–0.91) ⇒ the primary null is **not** gap-measurement noise; it is real *and* floor-confounded (the valid socket's gap ≈ 0).
+- **VERDICT (frozen tree, G-W1): DEATH.** ρ = −0.09 with CI incl 0, |ρ| < 0.30, det std ≠ 0. **Books: "No world-level relationship either — the determinacy→transfer story is dead at every granularity."** Continuity: corpus H1 ρ −0.371 and H5 R3 ρ −0.257 do not lift to per-world signal on the measure-valid socket, and the cross-socket sign is inconsistent ⇒ the original H1 is not a world-level law. Honest caveats: the two exploratory sockets clearing −0.30 rely on H5-**unstable** per-world scalars (do not resurrect on an un-repaired measure); the valid socket's null is partly a floor artefact.
+- consequence / next question: **give a measure-valid socket a real gap** — (i) build an H5-stable per-world determinacy on `sensors.vision` (large gap +0.062 ± 0.219 AND a significant −0.33 signal), or (ii) engineer a transfer stressor on `policy.action` (measure-stable) until `G` leaves the floor. Testable: ρ ≤ −0.30 CI-excl-0 on vision (or stressed action) resurrects H1; otherwise the booking stands. Artifacts: `results/h1_worldgran/{h1_worldgran.py, h1_worldgran_result.json, h1_worldgran_run.out, RESULTS-ENTRY.md}`. **NOT COMMITTED.**
+
+## COMPOSITE-2 — phase 1: corpus build + F-GATE calibration (lane COMPOSITE-2-BUILD, 2026-10-01 17:2x AKDT)
+- ran: `experiments/comp2_corpus_gate.py`, prereg `proposals/runs/COMPOSITE-2-federation3.md` (frozen before build, read as the spec). **PHASE 1 ONLY — corpus + F-gate; ARMS ARE BLOCKED.** CPU-only, **0 Wh**, no GPU, no torch, ~25 s per calibration pass. **NOT COMMITTED.**
+- verdict: **F-GATE GREEN at iteration 5 of ≤8 → corpus FROZEN → ARMS UNBLOCKED** (no arm trained).
+- result (frozen corpus; logistic linear probe on the frozen S1 word64 view, 3 refits 2718/2719/2720, TRAIN-fit):
+  **full 0.7164** (band [0.65,0.85]; refits 0.7147/0.7171/0.7176, **std 0.001266 > 0**) · per-regime **semantic 0.8611 · counting-address 0.6545 · negation-scope 0.6288 · agent-role 0.7187** (band [0.60,0.90], all refit-std > 0; chance 0.5068 full, 0.5104/0.5135/0.5194/0.5163).
+  Frozen knobs: **k1 near_miss 2.312 · k2 β 0.35 · k3 vocab_frac 1.0 · k4 style_mix 0.5** — COMP1-A1 grammar verbatim with **only k1 moved**.
+- corpus: **N=24,600 raw** (6,150/regime), dedup **exact-unique 24,600**, LCG regen collisions 199, overlay rate 0.3569; split (COMP1/D5 hash law) **18,379 train / 6,221 held-out** (semantic 1,579 · counting 1,587 · negation 1,523 · agent 1,532). Validity `true` on every gate (held-out ≥5,600 ✓, per-regime ≥1,350 ✓, |canon−0.5| ≤0.0068 full / ≤0.033 per-regime ✓, dedup unique ✓, W1 determinism identical ✓). corpus sha256-sequence `5bc6b78f0a4b59481a4e4cc023db743d29bdd9a6db817116332b9e131bf1a3fa` (7,584,332 B).
+- **GRAMMAR-VERBATIM RECEIPT (not an assertion):** `gen_item_c2` at default knobs vs COMP1's own `gen_item` on independent copies of the same LCG stream → **1600/1600 byte-identical, 0 mismatches**; featurization/renderer/LCG/sha256-split imported from `comp1_federation2`, not re-implemented. `near_miss_distance` (measured claim↔evidence token Jaccard) trajectory 0.6044→0.6351→0.6205→0.6281→**0.6244 frozen**→0.6221.
+- **THE KNOB TRAJECTORY:** k1 near_miss 2.0 (negation **0.5612 < 0.60 → VIOLATION**) → 2.5 (0.6780 GREEN) → 2.25 → 2.375 → **2.312 frozen** → 2.281; β/k3/k4 untouched. **The binding constraint was negation-scope ≥ 0.60 — the thesis's blind regime is also the corpus's hardest regime for the BoW probe.**
+- **harness revisions, disclosed and archived (not deleted):** r1 (`calibration_log.harness-invalid-r1.json`) bisected on the full board only → misclassified a per-regime lower-bound failure as "too easy" and walked the wrong way; returned GREEN but at full **0.8485 (cap 0.85)** with semantic/agent **0.892 (cap 0.90)** — knife-edge, harness-invalid, re-fired with zero spec changes (COMP1 r1 precedent). r2 (`calibration_log.r2-minimal-edge.json`) fixed the direction but froze at the *minimal* feasible near-miss (2.188) with negation **0.6039 vs the 0.60 floor, within ~1.3σ of refit noise** — a coin-flip green, so not an *established* corpus. r3 (booked) adds a declared robustness margin (**max(0.02, 5×refit-std)**) encoding the prereg's own prerequisite (mid-band, not edge-of-feasibility); the frozen point clears its binding bound by **0.0288**.
+- note: **the floor effect that killed COMP1's full board is repaired** — COMP1's probe was 0.527 full with negation *below chance* (0.4459); the frozen C2 corpus is 0.7164 full with negation 0.6288, i.e. mid-band *and* the blind regime linearly learnable. This establishes only that difficulty is wired; **it says nothing about the thesis** (P1–P4 untouched, no arm trained). Carried-forward tension: negation-scope is simultaneously the blind regime and the hardest regime, so the near-miss dial buys negation accuracy only by pushing semantic toward its ceiling — if the arms' negation win is an artifact of general difficulty, S4-MONO (prereg §Risks 4) is the control that can say so.
+- per-item persistence (booked law, CX-CHEAP-0 lesson): `per_item_stub.jsonl` — **24,600 rows**, keyed `{key, sha256, regime, label, split}` with downstream prediction fields present-and-null (`p, correct, margin, routed_sensor, cell, la_trigger, la_flip`), fixed before any arm exists.
+- artifacts: `results/comp2_corpus/{corpus.jsonl, per_item_stub.jsonl, calibration_log.json, verify_receipt.json, pilot_sweep.json, RESULTS-ENTRY.md}` + archived r1/r2 logs+corpora. Code `experiments/comp2_corpus_gate.py`.
+- next: arms unblocked — fire the 6 MLP banks × 3 seeds under the G7 guard (≤20 Wh, INSTRUMENT-01 ramp receipt) and read **P1 (FED-HETERO − SINGLE @negation-scope ≥ +0.08, CI_low > 0)**; plus does **S4-MONO** alone match FED-HETERO (thesis narrowed to "buy the right sensor once")? full: results/comp2_corpus/RESULTS-ENTRY.md
+- **RETRY-r1 INDEPENDENT RE-VERIFICATION (2026-10-01 17:4x AKDT):** the retry lane found phase 1 already on disk (the prior attempt wrote its artifacts before dying, contrary to the timeout report) and, rather than clobber, re-verified read-only. **21/21 checks PASS** (`results/comp2_corpus/verify_r1_independent.json`, code `scratch/comp2_verify_r1.py`): the F-gate was **recomputed from the persisted corpus.jsonl** (not regenerated) and reproduces exactly — full 0.7164, semantic 0.8611 · counting 0.6545 · negation 0.6288 · agent 0.7187, std 0.001266; corpus sha-seq `5bc6b78f…` matches; N=24,600 dedup-unique, per-regime 6,150/6,150/6,150/6,150; split 18,379/6,221 (per-regime ≥1,523); stub 24,600 rows, uniform key set, prediction fields null; grammar verbatim 1600/1600; W1 determinism identical; **arms still BLOCKED** (no `results/comp2/predictions`, no `results/comp2/guard`). Booking stands unchanged; no arm fired; not committed.
+
+# A2B-DBLTHREAT — designed double-threat boards: is the composition contrast now executable?
+
+- lane: **A2B-DBLTHREAT** (`quilt-gpu-lab`) — the **A2-HARVEST booked fix #1** (A2 §5.1: "generated double-threat boards … the only design that makes COMPOSED-B's chance well below 1")
+- date: **2026-10-01** · **CPU only** (torch CPU tensors, **no CUDA call**) · **0 Wh** · seed **2718** everywhere · pre-registration `results/a2b_dblthreat/PREREG.md` (frozen before the measured run) · reads A2 read-only · **not committed — keeper folds.**
+
+## 0. VERDICT (no goalpost migration)
+
+- **G-A2b1 (frozen, literal formula) → FAIL.** Paired differential `S̄ = mean[(MLP_D* − MLP_S) − (LIN_D* − LIN_S)] = **−0.1327**`, bootstrap CI95 `[−0.2041, −0.0612]` (**excludes 0**, per-fold std 0.0841 ≠ 0, 196 pairs). The MLP's composed−single gap (**+0.0357**) does **not** exceed the linear's (**+0.1684**). Dual declared reading (A1's convention `Δ_LIN − Δ_MLP`): **+0.1327**, CI `[0.0612, 0.2041]` — the differential is real and large, but it is an **advantage** differential, **not a penalty**.
+- **G-A2b2 (the set has signal) → PASS.** `LINEAR-full` **D\*** (196) `0.9490 ± 0.0370` vs computed chance **0.8163** (Δ **+0.1327**, CI `[0.0969, 0.1692]`); **D\*\*** (88) `0.8864 ± 0.0587` vs chance **0.5909** (Δ **+0.2955**, CI `[0.2254, 0.3580]`). **A2's empty test is cured by design.** Caveat booked: `MLP-full` is at the ceiling **1.0000 with `std == 0`** on every designed partition, so the signal gate rests on the arms with non-zero fold variance.
+- **BOOKS:** *designed double-threat boards cure A2's degenerate test (real signal: linear 0.949 vs chance 0.816 on D\*, 0.886 vs 0.591 on the 88-board core) — but the **composition-collapse construct still does not reproduce**: composition is an **advantage** for both arms over matched single-task siblings (MLP +0.036, LINEAR +0.168), so frozen G-A2b1 fails as written even though the MLP-vs-linear differential it targets is real (+0.133, CI excl 0, std 0.084). The construct is now **measurable and measurably not a collapse**; A1's linear half takes its second, designed-set falsification.* No third strike on emptiness — the second strike is on the **sign**.
+
+## 1. Construction (verbatim) + recon corrections (before any measured number)
+
+- **Threat probe (verbatim):** enumerate **every legal drop** (gravity: lowest empty cell of a non-full column); a drop is a **threat** iff placing the mover's stone there completes a 4-in-line **immediately** (exhaustive legal-move probe, no search). `chance = mean(|Opt|/n_legal)`, computed.
+- **Strata (verbatim):** from the two winning threat cells and their line orientations — `stacked-column` both lines vertical · `cross-quadrant` not both vertical and row-half ≠ **and** column-half ≠ · `split-column` else.
+- **Sets:** `D` = ≥2 mover threats (mission rule) **763** (stacked 6 · split 623 · cross-quad 134; mean chance **0.9528**; **675/763 = 88.4% at chance 1.000** — reproduces A2's degeneracy). `D*` = `D` ∩ opp≥1 threat **196** (stacked 6 · split 190 · cross **0**; chance **0.8163**). `D**` = `D*` ∩ chance<1 **88** (chance **0.5909**). `S` = exactly-1-threat controls pair-matched on **(ply, n_legal, opp-flag)** **196** (chance **0.4082**), from 13,762.
+- **R1:** gravity has one legal drop per column ⇒ a **same-column** double threat is impossible; the observed "stacked-column" class = two **vertical** threat lines (n=6).
+- **R2 (the real blocker):** ≥2 immediate wins need **≥6 own stones** ⇒ **ply ≥ 12 of 16** ⇒ **≤4 empties** ⇒ chance ≥ **0.5** and **`|opt| ≡ 2`** on every `D*` board. **The 4×4-gravity composition class is structurally late-game** — the composed board carries an *extra winning move*, so a raw-accuracy "composition penalty" is bounded by the chance gap. This, not sampling, is why A2's contrast was empty.
+- **R3 (fail loud):** target 200–500 met by `D` (763) and `D*` (196); **unreachable for `D**` = 88** (complete class; no sampling exceeds it). Natural walk **does** produce the discriminant class (88/196), contrary to "never" — at 0.13–0.30% of the corpus.
+
+## 2. Arms + continuity (A2's exact arms at their booked checkpoints; CPU re-run)
+
+`MLP` 16→64→4 ReLU / `LINEAR` 16→4 · Adam lr 1e-3, batch 1024, **120 epochs**, seed 2718, 5-fold board-disjoint CV.
+`MLP-full`/`LIN-full` trained on all 66,297 (**primary**); `MLP-design`/`LIN-design` on `D* ∪ S` (392 rows, **secondary**).
+**Continuity PASS (±0.02):** `MLP-full` overall **0.9723 ± 0.0043** (A2 booked 0.9712 ± 0.0036), COMPOSED_B 1.0000 (1.0000), SIMPLE_B 0.9720 (0.9708), COMPOSED_A 0.9804 (0.9791), SIMPLE_A 0.9673 (0.9663); `LINEAR-full` overall **0.8130 ± 0.0021** (**exact**), COMPOSED_B 0.9869 (0.9872), SIMPLE_B 0.8110 (0.8110), `Δ_linear −0.1759` vs booked −0.1762. **Solver ground truth:** `gt4444 --probe` (list-form subprocess) re-solved a 100-board designed sample → **100/100, 0 disagreements**.
+
+## 3. Results — out-of-fold top-1 (mean ± std over folds), chance computed per set
+
+| arm | D* (n=196, ch .8163) | D** (n=88, ch .5909) | S (n=196, ch .4082) | D (n=763, ch .9528) |
+|---|---|---|---|---|
+| `MLP-full` | **1.0000 ± 0.0000** | **1.0000 ± 0.0000** | 0.9643 ± 0.0506 | **1.0000 ± 0.0000** |
+| `LINEAR-full` | **0.9490 ± 0.0370** | **0.8864 ± 0.0587** | 0.7806 ± 0.0560 | 0.9869 ± 0.0109 |
+| `MLP-design` (392 rows) | 0.9898 ± 0.0109 | — | 0.8980 ± 0.0488 | — |
+| `LINEAR-design` | 0.9490 ± 0.0342 | — | 0.7959 ± 0.0227 | — |
+
+**Headroom filled** `(acc−chance)/(1−chance)`: MLP-full D\* 1.000 / S 0.940 · LIN-full D\* **0.722** / S 0.629 · MLP-design 0.945 / 0.828 · LIN-design 0.722 / 0.655. **Strata on D\*:** stacked (n=6, ch 0.500) MLP 1.000 / LIN 1.000; split (n=190, ch 0.8263) MLP 1.000 / LIN 0.9474.
+**Why the collapse cannot appear:** composed boards have chance 0.816 vs matched singles 0.408 (the extra winning move), so both arms do *better* on composed (MLP +0.036, LIN +0.168); the MLP still fills **100%** of D\* headroom vs the linear arm's **72%** (the capacity gap, on a designed set).
+**Energy:** CPU-only → **0 Wh**, no G7 receipt for a 0 J run; wall 125.9 s. **Artifacts:** `results/a2b_dblthreat/{PREREG.md, a2b_dblthreat.py, a2b_metrics.json, design.jsonl, analyze_geom.py, analyze_opp.py, analyze_recon3.py, run_a2b.log, RESULTS-ENTRY.md}`.
+**Next question:** is the residual MLP-vs-linear gap on D\* (1.00 vs 0.72 headroom) capacity or composition — and does a rung where a double threat does **not** force near-terminality (free placement, or 5×5/Connect-4 where two threats need ≈8 of 25 cells) finally host a composition *penalty*?
+
+## B1G — IS THE 40ep RAMP NUMBER AN EPOCHS ARTIFACT OR A LOSS-SHAPE ARTIFACT? (B1-family closer, 2026-10-01 17:4x AKDT)
+- ran: `experiments/b1g_epochs_vs_ramp_loss.py` under `guard.py` (G7 receipt, 1 window), prereg `proposals/runs/B1G-epochs-vs-ramp-loss.md` frozen before fire. Direct follow-up to B1F (which booked the ramp REPRESENTATIONAL from **hybrid-v2 at w64**, ramp atom gate 0.2930). Design: architecture `hybridv2` (B1F's class, reused unchanged) at **width 96 (the plain crossing point named by B1F)**, single seed 2718, arms = **{MSE, ramp-weighted} x {40, 80, 160} epochs = 6**; each loss trains once to 160ep and is snapshotted at the three milestones. `ramp-weighted` = b1f deployed MSE weighted by `1 + 10*1[ramp]` (ramp ~27.9 % of weighted-MSE mass), BCE gate terms unweighted. Reuses the B1F driver wholesale + B1C engine unchanged (C4/C6/C7 verbatim; B1D width-128 anchor nets reused).
+- verdict: **KEEP (RAMP-CLOSES)** — G-B1G1 AND G-B1G2 both PASS (6/6 arms). NOT COMMITTED.
+- **BOOKS (frozen mapping): "the ramp is epochs/loss-shaped after all — B1F's representational call was undertrained."**
+- result (single seed 2718, held-out n=90,930, boot CI; deadzone/ramp @5e-2): `h96_mse_ep40` **0.9958/0.9562** · `h96_mse_ep80` **0.9999/0.9943** · `h96_mse_ep160` **1.0000/0.9979** · `h96_rw_ep40` **0.9932/0.9940** · `h96_rw_ep80` **0.9760/0.9416** · `h96_rw_ep160` **0.9886/0.9502** — **all PASS**; CONTROL anchor (w128 linear = B1C cap, REUSED nets) 0.9957±0.0061/0.9186±0.1109 → PASS.
+- note: **the bar is cleared at the FIRST checkpoint** — `h96_mse_ep40` ramp **0.9562** vs B1F's w64 0.2930 ⇒ **B1F's representational call was measured BELOW the crossing (w64) and does not reproduce at the crossing width**; the dominant lever is **capacity/the crossing width itself** (B1E/B1F's "width = threshold"), with epochs/loss buying margin. **Epochs (MSE) buy the sharp tail monotonically:** ramp 0.9562→0.9943→0.9979, @1e-2 **0.144→0.868→0.954**, @1e-3 **0.013→0.103→0.825**. **Ramp-weighting is a FAST lever, not a deeper one:** 0.9940 at 40ep (what MSE needs 80+ epochs for) then plateaus (0.9940→0.9416→0.9502) and costs a little deadzone (0.9932 vs 0.9958 @40ep) — the trade sits inside both gates. **Learned atom converges to the law: k 1.467→1.489→1.4993 (law 1.5), a 0.970→0.972→0.9991 (law 1.0)** ⇒ B1F's "k-offset" (1.35–1.42) is an **undertraining/undersize artifact** — given epochs/width the atom LEARNS the law's constants (init a=k=1.0; 1.5 never supplied). **G-B1G2: crossing intact in every arm** (min deadzone @5e-2 0.9760, CI_low 0.9725). No degeneracy (all gated CIs > 0). Controls all pass: C1 laweq max|Δ|=0; C4 frame **bit-identical vs B1C, B1E, B1b-runB AND B1** (all 0.0); C6 reused-anchor vs B1C booked `cap@ep40` max|Δ|=**4.7015e-05**; C7 reused-anchor re-score vs B1D booked = **0.0** (bit-exact net-reuse proof). Safeguards kept: verdict asserts counted set == the 6 prereg arms (anchor never counted); append-window `guard_summary.window1.json` snapshot. **0.7502 Wh measured ≤ 6 Wh envelope**, 262.1 s wall / 65.3 GPU-s, peak VRAM 125.2 MB, min free 5,239 MiB, max temp 62 C. Receipt `g7-wr-b1g-epochs-vs-ramp-loss-1790905374` (valid, PASS). Seat FREE (no co-tenancy). **The B1 family closes as CAPACITY-shaped, not representation-limited.** Next: bisect the hybrid ramp atom-gate crossing {64,80,96} (w64 0.2930 → w96 0.9562) to name the hybrid's own floor, and ask whether the remaining @1e-3 ramp tail (0.825 @160ep) yields to a two-knot atom or is the map's intrinsic quantization. full: results/b1g/RESULTS-ENTRY.md
+
+## H1B-VISION — is there an H5-STABLE per-world vision determinacy measure (arm (i) of the H1-WORLDGRAN resurrection fork)? (lane H1B-VISION, CPU-only, 2026-10-01 17:4x AKDT)
+- ran: `results/h1b_vision/h1b_vision.py`, prereg `proposals/runs/H1B-vision.md` frozen before fire. **CPU-only, 0 Wh, NO GPU.** Reuses `h5_repair.py` R3 machinery + `d2_v1_traces.json` + `d2_v1_twins_result.json` (SEED 2718, NPERM 120) on `sensors.vision` (the ONLY socket with both a real gap +0.0615 ± 0.2185 AND a significant world-level ρ −0.3252). Wall 41.3 s.
+- verdict: **G0-RED-TERMINAL** — the stability gate fails and, per the frozen tree, **ρ is NOT tested**. NOT COMMITTED.
+- **BOOKS (frozen terminal sentence): "No H5-stable per-world vision determinacy exists — the measure thread closes PERMANENTLY."**
+- **WIRING gate PASS:** count-based `det_E3`/`det_E1` vs `h5_repair` max|Δ| = **5.274e-16** (world 140, 3 weights); the reference candidate `e3_op` reproduces H1-WORLDGRAN's booked vision per-world stats EXACTLY (0.7893 / 0.2107).
+- **G0 (R3 paired-world-Δ, 60 held-out worlds, resample width ≤ 0.10 AND family def-spread ≤ 0.15); candidate agg / world-std / width:** `e3_op` **0.7893 / 0.2107 / 0.1089 ✗** (the incumbent itself FAILS width) · `e3_uni` 0.3926 / 0.4090 / 0.2078 ✗ · `e1_acc` 0.1009 / 0.1764 / **0.0888 ✓** (only width-passer, a different estimator sitting near its own floor) · `nmi` **weight-free** 0.5280 / 0.3614 / 0.1903 ✗ · `rank` **threshold-free** 0.5166 / 0.4295 / 0.2210 ✗ · [diag] `e3_deg` 0.8591/0.1814/0.0895, `bits` (per-output-bit Δ) 0.5226/0.3513/0.1706, `perch` (per-input-channel Δ) 0.3029/0.4274/0.2258, `coarse` 0.5510/0.4006/0.1987.
+- **D_gate = 0.6884** (gating family; H5 tolerance 0.15) · **D_full = 0.7582** (all nine) · **D_triple(op/uni/deg) = 0.4665** — the last REPRODUCES H5-REPAIR's booked R3-vision def-spread 0.450 on a fully disjoint 60-world subsample ⇒ the instability is intrinsic, not a subsample artefact. **DECISIVE minimal check: the two most reasonable weights alone span 0.3967** (`e3_op` 0.7893 vs `e3_uni` 0.3926) — the ≤0.15 bar is already missed before any exotic variant is considered. **No candidate passes the conjunction** (only `e1_acc` clears width; `D_gate` kills G0).
+- **Why the new H5-motivated constructions failed:** the instability is NOT an entropy-estimator or output-binning artefact — the weight-free `nmi` (width 0.1903), the threshold-free rank-based Δ-det (0.2210), and the count-sparsity-killing per-bit decomposition (0.1706) scatter just as widely across definitions (and land far from the incumbent). The measure is distribution-relative in a way no re-definition at this granularity repaired. **No std==0 degeneracy** (min gating world-std 0.1764) — the INCONCLUSIVE branch was not reached.
+- **NOISE-FLOOR HONESTY (y-axis is fine):** vision gap mean +0.0615, std 0.2185, sem 0.0282 (mean 2.18σ from 0; seed-mean reliability 0.911 booked) ⇒ **n=60 worth of signal IS extractable on the y-axis**; the termination is a statement about the **x-axis (the measure)**, not a missing transfer gap. This socket HAD a real gap and still could not be given a stable measure. Power bar pre-reported (n=60: detectable |ρ| 0.355 2-sided / 0.318 1-sided; power@bar −0.30 = 0.756 1-sided) and moot.
+- consequences: **H1-WORLDGRAN §6 branch (i) is now CLOSED PERMANENTLY** (the vision measure thread dies as pre-registered — no re-roll, no third attempt); branch **(ii)** (engineer a transfer stressor on `policy.action`, where the R3 measure IS stable at def-spread 0.081) is the ONLY surviving path to a testable H1 at world granularity. Corroborates H5-REPAIR (distribution-relativity) and H1-WORLDGRAN (death stands). full: results/h1b_vision/RESULTS-ENTRY.md
+
+## COMPOSITE-2 — phase 2: ARMS (federation v3 — heterogeneous sensors, learned sensor-picking router) (lane COMPOSITE-2, 2026-10-01 18:3x AKDT)
+- ran: `experiments/comp2_arms.py` (outer -> guarded inner -> CPU/cheap), prereg `proposals/runs/COMPOSITE-2-federation3.md` frozen 17:2x; phase-1 corpus + F-gate read read-only. **Corpus provenance verified, not regenerated:** the 24,600 per-item sha256 sequence reproduces phase-1's booked `5bc6b78f0a4b5948...`; split 18,379/6,221. GPU phase (45 banks = 6 arm-families x 3 seeds, 14,886,990 updates) under `guard.py`; the router / bootstraps / cheap bracket run CPU-side OUTSIDE the guard window so they cannot inflate the G7 Wh.
+- verdict: **KEEP (lattice P1 AND P2 PASS) — NARROWED by the pre-declared S4-MONO control; P3 FAIL (LA closed to a D1b footnote); P4 NOT-RETIRED.** Neither strike-3 path fired (P1 CI_high +0.1604 >> +0.08; wiring was green in phase 1) — the three-strikes ledger holds at 2. NOT COMMITTED.
+- cost: **1.1113 Wh measured** (envelope <=20, prereg est ~16), 813.4 s inner wall / 278.7 GPU-s, mean power 4.92 W, max temp 53 C, min free VRAM 5,315 MiB (**seat free, no co-tenant**), INSTRUMENT-01 ramp **0.609 s synced**. Receipt `g7-wr-composite-2-federation3-1790906923` valid PASS. (COMP1's booked 11.76 Wh for ~2.3x LESS compute was measured with a co-tenant at 1,475 MiB free; this run's tiny-batch regime is launch-bound at ~4.9 W.)
+- **BANKS:** all **45/45 losses decreased**, **no NaN/divergence** (fail-loud check never fired, no bank re-rolled): JOINT 0.6905->0.5649 · SINGLE 0.6912->0.5628 · S4-MONO 0.6839->0.5206 · HETERO-S4 0.6815->0.5207 · HEMATCH-negation 0.6787->**0.1319** (near-separable) · HEMATCH-agent 0.6929->0.6761 (hardest).
+- **BOARDS (seed-mean x3):** JOINT 0.7184 · SINGLE **0.7211** · S4-MONO 0.7192 · FED-WORD 0.7169 · FED-HETERO 0.6944 · FED-HE-MATCHED 0.6714 · FED+LA 0.7202 (full; chance 0.5068). **@negation (chance 0.5194):** SINGLE 0.6376 · FED-WORD 0.6529 · FED-HETERO 0.7713 · FED-HE-MATCHED 0.7956 · **S4-MONO 0.8002** · FED+LA 0.7783. The monolith is **not** below regime chance here — COMP1's floor effect is repaired (SINGLE 0.7211 vs the F1 probe 0.7164), so the negation win is not a floor artifact.
+- **BOOKS — P1 PASS** FED-HETERO - SINGLE @negation **+0.1337 CI[+0.1053,+0.1604]** (bar >=+0.08): *heterogeneous-sensor federation with a learned sensor-picking router repairs the pre-declared blind regime on a corpus wired to mid-band difficulty before any arm fired.* **P2 PASS** FED-HE-MATCHED - FED-WORD @negation **+0.1427 CI[+0.1134,+0.1731]**: *the win is the SENSOR, not merely the expert partition.* **P3 FAIL** FED+LA - FED-HETERO @negation **+0.0070 CI[-0.0026,+0.0164]**: *LA buys nothing where the thesis needs it -> LA closed to a D1b footnote* (it wins +0.0258 full-board and PASS @semantic/counting/agent — it fails exactly the blind regime, where the routed S4 cell is already right).
+- **NARROWING (prereg §Risks-4 rule, pre-declared):** **S4-MONO — one 1057p cell on the negation-aware view — is within 0.02 of FED-HETERO on 4/4 regimes and BEATS it @negation 0.8002 vs 0.7713 and @counting 0.6715 vs 0.6436**, so the P1/P2 wins re-read as **"buy the right sensor once"**, not a federation premium. Honest narrowing, not a verdict change.
+- **FULL-BOARD (secondary forever, never verdict-turning):** FED-HETERO - SINGLE **-0.0267 CI[-0.0388,-0.0145]** · FED-HETERO - JOINT -0.0241 · FED-HE-MATCHED - FED-WORD **-0.0455 CI[-0.0579,-0.0332]**; the negation win costs semantic -0.1119 and agent-role -0.1105. FED+LA - FED-HETERO full-board +0.0258 (PASS, secondary).
+- **ROUTER (36p, CPU, TRAIN-only, seed 2718):** held-out top-1 **0.6832** (chance 0.25) · COMP1-verbatim 0-param centroid 0.7491 · per-sensor centroid 0.5343 — **all three in band [0.40,0.95]** · **within-disagreement routing acc 0.6007 (n=4,292) CLEARS the >=0.60 target** against CX-CHEAP-1's booked 0.5003 (the exact gap the router was bought to close).
+- **STATS:** paired bootstrap B=2000 over the 6,221 held items, PCG64 seed 2718; **P1 not borderline -> no B=10,000 top-up**; W2 half-width deltas 0.0009/0.0037/0.0001 <= 0.005; achieved half-width +-0.0275 vs model +-0.030; **no std==0 anywhere** (0.0002-0.0159).
+- **P4 CHEAP 361p BRACKET (dual corpus, 0 GPU-Wh):** G4a COMP1 max|Delta| **0.1351 FAIL** (bar 0.02; neg +0.1351, sem -0.0568, count -0.0407, agent 0.0) with negation FED-cheap - SINGLE-cheap **+0.2432 CI[+0.1554,+0.3243]** clearing +0.126; G4b in-corpus max|Delta| **0.1147 FAIL** with negation **+0.1372 CI[+0.1077,+0.1641]**. **=> NOT-RETIRED.** **The prereg's hypothesis is FALSIFIED: the sensor-picking router does NOT supply regime-flatness in the cheap class** — it improves negation while hurting semantic (-0.057/-0.081) and agent (-0.06 in-corpus), a different failure mode from CX-CHEAP-0 (which missed the negation Delta itself). The 4228p MLP's unmatchable property (regime-symmetry AND the negation win simultaneously) STANDS.
+- **harness revisions (disclosed):** (i) sklearn `classes_` is alphabetical, not REGIMES order -> the first CPU pass scrambled every routed arm (learned top-1 read 0.4144 vs 0.6832); caught + fixed + re-smoked BEFORE the GPU fired. (ii) the FED-WORD per-item dump used the learned router instead of the 0-param CENTROID router (gates/boards were computed in-memory and were always correct; only the persisted dump was wrong) -> fixed and re-dumped CPU-only at 0 GPU-Wh; all 7 prediction files now reproduce the booked boards across all 35 arm x board cells to <1e-3 and P2 recomputes to +0.1427. (iii) the first reading of "4 per-sensor centroid-Pearson scores" used one all-train centroid per sensor (top-1 0.2816, out of band) and was re-read as each sensor's centroid of the regime that sensor is tuned to (0.5343); the gate now requires all three readings in band.
+- persistence: predictions/*.jsonl.gz = **130,641 rows = 7 arms x 3 seeds x 6,221 held items**, fields {sha256, key, regime, label, split, p, correct, margin, routed_sensor, cell, la_trigger, la_flip}; keys align 1:1 with phase-1's per_item_stub.jsonl. Artifacts results/comp2/{comp2_results.json, inner_report.json, banks/*.pt x45, raw/*.npz, predictions/, cheap/, guard/, wh_receipt.json, RESULTS-ENTRY.md}; code experiments/comp2_arms.py; 14 MB on ext4.
+- next: find a corpus where the correct sensor is **item-local** rather than regime-local — the only configuration in which FED-HETERO should beat S4-MONO; testable at 0 GPU-Wh on the frozen features before any new training. Secondary: the FED-HE-MATCHED **agent-role collapse** (0.5561, -0.1175 vs FED-WORD) says the frozen agent->S3 assignment is actively wrong. full: results/comp2/RESULTS-ENTRY.md
+
+### (C) MANDATORY REPRODUCTION CHECK — 18:1x Oct 1: **B1G PASS (bit-exact modulo elapsed_s)**
+- Re-ran the COMMITTED `experiments/b1g_epochs_vs_ramp_loss.py` (sha256 35a3f6fc6b744097a…, booking commit c7126c0)
+  with `--inner --out /home/eileen/scratch/b1g_repro_20261001` — the `--out` flag (RC-1 spec pattern) kept the
+  verification run entirely OFF the results tree (09:1x tmpfs lesson applied in anger).
+- Repro `result.json` vs committed: **identical except `elapsed_s`** (only wall-clock key); verdict KEEP, all 6/6
+  arm verdicts, gates, controls (C1/C4/C6/C7), energy/watt values byte-equal. sha256s differ only via elapsed_s.
+- Third clean bill under the mandatory rule (QG1c, W5a prior). GPU lane was free (no co-tenancy, guard not needed
+  for inner-only repro; scratch receipt-less run, artifact preserved at /home/eileen/scratch/b1g_repro_20261001).
+- **FAIL-LOUD: dirty-tree booking instance #4.** At repro time `experiments/b1g_epochs_vs_ramp_loss.py` was
+  UNTRACKED — the B1G booking (c7126c0) landed results+prereg but never the producing script. The bytes above
+  (sha 35a3f6fc…) are committed NOW in the same commit as this amendment; the repro deep-equal (all keys but
+  elapsed_s) strongly corroborates they are the producing bytes, but the guard receipt records NO script hash,
+  so pre-commit provenance is unverifiable. Two actions spawned for RC-1: (a) guard receipts must pin the
+  entry-script sha256; (b) booking commit must include the script (git status before commit is mandatory).
+
+## B1H — NAME THE HYBRID'S OWN RAMP FLOOR & THE TWO-KNOT ATOM TEST (the B1-family coda, 2026-10-01 18:3x AKDT)
+- ran: `experiments/b1h_coda.py` under `guard.py` (G7 receipt, 1 window), prereg `proposals/runs/B1H-coda.md` frozen before fire. Direct coda to B1G (which reversed B1F and named the crossing width as the dominant lever). Design: B1G driver imported **wholesale**, B1C engine unchanged, single seed 2718, loss MSE (B1G's deployed objective verbatim) at **160ep (B1G's best recipe)**; arms = **Part A** hybridv2 width bisection `{64,72,80,88}` + **Part B** `w96_2knot_ep160` (the ramp atom replaced by `sign(b−p)·[a1·relu(u−k1)+a2·relu(u−k2)]`, k2 = k1+softplus(gap) > k1 **structural**, a2 **init 0** ⇒ first forward bit-identical to the single-knot family). Part B baseline = B1G's **reused** `h96_mse_ep160` checkpoint > paired bootstrap on the ramp region. Reuses B1D width-128 anchor nets (C6/C7).
+- verdict: **KILL (TAIL-QUANTIZED)** — the hybrid floor is named (w72); the two-knot atom does **not** buy the tail. NOT COMMITTED.
+- **BOOKS (frozen mapping): "the tail is the map's intrinsic quantization — B1 closes with the tail booked as a limit."**
+- **PART A — hybrid's own ramp floor = 72** (seed 2718, held-out n=90,930, ramp n=3,354, boot CI; deadzone/ramp @5e-2): `w64` **0.9748 / 0.8933 [CI 0.8831,0.9034]** · `w72` **0.9779 / 0.9401 [0.9317,0.9484] ✅** · `w80` **0.9784 / 0.8852 [0.8745,0.8962]** · `w88` **1.0000 / 0.9997 [0.9991,1.0000] ✅** (ref `h96` B1G 1.0000/0.9979). **Named floor = 72** (ramp ≥ 0.90 with CI_low > 0.90, deadzone intact). **Non-monotone: w80 is a local trough** (CI disjoint from w72) — the crossing rises to w72, dips at w80, saturates at w88, so at this seed the "floor" is a by-width curve not a step.
+- note (Part A): B1F's hybrid w64 **0.2930 @40ep** → B1H w64 **0.8933 @160ep** — epochs move w64 a lot but it still does **not** cross 0.90; plain refs b1e w64 0.5675, b1f plain w96 0.9617 ⇒ **the hybrid atom-gate floor (72) sits below the plain crossing (96)** — the ramp atom-gate buys the ramp at less width than the linear head. Learned k1 sits on the law across the bisection (1.5006–1.5193; law 1.5).
+- **PART B — two-knot atom FAILS, and backwards** (paired, same holdout, ramp n=3,354): single-knot (B1G reused) ramp@1e-3 **0.8247** · two-knot **0.4174** ⇒ **paired gain @1e-3 −0.4073 CI[−0.4246,−0.3888]** (boot_std 0.0094, B=1000 seed 2718) — CI **excludes 0 on the NEGATIVE side**. Deadzone 1.0000 (no regression), crossing ramp@5e-2 0.9982 (intact). Params 19,303 vs 19,301 (**+0.010 %**, budget ok). **G-B1H2 FAIL** (bar gain ≥ +0.05 CI excl 0).
+- note (Part B, the learned-knots story): the two-knot atom **found the law's single knot** (k1 **1.5029** vs law 1.5; a1 **1.0067** vs law 1.0) and then **made the second knot inert and pushed it out of the band** — a2 **−0.0198**, k2 **3.0886**, beyond the saturation edge (ramp band u∈(1.5, ≈2.35)). The optimizer did not want a second break; it wanted the single law knot. The extra atom freedom therefore re-routed the **composition** (g_r/g_dz gate blend + regression head + atom) into a basin with a **worse** sharp tail at equal 5e-2 crossing ⇒ **the @1e-3 tail is not an atom-shape deficit; it is the residual of the whole deployed map (quantization, not a missing interface knot).**
+- controls all pass: C1 laweq max|Δ|=0 (n_diff 0); C4 frame **bit-identical vs B1C, B1E, B1b-runB AND B1** (all 0.0); C6 reused-anchor vs B1C booked `cap@ep40` max|Δ|=**4.7015e-05**; C7 reused-anchor re-score vs B1D booked = **0.0** (bit-exact net-reuse proof). Safeguards kept: verdict asserts counted set == the 5 prereg arms (anchor + single-knot ref never counted); append-window `guard_summary.window1.json` snapshot.
+- cost: **1.4203 Wh measured ≤ 3 Wh envelope** (5,112.97 J), 285.3 s wall / 91.7 GPU-s, mean power 17.92 W, peak VRAM 123.5 MB, min free 5,344 MiB, max temp 61 C, **INSTRUMENT-01 ramp 0.657 s synced**. Receipt `g7-wr-b1h-coda-1790908561` (valid, PASS). Seat FREE (no co-tenancy).
+- **The B1 family closes.** Capacity/crossing width gates the ramp (B1G); the ramp atom-gate names its own floor at **w72**; the residual sharp tail is the composed map's floor, not a missing knot. Next: none for B1 — if the sharp tail ever matters again it is a **composition** question (test the g_r/g_dz blend or a hard-routed non-blended ramp branch, not another knot). full: results/b1h/RESULTS-ENTRY.md
+
+## C2-IL — COMPOSITE-2 phase 3: the ITEM-LOCAL sensor corpus (is there a federation premium?) — 2026-10-01 18:4x AKDT
+- ran: `experiments/comp2_itemlocal.py`, **CPU-only, 0 GPU-Wh, no guard window, no new banks**; prereg `proposals/runs/C2-item-local.md` frozen before build (**+ AMENDMENT 1**, pre-run/disclosed: second channel = semantic, not count). Wall 10.9 s. Receipt `results/comp2_itemlocal/wh_receipt.json`.
+- verdict: **FAIL (NO FEDERATION PREMIUM EVEN ITEM-LOCAL)** — closes COMPOSITE. NOT COMMITTED.
+- **BOOKS (frozen mapping): "no federation premium even item-local — the thesis narrows to sensor selection, full stop."**
+- **The corpus (N=12,000, 3,000/regime, seed 2718, W1 identical, sha-seq `b1886f9de868e11a…`):** same COMP1-A1 grammar law; **the target is a conjunction of two sensor views inside the item** — canon iff the polarity channel agrees AND the second channel agrees — every distortion violating **EXACTLY ONE** channel, the violated channel drawn **i.i.d. per item, independent of the regime tag** (so no regime→sensor table can carry it). 8,918 train / 3,082 held (763/762/786/771); canon 0.5026; polarity share of distortions 0.468–0.523 per regime ✓. Verbatim: `claim "the trawler did not secured the kelp crates at berth-9." → evidence "the trawler brought a kelp shipment of three crates to berth-9."` (polarity violated only) vs `claim "the launch did not stowed the halibut crates at berth-9." → evidence "…the eight crates of halibut at dock-5."` (dock violated only).
+- **G-IL1 PASS** (8/8 single-view arms above chance+0.02; best `PV-cheap-S4` 0.7783). **G-IL2 FAIL: `FED-CHEAP-GATE` (20p learned item-local router, PRIMARY) − `BEST-SINGLE` = +0.0022 CI[+0.0004,+0.0040] vs the +0.05 bar.** Best federation arm of any kind = `FED-CHEAP-STACK` (5p logistic combiner) **0.8022, +0.0239 CI[+0.0127,+0.0356]** — still 2× short. Every routing operator (min-p join −0.195, 2S join −0.102, majority −0.139, argmax-margin −0.082, learned router −0.105, 8-view router −0.026, JOINT −0.192) is ≤ the best single view. No degeneracy (std 0.0016–0.0091), no truncation (3/3 seeds).
+- **G-IL2b PASS but it is calibration, not routing:** `FED-CHEAP-GATE` − `S4-MONO` = **+0.1045** CI[+0.0894,+0.1190], yet `FED-CHEAP-GATE` (0.7804) ≡ `PV-cheap-S4` (0.7783) at +0.0022 ⇒ the whole gap is the **refit-vs-frozen** calibration of the S4 view, not any federation effect. "Buy the right sensor once — and recalibrate it" remains the entire purchase (COMP2 §Risks-4 re-confirmed on the hardest corpus).
+- **The decisive diagnostic — the premium exists but is unreadable:** best **fixed** single view 0.7783 vs **oracle per-item best single cell (8 arms) 0.9974** ⇒ **perfect-router headroom +0.2191**; the 0-param margin router's pick agrees with the oracle only **0.7070**; **27.7 %** of items are ones where the fixed best view is wrong but another view is right. Per-channel: the S4 view is near-perfect on canon (0.966) + polarity (1.000) and near-blind on cargo (0.109)/dock (0.255); the S1 view is the best semantic detector (0.390/0.604) and anti-polarity (0.341) — the complementarity is real, but the min-p join buys distortions (0.876/0.951/0.956) by firing on 76 % of canon items, and no learned router recovers the canon cost.
+- **AMENDMENT 1 (pre-run, disclosed):** the prereg froze the second channel as **count**; every view is at chance on count-violations (frozen cells 0.502/0.422/0.563/0.146; cheap cells 0.460/0.424/0.452/0.086) ⇒ the item would be only *nominally* dual-view. Variants A/B/C (count/semantic/agent) were all piloted (premiums ≈ +0.00/+0.02–0.03/+0.02) — same qualitative answer; the amendment **raises** the baseline, biasing toward the negative. Router params declared 20p/72p (prereg guessed 36p) — smaller than the guess, bar unchanged.
+- artifacts: `results/comp2_itemlocal/` (il_results.json; corpus.jsonl 12,000; per_item_stub.jsonl 12,000; predictions/ **20 arms × 3 seeds × 3,082 = 184,920 rows**, boards recompute max|Δ|<5e-5; wh_receipt.json; pilots/ disclosed). Full entry: `results/comp2_itemlocal/RESULTS-ENTRY.md`.
+- **The lane closes COMPOSITE.** Next (both cheap, both corpus/calibration questions, not federation): (a) does a 2-parameter per-channel margin recalibration close the 0.219 routing gap (routing failure vs calibration failure)? (b) re-ask in a **structurally complementary** view space (order-only vs bag-only, where one view is at chance on the other's channel by geometry) — the only setting where "the sensor that carries the answer" is identifiable.

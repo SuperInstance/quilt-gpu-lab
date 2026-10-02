@@ -1,0 +1,887 @@
+{
+  "arms": {
+    "cloud": {
+      "arm": "cloud",
+      "determinism": {
+        "byte_identical": null,
+        "per_prompt_match": null
+      },
+      "errors": [],
+      "model": "glm-5.3-flash",
+      "n_prompts": 30,
+      "per_replay": [
+        {
+          "digests": [
+            "05a93eec8c17dd09",
+            "3b298508cdeb3fee",
+            "30d2e908f6b840a2",
+            "93f670df47319842",
+            "abae71a131c78446",
+            "4d409d19c7bff299",
+            "38d996ffc6e16ca3",
+            "6af897f5a6d3fb53",
+            "bcd1308ff4c5277a",
+            "9c76cd30775c8d1e",
+            "ea1f162a16bc6565",
+            "58e326c95e736a70",
+            "3a2bc2e6fc7c8d36",
+            "286c08ada70e50ca",
+            "89f906128613320b",
+            "c2123d2671acc51c",
+            "ad70ac32fcc91638",
+            "a68c3f82ce4bbcd1",
+            "eec7f1b327f67aab",
+            "6d7ae4b9d1a09c9d",
+            "31d079a57b7334ca",
+            "ea63ffea78b1fbb4",
+            "48d8cb533a027676",
+            "7d416816656d97f4",
+            "02253f2c0dddd690",
+            "2f820fb25704833c",
+            "ced056c3f9843cb9",
+            "cca264a79a937c1e",
+            "1d78570fa01b0a89",
+            "17bd521e898f78d2"
+          ],
+          "errors": [],
+          "raws": [
+            "{\"cell_id\": \"cell_a01\", \"z_in_digest\": \"bd8f6fb4c6aa6350\", \"z_out\": \"blue\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a02\", \"z_in_digest\": \"ca25b9c6e69f5c9b\", \"z_out\": \"43\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a03\", \"z_in_digest\": \"61062c2970e5454d\", \"z_out\": \"Neither - a kilogram of feathers and a kilogram of lead both weigh exactly one kilogram.\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a04\", \"z_in_digest\": \"0bb48394f6e59c1b\", \"z_out\": \"January\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a05\", \"z_in_digest\": \"672cd8182467c050\", \"z_out\": \"6\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a06\", \"z_in_digest\": \"c3ca4ac3271472bf\", \"z_out\": \"Mercury\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a07\", \"z_in_digest\": \"8d5b5260e4cc641c\", \"z_out\": \"meow\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a08\", \"z_in_digest\": \"45cab11d29b75ebb\", \"z_out\": \"A mountain is larger than a grain of sand.\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a09\", \"z_in_digest\": \"37e60202637622e1\", \"z_out\": \"cold\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a10\", \"z_in_digest\": \"ee432930b07d0df0\", \"z_out\": \"7\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a11\", \"z_in_digest\": \"c11dba17be562553\", \"z_out\": \"Pacific Ocean\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a12\", \"z_in_digest\": \"b408f8820a171272\", \"z_out\": \"honey\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a13\", \"z_in_digest\": \"e3c4fc9355c2d9af\", \"z_out\": \"A rocket is much faster than a bicycle.\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a14\", \"z_in_digest\": \"b81d2b77416583e5\", \"z_out\": \"81\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a15\", \"z_in_digest\": \"cfc8ffbc59b73eba\", \"z_out\": \"spring\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a16\", \"z_in_digest\": \"a91b50057e20198c\", \"z_out\": \"green\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a17\", \"z_in_digest\": \"1d53421419bcd2cd\", \"z_out\": \"3\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a18\", \"z_in_digest\": \"1f8d3b08c5509afc\", \"z_out\": \"lion\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a19\", \"z_in_digest\": \"aa154a4c79ef76f8\", \"z_out\": \"down\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a20\", \"z_in_digest\": \"b44b3a5b03a5df3b\", \"z_out\": \"24\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a21\", \"z_in_digest\": \"ccf35478071a0083\", \"z_out\": \"ice\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a22\", \"z_in_digest\": \"b7a37b31c745d140\", \"z_out\": \"water\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a23\", \"z_in_digest\": \"5469235771fd9e22\", \"z_out\": \"A tree is taller than a blade of grass.\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a24\", \"z_in_digest\": \"042da03a5a53f4e9\", \"z_out\": \"63\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a25\", \"z_in_digest\": \"8609de60989ba324\", \"z_out\": \"The Sun\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a26\", \"z_in_digest\": \"9f66427cff8269d9\", \"z_out\": \"Yellow\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a27\", \"z_in_digest\": \"6deaf83c28bb32c3\", \"z_out\": \"8\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a28\", \"z_in_digest\": \"e7181b0f5c168cc4\", \"z_out\": \"scissors\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a29\", \"z_in_digest\": \"da36b8a7e42c3c17\", \"z_out\": \"night\", \"provider\": \"cloud\", \"seed\": 2718}",
+            "{\"cell_id\": \"cell_a30\", \"z_in_digest\": \"143bb25cfc7ccad0\", \"z_out\": \"60\", \"provider\": \"cloud\", \"seed\": 2718}"
+          ],
+          "replay": 1,
+          "well_formed": 30,
+          "well_formed_rate": 1.0
+        }
+      ],
+      "provider": "cloud",
+      "raws_run1": [
+        "{\"cell_id\": \"cell_a01\", \"z_in_digest\": \"bd8f6fb4c6aa6350\", \"z_out\": \"blue\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a02\", \"z_in_digest\": \"ca25b9c6e69f5c9b\", \"z_out\": \"43\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a03\", \"z_in_digest\": \"61062c2970e5454d\", \"z_out\": \"Neither - a kilogram of feathers and a kilogram of lead both weigh exactly one kilogram.\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a04\", \"z_in_digest\": \"0bb48394f6e59c1b\", \"z_out\": \"January\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a05\", \"z_in_digest\": \"672cd8182467c050\", \"z_out\": \"6\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a06\", \"z_in_digest\": \"c3ca4ac3271472bf\", \"z_out\": \"Mercury\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a07\", \"z_in_digest\": \"8d5b5260e4cc641c\", \"z_out\": \"meow\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a08\", \"z_in_digest\": \"45cab11d29b75ebb\", \"z_out\": \"A mountain is larger than a grain of sand.\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a09\", \"z_in_digest\": \"37e60202637622e1\", \"z_out\": \"cold\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a10\", \"z_in_digest\": \"ee432930b07d0df0\", \"z_out\": \"7\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a11\", \"z_in_digest\": \"c11dba17be562553\", \"z_out\": \"Pacific Ocean\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a12\", \"z_in_digest\": \"b408f8820a171272\", \"z_out\": \"honey\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a13\", \"z_in_digest\": \"e3c4fc9355c2d9af\", \"z_out\": \"A rocket is much faster than a bicycle.\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a14\", \"z_in_digest\": \"b81d2b77416583e5\", \"z_out\": \"81\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a15\", \"z_in_digest\": \"cfc8ffbc59b73eba\", \"z_out\": \"spring\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a16\", \"z_in_digest\": \"a91b50057e20198c\", \"z_out\": \"green\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a17\", \"z_in_digest\": \"1d53421419bcd2cd\", \"z_out\": \"3\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a18\", \"z_in_digest\": \"1f8d3b08c5509afc\", \"z_out\": \"lion\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a19\", \"z_in_digest\": \"aa154a4c79ef76f8\", \"z_out\": \"down\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a20\", \"z_in_digest\": \"b44b3a5b03a5df3b\", \"z_out\": \"24\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a21\", \"z_in_digest\": \"ccf35478071a0083\", \"z_out\": \"ice\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a22\", \"z_in_digest\": \"b7a37b31c745d140\", \"z_out\": \"water\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a23\", \"z_in_digest\": \"5469235771fd9e22\", \"z_out\": \"A tree is taller than a blade of grass.\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a24\", \"z_in_digest\": \"042da03a5a53f4e9\", \"z_out\": \"63\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a25\", \"z_in_digest\": \"8609de60989ba324\", \"z_out\": \"The Sun\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a26\", \"z_in_digest\": \"9f66427cff8269d9\", \"z_out\": \"Yellow\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a27\", \"z_in_digest\": \"6deaf83c28bb32c3\", \"z_out\": \"8\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a28\", \"z_in_digest\": \"e7181b0f5c168cc4\", \"z_out\": \"scissors\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a29\", \"z_in_digest\": \"da36b8a7e42c3c17\", \"z_out\": \"night\", \"provider\": \"cloud\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a30\", \"z_in_digest\": \"143bb25cfc7ccad0\", \"z_out\": \"60\", \"provider\": \"cloud\", \"seed\": 2718}"
+      ],
+      "replays": 1,
+      "status": "RUN",
+      "well_formed": 30,
+      "well_formed_rate": 1.0
+    },
+    "local": {
+      "arm": "local",
+      "determinism": {
+        "byte_identical": false,
+        "per_prompt_match": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "errors": [
+        {
+          "cell_id": "cell_a08",
+          "detail": "missing=['provider', 'seed'] extra=[]",
+          "error": "output.key_set",
+          "raw_digest": "da59d5390f8781fb"
+        },
+        {
+          "cell_id": "cell_a13",
+          "detail": "missing=['provider', 'seed'] extra=[]",
+          "error": "output.key_set",
+          "raw_digest": "7c49b344e124f3a4"
+        }
+      ],
+      "n_prompts": 30,
+      "per_replay": [
+        {
+          "digests": [
+            "26b150d07350afa0",
+            "06bb91dc593253fb",
+            "67abe686af0fafb2",
+            "28951ddeb2c72c38",
+            "0ea5e4bcef20b55f",
+            "8f1115867c90bad7",
+            "16e4b03f98845928",
+            "da59d5390f8781fb",
+            "da187dc7766a0372",
+            "d6e5dde5380de730",
+            "81838e15d2393a55",
+            "3e575ff13b3374a0",
+            "7c49b344e124f3a4",
+            "105779e787594e34",
+            "d29f4b50e79a1c17",
+            "1861c3b7865357e7",
+            "9ca2fb3accd56a79",
+            "7e5ec83689d13e2c",
+            "15bfeba9edd69294",
+            "45268c9a52baef2b",
+            "a768540859a592d1",
+            "4134f01897498525",
+            "c438ae707643765f",
+            "54042ca9ea83b152",
+            "74c6f171c327c805",
+            "1cf970cdf446118e",
+            "adf9e0525749cf49",
+            "c2506c12c3da8d17",
+            "31ad2b55312634f5",
+            "647b6092ff4315f1"
+          ],
+          "errors": [
+            {
+              "cell_id": "cell_a08",
+              "detail": "missing=['provider', 'seed'] extra=[]",
+              "error": "output.key_set",
+              "raw_digest": "da59d5390f8781fb"
+            },
+            {
+              "cell_id": "cell_a13",
+              "detail": "missing=['provider', 'seed'] extra=[]",
+              "error": "output.key_set",
+              "raw_digest": "7c49b344e124f3a4"
+            }
+          ],
+          "replay": 1,
+          "well_formed": 28,
+          "well_formed_rate": 0.9333333333333333
+        },
+        {
+          "digests": [
+            "26b150d07350afa0",
+            "06bb91dc593253fb",
+            "67abe686af0fafb2",
+            "28951ddeb2c72c38",
+            "0ea5e4bcef20b55f",
+            "8f1115867c90bad7",
+            "16e4b03f98845928",
+            "da59d5390f8781fb",
+            "da187dc7766a0372",
+            "d6e5dde5380de730",
+            "81838e15d2393a55",
+            "3e575ff13b3374a0",
+            "75e17fae43d47478",
+            "105779e787594e34",
+            "d29f4b50e79a1c17",
+            "1861c3b7865357e7",
+            "9ca2fb3accd56a79",
+            "7e5ec83689d13e2c",
+            "15bfeba9edd69294",
+            "45268c9a52baef2b",
+            "a768540859a592d1",
+            "4134f01897498525",
+            "8c7cff3898e54efe",
+            "54042ca9ea83b152",
+            "74c6f171c327c805",
+            "1cf970cdf446118e",
+            "adf9e0525749cf49",
+            "c2506c12c3da8d17",
+            "31ad2b55312634f5",
+            "647b6092ff4315f1"
+          ],
+          "errors": [
+            {
+              "cell_id": "cell_a08",
+              "detail": "missing=['provider', 'seed'] extra=[]",
+              "error": "output.key_set",
+              "raw_digest": "da59d5390f8781fb"
+            }
+          ],
+          "replay": 2,
+          "well_formed": 29,
+          "well_formed_rate": 0.9666666666666667
+        },
+        {
+          "digests": [
+            "26b150d07350afa0",
+            "06bb91dc593253fb",
+            "67abe686af0fafb2",
+            "28951ddeb2c72c38",
+            "0ea5e4bcef20b55f",
+            "8f1115867c90bad7",
+            "16e4b03f98845928",
+            "c9a3d8fdc4326568",
+            "da187dc7766a0372",
+            "d6e5dde5380de730",
+            "81838e15d2393a55",
+            "3e575ff13b3374a0",
+            "75e17fae43d47478",
+            "105779e787594e34",
+            "d29f4b50e79a1c17",
+            "1861c3b7865357e7",
+            "9ca2fb3accd56a79",
+            "7e5ec83689d13e2c",
+            "15bfeba9edd69294",
+            "45268c9a52baef2b",
+            "a768540859a592d1",
+            "4134f01897498525",
+            "8c7cff3898e54efe",
+            "54042ca9ea83b152",
+            "74c6f171c327c805",
+            "1cf970cdf446118e",
+            "adf9e0525749cf49",
+            "c2506c12c3da8d17",
+            "31ad2b55312634f5",
+            "647b6092ff4315f1"
+          ],
+          "errors": [],
+          "replay": 3,
+          "well_formed": 30,
+          "well_formed_rate": 1.0
+        }
+      ],
+      "provider": "local",
+      "raws_key_note": "key-name evidence note: `raws_run1` in this banked artifact actually holds the LAST replay's raws (run_arm bound raws_all inside the replay loop). Verified: sha256(raws_run1[i]) == per_replay[2].digests[i] for the differing cells. Code fixed after the run (key renamed raws_last_replay); no data changed.",
+      "raws_run1": [
+        "{\"cell_id\": \"cell_a01\", \"z_in_digest\": \"bd8f6fb4c6aa6350\", \"z_out\": \"blue\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a02\", \"z_in_digest\": \"ca25b9c6e69f5c9b\", \"z_out\": \"43\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a03\", \"z_in_digest\": \"61062c2970e5454d\", \"z_out\": \"a kilogram of lead\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a04\", \"z_in_digest\": \"0bb48394f6e59c1b\", \"z_out\": \"January\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a05\", \"z_in_digest\": \"672cd8182467c050\", \"z_out\": \"6\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a06\", \"z_in_digest\": \"c3ca4ac3271472bf\", \"z_out\": \"Mercury\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a07\", \"z_in_digest\": \"8d5b5260e4cc641c\", \"z_out\": \"meow\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a08\", \"z_in_digest\": \"45cab11d29b75ebb\", \"z_out\": \"mountain\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a09\", \"z_in_digest\": \"37e60202637622e1\", \"z_out\": \"cold\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a10\", \"z_in_digest\": \"ee432930b07d0df0\", \"z_out\": \"7\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a11\", \"z_in_digest\": \"c11dba17be562553\", \"z_out\": \"Atlantic\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a12\", \"z_in_digest\": \"b408f8820a171272\", \"z_out\": \"honey\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a13\", \"z_in_digest\": \"e3c4fc9355c2d9af\", \"z_out\": \"rocket\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a14\", \"z_in_digest\": \"b81d2b77416583e5\", \"z_out\": \"81\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a15\", \"z_in_digest\": \"cfc8ffbc59b73eba\", \"z_out\": \"spring\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a16\", \"z_in_digest\": \"a91b50057e20198c\", \"z_out\": \"green\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a17\", \"z_in_digest\": \"1d53421419bcd2cd\", \"z_out\": \"3\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a18\", \"z_in_digest\": \"1f8d3b08c5509afc\", \"z_out\": \"lion\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a19\", \"z_in_digest\": \"aa154a4c79ef76f8\", \"z_out\": \"down\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a20\", \"z_in_digest\": \"b44b3a5b03a5df3b\", \"z_out\": \"24\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a21\", \"z_in_digest\": \"ccf35478071a0083\", \"z_out\": \"solid\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a22\", \"z_in_digest\": \"b7a37b31c745d140\", \"z_out\": \"milk\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a23\", \"z_in_digest\": \"5469235771fd9e22\", \"z_out\": \"tree\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a24\", \"z_in_digest\": \"042da03a5a53f4e9\", \"z_out\": \"63\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a25\", \"z_in_digest\": \"8609de60989ba324\", \"z_out\": \"sun\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a26\", \"z_in_digest\": \"9f66427cff8269d9\", \"z_out\": \"yellow\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a27\", \"z_in_digest\": \"6deaf83c28bb32c3\", \"z_out\": \"8\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a28\", \"z_in_digest\": \"e7181b0f5c168cc4\", \"z_out\": \"scissors\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a29\", \"z_in_digest\": \"da36b8a7e42c3c17\", \"z_out\": \"night\", \"provider\": \"local\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a30\", \"z_in_digest\": \"143bb25cfc7ccad0\", \"z_out\": \"60\", \"provider\": \"local\", \"seed\": 2718}"
+      ],
+      "replays": 3,
+      "status": "RUN",
+      "well_formed": 28,
+      "well_formed_rate": 0.9333333333333333
+    },
+    "stub": {
+      "arm": "stub",
+      "determinism": {
+        "byte_identical": true,
+        "per_prompt_match": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "errors": [],
+      "n_prompts": 30,
+      "per_replay": [
+        {
+          "digests": [
+            "5c9adc0f1e114e58",
+            "0aa727fb4e024fc0",
+            "19d701f33134e57c",
+            "042acab4b2ee82f1",
+            "be4034b943b55485",
+            "ca165f49bd9baf39",
+            "6241f95a718486fd",
+            "68f3cf080aec8935",
+            "60ffb578384b8107",
+            "5172527e31ce2ced",
+            "49724b4ba9ab7a02",
+            "c38bad8f722251d9",
+            "afed20890da22dc7",
+            "59cd68232ed53d28",
+            "b7b023f78f8a17c0",
+            "f9d2766036e12291",
+            "040bd6becac9ca5b",
+            "a8bbdcb3e646edca",
+            "619b524b81dec4a2",
+            "58897f8b745c3971",
+            "0f81cc69f882d1e7",
+            "dd6840adf7ace178",
+            "53df37ed54153351",
+            "7ac0b9f028265a61",
+            "f2489bebd107f3ac",
+            "ac425d6d8f80314e",
+            "946f26825fe7ef12",
+            "1884fa48210ffcac",
+            "03cdc41f28b51a00",
+            "032bad2b18b3bbe5"
+          ],
+          "errors": [],
+          "replay": 1,
+          "well_formed": 30,
+          "well_formed_rate": 1.0
+        },
+        {
+          "digests": [
+            "5c9adc0f1e114e58",
+            "0aa727fb4e024fc0",
+            "19d701f33134e57c",
+            "042acab4b2ee82f1",
+            "be4034b943b55485",
+            "ca165f49bd9baf39",
+            "6241f95a718486fd",
+            "68f3cf080aec8935",
+            "60ffb578384b8107",
+            "5172527e31ce2ced",
+            "49724b4ba9ab7a02",
+            "c38bad8f722251d9",
+            "afed20890da22dc7",
+            "59cd68232ed53d28",
+            "b7b023f78f8a17c0",
+            "f9d2766036e12291",
+            "040bd6becac9ca5b",
+            "a8bbdcb3e646edca",
+            "619b524b81dec4a2",
+            "58897f8b745c3971",
+            "0f81cc69f882d1e7",
+            "dd6840adf7ace178",
+            "53df37ed54153351",
+            "7ac0b9f028265a61",
+            "f2489bebd107f3ac",
+            "ac425d6d8f80314e",
+            "946f26825fe7ef12",
+            "1884fa48210ffcac",
+            "03cdc41f28b51a00",
+            "032bad2b18b3bbe5"
+          ],
+          "errors": [],
+          "replay": 2,
+          "well_formed": 30,
+          "well_formed_rate": 1.0
+        },
+        {
+          "digests": [
+            "5c9adc0f1e114e58",
+            "0aa727fb4e024fc0",
+            "19d701f33134e57c",
+            "042acab4b2ee82f1",
+            "be4034b943b55485",
+            "ca165f49bd9baf39",
+            "6241f95a718486fd",
+            "68f3cf080aec8935",
+            "60ffb578384b8107",
+            "5172527e31ce2ced",
+            "49724b4ba9ab7a02",
+            "c38bad8f722251d9",
+            "afed20890da22dc7",
+            "59cd68232ed53d28",
+            "b7b023f78f8a17c0",
+            "f9d2766036e12291",
+            "040bd6becac9ca5b",
+            "a8bbdcb3e646edca",
+            "619b524b81dec4a2",
+            "58897f8b745c3971",
+            "0f81cc69f882d1e7",
+            "dd6840adf7ace178",
+            "53df37ed54153351",
+            "7ac0b9f028265a61",
+            "f2489bebd107f3ac",
+            "ac425d6d8f80314e",
+            "946f26825fe7ef12",
+            "1884fa48210ffcac",
+            "03cdc41f28b51a00",
+            "032bad2b18b3bbe5"
+          ],
+          "errors": [],
+          "replay": 3,
+          "well_formed": 30,
+          "well_formed_rate": 1.0
+        }
+      ],
+      "provider": "stub",
+      "raws_run1": [
+        "{\"cell_id\": \"cell_a01\", \"z_in_digest\": \"bd8f6fb4c6aa6350\", \"z_out\": \"stub:92dc80f29e4343916e9d\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a02\", \"z_in_digest\": \"ca25b9c6e69f5c9b\", \"z_out\": \"stub:463ddd53e3b9b89e423c\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a03\", \"z_in_digest\": \"61062c2970e5454d\", \"z_out\": \"stub:48559bbae2470ea68125\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a04\", \"z_in_digest\": \"0bb48394f6e59c1b\", \"z_out\": \"stub:cb310af2ea25137fd6e3\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a05\", \"z_in_digest\": \"672cd8182467c050\", \"z_out\": \"stub:a545d536709f699b8fdd\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a06\", \"z_in_digest\": \"c3ca4ac3271472bf\", \"z_out\": \"stub:9326162bcf5f06bf8fa3\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a07\", \"z_in_digest\": \"8d5b5260e4cc641c\", \"z_out\": \"stub:9652a2cfd381f2237110\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a08\", \"z_in_digest\": \"45cab11d29b75ebb\", \"z_out\": \"stub:f30286012d7c507c086b\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a09\", \"z_in_digest\": \"37e60202637622e1\", \"z_out\": \"stub:bebad980622333158aff\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a10\", \"z_in_digest\": \"ee432930b07d0df0\", \"z_out\": \"stub:619e2f3970b5d9e7af34\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a11\", \"z_in_digest\": \"c11dba17be562553\", \"z_out\": \"stub:806de58dcb8c909c8a9a\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a12\", \"z_in_digest\": \"b408f8820a171272\", \"z_out\": \"stub:bdaf22771381c83aa751\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a13\", \"z_in_digest\": \"e3c4fc9355c2d9af\", \"z_out\": \"stub:8f9d99c8755032502fd0\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a14\", \"z_in_digest\": \"b81d2b77416583e5\", \"z_out\": \"stub:17a5aee03c5444acec9d\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a15\", \"z_in_digest\": \"cfc8ffbc59b73eba\", \"z_out\": \"stub:1a1d7fde6c3569bcf516\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a16\", \"z_in_digest\": \"a91b50057e20198c\", \"z_out\": \"stub:0416e05cf4eecc00e610\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a17\", \"z_in_digest\": \"1d53421419bcd2cd\", \"z_out\": \"stub:9be5a92026fa4548cd42\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a18\", \"z_in_digest\": \"1f8d3b08c5509afc\", \"z_out\": \"stub:f37e4fb1e049e73efae3\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a19\", \"z_in_digest\": \"aa154a4c79ef76f8\", \"z_out\": \"stub:10bb6da4c528d9ce7576\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a20\", \"z_in_digest\": \"b44b3a5b03a5df3b\", \"z_out\": \"stub:0fade8b1320e45dba8ff\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a21\", \"z_in_digest\": \"ccf35478071a0083\", \"z_out\": \"stub:f014cc1a6b7e08650218\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a22\", \"z_in_digest\": \"b7a37b31c745d140\", \"z_out\": \"stub:d5c1ac8d287bf1223eb5\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a23\", \"z_in_digest\": \"5469235771fd9e22\", \"z_out\": \"stub:a6c63d0aa7925ff9276c\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a24\", \"z_in_digest\": \"042da03a5a53f4e9\", \"z_out\": \"stub:a4b51087ab62594799cf\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a25\", \"z_in_digest\": \"8609de60989ba324\", \"z_out\": \"stub:392d563933d499e6f189\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a26\", \"z_in_digest\": \"9f66427cff8269d9\", \"z_out\": \"stub:0c72a9042f65a593ac46\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a27\", \"z_in_digest\": \"6deaf83c28bb32c3\", \"z_out\": \"stub:618a87fafd5fbe782d78\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a28\", \"z_in_digest\": \"e7181b0f5c168cc4\", \"z_out\": \"stub:632a85d178a01f089219\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a29\", \"z_in_digest\": \"da36b8a7e42c3c17\", \"z_out\": \"stub:9cec642d5b66cd47a340\", \"provider\": \"stub\", \"seed\": 2718}",
+        "{\"cell_id\": \"cell_a30\", \"z_in_digest\": \"143bb25cfc7ccad0\", \"z_out\": \"stub:27c9d5b48c1abf509149\", \"provider\": \"stub\", \"seed\": 2718}"
+      ],
+      "replays": 3,
+      "status": "RUN",
+      "well_formed": 30,
+      "well_formed_rate": 1.0
+    }
+  },
+  "artifacts": {
+    "code": [
+      "experiments/xp_c_envelope.py",
+      "experiments/xp_c_providers.py"
+    ],
+    "guard_records": "results/xp_c/guard/",
+    "isolated_probe": "results/xp_c/determinism_probe_isolated.json",
+    "local_battery": "results/xp_c/local/raw_runs.json",
+    "probe_battery": "results/xp_c/local/probe_raw_runs.json",
+    "results": "results/xp_c/xp_c_results.json"
+  },
+  "claim": "the pure z_in->z_out cell contract survives a real model as Provider",
+  "cloud_arm_history": [
+    {
+      "error": "ProviderError: cloud probe failed for all candidates: glm-5.3-flash -> http 429: {\"error\":{\"code\":\"1113\",\"message\":\"Insufficient balance or no resource package. Please recharge.\"}}",
+      "model": "glm-5.3-flash",
+      "status": "NOT-RUN"
+    }
+  ],
+  "cloud_notes": [
+    "registered cloud arm re-run on the z.ai CODING endpoint (https://api.z.ai/api/coding/paas/v4/chat/completions): the payg endpoint answers 429 code 1113 for this account, and the coding endpoint is the shape this repo already uses (g1c/px2). Prior arm entry preserved in g7_receipt_history/cloud_arm_history."
+  ],
+  "experiment": "XP-C envelope local provider",
+  "finished_utc": "2026-10-01T22:04:51Z",
+  "g7_receipt": {
+    "gate_verdict": "PASS",
+    "joules": 6654.9827,
+    "path": "results/xp_c/guard/g7-wr-xp-c-envelope-local-1790892000.json",
+    "receipt_id": "g7-wr-xp-c-envelope-local-1790892000",
+    "watt_hours": 1.8486063055555555
+  },
+  "g7_receipt_history": [
+    {
+      "gate_verdict": "PASS",
+      "joules": 6232.2769,
+      "path": "results/xp_c/guard/g7-wr-xp-c-envelope-local-1790891436.json",
+      "receipt_id": "g7-wr-xp-c-envelope-local-1790891436",
+      "watt_hours": 1.7311880277777778
+    }
+  ],
+  "gates": {
+    "A_refusal_100pct": {
+      "n": 20,
+      "pass": true,
+      "refused": 20
+    },
+    "B_local_determinism_3of3": {
+      "byte_identical": false,
+      "pass": false,
+      "replays": 3
+    },
+    "C_local_well_formed_ge_0_95": {
+      "cloud_registered_rate": 1.0,
+      "cloud_registered_status": "RUN",
+      "cloud_supplementary_rate": null,
+      "local_rate": 0.9333333333333333,
+      "pass": false
+    },
+    "arms_runnable": 3,
+    "refusal": {
+      "cases": [
+        {
+          "case": "not_json_prose",
+          "error_code": "output.not_json",
+          "refused": true
+        },
+        {
+          "case": "empty_string",
+          "error_code": "output.empty",
+          "refused": true
+        },
+        {
+          "case": "truncated_json",
+          "error_code": "output.not_json",
+          "refused": true
+        },
+        {
+          "case": "json_array",
+          "error_code": "output.not_object",
+          "refused": true
+        },
+        {
+          "case": "missing_cell_id",
+          "error_code": "output.key_set",
+          "refused": true
+        },
+        {
+          "case": "missing_z_in_digest",
+          "error_code": "output.key_set",
+          "refused": true
+        },
+        {
+          "case": "missing_z_out",
+          "error_code": "output.key_set",
+          "refused": true
+        },
+        {
+          "case": "missing_provider",
+          "error_code": "output.key_set",
+          "refused": true
+        },
+        {
+          "case": "missing_seed",
+          "error_code": "output.key_set",
+          "refused": true
+        },
+        {
+          "case": "extra_key",
+          "error_code": "output.key_set",
+          "refused": true
+        },
+        {
+          "case": "wrong_type_z_out_int",
+          "error_code": "output.type.z_out",
+          "refused": true
+        },
+        {
+          "case": "wrong_type_seed_str",
+          "error_code": "output.type.seed",
+          "refused": true
+        },
+        {
+          "case": "wrong_type_seed_bool",
+          "error_code": "output.type.seed",
+          "refused": true
+        },
+        {
+          "case": "digest_mismatch",
+          "error_code": "output.digest_mismatch",
+          "refused": true
+        },
+        {
+          "case": "digest_bad_format",
+          "error_code": "output.bad_digest_format",
+          "refused": true
+        },
+        {
+          "case": "cell_id_mismatch",
+          "error_code": "output.cell_id_mismatch",
+          "refused": true
+        },
+        {
+          "case": "provider_mismatch",
+          "error_code": "output.provider_mismatch",
+          "refused": true
+        },
+        {
+          "case": "seed_mismatch",
+          "error_code": "output.seed_mismatch",
+          "refused": true
+        },
+        {
+          "case": "empty_z_out",
+          "error_code": "output.empty_z_out",
+          "refused": true
+        },
+        {
+          "case": "duplicate_key",
+          "error_code": "output.not_json",
+          "refused": true
+        }
+      ],
+      "extra_strictness": {
+        "cases": [
+          {
+            "case": "whitespace_only",
+            "error_code": "output.empty",
+            "refused": true
+          },
+          {
+            "case": "json_scalar",
+            "error_code": "output.not_object",
+            "refused": true
+          },
+          {
+            "case": "fenced_json",
+            "error_code": "output.not_json",
+            "refused": true
+          },
+          {
+            "case": "json_embedded_in_prose",
+            "error_code": "output.not_json",
+            "refused": true
+          },
+          {
+            "case": "nan_value",
+            "error_code": "output.not_json",
+            "refused": true
+          }
+        ],
+        "n_cases": 5,
+        "refused": 5
+      },
+      "gate_100pct": true,
+      "input_schema": {
+        "cases": [
+          {
+            "case": "bad_cell_id_upper",
+            "error_code": "input.bad_cell_id",
+            "refused": true
+          },
+          {
+            "case": "bad_cell_id_short",
+            "error_code": "input.bad_cell_id",
+            "refused": true
+          },
+          {
+            "case": "empty_z_in",
+            "error_code": "input.empty_z_in",
+            "refused": true
+          },
+          {
+            "case": "z_in_not_str",
+            "error_code": "input.empty_z_in",
+            "refused": true
+          }
+        ],
+        "n_cases": 4,
+        "refused": 4
+      },
+      "n_cases": 20,
+      "refusal_rate": 1.0,
+      "refused": 20
+    }
+  },
+  "house_law": "no g7 receipt -> run VOID",
+  "local_attempts": [
+    {
+      "attempt": 1,
+      "ok": false,
+      "rc": 1,
+      "stderr_tail": "p_c_envelope.py\", line 676, in <module>\n    sys.exit(main())\n             ~~~~^^\n  File \"/home/eileen/projects/quilt-gpu-lab/experiments/xp_c_envelope.py\", line 488, in main\n    return local_worker(args.out)\n  File \"/home/eileen/projects/quilt-gpu-lab/experiments/xp_c_envelope.py\", line 461, in local_worker\n    with open(out_path, \"w\") as f:\n         ~~~~^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/eileen/projects/quilt-gpu-lab/results/xp_c/local/raw_runs.json'\n"
+    },
+    {
+      "attempt": 2,
+      "ok": false,
+      "rc": 1,
+      "stderr_tail": "p_c_envelope.py\", line 676, in <module>\n    sys.exit(main())\n             ~~~~^^\n  File \"/home/eileen/projects/quilt-gpu-lab/experiments/xp_c_envelope.py\", line 488, in main\n    return local_worker(args.out)\n  File \"/home/eileen/projects/quilt-gpu-lab/experiments/xp_c_envelope.py\", line 461, in local_worker\n    with open(out_path, \"w\") as f:\n         ~~~~^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/eileen/projects/quilt-gpu-lab/results/xp_c/local/raw_runs.json'\n"
+    },
+    {
+      "attempt": 1,
+      "ok": true,
+      "rc": 0,
+      "stderr_tail": ""
+    }
+  ],
+  "local_model": "qwen2.5:3b-instruct-q4_K_M",
+  "max_tokens": 220,
+  "n_prompts": 30,
+  "n_replays_local": 3,
+  "prereg": "scratch/scout-2026-10-01-pushwave.md \u00a73c",
+  "prompt_notes": "v1 prompt (no literal shape example) scored 0/5 on a 5-prompt plumbing probe; v2 adds a shape example + seed-is-number rule and scored 6/6 on a 6-prompt probe. Frozen v2 used for the gated run, plain chat (no JSON-mode crutch).",
+  "prompt_version": "v2-shape-example",
+  "refusal_examples": [
+    {
+      "case": "not_json_prose",
+      "error_code": "output.not_json"
+    },
+    {
+      "case": "empty_string",
+      "error_code": "output.empty"
+    },
+    {
+      "case": "truncated_json",
+      "error_code": "output.not_json"
+    },
+    {
+      "case": "json_array",
+      "error_code": "output.not_object"
+    },
+    {
+      "case": "missing_cell_id",
+      "error_code": "output.key_set"
+    },
+    {
+      "case": "missing_z_in_digest",
+      "error_code": "output.key_set"
+    },
+    {
+      "case": "missing_z_out",
+      "error_code": "output.key_set"
+    },
+    {
+      "case": "missing_provider",
+      "error_code": "output.key_set"
+    },
+    {
+      "case": "missing_seed",
+      "error_code": "output.key_set"
+    },
+    {
+      "case": "extra_key",
+      "error_code": "output.key_set"
+    },
+    {
+      "case": "wrong_type_z_out_int",
+      "error_code": "output.type.z_out"
+    },
+    {
+      "case": "wrong_type_seed_str",
+      "error_code": "output.type.seed"
+    },
+    {
+      "case": "wrong_type_seed_bool",
+      "error_code": "output.type.seed"
+    },
+    {
+      "case": "digest_mismatch",
+      "error_code": "output.digest_mismatch"
+    },
+    {
+      "case": "digest_bad_format",
+      "error_code": "output.bad_digest_format"
+    },
+    {
+      "case": "cell_id_mismatch",
+      "error_code": "output.cell_id_mismatch"
+    },
+    {
+      "case": "provider_mismatch",
+      "error_code": "output.provider_mismatch"
+    },
+    {
+      "case": "seed_mismatch",
+      "error_code": "output.seed_mismatch"
+    },
+    {
+      "case": "empty_z_out",
+      "error_code": "output.empty_z_out"
+    },
+    {
+      "case": "duplicate_key",
+      "error_code": "output.not_json"
+    }
+  ],
+  "resume_notes": "local arm re-run after fixing a makedirs bug that dropped attempts 1-2 output (the calls ran; only the artifact write raised FileNotFoundError). Stub arm, refusal gate, and cloud results are carried forward unchanged from this same session. Previous guard summary preserved as guard_summary.pre-resume.json.",
+  "secret_scan": {
+    "zai_key_present_in_artifacts": false
+  },
+  "seed": 2718,
+  "started_utc": "2026-10-01T21:41:56Z",
+  "temperature": 0.0,
+  "verdict": "KILL",
+  "verdict_reason": "local nondeterminism at fixed seed 2718 / temperature 0"
+}

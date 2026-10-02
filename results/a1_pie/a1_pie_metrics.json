@@ -1,0 +1,208 @@
+{
+  "lane": "A1-PIE",
+  "experiment": "pie-minimax-closure",
+  "device": "cuda:0 (NVIDIA GeForce RTX 4050 Laptop GPU)",
+  "torch": "2.14.0+cu126",
+  "seed": 2718,
+  "dataset": {
+    "path_rows": 180361,
+    "distinct_our_turn_boards": 2423,
+    "partition": {
+      "composed_by_immediate_wins": 320,
+      "composed_by_threat_count": 1230,
+      "agreement_boards": 1513,
+      "n_boards": 2423,
+      "note": "the two COMPOSED definitions are NOT equivalent: '>=2 simultaneous WINNING MOVES' (task wording) is 320 boards; the repo ceiling2 'threat_count>=2' is 1230. Both partitions are reported."
+    },
+    "note": "180,361 is path-weighted rows (dups); 2,423 distinct boards. README's 'impossible' correction misreads the path count."
+  },
+  "split_primary": {
+    "scheme": "board-disjoint FNV-1a-64 HIGH-32 mod 10, bucket 0 = test (low-bit FNV weak: raw mod 10 gave an empty test set -- instrument bug, VOIDed)",
+    "train_boards": 2186,
+    "test_boards": 237,
+    "test_composed_n": 28,
+    "test_simple_n": 209
+  },
+  "chance": {
+    "overall": 0.5566,
+    "composed": 0.75,
+    "simple": 0.5307
+  },
+  "arms": {
+    "MLP_9-64-9_lr1e-3_20ep": {
+      "top1_overall": 0.3502,
+      "top1_composed_immv2win": 0.5714,
+      "top1_simple_immv2win": 0.3206,
+      "top1_composed_threatcount2": 0.3226,
+      "top1_simple_threatcount": 0.3805,
+      "train_top1_fit": 0.3998,
+      "delta_simple_minus_composed_immv2win": -0.2509,
+      "delta_simple_minus_composed_threatcount": 0.058,
+      "steps": 60,
+      "epochs_run": 20,
+      "final_train_loss": 1.5699991782506306,
+      "arch": "9-64-9 relu",
+      "params": 1225
+    },
+    "LINEAR_9x9_lr1e-3_20ep": {
+      "top1_overall": 0.2363,
+      "top1_composed_immv2win": 0.3571,
+      "top1_simple_immv2win": 0.2201,
+      "top1_composed_threatcount2": 0.2339,
+      "top1_simple_threatcount": 0.2389,
+      "train_top1_fit": 0.2534,
+      "delta_simple_minus_composed_immv2win": -0.137,
+      "delta_simple_minus_composed_threatcount": 0.0051,
+      "steps": 60,
+      "epochs_run": 20,
+      "final_train_loss": 1.698647379875183,
+      "arch": "9-9",
+      "params": 81
+    },
+    "MLP_9-64-9_lr1e-3_plateau": {
+      "top1_overall": 0.9494,
+      "top1_composed_immv2win": 0.9643,
+      "top1_simple_immv2win": 0.9474,
+      "top1_composed_threatcount2": 0.9677,
+      "top1_simple_threatcount": 0.9292,
+      "train_top1_fit": 0.9881,
+      "delta_simple_minus_composed_immv2win": -0.0169,
+      "delta_simple_minus_composed_threatcount": -0.0385,
+      "steps": 1200,
+      "epochs_run": 400,
+      "final_train_loss": 0.13539165755112967,
+      "arch": "9-64-9 relu",
+      "params": 1225
+    },
+    "LINEAR_9x9_lr1e-3_plateau": {
+      "top1_overall": 0.2954,
+      "top1_composed_immv2win": 0.1429,
+      "top1_simple_immv2win": 0.3158,
+      "top1_composed_threatcount2": 0.1855,
+      "top1_simple_threatcount": 0.4159,
+      "train_top1_fit": 0.3532,
+      "delta_simple_minus_composed_immv2win": 0.1729,
+      "delta_simple_minus_composed_threatcount": 0.2304,
+      "steps": 1200,
+      "epochs_run": 400,
+      "final_train_loss": 1.614733060201009,
+      "arch": "9-9",
+      "params": 81
+    },
+    "MLP_9-64-9_lr1e-2_plateau_supp": {
+      "top1_overall": 0.9789,
+      "top1_composed_immv2win": 0.9643,
+      "top1_simple_immv2win": 0.9809,
+      "top1_composed_threatcount2": 0.9758,
+      "top1_simple_threatcount": 0.9823,
+      "train_top1_fit": 1.0,
+      "delta_simple_minus_composed_immv2win": 0.0166,
+      "delta_simple_minus_composed_threatcount": 0.0065,
+      "steps": 1200,
+      "epochs_run": 400,
+      "final_train_loss": 0.0021976554611076913,
+      "arch": "9-64-9 relu",
+      "params": 1225
+    }
+  },
+  "linear_expert_parity": {
+    "arm": "linear_expert (their code) on their sweep.py leaky 20k/8k path-row split",
+    "top1_leaky_pathsplit": 0.1919,
+    "set_recall": 0.1904,
+    "note": "parity vs their published 0.1807 \u2014 leaky split, only for provenance",
+    "evaluated_on_primary_board_disjoint_test": {
+      "top1_overall": 0.2911,
+      "top1_composed_immv2win": 0.2857,
+      "top1_simple_immv2win": 0.2919,
+      "top1_composed_threatcount2": 0.2177,
+      "top1_simple_threatcount": 0.3717,
+      "note": "the same 81-param linear expert, scored on the honest held-out boards"
+    }
+  },
+  "cv5_board_disjoint": {
+    "MLP_9-64-9_lr1e-3_20ep": {
+      "top1_mean": 0.3443,
+      "top1_std": 0.0195,
+      "fold_top1": [
+        0.3159,
+        0.3519,
+        0.3272,
+        0.3599,
+        0.3665
+      ],
+      "composed_immv2win_mean": 0.3711,
+      "composed_immv2win_std": 0.0469,
+      "composed_threatcount2_mean": 0.2621,
+      "composed_threatcount2_std": 0.0129
+    },
+    "LINEAR_9x9_lr1e-3_20ep": {
+      "top1_mean": 0.2068,
+      "top1_std": 0.0252,
+      "fold_top1": [
+        0.1778,
+        0.1981,
+        0.2311,
+        0.1853,
+        0.2415
+      ],
+      "composed_immv2win_mean": 0.2514,
+      "composed_immv2win_std": 0.0302,
+      "composed_threatcount2_mean": 0.166,
+      "composed_threatcount2_std": 0.0243
+    },
+    "MLP_9-64-9_lr1e-3_plateau": {
+      "top1_mean": 0.9392,
+      "top1_std": 0.0094,
+      "fold_top1": [
+        0.9289,
+        0.9288,
+        0.9407,
+        0.944,
+        0.9534
+      ],
+      "composed_immv2win_mean": 0.979,
+      "composed_immv2win_std": 0.0092,
+      "composed_threatcount2_mean": 0.9343,
+      "composed_threatcount2_std": 0.0099
+    }
+  },
+  "ramp_seconds": 0.608,
+  "weights_path": "results/a1_pie/a1_pie_model.pt",
+  "preflights": [
+    {
+      "attempt": 1,
+      "breach": null
+    }
+  ],
+  "worker_wall_seconds": 14.48,
+  "verdict": {
+    "frozen_gate": "KILL iff overall>0.40; CONFIRM iff 0.25<=overall<=0.40 AND mlp_composed<linear_composed; else INCONCLUSIVE",
+    "verdict_on_PRIMARY_20epoch_arm": "INCONCLUSIVE",
+    "verdict_on_convergence_control": "KILL-of-prediction",
+    "mlp_overall": 0.3502,
+    "mlp_composed_immv2win": 0.5714,
+    "mlp_composed_threatcount2": 0.3226,
+    "linear_overall": 0.2363,
+    "linear_composed_immv2win": 0.3571,
+    "linear_composed_threatcount2": 0.2339,
+    "mlp_plateau_overall": 0.9494,
+    "mlp_plateau_composed_immv2win": 0.9643,
+    "mlp_plateau_composed_threatcount2": 0.9677,
+    "mlp_plateau_cv5_overall": 0.9392,
+    "mlp_plateau_cv5_std": 0.0094,
+    "delta_mlp_minus_linear_composed_immv2win": 0.2143,
+    "delta_mlp_minus_linear_composed_threatcount2": 0.0887,
+    "cv_std_primary": 0.0195,
+    "convergence_control_disagrees": true,
+    "reading": "the 20-epoch frozen spec (60 steps) is UNDERFIT (train loss 1.57) -> the PRIMARY verdict is a measurement of the optimiser, exactly the confound the repo warns about. The pre-registered convergence control is the honest number (board-disjoint 5-fold CV std=0.0094, so not memorisation)."
+  },
+  "g7_receipt": {
+    "path": "results/a1_pie/g7-wr-a1-pie-closure-1790891506.json",
+    "receipt_id": "g7-wr-a1-pie-closure-1790891506",
+    "gate_verdict": "PASS",
+    "joules": 106.5019,
+    "watt_hours": 0.029583861111111113,
+    "source": "measured",
+    "gpu_seconds": 0.771
+  }
+}

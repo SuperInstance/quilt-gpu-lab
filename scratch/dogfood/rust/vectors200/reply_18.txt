@@ -1,0 +1,10 @@
+180 add:0 6 mul:-34 -9 conj:2 -3 norm:19
+181 add:2 -8 mul:-15 -28 conj:5 2 norm:19
+182 add:9 -12 mul:-27 -108 conj:12 3 norm:117
+183 add:14 -16 mul:-18 -171 conj:12 7 norm:109
+184 add:3 -5 mul:14 -22 conj:2 -3 norm:19
+185 add:8 9 mul:-8 56 conj:7 -1 norm:57
+186 add:-5 -11 mul:-54 3 conj:9 6 norm:63
+187 add:-12 -4 mul:24 27 conj:0 3 norm:9
+188 add:-12 -5 mul:56 76 conj:4 8 norm:48
+189 add:5 0 mul:13 -42 conj:3 7 norm:37

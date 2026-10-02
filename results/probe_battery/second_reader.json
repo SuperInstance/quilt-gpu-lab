@@ -1,0 +1,80 @@
+{
+  "probe": "different-path second reader vs silent drift",
+  "source": "pr_harvest/SUMMARY.md #5 / CARDS.md fleet-triage #4",
+  "gate": "self-consistent reader conf drop <=5%; different-path agreement drop >=20% (both D1 same-arch-diff-seed and D2 arch-different); std==0 on gated seed-mean -> INCONCLUSIVE",
+  "verdict": "PASS",
+  "numbers": {
+    "drift_protocol": "self-generated: the store is rewritten from the self reader's own biased predictions (growing sticky class preference over 8 cycles), then re-consumed by it; different-path readers stay frozen on original labels",
+    "per_seed": [
+      {
+        "seed": 2718,
+        "self_conf_before": 0.9288,
+        "self_conf_after": 0.9978,
+        "self_conf_drop": -0.069,
+        "d1_agree_before": 0.975,
+        "d1_agree_after": 0.225,
+        "d1_agree_drop": 0.75,
+        "d2_agree_before": 0.9675,
+        "d2_agree_after": 0.2275,
+        "d2_agree_drop": 0.74,
+        "store_rows_changed_vs_truth": 0.7775,
+        "contrast_external_relabel_conf_after": 0.5864,
+        "contrast_external_relabel_conf_drop": 0.3424
+      },
+      {
+        "seed": 2719,
+        "self_conf_before": 0.9268,
+        "self_conf_after": 0.9987,
+        "self_conf_drop": -0.0718,
+        "d1_agree_before": 0.9725,
+        "d1_agree_after": 0.2225,
+        "d1_agree_drop": 0.75,
+        "d2_agree_before": 0.97,
+        "d2_agree_after": 0.225,
+        "d2_agree_drop": 0.745,
+        "store_rows_changed_vs_truth": 0.77,
+        "contrast_external_relabel_conf_after": 0.6081,
+        "contrast_external_relabel_conf_drop": 0.3187
+      },
+      {
+        "seed": 2720,
+        "self_conf_before": 0.9538,
+        "self_conf_after": 0.9974,
+        "self_conf_drop": -0.0436,
+        "d1_agree_before": 0.9725,
+        "d1_agree_after": 0.2575,
+        "d1_agree_drop": 0.715,
+        "d2_agree_before": 0.9875,
+        "d2_agree_after": 0.2625,
+        "d2_agree_drop": 0.725,
+        "store_rows_changed_vs_truth": 0.74,
+        "contrast_external_relabel_conf_after": 0.637,
+        "contrast_external_relabel_conf_drop": 0.3169
+      }
+    ],
+    "mean_store_rows_changed_vs_truth": 0.7625,
+    "mean_self_conf_drop": -0.0615,
+    "mean_d1_agreement_drop_samearch": 0.7383,
+    "mean_d2_agreement_drop_archdiff": 0.7367,
+    "seed_stds": {
+      "self_conf_drop": 0.0127,
+      "d1_agree_drop": 0.0165,
+      "d2_agree_drop": 0.0085
+    },
+    "contrast_arm_external_relabel_mean_conf_drop": 0.326,
+    "gate_clauses": {
+      "conf_drop_le_5pct": true,
+      "d1_drop_ge_20pct": true,
+      "d2_drop_ge_20pct": true
+    }
+  },
+  "reading": "with drift entering the system's own write path, the self-consistent reader keeps its confidence (it reads what it wrote) while both differently-built readers see the store move \u2014 instrument diversity as a freeze detector, demonstrated on our iron. Honest boundary (contrast arm): an EXTERNAL relabel corruption of the same size does hurt the self reader's confidence \u2014 the blindness is specific to drift the system itself generates, not to arbitrary corruption",
+  "extra_note": "",
+  "seed": [
+    2718,
+    2719,
+    2720
+  ],
+  "runtime_seconds": 4.3,
+  "device": "cpu"
+}

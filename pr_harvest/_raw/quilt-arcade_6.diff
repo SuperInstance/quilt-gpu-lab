@@ -1,0 +1,1978 @@
+diff --git a/experiments/predictive_paddle.FINDINGS.md b/experiments/predictive_paddle.FINDINGS.md
+new file mode 100644
+index 0000000..bf6f092
+--- /dev/null
++++ b/experiments/predictive_paddle.FINDINGS.md
+@@ -0,0 +1,88 @@
++# PREDICTIVE PADDLE — FINDINGS (measured run, sealed FAIL)
++
++**Runner:** `experiments/predictive_paddle.mjs` · **Receipt:** `experiments/predictive_paddle_receipt.json`
++**Pre-registration:** `experiments/predictive_paddle.PREREG.md` (commit `c3deef2`, sealed before run)
++**Verdict: FAIL** — H1 ✗, H2 ✗, H3 ✓, H4 ✓, H5 ✓, determinism ✓. No goalpost moves; this file explains the measured mechanisms with trace excerpts.
++
++## What was measured
++
++50 seeded matches per arm (seeds 1..50), reactive control game for M1 estimation
++quality; M2 = advisory A/B (attractor advises left paddle when certain AND ball
++approaching; honest reactive fallback otherwise). Receipt chain: 3,585 rows,
++re-derived from GENESIS (fnv1a-64, kit canon).
++
++## Headline numbers
++
++| Metric | Value |
++|---|---|
++| H1 capture ≤12 ticks (left-bound serves) | **20.8%** (5/24) — gate ≥90% FAIL |
++| H1 all-serve rate (transparency) | 11.4% (5/44) |
++| H2 re-capture ≤2 events after own-return | **14.0%** (8/57) — gate 100% FAIL |
++| Between-event hold error | mean **17.46**, max 58.10 (n=18,375) |
++| ψ census (50 matches) | commit 1,605 / reject 72 / abstain 1,858 |
++| Events per match | min 28 / med 70 / max 148 |
++| M2 control win-rate (reactive 0.85 vs 0.70) | 86.0% |
++| M2 advisory win-rate | **94.0%** — H3 ✓ (non-inferiority), H4 ✓ (≥55%) |
++| Advisory mode share / fallback share | 3.2% / 9.7% (H5 ✓ ≥1%, census complete) |
++| Determinism (M1 seeds 1–3 twice) | identical chain head ✓ |
++
++## Root cause of H1/H2: standing-mass dilution under sparse events
++
++Trace excerpt (seed 1), the first right-return commit of the match:
++
++```json
++{"tick":155,"feed":{"kind":"return","side":"right"},"psi":1,"y_at":26.13,
++ "readout":0.53,"err2":25.60,"mass":5.05}
++```
++
++The ring had accumulated standing mass ≈5 from prior commits. The sealed flycx
++v2 constants inject `GAIN=0.15` per commit while `EVENT_DECAY=0.85` removes only
++15% of standing mass — steady-state mass ≈ Σtaper/(1−DECAY) ≈ 12. Each commit
++therefore moves the circular mean by only ≈ `GAIN·err/mass ≈ 0.15·25/5 ≈ 0.8`
++units, and measured decay per commit on mass ≈11 is a factor ~0.75/err
++(ticks 876→903→941: readout 34.79→30.84→27.38 toward true 18.83).
++
++**Convergence arithmetic:** from a 25-unit error at 0.75/event, reaching the
++1.5 deadzone takes ≈ `ln(1.5/25)/ln(0.75)` ≈ **9 commit events**. A pong
++approach phase contains **1–4 events** (walls are not guaranteed — a shallow
++vy crosses the field without touching y=1/y=59; tick 155→253 is a 98-tick
++approach with zero events). H1's ≤12-tick window and H2's ≤2-event window are
++structurally unreachable under the sealed constants. The between-event hold
++error mean of 17.46 is the same mechanism: the estimator holds a diluted,
++stale estimate across whole approach phases.
++
++This is a **port-cadence mismatch, not a flycx defect**: in the sealed
++chiaroscuro model, ring decay ran per PING (per-step, τ=0.35) while cues were
++comparatively dense; ported 1:1 to event cadence, history outweighs evidence.
++
++## Why the advisory still wins (H3/H4) despite non-convergence
++
++When `certain` fires (right after commits, before `A_eff = A·0.98^Δ` collapses
++— events are 40–100 ticks apart, so 0.98^Δ ≈ 0.13–0.36), the readout is a
++*recent projection* — roughly the intercept region, ±5–10 units. Aiming at the
++intercept even imprecely beats chasing `ball.y` when the ball moves up to
++2.6/tick against a 0.85/tick paddle: the paddle pre-positions instead of
++following. Value came from **predictive aim**, not estimator accuracy — the
++receipt separates these honestly. At 3.2% advisory share the lift was +8 pts;
++a convergent estimator with higher certain-share is the v2 promise.
++
++## Honest limits
++
++- **Prereg errata (no goalpost moves):** H1 reported on left-bound serves
++  (right-bound serves are away-abstains by the projection contract; both rates
++  in receipt). Own-return events arrive with vx>0, so they take the abstain
++  branch; ψ=−1 fires only on >45°-conflict-with-certainty (72 events did).
++- **Oracle = same closed-form projection from live state** (identical formula,
++  documented in prereg); the estimator only sees post-event states.
++- Wall detection uses the reflection invariant (vy flips, |vy| preserved);
++  `rules.fired` is a cumulative ledger (W2 reads it as history) and cannot
++  detect per-tick wall hits — documented in the runner header.
++- Pin 3 bounds discretization (half-bin = 60/32/2 = 0.9375), not convergence.
++
++## Next: v2 (new pre-registration required)
++
++Sealed proposal in `experiments/predictive_paddle_v2.PREREG.md`: error-scaled
++pull — on commit, `w = max(GAIN, err/halfField)·(1−A_eff)`, `ring = ring·(1−w)
+++ w·bump(target)` — dilution-proof by construction (a 25-unit error pulls
++≥0.42/event), ternary ψ and anti-thrash preserved, H1–H5 bars unchanged.
++This v1 receipt rides along as failure history.
+diff --git a/experiments/predictive_paddle.PREREG.md b/experiments/predictive_paddle.PREREG.md
+new file mode 100644
+index 0000000..8def8d1
+--- /dev/null
++++ b/experiments/predictive_paddle.PREREG.md
+@@ -0,0 +1,83 @@
++# PRE-REGISTRATION — predictive paddle via fruitfly-CX ring attractor (estimation loops as cells)
++
++**Status: SEALED before any measured run (R1). Seed 20261001. Kill criterion R8 (15 min).**
++**Cross-repo port: model constants ported 1:1 from `SuperInstance/chiaroscuro` PR #6
++(`tools/fly_cx.py`, model `flycx-v2-certainty-gated`, measured PASS 4/4 on 2026-10-01).**
++On merge this citation is load-bearing per the fleet weight law → referral edge
++candidate `chiaroscuro-flycx → arcade-predictive-paddle`.
++
++## The idea (Pattern 6 — estimation loops as cells)
++
++Pong's paddles are reactive: `ai.track` aims at `ball.y` *now*. The ball's
++*arrival-y* at the paddle face is computable from any post-event state by ray
++projection, but only at events (serve / wall reflection / paddle return) — the
++trajectory is piecewise-linear. A fruitfly central-complex ring attractor is
++the natural cell-native estimator: a 32-cell activity ring over arrival-y
++∈ [0,60], updated only at events, read every tick. Between events the bump
++holds (the fly holds heading between landmarks). Ternary ψ dynamics gate
++plasticity exactly as the sealed chiaroscuro model does.
++
++## Port mapping (chiaroscuro flycx v2 → this sheet)
++
++| flycx v2 constant            | value | this sheet                         |
++|------------------------------|-------|------------------------------------|
++| bins (ring size)             | 16    | 32 cells (`sense.ring`, finer 1D)  |
++| A0 (certainty gate)          | 0.5   | `sense.state.A`, same 0.5          |
++| commit_gain                  | 0.15  | activity + certainty gain, same    |
++| reject_shrink                | 0.7   | ring shrink on ψ=−1, same          |
++| motion decay (τ=0.35)        | —     | ring ×0.85 per commit event        |
++| certainty decay              | ~0.98 | A_eff = A·0.98^(ticks since event) |
++| conflict pull BLEND·(1−A)·err| —     | identical: inject taper scaled by (1−A) |
++
++Ring coordinate: φ = arrival_y / 60 · 2π. Inject profile: cos²(Δ/2) taper,
++zero beyond π/2. Readout: circular mean → ŷ. All state is plain cell values
++(`sense.ring`, `sense.state`, `sense.receipts`) — inspectable, receipitable.
++
++## Events (sparse sensor contract)
++
++The harness feeds exactly one event per occurring game event, post-tick:
++`{kind:'serve'|'wall'|'return', side?}`. The cell reads post-event ball state
++from the sheet and projects arrival-y itself (closed-form wall folding:
++walls at y=1/y=59, L=58). It never sees the live ball between events.
++
++ψ per event (pre-registered):
++- **commit (ψ=1)**: serve, wall, return by *right* (opponent). Ring ×0.85,
++  inject cos² bump at projected φ with magnitude 0.15·(1−A_eff); A rises.
++- **reject/abstain (ψ=−1)**: return by *left* (own paddle). Own return
++  contradicts the stale bump (anti-thrash, flycx v2 reject semantics):
++  ring ×0.7, A ×0.5, NO capture this event.
++- **abstain (ψ=0)**: degenerate projection (|vx| < 1e-6). Nothing written
++  but a receipt row.
++
++## Hypotheses (measured in `experiments/predictive_paddle.mjs`)
++
++- **H1 (capture)**: across seeds 1..50, ≥90% of serves reach readout error
++  ≤1.5 (the paddle deadzone) within ≤12 ticks of the serve event.
++- **H2 (re-capture)**: after every left-return ψ=−1 event, error ≤1.5 within
++  ≤2 subsequent events.
++- **H3 (value, non-inferiority)**: attractor-advisory left paddle (uses ŷ
++  when A_eff≥0.5, honest fallback to reactive `ai.track` otherwise, every
++  fallback logged) vs reactive right, seeds 1..50: win-rate ≥ reactive-left
++  control (0.85 speed vs 0.70) win-rate on the same seeds.
++- **H4 (value, strength)**: advisory win-rate ≥ 55%.
++- **H5 (honesty)**: advisory fired on ≥1% of ticks (else vacuous) and 100%
++  of fallbacks carry a log line; receipt chain re-derives from GENESIS.
++
++## Honesty limits (pre-registered)
++
++- The oracle for error measurement is the same closed-form projection from
++  the *live continuous* ball state — the estimator itself only ever sees
++  post-event states. Oracle ≠ estimator input; formula identical, documented.
++- Everything in pong is deterministic and fully observable; the ML content
++  is the **event-gated dynamics under a sparse sensor contract**, not
++  hidden-state inference. Ablative value = convergence speed + match value,
++  not mystery.
++- If H3 fails, the attractor is an honest estimator and a worse policy —
++  receipt says so. No goalpost moves; iteration = new pre-registration.
++
++## Deliverables
++
++1. This file (committed before any run).
++2. `experiments/predictive_paddle.mjs` — runner + FAIL-first pins + receipt.
++3. `experiments/predictive_paddle_receipt.json` — chained fnv1a-64 rows +
++   hypothesis verdicts + determinism pin (seeds 1..3 run twice, byte-equal).
+diff --git a/experiments/predictive_paddle.mjs b/experiments/predictive_paddle.mjs
+new file mode 100644
+index 0000000..38a7417
+--- /dev/null
++++ b/experiments/predictive_paddle.mjs
+@@ -0,0 +1,397 @@
++// PREDICTIVE PADDLE — Pattern 6: estimation loops as cells.
++// A fruitfly-CX ring attractor (ported 1:1 from SuperInstance/chiaroscuro PR #6,
++// tools/fly_cx.py, model flycx-v2-certainty-gated) estimates the ball's arrival-y
++// at the left paddle face from SPARSE EVENTS ONLY (serve/wall/return), per
++// experiments/predictive_paddle.PREREG.md (sealed BEFORE this runner ran, R1).
++//
++//   node experiments/predictive_paddle.mjs
++//
++// The pong plugin is untouched: sense.* cells are registered dynamically on the
++// booted sheet; the M2 advisory A/B swaps ai.track for a sense-aware variant in
++// the harness-built sheet copy only. Receipt chain re-derived from GENESIS.
++//
++// EVENT DETECTION (documented): rules.fired is a CUMULATIVE per-match ledger
++// (W2 reads it as history to award points once per contact), so it cannot
++// detect per-tick wall hits. A wall event = pure reflection: vy flipped sign
++// with |vy| preserved (W3 paddle returns change |vy| to 0.12*offset, so they
++// never collide with this test). Serves/returns ride the game audit log.
++
++import { writeFileSync } from 'node:fs';
++import { fileURLToPath } from 'node:url';
++import { dirname, join } from 'node:path';
++import { QuiltEngine } from '../engine/index.js';
++import { harness, GENESIS_PREV, verifyChain } from '../shared/kit.mjs';
++import { buildSheet } from '../games/pong/sheet.mjs';
++
++const H = harness('predictive-paddle');
++const HERE = dirname(fileURLToPath(import.meta.url));
++const SEEDS = Array.from({ length: 50 }, (_, i) => i + 1);
++const N = 32, H_FIELD = 60, DEADZONE = 1.5;
++// ported constants (chiaroscuro flycx v2 — see PREREG table)
++const A0 = 0.5, COMMIT_GAIN = 0.15, REJECT_SHRINK = 0.7, EVENT_DECAY = 0.85, CERT_DECAY = 0.98;
++
++// ── the sense layer (registered on the booted sheet; the sheet did the work) ──
++const SENSE_PROJECT = `
++// arrival-y of the ball at the LEFT face (x=2) by exact wall folding.
++// Pure: ({x,y,vx,vy}) -> {y_at}. Walls at y=1/y=59 -> corridor [1,59], L=58.
++// Ball not approaching (vx >= -1e-6) -> y_at=null (no defined left arrival).
++const x = input?.x, y = input?.y, vx = input?.vx ?? 0, vy = input?.vy ?? 0;
++if (typeof x !== 'number' || typeof y !== 'number') return { y_at: null, why: 'no ball state' };
++if (vx >= -1e-6) return { y_at: null, why: 'ball not approaching left face (vx=' + vx + ')' };
++const t = (x - 2) / Math.abs(vx);
++const L = 58, raw = (y - 1) + vy * t;
++const k = Math.floor(raw / L), frac = raw - k * L;
++const parity = ((k % 2) + 2) % 2;
++const yAt = 1 + (parity === 0 ? frac : L - frac);
++return { y_at: Math.max(1, Math.min(59, yAt)), t, why: 'arrival y=' + yAt.toFixed(3) + ' in ' + t.toFixed(1) + ' ticks' };`;
++
++const WITNESS = `
++// fnv1a-64 (witness snippet from shared/kit.mjs — in-cell per Pattern 4)
++function fnv1a64(str) {
++  let h = 0xcbf29ce484222325n;
++  for (let i = 0; i < str.length; i++) { h ^= BigInt(str.charCodeAt(i) & 0xff); h = (h * 0x100000001b3n) & 0xffffffffffffffffn; }
++  return h.toString(16).padStart(16, '0');
++}`;
++
++const SENSE_UPDATE = `
++// event-gated plasticity. input: {kind, side}. Ternary psi, flycx v2 semantics:
++//   abstain (0): no defined left-face arrival (away/vertical) — nothing written
++//   reject (-1): strong cue (err>45deg) conflicts with a CERTAIN bump — anti-thrash
++//   commit (+1): ring decay, cos^2 bump injection at projected phi, certainty rise
++${WITNESS}
++const N = ${N}, H = ${H_FIELD};
++const A0 = ${A0}, GAIN = ${COMMIT_GAIN}, SHRINK = ${REJECT_SHRINK}, DECAY = ${EVENT_DECAY};
++const ring = ((await runtime.get('sense.ring')).data ?? new Array(N).fill(0)).slice();
++const st = (await runtime.get('sense.state')).data;
++const tick = (await runtime.get('tick.count')).data;
++const ball = {
++  x: (await runtime.get('ball.x')).data, y: (await runtime.get('ball.y')).data,
++  vx: (await runtime.get('ball.vx')).data, vy: (await runtime.get('ball.vy')).data,
++};
++// pre-update readout (for err vs the incoming cue)
++let sx = 0, sy = 0, mass = 0;
++for (let i = 0; i < N; i++) { const phi = i / N * 2 * Math.PI; sx += ring[i] * Math.cos(phi); sy += ring[i] * Math.sin(phi); mass += ring[i]; }
++const readY = mass > 1e-9 ? (((Math.atan2(sy, sx) / (2 * Math.PI)) * H) + H) % H : null;
++const A_eff = st.A * Math.pow(${CERT_DECAY}, tick - st.lastTick);
++const proj = (await runtime.call('sense.project', ball)).data;
++let psi, why;
++if (proj.y_at === null) {
++  psi = 0; why = 'abstain: ' + proj.why;
++} else {
++  let errDeg = null;
++  if (readY !== null) { const d = Math.abs(proj.y_at - readY); errDeg = Math.min(d, H - d) / H * 360; }
++  if (errDeg !== null && errDeg > 45 && A_eff > A0) {
++    psi = -1; why = 'reject: cue ' + proj.y_at.toFixed(1) + ' conflicts ' + errDeg.toFixed(0) + 'deg with certain bump (A=' + A_eff.toFixed(2) + ')';
++    for (let i = 0; i < N; i++) ring[i] *= SHRINK;
++    st.A = A_eff * 0.5;
++  } else {
++    psi = 1; why = 'commit: ' + proj.why + (errDeg !== null ? ' (err ' + errDeg.toFixed(1) + 'deg)' : '');
++    const target = proj.y_at / H * 2 * Math.PI;
++    for (let i = 0; i < N; i++) {
++      let d = Math.abs(i / N * 2 * Math.PI - target); if (d > Math.PI) d = 2 * Math.PI - d;
++      const taper = d < Math.PI / 2 ? Math.cos(d / 2) * Math.cos(d / 2) : 0;
++      ring[i] = ring[i] * DECAY + GAIN * taper;
++    }
++    st.A = Math.min(1, A_eff + (1 - A_eff) * GAIN);
++  }
++}
++st.lastTick = tick;
++st.counts[psi === 1 ? 'commit' : psi === -1 ? 'reject' : 'abstain']++;
++await runtime.set('sense.ring', ring);
++await runtime.set('sense.state', st);
++// chained receipt row (fnv1a-64, canonical: prev_hash sorted INTO the JSON — kit canon)
++const row = { seq: (await runtime.get('sense.receipts')).data.length, tick, kind: input?.kind ?? '?', side: input?.side ?? null, psi, err_deg: null, y_at: proj.y_at, mass: +(mass.toFixed(4)), A: +st.A.toFixed(4) };
++if (proj.y_at !== null && readY !== null) { const d = Math.abs(proj.y_at - readY); row.err_deg = +(Math.min(d, H - d) / H * 360).toFixed(2); }
++const prev = (await runtime.get('sense.receipts')).data;
++const prevHash = prev.length ? prev[prev.length - 1].row_hash : '${GENESIS_PREV}';
++const cs = { ...row, prev_hash: prevHash };
++const c2 = {}; for (const k of Object.keys(cs).sort()) c2[k] = cs[k];
++row.row_hash = fnv1a64(JSON.stringify(c2));
++row.prev_hash = prevHash;
++row.why = why;
++await runtime.set('sense.receipts', [...prev, row]);
++return { psi, why, y_at: proj.y_at, A: st.A, mass };`;
++
++const SENSE_PREDICT = `
++// readout: circular mean -> arrival-y estimate + aged certainty. Pure read.
++const N = ${N}, H = ${H_FIELD};
++const ring = (await runtime.get('sense.ring')).data;
++const st = (await runtime.get('sense.state')).data;
++const tick = (await runtime.get('tick.count')).data;
++let sx = 0, sy = 0, mass = 0;
++for (let i = 0; i < N; i++) { const phi = i / N * 2 * Math.PI; sx += ring[i] * Math.cos(phi); sy += ring[i] * Math.sin(phi); mass += ring[i]; }
++const y = mass > 1e-9 ? (((Math.atan2(sy, sx) / (2 * Math.PI)) * H) + H) % H : null;
++const A_eff = st.A * Math.pow(${CERT_DECAY}, tick - st.lastTick);
++return { y, mass: +mass.toFixed(4), A_eff: +A_eff.toFixed(4), certain: A_eff >= ${A0} && mass >= 0.5, lastTick: st.lastTick };`;
++
++// M2 advisory: original TRACK for right; left uses the attractor when certain+approaching
++const TRACK_ADVISORY = `
++// sense-aware left paddle: attractor readout when certain AND ball approaching;
++// honest fallback = the derived law verbatim. Mode rides the return value.
++const side = input?.side;
++const track = async (target, mode) => {
++  const paddle = (await runtime.get('paddle.' + side)).data;
++  const speed = side === 'left' ? 0.85 : 0.70;
++  const dead = 1.5;
++  let y = paddle;
++  if (Math.abs(target - y) > dead) y += Math.sign(target - y) * Math.min(speed, Math.abs(target - y) - dead);
++  y = Math.max(6, Math.min(54, y));
++  await runtime.set('paddle.' + side, y);
++  return { side, y, target, mode };
++};
++if (side === 'left') {
++  const p = (await runtime.call('sense.predict')).data;
++  const vx = (await runtime.get('ball.vx')).data;
++  if (p.certain && vx < 0 && p.y !== null) return track(p.y, 'attractor');
++  return track((await runtime.get('ball.y')).data, 'reactive-fallback');
++}
++return track((await runtime.get('ball.y')).data, 'reactive-law');`;
++
++const get = async (e, id) => (await e.get(id)).data;
++
++function bootSense({ advisory = false } = {}) {
++  const engine = new QuiltEngine('arcade-pong-sense', { eager: true });
++  const sheet = buildSheet();
++  if (advisory) {
++    for (const c of sheet.cells) if (c.id === 'ai.track') c.code = TRACK_ADVISORY;
++  }
++  engine.loadSheet(sheet);
++  engine.register({ id: 'sense.ring', kind: 'value', value: new Array(N).fill(0), description: 'CX attractor: 32 activity cells over arrival-y (Pattern 6)' });
++  engine.register({ id: 'sense.state', kind: 'value', value: { A: 0, lastTick: 0, counts: { commit: 0, reject: 0, abstain: 0 } }, description: 'certainty A, last event tick, psi census' });
++  engine.register({ id: 'sense.receipts', kind: 'value', value: [], description: 'fnv1a-64 chained rows: one per event, re-derived from GENESIS' });
++  engine.register({ id: 'sense.project', kind: 'program', code: SENSE_PROJECT, description: 'pure: arrival-y at left face by wall folding' });
++  engine.register({ id: 'sense.update', kind: 'program', code: SENSE_UPDATE, description: 'event-gated plasticity, ternary psi (flycx v2 port)' });
++  engine.register({ id: 'sense.predict', kind: 'program', code: SENSE_PREDICT, description: 'readout: circular mean + aged certainty' });
++  return engine;
++}
++
++// one match with per-event sensing + per-tick estimator telemetry
++async function senseMatch(engine, seed, { probeModes = false, trace = false, maxTicks = 20000 } = {}) {
++  await engine.call('new_game', { seed });
++  await engine.call('sense.update', { kind: 'serve' });
++  const e = { serves: [], leftReturns: [], betweenErrs: [], modes: { attractor: 0, 'reactive-fallback': 0, 'reactive-law': 0 }, trace: [] };
++  let lastLog = (await get(engine, 'log.events')).length;
++  let prevVy = await get(engine, 'ball.vy');
++  let serveProbe = null;   // {tick0, convergedAt, dir}
++  let lrProbe = null;      // {events, done}
++  let last = null, events = 0, psiStart = { ...(await get(engine, 'sense.state')).counts };
++  for (let i = 0; i < maxTicks; i++) {
++    last = (await engine.call('match.step')).data;
++    const tick = await get(engine, 'tick.count');
++    const ball = { x: await get(engine, 'ball.x'), y: await get(engine, 'ball.y'), vx: await get(engine, 'ball.vx'), vy: await get(engine, 'ball.vy') };
++    const feeds = [];
++    if (ball.vy !== 0 && prevVy !== 0 && Math.sign(ball.vy) !== Math.sign(prevVy)
++        && Math.abs(Math.abs(ball.vy) - Math.abs(prevVy)) < 1e-9) feeds.push({ kind: 'wall' });
++    prevVy = ball.vy;
++    const log = await get(engine, 'log.events');
++    for (const row of log.slice(lastLog)) {
++      if (row.kind === 'hit') feeds.push({ kind: 'return', side: row.side });
++      if (row.kind === 'serve') feeds.push({ kind: 'serve' });
++    }
++    lastLog = log.length;
++    const pred = (await engine.call('sense.predict')).data;
++    const oracle = (await engine.call('sense.project', ball)).data;
++    const err = oracle.y_at !== null && pred.y !== null ? Math.abs(oracle.y_at - pred.y) : null;
++    if (serveProbe && serveProbe.convergedAt === null && err !== null && err <= DEADZONE) serveProbe.convergedAt = tick - serveProbe.tick0;
++    if (!feeds.length && err !== null && (tick % 7 === 0)) e.betweenErrs.push(err);
++    for (const f of feeds) {
++      events++;
++      if (f.kind === 'serve') {
++        if (serveProbe) e.serves.push(serveProbe);
++        serveProbe = { tick0: tick, convergedAt: null, dir: Math.sign(ball.vx) };
++      }
++      if (f.kind === 'return' && f.side === 'left') lrProbe = { events: 0, done: false };
++      const r = (await engine.call('sense.update', f)).data;
++      const p2 = (await engine.call('sense.predict')).data;
++      const o2 = (await engine.call('sense.project', ball)).data;
++      const err2 = o2.y_at !== null && p2.y !== null ? Math.abs(o2.y_at - p2.y) : null;
++      if (trace) e.trace.push({ tick, feed: f, psi: r.psi, y_at: r.y_at, readout: p2.y === null ? null : +p2.y.toFixed(2), oracle: o2.y_at === null ? null : +o2.y_at.toFixed(2), err2: err2 === null ? null : +err2.toFixed(2), vx: ball.vx, vy: ball.vy, x: +ball.x.toFixed(1), y: +ball.y.toFixed(1), mass: p2.mass, A: p2.A_eff });
++      if (serveProbe && serveProbe.convergedAt === null && err2 !== null && err2 <= DEADZONE) serveProbe.convergedAt = tick - serveProbe.tick0;
++      if (lrProbe && f.kind !== 'return') {
++        lrProbe.events++;
++        if (err2 !== null && err2 <= DEADZONE) { lrProbe.done = true; e.leftReturns.push(lrProbe); lrProbe = null; }
++        else if (lrProbe.events >= 3) { e.leftReturns.push(lrProbe); lrProbe = null; }
++      }
++    }
++    if (probeModes) {
++      const tr = (await engine.call('ai.track', { side: 'left' })).data;
++      e.modes[tr.mode] = (e.modes[tr.mode] ?? 0) + 1;
++    }
++    if (last.over) break;
++  }
++  if (serveProbe) e.serves.push(serveProbe);
++  const scores = last?.score ?? { left: await get(engine, 'score.left'), right: await get(engine, 'score.right') };
++  const counts = (await get(engine, 'sense.state')).counts;
++  e.psi = { commit: counts.commit - psiStart.commit, reject: counts.reject - psiStart.reject, abstain: counts.abstain - psiStart.abstain };
++  e.events = events;
++  e.over = !!last?.over;
++  e.winner = e.over ? (scores.left > scores.right ? 'left' : 'right') : null;
++  e.ticks = await get(engine, 'tick.count');
++  return e;
++}
++
++// ── M1: estimation quality (reactive game, estimator fed from the side) ──
++const M1 = async (seeds) => {
++  const engine = bootSense();
++  const serves = [], leftReturns = [], between = [];
++  const psi = { commit: 0, reject: 0, abstain: 0 };
++  const eventsPerMatch = [];
++  for (const s of seeds) {
++    const m = await senseMatch(engine, s);
++    serves.push(...m.serves); leftReturns.push(...m.leftReturns); between.push(...m.betweenErrs);
++    eventsPerMatch.push(m.events);
++    for (const k of Object.keys(psi)) psi[k] += m.psi[k];
++  }
++  const receipts = await get(engine, 'sense.receipts');
++  const head = verifyChain(receipts, (r) => { const { why, row_hash, ...f } = r; return f; });
++  // H1: left-bound serves (right-bound serves are abstain events by design — PREREG erratum)
++  const lb = serves.filter((x) => x.dir < 0);
++  const h1Rate = lb.length ? lb.filter((x) => x.convergedAt !== null && x.convergedAt <= 12).length / lb.length : 0;
++  // H1-all reported for transparency (no goalpost): any serve converged within 12 ticks of ANY commit
++  const h1All = serves.length ? serves.filter((x) => x.convergedAt !== null && x.convergedAt <= 12).length / serves.length : 0;
++  const lrOk = leftReturns.filter((x) => x.done && x.events <= 2);
++  const h2Rate = leftReturns.length ? lrOk.length / leftReturns.length : 1;
++  const mean = (a) => (a.length ? a.reduce((x, y) => x + y, 0) / a.length : null);
++  const max = (a) => a.reduce((x, y) => (y > x ? y : x), 0);
++  return {
++    serves: serves.length, leftBoundServes: lb.length, h1: { rate: +h1Rate.toFixed(4), pass: h1Rate >= 0.9, n: lb.length },
++    h1_all_serves: +h1All.toFixed(4),
++    leftReturns: leftReturns.length, h2: { rate: +h2Rate.toFixed(4), pass: h2Rate === 1, n: leftReturns.length },
++    between: { mean_err: +mean(between).toFixed(3), max_err: +max(between).toFixed(3), n: between.length },
++    psi, eventsPerMatch: { min: Math.min(...eventsPerMatch), med: eventsPerMatch.sort((a, b) => a - b)[eventsPerMatch.length >> 1], max: Math.max(...eventsPerMatch) },
++    rows: receipts.length, head,
++  };
++};
++
++// ── M2: value A/B (advisory left via sheet-copy ai.track; control = both reactive) ──
++const M2 = async (seeds) => {
++  const adv = bootSense({ advisory: true });
++  let aLeft = 0;
++  const modes = { attractor: 0, 'reactive-fallback': 0, 'reactive-law': 0 };
++  for (const s of seeds) {
++    const m = await senseMatch(adv, s, { probeModes: true });
++    if (m.winner === 'left') aLeft++;
++    for (const k of Object.keys(modes)) modes[k] += m.modes[k];
++  }
++  const total = Object.values(modes).reduce((a, b) => a + b, 0);
++  return {
++    advisory_wr: +(aLeft / seeds.length).toFixed(4), modes,
++    advisory_share: total ? +(modes.attractor / total).toFixed(4) : 0,
++    fallback_share: total ? +(modes['reactive-fallback'] / total).toFixed(4) : 0,
++  };
++};
++
++// ── pins (unit-level; a RED here localizes the layer, never silently absorbed) ──
++await H.check('sense cells boot and answer (readout null at genesis)', async () => {
++  const e = bootSense();
++  await e.call('new_game', { seed: 1 });
++  const p = (await e.call('sense.predict')).data;
++  H.eq(p.y, null);
++  H.ok(p.mass === 0, 'ring must start empty');
++});
++
++await H.check('sense.project: wall folding is exact (steep-down folds off the floor)', async () => {
++  const e = bootSense();
++  const r = (await e.call('sense.project', { x: 50, y: 30, vx: -1, vy: -1 })).data;
++  // t=48; ball travels 30 -> 1 (29 ticks), folds up 19 more -> y=20.
++  // (sheet law: y<1 reflects to 1+(1-y); corridor [1,59], L=58)
++  H.eq(r.y_at, 20);
++  const away = (await e.call('sense.project', { x: 50, y: 30, vx: 1, vy: 0 })).data;
++  H.eq(away.y_at, null);
++});
++
++await H.check('commit: fresh-bump readout within discretization bound (half-bin 0.9375)', async () => {
++  const e = bootSense();
++  await e.call('new_game', { seed: 7 });
++  await e.set('ball.x', 60); await e.set('ball.y', 42); await e.set('ball.vx', -0.9); await e.set('ball.vy', 0.3);
++  const r = (await e.call('sense.update', { kind: 'wall' })).data;
++  H.eq(r.psi, 1);
++  const p = (await e.call('sense.predict')).data;
++  const o = (await e.call('sense.project', { x: 60, y: 42, vx: -0.9, vy: 0.3 })).data;
++  // N=32 bins over a 60-unit field -> bin width 1.875; a single injected bump's
++  // circular mean can land at most half a bin from the true target. This pin
++  // bounds DISCRETIZATION, not model convergence (that is what H1/H2 measure).
++  H.ok(Math.abs(p.y - o.y_at) < 0.94, `readout ${p.y} vs oracle ${o.y_at}`);
++});
++
++await H.check('abstain: away ball writes nothing (ring + A unchanged)', async () => {
++  const e = bootSense();
++  await e.call('new_game', { seed: 7 });
++  await e.call('sense.update', { kind: 'wall' });   // commit something first
++  const before = await get(e, 'sense.ring');
++  const A = (await get(e, 'sense.state')).A;
++  await e.set('ball.vx', 0.9);
++  const r = (await e.call('sense.update', { kind: 'wall' })).data;
++  H.eq(r.psi, 0);
++  H.eq(await get(e, 'sense.ring'), before);
++});
++
++const t0 = Date.now();
++
++if (process.argv.includes('--diag')) {
++  const e = bootSense();
++  const m = await senseMatch(e, 1, { trace: true });
++  console.log(`seed1: ${m.ticks} ticks, winner=${m.winner}, ${m.trace.length} feeds`);
++  for (const t of m.trace.slice(0, 40)) console.log(JSON.stringify(t));
++  const serves = m.trace.filter((t) => t.feed.kind === 'serve');
++  const walls = m.trace.filter((t) => t.feed.kind === 'wall');
++  const lb = serves.filter((t) => t.vx < 0);
++  console.log(`serves=${serves.length} leftBound=${lb.length} walls=${walls.length}`);
++  console.log('left-bound serve rows:', JSON.stringify(lb.slice(0, 6), null, 1));
++  process.exit(0);
++}
++
++console.log('\nM1: estimation quality over 50 seeded matches (reactive control game)…');
++const m1 = await M1(SEEDS);
++console.log(`  H1 capture ${(m1.h1.rate * 100).toFixed(1)}% of ${m1.leftBoundServes} left-bound serves (${m1.serves} serves total, all-serve rate ${(m1.h1_all_serves * 100).toFixed(1)}%), H2 re-capture ${(m1.h2.rate * 100).toFixed(1)}% (${m1.leftReturns} own-returns), between-event mean err ${m1.between.mean_err} (max ${m1.between.max_err}, n ${m1.between.n}), psi ${JSON.stringify(m1.psi)}, events/match ${JSON.stringify(m1.eventsPerMatch)}, ${m1.rows} receipt rows`);
++
++console.log('M2 control (both reactive) over 50 seeds…');
++const control = bootSense();
++let cLeft = 0;
++for (const s of SEEDS) { const m = await senseMatch(control, s); if (m.winner === 'left') cLeft++; }
++const control_wr = +(cLeft / SEEDS.length).toFixed(4);
++console.log(`  control left win-rate ${(control_wr * 100).toFixed(1)}%`);
++
++console.log('M2 advisory (attractor left, honest fallback) over 50 seeds…');
++const m2 = await M2(SEEDS);
++console.log(`  advisory left win-rate ${(m2.advisory_wr * 100).toFixed(1)}%, advisory mode share ${(m2.advisory_share * 100).toFixed(1)}%`);
++
++const verdicts = {
++  H1: { ...m1.h1, all_serves_rate: m1.h1_all_serves, detail: 'left-bound serves, err<=1.5 within <=12 ticks of the serve; right-bound serves are away-abstains by design (PREREG erratum, FINDINGS)' },
++  H2: { ...m1.h2, detail: 're-capture within <=2 events after own-return abstain' },
++  H3: { pass: m2.advisory_wr >= control_wr, control_wr, advisory_wr: m2.advisory_wr, detail: 'advisory >= reactive control (non-inferiority)' },
++  H4: { pass: m2.advisory_wr >= 0.55, advisory_wr: m2.advisory_wr, detail: 'advisory >= 55%' },
++  H5: { pass: m2.advisory_share >= 0.01, advisory_share: m2.advisory_share, fallback_share: m2.fallback_share, detail: 'per-tick mode census via side-effect-inert probe (write overwritten by next arbiter track); game audit log stays pristine' },
++};
++const allPass = Object.values(verdicts).every((v) => v.pass);
++
++console.log('determinism pin: M1 seeds 1..3 twice…');
++const d1 = await M1([1, 2, 3]);
++const d2 = await M1([1, 2, 3]);
++const determinism = { pass: d1.head === d2.head && JSON.stringify(d1.h1) === JSON.stringify(d2.h1), head3: d1.head };
++verdicts.determinism = { pass: determinism.pass, detail: 'M1 seeds 1..3 run twice, chain head + H1 byte-equal' };
++
++const receipt = {
++  schema: 'predictive_paddle/v1',
++  prereg: 'experiments/predictive_paddle.PREREG.md (commit c3deef2, sealed before run)',
++  model: { name: 'flycx-v2-certainty-gated', ported_from: 'SuperInstance/chiaroscuro PR #6 (tools/fly_cx.py)', constants: { bins: N, A0, commit_gain: COMMIT_GAIN, reject_shrink: REJECT_SHRINK, event_decay: EVENT_DECAY, cert_decay: CERT_DECAY } },
++  seed: 20261001, matches_per_arm: 50,
++  m1: { h1: m1.h1, h1_all_serves: m1.h1_all_serves, h2: m1.h2, between: m1.between, psi: m1.psi, serves: m1.serves, leftBoundServes: m1.leftBoundServes, leftReturns: m1.leftReturns, eventsPerMatch: m1.eventsPerMatch },
++  m1_chain: { rows: m1.rows, head: m1.head, verified: true },
++  m2: { control_wr, advisory_wr: m2.advisory_wr, modes: m2.modes, advisory_share: m2.advisory_share, fallback_share: m2.fallback_share },
++  verdicts,
++  overall: allPass ? 'PASS' : 'FAIL',
++  wall_ms: Date.now() - t0,
++};
++writeFileSync(join(HERE, 'predictive_paddle_receipt.json'), JSON.stringify(receipt, null, 2) + '\n');
++console.log(`\nreceipt: experiments/predictive_paddle_receipt.json — overall ${receipt.overall} (${receipt.wall_ms}ms)`);
++console.log(`chain head ${m1.head} (${m1.rows} rows, re-derived from GENESIS)`);
++
++await H.check('H1 capture >= 90% of left-bound serves within <=12 ticks', async () => H.ok(verdicts.H1.pass, JSON.stringify(verdicts.H1)));
++await H.check('H2 re-capture within <=2 events after every own-return', async () => H.ok(verdicts.H2.pass, JSON.stringify(verdicts.H2)));
++await H.check('H3 advisory >= reactive control (non-inferiority)', async () => H.ok(verdicts.H3.pass, JSON.stringify(verdicts.H3)));
++await H.check('H4 advisory win-rate >= 55%', async () => H.ok(verdicts.H4.pass, JSON.stringify(verdicts.H4)));
++await H.check('H5 honesty: advisory fired >=1% of ticks, census complete', async () => H.ok(verdicts.H5.pass, JSON.stringify(verdicts.H5)));
++await H.check('determinism: M1 seeds 1..3 twice -> identical chain head', async () => H.ok(determinism.pass, JSON.stringify(determinism)));
++
++await H.done();
+diff --git a/experiments/predictive_paddle_receipt.json b/experiments/predictive_paddle_receipt.json
+new file mode 100644
+index 0000000..9656b83
+--- /dev/null
++++ b/experiments/predictive_paddle_receipt.json
+@@ -0,0 +1,103 @@
++{
++  "schema": "predictive_paddle/v1",
++  "prereg": "experiments/predictive_paddle.PREREG.md (commit c3deef2, sealed before run)",
++  "model": {
++    "name": "flycx-v2-certainty-gated",
++    "ported_from": "SuperInstance/chiaroscuro PR #6 (tools/fly_cx.py)",
++    "constants": {
++      "bins": 32,
++      "A0": 0.5,
++      "commit_gain": 0.15,
++      "reject_shrink": 0.7,
++      "event_decay": 0.85,
++      "cert_decay": 0.98
++    }
++  },
++  "seed": 20261001,
++  "matches_per_arm": 50,
++  "m1": {
++    "h1": {
++      "rate": 0.2083,
++      "pass": false,
++      "n": 24
++    },
++    "h1_all_serves": 0.1136,
++    "h2": {
++      "rate": 0.1404,
++      "pass": false,
++      "n": 57
++    },
++    "between": {
++      "mean_err": 17.462,
++      "max_err": 58.098,
++      "n": 18375
++    },
++    "psi": {
++      "commit": 1605,
++      "reject": 72,
++      "abstain": 1858
++    },
++    "serves": 44,
++    "leftBoundServes": 24,
++    "leftReturns": 57,
++    "eventsPerMatch": {
++      "min": 28,
++      "med": 70,
++      "max": 148
++    }
++  },
++  "m1_chain": {
++    "rows": 3585,
++    "head": "035b0f940665b12c",
++    "verified": true
++  },
++  "m2": {
++    "control_wr": 0.86,
++    "advisory_wr": 0.94,
++    "modes": {
++      "attractor": 6513,
++      "reactive-fallback": 196206,
++      "reactive-law": 0
++    },
++    "advisory_share": 0.0321,
++    "fallback_share": 0.9679
++  },
++  "verdicts": {
++    "H1": {
++      "rate": 0.2083,
++      "pass": false,
++      "n": 24,
++      "all_serves_rate": 0.1136,
++      "detail": "left-bound serves, err<=1.5 within <=12 ticks of the serve; right-bound serves are away-abstains by design (PREREG erratum, FINDINGS)"
++    },
++    "H2": {
++      "rate": 0.1404,
++      "pass": false,
++      "n": 57,
++      "detail": "re-capture within <=2 events after own-return abstain"
++    },
++    "H3": {
++      "pass": true,
++      "control_wr": 0.86,
++      "advisory_wr": 0.94,
++      "detail": "advisory >= reactive control (non-inferiority)"
++    },
++    "H4": {
++      "pass": true,
++      "advisory_wr": 0.94,
++      "detail": "advisory >= 55%"
++    },
++    "H5": {
++      "pass": true,
++      "advisory_share": 0.0321,
++      "fallback_share": 0.9679,
++      "detail": "per-tick mode census via side-effect-inert probe (write overwritten by next arbiter track); game audit log stays pristine"
++    },
++    "determinism": {
++      "pass": true,
++      "detail": "M1 seeds 1..3 run twice, chain head + H1 byte-equal"
++    }
++  },
++  "overall": "FAIL",
++  "wall_ms": 161195
++}
+diff --git a/experiments/predictive_paddle_v2.FINDINGS.md b/experiments/predictive_paddle_v2.FINDINGS.md
+new file mode 100644
+index 0000000..eacb07c
+--- /dev/null
++++ b/experiments/predictive_paddle_v2.FINDINGS.md
+@@ -0,0 +1,63 @@
++# PREDICTIVE PADDLE v2 — FINDINGS (measured run, sealed FAIL)
++
++**Runner:** `experiments/predictive_paddle_v2.mjs` · **Receipt:** `experiments/predictive_paddle_v2_receipt.json`
++**Pre-registration:** `experiments/predictive_paddle_v2.PREREG.md` (sealed before run; sole delta vs v1 = error-scaled pull)
++**Verdict: FAIL** — H1 ✗ 12.5% (worse than v1's 20.8%), H2 ✗ 13.6%, H3 ✓ (100% vs 86.0% control), H4 ✓, H5 ✗ (advisory share 0.3% < 1% bar), determinism ✓.
++The run exposed **two defect classes**, one in the sealed v2 spec, one in the
++experiment/engine interface — and the second retroactively re-interpretes v1.
++
++## Defect 1 (spec, KC-geo-G2 class): circular error metric on a linear coordinate
++
++The sealed v2 formula weighted pulls by the CIRCULAR readout↔cue distance.
++Arrival-y is a LINEAR coordinate on [1,59] — the paddle must travel 51 units
++between y=7 and y=58, but the circular metric reports that separation as 9.
++Consequences (unit pin, deterministic): a 50-unit conflict got w≈0.26 instead
++of 0.85, the ring blended two far bumps through the 0/60 wrap, and the readout
++landed mid-arc at 4.29 against a true cue of 57.89. H1 fell BELOW v1 because
++wrap-crossing conflicts now actively move the estimate to wrong midpoints,
++whereas v1's weak injections merely drifted.
++
++## Defect 2 (infrastructure, NEW): cross-match A_eff explosion via tick.count reset
++
++Probe across 8 seeds (shared engine, ring persists across new_game):
++
++```
++seed=4 leftTicks=1968 samples=7  nullPred=1915 minMass=-1.47e+54
++seed=5 leftTicks=3692 samples=128 nullPred=2781 minMass=-5.27e+23
++seed=1,2,3,6,7 healthy: minMass ≈ 11–13
++```
++
++`A_eff = A·0.98^(tick − st.lastTick)` ages by the engine-global `tick.count`,
++which **new_game resets per match** while registered `sense.*` cells persist.
++Match N ends at tick T; match N+1's first update computes 0.98^(0−T) ≈ e^(T/50)
++— for T=5000, ≈1e44. In v2's commit branch w = …·(1−A_eff) ≈ −8e43: the ring
++update `ring = ring(1−w) + w·taper` explodes geometrically (measured −1e54).
++Reject-only first cues (true >45° conflict) shrink instead of exploding —
++which is why only some seeds blow up.
++
++**Retroactive re-interpretation of v1:** v1's injection was NOT A-gated, but
++its certainty was: after match 1, v1's A pinned to 1.0 via the same astronomic
++A_eff, making the certain gate (A_eff≥0.5) permanently true from match 2 on.
++v1's H3/H4 (94% vs 86%) were therefore measured under polluted gating, and its
++72 rejects were inflated by fake-certain routing. Both v1 and v2 receipts stand
++as measured; the clean value read must wait for v3. **Engine-hazard note for
++experiment authors (receipts > claims):** any experiment cell that ages by
++`tick.count` on a persistent engine silently corrupts across new_game matches.
++
++## Prereg errata + honest limits
++
++- Taper column sums to ≈8, not ≈1 as the v2 prereg parenthetical guessed
++  (cosmetic; formula as sealed was run).
++- H5's ≥1% bar failed honestly at 0.3%: converged estimator + collapsed
++  certain windows (A dynamics polluted per Defect 2). 100% win-rate at 0.3%
++  share is recorded with its mechanism, not celebrated.
++- Between-event n collapsed (2,613 vs v1's 18,375) purely because exploded
++  rings return null readouts (mass ≤ 1e-9 gate) — sampling code identical.
++
++## Lane status + v3 (sealed in predictive_paddle_v3.PREREG.md)
++
++The v2 falsification clause fired: H1/H2 still failed after dilution-proofing.
++Per the KC-geo precedent, the two named defect classes constitute fresh
++evidence, so v3 is a correction spec (both defects closed, everything else
++frozen, H1–H5 bars unchanged): LINEAR err metric + sense-local clock. If v3
++fails H1/H2 with a clean spec, the lane closes for real (third strike).
+diff --git a/experiments/predictive_paddle_v2.PREREG.md b/experiments/predictive_paddle_v2.PREREG.md
+new file mode 100644
+index 0000000..d644760
+--- /dev/null
++++ b/experiments/predictive_paddle_v2.PREREG.md
+@@ -0,0 +1,51 @@
++# PRE-REGISTRATION — predictive paddle v2: error-scaled pull (sparse-cadence fix)
++
++**Status: SEALED before any v2 measured run. Seed 20261001. Kill R8 (15 min).**
++**Failure history:** v1 (`predictive_paddle.FINDINGS.md`, same PR) sealed FAIL on
++H1/H2 with the dilution mechanism measured: standing mass ≈12 vs per-event
++injection 0.15 → ~0.75 err factor/commit → 9 events to converge, while pong
++approach phases carry 1–4 events. v2 changes ONLY the commit write rule.
++
++## The one-line delta vs sealed v1
++
++v1 commit write: `ring[i] = ring[i]·0.85 + 0.15·taper_i`  (history outweighs evidence)
++
++v2 commit write: `w = max(0.15, err/halfField)·(1−A_eff);  ring = ring·(1−w) + w·bump(target)`
++
++where `err` = circular readout-to-cue distance in field units, `halfField` = 30,
++`bump(target)` = the cos² taper column (sums to ≈1 across bins), everything else
++byte-identical: abstain/reject branches, A dynamics, projection cell, ring size,
++constants A0/GAIN/SHRINK/CERT_DECAY, receipt schema, event contract.
++
++## Why this is the faithful flycx repair, not a new model
++
++The fly's PING-decay cadence hid the dilution: frequent decay kept standing mass
++low relative to cue injections. At event cadence the same guarantee must come
++from the pull weight itself. `w` is exactly the certainty-gated capture the v1
++prereg intended ("magnitude 0.15·(1−A_eff)") with the missing term restored:
++capture strength scales with **evidence conflict** (err/halfField), so a
++strongly contradicting cue re-weights the ring in O(1) events instead of O(10).
++`w` is clamped to [0.15, 0.85] — a certain bump (A→1) still holds (w→0.15
++floor preserves the anti-thrash bias; hard conflict still routes to ψ=−1
++reject before this branch).
++
++## Hypotheses (unchanged bars — no goalpost moves)
++
++- **H1**: ≥90% of left-bound serves reach err ≤1.5 within ≤12 ticks of the serve.
++- **H2**: 100% of own-return episodes re-capture (err ≤1.5) within ≤2 subsequent events.
++- **H3**: advisory win-rate ≥ reactive control (same seeds, same control arm).
++- **H4**: advisory win-rate ≥ 55%.
++- **H5**: advisory fired ≥1% of ticks; per-tick mode census complete.
++- **Determinism**: M1 seeds 1..3 twice → identical chain head.
++
++## Predictions that would falsify the dilution diagnosis
++
++If H1/H2 still fail after dilution-proofing, the binding constraint is NOT
++constants cadence and this lane closes per R8 (three strikes: v0-implicit, v1,
++v2). If H1/H2 pass but H3 regresses, predictive-aim value was an artifact of
++v1's slow drift — recorded honestly either way.
++
++## Deliverables
++
++1. This file (sealed before any v2 run).
++2. `experiments/predictive_paddle_v2.mjs` + receipt (next pulse, R8 budget).
+diff --git a/experiments/predictive_paddle_v2.mjs b/experiments/predictive_paddle_v2.mjs
+new file mode 100644
+index 0000000..8762f88
+--- /dev/null
++++ b/experiments/predictive_paddle_v2.mjs
+@@ -0,0 +1,374 @@
++// PREDICTIVE PADDLE v2 — error-scaled pull (sparse-cadence repair).
++// Sole delta vs sealed v1 (experiments/predictive_paddle.mjs): the commit write
++// rule. v1: ring[i] = ring[i]*0.85 + 0.15*taper_i  (standing mass dilutes cues —
++// measured FAIL, FINDINGS.md). v2: w = max(0.15, err/30)*(1-A_eff);
++// ring = ring*(1-w) + w*taper. Everything else byte-identical: abstain/reject
++// branches, A dynamics, projection cell, ring size, receipt schema, event
++// contract, seeds, arms, H1-H5 bars (experiments/predictive_paddle_v2.PREREG.md,
++// sealed before this run, R1).
++//
++//   node experiments/predictive_paddle_v2.mjs
++//
++// Prereg erratum (cosmetic, recorded not patched): the taper column sums to ~8
++// over its support, not ~1 as the v2 prereg parenthetical guessed; the formula
++// is what was sealed and it behaves as designed (a strong pull makes the ring
++// ~98% fresh bump, which is the point).
++
++import { writeFileSync } from 'node:fs';
++import { fileURLToPath } from 'node:url';
++import { dirname, join } from 'node:path';
++import { QuiltEngine } from '../engine/index.js';
++import { harness, GENESIS_PREV, verifyChain } from '../shared/kit.mjs';
++import { buildSheet } from '../games/pong/sheet.mjs';
++
++const H = harness('predictive-paddle-v2');
++const HERE = dirname(fileURLToPath(import.meta.url));
++const SEEDS = Array.from({ length: 50 }, (_, i) => i + 1);
++const N = 32, H_FIELD = 60, DEADZONE = 1.5;
++// ported constants (chiaroscuro flycx v2 — v1 lineage; v2 replaces EVENT_DECAY in
++// the write rule with the pull weight w; EVENT_DECAY stays only as lineage)
++const A0 = 0.5, COMMIT_GAIN = 0.15, REJECT_SHRINK = 0.7, EVENT_DECAY = 0.85, CERT_DECAY = 0.98;
++
++const SENSE_PROJECT = `
++// arrival-y of the ball at the LEFT face (x=2) by exact wall folding.
++// Pure: ({x,y,vx,vy}) -> {y_at}. Walls at y=1/y=59 -> corridor [1,59], L=58.
++// Ball not approaching (vx >= -1e-6) -> y_at=null (no defined left arrival).
++const x = input?.x, y = input?.y, vx = input?.vx ?? 0, vy = input?.vy ?? 0;
++if (typeof x !== 'number' || typeof y !== 'number') return { y_at: null, why: 'no ball state' };
++if (vx >= -1e-6) return { y_at: null, why: 'ball not approaching left face (vx=' + vx + ')' };
++const t = (x - 2) / Math.abs(vx);
++const L = 58, raw = (y - 1) + vy * t;
++const k = Math.floor(raw / L), frac = raw - k * L;
++const parity = ((k % 2) + 2) % 2;
++const yAt = 1 + (parity === 0 ? frac : L - frac);
++return { y_at: Math.max(1, Math.min(59, yAt)), t, why: 'arrival y=' + yAt.toFixed(3) + ' in ' + t.toFixed(1) + ' ticks' };`;
++
++const WITNESS = `
++// fnv1a-64 (witness snippet from shared/kit.mjs — in-cell per Pattern 4)
++function fnv1a64(str) {
++  let h = 0xcbf29ce484222325n;
++  for (let i = 0; i < str.length; i++) { h ^= BigInt(str.charCodeAt(i) & 0xff); h = (h * 0x100000001b3n) & 0xffffffffffffffffn; }
++  return h.toString(16).padStart(16, '0');
++}`;
++
++const SENSE_UPDATE = `
++// event-gated plasticity. input: {kind, side}. Ternary psi, flycx v2 semantics.
++// v2 commit: error-scaled pull w = max(GAIN, err/halfField)*(1-A_eff),
++// ring = ring*(1-w) + w*taper — dilution-proof by construction.
++${WITNESS}
++const N = ${N}, H = ${H_FIELD};
++const A0 = ${A0}, GAIN = ${COMMIT_GAIN}, SHRINK = ${REJECT_SHRINK};
++const ring = ((await runtime.get('sense.ring')).data ?? new Array(N).fill(0)).slice();
++const st = (await runtime.get('sense.state')).data;
++const tick = (await runtime.get('tick.count')).data;
++const ball = {
++  x: (await runtime.get('ball.x')).data, y: (await runtime.get('ball.y')).data,
++  vx: (await runtime.get('ball.vx')).data, vy: (await runtime.get('ball.vy')).data,
++};
++// pre-update readout (for err vs the incoming cue)
++let sx = 0, sy = 0, mass = 0;
++for (let i = 0; i < N; i++) { const phi = i / N * 2 * Math.PI; sx += ring[i] * Math.cos(phi); sy += ring[i] * Math.sin(phi); mass += ring[i]; }
++const readY = mass > 1e-9 ? (((Math.atan2(sy, sx) / (2 * Math.PI)) * H) + H) % H : null;
++const A_eff = st.A * Math.pow(${CERT_DECAY}, tick - st.lastTick);
++const proj = (await runtime.call('sense.project', ball)).data;
++let psi, why;
++if (proj.y_at === null) {
++  psi = 0; why = 'abstain: ' + proj.why;
++} else {
++  let errU = null, errDeg = null;
++  if (readY !== null) { const d = Math.abs(proj.y_at - readY); errU = Math.min(d, H - d); errDeg = errU / H * 360; }
++  if (errDeg !== null && errDeg > 45 && A_eff > A0) {
++    psi = -1; why = 'reject: cue ' + proj.y_at.toFixed(1) + ' conflicts ' + errDeg.toFixed(0) + 'deg with certain bump (A=' + A_eff.toFixed(2) + ')';
++    for (let i = 0; i < N; i++) ring[i] *= SHRINK;
++    st.A = A_eff * 0.5;
++  } else {
++    psi = 1; why = 'commit: ' + proj.why + (errDeg !== null ? ' (err ' + errDeg.toFixed(1) + 'deg)' : '');
++    const w = Math.max(GAIN, Math.min(0.85, (errU === null ? H : errU) / 30)) * (1 - A_eff);
++    const target = proj.y_at / H * 2 * Math.PI;
++    for (let i = 0; i < N; i++) {
++      let d = Math.abs(i / N * 2 * Math.PI - target); if (d > Math.PI) d = 2 * Math.PI - d;
++      const taper = d < Math.PI / 2 ? Math.cos(d / 2) * Math.cos(d / 2) : 0;
++      ring[i] = ring[i] * (1 - w) + w * taper;
++    }
++    st.A = Math.min(1, A_eff + (1 - A_eff) * GAIN);
++    why += ' w=' + w.toFixed(2);
++  }
++}
++st.lastTick = tick;
++st.counts[psi === 1 ? 'commit' : psi === -1 ? 'reject' : 'abstain']++;
++await runtime.set('sense.ring', ring);
++await runtime.set('sense.state', st);
++// chained receipt row (fnv1a-64, canonical: prev_hash sorted INTO the JSON — kit canon)
++const row = { seq: (await runtime.get('sense.receipts')).data.length, tick, kind: input?.kind ?? '?', side: input?.side ?? null, psi, err_deg: null, y_at: proj.y_at, mass: +(mass.toFixed(4)), A: +st.A.toFixed(4) };
++if (proj.y_at !== null && readY !== null) { const d = Math.abs(proj.y_at - readY); row.err_deg = +(Math.min(d, H - d) / H * 360).toFixed(2); }
++const prev = (await runtime.get('sense.receipts')).data;
++const prevHash = prev.length ? prev[prev.length - 1].row_hash : '${GENESIS_PREV}';
++const cs = { ...row, prev_hash: prevHash };
++const c2 = {}; for (const k of Object.keys(cs).sort()) c2[k] = cs[k];
++row.row_hash = fnv1a64(JSON.stringify(c2));
++row.prev_hash = prevHash;
++row.why = why;
++await runtime.set('sense.receipts', [...prev, row]);
++return { psi, why, y_at: proj.y_at, A: st.A, mass };`;
++
++const SENSE_PREDICT = `
++// readout: circular mean -> arrival-y estimate + aged certainty. Pure read.
++const N = ${N}, H = ${H_FIELD};
++const ring = (await runtime.get('sense.ring')).data;
++const st = (await runtime.get('sense.state')).data;
++const tick = (await runtime.get('tick.count')).data;
++let sx = 0, sy = 0, mass = 0;
++for (let i = 0; i < N; i++) { const phi = i / N * 2 * Math.PI; sx += ring[i] * Math.cos(phi); sy += ring[i] * Math.sin(phi); mass += ring[i]; }
++const y = mass > 1e-9 ? (((Math.atan2(sy, sx) / (2 * Math.PI)) * H) + H) % H : null;
++const A_eff = st.A * Math.pow(${CERT_DECAY}, tick - st.lastTick);
++return { y, mass: +mass.toFixed(4), A_eff: +A_eff.toFixed(4), certain: A_eff >= ${A0} && mass >= 0.5, lastTick: st.lastTick };`;
++
++const TRACK_ADVISORY = `
++// sense-aware left paddle: attractor readout when certain AND ball approaching;
++// honest fallback = the derived law verbatim. Mode rides the return value.
++const side = input?.side;
++const track = async (target, mode) => {
++  const paddle = (await runtime.get('paddle.' + side)).data;
++  const speed = side === 'left' ? 0.85 : 0.70;
++  const dead = 1.5;
++  let y = paddle;
++  if (Math.abs(target - y) > dead) y += Math.sign(target - y) * Math.min(speed, Math.abs(target - y) - dead);
++  y = Math.max(6, Math.min(54, y));
++  await runtime.set('paddle.' + side, y);
++  return { side, y, target, mode };
++};
++if (side === 'left') {
++  const p = (await runtime.call('sense.predict')).data;
++  const vx = (await runtime.get('ball.vx')).data;
++  if (p.certain && vx < 0 && p.y !== null) return track(p.y, 'attractor');
++  return track((await runtime.get('ball.y')).data, 'reactive-fallback');
++}
++return track((await runtime.get('ball.y')).data, 'reactive-law');`;
++
++const get = async (e, id) => (await e.get(id)).data;
++
++function bootSense({ advisory = false } = {}) {
++  const engine = new QuiltEngine('arcade-pong-sense-v2', { eager: true });
++  const sheet = buildSheet();
++  if (advisory) {
++    for (const c of sheet.cells) if (c.id === 'ai.track') c.code = TRACK_ADVISORY;
++  }
++  engine.loadSheet(sheet);
++  engine.register({ id: 'sense.ring', kind: 'value', value: new Array(N).fill(0), description: 'CX attractor: 32 activity cells over arrival-y (Pattern 6, v2 pull)' });
++  engine.register({ id: 'sense.state', kind: 'value', value: { A: 0, lastTick: 0, counts: { commit: 0, reject: 0, abstain: 0 } }, description: 'certainty A, last event tick, psi census' });
++  engine.register({ id: 'sense.receipts', kind: 'value', value: [], description: 'fnv1a-64 chained rows: one per event, re-derived from GENESIS' });
++  engine.register({ id: 'sense.project', kind: 'program', code: SENSE_PROJECT, description: 'pure: arrival-y at left face by wall folding' });
++  engine.register({ id: 'sense.update', kind: 'program', code: SENSE_UPDATE, description: 'event-gated plasticity, ternary psi, v2 error-scaled pull' });
++  engine.register({ id: 'sense.predict', kind: 'program', code: SENSE_PREDICT, description: 'readout: circular mean + aged certainty' });
++  return engine;
++}
++
++async function senseMatch(engine, seed, { probeModes = false, maxTicks = 20000 } = {}) {
++  await engine.call('new_game', { seed });
++  await engine.call('sense.update', { kind: 'serve' });
++  const e = { serves: [], leftReturns: [], betweenErrs: [], modes: { attractor: 0, 'reactive-fallback': 0, 'reactive-law': 0 } };
++  let lastLog = (await get(engine, 'log.events')).length;
++  let prevVy = await get(engine, 'ball.vy');
++  let serveProbe = null;
++  let lrProbe = null;
++  let last = null, events = 0, psiStart = { ...(await get(engine, 'sense.state')).counts };
++  for (let i = 0; i < maxTicks; i++) {
++    last = (await engine.call('match.step')).data;
++    const tick = await get(engine, 'tick.count');
++    const ball = { x: await get(engine, 'ball.x'), y: await get(engine, 'ball.y'), vx: await get(engine, 'ball.vx'), vy: await get(engine, 'ball.vy') };
++    const feeds = [];
++    if (ball.vy !== 0 && prevVy !== 0 && Math.sign(ball.vy) !== Math.sign(prevVy)
++        && Math.abs(Math.abs(ball.vy) - Math.abs(prevVy)) < 1e-9) feeds.push({ kind: 'wall' });
++    prevVy = ball.vy;
++    const log = await get(engine, 'log.events');
++    for (const row of log.slice(lastLog)) {
++      if (row.kind === 'hit') feeds.push({ kind: 'return', side: row.side });
++      if (row.kind === 'serve') feeds.push({ kind: 'serve' });
++    }
++    lastLog = log.length;
++    const pred = (await engine.call('sense.predict')).data;
++    const oracle = (await engine.call('sense.project', ball)).data;
++    const err = oracle.y_at !== null && pred.y !== null ? Math.abs(oracle.y_at - pred.y) : null;
++    if (serveProbe && serveProbe.convergedAt === null && err !== null && err <= DEADZONE) serveProbe.convergedAt = tick - serveProbe.tick0;
++    if (!feeds.length && err !== null && (tick % 7 === 0)) e.betweenErrs.push(err);
++    for (const f of feeds) {
++      events++;
++      if (f.kind === 'serve') {
++        if (serveProbe) e.serves.push(serveProbe);
++        serveProbe = { tick0: tick, convergedAt: null, dir: Math.sign(ball.vx) };
++      }
++      if (f.kind === 'return' && f.side === 'left') lrProbe = { events: 0, done: false };
++      const r = (await engine.call('sense.update', f)).data;
++      const p2 = (await engine.call('sense.predict')).data;
++      const o2 = (await engine.call('sense.project', ball)).data;
++      const err2 = o2.y_at !== null && p2.y !== null ? Math.abs(o2.y_at - p2.y) : null;
++      if (serveProbe && serveProbe.convergedAt === null && err2 !== null && err2 <= DEADZONE) serveProbe.convergedAt = tick - serveProbe.tick0;
++      if (lrProbe && f.kind !== 'return') {
++        lrProbe.events++;
++        if (err2 !== null && err2 <= DEADZONE) { lrProbe.done = true; e.leftReturns.push(lrProbe); lrProbe = null; }
++        else if (lrProbe.events >= 3) { e.leftReturns.push(lrProbe); lrProbe = null; }
++      }
++    }
++    if (probeModes) {
++      const tr = (await engine.call('ai.track', { side: 'left' })).data;
++      e.modes[tr.mode] = (e.modes[tr.mode] ?? 0) + 1;
++    }
++    if (last.over) break;
++  }
++  if (serveProbe) e.serves.push(serveProbe);
++  const scores = last?.score ?? { left: await get(engine, 'score.left'), right: await get(engine, 'score.right') };
++  const counts = (await get(engine, 'sense.state')).counts;
++  e.psi = { commit: counts.commit - psiStart.commit, reject: counts.reject - psiStart.reject, abstain: counts.abstain - psiStart.abstain };
++  e.events = events;
++  e.over = !!last?.over;
++  e.winner = e.over ? (scores.left > scores.right ? 'left' : 'right') : null;
++  e.ticks = await get(engine, 'tick.count');
++  return e;
++}
++
++const M1 = async (seeds) => {
++  const engine = bootSense();
++  const serves = [], leftReturns = [], between = [];
++  const psi = { commit: 0, reject: 0, abstain: 0 };
++  const eventsPerMatch = [];
++  for (const s of seeds) {
++    const m = await senseMatch(engine, s);
++    serves.push(...m.serves); leftReturns.push(...m.leftReturns); between.push(...m.betweenErrs);
++    eventsPerMatch.push(m.events);
++    for (const k of Object.keys(psi)) psi[k] += m.psi[k];
++  }
++  const receipts = await get(engine, 'sense.receipts');
++  const head = verifyChain(receipts, (r) => { const { why, row_hash, ...f } = r; return f; });
++  const lb = serves.filter((x) => x.dir < 0);
++  const h1Rate = lb.length ? lb.filter((x) => x.convergedAt !== null && x.convergedAt <= 12).length / lb.length : 0;
++  const h1All = serves.length ? serves.filter((x) => x.convergedAt !== null && x.convergedAt <= 12).length / serves.length : 0;
++  const lrOk = leftReturns.filter((x) => x.done && x.events <= 2);
++  const h2Rate = leftReturns.length ? lrOk.length / leftReturns.length : 1;
++  const mean = (a) => (a.length ? a.reduce((x, y) => x + y, 0) / a.length : null);
++  const max = (a) => a.reduce((x, y) => (y > x ? y : x), 0);
++  return {
++    serves: serves.length, leftBoundServes: lb.length, h1: { rate: +h1Rate.toFixed(4), pass: h1Rate >= 0.9, n: lb.length },
++    h1_all_serves: +h1All.toFixed(4),
++    leftReturns: leftReturns.length, h2: { rate: +h2Rate.toFixed(4), pass: h2Rate === 1, n: leftReturns.length },
++    between: { mean_err: +mean(between).toFixed(3), max_err: +max(between).toFixed(3), n: between.length },
++    psi, eventsPerMatch: { min: Math.min(...eventsPerMatch), med: eventsPerMatch.sort((a, b) => a - b)[eventsPerMatch.length >> 1], max: Math.max(...eventsPerMatch) },
++    rows: receipts.length, head,
++  };
++};
++
++const M2 = async (seeds) => {
++  const adv = bootSense({ advisory: true });
++  let aLeft = 0;
++  const modes = { attractor: 0, 'reactive-fallback': 0, 'reactive-law': 0 };
++  for (const s of seeds) {
++    const m = await senseMatch(adv, s, { probeModes: true });
++    if (m.winner === 'left') aLeft++;
++    for (const k of Object.keys(modes)) modes[k] += m.modes[k];
++  }
++  const total = Object.values(modes).reduce((a, b) => a + b, 0);
++  return {
++    advisory_wr: +(aLeft / seeds.length).toFixed(4), modes,
++    advisory_share: total ? +(modes.attractor / total).toFixed(4) : 0,
++    fallback_share: total ? +(modes['reactive-fallback'] / total).toFixed(4) : 0,
++  };
++};
++
++await H.check('sense cells boot and answer (readout null at genesis)', async () => {
++  const e = bootSense();
++  await e.call('new_game', { seed: 1 });
++  const p = (await e.call('sense.predict')).data;
++  H.eq(p.y, null);
++  H.ok(p.mass === 0, 'ring must start empty');
++});
++
++await H.check('sense.project: wall folding is exact (steep-down folds off the floor)', async () => {
++  const e = bootSense();
++  const r = (await e.call('sense.project', { x: 50, y: 30, vx: -1, vy: -1 })).data;
++  H.eq(r.y_at, 20);
++  const away = (await e.call('sense.project', { x: 50, y: 30, vx: 1, vy: 0 })).data;
++  H.eq(away.y_at, null);
++});
++
++await H.check('v2 commit: strong pull converges a 25-unit error in ONE event', async () => {
++  const e = bootSense();
++  await e.call('new_game', { seed: 7 });
++  // seed a stale bump far from the incoming cue: commit at y=10 on empty ring
++  await e.set('ball.x', 60); await e.set('ball.y', 20); await e.set('ball.vx', -0.9); await e.set('ball.vy', -0.2);
++  await e.call('sense.update', { kind: 'wall' });
++  // now a cue 25+ units away
++  await e.set('ball.x', 60); await e.set('ball.y', 44); await e.set('ball.vx', -0.9); await e.set('ball.vy', 0.25);
++  const r = (await e.call('sense.update', { kind: 'wall' })).data;
++  H.eq(r.psi, 1);
++  const p = (await e.call('sense.predict')).data;
++  const o = (await e.call('sense.project', { x: 60, y: 44, vx: -0.9, vy: 0.25 })).data;
++  // v1 left this error at ~0.75x (needs ~9 events); v2 must be within 1.5 deadzone now
++  H.ok(Math.abs(p.y - o.y_at) <= 1.5, `readout ${p.y} vs oracle ${o.y_at} after one pull`);
++});
++
++await H.check('abstain: away ball writes nothing (ring + A unchanged)', async () => {
++  const e = bootSense();
++  await e.call('new_game', { seed: 7 });
++  await e.call('sense.update', { kind: 'wall' });
++  const before = await get(e, 'sense.ring');
++  await e.set('ball.vx', 0.9);
++  const r = (await e.call('sense.update', { kind: 'wall' })).data;
++  H.eq(r.psi, 0);
++  H.eq(await get(e, 'sense.ring'), before);
++});
++
++const t0 = Date.now();
++console.log('\nM1 v2: estimation quality over 50 seeded matches (reactive control game)…');
++const m1 = await M1(SEEDS);
++console.log(`  H1 capture ${(m1.h1.rate * 100).toFixed(1)}% of ${m1.leftBoundServes} left-bound serves (${m1.serves} serves total, all-serve rate ${(m1.h1_all_serves * 100).toFixed(1)}%), H2 re-capture ${(m1.h2.rate * 100).toFixed(1)}% (${m1.leftReturns} own-returns), between-event mean err ${m1.between.mean_err} (max ${m1.between.max_err}, n ${m1.between.n}), psi ${JSON.stringify(m1.psi)}, events/match ${JSON.stringify(m1.eventsPerMatch)}, ${m1.rows} receipt rows`);
++
++console.log('M2 v2 control (both reactive) over 50 seeds…');
++const control = bootSense();
++let cLeft = 0;
++for (const s of SEEDS) { const m = await senseMatch(control, s); if (m.winner === 'left') cLeft++; }
++const control_wr = +(cLeft / SEEDS.length).toFixed(4);
++console.log(`  control left win-rate ${(control_wr * 100).toFixed(1)}%`);
++
++console.log('M2 v2 advisory (attractor left, honest fallback) over 50 seeds…');
++const m2 = await M2(SEEDS);
++console.log(`  advisory left win-rate ${(m2.advisory_wr * 100).toFixed(1)}%, advisory mode share ${(m2.advisory_share * 100).toFixed(1)}%`);
++
++const verdicts = {
++  H1: { ...m1.h1, all_serves_rate: m1.h1_all_serves, v1_rate: 0.2083, detail: 'left-bound serves, err<=1.5 within <=12 ticks; v1 comparison recorded (dilution diagnosis prediction: pass)' },
++  H2: { ...m1.h2, v1_rate: 0.1404, detail: 're-capture within <=2 events after own-return abstain' },
++  H3: { pass: m2.advisory_wr >= control_wr, control_wr, advisory_wr: m2.advisory_wr, v1: { control: 0.86, advisory: 0.94 }, detail: 'advisory >= reactive control (non-inferiority)' },
++  H4: { pass: m2.advisory_wr >= 0.55, advisory_wr: m2.advisory_wr, detail: 'advisory >= 55%' },
++  H5: { pass: m2.advisory_share >= 0.01, advisory_share: m2.advisory_share, fallback_share: m2.fallback_share, detail: 'per-tick mode census via side-effect-inert probe' },
++};
++const allPass = Object.values(verdicts).every((v) => v.pass);
++
++console.log('determinism pin: M1 seeds 1..3 twice…');
++const d1 = await M1([1, 2, 3]);
++const d2 = await M1([1, 2, 3]);
++const determinism = { pass: d1.head === d2.head && JSON.stringify(d1.h1) === JSON.stringify(d2.h1), head3: d1.head };
++verdicts.determinism = { pass: determinism.pass, detail: 'M1 seeds 1..3 run twice, chain head + H1 byte-equal' };
++
++const receipt = {
++  schema: 'predictive_paddle_v2/v1',
++  prereg: 'experiments/predictive_paddle_v2.PREREG.md (sealed; sole delta vs v1 = commit write rule)',
++  failure_history: 'experiments/predictive_paddle.FINDINGS.md (v1 sealed FAIL: standing-mass dilution)',
++  model: { name: 'flycx-v2-error-scaled-pull', ported_from: 'SuperInstance/chiaroscuro PR #6 (tools/fly_cx.py), v1 lineage', constants: { bins: N, A0, commit_gain: COMMIT_GAIN, reject_shrink: REJECT_SHRINK, event_decay: `${EVENT_DECAY} (unused in v2 write rule — replaced by pull w)`, cert_decay: CERT_DECAY, pull: 'w = max(GAIN, min(0.85, err/30)) * (1-A_eff)' } },
++  seed: 20261001, matches_per_arm: 50,
++  m1: { h1: m1.h1, h1_all_serves: m1.h1_all_serves, h2: m1.h2, between: m1.between, psi: m1.psi, serves: m1.serves, leftBoundServes: m1.leftBoundServes, leftReturns: m1.leftReturns, eventsPerMatch: m1.eventsPerMatch },
++  m1_chain: { rows: m1.rows, head: m1.head, verified: true },
++  m2: { control_wr, advisory_wr: m2.advisory_wr, modes: m2.modes, advisory_share: m2.advisory_share, fallback_share: m2.fallback_share },
++  verdicts,
++  overall: allPass ? 'PASS' : 'FAIL',
++  wall_ms: Date.now() - t0,
++};
++writeFileSync(join(HERE, 'predictive_paddle_v2_receipt.json'), JSON.stringify(receipt, null, 2) + '\n');
++console.log(`\nreceipt: experiments/predictive_paddle_v2_receipt.json — overall ${receipt.overall} (${receipt.wall_ms}ms)`);
++console.log(`chain head ${m1.head} (${m1.rows} rows, re-derived from GENESIS)`);
++
++await H.check('H1 capture >= 90% of left-bound serves within <=12 ticks', async () => H.ok(verdicts.H1.pass, JSON.stringify(verdicts.H1)));
++await H.check('H2 re-capture within <=2 events after every own-return', async () => H.ok(verdicts.H2.pass, JSON.stringify(verdicts.H2)));
++await H.check('H3 advisory >= reactive control (non-inferiority)', async () => H.ok(verdicts.H3.pass, JSON.stringify(verdicts.H3)));
++await H.check('H4 advisory win-rate >= 55%', async () => H.ok(verdicts.H4.pass, JSON.stringify(verdicts.H4)));
++await H.check('H5 honesty: advisory fired >=1% of ticks, census complete', async () => H.ok(verdicts.H5.pass, JSON.stringify(verdicts.H5)));
++await H.check('determinism: M1 seeds 1..3 twice -> identical chain head', async () => H.ok(determinism.pass, JSON.stringify(determinism)));
++
++await H.done();
+diff --git a/experiments/predictive_paddle_v2_receipt.json b/experiments/predictive_paddle_v2_receipt.json
+new file mode 100644
+index 0000000..353f59c
+--- /dev/null
++++ b/experiments/predictive_paddle_v2_receipt.json
+@@ -0,0 +1,111 @@
++{
++  "schema": "predictive_paddle_v2/v1",
++  "prereg": "experiments/predictive_paddle_v2.PREREG.md (sealed; sole delta vs v1 = commit write rule)",
++  "failure_history": "experiments/predictive_paddle.FINDINGS.md (v1 sealed FAIL: standing-mass dilution)",
++  "model": {
++    "name": "flycx-v2-error-scaled-pull",
++    "ported_from": "SuperInstance/chiaroscuro PR #6 (tools/fly_cx.py), v1 lineage",
++    "constants": {
++      "bins": 32,
++      "A0": 0.5,
++      "commit_gain": 0.15,
++      "reject_shrink": 0.7,
++      "event_decay": "0.85 (unused in v2 write rule — replaced by pull w)",
++      "cert_decay": 0.98,
++      "pull": "w = max(GAIN, min(0.85, err/30)) * (1-A_eff)"
++    }
++  },
++  "seed": 20261001,
++  "matches_per_arm": 50,
++  "m1": {
++    "h1": {
++      "rate": 0.125,
++      "pass": false,
++      "n": 24
++    },
++    "h1_all_serves": 0.0682,
++    "h2": {
++      "rate": 0.1356,
++      "pass": false,
++      "n": 59
++    },
++    "between": {
++      "mean_err": 11.029,
++      "max_err": 57.447,
++      "n": 2613
++    },
++    "psi": {
++      "commit": 1666,
++      "reject": 11,
++      "abstain": 1858
++    },
++    "serves": 44,
++    "leftBoundServes": 24,
++    "leftReturns": 59,
++    "eventsPerMatch": {
++      "min": 28,
++      "med": 70,
++      "max": 148
++    }
++  },
++  "m1_chain": {
++    "rows": 3585,
++    "head": "8001cdc937d7de9c",
++    "verified": true
++  },
++  "m2": {
++    "control_wr": 0.86,
++    "advisory_wr": 1,
++    "modes": {
++      "attractor": 610,
++      "reactive-fallback": 202220,
++      "reactive-law": 0
++    },
++    "advisory_share": 0.003,
++    "fallback_share": 0.997
++  },
++  "verdicts": {
++    "H1": {
++      "rate": 0.125,
++      "pass": false,
++      "n": 24,
++      "all_serves_rate": 0.0682,
++      "v1_rate": 0.2083,
++      "detail": "left-bound serves, err<=1.5 within <=12 ticks; v1 comparison recorded (dilution diagnosis prediction: pass)"
++    },
++    "H2": {
++      "rate": 0.1356,
++      "pass": false,
++      "n": 59,
++      "v1_rate": 0.1404,
++      "detail": "re-capture within <=2 events after own-return abstain"
++    },
++    "H3": {
++      "pass": true,
++      "control_wr": 0.86,
++      "advisory_wr": 1,
++      "v1": {
++        "control": 0.86,
++        "advisory": 0.94
++      },
++      "detail": "advisory >= reactive control (non-inferiority)"
++    },
++    "H4": {
++      "pass": true,
++      "advisory_wr": 1,
++      "detail": "advisory >= 55%"
++    },
++    "H5": {
++      "pass": false,
++      "advisory_share": 0.003,
++      "fallback_share": 0.997,
++      "detail": "per-tick mode census via side-effect-inert probe"
++    },
++    "determinism": {
++      "pass": true,
++      "detail": "M1 seeds 1..3 run twice, chain head + H1 byte-equal"
++    }
++  },
++  "overall": "FAIL",
++  "wall_ms": 152358
++}
+diff --git a/experiments/predictive_paddle_v3.FINDINGS.md b/experiments/predictive_paddle_v3.FINDINGS.md
+new file mode 100644
+index 0000000..743111b
+--- /dev/null
++++ b/experiments/predictive_paddle_v3.FINDINGS.md
+@@ -0,0 +1,71 @@
++# PREDICTIVE PADDLE v3 — FINDINGS (measured run, sealed FAIL, LANE CLOSED — third strike)
++
++**Runner:** `experiments/predictive_paddle_v3.mjs` · **Receipt:** `experiments/predictive_paddle_v2_receipt.json`→ v3 receipt: `experiments/predictive_paddle_v3_receipt.json`
++**Spec:** `experiments/predictive_paddle_v3.PREREG.md` (sealed; deltas: linear err metric + sense-local clock, everything else frozen)
++**Verdict: FAIL** — H1 ✗ 20.83% (identical to v1, n=24), H2 ✗ 15.5%, H3 ✗ **advisory 72% < control 86%** (honest negative), H4 ✓ (72%≥55%), H5 ✓ (19.8% share, real census), determinism ✓ (head c445d1950942cc8a, twice).
++Between-event sampling FULLY restored (n=18,375 — cross-match explosion closed; psi {commit 1320, reject 357, abstain 1858} healthy). Both sealed defects stayed closed: no wrap-collapse, no A_eff explosion. **H1/H2 failed on a clean spec — the sealed third-strike clause fired: this lane closes permanently.**
++
++## The measured mechanism: certainty-gate pinning (third distinct mechanism)
++
++Per-event aging works exactly as sealed — and that is the finding. `A_eff = A·0.98^Δ`
++with Δ = update-calls since the last event = **1–4 per approach phase** (events are
++~30–70 wall-ticks apart; the clock only ticks at events). Commits monotonically
++raise A (`min(1, A_eff+(1−A_eff)·0.15)` → A→1 within ~15 commits ≈ one match), and
++nothing pulls it back: rejects (357 fired) halve A but commits re-raise it within
++1–2 events. So across the 50-match census A sits pinned at ≈1, and the pull gate
++`w = max(0.15, min(0.85, errU/30))·(1−A_eff)` → w ≈ 0.003–0.05: **the ring freezes
++~15 units from truth** (between mean_err 15.23, max 58.4 — full n, no explosion).
++
++H1 = 20.83%, the SAME 5/24 serves as v1: capture only when a serve cue lands near
++the frozen bump by chance. The dilution diagnosis (v1) was real but incomplete —
++the deeper invariant is the gate: **(1−A_eff) throttles the pull exactly when the
++sensor hands out exact cues separated by 30–70 ticks.** The flycx constants
++(cert_decay 0.98, event-gated A) are tuned for dense noisy event streams where
++cues are frequent and wrong; here cues are sparse and exact, so certainty should
++gate *nothing*.
++
++## The honest advisory verdict (corrects the record)
++
++v1's H3 (94% vs 86%) was measured under pollution (v2 FINDINGS §Defect 2). With a
++clean spec: advisory **72% < 86%** — the estimator family has NEGATIVE game value.
++Mechanism: the certain gate (A_eff≥0.5 && mass≥0.5) fires on *stale frozen*
++estimates — certainty, not accuracy — so the attractor paddle aims ~15 units off
++for 19.8% of ticks. Certainty ≠ correctness, measured.
++
++## Arc summary (three strikes, three distinct mechanisms, one conclusion)
++
++| rev | defect class | mechanism | H1 |
++|---|---|---|---|
++| v1 | standing-mass dilution | mass≈12 vs 0.15/commit → ~9 events to converge vs 1–4 available | 20.8% |
++| v2 | spec + infrastructure | circular err on linear coordinate (wrap-collapse); tick.count reset × persistent cells → A_eff≈1e44 → ring explosion | 12.5% |
++| v3 | certainty-gate pinning | per-event 0.98^Δ with Δ=1–4 → A→1 pinned → w≈0 → ring frozen | 20.8% |
++
++**Program conclusion (reusable, cross-repo):** porting flycx to exact-cue sparse
++sensors requires dropping the (1−A_eff) pull gate or aging certainty in wall-time —
++the gate's assumptions (dense noisy events) are the port casualty, not the ring
++representation. A v4 would be a different estimator contract, not a constant
++retune — per the sealed clause, this lane is closed; new evidence would need a
++different sensor model, not new constants (KC-geo/CAST precedent).
++
++## Honest notes
++
++- The extra cross-match unit pin drafted for v3 did not make the final file (edit
++  provenance); the receipt itself is the cross-match evidence: between n=18,375
++  (full sampling, vs v2's explosion-collapsed 2,613) with healthy psi census.
++- H4 (72% ≥ 55%) passes on paper and is recorded without celebration: the arm was
++  net-negative vs control, which is the number that matters.
++
++## Referral ledger (lane closed)
++
++- **→ SuperInstance/quilt-dba** (`dba/sheet.mjs` E-D1 seed, verified by direct
++  read 2026-10-02): their `world.surprise`/`world.predict` JEPA pair recomputes
++  surprise as a *pure per-eval function* of live state (`|dpos|·250 +
++  reward_miss·500`) — no persistent accumulator gates it, `state.stage` gain is
++  additive and clamped `[0,10]/eval`, and `memory.decayTick` ages by the
++  driver-owned eval counter (checkpoint-consistent, rewind-invertible per E-D4,
++  never reset mid-run). This is the pinning-avoiding contract this lane lacked:
++  nothing multiplicative throttles updates, and no resettable counter ages
++  persistent cells. v3's freeze (A→1 pinned, w≈0.003–0.05, ring frozen ~15u) is
++  the measured counter-example their design avoids by construction. Supporting
++  evidence filed both directions; CANDIDATE per weight law until a merged PR
++  cites it.
+diff --git a/experiments/predictive_paddle_v3.PREREG.md b/experiments/predictive_paddle_v3.PREREG.md
+new file mode 100644
+index 0000000..e7445e1
+--- /dev/null
++++ b/experiments/predictive_paddle_v3.PREREG.md
+@@ -0,0 +1,54 @@
++# PRE-REGISTRATION — predictive paddle v3: linear metric + sense-local clock
++
++**Status: SEALED before any v3 measured run. Seed 20261001. Kill R8 (15 min).**
++**Failure history:** v1 (`predictive_paddle.FINDINGS.md`) sealed FAIL — standing-mass
++dilution; v2 (`predictive_paddle_v2.FINDINGS.md`) sealed FAIL — (1) circular err
++metric on a linear coordinate (wrap-collapse, spec defect), (2) cross-match
++A_eff explosion via `tick.count` reset on a persistent engine (infrastructure
++defect; retroactively contaminated v1's certainty gating). v3 closes BOTH.
++
++## Exactly two deltas vs sealed v2 — everything else byte-frozen
++
++1. **Linear error metric.** All readout↔cue distances become plain absolute
++   differences on the arrival-y coordinate: `errU = |y_at − readY|` (no circular
++   `min(d, H−d)`). Pull weight `w = max(0.15, min(0.85, errU/30))·(1−A_eff)`.
++   Reject trigger `errU > 7.5 && A_eff > 0.5` — IDENTICAL threshold to v1/v2's
++   45° rule (45/360·60 = 7.5), recorded as an equivalence, not a change.
++   Rationale: arrival-y is linear; the paddle pays linear travel. The ring
++   coordinate stays circular (wrap-correct injection/readout for unimodal
++   bumps); only the ERROR MEASUREMENT is linear.
++
++2. **Sense-local clock.** Replace the global-tick age with a sense-owned
++   counter: `st.clock` (increments by 1 per `sense.update` call);
++   `A_eff = A·0.98^(st.clock − st.lastClock)`; `st.lastClock = st.clock` on
++   every update. Immune to `new_game` resets by construction; matches the
++   sparse-event semantics (certainty ages per missed event, not per wall tick).
++
++Frozen: abstain contract (away-abstain, own-return abstain), reject write
++(×0.7 ring, A×0.5), A rise rule (min(1, A_eff+(1−A_eff)·0.15)), projection cell,
++ring size 32, all constants, receipt schema, event detection (reflection
++invariant), seeds (1..50), arms, H1–H5 bars, determinism pin.
++
++## Hypotheses (unchanged bars — no goalpost moves)
++
++- **H1**: ≥90% of left-bound serves reach err ≤1.5 within ≤12 ticks of the serve.
++- **H2**: 100% of own-return episodes re-capture within ≤2 subsequent events.
++- **H3**: advisory win-rate ≥ reactive control (same seeds).
++- **H4**: advisory win-rate ≥ 55%.
++- **H5**: advisory fired ≥1% of ticks; per-tick mode census complete.
++- **Determinism**: M1 seeds 1..3 twice → identical chain head.
++
++## Predictions that would falsify the combined diagnosis
++
++With dilution, wrap-metric, and clock pollution all closed: H1 ≥90% is
++predicted by the convergence arithmetic (w ≥ 0.15 pulls ≥ err/30·(1−A) per
++event → ≤3 events from any 30-unit error). If H1/H2 still fail on a clean
++spec, the ring attractor itself is the wrong estimator for this sensor
++contract and **the lane closes permanently** (third strike). If H1/H2 pass
++but H3/H4 regress vs v1's polluted 94%, the v1 value signal was pollution
++artifact — recorded honestly either way.
++
++## Deliverables
++
++1. This file (sealed before any v3 run).
++2. `experiments/predictive_paddle_v3.mjs` + receipt (next pulse, R8 budget).
+diff --git a/experiments/predictive_paddle_v3.mjs b/experiments/predictive_paddle_v3.mjs
+new file mode 100644
+index 0000000..b3ba253
+--- /dev/null
++++ b/experiments/predictive_paddle_v3.mjs
+@@ -0,0 +1,397 @@
++// PREDICTIVE PADDLE v3 — linear metric + sense-local clock (v3.PREREG.md, SEALED 38aa174).
++// Two deltas vs sealed v2, everything else byte-frozen:
++//   1. LINEAR error metric: errU = |y_at - readY| (arrival-y is linear; the paddle
++//      pays linear travel). Reject trigger errU > 7.5 && A_eff > 0.5 — IDENTICAL
++//      to v1/v2's 45deg rule (45/360*60 = 7.5), recorded as equivalence. Closes
++//      v2 defect class 1 (wrap-collapse: a 51-unit conflict scored as 9).
++//   2. SENSE-LOCAL clock: st.clock increments per sense.update call;
++//      A_eff = A*0.98^(st.clock - st.lastClock); new_game resets tick.count but
++//      NOT registered sense.* cells — v2's tick-based aging exploded (0.98^(0-T)
++//      ~ 1e44, w ~ -8e43). Closes v2 defect class 2 by construction.
++// Ring coordinate stays circular (wrap-correct injection/readout); only ERROR
++// MEASUREMENT is linear. Receipt row keeps its frozen `tick` field (engine tick,
++// recorded for lineage only — aging no longer reads it).
++//
++//   node experiments/predictive_paddle_v3.mjs
++//
++// Prereg erratum (carried from v2, cosmetic, recorded not patched): the taper
++// column sums to ~8 over its support, not ~1 as the v2 prereg parenthetical
++// guessed; the formula is what was sealed and it behaves as designed.
++
++import { writeFileSync } from 'node:fs';
++import { fileURLToPath } from 'node:url';
++import { dirname, join } from 'node:path';
++import { QuiltEngine } from '../engine/index.js';
++import { harness, GENESIS_PREV, verifyChain } from '../shared/kit.mjs';
++import { buildSheet } from '../games/pong/sheet.mjs';
++
++const H = harness('predictive-paddle-v3');
++const HERE = dirname(fileURLToPath(import.meta.url));
++const SEEDS = Array.from({ length: 50 }, (_, i) => i + 1);
++const N = 32, H_FIELD = 60, DEADZONE = 1.5;
++// ported constants (chiaroscuro flycx v2 — v1 lineage; v2 replaces EVENT_DECAY in
++// the write rule with the pull weight w; EVENT_DECAY stays only as lineage)
++const A0 = 0.5, COMMIT_GAIN = 0.15, REJECT_SHRINK = 0.7, EVENT_DECAY = 0.85, CERT_DECAY = 0.98;
++
++const SENSE_PROJECT = `
++// arrival-y of the ball at the LEFT face (x=2) by exact wall folding.
++// Pure: ({x,y,vx,vy}) -> {y_at}. Walls at y=1/y=59 -> corridor [1,59], L=58.
++// Ball not approaching (vx >= -1e-6) -> y_at=null (no defined left arrival).
++const x = input?.x, y = input?.y, vx = input?.vx ?? 0, vy = input?.vy ?? 0;
++if (typeof x !== 'number' || typeof y !== 'number') return { y_at: null, why: 'no ball state' };
++if (vx >= -1e-6) return { y_at: null, why: 'ball not approaching left face (vx=' + vx + ')' };
++const t = (x - 2) / Math.abs(vx);
++const L = 58, raw = (y - 1) + vy * t;
++const k = Math.floor(raw / L), frac = raw - k * L;
++const parity = ((k % 2) + 2) % 2;
++const yAt = 1 + (parity === 0 ? frac : L - frac);
++return { y_at: Math.max(1, Math.min(59, yAt)), t, why: 'arrival y=' + yAt.toFixed(3) + ' in ' + t.toFixed(1) + ' ticks' };`;
++
++const WITNESS = `
++// fnv1a-64 (witness snippet from shared/kit.mjs — in-cell per Pattern 4)
++function fnv1a64(str) {
++  let h = 0xcbf29ce484222325n;
++  for (let i = 0; i < str.length; i++) { h ^= BigInt(str.charCodeAt(i) & 0xff); h = (h * 0x100000001b3n) & 0xffffffffffffffffn; }
++  return h.toString(16).padStart(16, '0');
++}`;
++
++const SENSE_UPDATE = `
++// event-gated plasticity. input: {kind, side}. Ternary psi, flycx v2 semantics.
++// v3 commit: LINEAR errU = |y_at - readY|; pull w = max(GAIN, min(0.85, errU/30))*(1-A_eff),
++// ring = ring*(1-w) + w*taper. v3 reject: errU > 7.5 && A_eff > 0.5 (== v1/v2 45deg rule).
++// v3 clock: st.clock ages certainty per update call (immune to new_game tick resets).
++${WITNESS}
++const N = ${N}, H = ${H_FIELD};
++const A0 = ${A0}, GAIN = ${COMMIT_GAIN}, SHRINK = ${REJECT_SHRINK};
++const ring = ((await runtime.get('sense.ring')).data ?? new Array(N).fill(0)).slice();
++const st = (await runtime.get('sense.state')).data;
++const tick = (await runtime.get('tick.count')).data; // receipt-row lineage ONLY — aging uses st.clock (v3 delta 2)
++const ball = {
++  x: (await runtime.get('ball.x')).data, y: (await runtime.get('ball.y')).data,
++  vx: (await runtime.get('ball.vx')).data, vy: (await runtime.get('ball.vy')).data,
++};
++// pre-update readout (for err vs the incoming cue)
++let sx = 0, sy = 0, mass = 0;
++for (let i = 0; i < N; i++) { const phi = i / N * 2 * Math.PI; sx += ring[i] * Math.cos(phi); sy += ring[i] * Math.sin(phi); mass += ring[i]; }
++const readY = mass > 1e-9 ? (((Math.atan2(sy, sx) / (2 * Math.PI)) * H) + H) % H : null;
++// v3 delta 2: sense-local clock. st.clock increments per update call;
++// new_game may reset tick.count but never touches registered sense.* cells.
++st.clock = (st.clock ?? 0) + 1;
++const A_eff = st.A * Math.pow(${CERT_DECAY}, st.clock - (st.lastClock ?? st.clock));
++const proj = (await runtime.call('sense.project', ball)).data;
++let psi, why;
++if (proj.y_at === null) {
++  psi = 0; why = 'abstain: ' + proj.why;
++} else {
++  // v3 delta 1: LINEAR error on the arrival-y coordinate (no circular min(d, H-d))
++  let errU = null;
++  if (readY !== null) errU = Math.abs(proj.y_at - readY);
++  if (errU !== null && errU > 7.5 && A_eff > 0.5) {
++    psi = -1; why = 'reject: cue ' + proj.y_at.toFixed(1) + ' conflicts ' + errU.toFixed(1) + ' units with certain bump (A=' + A_eff.toFixed(2) + ')';
++    for (let i = 0; i < N; i++) ring[i] *= SHRINK;
++    st.A = A_eff * 0.5;
++  } else {
++    psi = 1; why = 'commit: ' + proj.why + (errU !== null ? ' (err ' + errU.toFixed(1) + 'u)' : '');
++    const w = Math.max(GAIN, Math.min(0.85, (errU === null ? H : errU) / 30)) * (1 - A_eff);
++    const target = proj.y_at / H * 2 * Math.PI;
++    for (let i = 0; i < N; i++) {
++      let d = Math.abs(i / N * 2 * Math.PI - target); if (d > Math.PI) d = 2 * Math.PI - d;
++      const taper = d < Math.PI / 2 ? Math.cos(d / 2) * Math.cos(d / 2) : 0;
++      ring[i] = ring[i] * (1 - w) + w * taper;
++    }
++    st.A = Math.min(1, A_eff + (1 - A_eff) * GAIN);
++    why += ' w=' + w.toFixed(2);
++  }
++}
++st.lastClock = st.clock;
++st.counts[psi === 1 ? 'commit' : psi === -1 ? 'reject' : 'abstain']++;
++await runtime.set('sense.ring', ring);
++await runtime.set('sense.state', st);
++// chained receipt row (fnv1a-64, canonical: prev_hash sorted INTO the JSON — kit canon)
++const row = { seq: (await runtime.get('sense.receipts')).data.length, tick, kind: input?.kind ?? '?', side: input?.side ?? null, psi, err_deg: null, y_at: proj.y_at, mass: +(mass.toFixed(4)), A: +st.A.toFixed(4) };
++if (proj.y_at !== null && readY !== null) { row.err_deg = +(Math.abs(proj.y_at - readY) / H * 360).toFixed(2); } // LINEAR err in degrees (v3 delta 1; 45deg == 7.5u equivalence)
++const prev = (await runtime.get('sense.receipts')).data;
++const prevHash = prev.length ? prev[prev.length - 1].row_hash : '${GENESIS_PREV}';
++const cs = { ...row, prev_hash: prevHash };
++const c2 = {}; for (const k of Object.keys(cs).sort()) c2[k] = cs[k];
++row.row_hash = fnv1a64(JSON.stringify(c2));
++row.prev_hash = prevHash;
++row.why = why;
++await runtime.set('sense.receipts', [...prev, row]);
++return { psi, why, y_at: proj.y_at, A: st.A, mass };`;
++
++const SENSE_PREDICT = `
++// readout: circular mean -> arrival-y estimate + aged certainty. Pure read.
++// v3 delta 2: aging on the sense-local clock (no tick.count read here).
++const N = ${N}, H = ${H_FIELD};
++const ring = (await runtime.get('sense.ring')).data;
++const st = (await runtime.get('sense.state')).data;
++let sx = 0, sy = 0, mass = 0;
++for (let i = 0; i < N; i++) { const phi = i / N * 2 * Math.PI; sx += ring[i] * Math.cos(phi); sy += ring[i] * Math.sin(phi); mass += ring[i]; }
++const y = mass > 1e-9 ? (((Math.atan2(sy, sx) / (2 * Math.PI)) * H) + H) % H : null;
++const A_eff = st.A * Math.pow(${CERT_DECAY}, (st.clock ?? 0) - (st.lastClock ?? st.clock ?? 0));
++return { y, mass: +mass.toFixed(4), A_eff: +A_eff.toFixed(4), certain: A_eff >= ${A0} && mass >= 0.5, lastClock: st.lastClock ?? 0 };`;
++
++const TRACK_ADVISORY = `
++// sense-aware left paddle: attractor readout when certain AND ball approaching;
++// honest fallback = the derived law verbatim. Mode rides the return value.
++const side = input?.side;
++const track = async (target, mode) => {
++  const paddle = (await runtime.get('paddle.' + side)).data;
++  const speed = side === 'left' ? 0.85 : 0.70;
++  const dead = 1.5;
++  let y = paddle;
++  if (Math.abs(target - y) > dead) y += Math.sign(target - y) * Math.min(speed, Math.abs(target - y) - dead);
++  y = Math.max(6, Math.min(54, y));
++  await runtime.set('paddle.' + side, y);
++  return { side, y, target, mode };
++};
++if (side === 'left') {
++  const p = (await runtime.call('sense.predict')).data;
++  const vx = (await runtime.get('ball.vx')).data;
++  if (p.certain && vx < 0 && p.y !== null) return track(p.y, 'attractor');
++  return track((await runtime.get('ball.y')).data, 'reactive-fallback');
++}
++return track((await runtime.get('ball.y')).data, 'reactive-law');`;
++
++const get = async (e, id) => (await e.get(id)).data;
++
++function bootSense({ advisory = false } = {}) {
++  const engine = new QuiltEngine('arcade-pong-sense-v3', { eager: true });
++  const sheet = buildSheet();
++  if (advisory) {
++    for (const c of sheet.cells) if (c.id === 'ai.track') c.code = TRACK_ADVISORY;
++  }
++  engine.loadSheet(sheet);
++  engine.register({ id: 'sense.ring', kind: 'value', value: new Array(N).fill(0), description: 'CX attractor: 32 activity cells over arrival-y (Pattern 6, v3 linear-metric pull)' });
++  engine.register({ id: 'sense.state', kind: 'value', value: { A: 0, clock: 0, lastClock: 0, counts: { commit: 0, reject: 0, abstain: 0 } }, description: 'certainty A, sense-local clock, last-event clock, psi census (v3)' });
++  engine.register({ id: 'sense.receipts', kind: 'value', value: [], description: 'fnv1a-64 chained rows: one per event, re-derived from GENESIS' });
++  engine.register({ id: 'sense.project', kind: 'program', code: SENSE_PROJECT, description: 'pure: arrival-y at left face by wall folding' });
++  engine.register({ id: 'sense.update', kind: 'program', code: SENSE_UPDATE, description: 'event-gated plasticity, ternary psi, v3 linear-metric pull + sense-local clock' });
++  engine.register({ id: 'sense.predict', kind: 'program', code: SENSE_PREDICT, description: 'readout: circular mean + aged certainty' });
++  return engine;
++}
++
++async function senseMatch(engine, seed, { probeModes = false, maxTicks = 20000 } = {}) {
++  await engine.call('new_game', { seed });
++  await engine.call('sense.update', { kind: 'serve' });
++  const e = { serves: [], leftReturns: [], betweenErrs: [], modes: { attractor: 0, 'reactive-fallback': 0, 'reactive-law': 0 } };
++  let lastLog = (await get(engine, 'log.events')).length;
++  let prevVy = await get(engine, 'ball.vy');
++  let serveProbe = null;
++  let lrProbe = null;
++  let last = null, events = 0, psiStart = { ...(await get(engine, 'sense.state')).counts };
++  for (let i = 0; i < maxTicks; i++) {
++    last = (await engine.call('match.step')).data;
++    const tick = await get(engine, 'tick.count');
++    const ball = { x: await get(engine, 'ball.x'), y: await get(engine, 'ball.y'), vx: await get(engine, 'ball.vx'), vy: await get(engine, 'ball.vy') };
++    const feeds = [];
++    if (ball.vy !== 0 && prevVy !== 0 && Math.sign(ball.vy) !== Math.sign(prevVy)
++        && Math.abs(Math.abs(ball.vy) - Math.abs(prevVy)) < 1e-9) feeds.push({ kind: 'wall' });
++    prevVy = ball.vy;
++    const log = await get(engine, 'log.events');
++    for (const row of log.slice(lastLog)) {
++      if (row.kind === 'hit') feeds.push({ kind: 'return', side: row.side });
++      if (row.kind === 'serve') feeds.push({ kind: 'serve' });
++    }
++    lastLog = log.length;
++    const pred = (await engine.call('sense.predict')).data;
++    const oracle = (await engine.call('sense.project', ball)).data;
++    const err = oracle.y_at !== null && pred.y !== null ? Math.abs(oracle.y_at - pred.y) : null;
++    if (serveProbe && serveProbe.convergedAt === null && err !== null && err <= DEADZONE) serveProbe.convergedAt = tick - serveProbe.tick0;
++    if (!feeds.length && err !== null && (tick % 7 === 0)) e.betweenErrs.push(err);
++    for (const f of feeds) {
++      events++;
++      if (f.kind === 'serve') {
++        if (serveProbe) e.serves.push(serveProbe);
++        serveProbe = { tick0: tick, convergedAt: null, dir: Math.sign(ball.vx) };
++      }
++      if (f.kind === 'return' && f.side === 'left') lrProbe = { events: 0, done: false };
++      const r = (await engine.call('sense.update', f)).data;
++      const p2 = (await engine.call('sense.predict')).data;
++      const o2 = (await engine.call('sense.project', ball)).data;
++      const err2 = o2.y_at !== null && p2.y !== null ? Math.abs(o2.y_at - p2.y) : null;
++      if (serveProbe && serveProbe.convergedAt === null && err2 !== null && err2 <= DEADZONE) serveProbe.convergedAt = tick - serveProbe.tick0;
++      if (lrProbe && f.kind !== 'return') {
++        lrProbe.events++;
++        if (err2 !== null && err2 <= DEADZONE) { lrProbe.done = true; e.leftReturns.push(lrProbe); lrProbe = null; }
++        else if (lrProbe.events >= 3) { e.leftReturns.push(lrProbe); lrProbe = null; }
++      }
++    }
++    if (probeModes) {
++      const tr = (await engine.call('ai.track', { side: 'left' })).data;
++      e.modes[tr.mode] = (e.modes[tr.mode] ?? 0) + 1;
++    }
++    if (last.over) break;
++  }
++  if (serveProbe) e.serves.push(serveProbe);
++  const scores = last?.score ?? { left: await get(engine, 'score.left'), right: await get(engine, 'score.right') };
++  const counts = (await get(engine, 'sense.state')).counts;
++  e.psi = { commit: counts.commit - psiStart.commit, reject: counts.reject - psiStart.reject, abstain: counts.abstain - psiStart.abstain };
++  e.events = events;
++  e.over = !!last?.over;
++  e.winner = e.over ? (scores.left > scores.right ? 'left' : 'right') : null;
++  e.ticks = await get(engine, 'tick.count');
++  return e;
++}
++
++const M1 = async (seeds) => {
++  const engine = bootSense();
++  const serves = [], leftReturns = [], between = [];
++  const psi = { commit: 0, reject: 0, abstain: 0 };
++  const eventsPerMatch = [];
++  for (const s of seeds) {
++    const m = await senseMatch(engine, s);
++    serves.push(...m.serves); leftReturns.push(...m.leftReturns); between.push(...m.betweenErrs);
++    eventsPerMatch.push(m.events);
++    for (const k of Object.keys(psi)) psi[k] += m.psi[k];
++  }
++  const receipts = await get(engine, 'sense.receipts');
++  const head = verifyChain(receipts, (r) => { const { why, row_hash, ...f } = r; return f; });
++  const lb = serves.filter((x) => x.dir < 0);
++  const h1Rate = lb.length ? lb.filter((x) => x.convergedAt !== null && x.convergedAt <= 12).length / lb.length : 0;
++  const h1All = serves.length ? serves.filter((x) => x.convergedAt !== null && x.convergedAt <= 12).length / serves.length : 0;
++  const lrOk = leftReturns.filter((x) => x.done && x.events <= 2);
++  const h2Rate = leftReturns.length ? lrOk.length / leftReturns.length : 1;
++  const mean = (a) => (a.length ? a.reduce((x, y) => x + y, 0) / a.length : null);
++  const max = (a) => a.reduce((x, y) => (y > x ? y : x), 0);
++  return {
++    serves: serves.length, leftBoundServes: lb.length, h1: { rate: +h1Rate.toFixed(4), pass: h1Rate >= 0.9, n: lb.length },
++    h1_all_serves: +h1All.toFixed(4),
++    leftReturns: leftReturns.length, h2: { rate: +h2Rate.toFixed(4), pass: h2Rate === 1, n: leftReturns.length },
++    between: { mean_err: +mean(between).toFixed(3), max_err: +max(between).toFixed(3), n: between.length },
++    psi, eventsPerMatch: { min: Math.min(...eventsPerMatch), med: eventsPerMatch.sort((a, b) => a - b)[eventsPerMatch.length >> 1], max: Math.max(...eventsPerMatch) },
++    rows: receipts.length, head,
++  };
++};
++
++const M2 = async (seeds) => {
++  const adv = bootSense({ advisory: true });
++  let aLeft = 0;
++  const modes = { attractor: 0, 'reactive-fallback': 0, 'reactive-law': 0 };
++  for (const s of seeds) {
++    const m = await senseMatch(adv, s, { probeModes: true });
++    if (m.winner === 'left') aLeft++;
++    for (const k of Object.keys(modes)) modes[k] += m.modes[k];
++  }
++  const total = Object.values(modes).reduce((a, b) => a + b, 0);
++  return {
++    advisory_wr: +(aLeft / seeds.length).toFixed(4), modes,
++    advisory_share: total ? +(modes.attractor / total).toFixed(4) : 0,
++    fallback_share: total ? +(modes['reactive-fallback'] / total).toFixed(4) : 0,
++  };
++};
++
++await H.check('sense cells boot and answer (readout null at genesis)', async () => {
++  const e = bootSense();
++  await e.call('new_game', { seed: 1 });
++  const p = (await e.call('sense.predict')).data;
++  H.eq(p.y, null);
++  H.ok(p.mass === 0, 'ring must start empty');
++});
++
++await H.check('sense.project: wall folding is exact (steep-down folds off the floor)', async () => {
++  const e = bootSense();
++  const r = (await e.call('sense.project', { x: 50, y: 30, vx: -1, vy: -1 })).data;
++  H.eq(r.y_at, 20);
++  const away = (await e.call('sense.project', { x: 50, y: 30, vx: 1, vy: 0 })).data;
++  H.eq(away.y_at, null);
++});
++
++await H.check('v3 linear metric: a 34-unit true conflict scores 34 (not wrapped 26) and strong pull converges in ONE event', async () => {
++  const e = bootSense();
++  await e.call('new_game', { seed: 7 });
++  // seed a stale bump far from the incoming cue: commit at y=10 on empty ring
++  await e.set('ball.x', 60); await e.set('ball.y', 20); await e.set('ball.vx', -0.9); await e.set('ball.vy', -0.2);
++  await e.call('sense.update', { kind: 'wall' }); // clock 1, A -> 0.15
++  // now a cue 34 linear units away (y=44 vs bump y=10; v2's circular min scored 26)
++  await e.set('ball.x', 60); await e.set('ball.y', 44); await e.set('ball.vx', -0.9); await e.set('ball.vy', 0.25);
++  const r = (await e.call('sense.update', { kind: 'wall' })).data; // clock 2, A_eff 0.147 < 0.5 -> commit
++  H.eq(r.psi, 1);
++  const p = (await e.call('sense.predict')).data;
++  const o = (await e.call('sense.project', { x: 60, y: 44, vx: -0.9, vy: 0.25 })).data;
++  // v1 left this error at ~0.75x (needs ~9 events); v3 must be within 1.5 deadzone now
++  H.ok(Math.abs(p.y - o.y_at) <= 1.5, `readout ${p.y} vs oracle ${o.y_at} after one pull`);
++});
++
++await H.check('v3 sense-local clock: tick.count reset across games does NOT explode A_eff (v2 defect class 2 closed)', async () => {
++  const e = bootSense();
++  await e.call('new_game', { seed: 4 });
++  await e.set('ball.x', 60); await e.set('ball.y', 20); await e.set('ball.vx', -0.9); await e.set('ball.vy', -0.2);
++  await e.call('sense.update', { kind: 'wall' }); // clock 1
++  // simulate new_game tick reset with persistent sense.* cells (the v2 explosion path)
++  await e.set('tick.count', 0);
++  await e.set('ball.x', 60); await e.set('ball.y', 30); await e.set('ball.vx', -0.9); await e.set('ball.vy', 0.1);
++  await e.call('sense.update', { kind: 'wall' }); // clock 2
++  const p = (await e.call('sense.predict')).data;
++  H.ok(Number.isFinite(p.A_eff) && p.A_eff >= 0 && p.A_eff <= 1, `A_eff bounded after tick reset, got ${p.A_eff}`);
++  H.ok(Number.isFinite(p.mass) && p.mass >= 0 && p.mass < 10, `ring mass bounded, got ${p.mass}`);
++});
++
++await H.check('abstain: away ball writes nothing (ring + A unchanged)', async () => {
++  const e = bootSense();
++  await e.call('new_game', { seed: 7 });
++  await e.call('sense.update', { kind: 'wall' });
++  const before = await get(e, 'sense.ring');
++  await e.set('ball.vx', 0.9);
++  const r = (await e.call('sense.update', { kind: 'wall' })).data;
++  H.eq(r.psi, 0);
++  H.eq(await get(e, 'sense.ring'), before);
++});
++
++const t0 = Date.now();
++console.log('\nM1 v3: estimation quality over 50 seeded matches (reactive control game)…');
++const m1 = await M1(SEEDS);
++console.log(`  H1 capture ${(m1.h1.rate * 100).toFixed(1)}% of ${m1.leftBoundServes} left-bound serves (${m1.serves} serves total, all-serve rate ${(m1.h1_all_serves * 100).toFixed(1)}%), H2 re-capture ${(m1.h2.rate * 100).toFixed(1)}% (${m1.leftReturns} own-returns), between-event mean err ${m1.between.mean_err} (max ${m1.between.max_err}, n ${m1.between.n}), psi ${JSON.stringify(m1.psi)}, events/match ${JSON.stringify(m1.eventsPerMatch)}, ${m1.rows} receipt rows`);
++
++console.log('M2 v3 control (both reactive) over 50 seeds…');
++const control = bootSense();
++let cLeft = 0;
++for (const s of SEEDS) { const m = await senseMatch(control, s); if (m.winner === 'left') cLeft++; }
++const control_wr = +(cLeft / SEEDS.length).toFixed(4);
++console.log(`  control left win-rate ${(control_wr * 100).toFixed(1)}%`);
++
++console.log('M2 v3 advisory (attractor left, honest fallback) over 50 seeds…');
++const m2 = await M2(SEEDS);
++console.log(`  advisory left win-rate ${(m2.advisory_wr * 100).toFixed(1)}%, advisory mode share ${(m2.advisory_share * 100).toFixed(1)}%`);
++
++const verdicts = {
++  H1: { ...m1.h1, all_serves_rate: m1.h1_all_serves, v1_rate: 0.2083, detail: 'left-bound serves, err<=1.5 within <=12 ticks; v1 comparison recorded (dilution diagnosis prediction: pass)' },
++  H2: { ...m1.h2, v1_rate: 0.1404, detail: 're-capture within <=2 events after own-return abstain' },
++  H3: { pass: m2.advisory_wr >= control_wr, control_wr, advisory_wr: m2.advisory_wr, v1: { control: 0.86, advisory: 0.94 }, detail: 'advisory >= reactive control (non-inferiority)' },
++  H4: { pass: m2.advisory_wr >= 0.55, advisory_wr: m2.advisory_wr, detail: 'advisory >= 55%' },
++  H5: { pass: m2.advisory_share >= 0.01, advisory_share: m2.advisory_share, fallback_share: m2.fallback_share, detail: 'per-tick mode census via side-effect-inert probe' },
++};
++const allPass = Object.values(verdicts).every((v) => v.pass);
++
++console.log('determinism pin: M1 seeds 1..3 twice…');
++const d1 = await M1([1, 2, 3]);
++const d2 = await M1([1, 2, 3]);
++const determinism = { pass: d1.head === d2.head && JSON.stringify(d1.h1) === JSON.stringify(d2.h1), head3: d1.head };
++verdicts.determinism = { pass: determinism.pass, detail: 'M1 seeds 1..3 run twice, chain head + H1 byte-equal' };
++
++const receipt = {
++  schema: 'predictive_paddle_v3/v1',
++  prereg: 'experiments/predictive_paddle_v3.PREREG.md (SEALED 38aa174; deltas vs v2 = linear err metric + sense-local clock)',
++  failure_history: 'experiments/predictive_paddle.FINDINGS.md (v1 FAIL: dilution) + experiments/predictive_paddle_v2.FINDINGS.md (v2 FAIL: wrap-collapse + tick-reset A_eff explosion)',
++  model: { name: 'flycx-v3-linear-metric-sense-clock', ported_from: 'SuperInstance/chiaroscuro PR #6 (tools/fly_cx.py), v1 lineage', constants: { bins: N, A0, commit_gain: COMMIT_GAIN, reject_shrink: REJECT_SHRINK, reject_threshold_units: 7.5, reject_threshold_note: 'identical to v1/v2 45deg rule (45/360*60=7.5), equivalence recorded', event_decay: `${EVENT_DECAY} (unused in v3 write rule — replaced by pull w)`, cert_decay: CERT_DECAY, pull: 'w = max(GAIN, min(0.85, errU/30)) * (1-A_eff), errU linear', clock: 'st.clock per sense.update call; A_eff = A*0.98^(st.clock-st.lastClock)' } },
++  seed: 20261001, matches_per_arm: 50,
++  m1: { h1: m1.h1, h1_all_serves: m1.h1_all_serves, h2: m1.h2, between: m1.between, psi: m1.psi, serves: m1.serves, leftBoundServes: m1.leftBoundServes, leftReturns: m1.leftReturns, eventsPerMatch: m1.eventsPerMatch },
++  m1_chain: { rows: m1.rows, head: m1.head, verified: true },
++  m2: { control_wr, advisory_wr: m2.advisory_wr, modes: m2.modes, advisory_share: m2.advisory_share, fallback_share: m2.fallback_share },
++  verdicts,
++  overall: allPass ? 'PASS' : 'FAIL',
++  wall_ms: Date.now() - t0,
++};
++writeFileSync(join(HERE, 'predictive_paddle_v3_receipt.json'), JSON.stringify(receipt, null, 2) + '\n');
++console.log(`\nreceipt: experiments/predictive_paddle_v3_receipt.json — overall ${receipt.overall} (${receipt.wall_ms}ms)`);
++console.log(`chain head ${m1.head} (${m1.rows} rows, re-derived from GENESIS)`);
++
++await H.check('H1 capture >= 90% of left-bound serves within <=12 ticks', async () => H.ok(verdicts.H1.pass, JSON.stringify(verdicts.H1)));
++await H.check('H2 re-capture within <=2 events after every own-return', async () => H.ok(verdicts.H2.pass, JSON.stringify(verdicts.H2)));
++await H.check('H3 advisory >= reactive control (non-inferiority)', async () => H.ok(verdicts.H3.pass, JSON.stringify(verdicts.H3)));
++await H.check('H4 advisory win-rate >= 55%', async () => H.ok(verdicts.H4.pass, JSON.stringify(verdicts.H4)));
++await H.check('H5 honesty: advisory fired >=1% of ticks, census complete', async () => H.ok(verdicts.H5.pass, JSON.stringify(verdicts.H5)));
++await H.check('determinism: M1 seeds 1..3 twice -> identical chain head', async () => H.ok(determinism.pass, JSON.stringify(determinism)));
++
++await H.done();
+diff --git a/experiments/predictive_paddle_v3_receipt.json b/experiments/predictive_paddle_v3_receipt.json
+new file mode 100644
+index 0000000..dedd18a
+--- /dev/null
++++ b/experiments/predictive_paddle_v3_receipt.json
+@@ -0,0 +1,114 @@
++{
++  "schema": "predictive_paddle_v3/v1",
++  "prereg": "experiments/predictive_paddle_v3.PREREG.md (SEALED 38aa174; deltas vs v2 = linear err metric + sense-local clock)",
++  "failure_history": "experiments/predictive_paddle.FINDINGS.md (v1 FAIL: dilution) + experiments/predictive_paddle_v2.FINDINGS.md (v2 FAIL: wrap-collapse + tick-reset A_eff explosion)",
++  "model": {
++    "name": "flycx-v3-linear-metric-sense-clock",
++    "ported_from": "SuperInstance/chiaroscuro PR #6 (tools/fly_cx.py), v1 lineage",
++    "constants": {
++      "bins": 32,
++      "A0": 0.5,
++      "commit_gain": 0.15,
++      "reject_shrink": 0.7,
++      "reject_threshold_units": 7.5,
++      "reject_threshold_note": "identical to v1/v2 45deg rule (45/360*60=7.5), equivalence recorded",
++      "event_decay": "0.85 (unused in v3 write rule — replaced by pull w)",
++      "cert_decay": 0.98,
++      "pull": "w = max(GAIN, min(0.85, errU/30)) * (1-A_eff), errU linear",
++      "clock": "st.clock per sense.update call; A_eff = A*0.98^(st.clock-st.lastClock)"
++    }
++  },
++  "seed": 20261001,
++  "matches_per_arm": 50,
++  "m1": {
++    "h1": {
++      "rate": 0.2083,
++      "pass": false,
++      "n": 24
++    },
++    "h1_all_serves": 0.1136,
++    "h2": {
++      "rate": 0.1552,
++      "pass": false,
++      "n": 58
++    },
++    "between": {
++      "mean_err": 15.23,
++      "max_err": 58.411,
++      "n": 18375
++    },
++    "psi": {
++      "commit": 1320,
++      "reject": 357,
++      "abstain": 1858
++    },
++    "serves": 44,
++    "leftBoundServes": 24,
++    "leftReturns": 58,
++    "eventsPerMatch": {
++      "min": 28,
++      "med": 70,
++      "max": 148
++    }
++  },
++  "m1_chain": {
++    "rows": 3585,
++    "head": "c445d1950942cc8a",
++    "verified": true
++  },
++  "m2": {
++    "control_wr": 0.86,
++    "advisory_wr": 0.72,
++    "modes": {
++      "attractor": 44889,
++      "reactive-fallback": 181636,
++      "reactive-law": 0
++    },
++    "advisory_share": 0.1982,
++    "fallback_share": 0.8018
++  },
++  "verdicts": {
++    "H1": {
++      "rate": 0.2083,
++      "pass": false,
++      "n": 24,
++      "all_serves_rate": 0.1136,
++      "v1_rate": 0.2083,
++      "detail": "left-bound serves, err<=1.5 within <=12 ticks; v1 comparison recorded (dilution diagnosis prediction: pass)"
++    },
++    "H2": {
++      "rate": 0.1552,
++      "pass": false,
++      "n": 58,
++      "v1_rate": 0.1404,
++      "detail": "re-capture within <=2 events after own-return abstain"
++    },
++    "H3": {
++      "pass": false,
++      "control_wr": 0.86,
++      "advisory_wr": 0.72,
++      "v1": {
++        "control": 0.86,
++        "advisory": 0.94
++      },
++      "detail": "advisory >= reactive control (non-inferiority)"
++    },
++    "H4": {
++      "pass": true,
++      "advisory_wr": 0.72,
++      "detail": "advisory >= 55%"
++    },
++    "H5": {
++      "pass": true,
++      "advisory_share": 0.1982,
++      "fallback_share": 0.8018,
++      "detail": "per-tick mode census via side-effect-inert probe"
++    },
++    "determinism": {
++      "pass": true,
++      "detail": "M1 seeds 1..3 run twice, chain head + H1 byte-equal"
++    }
++  },
++  "overall": "FAIL",
++  "wall_ms": 173460
++}

@@ -1,0 +1,1101 @@
+{
+  "root": "/tmp/xpb-hook-lab/repo",
+  "commits": 120,
+  "accepted_clean": 120,
+  "seed": 2718,
+  "final_receipt_sha": "671fbd807f112c001efb7002855cc4e65154cfe4b0a06b7eb71583788e55ab61",
+  "history": [
+    {
+      "commit": 0,
+      "accepted": true,
+      "sha_receipt": "73c33e905cef3adadebfeed5ac7bd98023e831bc29ad3aeb58c52e807b8e75b9",
+      "staged": [
+        "cells/cell_000.json"
+      ],
+      "head": "3fc712be429d8765662fb1e54b59784885bfb90f"
+    },
+    {
+      "commit": 1,
+      "accepted": true,
+      "sha_receipt": "8907e1ae520926513a7002e64360380d4e9d03ed449061ec633f85b2db038cea",
+      "staged": [
+        "cells/cell_001.json"
+      ],
+      "head": "650db9d6815404c77703737ec1086602f66db825"
+    },
+    {
+      "commit": 2,
+      "accepted": true,
+      "sha_receipt": "198bc15496e824db7a77299543a0821e7be8fd0376d5ad7e0baa614ea25a62ee",
+      "staged": [
+        "cells/cell_002.json"
+      ],
+      "head": "7feacbd6bbb564e5402afbc888d929fb9297ae8c"
+    },
+    {
+      "commit": 3,
+      "accepted": true,
+      "sha_receipt": "15a5c8f098f3a4ca82a7ae2a65fe97c58a5e6e3e1c55f8bd6fd013223443451c",
+      "staged": [
+        "cells/cell_003.json"
+      ],
+      "head": "749043f9e141ba7fdd41fc1b9e0f91ce64c262a0"
+    },
+    {
+      "commit": 4,
+      "accepted": true,
+      "sha_receipt": "64d2426e39df9070abf25bdcec8f1279775e8e0e1761c88253a3b2f83c2cb479",
+      "staged": [
+        "cells/cell_004.json"
+      ],
+      "head": "34167ab63918301efb8388ba7cccaed5941abdf5"
+    },
+    {
+      "commit": 5,
+      "accepted": true,
+      "sha_receipt": "9a4cf846e4fc0fdf71bcb7cbc5cfa6f9724becd699732be270da6750d2efc3b1",
+      "staged": [
+        "cells/cell_005.json"
+      ],
+      "head": "b3ecd75c8b1382befeb936760d0aa4789c376dc3"
+    },
+    {
+      "commit": 6,
+      "accepted": true,
+      "sha_receipt": "1b8157d0db74cb01bb80385f182c56c57818fe227e3ded8e36445f08ea184ddc",
+      "staged": [
+        "cells/cell_006.json"
+      ],
+      "head": "e8cb7cea7d7d8a3cc6998bc790e3af7d979fcaca"
+    },
+    {
+      "commit": 7,
+      "accepted": true,
+      "sha_receipt": "25cc245d798d8223f33174132a59f912a16b6d1215901f2a1caf6d8ec4e5dae6",
+      "staged": [
+        "cells/cell_007.json"
+      ],
+      "head": "403d2ef0746994f5460c414ad2238f9b005ad141"
+    },
+    {
+      "commit": 8,
+      "accepted": true,
+      "sha_receipt": "ea9ee6553ac9b73ac5e7160d0042865dfd10cf365c014c015604e18f7d7a855f",
+      "staged": [
+        "cells/cell_008.json"
+      ],
+      "head": "4c31a880647e967a394b255316366bda4d581ce3"
+    },
+    {
+      "commit": 9,
+      "accepted": true,
+      "sha_receipt": "5a741778199e38e005bbd7ce3c4059852586fd2806e57240a21852f13db74cc3",
+      "staged": [
+        "cells/cell_008.json",
+        "cells/cell_009.json"
+      ],
+      "head": "c194a489126541d46292efb0ab5beb11c20ee982"
+    },
+    {
+      "commit": 10,
+      "accepted": true,
+      "sha_receipt": "227908a218b7585a37b9b7a84c5a83340f4e9e9b147af4ab929f5c623c29e9ff",
+      "staged": [
+        "cells/cell_010.json"
+      ],
+      "head": "2a6cb5bd7233f3a2ebddf341aa1f7e190cd7e1ce"
+    },
+    {
+      "commit": 11,
+      "accepted": true,
+      "sha_receipt": "d772c5289bddd5a08d3fd099a41a471d48f077469a5b35047dc79763a958a8d8",
+      "staged": [
+        "cells/cell_011.json"
+      ],
+      "head": "b24d09bb064fe53f6c79978d6b108b7d8d1b9465"
+    },
+    {
+      "commit": 12,
+      "accepted": true,
+      "sha_receipt": "9e39c225bea1aac39b974c5bfa8f781e3b48577f8ad55cb5705402aaa6834138",
+      "staged": [
+        "cells/cell_012.json"
+      ],
+      "head": "f78cf67aa0c9eb843aba447b70920f368a888dce"
+    },
+    {
+      "commit": 13,
+      "accepted": true,
+      "sha_receipt": "bbf6194f5d71517554778a782d780513aa7769eb5182a5ce61209241fcdd4308",
+      "staged": [
+        "cells/cell_013.json"
+      ],
+      "head": "d0395beeb47465e44a51072c8167e1f339f90b06"
+    },
+    {
+      "commit": 14,
+      "accepted": true,
+      "sha_receipt": "56ba6623bf38a7701a93a968953c993d89e182c094809d0a8b432a0384cb633e",
+      "staged": [
+        "cells/cell_014.json"
+      ],
+      "head": "bbb571cf5e1062af5cb552d76d3de68ae0258e5f"
+    },
+    {
+      "commit": 15,
+      "accepted": true,
+      "sha_receipt": "558098b1b860be6eb845f872d2bca5ef233ca1a921619c535ab3eb0691cdedb4",
+      "staged": [
+        "cells/cell_015.json"
+      ],
+      "head": "9dda0cf868e581c4b22f00483089a11a7baae694"
+    },
+    {
+      "commit": 16,
+      "accepted": true,
+      "sha_receipt": "b5230336c3ac9f249b5748f794563ba59348ceb6d1a3d065c097f693681f6c8c",
+      "staged": [
+        "cells/cell_016.json"
+      ],
+      "head": "bdf30a44120245c34b50161c42bfd2f7cd3769d2"
+    },
+    {
+      "commit": 17,
+      "accepted": true,
+      "sha_receipt": "a790b6e12e464957ebb14c66834072630f776a9a453691f9731a12bb5aa79375",
+      "staged": [
+        "cells/cell_017.json"
+      ],
+      "head": "64fcf3d7cd5a5b0c92bc16a86eb9994e302ceff5"
+    },
+    {
+      "commit": 18,
+      "accepted": true,
+      "sha_receipt": "cbfd507a2bc57da24459ef26966096c38e70de41824c6fde5398e0de39a9ea72",
+      "staged": [
+        "cells/cell_018.json"
+      ],
+      "head": "461a4cbea0c5797388725b5ea3e08e8f7b6529d9"
+    },
+    {
+      "commit": 19,
+      "accepted": true,
+      "sha_receipt": "d1636ca93cee009692c80282307214f491643339f085bcc11be1a892aa2aca5a",
+      "staged": [
+        "cells/cell_018.json",
+        "cells/cell_019.json"
+      ],
+      "head": "119b693d92b1f8bf5138429cc6882e6655dd8f55"
+    },
+    {
+      "commit": 20,
+      "accepted": true,
+      "sha_receipt": "a06dbcaa06289f82711c7c20a14dc8e9f6b750bb8166ee443a5fb37e072d7281",
+      "staged": [
+        "cells/cell_020.json"
+      ],
+      "head": "9f07e3cdbecc9b0f158a1a091c9f58d46044b7e7"
+    },
+    {
+      "commit": 21,
+      "accepted": true,
+      "sha_receipt": "307e0385bd654be486fb2f4ee0acc794b0da04a0d44b7648dbbdb5025e95664a",
+      "staged": [
+        "cells/cell_021.json"
+      ],
+      "head": "a9d917da6eaf98c4e3f4afe1c8e79b861c0b3b1e"
+    },
+    {
+      "commit": 22,
+      "accepted": true,
+      "sha_receipt": "066c028a8d9525d40b3691d6b865b10d8cfd2e0b35fdad69df12ef1e808e0ee1",
+      "staged": [
+        "cells/cell_022.json"
+      ],
+      "head": "74be56bc916cf9f4672dc7e18b1d29fc3490f193"
+    },
+    {
+      "commit": 23,
+      "accepted": true,
+      "sha_receipt": "6f0f2a4cb20881f36e890f2fe1d96f073091dd266c0a089f2fc14ae45150a662",
+      "staged": [
+        "cells/cell_023.json"
+      ],
+      "head": "ab957eb74d4d02eecf544c6ff866ddc00ef375ea"
+    },
+    {
+      "commit": 24,
+      "accepted": true,
+      "sha_receipt": "a5e7bd4e8de91978944492831f3f8ddb684d449d3c9b30ec2ad19c0de8f8f1ab",
+      "staged": [
+        "cells/cell_024.json"
+      ],
+      "head": "1deeb195f43f01e7a17286f16ba7c9926f70c346"
+    },
+    {
+      "commit": 25,
+      "accepted": true,
+      "sha_receipt": "6796efde0e2f82c447b3f697f1bf89c39b3113c0319828fbdf45834ef4294d65",
+      "staged": [
+        "cells/cell_025.json"
+      ],
+      "head": "f5ba4fb1fd29810f7816ca87e67deb40e4ec8e00"
+    },
+    {
+      "commit": 26,
+      "accepted": true,
+      "sha_receipt": "7e3fcc7a4f3d46bb1819a38e6ddde6dae749ca54e6e5a39056a8fbc138527aee",
+      "staged": [
+        "cells/cell_026.json"
+      ],
+      "head": "aa147a80969e84549f88674f899c28652a6c976f"
+    },
+    {
+      "commit": 27,
+      "accepted": true,
+      "sha_receipt": "2131925e8e289d4c77d4cb55e291b52e8b5564d4752196ab98a457f851b1dc09",
+      "staged": [
+        "cells/cell_027.json"
+      ],
+      "head": "e8e3f68fa9c41ea2ca2a41fa8fd5a736430cda8c"
+    },
+    {
+      "commit": 28,
+      "accepted": true,
+      "sha_receipt": "35e8fa4ddf2e36202b741744fe0f6e705f33c1852927ec20cca07b8fbf3c814a",
+      "staged": [
+        "cells/cell_028.json"
+      ],
+      "head": "548aa84c5fc9219229f7983c0fb2fb4a54e96742"
+    },
+    {
+      "commit": 29,
+      "accepted": true,
+      "sha_receipt": "24be11fb38e572c0b1f9c54f6e7c92b53125e9318cf4f3f52a6ffced055e43bc",
+      "staged": [
+        "cells/cell_017.json",
+        "cells/cell_029.json"
+      ],
+      "head": "a163da08b33e130b913fea63cb21c45d098aa9a4"
+    },
+    {
+      "commit": 30,
+      "accepted": true,
+      "sha_receipt": "5bfdc2ca8114eb109f54319875d697fa26768f95e9748bdb59c8093bb9dae023",
+      "staged": [
+        "cells/cell_030.json"
+      ],
+      "head": "cbca670205c00eb2ad79342e686b89ededf6973c"
+    },
+    {
+      "commit": 31,
+      "accepted": true,
+      "sha_receipt": "831a12a7fe0b5c4a02a1884520fd807867b582338cae5bb4ce65672d931a4bc3",
+      "staged": [
+        "cells/cell_031.json"
+      ],
+      "head": "73128e3962a03cc4d7ae103737212a958030a86f"
+    },
+    {
+      "commit": 32,
+      "accepted": true,
+      "sha_receipt": "144645ab8017d46b6e032582296120236a8c3ec6d31267e1e292c77554c179f0",
+      "staged": [
+        "cells/cell_032.json"
+      ],
+      "head": "925ca16f12e4ca7fac4c89db10bfadd0e30be5b4"
+    },
+    {
+      "commit": 33,
+      "accepted": true,
+      "sha_receipt": "db2db27e77ab4403d8b6833fa384de8c958040f0e16a25a8e3e51b44d254de6f",
+      "staged": [
+        "cells/cell_033.json"
+      ],
+      "head": "77bc825d2694f9a1d35579cf9872890d1391f027"
+    },
+    {
+      "commit": 34,
+      "accepted": true,
+      "sha_receipt": "476fde878d06558ac58c5e2244a7e7f8abb58cae963b47e8bc4dd82d980a052a",
+      "staged": [
+        "cells/cell_034.json"
+      ],
+      "head": "a122fb51990a8d9b47e18cc79f75fa2611d3e917"
+    },
+    {
+      "commit": 35,
+      "accepted": true,
+      "sha_receipt": "aa76119431f0b3327c181e70f72572541a45c6a8b9b7c7b5ea34272ae72a41ab",
+      "staged": [
+        "cells/cell_035.json"
+      ],
+      "head": "b033d72f3efcbe38724b9754f5c7450b87d8645a"
+    },
+    {
+      "commit": 36,
+      "accepted": true,
+      "sha_receipt": "b1b01f1d9fc70bf73d1f4d97e5275870ba3d019ff6fcaa0f1cb4b9a76f6e11e5",
+      "staged": [
+        "cells/cell_036.json"
+      ],
+      "head": "e246b5b6a84f77793a288f48347358829ac21048"
+    },
+    {
+      "commit": 37,
+      "accepted": true,
+      "sha_receipt": "407b22555789f1676313f365c85b1a325442d1714031b111422b777e01abaf09",
+      "staged": [
+        "cells/cell_037.json"
+      ],
+      "head": "f50a8a0a0e7e3cf78a8cc8d22707f5317af1fa8a"
+    },
+    {
+      "commit": 38,
+      "accepted": true,
+      "sha_receipt": "735324e3c5d4db41c849a5a91d52065459703ef0b2ff374a85be0bdf001ebcc9",
+      "staged": [
+        "cells/cell_038.json"
+      ],
+      "head": "b68d1aa3f475e1872a8d6c6da419b84744ec3118"
+    },
+    {
+      "commit": 39,
+      "accepted": true,
+      "sha_receipt": "93c644f1c70d6265f23970bf7172b570978a455b29c0a3deb05e2edde809d9ff",
+      "staged": [
+        "cells/cell_034.json",
+        "cells/cell_039.json"
+      ],
+      "head": "d7262b2637ec87c929e4afc1fce1e580f3559765"
+    },
+    {
+      "commit": 40,
+      "accepted": true,
+      "sha_receipt": "bedef2a23e8f26378a2b671d1de1818e3bb5b344f5b1df5b0e75bde9f1f4c0bd",
+      "staged": [
+        "cells/cell_040.json"
+      ],
+      "head": "78920092a12fdd23936ff601e4648831e69e6a91"
+    },
+    {
+      "commit": 41,
+      "accepted": true,
+      "sha_receipt": "3f0c88005cea6f56c1e70cd2a2b912034cead38bf567100f6be6cc2ce07af6e6",
+      "staged": [
+        "cells/cell_041.json"
+      ],
+      "head": "b59f569f4f4fff8f81a2946824769ac45efcb5d1"
+    },
+    {
+      "commit": 42,
+      "accepted": true,
+      "sha_receipt": "ce014946ec56c78d2ffae2c869091e5555c73f970b2db333d4681087f89abd3d",
+      "staged": [
+        "cells/cell_042.json"
+      ],
+      "head": "51d77996ebc23a2a4b72f46bb15d4214be588be8"
+    },
+    {
+      "commit": 43,
+      "accepted": true,
+      "sha_receipt": "8b491c4b38eaa6a43770a4e82f248f8cfe48d8c4f390f40adf421ab75d49e452",
+      "staged": [
+        "cells/cell_043.json"
+      ],
+      "head": "d8bc492031b83f5b22042bd12fab9d9545631499"
+    },
+    {
+      "commit": 44,
+      "accepted": true,
+      "sha_receipt": "6c119a36dd96cdeba7006dc1fd3b625c05f51a215b6eeba43c17b17af548aa30",
+      "staged": [
+        "cells/cell_044.json"
+      ],
+      "head": "008326d664f4e80964c66451a32a00009c8e76dc"
+    },
+    {
+      "commit": 45,
+      "accepted": true,
+      "sha_receipt": "0fa1f3024d955f1036f055674000493226d9b6756dbfdbd70c7f7f20c9a0d5eb",
+      "staged": [
+        "cells/cell_045.json"
+      ],
+      "head": "6a43c79130865c7df625b6088f182ce171e4e009"
+    },
+    {
+      "commit": 46,
+      "accepted": true,
+      "sha_receipt": "b9a8acfcb72248c47257a55fac9d59514b2a81f9ee7c743910ebc1460c88a982",
+      "staged": [
+        "cells/cell_046.json"
+      ],
+      "head": "2c242feba5d09e055bb497fa06e4b3f0766919d7"
+    },
+    {
+      "commit": 47,
+      "accepted": true,
+      "sha_receipt": "649e7fd33e241a3d2b64c0ceabbff9e00f2a7f76eef6e0ba9d8ac3800a9d6469",
+      "staged": [
+        "cells/cell_047.json"
+      ],
+      "head": "21590ac236393cd54b9f2988541e66caac5d9d77"
+    },
+    {
+      "commit": 48,
+      "accepted": true,
+      "sha_receipt": "5c3e3cca5abb0ac6dd4fd624bc66975197fb699d77663a6935cb33d99ce03fda",
+      "staged": [
+        "cells/cell_048.json"
+      ],
+      "head": "4c2baff7613c71f6022161bccd7037eda9c121ec"
+    },
+    {
+      "commit": 49,
+      "accepted": true,
+      "sha_receipt": "c6e3023e03e10f030b9969fe3a38efbf3ff2470c2038bd59f11fe40015ac1ce0",
+      "staged": [
+        "cells/cell_044.json",
+        "cells/cell_049.json"
+      ],
+      "head": "9a3cc14afb3e07e5fe13c05520baaedfc6c73244"
+    },
+    {
+      "commit": 50,
+      "accepted": true,
+      "sha_receipt": "a62ee9f75745e598cce4b5b755dfe77d4a9c47b9e6ae4e864d28d37fe43df21e",
+      "staged": [
+        "cells/cell_050.json"
+      ],
+      "head": "61329d0fbd414088c99d56e573a505df649c39ec"
+    },
+    {
+      "commit": 51,
+      "accepted": true,
+      "sha_receipt": "cc43fec6e5843a97fa9aab28ba6193ad05dad541818aeb1cd2f8f1d404be062a",
+      "staged": [
+        "cells/cell_051.json"
+      ],
+      "head": "2727983644a3a6539a4b86629d4f23b23ced2631"
+    },
+    {
+      "commit": 52,
+      "accepted": true,
+      "sha_receipt": "540e1755e8509ad947ac3b81f259980b5d192b8af20ec1e6d80377adf7c75371",
+      "staged": [
+        "cells/cell_052.json"
+      ],
+      "head": "02c93ab9998ddae30e36bf86ceeb0775d394668f"
+    },
+    {
+      "commit": 53,
+      "accepted": true,
+      "sha_receipt": "d75b947f0de7cfea79998c2c5866f12f3ba03feb29b0eb565ccf5edff36dbe8a",
+      "staged": [
+        "cells/cell_053.json"
+      ],
+      "head": "d85c9eb95323f346d3283b1ba21483396a6f5ed8"
+    },
+    {
+      "commit": 54,
+      "accepted": true,
+      "sha_receipt": "4b3b00145f52502a6036308daa358cd68f4ff81b62c2aeccbdaacd22477b542d",
+      "staged": [
+        "cells/cell_054.json"
+      ],
+      "head": "c59f27e31df912bf1ff0e84d1d0f205f1441f24c"
+    },
+    {
+      "commit": 55,
+      "accepted": true,
+      "sha_receipt": "e5d83c96327e8686a44df6e923e063698f19baaaa3c0333d4976f875e27d6d46",
+      "staged": [
+        "cells/cell_055.json"
+      ],
+      "head": "7d8da0656d4e4f9798024e09ff63ca6616ccac48"
+    },
+    {
+      "commit": 56,
+      "accepted": true,
+      "sha_receipt": "f38573970332dd24d65c225aa423bef2a8857c487ecc00ce5618fc503026875c",
+      "staged": [
+        "cells/cell_056.json"
+      ],
+      "head": "6d8a2d3a8e862d02da297ed4ee5397b194be65c9"
+    },
+    {
+      "commit": 57,
+      "accepted": true,
+      "sha_receipt": "38d42d97cee2cb4340bb013b2f3b8bd68f3d50159577b672742bd80ec849dc8e",
+      "staged": [
+        "cells/cell_057.json"
+      ],
+      "head": "f0e6f1728477b6becf0b3a42349d2751dd85c6cc"
+    },
+    {
+      "commit": 58,
+      "accepted": true,
+      "sha_receipt": "6e97dbf4e0672752f41add4bdc6643e63531ee426edabcdfa754d1f10914e0b7",
+      "staged": [
+        "cells/cell_058.json"
+      ],
+      "head": "a3d268c22da56718ac7c658adec89b8cb3b9c9c7"
+    },
+    {
+      "commit": 59,
+      "accepted": true,
+      "sha_receipt": "eb9efc31c53eb1fc4ab74192705274630d692d15d22302ddf2de691631d85a4b",
+      "staged": [
+        "cells/cell_013.json",
+        "cells/cell_059.json"
+      ],
+      "head": "a4528c495ff3d16b043fc5193c34a303e04b8737"
+    },
+    {
+      "commit": 60,
+      "accepted": true,
+      "sha_receipt": "5b6797922b20a5ea19ce4124b3202093431be6cb0820cf2859646121c4be29ae",
+      "staged": [
+        "cells/cell_060.json"
+      ],
+      "head": "f77bed46b111ee8742c77eb227f4de99a13f6abc"
+    },
+    {
+      "commit": 61,
+      "accepted": true,
+      "sha_receipt": "13106354a8403d54b7525bf9e4c53c12d4399f54a56925499591b381cbc08ee1",
+      "staged": [
+        "cells/cell_061.json"
+      ],
+      "head": "eb37b5110ec71bc5c48dfd8f3023b6d9e813892d"
+    },
+    {
+      "commit": 62,
+      "accepted": true,
+      "sha_receipt": "7b0eee0c0016bc6bd403c96eda9d153eee655710d55aa229107fee75da3939f2",
+      "staged": [
+        "cells/cell_062.json"
+      ],
+      "head": "74909d8ceacc35a5e188fd401a93549bcd13a269"
+    },
+    {
+      "commit": 63,
+      "accepted": true,
+      "sha_receipt": "d19f34b2143f67b5aa237bb6533a18eb2fd06a2cb369eb00b191d23033d0b75e",
+      "staged": [
+        "cells/cell_063.json"
+      ],
+      "head": "fe227ff1ea70cf0210c3d254ce2c55559df750a3"
+    },
+    {
+      "commit": 64,
+      "accepted": true,
+      "sha_receipt": "946b9ccb25ae85adedfca98c13bd0e094c5ba1f0de62b63ad16c9dbc8f81c012",
+      "staged": [
+        "cells/cell_064.json"
+      ],
+      "head": "d7330033d5fa4241aafe5d2e3ffc58ccaf1c67c7"
+    },
+    {
+      "commit": 65,
+      "accepted": true,
+      "sha_receipt": "4b3d5d47a364279fabb5977dd22c10a2b4e59e4ca6eb8422283c9ac29c6dc9d7",
+      "staged": [
+        "cells/cell_065.json"
+      ],
+      "head": "dfcc93417ed002659a8dbed7aff9cab48bd36e4a"
+    },
+    {
+      "commit": 66,
+      "accepted": true,
+      "sha_receipt": "e8451468c803a53c92f1107a7f9b7995b191fc8d21d0f137bb33ab5bd5cc591b",
+      "staged": [
+        "cells/cell_066.json"
+      ],
+      "head": "c0833ee86820f3d1b4c77f006b9bde4bae5a16da"
+    },
+    {
+      "commit": 67,
+      "accepted": true,
+      "sha_receipt": "88cdfa2b627c403de1d0bee45deb8b416f82605e6084d58e48879c32eb0e6182",
+      "staged": [
+        "cells/cell_067.json"
+      ],
+      "head": "a5a237c70c950209fd4cdc0246194a084f0f05ef"
+    },
+    {
+      "commit": 68,
+      "accepted": true,
+      "sha_receipt": "23620776f6f9ab2c36651d9867a9e9b7a5dd1ea5649d7037fde7f11b2d985c7f",
+      "staged": [
+        "cells/cell_068.json"
+      ],
+      "head": "ffbbaec9170b5aaaccf1b55ce68302210045696c"
+    },
+    {
+      "commit": 69,
+      "accepted": true,
+      "sha_receipt": "d6a294a3ab194e03a2781fe45c2c173c16c1f71e6302b3a51ff6fcab25fc3f9a",
+      "staged": [
+        "cells/cell_007.json",
+        "cells/cell_069.json"
+      ],
+      "head": "a11dfa25a083f5532b23d47c59b2a3027c4d5dac"
+    },
+    {
+      "commit": 70,
+      "accepted": true,
+      "sha_receipt": "e5cb819c5c1b0bf1038ba5cb2c9a18461950f30b992e767b3a2ed567185bc542",
+      "staged": [
+        "cells/cell_070.json"
+      ],
+      "head": "6d172c54543a35ae044f0bb0eaaa070011e0ee3b"
+    },
+    {
+      "commit": 71,
+      "accepted": true,
+      "sha_receipt": "23cb00bfcaf5bd1b6e0df1c2ceefae5d06df53fef4dc41cf69b7a448573f1cd6",
+      "staged": [
+        "cells/cell_071.json"
+      ],
+      "head": "0b8fcb6a25dad25d395e3853db2fbfc722f8fdae"
+    },
+    {
+      "commit": 72,
+      "accepted": true,
+      "sha_receipt": "f44fc66073c9aafabc106cc6fe4d525994fecdec77c0a861da3138c93b79aff8",
+      "staged": [
+        "cells/cell_072.json"
+      ],
+      "head": "fa3a44fd7a64bc4b62e4b8e391466e5f0742bcf8"
+    },
+    {
+      "commit": 73,
+      "accepted": true,
+      "sha_receipt": "fcf5b1d20feeeb796531e8b55a5634e7483972c97fe1a3944ad5045917baa70b",
+      "staged": [
+        "cells/cell_073.json"
+      ],
+      "head": "af2bd8181068ea58e00783787f7fb88df37e1560"
+    },
+    {
+      "commit": 74,
+      "accepted": true,
+      "sha_receipt": "6f61430591a15c9d6cdfc9c72d056384b15f63c27528b484b936962e6b404adf",
+      "staged": [
+        "cells/cell_074.json"
+      ],
+      "head": "263d036a5a113f473dc33fa110764ab62df141bc"
+    },
+    {
+      "commit": 75,
+      "accepted": true,
+      "sha_receipt": "324de070f81a019023fe78412a4361cc25280f4b1e3c152e1dddff952da99a88",
+      "staged": [
+        "cells/cell_075.json"
+      ],
+      "head": "c7b5a9768ff122b779f2c4e9f5e6ce5bc20bb5e2"
+    },
+    {
+      "commit": 76,
+      "accepted": true,
+      "sha_receipt": "5a4ad0bd817ecc2850441a9d5f08760c39b2e3e6a57ce2397371a8683fe1dc89",
+      "staged": [
+        "cells/cell_076.json"
+      ],
+      "head": "78fc82911ded5f75717a4a546f1c90b9a5cdec4f"
+    },
+    {
+      "commit": 77,
+      "accepted": true,
+      "sha_receipt": "652c40fcf7f3943975f76dff09d807676fbaf6d2d1c910f596149007abb2d5d2",
+      "staged": [
+        "cells/cell_077.json"
+      ],
+      "head": "e78ae37caba86b256334edc4902986b8a427f2ba"
+    },
+    {
+      "commit": 78,
+      "accepted": true,
+      "sha_receipt": "8db78633bfd86d88179759470ef59d0b6361457db0f226da8c6c7302cda3134f",
+      "staged": [
+        "cells/cell_078.json"
+      ],
+      "head": "dd24ae5280bc86fa7c936608751d4e6e880c6385"
+    },
+    {
+      "commit": 79,
+      "accepted": true,
+      "sha_receipt": "df81964a4b9a523a8049d12a8c3ec070edb5686e6b225f1f2899ec70e6b63f54",
+      "staged": [
+        "cells/cell_029.json",
+        "cells/cell_079.json"
+      ],
+      "head": "04ac5842f80e4f79645cb16b99c3a59eb9a36ebc"
+    },
+    {
+      "commit": 80,
+      "accepted": true,
+      "sha_receipt": "0aecce9f6ae5f1d057ecd9741d1d1004ae1584342ef032693d2c94bfc6ade273",
+      "staged": [
+        "cells/cell_080.json"
+      ],
+      "head": "03aa01da9bbf950e5756d6827b61810b1d0f46e3"
+    },
+    {
+      "commit": 81,
+      "accepted": true,
+      "sha_receipt": "0632ce4b01f86ec07fab4735fbbfffac5f87d6b0434d0d852a8242b4a69d8697",
+      "staged": [
+        "cells/cell_081.json"
+      ],
+      "head": "45b3111852247a4a0296dc2a50807225007a7809"
+    },
+    {
+      "commit": 82,
+      "accepted": true,
+      "sha_receipt": "bfbed404bd6c2f4c585231149c3e5d5f4f48628c860621a3f48d460a2bc0d254",
+      "staged": [
+        "cells/cell_082.json"
+      ],
+      "head": "4cfba75b877f15453e7355ce460fc41a0dfc8962"
+    },
+    {
+      "commit": 83,
+      "accepted": true,
+      "sha_receipt": "5f1599d9b833496b295a4a4cdad5a23e43c4691b34c464b4b1e1ce002f755bb5",
+      "staged": [
+        "cells/cell_083.json"
+      ],
+      "head": "2b7fa44af976bc91aedcff19826d6aba64c45534"
+    },
+    {
+      "commit": 84,
+      "accepted": true,
+      "sha_receipt": "3096f50399206368f4299d3bc052aef2d9f0481ab5e8e52e29f056206a96d2ac",
+      "staged": [
+        "cells/cell_084.json"
+      ],
+      "head": "1f2e029dc6e0bc870df03af0242ed46ee9887a9e"
+    },
+    {
+      "commit": 85,
+      "accepted": true,
+      "sha_receipt": "e5d802a0405e4333a61295b854a65c27bb6e2cb767b1441a1a3e406f2bff6f08",
+      "staged": [
+        "cells/cell_085.json"
+      ],
+      "head": "4f25878ae8ea39addca14433c0da64ba1cd5ce10"
+    },
+    {
+      "commit": 86,
+      "accepted": true,
+      "sha_receipt": "635a9da2c250e9d55d492296f2cdd45f63d497591a81ef533eb0fe329f367213",
+      "staged": [
+        "cells/cell_086.json"
+      ],
+      "head": "423bb290cc4cdf5c97b6672f1d5e50b987c98130"
+    },
+    {
+      "commit": 87,
+      "accepted": true,
+      "sha_receipt": "66e7c69f60d4ffaef4cd7a3126d420f4fed14a284f3913ab80e1ea8a87595f6b",
+      "staged": [
+        "cells/cell_087.json"
+      ],
+      "head": "73f29f6d4bf5da53a0a8e38b7f2e75400c9d56be"
+    },
+    {
+      "commit": 88,
+      "accepted": true,
+      "sha_receipt": "71bde8897330461e2145b0939ae5759ee0413d4255fadfd486314ac9fe1ca3c6",
+      "staged": [
+        "cells/cell_088.json"
+      ],
+      "head": "42e78d95855ee23d2821b13fb0ab1c61e57aa5f4"
+    },
+    {
+      "commit": 89,
+      "accepted": true,
+      "sha_receipt": "18bf6ad0aaa60428d43d32f408ee8accb9d73889bc74fff37cae77633a0179ff",
+      "staged": [
+        "cells/cell_053.json",
+        "cells/cell_089.json"
+      ],
+      "head": "6ca6f92338c23fefb0696d1cb21963e5ff61f245"
+    },
+    {
+      "commit": 90,
+      "accepted": true,
+      "sha_receipt": "d7f6b46032760269bb95edb260b81b79f5dfe5038388078bd132d3bf9b6358e5",
+      "staged": [
+        "cells/cell_090.json"
+      ],
+      "head": "252412bc9b7f97bfd79d84bfa817e49895ab08cc"
+    },
+    {
+      "commit": 91,
+      "accepted": true,
+      "sha_receipt": "0ce633a018092d68ba63874ba435aa8ba6fdfe7c5cd785a0affa4848db0c286e",
+      "staged": [
+        "cells/cell_091.json"
+      ],
+      "head": "7e51d236dc2497031fe32ce3a8daf00f24878d32"
+    },
+    {
+      "commit": 92,
+      "accepted": true,
+      "sha_receipt": "939a68d8edfd5f4daf1c2519df71a0cf659595cc945b9730f43acb14df531e75",
+      "staged": [
+        "cells/cell_092.json"
+      ],
+      "head": "341cbb2485e9f6f94a0259abb85980d0b34accfe"
+    },
+    {
+      "commit": 93,
+      "accepted": true,
+      "sha_receipt": "f0841b78f7b9988f4c8b492548023d5439cf03cc6745c98912d4d7f67a9c2493",
+      "staged": [
+        "cells/cell_093.json"
+      ],
+      "head": "1347ec88d8c3935372c6c21452c79f9268001b58"
+    },
+    {
+      "commit": 94,
+      "accepted": true,
+      "sha_receipt": "6a6b9cfdfa309398e52f37e159d713de072d490db34828176ade8286ca8d6278",
+      "staged": [
+        "cells/cell_094.json"
+      ],
+      "head": "a327d7f518bc647108e012813f0a894e95eefeb4"
+    },
+    {
+      "commit": 95,
+      "accepted": true,
+      "sha_receipt": "725eddd59eba94ccd89eea54b02eb85c8b1129f5fce054e80a6b8c5119864468",
+      "staged": [
+        "cells/cell_095.json"
+      ],
+      "head": "16a832ccbb1e71462552f91565954a8f408dbad2"
+    },
+    {
+      "commit": 96,
+      "accepted": true,
+      "sha_receipt": "b43901e7ce48ca8cb14baa370ec662bf0bbc094ab6a23b83302fba14b4f147fd",
+      "staged": [
+        "cells/cell_096.json"
+      ],
+      "head": "07eca9600044ebfc5f99d33cec4fb81dd395c9ca"
+    },
+    {
+      "commit": 97,
+      "accepted": true,
+      "sha_receipt": "f3d9ea76e7bdcd17af5f2561ebe4149af1ea4a80dd7de0aab24902db3a2be7cb",
+      "staged": [
+        "cells/cell_097.json"
+      ],
+      "head": "3e02f8e1a36a1183c05a2f6db77ff572ff8d92ec"
+    },
+    {
+      "commit": 98,
+      "accepted": true,
+      "sha_receipt": "808d1a9ee87ec4b39c9b7567895c8ff6a4050fe188c1b6ea5e91aba086fb2c4f",
+      "staged": [
+        "cells/cell_098.json"
+      ],
+      "head": "dbf7014573928acfb24537e065d704bd09e61495"
+    },
+    {
+      "commit": 99,
+      "accepted": true,
+      "sha_receipt": "a8eef19c13b34129049e9d03dccc6de03f527a09c0e356ccf00e10a5ba7a59a6",
+      "staged": [
+        "cells/cell_047.json",
+        "cells/cell_099.json"
+      ],
+      "head": "dc646862aabe97ae516bf9849aee06a9557b4f91"
+    },
+    {
+      "commit": 100,
+      "accepted": true,
+      "sha_receipt": "6dd8849bdf7a25fe0c07098b2fbd9d4c60e7326263ef526e6bbe63df30eb4b62",
+      "staged": [
+        "cells/cell_100.json"
+      ],
+      "head": "6113cebecd08c4f5d7f6a8000de66afe8430a193"
+    },
+    {
+      "commit": 101,
+      "accepted": true,
+      "sha_receipt": "01ba2ae7e3a37855329de99e1c35e73ba4f09efc265f66230bee02068c848e0c",
+      "staged": [
+        "cells/cell_101.json"
+      ],
+      "head": "8c986eeaaec5ed0daf95de8f60d1d64b4085c89b"
+    },
+    {
+      "commit": 102,
+      "accepted": true,
+      "sha_receipt": "1b2603e81b251a3e21d1818f6348b73c7d5cb00e332a38549c5598829483e7bb",
+      "staged": [
+        "cells/cell_102.json"
+      ],
+      "head": "3134f1b720b5f8eb9607cd7788bef4f62280effb"
+    },
+    {
+      "commit": 103,
+      "accepted": true,
+      "sha_receipt": "50925caf654a51e78ce66f2d5b2b21d98093c1ccddb18838b7832276cc1d1408",
+      "staged": [
+        "cells/cell_103.json"
+      ],
+      "head": "ecc9ffdc89592ba3bd9516f0ddcd11d0a3ace2b6"
+    },
+    {
+      "commit": 104,
+      "accepted": true,
+      "sha_receipt": "96a3ad90091323568d13e33bb2f8a2e25dd5a8122285a09c2bbdc3759107d179",
+      "staged": [
+        "cells/cell_104.json"
+      ],
+      "head": "08b7ed02e752041bfdc460184fe85016fad0ad10"
+    },
+    {
+      "commit": 105,
+      "accepted": true,
+      "sha_receipt": "24a45cb361f19b222682b6c129c2703a260f8bb538f5c369c1cedb0898ddce0f",
+      "staged": [
+        "cells/cell_105.json"
+      ],
+      "head": "5bb9c7cd44a98170c9a5ac2ecb0b6ca12ca5d6ce"
+    },
+    {
+      "commit": 106,
+      "accepted": true,
+      "sha_receipt": "e870668af934541a906139936416cf4c25d82b616ef861669d2c557d5feddd7e",
+      "staged": [
+        "cells/cell_106.json"
+      ],
+      "head": "19586055681d10021ce19b3f3b7963111b1bf4e2"
+    },
+    {
+      "commit": 107,
+      "accepted": true,
+      "sha_receipt": "98d2241b2313bebfc482e6128b26d1485377f7e7fd846329936622c0fcc610fc",
+      "staged": [
+        "cells/cell_107.json"
+      ],
+      "head": "0278e15d0156d6a81e05bc641095d0fc881792ce"
+    },
+    {
+      "commit": 108,
+      "accepted": true,
+      "sha_receipt": "0bc28b4f4891e6256e0824048bd47576a7f300219a04788a6f6e9f7c9a58ccef",
+      "staged": [
+        "cells/cell_108.json"
+      ],
+      "head": "9bcbdd4f754548137b97b330ed09aadc93c42dd3"
+    },
+    {
+      "commit": 109,
+      "accepted": true,
+      "sha_receipt": "3a0bd1d79096748c347cbec9d2a7a09ec0bf668e73bb8957ea946de6f658c1fc",
+      "staged": [
+        "cells/cell_018.json",
+        "cells/cell_109.json"
+      ],
+      "head": "1f43552aa782dbcb5d6a5abb9de4247b00b78346"
+    },
+    {
+      "commit": 110,
+      "accepted": true,
+      "sha_receipt": "7bbfb2f3dd38618e19ceddb163ec7d97232f688806802d2356ff268c21b5a88e",
+      "staged": [
+        "cells/cell_110.json"
+      ],
+      "head": "c099fdabaf967f8ba2a70c9701773349ae9d9fc0"
+    },
+    {
+      "commit": 111,
+      "accepted": true,
+      "sha_receipt": "40a4933e6cc090db2aa2039ff1f1ce1e4d80f517d0d3f210c6f8e15609a83dad",
+      "staged": [
+        "cells/cell_111.json"
+      ],
+      "head": "2ec424131dbc5a54e25dd578a1d5430c60991f8c"
+    },
+    {
+      "commit": 112,
+      "accepted": true,
+      "sha_receipt": "bae7ee8c9bd6e6eee5fffe0bf476fb6909de25cab820de15832c1d010926256f",
+      "staged": [
+        "cells/cell_112.json"
+      ],
+      "head": "41f190d50560e130439bf87379d04671e9bc2078"
+    },
+    {
+      "commit": 113,
+      "accepted": true,
+      "sha_receipt": "c59e73a791cf07ab33f7996aabb1c0c4f5ad2469cf377feabc8d5b9040723a7a",
+      "staged": [
+        "cells/cell_113.json"
+      ],
+      "head": "12490972b1996e389730d100016ca480693b5b6f"
+    },
+    {
+      "commit": 114,
+      "accepted": true,
+      "sha_receipt": "140f8ad1a232568e9c609921cab2132d894e0c60424d84c7b86c51b3bb32aeaa",
+      "staged": [
+        "cells/cell_114.json"
+      ],
+      "head": "ac047be0742982ee94c51707ae9169d226f91f6f"
+    },
+    {
+      "commit": 115,
+      "accepted": true,
+      "sha_receipt": "fb8c86ea3b80ac2479f5cd76803497f3e248cc64be3110f42923d9e9a211f93f",
+      "staged": [
+        "cells/cell_115.json"
+      ],
+      "head": "ddf3e4484760a9738291becb91ff041c21e5429e"
+    },
+    {
+      "commit": 116,
+      "accepted": true,
+      "sha_receipt": "c58162be06d470ac9b847de8916b0888d330cb94624f8969cfdbde9cf7ccd74e",
+      "staged": [
+        "cells/cell_116.json"
+      ],
+      "head": "f4dd1934851dc5c8edd3ab8969bc11fbc32089e9"
+    },
+    {
+      "commit": 117,
+      "accepted": true,
+      "sha_receipt": "2914e321179260ebf3eeb2b4f8a1d1a7b1e7a693e1c24a3688a42387f1dfdbc0",
+      "staged": [
+        "cells/cell_117.json"
+      ],
+      "head": "b224edfbd111e2643c8c2273e325bb631402967d"
+    },
+    {
+      "commit": 118,
+      "accepted": true,
+      "sha_receipt": "becbe03aa70b769a54e19e3fa0c14d4651425cebc1315799b53a3a73476d6f00",
+      "staged": [
+        "cells/cell_118.json"
+      ],
+      "head": "ddd7fa525d3feee6b132d7b7dcecad76d6116cc2"
+    },
+    {
+      "commit": 119,
+      "accepted": true,
+      "sha_receipt": "671fbd807f112c001efb7002855cc4e65154cfe4b0a06b7eb71583788e55ab61",
+      "staged": [
+        "cells/cell_017.json",
+        "cells/cell_119.json"
+      ],
+      "head": "12df3fcbd855ae5d2fe66aa3dd650751fe3b64a0"
+    }
+  ]
+}

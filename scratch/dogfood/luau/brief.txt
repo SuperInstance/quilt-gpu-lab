@@ -1,0 +1,57 @@
+You are writing a REAL production module in Luau (Roblox) for the fleet's Roblox bridge. It is the PONG LAW — the physics/referee rules ported from the shipped quilt-arcade pong game sheet. Write it carefully and completely; it will be syntax-checked and unit-tested.
+
+THE LAW (authoritative — port verbatim in behavior):
+
+Constants: field W=100, H=60; paddle half-height PH=6; paddle faces x=2 (left), x=98 (right).
+Per-side paddle speed: left 0.85, right 0.70 per tick. Deadzone = 1.5. Clamp paddle y to [PH, H-PH] = [6, 54].
+
+1) track(side, paddleY, ballY) -> newY   (the "derived AI law"):
+   speed = (side == "left") and 0.85 or 0.70
+   dead = 1.5
+   y = paddleY
+   if |target - y| > dead then y = y + sign(target - y) * min(speed, |target - y| - dead)
+   y = clamp(y, 6, 54)
+   return y
+
+2) wallBounce(y, vy) -> (y, vy, fired)   (W1 wall reflection, field closed at y=0 and y=60):
+   if y < 1 then fired=true; y = 1 + (1 - y); vy = -vy
+   elseif y > H-1 (=59) then fired=true; y = 59 - (y - 59); vy = -vy
+   else fired=false
+   (note: the visible field is 60 tall; the reflect plane sits at y=1 and y=59)
+
+3) paddleReturn(x, vx, ballY, paddleY, side) -> (vx, vy, fired)   (W2 paddle return):
+   face = (side=="left") and 2 or 98
+   reach = |ballY - paddleY| <= PH + 1        (i.e. <= 7)
+   atFace = (side=="left") and (x-1 <= face and x > face-2.5)  or (side=="right") and (x+1 >= face and x < face+2.5)
+   approaching = (side=="left") and vx < 0 or (side=="right") and vx > 0
+   if atFace and reach and approaching:
+       speed = min(|vx| * 1.04, 2.6)
+       nvx = (side=="left") and speed or -speed
+       nvy = (ballY - paddleY) * 0.12
+       fired = true
+   else fired = false, nvx = vx, nvy unchanged (return vx unchanged, vy = 0 for the non-firing case is fine — document it)
+   return (nvx, nvy, fired)
+
+4) score(x, side) -> point   (W3 goal): if side=="left" and x < -3 -> "right"; if side=="right" and x > 103 -> "left"; else nil
+
+DELIVERABLES — emit EXACTLY these three delimited sections, nothing before the first marker:
+
+=== LUAU_MODULE ===
+File: src/pong_law.luau — with `--!strict` at the top. Fully typed Luau:
+  - `export type Landing = {...}` etc. as appropriate
+  - module tables: `local PongLaw = {}` with typed functions
+  - `return PongLaw`
+  Use proper Luau types (number, string, boolean, table types, `export type`). No Lua-5.1-only hacks.
+  Include a `clamp` helper and a `sign` helper.
+
+=== LUA_TEST ===
+File: tests/pong_law_test.lua — a PLAIN LUA 5.1 test harness. It MUST be checkable by `luac -p` and runnable by `lua5.1` (so: NO Luau type annotations, NO `continue`, NO `+=`, NO compound assignment, NO `//`). It must:
+  - re-implement the SAME four laws in plain Lua (mirroring the Luau module exactly), OR require a type-stripped copy; whichever you choose, state it in a comment line.
+  - run assertions with a tiny `eq(got, want, label)` helper that increments pass/fail and prints "FAIL ..." lines.
+  - cover: track (inside deadzone -> unchanged; ramp; saturation; clamp at 6 and 54; left vs right speed), wallBounce (floor, ceiling, neither, exact boundary y=1 and y=59), paddleReturn (firing left, firing right, reach miss, face miss, wrong direction), score (both goals, in-play).
+  - print a final "PASS n/m" line and `os.exit(fails == 0 and 0 or 1)`.
+
+=== NOTES ===
+3-8 lines: anything ambiguous in the law; the exact test count; any place you deviated.
+
+Be exact. No prose outside the three sections.

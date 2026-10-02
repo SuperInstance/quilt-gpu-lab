@@ -1,0 +1,681 @@
+Okay, let's tackle this problem step by step. We need to compute add, mul, conj, and norm for each given vector of Eisenstein integers. First, I need to make sure I understand the operations correctly.
+
+Given z = (a, b) where z = a + b*omega, and omega^2 = -1 - omega.
+
+The operations defined:
+
+- add(z, w) = (a + c, b + d) where w = (c, d). So straightforward component-wise addition.
+
+- mul(z, w) = (a*c - b*d, a*d + b*c - b*d). Let me verify this multiplication formula. Maybe I should recall how multiplication works in Eisenstein integers. Normally, for omega where omega^2 + omega + 1 = 0 (since omega^2 = -1 - omega), the multiplication of (a + b omega) and (c + d omega) should be:
+
+(a + b omega)(c + d omega) = a c + a d omega + b c omega + b d omega^2
+= a c + (a d + b c) omega + b d (-1 - omega)
+= a c - b d + (a d + b c - b d) omega.
+
+Yes, that matches the given mul formula: (a*c - b*d, a*d + b*c - b*d). Good.
+
+- conj(z) = (a - b, -b). Let's check. The conjugate in Eisenstein integers: since omega has conjugate omega^2 (because the minimal polynomial is x^2 + x + 1, roots omega and omega^2), so conj(a + b omega) = a + b omega^2. But omega^2 = -1 - omega, so:
+
+a + b (-1 - omega) = a - b - b omega. So in terms of (a', b') where z = a' + b' omega, this would be (a - b, -b). Yes, that's correct. So conj(z) = (a - b, -b).
+
+- norm(z) = a^2 - a b + b^2. The norm should be z * conj(z), which is (a + b omega)(a + b omega^2) = a^2 + a b (omega + omega^2) + b^2 omega omega^2. Since omega + omega^2 = -1 (from omega^2 + omega + 1 = 0), and omega omega^2 = omega^3 = 1 (since omega^3 = 1 for primitive 3rd root of unity). So norm is a^2 + a b (-1) + b^2 (1) = a^2 - a b + b^2. Correct.
+
+Now, for each vector, we need to compute these four operations.
+
+Let's go through each i from 120 to 129.
+
+Starting with i=120: z=(-5,-5), w=(-5,-1)
+
+First, add(z,w): (-5 + (-5), -5 + (-1)) = (-10, -6)
+
+mul(z,w): (a*c - b*d, a*d + b*c - b*d)
+
+a=-5, b=-5, c=-5, d=-1
+
+First component: (-5)(-5) - (-5)(-1) = 25 - 5 = 20
+
+Second component: (-5)(-1) + (-5)(-5) - (-5)(-1) = 5 + 25 - 5 = 25
+
+Wait, let's compute step by step:
+
+a*d = (-5)*(-1) = 5
+
+b*c = (-5)*(-5) = 25
+
+b*d = (-5)*(-1) = 5
+
+So second component: 5 + 25 - 5 = 25. So mul is (20, 25)
+
+conj(z): (a - b, -b) = (-5 - (-5), -(-5)) = (0, 5)
+
+norm(z): a^2 -a b + b^2 = (-5)^2 - (-5)(-5) + (-5)^2 = 25 -25 +25 =25
+
+Wait: 25 - (25) +25 = 25. Yes.
+
+So for i=120:
+
+add: (-10, -6)
+
+mul: (20, 25)
+
+conj: (0, 5)
+
+norm: 25
+
+Now check if I did that right.
+
+Wait, conj(z) for z=(-5,-5): a=-5, b=-5. So conj is (a - b, -b) = (-5 - (-5), -(-5)) = (0,5). Correct.
+
+norm: (-5)^2 - (-5)(-5) + (-5)^2 = 25 -25 +25 =25. Correct.
+
+mul: a*c - b*d = (-5)(-5) - (-5)(-1) =25 -5=20. Correct.
+
+a*d + b*c - b*d = (-5)(-1) + (-5)(-5) - (-5)(-1) =5 +25 -5=25. Correct.
+
+Okay.
+
+Next, i=121: z=(-7,-6), w=(7,0)
+
+add: (-7+7, -6+0) = (0, -6)
+
+mul: a=-7, b=-6, c=7, d=0
+
+First component: (-7)(7) - (-6)(0) = -49 -0 = -49
+
+Second component: (-7)(0) + (-6)(7) - (-6)(0) =0 + (-42) -0 = -42
+
+So mul: (-49, -42)
+
+conj(z): (a - b, -b) = (-7 - (-6), -(-6)) = (-1, 6)
+
+norm(z): (-7)^2 - (-7)(-6) + (-6)^2 =49 -42 +36= 43. 49-42=7, 7+36=43.
+
+Check: 49 - (42) +36 = 43. Correct.
+
+i=122: z=(-4,1), w=(8,0)
+
+add: (-4+8, 1+0) = (4,1)
+
+mul: a=-4, b=1, c=8, d=0
+
+First component: (-4)(8) - (1)(0) = -32 -0 = -32
+
+Second component: (-4)(0) + (1)(8) - (1)(0) =0 +8 -0=8
+
+So mul: (-32,8)
+
+conj(z): (a - b, -b) = (-4 -1, -1) = (-5, -1)
+
+norm(z): (-4)^2 - (-4)(1) + (1)^2 =16 +4 +1=21. Because -a*b: a is -4, b is 1, so -a*b = -(-4)(1)=4. So 16 +4 +1=21. Correct.
+
+i=123: z=(5,5), w=(-4,9)
+
+add: (5 + (-4),5+9) = (1,14)
+
+mul: a=5, b=5, c=-4, d=9
+
+First component: 5*(-4) -5*9 = -20 -45 = -65
+
+Second component:5*9 +5*(-4) -5*9 =45 -20 -45= -20
+
+Wait: a*d + b*c - b*d =5*9 +5*(-4) -5*9 =45 -20 -45= -20. Yes.
+
+So mul: (-65, -20)
+
+conj(z): (5 -5, -5) = (0, -5)
+
+norm(z):5^2 -5*5 +5^2=25 -25 +25=25. Correct.
+
+i=124: z=(-9,3), w=(-9,3)
+
+add: (-9 + (-9), 3+3)= (-18,6)
+
+mul: a=-9, b=3, c=-9, d=3
+
+First component: (-9)(-9) -3*3=81 -9=72
+
+Second component: (-9)(3) +3*(-9) -3*3= -27 -27 -9= -63
+
+Wait: a*d = (-9)(3) = -27; b*c=3*(-9)=-27; b*d=3*3=9. So second component: -27 + (-27) -9= -63.
+
+So mul: (72, -63)
+
+conj(z): (a - b, -b) = (-9 -3, -3)= (-12, -3)
+
+norm(z): (-9)^2 - (-9)(3) +3^2=81 +27 +9=117. Because -a*b: a=-9, b=3, so -a*b = -(-9)(3)=27. So 81 +27 +9=117.
+
+i=125: z=(7,-7), w=(9,-7)
+
+add: (7+9, -7 + (-7))= (16, -14)
+
+mul: a=7, b=-7, c=9, d=-7
+
+First component:7*9 - (-7)(-7)=63 -49=14
+
+Second component:7*(-7) + (-7)*9 - (-7)(-7)= -49 -63 -49= -161
+
+Wait: a*d =7*(-7)= -49; b*c= (-7)*9= -63; b*d= (-7)(-7)=49. So second component: -49 + (-63) -49= -49-63= -112, -112-49= -161. Yes.
+
+So mul: (14, -161)
+
+conj(z): (a - b, -b) = (7 - (-7), -(-7))= (14,7)
+
+norm(z):7^2 -7*(-7) + (-7)^2=49 +49 +49=147. Because -a*b: a=7, b=-7, so -a*b= -7*(-7)=49. So 49 +49 +49=147.
+
+i=126: z=(1,8), w=(1,5)
+
+add: (1+1,8+5)=(2,13)
+
+mul: a=1, b=8, c=1, d=5
+
+First component:1*1 -8*5=1 -40= -39
+
+Second component:1*5 +8*1 -8*5=5 +8 -40= -27
+
+So mul: (-39, -27)
+
+conj(z): (1 -8, -8)= (-7, -8)
+
+norm(z):1^2 -1*8 +8^2=1 -8 +64=57.
+
+i=127: z=(-4,6), w=(4,-3)
+
+add: (-4+4,6 + (-3))=(0,3)
+
+mul: a=-4, b=6, c=4, d=-3
+
+First component: (-4)(4) -6*(-3)= -16 +18=2
+
+Second component: (-4)(-3) +6*4 -6*(-3)=12 +24 +18=54
+
+Wait: a*d = (-4)(-3)=12; b*c=6*4=24; b*d=6*(-3)=-18. So second component:12 +24 - (-18)? Wait no: the formula is a*d + b*c - b*d.
+
+Wait b*d is 6*(-3) = -18. So -b*d would be -(-18)=18? Wait no: the formula says a*d + b*c - b*d.
+
+So it's a*d + b*c - (b*d). So:
+
+a*d = (-4)(-3)=12
+
+b*c=6*4=24
+
+b*d=6*(-3)=-18
+
+Thus, second component:12 +24 - (-18) = 12+24+18=54. Yes.
+
+So mul: (2,54)
+
+conj(z): (a - b, -b) = (-4 -6, -6)= (-10, -6)
+
+norm(z): (-4)^2 - (-4)(6) +6^2=16 +24 +36=76.
+
+i=128: z=(-5,-9), w=(-5,3)
+
+add: (-5 + (-5), -9 +3)= (-10, -6)
+
+mul: a=-5, b=-9, c=-5, d=3
+
+First component: (-5)(-5) - (-9)(3)=25 +27=52
+
+Second component: (-5)(3) + (-9)(-5) - (-9)(3)= -15 +45 +27=57
+
+Wait: a*d = (-5)(3)= -15; b*c= (-9)(-5)=45; b*d= (-9)(3)= -27. So second component: -15 +45 - (-27) = -15 +45 +27=57.
+
+Yes. So mul: (52,57)
+
+conj(z): (a - b, -b) = (-5 - (-9), -(-9))= (4,9)
+
+norm(z): (-5)^2 - (-5)(-9) + (-9)^2=25 -45 +81=61. 25-45= -20, -20+81=61.
+
+i=129: z=(0,-6), w=(3,-6)
+
+add: (0+3, -6 + (-6))= (3, -12)
+
+mul: a=0, b=-6, c=3, d=-6
+
+First component:0*3 - (-6)(-6)=0 -36= -36
+
+Second component:0*(-6) + (-6)*3 - (-6)(-6)=0 -18 -36= -54
+
+conj(z): (a - b, -b) = (0 - (-6), -(-6))= (6,6)
+
+norm(z):0^2 -0*(-6) + (-6)^2=0 +0 +36=36.
+
+Now, let's verify each step again to avoid mistakes.
+
+For i=120:
+
+z=(-5,-5), w=(-5,-1)
+
+add: (-10, -6) correct.
+
+mul: a*c =25, b*d=5, so 25-5=20. Correct.
+
+a*d=5, b*c=25, so 5+25-5=25. Correct.
+
+conj: (0,5). Correct.
+
+norm: 25 -25 +25=25. Correct.
+
+i=121:
+
+z=(-7,-6), w=(7,0)
+
+add: (0, -6). Correct.
+
+mul: a*c= -49, b*d=0, so -49. Correct.
+
+a*d=0, b*c= -42, so 0 + (-42) -0= -42. Correct.
+
+conj: (-7 - (-6)= -1, 6). Correct.
+
+norm: 49 -42 +36=43. Correct.
+
+i=122:
+
+z=(-4,1), w=(8,0)
+
+add: (4,1). Correct.
+
+mul: a*c= -32, b*d=0, so -32. Correct.
+
+a*d=0, b*c=8, so 0 +8 -0=8. Correct.
+
+conj: (-4-1= -5, -1). Correct.
+
+norm: 16 - (-4)(1) +1=16 +4 +1=21. Correct.
+
+i=123:
+
+z=(5,5), w=(-4,9)
+
+add: (1,14). Correct.
+
+mul: 5*(-4)= -20, 5*9=45, so first component: -20 -45= -65. Correct.
+
+a*d=5*9=45, b*c=5*(-4)= -20, b*d=45. So second component:45 -20 -45= -20. Correct.
+
+conj: (0, -5). Correct.
+
+norm:25 -25 +25=25. Correct.
+
+i=124:
+
+z=(-9,3), w=(-9,3)
+
+add: (-18,6). Correct.
+
+mul: (-9)(-9)=81, 3*3=9, so 81-9=72. Correct.
+
+a*d= (-9)(3)= -27, b*c=3*(-9)= -27, b*d=9. So second component: -27 -27 -9= -63. Correct.
+
+conj: (-9-3= -12, -3). Correct.
+
+norm:81 - (-9)(3) +9=81 +27 +9=117. Correct.
+
+i=125:
+
+z=(7,-7), w=(9,-7)
+
+add: (16, -14). Correct.
+
+mul:7*9=63, (-7)(-7)=49, so 63-49=14. Correct.
+
+a*d=7*(-7)= -49, b*c= (-7)*9= -63, b*d=49. So second component: -49 -63 -49= -161. Correct.
+
+conj:7 - (-7)=14, -(-7)=7. So (14,7). Correct.
+
+norm:49 -7*(-7) +49=49 +49 +49=147. Correct.
+
+i=126:
+
+z=(1,8), w=(1,5)
+
+add: (2,13). Correct.
+
+mul:1*1=1, 8*5=40, so 1-40= -39. Correct.
+
+a*d=1*5=5, b*c=8*1=8, b*d=40. So 5+8-40= -27. Correct.
+
+conj:1-8= -7, -8. Correct.
+
+norm:1 -8 +64=57. Correct.
+
+i=127:
+
+z=(-4,6), w=(4,-3)
+
+add: (0,3). Correct.
+
+mul: (-4)(4)= -16, 6*(-3)= -18, so first component: -16 - (-18)=2. Wait, no: the formula is a*c - b*d. a*c is (-4)(4)= -16. b*d is 6*(-3)= -18. So a*c - b*d = -16 - (-18)=2. Correct.
+
+Second component: a*d + b*c - b*d. a*d= (-4)(-3)=12, b*c=6*4=24, b*d= -18. So 12 +24 - (-18)= 12+24+18=54. Correct.
+
+conj: (-4-6= -10, -6). Correct.
+
+norm:16 - (-4)(6) +36=16 +24 +36=76. Correct.
+
+i=128:
+
+z=(-5,-9), w=(-5,3)
+
+add: (-10, -6). Correct.
+
+mul: a*c=25, b*d= (-9)(3)= -27. So a*c - b*d=25 - (-27)=52. Correct.
+
+Second component: a*d + b*c - b*d. a*d= (-5)(3)= -15, b*c= (-9)(-5)=45, b*d= -27. So -15 +45 - (-27)= -15+45+27=57. Correct.
+
+conj: (-5 - (-9)=4, 9). Correct.
+
+norm:25 - (-5)(-9) +81=25 -45 +81=61. Correct.
+
+i=129:
+
+z=(0,-6), w=(3,-6)
+
+add: (3, -12). Correct.
+
+mul: a*c=0, b*d= (-6)(-6)=36. So 0 -36= -36. Correct.
+
+Second component: a*d=0*(-6)=0, b*c= (-6)*3= -18, b*d=36. So 0 + (-18) -36= -54. Correct.
+
+conj: (0 - (-6)=6, 6). Correct.
+
+norm:0 -0 +36=36. Correct.
+
+Now, let's write each line as per the required format:
+
+i add:A B mul:A B conj:A B norm:N
+
+For each i, the values.
+
+i=120:
+
+add: (-10, -6) → add:-10 -6
+
+mul: (20,25) → mul:20 25
+
+conj: (0,5) → conj:0 5
+
+norm:25
+
+So line: 120 add:-10 -6 mul:20 25 conj:0 5 norm:25
+
+Wait, the problem says "format: i add:A B mul:A B conj:A B norm:N"
+
+So for add, it's "add:A B" where A and B are the components.
+
+So for add, if the result is (x,y), then "add:x y".
+
+Similarly for others.
+
+So for i=120:
+
+add: (-10, -6) → add:-10 -6
+
+mul: (20,25) → mul:20 25
+
+conj: (0,5) → conj:0 5
+
+norm:25
+
+Yes.
+
+Now check if all numbers are correct.
+
+Let me recheck i=127's norm: z=(-4,6). norm is a² -ab +b².
+
+a=-4, b=6.
+
+a²=16, ab= -24, so -ab=24. b²=36. 16 +24 +36=76. Correct.
+
+i=128: z=(-5,-9). a=-5, b=-9.
+
+a²=25, ab=45, so -ab= -45. b²=81. 25 -45 +81=61. Correct.
+
+i=129: z=(0,-6). a=0, b=-6.
+
+a²=0, ab=0, so -ab=0. b²=36. 0 +0 +36=36. Correct.
+
+Now, let's write all lines.
+
+i=120:
+
+add: (-10, -6) → add:-10 -6
+
+mul: (20,25) → mul:20 25
+
+conj: (0,5) → conj:0 5
+
+norm:25
+
+i=121:
+
+add: (0, -6) → add:0 -6
+
+mul: (-49, -42) → mul:-49 -42
+
+conj: (-1,6) → conj:-1 6
+
+norm:43
+
+i=122:
+
+add: (4,1) → add:4 1
+
+mul: (-32,8) → mul:-32 8
+
+conj: (-5,-1) → conj:-5 -1
+
+norm:21
+
+i=123:
+
+add: (1,14) → add:1 14
+
+mul: (-65, -20) → mul:-65 -20
+
+conj: (0, -5) → conj:0 -5
+
+norm:25
+
+i=124:
+
+add: (-18,6) → add:-18 6
+
+mul: (72, -63) → mul:72 -63
+
+conj: (-12, -3) → conj:-12 -3
+
+norm:117
+
+i=125:
+
+add: (16, -14) → add:16 -14
+
+mul: (14, -161) → mul:14 -161
+
+conj: (14,7) → conj:14 7
+
+norm:147
+
+i=126:
+
+add: (2,13) → add:2 13
+
+mul: (-39, -27) → mul:-39 -27
+
+conj: (-7, -8) → conj:-7 -8
+
+norm:57
+
+i=127:
+
+add: (0,3) → add:0 3
+
+mul: (2,54) → mul:2 54
+
+conj: (-10, -6) → conj:-10 -6
+
+norm:76
+
+i=128:
+
+add: (-10, -6) → add:-10 -6
+
+mul: (52,57) → mul:52 57
+
+conj: (4,9) → conj:4 9
+
+norm:61
+
+i=129:
+
+add: (3, -12) → add:3 -12
+
+mul: (-36, -54) → mul:-36 -54
+
+conj: (6,6) → conj:6 6
+
+norm:36
+
+Now, check for possible sign errors.
+
+For i=121, conj(z) where z=(-7,-6): conj is (a - b, -b) = (-7 - (-6), -(-6)) = (-1, 6). Correct.
+
+i=122, conj(z)=(-4-1, -1)=(-5,-1). Correct.
+
+i=123, conj(z)=(5-5, -5)=(0,-5). Correct.
+
+i=124, conj(z)=(-9-3, -3)=(-12,-3). Correct.
+
+i=125, conj(z)=(7 - (-7), 7)=(14,7). Correct.
+
+i=126, conj(z)=(1-8, -8)=(-7,-8). Correct.
+
+i=127, conj(z)=(-4-6, -6)=(-10,-6). Correct.
+
+i=128, conj(z)=(-5 - (-9), 9)=(4,9). Correct.
+
+i=129, conj(z)=(0 - (-6), 6)=(6,6). Correct.
+
+All conj look good.
+
+Now, check mul for i=125: z=(7,-7), w=(9,-7)
+
+a=7, b=-7, c=9, d=-7.
+
+First component: a*c - b*d =7*9 - (-7)(-7)=63 -49=14. Correct.
+
+Second component: a*d + b*c - b*d =7*(-7) + (-7)*9 - (-7)(-7) = -49 -63 -49= -161. Correct.
+
+Yes.
+
+i=127: z=(-4,6), w=(4,-3)
+
+a=-4, b=6, c=4, d=-3.
+
+First component: (-4)(4) -6*(-3)= -16 +18=2. Correct.
+
+Second component: (-4)(-3) +6*4 -6*(-3)=12 +24 +18=54. Correct.
+
+i=128: z=(-5,-9), w=(-5,3)
+
+a=-5, b=-9, c=-5, d=3.
+
+First component: (-5)(-5) - (-9)(3)=25 +27=52. Correct.
+
+Second component: (-5)(3) + (-9)(-5) - (-9)(3)= -15 +45 +27=57. Correct.
+
+i=129: z=(0,-6), w=(3,-6)
+
+a=0, b=-6, c=3, d=-6.
+
+First component:0*3 - (-6)(-6)=0 -36= -36. Correct.
+
+Second component:0*(-6) + (-6)*3 - (-6)(-6)=0 -18 -36= -54. Correct.
+
+All seems correct.
+
+Now, write each line exactly as required.
+
+The format is: i add:A B mul:A B conj:A B norm:N
+
+So for each i, the line starts with i, then add: followed by the two components, etc.
+
+Now, let's list them:
+
+120 add:-10 -6 mul:20 25 conj:0 5 norm:25
+
+121 add:0 -6 mul:-49 -42 conj:-1 6 norm:43
+
+122 add:4 1 mul:-32 8 conj:-5 -1 norm:21
+
+123 add:1 14 mul:-65 -20 conj:0 -5 norm:25
+
+124 add:-18 6 mul:72 -63 conj:-12 -3 norm:117
+
+125 add:16 -14 mul:14 -161 conj:14 7 norm:147
+
+126 add:2 13 mul:-39 -27 conj:-7 -8 norm:57
+
+127 add:0 3 mul:2 54 conj:-10 -6 norm:76
+
+128 add:-10 -6 mul:52 57 conj:4 9 norm:61
+
+129 add:3 -12 mul:-36 -54 conj:6 6 norm:36
+
+Wait, for i=120, add is (-10, -6), so add:-10 -6.
+
+Yes.
+
+Check i=121 add: (0, -6) → add:0 -6.
+
+Yes.
+
+i=122 add: (4,1) → add:4 1.
+
+i=123 add: (1,14) → add:1 14.
+
+i=124 add: (-18,6) → add:-18 6.
+
+i=125 add: (16, -14) → add:16 -14.
+
+i=126 add: (2,13) → add:2 13.
+
+i=127 add: (0,3) → add:0 3.
+
+i=128 add: (-10, -6) → add:-10 -6.
+
+i=129 add: (3, -12) → add:3 -12.
+
+All correct.
+
+Now, check if any norm is miscalculated.
+
+i=120 norm:25. Correct.
+
+i=121: 49 -42 +36=43. Correct.
+
+i=122:16 +4 +1=21. Correct.
+
+i=123:25-25+25=25. Correct.
+
+i=124:81+27+9=117. Correct.
+
+i=125:49+49+49=147. Correct.
+
+i=126:1-8+64=57. Correct.
+
+i=127:16+24+36=76. Correct.
+
+i=128:25-45+81=61. Correct.
+
+i=129:0+0+36=36. Correct.
+
+All norms are correct.
+
+Now, the output should be exactly one line per vector, no prose, no markdown.
+
+So the answer should be 10 lines, each starting with i, then the operations.
+
+Let me write them in order from i=120 to i=129.

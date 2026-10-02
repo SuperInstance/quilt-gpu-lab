@@ -1,0 +1,18 @@
+probe: 0.1s/1000 evals -> 3 seeds x 5000 evals (projected 8s)
+boundary: 1585 -> ok, 1586 -> refuse
+  A seed101: pos=24500 grown=true@299 rewards=2542 refusals=0 debt=0 (0.5s)
+  A seed118: pos=24500 grown=true@299 rewards=2542 refusals=0 debt=0 (0.4s)
+  A seed135: pos=24500 grown=true@299 rewards=2542 refusals=0 debt=0 (0.4s)
+  B seed101: pos=24500 grown=true@299 rewards=2542 refusals=0 debt=0 (0.4s)
+  B seed118: pos=24500 grown=true@299 rewards=2542 refusals=0 debt=0 (0.4s)
+  B seed135: pos=24500 grown=true@299 rewards=2542 refusals=0 debt=0 (0.3s)
+  D seed101: pos=10 grown=false@null rewards=4994 refusals=0 debt=0 (0.3s)
+  D seed118: pos=10 grown=false@null rewards=4994 refusals=0 debt=0 (0.3s)
+  D seed135: pos=10 grown=false@null rewards=4994 refusals=0 debt=0 (0.3s)
+R1 growth: CONFIRMED (3/3 grew)
+R2 gate: CONFIRMED (varA=0 varD=0 posA=24500 posD=10)
+R3 law: NEVER-BOUND (law untested in vivo at these parameters; boundary test carries the guarantee) (debtB=0 posA=24500 posB=24500 jointSE=0)
+R5 replay: BYTE-IDENTICAL
+chain: OK tip 0xffb91f3b6acebf0e
+wrote experiments/outputs/e_d1_summary.json + receipts_ed1.jsonl
+WALL 3.71 s

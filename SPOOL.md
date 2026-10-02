@@ -229,3 +229,21 @@ Claim: the skill-bank arm's gen-1 forecast AUC exceeds both the raw-ledger-conte
 Gate: three arms (frozen skill bank / raw ledger in context / baseline), identical eval streams. KEEP iff skill-bank AUC > raw-ledger AUC by ≥ the registered margin (meta-skills paper saw +12pts for bank-over-raw-experience; our margin must be frozen first, not borrowed). KILL iff the bank ties or loses — which would say our verdicts do not compress into transferable principles, i.e. the ledger is a log, not a curriculum.
 Feasibility: high — CPU only; ledger already exists; ~an afternoon of distillation + eval. Also the cheapest instrument for the Pincher-pattern thesis (repeated patterns compile into skills) on our own substrate.
 Pre-registration required first: distillation budget, bank size cap, and AUC margin frozen in `proposals/runs/`.
+
+# WAVE 6 — edge-mine (weight-space behavior directions / loop depth needs a scratchpad, 2026-10-01)
+
+*Seeded from GEMS.md Wave 7 (assayed 48, 36). Two gems this wave — both literature×receipt collisions: the 2026 weight-steering literature finally gives Wave 0's "weights as data" mine a cheap falsifier on our D-ledger, and the recurrent-depth literature hands gem #2 its next arm.*
+
+## S6a — contrastive delta-direction forensics (does a weight-space direction isolated from paired keep/kill runs predict verdicts on unseen runs?)
+Q: Contrastive weight steering isolates a behavior direction by subtracting the weight deltas of two opposite-polarity fine-tunes, and reports that weight-space directions generalize out-of-distribution where activation steering does not. Our keep/kill D-ledger is a labeled corpus of weight deltas nobody else has. Does the contrastive direction computed from polarity-paired runs (KEEP-vs-KILL on the same lane family) predict the verdict of NEW runs — via projection of their deltas onto the direction — better than scalar baselines (delta norm, loss delta, param-count)?
+Claim: projection along the contrastive direction separates keep-vs-kill deltas on held-out runs above the scalar-baseline AUC by the pre-registered margin — i.e. the ledger's verdict information is *geometric*, not just scalar.
+Gate: direction computed only from training-split run pairs; held-out runs frozen before direction extraction. KEEP iff held-out projection-AUC exceeds the best scalar baseline by ≥ the registered margin in ≥2 seed families (bootstrap over run-pairings). KILL iff it ties or loses — which would say our verdicts live in delta magnitudes, not delta geometry, and the "weights as data" abstraction dies on our substrate.
+Feasibility: high — CPU only; deltas already on disk in the D-ledger; the falsifier is an afternoon of linear algebra. This is the cheapest possible assay of Wave 0's oldest unassayed mine.
+Pre-registration required first: split definition, pairing rule, baseline set, and AUC margin frozen in `proposals/runs/` before touching the ledger.
+
+## S6b — memory tokens in the looped free-delta (does the loop need somewhere to write?)
+Q: The 2026 recurrent-depth literature reports weight-shared loops fail combinatorial reasoning without learned memory tokens (a depth-state trade-off), and that adaptive depth decomposes into trajectory-formation + exit-readout. Our gem #2 loops one shared block at R=2 with no external loop state. Does adding a small persistent loop state (memory tokens carried across loop iterations) to the looped free-delta skeleton change the depth-vs-quality curve at matched parameter count?
+Claim: loop+memory beats the plain loop on held-out loss at equal params — weight sharing buys depth only when the iteration has state to accumulate into — and the gain grows with R.
+Gate: three arms, param-matched (plain 12-block / shared-block loop R=2 / shared-block loop R=2 + memory tokens), same data budget, 2+ seeds. KEEP iff loop+memory beats the plain loop by the pre-registered bpb margin at R=2 AND the margin does not shrink at R=3. KILL iff memory tokens make no difference (the loop's bottleneck is elsewhere — halting/exit, not state) or hurt.
+Feasibility: high — nursery skeleton (D2), ~3 GPU hours per arm, overnight total. Directly extends gem #2 with the field's 2026 answer to "what does the loop need?"
+Pre-registration required first: memory-token count, R values, and bpb margin frozen in `proposals/runs/` before any code.

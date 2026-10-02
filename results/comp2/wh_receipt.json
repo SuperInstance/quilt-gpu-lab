@@ -1,0 +1,9 @@
+{
+  "watt_hours": 1.1112540555555555,
+  "joules": 4000.5146,
+  "gpu_seconds": 278.736,
+  "receipt_id": "g7-wr-composite-2-federation3-1790906923",
+  "valid": true,
+  "envelope_wh": 20.0,
+  "within_envelope": true
+}

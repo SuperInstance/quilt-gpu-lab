@@ -1,0 +1,547 @@
+Okay, let's tackle this problem step by step. We need to compute add, mul, conj, and norm for each given vector pair. Let's start by recalling the definitions provided.
+
+First, the Eisenstein integers are of the form z = a + bω, where ω² = -1 - ω. The operations are defined as:
+
+- add(z, w) = (a + c, b + d) where z=(a,b), w=(c,d)
+- mul(z, w) = (a*c - b*d, a*d + b*c - b*d)
+- conj(z) = (a - b, -b)
+- norm(z) = a² - a*b + b² (which is an integer)
+
+We need to apply these for each i from 170 to 179.
+
+Let's take the first one: i=170, z=(6,-8), w=(3,-6)
+
+Compute add(z,w): (6+3, -8 + (-6)) = (9, -14)
+
+mul(z,w): (6*3 - (-8)*(-6), 6*(-6) + (-8)*3 - (-8)*(-6))
+Compute first component: 18 - (48) = 18 - 48 = -30
+Second component: (6*(-6) is -36, (-8)*3 is -24, so -36 + (-24) = -60; then subtract (-8)*(-6)=48? Wait, the formula is a*d + b*c - b*d.
+
+Wait, let's parse the mul formula again: mul(z,w) = (a*c - b*d, a*d + b*c - b*d)
+
+So for z=(a,b), w=(c,d):
+
+real part: a*c - b*d
+imaginary part (coefficient of ω): a*d + b*c - b*d
+
+Yes. So for z=(6,-8), w=(3,-6):
+
+a=6, b=-8, c=3, d=-6
+
+real part: 6*3 - (-8)*(-6) = 18 - 48 = -30
+
+imaginary part: 6*(-6) + (-8)*3 - (-8)*(-6) = (-36) + (-24) - 48 = -36 -24 -48 = -108? Wait, wait:
+
+Wait, a*d + b*c - b*d.
+
+a*d = 6*(-6) = -36
+
+b*c = (-8)*3 = -24
+
+b*d = (-8)*(-6) = 48
+
+So a*d + b*c - b*d = (-36) + (-24) - 48 = -36 -24 -48 = -108.
+
+Wait, but let's check the formula again. The problem says: mul(z,w) = (a*c - b*d, a*d + b*c - b*d)
+
+Yes, so it's (a*c - b*d, a*d + b*c - b*d). So the second component is a*d + b*c - b*d.
+
+So for the first example:
+
+a=6, b=-8, c=3, d=-6.
+
+Compute a*c = 18, b*d = (-8)*(-6)=48, so first component 18 -48 = -30.
+
+Second component: a*d =6*(-6)=-36, b*c = (-8)*3=-24, b*d=48. So -36 + (-24) -48 = -108. So mul(z,w)=(-30, -108).
+
+Wait, but let's confirm with actual multiplication. Maybe I can check with a small example to see if the formula is correct.
+
+Take z=1 + 0ω (so (1,0)), w=1 + 0ω. Then mul(z,w) should be (1,0). Using formula: (1*1 -0*0, 1*0 +0*1 -0*0) = (1,0). Correct.
+
+Another example: z=0 +1ω (so (0,1)), w=0 +1ω. Then z*w = ω*ω = ω² = -1 -ω. So in terms of (a,b), that's (-1, -1). Let's apply the formula.
+
+z=(0,1), w=(0,1).
+
+a=0, b=1, c=0, d=1.
+
+real part: 0*0 -1*1 = -1.
+
+imaginary part: 0*1 +1*0 -1*1 = 0 +0 -1 = -1. So ( -1, -1 ), which matches. Good.
+
+Another test: z=1 + ω (so (1,1)), w=1 + ω.
+
+z*w = (1 + ω)^2 = 1 + 2ω + ω². But ω² = -1 -ω, so 1 + 2ω -1 -ω = ω. So (0,1).
+
+Using the formula:
+
+a=1, b=1, c=1, d=1.
+
+real part: 1*1 -1*1 = 0.
+
+imaginary part: 1*1 +1*1 -1*1 = 1 +1 -1 =1. So (0,1), correct.
+
+Okay, so the formula seems right.
+
+Back to i=170:
+
+z=(6,-8), w=(3,-6)
+
+add: (6+3, -8 + (-6)) = (9, -14)
+
+mul: (6*3 - (-8)*(-6), 6*(-6) + (-8)*3 - (-8)*(-6)) = (18 - 48, -36 -24 -48) = (-30, -108)
+
+conj(z): (a - b, -b) = (6 - (-8), -(-8)) = (14, 8)
+
+norm(z): a² -a*b + b² = 6² -6*(-8) + (-8)^2 = 36 +48 +64 = 148
+
+Let's compute that: 36 + 48 is 84, plus 64 is 148. Correct.
+
+Now let's check i=170:
+
+add: 9, -14
+
+mul: -30, -108
+
+conj:14,8
+
+norm:148
+
+Okay, that seems right.
+
+Next, i=171: z=(5,-3), w=(-1,-6)
+
+add(z,w) = (5 + (-1), -3 + (-6)) = (4, -9)
+
+mul(z,w):
+
+a=5, b=-3, c=-1, d=-6
+
+real part: 5*(-1) - (-3)*(-6) = -5 - 18 = -23
+
+imaginary part: 5*(-6) + (-3)*(-1) - (-3)*(-6) = -30 +3 -18 = -45
+
+So mul(z,w) = (-23, -45)
+
+conj(z) = (5 - (-3), -(-3)) = (8, 3)
+
+norm(z) = 5² -5*(-3) + (-3)^2 =25 +15 +9=49
+
+Check: 25+15=40, +9=49. Correct.
+
+i=172: z=(-1,3), w=(7,4)
+
+add: (-1+7, 3+4) = (6,7)
+
+mul:
+
+a=-1, b=3, c=7, d=4
+
+real part: (-1)*7 -3*4 = -7 -12 = -19
+
+imaginary part: (-1)*4 +3*7 -3*4 = -4 +21 -12 =5
+
+So mul(z,w)=(-19,5)
+
+conj(z) = (-1 -3, -3) = (-4, -3)
+
+norm(z) = (-1)^2 - (-1)*3 +3^2 =1 +3 +9=13
+
+Check: 1 +3=4, +9=13. Correct.
+
+i=173: z=(4,3), w=(0,-3)
+
+add: (4+0, 3 + (-3)) = (4, 0)
+
+mul:
+
+a=4, b=3, c=0, d=-3
+
+real part:4*0 -3*(-3)=0 +9=9
+
+imaginary part:4*(-3) +3*0 -3*(-3)= -12 +0 +9= -3
+
+So mul(z,w)=(9, -3)
+
+conj(z) = (4 -3, -3) = (1, -3)
+
+norm(z)=4² -4*3 +3²=16 -12 +9=13
+
+Check: 16-12=4, +9=13. Correct.
+
+i=174: z=(-4,2), w=(-9,-5)
+
+add: (-4 + (-9), 2 + (-5)) = (-13, -3)
+
+mul:
+
+a=-4, b=2, c=-9, d=-5
+
+real part: (-4)*(-9) -2*(-5) =36 +10=46
+
+imaginary part: (-4)*(-5) +2*(-9) -2*(-5) =20 -18 +10=12
+
+So mul(z,w)=(46,12)
+
+conj(z)= (-4 -2, -2)= (-6, -2)
+
+norm(z)= (-4)^2 - (-4)*2 +2^2=16 +8 +4=28
+
+Check: 16+8=24, +4=28. Correct.
+
+i=175: z=(-2,-6), w=(2,-9)
+
+add: (-2+2, -6 + (-9)) = (0, -15)
+
+mul:
+
+a=-2, b=-6, c=2, d=-9
+
+real part: (-2)*2 - (-6)*(-9) = -4 -54= -58
+
+imaginary part: (-2)*(-9) + (-6)*2 - (-6)*(-9) =18 -12 -54= -48
+
+So mul(z,w)=(-58, -48)
+
+conj(z)= (-2 - (-6), -(-6))= (4,6)
+
+norm(z)= (-2)^2 - (-2)*(-6) + (-6)^2=4 -12 +36=28
+
+Check: 4 -12 is -8, +36=28. Correct.
+
+i=176: z=(-9,5), w=(8,9)
+
+add: (-9+8,5+9)=(-1,14)
+
+mul:
+
+a=-9, b=5, c=8, d=9
+
+real part: (-9)*8 -5*9= -72 -45= -117
+
+imaginary part: (-9)*9 +5*8 -5*9= -81 +40 -45= -86
+
+So mul(z,w)=(-117, -86)
+
+conj(z)= (-9 -5, -5)= (-14, -5)
+
+norm(z)= (-9)^2 - (-9)*5 +5^2=81 +45 +25=151
+
+Check:81+45=126, +25=151. Correct.
+
+i=177: z=(4,1), w=(4,-4)
+
+add: (4+4,1 + (-4))=(8, -3)
+
+mul:
+
+a=4, b=1, c=4, d=-4
+
+real part:4*4 -1*(-4)=16 +4=20
+
+imaginary part:4*(-4) +1*4 -1*(-4)= -16 +4 +4= -8
+
+So mul(z,w)=(20, -8)
+
+conj(z)= (4 -1, -1)=(3, -1)
+
+norm(z)=4² -4*1 +1²=16 -4 +1=13
+
+Check:16-4=12, +1=13. Correct.
+
+i=178: z=(7,-6), w=(4,-7)
+
+add: (7+4, -6 + (-7))=(11, -13)
+
+mul:
+
+a=7, b=-6, c=4, d=-7
+
+real part:7*4 - (-6)*(-7)=28 -42= -14
+
+imaginary part:7*(-7) + (-6)*4 - (-6)*(-7)= -49 -24 -42= -115
+
+So mul(z,w)=(-14, -115)
+
+conj(z)=7 - (-6), -(-6))=13,6
+
+norm(z)=7² -7*(-6) + (-6)^2=49 +42 +36=127
+
+Check:49+42=91, +36=127. Correct.
+
+i=179: z=(-5,-1), w=(9,-9)
+
+add: (-5+9, -1 + (-9))=(4, -10)
+
+mul:
+
+a=-5, b=-1, c=9, d=-9
+
+real part: (-5)*9 - (-1)*(-9)= -45 -9= -54
+
+imaginary part: (-5)*(-9) + (-1)*9 - (-1)*(-9)=45 -9 -9=27
+
+So mul(z,w)=(-54,27)
+
+conj(z)= (-5 - (-1), -(-1))= (-4,1)
+
+norm(z)= (-5)^2 - (-5)*(-1) + (-1)^2=25 -5 +1=21
+
+Check:25-5=20, +1=21. Correct.
+
+Now let's verify each calculation again to be safe.
+
+Starting with i=170:
+
+z=(6,-8), w=(3,-6)
+
+add: 6+3=9, -8-6=-14 → (9, -14)
+
+mul: real=6*3 - (-8)(-6)=18-48=-30; imag=6*(-6) + (-8)*3 - (-8)(-6)= -36 -24 -48= -108. So (-30, -108)
+
+conj(z): a - b =6 - (-8)=14; -b=8 → (14,8)
+
+norm: 6² -6*(-8) + (-8)^2=36 +48 +64=148. Correct.
+
+i=171: z=(5,-3), w=(-1,-6)
+
+add:5-1=4, -3-6=-9 → (4,-9)
+
+mul: real=5*(-1) - (-3)(-6)= -5 -18=-23; imag=5*(-6) + (-3)(-1) - (-3)(-6)= -30 +3 -18= -45. So (-23,-45)
+
+conj(z):5 - (-3)=8, -(-3)=3 → (8,3)
+
+norm:25 -5*(-3) +9=25+15+9=49. Correct.
+
+i=172: z=(-1,3), w=(7,4)
+
+add: -1+7=6, 3+4=7 → (6,7)
+
+mul: real=(-1)(7) -3*4= -7-12=-19; imag=(-1)(4) +3*7 -3*4= -4 +21 -12=5. So (-19,5)
+
+conj(z): -1 -3= -4, -3 → (-4,-3)
+
+norm: (-1)^2 - (-1)(3) +3^2=1+3+9=13. Correct.
+
+i=173: z=(4,3), w=(0,-3)
+
+add:4+0=4, 3-3=0 → (4,0)
+
+mul: real=4*0 -3*(-3)=0+9=9; imag=4*(-3) +3*0 -3*(-3)= -12 +0 +9= -3. So (9,-3)
+
+conj(z):4-3=1, -3 → (1,-3)
+
+norm:16 -12 +9=13. Correct.
+
+i=174: z=(-4,2), w=(-9,-5)
+
+add: -4-9=-13, 2-5=-3 → (-13,-3)
+
+mul: real=(-4)(-9) -2*(-5)=36 +10=46; imag=(-4)(-5) +2*(-9) -2*(-5)=20 -18 +10=12. So (46,12)
+
+conj(z): -4-2=-6, -2 → (-6,-2)
+
+norm:16 - (-4)(2) +4=16+8+4=28. Correct.
+
+i=175: z=(-2,-6), w=(2,-9)
+
+add: -2+2=0, -6-9=-15 → (0,-15)
+
+mul: real=(-2)(2) - (-6)(-9)= -4 -54= -58; imag=(-2)(-9) + (-6)(2) - (-6)(-9)=18 -12 -54= -48. So (-58,-48)
+
+conj(z): -2 - (-6)=4, -(-6)=6 → (4,6)
+
+norm:4 - (-2)(-6) +36=4 -12 +36=28. Correct.
+
+i=176: z=(-9,5), w=(8,9)
+
+add: -9+8=-1,5+9=14 → (-1,14)
+
+mul: real=(-9)(8) -5*9= -72-45=-117; imag=(-9)(9) +5*8 -5*9= -81 +40 -45= -86. So (-117,-86)
+
+conj(z): -9-5=-14, -5 → (-14,-5)
+
+norm:81 - (-9)(5) +25=81+45+25=151. Correct.
+
+i=177: z=(4,1), w=(4,-4)
+
+add:4+4=8,1-4=-3 → (8,-3)
+
+mul: real=4*4 -1*(-4)=16+4=20; imag=4*(-4) +1*4 -1*(-4)= -16 +4 +4= -8. So (20,-8)
+
+conj(z):4-1=3, -1 → (3,-1)
+
+norm:16 -4*1 +1=13. Correct.
+
+i=178: z=(7,-6), w=(4,-7)
+
+add:7+4=11, -6-7=-13 → (11,-13)
+
+mul: real=7*4 - (-6)(-7)=28-42=-14; imag=7*(-7) + (-6)*4 - (-6)(-7)= -49 -24 -42= -115. So (-14,-115)
+
+conj(z):7 - (-6)=13, -(-6)=6 → (13,6)
+
+norm:49 -7*(-6) +36=49+42+36=127. Correct.
+
+i=179: z=(-5,-1), w=(9,-9)
+
+add: -5+9=4, -1-9=-10 → (4,-10)
+
+mul: real=(-5)(9) - (-1)(-9)= -45-9=-54; imag=(-5)(-9) + (-1)(9) - (-1)(-9)=45 -9 -9=27. So (-54,27)
+
+conj(z): -5 - (-1)= -4, -(-1)=1 → (-4,1)
+
+norm:25 - (-5)(-1) +1=25-5+1=21. Correct.
+
+Now, let's format each line as per the problem:
+
+For each i, output: i add:A B mul:A B conj:A B norm:N
+
+So for i=170:
+
+170 add:9 -14 mul:-30 -108 conj:14 8 norm:148
+
+Wait, but the problem says "Output EXACTLY one line per vector, no prose, no markdown, format: i add:A B mul:A B conj:A B norm:N"
+
+So the numbers should be in the order as computed.
+
+But need to check if the norm is correctly calculated as integer.
+
+Now, let's write each line:
+
+i=170:
+
+add: 9, -14
+
+mul: -30, -108
+
+conj:14,8
+
+norm:148
+
+So line: 170 add:9 -14 mul:-30 -108 conj:14 8 norm:148
+
+Similarly for others.
+
+Let's check i=171:
+
+add:4 -9
+
+mul:-23 -45
+
+conj:8 3
+
+norm:49
+
+Line: 171 add:4 -9 mul:-23 -45 conj:8 3 norm:49
+
+i=172:
+
+add:6 7
+
+mul:-19 5
+
+conj:-4 -3
+
+norm:13
+
+Line:172 add:6 7 mul:-19 5 conj:-4 -3 norm:13
+
+i=173:
+
+add:4 0
+
+mul:9 -3
+
+conj:1 -3
+
+norm:13
+
+Line:173 add:4 0 mul:9 -3 conj:1 -3 norm:13
+
+i=174:
+
+add:-13 -3
+
+mul:46 12
+
+conj:-6 -2
+
+norm:28
+
+Line:174 add:-13 -3 mul:46 12 conj:-6 -2 norm:28
+
+i=175:
+
+add:0 -15
+
+mul:-58 -48
+
+conj:4 6
+
+norm:28
+
+Line:175 add:0 -15 mul:-58 -48 conj:4 6 norm:28
+
+i=176:
+
+add:-1 14
+
+mul:-117 -86
+
+conj:-14 -5
+
+norm:151
+
+Line:176 add:-1 14 mul:-117 -86 conj:-14 -5 norm:151
+
+i=177:
+
+add:8 -3
+
+mul:20 -8
+
+conj:3 -1
+
+norm:13
+
+Line:177 add:8 -3 mul:20 -8 conj:3 -1 norm:13
+
+i=178:
+
+add:11 -13
+
+mul:-14 -115
+
+conj:13 6
+
+norm:127
+
+Line:178 add:11 -13 mul:-14 -115 conj:13 6 norm:127
+
+i=179:
+
+add:4 -10
+
+mul:-54 27
+
+conj:-4 1
+
+norm:21
+
+Line:179 add:4 -10 mul:-54 27 conj:-4 1 norm:21
+
+Now, need to ensure that all numbers are correctly computed.
+
+Let me double-check i=174's norm: z=(-4,2). norm = (-4)^2 - (-4)(2) + (2)^2 = 16 +8 +4=28. Correct.
+
+i=175: z=(-2,-6). norm=4 - (12) +36=28. Correct.
+
+i=178: z=(7,-6). norm=49 - (7*(-6)) +36=49 +42 +36=127. Correct.
+
+i=179: z=(-5,-1). norm=25 - (5) +1=21. Correct.
+
+All seems good.
+
+Now, the output should be exactly one line per vector, in order from i=170 to i=179.
+
+So the final answer should be 10 lines, each starting with the i value, followed by the computed values.

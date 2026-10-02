@@ -1,0 +1,120 @@
+{
+  "info": {
+    "torch": "2.14.0+cu126",
+    "cuda_available": true,
+    "device_used": "cuda:0",
+    "device_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "arm": "linear",
+    "epochs": 120,
+    "lr": 0.001,
+    "seed": 2718,
+    "n_boards": 66297
+  },
+  "per_fold": {
+    "0": {
+      "n_test": 13034,
+      "top1": {
+        "overall": 0.8112,
+        "COMPOSED_B": 0.9937,
+        "SIMPLE_B": 0.8089,
+        "COMPOSED_A": 0.8126,
+        "SIMPLE_A": 0.8103
+      },
+      "chance": {
+        "overall": 0.7698,
+        "COMPOSED_B": 0.9696,
+        "SIMPLE_B": 0.7673,
+        "COMPOSED_A": 0.766,
+        "SIMPLE_A": 0.7721
+      },
+      "n_partition": {
+        "COMPOSED_B": 159,
+        "COMPOSED_A": 4856
+      }
+    },
+    "1": {
+      "n_test": 13245,
+      "top1": {
+        "overall": 0.8154,
+        "COMPOSED_B": 0.9795,
+        "SIMPLE_B": 0.8136,
+        "COMPOSED_A": 0.8218,
+        "SIMPLE_A": 0.8114
+      },
+      "chance": {
+        "overall": 0.7707,
+        "COMPOSED_B": 0.9292,
+        "SIMPLE_B": 0.7689,
+        "COMPOSED_A": 0.7706,
+        "SIMPLE_A": 0.7707
+      },
+      "n_partition": {
+        "COMPOSED_B": 146,
+        "COMPOSED_A": 5046
+      }
+    },
+    "2": {
+      "n_test": 13324,
+      "top1": {
+        "overall": 0.8138,
+        "COMPOSED_B": 1.0,
+        "SIMPLE_B": 0.8117,
+        "COMPOSED_A": 0.8194,
+        "SIMPLE_A": 0.8103
+      },
+      "chance": {
+        "overall": 0.7717,
+        "COMPOSED_B": 0.9642,
+        "SIMPLE_B": 0.7695,
+        "COMPOSED_A": 0.7687,
+        "SIMPLE_A": 0.7736
+      },
+      "n_partition": {
+        "COMPOSED_B": 149,
+        "COMPOSED_A": 5154
+      }
+    },
+    "3": {
+      "n_test": 13558,
+      "top1": {
+        "overall": 0.81,
+        "COMPOSED_B": 0.9699,
+        "SIMPLE_B": 0.808,
+        "COMPOSED_A": 0.8203,
+        "SIMPLE_A": 0.8034
+      },
+      "chance": {
+        "overall": 0.768,
+        "COMPOSED_B": 0.9327,
+        "SIMPLE_B": 0.7659,
+        "COMPOSED_A": 0.7652,
+        "SIMPLE_A": 0.7698
+      },
+      "n_partition": {
+        "COMPOSED_B": 166,
+        "COMPOSED_A": 5302
+      }
+    },
+    "4": {
+      "n_test": 13136,
+      "top1": {
+        "overall": 0.8146,
+        "COMPOSED_B": 0.993,
+        "SIMPLE_B": 0.8126,
+        "COMPOSED_A": 0.8215,
+        "SIMPLE_A": 0.8103
+      },
+      "chance": {
+        "overall": 0.7708,
+        "COMPOSED_B": 0.9697,
+        "SIMPLE_B": 0.7686,
+        "COMPOSED_A": 0.7705,
+        "SIMPLE_A": 0.771
+      },
+      "n_partition": {
+        "COMPOSED_B": 143,
+        "COMPOSED_A": 4986
+      }
+    }
+  }
+}

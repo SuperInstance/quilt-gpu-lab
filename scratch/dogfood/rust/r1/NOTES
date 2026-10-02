@@ -1,0 +1,1 @@
+div_rem rounding uses round_half_away_from_zero; ensure slackwater-rust matches this for both coordinates independently. hexdist condition must check da==0 or db==0 before sign comparison to avoid sign(0) ambiguity. Verify rotate_60 matches ω-multiplication identity; if slackwater-rust's rotate_60 disagrees with z·ω, there may be a discrepancy.

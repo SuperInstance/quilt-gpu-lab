@@ -1,0 +1,18 @@
+{
+  "breach": "free VRAM 1018 MiB < 1024",
+  "g7": {
+    "gpu_seconds": 1692.486,
+    "joules": 107603.6589,
+    "mean_power_w": 47.76,
+    "power_samples": 431,
+    "util_samples": 431,
+    "wall_seconds": 2253.205,
+    "watt_hours": 29.889905249999998,
+    "windows": 1
+  },
+  "max_temp_c": 78,
+  "min_free_vram_mib": 1018,
+  "samples": 432,
+  "task_id": "C1-playtest-pong",
+  "timed_out": false
+}

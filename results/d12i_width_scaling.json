@@ -1,0 +1,2367 @@
+{
+  "experiment": "d12i_width_scaling",
+  "seed": 2718,
+  "draws": 3,
+  "pre_registered": {
+    "a": "T_floor(W) non-increasing in W at fixed (N, p)",
+    "b": "W=16, N=64, p=0.3 reaches acc>=0.9 at T<=25"
+  },
+  "floors": {
+    "W2_N8_p0.3": 50,
+    "W2_N8_p0.5": 25,
+    "W2_N8_p0.7": 10,
+    "W2_N16_p0.3": 100,
+    "W2_N16_p0.5": 25,
+    "W2_N16_p0.7": 25,
+    "W2_N32_p0.3": 100,
+    "W2_N32_p0.5": 25,
+    "W2_N32_p0.7": 25,
+    "W2_N64_p0.3": 100,
+    "W2_N64_p0.5": 50,
+    "W2_N64_p0.7": 25,
+    "W4_N8_p0.3": 50,
+    "W4_N8_p0.5": 25,
+    "W4_N8_p0.7": 5,
+    "W4_N16_p0.3": 50,
+    "W4_N16_p0.5": 25,
+    "W4_N16_p0.7": 10,
+    "W4_N32_p0.3": 50,
+    "W4_N32_p0.5": 25,
+    "W4_N32_p0.7": 10,
+    "W4_N64_p0.3": 100,
+    "W4_N64_p0.5": 25,
+    "W4_N64_p0.7": 10,
+    "W8_N8_p0.3": 25,
+    "W8_N8_p0.5": 10,
+    "W8_N8_p0.7": 5,
+    "W8_N16_p0.3": 25,
+    "W8_N16_p0.5": 10,
+    "W8_N16_p0.7": 5,
+    "W8_N32_p0.3": 25,
+    "W8_N32_p0.5": 10,
+    "W8_N32_p0.7": 5,
+    "W8_N64_p0.3": 25,
+    "W8_N64_p0.5": 10,
+    "W8_N64_p0.7": 5,
+    "W16_N8_p0.3": 10,
+    "W16_N8_p0.5": 5,
+    "W16_N8_p0.7": 5,
+    "W16_N16_p0.3": 10,
+    "W16_N16_p0.5": 5,
+    "W16_N16_p0.7": 5,
+    "W16_N32_p0.3": 10,
+    "W16_N32_p0.5": 5,
+    "W16_N32_p0.7": 5,
+    "W16_N64_p0.3": 25,
+    "W16_N64_p0.5": 5,
+    "W16_N64_p0.7": 5
+  },
+  "monotonicity_inversions": [],
+  "hard_corner_acc_W16_N64_p03_T25": 1.0,
+  "grid": [
+    {
+      "W": 2,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 5,
+      "partner_id_acc": 0.0417,
+      "chance": 0.1429
+    },
+    {
+      "W": 2,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 10,
+      "partner_id_acc": 0.375,
+      "chance": 0.1429
+    },
+    {
+      "W": 2,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 25,
+      "partner_id_acc": 0.6667,
+      "chance": 0.1429
+    },
+    {
+      "W": 2,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 2,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 2,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 2,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 5,
+      "partner_id_acc": 0.6667,
+      "chance": 0.1429
+    },
+    {
+      "W": 2,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 10,
+      "partner_id_acc": 0.8333,
+      "chance": 0.1429
+    },
+    {
+      "W": 2,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 25,
+      "partner_id_acc": 0.9583,
+      "chance": 0.1429
+    },
+    {
+      "W": 2,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 2,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 2,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 2,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 5,
+      "partner_id_acc": 0.8333,
+      "chance": 0.1429
+    },
+    {
+      "W": 2,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 10,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 2,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 2,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 2,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 2,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 2,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 5,
+      "partner_id_acc": 0.0833,
+      "chance": 0.0667
+    },
+    {
+      "W": 2,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 10,
+      "partner_id_acc": 0.3125,
+      "chance": 0.0667
+    },
+    {
+      "W": 2,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 25,
+      "partner_id_acc": 0.8125,
+      "chance": 0.0667
+    },
+    {
+      "W": 2,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 50,
+      "partner_id_acc": 0.7917,
+      "chance": 0.0667
+    },
+    {
+      "W": 2,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 100,
+      "partner_id_acc": 0.9583,
+      "chance": 0.0667
+    },
+    {
+      "W": 2,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 2,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 5,
+      "partner_id_acc": 0.2917,
+      "chance": 0.0667
+    },
+    {
+      "W": 2,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 10,
+      "partner_id_acc": 0.4375,
+      "chance": 0.0667
+    },
+    {
+      "W": 2,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 25,
+      "partner_id_acc": 0.9583,
+      "chance": 0.0667
+    },
+    {
+      "W": 2,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 2,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 2,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 2,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 5,
+      "partner_id_acc": 0.5417,
+      "chance": 0.0667
+    },
+    {
+      "W": 2,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 10,
+      "partner_id_acc": 0.875,
+      "chance": 0.0667
+    },
+    {
+      "W": 2,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 2,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 2,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 2,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 2,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 5,
+      "partner_id_acc": 0.0521,
+      "chance": 0.0323
+    },
+    {
+      "W": 2,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 10,
+      "partner_id_acc": 0.2188,
+      "chance": 0.0323
+    },
+    {
+      "W": 2,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 25,
+      "partner_id_acc": 0.4479,
+      "chance": 0.0323
+    },
+    {
+      "W": 2,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 50,
+      "partner_id_acc": 0.8125,
+      "chance": 0.0323
+    },
+    {
+      "W": 2,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 100,
+      "partner_id_acc": 0.9479,
+      "chance": 0.0323
+    },
+    {
+      "W": 2,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 2,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 5,
+      "partner_id_acc": 0.1875,
+      "chance": 0.0323
+    },
+    {
+      "W": 2,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 10,
+      "partner_id_acc": 0.375,
+      "chance": 0.0323
+    },
+    {
+      "W": 2,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 25,
+      "partner_id_acc": 0.9479,
+      "chance": 0.0323
+    },
+    {
+      "W": 2,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 2,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 2,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 2,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 5,
+      "partner_id_acc": 0.4896,
+      "chance": 0.0323
+    },
+    {
+      "W": 2,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 10,
+      "partner_id_acc": 0.8646,
+      "chance": 0.0323
+    },
+    {
+      "W": 2,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 2,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 2,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 2,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 2,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 5,
+      "partner_id_acc": 0.0781,
+      "chance": 0.0159
+    },
+    {
+      "W": 2,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 10,
+      "partner_id_acc": 0.151,
+      "chance": 0.0159
+    },
+    {
+      "W": 2,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 25,
+      "partner_id_acc": 0.3073,
+      "chance": 0.0159
+    },
+    {
+      "W": 2,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 50,
+      "partner_id_acc": 0.6823,
+      "chance": 0.0159
+    },
+    {
+      "W": 2,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 100,
+      "partner_id_acc": 0.9219,
+      "chance": 0.0159
+    },
+    {
+      "W": 2,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 2,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 5,
+      "partner_id_acc": 0.2083,
+      "chance": 0.0159
+    },
+    {
+      "W": 2,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 10,
+      "partner_id_acc": 0.4375,
+      "chance": 0.0159
+    },
+    {
+      "W": 2,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 25,
+      "partner_id_acc": 0.8854,
+      "chance": 0.0159
+    },
+    {
+      "W": 2,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 50,
+      "partner_id_acc": 0.9844,
+      "chance": 0.0159
+    },
+    {
+      "W": 2,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 2,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 2,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 5,
+      "partner_id_acc": 0.4115,
+      "chance": 0.0159
+    },
+    {
+      "W": 2,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 10,
+      "partner_id_acc": 0.7917,
+      "chance": 0.0159
+    },
+    {
+      "W": 2,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 25,
+      "partner_id_acc": 0.9948,
+      "chance": 0.0159
+    },
+    {
+      "W": 2,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 2,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 2,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 4,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 5,
+      "partner_id_acc": 0.375,
+      "chance": 0.1429
+    },
+    {
+      "W": 4,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 10,
+      "partner_id_acc": 0.5417,
+      "chance": 0.1429
+    },
+    {
+      "W": 4,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 25,
+      "partner_id_acc": 0.8333,
+      "chance": 0.1429
+    },
+    {
+      "W": 4,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 4,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 4,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 4,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 5,
+      "partner_id_acc": 0.75,
+      "chance": 0.1429
+    },
+    {
+      "W": 4,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 10,
+      "partner_id_acc": 0.875,
+      "chance": 0.1429
+    },
+    {
+      "W": 4,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 4,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 4,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 4,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 4,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 5,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 4,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 10,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 4,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 4,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 4,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 4,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 4,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 5,
+      "partner_id_acc": 0.3333,
+      "chance": 0.0667
+    },
+    {
+      "W": 4,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 10,
+      "partner_id_acc": 0.3125,
+      "chance": 0.0667
+    },
+    {
+      "W": 4,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 25,
+      "partner_id_acc": 0.6875,
+      "chance": 0.0667
+    },
+    {
+      "W": 4,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 4,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 4,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 4,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 5,
+      "partner_id_acc": 0.5625,
+      "chance": 0.0667
+    },
+    {
+      "W": 4,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 10,
+      "partner_id_acc": 0.7917,
+      "chance": 0.0667
+    },
+    {
+      "W": 4,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 4,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 4,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 4,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 4,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 5,
+      "partner_id_acc": 0.8958,
+      "chance": 0.0667
+    },
+    {
+      "W": 4,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 10,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 4,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 4,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 4,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 4,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 4,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 5,
+      "partner_id_acc": 0.1458,
+      "chance": 0.0323
+    },
+    {
+      "W": 4,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 10,
+      "partner_id_acc": 0.2188,
+      "chance": 0.0323
+    },
+    {
+      "W": 4,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 25,
+      "partner_id_acc": 0.7812,
+      "chance": 0.0323
+    },
+    {
+      "W": 4,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 50,
+      "partner_id_acc": 0.9583,
+      "chance": 0.0323
+    },
+    {
+      "W": 4,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 4,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 4,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 5,
+      "partner_id_acc": 0.5417,
+      "chance": 0.0323
+    },
+    {
+      "W": 4,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 10,
+      "partner_id_acc": 0.8646,
+      "chance": 0.0323
+    },
+    {
+      "W": 4,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 4,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 4,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 4,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 4,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 5,
+      "partner_id_acc": 0.7917,
+      "chance": 0.0323
+    },
+    {
+      "W": 4,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 10,
+      "partner_id_acc": 0.9896,
+      "chance": 0.0323
+    },
+    {
+      "W": 4,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 4,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 4,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 4,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 4,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 5,
+      "partner_id_acc": 0.0938,
+      "chance": 0.0159
+    },
+    {
+      "W": 4,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 10,
+      "partner_id_acc": 0.2865,
+      "chance": 0.0159
+    },
+    {
+      "W": 4,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 25,
+      "partner_id_acc": 0.6979,
+      "chance": 0.0159
+    },
+    {
+      "W": 4,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 50,
+      "partner_id_acc": 0.875,
+      "chance": 0.0159
+    },
+    {
+      "W": 4,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 4,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 4,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 5,
+      "partner_id_acc": 0.4375,
+      "chance": 0.0159
+    },
+    {
+      "W": 4,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 10,
+      "partner_id_acc": 0.7604,
+      "chance": 0.0159
+    },
+    {
+      "W": 4,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 4,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 4,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 4,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 4,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 5,
+      "partner_id_acc": 0.7865,
+      "chance": 0.0159
+    },
+    {
+      "W": 4,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 10,
+      "partner_id_acc": 0.9948,
+      "chance": 0.0159
+    },
+    {
+      "W": 4,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 4,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 4,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 4,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 8,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 5,
+      "partner_id_acc": 0.25,
+      "chance": 0.1429
+    },
+    {
+      "W": 8,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 10,
+      "partner_id_acc": 0.625,
+      "chance": 0.1429
+    },
+    {
+      "W": 8,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 8,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 8,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 8,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 8,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 5,
+      "partner_id_acc": 0.8333,
+      "chance": 0.1429
+    },
+    {
+      "W": 8,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 10,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 8,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 8,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 8,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 8,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 8,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 5,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 8,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 10,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 8,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 8,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 8,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 8,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 8,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 5,
+      "partner_id_acc": 0.5,
+      "chance": 0.0667
+    },
+    {
+      "W": 8,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 10,
+      "partner_id_acc": 0.7708,
+      "chance": 0.0667
+    },
+    {
+      "W": 8,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 25,
+      "partner_id_acc": 0.9792,
+      "chance": 0.0667
+    },
+    {
+      "W": 8,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 8,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 8,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 8,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 5,
+      "partner_id_acc": 0.8125,
+      "chance": 0.0667
+    },
+    {
+      "W": 8,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 10,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 8,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 8,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 8,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 8,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 8,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 5,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 8,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 10,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 8,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 8,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 8,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 8,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 8,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 5,
+      "partner_id_acc": 0.3854,
+      "chance": 0.0323
+    },
+    {
+      "W": 8,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 10,
+      "partner_id_acc": 0.5938,
+      "chance": 0.0323
+    },
+    {
+      "W": 8,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 25,
+      "partner_id_acc": 0.9583,
+      "chance": 0.0323
+    },
+    {
+      "W": 8,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 50,
+      "partner_id_acc": 0.9896,
+      "chance": 0.0323
+    },
+    {
+      "W": 8,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 8,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 8,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 5,
+      "partner_id_acc": 0.7812,
+      "chance": 0.0323
+    },
+    {
+      "W": 8,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 10,
+      "partner_id_acc": 0.9583,
+      "chance": 0.0323
+    },
+    {
+      "W": 8,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 8,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 8,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 8,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 8,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 5,
+      "partner_id_acc": 0.9896,
+      "chance": 0.0323
+    },
+    {
+      "W": 8,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 10,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 8,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 8,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 8,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 8,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 8,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 5,
+      "partner_id_acc": 0.2969,
+      "chance": 0.0159
+    },
+    {
+      "W": 8,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 10,
+      "partner_id_acc": 0.5521,
+      "chance": 0.0159
+    },
+    {
+      "W": 8,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 25,
+      "partner_id_acc": 0.9323,
+      "chance": 0.0159
+    },
+    {
+      "W": 8,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 8,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 8,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 8,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 5,
+      "partner_id_acc": 0.7031,
+      "chance": 0.0159
+    },
+    {
+      "W": 8,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 10,
+      "partner_id_acc": 0.9844,
+      "chance": 0.0159
+    },
+    {
+      "W": 8,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 8,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 8,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 8,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 8,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 5,
+      "partner_id_acc": 0.9792,
+      "chance": 0.0159
+    },
+    {
+      "W": 8,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 10,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 8,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 8,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 8,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 8,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 16,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 5,
+      "partner_id_acc": 0.7917,
+      "chance": 0.1429
+    },
+    {
+      "W": 16,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 10,
+      "partner_id_acc": 0.9167,
+      "chance": 0.1429
+    },
+    {
+      "W": 16,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 16,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 16,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 16,
+      "N": 8,
+      "p_corr": 0.3,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 16,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 5,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 16,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 10,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 16,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 16,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 16,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 16,
+      "N": 8,
+      "p_corr": 0.5,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 16,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 5,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 16,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 10,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 16,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 16,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 16,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 16,
+      "N": 8,
+      "p_corr": 0.7,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.1429
+    },
+    {
+      "W": 16,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 5,
+      "partner_id_acc": 0.75,
+      "chance": 0.0667
+    },
+    {
+      "W": 16,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 10,
+      "partner_id_acc": 0.9792,
+      "chance": 0.0667
+    },
+    {
+      "W": 16,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 16,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 16,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 16,
+      "N": 16,
+      "p_corr": 0.3,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 16,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 5,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 16,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 10,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 16,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 16,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 16,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 16,
+      "N": 16,
+      "p_corr": 0.5,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 16,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 5,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 16,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 10,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 16,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 16,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 16,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 16,
+      "N": 16,
+      "p_corr": 0.7,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0667
+    },
+    {
+      "W": 16,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 5,
+      "partner_id_acc": 0.6458,
+      "chance": 0.0323
+    },
+    {
+      "W": 16,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 10,
+      "partner_id_acc": 0.9167,
+      "chance": 0.0323
+    },
+    {
+      "W": 16,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 16,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 16,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 16,
+      "N": 32,
+      "p_corr": 0.3,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 16,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 5,
+      "partner_id_acc": 0.9896,
+      "chance": 0.0323
+    },
+    {
+      "W": 16,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 10,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 16,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 16,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 16,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 16,
+      "N": 32,
+      "p_corr": 0.5,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 16,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 5,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 16,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 10,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 16,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 16,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 16,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 16,
+      "N": 32,
+      "p_corr": 0.7,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0323
+    },
+    {
+      "W": 16,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 5,
+      "partner_id_acc": 0.5625,
+      "chance": 0.0159
+    },
+    {
+      "W": 16,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 10,
+      "partner_id_acc": 0.8177,
+      "chance": 0.0159
+    },
+    {
+      "W": 16,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 16,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 16,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 16,
+      "N": 64,
+      "p_corr": 0.3,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 16,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 5,
+      "partner_id_acc": 0.9844,
+      "chance": 0.0159
+    },
+    {
+      "W": 16,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 10,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 16,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 16,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 16,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 16,
+      "N": 64,
+      "p_corr": 0.5,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 16,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 5,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 16,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 10,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 16,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 25,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 16,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 50,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 16,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 100,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    },
+    {
+      "W": 16,
+      "N": 64,
+      "p_corr": 0.7,
+      "T": 200,
+      "partner_id_acc": 1.0,
+      "chance": 0.0159
+    }
+  ]
+}

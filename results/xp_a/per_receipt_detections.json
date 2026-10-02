@@ -1,0 +1,3992 @@
+[
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 204,
+    "op": "sign_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 206,
+    "op": "sign_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 242,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 244,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 245,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 248,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 257,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 276,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 277,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 279,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 282,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 283,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 290,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 291,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 299,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 300,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 312,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 314,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 317,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 319,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 320,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 321,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 322,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 323,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 324,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 325,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 326,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 327,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 328,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 329,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 330,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 331,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 332,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 333,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 334,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 335,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 336,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 337,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 338,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 339,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 340,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 341,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 342,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 343,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 344,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 345,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 346,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 347,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 348,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 349,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 350,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 351,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 352,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 353,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 354,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 355,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 356,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 357,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 358,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 359,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 360,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 361,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 362,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 363,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 364,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 365,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 366,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 367,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 368,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 369,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 370,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 371,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 372,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 373,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 374,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 375,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 376,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 377,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 378,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 379,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 380,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 381,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 382,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 383,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 384,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 385,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 386,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 387,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 388,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 389,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 390,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 391,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 392,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 393,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 394,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 395,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 396,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 397,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 398,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 399,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 400,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 401,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 402,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 403,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 404,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 405,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 406,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 408,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 409,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 410,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 411,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 412,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 413,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 414,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 415,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 416,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 417,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 418,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 419,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 420,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 421,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 422,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 423,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 424,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 425,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 426,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 427,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 428,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 429,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 430,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 431,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 433,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 434,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 436,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 437,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "verdict_gate_pins",
+    "index": 438,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 201,
+    "op": "sign_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 204,
+    "op": "sign_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 206,
+    "op": "sign_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 207,
+    "op": "sign_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 221,
+    "op": "sign_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 226,
+    "op": "sign_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 233,
+    "op": "sign_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 242,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 244,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 245,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 247,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 248,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 249,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 257,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 265,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 276,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 277,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 279,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 280,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 281,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 282,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 283,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 284,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 285,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 286,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 287,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 288,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 289,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 290,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 291,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 292,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 293,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 294,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 295,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 296,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 297,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 298,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 299,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 300,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 301,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 302,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 303,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 304,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 305,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 306,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 307,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 308,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 309,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 310,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 311,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 312,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 313,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 314,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 315,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 316,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 317,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 318,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 319,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 320,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 321,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 322,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 323,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 324,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 325,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 326,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 327,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 328,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 329,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 330,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 331,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 332,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 333,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 334,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 335,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 336,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 337,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 338,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 339,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 340,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 341,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 342,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 343,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 344,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 345,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 346,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 347,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 348,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 349,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 350,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 351,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 352,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 353,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 354,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 355,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 356,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 357,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 358,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 359,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 360,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 361,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 362,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 363,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 364,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 365,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 366,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 367,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 368,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 369,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 370,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 371,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 372,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 373,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 374,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 375,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 376,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 377,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 378,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 379,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 380,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 381,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 382,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 383,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 384,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 385,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 386,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 387,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 388,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 389,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 390,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 391,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 392,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 393,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 394,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 395,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 396,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 397,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 398,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 399,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 400,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 401,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 402,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 403,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 404,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 405,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 406,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 408,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 409,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 410,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 411,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 412,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 413,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 414,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 415,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 416,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 417,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 418,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 419,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 420,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 421,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 422,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 423,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 424,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 425,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 426,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 427,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 428,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 429,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 430,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 431,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 433,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 434,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 436,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 437,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 438,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "step_parser",
+    "index": 440,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 441,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 442,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 443,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 444,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 445,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 446,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 447,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 448,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 449,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 450,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 451,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 452,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 453,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 454,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 455,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 456,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 457,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 458,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 459,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 460,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 461,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 462,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 463,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 464,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 465,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 466,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 467,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 468,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 469,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 470,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 471,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 472,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 473,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 474,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 475,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 476,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 477,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 478,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 479,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 480,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 481,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 482,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 483,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 484,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 485,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 486,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 487,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 488,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 489,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 490,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 491,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 492,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 493,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 494,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 495,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 496,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 497,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 498,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 499,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 500,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 501,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 502,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 503,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 504,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 505,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 506,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 507,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 508,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 509,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 510,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 511,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 512,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 513,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 514,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 515,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 516,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 517,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 518,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 519,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 520,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 521,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 522,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 523,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 524,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 525,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 526,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 527,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 528,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 529,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 530,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 531,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 532,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 533,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 534,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 535,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 536,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 537,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 538,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 539,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 540,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 541,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 542,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 543,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 544,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 545,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 546,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 547,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 548,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 549,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 550,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 551,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 552,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 553,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 554,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 555,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 556,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 557,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 558,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 559,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 560,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 561,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 562,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 563,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 564,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 565,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 566,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 567,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 568,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 569,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 570,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 571,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 572,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 573,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 574,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 575,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 576,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 577,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 578,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 579,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 580,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 581,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 582,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 583,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 584,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 585,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 586,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 587,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 588,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 589,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 591,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 592,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 593,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 594,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 595,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 596,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 597,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 598,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "step_parser",
+    "index": 599,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 200,
+    "op": "sign_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 203,
+    "op": "sign_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 206,
+    "op": "sign_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 208,
+    "op": "sign_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 211,
+    "op": "sign_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 217,
+    "op": "sign_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 223,
+    "op": "sign_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 224,
+    "op": "sign_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 232,
+    "op": "sign_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 236,
+    "op": "sign_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 237,
+    "op": "sign_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 238,
+    "op": "sign_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 242,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 244,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 245,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 248,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 249,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 251,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 255,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 257,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 258,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 260,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 262,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 271,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 274,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 275,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 277,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 278,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 279,
+    "op": "wins_over",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 281,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 282,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 283,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 289,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 290,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 291,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 294,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 298,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 301,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 302,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 304,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 310,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 314,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 315,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 317,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 318,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 319,
+    "op": "verdict_flip",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 320,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 321,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 322,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 323,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 324,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 325,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 327,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 328,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 329,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 330,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 333,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 334,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 337,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 338,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 339,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 340,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 341,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 342,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 344,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 345,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 346,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 347,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 349,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 350,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 351,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 353,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 354,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 355,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 356,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 357,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 358,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 359,
+    "op": "tau_off",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 360,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 361,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 363,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 364,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 365,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 366,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 367,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 368,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 369,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 370,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 371,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 372,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 373,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 374,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 375,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 376,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 378,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 379,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 380,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 381,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 383,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 384,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 385,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 386,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 387,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 388,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 390,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 391,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 392,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 393,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 395,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 396,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 397,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 398,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 399,
+    "op": "seed_drop",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 401,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 403,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 404,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 405,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 406,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 415,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 416,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 418,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 419,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 421,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 423,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 425,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 427,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 432,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 433,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 435,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 436,
+    "op": "denom_swap",
+    "heldout": false
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 440,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 441,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 442,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 443,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 448,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 449,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 450,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 452,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 453,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 460,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 461,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 465,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 466,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 469,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 470,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 472,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 473,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 474,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 475,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 477,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 478,
+    "op": "nan_injection",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 480,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 484,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 485,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 486,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 487,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 503,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 507,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 508,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 509,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 511,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 517,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 518,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 519,
+    "op": "dtype_cast",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 520,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 523,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 525,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 528,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 529,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 530,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 531,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 539,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 540,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 541,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 543,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 546,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 547,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 548,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 550,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 552,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 554,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 557,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 558,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 559,
+    "op": "split_boundary",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 567,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 570,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 571,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 572,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 574,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 576,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 577,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 584,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 592,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 595,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 596,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  },
+  {
+    "instrument": "trained_classifier",
+    "index": 599,
+    "op": "receipt_copy_prior",
+    "heldout": true
+  }
+]

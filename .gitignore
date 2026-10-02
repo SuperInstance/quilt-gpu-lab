@@ -5,3 +5,8 @@ results/*_adapter_*/
 data/c3/real/
 data/c3/synth/
 data/c4/
+
+farm/state.json
+farm/logs/
+scratch/grader_blindspots/repo/
+scratch/dogfood/workers/edge-lab-buggy/

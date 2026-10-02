@@ -18,6 +18,10 @@
 - [DONE 01:3x] **DECIDE-1 FIRED + BOOKED**: G1 control PASS (16/16=1.0); G2 lane FAIL decisively BELOW chance (5/64=0.078; zero-shot and shipped trained readout give IDENTICAL predictions); G3 PASS (3.31 GiB, 54 ms); G4 exploratory (fitted-T pinned at boundary, fitted head 0.3125 not significant vs 0.25). Per protocol: STOPPED on G2 FAIL, no re-roll.
 
 ## QUEUE (top = next)
+- [open] MMX-1 (GPU ~45m + 20m recon, spawned by SCOUT-15): MiniMoth→CUDA statevector bit-exact vs sealed exp008 (fleet-triage #1 B3 handoff); primary purpose = QG1d closure instrument (rebuild failing genome, separate stale-vs-fitness-diff). Gate: byte-identical statevectors at n=4 before any scaling claim.
+- [open] FT-D1 (design note, non-GPU, spawned by SCOUT-15): GPU-native cell runtime spec (fleet-triage #1 D1), sized by D12h/i/j W·T law; gate = QG4 cell at W=128/gens=100 in <10 min on the 4050.
+- [open] CH-1 (CPU reading ~30m, spawned by SCOUT-12): chiaroscuro HOLD/CAST abstention split -> map onto QO6 outcomes, draft HOLD-register spec addition for QO7. XR-1 raised (xruntime-conformance pushed post-read). Full sweep: proposals/runs/SCOUT-12-fleet-push-2026-10-01-1311Z.md.
+- [DONE 05:1x Oct 1] **D12i BOOKED (KEEP)**: width lane opened by D12h's T>=50 universal — universal is a width artifact; T_floor drops ~1 rung per W doubling, saturates at the (N64,p0.3) corner. Dead-fire recovery (QO6 pattern #3), bit-exact replication before booking. See RESULTS.md.
 - [DONE 05:5x QO6 BOOKED (retractable kill-evidence gate)]: eproc.mjs ported (lineage pinned 61b9e04/aad90ac5); ALL V1-V4 PASS — late-bloomer fires (E 581) then retracts -> KEEP; hopeless -> KILL_CANDIDATE; sigma-honesty refusals verified. QO2 routing fully specified in components (oracle + budget triage + gate). Fired by 05:3x wake (died unbooked); replicated then booked this wake.
 - [DONE 05:1x RECEIPT-HASH (tool/weight digest seal)]: manifest extended to 17 tool/weight files, test pin added, retroactive snapshot receipts/tool_pins_2026-09-30.md, 10 night receipts amended w/ Pinned-instruments blocks. Forward convention: receipts pin at fire time. Bonus: pins exposed QUEUE drift (D22/E13/E13b booked-not-claimed) — backfilled per c9b39b4 precedent, tests OK.
 - [DONE 01:5x] **DECIDE-1b BOOKED (P1 INVERTED FIRED)**: predicted option is argMIN-balance on 0.891 of questions; argmin-prob acc 0.375 (lower CP95 > 0.25); pred_kinds delete=42 vs label_kinds insert=42; shuffle test content_following 0.78 vs letter_stickiness 0.375 (reads CONTENT, not position). The cell answers "smallest balance" — inversion lives in the backbone (both readers identical).
@@ -40,6 +44,39 @@
   - [spawned by QO3] QO5 (birth-state insufficiency probe): WHY is g0 AUC exactly 0.500? All streams share one skeleton draw + fresh mutation, so birth states may be near-identical across streams (check state diversity at g0: var of len/v/hist across streams). If g0 states ARE diverse but uninformative -> landscape decides, stream state irrelevant; if g0 states are near-identical -> desert-at-birth means birth LOTTERY, and gen1 selection is the first observable branch point. Cheap (data already in results/qo3_horizon).
 - [spawned by QG2] QG4: budget/gens phase diagram (W x gens grid, 1024 streams/cell) — map the crossing frontier. Directly serves "cells are dedicated; routing happens between cells".
 - [spawned by PR-SWEEP #1] RECEIPT-CITE: amend QG1/QG2 receipts (proposals/runs/*.md) to cite SuperInstance repos by name (weight law; see MicroMoth-quilt PR #29). Docs-only, no re-run.
+
+## SCOUT-16 SPAWNED ITEMS (2026-10-01 2311Z) — full text proposals/runs/SCOUT-16-fleet-push-2026-10-01-2311Z.md
+- [ ] **RC-4 seal-chain / reseal-forgery resistance** (CPU ~45m): manifest chains each seal to the previous
+  seal digest; tamper test red-then-green. Canons 2217Z scout reports reseal-forgery 3rd instance — our
+  sealer refuses dirty paths but a valid RE-seal of modified content is currently undetectable.
+- [ ] **QO10 premise amendment** (docs, before QO10 fires): fleet-triage RETRACTED the L1>L0-under-shift
+  ordering (88e30b3 — max-selection artifact, Kish n_eff 1.48; "no gap smaller than the spread is a finding").
+  Strike the premise, cite 88e30b3; both-direction pre-reg stays. STEAL their rule into ST1-AUDIT/QC-JEV3.
+- [stale] **FT-A1**: superseded by pie-minimax #2 A1 receipt (nonlinear closes ~1.0, P1 FAIL-HIGH).
+  Re-read both before firing; do NOT fire on the old buildspec.
+
+## SCOUT-11 SPAWNED ITEMS (2026-10-01 1911Z) — full text proposals/runs/SCOUT-11-fleet-push-2026-10-01-1911Z.md
+- [ ] **FT-A1** (GPU, pre-reg FIRST): pie-minimax nonlinear closure per fleet-triage PR #1 buildspec (MLP 9-64-9 on 180,361 exact labels; P1 top-1 [0.25,0.40]; P2 COMPOSED <70% of global; reproduce linear 0.1807 first or STOP; 3 pinned seeds; their Do-NOT list inherited). Follows their Exp 2 DONE-VERIFIED 16:21Z (FT-1 closed upstream).
+- [ ] **FT-D3** (GPU, pre-reg template provided, fill brackets + commit before fire): determinism lab — H1 atomics divergence threshold / H2 fp32-vs-fp64 reorder / H3 canon-sort digest invariance; serial-reference + fp64-shadow controls. Converts the QG7 lane-nondeterminism lesson into a measured map. cite fleet-triage PR #1.
+- [ ] **QO10** (CPU ~30m, existing data): projection-ladder ablation for the QO1 oracle (raw state -> cv/v/gen -> cv -> gen) x random-stream vs later-generation holdout splits; pre-register BOTH directions (their L1>L0-under-shift inversion); gen-only >= cv under shift would mean oracle signal is partly REGIME — sharpens QO2. Spawned by fleet-triage projection-doctrine results (18:59Z).
+- RC-1b priority RAISED again (canons 16:28Z: quilt-llvm 1,127 input mutants 0% killed vs 76/76 tamper — the never-executed-branch fleet-wide instance).
+- [NOTE 19:1x] No CONTRADICT this sweep; INSTRUMENT-01 receipt artifact was untracked at booking (D-2 class, 2nd instance — committed this wake); repro result appended when it lands.
+- 23:1x CONDUCTOR slice (day-cron, SCOUT-16 per (A)-first rotation; GPU lane BUSY — live b1b_kink_head +
+  b1b runB + c1b playtest — nothing GPU fired, no repro due this slice; rides next wake). HEADLINE —
+  **fleet-triage 88e30b3 RETRACTS the projection-ladder ordering** (max-selection artifact over Kish
+  n_eff 1.48) — the premise SCOUT-11's QO10 cites is gone; QO10 amended-not-killed (both-direction
+  pre-reg survives). Their rule "no gap smaller than the spread is a finding" CORROBORATES our QG7
+  ensemble law — adopted into ST1-AUDIT. Also: pie-minimax #2 A1 receipt (nonlinear ~1.0, P1
+  FAIL-HIGH) SUPERSEDES FT-A1 (marked stale). TOOL: canons 22:27Z reseal-forgery 3rd instance →
+  spawned RC-4 (seal-chain). STEAL: pong-quilt #92 scaling-trajectory tool for our C1b lane.
+  CORROBORATE: jev-quilt 50th-wipe discipline (their net, no conflict with jeff-0.8b). Full text:
+  proposals/runs/SCOUT-16-fleet-push-2026-10-01-2311Z.md. Rotation next wake: book C1b/B1b verdicts
+  if landed, mandatory (C) repro of newest booking, then RC-4 (top cheap open item).
+
+## SCOUT-10 SPAWNED ITEMS (2026-10-01 1811Z)
+- [ ] **RC-1b dead-branch census** (CPU ~45m): every runner a booked verdict depends on must have its gate-computation branches exercised by a committed test or the verified repro run (logtensor never-executed homing term; QG1c radians was a live instance). UNCOVERED gate branch on a BOOKED result = RED. Fold in pong #92 no-claim-marker-in-source pattern.
+- [ ] **JC-1** (CPU ~10m, LOW): reformat QC-JEV(/QC-JEV2) numbers into fleet-seeds wave-63 jev calibration ledger shape, staged locally for Casey to push. No filing.
+- RC-1 priority RAISED (canons PR #4: quilt-cell-bridges 44/63 bridges hardcode /workspace output paths — our 4-instance class, fleet-wide).
 
 ## FINDINGS (append-only)
 - 00:0x CONDUCTOR-0 (main): QG2 headline above. qcell-sim gained crx + receipt-anchored selftest. Vectorized lane = gathers + bmm chains; ANCHOR-VEC 2e-34.
@@ -640,3 +677,279 @@ other agents are feeding us; keep the handshake lane warm.
   18:1x), then FT-1 pre-reg + fire (CPU, fleet-triage experiment #2) or QG1d follow-up. GPU
   open for QG4 phase diagram.
 - Commits: 398c662 (--out), f4cbac3 (repro booking), 5311096 (re-seal). All pushed.
+
+## DAY SLICE 20:1x (day-conductor, 8:11pm AKDT) — SCOUT-9 landed (A-rotation; no repro due)
+- SCOUT-9 (A SUPERINSTANCE SCOUT, non-GPU; PX6 repro already PASS 19:2x so (C) clean). Full text:
+  proposals/runs/SCOUT-9-fleet-push-2026-10-01-0411Z.md. HEADLINE — **fleet-triage CORRECTED its own
+  F1/F2 variance-collapse thesis (50a5d66): sigma^2/2k is classical mutation-selection balance
+  ("vanishing variance", arXiv:2404.04616), and TWO arXiv IDs the fleet cites are FABRICATED.**
+  - (CONTRADICT-resolved) FT-2 aimed at the pre-correction text — DOWNGRADED to optional reading;
+    QG6 (variance flat-to-harmful in qcells) untouched.
+  - (NEW THREAT CLASS) fabricated IDs + our SCOUT-1 cited "EvE 2609.36xxx" (hand-waved ID) and spawned
+    QO4 off it => spawned **SC-2** (arXiv-ID integrity check; 404 => premise UNVERIFIED in place).
+  - (TOOL/STEAL) quilt-canvas-tui identity plane v1 (c49fdb3): HMAC-signed receipts, key OUTSIDE the
+    agent process, chain-repair attack pinned (verifyChain passes / verifySignatures refuses), unsigned
+    declared never backfilled, 27/27 green => spawned **SIG-1** (design note only; Casey-gated on key
+    management — sha256-only seals cannot resist the agent-that-reseals adversary our own slices keep
+    demonstrating).
+  - (CORROBORATE x3) canons PR #4 + voxelglyph: quilt-cell-bridges 44/63 hardcoded /workspace output
+    paths die on final write in clean clone (fleet-scale validation of RC-1 `--out`); logtensor 88
+    green with homing term zeroed; voxelglyph "verification layer did not verify the product". All
+    feed the open DEGENERATE/QC-JEV3/RC-1 pins with independent citations.
+  - Watch: chiaroscuro round-5-lane-abcd branch (uninspected), Patchwork-experts push (uninspected).
+    pong #88 routine; selectlib #1 not ours; quilt-atlas routine. [EMBASSY] pong #49 unchanged.
+- GPU lane idle all slice. Next wake: top open CPU item (SC-2 ~15m, QC-JEV3, DEGENERATE gate) or GPU
+  QG1d/QG4 per queue order.
+
+- 21:1x CONDUCTOR slice (day cron): **SC-2 BOOKED (B-item; CPU read-only, top open item after SCOUT-9)**.
+  ALL PASS — 2404.04616, 2609.35432, 2602.17997 all resolve with matching titles; SCOUT-1's hand-waved
+  "EvE 2609.36xxx" RESOLVED as arXiv 2609.35614 (real, published 2026-09-28; the "36xxx" guess was
+  numerically wrong — exactly the hand-wave pattern fleet-triage caught as fabrication elsewhere).
+  **QO4 premise SOURCED, unblocked.** New standing doctrine: verify the arXiv ID before consuming any
+  scout-spawned reading premise. Fail-loud trap noted: first curl over http:// returned EMPTY bodies
+  with exit 0 — exit code alone would have "confirmed" nothing; https:// worked. No GPU item (CPU slice
+  per rotation; GPU lane free). No reproduction check due (SC-2 is read-only; last booking PX5b/PX6
+  verified 19:2x or internally self-cross-checking). Foreign-live strays NOT touched (Casey's farm lane:
+  M farm/RECEIPTS.md, ?? farm/state.json, commit a38403c 21:06 — PW-1 precedent). Rotation next wake:
+  (A) SUPERINSTANCE SCOUT or top open CPU item (SIG-1 design note Casey-gated, JH-1/QC-JEV3 residual,
+  QG1d recon); GPU open for QG4 phase diagram.
+- 21:1x SEAL STATUS: manifest re-seal DEFERRED — sealer correctly refused (?? experiments/av1_train.py,
+  untracked, mtime 21:12 = LIVE foreign AV1 lane mid-write; not mine to commit or archive). My ledger
+  changes (RESULTS/QUEUE/spool) are committed+pushed at 123145e; next wake after the AV1 lane settles
+  should re-seal. Fourth clean refusal-by-design instance today.
+
+- 22:1x CONDUCTOR slice (day cron): **SCOUT-10 BOOKED (A-rotation, non-GPU; no repro due —
+  last GPU booking PX6 reproduced 19:2x; CURL-1 repro flagged DUE with caveat: external typesafe
+  JEV calls, not byte-stable, token cost — schedule as its own slice, do NOT blind-rerun)**.
+  Full text: proposals/runs/SCOUT-10-fleet-push-2026-10-01-0611Z.md. HEADLINE — two TOOL/STEALs:
+  (1) **jev-harness** (new repo by the JEV-null-retraction agent): hardened client = QC-JEV3
+  shipped as a library — preflight() refuses malformed specs BEFORE send, structured-field
+  scoring (unparseable = FAILURE not low score), every call journalled. Spawned **JH-2** (port
+  guarantees onto our JEV path; closes QC-JEV3). (2) **chiaroscuro video-port merged** (the
+  branch SCOUT-9 flagged, now inspected): offline video→ascii porter whose `--manifest` sidecar
+  (input sha256 + resolved dials) makes the port reproducible from record alone — RC-1 doctrine
+  applied to media; also the inverse operator of our AV1 lane (baseline porter + glyph-pair
+  source). Spawned **AV-P** (coordinate with Casey's live polyformalism lane first). Minor:
+  quilt-i2i H3 MicroMoth→IonQ handoff recon spawned read-only **QI-1** (low). Projectionist
+  Story Cinema burst = Casey live lane, no overlap. Open PRs on all 6 consumed repos: ZERO
+  (quietest sweep of the day). [EMBASSY] pong #49 unchanged. Foreign-live tree untouched
+  (farm/RECEIPTS.md + queue.json modified, av1 pairs untracked — Casey's). GPU lane idle all
+  slice. Rotation next wake: (B) top open CPU item — JH-2 (pre-reg not needed for tool port,
+  but pin gates) or FT-1 pre-reg+fire; (C) CURL-1 repro slice; GPU open for QG1d/QG4.
+
+- 23:1x CONDUCTOR slice (day cron): (C) mandatory reproduction check landed — **C5 repro PASS**
+  (see RESULTS.md): scratch clone at HEAD (runner has no `--out`, 5th RC-1 witness), checkpoint-resume
+  made it scoring-only/zero-GPU in <5 s; verdicts + every margin exact vs the committed artifact,
+  only `created` differs. Honest scope note booked: repro validates SCORING, not the extraction stage.
+  - Foreign D12h artifacts (t-floor surface, 22:33, completed, no live process) committed-not-touched
+    per the ef726a3 D12g precedent to unblock the seal (sealer refused dirty — design working).
+  - Manifest re-sealed (148 exp / 21 tool files); 6 tests OK; pushed (c405f27). GPU lane untouched
+    all slice (repro was CPU-only).
+  - Still untracked, flagged not touched: `data/c5/` (49M raw frames — C5's own; candidate for
+    gitignore or LFS decision, Casey's call), `results/av1/pairs-{polyformalism,superinstance-intro}/`
+    (other agents' av1 runs — foreign-live precedent).
+  - No scout and no new queue item this slice (rotation: 22:1x scout → 22:4x C5 fire/book → 23:1x (C)).
+  Next wake rotation: (A) SCOUT-11 or QC-JEV3/ST1-AUDIT (both cheap, unclaimed, CPU); GPU open for
+  QG1d recon follow-up or QG4 phase diagram.
+
+- [DONE 00:1x SCOUT-9 (day-conductor, (A)-first rotation; no GPU item; no repro fired — CM1-r5 repro (farm receipts, NOT a re-fire) is booked as NEXT slice's mandatory C)]. Full text: proposals/runs/SCOUT-9-fleet-push-2026-10-01-0811Z.md.
+  HEADLINES: (1) **PR #6 OPEN against OUR repo** — fleet-delivered RC-3 seal-guard fix (__pycache__ unusability: guard refused seals after any test run). Verified in scratch clone: suite 10/10 OK, dirty-path refusal fires live and names the path; --allow-dirty admission wording NOT confirmed by my grep (honest caveat; PR6-CHECK re-verify before Casey's merge). CASEY-GATED, not merged.
+  (2) **chiaroscuro NEW repo, 8 open PRs**: fruit-fly CX × JEV ternary × KC × Moth-notary stack, JEV consumed as component. Spawned CH-1. CM1-r5's judge-state-dilution finding may bite their batched gate.
+  (3) **CHECK/CONTRADICT-candidate — pie-minimax #1**: our FT-1 result quoted back with a "composed prediction flips sign" claim we never booked => FT-1b spawned, PRIORITY (threatens a booked result).
+  (4) CORROBORATE: quilt-atlas study-72k ("replicates expose ceiling as partly luck", fail-closed INCONCLUSIVE) = QG7 ensemble doctrine confirmed fleet-side; kev-substrate-mojo on-box bit-for-bit Mojo/Python agreement; quilt-neighbourhood v0.6 fail-closed reconciliation; WIT-1 witnesses #6/#7 (scalarSha/lossShaOf non-portable).
+  Spawned: CH-1 (CPU ~40m), FT-1b (CPU ~20m, top priority), PR6-CHECK (CPU ~10m). Untracked foreign dirs (data/c5/, results/av1/*) still pending commit-not-touch. [EMBASSY] pong #49 unresponded (Casey day item).
+  Rotation next wake: (C) CM1-r5 reproduction check (farm receipts + scoring re-derivation) FIRST, then FT-1b, then GPU open (QG1d/QG4).
+
+- 01:1x CONDUCTOR slice (day cron Oct 1): (C) mandatory reproduction check landed — **CM1-r5 repro PASS
+  (scoring re-derivation)**, see RESULTS.md: live-API fire so no byte re-run; recomputed A 12/12 DRAFT_PASS,
+  B 11/12 all DOUBTED_PINCH served 7/3/1, verdicts KEEP/TRANSFERS/ROSTER_HURTS, cost_bar true — all exact.
+  Both apparent diffs resolved (runner's path histogram has no correct-filter — mine was stricter; rescued_sids
+  key expected). S12's pinch miss internally consistent. 6th RC-1 no---out witness (moot: repro wrote nothing).
+  Manifest re-sealed (149/22), tests OK, pushed (97d99db, 36a7729). Scratch kept at
+  /home/eileen/scratch/cm1r5_repro.py + _out.json (outside the repo by design).
+  Rotation next wake: **FT-1b (CPU ~20m, TOP PRIORITY — pie-minimax #1 quotes our FT-1 with a composed-sign
+  claim we never booked; pre-reg then fire)**, then GPU open for QG1d/QG4. Tree clean except known foreign
+  dirs (data/c5/, results/av1/*) — still pending commit-not-touch, Casey's call.
+
+- 02:1x CONDUCTOR slice (day cron Oct 1): (B) **FT-1b BOOKED — CORROBORATE-with-citation; CONTRADICT DISMISSED**
+  (see RESULTS.md): pie-minimax #1's "composed prediction flips sign" follows exactly from our own committed
+  px1 artifact (seed-0 linear_split 0.1895→0.2640 verbatim, direction 3/3 seeds); the RESULTS.md PX1 booking
+  already recorded the sign-flip correctly and PX1b already found the mechanism. One honest artifact erratum
+  booked: the results.json embedded branch_rulings prose says "drop" for both gains — numbers right, narrative
+  polarity wrong; noted in place, sealed artifact not edited (extends RC-1: artifacts carry pointers, not
+  interpretations). (C) repro: most recent runner-booking (CM1-r5) already reproduced PASS at 01:1x this day;
+  FT-1b is analysis-only on a sealed artifact, no runner. Manifest re-seal + tests + push. Rotation next wake:
+  (A) SCOUT-11 or PR6-CHECK (cheap, unclaimed); GPU open for QG1d follow-up or QG4 phase diagram.
+
+- [DONE 03:1x Oct 1 SCOUT-11 (day-conductor, (A)-rotation per 02:1x handoff; GPU idle; no repro due — CM1-r5 PASS at 01:1x, FT-1b analysis-only)]. Full text: proposals/runs/SCOUT-11-fleet-push-2026-10-01-1111Z.md.
+  **CONTRADICT COUNT: ZERO** — first quiet-on-contradicts sweep; nothing threatens QO2/DECIDE-1/QG7/W5b lineage.
+  CORROBORATE: chiaroscuro PRs #10/#11 honest-FAIL receipts (sealed-spec-first, no goalpost moves; #10 found a
+  spec ARITHMETIC bug — claimed 30° analytic bound, true arcsin(ρ)=35.26° — recorded-not-patched);
+  quilt-atlas wave-76 M3 = 3rd independent witness of the vacuous-pass class (R1 PASS at a point where
+  baseline is trivially 0.0 — F1/QO5/W5a/murmuration shape). STEALs: (1) atlas M3 **evidence-in-receipt**
+  (every commitment cites {stat, threshold, lattice_max, frac}, replay-verifiable) → spawned QO6-EV (extend
+  QO6 eproc receipts + evidence-only replay verifier); (2) canons judge_gate **truncation blind spot** →
+  TRUNC-B completeness pin folded into DEGENERATE-gate spec; (3) chiaroscuro analytic-bound re-derivation
+  pattern → AB-1 (low, noted). CONSUME check: canons flags quilt-jepa mtime-seal-unverifiable-in-clone —
+  verified OUR manifest is sha256-content-sealed, clone-safe, no action. taps-creative-break = new Casey-
+  adjacent loop repo, watched, no overlap. [EMBASSY] pong #49 unchanged (Casey day item). Rotation next
+  wake: (B/C) top open CPU item — TRUNC-B (cheap) or QO6-EV; GPU open for QG1d recon follow-up or QG4.
+
+- [DONE 04:1x Oct 1 CONDUCTOR slice (day cron)]: (B) **TRUNC-B + DEGENERATE pin LANDED** per 03:1x
+  rotation handoff (top open CPU item; GPU untouched; no repro due). tools/verdict_gate.py = one
+  verdict lattice, precedence VOID > DEGENERATE > INCONCLUSIVE > FAIL > PASS, encoding the three
+  fleet laws: std==0/saturated/sub-min_n => DEGENERATE never PASS (murmuration law; F1/QO5/W5a
+  witnesses); completeness must be attested True else VOID/INCONCLUSIVE (canons truncation blind
+  spot; our 09:1x tmpfs tail); status_source must be "own" else VOID (CONVERGENCE shape 3).
+  12 tests PASS; sealer refused the dirty-tree seal first (design working, then clean re-seal,
+  149 exp / 24 tool files, 6 tests OK). QUEUE marked. Rotation next wake: (A) SCOUT due
+  (last sweep 03:1x) or QO6-EV (unclaimed CPU); GPU open for QG1d recon follow-up or QG4.
+
+## DAY SLICE 06:11-06:3x Oct 1 (day-conductor) — D12j BOOKED: KEEP; SCOUT-13 quick pass
+- **(A) SCOUT-13 (lightweight, canons-consume pattern per SC-1):** pushes since SCOUT-12 (13:11Z):
+  jev-quilt 41st-43rd wipe probes (mean_p 0.50-0.62, 0 drift — their lane; QC-JEV already separated
+  jeff-0.8b, no threat); **reverse-actualization wave-79** — "iterative re-anchoring FAILS honestly:
+  same-model loop keeps its attractor; lexical and semantic channels independent" → CORROBORATE/TOOL
+  for DECIDE-2: DECIDE-1d's instruction-flip nulls are the same attractor-keeping phenomenon at the
+  prompt level, so hidden-state surgery must ship an identity-loop (same-model re-anchor) control.
+  Spawned **DECIDE-2c** below. quilt-arcade PR #5 (manifests cite quilt-tools S3 witness shape,
+  PENDING edge) → corroborates WIT-1; no action. pong-quilt #90-#92 C1-lane (Casey lane). Canons
+  1320Z scout: quilt-substrate 405/405 mutation-verified, quilt-jepa reseal-forgery (2nd instance),
+  flux-a2a-signal one-sided hash test — no touches to our assets. **No CONTRADICT found.**
+- **(B) D12j FIRED + BOOKED: KEEP** (pre-reg 0b2df86 was already committed by the 06:02 wake; runner
+  written per plan, committed before fire). J1 PASS (0 monotonicity inversions), J2 PASS — hardest
+  corner (N128, p0.3) floors 5→3→2 for W=32/64/128, **J3 not triggered (no plateau)**. The W·T
+  product rule survives to W=128; at p>=0.5 the floor is ladder-bottom-limited. 1 declared mechanical
+  crash pre-scoring (preflight except-list). Booked in RESULTS.md; manifest re-sealed ×2 (booking +
+  repro).
+- **(C) MANDATORY REPRO:** D12j re-run from committed runner to ext4 scratch → IDENTICAL (deep-equal;
+  CUDA generator seeds version-stable). D12i's repro was already done at booking time (bit-exact,
+  documented). Clean bills.
+- Spawned: **DECIDE-2c** (attractor-escape control): DECIDE-2's representation-surgery spec must add an
+  identity-loop control per reverse-actualization wave-79 — same-model iterative re-anchoring keeps its
+  attractor, so surgery (not prompting) must be shown to actually move the representation, with the
+  loop-no-op as the negative control. Day item, rides DECIDE-2.
+- Rotation next wake: non-GPU per rotation (RC-2 completeness-bounds, RC-3 tracked-artifact assert,
+  or PR-SWEEP #6); GPU lane free (QG1d recon follow-up or QG4 phase diagram per queue order).
+
+## DAY SLICE 07:1x (day-conductor) — SCOUT-14 (non-GPU per rotation; GPU lane free, no GPU item)
+- Full text: proposals/runs/SCOUT-14-fleet-push-2026-10-01-1511Z.md. HEADLINE — **PR #6 on OUR repo
+  (OPEN, Casey-gated): seal-guard usability fix + refusal-semantics pins** — our `--require-clean`
+  guard false-refuses after ANY test run (tracked `tools/__pycache__/*.pyc` regenerates on import);
+  the PR fixes the dirty-path check and FAIL-first-pins the refusal semantics (4/4 mutation-caught).
+  TOOL against the receipt doctrine; spawned **RG-6** (verify claim on scratch clone, verdict for
+  Casey's merge gate; INVALID if the false-refuse doesn't reproduce on main).
+- **CORROBORATE: jev-quilt 41st-44th wipes — JEV oracle STABLE** (mean_p 0.60, 0 drift, 7 sessions,
+  14-probe battery incl. misquote/typo probes). Third witness against murmuration's jev-1.13.0 null;
+  further narrows that finding to artifact-version-specific; QC-JEV booking stands. Steal: their
+  misquote/ambiguity probe classes + drift-across-wipes protocol → QC-JEV2 spec amended.
+- **TOOL/STEAL: quilt-mojo-lab wave-73 WSL2 GPU burst-timing law — idle ≥10s → bursts 2-10× slow
+  on OUR box (RTX 4050/WSL2).** Any cold-start timing gate (G3-style ms anchors) flakes without a
+  warmup commit → spawned **TW-1** (audit timing gates, add warmups).
+- No CONTRADICTs this sweep. Quiet: taps-creative-break (lore lane), reverse-actualization wave-79
+  (honest-FAIL corroborated), quilt-arcade, slackwater-lattice (vendor-defect pinning, same doctrine).
+- Spawns: RG-6, TW-1, QC-JEV2 amendment. No repro due this wake (last booking D12j already
+  reproduced bit-exact in the 06:2x slice). Rotation next wake: RG-6 or FT-1 (CPU); GPU: QG1d/QG4.
+
+- [DONE 08:1x Oct 1 SCOUT-15 (day-conductor, (A)-first, non-GPU; GPU lane free, no GPU item; mandatory (C) not due — last booked item D12j already reproduced bit-exact at booking)] Fleet push sweep 16:11Z. HEADLINE — **fleet-triage PR #1 updated 16:08Z: an RTX-4050 worklist written FOR this lab** (Kimi directive; buckets A-D, adopts GPU-EXPERIMENTS §0). Classifications: (CONSUME/STEAL) B3 MiniMoth→CUDA bit-exact statevector = the missing QG1d instrument -> spawned MMX-1; (STEAL) D1 GPU-native cell runtime, sized by our W·T product law -> spawned FT-D1; (CONSUME) A2 determinism lab = XR-1 already open; A6 murmuration = QC-JEV/QC-JEV2 cover it. (CORROBORATE, 3rd witness) jev-quilt 45th-wipe mean_p 0.6014 with 7/7 bedrock: weak-oracle family alongside murmuration's unclear band — checkpoint identity dominates oracle quality; sharpens QC-JEV2 + the DECIDE-2 discriminating-control receipt flag. Overnight-sync-only: crab-traps/qthe/playtest/codespace-worker/MicroMoth; qthe's mtime-witness law = another runtime-bound-pin instance (RC-2/WIT-1 cover). [EMBASSY] pong#49 still unresponded (Casey day item). Foreign untracked pre-regs (INSTRUMENT-01/S6a/S6b) NOT touched (PW-1 precedent). Full text: proposals/runs/SCOUT-15-fleet-push-2026-10-01-1611Z.md. Rotation next wake: MMX-1 pre-reg + fire (GPU) or cheap CPU items (RC-3 tracked-artifact assert, DEGENERATE gate, RC-2 bounds).
+
+## SCOUT-9 SPAWNED ITEMS (concrete)
+- [ ] **PR-8a pre-reg ownership marker** (CPU docs ~30m): every new pre-reg in proposals/runs/ carries an
+  explicit `owner:` line + reconciliation-note section (quilt-neighbourhood P8 steal) so concurrent
+  wakes/farm lanes claim visibly; banks the D12j two-witness race lesson as contract.
+- [ ] **SC-1 refresh** (CPU ~30m, existing item, new input): extract canons 13:31Z + 16:29Z reports —
+  quilt-llvm 1,127 mutants 0% killed (113 provably-wrong survivors), erised-mirror 75/75 claimed vs 0/15
+  runnable, quilt-jepa reseal-forgery #2 — map each onto RC-1/RC-2/RC-3/DEGENERATE gates. No full-org re-sweep.
+
+- 09:1x+ CONDUCTOR slice (day cron Oct 1): SCOUT-9 fleet push sweep (A-first rotation; GPU lane free,
+  no GPU item fired). Full text: proposals/runs/SCOUT-9-fleet-push-2026-10-01-1711Z.md. HEADLINE —
+  **CONTRADICT (confirmed, theirs): micromoth exp022 provenance gap PERSISTS after the 15:36Z overnight
+  sync (37c0608, ~300 receipt files)** — `qcell.search` still absent from the entire tree (code search 0
+  hits, tree grep empty), so the exp022 generator remains non-runnable and their qcell receipts corpus is
+  unreproducible by construction. QG1d upgraded: p_target recovery/reimplementation is the only path; stop
+  re-sweeping the tree for qcell (confirmed absent twice). CORROBORATE: fleet-triage Exp2 DONE-VERIFIED
+  multi-beam (82297aa) — FT-1/FT-1b lane fully finished upstream, nothing to do. STEAL: quilt-neighbourhood
+  v0.5/v0.6 RFC P8 reconciliation events -> PR-8a pre-reg ownership marker (banks the D12j race lesson).
+  TOOL: murmuration also ships a GPU brief (323102d) — second GPU-queue intake lane alongside fleet-triage.
+  New canons reports (quilt-llvm 0%-killed mutation lab, erised-mirror 0/15 runnable, quilt-jepa forgery
+  #2) fed to SC-1 refresh. No new GPU items spawned; rotation next wake: non-GPU (PR-8a or SC-1 refresh,
+  both cheap) or GPU QG1d p_target rebuild / QG4 phase diagram. Foreign untracked farm-lane pre-regs
+  (INSTRUMENT-01/S6a/S6b/XQ0) untouched per PW-1 precedent. No repro due this slice (SCOUT item, non-GPU;
+  last GPU landing D12j already reproduced bit-exact 06:2x).
+
+- 10:1x Oct 1 CONDUCTOR slice (day cron): SCOUT-10 (A-rotation, non-GPU; GPU lane free, no GPU item fired,
+  no repro due — D12j already reproduced bit-exact 06:2x). Full text:
+  proposals/runs/SCOUT-10-fleet-push-2026-10-01-1811Z.md. HEADLINES: (1) canons PR #4 — quilt-cell-bridges
+  44/63 bridges hardcode /workspace output paths and die on final write in a clean clone: our 4-instance
+  RC-1 hardcoded-output-path defect is FLEET-WIDE, RC-1 priority RAISED. (2) logtensor: 88 tests green with
+  the homing term never executed by any test -> spawned RC-1b dead-branch census (uncovered gate branch on a
+  booked result = RED). (3) fleet-seeds wave-63 jev calibration ledger v1 -> spawned JC-1 (formatting only).
+  (4) pong C1 scaling v0: horizon, not population, moves learning — CORROBORATES QG3/QG6 time-law on an
+  independent substrate. (5) fleet-triage Exp 3 redirected, MMX-1/FT-D1 unchanged. (6) [EMBASSY] pong #49
+  now has 7 comments — lane moved, Casey item likely retired, not acted. Re-seal used --allow-dirty
+  (foreign farm-lane files, PW-1 precedent). Spawned: RC-1b, JC-1. Rotation next wake: cheap CPU items
+  RC-1b or JC-1, or GPU QG1d p_target rebuild / QG4 phase diagram.
+
+## DAY-CONDUCTOR 12:1x Oct 1 — SCOUT-12 fresh-push sweep + FT-A1 repro
+- [DONE 12:1x] SCOUT-12 (fresh pushes 19:0x-20:08Z): CORROBORATE quilt-tools edge14 "merge outran the
+  booking" (4th D-2 witness); TOOL fleet-triage resolver AMBIGUOUS basename lint -> RP-1; CHECK jev-quilt
+  round-48 drift flags -> QC-JEV3; census of 244 repos does NOT flag quilt-gpu-lab. No CONTRADICT.
+- [DONE 12:1x] (C) FT-A1 mandatory repro PASS (scored values byte-identical, only train_secs differ;
+  committed artifact restored; 4th hardcoded-OUT instance noted in RC-1 spec).
+- [ ] **RP-1** (CPU ~30m): receipt-citation lint per fleet-triage resolver AMBIGUOUS taxonomy — flag bare
+  basename repo refs in receipts/docs; gate: zero ambiguous refs at sealed HEAD or explicit waiver.
+- [ ] **QC-JEV3** (CPU ~5m, before any DECIDE-2 work): re-run the QC-JEV 4 probes on jeff-0.8b; GATE:
+  d_ptrue within 0.10 of the booked 0.936 AND p_true("2+2=4") > 0.90; failure => QC-JEV verdict is
+  round-sensitive, downgrade to drift-flagged (jev-quilt shows q10 +0.26 drift on their lane).
+
+## SCOUT-13 (day-conductor, 2026-10-01 21:15Z) — full text proposals/runs/SCOUT-13-fleet-push-2026-10-01-2115Z.md
+- GPU lane occupied by FOREIGN local run (si-arena kimi/poc run_poc.py, PID 1740249, 13:09 local) — no GPU item fired; serial-lane law honored.
+- CORROBORATE (3rd independent witness): fleet-triage synergy — "detection_power returned the base rate, not recall"; fail-open harness 11/13 one-bug → DEGENERATE-gate-verdict priority RAISES.
+- TOOL: fleet-triage BOARD (38 reports) + D1 (44 edge DBs, 467 tables) → spawned D1-CENSUS (are our receipts readable by the board?).
+- RAISED: QC-JEV3 (jev-quilt q10 ≥0.85 for 3rd consecutive round — round-to-round drift pattern real; our QC-JEV pin is a single-round draw protecting DECIDE-2's premise).
+- Spawned SYN-1: gate-statistic base-rate audit over all committed gates (QO6/QG7/W5b/FT-A1) — any vacuous gate = CONTRADICT finding against the booking it supports.
+- CULTURE: FICTION-COMPACTION.md — folded "one sentence of why behind each gate" into ST-STEEL spec.
+- (C) note: most recent GPU booking (G7 watt-receipt KEEP, 6fbc863) — mandatory repro deferred this slice (GPU lane foreign-occupied); scratch/g7_live_validation.py re-run is the repro vehicle. Prior FT-A1 repro PASS stands.
+
+- 14:1x CONDUCTOR slice (day cron): SCOUT-9 + XP-C static audit; manifest RED found (RESULTS drift, seal blocked by
+  live c1 run — deferred, honestly marked in RESULTS). Spawns: EDGE-1, XPC-W, PIM-1. Full text
+  proposals/runs/SCOUT-9-fleet-push-2026-10-01-2211Z.md. GPU occupied (c1_playtest live, PID 1823912). Rotation next
+  wake: book c1_playtest completion if landed + RE-SEAL MANIFEST (top priority, clears the RED), then GPU item or
+  PIM-1/EDGE-1 CPU items per queue order.
+
+- 16:1x CONDUCTOR slice (day cron, 2026-10-02 0011Z; SCOUT-17 per (A)-first rotation; GPU lane BUSY —
+  live c1b playtest PID 1890871 until ~18:3x AKDT — nothing GPU fired, no CPU repro due this slice; COMP1
+  repro queued for next wake behind the lane). Full text: proposals/runs/SCOUT-17-fleet-push-2026-10-02-0011Z.md.
+  HEADLINE — **INSTRUMENT-01 is being consumed fleet-side**: quilt-mojo-lab runtime10 fp16/bf16 precision-budget
+  probe (same RTX 4050) cites the WSL2 ramp law as a fire-time requirement — CORROBORATE, no contradiction.
+  STEAL: SYN-HARNESS2 "a green light wired to nothing is a decoration" — 4th witness of the check-cannot-fail
+  family; their NEGATIVE-CONTROL pattern adopted into RC-1 (spawned RC-1n: seeded-defect red-before-green gate).
+  CORROBORATE: fleet-triage FORK-VS-CHAIN public self-correction (fork n_eff 0.179 ~= chain 0.201, ~one voice);
+  breakthrough-prospector E6 fail-closed honest draw. TOOL: fleet-triage "compose, do not compete" verdict on
+  quilt-in-git (hooks runtime, FAIL-first pins) — read-by-execution recon method noted for QG1d-next; NEW repos
+  frozen-clock-lab (clock-as-injectable-fault — our sha-based seals already clock-free, confirmed) + doubt-ledger
+  (append-only relocated trust). RL-1 spawned (refusal-ledger -> QO6 mapping, low). Bookkeeping: stale
+  "NOT COMMITTED" notes on COMP1/D2 rows amended docs-only (COMP1 artifacts verified committed at 6c47056);
+  b1b/c1b dirty-tree churn belongs to the LIVE lanes — left untouched. Rotation next wake: book c1b when it
+  lands, mandatory (C) repro of COMP1 (GPU, ~15 min) once the lane frees, then RC-1n (top cheap open item).
+
+- 17:11 CONDUCTOR slice (day cron, 2026-10-02 0111Z; SCOUT-18 per (A)-first rotation; GPU lane FOREIGN-OCCUPIED
+  by c1b_run_b + auto-finish watcher — nothing GPU fired, c1b union adjudication is the watcher's job, hands off).
+  Full text: proposals/runs/SCOUT-18-fleet-push-2026-10-02-0111Z.md. HEADLINES: CORROBORATE quilt-adjudication
+  "merge that cannot be committed silently" (receipt=NO merge gap + refusal + mutation-caught proof = 5th
+  check-cannot-fail witness). STEAL fleet-seeds M13 sealed law — no verdict inherited across executor change
+  without a re-seal note -> spawned RN-1 (executor: identity on receipts + inheritance notes + README-sufficiency
+  pass). TOOL quilt-jev-toolkit organ two-phase writes -> spawned SEAL-2 (crash-safe manifest sealing design).
+  No CONTRADICT. Repro DEFERRED honestly: B1F (most recent committed GPU booking) C6/C7-block repro is top of
+  next GPU-free wake. Rotation next wake: book c1b if watcher landed, B1F repro, then RN-1/SEAL-2 (cheap CPU).
+
+- 18:1x CONDUCTOR slice (day-cron, rotation (C)-first): **mandatory repro of newest booking B1G (c7126c0) PASS
+  bit-exact modulo elapsed_s** — committed script re-run via its `--out` flag into ext4 scratch
+  (/home/eileen/scratch/b1g_repro_20261001), results tree untouched (09:1x tmpfs lesson applied). Third clean
+  bill (QG1c, W5a prior). **FAIL-LOUD: dirty-tree instance #4** — the B1G producing script was UNTRACKED at
+  booking; committed+amended same commit (72948c5, pushed). Guard receipt records NO entry-script sha → RC-1
+  action spawned: (a) guard receipts pin script sha256, (b) booking commits include the script. Manifest re-seal
+  REFUSED by the sealer (correct): tree carries live COMP2-lane dirty files (comp2_arms.py, results/comp2/,
+  deepinfra_call.py etc. — another agent actively working; not touched). Seal rides that lane's next clean point.
+  GPU lane free all slice; no GPU item fired. Rotation next wake: (A) scout per day-conductor (A)-first order
+  or RC-4 (top cheap open item); check COMP2 lane for landed verdicts (results/comp2/ exists, unbooked).

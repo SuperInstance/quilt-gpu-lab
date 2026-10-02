@@ -1,0 +1,19 @@
+{
+  "note": "EXPLORATORY, never folded into Gate A's verdict: a longer-training control net, same arch/data/seed, to separate optimization from representation at the frozen 1e-3 tolerance",
+  "frozen_epochs": 40,
+  "control_epochs": 300,
+  "control": {
+    "seed": 2718,
+    "final_train_mse": 0.0004986654678173119,
+    "rms_err": 0.02077317051589489,
+    "curve": {
+      "1e-06": 0.00029693170570768723,
+      "0.0001": 0.0380952380952381,
+      "0.001": 0.34916969097107664,
+      "0.01": 0.8803255251292202,
+      "0.05": 0.9904322005938634,
+      "0.1": 0.9951611129440229,
+      "0.2": 0.9977235235895744
+    }
+  }
+}

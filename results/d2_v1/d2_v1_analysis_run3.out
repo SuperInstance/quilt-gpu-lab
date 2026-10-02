@@ -1,0 +1,24 @@
+det reflex.orient    op=1.000 uni=1.000 deg=1.000 real=1.000 spread=0.000 excess=0.000
+det world.surprise   op=0.448 uni=0.000 deg=0.000 real=0.406 spread=0.448 excess=0.408
+det sensors.vision   op=0.616 uni=0.526 deg=0.335 real=0.603 spread=0.281 excess=0.241
+det policy.action    op=0.901 uni=0.982 deg=0.058 real=0.883 spread=0.924 excess=0.884
+det memory.semantic  op=0.120 uni=0.000 deg=0.587 real=0.124 spread=0.587 excess=0.547
+det memory.episodic  op=0.183 uni=0.107 deg=0.127 real=0.173 spread=0.076 excess=0.036
+gap reflex.orient    sim=-0.0171 [-0.0496, 0.0106] mis=+0.0321 seedstd=0.0002 PASS
+gap world.surprise   sim=-0.0126 [-0.0626, 0.0331] mis=+0.0243 seedstd=0.0239 PASS
+gap sensors.vision   sim=+0.0615 [0.0104, 0.1196] mis=+0.0598 seedstd=0.0088 PASS
+gap policy.action    sim=+0.0030 [-0.0016, 0.0096] mis=+0.7078 seedstd=0.0029 PASS
+gap memory.semantic  sim=+0.0075 [-0.0138, 0.0313] mis=+0.0862 seedstd=0.0068 PASS
+gap memory.episodic  sim=+0.0001 [-0.0212, 0.0219] mis=-0.0113 seedstd=0.0023 PASS
+
+==== D2-V1 VERDICT: INCONCLUSIVE ====
+  H1: FAIL
+  H2: PASS
+  H3: PASS
+  H4: PASS
+  H5: INCONCLUSIVE
+  H6: PASS
+  rho -0.3714 [-0.6, 0.6] | H2 {'near1_sockets': ['reflex.orient', 'policy.action'], 'mean_gap_sim': -0.0071, 'gate': 'PASS'} | H3 0.1427
+  H-GROWTH: R2 DOES NOT SURVIVE (unguided grows too — seed-vacuity confirmed) | seed-law offenders: []
+  extension: FIRE x5 extension (H4 pass + CI width 1.20 > 0.40)
+wrote d2_v1_result.json

@@ -1,0 +1,47 @@
+inner rc=0
+[trace   0] ticks=869 closed=True
+[trace  40] ticks=1177 closed=True
+[trace  80] ticks=619 closed=True
+[trace 120] ticks=1200 closed=False
+[trace 160] ticks=692 closed=True
+[trace 200] ticks=1200 closed=False
+[label   0] n=1738
+[label  40] n=2354
+[label  80] n=1238
+[label 120] n=2400
+[label 160] n=1384
+[label 200] n=2400
+[data] train=366346 holdout=90930
+[C4 frame cross-check] ok=True dX=0.0 dY=0.0
+[C1 laweq] {'ok': True, 'n': 4000, 'max_abs_diff': 0, 'n_diff': 0}
+[train tanh         2718] mse 0.19106 -> 0.0027127 (deployed, 4481p)
+[train tanh         2719] mse 0.19587 -> 0.0051102 (deployed, 4481p)
+[train tanh         2720] mse 0.18782 -> 0.0011246 (deployed, 4481p)
+[train relu         2718] mse 0.18318 -> 0.0042109 (deployed, 4481p)
+[train relu         2719] mse 0.21938 -> 0.0010539 (deployed, 4481p)
+[train relu         2720] mse 0.19336 -> 0.00035838 (deployed, 4481p)
+[train kink         2718] mse 1.3614 -> 0.0080267 (deployed, 26p)
+[train kink         2719] mse 4.4589 -> 0.015329 (deployed, 26p)
+[train kink         2720] mse 9.5857 -> 0.010239 (deployed, 26p)
+[train tanh_b1exact 2718] mse 0.19129 -> 0.0038518 (raw, 4481p)
+[train tanh_b1exact 2719] mse 0.19596 -> 0.0059123 (raw, 4481p)
+[train tanh_b1exact 2720] mse 0.18794 -> 0.0024106 (raw, 4481p)
+[C2 port tanh         left ] f64 max|d|=1.78e-15 f32=1.34e-06 max|js|=0.904
+[C2 port tanh         right] f64 max|d|=1.83e-15 f32=9.67e-07 max|js|=0.762
+[C2 port relu         left ] f64 max|d|=2.39e-15 f32=1.29e-06 max|js|=0.865
+[C2 port relu         right] f64 max|d|=1.33e-15 f32=6.9e-07 max|js|=0.723
+[C2 port kink         left ] f64 max|d|=3.44e-15 f32=1.53e-06 max|js|=0.895
+[C2 port kink         right] f64 max|d|=4.22e-15 f32=2.52e-06 max|js|=0.726
+[C2 port tanh_b1exact left ] f64 max|d|=1.55e-15 f32=1.14e-06 max|js|=0.913
+[C2 port tanh_b1exact right] f64 max|d|=1.67e-15 f32=8.57e-07 max|js|=0.774
+[regions] {"clamp": 0.0013, "deadzone": 0.078, "saturation": 0.8839, "ramp": 0.0369}
+[gateA tanh        ] 1e-3=0.0991 1e-2=0.6136 5e-2=0.8891 verdict=FAIL
+[gateA relu        ] 1e-3=0.2303 1e-2=0.8701 5e-2=0.9192 verdict=FAIL
+[gateA kink        ] 1e-3=0.0920 1e-2=0.4684 5e-2=0.7659 verdict=FAIL
+[gateA tanh_b1exact] 1e-3=0.0586 1e-2=0.6181 5e-2=0.8731 verdict=FAIL
+[gateB] no arm passed both gates -> Gate B not run (frozen rule)
+RESULT {"verdict": "NEGATIVE", "gpu_peak_vram_mb": 78.4, "elapsed_s": 232.6}
+ARMS {"tanh": "FAIL", "relu": "FAIL", "kink": "FAIL", "tanh_b1exact": "FAIL"}
+
+guard receipt: results/b1b_kink_runB/guard/g7-wr-b1b-kink-head-1790896473.json valid=True OK (exit 0): results/b1b_kink_runB/guard/g7-wr-b1b-kink-head-1790896473.json is a valid g7-watt-receipt@1 watt-receipt
+ENERGY: 3.082628611111111 Wh (11097.463 J); gate={'rule': 'no receipt → run VOID', 'verdict': 'PASS'}

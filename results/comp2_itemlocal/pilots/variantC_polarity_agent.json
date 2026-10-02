@@ -1,0 +1,533 @@
+{
+  "experiment": "COMPOSITE-2 phase 3 \u2014 C2-IL item-local sensor corpus",
+  "prereg": "proposals/runs/C2-item-local.md",
+  "mode": "pilot",
+  "variant": "C",
+  "cpu_only": true,
+  "gpu_wh": 0.0,
+  "new_banks": 0,
+  "corpus": {
+    "seed": 2718,
+    "n_target": 12000,
+    "per_regime": 100,
+    "sha_sequence": "2341a7169146a8fc410f095edc94988a8886515f0fdc2bdcda54584426dea776",
+    "n_raw": 400,
+    "n_unique": 400,
+    "regen_collisions": 1,
+    "n_train": 300,
+    "n_heldout": 100,
+    "per_regime_heldout": {
+      "semantic": 24,
+      "counting-address": 23,
+      "negation-scope": 25,
+      "agent-role": 28
+    },
+    "canon_frac_heldout": 0.54,
+    "per_regime_canon_frac": {
+      "semantic": 0.5833,
+      "counting-address": 0.4783,
+      "negation-scope": 0.68,
+      "agent-role": 0.4286
+    },
+    "per_regime_polarity_viol_frac": {
+      "semantic": 0.6,
+      "counting-address": 0.5833,
+      "negation-scope": 0.375,
+      "agent-role": 0.6875
+    },
+    "determinism_w1": true
+  },
+  "chance_majority": {
+    "full": 0.54,
+    "semantic": 0.5833,
+    "counting-address": 0.5217,
+    "negation-scope": 0.68,
+    "agent-role": 0.5714
+  },
+  "sensors": [
+    "S1",
+    "S2",
+    "S3",
+    "S4"
+  ],
+  "regimes": [
+    "semantic",
+    "counting-address",
+    "negation-scope",
+    "agent-role"
+  ],
+  "arms": [
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S4-MONO",
+    "JOINT",
+    "FED-IL",
+    "FED-IL-2S",
+    "FED-IL-MARGIN",
+    "FED-IL-MAJ",
+    "PV-cheap-S1",
+    "PV-cheap-S2",
+    "PV-cheap-S3",
+    "PV-cheap-S4",
+    "S1-cheap",
+    "FED-cheap-IL",
+    "BEST-SINGLE"
+  ],
+  "boards_seedmean": {
+    "S1": {
+      "full": 0.4833,
+      "semantic": 0.5833,
+      "counting-address": 0.5072,
+      "negation-scope": 0.3333,
+      "agent-role": 0.5119,
+      "canon": 0.6852,
+      "dist_agent": 0.4386,
+      "dist_polarity": 0.1111
+    },
+    "S2": {
+      "full": 0.6133,
+      "semantic": 0.6528,
+      "counting-address": 0.5652,
+      "negation-scope": 0.6933,
+      "agent-role": 0.5476,
+      "canon": 0.5123,
+      "dist_agent": 0.807,
+      "dist_polarity": 0.679
+    },
+    "S3": {
+      "full": 0.51,
+      "semantic": 0.5278,
+      "counting-address": 0.4493,
+      "negation-scope": 0.6133,
+      "agent-role": 0.4524,
+      "canon": 0.5679,
+      "dist_agent": 0.6491,
+      "dist_polarity": 0.2963
+    },
+    "S4": {
+      "full": 0.6267,
+      "semantic": 0.5556,
+      "counting-address": 0.7246,
+      "negation-scope": 0.68,
+      "agent-role": 0.5595,
+      "canon": 0.8148,
+      "dist_agent": 0.1053,
+      "dist_polarity": 0.6173
+    },
+    "S4-MONO": {
+      "full": 0.6267,
+      "semantic": 0.5556,
+      "counting-address": 0.7246,
+      "negation-scope": 0.68,
+      "agent-role": 0.5595,
+      "canon": 0.8148,
+      "dist_agent": 0.1053,
+      "dist_polarity": 0.6173
+    },
+    "JOINT": {
+      "full": 0.4867,
+      "semantic": 0.5833,
+      "counting-address": 0.5217,
+      "negation-scope": 0.3333,
+      "agent-role": 0.5119,
+      "canon": 0.6852,
+      "dist_agent": 0.4561,
+      "dist_polarity": 0.1111
+    },
+    "FED-IL": {
+      "full": 0.52,
+      "semantic": 0.5278,
+      "counting-address": 0.6087,
+      "negation-scope": 0.36,
+      "agent-role": 0.5833,
+      "canon": 0.2099,
+      "dist_agent": 0.9298,
+      "dist_polarity": 0.8519
+    },
+    "FED-IL-2S": {
+      "full": 0.5867,
+      "semantic": 0.5972,
+      "counting-address": 0.7391,
+      "negation-scope": 0.4,
+      "agent-role": 0.619,
+      "canon": 0.5741,
+      "dist_agent": 0.5263,
+      "dist_polarity": 0.6543
+    },
+    "FED-IL-MARGIN": {
+      "full": 0.5967,
+      "semantic": 0.6528,
+      "counting-address": 0.7391,
+      "negation-scope": 0.4533,
+      "agent-role": 0.5595,
+      "canon": 0.7716,
+      "dist_agent": 0.2105,
+      "dist_polarity": 0.5185
+    },
+    "FED-IL-MAJ": {
+      "full": 0.5533,
+      "semantic": 0.6111,
+      "counting-address": 0.5942,
+      "negation-scope": 0.4667,
+      "agent-role": 0.5476,
+      "canon": 0.5,
+      "dist_agent": 0.7018,
+      "dist_polarity": 0.5556
+    },
+    "PV-cheap-S1": {
+      "full": 0.4933,
+      "semantic": 0.4167,
+      "counting-address": 0.5217,
+      "negation-scope": 0.4933,
+      "agent-role": 0.5357,
+      "canon": 0.3457,
+      "dist_agent": 0.6842,
+      "dist_polarity": 0.6543
+    },
+    "PV-cheap-S2": {
+      "full": 0.5233,
+      "semantic": 0.4722,
+      "counting-address": 0.5652,
+      "negation-scope": 0.4667,
+      "agent-role": 0.5833,
+      "canon": 0.3951,
+      "dist_agent": 0.6842,
+      "dist_polarity": 0.6667
+    },
+    "PV-cheap-S3": {
+      "full": 0.4733,
+      "semantic": 0.3889,
+      "counting-address": 0.4783,
+      "negation-scope": 0.4933,
+      "agent-role": 0.5238,
+      "canon": 0.3827,
+      "dist_agent": 0.6316,
+      "dist_polarity": 0.5432
+    },
+    "PV-cheap-S4": {
+      "full": 0.61,
+      "semantic": 0.5556,
+      "counting-address": 0.6667,
+      "negation-scope": 0.56,
+      "agent-role": 0.6548,
+      "canon": 0.4753,
+      "dist_agent": 0.5439,
+      "dist_polarity": 0.9259
+    },
+    "S1-cheap": {
+      "full": 0.4933,
+      "semantic": 0.4167,
+      "counting-address": 0.5217,
+      "negation-scope": 0.4933,
+      "agent-role": 0.5357,
+      "canon": 0.3457,
+      "dist_agent": 0.6842,
+      "dist_polarity": 0.6543
+    },
+    "FED-cheap-IL": {
+      "full": 0.5333,
+      "semantic": 0.4861,
+      "counting-address": 0.6232,
+      "negation-scope": 0.3867,
+      "agent-role": 0.631,
+      "canon": 0.2407,
+      "dist_agent": 0.7895,
+      "dist_polarity": 0.9383
+    },
+    "BEST-SINGLE": {
+      "full": 0.6267,
+      "semantic": 0.5556,
+      "counting-address": 0.7246,
+      "negation-scope": 0.68,
+      "agent-role": 0.5595,
+      "canon": 0.8148,
+      "dist_agent": 0.1053,
+      "dist_polarity": 0.6173
+    }
+  },
+  "seed_std": {
+    "S1": 0.0047,
+    "S2": 0.0094,
+    "S3": 0.0082,
+    "S4": 0.0047,
+    "S4-MONO": 0.0047,
+    "JOINT": 0.0047,
+    "FED-IL": 0.0141,
+    "FED-IL-2S": 0.0047,
+    "FED-IL-MARGIN": 0.0047,
+    "FED-IL-MAJ": 0.0125,
+    "PV-cheap-S1": 0.0464,
+    "PV-cheap-S2": 0.0618,
+    "PV-cheap-S3": 0.033,
+    "PV-cheap-S4": 0.0294,
+    "S1-cheap": 0.0464,
+    "FED-cheap-IL": 0.0386,
+    "BEST-SINGLE": 0.0047
+  },
+  "best_single_view": "S4",
+  "single_view_acc": {
+    "S1": 0.4833,
+    "S2": 0.6133,
+    "S3": 0.51,
+    "S4": 0.6267
+  },
+  "G_IL1": {
+    "pass": true,
+    "bar": 0.56,
+    "hits": {
+      "S2": 0.6133,
+      "S4": 0.6267,
+      "PV-cheap-S4": 0.61
+    }
+  },
+  "G_IL2": {
+    "comparison": "FED-IL - BEST-SINGLE (full board)",
+    "diff": -0.1067,
+    "ci95": [
+      -0.25,
+      0.04
+    ],
+    "bar": 0.05,
+    "std_a": 0.0141,
+    "std_b": 0.0047,
+    "std0_a": false,
+    "std0_b": false,
+    "verdict": "FAIL"
+  },
+  "G_IL2b": {
+    "comparison": "FED-IL - S4-MONO (full board)",
+    "diff": -0.1067,
+    "ci95": [
+      -0.25,
+      0.04
+    ],
+    "bar": 0.05,
+    "std_a": 0.0141,
+    "std_b": 0.0047,
+    "std0_a": false,
+    "std0_b": false,
+    "verdict": "FAIL"
+  },
+  "secondary": {
+    "FED-IL-MARGIN - BEST-SINGLE": {
+      "comparison": "FED-IL-MARGIN - BEST-SINGLE",
+      "diff": -0.03,
+      "ci95": [
+        -0.1133,
+        0.0533
+      ],
+      "bar": null,
+      "std_a": 0.0047,
+      "std_b": 0.0047,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED-IL - S1": {
+      "comparison": "FED-IL - S1",
+      "diff": 0.0367,
+      "ci95": [
+        -0.1067,
+        0.18
+      ],
+      "bar": null,
+      "std_a": 0.0141,
+      "std_b": 0.0047,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED-IL - S4": {
+      "comparison": "FED-IL - S4",
+      "diff": -0.1067,
+      "ci95": [
+        -0.25,
+        0.04
+      ],
+      "bar": null,
+      "std_a": 0.0141,
+      "std_b": 0.0047,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED-IL-2S - BEST-SINGLE": {
+      "comparison": "FED-IL-2S - BEST-SINGLE",
+      "diff": -0.04,
+      "ci95": [
+        -0.13,
+        0.05
+      ],
+      "bar": null,
+      "std_a": 0.0047,
+      "std_b": 0.0047,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED-IL-MAJ - BEST-SINGLE": {
+      "comparison": "FED-IL-MAJ - BEST-SINGLE",
+      "diff": -0.0733,
+      "ci95": [
+        -0.1867,
+        0.04
+      ],
+      "bar": null,
+      "std_a": 0.0125,
+      "std_b": 0.0047,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED-IL - JOINT": {
+      "comparison": "FED-IL - JOINT",
+      "diff": 0.0333,
+      "ci95": [
+        -0.11,
+        0.1767
+      ],
+      "bar": null,
+      "std_a": 0.0141,
+      "std_b": 0.0047,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED-cheap-IL - S1-cheap": {
+      "comparison": "FED-cheap-IL - S1-cheap",
+      "diff": 0.04,
+      "ci95": [
+        -0.0133,
+        0.0967
+      ],
+      "bar": null,
+      "std_a": 0.0386,
+      "std_b": 0.0464,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    }
+  },
+  "per_regime_ci": {
+    "FED-IL - BEST-SINGLE @semantic": {
+      "comparison": "FED-IL - BEST-SINGLE",
+      "diff": -0.0278,
+      "ci95": [
+        -0.2503,
+        0.2361
+      ],
+      "bar": null,
+      "std_a": 0.0393,
+      "std_b": 0.0196,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED-IL - BEST-SINGLE @counting-address": {
+      "comparison": "FED-IL - BEST-SINGLE",
+      "diff": -0.1159,
+      "ci95": [
+        -0.3913,
+        0.1594
+      ],
+      "bar": null,
+      "std_a": 0.0355,
+      "std_b": 0.0205,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    },
+    "FED-IL - BEST-SINGLE @negation-scope": {
+      "comparison": "FED-IL - BEST-SINGLE",
+      "diff": -0.32,
+      "ci95": [
+        -0.64,
+        0.0
+      ],
+      "bar": null,
+      "std_a": 0.0,
+      "std_b": 0.0,
+      "std0_a": false,
+      "std0_b": true,
+      "verdict": "INCONCLUSIVE (std==0 law)"
+    },
+    "FED-IL - BEST-SINGLE @agent-role": {
+      "comparison": "FED-IL - BEST-SINGLE",
+      "diff": 0.0238,
+      "ci95": [
+        -0.25,
+        0.3098
+      ],
+      "bar": null,
+      "std_a": 0.0168,
+      "std_b": 0.0168,
+      "std0_a": false,
+      "std0_b": false,
+      "verdict": "FAIL"
+    }
+  },
+  "per_channel": {
+    "canon": {
+      "BEST-SINGLE": 0.8148,
+      "FED-IL": 0.2099,
+      "FED-IL-2S": 0.5741,
+      "FED-IL-MAJ": 0.5,
+      "FED-IL-MARGIN": 0.7716,
+      "FED-cheap-IL": 0.2407,
+      "JOINT": 0.6852,
+      "PV-cheap-S1": 0.3457,
+      "PV-cheap-S2": 0.3951,
+      "PV-cheap-S3": 0.3827,
+      "PV-cheap-S4": 0.4753,
+      "S1": 0.6852,
+      "S1-cheap": 0.3457,
+      "S2": 0.5123,
+      "S3": 0.5679,
+      "S4": 0.8148,
+      "S4-MONO": 0.8148
+    },
+    "dist_agent": {
+      "BEST-SINGLE": 0.1053,
+      "FED-IL": 0.9298,
+      "FED-IL-2S": 0.5263,
+      "FED-IL-MAJ": 0.7018,
+      "FED-IL-MARGIN": 0.2105,
+      "FED-cheap-IL": 0.7895,
+      "JOINT": 0.4561,
+      "PV-cheap-S1": 0.6842,
+      "PV-cheap-S2": 0.6842,
+      "PV-cheap-S3": 0.6316,
+      "PV-cheap-S4": 0.5439,
+      "S1": 0.4386,
+      "S1-cheap": 0.6842,
+      "S2": 0.807,
+      "S3": 0.6491,
+      "S4": 0.1053,
+      "S4-MONO": 0.1053
+    },
+    "dist_polarity": {
+      "BEST-SINGLE": 0.6173,
+      "FED-IL": 0.8519,
+      "FED-IL-2S": 0.6543,
+      "FED-IL-MAJ": 0.5556,
+      "FED-IL-MARGIN": 0.5185,
+      "FED-cheap-IL": 0.9383,
+      "JOINT": 0.1111,
+      "PV-cheap-S1": 0.6543,
+      "PV-cheap-S2": 0.6667,
+      "PV-cheap-S3": 0.5432,
+      "PV-cheap-S4": 0.9259,
+      "S1": 0.1111,
+      "S1-cheap": 0.6543,
+      "S2": 0.679,
+      "S3": 0.2963,
+      "S4": 0.6173,
+      "S4-MONO": 0.6173
+    }
+  },
+  "verdict": "PILOT-FAIL-NO-PREMIUM",
+  "booked_sentence": "PILOT (disclosed direction-finding; NOT a booking)",
+  "wall_seconds": 0.3
+}

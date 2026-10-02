@@ -1,0 +1,108 @@
+{
+ "queue": [
+  {
+   "id": "av1-train",
+   "kind": "experiment",
+   "status": "done",
+   "prereg": "proposals/runs/AV1-ascii-to-video.md",
+   "cmd": [
+    "~/venvs/elephant-gpu/bin/python",
+    "experiments/av1_train.py",
+    "--pairs",
+    "results/av1/pairs-hero"
+   ],
+   "cwd": "/home/eileen/projects/quilt-gpu-lab",
+   "note": "external lane (subagent 3a65600a) — finished 21:14 AKDT with verdicts booked: H1 KEEP / H2 KEEP in RESULTS.md (f7166d0). Marked done by the v2 runner fix; external runs are noted, never pinned.",
+   "farm_fired": false
+  },
+  {
+   "id": "c5-paired-action",
+   "kind": "experiment",
+   "status": "done",
+   "prereg": "proposals/runs/C5-paired-action-plan.md",
+   "cmd": [
+    "~/venvs/elephant-gpu/bin/python",
+    "experiments/c5_paired_action.py"
+   ],
+   "cwd": "/home/eileen/projects/quilt-gpu-lab",
+   "note": "C5 paired-condition action probe — pre-reg pushed before fire (this commit). Farm fires when committed.",
+   "farm_fired": false
+  },
+  {
+   "id": "cm1-r5",
+   "kind": "experiment",
+   "status": "done",
+   "prereg": "proposals/runs/CM1-r5-plan.md",
+   "cmd": [
+    "~/venvs/elephant-gpu/bin/python",
+    "experiments/cm1_relay_r5.py"
+   ],
+   "cwd": "/home/eileen/projects/quilt-gpu-lab",
+   "note": "R4 STALE (already ran+booked RICH_WINS 12/12) — replaced with r5: judge swap jev-latest + 3-cell roster under the r4-winning recipe. Plan pushed before fire; farm fires when committed.",
+   "farm_fired": false
+  }
+ ],
+ "fillers": [
+  {
+   "id": "pairs-polyformalism",
+   "kind": "filler",
+   "cmd": [
+    "node",
+    "experiments/av1_extract_pairs.mjs",
+    "/home/eileen/projects/jev-quilt/assets/polyformalism_12_ports.mp4",
+    "results/av1/pairs-polyformalism",
+    "--fps",
+    "10",
+    "--duration",
+    "12",
+    "--cols",
+    "100"
+   ],
+   "cwd": "/home/eileen/projects/quilt-gpu-lab",
+   "cooldown_min": 1440,
+   "note": "held-out cross-video corpus for AV1 (CPU work, keeps the dataset growing)",
+   "status": "done",
+   "last_run": 1790834986966
+  },
+  {
+   "id": "pairs-superinstance-intro",
+   "kind": "filler",
+   "cmd": [
+    "node",
+    "experiments/av1_extract_pairs.mjs",
+    "/home/eileen/projects/ai-writings/videos/superinstance-intro.mp4",
+    "results/av1/pairs-superinstance-intro",
+    "--fps",
+    "10",
+    "--duration",
+    "20",
+    "--cols",
+    "100"
+   ],
+   "cwd": "/home/eileen/projects/quilt-gpu-lab",
+   "cooldown_min": 1440,
+   "note": "second corpus video",
+   "status": "done",
+   "last_run": 1790835049799
+  },
+  {
+   "id": "daily-render",
+   "kind": "filler",
+   "cmd": [
+    "~/venvs/elephant-gpu/bin/python",
+    "experiments/av1_glyph_atlas.py",
+    "results/av1/pairs-hero/pair0000.txt",
+    "/tmp/av1-daily.png",
+    "--phosphor",
+    "80,255,140",
+    "--vignette",
+    "0.5"
+   ],
+   "cwd": "/home/eileen/projects/quilt-gpu-lab",
+   "cooldown_min": 1440,
+   "note": "one render from the other side, every day — the farm keeps making images even between experiments",
+   "status": "running",
+   "last_run": 1790835113129
+  }
+ ]
+}

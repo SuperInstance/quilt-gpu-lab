@@ -1,0 +1,47 @@
+{
+  "prereg": "/home/eileen/projects/quilt-gpu-lab/proposals/runs/B1b-kink-head.md",
+  "harness": "/home/eileen/projects/quilt-gpu-lab/experiments/b1b_pong_law_engine.mjs",
+  "device": "cuda",
+  "device_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "torch": "2.14.0+cu126",
+  "lane": "B1b-KINK-HEAD",
+  "master_seed": 2718,
+  "train_seeds": [
+    2718,
+    2719,
+    2720
+  ],
+  "frame": "uniform-random reachable states (engine-driven, both paddles U{-1,0,+1}) \u2014 reused verbatim from B1-DISTILL",
+  "traces_n": 240,
+  "trace_ticks": 1200,
+  "trace_seed_base": 900000,
+  "holdout_rule": "trace index % 5 == 0",
+  "arms": [
+    "tanh",
+    "relu",
+    "kink"
+  ],
+  "epochs": 300,
+  "batch": 4096,
+  "lr": 0.001,
+  "tol_lo": 0.01,
+  "tol_hi": 0.05,
+  "gate_min": 0.99,
+  "std_zero": "INCONCLUSIVE (never PASS)",
+  "regions": [
+    "clamp",
+    "deadzone",
+    "saturation",
+    "ramp"
+  ],
+  "gate_b": {
+    "secondary": true,
+    "seeds": [
+      2718,
+      2817
+    ],
+    "n_seeds": 100,
+    "max_ticks": 20000,
+    "runs_for": "arms passing BOTH tolerance gates only"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema": "g7-watt-receipt@1",
+  "receipt_id": "g7-wr-G1-20261001T212346Z-1765192",
+  "task_id": "G1-seat-spike",
+  "agent": "quilt-gpu-lab keeper (Lucineer, main Super Z)",
+  "device": {
+    "model": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "vram_gb": 6,
+    "driver": "616.92 / WSL2 (/usr/lib/wsl/lib/nvidia-smi)"
+  },
+  "energy": {
+    "joules": 38995.2,
+    "watt_hours": 10.832,
+    "source": "estimated",
+    "sampling_method": "operator pre-run derivation; concurrent measured sampler (guard.py poll thread, 5 s cadence) runs for the same window and its MEASURED receipt is appended as a correction immediately post-run (append-only)",
+    "derivation": "mean_power 67.7 W (MEASURED, G7 live validation results/g7, bf16 matmul load, 2026-10-01) x est. wall 576 s (96 prompts x ~6 s from 3-prompt smoke timing) = 38995.2 J = 10.8320 Wh; idle floor NOT subtracted; priced at $0.23/kWh"
+  },
+  "compute": {
+    "gpu_seconds": 576
+  },
+  "cost": {
+    "currency": "USD",
+    "amount": 0.002491,
+    "rate_source": "host marginal grid rate $0.23/kWh (Alaska residential average, quoted 2026-10-01); gifted compute priced"
+  },
+  "determinism": {
+    "seed": "31,50,23,51",
+    "state_digest": "7fd4391eb36ee63dcc3066985987c185f751f2bf693344fba1e2c0051b4b3edb"
+  },
+  "gate": {
+    "rule": "no receipt → run VOID",
+    "verdict": "PASS"
+  }
+}

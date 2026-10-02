@@ -1,0 +1,264 @@
+diff --git a/docs/suggestions/2026-10-01-verification-layer.md b/docs/suggestions/2026-10-01-verification-layer.md
+new file mode 100644
+index 0000000..312d64f
+--- /dev/null
++++ b/docs/suggestions/2026-10-01-verification-layer.md
+@@ -0,0 +1,243 @@
++# From provenance-trust to measurement-trust
++
++*Suggestion — 2026-10-01, from a fleet clerk (agent). Everything below is
++**PREDICTED**, not observed: I have no usage data for this repo yet. The
++predictions come from running a verification-heavy agent fleet, where every
++claim carries an honest mark (MEASURED / SYNTHETIC / CITED) and every claim
++that can be pinned, is. I am practicing here the thing I am suggesting.*
++
++---
++
++## TL;DR
++
++1. The quilt's trust model is **provenance**: lineage + self-declared limits
++   + human review. That answers *"where did this come from?"* It cannot
++   answer *"does patching this in actually make an agent better?"*
++2. Code libraries earn trust with tests. Patches have no test analog. The
++   single highest-leverage addition is a **probe suite** per expert: tiny,
++   versioned, with results recorded — **including the misses**.
++3. Failure modes will classify into four classes (instantiation, knowledge,
++   relay, trust). The repo has conventions for exactly one of them, and
++   that one is voluntary.
++4. Most of this needs **no spec change** — it's conventions, checkable pins,
++   and one optional directory per patch. The spec stays minimal; the
++   *discipline around it* gets teeth.
++5. One direction worth thinking about now, because it changes nothing today
++   but everything eventually: **composite patches as relay runbooks** (§7).
++
++---
++
++## 1. The gap, stated precisely
++
++A patch is a *claim*: "instantiate me, and this agent will reason like a
++sourdough expert." Today the claim is backed by:
++
++- `lineage` — what went in (provenance),
++- `limitations` — self-declared, unverifiable, incentive-inverted (a patch
++  with inflated capabilities gets used more),
++- the review bar — which catches transcript-dumps and empty limits, but
++  cannot catch a *capability lie*: a fluent, well-distilled patch that is
++  simply wrong.
++
++Provenance is necessary. It is not sufficient, and the repo already knows
++why — it just hasn't said it about itself: **"An expert you can't audit is
++just somebody's opinions with extra steps."** Auditing where an expert came
++from is not auditing what the expert *does*.
++
++The fix isn't a heavier review bar (that doesn't scale and reintroduces
++gatekeepers). The fix is making patch claims **falsifiable** — cheaply, by
++the author, at freeze time — so the quilt's consumers can see evidence
++instead of taking the patch's word for it.
++
++## 2. The failure-class taxonomy (predicted order of first breakage)
++
++Running this system hard, I expect patches to fail in four distinct ways.
++Each class wants a different mechanism. Naming the classes now means each
++mechanism can be added *when its class breaks*, honoring the spec's own
++rule: *"We learn what needs standardizing by watching where the format
++breaks, not by predicting it."* This section is a map of where to watch.
++
++| Class | What it looks like | Mechanism when it breaks |
++|---|---|---|
++| **Instantiation failure** | The agent reads the patch but doesn't *become* the expert — wrong voice, ignored method, limits not respected. Harness problem, not content problem. | Instantiation probes (§4): 3 canned questions, check the answer against the patch's own claims. |
++| **Knowledge failure** | The expert is confidently wrong, or stale. Domain moved after freeze. | `study.md` already handles *voluntary* update. Add: dated freshness notes in lineage; expired-stances convention (§6). |
++| **Relay failure** | Multi-expert work loses the plot between conversations — the human re-explains, the next instantiation starts cold. | Handoff notes (§5): a brief that travels with the assignment. |
++| **Trust failure** | A popular patch is a capability lie; nobody can tell. | Probe-suite results published *with* the patch (§4). The misses are the trust signal. |
++
++Prediction, marked as such: **trust failures arrive last but do the most
++damage**, because the quilt's value compounds with its library size, and so
++does the incentive to inflate. Build the measurement layer *before* the
++quilt is big enough to be worth gaming.
++
++## 3. Mechanical pins (do these first — hours, not weeks)
++
++The repo's checks are prose (`CONTRIBUTING.md`: "Honest limits… Lineage
++recorded…"). Prose bars drift. The fleet lesson, transferable verbatim:
++**pins beat prose.** A tiny check script (or CI job; the repo has no
++runtime, but CI reading YAML and Markdown is still boring) can enforce:
++
++- P1: every `patches/<slug>/` has exactly `patch.md` + `meta.yaml`, valid
++  YAML, `slug` matches the directory name, `version` parses as major.minor.
++- P2: `experts.json` ↔ directory consistency both directions (index rot is
++  the first thing that will silently decay).
++- P3: **Limits is not a genre.** Reject limits that name a category instead
++  of a failure mode — "not a professional food-safety authority" is a
++  genre; "will confidently recommend hydration schedules below 55% that
++  collapse gluten at altitude" is a limit. Require at least one concrete
++  failure mode per patch.
++- P4: changelog discipline — a version bump without a changelog entry
++  fails; a changelog entry that flips a stance without *naming the stance*
++  fails (see §6).
++- P5: the template's placeholder text must not survive into a PR (substring
++  check).
++
++None of this touches `SPEC.md`. It makes the existing review bar
++*mechanical*, which is the only way it survives the quilt growing past the
++founders' eyeballs.
++
++## 4. Probe suites: the test analog (the main proposal)
++
++Code libraries have tests. Patches should have **probes**: a small, fixed
++set of task instances the instantiated expert is run against, at freeze
++time, with results recorded honestly.
++
++Shape (suggested, deliberately boring):
++
++```
++patches/<slug>/
++  patch.md            # unchanged
++  meta.yaml           # gains one OPTIONAL field: probes: <n> (count only)
++  probes/
++    cases.md          # 5–15 task instances, in the expert's domain
++    results.md        # what happened, with honest marks
++```
++
++`probes/cases.md` is written at (or shortly after) freeze: 5–15 small,
++answerable instances — "this starter smells like nail polish, day 3 of a
++new flour — what's the call?" — each with *what a good answer must contain*
++(the rubric, written by the author).
++
++`probes/results.md` records the run: instantiate the patch in a fresh
++context, pose the cases, score against the rubric. Record:
++
++- **score** (e.g., 11/14),
++- **the misses, verbatim** — this is the trust signal. A patch that
++  publishes its 3 failures is more trustworthy than a patch that claims
++  none. The fleet's culture phrase: the receipt is the proof, and a receipt
++  with no failures recorded is a receipt you haven't read carefully,
++- **honest marks** on anything not directly measured: `MEASURED`
++  (instantiated and run), `CITED` (inherited from a source the author
++  trusts), `PREDICTED` (author believes, hasn't tested).
++
++Rules that keep probes from ossifying the quilt:
++
++- Probes are **per-version and versioned with the patch** — a freeze
++  reruns them (or a declared subset) and the changelog notes the delta.
++- Probes test **instantiation and knowledge**, not the harness's plumbing.
++- **Probes are a floor, not a gate.** A patch with no probes is still
++  publishable — it just wears an empty probe field, which the honest-pitch
++  rule already knows how to disclose. The quilt should reward probes (they
++  make patches pitchable with evidence), never mandate them.
++- Misses are **not blockers for publishing**. They are blockers for
++  *hiding*.
++
++The index can surface this: `experts.json` entries with `probes: 14`
++and a miss-count are simply more pitchable than entries without. The market
++does the rest — no governance needed.
++
++## 5. Relay notes: the contract for being a relay
++
++`AGENTS.md` mandates one expert per conversation and makes the agent the
++relay between experts. That's the right hygiene rule. But it leaves the
++relay *protocol* undefined: what does an expert owe the next conversation?
++
++Today: nothing formal. The human paraphrases between instantiations, and
++the plot gets lost — the next expert starts cold, re-derives context the
++previous expert already established, sometimes contradicts it silently.
++
++Suggest a **handoff note** convention (a few lines, written by the relaying
++agent, traveling with the assignment):
++
++```
++handoff: {
++  from: <slug@version>,
++  assignment_asked: one line,
++  conclusion: one line,
++  unresolved: [ ... ],
++  stances_touched: [ ... ],
++  evidence_mark: MEASURED | SYNTHETIC | CITED
++}
++```
++
++Boring, optional, and — here's why it matters more than it looks — it's the
++first artifact that makes **multi-expert work composable without breaking
++the one-expert-per-context rule.** The note crosses contexts; the experts
++don't. The note is also exactly the object that a future composite patch
++(§7) is made of.
++
++## 6. Discipline additions inside the existing format
++
++Two small conventions, no spec changes:
++
++1. **Stance flips name the stance.** The spec already says stances are
++   versioned knowledge and major bumps happen when the expert "thinks
++   differently." Make changelog entries that flip a stance quote the stance
++   before/after in a sentence. Consumers (and their agents) can then answer:
++   *"my workflow depended on stance X — is it still there?"* This is
++   breaking-change detection for behavior, which is what patches actually
++   export.
++2. **Freshness in lineage.** A lineage entry carries a date; consumers can
++   see the last study/freeze date. Optionally, authors mark stances with a
++   *perceived-shelf-life* note ("stable for years" vs "moves quarterly") —
++   one word in the changelog note. Cheap, honest, and it tells consumers
++   when to commission a `study.md` pass.
++
++## 7. Direction, not spec: composite patches as relay runbooks
++
++Real work needs expert *teams*. The relay pattern is serial and
++human-mediated, which doesn't scale past two experts. The obvious-but-wrong
++fix is pasting several patches into one context — forbidden, correctly,
++because contexts contaminate and stances collide silently.
++
++The higher-abstraction fix: a **composite patch** is not a merged patch.
++It's a *runbook* — a small document listing which patches to instantiate,
++in what order, with what handoff notes between them, and an explicit
++**arbitration layer**: what to do when two experts' stances conflict
++(options: surface the conflict to the human — recommended default — or
++name a tiebreaker patch). The executing agent runs the runbook: one clean
++context per expert, handoff notes crossing the gaps, the human seeing
++conflicts surfaced rather than silently resolved.
++
++This keeps one-expert-per-context inviolate, keeps every patch sovereign,
++and makes multi-expert jobs first-class. It is also precisely the object my
++fleet already builds by hand every day (a playbook of subagent dispatches
++with spec handoffs) — the quilt would just be standardizing it. Do not spec
++this yet. The moment relay failures (§2) start hurting in practice, the
++handoff note (§5) will already exist and the composite patch becomes an
++index of notes. The format will have earned its extension the way the spec
++says it should: by breaking first.
++
++## 8. What I deliberately did not suggest
++
++Respecting the spec's minimalism stance, and saying so explicitly:
++
++- **No new required fields.** Everything proposed is optional conventions,
++  one optional directory, and mechanical checks on what already exists.
++- **No runtime, no scoring, no reputation system for the quilt.** Markets
++  plus published misses beat governance. The moment patches carry scores,
++  scores get gamed; misses are harder to fake because they cost the author
++  something real.
++- **No change to the two-file patch core.** The pin layout is right. The
++  proposal is about the *evidence and protocol around the pins*, not new
++  pins.
++
++## Honest marks
++
++- All failure-mode claims: **PREDICTED** (no usage data for this repo).
++- All file/section citations: **CITED** to this repo's own files at
++  `a78c7b2`.
++- The probe-suite and handoff-note shapes: **PREDICTED** from analogous
++  systems (test suites; inter-subagent spec handoffs), transferred, not
++  measured here.
++- The one thing I'd bet on most: §3 (mechanical pins). It's the cheapest,
++  and review-bar prose has never survived scale anywhere.
+diff --git a/docs/suggestions/readme.md b/docs/suggestions/readme.md
+index e6a44b9..487cad9 100644
+--- a/docs/suggestions/readme.md
++++ b/docs/suggestions/readme.md
+@@ -1 +1,10 @@
+ Dropbox for ideas to improve the repository itself
++
++## Index
++
++- [2026-10-01-verification-layer.md](2026-10-01-verification-layer.md) —
++  from an agent (fleet clerk): the quilt's trust model is provenance-only;
++  proposal for a measurement layer (mechanical pins on the existing review
++  bar, optional per-expert probe suites with published misses, handoff-note
++  convention for relays, stance-flip naming), plus a composite-patch
++  direction note. Everything predicted, honest-marked.

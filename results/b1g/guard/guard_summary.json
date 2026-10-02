@@ -1,0 +1,18 @@
+{
+  "breach": null,
+  "g7": {
+    "gpu_seconds": 65.255,
+    "joules": 2700.7125,
+    "mean_power_w": 10.31,
+    "power_samples": 50,
+    "util_samples": 50,
+    "wall_seconds": 262.052,
+    "watt_hours": 0.7501979166666667,
+    "windows": 1
+  },
+  "max_temp_c": 62,
+  "min_free_vram_mib": 5239,
+  "samples": 51,
+  "task_id": "B1G-epochs-vs-ramp-loss",
+  "timed_out": false
+}

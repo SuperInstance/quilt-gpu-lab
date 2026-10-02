@@ -1,0 +1,17 @@
+{
+  "breach": null,
+  "g7": {
+    "gpu_seconds": 0.0,
+    "joules": 0.0,
+    "mean_power_w": null,
+    "power_samples": 0,
+    "util_samples": 0,
+    "wall_seconds": 0.0,
+    "watt_hours": 0.0
+  },
+  "max_temp_c": null,
+  "min_free_vram_mib": null,
+  "samples": 0,
+  "task_id": "G7-void-path-control",
+  "timed_out": false
+}

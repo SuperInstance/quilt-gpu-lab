@@ -1,0 +1,560 @@
+diff --git a/.quilt/bin/quilt-init b/.quilt/bin/quilt-init
+index b7fbb5b..8dba50c 100755
+--- a/.quilt/bin/quilt-init
++++ b/.quilt/bin/quilt-init
+@@ -61,6 +61,9 @@ cat > .quilt/hooks/post-commit <<'QUILT_HOOK_EOF'
+ #   3. if cascade changed dial files: git add cells/ and auto-commit
+ #      "quilt: cascade after <short>" with --no-verify
+ #   4. append "tick <short> <short> <cells>" to .quilt/watch.log
++#   5. .quilt/bin/quilt-publish snapshots the dials into the orphan ref
++#      refs/quilt/dials and the vitals into refs/quilt/HEAD — after the
++#      watch line, so watch_tail includes this tick
+ #
+ # Commits touching no cells/ path exit 0 silently, as do the hook's own
+ # "quilt: cascade after ..." commits (no recursion).
+@@ -88,6 +91,7 @@ fi
+ 
+ mkdir -p .quilt
+ printf 'tick %s %s %s\n' "$SHORT" "$SHORT" "$CELLS" >> .quilt/watch.log
++.quilt/bin/quilt-publish >/dev/null
+ exit 0
+ QUILT_HOOK_EOF
+ 
+@@ -100,3 +104,4 @@ touch .quilt/watch.log
+ echo "quilt: initialised at $ROOT"
+ echo "quilt: hooks active (core.hooksPath=.quilt/hooks)"
+ echo "quilt: ticks are ordinary commits touching cells/ — try .quilt/bin/quilt-tick <alias> <dial> <value>"
++echo "quilt: every tick publishes refs/quilt/dials + refs/quilt/HEAD (fleet state in kilobytes)"
+diff --git a/.quilt/bin/quilt-publish b/.quilt/bin/quilt-publish
+new file mode 100755
+index 0000000..48fdc4a
+--- /dev/null
++++ b/.quilt/bin/quilt-publish
+@@ -0,0 +1,84 @@
++#!/bin/sh
++# quilt-publish — snapshot the fleet's dial state into two live-state refs.
++#
++#   refs/quilt/dials : parentless orphan commit whose tree is ONLY the dial
++#                      files (cells/<alias>/dials/*) of HEAD — no bodies, no
++#                      links, no history. An agent reads the whole fleet's
++#                      dials in kilobytes instead of cloning the journal:
++#                        git fetch origin refs/quilt/dials
++#                        .quilt/bin/quilt-read-dials FETCH_HEAD
++#   refs/quilt/HEAD  : parentless orphan commit whose tree = the dials
++#                      snapshot plus .quilt/live/last_receipt (newest
++#                      receipt JSON) and .quilt/live/watch_tail (last 20
++#                      watch lines) — the vital signs at a glance, visible
++#                      via git ls-remote origin 'refs/quilt/*' with no
++#                      clone and no fetch of history.
++#
++# Trees are built from HEAD's committed content (never the working tree),
++# so publishing right after a tick captures exactly what the tick (plus any
++# cascade auto-commit) committed. Both refs are snapshots: every publish
++# writes a fresh parentless commit (git read-tree --empty into a private
++# index, git write-tree, git commit-tree with no parent) and moves the ref —
++# nothing accumulates and stale snapshots leave with gc. Author/committer
++# dates are pinned to HEAD's commit date, so re-publishing the same HEAD is
++# idempotent: same tree, same message, same dates -> same hash.
++#
++# Called by the post-commit hook after every tick; safe to run by hand.
++
++ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || exit 1
++cd "$ROOT" || exit 1
++
++# Private index: read-tree --empty + update-index build the snapshot trees
++# without ever touching the real index or the working tree.
++GD=$(cd "$(git rev-parse --git-dir)" && pwd) || exit 1
++IDX=$(mktemp "$GD/quilt-publish.XXXXXX") || exit 1
++trap 'rm -f "$IDX"' EXIT INT TERM
++GIT_INDEX_FILE=$IDX
++export GIT_INDEX_FILE
++
++# stage_dials — empty index, then every dial file of HEAD's tree, reusing
++# the committed blobs (new tree objects only, no new blobs).
++stage_dials() {
++  git read-tree --empty
++  git ls-tree -r HEAD -- cells/ | while read -r mode type hash path; do
++    case "$path" in
++      cells/*/dials/*) git update-index --add --cacheinfo "$mode,$hash,$path" ;;
++    esac
++  done
++}
++
++SHORT=$(git rev-parse --short HEAD)
++CTS=$(git log -1 --format=%cI HEAD)
++GIT_AUTHOR_DATE=$CTS GIT_COMMITTER_DATE=$CTS
++export GIT_AUTHOR_DATE GIT_COMMITTER_DATE
++
++# ---- refs/quilt/dials : dials-only orphan snapshot
++stage_dials
++if TREE=$(git write-tree) && C=$(git commit-tree "$TREE" \
++     -m "quilt: dials snapshot after $SHORT"); then
++  git update-ref refs/quilt/dials "$C"
++else
++  echo "quilt-publish: could not commit the dials snapshot" >&2
++  exit 1
++fi
++
++# ---- refs/quilt/HEAD : dials + vitals orphan snapshot
++stage_dials
++last_rec=$(tail -n 1 .quilt/watch.log 2>/dev/null | awk '{print $3}')
++if [ -n "$last_rec" ] && [ -f ".quilt/receipts/$last_rec.json" ]; then
++  B=$(git hash-object -w ".quilt/receipts/$last_rec.json")
++  git update-index --add --cacheinfo "100644,$B,.quilt/live/last_receipt"
++fi
++if [ -f .quilt/watch.log ]; then
++  B=$(tail -n 20 .quilt/watch.log | git hash-object -w --stdin)
++  git update-index --add --cacheinfo "100644,$B,.quilt/live/watch_tail"
++fi
++if TREE=$(git write-tree) && C=$(git commit-tree "$TREE" \
++     -m "quilt: live snapshot after $SHORT"); then
++  git update-ref refs/quilt/HEAD "$C"
++else
++  echo "quilt-publish: could not commit the live snapshot" >&2
++  exit 1
++fi
++
++exit 0
+diff --git a/.quilt/bin/quilt-read-dials b/.quilt/bin/quilt-read-dials
+new file mode 100755
+index 0000000..2f4fb0f
+--- /dev/null
++++ b/.quilt/bin/quilt-read-dials
+@@ -0,0 +1,32 @@
++#!/bin/sh
++# quilt-read-dials <ref> — print "alias:dial:value" for every dial held in
++# <ref>, with no checkout.
++#
++#   .quilt/bin/quilt-read-dials refs/quilt/dials    # local snapshot
++#   git fetch origin refs/quilt/dials               # kilobytes, no history
++#   .quilt/bin/quilt-read-dials FETCH_HEAD          # the whole fleet
++#
++# Walks the ref's tree with git ls-tree -r and reads each blob with
++# git cat-file — no checkout, no working-tree change, no clone.
++
++[ $# -eq 1 ] || { echo "usage: quilt-read-dials <ref>" >&2; exit 2; }
++
++ROOT=$(git rev-parse --show-toplevel 2>/dev/null) \
++  || { echo "quilt-read-dials: not inside a git repository" >&2; exit 1; }
++cd "$ROOT"
++
++git rev-parse --verify --quiet "$1^{commit}" >/dev/null 2>&1 \
++  || { echo "quilt-read-dials: cannot resolve '$1' to a commit" >&2; exit 1; }
++
++# ls-tree -r yields path-sorted rows, so the output is deterministic:
++# cells sorted by alias, each alias's dials in string order.
++git ls-tree -r "$1" -- cells/ | while read -r mode type hash path; do
++  case "$path" in
++    cells/*/dials/*)
++      alias=${path#cells/}; alias=${alias%%/*}
++      dial=${path##*/}
++      value=$(git cat-file blob "$hash" | tr -d '[:space:]')
++      printf '%s:%s:%s\n' "$alias" "$dial" "$value"
++      ;;
++  esac
++done
+diff --git a/.quilt/hooks/post-commit b/.quilt/hooks/post-commit
+index fbc33ce..b5e5efb 100755
+--- a/.quilt/hooks/post-commit
++++ b/.quilt/hooks/post-commit
+@@ -7,6 +7,9 @@
+ #   3. if cascade changed dial files: git add cells/ and auto-commit
+ #      "quilt: cascade after <short>" with --no-verify
+ #   4. append "tick <short> <short> <cells>" to .quilt/watch.log
++#   5. .quilt/bin/quilt-publish snapshots the dials into the orphan ref
++#      refs/quilt/dials and the vitals into refs/quilt/HEAD — after the
++#      watch line, so watch_tail includes this tick
+ #
+ # Commits touching no cells/ path exit 0 silently, as do the hook's own
+ # "quilt: cascade after ..." commits (no recursion).
+@@ -34,4 +37,5 @@ fi
+ 
+ mkdir -p .quilt
+ printf 'tick %s %s %s\n' "$SHORT" "$SHORT" "$CELLS" >> .quilt/watch.log
++.quilt/bin/quilt-publish >/dev/null
+ exit 0
+diff --git a/README.md b/README.md
+index f7c12ae..6a742a9 100644
+--- a/README.md
++++ b/README.md
+@@ -19,9 +19,13 @@ cells/<alias>/links         optional; lines of "<src_alias> <weight>"
+ .quilt/bin/quilt-tick       convenience: set one dial + commit
+ .quilt/bin/quilt-cascade    recompute dial 14 from links
+ .quilt/bin/quilt-receipt    write .quilt/receipts/<short>.json
++.quilt/bin/quilt-publish    snapshot dials + vitals into refs/quilt/*
++.quilt/bin/quilt-read-dials print alias:dial:value lines from a ref
+ .quilt/hooks/               pre-commit, post-commit (generated by quilt-init)
+ .quilt/receipts/            one JSON receipt per tick commit
+ .quilt/watch.log            one "tick <short> <short> <cells>" line per tick
++refs/quilt/dials            orphan snapshot: ONLY the fleet's dial files
++refs/quilt/HEAD             orphan snapshot: dials + last_receipt + watch_tail
+ ```
+ 
+ ## Dial map
+@@ -51,6 +55,11 @@ cat .quilt/receipts/*.json                       # proof of what happened
+ tail -f .quilt/watch.log                         # live tick stream
+ git log -p -- cells/auth/                        # history of nudges
+ git checkout <old-hash> -- cells/auth/           # rewind just that organ
++
++# from anywhere in the fleet — vital signs without cloning:
++git ls-remote origin 'refs/quilt/*'              # refs answer: no clone needed
++git fetch origin refs/quilt/dials                # every dial, kilobytes only
++.quilt/bin/quilt-read-dials FETCH_HEAD           # "auth:1:0.11" per line
+ ```
+ 
+ Or with the helper: `.quilt/bin/quilt-tick auth 0 0.42`.
+@@ -74,6 +83,23 @@ Or with the helper: `.quilt/bin/quilt-tick auth 0 0.42`.
+ - **Watch.** One line per tick: `tick <short> <receipt-hash> <cells>`.
+   Commits touching no `cells/` path produce nothing — the journal stays
+   quiet.
++- **Live-state refs.** Every tick's `post-commit` also runs
++  `.quilt/bin/quilt-publish`, which writes two parentless ("orphan")
++  snapshot commits built in a private index (`read-tree --empty`, reuse the
++  committed dial blobs, `write-tree`, `commit-tree` with no parent) and
++  moves the refs:
++  **`refs/quilt/dials`** holds ONLY the dial files of HEAD — no bodies, no
++  links, no history — so an agent can `git fetch origin refs/quilt/dials`
++  and read the entire fleet's dial state in kilobytes
++  (`.quilt/bin/quilt-read-dials <ref>` prints `alias:dial:value` lines via
++  `ls-tree` + `cat-file`, no checkout).
++  **`refs/quilt/HEAD`** holds the dials plus `.quilt/live/last_receipt`
++  (the newest receipt JSON, found via the last watch line) and
++  `.quilt/live/watch_tail` (last 20 watch lines) — the vital signs at a
++  glance; `git ls-remote origin "refs/quilt/*"` answers before any fetch.
++  Snapshots inherit the tick commit's dates, so republishing the same HEAD
++  is a no-op; the refs are replaced (not appended to) each tick and stale
++  snapshots leave with `git gc`.
+ 
+ ## Honest limits
+ 
+@@ -88,10 +114,19 @@ Or with the helper: `.quilt/bin/quilt-tick auth 0 0.42`.
+ 5. **`receipts/` and `watch.log` are working-tree artifacts** until someone
+    commits them; `git add .quilt && git commit` folds the journal in (such
+    commits are silent by design).
++6. **`refs/quilt/*` answer "what is the state NOW", never "what changed".**
++   They are parentless snapshots replaced on every tick — the delta
++   question is the main history's job. Their `last_receipt`/`watch_tail`
++   come from the (possibly uncommitted) working-tree journal, so they
++   describe the live clone that last ticked.
+ 
+ ## Pins
+ 
+ `tests/pins_quiltgit.sh` — plain bash + git, no network, scratch repos under
+-`/tmp`. Six pins: receipt+watch on dial commit, freeze enforcement, cascade,
+-rewind, clone-needs-quilt-init, non-cell commits stay silent. Logs in
+-`pins/`.
++`/tmp`. P1–P6: receipt+watch on dial commit, freeze enforcement, cascade,
++rewind, clone-needs-quilt-init, non-cell commits stay silent. P10–P12
++(numbering continues the wave-3 sequence; P7–P9 live on a sibling lane):
++`refs/quilt/dials` exists after a tick with the ticked value and no parent
++commit, its tree is dials-only (no cell bodies), and `refs/quilt/HEAD`
++carries `last_receipt` + `watch_tail` and answers `git ls-remote .`.
++Logs in `pins/`.
+diff --git a/pins/failfirst-w3b.log b/pins/failfirst-w3b.log
+new file mode 100644
+index 0000000..6fed621
+--- /dev/null
++++ b/pins/failfirst-w3b.log
+@@ -0,0 +1,46 @@
++# quilt-in-git pins  src=/tmp/zlanes2/laneH/wt
++# scratch=/tmp/quilt-pins-KEm0DI  git=2.43.0
++
++PASS P1a dial commit accepted
++PASS P1b receipt exists (.quilt/receipts/70860de.json)
++PASS P1c receipt contains commit hash
++PASS P1d receipt contains alias a
++PASS P1e watch.log grew by exactly one line (1->2)
++PASS P1f watch line starts with 'tick' (tick 70860de 70860de a)
++PASS P2a freeze commit (dial15=0.8) accepted
++PASS P2b next commit touching cell rejected (rc=1)
++PASS P2c error mentions frozen
++PASS P2d dial file unchanged by rejected commit (still 0.7 as written)
++PASS P2e committed dial1 still 0.0
++PASS P2f no new commit was created
++PASS P3a tick a dial1=0.9 committed
++PASS P3b b.dials/14 == 0.4500 (== 0.45)
++PASS P3c 'quilt: cascade after' commit exists
++PASS P4c new dial value 0.99 committed
++PASS P4d rewind (checkout prev -- cells/a/) restores 0.11
++PASS P5c fresh clone: no receipt, no watch line (hooks inert)
++PASS P5e quilt-init set core.hooksPath=.quilt/hooks
++PASS P5g receipt appears after quilt-init (2c87e9c.json)
++PASS P5h watch.log grew after quilt-init
++PASS P6b non-cell commit created NO receipt
++PASS P6c non-cell commit added NO watch.log line
++PASS P10a tick (a dial3=0.37) committed
++FAIL P10b refs/quilt/dials missing after tick
++PASS P11a tick (a dial5=0.5) committed
++FAIL P11b refs/quilt/dials missing
++PASS P12a tick (a dial2=0.66) committed
++FAIL P12b refs/quilt/HEAD missing after tick
++
++# ---- per-pin verdicts ----
++P1 receipt+watch on dial commit : PASS
++P2 freeze enforcement          : PASS
++P3 cascade                      : PASS
++P4 rewind                       : PASS
++P5 clone needs quilt-init       : PASS
++P6 non-cell commit silent       : PASS
++P10 refs/quilt/dials snapshot   : FAIL
++P11 dials-only tree             : FAIL
++P12 refs/quilt/HEAD live state  : FAIL
++
++PINS: 6/9 pins pass (26 checks pass, 3 checks fail)
++PINS: FAILURES PRESENT (scratch kept for inspection: /tmp/quilt-pins-KEm0DI)
+diff --git a/pins/pins-w3b-final.log b/pins/pins-w3b-final.log
+new file mode 100644
+index 0000000..7579b12
+--- /dev/null
++++ b/pins/pins-w3b-final.log
+@@ -0,0 +1,55 @@
++# quilt-in-git pins  src=/tmp/zlanes2/laneH/wt
++# scratch=/tmp/quilt-pins-FHBgPU  git=2.43.0
++
++PASS P1a dial commit accepted
++PASS P1b receipt exists (.quilt/receipts/e9d6dc6.json)
++PASS P1c receipt contains commit hash
++PASS P1d receipt contains alias a
++PASS P1e watch.log grew by exactly one line (1->2)
++PASS P1f watch line starts with 'tick' (tick e9d6dc6 e9d6dc6 a)
++PASS P2a freeze commit (dial15=0.8) accepted
++PASS P2b next commit touching cell rejected (rc=1)
++PASS P2c error mentions frozen
++PASS P2d dial file unchanged by rejected commit (still 0.7 as written)
++PASS P2e committed dial1 still 0.0
++PASS P2f no new commit was created
++PASS P3a tick a dial1=0.9 committed
++PASS P3b b.dials/14 == 0.4500 (== 0.45)
++PASS P3c 'quilt: cascade after' commit exists
++PASS P4c new dial value 0.99 committed
++PASS P4d rewind (checkout prev -- cells/a/) restores 0.11
++PASS P5c fresh clone: no receipt, no watch line (hooks inert)
++PASS P5e quilt-init set core.hooksPath=.quilt/hooks
++PASS P5g receipt appears after quilt-init (0061646.json)
++PASS P5h watch.log grew after quilt-init
++PASS P6b non-cell commit created NO receipt
++PASS P6c non-cell commit added NO watch.log line
++PASS P10a tick (a dial3=0.37) committed
++PASS P10b refs/quilt/dials exists after tick
++PASS P10c dials ref tree holds ticked value (a.dials/3 == 0.37)
++PASS P10d dials ref commit has NO parent (orphan snapshot)
++PASS P10e quilt-read-dials prints 'a:3:0.37' from the ref (no checkout)
++PASS P11a tick (a dial5=0.5) committed
++PASS P11b sanity: HEAD tree carries cell bodies (a, b)
++PASS P11c dials ref tree contains NO body files
++PASS P11d every path in dials ref is cells/<alias>/dials/<n> (32 dial files)
++PASS P12a tick (a dial2=0.66) committed
++PASS P12b refs/quilt/HEAD exists after tick
++PASS P12c ls-tree shows .quilt/live/last_receipt
++PASS P12d ls-tree shows .quilt/live/watch_tail
++PASS P12e watch_tail holds this tick's line (tick 494a402 ...)
++PASS P12f git ls-remote . refs/quilt/HEAD answers (fded3f79e98d2d4a9c078e3f8f3045ea125bcc0a)
++
++# ---- per-pin verdicts ----
++P1 receipt+watch on dial commit : PASS
++P2 freeze enforcement          : PASS
++P3 cascade                      : PASS
++P4 rewind                       : PASS
++P5 clone needs quilt-init       : PASS
++P6 non-cell commit silent       : PASS
++P10 refs/quilt/dials snapshot   : PASS
++P11 dials-only tree             : PASS
++P12 refs/quilt/HEAD live state  : PASS
++
++PINS: 9/9 pins pass (38 checks pass, 0 checks fail)
++PINS: ALL PASS
+diff --git a/tests/pins_quiltgit.sh b/tests/pins_quiltgit.sh
+index 8e8254d..625ff31 100755
+--- a/tests/pins_quiltgit.sh
++++ b/tests/pins_quiltgit.sh
+@@ -20,8 +20,20 @@
+ #                       watch line); after quilt-init they do.
+ #   P6  non-cell     -> a README-only commit creates NO receipt and NO
+ #                       watch.log line.
++#   P10 dials ref    -> after a tick refs/quilt/dials exists, its tree holds
++#                       the ticked dial value, its commit has NO parent, and
++#                       quilt-read-dials prints alias:dial:value from it.
++#   P11 dials-only   -> the refs/quilt/dials tree contains no cell body
++#                       (or any non-dial) files — every path is
++#                       cells/<alias>/dials/<n> — while HEAD's tree does
++#                       carry bodies (so the check is not vacuous).
++#   P12 live ref     -> after a tick refs/quilt/HEAD exists; ls-tree shows
++#                       .quilt/live/last_receipt + .quilt/live/watch_tail
++#                       (with this tick's watch line inside);
++#                       `git ls-remote . refs/quilt/HEAD` answers locally.
+ #
+-# Exit 0 iff all six pin verdicts are PASS.
++# Pin ids continue the wave-3 sequence; P7–P9 live on a sibling lane.
++# Exit 0 iff all nine pin verdicts are PASS.
+ 
+ set -u
+ 
+@@ -275,6 +287,118 @@ pin_p6() {
+   fi
+ }
+ 
++# ---------------------------------------------------------------- P10
++pin_p10() {
++  local d v words out
++  if ! d=$(new_repo p10); then bad "P10-0 setup (quilt-init runnable?)"; return; fi
++  seed_cell "$d" a
++
++  if ( cd "$d" && ./.quilt/bin/quilt-tick a 3 0.37 ) >/dev/null 2>&1; then
++    ok "P10a tick (a dial3=0.37) committed"
++  else
++    bad "P10a tick failed"; return
++  fi
++
++  if git -C "$d" rev-parse --verify --quiet refs/quilt/dials >/dev/null; then
++    ok "P10b refs/quilt/dials exists after tick"
++  else
++    bad "P10b refs/quilt/dials missing after tick"; return
++  fi
++  v=$(git -C "$d" show refs/quilt/dials:cells/a/dials/3 2>/dev/null | tr -d '[:space:]')
++  if [ "$v" = "0.37" ]; then
++    ok "P10c dials ref tree holds ticked value (a.dials/3 == 0.37)"
++  else
++    bad "P10c a.dials/3 in dials ref == '$v' (want 0.37)"
++  fi
++  # rev-list --parents prints "<commit> <parent>...": one word = no parent
++  words=$(git -C "$d" rev-list --parents -n 1 refs/quilt/dials | wc -w | tr -d '[:space:]')
++  if [ "$words" -eq 1 ]; then
++    ok "P10d dials ref commit has NO parent (orphan snapshot)"
++  else
++    bad "P10d dials ref commit has $((words - 1)) parent(s)"
++  fi
++  out=$( cd "$d" && ./.quilt/bin/quilt-read-dials refs/quilt/dials 2>&1 )
++  if printf '%s\n' "$out" | grep -qx 'a:3:0.37'; then
++    ok "P10e quilt-read-dials prints 'a:3:0.37' from the ref (no checkout)"
++  else
++    bad "P10e quilt-read-dials output lacks a:3:0.37: $out"
++  fi
++}
++
++# ---------------------------------------------------------------- P11
++pin_p11() {
++  local d paths non dial
++  if ! d=$(new_repo p11); then bad "P11-0 setup (quilt-init runnable?)"; return; fi
++  seed_cell "$d" a
++  seed_cell "$d" b
++  ( cd "$d" && ./.quilt/bin/quilt-tick a 5 0.5 ) >/dev/null 2>&1 \
++    || { bad "P11a tick failed"; return; }
++  ok "P11a tick (a dial5=0.5) committed"
++
++  if ! git -C "$d" rev-parse --verify --quiet refs/quilt/dials >/dev/null; then
++    bad "P11b refs/quilt/dials missing"; return
++  fi
++  # sanity: HEAD's tree DOES carry bodies, else "no bodies" is vacuous
++  if git -C "$d" ls-tree -r --name-only HEAD | grep -q '^cells/[^/]*/body$'; then
++    ok "P11b sanity: HEAD tree carries cell bodies (a, b)"
++  else
++    bad "P11b sanity: HEAD tree has no bodies — check vacuous"; return
++  fi
++
++  paths=$(git -C "$d" ls-tree -r --name-only refs/quilt/dials)
++  if printf '%s\n' "$paths" | grep -q '^cells/[^/]*/body$'; then
++    bad "P11c dials ref tree contains body files"
++  else
++    ok "P11c dials ref tree contains NO body files"
++  fi
++  non=$(printf '%s\n' "$paths" | grep -v -E '^cells/[^/]+/dials/[0-9]+$' || true)
++  if [ -z "$non" ]; then
++    dial=$(printf '%s\n' "$paths" | grep -c '^cells/[^/]\+/dials/[0-9]\+$' || true)
++    ok "P11d every path in dials ref is cells/<alias>/dials/<n> ($dial dial files)"
++  else
++    bad "P11d non-dial paths in dials ref: $(printf '%s' "$non" | tr '\n' ' ')"
++  fi
++}
++
++# ---------------------------------------------------------------- P12
++pin_p12() {
++  local d short paths want got
++  if ! d=$(new_repo p12); then bad "P12-0 setup (quilt-init runnable?)"; return; fi
++  seed_cell "$d" a
++  ( cd "$d" && ./.quilt/bin/quilt-tick a 2 0.66 ) >/dev/null 2>&1 \
++    || { bad "P12a tick failed"; return; }
++  ok "P12a tick (a dial2=0.66) committed"
++  short=$(git -C "$d" rev-parse --short HEAD)
++
++  if git -C "$d" rev-parse --verify --quiet refs/quilt/HEAD >/dev/null; then
++    ok "P12b refs/quilt/HEAD exists after tick"
++  else
++    bad "P12b refs/quilt/HEAD missing after tick"; return
++  fi
++  paths=$(git -C "$d" ls-tree -r --name-only refs/quilt/HEAD)
++  case "$paths" in
++    *.quilt/live/last_receipt*) ok "P12c ls-tree shows .quilt/live/last_receipt" ;;
++    *) bad "P12c last_receipt not in refs/quilt/HEAD tree: $paths" ;;
++  esac
++  case "$paths" in
++    *.quilt/live/watch_tail*) ok "P12d ls-tree shows .quilt/live/watch_tail" ;;
++    *) bad "P12d watch_tail not in refs/quilt/HEAD tree" ;;
++  esac
++  if git -C "$d" show refs/quilt/HEAD:.quilt/live/watch_tail 2>/dev/null \
++       | grep -q "tick $short "; then
++    ok "P12e watch_tail holds this tick's line (tick $short ...)"
++  else
++    bad "P12e watch_tail lacks the '$short' tick line"
++  fi
++  want=$(git -C "$d" rev-parse refs/quilt/HEAD)
++  got=$(git -C "$d" ls-remote . refs/quilt/HEAD 2>/dev/null | awk '{print $1}')
++  if [ -n "$got" ] && [ "$got" = "$want" ]; then
++    ok "P12f git ls-remote . refs/quilt/HEAD answers ($want)"
++  else
++    bad "P12f ls-remote answered '$got' (want $want)"
++  fi
++}
++
+ # ---------------------------------------------------------------- main
+ main() {
+   say "# quilt-in-git pins  src=$SRC"
+@@ -286,26 +410,39 @@ main() {
+   pin_p4
+   pin_p5
+   pin_p6
++  pin_p10
++  pin_p11
++  pin_p12
+   say ""
+   say "# ---- per-pin verdicts ----"
+-  local v1 v2 v3 v4 v5 v6 n
+-  case "$FAILS" in *" P1"*) v1=FAIL;; *) v1=PASS;; esac
+-  case "$FAILS" in *" P2"*) v2=FAIL;; *) v2=PASS;; esac
+-  case "$FAILS" in *" P3"*) v3=FAIL;; *) v3=PASS;; esac
+-  case "$FAILS" in *" P4"*) v4=FAIL;; *) v4=PASS;; esac
+-  case "$FAILS" in *" P5"*) v5=FAIL;; *) v5=PASS;; esac
+-  case "$FAILS" in *" P6"*) v6=FAIL;; *) v6=PASS;; esac
++  # FAILS is space-padded check ids (" P10c "); the [!0-9] keeps P1 from
++  # matching P10/P11/P12 ids.
++  local v1 v2 v3 v4 v5 v6 v10 v11 v12 n v
++  case "$FAILS" in *" P1"[!0-9]*)  v1=FAIL;;  *) v1=PASS;;  esac
++  case "$FAILS" in *" P2"[!0-9]*)  v2=FAIL;;  *) v2=PASS;;  esac
++  case "$FAILS" in *" P3"[!0-9]*)  v3=FAIL;;  *) v3=PASS;;  esac
++  case "$FAILS" in *" P4"[!0-9]*)  v4=FAIL;;  *) v4=PASS;;  esac
++  case "$FAILS" in *" P5"[!0-9]*)  v5=FAIL;;  *) v5=PASS;;  esac
++  case "$FAILS" in *" P6"[!0-9]*)  v6=FAIL;;  *) v6=PASS;;  esac
++  case "$FAILS" in *" P10"[!0-9]*) v10=FAIL;; *) v10=PASS;; esac
++  case "$FAILS" in *" P11"[!0-9]*) v11=FAIL;; *) v11=PASS;; esac
++  case "$FAILS" in *" P12"[!0-9]*) v12=FAIL;; *) v12=PASS;; esac
+   say "P1 receipt+watch on dial commit : $v1"
+   say "P2 freeze enforcement          : $v2"
+   say "P3 cascade                      : $v3"
+   say "P4 rewind                       : $v4"
+   say "P5 clone needs quilt-init       : $v5"
+   say "P6 non-cell commit silent       : $v6"
++  say "P10 refs/quilt/dials snapshot   : $v10"
++  say "P11 dials-only tree             : $v11"
++  say "P12 refs/quilt/HEAD live state  : $v12"
+   n=0
+-  for v in "$v1" "$v2" "$v3" "$v4" "$v5" "$v6"; do [ "$v" = PASS ] && n=$((n+1)); done
++  for v in "$v1" "$v2" "$v3" "$v4" "$v5" "$v6" "$v10" "$v11" "$v12"; do
++    [ "$v" = PASS ] && n=$((n+1))
++  done
+   say ""
+-  say "PINS: $n/6 pins pass ($PASS checks pass, $FAIL checks fail)"
+-  if [ "$n" -eq 6 ]; then
++  say "PINS: $n/9 pins pass ($PASS checks pass, $FAIL checks fail)"
++  if [ "$n" -eq 9 ]; then
+     say "PINS: ALL PASS"
+     rm -rf "$SCRATCH"
+     exit 0
