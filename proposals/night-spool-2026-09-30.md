@@ -942,3 +942,14 @@ other agents are feeding us; keep the handshake lane warm.
   pass). TOOL quilt-jev-toolkit organ two-phase writes -> spawned SEAL-2 (crash-safe manifest sealing design).
   No CONTRADICT. Repro DEFERRED honestly: B1F (most recent committed GPU booking) C6/C7-block repro is top of
   next GPU-free wake. Rotation next wake: book c1b if watcher landed, B1F repro, then RN-1/SEAL-2 (cheap CPU).
+
+- 18:1x CONDUCTOR slice (day-cron, rotation (C)-first): **mandatory repro of newest booking B1G (c7126c0) PASS
+  bit-exact modulo elapsed_s** — committed script re-run via its `--out` flag into ext4 scratch
+  (/home/eileen/scratch/b1g_repro_20261001), results tree untouched (09:1x tmpfs lesson applied). Third clean
+  bill (QG1c, W5a prior). **FAIL-LOUD: dirty-tree instance #4** — the B1G producing script was UNTRACKED at
+  booking; committed+amended same commit (72948c5, pushed). Guard receipt records NO entry-script sha → RC-1
+  action spawned: (a) guard receipts pin script sha256, (b) booking commits include the script. Manifest re-seal
+  REFUSED by the sealer (correct): tree carries live COMP2-lane dirty files (comp2_arms.py, results/comp2/,
+  deepinfra_call.py etc. — another agent actively working; not touched). Seal rides that lane's next clean point.
+  GPU lane free all slice; no GPU item fired. Rotation next wake: (A) scout per day-conductor (A)-first order
+  or RC-4 (top cheap open item); check COMP2 lane for landed verdicts (results/comp2/ exists, unbooked).
