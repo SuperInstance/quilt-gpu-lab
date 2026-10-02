@@ -5375,3 +5375,23 @@ Lane D2-V1b resumed the mid-killed D2-V1 lane. **Scripts unchanged — no defect
   booking); no separate repro due. GPU lane free all slice, nothing fired (A-slot consumed timebox).
 - Rotation next wake: (B) GATE-MARGIN (top cheap open) or RC-4; (C) repro of next non-self-verifying
   booking that lands.
+
+## GATE-MARGIN — relative-margin / vacuity audit of committed booking gates (KEEP, all CLEAN, 2026-10-02 ~08:3x UTC)
+- prereg `proposals/runs/GATE-MARGIN-prereg.md` committed+pushed BEFORE audit (spawned by SCOUT-19:
+  prospector f0034fd `x*k` vs `x*(1+k)` false-pass; SYN-1 vacuity folded in). CPU-only, 0 GPU-Wh.
+- G1 PASS (manual re-read, all sites): comp2 `gate()` — PASS requires `diff>=bar` AND `ci95[0]>0`
+  (stricter than prereg bar alone; conservative direction; boundary inclusive via `>=`); QG6 replicate
+  window [0.541,0.615] inclusive, `delta_lb = lo_arm − hi_k1` correct conservative direction; QO3
+  `g* = first AUC>=0.80` inclusive per wording; DECIDE-1 chance bar 0.25 + Wilson CP95. No
+  relative-margin arithmetic anywhere in gate logic (grep-all hits = index/logit arithmetic only).
+- G2 PASS (independent recompute from committed predictions/, rng 777, b=2000): G_IL2 vs BEST-SINGLE
+  +0.0022 CI[+0.0004,+0.0040] FAIL (booked +0.0022); G_IL2b vs S4-MONO +0.1045 CI[+0.0891,+0.1190]
+  PASS (booked +0.1045 CI[+0.0894,+0.1190] — bootstrap draw variance, verdicts identical).
+- G3 PASS (vacuity): every booked gate names its null/control — comp2 vs BEST-SINGLE/S4-MONO arms,
+  QG6 vs QG3 arm-A window, QO3 vs cv-logit baseline, DECIDE vs random 0.25. No control-free gates.
+- META: first G2 recompute attempt returned FAIL on G_IL2b — MY error (I passed BEST-SINGLE as the
+  S4-MONO arm). The committed code was right; the auditor needed the booking text to know which arms
+  pair. Lesson: recompute scripts must parse the gate labels from the committed script, not from
+  memory of the booking sentence.
+- Verdict: KEEP. GATE-MARGIN closes. No booked verdict threatened; instance count of the false-pass
+  class in our tree: 0.
