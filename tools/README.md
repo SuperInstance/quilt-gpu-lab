@@ -157,3 +157,13 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   ranking *quality* is probed, not gated, here** — the evidence base for bge-m3
   intent->artifact retrieval is pinch0's 10/10 rank-1 probes (commit b639aea);
   this tool ships the retrieval path + fallback semantics, not a quality gate.
+
+- **wt-floor** — `tools/wt_floor.py` — bandwidth-time partner-discovery floor
+  prober (pattern lifted from `experiments/d12l_noise_floor.py`): seeded
+  simulation of N channels / W streams, greedy argmax-correlation partner
+  identification, reports per-T accuracy, T_floor at the 0.9 bar, and the
+  D12l law check — s=(2p-1)(1-2eps), floor within W*T <= 600/s^2. Noise
+  hurts (J1) pinned in selftest. Stdlib-only, fail-loud rc=2.
+  `python tools/wt_floor.py --p 0.6 --eps 0.05 --w 4 --n 16 --ts 25,50,100 --draws 3 [--out r.json] | --selftest`
+  TEST receipt 2026-10-02: selftest OK (4 checks incl. J1 noise-hurts);
+  live run p=0.6/eps=0.05/W=4/N=16 -> T_floor=25, within_bound=True, receipt written.
