@@ -5414,3 +5414,11 @@ Lane D2-V1b resumed the mid-killed D2-V1 lane. **Scripts unchanged — no defect
 - GPU lane: untracked live-lane artifacts present (rest_em_full*, d12k2/d12l + a rebootkill log) —
   NOT touched, NOT booked; nothing GPU fired this slice. No other CONTRADICT; no booked verdict
   retracted this sweep.
+
+- NOTE (SCOUT-23 slice end): manifest re-seal REFUSED (sealer correctly refuses dirty sealed paths —
+  live lane's untracked files: rest_em_full*, d12k2/d12l artifacts, experiments/d12k2*.pre-rebase,
+  d12l_noise_floor, tools/sym_verify.py). NOT cleared (foreign live lane, archive-never-delete).
+  Suite 23 tests, 3 FAIL — all three are the seal/clean-tree pins (RC5PushCheck, ManifestMatches,
+  SealGuardLive) firing RED on those same untracked files ⇒ pins working as designed, NOT a
+  regression from this slice (docs+scout-file commit 0c6d45e only). Suite returns green when the
+  live lane lands or archives its files; manifest re-seal then.
