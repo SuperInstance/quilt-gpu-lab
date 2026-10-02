@@ -1,0 +1,685 @@
+{
+  "experiment": "CX-CHEAP-1: within-disagreement learnability + regime-conditioned cheap gate",
+  "device": "cpu",
+  "gpu_used": false,
+  "torch_used": false,
+  "numpy_sklearn": true,
+  "seed": 2718,
+  "energy_wh": 0.0,
+  "reused_machinery": "experiments/cx_cheap0.py (fit_gate/answer_margins/youden/recipe) + experiments/ring_cx0.py (feat_word/pearson/REGIMES)",
+  "wiring": {
+    "reproduced_router_heldout_top1": 0.7356,
+    "comp1_booked_router_heldout_top1": 0.7356,
+    "match_4dp": true,
+    "T_margin_median_train": 0.7374,
+    "n_train": 1810,
+    "n_heldout": 590
+  },
+  "q1_prime": {
+    "definition": "held-out items with FED != SINGLE; label = 1[FED correct AND SINGLE wrong]",
+    "n_disagree_heldout": 184,
+    "n_win_in_disagree": 103,
+    "win_rate_given_disagree": 0.5598,
+    "base_rate_full_heldout": 0.1746,
+    "note_d_ans_degenerate": "within the disagreement set d_ans == 1 for every item (constant) -- included per spec, carries no information",
+    "feature_sets": {
+      "regime_onehot": {
+        "feature_kind": "deployable",
+        "n_features": 4,
+        "logistic": {
+          "within_auc": 0.5003,
+          "within_brier": 0.2476,
+          "within_ece": 0.023,
+          "n_train": 551,
+          "n_heldout": 184,
+          "base_rate_heldout": 0.5598,
+          "mean_pred_heldout": 0.5368
+        },
+        "tree": {
+          "within_auc": 0.4975,
+          "within_brier": 0.2477,
+          "within_ece": 0.0229,
+          "n_train": 551,
+          "n_heldout": 184,
+          "base_rate_heldout": 0.5598,
+          "mean_pred_heldout": 0.5369
+        },
+        "best_within_auc": 0.5003,
+        "G_D1": {
+          "auc": 0.5003,
+          "need": 0.6,
+          "pass_": false
+        }
+      },
+      "confidences": {
+        "feature_kind": "deployable",
+        "n_features": 3,
+        "logistic": {
+          "within_auc": 0.537,
+          "within_brier": 0.2486,
+          "within_ece": 0.0256,
+          "n_train": 551,
+          "n_heldout": 184,
+          "base_rate_heldout": 0.5598,
+          "mean_pred_heldout": 0.5341
+        },
+        "tree": {
+          "within_auc": 0.5454,
+          "within_brier": 0.2445,
+          "within_ece": 0.0342,
+          "n_train": 551,
+          "n_heldout": 184,
+          "base_rate_heldout": 0.5598,
+          "mean_pred_heldout": 0.5328
+        },
+        "best_within_auc": 0.5454,
+        "G_D1": {
+          "auc": 0.5454,
+          "need": 0.6,
+          "pass_": false
+        }
+      },
+      "margins": {
+        "feature_kind": "deployable",
+        "n_features": 4,
+        "logistic": {
+          "within_auc": 0.4345,
+          "within_brier": 0.2521,
+          "within_ece": 0.0398,
+          "n_train": 551,
+          "n_heldout": 184,
+          "base_rate_heldout": 0.5598,
+          "mean_pred_heldout": 0.5375
+        },
+        "tree": {
+          "within_auc": 0.512,
+          "within_brier": 0.2514,
+          "within_ece": 0.0529,
+          "n_train": 551,
+          "n_heldout": 184,
+          "base_rate_heldout": 0.5598,
+          "mean_pred_heldout": 0.5359
+        },
+        "best_within_auc": 0.512,
+        "G_D1": {
+          "auc": 0.512,
+          "need": 0.6,
+          "pass_": false
+        }
+      },
+      "d_ans": {
+        "feature_kind": "deployable",
+        "n_features": 1,
+        "logistic": {
+          "within_auc": 0.5,
+          "within_brier": 0.247,
+          "within_ece": 0.0244,
+          "n_train": 551,
+          "n_heldout": 184,
+          "base_rate_heldout": 0.5598,
+          "mean_pred_heldout": 0.5354
+        },
+        "tree": {
+          "within_auc": 0.5,
+          "within_brier": 0.247,
+          "within_ece": 0.0244,
+          "n_train": 551,
+          "n_heldout": 184,
+          "base_rate_heldout": 0.5598,
+          "mean_pred_heldout": 0.5354
+        },
+        "best_within_auc": 0.5,
+        "G_D1": {
+          "auc": 0.5,
+          "need": 0.6,
+          "pass_": false
+        }
+      },
+      "ALL_deployable": {
+        "feature_kind": "deployable",
+        "n_features": 12,
+        "logistic": {
+          "within_auc": 0.5337,
+          "within_brier": 0.2492,
+          "within_ece": 0.0415,
+          "n_train": 551,
+          "n_heldout": 184,
+          "base_rate_heldout": 0.5598,
+          "mean_pred_heldout": 0.5372
+        },
+        "tree": {
+          "within_auc": 0.5448,
+          "within_brier": 0.249,
+          "within_ece": 0.0389,
+          "n_train": 551,
+          "n_heldout": 184,
+          "base_rate_heldout": 0.5598,
+          "mean_pred_heldout": 0.5281
+        },
+        "best_within_auc": 0.5448,
+        "G_D1": {
+          "auc": 0.5448,
+          "need": 0.6,
+          "pass_": false
+        }
+      },
+      "ALL_no_d_ans": {
+        "feature_kind": "deployable",
+        "n_features": 11,
+        "logistic": {
+          "within_auc": 0.5337,
+          "within_brier": 0.2492,
+          "within_ece": 0.0415,
+          "n_train": 551,
+          "n_heldout": 184,
+          "base_rate_heldout": 0.5598,
+          "mean_pred_heldout": 0.5372
+        },
+        "tree": {
+          "within_auc": 0.5448,
+          "within_brier": 0.249,
+          "within_ece": 0.0389,
+          "n_train": 551,
+          "n_heldout": 184,
+          "base_rate_heldout": 0.5598,
+          "mean_pred_heldout": 0.5281
+        },
+        "best_within_auc": 0.5448,
+        "G_D1": {
+          "auc": 0.5448,
+          "need": 0.6,
+          "pass_": false
+        }
+      }
+    },
+    "bootstrap_within_auc": {
+      "ALL_no_d_ans": {
+        "boot_aucs": [
+          0.524,
+          0.5427,
+          0.556,
+          0.477,
+          0.47
+        ],
+        "boot_std_auc": 0.03463,
+        "pass_": true
+      },
+      "regime_onehot": {
+        "boot_aucs": [
+          0.5352,
+          0.4999,
+          0.523,
+          0.4648,
+          0.4948
+        ],
+        "boot_std_auc": 0.02436,
+        "pass_": true
+      },
+      "confidences": {
+        "boot_aucs": [
+          0.5364,
+          0.5354,
+          0.5394,
+          0.5251,
+          0.513
+        ],
+        "boot_std_auc": 0.0097,
+        "pass_": true
+      }
+    },
+    "regime_winrate_table": {
+      "semantic": {
+        "n_disagree": 40,
+        "n_win": 16,
+        "win_rate_given_disagree": 0.4,
+        "n_loss": 24,
+        "disagree_rate_given_regime": 0.2837
+      },
+      "counting-address": {
+        "n_disagree": 38,
+        "n_win": 19,
+        "win_rate_given_disagree": 0.5,
+        "n_loss": 19,
+        "disagree_rate_given_regime": 0.2734
+      },
+      "negation-scope": {
+        "n_disagree": 57,
+        "n_win": 43,
+        "win_rate_given_disagree": 0.7544,
+        "n_loss": 14,
+        "disagree_rate_given_regime": 0.3851
+      },
+      "agent-role": {
+        "n_disagree": 49,
+        "n_win": 25,
+        "win_rate_given_disagree": 0.5102,
+        "n_loss": 24,
+        "disagree_rate_given_regime": 0.3025
+      }
+    },
+    "regime_onehot_single_auc_within": {
+      "semantic": 0.4974,
+      "counting-address": 0.4732,
+      "negation-scope": 0.5152,
+      "agent-role": 0.5142
+    },
+    "regime_TRUE_onehot_within_auc": {
+      "semantic": 0.4295,
+      "counting-address": 0.4749,
+      "negation-scope": 0.6223,
+      "agent-role": 0.4732,
+      "ALL4logistic_train_to_heldout_within_auc": 0.6173
+    },
+    "deployable_best_within_auc": 0.5454,
+    "G_D1_oracle_true_regime": {
+      "auc": 0.6173,
+      "need": 0.6,
+      "pass_": true,
+      "deployable": false
+    },
+    "G_D1_any_pass": false,
+    "verdict": "NEGATIVE (all DEPLOYABLE feature sets): best within-set AUC 0.5448 < 0.60 -- per-item win is chance within disagreement for every deployable feature; cheap gates localize the boundary, never the wins. Oracle caveat: TRUE-regime one-hots reach 0.6173 >= 0.60 (win-rate is regime-modulated: negation 0.754 vs 0.40-0.51) but the deployable router is chance inside the disagreement set (AUC 0.5003), so the signal is not reachable."
+  },
+  "q2_prime": {
+    "comp1_booked": {
+      "FED_params": 4228,
+      "device": "cuda",
+      "energy_wh": 11.76,
+      "FED_boards": {
+        "full": 0.5605,
+        "agent-role": 0.537,
+        "counting-address": 0.5731,
+        "negation-scope": 0.5541,
+        "semantic": 0.5816
+      },
+      "SINGLE_boards": {
+        "full": 0.5503,
+        "agent-role": 0.5658,
+        "counting-address": 0.5707,
+        "negation-scope": 0.4279,
+        "semantic": 0.6407
+      }
+    },
+    "variant_table": {
+      "cheap_v1_cells_325p": {
+        "params": 325,
+        "desc": "4 per-regime logistic cells (router-selected)",
+        "accuracy": {
+          "FED@semantic": 0.5957,
+          "SINGLE@semantic": 0.6525,
+          "FED@counting-address": 0.5612,
+          "SINGLE@counting-address": 0.5612,
+          "FED@negation-scope": 0.6081,
+          "SINGLE@negation-scope": 0.4122,
+          "FED@agent-role": 0.5617,
+          "SINGLE@agent-role": 0.5556,
+          "FED@full": 0.5814,
+          "SINGLE@full": 0.5441
+        },
+        "delta_vs_comp1_FED": {
+          "full": 0.0209,
+          "semantic": 0.0141,
+          "counting-address": -0.0119,
+          "negation-scope": 0.054,
+          "agent-role": 0.0247
+        },
+        "max_abs_delta": 0.054,
+        "worst_delta": -0.0119,
+        "G_E1_two_sided": {
+          "max_abs": 0.054,
+          "need": 0.02,
+          "pass_": false
+        },
+        "G_E1_one_sided_worse": {
+          "worst_delta": -0.0119,
+          "need": -0.02,
+          "pass_": true
+        },
+        "G_E1_tight_0p01": {
+          "max_abs": 0.054,
+          "need": 0.01,
+          "pass_": false
+        },
+        "negation_win": 0.1959,
+        "G_E2": {
+          "negation_win": 0.1959,
+          "need": 0.126,
+          "pass_": true
+        },
+        "G_E3": {
+          "boot_full_acc": [
+            0.5729,
+            0.5661,
+            0.5525,
+            0.5322,
+            0.5508
+          ],
+          "boot_full_std": 0.01404,
+          "boot_neg_win": [
+            0.1554,
+            0.1014,
+            0.0405,
+            0.1216,
+            0.1081
+          ],
+          "boot_neg_std": 0.0374,
+          "pass_": true
+        }
+      },
+      "cheap_v4_cells_plus_intercept_329p": {
+        "params": 329,
+        "desc": "v1 cells + per-regime FED intercept correction (fit on TRAIN)",
+        "accuracy": {
+          "FED@semantic": 0.5957,
+          "SINGLE@semantic": 0.6525,
+          "FED@counting-address": 0.5468,
+          "SINGLE@counting-address": 0.5612,
+          "FED@negation-scope": 0.5676,
+          "SINGLE@negation-scope": 0.4122,
+          "FED@agent-role": 0.5679,
+          "SINGLE@agent-role": 0.5556,
+          "FED@full": 0.5695,
+          "SINGLE@full": 0.5441
+        },
+        "delta_vs_comp1_FED": {
+          "full": 0.009,
+          "semantic": 0.0141,
+          "counting-address": -0.0263,
+          "negation-scope": 0.0135,
+          "agent-role": 0.0309
+        },
+        "max_abs_delta": 0.0309,
+        "worst_delta": -0.0263,
+        "G_E1_two_sided": {
+          "max_abs": 0.0309,
+          "need": 0.02,
+          "pass_": false
+        },
+        "G_E1_one_sided_worse": {
+          "worst_delta": -0.0263,
+          "need": -0.02,
+          "pass_": false
+        },
+        "G_E1_tight_0p01": {
+          "max_abs": 0.0309,
+          "need": 0.01,
+          "pass_": false
+        },
+        "negation_win": 0.1554,
+        "G_E2": {
+          "negation_win": 0.1554,
+          "need": 0.126,
+          "pass_": true
+        },
+        "G_E3": {
+          "boot_full_acc": [
+            0.5847,
+            0.5831,
+            0.5407,
+            0.5441,
+            0.5814
+          ],
+          "boot_full_std": 0.01999,
+          "boot_neg_win": [
+            0.2027,
+            0.1351,
+            0.1081,
+            0.0878,
+            0.1419
+          ],
+          "boot_neg_std": 0.03893,
+          "pass_": true
+        }
+      },
+      "cheap_v2_regcond_69p": {
+        "params": 69,
+        "desc": "pooled logistic on [word64 + 4 router-regime one-hots]",
+        "accuracy": {
+          "FED@semantic": 0.6454,
+          "SINGLE@semantic": 0.6525,
+          "FED@counting-address": 0.5683,
+          "SINGLE@counting-address": 0.5612,
+          "FED@negation-scope": 0.4054,
+          "SINGLE@negation-scope": 0.4122,
+          "FED@agent-role": 0.5617,
+          "SINGLE@agent-role": 0.5556,
+          "FED@full": 0.5441,
+          "SINGLE@full": 0.5441
+        },
+        "delta_vs_comp1_FED": {
+          "full": -0.0164,
+          "semantic": 0.0638,
+          "counting-address": -0.0048,
+          "negation-scope": -0.1487,
+          "agent-role": 0.0247
+        },
+        "max_abs_delta": 0.1487,
+        "worst_delta": -0.1487,
+        "G_E1_two_sided": {
+          "max_abs": 0.1487,
+          "need": 0.02,
+          "pass_": false
+        },
+        "G_E1_one_sided_worse": {
+          "worst_delta": -0.1487,
+          "need": -0.02,
+          "pass_": false
+        },
+        "G_E1_tight_0p01": {
+          "max_abs": 0.1487,
+          "need": 0.01,
+          "pass_": false
+        },
+        "negation_win": -0.0068,
+        "G_E2": {
+          "negation_win": -0.0068,
+          "need": 0.126,
+          "pass_": false
+        },
+        "G_E3": {
+          "boot_full_acc": [
+            0.5458,
+            0.5475,
+            0.5271,
+            0.5746,
+            0.5102
+          ],
+          "boot_full_std": 0.02161,
+          "boot_neg_win": [
+            0.0068,
+            0.0135,
+            -0.0135,
+            -0.0068,
+            0.0135
+          ],
+          "boot_neg_std": 0.01098,
+          "pass_": true
+        }
+      },
+      "cheap_v2_regcond_plus_intercept_73p": {
+        "params": 73,
+        "desc": "v2 + per-regime intercept correction (fit on TRAIN)",
+        "accuracy": {
+          "FED@semantic": 0.6383,
+          "SINGLE@semantic": 0.6525,
+          "FED@counting-address": 0.5468,
+          "SINGLE@counting-address": 0.5612,
+          "FED@negation-scope": 0.4324,
+          "SINGLE@negation-scope": 0.4122,
+          "FED@agent-role": 0.5864,
+          "SINGLE@agent-role": 0.5556,
+          "FED@full": 0.5508,
+          "SINGLE@full": 0.5441
+        },
+        "delta_vs_comp1_FED": {
+          "full": -0.0097,
+          "semantic": 0.0567,
+          "counting-address": -0.0263,
+          "negation-scope": -0.1217,
+          "agent-role": 0.0494
+        },
+        "max_abs_delta": 0.1217,
+        "worst_delta": -0.1217,
+        "G_E1_two_sided": {
+          "max_abs": 0.1217,
+          "need": 0.02,
+          "pass_": false
+        },
+        "G_E1_one_sided_worse": {
+          "worst_delta": -0.1217,
+          "need": -0.02,
+          "pass_": false
+        },
+        "G_E1_tight_0p01": {
+          "max_abs": 0.1217,
+          "need": 0.01,
+          "pass_": false
+        },
+        "negation_win": 0.0203,
+        "G_E2": {
+          "negation_win": 0.0203,
+          "need": 0.126,
+          "pass_": false
+        },
+        "G_E3": {
+          "boot_full_acc": [
+            0.561,
+            0.5475,
+            0.539,
+            0.5729,
+            0.5525
+          ],
+          "boot_full_std": 0.01161,
+          "boot_neg_win": [
+            0.0608,
+            0.0203,
+            -0.0135,
+            0.1081,
+            0.0
+          ],
+          "boot_neg_std": 0.04429,
+          "pass_": true
+        }
+      },
+      "cheap_v2_regcond_TRUEoh_69p_ORACLE": {
+        "params": 69,
+        "desc": "pooled logistic on [word64 + 4 TRUE-regime one-hots] (oracle, non-deployable)",
+        "accuracy": {
+          "FED@semantic": 0.6383,
+          "SINGLE@semantic": 0.6525,
+          "FED@counting-address": 0.5612,
+          "SINGLE@counting-address": 0.5612,
+          "FED@negation-scope": 0.4392,
+          "SINGLE@negation-scope": 0.4122,
+          "FED@agent-role": 0.6049,
+          "SINGLE@agent-role": 0.5556,
+          "FED@full": 0.561,
+          "SINGLE@full": 0.5441
+        },
+        "delta_vs_comp1_FED": {
+          "full": 0.0005,
+          "semantic": 0.0567,
+          "counting-address": -0.0119,
+          "negation-scope": -0.1149,
+          "agent-role": 0.0679
+        },
+        "max_abs_delta": 0.1149,
+        "worst_delta": -0.1149,
+        "G_E1_two_sided": {
+          "max_abs": 0.1149,
+          "need": 0.02,
+          "pass_": false
+        },
+        "G_E1_one_sided_worse": {
+          "worst_delta": -0.1149,
+          "need": -0.02,
+          "pass_": false
+        },
+        "G_E1_tight_0p01": {
+          "max_abs": 0.1149,
+          "need": 0.01,
+          "pass_": false
+        },
+        "negation_win": 0.027,
+        "G_E2": {
+          "negation_win": 0.027,
+          "need": 0.126,
+          "pass_": false
+        },
+        "G_E3": {
+          "note": "oracle variant: no bootstrap refit (non-deployable)"
+        }
+      }
+    },
+    "retirement_two_sided": {
+      "cheap_v1_cells_325p": {
+        "G_E1": false,
+        "G_E2": true,
+        "G_E3": true,
+        "verdict": "FAIL"
+      },
+      "cheap_v4_cells_plus_intercept_329p": {
+        "G_E1": false,
+        "G_E2": true,
+        "G_E3": true,
+        "verdict": "FAIL"
+      },
+      "cheap_v2_regcond_69p": {
+        "G_E1": false,
+        "G_E2": false,
+        "G_E3": true,
+        "verdict": "FAIL"
+      },
+      "cheap_v2_regcond_plus_intercept_73p": {
+        "G_E1": false,
+        "G_E2": false,
+        "G_E3": true,
+        "verdict": "FAIL"
+      }
+    },
+    "retirement_one_sided_dropin": {
+      "cheap_v1_cells_325p": {
+        "G_E1_one_sided": true,
+        "G_E2": true,
+        "verdict": "PASS: MLP RETIRED (drop-in reading)"
+      },
+      "cheap_v4_cells_plus_intercept_329p": {
+        "G_E1_one_sided": false,
+        "G_E2": true,
+        "verdict": "FAIL"
+      },
+      "cheap_v2_regcond_69p": {
+        "G_E1_one_sided": false,
+        "G_E2": false,
+        "verdict": "FAIL"
+      },
+      "cheap_v2_regcond_plus_intercept_73p": {
+        "G_E1_one_sided": false,
+        "G_E2": false,
+        "verdict": "FAIL"
+      }
+    },
+    "intercept_corrections_fit_on_train": {
+      "semantic": 0.20000000000000018,
+      "counting-address": -0.04999999999999982,
+      "negation-scope": 0.0,
+      "agent-role": -0.2999999999999998
+    },
+    "fed_cells_intercept_corrections_fit_on_train": {
+      "semantic": 0.3500000000000001,
+      "counting-address": -0.1499999999999999,
+      "negation-scope": -0.04999999999999982,
+      "agent-role": 0.1499999999999999
+    },
+    "verdict": "FAIL (literal two-sided G-E1 |d|<=0.02): no variant is a drop-in for COMP1's 4228p FED. Regime-conditioning recovers counting-address flatness (v2 69p: -0.0119 -> -0.0048) but destroys the negation win (+0.196 -> -0.007, G-E2 fail); even the TRUE-regime oracle collapses negation (-0.115). Flatness and the negation win are the same specialist structure. Unchanged v1 (325p) PASSES the weaker one-sided drop-in reading (worst delta -0.0119 >= -0.02) with G-E2 PASS: the 4228p MLP buys regime-symmetry, not accuracy. Unmatchable: simultaneous regime-flatness AND +0.126 negation win."
+  },
+  "economics": {
+    "cheap_regcond_params": 73,
+    "comp1_FED_params": 4228,
+    "param_ratio": 57.92,
+    "energy_wh": 0.0
+  },
+  "prior": {
+    "cx_cheap0": "within-disagreement AUC ~0.53 (only limited feature list); cheap 325p two-arm not a drop-in (negation +0.054, counting-address -0.0119)"
+  }
+}
