@@ -1,0 +1,77 @@
+{
+  "n_boards_a2": 66297,
+  "D_mission_geq2_threats": 763,
+  "D_strata": {
+    "split-column": 623,
+    "cross-quadrant": 134,
+    "stacked-column": 6
+  },
+  "Dstar_geq2_and_opp_geq1": 196,
+  "Dstar_strata": {
+    "split-column": 190,
+    "stacked-column": 6
+  },
+  "Dstar2_chance_lt_1": 88,
+  "S_all_single_threat": 13762,
+  "S_matched": 196,
+  "D_chance_mean": 0.9528,
+  "Dstar_chance_mean": 0.8163,
+  "Dstar2_chance_mean": 0.5909,
+  "S_matched_chance_mean": 0.4082
+}
+solver control: {'ran': True, 'path': '/tmp/gt4444', 'n': 100, 'agreements': 100, 'disagreements': 0}
+[full-mlp] trained in 70.4s
+[full-linear] trained in 53.1s
+[done arms] 125.8s
+{
+  "G_A2b1_full_primary": {
+    "tag": "mlp-full",
+    "S_bar": -0.1327,
+    "ci95": [
+      -0.2041,
+      -0.0612
+    ],
+    "ci_excludes_0": true,
+    "per_fold": [
+      -0.0513,
+      -0.1395,
+      -0.2051,
+      -0.2128,
+      0.0
+    ],
+    "std_over_folds": 0.0841,
+    "n_pairs": 196,
+    "delta_mlp_DminusS": 0.0357,
+    "delta_lin_DminusS": 0.1684,
+    "a1_direction_dlin_minus_dmlp": 0.1327,
+    "PASS": false
+  },
+  "G_A2b1_design_secondary": {
+    "tag": "mlp-design",
+    "S_bar": -0.0612,
+    "ci95": [
+      -0.1276,
+      0.0102
+    ],
+    "ci_excludes_0": false,
+    "per_fold": [
+      -0.0513,
+      -0.093,
+      -0.0513,
+      -0.0851,
+      0.0
+    ],
+    "std_over_folds": 0.0329,
+    "n_pairs": 196,
+    "delta_mlp_DminusS": 0.0918,
+    "delta_lin_DminusS": 0.1531,
+    "a1_direction_dlin_minus_dmlp": 0.0612,
+    "PASS": false
+  },
+  "G_A2b2_verdict": "PASS"
+}
+wall_seconds: 125.9
+
+real	2m7.210s
+user	23m52.508s
+sys	0m5.302s

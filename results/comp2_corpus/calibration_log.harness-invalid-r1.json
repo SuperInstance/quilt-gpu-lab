@@ -1,0 +1,731 @@
+{
+  "lane": "COMPOSITE-2 phase 1 (corpus + F-gate)",
+  "prereg": "proposals/runs/COMPOSITE-2-federation3.md",
+  "corpus_seed": 2718,
+  "n_target": 24600,
+  "per_kind": 6150,
+  "max_iterations": 8,
+  "knob_order": [
+    "k1 near_miss",
+    "k2 beta",
+    "k3 vocab_frac",
+    "k4 style_mix"
+  ],
+  "knob_defs": {
+    "k1 near_miss": "expected # of regime-relevant evidence fields perturbed on a distortion (1.0 = COMP1-A1 verbatim; monotone: up = easier)",
+    "k2 beta": "label-preserving overlay/blur rate (COMP1 0.35; up = noisier = harder)",
+    "k3 vocab_frac": "P(distortion substitution drawn from the confusable in-pool vs a disjoint distractor pool)",
+    "k4 style_mix": "P(native evidence style) (COMP1 0.5)"
+  },
+  "bands": {
+    "full": [
+      0.65,
+      0.85
+    ],
+    "per_regime": [
+      0.6,
+      0.9
+    ],
+    "refit_std": "> 0"
+  },
+  "iterations": [
+    {
+      "iteration": 1,
+      "phase": "A:k1-bisection",
+      "knobs": {
+        "near_miss": 2.0,
+        "beta": 0.35,
+        "vocab_frac": 1.0,
+        "style_mix": 0.5
+      },
+      "n_raw": 24600,
+      "n_heldout": 6057,
+      "near_miss_distance_full": 0.6044,
+      "near_miss_distance_per_regime": {
+        "semantic": 0.6911,
+        "counting-address": 0.6123,
+        "negation-scope": 0.5492,
+        "agent-role": 0.5652
+      },
+      "full": 0.6792,
+      "full_refits": [
+        0.6767,
+        0.6809,
+        0.68
+      ],
+      "full_std": 0.001783,
+      "per_regime": {
+        "semantic": 0.8184,
+        "counting-address": 0.6246,
+        "negation-scope": 0.5612,
+        "agent-role": 0.7132
+      },
+      "per_regime_refits": {
+        "semantic": [
+          0.8171,
+          0.8204,
+          0.8178
+        ],
+        "counting-address": [
+          0.6201,
+          0.6268,
+          0.6268
+        ],
+        "negation-scope": [
+          0.5594,
+          0.5627,
+          0.5614
+        ],
+        "agent-role": [
+          0.7109,
+          0.7141,
+          0.7147
+        ]
+      },
+      "per_regime_std": {
+        "semantic": 0.001442,
+        "counting-address": 0.003164,
+        "negation-scope": 0.001349,
+        "agent-role": 0.001698
+      },
+      "chance": {
+        "full": 0.5011,
+        "semantic": 0.52,
+        "counting-address": 0.5067,
+        "negation-scope": 0.5167,
+        "agent-role": 0.5052
+      },
+      "validity": {
+        "n_train": 18543,
+        "n_heldout": 6057,
+        "per_regime_heldout": {
+          "semantic": 1498,
+          "counting-address": 1490,
+          "negation-scope": 1523,
+          "agent-role": 1546
+        },
+        "canon_frac_heldout": 0.5011,
+        "per_regime_canon_frac": {
+          "semantic": 0.52,
+          "counting-address": 0.5067,
+          "negation-scope": 0.4833,
+          "agent-role": 0.4948
+        },
+        "dedup_unique": 24600,
+        "n_raw": 24600,
+        "n_overlay": 8760,
+        "overlay_rate": 0.3561,
+        "regen_collisions": 218,
+        "validity_ok": true
+      },
+      "verdict": "VIOLATION",
+      "failures": [
+        "negation-scope 0.5612 outside [0.6,0.9]"
+      ],
+      "sec": 3.7
+    },
+    {
+      "iteration": 2,
+      "phase": "A:k1-bisection",
+      "knobs": {
+        "near_miss": 1.5,
+        "beta": 0.35,
+        "vocab_frac": 1.0,
+        "style_mix": 0.5
+      },
+      "n_raw": 24600,
+      "n_heldout": 6111,
+      "near_miss_distance_full": 0.5811,
+      "near_miss_distance_per_regime": {
+        "semantic": 0.6609,
+        "counting-address": 0.5894,
+        "negation-scope": 0.5259,
+        "agent-role": 0.5481
+      },
+      "full": 0.6165,
+      "full_refits": [
+        0.6123,
+        0.6189,
+        0.6182
+      ],
+      "full_std": 0.002943,
+      "per_regime": {
+        "semantic": 0.7323,
+        "counting-address": 0.5699,
+        "negation-scope": 0.53,
+        "agent-role": 0.6327
+      },
+      "per_regime_refits": {
+        "semantic": [
+          0.7356,
+          0.7369,
+          0.7244
+        ],
+        "counting-address": [
+          0.5597,
+          0.5743,
+          0.5756
+        ],
+        "negation-scope": [
+          0.528,
+          0.5307,
+          0.5314
+        ],
+        "agent-role": [
+          0.6253,
+          0.6325,
+          0.6403
+        ]
+      },
+      "per_regime_std": {
+        "semantic": 0.005593,
+        "counting-address": 0.007207,
+        "negation-scope": 0.001459,
+        "agent-role": 0.006131
+      },
+      "chance": {
+        "full": 0.5006,
+        "semantic": 0.5059,
+        "counting-address": 0.5089,
+        "negation-scope": 0.5017,
+        "agent-role": 0.5026
+      },
+      "validity": {
+        "n_train": 18489,
+        "n_heldout": 6111,
+        "per_regime_heldout": {
+          "semantic": 1524,
+          "counting-address": 1574,
+          "negation-scope": 1481,
+          "agent-role": 1532
+        },
+        "canon_frac_heldout": 0.5006,
+        "per_regime_canon_frac": {
+          "semantic": 0.4941,
+          "counting-address": 0.5089,
+          "negation-scope": 0.5017,
+          "agent-role": 0.4974
+        },
+        "dedup_unique": 24600,
+        "n_raw": 24600,
+        "n_overlay": 8852,
+        "overlay_rate": 0.3598,
+        "regen_collisions": 244,
+        "validity_ok": true
+      },
+      "verdict": "VIOLATION",
+      "failures": [
+        "full 0.6165 outside [0.65,0.85]",
+        "counting-address 0.5699 outside [0.6,0.9]",
+        "negation-scope 0.53 outside [0.6,0.9]"
+      ],
+      "sec": 2.8
+    },
+    {
+      "iteration": 3,
+      "phase": "A:k1-bisection",
+      "knobs": {
+        "near_miss": 1.75,
+        "beta": 0.35,
+        "vocab_frac": 1.0,
+        "style_mix": 0.5
+      },
+      "n_raw": 24600,
+      "n_heldout": 6109,
+      "near_miss_distance_full": 0.5917,
+      "near_miss_distance_per_regime": {
+        "semantic": 0.6743,
+        "counting-address": 0.5999,
+        "negation-scope": 0.5383,
+        "agent-role": 0.5544
+      },
+      "full": 0.6385,
+      "full_refits": [
+        0.6379,
+        0.6377,
+        0.6397
+      ],
+      "full_std": 0.00089,
+      "per_regime": {
+        "semantic": 0.7576,
+        "counting-address": 0.588,
+        "negation-scope": 0.547,
+        "agent-role": 0.6588
+      },
+      "per_regime_refits": {
+        "semantic": [
+          0.7615,
+          0.7511,
+          0.7602
+        ],
+        "counting-address": [
+          0.5904,
+          0.5891,
+          0.5845
+        ],
+        "negation-scope": [
+          0.5384,
+          0.555,
+          0.5477
+        ],
+        "agent-role": [
+          0.6588,
+          0.6536,
+          0.6641
+        ]
+      },
+      "per_regime_std": {
+        "semantic": 0.004613,
+        "counting-address": 0.002529,
+        "negation-scope": 0.006775,
+        "agent-role": 0.004269
+      },
+      "chance": {
+        "full": 0.5063,
+        "semantic": 0.5023,
+        "counting-address": 0.5131,
+        "negation-scope": 0.502,
+        "agent-role": 0.5078
+      },
+      "validity": {
+        "n_train": 18491,
+        "n_heldout": 6109,
+        "per_regime_heldout": {
+          "semantic": 1543,
+          "counting-address": 1526,
+          "negation-scope": 1510,
+          "agent-role": 1530
+        },
+        "canon_frac_heldout": 0.5063,
+        "per_regime_canon_frac": {
+          "semantic": 0.5023,
+          "counting-address": 0.5131,
+          "negation-scope": 0.502,
+          "agent-role": 0.5078
+        },
+        "dedup_unique": 24600,
+        "n_raw": 24600,
+        "n_overlay": 8644,
+        "overlay_rate": 0.3514,
+        "regen_collisions": 256,
+        "validity_ok": true
+      },
+      "verdict": "VIOLATION",
+      "failures": [
+        "full 0.6385 outside [0.65,0.85]",
+        "counting-address 0.588 outside [0.6,0.9]",
+        "negation-scope 0.547 outside [0.6,0.9]"
+      ],
+      "sec": 4.0
+    },
+    {
+      "iteration": 4,
+      "phase": "A:k1-bisection",
+      "knobs": {
+        "near_miss": 1.875,
+        "beta": 0.35,
+        "vocab_frac": 1.0,
+        "style_mix": 0.5
+      },
+      "n_raw": 24600,
+      "n_heldout": 6177,
+      "near_miss_distance_full": 0.5982,
+      "near_miss_distance_per_regime": {
+        "semantic": 0.6832,
+        "counting-address": 0.6062,
+        "negation-scope": 0.5438,
+        "agent-role": 0.5595
+      },
+      "full": 0.663,
+      "full_refits": [
+        0.6649,
+        0.6628,
+        0.6613
+      ],
+      "full_std": 0.001462,
+      "per_regime": {
+        "semantic": 0.8035,
+        "counting-address": 0.602,
+        "negation-scope": 0.5686,
+        "agent-role": 0.6783
+      },
+      "per_regime_refits": {
+        "semantic": [
+          0.8022,
+          0.8022,
+          0.8061
+        ],
+        "counting-address": [
+          0.6005,
+          0.6031,
+          0.6024
+        ],
+        "negation-scope": [
+          0.5786,
+          0.5629,
+          0.5642
+        ],
+        "agent-role": [
+          0.6787,
+          0.6833,
+          0.6729
+        ]
+      },
+      "per_regime_std": {
+        "semantic": 0.00184,
+        "counting-address": 0.001085,
+        "negation-scope": 0.007125,
+        "agent-role": 0.004233
+      },
+      "chance": {
+        "full": 0.5098,
+        "semantic": 0.5101,
+        "counting-address": 0.5137,
+        "negation-scope": 0.5052,
+        "agent-role": 0.51
+      },
+      "validity": {
+        "n_train": 18423,
+        "n_heldout": 6177,
+        "per_regime_heldout": {
+          "semantic": 1537,
+          "counting-address": 1567,
+          "negation-scope": 1526,
+          "agent-role": 1547
+        },
+        "canon_frac_heldout": 0.5098,
+        "per_regime_canon_frac": {
+          "semantic": 0.5101,
+          "counting-address": 0.5137,
+          "negation-scope": 0.5052,
+          "agent-role": 0.51
+        },
+        "dedup_unique": 24600,
+        "n_raw": 24600,
+        "n_overlay": 8717,
+        "overlay_rate": 0.3543,
+        "regen_collisions": 229,
+        "validity_ok": true
+      },
+      "verdict": "VIOLATION",
+      "failures": [
+        "negation-scope 0.5686 outside [0.6,0.9]"
+      ],
+      "sec": 2.9
+    },
+    {
+      "iteration": 5,
+      "phase": "A:k1-bisection",
+      "knobs": {
+        "near_miss": 1.812,
+        "beta": 0.35,
+        "vocab_frac": 1.0,
+        "style_mix": 0.5
+      },
+      "n_raw": 24600,
+      "n_heldout": 6214,
+      "near_miss_distance_full": 0.5948,
+      "near_miss_distance_per_regime": {
+        "semantic": 0.6781,
+        "counting-address": 0.6033,
+        "negation-scope": 0.5411,
+        "agent-role": 0.5566
+      },
+      "full": 0.6541,
+      "full_refits": [
+        0.6527,
+        0.6538,
+        0.6558
+      ],
+      "full_std": 0.001263,
+      "per_regime": {
+        "semantic": 0.7886,
+        "counting-address": 0.5904,
+        "negation-scope": 0.5596,
+        "agent-role": 0.675
+      },
+      "per_regime_refits": {
+        "semantic": [
+          0.7894,
+          0.7881,
+          0.7881
+        ],
+        "counting-address": [
+          0.5869,
+          0.596,
+          0.5882
+        ],
+        "negation-scope": [
+          0.5574,
+          0.547,
+          0.5744
+        ],
+        "agent-role": [
+          0.6741,
+          0.6811,
+          0.6696
+        ]
+      },
+      "per_regime_std": {
+        "semantic": 0.000602,
+        "counting-address": 0.003996,
+        "negation-scope": 0.011297,
+        "agent-role": 0.004725
+      },
+      "chance": {
+        "full": 0.5087,
+        "semantic": 0.5041,
+        "counting-address": 0.5158,
+        "negation-scope": 0.5013,
+        "agent-role": 0.5159
+      },
+      "validity": {
+        "n_train": 18386,
+        "n_heldout": 6214,
+        "per_regime_heldout": {
+          "semantic": 1567,
+          "counting-address": 1547,
+          "negation-scope": 1532,
+          "agent-role": 1568
+        },
+        "canon_frac_heldout": 0.5087,
+        "per_regime_canon_frac": {
+          "semantic": 0.5041,
+          "counting-address": 0.5158,
+          "negation-scope": 0.4987,
+          "agent-role": 0.5159
+        },
+        "dedup_unique": 24600,
+        "n_raw": 24600,
+        "n_overlay": 8702,
+        "overlay_rate": 0.3537,
+        "regen_collisions": 230,
+        "validity_ok": true
+      },
+      "verdict": "VIOLATION",
+      "failures": [
+        "counting-address 0.5904 outside [0.6,0.9]",
+        "negation-scope 0.5596 outside [0.6,0.9]"
+      ],
+      "sec": 3.3
+    },
+    {
+      "iteration": 6,
+      "phase": "B:k2-fallback",
+      "knobs": {
+        "near_miss": 3.0,
+        "beta": 0.2,
+        "vocab_frac": 1.0,
+        "style_mix": 0.5
+      },
+      "n_raw": 24600,
+      "n_heldout": 6266,
+      "near_miss_distance_full": 0.6521,
+      "near_miss_distance_per_regime": {
+        "semantic": 0.6966,
+        "counting-address": 0.6699,
+        "negation-scope": 0.6136,
+        "agent-role": 0.6282
+      },
+      "full": 0.8485,
+      "full_refits": [
+        0.8466,
+        0.8503,
+        0.8487
+      ],
+      "full_std": 0.001503,
+      "per_regime": {
+        "semantic": 0.8929,
+        "counting-address": 0.8002,
+        "negation-scope": 0.8064,
+        "agent-role": 0.892
+      },
+      "per_regime_refits": {
+        "semantic": [
+          0.8902,
+          0.8946,
+          0.894
+        ],
+        "counting-address": [
+          0.7951,
+          0.7997,
+          0.8057
+        ],
+        "negation-scope": [
+          0.8083,
+          0.8076,
+          0.8032
+        ],
+        "agent-role": [
+          0.8902,
+          0.8965,
+          0.8895
+        ]
+      },
+      "per_regime_std": {
+        "semantic": 0.001939,
+        "counting-address": 0.004314,
+        "negation-scope": 0.002267,
+        "agent-role": 0.003135
+      },
+      "chance": {
+        "full": 0.501,
+        "semantic": 0.5082,
+        "counting-address": 0.5125,
+        "negation-scope": 0.5006,
+        "agent-role": 0.5069
+      },
+      "validity": {
+        "n_train": 18334,
+        "n_heldout": 6266,
+        "per_regime_heldout": {
+          "semantic": 1594,
+          "counting-address": 1518,
+          "negation-scope": 1570,
+          "agent-role": 1584
+        },
+        "canon_frac_heldout": 0.501,
+        "per_regime_canon_frac": {
+          "semantic": 0.5082,
+          "counting-address": 0.4875,
+          "negation-scope": 0.5006,
+          "agent-role": 0.5069
+        },
+        "dedup_unique": 24600,
+        "n_raw": 24600,
+        "n_overlay": 5068,
+        "overlay_rate": 0.206,
+        "regen_collisions": 347,
+        "validity_ok": true
+      },
+      "verdict": "GREEN",
+      "failures": [],
+      "sec": 3.3
+    }
+  ],
+  "search": "adaptive bisection on k1 near_miss",
+  "outcome": "GATE_GREEN",
+  "frozen": {
+    "frozen": true,
+    "iteration": 6,
+    "knobs": {
+      "near_miss": 3.0,
+      "beta": 0.2,
+      "vocab_frac": 1.0,
+      "style_mix": 0.5
+    },
+    "full": 0.8485,
+    "full_std": 0.001503,
+    "per_regime": {
+      "semantic": 0.8929,
+      "counting-address": 0.8002,
+      "negation-scope": 0.8064,
+      "agent-role": 0.892
+    },
+    "near_miss_distance": 0.6521,
+    "near_miss_distance_per_regime": {
+      "semantic": 0.6966,
+      "counting-address": 0.6699,
+      "negation-scope": 0.6136,
+      "agent-role": 0.6282
+    },
+    "validity": {
+      "n_train": 18334,
+      "n_heldout": 6266,
+      "per_regime_heldout": {
+        "semantic": 1594,
+        "counting-address": 1518,
+        "negation-scope": 1570,
+        "agent-role": 1584
+      },
+      "canon_frac_heldout": 0.501,
+      "per_regime_canon_frac": {
+        "semantic": 0.5082,
+        "counting-address": 0.4875,
+        "negation-scope": 0.5006,
+        "agent-role": 0.5069
+      },
+      "dedup_unique": 24600,
+      "n_raw": 24600,
+      "n_overlay": 5068,
+      "overlay_rate": 0.206,
+      "regen_collisions": 347,
+      "validity_ok": true
+    },
+    "chance": {
+      "full": 0.501,
+      "semantic": 0.5082,
+      "counting-address": 0.5125,
+      "negation-scope": 0.5006,
+      "agent-role": 0.5069
+    },
+    "corpus_sha256_sequence": "23be17b5b02f25081cd5ad7deddf5dc87aab1d34566fce514462701203903512",
+    "corpus_bytes": 7389990,
+    "freeze_sec": 4.0
+  },
+  "note": "arms UNBLOCKED; corpus FROZEN at iteration 6 (nm=3.0, beta=0.2)",
+  "iterations_used": 6,
+  "near_miss_trajectory": [
+    {
+      "iteration": 1,
+      "phase": "A:k1-bisection",
+      "near_miss": 2.0,
+      "beta": 0.35,
+      "full": 0.6792,
+      "full_std": 0.001783,
+      "near_miss_distance": 0.6044,
+      "verdict": "VIOLATION"
+    },
+    {
+      "iteration": 2,
+      "phase": "A:k1-bisection",
+      "near_miss": 1.5,
+      "beta": 0.35,
+      "full": 0.6165,
+      "full_std": 0.002943,
+      "near_miss_distance": 0.5811,
+      "verdict": "VIOLATION"
+    },
+    {
+      "iteration": 3,
+      "phase": "A:k1-bisection",
+      "near_miss": 1.75,
+      "beta": 0.35,
+      "full": 0.6385,
+      "full_std": 0.00089,
+      "near_miss_distance": 0.5917,
+      "verdict": "VIOLATION"
+    },
+    {
+      "iteration": 4,
+      "phase": "A:k1-bisection",
+      "near_miss": 1.875,
+      "beta": 0.35,
+      "full": 0.663,
+      "full_std": 0.001462,
+      "near_miss_distance": 0.5982,
+      "verdict": "VIOLATION"
+    },
+    {
+      "iteration": 5,
+      "phase": "A:k1-bisection",
+      "near_miss": 1.812,
+      "beta": 0.35,
+      "full": 0.6541,
+      "full_std": 0.001263,
+      "near_miss_distance": 0.5948,
+      "verdict": "VIOLATION"
+    },
+    {
+      "iteration": 6,
+      "phase": "B:k2-fallback",
+      "near_miss": 3.0,
+      "beta": 0.2,
+      "full": 0.8485,
+      "full_std": 0.001503,
+      "near_miss_distance": 0.6521,
+      "verdict": "GREEN"
+    }
+  ],
+  "wall_seconds": 23.9
+}
