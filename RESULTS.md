@@ -5436,3 +5436,19 @@ armed (00:30 AKDT cron, GPU-health-gated: torch smoke must pass or it
 stands down). Deviations so far are annotated in rest_em_full.log
 (relaunch markers; env-level allocator fix only, zero harness change —
 verified: N2 path never touches the C2 oracle pool).
+
+## REPORTER-DEFAULT BOOKED (11:5x AKDT 2026-10-02): verdict CLEAN (no reporter-default-PASS found)
+Injection audit per prereg proposals/runs/REPORTER-DEFAULT-prereg.md (committed 60a8ddb BEFORE firing;
+tool tools/reporter_default_audit.py, 15 probes / 7 sites, exit 1 on any RED). G1: every importable
+booked verdict function returns FAIL-class or RAISES on abort-shaped inputs (empty/None/zero/NaN/
+missing-keys) — c2 KeyError/TypeError, c3 NO_ANCHORING on nan/None, w5a ValueError on empty (fail-loud
+crash, never silent PASS), e24 KILL on zero-counts, e27 KILL on zeros. G2: verdict_gate.finalize —
+completeness=None→VOID, False→INCONCLUSIVE, inherited→VOID. G4 env-fragile census: zero hits
+(init.defaultBranch / branch-name / cwd assumptions) in committed experiments/tools/tests. G3
+guard-the-guard finding (coverage gap, no verdict flipped): the central reporter is pinned with
+abort-shaped tests (tests/test_verdict_gate.py, 11 pins) but the per-experiment verdict functions are
+NOT covered by any committed test — their only protection is fail-loud construction (exceptions or
+explicit FAIL branches). No booked result threatened; booking-blocker LIFTED. Note: probe-run requires
+PYTHONPATH=repo:repo/experiments (script-dir sys.path quirk); w5a "skip-only" probe NameError is a
+probe artifact (eval'd cell key), empty-input path itself fail-loud. Manifest re-seal: deferred if
+foreign live-lane untracked files persist (SCOUT-23 note).

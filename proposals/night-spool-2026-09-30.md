@@ -1049,7 +1049,7 @@ other agents are feeding us; keep the handshake lane warm.
   artifacts in tree = foreign-live lane, untouched per precedent.
 
 ## SCOUT-23 SPAWNED ITEMS (2026-10-02 1840Z) — full text proposals/runs/SCOUT-23-fleet-push-2026-10-02-1840Z.md
-- [ ] **REPORTER-DEFAULT** (CPU ~30m, pre-reg first, BLOCKS next gate-bearing booking): canons e7b3d79
+- [DONE 11:5x Oct 2 CLEAN] **REPORTER-DEFAULT** (CPU ~30m, pre-reg first, BLOCKS next gate-bearing booking): canons e7b3d79
   class — guard fires, verdict reporter defaults PASS on unattributed abort. Audit every committed
   gate/verdict path (GATE-MARGIN site list) for (a) default-PASS fall-through on abort/skip, (b)
   env-fragile fixture assumptions (init.defaultBranch, branch names, cwd), (c) guard-the-guard pins
