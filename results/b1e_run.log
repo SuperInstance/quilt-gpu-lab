@@ -1,0 +1,61 @@
+inner rc=0
+[env] device=cuda NVIDIA GeForce RTX 4050 Laptop GPU torch=2.14.0+cu126 smoke=False
+[trace   0] ticks=869 closed=True
+[trace  40] ticks=1177 closed=True
+[trace  80] ticks=619 closed=True
+[trace 120] ticks=1200 closed=False
+[trace 160] ticks=692 closed=True
+[trace 200] ticks=1200 closed=False
+[label   0] n=1738
+[label  40] n=2354
+[label  80] n=1238
+[label 120] n=2400
+[label 160] n=1384
+[label 200] n=2400
+[data] train=366346 holdout=90930
+[C4] {"vs_b1c": {"ok": true, "shape_match": true, "max_abs_dX": 0.0, "max_abs_dY": 0.0, "max_abs_dMETA": 0.0}, "vs_runB": {"ok": true, "shape_match": true, "max_abs_dX": 0.0, "max_abs_dY": 0.0, "max_abs_dMETA": 0.0}, "vs_b1": {"ok": true, "shape_match": true, "max_abs_dX": 0.0, "max_abs_dY": 0.0, "max_abs_dMETA": 0.0}}
+[C1 laweq] {'ok': True, 'n': 4000, 'max_abs_diff': 0, 'n_diff': 0}
+[reweight] train freq={'clamp': 0.0017, 'deadzone': 0.069, 'saturation': 0.8954, 'ramp': 0.034} mean_w={'clamp': 9.838, 'deadzone': 4.756, 'saturation': 0.366, 'ramp': 9.651}
+[reuse anchor_cap128 2718] loaded model_anchor_cap128_seed2718_ep40.pt
+[reuse anchor_cap128 2719] loaded model_anchor_cap128_seed2719_ep40.pt
+[reuse anchor_cap128 2720] loaded model_anchor_cap128_seed2720_ep40.pt
+[train plain_w24      2718] 0.33511 -> 0.0045741 (1321p, deployed_mse)
+[train plain_w24      2719] 0.29569 -> 0.0047239 (1321p, deployed_mse)
+[train plain_w24      2720] 0.35167 -> 0.0038717 (1321p, deployed_mse)
+[train plain_w32      2718] 0.30588 -> 0.0041003 (2273p, deployed_mse)
+[train plain_w32      2719] 0.30797 -> 0.0036198 (2273p, deployed_mse)
+[train plain_w32      2720] 0.26084 -> 0.0019209 (2273p, deployed_mse)
+[train plain_w48      2718] 0.23207 -> 0.0047793 (4945p, deployed_mse)
+[train plain_w48      2719] 0.22463 -> 1.5941e-05 (4945p, deployed_mse)
+[train plain_w48      2720] 0.22544 -> 0.0034453 (4945p, deployed_mse)
+[train plain_w64      2718] 0.15918 -> 0.00064721 (8641p, deployed_mse)
+[train plain_w64      2719] 0.19326 -> 0.0030351 (8641p, deployed_mse)
+[train plain_w64      2720] 0.16956 -> 2.5269e-05 (8641p, deployed_mse)
+[train reweight_w24   2718] 0.18459 -> 0.020939 (1321p, weighted_deployed_mse)
+[train reweight_w24   2719] 0.165 -> 0.014098 (1321p, weighted_deployed_mse)
+[train reweight_w24   2720] 0.18945 -> 0.014023 (1321p, weighted_deployed_mse)
+[train reweight_w32   2718] 0.17603 -> 0.0086446 (2273p, weighted_deployed_mse)
+[train reweight_w32   2719] 0.18343 -> 0.020996 (2273p, weighted_deployed_mse)
+[train reweight_w32   2720] 0.15083 -> 0.00010876 (2273p, weighted_deployed_mse)
+[train reweight_w48   2718] 0.14909 -> 0.00024596 (4945p, weighted_deployed_mse)
+[train reweight_w48   2719] 0.13315 -> 0.0036398 (4945p, weighted_deployed_mse)
+[train reweight_w48   2720] 0.13161 -> 0.001493 (4945p, weighted_deployed_mse)
+[train reweight_w64   2718] 0.10978 -> 0.0020695 (8641p, weighted_deployed_mse)
+[train reweight_w64   2719] 0.11701 -> 0.00033781 (8641p, weighted_deployed_mse)
+[train reweight_w64   2720] 0.10502 -> 7.9582e-05 (8641p, weighted_deployed_mse)
+[regions] {"clamp": 0.0013, "deadzone": 0.078, "saturation": 0.8839, "ramp": 0.0369}
+[gate plain_w24     ] sweep   dz=0.1779±0.0066 ramp=0.1839±0.0182 sat=0.9608 agg=0.8712 -> FAIL
+[gate plain_w32     ] sweep   dz=0.2289±0.0619 ramp=0.2436±0.0668 sat=0.9703 agg=0.8857 -> FAIL
+[gate plain_w48     ] sweep   dz=0.4571±0.3840 ramp=0.4625±0.3655 sat=0.9756 agg=0.9162 -> FAIL
+[gate plain_w64     ] sweep   dz=0.6368±0.3166 ramp=0.5675±0.3168 sat=0.9888 agg=0.9458 -> FAIL
+[gate reweight_w24  ] sweep   dz=0.2504±0.0443 ramp=0.2788±0.1238 sat=0.9368 agg=0.8591 -> FAIL
+[gate reweight_w32  ] sweep   dz=0.5875±0.3255 ramp=0.5206±0.3534 sat=0.9556 agg=0.9109 -> FAIL
+[gate reweight_w48  ] sweep   dz=0.9087±0.1075 ramp=0.7543±0.1400 sat=0.9883 agg=0.9734 -> FAIL
+[gate reweight_w64  ] sweep   dz=0.9720±0.0359 ramp=0.7977±0.2421 sat=0.9959 agg=0.9867 -> FAIL
+[gate anchor_cap128 ] CONTROL dz=0.9957±0.0061 ramp=0.9186±0.1109 sat=0.9992 agg=0.9959 -> PASS
+[C6 anchor repro vs B1C] max|Δ|=0.00005 ok=True
+[C7 anchor vs B1D booked] max|Δ|=0 ok=True
+RESULT {"verdict": "PARTIAL", "floor": {"plain": null, "reweight": null}, "floor_statement": "NOT reached at 40ep for widths <= 64 (linear-head floor > 64; bracketed <= 128 by C6)", "attribution": "capacity floor > 64 even with the linear head", "passing_sweep": [], "mechanism_wins": ["w32", "w48", "w64"], "ramp_only": {"best_plain_ramp@5e-2": {"value": 0.5674816139932419, "width": 64}, "best_reweight_ramp@5e-2": {"value": 0.7976545418405884, "width": 64}, "ramp_closes_with_capacity_alone": false, "ramp_needs_reweight": true}, "vram_mb": 121.1, "elapsed_s": 371.6}
+
+guard receipt: results/b1e/guard/g7-wr-b1e-linear-head-floor-1790902119.json valid=True OK (exit 0): results/b1e/guard/g7-wr-b1e-linear-head-floor-1790902119.json is a valid g7-watt-receipt@1 watt-receipt
+ENERGY: 4.913298277777778 Wh (17687.8738 J); gate={'rule': 'no receipt → run VOID', 'verdict': 'PASS'}

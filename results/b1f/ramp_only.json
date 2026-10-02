@@ -1,0 +1,54 @@
+{
+  "rows": {
+    "linear_plain_w80": {
+      "kind": "linear",
+      "width": 80,
+      "weighting": "plain",
+      "ramp@5e-2": 0.6960842774796263,
+      "ramp@5e-2_std": 0.17021364515231407,
+      "ramp@1e-2": 0.15374677002583978,
+      "ramp@1e-2_std": 0.04238111123080977,
+      "ramp@1e-3": 0.014410653945537666,
+      "ramp@1e-3_std": 0.002821520486300614,
+      "clears_ramp_gate@5e-2": false
+    },
+    "linear_plain_w96": {
+      "kind": "linear",
+      "width": 96,
+      "weighting": "plain",
+      "ramp@5e-2": 0.9617372291790897,
+      "ramp@5e-2_std": 0.00544529021339801,
+      "ramp@1e-2": 0.34108527131782945,
+      "ramp@1e-2_std": 0.11618295902085315,
+      "ramp@1e-3": 0.03557940767243093,
+      "ramp@1e-3_std": 0.019147318907599978,
+      "clears_ramp_gate@5e-2": true
+    },
+    "linear_reweight_w80": {
+      "kind": "linear",
+      "width": 80,
+      "weighting": "reweight",
+      "ramp@5e-2": 0.9656131981713377,
+      "ramp@5e-2_std": 0.04841960958604619,
+      "ramp@1e-2": 0.47425959053866035,
+      "ramp@1e-2_std": 0.30342038222743256,
+      "ramp@1e-3": 0.04730669846948917,
+      "ramp@1e-3_std": 0.03408271000081005,
+      "clears_ramp_gate@5e-2": true
+    },
+    "hybridv2_w64": {
+      "kind": "hybridv2",
+      "width": 64,
+      "weighting": "plain",
+      "ramp@5e-2": 0.29298350228582787,
+      "ramp@5e-2_std": 0.08036323445264086,
+      "ramp@1e-2": 0.054064798250844766,
+      "ramp@1e-2_std": 0.01619254945114489,
+      "ramp@1e-3": 0.005466110117272907,
+      "ramp@1e-3_std": 0.003323047803080995,
+      "clears_ramp_gate@5e-2": false
+    }
+  },
+  "note": "ramp-region fidelity per arm (3-seed mean\u00b1std)",
+  "best_ramp_arm": "linear_reweight_w80"
+}

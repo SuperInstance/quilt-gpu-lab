@@ -1,0 +1,58 @@
+{
+  "prereg": "/home/eileen/projects/quilt-gpu-lab/proposals/runs/B1F-crossing-and-ramp-interface.md",
+  "harness": "/home/eileen/projects/quilt-gpu-lab/experiments/b1c_value_fidelity_engine.mjs",
+  "device": "cuda",
+  "device_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "torch": "2.14.0+cu126",
+  "master_seed": 2718,
+  "train_seeds": [
+    2718,
+    2719,
+    2720
+  ],
+  "frame": "B1/B1b/B1C's frame verbatim (reused engine, unchanged)",
+  "traces_n": 240,
+  "trace_ticks": 1200,
+  "trace_seed_base": 900000,
+  "holdout_rule": "trace index % 5 == 0",
+  "arms": [
+    {
+      "name": "linear_plain_w80",
+      "kind": "linear",
+      "width": 80,
+      "weighting": "plain"
+    },
+    {
+      "name": "linear_plain_w96",
+      "kind": "linear",
+      "width": 96,
+      "weighting": "plain"
+    },
+    {
+      "name": "linear_reweight_w80",
+      "kind": "linear",
+      "width": 80,
+      "weighting": "reweight"
+    },
+    {
+      "name": "hybridv2_w64",
+      "kind": "hybridv2",
+      "width": 64,
+      "weighting": "plain"
+    }
+  ],
+  "epochs": 40,
+  "crossing_widths": [
+    80,
+    96
+  ],
+  "hybrid_v2": "body + reg(1.05*tanh) + deadzone atom gate sigmoid + ramp atom gate; ramp atom = sign(b-p)*a*relu(|b-p|-k), (a,k) learned; raw=(1-g_dz)*((1-g_r)*reg+g_r*atom)",
+  "primary_gate": "deadzone >= 0.9 AND ramp >= 0.9 @ 0.05, 3-seed mean, both std>0",
+  "control_anchor": "width-128 linear-head plain == B1C cap arm, C6/C7 reused from B1D nets",
+  "verdict_counts": "PREREGISTERED ARMS ONLY (4); anchor = control",
+  "prediction_convention": "Delta_pred = clamp(p + raw, 6, 54) - p (deployed)",
+  "regions": "clamp / deadzone (u<=1.5) / saturation (u>=s+1.5) / ramp, from law ground truth",
+  "wh_envelope": 6.0,
+  "vram_ceiling_mb": 1500.0,
+  "smoke": false
+}
