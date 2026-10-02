@@ -5129,3 +5129,52 @@ Lane D2-V1b resumed the mid-killed D2-V1 lane. **Scripts unchanged — no defect
   recover the oracle's true-regime signal (0.617)? full: results/cx_cheap1/RESULTS-ENTRY.md
 - **Artifacts:** results/cx_cheap1/{cx_cheap1_results.json, RESULTS-ENTRY.md}. Code: experiments/cx_cheap1.py.
   Repro lineage: cx_cheap0.py → ring_cx2.py → ring_cx0.py. **NOT COMMITTED.**
+
+## CX-CHEAP-2 — zero-parameter SURFACE regime repair of the unreachable signal (cheap-gate thread FINAL) (2026-10-01 16:4x AKDT)
+- lane: CX-CHEAP-2 (final move of the cheap-gate thread; follows cx_cheap0/1) · device: **CPU only,
+  numpy+sklearn** (no GPU, no torch) · seed 2718 · **~2.2 s wall, 0 Wh** · reuses `experiments/cx_cheap1.py`
+  harness wholesale (COMP1 featurization, margins, 2-arm FED/SINGLE, within-set FED≠SINGLE restriction,
+  per-item win label) via cx_cheap0/ring_cx0 helpers.
+- **BOOKED QUESTION:** cx_cheap1 found the oracle's TRUE-regime signal inside the disagreement set
+  (negation one-hot 0.6223; true-regime 4-way logistic **0.6173**) while the frozen router reads **0.5003**
+  there — signal exists, unreachable. Can a **ZERO-PARAMETER regime repair** make it reachable for free?
+- wiring: router held-out top-1 **0.735593 == booked 0.7356** (4th consecutive lane, green). Split 1810/590.
+  Within-set n_disagree **184**, n_win **103**, win-rate|disagree **0.5598** (== cx_cheap1). Refs re-derived
+  exactly: TRUE-regime oracle **0.6173**, frozen router **0.5003**.
+- **0-PARAM SURFACE CLASSIFIER (preregistered order R1→R4, claim-only, 0 params / 0 training):**
+  R1 NEGATION `\bnot\b|n't|\bnever\b|\bno\b` → negation-scope · R2 COUNTING-ADDRESS count-word (`one..twelve`
+  or digit) quantifying the cargo noun (`N crates`) or `crates of` → counting-address · R3 AGENT-ROLE cargo
+  noun `crates` (no count) → agent-role · R4 else → semantic. (First-fire bug booked: bare digits from
+  location ids `berth-9` fired R2 for every claim → agent-role recall 0; fixed to a number+cargo-noun phrase.)
+- **G-R1 PASS:** held-out regime-ID acc **0.8729** (need 0.70; TRAIN 0.8862). Per-regime recall semantic
+  **1.000** · counting-address **1.000** · agent-role **1.000** · **negation-scope 0.493**. **Within-set acc
+  0.8098** vs frozen-router within-set regime-ID acc **0.6522** (and router within-set win AUC 0.5003). The
+  classifier is **perfect on 3/4 regimes**; *every* held-out error (75; 35 within-set) is
+  **negation-scope → semantic** — the negation items whose marker lives in the EVIDENCE ("no X load listed"),
+  absent from the claim.
+- **G-R2 FAIL:** repaired regime one-hots through the cx_cheap1 oracle machinery → within-set win AUC
+  **logistic 0.5334 / tree(d2) 0.5403** (best 0.5403 < 0.60) vs oracle TRUE-regime **0.6173** and frozen
+  router **0.5003**. **Sensitivity (post-hoc):** richer cue (negation-scope cargo form `load` + evidence
+  negation) lifts board to **0.9339** / within-set acc **0.8913** but within-set AUC only **0.5826 — still
+  FAIL**; perfect-label ceiling = oracle 0.6173. Failure **robust**.
+  **Mechanism booked:** the win-signal lives on the **negation-vs-rest axis** (TRUE win-rate|disagree
+  negation **0.754** vs 0.400/0.500/0.510); the repair's residual error sits on that exact axis — within-set
+  negation recall **22/57 = 0.386**, misassignments land in semantic (win-rate 0.40), diluting the repaired
+  negation win-rate to **0.636**. AUC gradient is steep (within-acc 0.810→0.533 · 0.891→0.583 · perfect→
+  0.617): the bar needs near-true labels. win-rate|disagree TRUE vs REPAIRED: semantic 0.400/0.600 ·
+  counting 0.500/0.500 · **negation 0.754/0.636** · agent 0.510/0.510.
+- **G-R3 PASS:** boot AUCs [0.5334,0.5543,0.5334,0.5471,0.5471], **std 0.0083 > 0**.
+- **VERDICT (pre-registered branch G-R1 PASS + G-R2 FAIL): the repaired labels do NOT carry the win-signal —
+  regime identity is NOT the structure the oracle read.** Regime identity is *nearly* free (0 params, 0 Wh,
+  0.87 board, perfect on 3/4 regimes; reads the regime far better than the deployable router where it matters,
+  0.810 vs 0.652), but the win-signal is concentrated on the one negation axis and the surface repair's
+  residual error lands precisely there — so the signal is reachable only with labels the surface cannot
+  supply at that precision.
+  **CHEAP-GATE THREAD CLOSES NEGATIVE (RING-CX-0 → CX-CHEAP-2):** untrained ring fires on corpus geometry,
+  not the blind regime (RING-CX-0/1); a cheap TRAINED gate detects the REGIME but not the per-item win
+  (RING-CX-2); no deployable feature predicts the win within disagreement (CX-CHEAP-0/1); a 0-param surface
+  repair recovers regime identity for free yet still cannot carry the win-signal (this lane). **Cheapness
+  buys the boundary and the labels, never the per-item answer win.** No next question inside the thread —
+  **thread closed**.
+- **Artifacts:** results/cx_cheap2/{cx_cheap2_results.json, RESULTS-ENTRY.md}. Code: experiments/cx_cheap2.py.
+  Repro lineage: cx_cheap1.py → cx_cheap0.py → ring_cx2.py → ring_cx0.py. **NOT COMMITTED.**

@@ -183,3 +183,21 @@
   neg win +0.196): the 4228p MLP buys regime-**symmetry**, not accuracy. Thread closed. Artifacts:
   results/cx_cheap1/. NOT COMMITTED. Next: is the per-regime board the right target (negation win alone?),
   and can a 0-param router repair recover the oracle's true-regime signal (0.617)?
+
+- [x] **CX-CHEAP-2 — zero-parameter SURFACE regime repair of the unreachable signal** (CPU ~10m, spawned by
+  CX-CHEAP-1 2026-10-01 16:4x): the final move of the cheap-gate thread. BOOKED: cx_cheap1's oracle sees the
+  win-signal inside the disagreement set (TRUE-regime 0.6173) while the frozen router is chance (0.5003).
+  Can a 0-param regime repair make it reachable for free? — 2026-10-01 16:4x **DONE (results/cx_cheap2/,
+  2.2 s CPU, 0 Wh, wiring 0.7356 exact 4th time).** 0-PARAM surface classifier (preregistered R1→R4:
+  negation `not/no/never/n't` → negation-scope; count-word `N crates`/`crates of` → counting-address; cargo
+  noun `crates` → agent-role; else semantic). **G-R1 PASS** held-out ID acc **0.8729** (need 0.70; perfect on
+  semantic/counting/agent, negation recall 0.493; within-set 0.8098 vs router 0.6522). **G-R2 FAIL** repaired
+  one-hots within-set win AUC **0.5403** (tree)/0.5334 (logistic) < 0.60 vs oracle 0.6173 / router 0.5003;
+  post-hoc richer cue (board 0.9339, within-acc 0.8913) only reaches **0.5826 — still FAIL**, perfect-label
+  ceiling 0.6173 → failure ROBUST. **G-R3 PASS** (boot std 0.0083>0). **Mechanism: every surface error is
+  negation-scope→semantic (marker lives in the evidence); the win-signal lives on that same negation axis
+  (TRUE win-rate|disagree neg 0.754 → repaired 0.636; within-set neg recall 0.386), so the residual dilutes
+  the one regime-modulated win-rate the oracle uses.** VERDICT: **the repaired labels do NOT carry the
+  win-signal — regime identity ≠ the structure the oracle read.** **CHEAP-GATE THREAD CLOSES NEGATIVE
+  (RING-CX-0 → CX-CHEAP-2): cheapness buys the boundary and the labels, never the per-item answer win.**
+  Artifacts: results/cx_cheap2/. NOT COMMITTED. **thread closed.**
