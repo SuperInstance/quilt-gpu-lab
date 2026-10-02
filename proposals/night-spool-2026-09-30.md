@@ -932,3 +932,13 @@ other agents are feeding us; keep the handshake lane warm.
   "NOT COMMITTED" notes on COMP1/D2 rows amended docs-only (COMP1 artifacts verified committed at 6c47056);
   b1b/c1b dirty-tree churn belongs to the LIVE lanes — left untouched. Rotation next wake: book c1b when it
   lands, mandatory (C) repro of COMP1 (GPU, ~15 min) once the lane frees, then RC-1n (top cheap open item).
+
+- 17:11 CONDUCTOR slice (day cron, 2026-10-02 0111Z; SCOUT-18 per (A)-first rotation; GPU lane FOREIGN-OCCUPIED
+  by c1b_run_b + auto-finish watcher — nothing GPU fired, c1b union adjudication is the watcher's job, hands off).
+  Full text: proposals/runs/SCOUT-18-fleet-push-2026-10-02-0111Z.md. HEADLINES: CORROBORATE quilt-adjudication
+  "merge that cannot be committed silently" (receipt=NO merge gap + refusal + mutation-caught proof = 5th
+  check-cannot-fail witness). STEAL fleet-seeds M13 sealed law — no verdict inherited across executor change
+  without a re-seal note -> spawned RN-1 (executor: identity on receipts + inheritance notes + README-sufficiency
+  pass). TOOL quilt-jev-toolkit organ two-phase writes -> spawned SEAL-2 (crash-safe manifest sealing design).
+  No CONTRADICT. Repro DEFERRED honestly: B1F (most recent committed GPU booking) C6/C7-block repro is top of
+  next GPU-free wake. Rotation next wake: book c1b if watcher landed, B1F repro, then RN-1/SEAL-2 (cheap CPU).
