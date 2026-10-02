@@ -75,7 +75,7 @@ if not G1:
     json.dump({"G1": False, "rate": float(rate)}, open("results/qo10_projection_ladder/results.json", "w"))
     sys.exit(1)
 
-def fit_mlp_seed(Xtr, ytr, Xte, seed):
+def fit_mlp_seed(Xtr, ytr, Xte, seed, yte_np):
     torch.manual_seed(seed)
     mlp = nn.Sequential(nn.Linear(Xtr.shape[1], 64), nn.ReLU(), nn.Linear(64, 64), nn.ReLU(),
                         nn.Linear(64, 64), nn.ReLU(), nn.Linear(64, 1)).to(DEV)
@@ -126,7 +126,7 @@ for g in FORECAST_GENS:
     ytr = torch.tensor(y[tr_mask], dtype=torch.float32).to(DEV)
     Xte = torch.tensor(X[~tr_mask], dtype=torch.float32).to(DEV)
     yte_np = y[~tr_mask]
-    a0 = fit_mlp_seed(Xtr, ytr, Xte, 0)
+    a0 = fit_mlp_seed(Xtr, ytr, Xte, 0, y[~tr_mask])
     ok = abs(a0 - G_ANCHOR[g]) <= 0.02
     results["anchor"][str(g)] = {"auc_seed0": a0, "booked": G_ANCHOR[g], "pass": bool(ok)}
     print(f"G1 anchor gen {g}: {a0:.4f} vs booked {G_ANCHOR[g]:.4f} -> {'PASS' if ok else 'FAIL-DIVERGED'}")
@@ -139,22 +139,23 @@ for g in FORECAST_GENS:
         Xtr_pool = flat_feats  # regime split uses pooled rows
         for name in LADDERS:
             aucs = []
+            if split_name == "S_stream":
+                Xl = feats(g, name)
+                Xtr = torch.tensor(Xl[tr_idx], dtype=torch.float32).to(DEV)
+                ytr = torch.tensor(y[tr_idx], dtype=torch.float32).to(DEV)
+                Xte = torch.tensor(Xl[te_idx], dtype=torch.float32).to(DEV)
+                yte = y[te_idx]
+            else:
+                Xf = np.concatenate(flat_feats[name], 0)
+                Xtr = torch.tensor(Xf[tr_idx], dtype=torch.float32).to(DEV)
+                ytr = torch.tensor(flat_y[tr_idx], dtype=torch.float32).to(DEV)
+                Xte = torch.tensor(Xf[te_idx], dtype=torch.float32).to(DEV)
+                yte = flat_y[te_idx]
             for sd in SEEDS:
-                torch.manual_seed(sd)
                 if split_name == "S_stream":
-                    Xtr = torch.tensor(X[tr_idx], dtype=torch.float32).to(DEV)
-                    ytr = torch.tensor(y[tr_idx], dtype=torch.float32).to(DEV)
-                    Xte = torch.tensor(X[te_idx], dtype=torch.float32).to(DEV)
-                    yte = y[te_idx]
-                    aucs.append(fit_mlp_seed(Xtr, ytr, Xte, sd))
+                    aucs.append(fit_mlp_seed(Xtr, ytr, Xte, sd, yte))
                 else:
-                    Xf = np.concatenate(flat_feats[name], 0)
-                    Xtr = torch.tensor(Xf[tr_idx], dtype=torch.float32).to(DEV)
-                    ytr = torch.tensor(flat_y[tr_idx], dtype=torch.float32).to(DEV)
-                    Xte = torch.tensor(Xf[te_idx], dtype=torch.float32).to(DEV)
-                    yte = flat_y[te_idx]
-                    # regime test set is a single generation-distribution; report AUC of pooled test
-                    aucs.append(fit_mlp_seed(Xtr, ytr, Xte, sd))
+                    aucs.append(fit_mlp_seed(Xtr, ytr, Xte, sd, yte))
             results["ladder"].setdefault(str(g), {}).setdefault(split_name, {})[name] = {
                 "aucs": [float(a) for a in aucs],
                 "mean": float(np.mean(aucs)), "std": float(np.std(aucs))}

@@ -1,0 +1,20 @@
+lane crossing rate 0.5718 G1(lane-band): PASS
+G1 anchor gen 1: 0.8946 vs booked 0.8922 -> PASS
+gen 1 S_stream L_full: AUC 0.8909 ± 0.0029
+gen 1 S_stream L_cvvgen: AUC 0.8796 ± 0.0000
+gen 1 S_stream L_cv: AUC 0.8269 ± 0.0000
+gen 1 S_stream L_gen: AUC 0.5000 ± 0.0000
+gen 1 S_genregime L_full: AUC 0.9595 ± 0.0126
+gen 1 S_genregime L_cvvgen: AUC 0.9633 ± 0.0049
+gen 1 S_genregime L_cv: AUC 0.9702 ± 0.0000
+gen 1 S_genregime L_gen: AUC 0.5000 ± 0.0000
+G1 anchor gen 3: 0.9357 vs booked 0.9355 -> PASS
+gen 3 S_stream L_full: AUC 0.9342 ± 0.0022
+gen 3 S_stream L_cvvgen: AUC 0.9319 ± 0.0042
+gen 3 S_stream L_cv: AUC 0.9182 ± 0.0000
+gen 3 S_stream L_gen: AUC 0.5000 ± 0.0000
+gen 3 S_genregime L_full: AUC 0.9595 ± 0.0126
+gen 3 S_genregime L_cvvgen: AUC 0.9633 ± 0.0049
+gen 3 S_genregime L_cv: AUC 0.9702 ± 0.0000
+gen 3 S_genregime L_gen: AUC 0.5000 ± 0.0000
+DONE

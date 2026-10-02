@@ -5452,3 +5452,27 @@ explicit FAIL branches). No booked result threatened; booking-blocker LIFTED. No
 PYTHONPATH=repo:repo/experiments (script-dir sys.path quirk); w5a "skip-only" probe NameError is a
 probe artifact (eval'd cell key), empty-input path itself fail-loud. Manifest re-seal: deferred if
 foreign live-lane untracked files persist (SCOUT-23 note).
+
+## QO10 BOOKED (13:5x AKDT 2026-10-02): verdict REGIME-DEPENDENT LADDER — oracle signal is partly REGIME
+Pre-reg proposals/runs/QO10-projection-ladder.md (ac25ea1, committed BEFORE firing; premise struck per
+fleet-triage 88e30b3 retraction, both directions live). Lane regenerated QO1-identical (G1 lane-band PASS,
+rate 0.5718; torch nondeterminism vs booked 0.5789 as expected). G1 anchor PASS at both forecast gens
+(gen1 0.8946 vs booked 0.8922; gen3 0.9357 vs 0.9355). 4-seed ensembles per arm (QG7 lesson applied).
+- **S_stream (matched-gen random-stream split):** L_full > L_cvvgen > L_cv >> L_gen at BOTH g=1 and g=3.
+  gen1: 0.8909±0.0029 / 0.8796 / 0.8269 / 0.5000; gen3: 0.9342±0.0022 / 0.9319 / 0.9182 / 0.5000.
+  All adjacent gaps exceed ensemble spread => ordering CLAIMABLE. The gate-histogram rung adds a real
+  (if small, ~1pp) margin beyond cv/v/gen in-distribution. QO1's "cv>v>gen >> gates" floor confirmed
+  with the histogram as a genuine tail feature.
+- **S_genregime (train pooled gens<=3, test gens>3, same streams):** top of ladder INVERTS —
+  L_cv 0.9702 > L_cvvgen 0.9633 > L_full 0.9595 (single pooled evaluation; DESIGN NOTE: the regime arm
+  pools all gens so the per-g repetition is one evaluation, not two — numbers identical by construction).
+  cv-only vs cvvgen gap 0.0069 > spread 0.0049 => cv-only best is CLAIMABLE (marginal);
+  cvvgen vs full gap 0.0038 < spread 0.0126 => INDISTINGUISHABLE. L_gen exactly 0.5000 in every arm
+  (constant feature at fixed gen / no signal pooled) — recorded floor, NOT a G2 alarm.
+- **HEADLINE:** the either-direction pre-reg paid off. Under generation shift the extra state rungs
+  (histogram) stop helping and the CHEAPEST rung (cv alone) is the robust one; richer state is
+  matched-regime capital. QO2 consequence: the router's cheap rung (cv) is also the shift-robust rung;
+  train matched-generation data whenever the histogram rung is used. Feeds QO7 integration spec.
+- Honest trail: two mechanical crashes fixed in place pre-scoring (ladder loop reused anchor features;
+  fit_mlp_seed read a stale global test-label array) — fixed before any verdict was read, declared here.
+  Std==0 arms are tiny-input arms (cv single-feature, gen constant) — expected, not G2 alarms.
