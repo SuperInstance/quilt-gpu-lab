@@ -1,0 +1,138 @@
+{
+  "config": {
+    "rounds": 2,
+    "train_pool": 24,
+    "heldout": 16,
+    "n_cand": 4,
+    "max_steps": 80,
+    "epochs": 2,
+    "batch_size": 4,
+    "grad_accum": 2,
+    "lr": 0.0001,
+    "lora_impl": "auto",
+    "device": "auto",
+    "hf_model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "ollama_model": "qwen2.5:0.5b",
+    "ollama_url": "http://127.0.0.1:11434",
+    "seed": 20261002,
+    "seed_heldout": 20261003,
+    "seed_shuffle_probe": 20261004,
+    "out_json": "results/rest_em_smoke.json",
+    "adapter_dir": "results/rest_em_adapter",
+    "parity_n": 8,
+    "skip_parity": false,
+    "skip_ollama": false,
+    "with_controls": true,
+    "max_new": 200,
+    "workers": 4,
+    "selftest_only": false
+  },
+  "honest_notes": [
+    "parity gap 0.125 > 0.12: round-0 generation moved to HF (registered fallback)",
+    "C2 control trained on the SAME adapter slot after treatment rounds \u2014 its post-treatment numbers are contaminated for gate purposes (smoke-only exercise)",
+    "smoke run = engineering validation; gate (prereg \u00a78) applies only to the full run",
+    "ANNOTATED post-run 2026-10-02: net smoke delta 0.000 (0.8125 -> 0.875 -> 0.8125) is ONE held-out task flipping at n=16; no improvement claim is made or implied at smoke scale.",
+    "ANNOTATED post-run: on-pool verified rate rose across rounds (60.4% r0 -> 65.6% r1) while held-out pass@1 did not move; consistent with sharpening on-pool without generalization at 6 optimizer steps/round (21-24 winners only).",
+    "ANNOTATED post-run: C1 control's heldout_pass1 (0.8125) was evaluated in-process AFTER treatment rounds trained the same adapter \u2014 it is the post-treatment policy, not the base (matches round1-post exactly). Only C1 gen_stats are valid; full-run C1 needs a separate fresh process per prereg.",
+    "ANNOTATED post-run: C2 oracle-SFT pre/post (0.8125 -> 0.8125) shares the contaminated adapter slot \u2014 exercise of the code path only, as flagged in controls.C2_oracle_sft.note.",
+    "ANNOTATED post-run: GPU seat was contended (co-tenant ollama run); vram_free at round-1 train start was 0.00GB but training proceeded inside the pre-reserved PyTorch allocator pool. No OOM, no co-tenant crash."
+  ],
+  "rounds": [
+    {
+      "round": 0,
+      "gen_backend": "hf(current policy)",
+      "gen": 96,
+      "verified": 58,
+      "verified_rate": 0.6042,
+      "winners": 21,
+      "train": {
+        "steps": 6,
+        "micro_batches": 12,
+        "loss_first10": 0.1909,
+        "loss_last10": 0.1905
+      },
+      "heldout_pass1_post": 0.875,
+      "heldout_detail": {
+        "n": 16,
+        "pass1": 0.875,
+        "arith_pass1": 0.875,
+        "symb_pass1": 0.875
+      },
+      "heldout_pass1_pre": 0.8125,
+      "delta": 0.0625
+    },
+    {
+      "round": 1,
+      "gen_backend": "hf(current policy)",
+      "gen": 96,
+      "verified": 63,
+      "verified_rate": 0.6562,
+      "winners": 24,
+      "train": {
+        "steps": 6,
+        "micro_batches": 12,
+        "loss_first10": 0.1822,
+        "loss_last10": 0.2104
+      },
+      "heldout_pass1_post": 0.8125,
+      "heldout_detail": {
+        "n": 16,
+        "pass1": 0.8125,
+        "arith_pass1": 0.875,
+        "symb_pass1": 0.75
+      },
+      "heldout_pass1_pre": 0.875,
+      "delta": -0.0625
+    }
+  ],
+  "controls": {
+    "C1_no_finetune": {
+      "gen_stats": {
+        "n_gen": 24,
+        "n_verified": 12,
+        "n_tasks_with_winner": 7
+      },
+      "heldout_pass1": 0.8125,
+      "note": "policy unchanged (base); measures eval noise/selection drift"
+    },
+    "C2_oracle_sft": {
+      "train": {
+        "steps": 3,
+        "micro_batches": 6,
+        "loss_first10": 0.6514,
+        "loss_last10": 0.6514
+      },
+      "pre": 0.8125,
+      "post": 0.8125,
+      "note": "one-shot SFT on 8 authored demos; NOTE: pollutes the treatment adapter (smoke only)"
+    }
+  },
+  "base_eval_hf": {
+    "n": 16,
+    "pass1": 0.8125,
+    "arith_pass1": 0.875,
+    "symb_pass1": 0.75
+  },
+  "parity_ollama": {
+    "n": 8,
+    "pass1": 1.0,
+    "transport_none": 0
+  },
+  "parity_gap_abs": 0.125,
+  "summary": {
+    "cycles_completed": 2,
+    "pass1_base": 0.8125,
+    "pass1_final": 0.8125,
+    "delta_total": 0.0,
+    "verifier_selftest_passed": true,
+    "device": "cuda",
+    "device_note": "free=5.32GB/total=6.44GB",
+    "load_mode": "qlora-nf4",
+    "lora": {
+      "impl": "peft",
+      "trainable_params": 737280
+    }
+  },
+  "timestamp": "2026-10-02 00:36:39 AKDT",
+  "annotation_time": "2026-10-02 00:37:17 AKDT"
+}
