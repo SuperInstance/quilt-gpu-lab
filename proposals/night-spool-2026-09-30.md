@@ -45,6 +45,12 @@
 - [spawned by QG2] QG4: budget/gens phase diagram (W x gens grid, 1024 streams/cell) — map the crossing frontier. Directly serves "cells are dedicated; routing happens between cells".
 - [spawned by PR-SWEEP #1] RECEIPT-CITE: amend QG1/QG2 receipts (proposals/runs/*.md) to cite SuperInstance repos by name (weight law; see MicroMoth-quilt PR #29). Docs-only, no re-run.
 
+## SCOUT-17 SPAWNED ITEMS (2026-10-02 0311Z) — full text proposals/runs/SCOUT-17-fleet-push-2026-10-02-0311Z.md
+- [ ] **RC-5 seal-pin enforcement** (CPU ~30m): `receipt_manifest.py --check` (exit 2 on sealed-path drift), test suite pin, pre-push hook TEMPLATE (opt-in). From MicroMoth #30/#32: their import-baseline seal RED at HEAD (auto-push never re-seals) = dirty-tree instance #5 fleet-wide; #32's seal-pin --check + CI is the fix pattern.
+- [ ] **MC-1 murmuration Exp 10** (CPU/GPU-cheap ~45m, pre-reg FIRST): critical-mass d+1 law vs threshold-equalisation; THEIR decision tree verbatim as frozen gates (artefact-retract / mechanism-real / seeding-dominant) + their 6-part reporting format.
+- [note] ORIENT-1: fleet-triage-origin lanes read docs/ORIENTATION.md at fire time, cite in pre-reg (one line).
+- 19:1x CONDUCTOR slice (day-cron Oct 1, SCOUT-17 per (A)-first rotation; GPU lane FREE, nothing fired, no repro due — B1G repro already PASS 18:1x; C2-IL CPU repro rides next wake's (C) slot). HEADLINE — **two new GPU briefs landed at 23:43Z (murmuration, xruntime-conformance), queue items addressed to a GPU agent** — murmuration Exp 10 carries a self-declared threshold confound on its d+1 law with a pre-registered decision tree → spawned MC-1. TOOL/STEAL: MicroMoth #30 grader 0.00 shapes (phase_sign_flip = blind-witness class, mirrors WIT-1/RC-1b) + #32 seal-pin --check/CI/pre-push pattern (their RED-at-HEAD seal from an auto-push that never re-seals) → spawned RC-5. CORROBORATE: fleet-triage ORIENTATION.md anti-amnesia brief (3rd fleet implementation of our spool protocol), pong #95 NAMED refusal receipts. **No CONTRADICT this sweep** — QO2 stack, receipt-manifest doctrine, QG3+QG6, QG1c, W5a/W5b all unthreatened. Rotation next wake: (C) C2-IL repro (CPU, 11 s, scratch --out), then RC-4/RC-5.
+
 ## SCOUT-16 SPAWNED ITEMS (2026-10-01 2311Z) — full text proposals/runs/SCOUT-16-fleet-push-2026-10-01-2311Z.md
 - [ ] **RC-4 seal-chain / reseal-forgery resistance** (CPU ~45m): manifest chains each seal to the previous
   seal digest; tamper test red-then-green. Canons 2217Z scout reports reseal-forgery 3rd instance — our
