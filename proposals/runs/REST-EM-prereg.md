@@ -141,3 +141,17 @@ engineering smoke (24-task pool / 16-task held-out / N=4 / 2 rounds — NOT gate
 5. **Seat contention is real:** co-tenant ollama run drove vram_free to 0.00 GB mid-run; training survived
    inside the pre-reserved allocator pool, but the full run should re-check free VRAM before each train step
    batch and pause per §10 when possible.
+
+## Amendment A1 — difficulty raised BEFORE full run (2026-10-02 01:10 AKDT, keeper Lucineer)
+
+Logged per the ceiling-risk annotation above, BEFORE any full-run launch. One change only: task difficulty.
+
+- New frozen distribution, selected by `--difficulty hard` (registered distribution unchanged, `--difficulty registered`):
+  - arith families: mul2x3 (3-digit × 2-digit), nested2 (((a+b)·c) − d), mul, mixed, add3
+  - symb families: poly2 ((a·(x+b) − c)·(x+d) expand), sq_collect, dist, lin_add
+- Same generator seed scheme, same executable verifier (sympy + numeric property test), same selection rule,
+  same LoRA/eval config, same arms (treatment / C1 no-finetune / C2 human-SFT, separate fresh processes).
+- Gate UNCHANGED: +10 pp absolute held-out pass@1 after the registered rounds.
+- Headroom probe (engineering evidence, NOT gate evidence): `results/rest_em_hardprobe.json` — base pass@1
+  on the hard distribution, measured before any full-run launch.
+- Law: difficulty frozen from this point; never tuned after seeing full-run data.

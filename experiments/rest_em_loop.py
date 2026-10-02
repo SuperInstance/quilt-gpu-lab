@@ -97,6 +97,12 @@ def _arith_task(rng: random.Random, tid: int, family: str) -> Task:
     elif family == "mixed":
         a, b, c = rng.randint(5, 99), rng.randint(5, 99), rng.randint(3, 9)
         expr, ans = f"({a} + {b}) * {c}", (a + b) * c
+    elif family == "mul2x3":
+        a, b = rng.randint(100, 999), rng.randint(10, 99)
+        expr, ans = f"{a} * {b}", a * b
+    elif family == "nested2":
+        a, b, c, d = (rng.randint(2, 30), rng.randint(2, 30), rng.randint(2, 12), rng.randint(2, 99))
+        expr, ans = f"(({a} + {b}) * {c}) - {d}", (a + b) * c - d
     else:
         raise ValueError(family)
     return Task(tid, "arith", family, expr, f"Compute {expr}.", str(ans), None)
@@ -119,6 +125,9 @@ def _symb_task(rng: random.Random, tid: int, family: str) -> Task:
         a, c = rng.randint(2, 9), rng.randint(2, 9)
         b = rng.randint(2, 15)
         expr = f"{a}*(x + {b}) + {c}*x"
+    elif family == "poly2":
+        a, b, c, d = (rng.randint(2, 9), rng.randint(2, 9), rng.randint(2, 9), rng.randint(2, 9))
+        expr = f"({a}*(x + {b}) - {c}) * (x + {d})"
     else:
         raise ValueError(family)
     e = expand(simplify(sym(expr)))
@@ -129,16 +138,22 @@ def _symb_task(rng: random.Random, tid: int, family: str) -> Task:
 
 ARITH_FAMILIES = ["add2", "add3", "sub", "mul", "mixed"]
 SYMB_FAMILIES = ["lin_add", "lin_sub", "sq_collect", "dist"]
+# Amendment A1 (2026-10-02, keeper): frozen HARD distribution — selected only via --difficulty hard.
+ARITH_FAMILIES_HARD = ["mul2x3", "nested2", "mul", "mixed", "add3"]
+SYMB_FAMILIES_HARD = ["poly2", "sq_collect", "dist", "lin_add"]
 
 
-def gen_task_pool(seed: int, n_arith: int, n_symb: int, start_tid: int = 0) -> list:
+def gen_task_pool(seed: int, n_arith: int, n_symb: int, start_tid: int = 0,
+                  difficulty: str = "registered") -> list:
+    arith_families = ARITH_FAMILIES_HARD if difficulty == "hard" else ARITH_FAMILIES
+    symb_families = SYMB_FAMILIES_HARD if difficulty == "hard" else SYMB_FAMILIES
     rng = random.Random(seed)
     tasks, tid = [], start_tid
     for i in range(n_arith):
-        tasks.append(_arith_task(rng, tid, ARITH_FAMILIES[i % len(ARITH_FAMILIES)]))
+        tasks.append(_arith_task(rng, tid, arith_families[i % len(arith_families)]))
         tid += 1
     for i in range(n_symb):
-        tasks.append(_symb_task(rng, tid, SYMB_FAMILIES[i % len(SYMB_FAMILIES)]))
+        tasks.append(_symb_task(rng, tid, symb_families[i % len(symb_families)]))
         tid += 1
     rng.shuffle(tasks)
     return tasks
@@ -639,6 +654,8 @@ def main():
     ap.add_argument("--with-controls", action="store_true")
     ap.add_argument("--max-new", type=int, default=200)
     ap.add_argument("--workers", type=int, default=4)
+    ap.add_argument("--difficulty", choices=["registered", "hard"], default="registered",
+                    help="hard = Amendment A1 (2026-10-02) frozen harder distribution")
     ap.add_argument("--selftest-only", action="store_true")
     args = ap.parse_args()
 
@@ -657,7 +674,7 @@ def main():
         log(f"[verifier] failures: {st['accept_failures']} {st['reject_failures']}")
         sys.exit(2)
     if args.selftest_only:
-        pool = gen_task_pool(args.seed, 12, 12)
+        pool = gen_task_pool(args.seed, 12, 12, difficulty=args.difficulty)
         held = gen_task_pool(args.seed_heldout, 8, 8, start_tid=10000)
         overlap = {t.expr for t in pool} & {t.expr for t in held}
         log(f"[selftest-only] pool/heldout overlap: {overlap or 'none'}")
@@ -667,8 +684,8 @@ def main():
     # ---- tasks + contamination check (N4) ----
     n_ar, n_sy = args.train_pool // 2, args.train_pool // 2
     h_ar, h_sy = args.heldout // 2, args.heldout // 2
-    train_pool = gen_task_pool(args.seed, n_ar, n_sy)
-    heldout = gen_task_pool(args.seed_heldout, h_ar, h_sy, start_tid=10000)
+    train_pool = gen_task_pool(args.seed, n_ar, n_sy, difficulty=args.difficulty)
+    heldout = gen_task_pool(args.seed_heldout, h_ar, h_sy, start_tid=10000, difficulty=args.difficulty)
     overlap = {t.expr for t in train_pool} & {t.expr for t in heldout}
     log(f"[tasks] pool={len(train_pool)} heldout={len(heldout)} contamination_overlap={len(overlap)}")
     if overlap:
