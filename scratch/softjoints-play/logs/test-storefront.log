@@ -1,0 +1,122 @@
+
+> quilt-storefront@0.1.0 test
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Subtest: frozen-path HIT: a covered moment is served by the lookup row with ZERO model calls
+ok 1 - frozen-path HIT: a covered moment is served by the lookup row with ZERO model calls
+  ---
+  duration_ms: 3.194159
+  type: 'test'
+  ...
+# Subtest: frozen-path MISS: an uncovered moment falls through to the live joint
+ok 2 - frozen-path MISS: an uncovered moment falls through to the live joint
+  ---
+  duration_ms: 1.900068
+  type: 'test'
+  ...
+# Subtest: empty live table = pure fall-through (evidence-or-nothing law)
+ok 3 - empty live table = pure fall-through (evidence-or-nothing law)
+  ---
+  duration_ms: 0.610206
+  type: 'test'
+  ...
+# Subtest: refunder pre-vector: deterministic, in-range, and ordered by emotional register
+ok 4 - refunder pre-vector: deterministic, in-range, and ordered by emotional register
+  ---
+  duration_ms: 2.110145
+  type: 'test'
+  ...
+# Subtest: answer-class map: first mention of the policy outcome wins
+ok 5 - answer-class map: first mention of the policy outcome wins
+  ---
+  duration_ms: 0.890927
+  type: 'test'
+  ...
+# Subtest: the real freezingTest instrument promotes a unanimous n=3 region (and only that)
+ok 6 - the real freezingTest instrument promotes a unanimous n=3 region (and only that)
+  ---
+  duration_ms: 0.791038
+  type: 'test'
+  ...
+# Subtest: live freeze report exists and honestly reports the verdict
+ok 7 - live freeze report exists and honestly reports the verdict
+  ---
+  duration_ms: 3.491172
+  type: 'test'
+  ...
+# Subtest: rule routes hit the right lookups with domain facts
+ok 8 - rule routes hit the right lookups with domain facts
+  ---
+  duration_ms: 9.165352
+  type: 'test'
+  ...
+# Subtest: stock miss answers the honest default, not a hallucination
+ok 9 - stock miss answers the honest default, not a hallucination
+  ---
+  duration_ms: 1.060007
+  type: 'test'
+  ...
+# Subtest: greeter cell stays dynamic: it is the joint, never a lookup (greeter law)
+ok 10 - greeter cell stays dynamic: it is the joint, never a lookup (greeter law)
+  ---
+  duration_ms: 2.43959
+  type: 'test'
+  ...
+# Subtest: listener hooks fire on escalate and refund routes
+ok 11 - listener hooks fire on escalate and refund routes
+  ---
+  duration_ms: 0.329213
+  type: 'test'
+  ...
+# Subtest: iterator turn budget caps the session
+ok 12 - iterator turn budget caps the session
+  ---
+  duration_ms: 1.66871
+  type: 'test'
+  ...
+# Subtest: cache law: two different unvectorized messages never share one joint answer
+ok 13 - cache law: two different unvectorized messages never share one joint answer
+  ---
+  duration_ms: 2.104335
+  type: 'test'
+  ...
+# Subtest: refunder joint receives the policy text in its state (input resolution)
+ok 14 - refunder joint receives the policy text in its state (input resolution)
+  ---
+  duration_ms: 1.138827
+  type: 'test'
+  ...
+# Subtest: budget exhaustion fails closed to the lookup fallback (never silent)
+ok 15 - budget exhaustion fails closed to the lookup fallback (never silent)
+  ---
+  duration_ms: 0.640503
+  type: 'test'
+  ...
+# Subtest: fallback REF resolves to customer-facing policy text, never the raw "fallback→ref" string (67-c fix, T22)
+ok 16 - fallback REF resolves to customer-facing policy text, never the raw "fallback→ref" string (67-c fix, T22)
+  ---
+  duration_ms: 1.210913
+  type: 'test'
+  ...
+# Subtest: every ai-bearing cell carries a fallback (fail-closed law, sheet-wide)
+ok 17 - every ai-bearing cell carries a fallback (fail-closed law, sheet-wide)
+  ---
+  duration_ms: 0.660411
+  type: 'test'
+  ...
+# Subtest: trace schema conformance: every turn carries route+source+ms
+ok 18 - trace schema conformance: every turn carries route+source+ms
+  ---
+  duration_ms: 0.458598
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 162.544838

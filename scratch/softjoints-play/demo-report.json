@@ -1,0 +1,93 @@
+{
+  "at_utc": "2026-10-02T08:08:20.629Z",
+  "domain": "corner-store-coupons",
+  "adjustments": [
+    {
+      "kind": "adjustment",
+      "seq": 1,
+      "run_id": "coupon-live-1",
+      "at_seq": 2,
+      "target": {
+        "cell_id": "coupon.joint",
+        "input": "SAVE10",
+        "sheet": "corner-store-coupons"
+      },
+      "before": "To redeem your SAVE10 coupon, use it during your shopping trip and apply it to your total purchase at the checkout to receive a 10% discount.",
+      "after": "SAVE10 = 10% off produce",
+      "why": {
+        "trigger": "coupon SAVE10 answered inconsistently",
+        "hypothesis": "SAVE10 always means 10 percent off produce every single time",
+        "evidence": [
+          "coupon-live-1@2"
+        ]
+      },
+      "generalizes": true
+    },
+    {
+      "kind": "adjustment",
+      "seq": 2,
+      "run_id": "coupon-live-2",
+      "at_seq": 3,
+      "target": {
+        "cell_id": "coupon.joint",
+        "input": "SAVE10",
+        "sheet": "corner-store-coupons"
+      },
+      "before": "SAVE10",
+      "after": "SAVE10 = 10% off produce",
+      "why": {
+        "trigger": "coupon SAVE10 answered inconsistently",
+        "hypothesis": "SAVE10 always means 10 percent off produce every single time",
+        "evidence": [
+          "coupon-live-2@3"
+        ]
+      },
+      "generalizes": true
+    }
+  ],
+  "compiled_cells": [
+    {
+      "id": "auto-coupon-joint-c33b53",
+      "kind": "lookup",
+      "table": {
+        "SAVE10": "SAVE10 = 10% off produce"
+      },
+      "default": "SAVE10 = 10% off produce",
+      "inputs": [
+        "coupon.joint"
+      ],
+      "compiled_from": [
+        "coupon-live-1@2",
+        "coupon-live-2@3"
+      ]
+    }
+  ],
+  "compile_receipts": [
+    {
+      "kind": "compile-receipt",
+      "at_utc": "2026-10-02T08:08:20.627Z",
+      "cluster": "save10+always+means+percent+produce+every",
+      "adjustments_consumed": 2,
+      "pattern": "SAVE10 always means 10 percent off produce every single time",
+      "new_cell": {
+        "id": "auto-coupon-joint-c33b53",
+        "kind": "lookup"
+      },
+      "rationale": "2 generalizable adjustments kept hitting coupon.joint for the same reason — the fix is a cell, not another manual pass"
+    }
+  ],
+  "fast_lookup_after": {
+    "answer": "SAVE10 = 10% off produce",
+    "source": "compiled-lookup",
+    "calls": 0
+  },
+  "idempotent_recompile": {
+    "grew_by": 0,
+    "cells_before": 3,
+    "cells_after": 3
+  },
+  "freezing_test": {
+    "real_proposals": 0,
+    "synthetic_proposals": 1
+  }
+}

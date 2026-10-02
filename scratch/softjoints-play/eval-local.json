@@ -1,0 +1,270 @@
+{
+  "at_utc": "2026-10-02T08:13:28.803Z",
+  "note": "Local re-run of eval/punching-above.js. All models = local ollama. No metered calls.",
+  "contenders": {
+    "small_model": "qwen2.5:3b-instruct-q4_K_M",
+    "judge_models": [
+      "qwen2.5:3b-instruct-q4_K_M",
+      "qwen2.5:7b-instruct-q4_K_M"
+    ]
+  },
+  "battery": [
+    "good morning!",
+    "what are your hours on saturday?",
+    "do you have milk?",
+    "the milk I bought yesterday spoiled early and I am upset",
+    "i want to speak to a manager",
+    "do you carry oat flour?"
+  ],
+  "bare_answers": [
+    {
+      "message": "good morning!",
+      "answer": "Good morning! How can I help you today?",
+      "usage": {
+        "prompt_tokens": 35,
+        "completion_tokens": 11
+      },
+      "latency_ms": 4896
+    },
+    {
+      "message": "what are your hours on saturday?",
+      "answer": "Our store hours on Saturday are the same as on other days, 8 AM to 6 PM.",
+      "usage": {
+        "prompt_tokens": 40,
+        "completion_tokens": 22
+      },
+      "latency_ms": 22892
+    },
+    {
+      "message": "do you have milk?",
+      "answer": "Yes, we have fresh milk in various types.",
+      "usage": {
+        "prompt_tokens": 37,
+        "completion_tokens": 11
+      },
+      "latency_ms": 3047
+    },
+    {
+      "message": "the milk I bought yesterday spoiled early and I am upset",
+      "answer": "I'm sorry to hear about your milk spoilage, let's ensure you get a fresh supply today.",
+      "usage": {
+        "prompt_tokens": 43,
+        "completion_tokens": 22
+      },
+      "latency_ms": 4228
+    },
+    {
+      "message": "i want to speak to a manager",
+      "answer": "I'm sorry, you'll need to visit the manager on duty.",
+      "usage": {
+        "prompt_tokens": 39,
+        "completion_tokens": 15
+      },
+      "latency_ms": 3564
+    },
+    {
+      "message": "do you carry oat flour?",
+      "answer": "Yes, we carry oat flour in our baking section.",
+      "usage": {
+        "prompt_tokens": 38,
+        "completion_tokens": 12
+      },
+      "latency_ms": 2694
+    }
+  ],
+  "quilt_answers": [
+    {
+      "route": "greeter.voice",
+      "routed_via": "classifier",
+      "reply": "Good morning! How can I assist you today?",
+      "source": "deepinfra-chat",
+      "vector": {
+        "warmth": 0.5,
+        "familiarity": 0.5,
+        "mood": 0.5,
+        "openness": 0.5
+      },
+      "frozen": null,
+      "usage": {
+        "prompt_tokens": 129,
+        "completion_tokens": 15
+      },
+      "fallback_reason": null
+    },
+    {
+      "route": "hours.answer",
+      "routed_via": "rule",
+      "reply": "Saturday: 8am–10pm.",
+      "source": "lookup",
+      "vector": null,
+      "frozen": null,
+      "usage": null,
+      "fallback_reason": null
+    },
+    {
+      "route": "stock.answer",
+      "routed_via": "rule",
+      "reply": "Milk: in stock (12 cartons).",
+      "source": "lookup",
+      "vector": null,
+      "frozen": null,
+      "usage": null,
+      "fallback_reason": null
+    },
+    {
+      "route": "refunder.joint",
+      "routed_via": "rule",
+      "reply": "Based on your receipt, you qualify for a full refund within the 7-day period as per our refund policy.",
+      "source": "deepinfra-chat",
+      "vector": {
+        "distress": 0.5,
+        "goodwill": 0.5,
+        "repeat-customer": 0.5
+      },
+      "frozen": null,
+      "usage": {
+        "prompt_tokens": 155,
+        "completion_tokens": 28
+      },
+      "fallback_reason": null
+    },
+    {
+      "route": "escalate.notice",
+      "routed_via": "rule",
+      "reply": "Of course — I'm paging the manager to come over right now. They'll find you here.",
+      "source": "lookup",
+      "vector": null,
+      "frozen": null,
+      "usage": null,
+      "fallback_reason": null
+    },
+    {
+      "route": "stock.answer",
+      "routed_via": "rule",
+      "reply": "We don't carry that right now — want me to check something else?",
+      "source": "lookup",
+      "vector": null,
+      "frozen": null,
+      "usage": null,
+      "fallback_reason": null
+    }
+  ],
+  "judge_runs": [
+    {
+      "model": "qwen2.5:3b-instruct-q4_K_M",
+      "rows": [
+        {
+          "turn": 1,
+          "message": "good morning!",
+          "bare": 8,
+          "quilt": 9
+        },
+        {
+          "turn": 2,
+          "message": "what are your hours on saturday?",
+          "bare": 0,
+          "quilt": 9
+        },
+        {
+          "turn": 3,
+          "message": "do you have milk?",
+          "bare": 9,
+          "quilt": 9
+        },
+        {
+          "turn": 4,
+          "message": "the milk I bought yesterday spoiled early and I am upset",
+          "bare": 7,
+          "quilt": 9
+        },
+        {
+          "turn": 5,
+          "message": "i want to speak to a manager",
+          "bare": 9,
+          "quilt": 9
+        },
+        {
+          "turn": 6,
+          "message": "do you carry oat flour?",
+          "bare": 0,
+          "quilt": 9
+        }
+      ],
+      "judge_calls": 12
+    },
+    {
+      "model": "qwen2.5:7b-instruct-q4_K_M",
+      "rows": [
+        {
+          "turn": 1,
+          "message": "good morning!",
+          "bare": 9,
+          "quilt": 10
+        },
+        {
+          "turn": 2,
+          "message": "what are your hours on saturday?",
+          "bare": 2,
+          "quilt": 9
+        },
+        {
+          "turn": 3,
+          "message": "do you have milk?",
+          "bare": 9,
+          "quilt": 9
+        },
+        {
+          "turn": 4,
+          "message": "the milk I bought yesterday spoiled early and I am upset",
+          "bare": 7,
+          "quilt": 7
+        },
+        {
+          "turn": 5,
+          "message": "i want to speak to a manager",
+          "bare": 9,
+          "quilt": 9
+        },
+        {
+          "turn": 6,
+          "message": "do you carry oat flour?",
+          "bare": 2,
+          "quilt": 9
+        }
+      ],
+      "judge_calls": 12
+    }
+  ],
+  "model_calls": {
+    "bare": 6,
+    "quilt": 3,
+    "quilt_model_turns": 2,
+    "quilt_frozen_hits": 0,
+    "judge_3b": 12,
+    "judge_7b": 12,
+    "ratio_quilt_over_bare": 0.5
+  },
+  "totals": {
+    "judge_3b": {
+      "judge_model": "qwen2.5:3b-instruct-q4_K_M",
+      "bare_mean": 5.5,
+      "quilt_mean": 9,
+      "diff": 3.5,
+      "verdict": "quilt +3.50 over bare"
+    },
+    "judge_7b": {
+      "judge_model": "qwen2.5:7b-instruct-q4_K_M",
+      "bare_mean": 6.333333333333333,
+      "quilt_mean": 8.833333333333334,
+      "diff": 2.500000000000001,
+      "verdict": "quilt +2.50 over bare"
+    }
+  },
+  "reference_receipt": {
+    "bare_mean": 6.1667,
+    "quilt_mean": 9,
+    "diff": 2.83,
+    "quilt_calls": 2,
+    "bare_calls": 6
+  }
+}

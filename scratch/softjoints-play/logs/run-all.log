@@ -1,0 +1,91 @@
+########## DEMO ##########
+# Adjustment → cell compilation, live (local ollama, CPU-only)
+
+domain: corner-store-coupons  cells: coupon.joint:softjoint, coupon.table:lookup
+decomposition rules: coupon.joint→softjoint cell (vector read, fallback mandatory) | coupon.table→lookup cell (zero model cost)
+
+## Phase 1/2 — live joint calls, then a manual fix (twice)
+  [coupon-live-1] message: "I have coupon SAVE10 — what does it give me?"
+  [coupon-live-1] model answered (1 model call): "To redeem your SAVE10 coupon, use it during your shopping trip and apply it to your total purchase at the checkout to receive a 10% discount."
+  [coupon-live-1] operator FIX: "To redeem your SAVE10 coupon, use it during your shopping trip and apply it to your total purchase at the checkout to receive a 10% discount." → "SAVE10 = 10% off produce"
+  [coupon-live-2] message: "applying my SAVE10 code at the till, what do I get?"
+  [coupon-live-2] model answered (1 model call): "SAVE10"
+  [coupon-live-2] operator FIX: "SAVE10" → "SAVE10 = 10% off produce"
+
+## Phase 3 — compileAdjustments(sheet, adjustments, {threshold:2})
+  compile-receipt: cluster="save10+always+means+percent+produce+every" consumed=2 new_cell=auto-coupon-joint-c33b53 (lookup)
+  compiled cell: {"id":"auto-coupon-joint-c33b53","kind":"lookup","table":{"SAVE10":"SAVE10 = 10% off produce"},"default":"SAVE10 = 10% off produce","inputs":["coupon.joint"],"compiled_from":["coupon-live-1@2","coupon-live-2@3"]}
+
+## Phase 4 — the same input now serves from the compiled lookup
+  resolve("SAVE10") → "SAVE10 = 10% off produce"  source=compiled-lookup  model_calls=0
+  table of compiled cell: {"SAVE10":"SAVE10 = 10% off produce"}
+  idempotent recompile: sheet cells 3 → 3 (grew by 0; expected 0 — new cells appended, nothing removed or duplicated)
+
+## Phase 5 — freezingTest (the promotion instrument), real refunder data
+  real refunder observations: 5; freeze-proposals: 0 (repo reports 0 — honest non-result)
+  synthetic unanimous region (n=3, same output): freeze-proposals: 1 → full refund
+########## EVAL ##########
+[eval-local] bare model on battery…
+[eval-local] bare done: 6 calls
+[eval-local] quilt on battery (backends repointed to ollama)…
+[eval-local] quilt done: 3 calls
+[eval-local] judging with qwen2.5:3b-instruct-q4_K_M…
+[eval-local] judging with qwen2.5:7b-instruct-q4_K_M…
+{
+  "model_calls": {
+    "bare": 6,
+    "quilt": 3,
+    "quilt_model_turns": 2,
+    "quilt_frozen_hits": 0,
+    "judge_3b": 12,
+    "judge_7b": 12,
+    "ratio_quilt_over_bare": 0.5
+  },
+  "totals": {
+    "judge_3b": {
+      "judge_model": "qwen2.5:3b-instruct-q4_K_M",
+      "bare_mean": 5.5,
+      "quilt_mean": 9,
+      "diff": 3.5,
+      "verdict": "quilt +3.50 over bare"
+    },
+    "judge_7b": {
+      "judge_model": "qwen2.5:7b-instruct-q4_K_M",
+      "bare_mean": 6.333333333333333,
+      "quilt_mean": 8.833333333333334,
+      "diff": 2.500000000000001,
+      "verdict": "quilt +2.50 over bare"
+    }
+  },
+  "reference": {
+    "bare_mean": 6.1667,
+    "quilt_mean": 9,
+    "diff": 2.83,
+    "quilt_calls": 2,
+    "bare_calls": 6
+  }
+}
+
+PER-TURN (judge 7b):
+┌─────────┬──────┬────────────────────────────────────────────────────────────┬──────┬───────┐
+│ (index) │ turn │ message                                                    │ bare │ quilt │
+├─────────┼──────┼────────────────────────────────────────────────────────────┼──────┼───────┤
+│ 0       │ 1    │ 'good morning!'                                            │ 9    │ 10    │
+│ 1       │ 2    │ 'what are your hours on saturday?'                         │ 2    │ 9     │
+│ 2       │ 3    │ 'do you have milk?'                                        │ 9    │ 9     │
+│ 3       │ 4    │ 'the milk I bought yesterday spoiled early and I am upset' │ 7    │ 7     │
+│ 4       │ 5    │ 'i want to speak to a manager'                             │ 9    │ 9     │
+│ 5       │ 6    │ 'do you carry oat flour?'                                  │ 2    │ 9     │
+└─────────┴──────┴────────────────────────────────────────────────────────────┴──────┴───────┘
+
+PER-TURN (judge 3b):
+┌─────────┬──────┬────────────────────────────────────────────────────────────┬──────┬───────┐
+│ (index) │ turn │ message                                                    │ bare │ quilt │
+├─────────┼──────┼────────────────────────────────────────────────────────────┼──────┼───────┤
+│ 0       │ 1    │ 'good morning!'                                            │ 8    │ 9     │
+│ 1       │ 2    │ 'what are your hours on saturday?'                         │ 0    │ 9     │
+│ 2       │ 3    │ 'do you have milk?'                                        │ 9    │ 9     │
+│ 3       │ 4    │ 'the milk I bought yesterday spoiled early and I am upset' │ 7    │ 9     │
+│ 4       │ 5    │ 'i want to speak to a manager'                             │ 9    │ 9     │
+│ 5       │ 6    │ 'do you carry oat flour?'                                  │ 0    │ 9     │
+└─────────┴──────┴────────────────────────────────────────────────────────────┴──────┴───────┘

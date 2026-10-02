@@ -1,0 +1,25 @@
+# Adjustment → cell compilation, live (local ollama, CPU-only)
+
+domain: corner-store-coupons  cells: coupon.joint:softjoint, coupon.table:lookup
+decomposition rules: coupon.joint→softjoint cell (vector read, fallback mandatory) | coupon.table→lookup cell (zero model cost)
+
+## Phase 1/2 — live joint calls, then a manual fix (twice)
+  [coupon-live-1] message: "I have coupon SAVE10 — what does it give me?"
+  [coupon-live-1] model answered (1 model call): "To redeem your SAVE10 coupon, use it during your shopping trip and apply it to your total purchase at the checkout to receive a 10% discount."
+  [coupon-live-1] operator FIX: "To redeem your SAVE10 coupon, use it during your shopping trip and apply it to your total purchase at the checkout to receive a 10% discount." → "SAVE10 = 10% off produce"
+  [coupon-live-2] message: "applying my SAVE10 code at the till, what do I get?"
+  [coupon-live-2] model answered (1 model call): "SAVE10"
+  [coupon-live-2] operator FIX: "SAVE10" → "SAVE10 = 10% off produce"
+
+## Phase 3 — compileAdjustments(sheet, adjustments, {threshold:2})
+  compile-receipt: cluster="save10+always+means+percent+produce+every" consumed=2 new_cell=auto-coupon-joint-c33b53 (lookup)
+  compiled cell: {"id":"auto-coupon-joint-c33b53","kind":"lookup","table":{"SAVE10":"SAVE10 = 10% off produce"},"default":"SAVE10 = 10% off produce","inputs":["coupon.joint"],"compiled_from":["coupon-live-1@2","coupon-live-2@3"]}
+
+## Phase 4 — the same input now serves from the compiled lookup
+  resolve("SAVE10") → "SAVE10 = 10% off produce"  source=compiled-lookup  model_calls=0
+  table of compiled cell: {"SAVE10":"SAVE10 = 10% off produce"}
+  idempotent recompile: sheet cells 3 → 3 (grew by 0; expected 0 — new cells appended, nothing removed or duplicated)
+
+## Phase 5 — freezingTest (the promotion instrument), real refunder data
+  real refunder observations: 5; freeze-proposals: 0 (repo reports 0 — honest non-result)
+  synthetic unanimous region (n=3, same output): freeze-proposals: 1 → full refund
