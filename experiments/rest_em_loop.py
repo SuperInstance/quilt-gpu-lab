@@ -627,6 +627,100 @@ def oracle_tasks():
     return out
 
 
+ORACLE_SFT_MORE = [  # 40 more experimenter-authored demos: A1-hard families (arith 20 / symb 20)
+    ("Compute 234 * 56.", "234 * 56 = (234 * 50) + (234 * 6) = 11700 + 1404.\nAnswer: 13104"),
+    ("Compute 407 * 38.", "407 * 38 = (407 * 30) + (407 * 8) = 12210 + 3256.\nAnswer: 15466"),
+    ("Compute 567 * 42.", "567 * 42 = (567 * 40) + (567 * 2) = 22680 + 1134.\nAnswer: 23814"),
+    ("Compute 789 * 65.", "789 * 65 = (789 * 60) + (789 * 5) = 47340 + 3945.\nAnswer: 51285"),
+    ("Compute 27 * 9.", "27 * 9 = (20 * 9) + (7 * 9) = 180 + 63.\nAnswer: 243"),
+    ("Compute 24 * 7.", "24 * 7 = (20 * 7) + (4 * 7) = 140 + 28.\nAnswer: 168"),
+    ("Compute 18 * 12.", "18 * 12 = (18 * 10) + (18 * 2) = 180 + 36.\nAnswer: 216"),
+    ("Compute 26 * 5.", "26 * 5 = (25 * 5) + (1 * 5) = 125 + 5.\nAnswer: 130"),
+    ("Compute ((47 + 28) * 6) - 19.", "47 + 28 = 75, and 75 * 6 = 450; 450 - 19 = 431.\nAnswer: 431"),
+    ("Compute ((83 + 12) * 4) - 27.", "83 + 12 = 95, and 95 * 4 = 380; 380 - 27 = 353.\nAnswer: 353"),
+    ("Compute ((56 + 39) * 8) - 43.", "56 + 39 = 95, and 95 * 8 = 760; 760 - 43 = 717.\nAnswer: 717"),
+    ("Compute ((29 + 64) * 7) - 15.", "29 + 64 = 93, and 93 * 7 = 651; 651 - 15 = 636.\nAnswer: 636"),
+    ("Compute (68 + 24) * 7.", "68 + 24 = 92, and 92 * 7 = 644.\nAnswer: 644"),
+    ("Compute (37 + 45) * 9.", "37 + 45 = 82, and 82 * 9 = 738.\nAnswer: 738"),
+    ("Compute (59 + 16) * 6.", "59 + 16 = 75, and 75 * 6 = 450.\nAnswer: 450"),
+    ("Compute (76 + 18) * 4.", "76 + 18 = 94, and 94 * 4 = 376.\nAnswer: 376"),
+    ("Compute 247 + 385 + 129.", "247 + 385 = 632, and 632 + 129 = 761.\nAnswer: 761"),
+    ("Compute 519 + 276 + 344.", "519 + 276 = 795, and 795 + 344 = 1139.\nAnswer: 1139"),
+    ("Compute 668 + 175 + 283.", "668 + 175 = 843, and 843 + 283 = 1126.\nAnswer: 1126"),
+    ("Compute 436 + 287 + 319.", "436 + 287 = 723, and 723 + 319 = 1042.\nAnswer: 1042"),
+    ("Simplify the expression: (3*(x + 2) - 1)*(x + 4). Give the result in terms of x.",
+     "Inside: 3*(x + 2) - 1 = 3*x + 5. Then (3*x + 5)*(x + 4) = 3*x**2 + 12*x + 5*x + 20.\nAnswer: 3*x**2 + 17*x + 20"),
+    ("Simplify the expression: (2*(x + 5) - 3)*(x + 1). Give the result in terms of x.",
+     "Inside: 2*(x + 5) - 3 = 2*x + 7. Then (2*x + 7)*(x + 1) = 2*x**2 + 2*x + 7*x + 7.\nAnswer: 2*x**2 + 9*x + 7"),
+    ("Simplify the expression: (4*(x + 1) - 6)*(x + 3). Give the result in terms of x.",
+     "Inside: 4*(x + 1) - 6 = 4*x - 2. Then (4*x - 2)*(x + 3) = 4*x**2 + 12*x - 2*x - 6.\nAnswer: 4*x**2 + 10*x - 6"),
+    ("Simplify the expression: (5*(x + 3) - 7)*(x + 2). Give the result in terms of x.",
+     "Inside: 5*(x + 3) - 7 = 5*x + 8. Then (5*x + 8)*(x + 2) = 5*x**2 + 10*x + 8*x + 16.\nAnswer: 5*x**2 + 18*x + 16"),
+    ("Simplify the expression: (2*(x + 7) - 9)*(x + 5). Give the result in terms of x.",
+     "Inside: 2*(x + 7) - 9 = 2*x + 5. Then (2*x + 5)*(x + 5) = 2*x**2 + 10*x + 5*x + 25.\nAnswer: 2*x**2 + 15*x + 25"),
+    ("Simplify the expression: 7*x**2 + 3*x - (2*x**2 - 5*x). Give the result in terms of x.",
+     "7*x**2 - 2*x**2 = 5*x**2, and 3*x + 5*x = 8*x.\nAnswer: 5*x**2 + 8*x"),
+    ("Simplify the expression: 9*x**2 + 4*x - (5*x**2 - 6*x). Give the result in terms of x.",
+     "9*x**2 - 5*x**2 = 4*x**2, and 4*x + 6*x = 10*x.\nAnswer: 4*x**2 + 10*x"),
+    ("Simplify the expression: 6*x**2 + 8*x - (4*x**2 - 3*x). Give the result in terms of x.",
+     "6*x**2 - 4*x**2 = 2*x**2, and 8*x + 3*x = 11*x.\nAnswer: 2*x**2 + 11*x"),
+    ("Simplify the expression: 8*x**2 + 2*x - (6*x**2 - 7*x). Give the result in terms of x.",
+     "8*x**2 - 6*x**2 = 2*x**2, and 2*x + 7*x = 9*x.\nAnswer: 2*x**2 + 9*x"),
+    ("Simplify the expression: 5*x**2 + 9*x - (1*x**2 - 4*x). Give the result in terms of x.",
+     "5*x**2 - 1*x**2 = 4*x**2, and 9*x + 4*x = 13*x.\nAnswer: 4*x**2 + 13*x"),
+    ("Simplify the expression: 6*(x + 3) + 4*x. Give the result in terms of x.",
+     "6*(x + 3) = 6*x + 18; adding 4*x gives 10*x + 18.\nAnswer: 10*x + 18"),
+    ("Simplify the expression: 7*(x + 2) + 3*x. Give the result in terms of x.",
+     "7*(x + 2) = 7*x + 14; adding 3*x gives 10*x + 14.\nAnswer: 10*x + 14"),
+    ("Simplify the expression: 8*(x + 5) + 2*x. Give the result in terms of x.",
+     "8*(x + 5) = 8*x + 40; adding 2*x gives 10*x + 40.\nAnswer: 10*x + 40"),
+    ("Simplify the expression: 9*(x + 1) + 5*x. Give the result in terms of x.",
+     "9*(x + 1) = 9*x + 9; adding 5*x gives 14*x + 9.\nAnswer: 14*x + 9"),
+    ("Simplify the expression: 4*(x + 6) + 6*x. Give the result in terms of x.",
+     "4*(x + 6) = 4*x + 24; adding 6*x gives 10*x + 24.\nAnswer: 10*x + 24"),
+    ("Simplify the expression: (7*x + 9) + (5*x - 12). Give the result in terms of x.",
+     "Like terms: 7*x + 5*x = 12*x, and 9 - 12 = -3.\nAnswer: 12*x - 3"),
+    ("Simplify the expression: (9*x + 4) + (8*x - 15). Give the result in terms of x.",
+     "Like terms: 9*x + 8*x = 17*x, and 4 - 15 = -11.\nAnswer: 17*x - 11"),
+    ("Simplify the expression: (6*x + 11) + (7*x - 5). Give the result in terms of x.",
+     "Like terms: 6*x + 7*x = 13*x, and 11 - 5 = 6.\nAnswer: 13*x + 6"),
+    ("Simplify the expression: (8*x + 2) + (9*x - 20). Give the result in terms of x.",
+     "Like terms: 8*x + 9*x = 17*x, and 2 - 20 = -18.\nAnswer: 17*x - 18"),
+    ("Simplify the expression: (12*x + 7) + (5*x - 9). Give the result in terms of x.",
+     "Like terms: 12*x + 5*x = 17*x, and 7 - 9 = -2.\nAnswer: 17*x - 2"),
+]
+
+ORACLE_SFT_FULL = ORACLE_SFT + ORACLE_SFT_MORE  # 48 demos total (prereg section 6, C2)
+
+
+def oracle_tasks_full():
+    """Same contract as oracle_tasks(), but over the full 48-demo set (tids 9100+)."""
+    out = []
+    for i, (q, a) in enumerate(ORACLE_SFT_FULL):
+        if q.startswith("Compute"):
+            expr = q[len("Compute "):].rstrip(".")
+            tgt = str(expand(simplify(sym(expr))))
+            t = Task(9100 + i, "arith", "oracle", expr, q, tgt, None)
+        else:
+            expr = q.split("expression: ")[1].split(". Give")[0]
+            e = expand(simplify(sym(expr)))
+            t = Task(9100 + i, "symb", "oracle", expr, q, str(e), e)
+        out.append((t, a))
+    return out
+
+
+def verify_oracle(demos):
+    """Executable check: every authored demo's Answer must verify against its own target."""
+    verifier = Verifier()
+    bad = []
+    for t, a in demos:
+        ok, _ = verifier.check(t, a)
+        if not ok:
+            bad.append((t.tid, t.expr, a))
+    return bad
+
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--rounds", type=int, default=2)
@@ -652,6 +746,11 @@ def main():
     ap.add_argument("--skip-parity", action="store_true")
     ap.add_argument("--skip-ollama", action="store_true", help="force HF for round 0 (deviation logged)")
     ap.add_argument("--with-controls", action="store_true")
+    ap.add_argument("--arm", choices=["treatment", "c1", "c2", "n2"], default="treatment",
+                    help="full-run arm (prereg section 6 + post-smoke annotation 2: each arm "
+                         "runs in its own fresh process; default keeps smoke behavior)")
+    ap.add_argument("--c2-steps", type=int, default=150,
+                    help="C2 oracle-SFT optimizer-step budget (matched to one treatment round)")
     ap.add_argument("--max-new", type=int, default=200)
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--difficulty", choices=["registered", "hard"], default="registered",
@@ -729,7 +828,7 @@ def main():
             out["honest_notes"].append(f"parity gap {gap:.3f} > 0.12: round-0 generation moved to HF (registered fallback)")
 
     # ---- C2 oracle-SFT control (before treatment rounds? after; keep adapter slots separate) ----
-    def run_round(r: int):
+    def run_round(r: int, train_enabled: bool = True):
         """One ReST-EM cycle: generate -> verify -> select -> train -> eval."""
         backend_note = "ollama(base twin)" if (r == 0 and use_ollama_r0) else "hf(current policy)"
         log(f"[round {r}] generate via {backend_note}, n_cand={args.n_cand}")
@@ -778,21 +877,137 @@ def main():
         if len(winners) < 3:
             out["honest_notes"].append(f"round {r} aborted: <3 winners")
             return None
-        samples = make_sft_samples(win_tasks, win_texts, tok)
         free_note = ""
         if device == "cuda":
             free, _ = torch.cuda.mem_get_info()
             free_note = f" (vram_free={free / 1e9:.2f}GB before train)"
+        base_stats = {"round": r, "gen_backend": backend_note, "gen": gstats["n_gen"],
+                      "verified": gstats["n_verified"], "verified_rate": round(gstats["n_verified"] / max(1, gstats["n_gen"]), 4),
+                      "winners": len(winners)}
+        if not train_enabled:
+            # C1 (prereg section 6): identical generation/verify/select bookkeeping, NO weight updates;
+            # held-out is evaluated on the unchanged base policy.
+            ev = eval_pass1(hf, heldout, verifier, label=f"C1-round{r}-base-unchanged")
+            return {**base_stats, "train": None, "heldout_pass1_post": ev["pass1"], "heldout_detail": ev}
+        samples = make_sft_samples(win_tasks, win_texts, tok)
         log(f"[round {r}] SFT on {len(samples)} winner samples{free_note}")
         tr = sft_train(model, tok, samples, device, lr=args.lr, epochs=args.epochs,
                        batch_size=args.batch_size, accum=args.grad_accum,
                        max_steps=args.max_steps, seed=args.seed + r)
         log(f"[round {r}] train done: {tr}")
         ev = eval_pass1(hf, heldout, verifier, label=f"round{r}-post")
-        return {"round": r, "gen_backend": backend_note, "gen": gstats["n_gen"],
-                "verified": gstats["n_verified"], "verified_rate": round(gstats["n_verified"] / max(1, gstats["n_gen"]), 4),
-                "winners": len(winners), "train": tr, "heldout_pass1_post": ev["pass1"],
+        return {**base_stats, "train": tr, "heldout_pass1_post": ev["pass1"],
                 "heldout_detail": ev}
+
+    # ================= full-run arms (prereg section 6: separate fresh processes) =================
+    if args.arm == "c1":
+        prev = base_eval["pass1"]
+        for r in range(args.rounds):
+            res = run_round(r, train_enabled=False)
+            if res is None:
+                break
+            res["heldout_pass1_pre"] = prev
+            res["delta"] = round(res["heldout_pass1_post"] - prev, 4)
+            log(f"[C1 round {r}] bookkeeping gen={res['gen']} verified={res['verified']} "
+                f"winners={res['winners']}; base pass@1 {prev:.3f} -> {res['heldout_pass1_post']:.3f}")
+            prev = res["heldout_pass1_post"]
+            out["rounds"].append(res)
+        cycles = len(out["rounds"])
+        out["summary"] = {
+            "arm": "c1", "cycles_completed": cycles,
+            "pass1_base": base_eval["pass1"],
+            "pass1_final": out["rounds"][-1]["heldout_pass1_post"] if out["rounds"] else None,
+            "delta_total": round((out["rounds"][-1]["heldout_pass1_post"] - base_eval["pass1"]), 4) if out["rounds"] else None,
+            "verifier_selftest_passed": st["passed"],
+            "device": device, "device_note": dev_note, "load_mode": load_mode, "lora": lora_info,
+            "note": "fresh-process C1: no weight updates ever; eval = unchanged base each round",
+        }
+        out["timestamp"] = time.strftime("%Y-%m-%d %H:%M:%S %Z")
+        _p = Path(args.out_json); _p.parent.mkdir(parents=True, exist_ok=True)
+        _p.write_text(json.dumps(out, indent=2, default=str))
+        log(f"[done arm=c1] base={out['summary']['pass1_base']} final={out['summary']['pass1_final']} -> {_p}")
+        return
+
+    if args.arm == "c2":
+        demos = oracle_tasks_full()
+        bad = verify_oracle(demos)
+        if bad:
+            log(f"[C2] ORACLE DEMO SELF-TEST FAILED on {len(bad)} demos: {bad[:3]}")
+            sys.exit(2)
+        log(f"[C2] oracle demo self-test: {len(demos)}/{len(demos)} authored demos verify against their own targets")
+        samples = make_sft_samples([t for t, _ in demos], [a for _, a in demos], tok)
+        tr = sft_train(model, tok, samples, device, lr=args.lr, epochs=8,
+                       batch_size=args.batch_size, accum=args.grad_accum,
+                       max_steps=args.c2_steps, seed=args.seed)
+        ev = eval_pass1(hf, heldout, verifier, label="C2-post-oracle-sft")
+        out["c2"] = {"pre": base_eval["pass1"], "post": ev["pass1"],
+                     "delta": round(ev["pass1"] - base_eval["pass1"], 4),
+                     "train": tr, "n_demos": len(demos),
+                     "budget_note": f"one-shot SFT, optimizer steps capped at --c2-steps={args.c2_steps} "
+                                    f"(driver matches to treatment round-1 observed steps)"}
+        out["summary"] = {
+            "arm": "c2", "pass1_base": base_eval["pass1"], "pass1_final": ev["pass1"],
+            "delta_total": round(ev["pass1"] - base_eval["pass1"], 4),
+            "verifier_selftest_passed": st["passed"],
+            "device": device, "device_note": dev_note, "load_mode": load_mode, "lora": lora_info,
+            "note": "fresh-process C2: one-shot oracle-SFT (experimenter-authored demos, NOT policy samples)",
+        }
+        out["timestamp"] = time.strftime("%Y-%m-%d %H:%M:%S %Z")
+        _p = Path(args.out_json); _p.parent.mkdir(parents=True, exist_ok=True)
+        _p.write_text(json.dumps(out, indent=2, default=str))
+        log(f"[done arm=c2] pre={out['summary']['pass1_base']} post={ev['pass1']} -> {_p}")
+        return
+
+    if args.arm == "n2":
+        # negative control N2 (prereg section 5): SFT on verifier-REJECTED samples for 30 steps;
+        # held-out must NOT improve >= +5pp (improving on rejected labels = verifier/selection bug).
+        pairs = []
+        for i in range(0, len(train_pool), 8):
+            chunk = train_pool[i:i + 8]
+            msgs = []
+            for t in chunk:
+                msgs.extend([messages_for(t)] * args.n_cand)
+            gens = hf.generate(msgs, greedy=False, temperature=0.8, max_new=args.max_new)
+            k = 0
+            for t in chunk:
+                pairs.append((t, gens[k:k + args.n_cand]))
+                k += args.n_cand
+        rejected = []
+        n_gen = n_ok = 0
+        for t, cands in pairs:
+            for c in cands:
+                if c is None:
+                    continue
+                n_gen += 1
+                ok, _ = verifier.check(t, c)
+                if ok:
+                    n_ok += 1
+                else:
+                    rejected.append((t, c))
+        log(f"[N2] generated {n_gen}, verified-ok {n_ok}, rejected pool = {len(rejected)}")
+        rej_tasks = [t for t, _ in rejected]
+        rej_texts = [c for _, c in rejected]
+        rej_samples = make_sft_samples(rej_tasks, rej_texts, tok)
+        tr = sft_train(model, tok, rej_samples, device, lr=args.lr, epochs=2,
+                       batch_size=args.batch_size, accum=args.grad_accum,
+                       max_steps=30, seed=args.seed_shuffle_probe)
+        ev = eval_pass1(hf, heldout, verifier, label="N2-post-rejected-sft")
+        delta = round(ev["pass1"] - base_eval["pass1"], 4)
+        out["n2"] = {"pre": base_eval["pass1"], "post": ev["pass1"], "delta": delta,
+                     "train": tr, "n_rejected_samples": len(rejected),
+                     "control_holds": bool(delta < 0.05)}
+        out["summary"] = {
+            "arm": "n2", "pass1_base": base_eval["pass1"], "pass1_final": ev["pass1"],
+            "delta_total": delta, "control_holds": bool(delta < 0.05),
+            "verifier_selftest_passed": st["passed"],
+            "device": device, "device_note": dev_note, "load_mode": load_mode, "lora": lora_info,
+            "note": "fresh-process N2 shuffle-label control: SFT on rejected samples, 30 steps",
+        }
+        out["timestamp"] = time.strftime("%Y-%m-%d %H:%M:%S %Z")
+        _p = Path(args.out_json); _p.parent.mkdir(parents=True, exist_ok=True)
+        _p.write_text(json.dumps(out, indent=2, default=str))
+        log(f"[done arm=n2] pre={base_eval['pass1']} post={ev['pass1']} control_holds={delta < 0.05} -> {_p}")
+        return
 
     # ================= treatment arm =================
     prev = base_eval["pass1"]
