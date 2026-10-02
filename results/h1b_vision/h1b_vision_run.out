@@ -1,0 +1,25 @@
+WIRING max|delta| = 5.274e-16  pass=True
+  world 1/60  1.6s
+  world 11/60  8.5s
+  world 21/60  17.1s
+  world 31/60  21.6s
+  world 41/60  26.4s
+  world 51/60  34.0s
+
+--- per-variant aggregate / world-std / resample width ---
+  e3_op    agg=0.7893  world_std=0.2107  width=0.1089  GATE
+  e3_uni   agg=0.3926  world_std=0.4090  width=0.2078  GATE
+  e1_acc   agg=0.1009  world_std=0.1764  width=0.0888  GATE
+  nmi      agg=0.5280  world_std=0.3614  width=0.1903  GATE
+  rank     agg=0.5166  world_std=0.4295  width=0.2210  GATE
+  e3_deg   agg=0.8591  world_std=0.1814  width=0.0895  diag
+  bits     agg=0.5226  world_std=0.3513  width=0.1706  diag
+  perch    agg=0.3029  world_std=0.4274  width=0.2258  diag
+  coarse   agg=0.5510  world_std=0.4006  width=0.1987  diag
+
+D_gate=0.6884  D_full=0.7582  D_triple(op/uni/deg)=0.4665
+G0 green=False  passers=['e1_acc']  winner=None
+gap floor: mean=0.0615 std=0.2185 sem=0.0282
+G1 green=None  rho block={}
+VERDICT G0-RED-TERMINAL :: No H5-stable per-world vision determinacy exists - the measure thread closes PERMANENTLY.
+wrote h1b_vision_result.json  wall 41.3s
