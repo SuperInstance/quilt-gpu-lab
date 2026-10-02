@@ -1,0 +1,306 @@
+{
+  "experiment": "CX-CHEAP-0: per-item FED-SINGLE win prediction + MLP retirement test",
+  "device": "cpu",
+  "gpu_used": false,
+  "torch_used": false,
+  "numpy_sklearn": true,
+  "seed": 2718,
+  "energy_wh": 0.0,
+  "reused_machinery": "experiments/ring_cx2.py (COMP1 featurization, margins, disagree, router) + experiments/ring_cx0.py (feat_word/pearson/REGIMES)",
+  "honest_note": "COMP1 artifacts do not persist per-item per-arm predictions; per-item FED/SINGLE correctness re-derived from the SAME frozen COMP1 featurization + router + split (ring_cx2 recipe), not read from a saved file.",
+  "wiring": {
+    "reproduced_router_heldout_top1": 0.7356,
+    "comp1_booked_router_heldout_top1": 0.7356,
+    "match": false,
+    "T_margin_median_train_top1_rho": 0.7374
+  },
+  "q1_win_definition": "label = 1[FED correct AND SINGLE wrong] (per item)",
+  "q1_base_rate": {
+    "train": 0.163,
+    "heldout": 0.1746,
+    "n_win_heldout": 103,
+    "n_heldout": 590
+  },
+  "q1_feature_sets": {
+    "f_margins": {
+      "feature_kind": "deployable",
+      "auc_heldout": 0.5949,
+      "brier_heldout": 0.1422,
+      "base_rate": 0.1746,
+      "youden_threshold": 0.146,
+      "youden_tpr": 0.8738,
+      "youden_fpr": 0.7043,
+      "youden_j": 0.1695,
+      "precision_at_youden": 0.2079,
+      "precision_over_base": 1.191,
+      "n_alert": 433,
+      "n_params": 5,
+      "n_features": 4,
+      "G_C1": {
+        "auc_heldout": 0.5949,
+        "need": 0.7,
+        "pass_": false
+      },
+      "G_C2": {
+        "precision_over_base": 1.191,
+        "need": 2.0,
+        "pass_": false
+      },
+      "G_C3": {
+        "boot_std_auc": 0.01007,
+        "boot_aucs": [
+          0.5871,
+          0.5914,
+          0.5727,
+          0.5704,
+          0.5653
+        ],
+        "pass_": true
+      },
+      "verdict": "FAIL"
+    },
+    "f_disagree": {
+      "feature_kind": "deployable",
+      "auc_heldout": 0.9223,
+      "brier_heldout": 0.0777,
+      "base_rate": 0.1746,
+      "youden_threshold": 0.3765,
+      "youden_tpr": 1.0,
+      "youden_fpr": 0.1663,
+      "youden_j": 0.8337,
+      "precision_at_youden": 0.5598,
+      "precision_over_base": 3.207,
+      "n_alert": 184,
+      "n_params": 3,
+      "n_features": 2,
+      "G_C1": {
+        "auc_heldout": 0.9223,
+        "need": 0.7,
+        "pass_": true
+      },
+      "G_C2": {
+        "precision_over_base": 3.207,
+        "need": 2.0,
+        "pass_": true
+      },
+      "G_C3": {
+        "boot_std_auc": 0.0,
+        "boot_aucs": [
+          0.9223,
+          0.9223,
+          0.9223,
+          0.9223,
+          0.9223
+        ],
+        "pass_": false
+      },
+      "verdict": "INCONCLUSIVE"
+    },
+    "f_both": {
+      "feature_kind": "deployable",
+      "auc_heldout": 0.9189,
+      "brier_heldout": 0.078,
+      "base_rate": 0.1746,
+      "youden_threshold": 0.3903,
+      "youden_tpr": 1.0,
+      "youden_fpr": 0.1663,
+      "youden_j": 0.8337,
+      "precision_at_youden": 0.5598,
+      "precision_over_base": 3.207,
+      "n_alert": 184,
+      "n_params": 7,
+      "n_features": 6,
+      "G_C1": {
+        "auc_heldout": 0.9189,
+        "need": 0.7,
+        "pass_": true
+      },
+      "G_C2": {
+        "precision_over_base": 3.207,
+        "need": 2.0,
+        "pass_": true
+      },
+      "G_C3": {
+        "boot_std_auc": 0.00701,
+        "boot_aucs": [
+          0.9162,
+          0.9298,
+          0.9187,
+          0.9111,
+          0.9104
+        ],
+        "pass_": true
+      },
+      "verdict": "PASS"
+    },
+    "f_oracle": {
+      "feature_kind": "ORACLE/leaky",
+      "auc_heldout": 0.9432,
+      "brier_heldout": 0.0729,
+      "base_rate": 0.1746,
+      "youden_threshold": 0.125,
+      "youden_tpr": 1.0,
+      "youden_fpr": 0.1663,
+      "youden_j": 0.8337,
+      "precision_at_youden": 0.5598,
+      "precision_over_base": 3.207,
+      "n_alert": 184,
+      "n_params": 11,
+      "n_features": 10,
+      "G_C1": {
+        "auc_heldout": 0.9432,
+        "need": 0.7,
+        "pass_": true
+      },
+      "G_C2": {
+        "precision_over_base": 3.207,
+        "need": 2.0,
+        "pass_": true
+      },
+      "G_C3": {
+        "boot_std_auc": 0.00437,
+        "boot_aucs": [
+          0.9388,
+          0.9471,
+          0.9432,
+          0.9343,
+          0.9387
+        ],
+        "pass_": true
+      },
+      "verdict": "PASS"
+    },
+    "+per_sensor_disagreement (deployable)": {
+      "feature_kind": "deployable",
+      "auc_heldout": 0.9276,
+      "brier_heldout": 0.0764,
+      "base_rate": 0.1746,
+      "youden_threshold": 0.285,
+      "youden_tpr": 1.0,
+      "youden_fpr": 0.1663,
+      "youden_j": 0.8337,
+      "precision_at_youden": 0.5598,
+      "precision_over_base": 3.207,
+      "n_alert": 184,
+      "n_params": 11,
+      "n_features": 10,
+      "G_C1": {
+        "auc_heldout": 0.9276,
+        "need": 0.7,
+        "pass_": true
+      },
+      "G_C2": {
+        "precision_over_base": 3.207,
+        "need": 2.0,
+        "pass_": true
+      },
+      "G_C3": {
+        "boot_std_auc": 0.00703,
+        "boot_aucs": [
+          0.9209,
+          0.9362,
+          0.9308,
+          0.9166,
+          0.9232
+        ],
+        "pass_": true
+      },
+      "verdict": "PASS"
+    }
+  },
+  "q1_single_feature_auc_heldout": {
+    "margin@semantic": 0.4707,
+    "margin@counting-address": 0.4756,
+    "margin@negation-scope": 0.5112,
+    "margin@agent-role": 0.4825,
+    "margin_mean": 0.4838,
+    "margin_max": 0.4812,
+    "d_ans": 0.9168,
+    "d_conf": 0.4813,
+    "router_is_blind(0-param control)": 0.5628
+  },
+  "q1_separation_decomposition": {
+    "n_win": 103,
+    "n_loss_fed_wrong_single_right": 81,
+    "n_disagree": 184,
+    "disagree_rate": 0.3119,
+    "necessary_condition_win_implies_disagree": true,
+    "win_rate_given_disagree": 0.5598,
+    "win_rate_given_agree": 0.0,
+    "within_disagreement_auc": {
+      "margin_mean": 0.4731,
+      "margin_max": 0.4834,
+      "d_conf": 0.533,
+      "fed_conf|pf-.5|": 0.5388,
+      "single_conf|ps-.5|": 0.4665
+    },
+    "note": "all wins imply FED!=SINGLE (necessary condition); NO feature separates win from loss WITHIN the disagreement set (all within-set AUC ~ chance), so the high overall AUC is the necessary-condition boundary, not a per-item predictor."
+  },
+  "q1_best_deployable": "+per_sensor_disagreement (deployable)",
+  "q1_verdict": "PASS: cheap gate predicts the per-item win",
+  "q2_mlp_retirement": {
+    "comp1_booked": {
+      "FED_params": 4228,
+      "device": "cuda",
+      "FED_boards": {
+        "full": 0.5605,
+        "agent-role": 0.537,
+        "counting-address": 0.5731,
+        "negation-scope": 0.5541,
+        "semantic": 0.5816
+      },
+      "SINGLE_boards": {
+        "full": 0.5503,
+        "agent-role": 0.5658,
+        "counting-address": 0.5707,
+        "negation-scope": 0.4279,
+        "semantic": 0.6407
+      }
+    },
+    "cheap_two_arm_params": 325,
+    "device": "cpu",
+    "cheap_boards": {
+      "FED@semantic": 0.5957,
+      "SINGLE@semantic": 0.6525,
+      "FED@counting-address": 0.5612,
+      "SINGLE@counting-address": 0.5612,
+      "FED@negation-scope": 0.6081,
+      "SINGLE@negation-scope": 0.4122,
+      "FED@agent-role": 0.5617,
+      "SINGLE@agent-role": 0.5556,
+      "FED@full": 0.5814,
+      "SINGLE@full": 0.5441
+    },
+    "per_regime_delta_vs_comp1_FED": {
+      "full": 0.0209,
+      "semantic": 0.0141,
+      "counting-address": -0.0119,
+      "negation-scope": 0.054,
+      "agent-role": 0.0247
+    },
+    "max_abs_delta": 0.054,
+    "delta_gate": 0.02,
+    "negation_win_ours": 0.1959,
+    "negation_win_comp1": 0.1262,
+    "verdict": "FAIL: MLP buys something"
+  },
+  "economics": {
+    "cheap_two_arm": {
+      "params": 325,
+      "device": "cpu",
+      "energy_wh": 0.0
+    },
+    "comp1_FED_MLP": {
+      "params": 4228,
+      "device": "cuda",
+      "energy_wh": 11.76,
+      "wall_s": 910.7
+    },
+    "param_ratio": 13.01
+  },
+  "prior": {
+    "ring_cx2": "cheap gate detects the blind REGIME (3.26x, prec 0.805) but NOT the per-item win; d_ans dead (AUC 0.549)"
+  },
+  "q1_answer": "best deployable = +per_sensor_disagreement (deployable), held-out AUC 0.9276, Brier 0.0764, prec/base 3.207 -> PASS",
+  "q2_answer": "FAIL: MLP buys something"
+}

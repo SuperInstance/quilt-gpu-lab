@@ -5052,3 +5052,37 @@ Lane D2-V1b resumed the mid-killed D2-V1 lane. **Scripts unchanged — no defect
   Next question: can a cheap gate predict the per-item FED−SINGLE win (not the regime) at AUC ≥0.70 — and does
   the 325-param logistic two-arm make COMP1's 4228-param FED MLP unnecessary? full: results/ring_cx2/RESULTS-ENTRY.md
 - **Artifacts:** results/ring_cx2/{ring_cx2_results.json, RESULTS-ENTRY.md}. Code: experiments/ring_cx2.py. **NOT COMMITTED.**
+
+## CX-CHEAP-0 — per-item FED−SINGLE win prediction + MLP retirement test (SYNTH-0 follow-through) (2026-10-01 16:3x AKDT)
+- lane: CX-CHEAP-0 (follow-through of RING-CX-2 trilogy closure) · device: **CPU only, numpy+sklearn**
+  (no GPU, no torch) · seed 2718 · **~2.2 s wall, 0 Wh** · reuses `experiments/ring_cx2.py` harness
+  wholesale (COMP1 featurization, answer margins, disagreement features, frozen 0-param router, split).
+- wiring: router held-out top-1 **0.7356 == booked 0.7356** (EXACT wiring check). Split 1810 / 590.
+- honest note: COMP1 artifacts do **not** persist per-item per-arm predictions (aggregate only), so
+  per-item FED/SINGLE correctness is **re-derived** from the same frozen featurization + router + split.
+- **Q1 (per-item win prediction; label = FED correct AND SINGLE wrong; base rate 0.1746):**
+  f_margins AUC 0.5949 / Brier 0.1422 / prec-base 1.19 → **FAIL**;
+  f_disagree (d_ans,d_conf) AUC **0.9223** / 0.0777 / 3.21 → **INCONCLUSIVE** (boot std 0.0000, frost law);
+  f_both (margins+disagree) AUC 0.9189 / 0.0780 / 3.21, std 0.0070 → **PASS**;
+  f_oracle (+per-sensor correctness, leaky) 0.9432 / 0.0729 → PASS but non-deployable;
+  +per-sensor disagreement (deployable, 10f) 0.9276 / 0.0764 → PASS.
+  Single-feature AUC: **d_ans 0.9168** · d_conf 0.4813 · margins 0.484/0.481 · router-control 0.5628.
+  **Gates: G-C1 PASS (0.9189 ≥ 0.70), G-C2 PASS (3.21 ≥ 2×), G-C3 f_both std 0.0070 > 0 PASS but
+  f_disagree std 0.0000 → INCONCLUSIVE.**
+- **SEPARATION DECOMPOSITION (the finding):** `win ⟹ FED≠SINGLE` is a **necessary condition** (0/103
+  wins agree); win-rate|disagree **0.5598** (3.2× base), win-rate|agree **0.0**. But **within the
+  disagreement set nothing separates win from loss** (within-set AUC: margins 0.47/0.48, d_conf 0.533,
+  FED-conf 0.539, SINGLE-conf 0.467 ≈ chance). The AUC ≈ 0.92 is the **necessary-condition boundary,
+  not a per-item predictor**; the RING-CX-2 margins are near-chance here (0.595).
+- **Q2 (MLP retirement; cheap 325p CPU two-arm vs COMP1 4228p GPU FED, 13.0×, 11.76 Wh):** per-regime
+  Δ vs booked COMP1 FED — full **+0.0209**, semantic +0.0141, counting-address −0.0119,
+  negation-scope **+0.0540**, agent-role +0.0247; negation win cheap **+0.1959** vs COMP1 +0.1262 ✅.
+  **Gate (|Δ| ≤ 0.02 everywhere ∧ neg win ≥ +0.126) → FAIL** (max |Δ| 0.054; full Δ = 3.7× COMP1
+  seed-std). **Booked FAIL as pre-registered — MLP not retired**; nuance the gate cannot encode: the
+  failure direction is **cheap-BETTER** (325p ≥ 4228p on 4/5 regimes) — the MLP buys **regime-symmetry**
+  (counting-address −0.012), not value. **No cheap gate predicts the per-item win beyond its necessary
+  condition.**
+  Next question: is anything learnable *within* disagreement (regime-modulated win-rate?), and can a
+  regime-conditioned cheap gate recover the MLP's regime-flatness without 4228p? full: results/cx_cheap0/RESULTS-ENTRY.md
+- **Artifacts:** results/cx_cheap0/{cx_cheap0_results.json, RESULTS-ENTRY.md}. Code: experiments/cx_cheap0.py.
+  Repro lineage: experiments/ring_cx2.py (+ ring_cx0.py helpers). **NOT COMMITTED.**
