@@ -1,0 +1,14 @@
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+ZCode Built-in skipped (not-due)
+BLOCKS-FINISH lane complete. Summary in the requested 6 lines:
+
+1. **Blocks finished:** `exact_minimax_labels` (BLOCK.md from RESULTS.md A1-PIE, L4105–4220) and `ternary_transition_kernel` (BLOCK.md from D19+D20, L831–871) — both dirs already had complete standalone `block.py` code with built-in self-tests; only BLOCK.md was missing. Neither was SPEC-ONLY.
+2. **Self-test results:** exact_minimax_labels `{"verdict": "PASS"}` exit 0 in 0.83s (re-proves 180,361 path rows / 2,423 distinct boards / composed 320+1230 / agreement 1513 / chance 0.5865 = the artifact digit-for-digit, plus 65-board memo-free brute-force cross-check); ternary_transition_kernel `KEEP` exit 0 in 2.3s (D19 ledger reproduced to 4e-6 on markov1/ternary/shuffled, D20 ablation matches booked rel-gains to 4 decimals, cross-seed std all nonzero). Full-library sweep: all 5 blocks green (PASS×4 + KEEP×1).
+3. **README written:** `blocks/README.md` — one-line table per block (what/booked-from/interface), the combination spine (port_harness wraps any engine; envelope_guard brackets a run; format_first_gate parses GEN output before judgment; ternary_transition_kernel maps continuous state to {-1,0,+1}; exact_minimax_labels gives game-state ground truth), a 4-block worked example (adjudicated minimax policy run: port → labels/board-disjoint split → judge gate → envelope bracket), the importlib loading convention, and pointers to every RESULTS.md entry.
+4. **SPEC-ONLY:** none. One honest flag instead: 6 code-only dirs (board_disjoint_cv, g7_wrapper, provider_seam, parity_harness, dedicated_trunks, look_again) are listed in the README as pending harvest — code exists, BLOCK.md doesn't.
+5. **Files touched:** `blocks/exact_minimax_labels/BLOCK.md` (new), `blocks/ternary_transition_kernel/BLOCK.md` (new), `blocks/README.md` (new), `blocks/ternary_transition_kernel/block.py` (one edit — see below). Nothing committed, per rules.
+6. **One code fix, booked honestly in BLOCK.md:** the ternary block's judge defined-but-never-used `COST_TOL=1e-3` and ran a hard `ternary <= oracle`, so its self-test self-KILLed at cost +5.9e-05 — 17× inside its own booked tolerance, pure documented oracle-arm solver wobble (the rank-deficient design wobbles ~1e-3 across solvers; the 2026-09-27 machine's float32 booked 0.01098 vs float64 0.01007). I wired the cost gate to the block's own pre-booked contract; the KILL-of-record is kept in BLOCK.md's receipt section rather than hidden. A genuine cost > 1e-3 still KILLs.

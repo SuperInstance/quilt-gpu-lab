@@ -1,0 +1,60 @@
+{
+  "C1_law_equivalence": {
+    "ok": true,
+    "n": 400,
+    "max_abs_diff": 0,
+    "n_diff": 0
+  },
+  "C1_pass": true,
+  "C4_frame_cross_check": {
+    "vs_b1c": {
+      "ok": false,
+      "error": "operands could not be broadcast together with shapes (90930,3) (400,3) "
+    },
+    "vs_b1e": {
+      "ok": false,
+      "error": "operands could not be broadcast together with shapes (90930,3) (400,3) "
+    },
+    "vs_runB": {
+      "ok": false,
+      "error": "operands could not be broadcast together with shapes (90930,3) (400,3) "
+    },
+    "vs_b1": {
+      "ok": false,
+      "error": "operands could not be broadcast together with shapes (90930,3) (400,3) "
+    }
+  },
+  "C4_pass": false,
+  "C6_anchor_vs_b1c": {
+    "ok": false,
+    "max_abs_delta": 0.06530324400564169,
+    "per_cell": {
+      "deadzone@0.01": 0.06530324400564169,
+      "deadzone@0.05": 0.004278326281147216,
+      "ramp@0.01": 0.011143410852713143,
+      "ramp@0.05": 0.0019379844961240345,
+      "saturation@0.01": 0.03356377430689106,
+      "saturation@0.05": 0.00013391486811764608
+    },
+    "tol": 0.05,
+    "booked_ref": "results/b1c cap@ep40",
+    "note": "anchor nets REUSED from results/b1d (bit-identical frame)"
+  },
+  "C6_pass": false,
+  "C7_anchor_vs_b1d": {
+    "ok": false,
+    "max_abs_delta": 0.06535025858015986,
+    "per_cell": {
+      "deadzone@0.01": 0.06535025858015986,
+      "deadzone@0.05": 0.004278326281147216,
+      "ramp@0.01": 0.011143410852713143,
+      "ramp@0.05": 0.0019379844961240345,
+      "saturation@0.01": 0.03355962692554759,
+      "saturation@0.05": 0.00013391486811764608
+    },
+    "tol": 1e-06,
+    "booked_ref": "results/b1d anchor_cap128",
+    "note": "net-reuse cross-lane proof: same nets, same frame, same scores"
+  },
+  "C7_pass": false
+}

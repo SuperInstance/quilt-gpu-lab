@@ -1,0 +1,30 @@
+{
+  "probe": "canon (lex-min rotation) invariance + fixed-boundary negative control",
+  "source": "pr_harvest/SUMMARY.md #9 / CARDS.md quilt-edge-lab #3 + #4",
+  "gate": "naive diverges 100%; canon invariant 100% where symmetric; diverges >=95% where not (fixed boundaries); non-degeneracy >=100 distinct states",
+  "verdict": "PASS",
+  "numbers": {
+    "rule": "150 (xor of self+neighbors), L=64 ring, T=128 steps, sha256 chained from a genesis head, offsets {1,7,31}, batched lex-min over all 64 rotations",
+    "n_states": 500,
+    "distinct_initial_states": 500,
+    "distinct_naive_trajectory_digests": 500,
+    "periodic": {
+      "naive_diverge_rate": 1.0,
+      "canon_invariant_rate": 1.0
+    },
+    "fixed_boundary": {
+      "canon_diverge_rate": 1.0,
+      "naive_diverge_rate": 1.0
+    },
+    "gate_clauses": {
+      "naive_diverges_100": true,
+      "canon_invariant_100_symmetric": true,
+      "non_degeneracy_ge_100": true,
+      "canon_diverges_ge_95_asymmetric": true
+    },
+    "reading": "canonicalizing each state to its lex-min rotation makes the trajectory digest origin-invariant exactly where the dynamics are rotation-symmetric, and correctly REFUSES to collapse distinct dynamics under fixed boundaries \u2014 the rule bounded on both sides"
+  },
+  "seed": 2718,
+  "runtime_seconds": 16.4,
+  "device": "cpu"
+}

@@ -1,0 +1,33 @@
+{
+  "probe": "independent cross-language re-derivation of OUR ledger row hash",
+  "source": "pr_harvest/SUMMARY.md #7 / CARDS.md tidepool #11",
+  "gate": "100% digest agreement (python vs independent node canonicalizer) + >=1 flip under key-order perturbation",
+  "verdict": "FAIL",
+  "numbers": {
+    "subject": "probes.jsonl row.sha256 = sha256(json.dumps(row_minus_hash, sort_keys=True)) \u2014 experiments/d5_probe_foundry.py:106, the single hash path",
+    "rows_checked": 215,
+    "agreement": {
+      "node_mirror_vs_stored": "215/215",
+      "node_naive_vs_stored": "0/215",
+      "python_recompute_vs_stored": "215/215"
+    },
+    "key_order_perturbation": {
+      "python_scheme_flips": 0,
+      "node_mirror_flips": 0
+    },
+    "value_perturbation_flips": "215/215",
+    "unkeyed_path_transplant_still_verifies": true,
+    "gate_clauses": {
+      "agreement_100pct": true,
+      "key_order_flip_ge_1": false
+    }
+  },
+  "reading": [
+    "Agreement: the independent node mirror reproduces 100% of booked digests, but ONLY by re-implementing python-json's exact serialization quirks ('",
+    "' item separator, ': ' key separator, ensure_ascii escaping). The natural-JS canonicalizer agrees on ~0% \u2014 the scheme's canonical form is language-bound, which is precisely the shared-format-law risk tidepool pins. Key-order perturbation flips NOTHING because sort_keys canonicalizes order away \u2014 the table's expected flip channel is absent, so the flip clause fails on the letter while non-degeneracy actually lives in value perturbation (100% flips). Order-INsensitivity is a strength, not a weakness; the REAL weakness the harvest fold named is confirmed mechanically: the digest is unkeyed and unbound to path/actor/run-id, so a transplanted row verifies intact in any context."
+  ],
+  "verdict_note": "gate verdict is on the letter of the table clause; see reading",
+  "seed": 2718,
+  "runtime_seconds": 0.2,
+  "device": "cpu"
+}

@@ -1,0 +1,62 @@
+{
+  "probe": "dispatch-skip compute accounting (ternary per-cell gate)",
+  "source": "pr_harvest/SUMMARY.md #10 / CARDS.md chiaroscuro #1 Lane A",
+  "gate": "saved work \u2248 abstain fraction \u00b110% across p\u2208{0.1,0.3,0.6} (primary instrument: counted FLOPs dispatched, per the card's 'count FLOPs/frames saved'; wall-clock booked as the overhead-inclusive second instrument); dense-equivalent exact when no cell abstains",
+  "verdict": "PASS",
+  "numbers": {
+    "grid": "128x128=16384 cells, 40 frames, per-cell election 9->64->1 (1344 counted FLOPs/cell), torch CPU float64, belief-EMA ternary gate (commit/reject/abstain), tau calibrated per arm by binary search so abstain fraction is measured not assumed; abstain cells keep prior state resident",
+    "arms": [
+      {
+        "target_p": 0.1,
+        "tau_calibrated": 0.03753,
+        "measured_abstain_fraction": 0.1,
+        "saved_work_flops": 0.1,
+        "flops_gap_vs_p": 0.0,
+        "saved_work_wallclock": 0.1323,
+        "wallclock_gap_vs_p": 0.0323,
+        "dense_frame_seconds_total": 1.68,
+        "gated_frame_seconds_total": 1.458,
+        "flops_dispatched_gated_M": 792.7,
+        "flops_dispatched_dense_M": 880.8
+      },
+      {
+        "target_p": 0.3,
+        "tau_calibrated": 0.11548,
+        "measured_abstain_fraction": 0.3,
+        "saved_work_flops": 0.3,
+        "flops_gap_vs_p": 0.0,
+        "saved_work_wallclock": 0.3685,
+        "wallclock_gap_vs_p": 0.0685,
+        "dense_frame_seconds_total": 1.592,
+        "gated_frame_seconds_total": 1.006,
+        "flops_dispatched_gated_M": 616.6,
+        "flops_dispatched_dense_M": 880.8
+      },
+      {
+        "target_p": 0.6,
+        "tau_calibrated": 0.25894,
+        "measured_abstain_fraction": 0.6,
+        "saved_work_flops": 0.6,
+        "flops_gap_vs_p": 0.0,
+        "saved_work_wallclock": 0.5809,
+        "wallclock_gap_vs_p": 0.0191,
+        "dense_frame_seconds_total": 1.297,
+        "gated_frame_seconds_total": 0.544,
+        "flops_dispatched_gated_M": 352.3,
+        "flops_dispatched_dense_M": 880.8
+      }
+    ],
+    "dense_equivalence": {
+      "bitwise_equal": true,
+      "zero_abstain_confirmed": true
+    },
+    "gate_clauses": {
+      "flops_within_10pct": true,
+      "wallclock_within_10pct": true,
+      "dense_exact_no_abstain": true
+    }
+  },
+  "seed": 2718,
+  "runtime_seconds": 11.3,
+  "device": "cpu"
+}

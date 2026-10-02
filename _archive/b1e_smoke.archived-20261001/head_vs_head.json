@@ -1,0 +1,67 @@
+{
+  "note": "within-lane head comparison; tanh cells reUSED from results/b1d",
+  "plain_w24": {
+    "linear_dz@5e-2": 0.6666666666666666,
+    "linear_ramp@5e-2": 0.041666666666666664,
+    "tanh_dz@5e-2": 0.16915843911612602,
+    "tanh_ramp@5e-2": 0.17332538262770822,
+    "dz_gain_linear_minus_tanh": 0.4975082275505406,
+    "ramp_gain_linear_minus_tanh": -0.13165871596104156
+  },
+  "reweight_w24": {
+    "linear_dz@5e-2": 0.6666666666666666,
+    "linear_ramp@5e-2": 0.041666666666666664,
+    "tanh_dz@5e-2": 0.20550070521861777,
+    "tanh_ramp@5e-2": 0.1539455376664679,
+    "dz_gain_linear_minus_tanh": 0.4611659614480489,
+    "ramp_gain_linear_minus_tanh": -0.11227887099980124
+  },
+  "plain_w32": {
+    "linear_dz@5e-2": 0.16666666666666666,
+    "linear_ramp@5e-2": 0.0,
+    "tanh_dz@5e-2": 0.17122708039492243,
+    "tanh_ramp@5e-2": 0.1744186046511628,
+    "dz_gain_linear_minus_tanh": -0.004560413728255774,
+    "ramp_gain_linear_minus_tanh": -0.1744186046511628
+  },
+  "reweight_w32": {
+    "linear_dz@5e-2": 0.2543859649122807,
+    "linear_ramp@5e-2": 0.0,
+    "tanh_dz@5e-2": 0.2628114715561824,
+    "tanh_ramp@5e-2": 0.24667064201947922,
+    "dz_gain_linear_minus_tanh": -0.008425506643901681,
+    "ramp_gain_linear_minus_tanh": -0.24667064201947922
+  },
+  "plain_w48": {
+    "linear_dz@5e-2": 0.16666666666666666,
+    "linear_ramp@5e-2": 0.041666666666666664,
+    "tanh_dz@5e-2": 0.3294781382228491,
+    "tanh_ramp@5e-2": 0.24150268336314848,
+    "dz_gain_linear_minus_tanh": -0.16281147155618245,
+    "ramp_gain_linear_minus_tanh": -0.19983601669648182
+  },
+  "reweight_w48": {
+    "linear_dz@5e-2": 0.3333333333333333,
+    "linear_ramp@5e-2": 0.08333333333333333,
+    "tanh_dz@5e-2": 0.6964739069111424,
+    "tanh_ramp@5e-2": 0.5139137348439674,
+    "dz_gain_linear_minus_tanh": -0.3631405735778091,
+    "ramp_gain_linear_minus_tanh": -0.4305804015106341
+  },
+  "plain_w64": {
+    "linear_dz@5e-2": 0.6666666666666666,
+    "linear_ramp@5e-2": 0.020833333333333332,
+    "tanh_dz@5e-2": 0.24405265632346027,
+    "tanh_ramp@5e-2": 0.2136752136752137,
+    "dz_gain_linear_minus_tanh": 0.42261401034320634,
+    "ramp_gain_linear_minus_tanh": -0.19284188034188035
+  },
+  "reweight_w64": {
+    "linear_dz@5e-2": 0.6666666666666666,
+    "linear_ramp@5e-2": 0.041666666666666664,
+    "tanh_dz@5e-2": 0.5274565115185708,
+    "tanh_ramp@5e-2": 0.42884118465513815,
+    "dz_gain_linear_minus_tanh": 0.13921015514809587,
+    "ramp_gain_linear_minus_tanh": -0.38717451798847147
+  }
+}
