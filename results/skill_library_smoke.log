@@ -1,0 +1,41 @@
+00:07:44 INFO === VOYAGER-SKILLLIB smoke (master seed 31415) ===
+00:07:55 INFO embedder: mode=ollama dim=768 | generator=qwen2.5:3b-instruct-q4_K_M
+00:07:55 INFO loaded 0 existing skills from /home/eileen/projects/quilt-gpu-lab/results/skill_library/store.jsonl
+00:07:55 INFO --- negative control: verifier must reject a wrong program ---
+00:07:55 INFO negative control (identity for reverse): ok=False reason=mismatch on 'a man a plan a canal panama': got 'a man a plan a canal panama' want 'amanap lanac a nalp a nam a'  -> PASS(rejected)
+00:07:55 INFO purity gate: PURITY VIOLATION: refusing to store an unverified program  -> PASS
+00:07:55 INFO --- phase 1: generate -> verify -> store (seed tasks, 1 attempt each) ---
+00:08:04 INFO   [rev_str/text_reverse] verified=True (6/6) all tests passed
+00:08:12 INFO     stored skill_id=93af4b17ecee family=text_reverse
+00:08:17 INFO   [rev_words/text_reverse] verified=True (6/6) all tests passed
+00:08:29 INFO     stored skill_id=5f9d3333fdea family=text_reverse
+00:08:48 INFO   [rev_each_word/text_reverse] verified=True (6/6) all tests passed
+00:09:19 INFO     stored skill_id=d0d7f809a7cb family=text_reverse
+00:09:40 INFO   [upper/case_ops] verified=True (6/6) all tests passed
+00:09:59 INFO     stored skill_id=c27c98740fcc family=case_ops
+00:10:20 INFO   [lower/case_ops] verified=True (6/6) all tests passed
+00:10:35 INFO     stored skill_id=0d3578dad737 family=case_ops
+00:10:47 INFO   [title_case/case_ops] verified=False (5/6) mismatch on '  spaced  out  ': got 'Spaced Out' want '  Spaced  Out  '
+00:10:50 INFO   [sum_digits/digit_math] verified=True (6/6) all tests passed
+00:11:04 INFO     stored skill_id=22dc5244319c family=digit_math
+00:11:22 INFO   [count_even_digits/digit_math] verified=True (6/6) all tests passed
+00:11:36 INFO     stored skill_id=88dd457c8419 family=digit_math
+00:11:54 INFO   [dedupe_keep_order/list_ops] verified=True (6/6) all tests passed
+00:12:09 INFO     stored skill_id=39dacf74de83 family=list_ops
+00:12:29 INFO   [sort_desc/list_ops] verified=True (6/6) all tests passed
+00:12:42 INFO     stored skill_id=ae2ee036f260 family=list_ops
+00:13:00 INFO   [evens/list_ops] verified=True (6/6) all tests passed
+00:13:13 INFO     stored skill_id=cf5e7f96abdb family=list_ops
+00:13:13 INFO phase 1: 10/11 seed attempts verified+stored (library now 10 skills)
+00:13:13 INFO --- phase 2: retrieve nearest skill for a later prompt ---
+00:13:33 INFO   rank=1 sim=0.9855 skill=rev_each_word family=text_reverse
+00:13:33 INFO   rank=2 sim=0.9793 skill=rev_str family=text_reverse
+00:13:33 INFO   rank=3 sim=0.9766 skill=rev_words family=text_reverse
+00:13:33 INFO   query family=text_reverse | top-1 family=text_reverse sim=0.9855 -> HIT
+00:13:33 INFO --- phase 3: reuse (verbatim + augmented) on the held-out task ---
+00:13:33 INFO   verbatim reuse: verified=False (0/8) mismatch on 'No NaMe HeRe': got 'oN eMaN eReH' want 'eReH eMaN oN'
+00:13:38 INFO   augmented reuse: verified=True (8/8) all tests passed
+00:13:41 INFO   scratch (no exemplar): verified=False (0/8) mismatch on 'No NaMe HeRe': got 'HeRe NaMe No' want 'eReH eMaN oN'
+00:13:49 INFO   stored the reused+adapted program as a NEW skill
+00:13:49 INFO purity re-audit: 11 entries, 0 unverified -> PASS
+00:13:49 INFO SMOKE VERDICT: PASS

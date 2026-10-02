@@ -1,0 +1,32 @@
+00:14:42 INFO === VOYAGER-SKILLLIB full run (master seed 31415, k=8) ===
+00:14:46 INFO embedder: mode=ollama dim=768 | generator=qwen2.5:3b-instruct-q4_K_M
+00:14:52 INFO   store[rev_str] verified=True (6/6)
+00:15:02 INFO   store[rev_words] verified=True (6/6)
+00:15:11 INFO   store[rev_each_word] verified=True (6/6)
+00:15:20 INFO   store[upper] verified=True (6/6)
+00:15:28 INFO   store[lower] verified=True (6/6)
+00:15:38 INFO   store[title_case] verified=False (5/6)
+00:15:38 INFO   store[sum_digits] verified=True (6/6)
+00:15:47 INFO   store[count_even_digits] verified=True (6/6)
+00:15:55 INFO   store[dedupe_keep_order] verified=True (6/6)
+00:16:03 INFO   store[sort_desc] verified=True (6/6)
+00:16:26 INFO   store[evens] verified=True (6/6)
+00:16:54 INFO library built: 10/11 stored
+00:17:14 INFO   query[rev_all_words] family=text_reverse top-1=rev_each_word(text_reverse) sim=0.9855 hit=True verbatim_ok=False
+00:17:34 INFO   query[cap_first_only] family=case_ops top-1=rev_each_word(text_reverse) sim=0.9672 hit=False verbatim_ok=False
+00:17:51 INFO   query[prod_digits] family=digit_math top-1=sum_digits(digit_math) sim=0.9763 hit=True verbatim_ok=False
+00:17:51 INFO   query[cumsum] family=list_ops top-1=sort_desc(list_ops) sim=0.9479 hit=True verbatim_ok=False
+00:17:51 INFO GATE (a) retrieval: hit_rate=0.750 chance=0.250 margin=+0.500 | same=0.9619 cross=0.9033 -> PASS
+00:18:03 INFO   scratch    rev_all_words  pass@8 = 1
+00:18:11 INFO   scratch    cap_first_only pass@8 = 8
+00:18:21 INFO   scratch    prod_digits    pass@8 = 8
+00:18:26 INFO   scratch    cumsum         pass@8 = 8
+00:18:32 INFO   augmented  rev_all_words  pass@8 = 8
+00:18:38 INFO   augmented  cap_first_only pass@8 = 8
+00:18:47 INFO   augmented  prod_digits    pass@8 = 8
+00:18:53 INFO   augmented  cumsum         pass@8 = 5
+00:18:56 INFO   stored 29 augmented successes after eval (library now 39)
+00:18:56 INFO GATE (b) reuse: pass@k scratch=1.000 augmented=1.000 delta=+0.000 flips=0 -> FAIL
+00:18:56 INFO   raw: scratch={'rev_all_words': 1, 'cap_first_only': 8, 'prod_digits': 8, 'cumsum': 8} augmented={'rev_all_words': 8, 'cap_first_only': 8, 'prod_digits': 8, 'cumsum': 5}
+00:18:56 INFO GATE (c) purity: 39 entries, 0 unverified -> PASS
+00:18:56 INFO VERDICT: a=True b=False c=True
