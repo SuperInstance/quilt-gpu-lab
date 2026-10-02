@@ -4936,3 +4936,49 @@ Lane D2-V1b resumed the mid-killed D2-V1 lane. **Scripts unchanged — no defect
 ```
 - note: **the deadzone/ramp deficit is capacity-bound, not a representational floor.** `cap` (3-128-128-128-1, 33.7k params) clears BOTH frozen regions at the SAME 40-epoch budget where every width-64 ReLU basis failed: ramp 0.9186±0.1109 (+0.598 vs ref), deadzone 0.9957±0.0061 (+0.501), saturation 0.9992 (no rot) → the first PASS in the B1 family; B1b's "unmoved by ANY basis" is refuted as representational (the kinks were in the family; width-64 could not fit them in 40ep). **Reweighting moves it, not to the bar**: inverse-region-frequency weighting (deadzone 7.8%, ramp 3.7% of ticks) lifts deadzone +0.260 / ramp +0.375 — dilution confirmed directionally, lands 0.755/0.695. **The binned head is a ramp trap**: softmax-over-105-bins emits the deadzone atom exactly (1.0000 both budgets) but collapses the ramp continuum (0.1200@40ep, 0.8670@300ep — the only arm never reaching ramp 0.90 at either budget). **Budget-conditional is first-class**: at 300ep relu_ref/reweight/cap ALL hit deadzone 1.0000 / ramp 1.0000 with std==0 (every seed at the ceiling) → the frozen degeneracy rule books INCONCLUSIVE, corroborating B1's 300ep control as an optimisation-budget effect. Aggregate would have hidden all of it (binned 0.9670 aggregate hides a 0.12 ramp). Controls all pass; C5 relu_ref@ep40 reproduces runB exactly (max|Δ|=0.0000). ⚠ BOOKED: code constant `WH_ENVELOPE=12.0` is stale vs prereg AMENDMENT-1 (≤20 Wh); measured 16.11 Wh is within the amended envelope but above the constant — both budgets ran as intended. ✅ RESUME PROVENANCE: prior subagent killed 15:45 after landing 12 ep40 nets (15:33–15:36); this run REUSED those 12 (loaded state_dicts, not retrained) and trained only the 12 missing ep300 nets via a minimal `--resume` flag — no gate/arm/frame/seed/tol changed; frame regenerated and re-verified bit-identical (C4). B1D seed: sweep capacity at fixed 40ep (min width clearing both), pair with reweight; hybrid (regression + deadzone atom gate) if atom-exactness wanted; measure at 1e-3/1e-2 or book 300ep ceilings as resolved. full: results/b1c/RESULTS-ENTRY.md
 - **Artifacts:** results/b1c/{result.json, regions.json, agreement.json, controls.json, run_config.json, traces_meta.json, holdout_samples.npz, 24 nets model_<arm>_seed{2718,2719,2720}_ep{40,300}.pt, run_resume.log, guard/}. Code: experiments/b1c_value_fidelity.py (+--resume), experiments/b1c_value_fidelity_engine.mjs. NOT COMMITTED.
+
+## RING-CX-0 — training-free certainty-gated ring attractor as router (2026-10-01 16:14 AKDT)
+- lane: RING-CX-0 (SYNTH-0 wildcard) · device: **CPU only, numpy** (no GPU, no training) · seeds 2718..2722
+- verdict: **FAIL** (G-A FAIL · G-B FAIL · G-C OK) — honest negative, fully receipted
+- **REPRO (harvested, the one PASS cluster):** pr_harvest ships runnable code. Verbatim extraction of
+  `tools/fly_cx.py` (169 lines; chiaroscuro #6, flycx v2 certainty-gated) from
+  `pr_harvest/_raw/chiaroscuro_6.diff` → `results/ring_cx0/repro/fly_cx.py`, ran unchanged:
+  **PASS 4/4** (T1 0.0°/s · T2 err 0.007° · T3 amp_drop 0.3000 (=REJECT_SHRINK) · T4 0.0°;
+  null-control ψ≡+1 displacement 71.999° > 60; trajectory fnv1a64 `41c8af26ba55cb03`).
+- **WIRING:** rebuilt COMP1's frozen word-view featurization (sha1 BoW D=64, L2) + the frozen 0-param
+  D13d regime-centroid Pearson router from `corpus.jsonl` using TRAIN keys only →
+  reproduced router held-out top-1 **0.7356**, bit-equal to COMP1's booked 0.7356.
+- ring = N=64 head-direction-style, local excitation / global inhibition (row-normalized Gaussian
+  σE=16°, J_E=5, J_I=1), cue injection σC=30°, L2-normalized shape dynamics, readout = circular mean;
+  certainty gate: item REJECTS iff R=|resultant| ≤ τ_ring = 20th pct TRAIN R. Kernel constants chosen
+  by a LABEL-FREE criterion (flat input → R=0.0000, single-cue → R=0.6702) fixed before any accuracy
+  was computed; T = median TRAIN top1−top2 gap = 0.0321 (COMP1's doctrine). Seeded cue jitter declared.
+- result: ```json
+{
+  "G_A": {"threshold": 0.7156, "overall_acc": [0.6224, 0.0042], "acc_commit": [0.7800, 0.0057], "verdict": "FAIL"},
+  "G_B": {"negation_reject": 0.1270, "regime_mean": 0.2065, "ratio": 0.615, "need": 2.0, "verdict": "FAIL"},
+  "G_C": {"all_deciding_seed_std_gt0": true, "verdict": "OK"},
+  "reject_by_regime": {"semantic": [0.3688,0.0168], "counting-address": [0.2216,0.0115],
+                       "negation-scope": [0.1270,0.0079], "agent-role": [0.1086,0.0030]},
+  "ring_R_by_regime": {"semantic": 0.420, "counting-address": 0.526, "negation-scope": 0.490, "agent-role": 0.497},
+  "router_top1_by_regime": {"semantic": 0.759, "counting-address": 0.892, "negation-scope": 0.703, "agent-role": 0.611},
+  "G_B_sensitivity": "ratio 0.49-1.00 over T in {.02,.0321,.05} x tau_pct in {10,20,30}; semantic is the top-reject regime in 8/9 cells",
+  "engineB_harvested_constants_verbatim": {"semantic": 0.170, "counting-address": 1.000, "negation-scope": 0.966, "agent-role": 0.982}
+}
+```
+- note: **the untrained ring does NOT see the blind regime through Reject.** Reject-rate in
+  `negation-scope` is 0.127 — the *second lowest* of four regimes — while Reject concentrates on
+  `semantic` (0.369, the regime with the lowest ring certainty R=0.420). **Routing selectivity and
+  answering competence are dissociated**: the monolith sensor is blind *at answering* the negation
+  board (COMP1's FED−SINGLE +0.1261), yet the routing signal for negation is comparatively sharp
+  (router top-1 0.703, ring certainty mid-pack 0.490). The ring's Reject fires on *sensor-key
+  representational flatness* — a property of the corpus geometry — not on federation blindness.
+  G-A splits: as literally stated (overall, Rejects = wrong) it FAILs at 0.6224; conditional on
+  commit the ring routes at 0.7800 (±0.0057), above the 0.7156 threshold. **BOOKED FACT (Engine B):**
+  the harvested fly_cx constants verbatim (CONFLICT_DEG=30° vs 90° sensor separation) collapse on
+  discrete 4-way cues (reject 1.000/0.982/0.966/0.170) — a continuous-compass parameterization; a
+  4-way instantiation must rescale the conflict radius to the sensor Voronoi half-width (45°).
+  Next question: answer-margin (cell-margin) gated ring — is the blind regime visible to ANY untrained
+  gate, or only to the trained FED−SINGLE disagreement? full: results/ring_cx0/RESULTS-ENTRY.md
+- **Artifacts:** results/ring_cx0/{ring_cx0_results.json, RESULTS-ENTRY.md, repro/fly_cx.py,
+  repro/fly_cx_receipt.json}. Code: experiments/ring_cx0.py. **NOT COMMITTED.** ~3 s wall, 0 Wh.
