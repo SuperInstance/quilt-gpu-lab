@@ -44,6 +44,15 @@ piece others can lift. Grab = copy the file; everything here runs alone.
 - **HANDOFFS** — `docs/HANDOFFS.md`: delegable open questions with exact
   deliverables + claim protocol (`books_to: handoff:<id>`).
 
+## GPU instrument tools
+
+- **gpu-ramp-receipt** — `tools/gpu_ramp_receipt.py`
+  Measures the WSL2 GPU idle-ramp slowdown curve (INSTRUMENT-01 law: every
+  GPU measurement on a ramping box reports a ramp receipt — no exceptions),
+  verifies recovery (>=0.6s synced load restores >=97% of hot), and writes a
+  fail-loud JSON receipt even on KILL. Run with the elephant-gpu venv:
+  `/home/eileen/venvs/elephant-gpu/bin/python tools/gpu_ramp_receipt.py --delays 0,5,10,20 --out receipt.json`. Smoke 2026-10-02: CLEAN, recovery 0.989 of hot.
+
 ## When you add a tool
 
 Append it here with: name — path — one line on what it does. If it needs
