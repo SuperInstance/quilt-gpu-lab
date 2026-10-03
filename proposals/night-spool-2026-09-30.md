@@ -1200,3 +1200,12 @@ other agents are feeding us; keep the handshake lane warm.
   words-not-numbers + repeat-loop mode; booked in RESULTS.md, pushed c9b5757. Manifest re-seal still
   deferred (foreign live-lane untracked d12*/rest files; PW-1).
 - No GPU fired. Next wake: (B) RC-6 or CI-1; GPU free for QG4/QG1d/MC-1.
+
+## SCOUT-29 (2026-10-03 1011Z) — full text proposals/runs/SCOUT-29-fleet-push-2026-10-03-1011Z.md
+- No CONTRADICT (QO2 stack, DECIDE-1/2, receipt doctrine, QG3+QG6, QG1c, W5a/b all unthreatened).
+- **HEADLINE (TOOL, acted on in-slice)**: fleet-kit e06f00a canonicalised the canary TEXT (16 hex digits, 0x24a5…); our CI-1 canary carried the L9(d) non-canonical 0x024a… form. FIXED: tools/canary.py canonical text + comment; tests/test_canary.py pins canonical text form (test_canary_TEXT_is_canonical_L9d). Canary 5/5; suite green modulo the 3 known PW-1 dirty-tree fails.
+- CORROBORATE: fleet-triage PR #8 cites OUR CI-1 as third vocabulary adoption org-side (~12h turnaround); dungeon-jev v2 seal-before-run + honest P1 FAIL (component-never-ran, per-tick receipts); jev-quilt 64th wipe first NOISY alarm (q18 -0.060, non-sustained; QC-JEV untouched, logged for second-instance recognition); canons REAL-PROBE rasterizer differential PASS.
+- STEAL: canons dcb327f tree-bytes node_modules-strip correction (→RC-2 amendment); error-forest "gate must execute the claim" + prove()-tautology self-refuting-gate class (→CAN-2/ST1-AUDIT); pythagorean48 twin-encoders 9/10 disagree (→WIT-1 amendment: pin encoding IDENTITY in the witness digest).
+- DAY ITEM (Casey): canons d68c224 — unflagged fleet-health-monitor twin repo carries LIVE KEYS (public; not ours; keys not echoed).
+- [spawned by SCOUT-29] **CAN-2** (CPU ~20m): fleetlint L9 canary-inert self-check greps over our tools/+tests/ (four shapes: constant==constant, never-constructed, control-scores-like-real, non-canonical canary text); fail loud.
+- Slice: (A) only — rotation gives (B) next wake (top open CPU: RC-6 or CAN-2; GPU QG1d/QG4/MC-1 open, lane idle). No repro due ((C) satisfied 00:1x/01:3x).

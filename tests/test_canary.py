@@ -9,10 +9,20 @@ from canary import (CANARY_HEX, FLEET_CANARY, ACCENTED_TRAP, ALPHABET_CANARY,
 
 def test_byte_canary():
     assert fnv1a64(CANARY_HEX) == FLEET_CANARY
-    # Compare the INTEGER, never the text. The fleet writes the canary as
-    # 0x024a555471370b18d -- SEVENTEEN hex digits; a u64 prints sixteen. Padded and
-    # stripped forms are different STRINGS for the same number (fleetlint L9 trap).
-    assert fnv1a64(CANARY_HEX) == 0x024A555471370B18D
+    # Compare the INTEGER, never the text. Canon (fleet-kit e06f00a, 2026-10-02):
+    # the canonical TEXT form is 16 hex digits, no leading zero; the same integer
+    # written 0x024a55... (17 digits) is the L9(d) non-canonical string a canon grep
+    # cannot match. Pin BOTH: value agreement and canonical text form.
+    assert fnv1a64(CANARY_HEX) == 0x24A555471370B18D
+
+
+def test_canary_TEXT_is_canonical_L9d():
+    """L9(d): a non-canonical canary string means a grep for the canon cannot match.
+    Our constant's text must be exactly 16 hex digits, uppercase, no leading zero."""
+    s = hex(FLEET_CANARY)
+    assert s == "0x24a555471370b18d"
+    assert len(s) == 18  # 0x + 16 digits
+    assert FLEET_CANARY.to_bytes(8, "big")[0] == 0x24
 
 
 def test_unaccented_twin_is_not_the_canary():

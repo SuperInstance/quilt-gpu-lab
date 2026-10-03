@@ -7,7 +7,10 @@ One line of input, and a gate rename fails the same day (canons SCOUT-2235Z / ME
 """
 M = (1 << 64) - 1
 CANARY_HEX = "café Δ 日本語"          # fixture string
-FLEET_CANARY = 0x024A555471370B18D    # byte canary — compare as INTEGER, never text
+FLEET_CANARY = 0x24A555471370B18D     # byte canary — compare as INTEGER, never text
+#   Canon (fleet-kit e06f00a, 2026-10-02): canonical TEXT is 16 hex digits, no leading
+#   zero. The same integer written 0x024A55... is L9(d) non-canonical — a grep for the
+#   canon cannot match it ("a check that cannot fail is worse than no check").
 ACCENTED_TRAP = 0xFEE91CF40962B966    # unaccented twin; never a canary
 CANON_GATES = ["crx", "cx", "h", "rx", "rz", "swap", "x"]  # tools/qcell_sim.py gate set
 ALPHABET_CANARY = 0xCA289D4829D9A834  # FNV-1a64 over sorted canon gates joined by '|'
