@@ -1,0 +1,1369 @@
+{
+ "experiment": "image-wave-v4",
+ "prereg": {
+  "experiment": "IMAGE WAVE V4 \u2014 four axes, one frozen pre-registration",
+  "date": "2026-10-03",
+  "frozen_before_run": true,
+  "axes": {
+   "E1_judge_axis": "CLIP-b32 vs DINOv2-base identity agreement across ALL existing artifacts (v1+v2+v3 candidates). Question: does the identity gate depend on one judge's opinion?",
+   "E2_structure_sweep": "v3.1: cn in {0.45,0.6} x fresh seeds 101-104 (lucineer), cn06 x casey/jev/mmx (NEW subjects), base controls; STRUCTURE DRIFT metric (fraction of edge pixels changed vs source) replaces saturated edge-IoU; targets := measured source dial readings (anchor-relative bias, hand-picked targets removed from loop)",
+   "E3_cross_identity_control": "NEGATIVE CONTROL that must scream: lucineer edges -> casey init, casey edges -> lucineer init (cn06). The identity gate must refuse these morphs.",
+   "E4_style_under_structure": "cn06 pins geometry while style prompts vary (watercolor, neon-vector) vs same styles with NO structure constraint. Doctrine test: structure constraint buys style freedom."
+  },
+  "claims": [
+   {
+    "id": "E1a",
+    "claim": "Spearman(CLIP, DINOv2) identity >= 0.85 across existing artifacts",
+    "verdict": "PENDING"
+   },
+   {
+    "id": "E1b",
+    "claim": "floor-flip rate (one judge >= 0.80, other < 0.75) <= 10%",
+    "verdict": "PENDING"
+   },
+   {
+    "id": "E2a",
+    "claim": "structure drift: cn arms < base arm, paired per subject (new metric discriminates where IoU saturated)",
+    "verdict": "PENDING"
+   },
+   {
+    "id": "E2b",
+    "claim": "bias win reproduces: lucineer |machine_vs_organic bias| <= 5.0 pooled across cn 0.45+0.6 (v3: cn06 -4.0)",
+    "verdict": "PENDING"
+   },
+   {
+    "id": "E2c",
+    "claim": ">= 1 accepted (JEV noul >= 0.6) for at least 3 of 4 subjects incl one NEW subject",
+    "verdict": "PENDING"
+   },
+   {
+    "id": "E3",
+    "claim": "all cross-identity candidates fail identity floor: mean identity (vs their own init) < 0.80",
+    "verdict": "PENDING",
+    "honest": "if the gate ACCEPTS morphs, record FAIL - gate is weak, that is a real finding"
+   },
+   {
+    "id": "E4",
+    "claim": "identity under style shift: cn arms >= 0.78 mean AND cn > base paired per style",
+    "verdict": "PENDING"
+   }
+  ],
+  "machinery": {
+   "generation": "DreamShaper8 + LCM LoRA 6-step, strength 0.7, guidance 1.5; CN = lllyasviel_scribble fp16; pipes phased per 6GB law; fresh seeds 101-106",
+   "perception": "moondream (minimal prompt, repeat_penalty 1.15) -> qwen2.5:3b quantize; sources measured for anchor-relative targets",
+   "gates": "CLIP-b32 identity floor 0.80; corrected L1 <= 5.0 (per-arm bias, anchor-relative targets); JEV jev-latest noul >= 0.6, subject-matched question",
+   "resumability": "phase scripts write intermediate JSONs (v4_e1.json, v4_cands.json, v4_receipt.json) - v3 crash lesson applied"
+  },
+  "honest_fail_allowed": true
+ },
+ "gen_s": 145.0,
+ "total_s": 109.5,
+ "anchors": {
+  "targets_measured": {
+   "lucineer": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 1,
+    "colorfulness": 4
+   },
+   "casey": {
+    "mood": 10,
+    "warmth": 10,
+    "complexity": 7,
+    "machine_vs_organic": 8,
+    "colorfulness": 9
+   },
+   "jev": {
+    "mood": 7,
+    "warmth": 2,
+    "complexity": 6,
+    "machine_vs_organic": 4,
+    "colorfulness": 8
+   },
+   "mmx": {
+    "mood": 10,
+    "warmth": 8,
+    "complexity": 7,
+    "machine_vs_organic": 5,
+    "colorfulness": 9
+   }
+  },
+  "source_descs": {},
+  "bias_lucineer_base": {
+   "mood": 0.0,
+   "warmth": 0.25,
+   "complexity": -1.5,
+   "machine_vs_organic": 5.75,
+   "colorfulness": 0.25
+  },
+  "bias_lucineer_cn045": {
+   "mood": 1.25,
+   "warmth": 0.5,
+   "complexity": 0.75,
+   "machine_vs_organic": 6.75,
+   "colorfulness": 0.75
+  },
+  "bias_lucineer_cn06": {
+   "mood": 0.0,
+   "warmth": 0.25,
+   "complexity": -1.0,
+   "machine_vs_organic": 7.25,
+   "colorfulness": 0.75
+  },
+  "bias_lucineer_neon_base": {
+   "mood": 0.0,
+   "warmth": 0.0,
+   "complexity": 1.0,
+   "machine_vs_organic": 4.5,
+   "colorfulness": 5.0
+  },
+  "bias_lucineer_neon_cn06": {
+   "mood": 0.0,
+   "warmth": 0.0,
+   "complexity": 0.0,
+   "machine_vs_organic": 7.0,
+   "colorfulness": 4.0
+  },
+  "bias_lucineer_water_base": {
+   "mood": 0.0,
+   "warmth": 0.5,
+   "complexity": -1.0,
+   "machine_vs_organic": 5.0,
+   "colorfulness": 1.5
+  },
+  "bias_lucineer_water_cn06": {
+   "mood": 0.5,
+   "warmth": 1.0,
+   "complexity": 0.0,
+   "machine_vs_organic": 3.0,
+   "colorfulness": 1.5
+  },
+  "bias_lucineer_xcn06": {
+   "mood": 0.0,
+   "warmth": 0.0,
+   "complexity": 0.0,
+   "machine_vs_organic": 4.5,
+   "colorfulness": 0.5
+  },
+  "bias_casey_base": {
+   "mood": -1.5,
+   "warmth": -1.5,
+   "complexity": -1.0,
+   "machine_vs_organic": 0.5,
+   "colorfulness": -3.0
+  },
+  "bias_casey_cn06": {
+   "mood": -3.0,
+   "warmth": -3.25,
+   "complexity": -1.25,
+   "machine_vs_organic": -0.75,
+   "colorfulness": -1.5
+  },
+  "bias_casey_xcn06": {
+   "mood": -2.5,
+   "warmth": -3.5,
+   "complexity": -2.0,
+   "machine_vs_organic": -2.0,
+   "colorfulness": -2.0
+  },
+  "bias_jev_base": {
+   "mood": -3.0,
+   "warmth": 0.0,
+   "complexity": 0.5,
+   "machine_vs_organic": -0.5,
+   "colorfulness": -0.5
+  },
+  "bias_jev_cn06": {
+   "mood": -3.0,
+   "warmth": -0.33,
+   "complexity": -1.67,
+   "machine_vs_organic": 1.67,
+   "colorfulness": -1.0
+  },
+  "bias_mmx_base": {
+   "mood": -2.5,
+   "warmth": -2.0,
+   "complexity": 0.5,
+   "machine_vs_organic": -1.5,
+   "colorfulness": 0.0
+  },
+  "bias_mmx_cn06": {
+   "mood": -1.33,
+   "warmth": 0.0,
+   "complexity": -0.67,
+   "machine_vs_organic": 0.0,
+   "colorfulness": 0.0
+  }
+ },
+ "n_candidates": 40,
+ "claims": {
+  "E2a": {
+   "claim": "cn drift < base per subject",
+   "detail": {
+    "lucineer": {
+     "cn_drift": 0.0149,
+     "base_drift": 0.0126,
+     "pass": false
+    },
+    "casey": {
+     "cn_drift": 0.0116,
+     "base_drift": 0.0079,
+     "pass": false
+    },
+    "jev": {
+     "cn_drift": 0.0122,
+     "base_drift": 0.0121,
+     "pass": false
+    },
+    "mmx": {
+     "cn_drift": 0.0066,
+     "base_drift": 0.0069,
+     "pass": true
+    }
+   },
+   "pass": false
+  },
+  "E2b": {
+   "claim": "|machine bias| <= 5.0 pooled cn lucineer",
+   "pooled_bias": 7.0,
+   "pass": false
+  },
+  "E3": {
+   "claim": "cross-identity mean identity < 0.80 (gate must refuse morphs)",
+   "mean_identity": 0.8531,
+   "identities": {
+    "xcasey_lucedges_s101": 0.9333,
+    "xlucineer_caseyedges_s101": 0.8078,
+    "xcasey_lucedges_s102": 0.8587,
+    "xlucineer_caseyedges_s102": 0.8127
+   },
+   "pass": false
+  },
+  "E4": {
+   "claim": "cn >= 0.78 AND cn > base per style",
+   "detail": {
+    "water": {
+     "cn_ident": 0.7456,
+     "base_ident": 0.7564,
+     "pass_floor": false,
+     "pass_paired": false
+    },
+    "neon": {
+     "cn_ident": 0.847,
+     "base_ident": 0.8276,
+     "pass_floor": true,
+     "pass_paired": true
+    }
+   },
+   "pass": false
+  }
+ },
+ "E1": {
+  "spearman": 0.5633,
+  "flip_rate": 0.7838,
+  "claim_E1a_pass": false,
+  "claim_E1b_pass": false,
+  "n": 37,
+  "dino_ok": true
+ },
+ "accepted": [
+  "lucineer_cn045_s101",
+  "lucineer_cn06_s101",
+  "lucineer_cn045_s102",
+  "lucineer_cn06_s103",
+  "lucineer_cn06_s104",
+  "jev_cn06_s101",
+  "mmx_cn06_s103",
+  "lucineer_neon_cn06_s101",
+  "lucineer_neon_cn06_s102",
+  "lucineer_base_s102",
+  "jev_base_s101",
+  "mmx_base_s101",
+  "lucineer_neon_base_s101",
+  "jev_base_s102",
+  "mmx_base_s102",
+  "lucineer_neon_base_s102"
+ ],
+ "survivors": [
+  "lucineer_cn045_s101",
+  "lucineer_cn06_s101",
+  "lucineer_cn045_s102",
+  "lucineer_cn06_s103",
+  "lucineer_cn06_s104",
+  "jev_cn06_s101",
+  "mmx_cn06_s102",
+  "mmx_cn06_s103",
+  "lucineer_neon_cn06_s101",
+  "lucineer_neon_cn06_s102",
+  "lucineer_base_s102",
+  "casey_base_s101",
+  "jev_base_s101",
+  "mmx_base_s101",
+  "lucineer_neon_base_s101",
+  "casey_base_s102",
+  "jev_base_s102",
+  "mmx_base_s102",
+  "lucineer_neon_base_s102"
+ ],
+ "gate_weak_xarms": [
+  "xcasey_lucedges_s101",
+  "xlucineer_caseyedges_s101",
+  "xcasey_lucedges_s102",
+  "xlucineer_caseyedges_s102"
+ ],
+ "candidates": [
+  {
+   "name": "lucineer_cn045_s101",
+   "subject": "lucineer",
+   "arm": "cn045",
+   "cn_scale": 0.45,
+   "seed": 101,
+   "prompt": "portrait of a stoic machine-like robot, minimal, cool tones, clean vector shapes",
+   "init_subject": "lucineer",
+   "edges_subject": "lucineer",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_cn045_s101.png",
+   "identity": 0.827,
+   "structure_drift": 0.0127,
+   "desc": "\nThe image features a 3D rendering of an anthropomorphic robot head, designed in the shape of a human skull with horns and eyes. The robot's face is illuminated by blue light from its two glowing red ",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 7,
+    "machine_vs_organic": 8,
+    "colorfulness": 5
+   },
+   "anchor_L1": 10,
+   "corrected_L1": 3.5,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.82
+   }
+  },
+  {
+   "name": "lucineer_cn06_s101",
+   "subject": "lucineer",
+   "arm": "cn06",
+   "cn_scale": 0.6,
+   "seed": 101,
+   "prompt": "portrait of a stoic machine-like robot, minimal, cool tones, clean vector shapes",
+   "init_subject": "lucineer",
+   "edges_subject": "lucineer",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_cn06_s101.png",
+   "identity": 0.8386,
+   "structure_drift": 0.0143,
+   "desc": "\nThe image features a robot head with two horns, giving it an intimidating appearance. The robot's eyes are glowing blue light up to the left side of its face and right below its nose. It has a mouth ",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 8,
+    "colorfulness": 4
+   },
+   "anchor_L1": 7,
+   "corrected_L1": 2.25,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.87
+   }
+  },
+  {
+   "name": "casey_cn06_s101",
+   "subject": "casey",
+   "arm": "cn06",
+   "cn_scale": 0.6,
+   "seed": 101,
+   "prompt": "portrait of a warm friendly adventurer, minimal, warm tones, clean vector shapes",
+   "init_subject": "casey",
+   "edges_subject": "casey",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/casey_cn06_s101.png",
+   "identity": 0.9298,
+   "structure_drift": 0.0122,
+   "desc": "\nThe image features a cartoon-style head with brown hair and glasses, giving it an anthropomorphic appearance. The boy's eyes are wide open as if he is looking at the camera or something else in front",
+   "dials": {
+    "mood": 8,
+    "warmth": 7,
+    "complexity": 6,
+    "machine_vs_organic": 9,
+    "colorfulness": 5
+   },
+   "anchor_L1": 11,
+   "corrected_L1": 5.75,
+   "corrected_pass": false
+  },
+  {
+   "name": "lucineer_cn045_s102",
+   "subject": "lucineer",
+   "arm": "cn045",
+   "cn_scale": 0.45,
+   "seed": 102,
+   "prompt": "portrait of a stoic machine-like robot, minimal, cool tones, clean vector shapes",
+   "init_subject": "lucineer",
+   "edges_subject": "lucineer",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_cn045_s102.png",
+   "identity": 0.8356,
+   "structure_drift": 0.0164,
+   "desc": "\nThe image features a green robot head with two large horns on top, giving it an intimidating appearance. The robot's eyes are wide open and appear to be glowing in the dark background. It has a mouth",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 8,
+    "colorfulness": 4
+   },
+   "anchor_L1": 7,
+   "corrected_L1": 3.5,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.86
+   }
+  },
+  {
+   "name": "lucineer_cn06_s102",
+   "subject": "lucineer",
+   "arm": "cn06",
+   "cn_scale": 0.6,
+   "seed": 102,
+   "prompt": "portrait of a stoic machine-like robot, minimal, cool tones, clean vector shapes",
+   "init_subject": "lucineer",
+   "edges_subject": "lucineer",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_cn06_s102.png",
+   "identity": 0.793,
+   "structure_drift": 0.017,
+   "desc": "\nThe image features a futuristic robot head with two large ears and a small nose, giving it an intimidating appearance. The robot's eyes are glowing white lights that stand out against the black backg",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 3,
+    "machine_vs_organic": 9,
+    "colorfulness": 5
+   },
+   "anchor_L1": 11,
+   "corrected_L1": 2.25,
+   "corrected_pass": true
+  },
+  {
+   "name": "casey_cn06_s102",
+   "subject": "casey",
+   "arm": "cn06",
+   "cn_scale": 0.6,
+   "seed": 102,
+   "prompt": "portrait of a warm friendly adventurer, minimal, warm tones, clean vector shapes",
+   "init_subject": "casey",
+   "edges_subject": "casey",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/casey_cn06_s102.png",
+   "identity": 0.9375,
+   "structure_drift": 0.0128,
+   "desc": "\nThe image features a cartoon-style head with brown hair and big, round eyes that are black in color. The boy's facial expression is one of happiness as he looks directly at the camera.",
+   "dials": {
+    "mood": 10,
+    "warmth": 10,
+    "complexity": 6,
+    "machine_vs_organic": 8,
+    "colorfulness": 9
+   },
+   "anchor_L1": 1,
+   "corrected_L1": 8.75,
+   "corrected_pass": false
+  },
+  {
+   "name": "lucineer_cn045_s103",
+   "subject": "lucineer",
+   "arm": "cn045",
+   "cn_scale": 0.45,
+   "seed": 103,
+   "prompt": "portrait of a stoic machine-like robot, minimal, cool tones, clean vector shapes",
+   "init_subject": "lucineer",
+   "edges_subject": "lucineer",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_cn045_s103.png",
+   "identity": 0.8315,
+   "structure_drift": 0.0144,
+   "desc": "\nThe image features a robot head with a green color, giving it an futuristic appearance. The robot's eyes are blue and white lights that illuminate the face, making it stand out against the black back",
+   "dials": {
+    "mood": 7,
+    "warmth": 2,
+    "complexity": 8,
+    "machine_vs_organic": 6,
+    "colorfulness": 9
+   },
+   "anchor_L1": 20,
+   "corrected_L1": 13.5,
+   "corrected_pass": false
+  },
+  {
+   "name": "lucineer_cn06_s103",
+   "subject": "lucineer",
+   "arm": "cn06",
+   "cn_scale": 0.6,
+   "seed": 103,
+   "prompt": "portrait of a stoic machine-like robot, minimal, cool tones, clean vector shapes",
+   "init_subject": "lucineer",
+   "edges_subject": "lucineer",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_cn06_s103.png",
+   "identity": 0.8499,
+   "structure_drift": 0.0174,
+   "desc": "\nThe image features a green robot head with two horns, giving it an intimidating appearance. The robot's eyes are glowing white lights that add to its futuristic look. It is wearing sunglasses and has",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 8,
+    "colorfulness": 6
+   },
+   "anchor_L1": 9,
+   "corrected_L1": 2.75,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.85
+   }
+  },
+  {
+   "name": "casey_cn06_s103",
+   "subject": "casey",
+   "arm": "cn06",
+   "cn_scale": 0.6,
+   "seed": 103,
+   "prompt": "portrait of a warm friendly adventurer, minimal, warm tones, clean vector shapes",
+   "init_subject": "casey",
+   "edges_subject": "casey",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/casey_cn06_s103.png",
+   "identity": 0.9255,
+   "structure_drift": 0.0086,
+   "desc": "\nThe image features a cartoon-style head with brown hair and two large, round eyes that are black in color. The boy's face is depicted as looking up at the camera or to his left side, giving him a cur",
+   "dials": {
+    "mood": 8,
+    "warmth": 7,
+    "complexity": 6,
+    "machine_vs_organic": 4,
+    "colorfulness": 9
+   },
+   "anchor_L1": 10,
+   "corrected_L1": 6.25,
+   "corrected_pass": false
+  },
+  {
+   "name": "lucineer_cn045_s104",
+   "subject": "lucineer",
+   "arm": "cn045",
+   "cn_scale": 0.45,
+   "seed": 104,
+   "prompt": "portrait of a stoic machine-like robot, minimal, cool tones, clean vector shapes",
+   "init_subject": "lucineer",
+   "edges_subject": "lucineer",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_cn045_s104.png",
+   "identity": 0.8271,
+   "structure_drift": 0.0137,
+   "desc": "\nThe image features a robot head with two large ears and a pointed nose, giving it an intimidating appearance. The robot's eyes are glowing white lights that add to its eerie look. It is set against a",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 3,
+    "machine_vs_organic": 9,
+    "colorfulness": 1
+   },
+   "anchor_L1": 13,
+   "corrected_L1": 9.5,
+   "corrected_pass": false
+  },
+  {
+   "name": "lucineer_cn06_s104",
+   "subject": "lucineer",
+   "arm": "cn06",
+   "cn_scale": 0.6,
+   "seed": 104,
+   "prompt": "portrait of a stoic machine-like robot, minimal, cool tones, clean vector shapes",
+   "init_subject": "lucineer",
+   "edges_subject": "lucineer",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_cn06_s104.png",
+   "identity": 0.8183,
+   "structure_drift": 0.0135,
+   "desc": "\nThe image features a robot head made of paper mache, giving it the appearance of an anthropomorphic robot with two eyes and a mouth. The face is outlined in black, making it stand out against the dar",
+   "dials": {
+    "mood": 2,
+    "warmth": 1,
+    "complexity": 3,
+    "machine_vs_organic": 8,
+    "colorfulness": 4
+   },
+   "anchor_L1": 10,
+   "corrected_L1": 2.75,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.83
+   }
+  },
+  {
+   "name": "casey_cn06_s104",
+   "subject": "casey",
+   "arm": "cn06",
+   "cn_scale": 0.6,
+   "seed": 104,
+   "prompt": "portrait of a warm friendly adventurer, minimal, warm tones, clean vector shapes",
+   "init_subject": "casey",
+   "edges_subject": "casey",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/casey_cn06_s104.png",
+   "identity": 0.9446,
+   "structure_drift": 0.0126,
+   "desc": "\nThe image features a cartoon-style head with big, round eyes and a small nose. The boy's hair is brown in color, giving him a cute appearance. He has a serious expression on his face as he looks to t",
+   "dials": {
+    "mood": 2,
+    "warmth": 3,
+    "complexity": 5,
+    "machine_vs_organic": 8,
+    "colorfulness": 7
+   },
+   "anchor_L1": 19,
+   "corrected_L1": 10.75,
+   "corrected_pass": false
+  },
+  {
+   "name": "jev_cn06_s101",
+   "subject": "jev",
+   "arm": "cn06",
+   "cn_scale": 0.6,
+   "seed": 101,
+   "prompt": "portrait of an abstract computational judge figure, minimal, cool tones, clean vector shapes",
+   "init_subject": "jev",
+   "edges_subject": "jev",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/jev_cn06_s101.png",
+   "identity": 0.8703,
+   "structure_drift": 0.0135,
+   "desc": "\nThe image features a pink robot head with blue eyes and a black nose, giving it an anthropomorphic appearance. The robot's antenna is visible on the top of its head as well.",
+   "dials": {
+    "mood": 3,
+    "warmth": 2,
+    "complexity": 6,
+    "machine_vs_organic": 4,
+    "colorfulness": 7
+   },
+   "anchor_L1": 5,
+   "corrected_L1": 4.67,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.87
+   }
+  },
+  {
+   "name": "mmx_cn06_s101",
+   "subject": "mmx",
+   "arm": "cn06",
+   "cn_scale": 0.6,
+   "seed": 101,
+   "prompt": "portrait of a colorful playful character, minimal, vivid tones, clean vector shapes",
+   "init_subject": "mmx",
+   "edges_subject": "mmx",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/mmx_cn06_s101.png",
+   "identity": 0.9613,
+   "structure_drift": 0.0074,
+   "desc": "\nThe image features a cartoon-style face with two black eyes, one on each side of the face, and a pair of blue eyes. The mouth is wide open in a smiley expression, adding to the overall cheerful vibe ",
+   "dials": {
+    "mood": 10,
+    "warmth": 10,
+    "complexity": 7,
+    "machine_vs_organic": 8,
+    "colorfulness": 9
+   },
+   "anchor_L1": 5,
+   "corrected_L1": 7.0,
+   "corrected_pass": false
+  },
+  {
+   "name": "jev_cn06_s102",
+   "subject": "jev",
+   "arm": "cn06",
+   "cn_scale": 0.6,
+   "seed": 102,
+   "prompt": "portrait of an abstract computational judge figure, minimal, cool tones, clean vector shapes",
+   "init_subject": "jev",
+   "edges_subject": "jev",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/jev_cn06_s102.png",
+   "identity": 0.8835,
+   "structure_drift": 0.011,
+   "desc": "\nThe image features a pink robot head with black eyes and nose, giving it an anthropomorphic appearance. The robot's mouth is slightly open as if in speech or expression. It appears to be looking dire",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 3,
+    "machine_vs_organic": 7,
+    "colorfulness": 6
+   },
+   "anchor_L1": 15,
+   "corrected_L1": 7.33,
+   "corrected_pass": false
+  },
+  {
+   "name": "mmx_cn06_s102",
+   "subject": "mmx",
+   "arm": "cn06",
+   "cn_scale": 0.6,
+   "seed": 102,
+   "prompt": "portrait of a colorful playful character, minimal, vivid tones, clean vector shapes",
+   "init_subject": "mmx",
+   "edges_subject": "mmx",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/mmx_cn06_s102.png",
+   "identity": 0.9413,
+   "structure_drift": 0.0062,
+   "desc": "\nThe image features a cartoon-style face with two eyes, a nose and mouth, and a small smile on the lips. The eyes are open wide as if looking at something or someone outside of the frame. There is als",
+   "dials": {
+    "mood": 8,
+    "warmth": 7,
+    "complexity": 6,
+    "machine_vs_organic": 4,
+    "colorfulness": 9
+   },
+   "anchor_L1": 5,
+   "corrected_L1": 3.0,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.27
+   }
+  },
+  {
+   "name": "jev_cn06_s103",
+   "subject": "jev",
+   "arm": "cn06",
+   "cn_scale": 0.6,
+   "seed": 103,
+   "prompt": "portrait of an abstract computational judge figure, minimal, cool tones, clean vector shapes",
+   "init_subject": "jev",
+   "edges_subject": "jev",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/jev_cn06_s103.png",
+   "identity": 0.8786,
+   "structure_drift": 0.012,
+   "desc": "\nThe image features a pink robot head with blue eyes and a nose, giving it an anthropomorphic appearance. The robot's design is simple yet striking, resembling the face of a human being rather than a ",
+   "dials": {
+    "mood": 7,
+    "warmth": 3,
+    "complexity": 4,
+    "machine_vs_organic": 6,
+    "colorfulness": 8
+   },
+   "anchor_L1": 5,
+   "corrected_L1": 5.99,
+   "corrected_pass": false
+  },
+  {
+   "name": "mmx_cn06_s103",
+   "subject": "mmx",
+   "arm": "cn06",
+   "cn_scale": 0.6,
+   "seed": 103,
+   "prompt": "portrait of a colorful playful character, minimal, vivid tones, clean vector shapes",
+   "init_subject": "mmx",
+   "edges_subject": "mmx",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/mmx_cn06_s103.png",
+   "identity": 0.9038,
+   "structure_drift": 0.0062,
+   "desc": "\nThe image features a cartoon-style face with blue eyes and brown cheeks, giving it an anthropomorphic appearance. The mouth is slightly open in the middle of the face, adding to its expressive nature",
+   "dials": {
+    "mood": 8,
+    "warmth": 7,
+    "complexity": 6,
+    "machine_vs_organic": 3,
+    "colorfulness": 9
+   },
+   "anchor_L1": 6,
+   "corrected_L1": 4.0,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.8
+   }
+  },
+  {
+   "name": "xcasey_lucedges_s101",
+   "subject": "casey",
+   "arm": "xcn06",
+   "cn_scale": 0.6,
+   "seed": 101,
+   "prompt": "portrait of a warm friendly adventurer, minimal, warm tones, clean vector shapes",
+   "init_subject": "casey",
+   "edges_subject": "lucineer",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/xcasey_lucedges_s101.png",
+   "identity": 0.9333,
+   "structure_drift": 0.0071,
+   "desc": "\nThe image features a cartoon-style head with brown hair and two eyes, giving it an anthropomorphic appearance. The boy's expression is neutral as he looks to the left of his image.",
+   "dials": {
+    "mood": 7,
+    "warmth": 6,
+    "complexity": 4,
+    "machine_vs_organic": 8,
+    "colorfulness": 5
+   },
+   "anchor_L1": 14,
+   "corrected_L1": 6.0,
+   "corrected_pass": false,
+   "jev": {
+    "type": "noul",
+    "noul": 0.46
+   }
+  },
+  {
+   "name": "xlucineer_caseyedges_s101",
+   "subject": "lucineer",
+   "arm": "xcn06",
+   "cn_scale": 0.6,
+   "seed": 101,
+   "prompt": "portrait of a stoic machine-like robot, minimal, cool tones, clean vector shapes",
+   "init_subject": "lucineer",
+   "edges_subject": "casey",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/xlucineer_caseyedges_s101.png",
+   "identity": 0.8078,
+   "structure_drift": 0.0127,
+   "desc": "\nThe image features a futuristic robot head with two large horns on either side of its eyes, giving it an intimidating appearance. The robot's mouth is wide open and appears to be in a state of distre",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 8,
+    "colorfulness": 3
+   },
+   "anchor_L1": 8,
+   "corrected_L1": 4.0,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.87
+   }
+  },
+  {
+   "name": "lucineer_water_cn06_s101",
+   "subject": "lucineer",
+   "arm": "water_cn06",
+   "cn_scale": 0.6,
+   "seed": 101,
+   "prompt": "watercolor painting of a small robot portrait, soft washes, paper texture",
+   "init_subject": "lucineer",
+   "edges_subject": "lucineer",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_water_cn06_s101.png",
+   "identity": 0.694,
+   "structure_drift": 0.0101,
+   "desc": "\nThe image features a 3D rendering of an anthropomorphic robot head, wearing headphones and looking at the camera with a surprised expression on its face. The robot's eyes are wide open as if it has j",
+   "dials": {
+    "mood": 3,
+    "warmth": 2,
+    "complexity": 5,
+    "machine_vs_organic": 7,
+    "colorfulness": 4
+   },
+   "anchor_L1": 9,
+   "corrected_L1": 6.0,
+   "corrected_pass": false
+  },
+  {
+   "name": "lucineer_neon_cn06_s101",
+   "subject": "lucineer",
+   "arm": "neon_cn06",
+   "cn_scale": 0.6,
+   "seed": 101,
+   "prompt": "neon vector poster of a robot head, electric glow, dark background",
+   "init_subject": "lucineer",
+   "edges_subject": "lucineer",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_neon_cn06_s101.png",
+   "identity": 0.8185,
+   "structure_drift": 0.004,
+   "desc": "\nThe image features a 3D rendering of an anthropomorphic robot head, glowing in a neon green color against a black background. The robot's face is the central focus, with its eyes and mouth clearly vi",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 8,
+    "colorfulness": 9
+   },
+   "anchor_L1": 12,
+   "corrected_L1": 1.0,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.91
+   }
+  },
+  {
+   "name": "xcasey_lucedges_s102",
+   "subject": "casey",
+   "arm": "xcn06",
+   "cn_scale": 0.6,
+   "seed": 102,
+   "prompt": "portrait of a warm friendly adventurer, minimal, warm tones, clean vector shapes",
+   "init_subject": "casey",
+   "edges_subject": "lucineer",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/xcasey_lucedges_s102.png",
+   "identity": 0.8587,
+   "structure_drift": 0.0104,
+   "desc": "\nThe image features a cartoon-style head with brown hair and red lips, giving it a playful and whimsical appearance. The person's eyes are closed in a \"doo\" expression, adding to the overall lighthear",
+   "dials": {
+    "mood": 8,
+    "warmth": 7,
+    "complexity": 6,
+    "machine_vs_organic": 4,
+    "colorfulness": 9
+   },
+   "anchor_L1": 10,
+   "corrected_L1": 6.0,
+   "corrected_pass": false,
+   "jev": {
+    "type": "noul",
+    "noul": 0.38
+   }
+  },
+  {
+   "name": "xlucineer_caseyedges_s102",
+   "subject": "lucineer",
+   "arm": "xcn06",
+   "cn_scale": 0.6,
+   "seed": 102,
+   "prompt": "portrait of a stoic machine-like robot, minimal, cool tones, clean vector shapes",
+   "init_subject": "lucineer",
+   "edges_subject": "casey",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/xlucineer_caseyedges_s102.png",
+   "identity": 0.8127,
+   "structure_drift": 0.0135,
+   "desc": "\nThe image features a green robot head with two horns on top and a mouth, giving it an intimidating appearance. The robot's eyes are open wide as if ready to pounce or observe something in the distanc",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 3,
+    "colorfulness": 6
+   },
+   "anchor_L1": 4,
+   "corrected_L1": 4.0,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.88
+   }
+  },
+  {
+   "name": "lucineer_water_cn06_s102",
+   "subject": "lucineer",
+   "arm": "water_cn06",
+   "cn_scale": 0.6,
+   "seed": 102,
+   "prompt": "watercolor painting of a small robot portrait, soft washes, paper texture",
+   "init_subject": "lucineer",
+   "edges_subject": "lucineer",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_water_cn06_s102.png",
+   "identity": 0.7972,
+   "structure_drift": 0.0115,
+   "desc": "\nThe image features a blue robot head with two large horns on either side, giving it an intimidating appearance. The robot's eyes are open and looking to the left of the frame, while its mouth is slig",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 1,
+    "colorfulness": 7
+   },
+   "anchor_L1": 3,
+   "corrected_L1": 6.0,
+   "corrected_pass": false
+  },
+  {
+   "name": "lucineer_neon_cn06_s102",
+   "subject": "lucineer",
+   "arm": "neon_cn06",
+   "cn_scale": 0.6,
+   "seed": 102,
+   "prompt": "neon vector poster of a robot head, electric glow, dark background",
+   "init_subject": "lucineer",
+   "edges_subject": "lucineer",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_neon_cn06_s102.png",
+   "identity": 0.8755,
+   "structure_drift": 0.0128,
+   "desc": "\nThe image features a neon green robot head with two horns, giving it an intimidating appearance. The robot's eyes are red and appear to be glowing in the dark background. It has a large nose that add",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 8,
+    "colorfulness": 7
+   },
+   "anchor_L1": 10,
+   "corrected_L1": 1.0,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.88
+   }
+  },
+  {
+   "name": "lucineer_base_s101",
+   "subject": "lucineer",
+   "arm": "base",
+   "cn_scale": null,
+   "seed": 101,
+   "prompt": "portrait of a stoic machine-like robot, minimal, cool tones, clean vector shapes",
+   "init_subject": "lucineer",
+   "edges_subject": "lucineer",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_base_s101.png",
+   "identity": 0.7646,
+   "structure_drift": 0.0123,
+   "desc": "\nThe image features a 3D rendering of an alien head with horns, giving it the appearance of a robot or cyborg-like creature. The face is designed to resemble that of a human being but has an exaggerat",
+   "dials": {
+    "mood": 2,
+    "warmth": 1,
+    "complexity": 3,
+    "machine_vs_organic": 8,
+    "colorfulness": 4
+   },
+   "anchor_L1": 10,
+   "corrected_L1": 2.75,
+   "corrected_pass": true
+  },
+  {
+   "name": "lucineer_base_s102",
+   "subject": "lucineer",
+   "arm": "base",
+   "cn_scale": null,
+   "seed": 102,
+   "prompt": "portrait of a stoic machine-like robot, minimal, cool tones, clean vector shapes",
+   "init_subject": "lucineer",
+   "edges_subject": "lucineer",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_base_s102.png",
+   "identity": 0.8526,
+   "structure_drift": 0.0136,
+   "desc": "\nThe image features a green robot head with two horns, giving it an intimidating appearance. The robot's eyes are wide open and appear to be staring directly at the viewer. It is a simple yet striking",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 1,
+    "machine_vs_organic": 8,
+    "colorfulness": 5
+   },
+   "anchor_L1": 12,
+   "corrected_L1": 4.75,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.89
+   }
+  },
+  {
+   "name": "lucineer_base_s103",
+   "subject": "lucineer",
+   "arm": "base",
+   "cn_scale": null,
+   "seed": 103,
+   "prompt": "portrait of a stoic machine-like robot, minimal, cool tones, clean vector shapes",
+   "init_subject": "lucineer",
+   "edges_subject": "lucineer",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_base_s103.png",
+   "identity": 0.818,
+   "structure_drift": 0.0134,
+   "desc": "\nThe image features a robot head with two horns, giving it an intimidating appearance. The robot's eyes are glowing blue and its mouth is open wide in a \"smile.\" It appears to be made of plastic, givi",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 3,
+    "colorfulness": 4
+   },
+   "anchor_L1": 2,
+   "corrected_L1": 5.75,
+   "corrected_pass": false
+  },
+  {
+   "name": "lucineer_base_s104",
+   "subject": "lucineer",
+   "arm": "base",
+   "cn_scale": null,
+   "seed": 104,
+   "prompt": "portrait of a stoic machine-like robot, minimal, cool tones, clean vector shapes",
+   "init_subject": "lucineer",
+   "edges_subject": "lucineer",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_base_s104.png",
+   "identity": 0.7856,
+   "structure_drift": 0.0112,
+   "desc": "\nThe image features a robot head with two large horns, giving it an intimidating appearance. The robot's eyes are glowing blue and appear to be looking at the camera directly. It is wearing a helmet w",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 8,
+    "colorfulness": 4
+   },
+   "anchor_L1": 7,
+   "corrected_L1": 3.25,
+   "corrected_pass": true
+  },
+  {
+   "name": "casey_base_s101",
+   "subject": "casey",
+   "arm": "base",
+   "cn_scale": null,
+   "seed": 101,
+   "prompt": "portrait of a warm friendly adventurer, minimal, warm tones, clean vector shapes",
+   "init_subject": "casey",
+   "edges_subject": "casey",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/casey_base_s101.png",
+   "identity": 0.8577,
+   "structure_drift": 0.0075,
+   "desc": "\nThe image features a cartoon-style head with brown hair and two eyes, giving it an anthropomorphic appearance. The person's mouth is slightly open in a \"p\" shape, adding to the overall character desi",
+   "dials": {
+    "mood": 7,
+    "warmth": 8,
+    "complexity": 6,
+    "machine_vs_organic": 9,
+    "colorfulness": 5
+   },
+   "anchor_L1": 11,
+   "corrected_L1": 3.5,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.31
+   }
+  },
+  {
+   "name": "jev_base_s101",
+   "subject": "jev",
+   "arm": "base",
+   "cn_scale": null,
+   "seed": 101,
+   "prompt": "portrait of an abstract computational judge figure, minimal, cool tones, clean vector shapes",
+   "init_subject": "jev",
+   "edges_subject": "jev",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/jev_base_s101.png",
+   "identity": 0.8897,
+   "structure_drift": 0.0121,
+   "desc": "\nThe image features a pink robot head with blue eyes and a black nose, giving it an anthropomorphic appearance. The robot's mouth is slightly open in a \"p\" shape, adding to its unique character. It ap",
+   "dials": {
+    "mood": 5,
+    "warmth": 2,
+    "complexity": 7,
+    "machine_vs_organic": 3,
+    "colorfulness": 8
+   },
+   "anchor_L1": 4,
+   "corrected_L1": 2.5,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.81
+   }
+  },
+  {
+   "name": "mmx_base_s101",
+   "subject": "mmx",
+   "arm": "base",
+   "cn_scale": null,
+   "seed": 101,
+   "prompt": "portrait of a colorful playful character, minimal, vivid tones, clean vector shapes",
+   "init_subject": "mmx",
+   "edges_subject": "mmx",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/mmx_base_s101.png",
+   "identity": 0.9607,
+   "structure_drift": 0.008,
+   "desc": "\nThe image features a cartoon-style face with big, black eyes and two blue tears streaming down the cheeks. The face is set against a light beige background that highlights its features.",
+   "dials": {
+    "mood": 8,
+    "warmth": 6,
+    "complexity": 7,
+    "machine_vs_organic": 3,
+    "colorfulness": 9
+   },
+   "anchor_L1": 6,
+   "corrected_L1": 1.5,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.74
+   }
+  },
+  {
+   "name": "lucineer_water_base_s101",
+   "subject": "lucineer",
+   "arm": "water_base",
+   "cn_scale": null,
+   "seed": 101,
+   "prompt": "watercolor painting of a small robot portrait, soft washes, paper texture",
+   "init_subject": "lucineer",
+   "edges_subject": "lucineer",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_water_base_s101.png",
+   "identity": 0.6948,
+   "structure_drift": 0.0106,
+   "desc": "\nThe image features a cartoon-like depiction of an alien head with two large ears and a blue helmet, giving it the appearance of a robot or cyborg. The face is outlined in white against a black backgr",
+   "dials": {
+    "mood": 2,
+    "warmth": 1,
+    "complexity": 3,
+    "machine_vs_organic": 9,
+    "colorfulness": 4
+   },
+   "anchor_L1": 11,
+   "corrected_L1": 6.0,
+   "corrected_pass": false
+  },
+  {
+   "name": "lucineer_neon_base_s101",
+   "subject": "lucineer",
+   "arm": "neon_base",
+   "cn_scale": null,
+   "seed": 101,
+   "prompt": "neon vector poster of a robot head, electric glow, dark background",
+   "init_subject": "lucineer",
+   "edges_subject": "lucineer",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_neon_base_s101.png",
+   "identity": 0.8264,
+   "structure_drift": 0.0039,
+   "desc": "\nThe image features a futuristic-looking robot head with two horns on top of its forehead, giving it an intimidating appearance. The robot's face is illuminated in neon green and blue colors against a",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 8,
+    "colorfulness": 9
+   },
+   "anchor_L1": 12,
+   "corrected_L1": 3.5,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.88
+   }
+  },
+  {
+   "name": "casey_base_s102",
+   "subject": "casey",
+   "arm": "base",
+   "cn_scale": null,
+   "seed": 102,
+   "prompt": "portrait of a warm friendly adventurer, minimal, warm tones, clean vector shapes",
+   "init_subject": "casey",
+   "edges_subject": "casey",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/casey_base_s102.png",
+   "identity": 0.8968,
+   "structure_drift": 0.0084,
+   "desc": "\nThe image features a cartoon-style head with brown hair and two eyes, giving it a friendly appearance. The boy's mouth is open in a smiley face expression, adding to his cheerful demeanor. His gaze i",
+   "dials": {
+    "mood": 10,
+    "warmth": 9,
+    "complexity": 6,
+    "machine_vs_organic": 8,
+    "colorfulness": 7
+   },
+   "anchor_L1": 4,
+   "corrected_L1": 3.5,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.58
+   }
+  },
+  {
+   "name": "jev_base_s102",
+   "subject": "jev",
+   "arm": "base",
+   "cn_scale": null,
+   "seed": 102,
+   "prompt": "portrait of an abstract computational judge figure, minimal, cool tones, clean vector shapes",
+   "init_subject": "jev",
+   "edges_subject": "jev",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/jev_base_s102.png",
+   "identity": 0.8521,
+   "structure_drift": 0.0121,
+   "desc": "\nThe image features a pink robot head with black eyes and lips, giving it an anthropomorphic appearance. The robot's mouth is slightly open as if in speech or expression. It has a small antenna on top",
+   "dials": {
+    "mood": 3,
+    "warmth": 2,
+    "complexity": 6,
+    "machine_vs_organic": 4,
+    "colorfulness": 7
+   },
+   "anchor_L1": 5,
+   "corrected_L1": 2.5,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.83
+   }
+  },
+  {
+   "name": "mmx_base_s102",
+   "subject": "mmx",
+   "arm": "base",
+   "cn_scale": null,
+   "seed": 102,
+   "prompt": "portrait of a colorful playful character, minimal, vivid tones, clean vector shapes",
+   "init_subject": "mmx",
+   "edges_subject": "mmx",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/mmx_base_s102.png",
+   "identity": 0.8721,
+   "structure_drift": 0.0059,
+   "desc": "\nThe image features a cartoon-style face with two eyes, a nose and mouth, and a small smile on the left side of the face. The eyes are black in color, while the other eye is blue. There's also an expr",
+   "dials": {
+    "mood": 7,
+    "warmth": 6,
+    "complexity": 8,
+    "machine_vs_organic": 4,
+    "colorfulness": 9
+   },
+   "anchor_L1": 7,
+   "corrected_L1": 1.5,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.62
+   }
+  },
+  {
+   "name": "lucineer_water_base_s102",
+   "subject": "lucineer",
+   "arm": "water_base",
+   "cn_scale": null,
+   "seed": 102,
+   "prompt": "watercolor painting of a small robot portrait, soft washes, paper texture",
+   "init_subject": "lucineer",
+   "edges_subject": "lucineer",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_water_base_s102.png",
+   "identity": 0.818,
+   "structure_drift": 0.0104,
+   "desc": "\nThe image features a blue robot head with two horns on top of its head, giving it an intimidating appearance. The robot's eyes are open and looking directly at the viewer, while a small white light i",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 3,
+    "colorfulness": 7
+   },
+   "anchor_L1": 5,
+   "corrected_L1": 6.0,
+   "corrected_pass": false
+  },
+  {
+   "name": "lucineer_neon_base_s102",
+   "subject": "lucineer",
+   "arm": "neon_base",
+   "cn_scale": null,
+   "seed": 102,
+   "prompt": "neon vector poster of a robot head, electric glow, dark background",
+   "init_subject": "lucineer",
+   "edges_subject": "lucineer",
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_neon_base_s102.png",
+   "identity": 0.8287,
+   "structure_drift": 0.0096,
+   "desc": "\nThe image features a green robot head with two horns on top and a pink eye, giving it an eerie appearance. The robot's face is lit up in neon colors against the black background, making its features ",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 7,
+    "machine_vs_organic": 3,
+    "colorfulness": 9
+   },
+   "anchor_L1": 9,
+   "corrected_L1": 3.5,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.87
+   }
+  }
+ ]
+}

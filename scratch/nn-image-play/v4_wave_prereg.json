@@ -1,0 +1,26 @@
+{
+  "experiment": "IMAGE WAVE V4 — four axes, one frozen pre-registration",
+  "date": "2026-10-03", "frozen_before_run": true,
+  "axes": {
+    "E1_judge_axis": "CLIP-b32 vs DINOv2-base identity agreement across ALL existing artifacts (v1+v2+v3 candidates). Question: does the identity gate depend on one judge's opinion?",
+    "E2_structure_sweep": "v3.1: cn in {0.45,0.6} x fresh seeds 101-104 (lucineer), cn06 x casey/jev/mmx (NEW subjects), base controls; STRUCTURE DRIFT metric (fraction of edge pixels changed vs source) replaces saturated edge-IoU; targets := measured source dial readings (anchor-relative bias, hand-picked targets removed from loop)",
+    "E3_cross_identity_control": "NEGATIVE CONTROL that must scream: lucineer edges -> casey init, casey edges -> lucineer init (cn06). The identity gate must refuse these morphs.",
+    "E4_style_under_structure": "cn06 pins geometry while style prompts vary (watercolor, neon-vector) vs same styles with NO structure constraint. Doctrine test: structure constraint buys style freedom."
+  },
+  "claims": [
+    {"id": "E1a", "claim": "Spearman(CLIP, DINOv2) identity >= 0.85 across existing artifacts", "verdict": "PENDING"},
+    {"id": "E1b", "claim": "floor-flip rate (one judge >= 0.80, other < 0.75) <= 10%", "verdict": "PENDING"},
+    {"id": "E2a", "claim": "structure drift: cn arms < base arm, paired per subject (new metric discriminates where IoU saturated)", "verdict": "PENDING"},
+    {"id": "E2b", "claim": "bias win reproduces: lucineer |machine_vs_organic bias| <= 5.0 pooled across cn 0.45+0.6 (v3: cn06 -4.0)", "verdict": "PENDING"},
+    {"id": "E2c", "claim": ">= 1 accepted (JEV noul >= 0.6) for at least 3 of 4 subjects incl one NEW subject", "verdict": "PENDING"},
+    {"id": "E3", "claim": "all cross-identity candidates fail identity floor: mean identity (vs their own init) < 0.80", "verdict": "PENDING", "honest": "if the gate ACCEPTS morphs, record FAIL - gate is weak, that is a real finding"},
+    {"id": "E4", "claim": "identity under style shift: cn arms >= 0.78 mean AND cn > base paired per style", "verdict": "PENDING"}
+  ],
+  "machinery": {
+    "generation": "DreamShaper8 + LCM LoRA 6-step, strength 0.7, guidance 1.5; CN = lllyasviel_scribble fp16; pipes phased per 6GB law; fresh seeds 101-106",
+    "perception": "moondream (minimal prompt, repeat_penalty 1.15) -> qwen2.5:3b quantize; sources measured for anchor-relative targets",
+    "gates": "CLIP-b32 identity floor 0.80; corrected L1 <= 5.0 (per-arm bias, anchor-relative targets); JEV jev-latest noul >= 0.6, subject-matched question",
+    "resumability": "phase scripts write intermediate JSONs (v4_e1.json, v4_cands.json, v4_receipt.json) - v3 crash lesson applied"
+  },
+  "honest_fail_allowed": true
+}
