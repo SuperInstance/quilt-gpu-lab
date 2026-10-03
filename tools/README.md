@@ -188,3 +188,4 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   TEST receipt 2026-10-02: selftest OK (8 accept / 12 reject, 0 failures);
   live examples: arith exact rc=0, symb exact_simplify rc=0 ('-3 + 4*x' ==
   '4*x - 3'), off-by-one wrong_value rc=1.
+- hash_dut.py — hash customs officer: canary vectors x6 primitives; check any impl (py/js/url) for NAME-COLLISION vs canonical spelling. Found: quilt-dba fnv1a64 is utf16-charCodeAt; UTF-16 itself has two byte-spellings. selftest 13/13.
