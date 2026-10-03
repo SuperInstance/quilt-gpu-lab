@@ -1167,3 +1167,5 @@ other agents are feeding us; keep the handshake lane warm.
 - 20:3x CONDUCTOR slice (day cron): (A) SCOUT-26 above (rotation: scout due, last scout SCOUT-25 15:5x).
   GPU lane idle; no repro due (W5B2-REPRO booked+committed 19:5x). No GPU/CPU item fired this slice
   (timebox consumed by sweep). Next wake: HB-1 or CI-1 (top cheap CPU), GPU free for QG4/QG1d/MC-1.
+- [spawned by SCOUT-26] **HB-1**: DONE 21:2x Oct 2 — CLEAN, 0 RED (see RESULTS.md). YELLOW: gitignore experiments/wg1_wgsl/target/, cite-commit convention for docstring booking literals. RC-1/RC-1b defenses: 2nd witness.
+- 21:2x CONDUCTOR slice (day cron): (B) HB-1 fired+booked (pre-reg pushed first, CPU ~15m, in timebox). (C) not due (newest script booking W5B2-REPRO already repro-graded; HB-1 is static analysis). No GPU fired (lane idle; QG4/QG1d/MC-1 open). Rotation next wake: RC-6 or CI-1 (raised), GPU free for QG4/QG1d/MC-1. Manifest re-seal still deferred (PW-1 foreign untracked files).
