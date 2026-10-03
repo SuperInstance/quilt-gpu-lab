@@ -85,6 +85,7 @@ for r in range(R):
     runs["oracle_scores_full"].append(po_all.astype(np.float64).tolist())
     runs["sub_masks"].append(sub.astype(np.int8).tolist())
     a_or = float(roc_auc_score(y, po))
+    Xs = build(rows1, sub)
     # G3 fresh MLP (verbatim QG7 protocol)
     Xtr = torch.tensor(Xs).to(DEV); ytr = torch.tensor(y).to(DEV)
     torch.manual_seed(0)
@@ -128,8 +129,18 @@ for i in range(R):
         rhos.append(float(rho))
 rho_mean = float(np.mean(rhos))
 # ---- secondary: label agreement ----
-Lm = np.array(runs["labels"])  # R x n_sub
-label_agree = float((Lm == Lm[0]).all(axis=0).mean())
+# ---- secondary: label agreement (intersection-aligned, ragged subpops) ----
+agree_fracs = []
+m0 = np.array(runs["sub_masks"][0]) == 1
+pos0 = np.cumsum(m0) - 1  # stream index -> position within run0 subpop
+for j in range(1, R):
+    mj = np.array(runs["sub_masks"][j]) == 1
+    both = m0 & mj
+    lj = np.array(runs["labels"][j])
+    l0 = np.array(runs["labels"][0])[pos0[both]]
+    ljj = lj[np.cumsum(mj)[both] - 1]
+    agree_fracs.append(float((l0 == ljj).mean()))
+label_agree = float(np.mean(agree_fracs))
 
 if rho_mean > 0.9:
     verdict = ("ENSEMBLE~1-2-DRAWS: mean pairwise Spearman %.4f > 0.9 — QG7's 4-rerun ensemble is "

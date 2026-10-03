@@ -5654,3 +5654,22 @@ any relaunch-5.
   `real-probe: UNRUN — <reason>` line. Annotated apply-to: MMX-1 (probe real micromoth.py on the same
   genome, not just sealed exp008 bytes) and QG1d (unrecoverable p_target => UNRUN, gap stands as the
   finding). No GPU fired; lane idle; no repro due (VSB-1 repro PASS at 08:2x, HEAD since only spool/docs).
+
+## [DONE 11:1x CPU/GPU-cheap Oct 3] QG7b BOOKED: INTERMEDIATE (rho 0.787 in [0.5,0.9]) — rerun-ensemble correlation census
+- Pre-reg 6a63faf (gates frozen before fire); NEURO-QUILT n_eff≈2 correlated-judges threat vs QG7's
+  4-rerun ensemble methodology (threatened booking: QG7 P1 FAIL confidence).
+- G1/G2 PASS all 5 reruns (rate@12 in QG2 band; n_sub 834-848). Primary: mean pairwise Spearman of
+  frozen-oracle per-stream scores 0.7865 (pairs bimodal: run0-vs-others 0.466, others-mutual 1.000) —
+  INTERMEDIATE band per pre-reg, NO verdict-language change either way.
+- SHARPENING OBSERVATION (report-only): 4 of 5 reruns were BIT-IDENTICAL within an invocation; only
+  run0 drifts across invocations (rate12 0.5933/0.5806/0.5928 across the three fires — first-lane
+  warm-up class). So QG7's booked ensemble spread 0.546-0.663 was CROSS-invocation variation, not
+  within-invocation judge diversity: effective draws ~2, directionally CONSISTENT with the n_eff≈2
+  threat, but per the frozen gates this lands as a robustness note, not an amendment. QG7 P1 FAIL
+  (point estimate ~0.6) stands; its spread should be read as ~2 effective draws in future citations.
+- Secondary: label agreement vs run0 0.624 (intersection-aligned; run0's subpop differs by ~14 streams).
+- Fail-loud trail: 3 mechanical crashes fixed in place pre-verdict (ragged subpop shapes — Spearman
+  fixed to intersection-align, then labels, then broadcast; each caught before any booking). Declared
+  copy of run_lane verbatim from qg7_gen_asymmetry.py (no __main__ guard there — QO3 precedent).
+- Rotation next wake: (C) mandatory repro of THIS booking (rerun script vs committed results.json),
+  then FW-1 or MMX-1 recon per queue order.
