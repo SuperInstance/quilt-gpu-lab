@@ -5611,3 +5611,16 @@ any relaunch-5.
 - Committed ladder re-run in a CLEAN git worktree at HEAD 5b08c8b (PW-1-safe): POS green, T1-T4 all
   fire, ladder_verdict=(True, 'all 5 rungs correct'); tests/test_canary.py 7/7 in 0.01s. Identical
   to booking. Worktree removed after run (in-memory ladder dirtied nothing — G2 confirmed by use).
+
+## [DONE 06:1x CPU Oct 3] SCOUT-32 + CAN-1 REPRO #2 BOOKED: PASS — quiet sweep, verdict-level
+- SCOUT-32 (full text proposals/runs/SCOUT-32-fleet-push-2026-10-03-1411Z.md): no CONTRADICT.
+  Post-SCOUT-31 window = jev-quilt wipes 65-67 only (clean; q18 64th alarm stays WATCH, no
+  recurrence). No open PRs/issues updated in window across 19 repos; [EMBASSY] none new.
+  qmr1/qmr2 receipt chain + twin-notary already folded into RC-4 (SCOUT-25). Queue unchanged:
+  VSB-1 -> RT-D1 -> MMX-1 -> FW-1. No new items spawned (quiet).
+- CAN-1 REPRO #2 (mandatory C, HEAD 37e7c9b, clean worktree, PW-1-safe): POS green,
+  T1-T4 all fire, ladder_verdict=True; tests/test_canary.py 7/7 in 0.04s. Identical to booking
+  and to the 05:2x repro. Honest note: first repro invocation used a 2-tuple unpack of
+  control_ladder()'s dict return (my wrapper's bug, not the tool's); corrected in place before
+  any verdict.
+- GPU lane idle this slice (rotation: scout was the slot). Next wake: (B) VSB-1.
