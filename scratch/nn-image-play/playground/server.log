@@ -1,0 +1,42 @@
+portal: http://0.0.0.0:8790/   (gen -> /home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/playground/gen)
+scratch: /home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play   fleet: /home/eileen/projects/dicebear-quilt/quilt/play-2026-10-02/png
+[http] 127.0.0.1 "GET /api/health HTTP/1.1" 200 -
+[http] 127.0.0.1 "POST /api/chat HTTP/1.1" 200 -
+[ev] job 53728f3585 started: make lucineer neon and more menacing
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 200 -
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 1340.15it/s]
+Loading pipeline components...:   0%|          | 0/6 [00:00<?, ?it/s]Loading pipeline components...:  67%|██████▋   | 4/6 [00:00<00:00, 35.97it/s]There are modules in UNet2DConditionModel that should be kept in float32: []. Casting directly with `to()` can lead to inconsistent results; set `torch_dtype` in `from_pretrained()` instead to keep these modules in float32.
+There are modules in AutoencoderKL that should be kept in float32: []. Casting directly with `to()` can lead to inconsistent results; set `torch_dtype` in `from_pretrained()` instead to keep these modules in float32.
+Loading pipeline components...: 100%|██████████| 6/6 [00:00<00:00, 33.48it/s]
+You have disabled the safety checker for <class 'diffusers.pipelines.controlnet.pipeline_controlnet_img2img.StableDiffusionControlNetImg2ImgPipeline'> by passing `safety_checker=None`. Ensure that you abide to the conditions of the Stable Diffusion license and do not expose unfiltered results in services or applications open to the public. Both the diffusers team and Hugging Face strongly recommend to keep the safety filter enabled in all public facing circumstances, disabling it only for use-cases that involve analyzing network behavior or auditing its results. For more information, please have a look at https://github.com/huggingface/diffusers/pull/254 .
+No LoRA keys associated to CLIPTextModel found with the prefix='text_encoder'. This is safe to ignore if LoRA state dict didn't originally have any CLIPTextModel related params. You can also try specifying `prefix=None` to resolve the warning. Otherwise, open an issue if you think it's unexpected: https://github.com/huggingface/diffusers/issues/new
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 200 -
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [00:00<00:02,  1.42it/s] 50%|█████     | 2/4 [00:01<00:01,  1.79it/s] 75%|███████▌  | 3/4 [00:01<00:00,  1.95it/s]100%|██████████| 4/4 [00:02<00:00,  2.03it/s]100%|██████████| 4/4 [00:02<00:00,  1.92it/s]
+[ev] timelapse ready: 53728f3585 (6 frames)
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 8977.37it/s]
+Loading weights:   0%|          | 0/223 [00:00<?, ?it/s]Loading weights:  62%|██████▏   | 139/223 [00:00<00:00, 1386.91it/s]Loading weights: 100%|██████████| 223/223 [00:00<00:00, 1307.86it/s]
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 200 -
+[ev] job 53728f3585 verdict: REJECTED clip 0.7389 dino 0.1972 noul 0.04
+[ev] job 53728f3585 done
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/timelapse HTTP/1.1" 200 -
+[ev] gif saved: tl_53728f3585.gif (6 frames)
+[http] 127.0.0.1 "GET /api/timelapse.gif HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/gallery HTTP/1.1" 200 -
