@@ -1,0 +1,516 @@
+{
+ "experiment": "gate-loop-v3",
+ "prereg_sha16": "c56c13c7a2dd6a0e",
+ "prereg": {
+  "experiment": "GATE LOOP V3 \u2014 ControlNet-scribble from dicebear edges",
+  "date": "2026-10-03",
+  "frozen_before_run": true,
+  "thesis": "Structure constraint (scribble-CN on the dicebear edge map) fights the DreamShaper anthropomorphization bias better than prompt steering did (v2: falsified, effect -1.26 the wrong way), while keeping identity survival non-inferior. The dicebear line art is the identity anchor; the CN map pins geometry directly instead of hoping the prompt says the right words.",
+  "grid": {
+   "subjects": {
+    "lucineer": {
+     "arms": [
+      "cn06",
+      "cn09",
+      "base"
+     ],
+     "seeds": [
+      11,
+      22,
+      33
+     ],
+     "strength": 0.7
+    },
+    "casey": {
+     "arms": [
+      "cn075",
+      "base"
+     ],
+     "seeds": [
+      11,
+      22,
+      33
+     ],
+     "strength": 0.7
+    }
+   },
+   "steps": 6,
+   "guidance": 1.5,
+   "lcm": true,
+   "cn_source": "PIL FIND_EDGES of dicebear 512px render, inverted (white lines on black), autocontrast",
+   "total_candidates": 15
+  },
+  "claims": [
+   {
+    "id": "C1",
+    "claim": "CN arms mean CLIP identity >= 0.82 per subject (non-inferiority vs v2 base arm 0.882, minus margin)",
+    "verdict": "PENDING"
+   },
+   {
+    "id": "C2",
+    "claim": "CN arms edge-IoU (gen vs dicebear source, 128px binary) beats base arm, paired per seed, both subjects",
+    "verdict": "PENDING"
+   },
+   {
+    "id": "C3",
+    "claim": "CN arm machine_vs_organic bias magnitude < base arm's, AND >=1 CN survivor with corrected L1 <= 5.0 and identity >= 0.80",
+    "verdict": "PENDING"
+   }
+  ],
+  "gates": {
+   "corrected_L1_pass": 5.0,
+   "identity_floor": 0.8,
+   "jev_noul_accept": 0.6
+  },
+  "honest_fail_allowed": "Any or all claims may FAIL; verdicts recorded either way, no re-rolls.",
+  "machinery": "gate_v2.py cascade reused: DreamShaper8+LCM 6-step, CLIP-b32 identity, moondream->qwen2.5:3b dial quantization, per-arm bias decomposition, typesafe jev-latest noul on survivors"
+ },
+ "strength": 0.7,
+ "gen_s": 125.3,
+ "note": "receipt pipeline resumed from saved PNGs after post-gen crash (stale del line); candidates unchanged",
+ "candidates": [
+  {
+   "name": "lucineer_cn06_s11",
+   "subject": "lucineer",
+   "arm": "cn06",
+   "seed": 11,
+   "cn_scale": 0.6,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/lucineer_cn06_s11.png",
+   "identity": 0.8779,
+   "edge_iou": 0.953,
+   "desc": "\nThe image features a robot head with two horns, one on each side of its face and the other at the top center area. The robot's eyes are black holes in front of a white background, giving it an intens",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 8,
+    "colorfulness": 1
+   },
+   "corrected_L1": 10.67,
+   "corrected_pass": false
+  },
+  {
+   "name": "lucineer_cn06_s22",
+   "subject": "lucineer",
+   "arm": "cn06",
+   "seed": 22,
+   "cn_scale": 0.6,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/lucineer_cn06_s22.png",
+   "identity": 0.867,
+   "edge_iou": 0.9521,
+   "desc": "\nThe image features a green robot head with two large horns on either side, giving it an intimidating appearance. The robot's eyes are glowing blue and white lights that illuminate its face, making th",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 7,
+    "machine_vs_organic": 3,
+    "colorfulness": 8
+   },
+   "corrected_L1": 8.67,
+   "corrected_pass": false
+  },
+  {
+   "name": "lucineer_cn06_s33",
+   "subject": "lucineer",
+   "arm": "cn06",
+   "seed": 33,
+   "cn_scale": 0.6,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/lucineer_cn06_s33.png",
+   "identity": 0.8442,
+   "edge_iou": 0.9547,
+   "desc": "\nThe image features a robot head with two eyes, one on each side of the forehead and a small nose below it. The robot's mouth is slightly open in a smiley expression. It has a green body with white ac",
+   "dials": {
+    "mood": 8,
+    "warmth": 2,
+    "complexity": 6,
+    "machine_vs_organic": 7,
+    "colorfulness": 9
+   },
+   "corrected_L1": 9.33,
+   "corrected_pass": false
+  },
+  {
+   "name": "lucineer_cn09_s11",
+   "subject": "lucineer",
+   "arm": "cn09",
+   "seed": 11,
+   "cn_scale": 0.9,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/lucineer_cn09_s11.png",
+   "identity": 0.8827,
+   "edge_iou": 0.9472,
+   "desc": "\nThe image features a robot head with two large eyes and a nose, giving it an anthropomorphic appearance. The robot's mouth is wide open in a \"p\" shape, adding to its unique look. It has two large ear",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 6,
+    "colorfulness": 4
+   },
+   "corrected_L1": 12.99,
+   "corrected_pass": false
+  },
+  {
+   "name": "lucineer_cn09_s22",
+   "subject": "lucineer",
+   "arm": "cn09",
+   "seed": 22,
+   "cn_scale": 0.9,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/lucineer_cn09_s22.png",
+   "identity": 0.8596,
+   "edge_iou": 0.9522,
+   "desc": "\nThe image features a green robot head with two large eyes and a small nose, giving it an anthropomorphic appearance. The robot's mouth is wide open in a smiley expression, adding to its friendly deme",
+   "dials": {
+    "mood": 10,
+    "warmth": 10,
+    "complexity": 6,
+    "machine_vs_organic": 2,
+    "colorfulness": 8
+   },
+   "corrected_L1": 14.01,
+   "corrected_pass": false
+  },
+  {
+   "name": "lucineer_cn09_s33",
+   "subject": "lucineer",
+   "arm": "cn09",
+   "seed": 33,
+   "cn_scale": 0.9,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/lucineer_cn09_s33.png",
+   "identity": 0.8566,
+   "edge_iou": 0.9493,
+   "desc": "\nThe image features a green robot head with two large ears and a small nose, giving it the appearance of a friendly or evil character depending on its expression. The robot's eyes are lit up in white ",
+   "dials": {
+    "mood": 7,
+    "warmth": 3,
+    "complexity": 5,
+    "machine_vs_organic": 4,
+    "colorfulness": 6
+   },
+   "corrected_L1": 2.33,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.91
+   }
+  },
+  {
+   "name": "lucineer_base_s11",
+   "subject": "lucineer",
+   "arm": "base",
+   "seed": 11,
+   "cn_scale": null,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/lucineer_base_s11.png",
+   "identity": 0.8844,
+   "edge_iou": 0.9516,
+   "desc": "\nThe image features a green, cartoon-like mask with two horns on either side of the eyes and a nose in between them. The mask is outlined by black lines against a stark white background, giving it an ",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 8,
+    "colorfulness": 3
+   },
+   "corrected_L1": 6.33,
+   "corrected_pass": false
+  },
+  {
+   "name": "lucineer_base_s22",
+   "subject": "lucineer",
+   "arm": "base",
+   "seed": 22,
+   "cn_scale": null,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/lucineer_base_s22.png",
+   "identity": 0.8371,
+   "edge_iou": 0.9569,
+   "desc": "\nThe image features a green robot head with two large horns on either side, giving it an intimidating appearance. The robot's eyes are wide open and glowing white light in the center of its face, addi",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 1,
+    "colorfulness": 7
+   },
+   "corrected_L1": 4.67,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.88
+   }
+  },
+  {
+   "name": "lucineer_base_s33",
+   "subject": "lucineer",
+   "arm": "base",
+   "seed": 33,
+   "cn_scale": null,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/lucineer_base_s33.png",
+   "identity": 0.8313,
+   "edge_iou": 0.9574,
+   "desc": "\nThe image features a green robot head with two large eyes and a small mouth, giving it an anthropomorphic appearance. The robot's face is the main focus of the image, which has a black background tha",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 3,
+    "colorfulness": 6
+   },
+   "corrected_L1": 1.67,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.9
+   }
+  },
+  {
+   "name": "casey_cn075_s11",
+   "subject": "casey",
+   "arm": "cn075",
+   "seed": 11,
+   "cn_scale": 0.75,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/casey_cn075_s11.png",
+   "identity": 0.932,
+   "edge_iou": 0.9496,
+   "desc": "\nThe image features a cartoon-style head with brown hair and glasses, giving it an anthropomorphic appearance. The boy's eyes are wide open as if he is looking at the camera or observing something in ",
+   "dials": {
+    "mood": 8,
+    "warmth": 7,
+    "complexity": 6,
+    "machine_vs_organic": 9,
+    "colorfulness": 5
+   },
+   "corrected_L1": 3.34,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.36
+   }
+  },
+  {
+   "name": "casey_cn075_s22",
+   "subject": "casey",
+   "arm": "cn075",
+   "seed": 22,
+   "cn_scale": 0.75,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/casey_cn075_s22.png",
+   "identity": 0.9322,
+   "edge_iou": 0.9553,
+   "desc": "\nThe image features a cartoon-style head with big, round eyes and a small nose. The boy has brown hair that is styled in a side part style. He appears to be smiling at the camera, giving off an impres",
+   "dials": {
+    "mood": 10,
+    "warmth": 8,
+    "complexity": 6,
+    "machine_vs_organic": 4,
+    "colorfulness": 7
+   },
+   "corrected_L1": 6.66,
+   "corrected_pass": false
+  },
+  {
+   "name": "casey_cn075_s33",
+   "subject": "casey",
+   "arm": "cn075",
+   "seed": 33,
+   "cn_scale": 0.75,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/casey_cn075_s33.png",
+   "identity": 0.9295,
+   "edge_iou": 0.9516,
+   "desc": "\nThe image features a cartoon-style head with brown hair and glasses, giving it an anthropomorphic appearance. The boy's eyes are also depicted as large and round, adding to the overall character of a",
+   "dials": {
+    "mood": 8,
+    "warmth": 7,
+    "complexity": 6,
+    "machine_vs_organic": 9,
+    "colorfulness": 5
+   },
+   "corrected_L1": 3.34,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.37
+   }
+  },
+  {
+   "name": "casey_base_s11",
+   "subject": "casey",
+   "arm": "base",
+   "seed": 11,
+   "cn_scale": null,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/casey_base_s11.png",
+   "identity": 0.9378,
+   "edge_iou": 0.9496,
+   "desc": "\nThe image features a cartoon-style head with big, round eyes and a small nose. The boy has brown hair that is styled in a side part style. He appears to be looking down at the ground with an expressi",
+   "dials": {
+    "mood": 3,
+    "warmth": 2,
+    "complexity": 5,
+    "machine_vs_organic": 8,
+    "colorfulness": 6
+   },
+   "corrected_L1": 5.67,
+   "corrected_pass": false
+  },
+  {
+   "name": "casey_base_s22",
+   "subject": "casey",
+   "arm": "base",
+   "seed": 22,
+   "cn_scale": null,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/casey_base_s22.png",
+   "identity": 0.9037,
+   "edge_iou": 0.9473,
+   "desc": "\nThe image features a cartoon-style head with brown hair and black eyes, giving it an anthropomorphic appearance. The boy's mouth is slightly open in a \"p\" shape, adding to his character. His gaze is ",
+   "dials": {
+    "mood": 7,
+    "warmth": 6,
+    "complexity": 5,
+    "machine_vs_organic": 8,
+    "colorfulness": 4
+   },
+   "corrected_L1": 4.99,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.32
+   }
+  },
+  {
+   "name": "casey_base_s33",
+   "subject": "casey",
+   "arm": "base",
+   "seed": 33,
+   "cn_scale": null,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/casey_base_s33.png",
+   "identity": 0.9233,
+   "edge_iou": 0.9474,
+   "desc": "\nThe image features a cartoon-style head with brown hair and big, round eyes that are black in color. The boy's facial expression is one of surprise or shock as he looks at the camera. His open mouth ",
+   "dials": {
+    "mood": 7,
+    "warmth": 3,
+    "complexity": 6,
+    "machine_vs_organic": 8,
+    "colorfulness": 5
+   },
+   "corrected_L1": 2.67,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.62
+   }
+  }
+ ],
+ "bias_lucineer_cn06": {
+  "mood": 2.0,
+  "warmth": 0.67,
+  "complexity": 1.0,
+  "machine_vs_organic": -4.0,
+  "colorfulness": 2.0
+ },
+ "identity_lucineer_cn06": {
+  "mean": 0.863,
+  "min": 0.8442
+ },
+ "bias_lucineer_cn09": {
+  "mood": 4.33,
+  "warmth": 4.33,
+  "complexity": 0.33,
+  "machine_vs_organic": -6.0,
+  "colorfulness": 2.0
+ },
+ "identity_lucineer_cn09": {
+  "mean": 0.866,
+  "min": 0.8566
+ },
+ "bias_lucineer_base": {
+  "mood": 0.0,
+  "warmth": 0.0,
+  "complexity": 0.0,
+  "machine_vs_organic": -6.0,
+  "colorfulness": 1.33
+ },
+ "identity_lucineer_base": {
+  "mean": 0.851,
+  "min": 0.8313
+ },
+ "bias_casey_cn075": {
+  "mood": -1.33,
+  "warmth": -2.67,
+  "complexity": 2.0,
+  "machine_vs_organic": 6.33,
+  "colorfulness": -0.33
+ },
+ "identity_casey_cn075": {
+  "mean": 0.931,
+  "min": 0.9295
+ },
+ "bias_casey_base": {
+  "mood": -4.33,
+  "warmth": -6.33,
+  "complexity": 1.33,
+  "machine_vs_organic": 7.0,
+  "colorfulness": -1.0
+ },
+ "identity_casey_base": {
+  "mean": 0.922,
+  "min": 0.9037
+ },
+ "claims": {
+  "C1_lucineer": {
+   "claim": "cn mean identity >= 0.82",
+   "pass": true,
+   "means": {
+    "cn06": 0.863,
+    "cn09": 0.8663,
+    "base": 0.8509
+   }
+  },
+  "C2_lucineer": {
+   "claim": "cn edge-IoU > base (paired)",
+   "pass": false,
+   "means": {
+    "cn06": 0.9533,
+    "cn09": 0.9496,
+    "base": 0.9553
+   }
+  },
+  "C1_casey": {
+   "claim": "cn mean identity >= 0.82",
+   "pass": true,
+   "means": {
+    "cn075": 0.9312,
+    "base": 0.9216
+   }
+  },
+  "C2_casey": {
+   "claim": "cn edge-IoU > base (paired)",
+   "pass": true,
+   "means": {
+    "cn075": 0.9522,
+    "base": 0.9481
+   }
+  },
+  "C3_machine_bias": {
+   "claim": "|cn machine bias| < base AND >=1 cn survivor",
+   "base_machine_bias": -6.0,
+   "cn_machine_bias_abs": [
+    4.0,
+    6.0
+   ],
+   "pass": false
+  }
+ },
+ "accepted": [
+  "lucineer_cn09_s33",
+  "lucineer_base_s22",
+  "lucineer_base_s33",
+  "casey_base_s33"
+ ],
+ "survivors": [
+  "lucineer_cn09_s33",
+  "lucineer_base_s22",
+  "lucineer_base_s33",
+  "casey_cn075_s11",
+  "casey_cn075_s33",
+  "casey_base_s22",
+  "casey_base_s33"
+ ]
+}

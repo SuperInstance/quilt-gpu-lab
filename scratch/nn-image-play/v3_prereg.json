@@ -1,0 +1,21 @@
+{
+  "experiment": "GATE LOOP V3 — ControlNet-scribble from dicebear edges",
+  "date": "2026-10-03",
+  "frozen_before_run": true,
+  "thesis": "Structure constraint (scribble-CN on the dicebear edge map) fights the DreamShaper anthropomorphization bias better than prompt steering did (v2: falsified, effect -1.26 the wrong way), while keeping identity survival non-inferior. The dicebear line art is the identity anchor; the CN map pins geometry directly instead of hoping the prompt says the right words.",
+  "grid": {
+    "subjects": {"lucineer": {"arms": ["cn06", "cn09", "base"], "seeds": [11, 22, 33], "strength": 0.7},
+                 "casey": {"arms": ["cn075", "base"], "seeds": [11, 22, 33], "strength": 0.7}},
+    "steps": 6, "guidance": 1.5, "lcm": true,
+    "cn_source": "PIL FIND_EDGES of dicebear 512px render, inverted (white lines on black), autocontrast",
+    "total_candidates": 15
+  },
+  "claims": [
+    {"id": "C1", "claim": "CN arms mean CLIP identity >= 0.82 per subject (non-inferiority vs v2 base arm 0.882, minus margin)", "verdict": "PENDING"},
+    {"id": "C2", "claim": "CN arms edge-IoU (gen vs dicebear source, 128px binary) beats base arm, paired per seed, both subjects", "verdict": "PENDING"},
+    {"id": "C3", "claim": "CN arm machine_vs_organic bias magnitude < base arm's, AND >=1 CN survivor with corrected L1 <= 5.0 and identity >= 0.80", "verdict": "PENDING"}
+  ],
+  "gates": {"corrected_L1_pass": 5.0, "identity_floor": 0.80, "jev_noul_accept": 0.6},
+  "honest_fail_allowed": "Any or all claims may FAIL; verdicts recorded either way, no re-rolls.",
+  "machinery": "gate_v2.py cascade reused: DreamShaper8+LCM 6-step, CLIP-b32 identity, moondream->qwen2.5:3b dial quantization, per-arm bias decomposition, typesafe jev-latest noul on survivors"
+}
