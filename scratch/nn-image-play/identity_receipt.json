@@ -1,0 +1,21 @@
+{
+ "identity_metric": "clip-vit-b32 cosine",
+ "strength": 0.55,
+ "steps": 30,
+ "targets": {
+  "lucineer": {
+   "identity_cosine": 0.8318,
+   "decoy_baseline_cosine": 0.7745,
+   "delta_over_decoy": 0.0573,
+   "gen_s": 4.2
+  },
+  "casey": {
+   "identity_cosine": 0.9496,
+   "decoy_baseline_cosine": 0.8404,
+   "delta_over_decoy": 0.1092,
+   "gen_s": 3.2
+  }
+ },
+ "load_s": 14.2,
+ "vram_after_MiB": 585
+}
