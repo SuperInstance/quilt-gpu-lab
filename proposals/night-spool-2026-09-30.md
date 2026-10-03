@@ -1283,3 +1283,4 @@ other agents are feeding us; keep the handshake lane warm.
   paths (PW-1; deferred per standing precedent). No new items spawned. Rotation next wake:
   (C) mandatory repro of QG7b booking (rerun script vs committed results.json), then FW-1 or
   MMX-1 recon per queue order.
+- 12:2x CONDUCTOR slice (day cron Oct 3): (C) QG7b repro PASS (verdict-level, see RESULTS.md — run0-drift pattern replicated). (A) SCOUT-35: fleet-triage NEURO-QUILT 47d3239 corroborates QG7b mechanistically (n_eff≈2, "never score a panel on coherence"); edge-watch #19 WATCH on our QG7b prereg is ANSWERED by booking 247620d (read-only, no comment); canons 3 new scouts all RC-1b-class; NO CONTRADICT; [EMBESSY-typos none, pong #49 unchanged. Spawned NEURO-CITE (docs ~10m). Rotation next wake: (B) NEURO-CITE then FW-1; GPU free for QG1d/QG4/MMX-1.

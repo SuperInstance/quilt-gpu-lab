@@ -5673,3 +5673,13 @@ any relaunch-5.
   copy of run_lane verbatim from qg7_gen_asymmetry.py (no __main__ guard there — QO3 precedent).
 - Rotation next wake: (C) mandatory repro of THIS booking (rerun script vs committed results.json),
   then FW-1 or MMX-1 recon per queue order.
+
+## [DONE 12:2x CPU/GPU-cheap Oct 3] QG7b REPRO BOOKED: PASS (verdict-level) — mandatory (C) on newest booking
+- Committed script re-run at HEAD 3658c1c (clean for the script; scratch elsewhere): G1 PASS (rates
+  0.5864/0.5859x4), G2 PASS (n_sub 847/848x4), primary mean pairwise Spearman 0.7819 (booked 0.7865)
+  — INTERMEDIATE band [0.5,0.9] again, verdict identical. Secondary label-agreement 0.647 (booked 0.624).
+- **Pattern replicated**: run0 drifts (rate12 0.5864), runs 1-4 BIT-IDENTICAL (0.5859) — the
+  warm-up/first-lane-drift class from the booking reproduced across invocations. QG7 spread = ~2
+  effective draws: reconfirmed. Booked outputs archived to
+  results/qg7b_rerun_correlation/repro-20261003-1215/results.booked.json (archive-never-delete);
+  repro run overwrote results.json in place per script contract.

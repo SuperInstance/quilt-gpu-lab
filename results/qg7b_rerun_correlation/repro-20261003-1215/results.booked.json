@@ -2,38 +2,38 @@
  "G1": true,
  "G2": true,
  "rate12_runs": [
-  0.58642578125,
+  0.5927734375,
   0.5859375,
   0.5859375,
   0.5859375,
   0.5859375
  ],
  "n_sub_runs": [
-  847,
+  834,
   848,
   848,
   848,
   848
  ],
  "auc_oracle_runs": [
-  0.5837688430539103,
+  0.6011092459301483,
   0.578032378433271,
   0.578032378433271,
   0.578032378433271,
   0.578032378433271
  ],
  "auc_fresh_runs": [
-  0.741696281327666,
+  0.776287981256944,
   0.7604001842099049,
   0.7604001842099049,
   0.7604001842099049,
   0.7604001842099049
  ],
  "pairwise_spearman": [
-  0.4546713756257021,
-  0.4546713756257021,
-  0.4546713756257021,
-  0.4546713756257021,
+  0.46634631938090065,
+  0.46634631938090065,
+  0.46634631938090065,
+  0.46634631938090065,
   0.9999999999999999,
   0.9999999999999999,
   0.9999999999999999,
@@ -41,14 +41,14 @@
   0.9999999999999999,
   0.9999999999999999
  ],
- "spearman_mean": 0.7818685502502808,
- "spearman_intersection_min": 609,
- "label_agreement_vs_run0": 0.6469622331691297,
- "verdict": "INTERMEDIATE: mean pairwise Spearman 0.7819 in [0.5,0.9] \u2014 no verdict-language change either way per pre-reg.",
+ "spearman_mean": 0.7865385277523602,
+ "spearman_intersection_min": 596,
+ "label_agreement_vs_run0": 0.6241610738255033,
+ "verdict": "INTERMEDIATE: mean pairwise Spearman 0.7865 in [0.5,0.9] \u2014 no verdict-language change either way per pre-reg.",
  "pinned": {
   "qcell_sim": "8c82d4bcc88370c0",
   "qcell_oracle.pt": "fed2c15fb506899f"
  },
- "elapsed_s": 19.00841498374939,
+ "elapsed_s": 19.21393084526062,
  "honest_notes": "run_lane copied verbatim from qg7_gen_asymmetry.py (no __main__ guard there; import-executes \u2014 QO3 precedent, declared). G3 refit here uses full-subpop train AUC (no 80/20 split) as a cheap diversity probe only \u2014 QG7's booked G3 numbers remain the canonical ones; this run's fresh AUCs are NOT comparable."
 }
