@@ -5589,3 +5589,20 @@ any relaunch-5.
   CI-1 doctrine; STEAL crab-traps mutation-verified control ladder -> spawned CAN-1; fleet-bench fake
   validator = 4th RC-1b witness (noted, no new item). jev-quilt q18 single noisy alarm = WATCH only.
 - No GPU item (lane idle; scout was the slot). Next wake per rotation: (B) CAN-1 or RC-6.
+
+## [DONE 04:2x CPU Oct 3] CAN-1 BOOKED: PASS (G1-G4) — canary control ladder landed
+- Pre-reg 6e62df5 (gates frozen before fire); fire commit follows this booking.
+- G1 PASS: control_ladder() runs POS(green) + T1 tamper-expectation + T2 wrong-pin-tip (non-canonical
+  0x024a… text rejected) + T3 tamper-input-bytes (café→cafe twin diverges) + T4 tamper-canon-ops
+  (gate rename moves alphabet pin) — all T-rungs RED, POS GREEN, single fail-closed verdict.
+- G2 PASS: ladder is IN-MEMORY (no writes; git status unchanged after run) — "self-test must not
+  dirty the tree" ported from crab-traps; RC-5 push-time --check layer NOT duplicated (separate item).
+- G3 PASS: mutation-sanity test sabotages the T3 detector and the verdict flips fail-closed
+  (crab-traps 1-hex-flip doctrine applied to the ladder itself).
+- G4: test_canary 7/7; full suite 27 passed + 3 failed = the KNOWN PW-1 dirty-tree class in the main
+  tree (unchanged set; CI sees the committed tree). En-route fix booked honestly: first ladder
+  implementation compared hex() against a zero-padded form (never equal — the comparison ITSELF was
+  the L9(d) violation) and POS/T rung flags mixed ok/fired semantics; caught by the POS gate before
+  any booking, fixed in place, pre-reg gates unchanged.
+- crab-traps 47b-self-test.mjs (SCOUT-30) consumed; RC-1b evidence list gains fleet-bench
+  cross_validate.py as 4th witness at its fire time.
