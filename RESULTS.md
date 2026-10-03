@@ -5606,3 +5606,8 @@ any relaunch-5.
   any booking, fixed in place, pre-reg gates unchanged.
 - crab-traps 47b-self-test.mjs (SCOUT-30) consumed; RC-1b evidence list gains fleet-bench
   cross_validate.py as 4th witness at its fire time.
+
+## [DONE 05:2x CPU Oct 3] CAN-1 REPRO BOOKED: PASS (verdict-level) — mandatory (C) on newest booking
+- Committed ladder re-run in a CLEAN git worktree at HEAD 5b08c8b (PW-1-safe): POS green, T1-T4 all
+  fire, ladder_verdict=(True, 'all 5 rungs correct'); tests/test_canary.py 7/7 in 0.01s. Identical
+  to booking. Worktree removed after run (in-memory ladder dirtied nothing — G2 confirmed by use).
