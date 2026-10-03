@@ -4,7 +4,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "tools"))
 
 from canary import (CANARY_HEX, FLEET_CANARY, ACCENTED_TRAP, ALPHABET_CANARY,
-                    CANON_GATES, fnv1a64, alphabet_canary)
+                    CANON_GATES, fnv1a64, alphabet_canary, control_ladder, ladder_verdict)
 
 
 def test_byte_canary():
@@ -40,3 +40,23 @@ def test_NEGATIVE_CONTROL_renaming_a_gate_moves_the_pin():
     assert renamed != CANON_GATES
     assert alphabet_canary(renamed) != ALPHABET_CANARY
     assert alphabet_canary(CANON_GATES) == ALPHABET_CANARY
+
+
+def test_CAN1_ladder_all_rungs():
+    """CAN-1 G1: T1-T4 RED, POS GREEN, in one run."""
+    rungs = control_ladder()
+    assert set(rungs) == {"POS", "T1-tamper-expectation", "T2-wrong-pin-tip",
+                          "T3-tamper-input-bytes", "T4-tamper-canon-ops"}
+    ok, reason = ladder_verdict(rungs)
+    assert ok, reason
+
+
+def test_CAN1_ladder_mutation_sanity():
+    """CAN-1 G3: the ladder itself is verified — sabotage a rung's detector and the
+    verdict must flip fail-closed (crab-traps: 1 hex flip => EXIT=1 doctrine)."""
+    rungs = control_ladder()
+    name = "T3-tamper-input-bytes"
+    expect_red, _ = rungs[name]
+    rungs[name] = (expect_red, False)  # simulate a detector blind to the tamper
+    ok, reason = ladder_verdict(rungs)
+    assert not ok and name in reason
