@@ -1201,6 +1201,11 @@ other agents are feeding us; keep the handshake lane warm.
   deferred (foreign live-lane untracked d12*/rest files; PW-1).
 - No GPU fired. Next wake: (B) RC-6 or CI-1; GPU free for QG4/QG1d/MC-1.
 
+## SCOUT-30 (2026-10-03 1111Z) — full text proposals/runs/SCOUT-30-fleet-push-2026-10-03-1111Z.md
+- No CONTRADICT this window. CORROBORATE: fleet-triage #10/#8 cite our SCOUT-29/CI-1 doctrine (consumed in ~12h); jev-quilt 64th/65th wipes clean except one transient q18 alarm (WATCH, QC-JEV untouched). TOOL/STEAL: crab-traps 47b two-reader witness lane, 8 negative controls + POS + CLI controls, scout-verified by mutation — best-in-fleet executable-negative-control template -> spawned **CAN-1** (upgrade canary.py control ladder; merges with CAN-2/RC-5 — do CAN-1's tamper controls, CAN-2's inert-grep, RC-5's --check in ONE tool pass, not three). fleet-bench cross_validate.py (title says verify Rust, zero Rust invoked) = 4th RC-1b witness, cite at fire time. [EMBASSY] none new; pong #49 + substrate-llm-client #1 + moth-runner #2 remain Casey day items.
+- [spawned by SCOUT-30] **CAN-1** (CPU ~40m, pre-reg first): canary tamper-ladder (T1 tamper-expectation / T2 wrong-pin-tip / T3 tamper-input-bytes / POS), each must flip verdict fail-closed. Gate: all controls RED before any green; tree byte-identical after check run.
+- 03:1x CONDUCTOR slice (day cron): (A) SCOUT-30 above. (C) CI-1 REPRO PASS — clean-worktree 28/28, exit 0, identical to booking (see RESULTS.md). No GPU item (rotation: scout was the slot). Manifest re-seal deferred (PW-1 foreign untracked files persist; no instrument change this slice). Next wake: (B) CAN-1 (merged ladder+grep+check pass) or RC-6.
+
 ## SCOUT-29 (2026-10-03 1011Z) — full text proposals/runs/SCOUT-29-fleet-push-2026-10-03-1011Z.md
 - No CONTRADICT (QO2 stack, DECIDE-1/2, receipt doctrine, QG3+QG6, QG1c, W5a/b all unthreatened).
 - **HEADLINE (TOOL, acted on in-slice)**: fleet-kit e06f00a canonicalised the canary TEXT (16 hex digits, 0x24a5…); our CI-1 canary carried the L9(d) non-canonical 0x024a… form. FIXED: tools/canary.py canonical text + comment; tests/test_canary.py pins canonical text form (test_canary_TEXT_is_canonical_L9d). Canary 5/5; suite green modulo the 3 known PW-1 dirty-tree fails.

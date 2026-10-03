@@ -5580,3 +5580,12 @@ any relaunch-5.
 - Canon gates pinned: {crx,cx,h,rx,rz,swap,x} alphabet pin 0xCA289D4829D9A834 (tools/canary.py; FNV-1a64 template
   verbatim from SuperInstance/fleet-kit fleetlint, MIT). Main working tree stays locally red on 3 dirty-tree tests
   (PW-1 foreign untracked files; sealer correctly refuses) — CI sees the committed tree and is green.
+
+## [DONE 03:1x CPU Oct 3] CI-1 REPRO BOOKED: PASS (verdict-level) — mandatory (C) on newest booking
+- Committed suite re-run in a CLEAN git worktree at HEAD 35306c2 (PW-1-safe; main tree carries foreign
+  untracked files only): 28/28 passed in 0.77s, exit 0 — identical to booking (27 base tests + canary
+  negative-control pin). Fail-closed CI + fleet canary reproducible from the committed tree.
+- SCOUT-30 landed 11:11Z (rotation (A) this window): no CONTRADICT; fleet-triage #10/#8 consuming our
+  CI-1 doctrine; STEAL crab-traps mutation-verified control ladder -> spawned CAN-1; fleet-bench fake
+  validator = 4th RC-1b witness (noted, no new item). jev-quilt q18 single noisy alarm = WATCH only.
+- No GPU item (lane idle; scout was the slot). Next wake per rotation: (B) CAN-1 or RC-6.
