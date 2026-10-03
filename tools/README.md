@@ -34,6 +34,14 @@ piece others can lift. Grab = copy the file; everything here runs alone.
   clauses fail; the clause wins (see attempt-2 booking). Both KEEP and KILL
   are first-class results.
 
+- **floor-law-fit** — `tools/floor_law_fit.py`
+  Fit + validate a discovery-floor power law (D12p/D12n pattern): log-log
+  regression of C(p)=C0*(2p-1)^-beta on a designated fit subset, then
+  HELD-OUT coverage check — does the fitted constant predict floors at
+  p values it never saw, without refitting? G1 fit quality (R^2 >= 0.8),
+  G2 coverage + non-vacuous bound; fail-loud JSON receipt either way.
+  Stdlib-only. `python tools/floor_law_fit.py --points pts.json --fit 0.3,0.4 --heldout 0.6,0.7 [--alpha 1.92 --w 8 --out receipt.json]` (or `--example` self-test). Smoke 2026-10-03: PASS, R^2=1.0, held-out ratio 1.0.
+
 ## Coordination platform (lives in SuperInstance/quilt-i2i)
 
 - **i2i-ledger worker** — live shared semantic memory:
