@@ -1,0 +1,108 @@
+{
+  "tool": "tools/vendor_strip_census.py",
+  "pre_reg": "proposals/runs/VSB-1-vendor-strip-census.md",
+  "head": "734cfc8dbfbd2a6ed2f9fe533fd818448b49fa79",
+  "g1_two_method_agreement": true,
+  "raw_total_bytes": 910345285,
+  "raw_files": 3539,
+  "vendored_bytes": 329690757,
+  "vendored_files": 637,
+  "vendored_share": 0.36216,
+  "real_bytes": 580654528,
+  "real_files": 2902,
+  "top_real": [
+    {
+      "path": "results/d4_adapter_full/adapter_model.safetensors",
+      "bytes": 73911112
+    },
+    {
+      "path": "results/xp_a/c_train.npz",
+      "bytes": 49200490
+    },
+    {
+      "path": "results/xp_a2/c_train.npz",
+      "bytes": 49200490
+    },
+    {
+      "path": "results/d15_adapter_smoke/adapter_model.safetensors",
+      "bytes": 35237104
+    },
+    {
+      "path": "results/d4_adapter_smoke/adapter_model.safetensors",
+      "bytes": 35237104
+    },
+    {
+      "path": "results/d2_v1/d2_v1_traces.json",
+      "bytes": 23788661
+    },
+    {
+      "path": "results/c3_probe.json",
+      "bytes": 15148293
+    },
+    {
+      "path": "results/xp_a/c_val.npz",
+      "bytes": 12300490
+    },
+    {
+      "path": "results/xp_a2/c_val.npz",
+      "bytes": 12300490
+    },
+    {
+      "path": "results/a2_ga4444/dataset.jsonl",
+      "bytes": 11893070
+    },
+    {
+      "path": "results/comp2_corpus/corpus.jsonl",
+      "bytes": 7584332
+    },
+    {
+      "path": "results/comp2_corpus/corpus.r2-minimal-edge.jsonl",
+      "bytes": 7576910
+    },
+    {
+      "path": "results/comp2_corpus/corpus.harness-invalid-r1.jsonl",
+      "bytes": 7389990
+    },
+    {
+      "path": "results/d2_build/mini_traces.json",
+      "bytes": 7280617
+    },
+    {
+      "path": "results/comp2_corpus/per_item_stub.harness-invalid-r1.jsonl",
+      "bytes": 7109632
+    },
+    {
+      "path": "results/comp2_corpus/per_item_stub.jsonl",
+      "bytes": 7109542
+    },
+    {
+      "path": "results/comp2_corpus/per_item_stub.r2-minimal-edge.jsonl",
+      "bytes": 7109376
+    },
+    {
+      "path": "results/xp_a/c_eval.npz",
+      "bytes": 4915456
+    },
+    {
+      "path": "results/xp_a2/c_eval.npz",
+      "bytes": 4915456
+    },
+    {
+      "path": "results/comp2/raw/features.npz",
+      "bytes": 3771138
+    }
+  ],
+  "vendor_dirs": [
+    "node_modules/",
+    "target/",
+    "vendor/",
+    "dist/",
+    "build/",
+    ".next/",
+    "out/",
+    "_build/",
+    "__pycache__/",
+    ".wrangler/",
+    "coverage/"
+  ]
+}

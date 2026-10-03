@@ -21,7 +21,8 @@ def git(repo: Path, *args: str) -> str:
     r = subprocess.run(["git", "-C", str(repo), *args],
                        capture_output=True, text=True)
     if r.returncode != 0:
-        sys.exit(f"FAIL-LOUD: git {' '.join(args)} -> {r.returncode}: {r.stderr.strip()}")
+        print(f"FAIL-LOUD: git {' '.join(args)} -> {r.returncode}: {r.stderr.strip()}")
+        sys.exit(2)
     return r.stdout
 
 
@@ -36,32 +37,46 @@ def census_ls_tree(repo: Path) -> dict:
         size = int(parts[3]) if parts[3] != "-" else 0
         out[path] = size
     if not out:
-        sys.exit("FAIL-LOUD (G3): empty tree at HEAD")
+        print("FAIL-LOUD (G3): empty tree at HEAD")
+        sys.exit(2)
     return out
 
 
 def census_cat_file(repo: Path) -> dict:
     names = git(repo, "ls-tree", "-r", "--name-only", "HEAD").splitlines()
-    blob_names = [n for n in names if not n.endswith(tuple(s.rstrip("/") + "/" for s in []))]
-    # batch-check every path; submodules/trees can't appear under --name-only at blobs? verify:
     inp = "\n".join("HEAD:" + n for n in names) + "\n"
     r = subprocess.run(["git", "-C", str(repo), "cat-file", "--batch-check"],
                        input=inp, capture_output=True, text=True)
     if r.returncode != 0:
-        sys.exit(f"FAIL-LOUD: cat-file batch-check: {r.stderr.strip()}")
+        print(f"FAIL-LOUD: cat-file batch-check: {r.stderr.strip()}")
+        sys.exit(2)
+    lines = r.stdout.splitlines()
+    if len(lines) != len(names):
+        print(f"FAIL-LOUD (G1): batch-check returned {len(lines)} lines for {len(names)} paths")
+        sys.exit(2)
+    # batch-check echoes the RESOLVED oid (not the input ref); output order
+    # matches input order, so map positionally.
     out = {}
-    for line in r.stdout.splitlines():
-        ref, otype, size = line.rsplit(" ", 2)
+    for name, line in zip(names, lines):
+        parts = line.rsplit(" ", 2)
+        if len(parts) != 3:
+            print(f"FAIL-LOUD (G1): unparseable batch-check line for {name!r}: {line!r}")
+            sys.exit(2)
+        _oid, otype, size = parts
         if otype != "blob":
             continue
-        out[ref.split(":", 1)[1]] = int(size)
+        out[name] = int(size)
     if not out:
-        sys.exit("FAIL-LOUD (G3): no blobs via cat-file (empty tree at HEAD)")
+        print("FAIL-LOUD (G3): no blobs via cat-file (empty tree at HEAD)")
+        sys.exit(2)
     return out
 
 
 def is_vendor(path: str) -> bool:
-    return path.startswith(VENDOR_DIRS)
+    # vendor dirs exclude at ANY tree depth (canons fleet method), not just root:
+    # experiments/wg1_wgsl/target/... is vendored build output too.
+    p = "/" + path
+    return any("/" + v in p for v in VENDOR_DIRS)
 
 
 def main() -> int:

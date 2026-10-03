@@ -48,3 +48,14 @@ def test_empty_repo_refusal(tmp_path):
     r = run_tool(repo, tmp_path / "c.json")
     assert r.returncode == 2
     assert "FAIL-LOUD" in (r.stdout + r.stderr)
+
+
+def test_nested_vendor_dir_excluded(tmp_path):
+    repo = tmp_path / "r2"
+    _init_repo(repo, {"experiments/x/target/release/lib.rlib": b"v" * 900,
+                      "src/main.py": b"c" * 100})
+    out = tmp_path / "c2.json"
+    r = run_tool(repo, out)
+    assert r.returncode == 0, r.stdout + r.stderr
+    d = json.loads(out.read_text())
+    assert d["vendored_bytes"] == 900 and d["real_bytes"] == 100
