@@ -58,6 +58,19 @@
 - [DONE 01:3x Oct 3] **CI-1 BOOKED (PASS, G1-G4)**: fail-closed pytest workflow + fleet canary LANDED (69faafc, Actions 37112598464 green); canon-gate alphabet pin 0xCA289D4829D9A834 + negative control; seal-after-commit lesson booked.
 - 15:5x CONDUCTOR slice (day cron): (A) SCOUT-25 above. (C) already satisfied at 14:4x (QO10 repro PASS, verdict-level). No GPU item (rotation: scout was the slot; GPU QG1d/QG4/MC-1 open for next wake). No new PRs/issues in window; [EMBASSY] none new, pong #49 unchanged. Manifest re-seal still deferred (foreign live-lane untracked files, per SCOUT-23/14:4x note).
 
+## SCOUT-36 (2026-10-03 2111Z) — full text proposals/runs/SCOUT-36-fleet-push-2026-10-03-2111Z.md
+- No CONTRADICT this sweep (window post-SCOUT-35: pong #107 playloop lane, quilt-dba wave-69 CI hygiene
+  = CI-1 corroborate, naDir FIRST CODE → hedge trigger fired, fleet-triage edge-watch #17-#22 all
+  cite-only/zero-merge). TOOL/STEAL: fleet-wide **spec_sha prereg convergence** (madlibs-jev ee7b73a,
+  unspoken-resonance 3ad67d4, quilt-dba, purpose-loops) — canon-form sha256 pin of frozen gates
+  committed before implementation, red-then-green by commit order, --check never-writes, INDETERMINATE
+  receipts stop feeding learned state → spawned SS-1 (spec_sha pin tool) + IND-1 (stop-feeding audit
+  over our INCONCLUSIVE bookings) + IMP-1 (import-side-effect census; QO1 import-runs-training was a
+  live instance). [note] HEAD 0a5352a (w5a judge-board) is a FOREIGN lane commit (authored
+  "SuperInstance fleet" 20:53Z, no RESULTS booking) — not ours, not repro'd, PW-1/foreign-live
+  precedent; our newest OURS booking remains QG7b (repro PASS 12:2x). Rotation next wake: (C) none
+  due; (B) FW-1 or SS-1/IND-1 per queue order.
+
 ## SCOUT-17 SPAWNED ITEMS (2026-10-02 0311Z) — full text proposals/runs/SCOUT-17-fleet-push-2026-10-02-0311Z.md
 - [DONE 06:2x Oct 2] **RC-5 seal-pin enforcement — NARROWED 19:2x** (CPU ~20m): RC-3 --require-clean is ALREADY LANDED upstream (b2d24bb guard + 585c893 hardening: __pycache__ exclusion, 4 FAIL-first refusal pins in tests/test_seal_guard.py). Remaining delta = PUSH-TIME layer only: `--check` mode comparing sealed digests vs tracked files (exit 2 on drift, exit 0 on clean), a test pin, and an opt-in pre-push hook TEMPLATE. Do NOT re-implement seal-time refusal.
 - [ ] **MC-1 murmuration Exp 10** (CPU/GPU-cheap ~45m, pre-reg FIRST): critical-mass d+1 law vs threshold-equalisation; THEIR decision tree verbatim as frozen gates (artefact-retract / mechanism-real / seeding-dominant) + their 6-part reporting format.
