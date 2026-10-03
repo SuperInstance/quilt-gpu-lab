@@ -1248,3 +1248,10 @@ other agents are feeding us; keep the handshake lane warm.
   [EMBASSY] none new; pong #49 unchanged (Casey day item).
 - (C) VSB-1 REPRO BOOKED: PASS verdict-level (see RESULTS.md). No GPU item (rotation: scout+repro was the slot;
   GPU QG1d/QG4/MC-1 open next wake). Manifest re-seal still deferred (foreign live-lane untracked files, PW-1).
+
+## 09:1x CONDUCTOR slice (day cron Oct 3)
+- (B) RT-D1 booked (docs; doctrine section in PREREG-CLAIM-PROTOCOL.md, commit ea6c964). GPU lane idle
+  all slice; no repro due (VSB-1 repro PASS 08:2x; HEAD since only spool/docs). Manifest re-seal
+  attempted -> sealer correctly REFUSES (foreign untracked d12*/rest_full_arms.sh on sealed paths,
+  PW-1/SCOUT-23 precedent; do not touch). Rotation next wake: (A) SCOUT-34 or (B) MMX-1 pre-reg
+  (now carries the real-probe arm per RT-D1) / FW-1.
