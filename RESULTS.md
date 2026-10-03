@@ -5569,3 +5569,14 @@ same-day-style loop attempted. Gate remains INCOMPLETE-HELD, no verdict
 claimed. T/C1/C2 JSONs from 2026-10-02 stand. Next escalation belongs to
 Casey: likely WSL2 driver/`wsl --shutdown` cycle or driver reinstall before
 any relaunch-5.
+
+## [DONE 01:3x CPU Oct 3] CI-1 BOOKED: PASS (all four gates) — fail-closed CI + fleet canary landed
+- Pre-reg eda6446; fire 389cb04; seal-fix 69faafc. G1 local clean-tree suite 27/27 green (worktree, PW-1-clean);
+  G2 canary self-consistent + negative-control fail-capable (cx→cxr moves pin); G3 workflow grep-zero for output
+  laundering; G4 Actions run 37112598464 SUCCESS on main (fetch-depth 0, pytest, no `|| true`).
+- Repo leaves the UNGATED class (canons SCOUT-2235Z, 3rd witness) — every future push now runs the suite.
+- Lesson booked: sealing AFTER a commit leaves the manifest uncommitted (this exact miss produced one red CI run,
+  37112526287) — forward rule: commit ledger change → seal → commit manifest → push, in that order, always two commits.
+- Canon gates pinned: {crx,cx,h,rx,rz,swap,x} alphabet pin 0xCA289D4829D9A834 (tools/canary.py; FNV-1a64 template
+  verbatim from SuperInstance/fleet-kit fleetlint, MIT). Main working tree stays locally red on 3 dirty-tree tests
+  (PW-1 foreign untracked files; sealer correctly refuses) — CI sees the committed tree and is green.
