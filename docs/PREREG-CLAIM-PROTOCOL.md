@@ -4,6 +4,29 @@ Context: the D12j pre-reg (0b2df86) was implemented and fired twice within ~30 m
 wheel lane, once by Lucineer — on the same file paths. Git kept everything and the double run became
 a two-witness KEEP (see the reconciliation section in RESULTS.md), but the outcome was luck, not design.
 
+## RT-D1: real-vs-repro differential pin (2026-10-03, from fleet-triage b04b1e6 REAL-PROBE)
+
+A **bit-exact repro proves the committed code produces the committed result. It does NOT prove the
+committed code describes the real thing.** Whenever a booking depends on a REIMPLEMENTATION of an
+external system (their model, their simulator, their fitness rule), the booking is incomplete until
+a second pin exists: the REAL thing, running headlessly, probed directly, with its output recorded
+next to the repro.
+
+Rule (effective now):
+1. Any pre-reg whose instrument reimplements an external system MUST include a **real-probe arm**:
+   invoke the real artifact in place (its repo, its wheel, its checkpoint) headlessly, on at least
+   one shared input, and record its output digest alongside the reimplementation's.
+2. Agreement => the booking cites both. Disagreement => the repro pin is VOID for external claims;
+   book the delta, name which side is stale (per fleet-triage: this probe class "refuted my own
+   recommended fix" — that is it working).
+3. If the real thing cannot run headlessly (heavy UI, license, hardware), the booking must carry an
+   explicit `real-probe: UNRUN — <reason>` line. No silent omissions.
+
+Applies to: **MMX-1** (MiniMoth→CUDA statevector must be probed against real micromoth.py on the
+same genome, not just sealed exp008 bytes) and **QG1d** (the rebuilt p_target must be probed against
+any recoverable real definition; if unrecoverable, QG1d books `real-probe: UNRUN` and the exp022
+reproducibility gap stands as the finding).
+
 ## Rules (effective now)
 
 1. Every pre-reg carries an `owner:` line at the top:

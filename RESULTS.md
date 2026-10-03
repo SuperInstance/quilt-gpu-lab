@@ -5645,3 +5645,12 @@ any relaunch-5.
   file is results/vsb1/vendor_strip_census.json itself (+5,325 bytes = the raw/real byte delta) —
   self-measurement artifact of booking a census whose output is committed into the tree it measures.
   Honest note for future census bookings: freeze the output path EXCLUDED or record pre-commit tree.
+
+## [DONE 09:1x CPU Oct 3] RT-D1 BOOKED (doctrine): real-vs-repro differential pin
+- Top open queue item (docs, spawned by SCOUT-31 from fleet-triage b04b1e6 REAL-PROBE). Landed as a
+  new section in docs/PREREG-CLAIM-PROTOCOL.md: a bit-exact repro proves committed-code→committed-
+  result, NOT real-thing agreement; any booking resting on a reimplementation must carry a real-probe
+  arm (real artifact invoked headlessly on a shared input, digest recorded) or an explicit
+  `real-probe: UNRUN — <reason>` line. Annotated apply-to: MMX-1 (probe real micromoth.py on the same
+  genome, not just sealed exp008 bytes) and QG1d (unrecoverable p_target => UNRUN, gap stands as the
+  finding). No GPU fired; lane idle; no repro due (VSB-1 repro PASS at 08:2x, HEAD since only spool/docs).

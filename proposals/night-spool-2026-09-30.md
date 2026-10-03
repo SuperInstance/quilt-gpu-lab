@@ -19,7 +19,7 @@
 
 ## QUEUE (top = next)
 - [DONE 07:2x Oct 3] **VSB-1 BOOKED: PASS (G1-G4)**: tools/vendor_strip_census.py — ls-tree vs batch-check EXACT agreement all 3539 files; nested-vendor strip bug caught by census itself (wg1_wgsl target/ ~200MB was ranking as real); raw 910.3MB, vendored 36.2%, real 580.7MB. Lesson: batch-check echoes RESOLVED oid — map positionally. Manifest re-sealed 976ed88 (clean-worktree).
-- [open] **RT-D1 real-vs-repro differential pin** (docs ~15m, spawned by SCOUT-31): bookings depending on a reimplementation require a real-thing headless probe pin alongside bit-exact repro (applies to MMX-1, QG1d).
+- [DONE 09:1x Oct 3] **RT-D1 BOOKED (docs)**: real-vs-repro differential pin added to docs/PREREG-CLAIM-PROTOCOL.md — reimplementations need a real-thing headless probe arm alongside the bit-exact repro; UNRUN must be explicit. Applies to MMX-1 and QG1d (both annotated in the doctrine). Source: fleet-triage b04b1e6 REAL-PROBE (SCOUT-31).
 - [open] MMX-1 (GPU ~45m + 20m recon, spawned by SCOUT-15): MiniMoth→CUDA statevector bit-exact vs sealed exp008 (fleet-triage #1 B3 handoff); primary purpose = QG1d closure instrument (rebuild failing genome, separate stale-vs-fitness-diff). Gate: byte-identical statevectors at n=4 before any scaling claim.
 - [open] FT-D1 (design note, non-GPU, spawned by SCOUT-15): GPU-native cell runtime spec (fleet-triage #1 D1), sized by D12h/i/j W·T law; gate = QG4 cell at W=128/gens=100 in <10 min on the 4050.
 - [open] CH-1 (CPU reading ~30m, spawned by SCOUT-12): chiaroscuro HOLD/CAST abstention split -> map onto QO6 outcomes, draft HOLD-register spec addition for QO7. XR-1 raised (xruntime-conformance pushed post-read). Full sweep: proposals/runs/SCOUT-12-fleet-push-2026-10-01-1311Z.md.
