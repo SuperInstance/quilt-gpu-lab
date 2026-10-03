@@ -53,6 +53,12 @@ piece others can lift. Grab = copy the file; everything here runs alone.
   fail-loud JSON receipt even on KILL. Run with the elephant-gpu venv:
   `/home/eileen/venvs/elephant-gpu/bin/python tools/gpu_ramp_receipt.py --delays 0,5,10,20 --out receipt.json`. Smoke 2026-10-02: CLEAN, recovery 0.989 of hot.
 
+- **law-floor-check** — `tools/law_floor_check.py` — checks measured sample-size
+  T floors against a `C/s^alpha` scaling-law bound (s = (2p-1)(1-2eps)) with the
+  D12o gate battery (G1 coverage / G1b looseness / G2 W-monotonicity); fails loud
+  at degenerate p=0.5. Verdict KEEP/KILL, honest receipt.
+  `python tools/law_floor_check.py --results results/d12o_law_p_generalization.json --p 0.7 --out r.json | --selftest`
+
 ## When you add a tool
 
 Append it here with: name — path — one line on what it does. If it needs
