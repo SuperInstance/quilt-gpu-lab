@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-03T14:14:39.785781+00:00",
+  "generated_at": "2026-10-03T15:18:00.130700+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "9c2cd3f9bfabe3375de5c3f2109ac4783aa8a6cfb5e91013ac0a776b6c2dffc2",
+    "RESULTS.md": "1bdf2df91b0d27948a2f4cd5c6d4d9e8bafcee7d05f7464479ede912823f1e61",
     "QUEUE.md": "325394bc5e3c6c559c1189a45dec10ec45816e6f99782f0e6d8c6f722b174e85"
   },
   "experiments": {
@@ -210,7 +210,7 @@
     "xq0_substrate_consolidation.py": "eae71b6a1c664669a941bc9be03e7574e0ec16fb6f9541250aae11c9384bb32a"
   },
   "tools": {
-    "README.md": "3dd5c8ced0d3e9572ddc6463a636c5ede4bb36f18b3c8afb1f76a839ff8b9642",
+    "README.md": "8d2da8bd01092f276a0c71f7816642067c4d91b6627c606d0fc80f0f87cf4e2d",
     "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "canary.py": "e072488ab473e0218496a58a0b0eeb16a153efe02e472613e7a0ad4d4de8f6b2",
     "checkpoint_guard.py": "1bf8ad1fa920b2a636f780a038a1b7fa02088ddb2eb8010133f0c0a3ab963370",
@@ -218,6 +218,7 @@
     "chip_route.py": "608b890a9a293c7851e9fb18a0262a831dffcd6f85f171afb414b2b9c409f02a",
     "ci_gate.py": "9b958cf592390707dfd8294a0ade7fd36cdd346a264b7f01750e19dec2c541d7",
     "codespace_lane.sh": "996c8e110423fa6b7b22b1781dbe88496b4e488f0601f893abcf1cf2f2580321",
+    "control_ladder.py": "450612e464931d9f7001b3f1bb9e59ca531b17dbf16b030362ce9c2d6e24e06d",
     "corpus_filter.py": "3dbe92aa917eead56bd0c47a2dea858595ee8277a18c0d6c812424bd3ace79c3",
     "corr_exponent.py": "a3cb4cd7dd9312a41bbd23ac49739c001dec42ea0fde399f006282ba56864d2e",
     "correlate.py": "0e2e3a92a3ecaeee5fda9c34285b609e37ef4468cb33541465ed838603548475",
@@ -249,6 +250,7 @@
     "test_skill_semantic.py": "1045613b43a5b48c8dd22739c227fbaf9cce7102d179814592fbb3e13d1788c2",
     "transition_kernel.py": "8364ec79e6e866fbf78d4fbd80a3514bf14f11394c4048a1dff30889e7796443",
     "typesafe_batch.py": "6f4a470a02d262c2877748670aeb6ae1ca74a98f6b395864bb84dd8ec2d30381",
+    "vendor_strip_census.py": "bd7d7c2a3561ee7039a58176bdc116357db624ba9595f08a1c2c05417c6a164c",
     "verdict_gate.py": "b1b431f643635b881fb770b72b66429cc3189f9cabb07506371de4fbc8d8f8f8",
     "wt_floor.py": "c28d774268b68c1ca8474c8d33512fd2402d8db94bf28949c95cb7114386de63"
   }
