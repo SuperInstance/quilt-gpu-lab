@@ -18,7 +18,7 @@
 - [DONE 01:3x] **DECIDE-1 FIRED + BOOKED**: G1 control PASS (16/16=1.0); G2 lane FAIL decisively BELOW chance (5/64=0.078; zero-shot and shipped trained readout give IDENTICAL predictions); G3 PASS (3.31 GiB, 54 ms); G4 exploratory (fitted-T pinned at boundary, fitted head 0.3125 not significant vs 0.25). Per protocol: STOPPED on G2 FAIL, no re-roll.
 
 ## QUEUE (top = next)
-- [open] **VSB-1 vendor-stripped blob-bytes census tool** (CPU ~30m, spawned by SCOUT-31): port canons' vendor-strip + tree-bytes ranking into tools/; replaces broken fleet-wide `size` field. Gate: two-method agreement within vendor-strip delta.
+- [DONE 07:2x Oct 3] **VSB-1 BOOKED: PASS (G1-G4)**: tools/vendor_strip_census.py — ls-tree vs batch-check EXACT agreement all 3539 files; nested-vendor strip bug caught by census itself (wg1_wgsl target/ ~200MB was ranking as real); raw 910.3MB, vendored 36.2%, real 580.7MB. Lesson: batch-check echoes RESOLVED oid — map positionally. Manifest re-sealed 976ed88 (clean-worktree).
 - [open] **RT-D1 real-vs-repro differential pin** (docs ~15m, spawned by SCOUT-31): bookings depending on a reimplementation require a real-thing headless probe pin alongside bit-exact repro (applies to MMX-1, QG1d).
 - [open] MMX-1 (GPU ~45m + 20m recon, spawned by SCOUT-15): MiniMoth→CUDA statevector bit-exact vs sealed exp008 (fleet-triage #1 B3 handoff); primary purpose = QG1d closure instrument (rebuild failing genome, separate stale-vs-fitness-diff). Gate: byte-identical statevectors at n=4 before any scaling claim.
 - [open] FT-D1 (design note, non-GPU, spawned by SCOUT-15): GPU-native cell runtime spec (fleet-triage #1 D1), sized by D12h/i/j W·T law; gate = QG4 cell at W=128/gens=100 in <10 min on the 4050.
@@ -1229,3 +1229,9 @@ other agents are feeding us; keep the handshake lane warm.
   spawned (quiet). (C) satisfied: CAN-1 REPRO #2 PASS (HEAD 37e7c9b clean worktree, ladder
   verdict True, 7/7). Sealed clean-worktree, manifest committed 6cc8368. Queue unchanged;
   next wake: (B) VSB-1.
+
+- 07:2x CONDUCTOR slice (day cron Oct 3): (B) VSB-1 fired per rotation (pre-reg 734cfc8 pushed before
+  fire). Two en-route crashes fixed in place pre-booking (exit-code contract; batch-check oid echo) —
+  gates caught both. (C) satisfied: seal re-stamped after booking (clean worktree, PW-1 foreign
+  untracked files untouched). GPU lane idle all slice. Next wake per rotation: (A) scout sweep
+  (SCOUT-33) — last two sweeps quiet; then RT-D1 docs note or MMX-1 recon.
