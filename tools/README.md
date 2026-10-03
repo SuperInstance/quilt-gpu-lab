@@ -53,6 +53,16 @@ piece others can lift. Grab = copy the file; everything here runs alone.
   fail-loud JSON receipt even on KILL. Run with the elephant-gpu venv:
   `/home/eileen/venvs/elephant-gpu/bin/python tools/gpu_ramp_receipt.py --delays 0,5,10,20 --out receipt.json`. Smoke 2026-10-02: CLEAN, recovery 0.989 of hot.
 
+- **control-ladder** — `tools/control_ladder.py`
+  Generic POS + expect-red negative-control harness (stdlib-only), lifted from
+  tonight's PROVEN CAN-1 pattern (canary.py control_ladder, BOOKED PASS G1-G4).
+  A detector is trusted only after it fires on tampered input (red rungs) and
+  stays quiet on clean input (POS); raising counts as fired; a ladder with no
+  red rungs is VOID (tautology), never PASS. Library API or CLI
+  (`--selftest`, or `--rungs file` of `name|red|expr` lines). Exit 1 = FAIL,
+  fail-closed JSON receipt.
+  `python tools/control_ladder.py --selftest` — smoke 2026-10-03: PASS, tautology & blind-spot both FAIL exit 1.
+
 - **law-floor-check** — `tools/law_floor_check.py` — checks measured sample-size
   T floors against a `C/s^alpha` scaling-law bound (s = (2p-1)(1-2eps)) with the
   D12o gate battery (G1 coverage / G1b looseness / G2 W-monotonicity); fails loud
