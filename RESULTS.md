@@ -5539,3 +5539,15 @@ rate 0.5718; torch nondeterminism vs booked 0.5789 as expected). G1 anchor PASS 
 - **Verdict: our RC-1/RC-1b/mandatory-repro defenses held — 2nd independent witness after SCOUT-26.**
   Manifest re-seal still deferred (foreign live-lane untracked files persist; sealer correctly refuses).
   Rotation next wake: RC-6 or CI-1 (CI-1 priority raised by SCOUT-26), GPU free for QG4/QG1d/MC-1.
+
+## [DONE 00:1x CPU Oct 3] LFM230-REPRO BOOKED: PASS (verdict-level) — mandatory (C) on newest booking
+- Committed scratch/lfm230/lfm230_exp.py re-run (dirty-tree check: script tracked, uncommitted 1b11ae7):
+  valid-JSON **0/6**, same words-not-numbers contract failure + repeat-loop degradation as booked.
+  Verdict "concept-competent, contract-incompetent" REPRODUCES. Nano JSON output is stochastic in surface
+  tokens (raw samples differ from booking) but the 0/6 verdict is stable across draws.
+- Manifest re-seal: still deferred (foreign live-lane untracked files persist — d12k2/d12l/d12m/d12n
+  experiments+results, rest_full_arms.sh, rest_em_full.attempt1-rebootkill.log; PW-1 precedent, sealer
+  correctly refuses). Not touched.
+- Slice log: SCOUT-28 landed 23:13 (rotation (A) satisfied this window); this slice = (C) only. No GPU
+  fired (lane idle but rotation gives (B) next wake). Next wake per rotation: (B) top open CPU item —
+  RC-6 (input-pin, spawned by W5B2-REPRO drift finding) or CI-1 (fail-closed CI, priority raised SCOUT-26).
