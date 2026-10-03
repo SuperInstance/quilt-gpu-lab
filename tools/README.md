@@ -132,6 +132,19 @@ more than a copy to use, it's not grabbable yet.
   coverage rc=1. Note: gate is strict — round held-out y DOWN, rounding up
   trips coverage honestly.
 
+- **ensemble-corr-census** — `tools/ensemble_corr_census.py` — rerun-ensemble
+  correlation census (pattern lifted PROVEN from QG7b, booked INTERMEDIATE rho
+  0.787): given per-run score vectors from R reruns of the same computation
+  (+ optional subpop masks / binary labels), computes mean pairwise Spearman
+  on mask intersections (primary), ragged-subpop label agreement vs run0
+  (secondary), and books ENSEMBLE~1-2-DRAWS / REFUTED / INTERMEDIATE per
+  pre-reg bands (default 0.9/0.5). Stdlib-only Spearman — scipy cross-checked
+  500/500 exact. Run it before quoting any best-of-R ensemble as R-fold
+  robustness.
+  `python tools/ensemble_corr_census.py --runs runs.json [--hi 0.9] [--lo 0.5] [--out r.json]` | `--selftest`
+  TEST receipt 2026-10-03: selftest 8/8 (ties/mono/anti/mask-intersection/ragged
+  labels/NaN rc=2); worked example rc=0 INTERMEDIATE rho 0.8333, receipt written.
+
 ### qcell_sim.py — exact small-circuit cell evaluator (GPU, batched)
 Batched statevector evaluator for qcell genomes (n<=12 qubits). Returns exact p(targets), balance,
 best_target, union, and optional shot samples with a sha256 receipt_id. One file, one job, cell-slot ready.
