@@ -1,6 +1,6 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-03T09:20:22.675115+00:00",
+  "generated_at": "2026-10-03T10:15:50.013029+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
     "RESULTS.md": "03c5b815957386fb411d38ccf9a680f23f315653c08d21ab54371035b6dd015e",
@@ -212,7 +212,7 @@
   "tools": {
     "README.md": "e8dd5f6e1bf4f84f8e0626ba3b9cd2cb7ffef01898da581fbdd5d44ee0a909d0",
     "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "canary.py": "7107b35cbc2750461df81b5ad07fbd53db4d0039dd3a32e643f7e13b0dec92d5",
+    "canary.py": "6b528a9238c69b97c6ef386add2f0a1bd104d6fe895b5f579eaac51acc10ecf7",
     "checkpoint_guard.py": "1bf8ad1fa920b2a636f780a038a1b7fa02088ddb2eb8010133f0c0a3ab963370",
     "chip_probe.py": "946cde078933dce54c3f4ed5783ef3ce20a0fc3bdd34f1af4bc132a43043c2b9",
     "chip_route.py": "608b890a9a293c7851e9fb18a0262a831dffcd6f85f171afb414b2b9c409f02a",
