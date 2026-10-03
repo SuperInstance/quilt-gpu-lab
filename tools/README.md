@@ -188,4 +188,16 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   TEST receipt 2026-10-02: selftest OK (8 accept / 12 reject, 0 failures);
   live examples: arith exact rc=0, symb exact_simplify rc=0 ('-3 + 4*x' ==
   '4*x - 3'), off-by-one wrong_value rc=1.
+- **lit-sweep** — `tools/lit_sweep.py` — fabricated-benchmark sweep (pattern lifted PROVEN from
+  HB-1/SCOUT-26, booked 2026-10-02): extracts numeric literals from source and flags exact
+  cross-matches with booked receipt metrics, plus degenerate-stat detectors (zero-variance
+  arrays, p==1.0/0.0, metric identical across every receipt in the sweep). Advisory only —
+  FINDINGS means "needs eyes", the human books the verdict. Stdlib-only, fail-loud rc=2.
+  `python tools/lit_sweep.py --code experiments/ --results results/ [--out r.json] | --selftest`
+  TEST receipt 2026-10-02: selftest 10/10 (cross-match, degenerate p, zero-variance, unanimous
+  metric, clean control CLEAN, bad-JSON skipped, missing-dir rc2); live run experiments/ vs
+  results/ -> FINDINGS rc=1, 441 literals, 402 receipts parsed, 4 skipped — reviewed: hits are
+  benign config constants + honest single-draw arrays, no fraud class present. Receipt:
+  results/lit_sweep_2026-10-02.json.
+
 - hash_dut.py — hash customs officer: canary vectors x6 primitives; check any impl (py/js/url) for NAME-COLLISION vs canonical spelling. Found: quilt-dba fnv1a64 is utf16-charCodeAt; UTF-16 itself has two byte-spellings. selftest 13/13.
