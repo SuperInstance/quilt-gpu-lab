@@ -5488,3 +5488,5 @@ rate 0.5718; torch nondeterminism vs booked 0.5789 as expected). G1 anchor PASS 
   PASS (gen1 0.8946 vs 0.8922, gen3 0.9357 vs 0.9355), every ladder-arm mean within 0.01 of booking
   (no adjacent-ordering flips; L_gen still exactly 0.5000 everywhere; cv-rung std-0 arms reproduce).
   **REGIME-DEPENDENT LADDER verdict STANDS.** Subpopulation/AUC verdicts remain ensemble-protected per QG7.
+
+- scratch/somrg/ — SOMRG-PILOT-V0 KILLED honestly: SOM site-partition blind by construction (scalar features; histogram-degenerate metric). v1 = patch-based inputs.

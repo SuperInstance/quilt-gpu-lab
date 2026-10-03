@@ -1,0 +1,57 @@
+{
+ "pilot": "SOMRG-PILOT-V0",
+ "prereg": "proposals/runs/SOMRG-PILOT-V0.md",
+ "seed": 42,
+ "rows": [
+  {
+   "T": 0.5,
+   "pair_som": 0.1412,
+   "pair_shuf": 0.1412,
+   "delta": 0.0,
+   "m_abs": 0.9996,
+   "som_blocks_nontrivial": 3
+  },
+  {
+   "T": 0.8,
+   "pair_som": 0.7648,
+   "pair_shuf": 0.7648,
+   "delta": 0.0,
+   "m_abs": 0.9924,
+   "som_blocks_nontrivial": 10
+  },
+  {
+   "T": 1.0,
+   "pair_som": 0.888,
+   "pair_shuf": 0.888,
+   "delta": 0.0,
+   "m_abs": 0.9784,
+   "som_blocks_nontrivial": 22
+  },
+  {
+   "T": 1.2,
+   "pair_som": 0.9495,
+   "pair_shuf": 0.9495,
+   "delta": 0.0,
+   "m_abs": 0.9519,
+   "som_blocks_nontrivial": 37
+  },
+  {
+   "T": 1.5,
+   "pair_som": 0.9846,
+   "pair_shuf": 0.9846,
+   "delta": 0.0,
+   "m_abs": 0.858,
+   "som_blocks_nontrivial": 101
+  },
+  {
+   "T": 2.0,
+   "pair_som": 0.9881,
+   "pair_shuf": 0.9881,
+   "delta": 0.0,
+   "m_abs": 0.1275,
+   "som_blocks_nontrivial": 130
+  }
+ ],
+ "verdict": "KILL",
+ "wall_s": 12.4
+}
