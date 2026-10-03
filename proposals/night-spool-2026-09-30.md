@@ -71,6 +71,19 @@
   precedent; our newest OURS booking remains QG7b (repro PASS 12:2x). Rotation next wake: (C) none
   due; (B) FW-1 or SS-1/IND-1 per queue order.
 
+## SCOUT-37 (2026-10-03 2211Z) — full text proposals/runs/SCOUT-37-fleet-push-2026-10-03-2211Z.md
+- No CONTRADICT this sweep (window post-SCOUT-36: quilt-dba wave-69 Track B/sxc1 stitch chain, exoj
+  Unit-Table-GAN + cross-language hash parity; PLUS canons fa7504d 1917Z which SCOUT-36 missed:
+  quilt-core-os UNFALSIFIABLE test gate with TAP camouflage — mutation-proven, guaranteed-fail test
+  exits 0 via `||`-chain + 2>/dev/null zero-file fallthrough + `grep -q '"test"'` key-existence CI
+  guard). CORROBORATE: CI-1 fail-closed bill non-vacuous (verified OUR tests.yml fails at the
+  empty-glob corner: plain pytest, no laundering, zero-collect exit 5); prose-only ports = QG1d
+  provenance-gap class fleet-wide; exoj cross-language hash parity = RT-D1 real-probe instance.
+  Spawned DBA-1 (band-law/sticky-scars read vs D12 lanes) + EXJ-1 (observation-as-collapse vs
+  QC-JEV/QO6), both LOW docs-only. [EMBASSY] pong #49 now 7 comments, still unresponded (Casey day
+  item). (C) not due — newest OURS booking QG7b already repro PASS 12:2x; HEAD since is foreign
+  lanes only. Rotation next wake: (B) FW-1 or SS-1/IND-1 per queue order.
+
 ## SCOUT-17 SPAWNED ITEMS (2026-10-02 0311Z) — full text proposals/runs/SCOUT-17-fleet-push-2026-10-02-0311Z.md
 - [DONE 06:2x Oct 2] **RC-5 seal-pin enforcement — NARROWED 19:2x** (CPU ~20m): RC-3 --require-clean is ALREADY LANDED upstream (b2d24bb guard + 585c893 hardening: __pycache__ exclusion, 4 FAIL-first refusal pins in tests/test_seal_guard.py). Remaining delta = PUSH-TIME layer only: `--check` mode comparing sealed digests vs tracked files (exit 2 on drift, exit 0 on clean), a test pin, and an opt-in pre-push hook TEMPLATE. Do NOT re-implement seal-time refusal.
 - [ ] **MC-1 murmuration Exp 10** (CPU/GPU-cheap ~45m, pre-reg FIRST): critical-mass d+1 law vs threshold-equalisation; THEIR decision tree verbatim as frozen gates (artefact-retract / mechanism-real / seeding-dominant) + their 6-part reporting format.
