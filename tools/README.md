@@ -117,6 +117,21 @@ more than a copy to use, it's not grabbable yet.
   TEST receipt 2026-10-01: selftest OK (4 checks incl. honest-null + p=1/3 exact
   small-n + NaN rc=2); worked example live, receipt written.
 
+- **holdout-gate** — `tools/holdout_gate.py` — held-out prediction gate for
+  power-law bounds (pattern lifted PROVEN from D12o/D12p): fit C on the FIT
+  subset only (conservative max, y <= C/x^alpha), then gate held-out points on
+  G1 coverage + G2 non-vacuousness (min ratio 0.02) — a bound that predicts
+  everything is VOID, booked FAIL, never PASS. Seeded bootstrap CI on the
+  tightest ratio, one JSON receipt, exit 0/1/2. Stdlib-only.
+  `python tools/holdout_gate.py --pairs '[{x,y,role},...]' --alpha 1.92 [--out r.json] | --pairs-file f.json | --selftest`
+  TEST receipt 2026-10-03: selftest 6/6 (clean-law PASS + CI bracket,
+  law-break FAIL on coverage, vacuous FAIL on G2, no-hold VOID rc=2,
+  negative-x rc=2 — pins caught two real bugs live: min() crash and missing
+  positivity guard in run_gate); live both directions: law-consistent data
+  (C=800, a=1.92) -> PASS tightest=1.000 rc=0; law-violating data -> FAIL
+  coverage rc=1. Note: gate is strict — round held-out y DOWN, rounding up
+  trips coverage honestly.
+
 ### qcell_sim.py — exact small-circuit cell evaluator (GPU, batched)
 Batched statevector evaluator for qcell genomes (n<=12 qubits). Returns exact p(targets), balance,
 best_target, union, and optional shot samples with a sha256 receipt_id. One file, one job, cell-slot ready.
