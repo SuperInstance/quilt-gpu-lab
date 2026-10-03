@@ -5624,3 +5624,16 @@ any relaunch-5.
   control_ladder()'s dict return (my wrapper's bug, not the tool's); corrected in place before
   any verdict.
 - GPU lane idle this slice (rotation: scout was the slot). Next wake: (B) VSB-1.
+
+## [DONE 07:2x CPU Oct 3] VSB-1 BOOKED: PASS (G1-G3; G4 3/3 tests) — vendor-stripped blob-bytes census
+- Pre-reg 734cfc8 (gates frozen before fire); fire commit a0853db.
+- G1 PASS: ls-tree -l vs cat-file --batch-check blob bytes EXACT agreement, all 3539 files, zero mismatch.
+  En-route discovery: batch-check echoes the RESOLVED oid, not the input ref — two earlier parse variants
+  crashed (IndexError); caught by G1/tests before any booking, fixed in place (positional zip + strict count).
+- Strip fix caught by the census ITSELF: VENDOR_DIRS was root-anchored, so experiments/wg1_wgsl/target/
+  rlibs (~200MB) ranked as "real"; now any-depth segment match (canons fleet method). Regression test added.
+- Census (HEAD a0853db): raw 910,345,285 B / 3539 files; vendored 329,690,757 B / 637 files (36.2%);
+  real 580,654,528 B / 2902 files. Top real: results/d4_adapter_full safetensors 73.9MB, xp_a/xp_a2
+  c_train.npz 49.2MB x2, d15/d4 smoke adapters 35.2MB x2. Confirms SCOUT-25: repo `size` field unusable;
+  this tool is the verified replacement for repo-size receipts.
+- Manifest re-seal deferred one step (booking commit first), then clean-worktree seal per PW-1.
