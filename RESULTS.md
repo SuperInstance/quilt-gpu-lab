@@ -5637,3 +5637,11 @@ any relaunch-5.
   c_train.npz 49.2MB x2, d15/d4 smoke adapters 35.2MB x2. Confirms SCOUT-25: repo `size` field unusable;
   this tool is the verified replacement for repo-size receipts.
 - Manifest re-seal deferred one step (booking commit first), then clean-worktree seal per PW-1.
+
+## [DONE 08:2x CPU Oct 3] VSB-1 REPRO BOOKED: PASS (verdict-level) — mandatory (C) on newest booking
+- Committed census re-run in CLEAN worktree at HEAD 280435a: G1 two-method agreement PASS (3540 files,
+  zero mismatch), vendored bytes 329,690,757 IDENTICAL to booking, vendored share 0.36216.
+- Full-JSON DIFF is fully accounted: booked run recorded HEAD 734cfc8 (3539 files); the single delta
+  file is results/vsb1/vendor_strip_census.json itself (+5,325 bytes = the raw/real byte delta) —
+  self-measurement artifact of booking a census whose output is committed into the tree it measures.
+  Honest note for future census bookings: freeze the output path EXCLUDED or record pre-commit tree.
