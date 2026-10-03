@@ -5683,3 +5683,19 @@ any relaunch-5.
   effective draws: reconfirmed. Booked outputs archived to
   results/qg7b_rerun_correlation/repro-20261003-1215/results.booked.json (archive-never-delete);
   repro run overwrote results.json in place per script contract.
+
+## [DONE 15:1x CPU Oct 3] FW-1 TRANCHE 3 BOOKED: 3/3 GREEN, zero RED (CI-1, VSB-1, QG7b)
+- Pre-reg proposals/runs/FW1-field-write-census-tranche3.md (committed before audit fired).
+- CI-1 GREEN: ladder is in-memory (writes nothing — declared in-code); verdict-feeding
+  fields (rungs, alphabet pin, gate names) pinned by tests/test_canary.py (4 tests pass)
+  + booked empty-glob negative control. 1 RC-1b census entry: tools/ci_gate.py has a
+  docstring selftest but NO pytest pin — recorded, not verdict-gating for CI-1; one-test-pin
+  candidate.
+- VSB-1 GREEN: verdict-feeding positional name→oid map built internally, both parse methods
+  covered by tests/test_vendor_strip_census.py (6 tests pass); detector branches proven live
+  (nested-vendor strip bug caught by the census itself at booking).
+- QG7b GREEN: Spearman path deterministic stdlib, no RNG; both gate band branches pinned by
+  selftest (8 checks OK); committed verdict-level repro PASS 12:2x stands.
+- Cumulative FW-1: 9/9 booked verdicts censused, 0 RED. No GPU fired (lane busy — foreign
+  live server.py since 13:29, PW-1 untouched). (C): no repro due (newest OURS booking QG7b
+  already repro PASS 12:2x; HEAD since is spool/docs/foreign lanes).
