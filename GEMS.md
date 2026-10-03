@@ -182,3 +182,36 @@
 | M22 | RSI institutionalized | 1 | 2 | 2 | **4** | ASSAYED — KILLED as a gem (corroboration of W5 M5; zero new question) |
 
 *Rubric honesty: 2/5 cleared 27, and again both passers are literature×receipt collisions (C2-IL's frozen prediction corpus + booked +0.219/+0.1045 numbers; our owned generative laws). GitHub-trending searches returned only stale listicles — no mine taken from them. One provider-refused query disclosed above. No gate loosened.*
+
+## Wave 9 — the dynamics-and-memory-lifecycle harvest (2026-10-03: edge-mine scout, focus rotated to mechanistic interpretability/circuits + agent-memory lifecycle + training dynamics/grokking, since Wave 8 was data schedules/routing/synthetic grounding)
+
+*Search focus this wave: mech-interp circuit learning · SLM/on-device efficiency · test-time verifier scaling · agent memory lifecycle · grokking/loss-landscape dynamics · GitHub trending (weak returns again). 8 searches; arXiv listing pages returned ID-lists without titles (readability extraction) — abstracts came via search roundups instead. Sources are search-roundup-grade — flagged for re-verification before canon (same caveat as Waves 0/5/6/7/8).*
+
+### Abstraction mines (status MINED → ASSAYED below)
+
+- **M24 — Agent memory is a lifecycle, not a store.** The 2026 memory literature converged on formalizing memory as a write–manage–read loop tightly coupled with perception and action, with "deciding what to remember" as an active control problem rather than a retrieval property (Memory-in-the-Age-of-Agents survey line; "treating memory and cost as a lifecycle"). Essence: *memory quality is decided at write/manage time, not read time.* Incremental for us: the skill-bank SPOOL entry (W5) already claims verdicts compress into curriculum — this corroborates but does not extend it.
+  - https://arxiv.org/abs/2512.13564 · https://arxiv.org/html/2603.07670v1 · https://arxiv.org/html/2607.21503v1
+
+- **M25 — Circuits are becoming a learned, weight-space object.** Scalable circuit learning (sparse circuits over LLM components learned, not searched) and "Circuit Insights: interpretability beyond activations" move circuit discovery from activation-attribution searches toward learned/structural descriptions that include weight-space structure. Essence: *interpretability is drifting from explaining activations to describing weight structure — the same drift that produced Wave 7's M15 (weight deltas as the unit of behavior).* Parked: it is the interpretability arm of an already-seeded gem, not a new question.
+  - https://arxiv.org/html/2606.16939v1 · https://arxiv.org/html/2510.14936v2
+
+- **M26 — Delayed generalization (grokking) is a phase transition in learning local rules — and law-owned corpora make it exactly measurable.** The grokking literature now treats the memorize→generalize transition as a phase transition (tensor-network maps connecting grokking setups to statistical mechanics; phase transitions in learning local rules). Essence: *generalization onset is a sharp, structure-dependent transition whose timing is a function of the data's rule structure — not a smooth trade-off.* Unusual local collision: our glyph/grammar corpora are generated from owned laws (COMP1-A1 grammar, B1 k=1.5 ramp), so the rule structure is a controlled experimental variable on a 6GB GPU where grokking is famously reproducible — transition onset becomes a measurable function of the law, which frontier labs cannot control.
+  - https://www.semanticscholar.org/paper/9a5bf5abd0b1548214f35c835f815a880a9d64a4 (grokking phase transitions, local rules) · https://en.wikipedia.org/wiki/Grokking_(machine_learning) · https://arxiv.org/html/2509.23629v3 (slow thinking as inverse tree freezing, dynamics framing)
+
+- **M27 — Loss-landscape curvature is being proposed as a scalable training-time monitor.** "A scalable measure of loss landscape curvature" frames curvature as a cheap diagnostic of optimization/generalization state. Essence: *geometry scalars (curvature) as leading indicators.* Collides with our keep/kill ledger the way S6a's scalar baselines do — curvature-at-kill vs curvature-at-keep is a natural arm — but on tiny runs curvature estimates are noisy, making the falsifier muddy.
+  - https://arxiv.org/html/2601.16979v1
+
+- **M28 — Test-time scaling is verifier-multiplicative, not sampler-multiplicative.** Multi-agent verification scales test-time compute by the number of (heterogeneous) verifiers; verifier-based fine-tuning proven superior to verifier-free. Corroborates our acceptance-gate practice (gem #5); no falsifier we can run that the field can't — U-starved, parked like M9/M18/M23.
+  - https://arxiv.org/html/2502.20379v1 · https://arxiv.org/html/2508.16665v3
+
+### ASSAY — Wave 9 scoring (novelty × local-uniqueness × falsifiability, per `docs/assayer-spec.md`)
+
+| # | abstraction | N | U | F | score | status |
+|---|------------|---|---|---|-------|--------|
+| M26 | grokking as law-controlled phase transition on owned-rule corpora | 2 | 4 | 4 | **32** | SEEDED (SPOOL Wave 8, entry W9a) |
+| M25 | circuits as learned weight-space objects | 2 | 3 | 4 | **24** | ASSAYED — parked (interpretability arm of seeded S6a; not a distinct question) |
+| M24 | agent memory as write-time lifecycle | 2 | 3 | 3 | **18** | ASSAYED — parked (corroborates skill-bank W5; no new falsifier) |
+| M27 | curvature as a leading-indicator scalar | 3 | 3 | 2 | **18** | ASSAYED — parked, F-starved (curvature estimates too noisy at nursery scale for a clean gate) |
+| M28 | verifier-multiplicative test-time scaling | 1 | 1 | 2 | **2** | ASSAYED — KILLED as a gem (corroboration of gem #5; U=1: anyone with an API key) |
+
+*Rubric honesty: 1/5 cleared 27 — consistent with the Wave 7 finding that our ≥27 scores come from literature×receipt collisions; only M26 collided with a uniquely-owned asset (generative laws as a controlled variable). M25 passed novelty but failed the distinctness check against S6a and was parked rather than double-counting the same ledger asset. GitHub trending returned stale listicles for the second wave running. No gate loosened.*
