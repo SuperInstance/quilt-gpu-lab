@@ -1,0 +1,138 @@
+{
+ "target": "lucineer",
+ "target_dials": {
+  "mood": 2,
+  "warmth": 0,
+  "complexity": 5,
+  "machine_vs_organic": 10,
+  "colorfulness": 4
+ },
+ "lcm_steps": 6,
+ "gen_s": 40.7,
+ "n_candidates": 6,
+ "identity_min": 0.8,
+ "dial_l1_max": 8,
+ "candidates": [
+  {
+   "name": "cand_s11_st0.45",
+   "seed": 11,
+   "strength": 0.45,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/cand_s11_st0.45.png",
+   "identity_cosine": 0.9846,
+   "identity_pass": true,
+   "desc": "\nThe image features a green robot head with two horns, giving it an intimidating appearance. The robot's eyes are black and white, adding to its creepy look. It has a small smile on one of the sides, ",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 3,
+    "colorfulness": 6
+   },
+   "dial_l1": 9,
+   "dial_pass": false
+  },
+  {
+   "name": "cand_s11_st0.6",
+   "seed": 11,
+   "strength": 0.6,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/cand_s11_st0.6.png",
+   "identity_cosine": 0.8573,
+   "identity_pass": true,
+   "desc": "\nThe image features a green robot head with two eyes and a nose, giving it an anthropomorphic appearance. The robot's mouth is slightly open as if ready to speak or eat something. It has a small light",
+   "dials": {
+    "mood": 7,
+    "warmth": 3,
+    "complexity": 6,
+    "machine_vs_organic": 4,
+    "colorfulness": 8
+   },
+   "dial_l1": 19,
+   "dial_pass": false
+  },
+  {
+   "name": "cand_s22_st0.45",
+   "seed": 22,
+   "strength": 0.45,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/cand_s22_st0.45.png",
+   "identity_cosine": 0.9752,
+   "identity_pass": true,
+   "desc": "\nThe image features a green robot head with two horns on top and a white smiley face below it, giving the impression of a friendly or humorous character. The robot's eyes are also white, adding to its",
+   "dials": {
+    "mood": 8,
+    "warmth": 7,
+    "complexity": 6,
+    "machine_vs_organic": 3,
+    "colorfulness": 9
+   },
+   "dial_l1": 26,
+   "dial_pass": false
+  },
+  {
+   "name": "cand_s22_st0.6",
+   "seed": 22,
+   "strength": 0.6,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/cand_s22_st0.6.png",
+   "identity_cosine": 0.857,
+   "identity_pass": true,
+   "desc": "\nThe image features a green robot head with two large ears and a small nose, giving it an anthropomorphic appearance. The robot's face is outlined in black against the white background of the image. T",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 3,
+    "machine_vs_organic": 6,
+    "colorfulness": 5
+   },
+   "dial_l1": 7,
+   "dial_pass": true,
+   "jev_error": "HTTP Error 400: Bad Request"
+  },
+  {
+   "name": "cand_s33_st0.45",
+   "seed": 33,
+   "strength": 0.45,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/cand_s33_st0.45.png",
+   "identity_cosine": 0.9769,
+   "identity_pass": true,
+   "desc": "\nThe image features a green robot head with two horns on top and a mouth, giving it the appearance of a friendly or evil character depending on its expression. The robot's eyes are black and white, ad",
+   "dials": {
+    "mood": 5,
+    "warmth": 3,
+    "complexity": 6,
+    "machine_vs_organic": 4,
+    "colorfulness": 7
+   },
+   "dial_l1": 16,
+   "dial_pass": false
+  },
+  {
+   "name": "cand_s33_st0.6",
+   "seed": 33,
+   "strength": 0.6,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/cand_s33_st0.6.png",
+   "identity_cosine": 0.9041,
+   "identity_pass": true,
+   "desc": "\nThe image features a green robot head with two horns on either side, giving it an intimidating appearance. The robot's mouth is wide open and its eyes are glowing in the dark background, creating a s",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 3,
+    "colorfulness": 6
+   },
+   "dial_l1": 9,
+   "dial_pass": false
+  }
+ ],
+ "dial_spread_all": {
+  "cand_s11_st0.45": 9,
+  "cand_s11_st0.6": 19,
+  "cand_s22_st0.45": 26,
+  "cand_s22_st0.6": 7,
+  "cand_s33_st0.45": 16,
+  "cand_s33_st0.6": 9
+ },
+ "survivors_after_identity_dial": [
+  "cand_s22_st0.6"
+ ],
+ "accepted": []
+}

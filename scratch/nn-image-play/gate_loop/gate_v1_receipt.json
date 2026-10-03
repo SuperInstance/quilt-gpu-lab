@@ -1,0 +1,140 @@
+{
+ "bias": {
+  "mood": 2.3333333333333335,
+  "warmth": 2.1666666666666665,
+  "complexity": 0.16666666666666666,
+  "machine_vs_organic": -6.166666666666667,
+  "colorfulness": 2.8333333333333335
+ },
+ "candidates": [
+  {
+   "name": "cand_s11_st0.45",
+   "seed": 11,
+   "strength": 0.45,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/cand_s11_st0.45.png",
+   "identity_cosine": 0.9846,
+   "identity_pass": true,
+   "desc": "\nThe image features a green robot head with two horns, giving it an intimidating appearance. The robot's eyes are black and white, adding to its creepy look. It has a small smile on one of the sides, ",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 3,
+    "colorfulness": 6
+   },
+   "dial_l1": 9,
+   "dial_pass": false,
+   "corrected_L1": 6.33,
+   "corrected_pass": false
+  },
+  {
+   "name": "cand_s11_st0.6",
+   "seed": 11,
+   "strength": 0.6,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/cand_s11_st0.6.png",
+   "identity_cosine": 0.8573,
+   "identity_pass": true,
+   "desc": "\nThe image features a green robot head with two eyes and a nose, giving it an anthropomorphic appearance. The robot's mouth is slightly open as if ready to speak or eat something. It has a small light",
+   "dials": {
+    "mood": 7,
+    "warmth": 3,
+    "complexity": 6,
+    "machine_vs_organic": 4,
+    "colorfulness": 8
+   },
+   "dial_l1": 19,
+   "dial_pass": false,
+   "corrected_L1": 5.67,
+   "corrected_pass": false
+  },
+  {
+   "name": "cand_s22_st0.45",
+   "seed": 22,
+   "strength": 0.45,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/cand_s22_st0.45.png",
+   "identity_cosine": 0.9752,
+   "identity_pass": true,
+   "desc": "\nThe image features a green robot head with two horns on top and a white smiley face below it, giving the impression of a friendly or humorous character. The robot's eyes are also white, adding to its",
+   "dials": {
+    "mood": 8,
+    "warmth": 7,
+    "complexity": 6,
+    "machine_vs_organic": 3,
+    "colorfulness": 9
+   },
+   "dial_l1": 26,
+   "dial_pass": false,
+   "corrected_L1": 12.33,
+   "corrected_pass": false
+  },
+  {
+   "name": "cand_s22_st0.6",
+   "seed": 22,
+   "strength": 0.6,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/cand_s22_st0.6.png",
+   "identity_cosine": 0.857,
+   "identity_pass": true,
+   "desc": "\nThe image features a green robot head with two large ears and a small nose, giving it an anthropomorphic appearance. The robot's face is outlined in black against the white background of the image. T",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 3,
+    "machine_vs_organic": 6,
+    "colorfulness": 5
+   },
+   "dial_l1": 7,
+   "dial_pass": true,
+   "jev_error": "HTTP Error 400: Bad Request",
+   "corrected_L1": 10.67,
+   "corrected_pass": false
+  },
+  {
+   "name": "cand_s33_st0.45",
+   "seed": 33,
+   "strength": 0.45,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/cand_s33_st0.45.png",
+   "identity_cosine": 0.9769,
+   "identity_pass": true,
+   "desc": "\nThe image features a green robot head with two horns on top and a mouth, giving it the appearance of a friendly or evil character depending on its expression. The robot's eyes are black and white, ad",
+   "dials": {
+    "mood": 5,
+    "warmth": 3,
+    "complexity": 6,
+    "machine_vs_organic": 4,
+    "colorfulness": 7
+   },
+   "dial_l1": 16,
+   "dial_pass": false,
+   "corrected_L1": 2.67,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.86
+   }
+  },
+  {
+   "name": "cand_s33_st0.6",
+   "seed": 33,
+   "strength": 0.6,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/cand_s33_st0.6.png",
+   "identity_cosine": 0.9041,
+   "identity_pass": true,
+   "desc": "\nThe image features a green robot head with two horns on either side, giving it an intimidating appearance. The robot's mouth is wide open and its eyes are glowing in the dark background, creating a s",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 3,
+    "colorfulness": 6
+   },
+   "dial_l1": 9,
+   "dial_pass": false,
+   "corrected_L1": 6.33,
+   "corrected_pass": false
+  }
+ ],
+ "accepted": [
+  "cand_s33_st0.45"
+ ],
+ "law": "gate on bias-corrected residual; generator bias is a measured artifact"
+}
