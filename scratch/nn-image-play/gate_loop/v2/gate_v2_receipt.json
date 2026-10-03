@@ -1,0 +1,362 @@
+{
+ "target": "lucineer",
+ "target_dials": {
+  "mood": 2,
+  "warmth": 0,
+  "complexity": 5,
+  "machine_vs_organic": 10,
+  "colorfulness": 4
+ },
+ "arms": {
+  "base": "portrait of a stoic machine-like robot, minimal, cool tones, clean vector shapes",
+  "push": "metallic mechanical robot head, industrial machine, artificial, minimal, cool tones, clean vector shapes"
+ },
+ "gen_s": 48.6,
+ "candidates": [
+  {
+   "name": "base_s11_st0.5",
+   "arm": "base",
+   "seed": 11,
+   "strength": 0.5,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/base_s11_st0.5.png",
+   "identity": 0.8573,
+   "desc": "\nThe image features a green robot head with two eyes and a nose, giving it an anthropomorphic appearance. The robot's mouth is slightly open as if ready to speak or eat something. It has a small light",
+   "dials": {
+    "mood": 7,
+    "warmth": 3,
+    "complexity": 6,
+    "machine_vs_organic": 4,
+    "colorfulness": 8
+   },
+   "corrected_L1": 11.14,
+   "corrected_pass": false
+  },
+  {
+   "name": "base_s11_st0.65",
+   "arm": "base",
+   "seed": 11,
+   "strength": 0.65,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/base_s11_st0.65.png",
+   "identity": 0.8573,
+   "desc": "\nThe image features a green robot head with two large eyes and a small nose, giving it an anthropomorphic appearance. The robot's mouth is slightly open as if ready to speak or eat something. It has t",
+   "dials": {
+    "mood": 3,
+    "warmth": 2,
+    "complexity": 5,
+    "machine_vs_organic": 4,
+    "colorfulness": 7
+   },
+   "corrected_L1": 4.14,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.86
+   }
+  },
+  {
+   "name": "base_s22_st0.5",
+   "arm": "base",
+   "seed": 22,
+   "strength": 0.5,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/base_s22_st0.5.png",
+   "identity": 0.857,
+   "desc": "\nThe image features a green robot head with two large ears and a small nose, giving it an anthropomorphic appearance. The robot's face is outlined in black against the white background of the image. T",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 3,
+    "machine_vs_organic": 6,
+    "colorfulness": 5
+   },
+   "corrected_L1": 4.86,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.89
+   }
+  },
+  {
+   "name": "base_s22_st0.65",
+   "arm": "base",
+   "seed": 22,
+   "strength": 0.65,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/base_s22_st0.65.png",
+   "identity": 0.857,
+   "desc": "\nThe image features a green robot head with two large ears and a small nose, giving it an anthropomorphic appearance. The robot's face is outlined in black against the white background of the image. T",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 3,
+    "machine_vs_organic": 6,
+    "colorfulness": 5
+   },
+   "corrected_L1": 4.86,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.89
+   }
+  },
+  {
+   "name": "base_s33_st0.5",
+   "arm": "base",
+   "seed": 33,
+   "strength": 0.5,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/base_s33_st0.5.png",
+   "identity": 0.9041,
+   "desc": "\nThe image features a green robot head with two horns on either side, giving it an intimidating appearance. The robot's mouth is wide open and its eyes are glowing in the dark background, creating a s",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 3,
+    "colorfulness": 6
+   },
+   "corrected_L1": 3.88,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.87
+   }
+  },
+  {
+   "name": "base_s33_st0.65",
+   "arm": "base",
+   "seed": 33,
+   "strength": 0.65,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/base_s33_st0.65.png",
+   "identity": 0.9041,
+   "desc": "\nThe image features a green robot head with two horns on either side, giving it an intimidating appearance. The robot's mouth is wide open and its eyes are glowing in the dark background, creating a s",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 3,
+    "colorfulness": 6
+   },
+   "corrected_L1": 3.88,
+   "corrected_pass": true,
+   "jev": {
+    "type": "noul",
+    "noul": 0.85
+   }
+  },
+  {
+   "name": "base_s44_st0.5",
+   "arm": "base",
+   "seed": 44,
+   "strength": 0.5,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/base_s44_st0.5.png",
+   "identity": 0.9109,
+   "desc": "\nThe image features a green robot head with two horns, giving it an intimidating appearance. The robot's eyes are black and appear to be glowing in the dark background. It has a small mouth that is sl",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 3,
+    "machine_vs_organic": 1,
+    "colorfulness": 5
+   },
+   "corrected_L1": 6.62,
+   "corrected_pass": false
+  },
+  {
+   "name": "base_s44_st0.65",
+   "arm": "base",
+   "seed": 44,
+   "strength": 0.65,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/base_s44_st0.65.png",
+   "identity": 0.9109,
+   "desc": "\nThe image features a green robot head with two horns, giving it an intimidating appearance. The robot's eyes are black and appear to be glowing in the dark background. It has a small mouth that is sl",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 3,
+    "machine_vs_organic": 8,
+    "colorfulness": 4
+   },
+   "corrected_L1": 7.86,
+   "corrected_pass": false
+  },
+  {
+   "name": "push_s11_st0.5",
+   "arm": "push",
+   "seed": 11,
+   "strength": 0.5,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/push_s11_st0.5.png",
+   "identity": 0.9036,
+   "desc": "\nThe image features a green robot head with two large horns on either side, giving it an imposing and futuristic appearance. The robot's mouth is wide open in a smiley expression, adding to its friend",
+   "dials": {
+    "mood": 10,
+    "warmth": 2,
+    "complexity": 7,
+    "machine_vs_organic": 3,
+    "colorfulness": 8
+   },
+   "corrected_L1": 7.88,
+   "corrected_pass": false
+  },
+  {
+   "name": "push_s11_st0.65",
+   "arm": "push",
+   "seed": 11,
+   "strength": 0.65,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/push_s11_st0.65.png",
+   "identity": 0.9036,
+   "desc": "\nThe image features a green robot head with two large horns on either side, giving it an imposing and futuristic appearance. The robot's mouth is wide open in a smiley expression, adding to its friend",
+   "dials": {
+    "mood": 10,
+    "warmth": 2,
+    "complexity": 7,
+    "machine_vs_organic": 3,
+    "colorfulness": 8
+   },
+   "corrected_L1": 7.88,
+   "corrected_pass": false
+  },
+  {
+   "name": "push_s22_st0.5",
+   "arm": "push",
+   "seed": 22,
+   "strength": 0.5,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/push_s22_st0.5.png",
+   "identity": 0.8697,
+   "desc": "\nThe image features a green robot head with two large ears and a small nose, giving it an anthropomorphic appearance. The robot's mouth is wide open in a smiley face expression, adding to its friendly",
+   "dials": {
+    "mood": 10,
+    "warmth": 9,
+    "complexity": 5,
+    "machine_vs_organic": 4,
+    "colorfulness": 8
+   },
+   "corrected_L1": 14.64,
+   "corrected_pass": false
+  },
+  {
+   "name": "push_s22_st0.65",
+   "arm": "push",
+   "seed": 22,
+   "strength": 0.65,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/push_s22_st0.65.png",
+   "identity": 0.8697,
+   "desc": "\nThe image features a green robot head with two large ears and a small nose, giving it an anthropomorphic appearance. The robot's mouth is wide open in a \"p\" shape, as if ready to speak or make a soun",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 3,
+    "colorfulness": 7
+   },
+   "corrected_L1": 5.36,
+   "corrected_pass": false
+  },
+  {
+   "name": "push_s33_st0.5",
+   "arm": "push",
+   "seed": 33,
+   "strength": 0.5,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/push_s33_st0.5.png",
+   "identity": 0.9008,
+   "desc": "\nThe image features a green robot head with two large horns on either side, giving it an intimidating appearance. The robot's mouth is wide open and its eyes are closed, creating the impression of a r",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 7,
+    "colorfulness": 6
+   },
+   "corrected_L1": 10.12,
+   "corrected_pass": false
+  },
+  {
+   "name": "push_s33_st0.65",
+   "arm": "push",
+   "seed": 33,
+   "strength": 0.65,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/push_s33_st0.65.png",
+   "identity": 0.9008,
+   "desc": "\nThe image features a green robot head with two large horns on either side, giving it an intimidating appearance. The robot's mouth is wide open and its eyes are closed, creating the impression of a r",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 1,
+    "colorfulness": 7
+   },
+   "corrected_L1": 7.36,
+   "corrected_pass": false
+  },
+  {
+   "name": "push_s44_st0.5",
+   "arm": "push",
+   "seed": 44,
+   "strength": 0.5,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/push_s44_st0.5.png",
+   "identity": 0.9133,
+   "desc": "\nThe image features a green robot head with two horns, giving it an intimidating appearance. The robot's eyes are wide open and appear to be looking directly at the viewer. It has a small mouth that i",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 3,
+    "colorfulness": 6
+   },
+   "corrected_L1": 6.36,
+   "corrected_pass": false
+  },
+  {
+   "name": "push_s44_st0.65",
+   "arm": "push",
+   "seed": 44,
+   "strength": 0.65,
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/push_s44_st0.65.png",
+   "identity": 0.9133,
+   "desc": "\nThe image features a green robot head with two horns, giving it an intimidating appearance. The robot's eyes are wide open and appear to be looking at the viewer directly. It has a small mouth that i",
+   "dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 1,
+    "colorfulness": 7
+   },
+   "corrected_L1": 7.36,
+   "corrected_pass": false
+  }
+ ],
+ "bias_base": {
+  "mood": 0.75,
+  "warmth": 0.62,
+  "complexity": -0.88,
+  "machine_vs_organic": -5.62,
+  "colorfulness": 1.75
+ },
+ "identity_base": {
+  "mean": 0.882,
+  "min": 0.857
+ },
+ "bias_push": {
+  "mood": 3.0,
+  "warmth": 1.62,
+  "complexity": 0.5,
+  "machine_vs_organic": -6.88,
+  "colorfulness": 3.12
+ },
+ "identity_push": {
+  "mean": 0.897,
+  "min": 0.8697
+ },
+ "prompt_steering_effect_machine": -1.26,
+ "accepted": [
+  "base_s11_st0.65",
+  "base_s22_st0.5",
+  "base_s22_st0.65",
+  "base_s33_st0.5",
+  "base_s33_st0.65"
+ ],
+ "survivors": [
+  "base_s11_st0.65",
+  "base_s22_st0.5",
+  "base_s22_st0.65",
+  "base_s33_st0.5",
+  "base_s33_st0.65"
+ ]
+}
