@@ -1,0 +1,774 @@
+{
+ "experiment": "w5a-judge-board",
+ "claims_frozen_in_header": true,
+ "judges": [
+  "clip",
+  "dino",
+  "ijepa"
+ ],
+ "floor": 0.8,
+ "n": 78,
+ "pairs_spearman": {
+  "clipxdino": 0.8523,
+  "clipxijepa": 0.5356,
+  "dinoxijepa": 0.4906
+ },
+ "flip_rate_nonmorph": 0.0128,
+ "morph_verdicts": [],
+ "claims": {
+  "B1": {
+   "claim": ">=2/3 pairs Spearman >= 0.80",
+   "pairs": {
+    "clipxdino": 0.8523,
+    "clipxijepa": 0.5356,
+    "dinoxijepa": 0.4906
+   },
+   "pass": false
+  },
+  "B2": {
+   "claim": "board-vs-CLIP flip <= 40% on non-morphs",
+   "flip_rate": 0.0135,
+   "flips": [
+    "lucineer_neon_base_s101"
+   ],
+   "pass": true,
+   "note": "recomputed excluding 4 morphs"
+  },
+  "B3": {
+   "claim": "board rejects >= 3/4 morphs CLIP accepted",
+   "morph_identities": {
+    "xcasey_lucedges_s102": {
+     "clip": 0.7436,
+     "dino": 0.3408,
+     "ijepa": 0.8393
+    },
+    "xlucineer_caseyedges_s101": {
+     "clip": 0.8078,
+     "dino": 0.4188,
+     "ijepa": 0.8741
+    },
+    "xlucineer_caseyedges_s102": {
+     "clip": 0.8127,
+     "dino": 0.503,
+     "ijepa": 0.909
+    },
+    "xcasey_lucedges_s101": {
+     "clip": 0.7717,
+     "dino": 0.3782,
+     "ijepa": 0.7969
+    }
+   },
+   "rejected": [
+    "xcasey_lucedges_s102",
+    "xcasey_lucedges_s101"
+   ],
+   "pass": false,
+   "note": "recomputed from stored identities after is_morph name-bug fix (flag never matched x-prefixed filenames); B1/B2 unchanged"
+  }
+ },
+ "artifacts": [
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/cand_s11_st0.6.png",
+   "name": "cand_s11_st0.6",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.7031,
+   "ijepa": 0.9441,
+   "clip": 0.8573
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/cand_s33_st0.6.png",
+   "name": "cand_s33_st0.6",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.7725,
+   "ijepa": 0.9479,
+   "clip": 0.9041
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/cand_s22_st0.6.png",
+   "name": "cand_s22_st0.6",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.6784,
+   "ijepa": 0.9516,
+   "clip": 0.857
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/cand_s22_st0.45.png",
+   "name": "cand_s22_st0.45",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.7647,
+   "ijepa": 0.9655,
+   "clip": 0.9752
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/cand_s11_st0.45.png",
+   "name": "cand_s11_st0.45",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.8291,
+   "ijepa": 0.9839,
+   "clip": 0.9846
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/cand_s33_st0.45.png",
+   "name": "cand_s33_st0.45",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.8012,
+   "ijepa": 0.9838,
+   "clip": 0.9769
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4_montage.png",
+   "name": "v4_montage",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.4513,
+   "ijepa": 0.5221,
+   "clip": 0.7143
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/base_s22_st0.5.png",
+   "name": "base_s22_st0.5",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.6784,
+   "ijepa": 0.9516,
+   "clip": 0.857
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/push_s44_st0.5.png",
+   "name": "push_s44_st0.5",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.5956,
+   "ijepa": 0.9454,
+   "clip": 0.9133
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/base_s22_st0.65.png",
+   "name": "base_s22_st0.65",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.6784,
+   "ijepa": 0.9516,
+   "clip": 0.857
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/base_s11_st0.65.png",
+   "name": "base_s11_st0.65",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.7031,
+   "ijepa": 0.9441,
+   "clip": 0.8573
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/push_s33_st0.65.png",
+   "name": "push_s33_st0.65",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.812,
+   "ijepa": 0.9479,
+   "clip": 0.9008
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/base_s33_st0.65.png",
+   "name": "base_s33_st0.65",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.7725,
+   "ijepa": 0.9479,
+   "clip": 0.9041
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/push_s33_st0.5.png",
+   "name": "push_s33_st0.5",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.812,
+   "ijepa": 0.9479,
+   "clip": 0.9008
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/base_s11_st0.5.png",
+   "name": "base_s11_st0.5",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.7031,
+   "ijepa": 0.9441,
+   "clip": 0.8573
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/push_s11_st0.65.png",
+   "name": "push_s11_st0.65",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.6191,
+   "ijepa": 0.9537,
+   "clip": 0.9036
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/base_s33_st0.5.png",
+   "name": "base_s33_st0.5",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.7725,
+   "ijepa": 0.9479,
+   "clip": 0.9041
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/push_s11_st0.5.png",
+   "name": "push_s11_st0.5",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.6191,
+   "ijepa": 0.9537,
+   "clip": 0.9036
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/base_s44_st0.5.png",
+   "name": "base_s44_st0.5",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.6311,
+   "ijepa": 0.939,
+   "clip": 0.9109
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/base_s44_st0.65.png",
+   "name": "base_s44_st0.65",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.6311,
+   "ijepa": 0.939,
+   "clip": 0.9109
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/push_s44_st0.65.png",
+   "name": "push_s44_st0.65",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.5956,
+   "ijepa": 0.9454,
+   "clip": 0.9133
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/push_s22_st0.65.png",
+   "name": "push_s22_st0.65",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.7179,
+   "ijepa": 0.9556,
+   "clip": 0.8697
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v2/push_s22_st0.5.png",
+   "name": "push_s22_st0.5",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.7179,
+   "ijepa": 0.9556,
+   "clip": 0.8697
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/lucineer_cn06_s11.png",
+   "name": "lucineer_cn06_s11",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.5422,
+   "ijepa": 0.9378,
+   "clip": 0.8779
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/lucineer_base_s33.png",
+   "name": "lucineer_base_s33",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.5355,
+   "ijepa": 0.9012,
+   "clip": 0.8313
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/lucineer_cn09_s22.png",
+   "name": "lucineer_cn09_s22",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.5615,
+   "ijepa": 0.925,
+   "clip": 0.8596
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/lucineer_base_s11.png",
+   "name": "lucineer_base_s11",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.5447,
+   "ijepa": 0.9279,
+   "clip": 0.8844
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/casey_base_s33.png",
+   "name": "casey_base_s33",
+   "subject": "casey",
+   "is_morph": false,
+   "dino": 0.8326,
+   "ijepa": 0.9272,
+   "clip": 0.9233
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/casey_cn075_s11.png",
+   "name": "casey_cn075_s11",
+   "subject": "casey",
+   "is_morph": false,
+   "dino": 0.8031,
+   "ijepa": 0.8885,
+   "clip": 0.932
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/lucineer_base_s22.png",
+   "name": "lucineer_base_s22",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.3747,
+   "ijepa": 0.9039,
+   "clip": 0.8371
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/lucineer_cn09_s33.png",
+   "name": "lucineer_cn09_s33",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.6846,
+   "ijepa": 0.937,
+   "clip": 0.8566
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/casey_base_s22.png",
+   "name": "casey_base_s22",
+   "subject": "casey",
+   "is_morph": false,
+   "dino": 0.7584,
+   "ijepa": 0.8432,
+   "clip": 0.9037
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/casey_base_s11.png",
+   "name": "casey_base_s11",
+   "subject": "casey",
+   "is_morph": false,
+   "dino": 0.8072,
+   "ijepa": 0.8451,
+   "clip": 0.9378
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/lucineer_cn09_s11.png",
+   "name": "lucineer_cn09_s11",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.5197,
+   "ijepa": 0.9443,
+   "clip": 0.8827
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/casey_cn075_s22.png",
+   "name": "casey_cn075_s22",
+   "subject": "casey",
+   "is_morph": false,
+   "dino": 0.7817,
+   "ijepa": 0.8717,
+   "clip": 0.9322
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/casey_cn075_s33.png",
+   "name": "casey_cn075_s33",
+   "subject": "casey",
+   "is_morph": false,
+   "dino": 0.8599,
+   "ijepa": 0.8912,
+   "clip": 0.9295
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/lucineer_cn06_s33.png",
+   "name": "lucineer_cn06_s33",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.6264,
+   "ijepa": 0.9076,
+   "clip": 0.8442
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v3/lucineer_cn06_s22.png",
+   "name": "lucineer_cn06_s22",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.4497,
+   "ijepa": 0.9138,
+   "clip": 0.867
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_base_s101.png",
+   "name": "lucineer_base_s101",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.347,
+   "ijepa": 0.8391,
+   "clip": 0.7646
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/casey_cn06_s104.png",
+   "name": "casey_cn06_s104",
+   "subject": "casey",
+   "is_morph": false,
+   "dino": 0.8382,
+   "ijepa": 0.8743,
+   "clip": 0.9446
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/casey_cn06_s102.png",
+   "name": "casey_cn06_s102",
+   "subject": "casey",
+   "is_morph": false,
+   "dino": 0.804,
+   "ijepa": 0.9413,
+   "clip": 0.9375
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_cn06_s102.png",
+   "name": "lucineer_cn06_s102",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.5164,
+   "ijepa": 0.9265,
+   "clip": 0.793
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/casey_base_s101.png",
+   "name": "casey_base_s101",
+   "subject": "casey",
+   "is_morph": false,
+   "dino": 0.7639,
+   "ijepa": 0.8499,
+   "clip": 0.8577
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_neon_cn06_s101.png",
+   "name": "lucineer_neon_cn06_s101",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.4118,
+   "ijepa": 0.8985,
+   "clip": 0.8185
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_cn045_s104.png",
+   "name": "lucineer_cn045_s104",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.3899,
+   "ijepa": 0.8896,
+   "clip": 0.8271
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/jev_cn06_s102.png",
+   "name": "jev_cn06_s102",
+   "subject": "jev",
+   "is_morph": false,
+   "dino": 0.6892,
+   "ijepa": 0.965,
+   "clip": 0.8835
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/mmx_cn06_s102.png",
+   "name": "mmx_cn06_s102",
+   "subject": "mmx",
+   "is_morph": false,
+   "dino": 0.7379,
+   "ijepa": 0.9172,
+   "clip": 0.9413
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/mmx_cn06_s103.png",
+   "name": "mmx_cn06_s103",
+   "subject": "mmx",
+   "is_morph": false,
+   "dino": 0.7656,
+   "ijepa": 0.9278,
+   "clip": 0.9038
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/casey_cn06_s101.png",
+   "name": "casey_cn06_s101",
+   "subject": "casey",
+   "is_morph": false,
+   "dino": 0.8284,
+   "ijepa": 0.8886,
+   "clip": 0.9298
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_base_s104.png",
+   "name": "lucineer_base_s104",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.3838,
+   "ijepa": 0.8573,
+   "clip": 0.7856
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_water_cn06_s101.png",
+   "name": "lucineer_water_cn06_s101",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.2516,
+   "ijepa": 0.7927,
+   "clip": 0.694
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/xcasey_lucedges_s102.png",
+   "name": "xcasey_lucedges_s102",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.3408,
+   "ijepa": 0.8393,
+   "clip": 0.7436
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_neon_base_s102.png",
+   "name": "lucineer_neon_base_s102",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.51,
+   "ijepa": 0.8976,
+   "clip": 0.8287
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_cn045_s101.png",
+   "name": "lucineer_cn045_s101",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.403,
+   "ijepa": 0.8597,
+   "clip": 0.827
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_cn06_s101.png",
+   "name": "lucineer_cn06_s101",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.4738,
+   "ijepa": 0.914,
+   "clip": 0.8386
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/xlucineer_caseyedges_s101.png",
+   "name": "xlucineer_caseyedges_s101",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.4188,
+   "ijepa": 0.8741,
+   "clip": 0.8078
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/xlucineer_caseyedges_s102.png",
+   "name": "xlucineer_caseyedges_s102",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.503,
+   "ijepa": 0.909,
+   "clip": 0.8127
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/jev_base_s102.png",
+   "name": "jev_base_s102",
+   "subject": "jev",
+   "is_morph": false,
+   "dino": 0.5992,
+   "ijepa": 0.956,
+   "clip": 0.8521
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_water_base_s102.png",
+   "name": "lucineer_water_base_s102",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.5449,
+   "ijepa": 0.9048,
+   "clip": 0.818
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/casey_base_s102.png",
+   "name": "casey_base_s102",
+   "subject": "casey",
+   "is_morph": false,
+   "dino": 0.7257,
+   "ijepa": 0.8508,
+   "clip": 0.8968
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/jev_base_s101.png",
+   "name": "jev_base_s101",
+   "subject": "jev",
+   "is_morph": false,
+   "dino": 0.5611,
+   "ijepa": 0.9565,
+   "clip": 0.8897
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_neon_base_s101.png",
+   "name": "lucineer_neon_base_s101",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.3608,
+   "ijepa": 0.792,
+   "clip": 0.8264
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/jev_cn06_s101.png",
+   "name": "jev_cn06_s101",
+   "subject": "jev",
+   "is_morph": false,
+   "dino": 0.6303,
+   "ijepa": 0.9417,
+   "clip": 0.8703
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_neon_cn06_s102.png",
+   "name": "lucineer_neon_cn06_s102",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.535,
+   "ijepa": 0.9278,
+   "clip": 0.8755
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/mmx_base_s102.png",
+   "name": "mmx_base_s102",
+   "subject": "mmx",
+   "is_morph": false,
+   "dino": 0.7264,
+   "ijepa": 0.9301,
+   "clip": 0.8721
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_base_s102.png",
+   "name": "lucineer_base_s102",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.3871,
+   "ijepa": 0.9128,
+   "clip": 0.8526
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_cn06_s103.png",
+   "name": "lucineer_cn06_s103",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.5163,
+   "ijepa": 0.9034,
+   "clip": 0.8499
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/jev_cn06_s103.png",
+   "name": "jev_cn06_s103",
+   "subject": "jev",
+   "is_morph": false,
+   "dino": 0.6162,
+   "ijepa": 0.9524,
+   "clip": 0.8786
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_cn045_s103.png",
+   "name": "lucineer_cn045_s103",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.4227,
+   "ijepa": 0.8958,
+   "clip": 0.8315
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/casey_cn06_s103.png",
+   "name": "casey_cn06_s103",
+   "subject": "casey",
+   "is_morph": false,
+   "dino": 0.7652,
+   "ijepa": 0.9599,
+   "clip": 0.9255
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_base_s103.png",
+   "name": "lucineer_base_s103",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.3783,
+   "ijepa": 0.8513,
+   "clip": 0.818
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/mmx_cn06_s101.png",
+   "name": "mmx_cn06_s101",
+   "subject": "mmx",
+   "is_morph": false,
+   "dino": 0.8455,
+   "ijepa": 0.9716,
+   "clip": 0.9613
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_cn045_s102.png",
+   "name": "lucineer_cn045_s102",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.4127,
+   "ijepa": 0.9329,
+   "clip": 0.8356
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_water_base_s101.png",
+   "name": "lucineer_water_base_s101",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.1918,
+   "ijepa": 0.7639,
+   "clip": 0.6948
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/mmx_base_s101.png",
+   "name": "mmx_base_s101",
+   "subject": "mmx",
+   "is_morph": false,
+   "dino": 0.8604,
+   "ijepa": 0.9683,
+   "clip": 0.9607
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/xcasey_lucedges_s101.png",
+   "name": "xcasey_lucedges_s101",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.3782,
+   "ijepa": 0.7969,
+   "clip": 0.7717
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_water_cn06_s102.png",
+   "name": "lucineer_water_cn06_s102",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.4735,
+   "ijepa": 0.8873,
+   "clip": 0.7972
+  },
+  {
+   "path": "/home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/gate_loop/v4/lucineer_cn06_s104.png",
+   "name": "lucineer_cn06_s104",
+   "subject": "lucineer",
+   "is_morph": false,
+   "dino": 0.4324,
+   "ijepa": 0.8838,
+   "clip": 0.8183
+  }
+ ],
+ "morph_flag_bug_fixed": true
+}
