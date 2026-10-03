@@ -5551,3 +5551,21 @@ rate 0.5718; torch nondeterminism vs booked 0.5789 as expected). G1 anchor PASS 
 - Slice log: SCOUT-28 landed 23:13 (rotation (A) satisfied this window); this slice = (C) only. No GPU
   fired (lane idle but rotation gives (B) next wake). Next wake per rotation: (B) top open CPU item —
   RC-6 (input-pin, spawned by W5B2-REPRO drift finding) or CI-1 (fail-closed CI, priority raised SCOUT-26).
+
+## REST-EM-001 attempt-2 overnight retry (N2 relaunch-4): STILL INCOMPLETE (booked 00:44 AKDT 2026-10-03)
+
+Health gate PASSED (nvidia-smi responsive; 30s torch CUDA smoke CUDA-OK),
+frozen prereg line launched verbatim at 00:30 (marker `=== ARM N2 RELAUNCH-4
+(overnight retry) ===` in rest_em_full.log). Run progressed further than any
+daytime attempt — verifier self-test, pool/heldout build (contamination 0),
+model load, base-hf eval pass@1 0.688 n=96, ollama parity 0.125 (tol 0.12),
+N2 generation complete (768 gen / 336 verified / 432 rejected), ramp receipt
+issued — then died at 00:37 in sft_train cross_entropy with the SAME
+`RuntimeError: CUDA driver error: device not ready` (4th occurrence, 2nd on
+expandable_segments). rc=1, no N2 JSON. Failure point is ~7 min into training,
+after ~7 min of sustained GPU load — consistent with a driver/hardware fault
+under sustained compute, not an allocator issue. Per protocol: NO fourth
+same-day-style loop attempted. Gate remains INCOMPLETE-HELD, no verdict
+claimed. T/C1/C2 JSONs from 2026-10-02 stand. Next escalation belongs to
+Casey: likely WSL2 driver/`wsl --shutdown` cycle or driver reinstall before
+any relaunch-5.
