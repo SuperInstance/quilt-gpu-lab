@@ -1120,3 +1120,16 @@ other agents are feeding us; keep the handshake lane warm.
   GPU lane idle; no GPU item (rotation: FW-1 was the slot; QG4/QG1d/MC-1/CI-1 remain open).
 
 - 17:4x CONDUCTOR slice (day cron Oct 2, (B)-slot): **FW-1 tranche 2 BOOKED: 3/3 GREEN, zero RED** (D12i GREEN deterministic+repro-covered; W5b2 YELLOW no-uncovered-path but single-draw GPU coverage, huge gate margin, verdict-level repro candidate; QG7 GREEN with ensemble caveat; 1 new RC-1b dead-but-non-gating entry — QG7 best_state write). Cumulative 6/6 booked verdicts censused, 0 RED. (C): none due (QO10 repro-PASS 14:4x stands; FW-1 is static analysis). Seal still deferred (foreign live-lane untracked: d12l/d12m/rest_em_*, dial-lib era). Rotation next wake: (A) SCOUT-26 (last sweep SCOUT-25 ~2.5h old, FW-1 done) or GPU QG4/QG1d/MC-1 (lane idle).
+
+## 18:4x CONDUCTOR slice (day cron Oct 2): W5B2-REPRO FIRED
+- (A) scout skipped this slice (scouts landed 12:39 + 15:5x; rotation favors B/C).
+- (B) W5B2-REPRO (FW-1 tranche-2 spawn, W5b2 YELLOW single-draw coverage): pre-reg
+  proposals/runs/W5B2-REPRO-verdict-level.md committed+pushed BEFORE firing; committed script
+  c6e5b0f unchanged; committed artifact backed up to ext4 /home/eileen/w5b2_committed_ref.json
+  (sha 8bde65c8…, byte-identical). Fired on free GPU lane (263 MiB / 44% at T+~2min), scratch/
+  w5b2_repro_run.log, background session. ETA ~42-45 min => next wake: diff vs booking, byte-
+  identical restore via git checkout, book PASS/SOFT/FAIL per frozen gates, ramp receipt per
+  INSTRUMENT-01. GPU serial law: nothing else fires until it lands.
+- (C) no repro due (newest script booking QO10 already PASS 14:4x; FW-1 tranches are static
+  analysis). Manifest re-seal still deferred (foreign live-lane untracked files, PW-1). No new
+  spawns this slice; W5b2-repro completion is the single open thread.
