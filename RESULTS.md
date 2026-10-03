@@ -5497,8 +5497,28 @@ rate 0.5718; torch nondeterminism vs booked 0.5789 as expected). G1 anchor PASS 
 - **QG7 (P1 FAIL / P2 PASS-weak) — GREEN with booked ensemble caveat.** Verdict reads auc_fresh_gen1 (4-seed ensemble per the booked nondeterminism lesson) + auc_frozen_oracle (frozen oracle, sha-pinned in artifact). 1 RC-1b census entry: `best_state` dict write in the training loop is NOT verdict-feeding (verdict uses the best_auc scalar; restore path dead-but-not-gating) — same class as tranche-1 eproc INCREASES arm, one-test-pin candidate.
 - **Zero RED across tranche 2.** Cumulative FW-1: 6 booked verdicts censused, 0 RED, 2 RC-1b dead-but-non-gating entries. (C): no new script-booking since QO10 (repro PASS 14:4x); FW-1 tranches are static analysis. Manifest re-seal still deferred (foreign live-lane untracked files persist: d12l/d12m/rest_em_*, dial-lib-era; PW-1 precedent, sealer correctly refuses).
 
-## QUEUE — W5B2-REPRO FIRED (18:4x Oct 3 UTC / 18:4x AKDT Oct 2): verdict-level repro of W5b2
+## QUEUE — W5B2-REPRO BOOKED 19:5x AKDT Oct 2: verdict **REPRO-SOFT, KEEP stands, +INPUT-DRIFT caveat**
 - Spawned by FW-1 tranche 2 YELLOW (single-draw coverage). Pre-reg: proposals/runs/W5B2-REPRO-verdict-level.md
   (committed BEFORE firing). Committed script unchanged; artifact backed up to ext4 first (QO10 pattern),
   run overwrites results/w5b2_antirank_primacy/, diff, then byte-identical restore. Gates: REPRO-PASS/SOFT/FAIL
   per pre-reg. Booking expected ~42-45 min; next wake books honestly.
+
+## [DONE 19:5x CPU] W5B2-REPRO BOOKED: REPRO-SOFT — KEEP stands; corpus drifted under the frozen script
+- Verdict: repro mean_rel **+13.83%** wins 4/5 vs booked +8.35% wins 4/5 — pre-reg gate verdict level REPRODUCES
+  with margin. REPRO-SOFT (not PASS): seeds 5293 & 5295 flipped sign vs booking (booked +,+,-,+,+; repro +,+,+,+,-).
+- **MATERIAL CAVEAT — input drift under a committed-script repro**: booked run corpus=1002774B/125 files/vocab 215
+  (hp 19345); repro corpus=2097152B/344 files/vocab 241 (hp 19545). dial-lib corpus-widening (cc6bd48,
+  COLLECT-2026-10-02) landed between booking and repro. Script pin c6e5b0f unchanged, clean diff; the DATA
+  changed. Seed sign flips plausibly corpus-driven, not pure draw noise. Silver lining: KEEP reproduces on a
+  2x-widened corpus with a LARGER margin — robustness evidence, but NOT a same-input draw.
+- NEW DEFECT-CLASS witness (D-2 cousin): pre-regs pin the CODE, not the INPUT. Committed-script repro silently
+  exercised a different dataset.
+  - [spawned by W5B2-REPRO] **RC-6 input-pin for repro** (CPU ~30m): fire-time assert of input-corpus digest
+    (bytes+file count) recorded in the pre-reg; mismatch => loud INPUT-DRIFT banner in the booking, repro graded
+    on the drifted corpus explicitly. Fold into the W5B2-REPRO receipt as the pinning instance.
+- Artifact restored byte-identical (sha 8bde65c8…, ext4 backup /home/eileen/w5b2_committed_ref.json); repro log
+  archived scratch/w5b2_repro/run.log. FW-1 W5b2 YELLOW entry: upgrade to GREEN-with-caveat (verdict-level
+  coverage now 2 draws, both KEEP, cross-corpus). Manifest re-seal STILL deferred (foreign live-lane untracked
+  files persist; sealer correctly refuses; PW-1 precedent).
+- Rotation next wake: (A) SUPERINSTANCE SCOUT is due (last scout SCOUT-25 at 15:5x; several pushes since),
+  then RC-6 or CI-1 (top cheap open CPU items); GPU free for QG4/QG1d/MC-1.

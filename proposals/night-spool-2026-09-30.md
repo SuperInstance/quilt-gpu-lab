@@ -1133,3 +1133,16 @@ other agents are feeding us; keep the handshake lane warm.
 - (C) no repro due (newest script booking QO10 already PASS 14:4x; FW-1 tranches are static
   analysis). Manifest re-seal still deferred (foreign live-lane untracked files, PW-1). No new
   spawns this slice; W5b2-repro completion is the single open thread.
+
+## 19:5x CONDUCTOR slice (day-cron Oct 2, slot (C) mandatory repro of newest booking = W5B2-REPRO booking)
+- [DONE 19:5x] **W5B2-REPRO BOOKED: REPRO-SOFT, KEEP stands** — repro +13.83% wins 4/5 vs booked +8.35% wins 4/5;
+  seeds 5293/5295 sign-flipped. MATERIAL caveat: corpus drifted under the frozen script (booked 1.0MB/125 files/
+  vocab 215 vs repro 2.1MB/344 files/vocab 241 — dial-lib cc6bd48 corpus-widening landed between). Verdict-level
+  KEEP reproduces cross-corpus with larger margin; NOT a same-input draw. Artifact restored byte-identical
+  (sha 8bde65c8…); FW-1 W5b2 YELLOW -> GREEN-with-caveat.
+  - [spawned] **RC-6 input-pin for repro** (CPU ~30m): pre-regs pin CODE not DATA — fire-time assert of input
+    corpus digest recorded in the pre-reg; mismatch => loud INPUT-DRIFT banner in booking. First live witness of
+    the D-2-cousin class: W5B2-REPRO itself.
+- Manifest re-seal STILL deferred (foreign live-lane untracked files persist; sealer correctly refuses; PW-1).
+- No GPU fired this slice (repro was the slot; GPU idle). Rotation next wake: (A) SUPERINSTANCE SCOUT due
+  (last SCOUT-25 15:5x; pushes since), then RC-6 or CI-1; GPU free for QG4/QG1d/MC-1.

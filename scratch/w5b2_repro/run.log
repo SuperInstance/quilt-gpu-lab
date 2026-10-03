@@ -1,0 +1,18 @@
+[cfg] w5b2 device=cuda warm=4000 main=6000 seeds=[5291, 5292, 5293, 5294, 5295] arms=['antirank', 'random'] corpus=2097152B vocab=241 files=344
+[seed 5291] warm bpb=6.39059 (163s)
+[seed 5291] arm=antirank final=9.64757 (236s)
+[seed 5291] arm=random   final=11.32082 (252s)
+[seed 5292] warm bpb=6.32652 (175s)
+[seed 5292] arm=antirank final=8.95740 (262s)
+[seed 5292] arm=random   final=10.90965 (235s)
+[seed 5293] warm bpb=6.46221 (150s)
+[seed 5293] arm=antirank final=8.40296 (244s)
+[seed 5293] arm=random   final=10.63869 (240s)
+[seed 5294] warm bpb=6.28791 (163s)
+[seed 5294] arm=antirank final=8.68027 (244s)
+[seed 5294] arm=random   final=10.94424 (259s)
+[seed 5295] warm bpb=6.26602 (168s)
+[seed 5295] arm=antirank final=9.95856 (254s)
+[seed 5295] arm=random   final=9.46311 (244s)
+[VERDICT] KEEP mean_rel=+0.13828 wins=4/5
+WROTE /home/eileen/projects/quilt-gpu-lab/results/w5b2_antirank_primacy
