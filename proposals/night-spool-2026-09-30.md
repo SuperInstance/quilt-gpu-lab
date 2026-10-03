@@ -1118,3 +1118,5 @@ other agents are feeding us; keep the handshake lane warm.
   repro-PASS 14:4x; sym-verify tool landing 4538db6 is a tool, not a booking). Manifest re-seal still
   deferred (foreign live-lane untracked files d12l/d12m/rest_em_* persist, PW-1 — flagged, untouched).
   GPU lane idle; no GPU item (rotation: FW-1 was the slot; QG4/QG1d/MC-1/CI-1 remain open).
+
+- 17:4x CONDUCTOR slice (day cron Oct 2, (B)-slot): **FW-1 tranche 2 BOOKED: 3/3 GREEN, zero RED** (D12i GREEN deterministic+repro-covered; W5b2 YELLOW no-uncovered-path but single-draw GPU coverage, huge gate margin, verdict-level repro candidate; QG7 GREEN with ensemble caveat; 1 new RC-1b dead-but-non-gating entry — QG7 best_state write). Cumulative 6/6 booked verdicts censused, 0 RED. (C): none due (QO10 repro-PASS 14:4x stands; FW-1 is static analysis). Seal still deferred (foreign live-lane untracked: d12l/d12m/rest_em_*, dial-lib era). Rotation next wake: (A) SCOUT-26 (last sweep SCOUT-25 ~2.5h old, FW-1 done) or GPU QG4/QG1d/MC-1 (lane idle).
