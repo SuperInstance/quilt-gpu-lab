@@ -5522,3 +5522,20 @@ rate 0.5718; torch nondeterminism vs booked 0.5789 as expected). G1 anchor PASS 
   files persist; sealer correctly refuses; PW-1 precedent).
 - Rotation next wake: (A) SUPERINSTANCE SCOUT is due (last scout SCOUT-25 at 15:5x; several pushes since),
   then RC-6 or CI-1 (top cheap open CPU items); GPU free for QG4/QG1d/MC-1.
+
+## [DONE 21:2x CPU Oct 2] **HB-1 BOOKED: CLEAN, 0 RED** (pre-reg proposals/runs/HB1-hardcoded-literal-sweep.md committed before firing)
+- Spawned by SCOUT-26 (holonomy-consensus 412.0 fabricated-benchmark class). Grep sweep of 14 booked
+  headline literals across committed tools/+experiments/; gate-statistic degeneracy review; suite-run check.
+- **G1 (hardcoded-literal): 0 RED.** Every hit benign: 0.9510 = tools/README.md docs; 0.8803 = b1b_kink_head
+  B1_CTL prior-booking replication constant (a real comparator with tolerance — can FAIL, not tautological);
+  0.0781 = d15c docstring citation; 0.891 = e2 output-metadata baseline dict; 0.755 = qg7 print label citing
+  QG3 arm C; rlib hits = tracked build artifacts, not source. No 412.0-class anywhere.
+- **G2 (degenerate-statistic): 0 RED.** Known saturated stats (F1 G1 degenerate pass, W5a det_err saturation)
+  already carry booked DEGENERATE/saturation flags — no verdict counts them toward PASS. B1_CTL comparator
+  verified fail-capable.
+- **G3: YELLOW x2 (hygiene, not fabrication)**: (a) `experiments/wg1_wgsl/target/` build artifacts are
+  tracked in git — should be gitignored; (b) docstring-embedded prior-booking literals are good convention
+  but should cite the source commit/receipt (qg7 does; others should).
+- **Verdict: our RC-1/RC-1b/mandatory-repro defenses held — 2nd independent witness after SCOUT-26.**
+  Manifest re-seal still deferred (foreign live-lane untracked files persist; sealer correctly refuses).
+  Rotation next wake: RC-6 or CI-1 (CI-1 priority raised by SCOUT-26), GPU free for QG4/QG1d/MC-1.
