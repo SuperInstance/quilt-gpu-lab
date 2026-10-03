@@ -1,0 +1,23 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # pong-quilt #84: receipt-completeness needs merge commits
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install pytest
+      # Fail-closed: no output laundering, exit propagates.
+      # (canons SCOUT-2235Z: 81/117 fleet repos had a failopen test runner)
+      - run: python -m pytest tests/ -q
