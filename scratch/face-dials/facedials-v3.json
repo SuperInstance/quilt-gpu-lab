@@ -1,0 +1,259 @@
+{
+ "cascade": "moondream->qwen2.5:3b",
+ "repeat_penalty": 1.15,
+ "trials": 3,
+ "faces": {
+  "casey": {
+   "reads": [
+    {
+     "dials": {
+      "mood": 10,
+      "warmth": 10,
+      "complexity": 6,
+      "machine_vs_organic": 8,
+      "colorfulness": 9
+     },
+     "desc": "The image features a cartoon-style head with big, round eyes and a small nose. The boy's hair is brown in color, giving him an adorable appearance. He has a wide smile on his face as he looks directly at the camera."
+    },
+    {
+     "dials": {
+      "mood": 10,
+      "warmth": 10,
+      "complexity": 6,
+      "machine_vs_organic": 8,
+      "colorfulness": 9
+     },
+     "desc": "The image features a cartoon-style head with big, round eyes and a small nose. The boy's hair is brown in color, giving him an adorable appearance. He has a wide smile on his face as he looks directly at the camera."
+    },
+    {
+     "dials": {
+      "mood": 10,
+      "warmth": 10,
+      "complexity": 6,
+      "machine_vs_organic": 8,
+      "colorfulness": 9
+     },
+     "desc": "The image features a cartoon-style head with big, round eyes and a small nose. The boy's hair is brown in color, giving him an adorable appearance. He has a wide smile on his face as he looks directly at the camera."
+    }
+   ],
+   "spread": {
+    "mood": 0,
+    "warmth": 0,
+    "complexity": 0,
+    "machine_vs_organic": 0,
+    "colorfulness": 0
+   },
+   "median_dials": {
+    "mood": 10,
+    "warmth": 10,
+    "complexity": 6,
+    "machine_vs_organic": 8,
+    "colorfulness": 9
+   },
+   "desc": "The image features a cartoon-style head with big, round eyes and a small nose. The boy's hair is brown in color, giving him an adorable appearance. He has a wide smile on his face as he looks directly at the camera."
+  },
+  "lucineer": {
+   "reads": [
+    {
+     "dials": {
+      "mood": 2,
+      "warmth": 0,
+      "complexity": 5,
+      "machine_vs_organic": 10,
+      "colorfulness": 4
+     },
+     "desc": "The image features a green robot head with two horns, giving it an intimidating appearance. The robot's eyes are black and appear to be glowing in the dark background. It has a large mouth that is slightly open, adding to its menacing look. There is no text present in the image, and it does not contain any other objects or actions besides being a robot head with horns."
+    },
+    {
+     "dials": {
+      "mood": 2,
+      "warmth": 0,
+      "complexity": 5,
+      "machine_vs_organic": 10,
+      "colorfulness": 4
+     },
+     "desc": "The image features a green robot head with two horns, giving it an intimidating appearance. The robot's eyes are black and appear to be glowing in the dark background. It has a large mouth that is slightly open, adding to its menacing look. There is no text present in the image, and it does not contain any other objects or actions besides being a robot head with horns."
+    },
+    {
+     "dials": {
+      "mood": 2,
+      "warmth": 0,
+      "complexity": 5,
+      "machine_vs_organic": 10,
+      "colorfulness": 4
+     },
+     "desc": "The image features a green robot head with two horns, giving it an intimidating appearance. The robot's eyes are black and appear to be glowing in the dark background. It has a large mouth that is slightly open, adding to its menacing look. There is no text present in the image, and it does not contain any other objects or actions besides being a robot head with horns."
+    }
+   ],
+   "spread": {
+    "mood": 0,
+    "warmth": 0,
+    "complexity": 0,
+    "machine_vs_organic": 0,
+    "colorfulness": 0
+   },
+   "median_dials": {
+    "mood": 2,
+    "warmth": 0,
+    "complexity": 5,
+    "machine_vs_organic": 10,
+    "colorfulness": 4
+   },
+   "desc": "The image features a green robot head with two horns, giving it an intimidating appearance. The robot's eyes are black and appear to be glowing in the dark background. It has a large mouth that is slightly open, adding to its menacing look. There is no text present in the image, and it does not contain any other objects or actions besides being a robot head with horns."
+  },
+  "jev": {
+   "reads": [
+    {
+     "dials": {
+      "mood": 7,
+      "warmth": 2,
+      "complexity": 8,
+      "machine_vs_organic": 6,
+      "colorfulness": 9
+     },
+     "desc": "The image features a pink robot head with two large eyes and a small nose, giving it an anthropomorphic appearance. The robot's face is the main focus of the image, which has a black background that contrasts with its pink color and makes it stand out prominently."
+    },
+    {
+     "dials": {
+      "mood": 7,
+      "warmth": 2,
+      "complexity": 8,
+      "machine_vs_organic": 4,
+      "colorfulness": 9
+     },
+     "desc": "The image features a pink robot head with two large eyes and a small nose, giving it an anthropomorphic appearance. The robot's face is the main focus of the image, which has a black background that contrasts with its pink color and makes it stand out prominently."
+    },
+    {
+     "dials": {
+      "mood": 7,
+      "warmth": 2,
+      "complexity": 8,
+      "machine_vs_organic": 4,
+      "colorfulness": 9
+     },
+     "desc": "The image features a pink robot head with two large eyes and a small nose, giving it an anthropomorphic appearance. The robot's face is the main focus of the image, which has a black background that contrasts with its pink color and makes it stand out prominently."
+    }
+   ],
+   "spread": {
+    "mood": 0,
+    "warmth": 0,
+    "complexity": 0,
+    "machine_vs_organic": 2,
+    "colorfulness": 0
+   },
+   "median_dials": {
+    "mood": 7,
+    "warmth": 2,
+    "complexity": 8,
+    "machine_vs_organic": 4,
+    "colorfulness": 9
+   },
+   "desc": "The image features a pink robot head with two large eyes and a small nose, giving it an anthropomorphic appearance. The robot's face is the main focus of the image, which has a black background that contrasts with its pink color and makes it stand out prominently."
+  },
+  "wesley": {
+   "reads": [
+    {
+     "dials": {
+      "mood": 2,
+      "warmth": 1,
+      "complexity": 3,
+      "machine_vs_organic": 7,
+      "colorfulness": 4
+     },
+     "desc": "The image features a blue robot head with two black eyes and a white ball on top of its head, giving it the appearance of a sad or dead-eyed robot. The robot is facing to the left side of the image and appears to be in a state of distress, as if it has been hit by something or is experiencing some sort of malfunction."
+    },
+    {
+     "dials": {
+      "mood": 2,
+      "warmth": 1,
+      "complexity": 3,
+      "machine_vs_organic": 7,
+      "colorfulness": 4
+     },
+     "desc": "The image features a blue robot head with two black eyes and a white ball on top of its head, giving it the appearance of a sad or dead-eyed robot. The robot is facing to the left side of the image and appears to be in a state of distress, as if it has been hit by something or is experiencing some sort of malfunction."
+    },
+    {
+     "dials": {
+      "mood": 2,
+      "warmth": 1,
+      "complexity": 3,
+      "machine_vs_organic": 7,
+      "colorfulness": 4
+     },
+     "desc": "The image features a blue robot head with two black eyes and a white ball on top of its head, giving it the appearance of a sad or dead-eyed robot. The robot is facing to the left side of the image and appears to be in a state of distress, as if it has been hit by something or is experiencing some sort of malfunction."
+    }
+   ],
+   "spread": {
+    "mood": 0,
+    "warmth": 0,
+    "complexity": 0,
+    "machine_vs_organic": 0,
+    "colorfulness": 0
+   },
+   "median_dials": {
+    "mood": 2,
+    "warmth": 1,
+    "complexity": 3,
+    "machine_vs_organic": 7,
+    "colorfulness": 4
+   },
+   "desc": "The image features a blue robot head with two black eyes and a white ball on top of its head, giving it the appearance of a sad or dead-eyed robot. The robot is facing to the left side of the image and appears to be in a state of distress, as if it has been hit by something or is experiencing some sort of malfunction."
+  },
+  "zeroclaw": {
+   "reads": [
+    {
+     "dials": {
+      "mood": 8,
+      "warmth": 7,
+      "complexity": 4,
+      "machine_vs_organic": 6,
+      "colorfulness": 9
+     },
+     "desc": "The image features a pixel art representation of a person's head and shoulders, giving the impression that they are wearing a green shirt with white stripes. The face is depicted as having two eyes, one on each side of their head and a small nose below the eye. They are wearing red lipstick that matches the color of an object in front of them. The person's mouth is open, giving off a friendly and approachable vibe to their character design."
+    },
+    {
+     "dials": {
+      "mood": 10,
+      "warmth": 10,
+      "complexity": 7,
+      "machine_vs_organic": 9,
+      "colorfulness": 8
+     },
+     "desc": "The image features a pixel art representation of a person's head and shoulders, giving the impression that they are wearing a green shirt with white stripes. The face is depicted in a cartoon style, making it appear as if the person has a big smile on their face and is looking directly at the camera with an open mouth.\nThe background of the image is black, which further emphasizes the person's features as the main focus of the artwork."
+    },
+    {
+     "dials": {
+      "mood": 10,
+      "warmth": 10,
+      "complexity": 7,
+      "machine_vs_organic": 9,
+      "colorfulness": 8
+     },
+     "desc": "The image features a pixel art representation of a person's head and shoulders, giving the impression that they are wearing a green shirt with white stripes. The face is depicted in a cartoon style, making it appear as if the person has a big smile on their face and is looking directly at the camera with an open mouth.\nThe background of the image is black, which further emphasizes the person's features as the main focus of the artwork."
+    }
+   ],
+   "spread": {
+    "mood": 2,
+    "warmth": 3,
+    "complexity": 3,
+    "machine_vs_organic": 3,
+    "colorfulness": 1
+   },
+   "median_dials": {
+    "mood": 10,
+    "warmth": 10,
+    "complexity": 7,
+    "machine_vs_organic": 9,
+    "colorfulness": 8
+   },
+   "desc": "The image features a pixel art representation of a person's head and shoulders, giving the impression that they are wearing a green shirt with white stripes. The face is depicted as having two eyes, one on each side of their head and a small nose below the eye. They are wearing red lipstick that matches the color of an object in front of them. The person's mouth is open, giving off a friendly and approachable vibe to their character design."
+  }
+ },
+ "separation_distinct_values": {
+  "mood": 3,
+  "warmth": 4,
+  "complexity": 5,
+  "machine_vs_organic": 5,
+  "colorfulness": 3
+ }
+}

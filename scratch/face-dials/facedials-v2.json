@@ -1,0 +1,259 @@
+{
+ "cascade": "moondream->qwen2.5:3b",
+ "repeat_penalty": 1.15,
+ "trials": 3,
+ "faces": {
+  "casey": {
+   "reads": [
+    {
+     "dials": {
+      "mood": 5,
+      "warmth": 7,
+      "complexity": 6,
+      "machine_vs_organic": 2,
+      "colorfulness": 8
+     },
+     "desc": "!!!"
+    },
+    {
+     "dials": {
+      "mood": 5,
+      "warmth": 7,
+      "complexity": 3,
+      "machine_vs_organic": 2,
+      "colorfulness": 8
+     },
+     "desc": "!!!"
+    },
+    {
+     "dials": {
+      "mood": 5,
+      "warmth": 7,
+      "complexity": 3,
+      "machine_vs_organic": 2,
+      "colorfulness": 8
+     },
+     "desc": "!!!"
+    }
+   ],
+   "spread": {
+    "mood": 0,
+    "warmth": 0,
+    "complexity": 3,
+    "machine_vs_organic": 0,
+    "colorfulness": 0
+   },
+   "median_dials": {
+    "mood": 5,
+    "warmth": 7,
+    "complexity": 3,
+    "machine_vs_organic": 2,
+    "colorfulness": 8
+   },
+   "desc": "!!!"
+  },
+  "lucineer": {
+   "reads": [
+    {
+     "dials": {
+      "mood": 2,
+      "warmth": 3,
+      "complexity": 1,
+      "machine_vs_organic": 8,
+      "colorfulness": 4
+     },
+     "desc": "!!!THE MOUTH IS SMALL AND STICKY!!!"
+    },
+    {
+     "dials": {
+      "mood": 2,
+      "warmth": 3,
+      "complexity": 1,
+      "machine_vs_organic": 8,
+      "colorfulness": 4
+     },
+     "desc": "!!!THE MOUTH IS SMALL AND STICKY!!!"
+    },
+    {
+     "dials": {
+      "mood": 2,
+      "warmth": 3,
+      "complexity": 1,
+      "machine_vs_organic": 8,
+      "colorfulness": 4
+     },
+     "desc": "!!!THE MOUTH IS SMALL AND STICKY!!!"
+    }
+   ],
+   "spread": {
+    "mood": 0,
+    "warmth": 0,
+    "complexity": 0,
+    "machine_vs_organic": 0,
+    "colorfulness": 0
+   },
+   "median_dials": {
+    "mood": 2,
+    "warmth": 3,
+    "complexity": 1,
+    "machine_vs_organic": 8,
+    "colorfulness": 4
+   },
+   "desc": "!!!THE MOUTH IS SMALL AND STICKY!!!"
+  },
+  "jev": {
+   "reads": [
+    {
+     "dials": {
+      "mood": 5,
+      "warmth": 7,
+      "complexity": 6,
+      "machine_vs_organic": 3,
+      "colorfulness": 8
+     },
+     "desc": "!!!"
+    },
+    {
+     "dials": {
+      "mood": 5,
+      "warmth": 7,
+      "complexity": 6,
+      "machine_vs_organic": 3,
+      "colorfulness": 8
+     },
+     "desc": "!!!"
+    },
+    {
+     "dials": {
+      "mood": 5,
+      "warmth": 7,
+      "complexity": 6,
+      "machine_vs_organic": 3,
+      "colorfulness": 8
+     },
+     "desc": "!!!"
+    }
+   ],
+   "spread": {
+    "mood": 0,
+    "warmth": 0,
+    "complexity": 0,
+    "machine_vs_organic": 0,
+    "colorfulness": 0
+   },
+   "median_dials": {
+    "mood": 5,
+    "warmth": 7,
+    "complexity": 6,
+    "machine_vs_organic": 3,
+    "colorfulness": 8
+   },
+   "desc": "!!!"
+  },
+  "wesley": {
+   "reads": [
+    {
+     "dials": {
+      "mood": 5,
+      "warmth": 7,
+      "complexity": 6,
+      "machine_vs_organic": 3,
+      "colorfulness": 8
+     },
+     "desc": "!!!"
+    },
+    {
+     "dials": {
+      "mood": 5,
+      "warmth": 7,
+      "complexity": 6,
+      "machine_vs_organic": 3,
+      "colorfulness": 8
+     },
+     "desc": "!!!"
+    },
+    {
+     "dials": {
+      "mood": 5,
+      "warmth": 7,
+      "complexity": 6,
+      "machine_vs_organic": 3,
+      "colorfulness": 8
+     },
+     "desc": "!!!"
+    }
+   ],
+   "spread": {
+    "mood": 0,
+    "warmth": 0,
+    "complexity": 0,
+    "machine_vs_organic": 0,
+    "colorfulness": 0
+   },
+   "median_dials": {
+    "mood": 5,
+    "warmth": 7,
+    "complexity": 6,
+    "machine_vs_organic": 3,
+    "colorfulness": 8
+   },
+   "desc": "!!!"
+  },
+  "zeroclaw": {
+   "reads": [
+    {
+     "dials": {
+      "mood": 5,
+      "warmth": 7,
+      "complexity": 6,
+      "machine_vs_organic": 3,
+      "colorfulness": 8
+     },
+     "desc": "!!!"
+    },
+    {
+     "dials": {
+      "mood": 5,
+      "warmth": 7,
+      "complexity": 6,
+      "machine_vs_organic": 3,
+      "colorfulness": 8
+     },
+     "desc": "!!!"
+    },
+    {
+     "dials": {
+      "mood": 5,
+      "warmth": 7,
+      "complexity": 6,
+      "machine_vs_organic": 3,
+      "colorfulness": 8
+     },
+     "desc": "!!!"
+    }
+   ],
+   "spread": {
+    "mood": 0,
+    "warmth": 0,
+    "complexity": 0,
+    "machine_vs_organic": 0,
+    "colorfulness": 0
+   },
+   "median_dials": {
+    "mood": 5,
+    "warmth": 7,
+    "complexity": 6,
+    "machine_vs_organic": 3,
+    "colorfulness": 8
+   },
+   "desc": "!!!"
+  }
+ },
+ "separation_distinct_values": {
+  "mood": 2,
+  "warmth": 2,
+  "complexity": 3,
+  "machine_vs_organic": 3,
+  "colorfulness": 2
+ }
+}

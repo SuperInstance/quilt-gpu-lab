@@ -1,0 +1,324 @@
+{
+ "model": "moondream",
+ "temp": 0,
+ "trials": 3,
+ "faces": {
+  "casey": {
+   "reads": [
+    {
+     "ok": true,
+     "dials": {
+      "mood": 0,
+      "warmth": 0,
+      "complexity": 0,
+      "machine_vs_organic": 0,
+      "colorfulness": 0,
+      "reading": "<six words max>"
+     },
+     "raw": "\n {\"mood\":0,\"warmth\":0,\"complexity\":0,\"machine_vs_organic\":0,\"colorfulness\":0,\"reading\":\"<six words max>\"}"
+    },
+    {
+     "ok": true,
+     "dials": {
+      "mood": 0,
+      "warmth": 0,
+      "complexity": 0,
+      "machine_vs_organic": 0,
+      "colorfulness": 0,
+      "reading": "<six words max>"
+     },
+     "raw": "\n {\"mood\":0,\"warmth\":0,\"complexity\":0,\"machine_vs_organic\":0,\"colorfulness\":0,\"reading\":\"<six words max>\"}"
+    },
+    {
+     "ok": true,
+     "dials": {
+      "mood": 0,
+      "warmth": 0,
+      "complexity": 0,
+      "machine_vs_organic": 0,
+      "colorfulness": 0,
+      "reading": "<six words max>"
+     },
+     "raw": "\n {\"mood\":0,\"warmth\":0,\"complexity\":0,\"machine_vs_organic\":0,\"colorfulness\":0,\"reading\":\"<six words max>\"}"
+    }
+   ],
+   "stability_all3identical": {
+    "mood": true,
+    "warmth": true,
+    "complexity": true,
+    "machine_vs_organic": true,
+    "colorfulness": true
+   },
+   "spread": {
+    "mood": 0,
+    "warmth": 0,
+    "complexity": 0,
+    "machine_vs_organic": 0,
+    "colorfulness": 0
+   },
+   "median_dials": {
+    "mood": 0,
+    "warmth": 0,
+    "complexity": 0,
+    "machine_vs_organic": 0,
+    "colorfulness": 0
+   },
+   "reading": "<six words max>"
+  },
+  "lucineer": {
+   "reads": [
+    {
+     "ok": true,
+     "dials": {
+      "mood": 0,
+      "warmth": 0,
+      "complexity": 0,
+      "machine_vs_organic": 0,
+      "colorfulness": 0,
+      "reading": "<six words max>"
+     },
+     "raw": "\n {\"mood\":0,\"warmth\":0,\"complexity\":0,\"machine_vs_organic\":0,\"colorfulness\":0,\"reading\":\"<six words max>\"}"
+    },
+    {
+     "ok": true,
+     "dials": {
+      "mood": 0,
+      "warmth": 0,
+      "complexity": 0,
+      "machine_vs_organic": 0,
+      "colorfulness": 0,
+      "reading": "<six words max>"
+     },
+     "raw": "\n {\"mood\":0,\"warmth\":0,\"complexity\":0,\"machine_vs_organic\":0,\"colorfulness\":0,\"reading\":\"<six words max>\"}"
+    },
+    {
+     "ok": true,
+     "dials": {
+      "mood": 0,
+      "warmth": 0,
+      "complexity": 0,
+      "machine_vs_organic": 0,
+      "colorfulness": 0,
+      "reading": "<six words max>"
+     },
+     "raw": "\n {\"mood\":0,\"warmth\":0,\"complexity\":0,\"machine_vs_organic\":0,\"colorfulness\":0,\"reading\":\"<six words max>\"}"
+    }
+   ],
+   "stability_all3identical": {
+    "mood": true,
+    "warmth": true,
+    "complexity": true,
+    "machine_vs_organic": true,
+    "colorfulness": true
+   },
+   "spread": {
+    "mood": 0,
+    "warmth": 0,
+    "complexity": 0,
+    "machine_vs_organic": 0,
+    "colorfulness": 0
+   },
+   "median_dials": {
+    "mood": 0,
+    "warmth": 0,
+    "complexity": 0,
+    "machine_vs_organic": 0,
+    "colorfulness": 0
+   },
+   "reading": "<six words max>"
+  },
+  "jev": {
+   "reads": [
+    {
+     "ok": true,
+     "dials": {
+      "mood": 0,
+      "warmth": 0,
+      "complexity": 0,
+      "machine_vs_organic": 0,
+      "colorfulness": 0,
+      "reading": "<six words max>"
+     },
+     "raw": "\n {\"mood\":0,\"warmth\":0,\"complexity\":0,\"machine_vs_organic\":0,\"colorfulness\":0,\"reading\":\"<six words max>\"}"
+    },
+    {
+     "ok": true,
+     "dials": {
+      "mood": 0,
+      "warmth": 0,
+      "complexity": 0,
+      "machine_vs_organic": 0,
+      "colorfulness": 0,
+      "reading": "<six words max>"
+     },
+     "raw": "\n {\"mood\":0,\"warmth\":0,\"complexity\":0,\"machine_vs_organic\":0,\"colorfulness\":0,\"reading\":\"<six words max>\"}"
+    },
+    {
+     "ok": true,
+     "dials": {
+      "mood": 0,
+      "warmth": 0,
+      "complexity": 0,
+      "machine_vs_organic": 0,
+      "colorfulness": 0,
+      "reading": "<six words max>"
+     },
+     "raw": "\n {\"mood\":0,\"warmth\":0,\"complexity\":0,\"machine_vs_organic\":0,\"colorfulness\":0,\"reading\":\"<six words max>\"}"
+    }
+   ],
+   "stability_all3identical": {
+    "mood": true,
+    "warmth": true,
+    "complexity": true,
+    "machine_vs_organic": true,
+    "colorfulness": true
+   },
+   "spread": {
+    "mood": 0,
+    "warmth": 0,
+    "complexity": 0,
+    "machine_vs_organic": 0,
+    "colorfulness": 0
+   },
+   "median_dials": {
+    "mood": 0,
+    "warmth": 0,
+    "complexity": 0,
+    "machine_vs_organic": 0,
+    "colorfulness": 0
+   },
+   "reading": "<six words max>"
+  },
+  "wesley": {
+   "reads": [
+    {
+     "ok": true,
+     "dials": {
+      "mood": 0,
+      "warmth": 0,
+      "complexity": 0,
+      "machine_vs_organic": 0,
+      "colorfulness": 0,
+      "reading": "<six words max>"
+     },
+     "raw": "\n {\"mood\":0,\"warmth\":0,\"complexity\":0,\"machine_vs_organic\":0,\"colorfulness\":0,\"reading\":\"<six words max>\"}"
+    },
+    {
+     "ok": true,
+     "dials": {
+      "mood": 0,
+      "warmth": 0,
+      "complexity": 0,
+      "machine_vs_organic": 0,
+      "colorfulness": 0,
+      "reading": "<six words max>"
+     },
+     "raw": "\n {\"mood\":0,\"warmth\":0,\"complexity\":0,\"machine_vs_organic\":0,\"colorfulness\":0,\"reading\":\"<six words max>\"}"
+    },
+    {
+     "ok": true,
+     "dials": {
+      "mood": 0,
+      "warmth": 0,
+      "complexity": 0,
+      "machine_vs_organic": 0,
+      "colorfulness": 0,
+      "reading": "<six words max>"
+     },
+     "raw": "\n {\"mood\":0,\"warmth\":0,\"complexity\":0,\"machine_vs_organic\":0,\"colorfulness\":0,\"reading\":\"<six words max>\"}"
+    }
+   ],
+   "stability_all3identical": {
+    "mood": true,
+    "warmth": true,
+    "complexity": true,
+    "machine_vs_organic": true,
+    "colorfulness": true
+   },
+   "spread": {
+    "mood": 0,
+    "warmth": 0,
+    "complexity": 0,
+    "machine_vs_organic": 0,
+    "colorfulness": 0
+   },
+   "median_dials": {
+    "mood": 0,
+    "warmth": 0,
+    "complexity": 0,
+    "machine_vs_organic": 0,
+    "colorfulness": 0
+   },
+   "reading": "<six words max>"
+  },
+  "zeroclaw": {
+   "reads": [
+    {
+     "ok": true,
+     "dials": {
+      "mood": 0,
+      "warmth": 0,
+      "complexity": 0,
+      "machine_vs_organic": 0,
+      "colorfulness": 0,
+      "reading": "<six words max>"
+     },
+     "raw": "\n {\"mood\":0,\"warmth\":0,\"complexity\":0,\"machine_vs_organic\":0,\"colorfulness\":0,\"reading\":\"<six words max>\"}"
+    },
+    {
+     "ok": true,
+     "dials": {
+      "mood": 0,
+      "warmth": 0,
+      "complexity": 0,
+      "machine_vs_organic": 0,
+      "colorfulness": 0,
+      "reading": "<six words max>"
+     },
+     "raw": "\n {\"mood\":0,\"warmth\":0,\"complexity\":0,\"machine_vs_organic\":0,\"colorfulness\":0,\"reading\":\"<six words max>\"}"
+    },
+    {
+     "ok": true,
+     "dials": {
+      "mood": 0,
+      "warmth": 0,
+      "complexity": 0,
+      "machine_vs_organic": 0,
+      "colorfulness": 0,
+      "reading": "<six words max>"
+     },
+     "raw": "\n {\"mood\":0,\"warmth\":0,\"complexity\":0,\"machine_vs_organic\":0,\"colorfulness\":0,\"reading\":\"<six words max>\"}"
+    }
+   ],
+   "stability_all3identical": {
+    "mood": true,
+    "warmth": true,
+    "complexity": true,
+    "machine_vs_organic": true,
+    "colorfulness": true
+   },
+   "spread": {
+    "mood": 0,
+    "warmth": 0,
+    "complexity": 0,
+    "machine_vs_organic": 0,
+    "colorfulness": 0
+   },
+   "median_dials": {
+    "mood": 0,
+    "warmth": 0,
+    "complexity": 0,
+    "machine_vs_organic": 0,
+    "colorfulness": 0
+   },
+   "reading": "<six words max>"
+  }
+ },
+ "separation_distinct_values": {
+  "mood": 1,
+  "warmth": 1,
+  "complexity": 1,
+  "machine_vs_organic": 1,
+  "colorfulness": 1
+ }
+}
