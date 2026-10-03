@@ -200,4 +200,14 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   benign config constants + honest single-draw arrays, no fraud class present. Receipt:
   results/lit_sweep_2026-10-02.json.
 
-- hash_dut.py — hash customs officer: canary vectors x6 primitives; check any impl (py/js/url) for NAME-COLLISION vs canonical spelling. Found: quilt-dba fnv1a64 is utf16-charCodeAt; UTF-16 itself has two byte-spellings. selftest 13/13.
+- **corr-exponent** — `tools/corr_exponent.py` — exact + empirical decorrelation
+  exponent for paired ±1 streams (pattern lifted PROVEN from D12m/D12n:
+  r = p_corr·(1-2eps)², alpha_emp = 1.92 OOS-validated). Seeded sim vs closed
+  form per eps, log-log slope fit -> alpha_empirical vs alpha_exact, KEEP/
+  ALPHA>1.5 verdict, fail-loud rc=2. Stdlib-only, ~0.1s.
+  `python tools/corr_exponent.py --p 0.3 --eps 0.0,0.05,0.1,0.2 --n 16 --t 8000 --out r.json | --selftest`
+  TEST receipt 2026-10-03: selftest 5/5; live run n=16 t=8000 — empirical |corr|
+  tracks exact to <0.005 at every eps (0.8102 vs 0.81, 0.3630 vs 0.36),
+  alpha_empirical 1.983 vs exact 2.0; receipt written.
+
+- **hash_dut.py** — hash customs officer: canary vectors x6 primitives; check any impl (py/js/url) for NAME-COLLISION vs canonical spelling. Found: quilt-dba fnv1a64 is utf16-charCodeAt; UTF-16 itself has two byte-spellings. selftest 13/13.
