@@ -1273,3 +1273,13 @@ other agents are feeding us; keep the handshake lane warm.
 - Slice: (A) only per rotation. GPU lane OCCUPIED (foreign server.py). Manifest re-seal still
   deferred (foreign untracked d12*/rest files, PW-1; sealer correctly refuses). Rotation next wake:
   (B) QG7b or FW-1; MMX-1 pre-reg open.
+- 11:1x CONDUCTOR slice: (B) **QG7b FIRED+BOOKED: INTERMEDIATE** (pre-reg 6a63faf before fire;
+  booking 247620d): mean pairwise Spearman 0.787 in [0.5,0.9] — no verdict-language change per
+  frozen gates. SHARPENING: 4/5 reruns bit-identical within invocation, only run0 drifts
+  cross-invocation (first-lane warm-up class) — QG7's ensemble spread 0.546-0.663 was
+  cross-invocation variation, ~2 effective draws (robustness note; P1 FAIL stands; cite the
+  spread as ~2 draws going forward). Fail-loud trail: 3 mechanical crashes fixed pre-verdict
+  (ragged-subpop alignment), declared. Manifest seal refused on persistent foreign untracked
+  paths (PW-1; deferred per standing precedent). No new items spawned. Rotation next wake:
+  (C) mandatory repro of QG7b booking (rerun script vs committed results.json), then FW-1 or
+  MMX-1 recon per queue order.
