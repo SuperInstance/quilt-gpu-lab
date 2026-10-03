@@ -1107,3 +1107,14 @@ other agents are feeding us; keep the handshake lane warm.
   GPU lane idle all slice. Foreign live lane noted: scratch/receiptd processes started 14:38 (untracked,
   NOT touched — PW-1 precedent). Rotation next wake: (B) top open item — FW-1 field-write census (CPU ~40m,
   may split into two slices) or RC-5 narrowed push-time --check (CPU ~20m); GPU free for QG4/QG1d/MC-1.
+
+- 16:4x CONDUCTOR slice (day cron Oct 2, (B)-slot per rotation): **FW-1 tranche 1 BOOKED: 3/3 GREEN,
+  zero RED** (QO10, QO6/eproc, QC-JEV — pre-reg+findings proposals/runs/FW1-field-write-census-tranche1.md,
+  committed BEFORE firing). Method: verdict read-fields enumerated, write sites grepped in producing
+  tool + imports; all verdict-feeding write paths internal or literal-anchored; each covered by its
+  committed repro/replicate. 1 RC-1b census entry: eproc witness() INCREASES arm covered by neither
+  test nor booked run (does not gate any booked verdict; one-test-pin candidate). Tranche 2 (next
+  FW-1 wake): D12i / W5b2 / QG7 ensemble bookings. (C): no repro due (newest booking QO10 already
+  repro-PASS 14:4x; sym-verify tool landing 4538db6 is a tool, not a booking). Manifest re-seal still
+  deferred (foreign live-lane untracked files d12l/d12m/rest_em_* persist, PW-1 — flagged, untouched).
+  GPU lane idle; no GPU item (rotation: FW-1 was the slot; QG4/QG1d/MC-1/CI-1 remain open).
