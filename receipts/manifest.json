@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-04T17:42:52.230077+00:00",
+  "generated_at": "2026-10-04T19:08:26.445055+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "013e59529438867ce09eab28528209eccea9f99ec36c9cb07f4e8b8a438eeec2",
+    "RESULTS.md": "b3ecd1e6a57a15c97e4ff54c4d9b61816812c64f2641f8301a663c262908f7f1",
     "QUEUE.md": "325394bc5e3c6c559c1189a45dec10ec45816e6f99782f0e6d8c6f722b174e85"
   },
   "experiments": {
@@ -176,6 +176,7 @@
     "qo3_horizon.py": "9deb7925069c6c3b75c5366b546004ca2d7292fa8d3187c0d31580a3cc167389",
     "qo5_birth_probe.py": "8178caef606b0b0428dc4eb3e05425e15b7d97aaf5d2bc92803bd61b1a8bbbbf",
     "qo6_kill_evidence.py": "fcbfe984ddfe01338240eafa4d7d794c41ddec2e17910ec3dc58a3c6a05cbde5",
+    "qo6b_forget_cell.py": "c1e147620c391c972540f34c9a0e3a8920edb7f4a7b7ce7a674d2438e9686668",
     "qo9_lane_vs_stream.py": "30ef64dccbb29bf8d261ece169a02a06f8d0f655fa10d5574d4022ac6949211e",
     "rest_em_loop.py": "df5087faef0ff76a61dc3cab1ed5a02d9ca0efc3f097878a4cab1cff5cd355d5",
     "ring_cx0.py": "044db02bf671461c1b00d83cf4fd812db6b2fa738e2066d5dbf18caef33bdb7b",
@@ -239,6 +240,7 @@
     "fleet_board.mjs": "65b9bbdfd5ac4eefcdfbb3a47eb0adb668d2180a050a929e6374b1040b0eba70",
     "floor_law_fit.py": "0ae26fe773e0b960626b2a119e46c223803d4971ec7a620226d233c544e38f3c",
     "floor_scan.py": "140fcd7fedcb2722835b940c751494ba8ddc568af357308c4a6195d6bb743ced",
+    "forget_cell.py": "f9d8d4beb82647131d8aa3bd9e16d383364d1ebd3b06288f675d495715b2fd17",
     "fresh_clone_witness.py": "40f86b342c0ca2d4e8df994658b5ff5b2cc696b9babc9714ba6fd8d21b8896cc",
     "gpu_ramp_receipt.py": "c0cc342bff783ed3402ebcf35eceb39601d8659fa38b16fab83caea4791452a6",
     "hash_dut.py": "f0eda10fdab8bc5c65498cb7a3f43e5e6aeaba402b5a3cd31327061f8081971d",
