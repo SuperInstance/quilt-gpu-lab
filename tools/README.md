@@ -42,6 +42,13 @@ piece others can lift. Grab = copy the file; everything here runs alone.
   G2 coverage + non-vacuous bound; fail-loud JSON receipt either way.
   Stdlib-only. `python tools/floor_law_fit.py --points pts.json --fit 0.3,0.4 --heldout 0.6,0.7 [--alpha 1.92 --w 8 --out receipt.json]` (or `--example` self-test). Smoke 2026-10-03: PASS, R^2=1.0, held-out ratio 1.0.
 
+- **corr-floor-probe** — `tools/corr_floor_probe.py`
+  Paired-stream discovery-floor prober (d12q pattern): N paired agents, W
+  questions/step, correlation p + noise eps — finds the T at which max-|corr|
+  discovery recovers partners >= acc bar, and emits C_emp = W*T_floor*|2p-1|(1-2eps)^alpha.
+  Stdlib-only, deterministic, fail-loud JSON receipt.
+  `python tools/corr_floor_probe.py --p 0.45,0.55 [--t-grid ... --n 32 --w 8 --out r.json]` (or `--example`). Smoke 2026-10-03: PASS.
+
 ## Coordination platform (lives in SuperInstance/quilt-i2i)
 
 - **i2i-ledger worker** — live shared semantic memory:
