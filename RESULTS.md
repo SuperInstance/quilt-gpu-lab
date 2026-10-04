@@ -5919,3 +5919,36 @@ any relaunch-5.
   3. **Chunking half-restores at 2.06× wall** (0.74s vs 0.36s) — frozen cost bar (≤1.5×) **FAILED**, though absolute walls are sub-second trivia. Booked honestly: the bar was set for engineering headroom; at these sizes cost is irrelevant.
 - **Doctrine impact:** the r5 candidate fix "chunk to ≤12 reports per call" is NOT sufficient — a 12-report chunk can still 0/12 if its composition is wrong (S5–S8). Gate-quality is **state-shape-dependent (size × composition)**, not merely size-dependent. The load-bearing fallback remains the pinch router (r5 already booked that; this round measured gates only, no serving). r7 candidates (not fired — no standing plan): isolate the S5–S8 contrast (permute chunk membership), and serve = argmax min(gd,gu) without the 0.5 floor for large batches.
 - Output: results/cm1/round_006_out.json (schema cm1-round6/1, includes all regenerated drafts), rounds.jsonl appended. Ledger: jev 11536/3926, di 7397/11636.
+
+## [BOOKED 15:0x CPU Oct 4] D12u+ FAMILY TEST: order-stats mechanism CONFIRMED across 27-config grid — exponent pinned at ~3.85 (= 2×1.92) config-independent; C tracks b(N)²/W 27/27; the "~400x loose" booking does NOT reproduce (real gap ~2–3x, direction = null-shape, not tails)
+- The D12 close-out gate before any next constant-surface fit. Tool committed PRE-FIRE
+  (2516f0b) with frozen plan + verdict rule; run seed 2718 lineage (default_rng([2718,
+  cfg_idx])), 4000 draws/point, CPU 75s, floor = interpolated log-T crossing of P(win)=0.5
+  (replaces d12u's hard grid — removes quantization wobble; only change to the MC).
+- Grid N∈{8,32,128} × W∈{4,8,16} × p∈{0.15,0.3,0.45}, eps∈{0,.05,.1,.2}, model = d12u M1
+  (partner ~ N(s^1.92, 1/√(WT)), nulls ~ N(0, σ), win vs max of N−1).
+- **V1 exponent stable: PASS** — Gaussian alphas 3.69–3.93, all inside the pre-registered
+  band [3.34, 4.34]; drift correlations vs N/W/p all |ρ|≤0.36. The 2×1.92=3.84 law is NOT
+  a coincidence of the (32,8,0.3) config; it is the model's exact asymptotic and it holds.
+- **V2 C predictable from N: PASS** — C·W monotone increasing in N in every (W,p) slice
+  and within 1.5× of b(N−1)²/W for 27/27 configs (b = E[max of N−1 std normals], MC);
+  fitted W-exponent 0.94–1.01 vs measured alpha_W 0.927 (d12t). C(N,W,p) ≈ b(N)²/W —
+  p-independence exact as predicted (s only enters via p(1−2eps)).
+- **V3 tail-realism variant (t4, variance-matched, both partner+nulls): PASS on exponent**
+  (alphas 3.69–3.91) — heavy tails do NOT break the law. Constant moves the WRONG WAY to
+  explain the harness gap: at the d12t overlap (32,8,0.3) model C=0.535 vs measured
+  ~0.201 (2.7× too HIGH); t4 nudges C up slightly there (0.602) and +1.6× at N=128. The
+  harness discovers FASTER than ideal iid-Gaussian nulls allow → the looseness is a
+  NULL-SHAPE artifact (effective null count / estimator-variance realism), NOT tail
+  realism. Suspects for the next fit: correlated nulls (K_eff<K), harness estimator σ
+  below 1/√(WT).
+- **Audit correction:** d12u's booked "constant ~400x loose" does not reproduce from the
+  artifacts (d12u C=0.377 vs d12t effective C@W8≈0.195 → ~1.9×; this run's interpolated
+  refit 0.535 → 2.7×; floors 3× at matching eps). The 400x number is retired; real gap is
+  a factor ~2–3.
+- Verdict: **CONFIRMED** (mechanism earns a calibrated predictor) — next fit may proceed
+  with a null-strength correction term; exponent and b(N)²/W skeleton are certified.
+  Caveats: model-side sweep only (no new harness runs — measured side remains d12t's
+  single-N grid); single realism variant; floors near grid bottom at (8,16,·) configs are
+  interpolation-flagged 'ok' but sit at T≈1–3 where WT is tiny. results/d12u_family.json,
+  experiments/d12u_family.py.
