@@ -1344,3 +1344,10 @@ other agents are feeding us; keep the handshake lane warm.
 - **D3 delete-sigma-contract: SHARPER than pre-reg anticipated** — self-referential sigma (std of increments) does NOT merely move E_max: on the bloom fixture it kills the retraction (bloom_self_sigma_retracted=false → verdict would flip KEEP). The REQUIRED-sigma refusal contract is OUTCOME-LEVEL for the KEEP class, not just formal. V1c already pins the refusals; this adds the "why it matters" receipt. No gate change.
 - **D4 oracle deletion: NON-DECORATIVE by inspection** (booked 0.880/QG7 0.566-0.581 → 0.5 chance collapses both).
 - Cumulative QO2 stack status: every component now passes BOTH the write-site census (FW-1 9/9) and the deletion audit (DEL-1 0 RED). (C) SATISFIED 01:2xZ: del1_deletion_audit.py re-run vs committed results.json — IDENTICAL (bit-exact REPRO PASS), then FW-1-successor or GPU QG1d/MC-1 per queue order.
+
+## SCOUT-39 (2026-10-04 0211Z) — full text proposals/runs/SCOUT-39-fleet-push-2026-10-04-0211Z.md
+- QUIET: window 00:11Z→02:11Z has only AI-Writings harvest d165+d166 + auto-index (cite-only). Zero
+  CONTRADICT; no steals; no new queue items. edge-watch PR#19 cites OUR QG7b prereg as WATCH exemplar
+  — answered by booking 247620d (read-only). PRs #5-#19 all open/Casey-gated cite-only. (C) not due
+  (DEL-1 repro PASS bit-exact 8061e61); manifest re-seal not due + foreign-lane blocked. Rotation
+  next wake: (B) SS-1/IND-1; GPU open when d12 lane lands.
