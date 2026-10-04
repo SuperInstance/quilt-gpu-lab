@@ -121,8 +121,8 @@ def delta_star(K_eff, tag, draws):
         nulls[mask] = -np.inf
         M = nulls.max(axis=1)
         z = rng.normal(0.0, 1.0, size=n)
-        D = np.sort(M - z)                     # P(δ) = P(δ > M − z) = ECDF
-        wins += len(D) - np.searchsorted(D, D_GRID, side="left")
+        D = np.sort(M - z)                     # P(δ) = P(δ > M − z) = ECDF(D) at δ
+        wins += np.searchsorted(D, D_GRID, side="left")
         tot += n
     P = wins / tot
     if P[0] >= 0.5:
