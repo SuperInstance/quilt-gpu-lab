@@ -59,6 +59,19 @@
 - [DONE 01:3x Oct 3] **CI-1 BOOKED (PASS, G1-G4)**: fail-closed pytest workflow + fleet canary LANDED (69faafc, Actions 37112598464 green); canon-gate alphabet pin 0xCA289D4829D9A834 + negative control; seal-after-commit lesson booked.
 - 15:5x CONDUCTOR slice (day cron): (A) SCOUT-25 above. (C) already satisfied at 14:4x (QO10 repro PASS, verdict-level). No GPU item (rotation: scout was the slot; GPU QG1d/QG4/MC-1 open for next wake). No new PRs/issues in window; [EMBASSY] none new, pong #49 unchanged. Manifest re-seal still deferred (foreign live-lane untracked files, per SCOUT-23/14:4x note).
 
+## SCOUT-41 (2026-10-04 0411Z) — full text proposals/runs/SCOUT-41-fleet-push-2026-10-04-0411Z.md
+- No CONTRADICT this sweep (window post-SCOUT-40). HEADLINE — **quilt-matrix (NEW, hot)**: night3
+  complete + THE GUARD BUGFIX — build_pool dropped criteria, every GUARD oracle call 422'd since
+  night1, all guard verdicts night1–3 VOID and wholesale-revoked via their cross-run guard registry
+  (commit 0cb7552). CORROBORATE x3: FW-1/RC-1b-class silent-failing verdict calls caught fail-loud
+  fleet-side; spec_sha sealed pre-round (3rd converging repo); hash-chained receipts. TOOL → spawned
+  **XM-1** (guard-registry wholesale-void vs our per-booking repro; maps onto QO6 evidence + KR-1
+  credential-drift lesson). Also: canons f55e8cb (22:25Z) was MISSED by SCOUT-38 — conservation-law
+  tautology (metric = sum of its own inputs), fluxc-verify stub, pytest||true; corroborates CI-1
+  bill + adds a named member to the DEGENERATE class (note filed for FW-1 successor). No new
+  PRs/issues/EMBASSY; pong #49 unchanged. (C) not due (newest OURS = QG7b repro PASS). Rotation
+  next wake: (B) FW-1-successor / XM-1 / SS-1 per queue order; GPU free (QG1d/QG4/MC-1).
+
 ## SCOUT-36 (2026-10-03 2111Z) — full text proposals/runs/SCOUT-36-fleet-push-2026-10-03-2111Z.md
 - No CONTRADICT this sweep (window post-SCOUT-35: pong #107 playloop lane, quilt-dba wave-69 CI hygiene
   = CI-1 corroborate, naDir FIRST CODE → hedge trigger fired, fleet-triage edge-watch #17-#22 all
