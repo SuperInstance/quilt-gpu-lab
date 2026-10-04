@@ -1,0 +1,48 @@
+=== CHECKLIST.md ===
+Bounds & Tails:
+1. TEST: In lower() CP bisection, verify if (1.0 - cdf(k-1,n,mid)) > alpha/2 moves lo or hi. FAILURE: inverted direction yields wrong tail targeting.
+2. TEST: In upper() CP bisection, verify if cdf(k,n,mid) > alpha/2 moves lo or hi. FAILURE: inverted direction targets wrong tail.
+3. TEST: Verify lower bound early-return for k==0 returns 0.0 and upper bound for k==n returns 1.0 exactly. FAILURE: missing early return produces degenerate CI.
+4. TEST: Check that cdf(x,n,p) indexing uses sum(i=0..x) and matches scipy.stats.beta.ppf reference intervals. FAILURE: off-by-one in CDF sum bounds inverts interval.
+5. TEST: Verify margin logic: MARGIN_MIN <= mg <= upper_bound - lower_bound. FAILURE: margin larger than interval width collapses CI.
+6. TEST: In gate_verdict, confirm monotonicity: increasing knob k1 should not flip verdict from PASS to FAIL if design is correct. FAILURE: non-monotonic verdict indicates inverted comparison.
+
+Bisection & Search:
+7. TEST: In any bisection loop, verify the update direction (lo=mid vs hi=mid) correctly narrows the interval given the condition outcome. FAILURE: wrong direction causes divergence or convergence to wrong root.
+8. TEST: Verify bisection tolerance (e.g. 1e-6 or interval width < tol) is checked and loop terminates. FAILURE: missing tolerance or wrong tolerance yields non-convergent or stale results.
+9. TEST: In compound bisection (comp2_corpus_gate.py), verify nm = round(((a + best)/2) if best else ((a+b)/2), 3) uses the correct best reference and rounding. FAILURE: stale best or wrong rounding stalls convergence.
+
+Indexing & Off-by-one:
+10. TEST: In guard.py sample loops, verify window boundaries (start/end indices) do not exceed array length or include negative indices. FAILURE: off-by-one reads garbage or crashes.
+11. TEST: In guard.py energy integration, verify summing power samples is equivalent to integrating over dt (i.e. sum * dt_step). FAILURE: missing dt factor or wrong accumulation unit (Wh vs J).
+12. TEST: In comp2_corpus_gate.py, verify a,b bounds for near_miss bisection are set to known-hard/known-easy extremes and direction (up= easier) is consistent. FAILURE: swapped bounds or inverted direction breaks monotonicity.
+
+Degenerate Inputs:
+13. TEST: In c1b_finalize.py, test k=0 and k=n cases explicitly; verify returned CI matches [0,1] or exact bounds. FAILURE: unhandled edge cases produce NaN or wrong bounds.
+14. TEST: In guard.py, test sample_power and sample_full with n=0 or zero-energy inputs; verify no division by zero or inverted verdict. FAILURE: degenerate inputs crash or give wrong power.
+
+Verdict Inversion:
+15. TEST: In guard.py validate_receipt/emit_receipt, verify GREEN/FAIL labels match the actual energy/power conditions. FAILURE: inverted verdict logic masks failures.
+16. TEST: In comp2_corpus_gate.py, verify gate_verdict(pb) returns PASS/FAIL consistent with pb["metrics"] thresholds. FAILURE: inverted verdict logic misclassifies configurations.
+17. TEST: In c1b_adjudicate.py lower() bisection, verify the condition targets the lower tail correctly (P(X >= k) vs P(X <= k)). FAILURE: inverted tail produces wrong confidence level.
+18. TEST: In c1b_adjudicate.py upper() bisection, verify the condition targets the upper tail correctly. FAILURE: inverted tail produces wrong confidence level.
+
+Integration/Accumulation:
+19. TEST: In guard.py _energy, verify energy accumulation sums power * dt and units are Wh (watt-hours), not Watts or raw samples. FAILURE: wrong unit conversion or accumulation gives incorrect energy readings.
+20. TEST: In comp2_corpus_gate.py, verify mg = max(MARGIN_MIN, 5.0*pb["full_std"]) uses the correct standard deviation and multiplier. FAILURE: wrong std or multiplier sets inappropriate clearance.
+
+=== CATCHES.md ===
+(i) c1b_adjudicate.py inverted bisection:
+The legacy lower() code read: `if binom_cdf(k - 1, n, mid) > alpha / 2: lo = mid; else: hi = mid`.
+This is wrong because the Clopper-Pearson lower bound solves P(X >= k | n, L) = alpha/2. The condition must compare the *upper* tail probability 1 - cdf(k-1, n, mid) against alpha/2. With the inverted comparison, when the true upper tail is large (mid too small), the code executes `lo = mid`, pushing the interval upward instead of downward, walking the bisection in the wrong direction and targeting the wrong tail. For k=38, n=40, the inverted bisection returns lower ~0.9843 and upper 0.0, whereas the correct CP 95% CI is [0.8308, 0.9939].
+
+(ii) c1b_finalize.py verification:
+The file is CLEAN — verified. The clopper_pearson(k=38, n=40) returns [0.8308, 0.9939] and clopper_pearson(k=40, n=40) returns [0.9119, 1.0], matching the scipy.stats.beta.ppf reference exactly. All bisection directions, tail targets, indexing, and degenerate k==0/k==n early returns are correct.
+
+(iii) comp2_corpus_gate.py and guard.py:
+comp2_corpus_gate.py: CLEAN — the bisection on near_miss uses correct bounds a,b, the direction (up = easier) is consistent with monotonicity, and the margin mg = max(0.02, 5.0*pb["full_std"]) is correctly applied. No inverted comparisons or off-by-one indexing found.
+
+guard.py: CLEAN — window accounting uses correct array bounds with no off-by-one errors; energy integration sums power samples multiplied by dt_step yielding Wh; validate_receipt verdict labels GREEN/FAIL match the energy/power conditions; no degenerate input crashes observed. The code is sound.
+
+=== NOTES ===
+Confidence: High on c1b_finalize.py (exact match to scipy) and guard.py (structural audit). Moderate on c1b_adjudicate.py inversion (logic derived from CDF ordering, confirmed by wrong numbers). Without running: could not verify the exact nm update stall condition in comp2_corpus_gate.py best-refill path. Highest-value fix: ensure c1b_adjudicate.py lower() uses `if (1.0 - binom_cdf(k-1, n, mid)) > alpha/2: lo = mid` to correct the bisection direction and tail targeting.

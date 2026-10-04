@@ -1,0 +1,25 @@
+{
+  "frame": "B1/B1b/B1C/B1F/B1G verbatim",
+  "traces_n": 2,
+  "trace_ticks": 200,
+  "trace_seed_base": 900000,
+  "holdout_mod": 5,
+  "n_train_samples": 400,
+  "n_holdout_samples": 400,
+  "traces": [
+    {
+      "i": 0,
+      "seed": 900000,
+      "ticks": 200,
+      "closed": false,
+      "holdout": true
+    },
+    {
+      "i": 1,
+      "seed": 900001,
+      "ticks": 200,
+      "closed": false,
+      "holdout": false
+    }
+  ]
+}

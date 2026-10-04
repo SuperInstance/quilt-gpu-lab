@@ -1,0 +1,9 @@
+{
+ "tool": "lit_sweep",
+ "verdict": "FINDINGS",
+ "literals_checked": 441,
+ "receipts_parsed": 403,
+ "receipts_skipped": 4,
+ "truncated": true
+}
+code_hits=50 degenerate_hits=50 unanimous=0

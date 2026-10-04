@@ -1,0 +1,121 @@
+# ⚙️ quilt-c
+
+> **The Quilt cell-fabric runtime in C99.** Part of the [polyformalism](https://github.com/SuperInstance/quilt-claude-charts/blob/main/QUILT_CHARTER.md) — the same cell model, expressed in 12+ languages, byte-exact compatible.
+
+<p align="center">
+  <img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" alt="Apache-2.0">
+  <img src="https://img.shields.io/badge/language-C99-blue.svg" alt="C99">
+  <img src="https://img.shields.io/badge/hash-0xe435d91d6d92a1d8-brightgreen.svg" alt="byte-exact">
+</p>
+
+## ✦ Why this port exists
+
+The C99 port is distinctive because of its position in the language hierarchy: gcc-compilable, C99-idiomatic, and byte-exact with the rest of the polyformalism.
+
+## ✦ The 5 opcodes
+
+```
+BIND(cell, dials)   # set dials, idempotent
+LINK(c1, c2)        # add an undirected edge
+EFFECT(cell)        # propagate dial[0] to neighbors
+VIEW(cell)          # return dials
+TICK(fabric)        # advance all dials by 1, alternating direction
+```
+
+The canonical serialization is `type(1) || id(8 LE) || dials(32 LE) || neighbors(8*N LE)`. The state hash is FNV-1a 64-bit. The test cell (id=1, dials=[1..16], neighbors=[2,3,4]) produces `0xe435d91d6d92a1d8` byte-exactly.
+
+## ✦ The full polyformalism
+
+| Lang | Hash | Tests |
+|------|------|-------|
+| **C99 (this port)** | ✓ | **1,285 assertions, 0 failures, one command** |
+| Python 3 | ✓ | 7/7 |
+| Rust | ✓ | 6/6 |
+| Go | ✓ | 7/7 |
+| Zig | ✓ | 7/7 |
+| Mojo | ✓ | ref |
+| Verilog | ✓ | manual |
+| VHDL | ✓ | manual |
+| JavaScript | ✓ | live |
+| TypeScript | ✓ | 5/5 |
+
+## Run it in under 10 seconds
+
+```sh
+git clone https://github.com/SuperInstance/quilt-c.git
+cd quilt-c
+make verify
+```
+
+That is the whole dependency closure: a C99 compiler and `python3`. No packages, no
+lockfile, no network. `make verify` builds every suite, runs all 1,285 assertions
+across 7 suites, and writes `VERIFY_RECEIPT.json` containing the verdict, the
+assertion counts, a sha256 of the source tree, and a sha256 of the receipt itself.
+It is fail-closed: any failing suite exits nonzero.
+
+Receipt shape:
+
+```json
+{
+  "schema": "quilt-c/verify-receipt@v1",
+  "verdict": "VERIFIED",
+  "assertions_passed": 1285,
+  "assertions_failed": 0,
+  "suites": 7,
+  "source_tree_sha256": "8f027b799fc819b02c04392781ed854e...",
+  "receipt_sha256": "91d52448f0748c866d0facccbea3cb5e..."
+}
+```
+
+Anyone can re-run this and compare the tree hash. If the source changes, the hash
+changes; if the behaviour changes, the assertion count changes. That is the
+reproducibility contract, stated in one command.
+
+## ✦ The educational root
+
+Every port points back to the [Quilt Charter](https://github.com/SuperInstance/quilt-claude-charts/blob/main/QUILT_CHARTER.md) — the educational root document.
+
+## ✦ See also
+
+- [The Quilt Charter](https://github.com/SuperInstance/quilt-claude-charts/blob/main/QUILT_CHARTER.md)
+- [quilt-claude-charts](https://github.com/SuperInstance/quilt-claude-charts) — protocol + 3 charts
+- [AI-Writings](https://github.com/SuperInstance/AI-Writings) — the canon (230+ papers)
+- [live-canon.superinstance.dev](https://live-canon.superinstance.dev) — the live worker
+- [quilt-cowboy](https://github.com/SuperInstance/quilt-cowboy) — the writers' room
+
+## ✦ License
+
+Apache-2.0. Free as in freedom. See [LICENSE](./LICENSE).
+
+---
+
+**The cell is a struct. The formula is a function pointer. The reactive engine is a recursive walk. The kernel is the runtime. C is the floor.**
+
+---
+
+## ✦ Build
+
+```sh
+make            # builds build/libquilt-c.a (a static library)
+make test       # compiles and runs the conformance + laws test suite
+```
+
+The 5+1 opcodes (`BIND / LINK / EFFECT / VIEW / TICK / FORGET`) and all 5 laws (BIND idempotence, LINK transitivity, VIEW purity, TICK monotonicity, FORGET completeness) are tested in `tests/test_engine.c`. The test target ships with **38 assertions, all green** on C99.
+
+The public API is one header: [`include/quilt/cell.h`](include/quilt/cell.h). The runtime is one file: [`src/engine.c`](src/engine.c). The polyformalism promise: same cell, same 5+1 opcodes, expressed in the language of kernels.
+
+```c
+#include <quilt/cell.h>
+
+quilt_engine_t e;
+quilt_cell_t cells[16];
+quilt_engine_init(&e, cells, 16);
+
+quilt_bind(&e, "a", quilt_v_int(2));
+quilt_bind(&e, "b", quilt_v_int(3));
+/* ... link, effect, view, tick, forget ... */
+
+quilt_engine_free(&e);
+```
+
+`make` produces `build/libquilt-c.a` (a static library) and `build/test_engine` (the test binary). No external dependencies. C99. Runs in kernel space.

@@ -1,0 +1,563 @@
+{
+ "tool": "lit_sweep",
+ "verdict": "FINDINGS",
+ "literals_checked": 441,
+ "receipts_parsed": 403,
+ "receipts_skipped": 4,
+ "code_hits": [
+  {
+   "receipt": "results/d12i_width_scaling.json",
+   "value": "0.7"
+  },
+  {
+   "receipt": "results/d12i_width_scaling.json",
+   "value": "16.0"
+  },
+  {
+   "receipt": "results/d12i_width_scaling.json",
+   "value": "100.0"
+  },
+  {
+   "receipt": "results/d12i_width_scaling.json",
+   "value": "0.3"
+  },
+  {
+   "receipt": "results/d12i_width_scaling.json",
+   "value": "0.375"
+  },
+  {
+   "receipt": "results/d12i_width_scaling.json",
+   "value": "4.0"
+  },
+  {
+   "receipt": "results/d12i_width_scaling.json",
+   "value": "0.75"
+  },
+  {
+   "receipt": "results/d12i_width_scaling.json",
+   "value": "2.0"
+  },
+  {
+   "receipt": "results/d12i_width_scaling.json",
+   "value": "0.9167"
+  },
+  {
+   "receipt": "results/d12i_width_scaling.json",
+   "value": "0.0781"
+  },
+  {
+   "receipt": "results/d12i_width_scaling.json",
+   "value": "25.0"
+  },
+  {
+   "receipt": "results/d12i_width_scaling.json",
+   "value": "10.0"
+  },
+  {
+   "receipt": "results/d12i_width_scaling.json",
+   "value": "3.0"
+  },
+  {
+   "receipt": "results/d12i_width_scaling.json",
+   "value": "0.25"
+  },
+  {
+   "receipt": "results/d12i_width_scaling.json",
+   "value": "0.5"
+  },
+  {
+   "receipt": "results/d12i_width_scaling.json",
+   "value": "1.0"
+  },
+  {
+   "receipt": "results/g3_framerate.json",
+   "value": "0.0"
+  },
+  {
+   "receipt": "results/g3_framerate.json",
+   "value": "0.34"
+  },
+  {
+   "receipt": "results/g3_framerate.json",
+   "value": "0.1919"
+  },
+  {
+   "receipt": "results/g3_framerate.json",
+   "value": "0.62"
+  },
+  {
+   "receipt": "results/g3_framerate.json",
+   "value": "1.0"
+  },
+  {
+   "receipt": "results/d7_quant_drift.json",
+   "value": "60.0"
+  },
+  {
+   "receipt": "results/d7_quant_drift.json",
+   "value": "16.0"
+  },
+  {
+   "receipt": "results/d7_quant_drift.json",
+   "value": "0.05"
+  },
+  {
+   "receipt": "results/d7_quant_drift.json",
+   "value": "0.0"
+  },
+  {
+   "receipt": "results/d7_quant_drift.json",
+   "value": "4.0"
+  },
+  {
+   "receipt": "results/d7_quant_drift.json",
+   "value": "240.0"
+  },
+  {
+   "receipt": "results/d15_eval.json",
+   "value": "60.0"
+  },
+  {
+   "receipt": "results/d15_eval.json",
+   "value": "20.0"
+  },
+  {
+   "receipt": "results/d15_eval.json",
+   "value": "16.0"
+  },
+  {
+   "receipt": "results/d15_eval.json",
+   "value": "0.3509"
+  },
+  {
+   "receipt": "results/d15_eval.json",
+   "value": "100.0"
+  },
+  {
+   "receipt": "results/d15_eval.json",
+   "value": "0.3"
+  },
+  {
+   "receipt": "results/d15_eval.json",
+   "value": "0.0"
+  },
+  {
+   "receipt": "results/d15_eval.json",
+   "value": "0.05"
+  },
+  {
+   "receipt": "results/d15_eval.json",
+   "value": "0.2658"
+  },
+  {
+   "receipt": "results/d15_eval.json",
+   "value": "0.8"
+  },
+  {
+   "receipt": "results/d15_eval.json",
+   "value": "0.34"
+  },
+  {
+   "receipt": "results/d15_eval.json",
+   "value": "400.0"
+  },
+  {
+   "receipt": "results/d15_eval.json",
+   "value": "4.0"
+  },
+  {
+   "receipt": "results/d15_eval.json",
+   "value": "0.25"
+  },
+  {
+   "receipt": "results/d15_eval.json",
+   "value": "1.0"
+  },
+  {
+   "receipt": "results/g1b-determinism.json",
+   "value": "0.0"
+  },
+  {
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json",
+   "value": "0.7"
+  },
+  {
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json",
+   "value": "100.0"
+  },
+  {
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json",
+   "value": "0.3"
+  },
+  {
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json",
+   "value": "0.375"
+  },
+  {
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json",
+   "value": "0.75"
+  },
+  {
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json",
+   "value": "2.0"
+  },
+  {
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json",
+   "value": "0.4688"
+  }
+ ],
+ "degenerate_hits": [
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[4].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[5].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[6].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[7].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[10].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[11].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[12].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[13].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[14].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[15].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[17].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[18].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[19].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[20].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[21].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[22].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[23].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[29].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[30].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[31].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[35].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[36].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[37].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[38].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[39].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[41].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[42].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[43].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[44].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[45].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[46].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[47].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[53].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[54].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[55].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[59].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[60].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[61].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[62].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[63].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[65].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[66].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[67].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[68].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[69].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[70].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[71].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[76].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[77].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  },
+  {
+   "kind": "zero-variance-array",
+   "path": "$.grid[78].draws",
+   "value": 1.0,
+   "n": 3,
+   "receipt": "results/d12j_gpu_width_lucineer-r2.json"
+  }
+ ],
+ "unanimous_metrics": [],
+ "truncated": true
+}

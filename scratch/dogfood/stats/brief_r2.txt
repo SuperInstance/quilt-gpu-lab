@@ -1,0 +1,112 @@
+ROUND 2 — source-grounded re-audit. IMPORTANT process correction: in round 1 you declared `comp2_corpus_gate.py` and `guard.py` "CLEAN" — but their source was NOT in your prompt. Do NOT claim verification for code you cannot see. In this round the actual source is quoted; audit ONLY what is quoted, cite the quoted line numbers, and if a concern needs code you do not have, say "NEEDS SOURCE: <what>".
+
+Your round-1 verdicts on c1b_adjudicate.py (inverted; wrong nums 0.9843/0.0) and c1b_finalize.py (correct; [0.8308,0.9939] for 38/40, [0.9119,1.0] for 40/40) are CONFIRMED and stand. Focus this round on the two you could not see.
+
+(A) guard.py — energy/window machinery (quoted verbatim; line numbers are the real ones):
+
+    def run(self, cmd, cwd, env):                      # ~line 169
+        stop = threading.Event()
+        w_start = len(self.power_samples)
+        w_t0 = time.time()
+        proc = subprocess.Popen(cmd, cwd=cwd, env=env, stdout=PIPE, stderr=PIPE, text=True)
+        watcher = threading.Thread(target=self._watch, args=(proc, stop), daemon=True)
+        watcher.start(); out, err = proc.communicate(); stop.set(); watcher.join(timeout=2)
+        self._close_window(w_start, w_t0)
+        return proc.returncode, out, err
+
+    def _close_window(self, w_start, w_t0):            # ~line 193
+        sl = self.power_samples[w_start:]
+        if not sl:
+            self.windows.append({"power_samples":0, "joules":0.0, "wall_seconds":0.0, "gpu_seconds":0.0})
+            return
+        t_end = time.time()
+        wall = max(0.0, sl[-1][0] - min(sl[0][0], w_t0))
+        ps = [p for _, p, _ in sl if p is not None]
+        mean_p = (sum(ps)/len(ps)) if ps else 0.0
+        gpu_s = 0.0
+        for (t0,_,u0), (t1,_,_) in zip(sl, sl[1:]):
+            if u0 is not None: gpu_s += max(0.0, t1-t0) * (u0/100.0)
+        self.windows.append({"wall_seconds":round(wall,3), "power_samples":len(ps),
+                             "mean_power_w":round(mean_p,2), "joules":round(mean_p*wall,4),
+                             "gpu_seconds":round(gpu_s,3)})
+
+    def _energy(self):                                  # ~line 218
+        ps = [p for _,p,_ in self.power_samples if p is not None]
+        us = [u for _,_,u in self.power_samples if u is not None]
+        wall = 0.0
+        if self.windows:
+            win_wall = sum(w["wall_seconds"] for w in self.windows)
+            win_joules = sum(w["joules"] for w in self.windows)
+            win_ps = sum(w["power_samples"] for w in self.windows)
+            gpu_s = sum(w["gpu_seconds"] for w in self.windows)
+            mean_p = (win_joules/win_wall) if win_wall > 0 else None
+            joules = round(win_joules, 4)
+            return {"wall_seconds":round(win_wall,3), "power_samples":win_ps,
+                    "mean_power_w":round(mean_p,2) if mean_p is not None else None,
+                    "joules":joules, "watt_hours":joules/3600.0, "gpu_seconds":round(gpu_s,3),
+                    "util_samples":len(us), "windows":len(self.windows)}
+        if self._t_first is not None and self._t_last is not None:
+            wall = max(0.0, self._t_last - self._t_first)
+        mean_p = (sum(ps)/len(ps)) if ps else None
+        joules_raw = (mean_p*wall) if (mean_p is not None and wall > 0) else 0.0
+        joules = round(joules_raw, 4)
+        gpu_s = 0.0; used_util = False
+        for (t0,_,u0),(t1,_,_) in zip(self.power_samples, self.power_samples[1:]):
+            if u0 is not None:
+                used_util = True; gpu_s += max(0.0, t1-t0) * (u0/100.0)
+        if not used_util: gpu_s = wall
+        return {"wall_seconds":round(wall,3), "power_samples":len(ps),
+                "mean_power_w":round(mean_p,2) if mean_p is not None else None,
+                "joules":joules, "watt_hours":joules/3600.0, "gpu_seconds":round(gpu_s,3),
+                "util_samples":len(us)}
+    # emit_receipt:  e = self._energy();  measured = e["power_samples"] > 0
+    #   verdict = "PASS" if (self.breach is None and measured) else "VOID"   (when verdict is None)
+    # summary(): legacy fields + g7 energy block. Receipt dir "results/g7".
+
+    Questions to answer explicitly: (1) is `mean_p*wall` (rectangle rule over the window) a
+    defensible Wh integral given nvidia-smi is sampled ~2 Hz? (2) `_energy()` multi-run path
+    derives `mean_p = win_joules/win_wall` from ROUNDED per-window joules — any drift? (3) `gpu_seconds`
+    uses the LEFT-endpoint utilization u0 for [t0,t1] (not midpoint) — bias direction? (4) any way a
+    green job reads VOID or vice-versa (verdict inversion)? (5) `wall = max(0, sl[-1][0] - min(sl[0][0], w_t0))`
+    — off-by-one or missing last-interval?
+
+(B) comp2_corpus_gate.py — gate/bisection machinery (verbatim):
+
+    FULL_LO, FULL_HI = 0.65, 0.85 ;  REG_LO, REG_HI = 0.60, 0.90 ;  MARGIN_MIN = 0.02
+    def gate_verdict(pb):
+        fails = []
+        if not (FULL_LO <= pb["full"] <= FULL_HI): fails.append(...)
+        for r,v in pb["per_regime"].items():
+            if not (REG_LO <= v <= REG_HI): fails.append(...)
+        if not (pb["full_std"] > 0): fails.append(...)
+        return ("GREEN" if not fails else "VIOLATION"), fails
+
+    def direction(m):
+        pb = m["pb"]; mg = max(MARGIN_MIN, 5.0*pb["full_std"])
+        if pb["full"] < FULL_LO + mg: return "hard"
+        if pb["full"] > FULL_HI - mg: return "easy"
+        if any(v < REG_LO + mg for v in pb["per_regime"].values()): return "hard"
+        if any(v > REG_HI - mg for v in pb["per_regime"].values()): return "easy"
+        return "green"
+    # bisection loop: a=1.0 (known too-hard), b=3.0 (known too-easy), nm=2.0
+    #   d = direction(m); if green and validity: best=rec; b=min(b,nm)
+    #   elif d=="hard": a=max(a,nm)          # too hard -> need larger nm
+    #   else: b=min(b,nm)                    # too easy -> need smaller nm
+    #   nm = round(((a+best)/2.0) if best else ((a+b)/2.0), 3)
+    #   break if best and abs(nm-best.nm)<0.03 ; break if (not best) and (b-a)<0.03
+    # knob monotonicity claim: nm up = EASIER (near_miss is expected # fields perturbed)
+
+    Questions: (1) is the 'hard'/'easy' labeling consistent with "nm up = easier"? (2) when `best`
+    is set, `nm=(a+best)/2` ignores b — can the search stall or oscillate? (3) is the `5.0*std`
+    margin ever larger than the band half-width (0.10 full / 0.15 per-regime), collapsing the band?
+    (4) refit-std>0 degeneracy check: correct as written? (5) validity() floor checks (N_HELD_FLOOR=5600,
+    PER_KIND_HELD_FLOOR=1350, DEDUP_FLOOR=23000, canon_frac within +-0.06, n_raw>=23000) — any off-by-one
+    in the >= vs > comparisons?
+
+DELIVERABLES — exactly these sections:
+
+=== CHECKLIST.md ===  (12-20 items, each: TEST + FAILURE it catches; groups: Bounds&Tails, Bisection&Search, Indexing&Off-by-one, Degenerate Inputs, Integration/Accumulation, Verdict Inversion)
+=== CATCHES.md ===    (file:line, quoted code, verdict BUG/RISK/OK, correction or the exact check; explicitly answer every numbered question above; say "NEEDS SOURCE:" where you lack code)
+=== NOTES.md ===      (3-6 lines: confidence, unverifiable-without-running, highest-value fix)
+
+No prose outside the sections.

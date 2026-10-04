@@ -40,3 +40,683 @@ No LoRA keys associated to CLIPTextModel found with the prefix='text_encoder'. T
 [ev] gif saved: tl_53728f3585.gif (6 frames)
 [http] 127.0.0.1 "GET /api/timelapse.gif HTTP/1.1" 200 -
 [http] 127.0.0.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/health HTTP/1.1" 200 -
+/usr/lib/python3.14/multiprocessing/resource_tracker.py:396: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-54905-fafr8bnx'}
+  warnings.warn(
+portal: http://0.0.0.0:8790/   (gen -> /home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/playground/gen)
+scratch: /home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play   fleet: /home/eileen/projects/dicebear-quilt/quilt/play-2026-10-02/png
+[http] 127.0.0.1 "GET /api/health HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/health HTTP/1.1" 200 -
+[http] 127.0.0.1 "POST /api/chat HTTP/1.1" 200 -
+[ev] job 2aeced6f8a started: give lucineer a small upgrade, keep him close to the source
+[http] 127.0.0.1 "GET /api/job?id= HTTP/1.1" 404 -
+[http] 127.0.0.1 "GET /api/job?id= HTTP/1.1" 404 -
+[http] 127.0.0.1 "POST /api/chat HTTP/1.1" 200 -
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 1322.63it/s]
+Loading pipeline components...:   0%|          | 0/6 [00:00<?, ?it/s]Loading pipeline components...:  67%|██████▋   | 4/6 [00:00<00:00, 23.56it/s]There are modules in UNet2DConditionModel that should be kept in float32: []. Casting directly with `to()` can lead to inconsistent results; set `torch_dtype` in `from_pretrained()` instead to keep these modules in float32.
+There are modules in AutoencoderKL that should be kept in float32: []. Casting directly with `to()` can lead to inconsistent results; set `torch_dtype` in `from_pretrained()` instead to keep these modules in float32.
+Loading pipeline components...: 100%|██████████| 6/6 [00:00<00:00, 24.43it/s]
+You have disabled the safety checker for <class 'diffusers.pipelines.controlnet.pipeline_controlnet_img2img.StableDiffusionControlNetImg2ImgPipeline'> by passing `safety_checker=None`. Ensure that you abide to the conditions of the Stable Diffusion license and do not expose unfiltered results in services or applications open to the public. Both the diffusers team and Hugging Face strongly recommend to keep the safety filter enabled in all public facing circumstances, disabling it only for use-cases that involve analyzing network behavior or auditing its results. For more information, please have a look at https://github.com/huggingface/diffusers/pull/254 .
+No LoRA keys associated to CLIPTextModel found with the prefix='text_encoder'. This is safe to ignore if LoRA state dict didn't originally have any CLIPTextModel related params. You can also try specifying `prefix=None` to resolve the warning. Otherwise, open an issue if you think it's unexpected: https://github.com/huggingface/diffusers/issues/new
+[http] 127.0.0.1 "GET /api/job?id=2aeced6f8a HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 404 -
+[http] 127.0.0.1 "GET /api/job?id=2aeced6f8a HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 404 -
+[http] 127.0.0.1 "GET /api/job?id=2aeced6f8a HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 404 -
+[http] 127.0.0.1 "GET /api/job?id=2aeced6f8a HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 404 -
+[http] 127.0.0.1 "GET /api/job?id=2aeced6f8a HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 404 -
+[http] 127.0.0.1 "GET /api/job?id=2aeced6f8a HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 404 -
+[http] 127.0.0.1 "GET /api/job?id=2aeced6f8a HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 404 -
+[http] 127.0.0.1 "GET /api/job?id=2aeced6f8a HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 404 -
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [00:00<00:02,  1.38it/s] 50%|█████     | 2/4 [00:01<00:01,  1.75it/s] 75%|███████▌  | 3/4 [00:01<00:00,  1.91it/s]100%|██████████| 4/4 [00:02<00:00,  2.01it/s]100%|██████████| 4/4 [00:02<00:00,  1.89it/s]
+[ev] timelapse ready: 2aeced6f8a (6 frames)
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 6876.05it/s]
+[http] 127.0.0.1 "GET /api/job?id=2aeced6f8a HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 404 -
+Loading weights:   0%|          | 0/223 [00:00<?, ?it/s]Loading weights:  47%|████▋     | 104/223 [00:00<00:00, 1035.96it/s]Loading weights: 100%|██████████| 223/223 [00:00<00:00, 1690.68it/s]
+[http] 127.0.0.1 "GET /api/job?id=2aeced6f8a HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 404 -
+[http] 127.0.0.1 "GET /api/job?id=2aeced6f8a HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 404 -
+[ev] job 2aeced6f8a verdict: REJECTED clip 0.8898 dino 0.4539 noul 0.34
+[ev] job 2aeced6f8a done
+[ev] job a3657a1c2d started: give lucineer a small upgrade, keep him close to the source
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 1374.20it/s]
+Loading pipeline components...:   0%|          | 0/6 [00:00<?, ?it/s]Loading pipeline components...:  67%|██████▋   | 4/6 [00:00<00:00, 38.69it/s]There are modules in UNet2DConditionModel that should be kept in float32: []. Casting directly with `to()` can lead to inconsistent results; set `torch_dtype` in `from_pretrained()` instead to keep these modules in float32.
+There are modules in AutoencoderKL that should be kept in float32: []. Casting directly with `to()` can lead to inconsistent results; set `torch_dtype` in `from_pretrained()` instead to keep these modules in float32.
+Loading pipeline components...: 100%|██████████| 6/6 [00:00<00:00, 19.33it/s]
+You have disabled the safety checker for <class 'diffusers.pipelines.controlnet.pipeline_controlnet_img2img.StableDiffusionControlNetImg2ImgPipeline'> by passing `safety_checker=None`. Ensure that you abide to the conditions of the Stable Diffusion license and do not expose unfiltered results in services or applications open to the public. Both the diffusers team and Hugging Face strongly recommend to keep the safety filter enabled in all public facing circumstances, disabling it only for use-cases that involve analyzing network behavior or auditing its results. For more information, please have a look at https://github.com/huggingface/diffusers/pull/254 .
+[http] 127.0.0.1 "GET /api/job?id=2aeced6f8a HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 404 -
+No LoRA keys associated to CLIPTextModel found with the prefix='text_encoder'. This is safe to ignore if LoRA state dict didn't originally have any CLIPTextModel related params. You can also try specifying `prefix=None` to resolve the warning. Otherwise, open an issue if you think it's unexpected: https://github.com/huggingface/diffusers/issues/new
+[http] 127.0.0.1 "GET /api/job?id=2aeced6f8a HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 404 -
+[http] 127.0.0.1 "GET /api/job?id=2aeced6f8a HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 404 -
+[http] 127.0.0.1 "GET /api/job?id=2aeced6f8a HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 404 -
+[http] 127.0.0.1 "GET /api/job?id=2aeced6f8a HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 404 -
+[http] 127.0.0.1 "GET /api/job?id=2aeced6f8a HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 404 -
+[http] 127.0.0.1 "GET /api/job?id=2aeced6f8a HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 404 -
+[http] 127.0.0.1 "GET /api/job?id=2aeced6f8a HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=53728f3585 HTTP/1.1" 404 -
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [00:00<00:01,  2.12it/s] 50%|█████     | 2/4 [00:00<00:00,  2.14it/s] 75%|███████▌  | 3/4 [00:01<00:00,  2.15it/s]100%|██████████| 4/4 [00:01<00:00,  2.16it/s]100%|██████████| 4/4 [00:01<00:00,  2.15it/s]
+[ev] timelapse ready: a3657a1c2d (6 frames)
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 8167.27it/s]
+Loading weights:   0%|          | 0/223 [00:00<?, ?it/s]Loading weights:  61%|██████    | 136/223 [00:00<00:00, 1356.31it/s]Loading weights: 100%|██████████| 223/223 [00:00<00:00, 1911.64it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[ev] job a3657a1c2d verdict: REJECTED clip 0.8699 dino 0.4456 noul 0.78
+[ev] job a3657a1c2d done
+[http] 127.0.0.1 "GET /api/job?id=2aeced6f8a HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=a3657a1c2d HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=2aeced6f8a HTTP/1.1" 200 -
+/usr/lib/python3.14/multiprocessing/resource_tracker.py:396: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-62786-z9vlmv48'}
+  warnings.warn(
+portal: http://0.0.0.0:8790/   (gen -> /home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play/playground/gen)
+scratch: /home/eileen/projects/quilt-gpu-lab/scratch/nn-image-play   fleet: /home/eileen/projects/dicebear-quilt/quilt/play-2026-10-02/png
+[http] 127.0.0.1 "GET /api/health HTTP/1.1" 200 -
+[http] 127.0.0.1 "POST /api/chat HTTP/1.1" 200 -
+[ev] job 1d6087c923 started: give lucineer a small upgrade, keep him close to the source
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 1818.01it/s]
+Loading pipeline components...:   0%|          | 0/6 [00:00<?, ?it/s]There are modules in UNet2DConditionModel that should be kept in float32: []. Casting directly with `to()` can lead to inconsistent results; set `torch_dtype` in `from_pretrained()` instead to keep these modules in float32.
+Loading pipeline components...:  83%|████████▎ | 5/6 [00:00<00:00, 38.69it/s]There are modules in AutoencoderKL that should be kept in float32: []. Casting directly with `to()` can lead to inconsistent results; set `torch_dtype` in `from_pretrained()` instead to keep these modules in float32.
+Loading pipeline components...: 100%|██████████| 6/6 [00:00<00:00, 41.54it/s]
+You have disabled the safety checker for <class 'diffusers.pipelines.controlnet.pipeline_controlnet_img2img.StableDiffusionControlNetImg2ImgPipeline'> by passing `safety_checker=None`. Ensure that you abide to the conditions of the Stable Diffusion license and do not expose unfiltered results in services or applications open to the public. Both the diffusers team and Hugging Face strongly recommend to keep the safety filter enabled in all public facing circumstances, disabling it only for use-cases that involve analyzing network behavior or auditing its results. For more information, please have a look at https://github.com/huggingface/diffusers/pull/254 .
+No LoRA keys associated to CLIPTextModel found with the prefix='text_encoder'. This is safe to ignore if LoRA state dict didn't originally have any CLIPTextModel related params. You can also try specifying `prefix=None` to resolve the warning. Otherwise, open an issue if you think it's unexpected: https://github.com/huggingface/diffusers/issues/new
+[http] 127.0.0.1 "GET /api/job?id=1d6087c923 HTTP/1.1" 200 -
+  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [00:00<00:01,  1.67it/s][http] 127.0.0.1 "GET /api/job?id=1d6087c923 HTTP/1.1" 200 -
+ 67%|██████▋   | 2/3 [00:01<00:00,  1.93it/s]100%|██████████| 3/3 [00:01<00:00,  2.02it/s]100%|██████████| 3/3 [00:01<00:00,  1.96it/s]
+[ev] timelapse ready: 1d6087c923 (5 frames)
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 8109.74it/s]
+Loading weights:   0%|          | 0/223 [00:00<?, ?it/s]Loading weights:  65%|██████▍   | 144/223 [00:00<00:00, 1437.37it/s]Loading weights: 100%|██████████| 223/223 [00:00<00:00, 1834.07it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[http] 127.0.0.1 "GET /api/job?id=1d6087c923 HTTP/1.1" 200 -
+[ev] job 1d6087c923 verdict: ACCEPTED clip 0.9095 dino 0.72 noul 0.93
+[ev] job 1d6087c923 done
+[http] 127.0.0.1 "GET /api/job?id=1d6087c923 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=1d6087c923 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET / HTTP/1.1" 200 -
+[http] 127.0.0.1 "POST /api/chat HTTP/1.1" 200 -
+[ev] job a5701db463 started: lucineer portrait, confident smirk, amber workshop light
+[http] 127.0.0.1 "GET /api/job?id=a5701db463 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=a5701db463 HTTP/1.1" 200 -
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files:   9%|▉         | 1/11 [00:00<00:01,  6.09it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 65.76it/s]
+Loading pipeline components...:   0%|          | 0/6 [00:00<?, ?it/s]Loading pipeline components...:  50%|█████     | 3/6 [00:02<00:02,  1.26it/s]Loading pipeline components...:  67%|██████▋   | 4/6 [00:02<00:01,  1.61it/s]There are modules in UNet2DConditionModel that should be kept in float32: []. Casting directly with `to()` can lead to inconsistent results; set `torch_dtype` in `from_pretrained()` instead to keep these modules in float32.
+Loading pipeline components...:  83%|████████▎ | 5/6 [00:06<00:01,  1.79s/it]There are modules in AutoencoderKL that should be kept in float32: []. Casting directly with `to()` can lead to inconsistent results; set `torch_dtype` in `from_pretrained()` instead to keep these modules in float32.
+Loading pipeline components...: 100%|██████████| 6/6 [00:06<00:00,  1.17s/it]
+You have disabled the safety checker for <class 'diffusers.pipelines.controlnet.pipeline_controlnet_img2img.StableDiffusionControlNetImg2ImgPipeline'> by passing `safety_checker=None`. Ensure that you abide to the conditions of the Stable Diffusion license and do not expose unfiltered results in services or applications open to the public. Both the diffusers team and Hugging Face strongly recommend to keep the safety filter enabled in all public facing circumstances, disabling it only for use-cases that involve analyzing network behavior or auditing its results. For more information, please have a look at https://github.com/huggingface/diffusers/pull/254 .
+No LoRA keys associated to CLIPTextModel found with the prefix='text_encoder'. This is safe to ignore if LoRA state dict didn't originally have any CLIPTextModel related params. You can also try specifying `prefix=None` to resolve the warning. Otherwise, open an issue if you think it's unexpected: https://github.com/huggingface/diffusers/issues/new
+[http] 127.0.0.1 "GET /api/job?id=a5701db463 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=a5701db463 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=a5701db463 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=a5701db463 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=a5701db463 HTTP/1.1" 200 -
+  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [00:00<00:01,  1.97it/s] 67%|██████▋   | 2/3 [00:00<00:00,  2.09it/s]100%|██████████| 3/3 [00:01<00:00,  2.11it/s]100%|██████████| 3/3 [00:01<00:00,  2.09it/s]
+[ev] timelapse ready: a5701db463 (5 frames)
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 7807.52it/s]
+Loading weights:   0%|          | 0/223 [00:00<?, ?it/s]Loading weights:  29%|██▉       | 65/223 [00:00<00:00, 587.46it/s]Loading weights:  56%|█████▌    | 124/223 [00:00<00:00, 403.50it/s]Loading weights: 100%|██████████| 223/223 [00:00<00:00, 630.99it/s]
+[http] 127.0.0.1 "GET /api/job?id=a5701db463 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/job?id=a5701db463 HTTP/1.1" 200 -
+[ev] job a5701db463 verdict: ACCEPTED clip 0.9285 dino 0.7223 noul 0.94
+[ev] job a5701db463 done
+[http] 127.0.0.1 "GET /api/job?id=a5701db463 HTTP/1.1" 200 -
+[http] 127.0.0.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET / HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/timelapse HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /favicon.ico HTTP/1.1" 404 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fplayground%2Fgen%2Faccepted%2Fa5701db463.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fplayground%2Fgen%2Faccepted%2F1d6087c923.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Flucineer_cn045_s102.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Flucineer_cn06_s102.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Flucineer_cn06_s101.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Flucineer_cn045_s101.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Flucineer_cn06_s103.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Fcasey_base_s102.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Fmmx_cn06_s102.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Fjev_base_s101.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Fmmx_base_s102.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv3%2Fcasey_cn075_s33.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv3%2Fcasey_cn075_s11.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Fcasey_base_s101.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Flucineer_neon_base_s101.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv3%2Fcasey_base_s22.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv3%2Flucineer_cn09_s33.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Flucineer_base_s101.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv3%2Flucineer_base_s22.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Fxlucineer_caseyedges_s101.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Fjev_cn06_s101.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv3%2Flucineer_base_s33.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Flucineer_cn06_s104.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Fmmx_base_s101.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Flucineer_neon_cn06_s102.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Fxlucineer_caseyedges_s102.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv3%2Fcasey_base_s33.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Flucineer_base_s102.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Flucineer_neon_base_s102.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Fmmx_cn06_s103.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Flucineer_base_s104.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Fjev_base_s102.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fgate_loop%2Fv4%2Flucineer_neon_cn06_s101.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "POST /api/chat HTTP/1.1" 200 -
+[ev] job 4e41a0c230 started: make a tree monster
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 1071.12it/s]
+Loading pipeline components...:   0%|          | 0/6 [00:00<?, ?it/s]Loading pipeline components...:  67%|██████▋   | 4/6 [00:00<00:00, 34.47it/s]There are modules in UNet2DConditionModel that should be kept in float32: []. Casting directly with `to()` can lead to inconsistent results; set `torch_dtype` in `from_pretrained()` instead to keep these modules in float32.
+There are modules in AutoencoderKL that should be kept in float32: []. Casting directly with `to()` can lead to inconsistent results; set `torch_dtype` in `from_pretrained()` instead to keep these modules in float32.
+Loading pipeline components...: 100%|██████████| 6/6 [00:00<00:00, 28.43it/s]
+You have disabled the safety checker for <class 'diffusers.pipelines.controlnet.pipeline_controlnet_img2img.StableDiffusionControlNetImg2ImgPipeline'> by passing `safety_checker=None`. Ensure that you abide to the conditions of the Stable Diffusion license and do not expose unfiltered results in services or applications open to the public. Both the diffusers team and Hugging Face strongly recommend to keep the safety filter enabled in all public facing circumstances, disabling it only for use-cases that involve analyzing network behavior or auditing its results. For more information, please have a look at https://github.com/huggingface/diffusers/pull/254 .
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+No LoRA keys associated to CLIPTextModel found with the prefix='text_encoder'. This is safe to ignore if LoRA state dict didn't originally have any CLIPTextModel related params. You can also try specifying `prefix=None` to resolve the warning. Otherwise, open an issue if you think it's unexpected: https://github.com/huggingface/diffusers/issues/new
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+  0%|          | 0/4 [00:00<?, ?it/s][http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+ 25%|██▌       | 1/4 [00:00<00:01,  2.08it/s] 50%|█████     | 2/4 [00:00<00:00,  2.16it/s] 75%|███████▌  | 3/4 [00:01<00:00,  2.15it/s]100%|██████████| 4/4 [00:01<00:00,  2.16it/s]100%|██████████| 4/4 [00:01<00:00,  2.15it/s]
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[ev] timelapse ready: 4e41a0c230 (6 frames)
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 8217.57it/s]
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+Loading weights:   0%|          | 0/223 [00:00<?, ?it/s]Loading weights:  62%|██████▏   | 138/223 [00:00<00:00, 1376.03it/s]Loading weights: 100%|██████████| 223/223 [00:00<00:00, 1999.56it/s]
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[ev] job 4e41a0c230 verdict: REJECTED clip 0.8008 dino 0.3352 noul 0.31
+[ev] job 4e41a0c230 done
+[http] 172.22.208.1 "GET /api/job?id=4e41a0c230 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fplayground%2Fgen%2Ftl%2F4e41a0c230%2Ffinal.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/timelapse HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "POST /api/chat HTTP/1.1" 200 -
+[ev] job d0305ca5b6 started: make me a beautiful dancer lady
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 1453.92it/s]
+Loading pipeline components...:   0%|          | 0/6 [00:00<?, ?it/s]There are modules in UNet2DConditionModel that should be kept in float32: []. Casting directly with `to()` can lead to inconsistent results; set `torch_dtype` in `from_pretrained()` instead to keep these modules in float32.
+Loading pipeline components...:  83%|████████▎ | 5/6 [00:00<00:00, 40.21it/s]There are modules in AutoencoderKL that should be kept in float32: []. Casting directly with `to()` can lead to inconsistent results; set `torch_dtype` in `from_pretrained()` instead to keep these modules in float32.
+Loading pipeline components...: 100%|██████████| 6/6 [00:00<00:00, 42.11it/s]
+You have disabled the safety checker for <class 'diffusers.pipelines.controlnet.pipeline_controlnet_img2img.StableDiffusionControlNetImg2ImgPipeline'> by passing `safety_checker=None`. Ensure that you abide to the conditions of the Stable Diffusion license and do not expose unfiltered results in services or applications open to the public. Both the diffusers team and Hugging Face strongly recommend to keep the safety filter enabled in all public facing circumstances, disabling it only for use-cases that involve analyzing network behavior or auditing its results. For more information, please have a look at https://github.com/huggingface/diffusers/pull/254 .
+[http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+No LoRA keys associated to CLIPTextModel found with the prefix='text_encoder'. This is safe to ignore if LoRA state dict didn't originally have any CLIPTextModel related params. You can also try specifying `prefix=None` to resolve the warning. Otherwise, open an issue if you think it's unexpected: https://github.com/huggingface/diffusers/issues/new
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+  0%|          | 0/4 [00:00<?, ?it/s][http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+ 25%|██▌       | 1/4 [00:00<00:01,  2.15it/s] 50%|█████     | 2/4 [00:00<00:00,  2.16it/s][http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+ 75%|███████▌  | 3/4 [00:01<00:00,  2.14it/s]100%|██████████| 4/4 [00:01<00:00,  2.14it/s]100%|██████████| 4/4 [00:01<00:00,  2.14it/s]
+[ev] timelapse ready: d0305ca5b6 (6 frames)
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 7601.53it/s]
+[http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+Loading weights:   0%|          | 0/223 [00:00<?, ?it/s]Loading weights:  58%|█████▊    | 129/223 [00:00<00:00, 1268.27it/s]Loading weights: 100%|██████████| 223/223 [00:00<00:00, 1810.67it/s]
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[ev] job d0305ca5b6 verdict: REJECTED clip 0.802 dino 0.3272 noul 0.07
+[ev] job d0305ca5b6 done
+[http] 172.22.208.1 "GET /api/job?id=d0305ca5b6 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fplayground%2Fgen%2Ftl%2Fd0305ca5b6%2Ffinal.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/timelapse HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "POST /api/chat HTTP/1.1" 200 -
+[ev] job 1cd5c975a2 started: triangle
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 1307.93it/s]
+Loading pipeline components...:   0%|          | 0/6 [00:00<?, ?it/s]There are modules in UNet2DConditionModel that should be kept in float32: []. Casting directly with `to()` can lead to inconsistent results; set `torch_dtype` in `from_pretrained()` instead to keep these modules in float32.
+Loading pipeline components...:  83%|████████▎ | 5/6 [00:00<00:00, 36.06it/s]There are modules in AutoencoderKL that should be kept in float32: []. Casting directly with `to()` can lead to inconsistent results; set `torch_dtype` in `from_pretrained()` instead to keep these modules in float32.
+Loading pipeline components...: 100%|██████████| 6/6 [00:00<00:00, 38.07it/s]
+You have disabled the safety checker for <class 'diffusers.pipelines.controlnet.pipeline_controlnet_img2img.StableDiffusionControlNetImg2ImgPipeline'> by passing `safety_checker=None`. Ensure that you abide to the conditions of the Stable Diffusion license and do not expose unfiltered results in services or applications open to the public. Both the diffusers team and Hugging Face strongly recommend to keep the safety filter enabled in all public facing circumstances, disabling it only for use-cases that involve analyzing network behavior or auditing its results. For more information, please have a look at https://github.com/huggingface/diffusers/pull/254 .
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+No LoRA keys associated to CLIPTextModel found with the prefix='text_encoder'. This is safe to ignore if LoRA state dict didn't originally have any CLIPTextModel related params. You can also try specifying `prefix=None` to resolve the warning. Otherwise, open an issue if you think it's unexpected: https://github.com/huggingface/diffusers/issues/new
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [00:00<00:00,  2.01it/s][http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+ 67%|██████▋   | 2/3 [00:00<00:00,  2.10it/s]100%|██████████| 3/3 [00:01<00:00,  2.12it/s]100%|██████████| 3/3 [00:01<00:00,  2.10it/s]
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[ev] timelapse ready: 1cd5c975a2 (5 frames)
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 6145.52it/s]
+Loading weights:   0%|          | 0/223 [00:00<?, ?it/s][http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+Loading weights:  53%|█████▎    | 119/223 [00:00<00:00, 1184.78it/s]Loading weights: 100%|██████████| 223/223 [00:00<00:00, 1620.09it/s]
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[ev] job 1cd5c975a2 verdict: ACCEPTED clip 0.9281 dino 0.6879 noul 0.96
+[ev] job 1cd5c975a2 done
+[http] 172.22.208.1 "GET /api/job?id=1cd5c975a2 HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fplayground%2Fgen%2Ftl%2F1cd5c975a2%2Ffinal.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/timelapse HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/img?p=%2Fhome%2Feileen%2Fprojects%2Fquilt-gpu-lab%2Fscratch%2Fnn-image-play%2Fplayground%2Fgen%2Faccepted%2F1cd5c975a2.png HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/gallery HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -
+[http] 172.22.208.1 "GET /api/graph HTTP/1.1" 200 -

@@ -1,0 +1,190 @@
+{
+  "quilt-tools": {
+    "kind": "tool",
+    "purpose": "Eleven self-grading tools (fleet-pager, ledger-seal, ocean-recall, triagedesk, budget-tide, driftwatch, approvals, habit-atlas, pipeline-guard, convergence-gauge, home-ecos) on the Quilt reactive-spreadsheet engine + the referral-graph substrate and springboard lab. Runs offline, grades its own homework, one dep (yaml; engine dist vendored).",
+    "lessons": [
+      {"lesson": "Weight law: PENDING=0.05 is speculation; VERIFIED=1.0 only via a merged PR in the TARGET repo citing the technique; REFUTED stays in the chain as scar tissue with zero mass.", "source": "src/referral_graph.mjs", "topic": "routing"},
+      {"lesson": "Trust is the lever, not weight: viewTrusted() re-scales every edge by the target repo's earned trust and unseen sources default to 0, so junk-citation PRs cannot buy view mass (G11 port).", "source": "src/referral_graph.mjs", "topic": "verifier"},
+      {"lesson": "Scores are ordinal ranks, not interval: a 6-point evidential continuum collapses to 3 usable rungs {10,50,100} on the live oracle; never key policy on absolute score deltas.", "source": "experiments/API_LIMITS_R1.md", "topic": "verifier"},
+      {"lesson": "Receipts flip credit 1/4 to 4/4 whether or not the underlying claim is true — inline receipts change judged credit; verifyChain discipline is the counter-move.", "source": "experiments/REFERRAL_GRAPH.md", "topic": "verifier"},
+      {"lesson": "Shape beats threshold and it is not prompt-visible: drift detection needs oracle variance-collapse maps (S2), thresholds asserted in prose do not transfer.", "source": "experiments/REFERRAL_GRAPH.md", "topic": "verifier"},
+      {"lesson": "Falsification is mechanical: every edge books a falsification_condition and probe() kills it on observed evidence, keeping the REFUSED scar in the chain.", "source": "src/referral_graph.mjs", "topic": "prereg"},
+      {"lesson": "Live-oracle boundary findings: auto-close class dissolves live (model never picks it), page-gate under-fires on heuristics, score calibration lives at the top of the scale.", "source": "experiments/README.md", "topic": "verifier"},
+      {"lesson": "Tools are hermetic and self-grading: 94 checks across the set, green is the only accepted color, engine dist vendored so no laptop paths.", "source": "README.md", "topic": "ci"}
+    ]
+  },
+  "quilt-show": {
+    "kind": "writing",
+    "purpose": "Quilt episodes (playable/streamed demos of fleet ideas). Episode 2 'The Receipt': a claim must be DEMONSTRATED with receipts, never asserted in prose; Episode 3 adds waveform + watchers + drag-to-reshape player work.",
+    "lessons": [
+      {"lesson": "Demonstrate, don't assert: Episode 2's verifyChain discipline is load-bearing for the referral graph's weight law.", "source": "quilt-tools seed node qs-ep2", "topic": "writing"},
+      {"lesson": "First currency earner in the mesh: quilt-show#1 merged the E3 verification record citing quilt-tools#3 in-repo, flipping qt-s2-driftwatch→qs-ep2 to VERIFIED.", "source": "quilt-tools/experiments/REFERRAL_GRAPH.md", "topic": "verifier"}
+    ]
+  },
+  "quilt-arcade": {
+    "kind": "game",
+    "purpose": "Arcade of two-file plugins (module + manifest) over the Quilt engine; NEGATIVE_SPACE.md documents declined patches and divergences as first-class constitution; receipt-rendered run_all.",
+    "lessons": [
+      {"lesson": "Every game is a two-file plugin (module + manifest) with receipt-rendered run_all — plugin manifests are the natural on-disk shape for a node's identity.", "source": "quilt-tools seed node qa-plugins", "topic": "game"},
+      {"lesson": "NEGATIVE_SPACE doctrine: declined patches and divergences are documented, never silently dropped (declined patch 12 with cost rationale).", "source": "quilt-tools seed node qa-negspace", "topic": "prereg"}
+    ]
+  },
+  "pong-quilt": {
+    "kind": "game",
+    "purpose": "Long-running pong experiment lane (Rounds R12–R51+): receipted rounds, session-WAL re-anchoring into the fleet five-opcode quilt WAL, quantum-coin champion tiebreaks, stone-v1 export/sign pilots.",
+    "lessons": [
+      {"lesson": "Equal-fitness champion ties are broken by a receipted quantum coin (coin-toss-v1) with every flip journaled — silent index order is an unwitnessed collapse.", "source": "seed edge qq-quantum-tiebreak (pong-quilt#28)", "topic": "quantum"},
+      {"lesson": "Refusal events are named first-class (QA-REFUSAL, byo-qpam-fallback, WAL-EXPORT/REFUSED+EMPTY): a claim must name how it knows.", "source": "seed node pq-named-refusals", "topic": "verifier"},
+      {"lesson": "R26 session-WAL: live receipt-panel rows re-anchor into the fleet five-opcode quilt WAL so one verifier can read every fleet ledger.", "source": "seed edge pq-session-wal (fleet-murmur#2)", "topic": "memory"},
+      {"lesson": "R36/R39: wal-export toStoneV1() made pong-quilt the first stone-v1 forward-format adopter; prerun staples the birth-seal chain tip via quilt-stone signTip (signs a copy, canonical stays unsigned).", "source": "seed edges stone-forward-adopt / pq-sign-pilot", "topic": "infrastructure"}
+    ]
+  },
+  "quilt-quant": {
+    "kind": "experiment-lane",
+    "purpose": "The moth-quantum engine: receipted quantum coin (coin-toss-v1), seeded mock of the live engine; direct-pushed lab (zero PRs).",
+    "lessons": [
+      {"lesson": "coin-toss-v1: the receipted quantum coin — verdicts need pre-outcome witnessed states, every flip journaled.", "source": "seed node quant-coin-toss", "topic": "quantum"}
+    ]
+  },
+  "jev-quilt": {
+    "kind": "experiment-lane",
+    "purpose": "Jev judgment substrate: substance noul + 0.6 admit threshold (JevLens mean >= 0.6 reads VERIFIABLE), TypeSafeBackend protocol, G11 trust-weighted commons, KAT bridge to the canonical AI-Writings instrument.",
+    "lessons": [
+      {"lesson": "Substance gate: admit generated text at jev_substance >= 0.6 (noul reads VERIFIABLE) — replaced length-only admission proxies.", "source": "seed edge qb-jev-gate (quilt-cowboy#1)", "topic": "gating"},
+      {"lesson": "G11 commons: trust_weighted()/provenance_merge() re-scale cross-fleet gluing by earned trust — weight alone is cheap to inflate.", "source": "seed edge jq-commons-g11 (jev-quilt#37)", "topic": "verifier"},
+      {"lesson": "KAT bridge pins the canonical AI-Writings instrument by repo+commit+sha256; tests assert the citation string survives in source so a drifted upstream cannot be bridged silently.", "source": "seed edge jq-kat-bridge (jev-quilt#47)", "topic": "verifier"}
+    ]
+  },
+  "quilt-cowboy": {
+    "kind": "ledger",
+    "purpose": "Research-paper canon builder (RD_QUILT_3_0): generated papers admitted to the canon through the v3 output gate, now wired to jev-quilt's substance gate via any duck-typed backend.",
+    "lessons": [
+      {"lesson": "1,745 papers entered the canon on synthesis_len >= 300 alone — the length-as-concreteness proxy is a stand-in and was replaced by substance scoring.", "source": "seed edge qb-jev-gate claim", "topic": "gating"}
+    ]
+  },
+  "fleet-murmur": {
+    "kind": "experiment-lane",
+    "purpose": "Gossip-mesh rumor scoring lane: MurmurLedger fnv1a hash-chained receipts, transport-honesty contract, quality-gate adapter over the real quality-gate-stream package, IETF refusal-events ledger lane.",
+    "lessons": [
+      {"lesson": "Transport-honesty contract: a black-hole transport must not score 100% delivery coverage — honesty REFUSAL receipts name it.", "source": "seed edge fm-honesty-receipts (moth-waveform#1)", "topic": "verifier"},
+      {"lesson": "Adapter against a live sibling API: the pre-merge adapter raised TypeError against the real quality-gate-stream package — stale-API broken at birth; fix shipped with live glue pins (4 live, labeled skips when uninstalled, never fake green).", "source": "seed edge fm-qgs-adapter (fleet-murmur#3)", "topic": "ci"}
+    ]
+  },
+  "moth-waveform": {
+    "kind": "experiment-lane",
+    "purpose": "Duck-sensitivity receipts lab: waveform gates with in-run floor measurement; every sensitivity receipt carries a no-op health gate row.",
+    "lessons": [
+      {"lesson": "A gate that passes without a live floor measurement passes vacuously — the no-op floor is measured in-run and absent noop rows fail.", "source": "seed edge mw-floor-gate (moth-waveform#1)", "topic": "verifier"}
+    ]
+  },
+  "quality-gate-stream": {
+    "kind": "tool",
+    "purpose": "Review-honesty scoring gate as an installable package: strict mode, routing + rolling windows; rumors/payloads below threshold are REFUSED, not passed.",
+    "lessons": [
+      {"lesson": "Strict-mode scoring: sub-threshold items REFUSE (named refusal receipts) instead of silently degrading.", "source": "seed node qgs-strict-gate", "topic": "gating"}
+    ]
+  },
+  "fleet-triage": {
+    "kind": "infra",
+    "purpose": "The 3-stage doc-citation resolver (index -> scan -> audit); its scoped quilt-family census (2026-10-02, 244 repos) surfaced the fleet's doc-drift surfaces and earned two VERIFIED referral edges.",
+    "lessons": [
+      {"lesson": "Doc citation census across 244 quilt-family repos found 222 FILE_MISSING citations (canons cluster) and 25 LINE_OOR (all in quilt-tournament referee/ docs) — the family's largest doc-to-file drift surfaces.", "source": "seed nodes qc-fm-surface / qt-lineoor-surface", "topic": "infrastructure"}
+    ]
+  },
+  "quilt-research-canons": {
+    "kind": "ledger",
+    "purpose": "Research canon cluster + fleet-legend legibility project (100-repo census graded repos against five obligations L1–L5: entry, layout, L4 what-this-does-NOT-do, L5 what-to-do-when-it-fails).",
+    "lessons": [
+      {"lesson": "Legibility census of 100 fleet repos: L4 (what this does NOT do) missing in 55, L5 (what to do when it fails) missing in 59 — the two obligations that only cost something once a reader is inside.", "source": "quilt-tools/LEGIBILITY.md", "topic": "writing"}
+    ]
+  },
+  "quilt-tournament": {
+    "kind": "experiment-lane",
+    "purpose": "Tournament lane with referee/ docs; site of all 25 LINE_OOR doc citations found in the 244-repo quilt-family census (quilt-canvas-tui core.c line-past-EOF).",
+    "lessons": [
+      {"lesson": "All 25 LINE_OOR doc citations in the quilt family live in this repo's referee/ docs — doc line references past EOF are a recurring drift class.", "source": "seed node qt-lineoor-surface", "topic": "writing"}
+    ]
+  },
+  "quilt-in-git": {
+    "kind": "infra",
+    "purpose": "wave4-query verifiable-coverage layer: .quilt/bin/quilt-query CLI answering divergence / trusted-but-unaudited / attest queries over git-native quilt state.",
+    "lessons": [
+      {"lesson": "Verifiable coverage queries (divergence / trusted-but-unaudited / attest) make merge-time coverage checkable rather than assumed.", "source": "seed node qig-wave4-query", "topic": "infrastructure"}
+    ]
+  },
+  "quilt-adjudication": {
+    "kind": "infra",
+    "purpose": "A fork of quilt-in-git @ 6a1ae48 that records what merges usually erase: disputes; consumes the wave4-query layer as its adjudication query lane.",
+    "lessons": [
+      {"lesson": "Disputes are worth recording: this fork preserves the disagreement record that a normal merge erases.", "source": "seed node qad-dispute-query", "topic": "infrastructure"}
+    ]
+  },
+  "quilt-stone": {
+    "kind": "ledger",
+    "purpose": "Canonical receipt-chain verifier: stone-v1 forward format + smoke pins over exact producer bytes; stone-v2 sign lane (ed25519 tip staples, signed msg = 'stone-v2'||tip_row_hash).",
+    "lessons": [
+      {"lesson": "An export format nobody verifies through is a dialect, not a standard: stone smoke 12b pins the producer's EXACT bytes (generated live, not retyped), catches post-seal edits as hash_mismatch, breaks on row splice.", "source": "seed edge stone-forward-adopt (quilt-stone#1)", "topic": "verifier"},
+      {"lesson": "A signature primitive nobody staples with is a library, not a doctrine: the sign lane earned currency when pong-quilt's prerun stapled the chain tip with verifyTipSignature BEFORE write (a refused staple bricks the run, exit 1).", "source": "seed edge pq-sign-pilot (pong-quilt#51)", "topic": "verifier"}
+    ]
+  },
+  "MicroMoth-quilt": {
+    "kind": "experiment-lane",
+    "purpose": "MicroMoth import substrate with sealed receipt lineage: fnv1a-64 import-baseline manifest + per-receipt sha256 byte-match tables; exp018-022 sealed results mirrored to micrograd-quilt as receipt PRs.",
+    "lessons": [
+      {"lesson": "Sealed receipts are immutable: provenance notes amend (audit note naming the lab's canonical home) without rewriting history — the citation pin lives in tests.", "source": "seed edge mgq-qcells-lab (MicroMoth-quilt#29)", "topic": "memory"},
+      {"lesson": "A seal naming its producer by workspace path ('workspace/labs/qcells') is a doctrinal citation, not currency: it identifies the work, not the repo — name the repo.", "source": "seed edge mgq-qcells-lab claim", "topic": "prereg"}
+    ]
+  },
+  "micrograd-quilt": {
+    "kind": "experiment-lane",
+    "purpose": "The qcells local lab (labs/qcells): novel experimentation on the MicroMoth substrate; exp018-036 lineage with per-exp sealed results booked back into MicroMoth-quilt.",
+    "lessons": [
+      {"lesson": "Lab findings earn currency when a merged PR in the ledger repo consumes them: micrograd-quilt#7 earned ledger-to-lab mass, mirrored six hours later by MicroMoth-quilt#29 — the mesh's first VERIFIED-in-both-directions pair.", "source": "seed edges mm/mgq pair", "topic": "prereg"}
+    ]
+  },
+  "quilt-ewitness": {
+    "kind": "experiment-lane",
+    "purpose": "E-process witness substrate (src/eproc.mjs): anytime-valid e-processes for 'it learned' training claims — Ville bound 1/delta, sigma pre-registered under refusal, retraction built in.",
+    "lessons": [
+      {"lesson": "Anytime-valid e-process witnesses: Ville bound 1/delta with sigma pre-registered under refusal and retraction built in — training claims can be witnessed, not asserted.", "source": "seed node qe-eproc-witness", "topic": "verifier"}
+    ]
+  },
+  "delta-shape": {
+    "kind": "experiment-lane",
+    "purpose": "E-sign drift-significance layer: witnessDrift() consumes the vendored quilt-ewitness instrument, sha256-checking its bytes before trusting them (pinned BY BYTES @61b9e04).",
+    "lessons": [
+      {"lesson": "The hash IS the identity: witnessDrift() refuses to witness vendored bytes whose sha256 does not match the pinned digest — mismatched instruments refuse to witness.", "source": "seed edge ds-esign-drift (delta-shape#1)", "topic": "verifier"},
+      {"lesson": "Delta-shape is the sixth to-node born after seeding and entered the view at full VERIFIED mass — new repos can enter the mesh immediately when a merge lands the citation.", "source": "seed edge qe-eproc-witness claim", "topic": "routing"}
+    ]
+  },
+  "backward-holdem": {
+    "kind": "game",
+    "purpose": "Backward-holdem tick-WAL substrate (born 2026-10-02): strict type-safe tick schema; the parser rejects unknown kinds and wrong arities.",
+    "lessons": [
+      {"lesson": "Strict type-safe tick WAL: the parser rejects unknown event kinds outright rather than coercing.", "source": "seed node bh-wal-ticks", "topic": "game"}
+    ]
+  },
+  "quilt-overhead": {
+    "kind": "infra",
+    "purpose": "Overhead-board feed.v1 dialect (born 2026-10-02): {cells:[{id,name,agent,x,y in [0,1],doc,deltas:[{t,kind,size}]}]} with quilt-overhead#1 as first receipt.",
+    "lessons": [
+      {"lesson": "feed.v1: a minimal cell+deltas dialect for overhead boards, born with its first merged receipt.", "source": "seed node qo-feed-v1", "topic": "infrastructure"}
+    ]
+  },
+  "git-agent": {
+    "kind": "infra",
+    "purpose": "First quilt-native fleet agent: quilt_emit.py maps vessel lifecycle events one-to-one to BIND/LINK/EFFECT/VIEW/TICK lines in an fnv1a hash-chained JSONL WAL; GRAND-QUILT.md carries the provenance block.",
+    "lessons": [
+      {"lesson": "An agent citation that names the doctrine but not the source repo stays PENDING ('doctrinal only'); currency arrived when git-agent#4 named AI-Writings/algebra.md by name and URL in-repo.", "source": "seed edge aw-quint-opcode (git-agent#4)", "topic": "prereg"},
+      {"lesson": "quilt_emit.py: vessel events map one-to-one onto the five-opcode spine — the fleet WAL is language-agnostic JSONL.", "source": "seed node ga-quilt-emit", "topic": "infrastructure"}
+    ]
+  },
+  "AI-Writings": {
+    "kind": "writing",
+    "purpose": "The fleet's writing canon (3.5GB): algebra.md 'The Five Opcodes' (BIND/LINK/EFFECT/VIEW/TICK, +FORGET) is the canonical fleet WAL spine; labs/jev-kat/jev_kat.mjs is the canonical JEV known-answer instrument.",
+    "lessons": [
+      {"lesson": "algebra.md defines the five-opcode spine and its laws (BIND idempotent; do not add opcodes) — the fleet WAL canon everything else cites.", "source": "seed node aw-quint-opcode", "topic": "writing"},
+      {"lesson": "Canon instruments are pinned by bytes: AI-Writings#70 shipped the canonical KAT instrument, consumed by jev-quilt at pinned commit 3f840588 + sha256.", "source": "seed edge aw-jev-kat (jev-quilt#47)", "topic": "verifier"}
+    ]
+  }
+}

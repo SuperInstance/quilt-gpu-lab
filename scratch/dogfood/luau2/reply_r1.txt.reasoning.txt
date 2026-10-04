@@ -1,0 +1,327 @@
+Let me carefully build all three sections.
+
+First, the Luau module. I need to be precise about types, the registry, all five opcodes plus helpers.
+
+Key semantics to nail:
+- qm_link: edge is ON dst cell, pointing at srcId. So dst.edges contains {dst=srcId, weight}. Wait, re-read: "creates/updates an edge ON THE DST CELL pointing at srcId (an edge is 'dst can hear src')". So the edge stored in dst.edges has dst field = srcId. The Edge type is {dst:number, weight:number}. Yes that matches the Cell type: edges: {{dst:number, weight:number}}.
+- qm_effect: delivered only if DST cell has an edge pointing at srcId. So check dst.edges for an edge where .dst == srcId.
+- qm_tick: leak defaults DEFAULT_LEAK.
+- qm_view: kind 0 -> act, kind 1 -> sum edge weights clamped, kind 2 -> getDial(cell, arg).
+
+For count: I'll make it a method stored on registry: reg.count = function(reg) ... end, so reg.count(reg) works. Also expose CellAPI.count.
+
+Let me write the module.
+
+```luau
+--!strict
+export type Edge = {dst: number, weight: number}
+export type Cell = {
+  id: number,
+  name: string,
+  dials: {number},
+  edges: {Edge},
+  act: number,
+  bound: boolean,
+}
+export type Registry = {
+  cells: {[string]: Cell},
+  byName: {[string]: number},
+  order: {number},
+  nextId: number,
+  count: (reg: Registry) -> number,
+}
+
+local NDIALS = 16
+local EDGE_CAP = 8
+local DIAL_MIN = 0
+local DIAL_MAX = 1
+local DEFAULT_LINK_W = 0.5
+local DEFAULT_LEAK = 0.1
+
+local function clamp01(v: number): number
+  if v ~= v then return 0.0 end
+  if v < 0 then return 0.0 end
+  if v > 1 then return 1.0 end
+  return v
+end
+```
+
+Now newRegistry:
+```luau
+local function newRegistry(): Registry
+  local reg = {
+    cells = {},
+    byName = {},
+    order = {},
+    nextId = 1,
+  }
+  reg.count = function(self: Registry): number
+    return #self.order
+  end
+  return reg
+end
+```
+
+Wait, the count signature: `reg.count(reg)` — so it takes the registry as first arg. Using `self` param works. Good.
+
+qm_bind:
+```luau
+local function qm_bind(reg: Registry, name: string): Cell
+  local existingId = reg.byName[name]
+  if existingId ~= nil then
+    return reg.cells[tostring(existingId)]
+  end
+  local id = reg.nextId
+  local cell: Cell = {
+    id = id,
+    name = name,
+    dials = {},
+    edges = {},
+    act = 0,
+    bound = true,
+  }
+  for i = 1, NDIALS do
+    cell.dials[i] = 0.0
+  end
+  reg.cells[tostring(id)] = cell
+  reg.byName[name] = id
+  reg.order[#reg.order + 1] = id
+  reg.nextId = id + 1
+  return cell
+end
+```
+
+qm_link:
+```luau
+local function qm_link(reg: Registry, srcId: number, dstId: number, weight: number?): Edge?
+  local dst = reg.cells[tostring(dstId)]
+  local src = reg.cells[tostring(srcId)]
+  if dst == nil or src == nil then return nil end
+  local w = if weight ~= nil then clamp01(weight) else DEFAULT_LINK_W
+  -- find existing edge to srcId
+  for _, edge in ipairs(dst.edges) do
+    if edge.dst == srcId then
+      edge.weight = w
+      return edge
+    end
+  end
+  if #dst.edges >= EDGE_CAP then
+    -- evict lowest weight, ties -> earliest created (lowest index)
+    local minIdx = 1
+    local minW = dst.edges[1].weight
+    for i = 2, #dst.edges do
+      if dst.edges[i].weight < minW then
+        minW = dst.edges[i].weight
+        minIdx = i
+      end
+    end
+    dst.edges[minIdx] = {dst = srcId, weight = w}
+    return dst.edges[minIdx]
+  end
+  local edge: Edge = {dst = srcId, weight = w}
+  dst.edges[#dst.edges + 1] = edge
+  return edge
+end
+```
+
+getCell, getCellByName:
+```luau
+local function getCell(reg: Registry, id: number): Cell?
+  return reg.cells[tostring(id)]
+end
+local function getCellByName(reg: Registry, name: string): Cell?
+  local id = reg.byName[name]
+  if id == nil then return nil end
+  return reg.cells[tostring(id)]
+end
+```
+
+setDial:
+```luau
+local function setDial(cell: Cell, addr: number, value: number): number?
+  if math.floor(addr) ~= addr then return nil end
+  if addr < DIAL_MIN or addr > NDIALS - 1 then return nil end
+  local v = clamp01(value)
+  cell.dials[addr + 1] = v
+  return v
+end
+```
+
+getDial:
+```luau
+local function getDial(cell: Cell, addr: number): number?
+  if math.floor(addr) ~= addr then return nil end
+  if addr < DIAL_MIN or addr > NDIALS - 1 then return nil end
+  return cell.dials[addr + 1]
+end
+```
+
+Wait — dials is {number}, indexed 1-based in Lua. addr in [0, NDIALS-1]. So store at addr+1. getDial returns cell.dials[addr+1] which is 0.0 if never set (we initialized all to 0.0). Good.
+
+qm_effect:
+```luau
+local function qm_effect(reg: Registry, srcId: number, dstId: number, activation: number): {delivered: boolean, weight: number, applied: number}
+  local dst = reg.cells[tostring(dstId)]
+  if dst == nil then return {delivered = false, weight = 0, applied = 0} end
+  local src = reg.cells[tostring(srcId)]
+  if src == nil then return {delivered = false, weight = 0, applied = 0} end
+  local edge: Edge? = nil
+  for _, e in ipairs(dst.edges) do
+    if e.dst == srcId then edge = e; break end
+  end
+  if edge == nil then return {delivered = false, weight = 0, applied = 0} end
+  local applied = clamp01(activation)
+  dst.act = clamp01(dst.act + edge.weight * applied)
+  return {delivered = true, weight = edge.weight, applied = applied}
+end
+```
+
+qm_tick:
+```luau
+local function qm_tick(cell: Cell, leak: number?): {edges: number, act: number}
+  local l = if leak ~= nil then clamp01(leak) else DEFAULT_LEAK
+  for _, edge in ipairs(cell.edges) do
+    edge.weight = clamp01(edge.weight * (1 - l))
+  end
+  cell.act = clamp01(cell.act * (1 - l))
+  return {edges = #cell.edges, act = cell.act}
+end
+```
+
+qm_view:
+```luau
+local function qm_view(reg: Registry, id: number, kind: number, arg: number?): number?
+  local cell = reg.cells[tostring(id)]
+  if cell == nil then return nil end
+  if kind == 0 then
+    return cell.act
+  elseif kind == 1 then
+    local s = 0.0
+    for _, e in ipairs(cell.edges) do s = s + e.weight end
+    return clamp01(s)
+  elseif kind == 2 then
+    return getDial(cell, (arg or 0))
+  end
+  return nil
+end
+```
+
+CellAPI:
+```luau
+local CellAPI = {
+  clamp01 = clamp01,
+  newRegistry = newRegistry,
+  qm_bind = qm_bind,
+  qm_link = qm_link,
+  getCell = getCell,
+  getCellByName = getCellByName,
+  count = CellAPI.count, -- can't reference CellAPI before defined
+  ...
+}
+```
+
+Better to build table then assign. Let me structure:
+
+```luau
+local CellAPI = {}
+CellAPI.clamp01 = clamp01
+...
+CellAPI.count = function(reg: Registry): number
+  return #reg.order
+end
+return CellAPI
+```
+
+But newRegistry needs to set reg.count too. I'll define a local countFn first.
+
+Now the Lua 5.1 test. Must be plain Lua, no Luau types, no require, self-contained mirror. I'll copy the logic verbatim (without type annotations). Use eq/near helpers.
+
+Let me write the test carefully covering all required checks.
+
+clamp01 tests: below 0 (-0.5 -> 0), above 1 (1.5 -> 1), exactly 0 (0 -> 0), exactly 1 (1 -> 1), NaN (0).
+
+qm_bind: fresh id 1, idempotent re-bind same id, distinct names -> distinct ids.
+
+qm_link: default weight 0.5, explicit weight, clamp >1 and <0, find-or-create updates, unknown id -> nil, eviction at cap 8.
+
+getDial/setDial: store+read, clamp, unset -> 0, out-of-range -> nil.
+
+qm_effect: delivered when linked, not delivered when not, applied clamps, act accumulates then saturates at 1.0.
+
+qm_tick: weight decays, act decays, leak 0 unchanged, leak 1 zero.
+
+qm_view: act, wsum, dial.
+
+Let me count assertions roughly. I'll track in code with a counter.
+
+Now write it. Plain Lua 5.1. No `continue`, no `+=`, no `//`, no compound assignment. I'll use `n = n + 1` for counting.
+
+NaN in Lua 5.1: `0/0` produces NaN in Lua 5.1? Actually Lua 5.1 doesn't have NaN in standard — `0/0` may give inf or error depending. Hmm. To be safe, I'll represent NaN via a value that's not equal to itself. In Lua 5.1, `0/0` typically yields `nan` in many implementations but not guaranteed. Actually standard Lua 5.1 uses C double; 0.0/0.0 = NaN in IEEE754, and `nan ~= nan` is true. So `v ~= v` works. But printing it might be odd. I'll just test it.
+
+Let me write the test.
+
+For eq with floats I'll use near for floats. For exact values use eq.
+
+Let me draft the test file now.
+
+I'll write a helper `pass`/`fail` counter.
+
+```lua
+local total = 0
+local fails = 0
+local function eq(g, w, label)
+  total = total + 1
+  if g == w then return end
+  fails = fails + 1
+  print("FAIL " .. label .. ": got " .. tostring(g) .. " want " .. tostring(w))
+end
+local function near(g, w, label)
+  total = total + 1
+  if math.abs(g - w) < 1e-6 then return end
+  fails = fails + 1
+  print("FAIL " .. label .. ": got " .. tostring(g) .. " want " .. tostring(w))
+end
+```
+
+Now mirror the API. I'll inline it.
+
+Let me write everything out now.
+
+For NaN test: `local nan = 0/0` then `eq(nan, 0, "clamp_nan")`. But `nan == 0` is false, so eq would fail. But our clamp01 checks `v ~= v` first which is true for NaN, returns 0. So got = 0, want = 0, eq passes. Good. But the `eq` function does `g == w` which is `0 == 0` true. Good.
+
+But wait — does `0/0` in Lua 5.1 actually produce NaN or an error? In standard Lua 5.1 built with IEEE754 doubles, `0.0/0.0` produces NaN (no error, since floating point). Some builds might warn but it works. I'll include it; if it errors the test won't run but the spec requires it.
+
+Actually, to be safer, I can construct NaN as `math.huge - math.huge` or `0/0`. Both produce NaN in IEEE754. I'll use `0/0`.
+
+Now let me finalize and write the three sections.
+
+Let me count assertions to report in NOTES. I'll tally:
+- clamp01: 5
+- qm_bind: 3
+- qm_link: default w (1), explicit w (1), clamp high (1), clamp low (1), find-or-create updates (1), unknown nil (1), eviction (1) = 7
+- getDial/setDial: store+read (1), clamp (1), unset->0 (1), oob nil (1) = 4
+- qm_effect: delivered (1), not delivered (1), applied clamps (1), saturates (1) = 4
+- qm_tick: weight decays (1), act decays (1), leak 0 unchanged (1), leak 1 zero (1) = 4
+- qm_view: act (1), wsum (1), dial (1) = 3
+
+Total ~ 30. I'll report actual.
+
+Let me write it.
+
+For eviction test: create cell, add 8 edges to src A with weight 1.0 each (no eviction yet since exactly 8). Then add a 9th edge to src B with weight 0.2 — should evict one of the weight-1.0 edges (earliest created, index 1). Then check that edge to B exists and that the evicted slot now points to B. Also verify count stays 8.
+
+Actually to test "evict coldest", I should make edges with varying weights so the coldest is clearly identifiable. Let me do: add edges with weights 0.9, 0.5, 0.8, 0.3, 0.7, 0.6, 0.4, 0.2 (8 edges, coldest = 0.2 at index 8). Then add edge weight 0.25 to new src. Coldest is 0.2 (index 8), evict it. Verify index 8 now points to new src.
+
+But ties rule: earliest created of tied. I'll also test ties separately? Spec says cover "eviction of the coldest edge at cap 8". One test suffices.
+
+Let me write final code.
+
+For qm_link find-or-create: link src1->dst with weight 0.3, then link src1->dst with weight 0.7, expect single edge with weight 0.7.
+
+Now writing.
+
+I need to be careful: in Lua 5.1 test, no type annotations, no `->`, no `?` optional, no `if x then` shorthand. Use explicit `if weight ~= nil then`.
+
+Let me write the test mirror function by function.
+
+I'll now produce the final output.

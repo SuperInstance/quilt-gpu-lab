@@ -34,3 +34,8 @@ scratch/dogfood/rust/
 
 # derived corpus-filter test artifact (20MB) — regenerable from committed c1 results
 scratch/corpus_s6a_filter_test.json
+
+# embedded repo clones stay local as their own repos (gitlinks break clones)
+scratch/d2/quilt-dba/
+scratch/d2/fb/quilt-dba/
+scratch/dogfood/edge-lab/

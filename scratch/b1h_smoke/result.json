@@ -1,0 +1,753 @@
+{
+  "lane": "B1H-CODA",
+  "claim": "name the hybrid ramp atom-gate crossing width; test whether a two-knot ramp atom buys the residual @1e-3 ramp tail without deadzone regression",
+  "verdict": "KILL",
+  "grain": "TAIL-QUANTIZED",
+  "prereg": "/home/eileen/projects/quilt-gpu-lab/proposals/runs/B1H-coda.md",
+  "device": "cuda",
+  "device_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "gpu_peak_vram_mb": 42.1,
+  "vram_ceiling_mb": 1500.0,
+  "seed": 2718,
+  "epochs": 4,
+  "loss": "mse",
+  "gates": {
+    "G_B1H1": {
+      "pass": false,
+      "bar": 0.9,
+      "ci_floor": 0.9,
+      "clearing_widths": [],
+      "clearing_widths_mean_only": [],
+      "rule": "some w: ramp@5e-2 >= 0.90 AND CI_low > 0.90 AND deadzone >= 0.90 AND CI_low > 0.90"
+    },
+    "G_B1H2": {
+      "pass": false,
+      "gain_bar": 0.05,
+      "gain": -0.9375,
+      "ci": [
+        -1.0,
+        -0.8125
+      ],
+      "deadzone@5e-2": 0.868421052631579,
+      "ramp@5e-2": 0.125,
+      "rule": "paired ramp@1e-3 gain >= 0.05 AND CI_low > 0 AND deadzone@5e-2 >= 0.99 AND ramp@5e-2 >= 0.90"
+    }
+  },
+  "part_a_crossing": {
+    "rows": {
+      "w64_mse_ep160": {
+        "width": 64,
+        "params": 661,
+        "ramp@5e-2": 0.125,
+        "ramp@5e-2_ci": [
+          0.0,
+          0.3125
+        ],
+        "ramp@1e-2": 0.0,
+        "ramp@1e-3": 0.0,
+        "deadzone@5e-2": 0.868421052631579,
+        "deadzone@5e-2_ci": [
+          0.7631578947368421,
+          0.9736842105263158
+        ],
+        "clears_0.90_ci": false,
+        "clears_0.90_mean": false,
+        "inconclusive": false,
+        "learned_a1": 0.996001660823822,
+        "learned_k1": 1.003998041152954
+      },
+      "w72_mse_ep160": {
+        "width": 72,
+        "params": 661,
+        "ramp@5e-2": 0.125,
+        "ramp@5e-2_ci": [
+          0.0,
+          0.3125
+        ],
+        "ramp@1e-2": 0.0,
+        "ramp@1e-3": 0.0,
+        "deadzone@5e-2": 0.868421052631579,
+        "deadzone@5e-2_ci": [
+          0.7631578947368421,
+          0.9736842105263158
+        ],
+        "clears_0.90_ci": false,
+        "clears_0.90_mean": false,
+        "inconclusive": false,
+        "learned_a1": 0.996001660823822,
+        "learned_k1": 1.003998041152954
+      },
+      "w80_mse_ep160": {
+        "width": 80,
+        "params": 661,
+        "ramp@5e-2": 0.125,
+        "ramp@5e-2_ci": [
+          0.0,
+          0.3125
+        ],
+        "ramp@1e-2": 0.0,
+        "ramp@1e-3": 0.0,
+        "deadzone@5e-2": 0.868421052631579,
+        "deadzone@5e-2_ci": [
+          0.7631578947368421,
+          0.9736842105263158
+        ],
+        "clears_0.90_ci": false,
+        "clears_0.90_mean": false,
+        "inconclusive": false,
+        "learned_a1": 0.996001660823822,
+        "learned_k1": 1.003998041152954
+      },
+      "w88_mse_ep160": {
+        "width": 88,
+        "params": 661,
+        "ramp@5e-2": 0.125,
+        "ramp@5e-2_ci": [
+          0.0,
+          0.3125
+        ],
+        "ramp@1e-2": 0.0,
+        "ramp@1e-3": 0.0,
+        "deadzone@5e-2": 0.868421052631579,
+        "deadzone@5e-2_ci": [
+          0.7631578947368421,
+          0.9736842105263158
+        ],
+        "clears_0.90_ci": false,
+        "clears_0.90_mean": false,
+        "inconclusive": false,
+        "learned_a1": 0.996001660823822,
+        "learned_k1": 1.003998041152954
+      }
+    },
+    "note": "width bisection, hybridv2 MSE 160ep, seed 2718 (boot CI over holdout)",
+    "clearing_widths": [],
+    "clearing_widths_mean_only": [],
+    "inconclusive_arms": [],
+    "named_hybrid_floor": null,
+    "named_hybrid_floor_mean_only": null,
+    "statement": "hybrid ramp atom-gate floor > 88 (no width <= 88 clears 0.90 with CI_low > 0.90)",
+    "pairing": {
+      "b1g_w96_mse_ep160_ramp@5e-2": 0.9979129397734049,
+      "b1f_hybridv2_w64_40ep_ramp@5e-2": 0.293,
+      "b1e_plain_w64_ramp@5e-2": 0.5675,
+      "b1f_linear_plain_w96_ramp@5e-2": 0.9617
+    }
+  },
+  "part_b_tail": {
+    "single_knot": {
+      "arm": "b1g h96_mse_ep160 (reused)",
+      "ramp@1e-3": 0.9375,
+      "ramp@5e-2": 0.9979129397734049,
+      "deadzone@5e-2": null
+    },
+    "two_knot": {
+      "arm": "w96_2knot_ep160",
+      "ramp@1e-3": 0.0,
+      "ramp@5e-2": 0.125,
+      "deadzone@5e-2": 0.868421052631579,
+      "learned": {
+        "learned_a1": 0.9960019588470459,
+        "learned_k1": 1.0039974451065063,
+        "learned_a2": -0.003998113796114922,
+        "learned_k2": 2.5020976066589355
+      },
+      "n_params": 663
+    },
+    "paired_gain@1e-3": {
+      "point": -0.9375,
+      "ci_low": -1.0,
+      "ci_high": -0.8125,
+      "boot_std": 0.05712855568802698,
+      "B": 1000,
+      "seed": 2718,
+      "n_ramp": 16
+    },
+    "ref_single_knot_ramp@1e-3": 0.9375,
+    "single_knot_n_params": 19301,
+    "two_knot_n_params": 663,
+    "param_budget_pct": -96.56494482151184,
+    "param_budget_ok": false,
+    "gates": {
+      "gain_bar": 0.05,
+      "ci_excl_0": false,
+      "deadzone_no_regress_bar": 0.99,
+      "deadzone@5e-2": 0.868421052631579,
+      "crossing_ramp_bar": 0.9,
+      "ramp@5e-2": 0.125,
+      "inconclusive_boot_std0": false
+    }
+  },
+  "named_hybrid_floor": null,
+  "named_hybrid_floor_mean_only": null,
+  "booked_sentence": "the tail is the map's intrinsic quantization \u2014 B1 closes with the tail booked as a limit.",
+  "reference_single_knot": {
+    "ramp@1e-3": 0.9375,
+    "ramp@5e-2": 0.9979129397734049,
+    "n_params": 19301
+  },
+  "verdicts": {
+    "w64_mse_ep160": {
+      "kind": "hybridv2",
+      "width": 16,
+      "epochs": 4,
+      "regions": {
+        "clamp": {
+          "n": 0
+        },
+        "deadzone": {
+          "n": 38,
+          "0.001": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "0.01": {
+            "mean": 0.02631578947368421,
+            "std": 0.16007269816574266
+          },
+          "0.05": {
+            "mean": 0.868421052631579,
+            "ci_low": 0.7631578947368421,
+            "ci_high": 0.9736842105263158
+          }
+        },
+        "saturation": {
+          "n": 346,
+          "0.001": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "0.01": {
+            "mean": 0.008670520231213872,
+            "std": 0.09271106897309504
+          },
+          "0.05": {
+            "mean": 0.02601156069364162,
+            "ci_low": 0.011560693641618497,
+            "ci_high": 0.04335260115606936
+          }
+        },
+        "ramp": {
+          "n": 16,
+          "0.001": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "0.01": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "0.05": {
+            "mean": 0.125,
+            "ci_low": 0.0,
+            "ci_high": 0.3125
+          }
+        }
+      },
+      "curve_mean": {
+        "1e-06": 0.0,
+        "0.0001": 0.0,
+        "0.001": 0.0,
+        "0.01": 0.01,
+        "0.05": 0.11,
+        "0.1": 0.145,
+        "0.2": 0.22
+      },
+      "n_params": 661,
+      "learned": {
+        "learned_a1": 0.996001660823822,
+        "learned_k1": 1.003998041152954
+      },
+      "crossing_pass": false
+    },
+    "w72_mse_ep160": {
+      "kind": "hybridv2",
+      "width": 16,
+      "epochs": 4,
+      "regions": {
+        "clamp": {
+          "n": 0
+        },
+        "deadzone": {
+          "n": 38,
+          "0.001": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "0.01": {
+            "mean": 0.02631578947368421,
+            "std": 0.16007269816574266
+          },
+          "0.05": {
+            "mean": 0.868421052631579,
+            "ci_low": 0.7631578947368421,
+            "ci_high": 0.9736842105263158
+          }
+        },
+        "saturation": {
+          "n": 346,
+          "0.001": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "0.01": {
+            "mean": 0.008670520231213872,
+            "std": 0.09271106897309504
+          },
+          "0.05": {
+            "mean": 0.02601156069364162,
+            "ci_low": 0.011560693641618497,
+            "ci_high": 0.04335260115606936
+          }
+        },
+        "ramp": {
+          "n": 16,
+          "0.001": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "0.01": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "0.05": {
+            "mean": 0.125,
+            "ci_low": 0.0,
+            "ci_high": 0.3125
+          }
+        }
+      },
+      "curve_mean": {
+        "1e-06": 0.0,
+        "0.0001": 0.0,
+        "0.001": 0.0,
+        "0.01": 0.01,
+        "0.05": 0.11,
+        "0.1": 0.145,
+        "0.2": 0.22
+      },
+      "n_params": 661,
+      "learned": {
+        "learned_a1": 0.996001660823822,
+        "learned_k1": 1.003998041152954
+      },
+      "crossing_pass": false
+    },
+    "w80_mse_ep160": {
+      "kind": "hybridv2",
+      "width": 16,
+      "epochs": 4,
+      "regions": {
+        "clamp": {
+          "n": 0
+        },
+        "deadzone": {
+          "n": 38,
+          "0.001": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "0.01": {
+            "mean": 0.02631578947368421,
+            "std": 0.16007269816574266
+          },
+          "0.05": {
+            "mean": 0.868421052631579,
+            "ci_low": 0.7631578947368421,
+            "ci_high": 0.9736842105263158
+          }
+        },
+        "saturation": {
+          "n": 346,
+          "0.001": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "0.01": {
+            "mean": 0.008670520231213872,
+            "std": 0.09271106897309504
+          },
+          "0.05": {
+            "mean": 0.02601156069364162,
+            "ci_low": 0.011560693641618497,
+            "ci_high": 0.04335260115606936
+          }
+        },
+        "ramp": {
+          "n": 16,
+          "0.001": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "0.01": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "0.05": {
+            "mean": 0.125,
+            "ci_low": 0.0,
+            "ci_high": 0.3125
+          }
+        }
+      },
+      "curve_mean": {
+        "1e-06": 0.0,
+        "0.0001": 0.0,
+        "0.001": 0.0,
+        "0.01": 0.01,
+        "0.05": 0.11,
+        "0.1": 0.145,
+        "0.2": 0.22
+      },
+      "n_params": 661,
+      "learned": {
+        "learned_a1": 0.996001660823822,
+        "learned_k1": 1.003998041152954
+      },
+      "crossing_pass": false
+    },
+    "w88_mse_ep160": {
+      "kind": "hybridv2",
+      "width": 16,
+      "epochs": 4,
+      "regions": {
+        "clamp": {
+          "n": 0
+        },
+        "deadzone": {
+          "n": 38,
+          "0.001": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "0.01": {
+            "mean": 0.02631578947368421,
+            "std": 0.16007269816574266
+          },
+          "0.05": {
+            "mean": 0.868421052631579,
+            "ci_low": 0.7631578947368421,
+            "ci_high": 0.9736842105263158
+          }
+        },
+        "saturation": {
+          "n": 346,
+          "0.001": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "0.01": {
+            "mean": 0.008670520231213872,
+            "std": 0.09271106897309504
+          },
+          "0.05": {
+            "mean": 0.02601156069364162,
+            "ci_low": 0.011560693641618497,
+            "ci_high": 0.04335260115606936
+          }
+        },
+        "ramp": {
+          "n": 16,
+          "0.001": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "0.01": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "0.05": {
+            "mean": 0.125,
+            "ci_low": 0.0,
+            "ci_high": 0.3125
+          }
+        }
+      },
+      "curve_mean": {
+        "1e-06": 0.0,
+        "0.0001": 0.0,
+        "0.001": 0.0,
+        "0.01": 0.01,
+        "0.05": 0.11,
+        "0.1": 0.145,
+        "0.2": 0.22
+      },
+      "n_params": 661,
+      "learned": {
+        "learned_a1": 0.996001660823822,
+        "learned_k1": 1.003998041152954
+      },
+      "crossing_pass": false
+    },
+    "w96_2knot_ep160": {
+      "kind": "hybridv2_2k",
+      "width": 16,
+      "epochs": 4,
+      "regions": {
+        "clamp": {
+          "n": 0
+        },
+        "deadzone": {
+          "n": 38,
+          "0.001": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "0.01": {
+            "mean": 0.02631578947368421,
+            "std": 0.16007269816574266
+          },
+          "0.05": {
+            "mean": 0.868421052631579,
+            "ci_low": 0.7631578947368421,
+            "ci_high": 0.9736842105263158
+          }
+        },
+        "saturation": {
+          "n": 346,
+          "0.001": {
+            "mean": 0.002890173410404624,
+            "std": 0.053682588500019404
+          },
+          "0.01": {
+            "mean": 0.008670520231213872,
+            "std": 0.09271106897309504
+          },
+          "0.05": {
+            "mean": 0.02601156069364162,
+            "ci_low": 0.011560693641618497,
+            "ci_high": 0.04335260115606936
+          }
+        },
+        "ramp": {
+          "n": 16,
+          "0.001": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "0.01": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "0.05": {
+            "mean": 0.125,
+            "ci_low": 0.0,
+            "ci_high": 0.3125
+          }
+        }
+      },
+      "curve_mean": {
+        "1e-06": 0.0,
+        "0.0001": 0.0,
+        "0.001": 0.0025,
+        "0.01": 0.01,
+        "0.05": 0.11,
+        "0.1": 0.145,
+        "0.2": 0.22
+      },
+      "n_params": 663,
+      "learned": {
+        "learned_a1": 0.9960019588470459,
+        "learned_k1": 1.0039974451065063,
+        "learned_a2": -0.003998113796114922,
+        "learned_k2": 2.5020976066589355
+      },
+      "crossing_pass": false
+    }
+  },
+  "counted_arms": [
+    "w64_mse_ep160",
+    "w72_mse_ep160",
+    "w80_mse_ep160",
+    "w88_mse_ep160",
+    "w96_2knot_ep160"
+  ],
+  "anchor_cap128": {
+    "deadzone": {
+      "0.01": {
+        "mean": 0.6666666666666666,
+        "std": 0.20646670694631264
+      },
+      "0.05": {
+        "mean": 1.0,
+        "std": 0.0
+      }
+    },
+    "saturation": {
+      "0.01": {
+        "mean": 0.9441233140655106,
+        "std": 0.0546506921143847
+      },
+      "0.05": {
+        "mean": 0.9990366088631984,
+        "std": 0.0013624408115347861
+      }
+    },
+    "ramp": {
+      "0.01": {
+        "mean": 0.2708333333333333,
+        "std": 0.2618709393745111
+      },
+      "0.05": {
+        "mean": 0.9166666666666666,
+        "std": 0.11785113019775792
+      }
+    }
+  },
+  "region_frac": {
+    "clamp": 0.0,
+    "deadzone": 0.095,
+    "saturation": 0.865,
+    "ramp": 0.04
+  },
+  "region_counts": {
+    "clamp": 0,
+    "deadzone": 38,
+    "saturation": 346,
+    "ramp": 16
+  },
+  "controls": {
+    "C1_law_equivalence": {
+      "ok": true,
+      "n": 400,
+      "max_abs_diff": 0,
+      "n_diff": 0
+    },
+    "C1_pass": true,
+    "C4_frame_cross_check": {
+      "vs_b1c": {
+        "ok": false,
+        "error": "operands could not be broadcast together with shapes (90930,3) (400,3) "
+      },
+      "vs_b1e": {
+        "ok": false,
+        "error": "operands could not be broadcast together with shapes (90930,3) (400,3) "
+      },
+      "vs_runB": {
+        "ok": false,
+        "error": "operands could not be broadcast together with shapes (90930,3) (400,3) "
+      },
+      "vs_b1": {
+        "ok": false,
+        "error": "operands could not be broadcast together with shapes (90930,3) (400,3) "
+      }
+    },
+    "C4_pass": false,
+    "C6_anchor_vs_b1c": {
+      "ok": false,
+      "max_abs_delta": 0.06530324400564169,
+      "per_cell": {
+        "deadzone@0.01": 0.06530324400564169,
+        "deadzone@0.05": 0.004278326281147216,
+        "ramp@0.01": 0.011143410852713143,
+        "ramp@0.05": 0.0019379844961240345,
+        "saturation@0.01": 0.03356377430689106,
+        "saturation@0.05": 0.00013391486811764608
+      },
+      "tol": 0.05,
+      "booked_ref": "results/b1c cap@ep40",
+      "note": "anchor nets REUSED from results/b1d (bit-identical frame)"
+    },
+    "C6_pass": false,
+    "C7_anchor_vs_b1d": {
+      "ok": false,
+      "max_abs_delta": 0.06535025858015986,
+      "per_cell": {
+        "deadzone@0.01": 0.06535025858015986,
+        "deadzone@0.05": 0.004278326281147216,
+        "ramp@0.01": 0.011143410852713143,
+        "ramp@0.05": 0.0019379844961240345,
+        "saturation@0.01": 0.03355962692554759,
+        "saturation@0.05": 0.00013391486811764608
+      },
+      "tol": 1e-06,
+      "booked_ref": "results/b1d anchor_cap128",
+      "note": "net-reuse cross-lane proof: same nets, same frame, same scores"
+    },
+    "C7_pass": false
+  },
+  "train": [
+    {
+      "arm_kind": "hybridv2",
+      "width": 16,
+      "seed": 2718,
+      "epochs": 4,
+      "n_params": 661,
+      "batch": 4096,
+      "lr": 0.001,
+      "final_train_loss": 7.563826084136963,
+      "first_train_loss": 7.726556301116943,
+      "loss_fn": "deployed_mse + BCE gates (B1G verbatim)",
+      "name": "w64_mse_ep160"
+    },
+    {
+      "arm_kind": "hybridv2",
+      "width": 16,
+      "seed": 2718,
+      "epochs": 4,
+      "n_params": 661,
+      "batch": 4096,
+      "lr": 0.001,
+      "final_train_loss": 7.563826084136963,
+      "first_train_loss": 7.726556301116943,
+      "loss_fn": "deployed_mse + BCE gates (B1G verbatim)",
+      "name": "w72_mse_ep160"
+    },
+    {
+      "arm_kind": "hybridv2",
+      "width": 16,
+      "seed": 2718,
+      "epochs": 4,
+      "n_params": 661,
+      "batch": 4096,
+      "lr": 0.001,
+      "final_train_loss": 7.563826084136963,
+      "first_train_loss": 7.726556301116943,
+      "loss_fn": "deployed_mse + BCE gates (B1G verbatim)",
+      "name": "w80_mse_ep160"
+    },
+    {
+      "arm_kind": "hybridv2",
+      "width": 16,
+      "seed": 2718,
+      "epochs": 4,
+      "n_params": 661,
+      "batch": 4096,
+      "lr": 0.001,
+      "final_train_loss": 7.563826084136963,
+      "first_train_loss": 7.726556301116943,
+      "loss_fn": "deployed_mse + BCE gates (B1G verbatim)",
+      "name": "w88_mse_ep160"
+    },
+    {
+      "arm_kind": "hybridv2_2k",
+      "width": 16,
+      "seed": 2718,
+      "epochs": 4,
+      "n_params": 663,
+      "batch": 4096,
+      "lr": 0.001,
+      "final_train_loss": 7.522583484649658,
+      "first_train_loss": 7.726556301116943,
+      "loss_fn": "deployed_mse + BCE gates (B1G verbatim)",
+      "name": "w96_2knot_ep160"
+    }
+  ],
+  "instrument_ramp": {
+    "ramp_s": 0.63,
+    "synced": true
+  },
+  "resume": {
+    "enabled": false,
+    "reused_models": [
+      "/home/eileen/projects/quilt-gpu-lab/results/b1g/model_hybridv2_w96_mse_seed2718_ep160.pt",
+      "/home/eileen/projects/quilt-gpu-lab/results/b1d/model_anchor_cap128_seed2718_ep40.pt",
+      "/home/eileen/projects/quilt-gpu-lab/results/b1d/model_anchor_cap128_seed2719_ep40.pt",
+      "/home/eileen/projects/quilt-gpu-lab/results/b1d/model_anchor_cap128_seed2720_ep40.pt"
+    ],
+    "n_reused": 4,
+    "n_trained": 5
+  },
+  "elapsed_s": 6.1,
+  "smoke": true
+}

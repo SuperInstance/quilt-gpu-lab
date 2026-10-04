@@ -1,0 +1,16 @@
+- [BUG] line ~193 `_close_window`: `wall = max(0.0, sl[-1][0] - min(sl[0][0], w_t0))` — the `min` with `w_t0` is redundant/wrong if `w_t0` is start time; wall should be `sl[-1][0] - sl[0][0]` to capture full interval.
+- [BUG] line ~193 `_close_window`: `ps = [p for _, p, _ in sl if p is not None]` — filters None power, but if ALL are None, `mean_p = 0.0` and `joules = 0.0`; this silently produces a zero-energy window that accumulates into `_energy` totals.
+- [BUG] line ~218 `_energy`: `mean_p = (win_joules/win_wall) if win_wall > 0 else None` uses ROUNDED per-window `joules` — cumulative rounding drift may shift the mean_power_w by ~0.01W+ across many windows.
+- [BUG] line ~218 `_energy`: `if not used_util: gpu_s = wall` — when no utilization samples exist, gpu_seconds is set to wall-clock time, which overstates actual GPU-active time; should be 0.0 or NaN.
+- [RISK] line ~169 `run`: watcher thread started before `proc.communicate()` — if proc exits early, stop may not be set in time, causing `_close_window` to capture a window spanning the full proc duration even if it ran < 1s.
+- [RISK] line ~218 `_energy`: `for (t0,_,u0),(t1,_,_) in zip(self.power_samples, self.power_samples[1:])` — if `power_samples` has < 2 entries, zip produces empty iterator; `gpu_s` stays 0.0, and `not used_util` forces `gpu_s = wall`, masking a potential under-count.
+- [RISK] line ~193 `_close_window`: `gpu_s += max(0.0, t1-t0) * (u0/100.0)` uses LEFT-endpoint u0 for [t0,t1] — this biases gpu_seconds low if utilization rises within the interval; midpoint would be unbiased.
+- [OK] line ~169 `run`: `stop = threading.Event()` and `stop.set()` pattern is correct for terminating the watcher thread.
+- [OK] line ~193 `_close_window`: `round(..., 3)` for wall_seconds and `round(..., 4)` for joules provides consistent precision.
+- [OK] line ~218 `_energy`: `util_samples` count is derived from `us = [u for _,_,u in self.power_samples if u is not None]` — correctly counts samples with valid utilization.
+- [NEEDS SOURCE] `comp2_corpus_gate.py` bisection loop: the `break if best and abs(nm-best.nm)<0.03` assumes `best` has a `.nm` attribute; verify if `best` is a float or a dict — if float, this line raises AttributeError.
+- [NEEDS SOURCE] `comp2_corpus_gate.py` `direction()`: the claim "nm up = EASIER (near_miss is expected # fields perturbed)" is not supported by the quoted code; the function only compares `pb["full"]` and per-regime values against bands/margins.
+- [BUG] line ~193 `_close_window`: `if not sl: self.windows.append({"power_samples":0, ...})` — empty window appended; subsequent `_energy` sums `win_wall` including this 0, which is harmless but semantically confusing.
+- [BUG] `gate_verdict`: `if not (pb["full_std"] > 0): fails.append(...)` — the check is `> 0`, meaning `full_std = 0` triggers VIOLATION; confirm this is the intended degeneracy guard or if `>= 0` was intended.
+- [BUG] `direction()`: `if pb["full"] < FULL_LO + mg: return "hard"` — when `mg` is large (e.g., `5.0*std` > 0.10), `pb["full"]` could be below `FULL_LO` and still return "hard", potentially misclassifying a truly out-of-bounds value.
+- [OK] `gate_verdict` inclusive bounds: `FULL_LO <= pb["full"] <= FULL_HI` and `REG_LO <= v <= REG_HI` correctly use inclusive <= for both limits.

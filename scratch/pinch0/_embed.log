@@ -1,0 +1,12 @@
+embedded 480/5138  (16s)
+embedded 960/5138  (29s)
+embedded 1440/5138  (41s)
+embedded 1920/5138  (53s)
+embedded 2400/5138  (65s)
+embedded 2880/5138  (79s)
+embedded 3360/5138  (91s)
+embedded 3840/5138  (103s)
+embedded 4320/5138  (116s)
+embedded 4800/5138  (130s)
+embedded 5138/5138  (147s)
+DONE embedded=5138 total=5138 failures=0

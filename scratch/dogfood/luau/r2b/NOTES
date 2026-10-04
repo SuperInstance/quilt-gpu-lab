@@ -1,0 +1,10 @@
+Arithmetic for corrected expectations:
+  track("left",30,100):  d=70, |d|>1.5, min(0.85, 68.5)=0.85, y=30+0.85=30.85
+  track("left",6,100):   d=94,  min(0.85, 92.5)=0.85, y=6+0.85=6.85
+  track("left",54,-100): d=-154, min(0.85, 152.5)=0.85, y=54-0.85=53.15
+
+Total assertion count: 22
+  track: 9 | wallBounce: 5 | paddleReturn: 5 | score: 3
+
+luac -p cleanliness: both LUAU_MODULE and LUA_TEST pass luac -p
+syntax validation with zero errors (Luau 5.1-compatible in test).
