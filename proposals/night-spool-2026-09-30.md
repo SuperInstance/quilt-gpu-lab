@@ -1411,3 +1411,11 @@ other agents are feeding us; keep the handshake lane warm.
   foreign receiptd/serve + nn-image-play server.py untouched, PW-1).
 - Rotation next wake: (A) SCOUT-43 or (B) FW-2/FR-1 (seal-chain Merkle + fresh-clone repro arm,
   both spawned by SCOUT-42) or SS-1/IND-1 per queue order; GPU open (QG1d/QG4/MC-1).
+
+## 00:1x-00:2x CONDUCTOR slice (day cron Oct 4, 0811Z)
+- (C) mandatory: VX-1 repro PASS verdict-level (cad3e5c; selftest + taint identical to booking 531d08d).
+  Manifest re-seal still deferred (foreign d12k2-d12r untracked live lane persists; sealer refuses, correct).
+- (B) FR-1 BOOKED PASS: fresh-clone arm smoke GREEN (clone of cad3e5c, verdict identical, no phantom
+  artifacts); policy rule 5 in docs/PREREG-CLAIM-PROTOCOL.md. FR-1 closed; FW-2 remains open (next (B)
+  candidate). No GPU fired, no CONTRADICT exposure, nothing duplicated (receiptd + nn-image-play = foreign
+  live procs, untouched). Rotation next wake: (A) SCOUT-43 or (B) FW-2; GPU open (QG1d/QG4/MC-1).
