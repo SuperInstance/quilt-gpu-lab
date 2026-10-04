@@ -153,6 +153,17 @@ more than a copy to use, it's not grabbable yet.
   TEST receipt 2026-10-03: selftest 8/8 (ties/mono/anti/mask-intersection/ragged
   labels/NaN rc=2); worked example rc=0 INTERMEDIATE rho 0.8333, receipt written.
 
+- **floor-scan** — `tools/floor_scan.py` — T-floor extractor for accuracy-vs-T
+  curves with the D12q lesson built in: a floor at the grid edge is a quantized
+  bound, not a measurement, so it's flagged PINNED_LOW (or NEVER) instead of
+  silently entering a fit. Optional C_emp = W*T*s^alpha with the D12q-corrected
+  signal s = p*(1-2eps), plus an optional law gate (C_emp <= bound on RESOLVED
+  floors). JSON receipt, exit 0=KEEP / 1=FAIL / 2=fail-loud input.
+  `python tools/floor_scan.py --curves c.json --bar 0.9 --w 8 --p 0.3 --eps 0.1 --alpha 1.92 [--c-bound 60 --strict --out r.json] | --selftest`
+  TEST receipt 2026-10-03: selftest 8/8 (selftest caught its own wrong-layer
+  degenerate-s check live — fixed to pin run_scan's rc=2 refusal); worked
+  example: T_floor=40, C_emp=20.66 @ s=0.24, KEEP rc=0.
+
 ### qcell_sim.py — exact small-circuit cell evaluator (GPU, batched)
 Batched statevector evaluator for qcell genomes (n<=12 qubits). Returns exact p(targets), balance,
 best_target, union, and optional shot samples with a sha256 receipt_id. One file, one job, cell-slot ready.
