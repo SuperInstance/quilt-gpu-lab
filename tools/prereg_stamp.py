@@ -23,7 +23,6 @@ prereg binding is the git-verifiable pre-fire push of the plan (e.g. C5:
 plan pushed e80673f 15 min before fire, receipt 0fc073f). --check on such
 receipts fails by design; do NOT retro-stamp (a post-hoc stamp forges a
 run-time binding). Record the pre-fire push sha as the binding instead.
-"""
 
 Worked example (self-contained):
     import prereg_stamp, json, pathlib
