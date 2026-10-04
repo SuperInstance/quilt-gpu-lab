@@ -5768,3 +5768,27 @@ any relaunch-5.
   (no phantom). Policy line added to docs/PREREG-CLAIM-PROTOCOL.md rule 5. CPU, <2 min, no GPU.
 - Note: `--depth 1` warning on local clone is cosmetic (local hardlink clone); file:// form for
   future smokes.
+
+## [DONE 08:2x CPU Oct 4] FR-2 BOOKED: G1 PASS, G2 RED-FOUND (2), G3 PASS, G4 PASS — fresh-clone witness catches the deferred re-seal
+- Pre-reg 3559297 (gates frozen before fire). Instrument: quilt-tools#45 fresh-audit.mjs (head 67f4db29,
+  vendored to scratch-ext4/fr2, never installed in-tree). Target: pristine file:// clone of HEAD
+  3559297 (declared deviation from SCOUT-43's author-tree --local wording, made BEFORE fire — author
+  tree defeats the phantom purpose).
+- FR2-G1 PASS: audit ran to completion, exit 0.
+- FR2-G2 **RED-FOUND (2)**: tool's v0 discovery found ZERO of our runners (no pytest convention —
+  TOOL-gap, booked as finding). Complement (declared in pre-reg): full pytest in the pristine clone →
+  **46 passed, 2 FAILED** (tests/test_receipts.py::ReceiptManifestMatches::test_manifest_matches_working_tree,
+  ::RC5PushCheck::test_clean_tree_checks_clean). ROOT CAUSE: the manifest re-seal deferred since
+  SCOUT-25 (foreign d12k2–d12r untracked live lane in the AUTHOR tree makes the sealer refuse) means
+  the COMMITTED manifest no longer matches COMMITTED tracked files at HEAD — a fresh clone REDs.
+  This is NOT a phantom (author tree fails too, just for the mirrored reason) and NO numeric booking
+  verdict is threatened (VX-1 selftest, CI gate, vendor census all pass; only the receipt-currency
+  seal is stale). But the doctrine's own witness test is red fleet-visibly: **re-seal is now
+  MANDATORY-TOP next slice**, executed in the pristine clone (no foreign untracked files there;
+  sealer should accept) then committed back. Spawned: MR-1 (manifest re-seal from pristine clone).
+- FR2-G3 PASS: VX-1 selftest G1-G4 identical to booking 531d08d in pristine clone (taint
+  "E trajectory"->[QO6], "positional name->oid map"->[VSB-1], negative control []).
+- FR2-G4 PASS: no writes to author tree, no GPU, no network beyond the PR diff fetch.
+- LESSON: FR-1's fresh-clone arm + an external auditor with different discovery conventions is
+  exactly the belt-and-suspenders SCOUT-43 hoped — the external pass (discovery gap) missed what
+  the naive complement caught. Keep both arms in the mandatory (C) policy.
