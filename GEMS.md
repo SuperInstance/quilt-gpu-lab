@@ -215,3 +215,36 @@
 | M28 | verifier-multiplicative test-time scaling | 1 | 1 | 2 | **2** | ASSAYED — KILLED as a gem (corroboration of gem #5; U=1: anyone with an API key) |
 
 *Rubric honesty: 1/5 cleared 27 — consistent with the Wave 7 finding that our ≥27 scores come from literature×receipt collisions; only M26 collided with a uniquely-owned asset (generative laws as a controlled variable). M25 passed novelty but failed the distinctness check against S6a and was parked rather than double-counting the same ledger asset. GitHub trending returned stale listicles for the second wave running. No gate loosened.*
+
+## Wave 10 — the canvas-criticality-audit harvest (2026-10-04: edge-mine scout, focus rotated to diffusion-LM/canvas generation + verifiable-environment verification + criticality dynamics + research-audit infrastructure — Wave 0's unassayed canvas mine plus collisions with the fresh PIDFIRE-1 and VX-1 receipts, since Wave 9 was grokking/circuits/memory-lifecycle)
+
+*Search focus this wave: discrete diffusion LM refinement/order · verified synthetic environments · SOC in learning dynamics · continual facts-in-weights · agent-research auditing/reproducibility. 6 searches; sources are search-roundup-grade — flagged for re-verification before canon (same caveat as Waves 0/5–9).*
+
+### Abstraction mines (status MINED → ASSAYED below)
+
+- **M29 — Canvas generation quality is an initialization+refinement policy, not an ordering freedom.** The 2026 DDLM literature converged from five directions: particle Gibbs trajectory-level refinement (inference-time scaling for dLLMs), remasking with inference-time scaling, pre-initializing dLLMs for controllable structured generation, few-step discrete flow matching, and "the flexibility trap: rethinking the value of arbitrary order" (arbitrary order can *hurt*). Essence: *parallel/canvas generation is not "autoregressive without order" — it is a persistent canvas plus a policy for what to trust already written; order-freedom is a cost, and the win comes from where you start and how you refine.* This is exactly Wave 0's unassayed "canvas / start-from-persistence" mine, now with 2026 receipts — and our glyph corpora are a discrete, replayable, law-owned canvas.
+  - https://arxiv.org/abs/2507.08390 (PG-DLM) · https://arxiv.org/pdf/2605.19470 (Drifting Objectives for DDLMs) · https://openreview.net/forum?id=qhd0qv6L0k (pre-initialized dLLMs)
+
+- **M30 — Environment supply chains now spend their budget on verification, not generation.** Verified Synthetic Web Environments (defect-audit pipeline lifts feasible-task rate 48.6%→ across 500 envs) and Verifiable Process Rewards (symbolic verifiers converted into dense turn-level rewards) extend Wave 8's M23: with environments infinitely generatable (AWM), the rate-limiting step is provably *feasible, correctly-verifiable* tasks. Essence: *environment verification is the scarce input; generation is commodity.* Parked: corroboration-extension of M23 (already parked at 12) — no new local asset collided.
+  - https://arxiv.org/html/2608.21898v1 · https://arxiv.org/html/2605.10325v1 · https://arxiv.org/html/2602.10090v2
+
+- **M31 — Criticality has a reachability map, and the map is the instrument.** Learning dynamics are generically attracted toward self-organized criticality (Katsnelson line), but whether a given parameterized system can *reach* the critical state is a separate, measurable question. Collision with PIDFIRE-1's honest FAIL: our booked sweep shows the fixed-rule (p,q) corner is EMPTY at frozen f_step — KS-passing cells sit at tau 2.35–4.49 (steep subcritical), density pinned 0.50 < percolation 0.59, and the diagnosis names the knob (tie f_step to q, or sweep f, or 3-5× T). Essence: *a failed search for a phase transition, when pre-registered, becomes a measured reachability boundary — and the boundary predicts where the servo must operate.* Most labs discard the empty-corner run; ours is booked, repro'd bit-exact, and is a private map of where criticality is NOT.
+  - https://arxiv.org/abs/2107.03402 (SOC in neural networks) · https://arxiv.org/html/2009.11781v1 · local: PIDFIRE-1 booking (RESULTS.md, 2026-10-03, repro PASS)
+
+- **M32 — Facts-in-weights continual learning is now measured head-on.** O'Neill (Baseten, 2026) directly asks whether a LM can learn facts continually in weights — the field is measuring the retention axis our Wave 5 M1 named (consolidation as an update schedule). Parked: corroboration of M1's axis; no new falsifier on our substrate beyond what M1's parking already records (F-starved at our scale).
+  - https://arxiv.org/abs/2607.11020
+
+- **M33 — Audit is an index lookup with taint tracing, not a review pass.** ReAgent (audits agent-written papers against their receipts for consistency), ARA (agent-based reproducibility assessment), SEVA (self-evolving verification with process reward) — the field is building *frameworks* for receipt-consistency auditing. Essence: *verifying a body of research claims is a machine-checkable property of an index, not a judgment call — provided the index records which writes fed each verdict.* Collision with fresh receipts: VX-1 is exactly this, already built and gated (G1–G4: 9-booking verdict index, taint round-trip per booking, tamper-detection control, 0.000s CPU) and FR-1 added the fresh-clone guarantee. The field proposes; we have a passing instrument.
+  - https://arxiv.org/html/2609.22111v1 (ReAgent) · https://arxiv.org/html/2605.02651v1 (ARA) · https://arxiv.org/abs/2606.29713 (SEVA)
+
+### ASSAY — Wave 10 scoring (novelty × local-uniqueness × falsifiability, per `docs/assayer-spec.md`)
+
+| # | abstraction | N | U | F | score | status |
+|---|------------|---|---|---|-------|--------|
+| M31 | criticality's reachability boundary as the instrument (empty-corner maps) | 3 | 4 | 4 | **48** | SEEDED (SPOOL Wave 9, entry W10a) |
+| M33 | research audit as machine-checkable index lookup + taint tracing | 3 | 4 | 4 | **48** | SEEDED (SPOOL Wave 9, entry W10b) |
+| M29 | canvas generation = initialization + refinement policy (order-freedom is a cost) | 3 | 3 | 4 | **36** | SEEDED (SPOOL Wave 9, entry W10c) |
+| M30 | environment verification as the scarce input | 2 | 2 | 3 | **12** | ASSAYED — parked (extension of Wave 8 M23; no new asset collision) |
+| M32 | facts-in-weights continual learning, measured directly | 2 | 2 | 3 | **12** | ASSAYED — parked (corroborates Wave 5 M1; same F-starvation at our scale) |
+
+*Rubric honesty: 3/5 cleared 27 — the strongest wave since Wave 6, and the pattern held exactly: all three passers are literature×receipt collisions (PIDFIRE-1's booked empty corner; VX-1/FR-1's passing index; the law-owned glyph canvas). Distinctness checks done: M31 ≠ W9a (SOC reachability is dynamics-of-the-sweep, not grokking onset); M33 ≠ gem #5 (the acceptance gate scores improvements, VX-1 audits the verdict ledger itself). No gate loosened.*
