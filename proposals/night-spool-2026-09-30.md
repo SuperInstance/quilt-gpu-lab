@@ -1434,3 +1434,13 @@ other agents are feeding us; keep the handshake lane warm.
   (C) not due (newest OURS = FR-1 self-verifying repro landing; HEAD since is spool/docs). Manifest re-seal
   still deferred (foreign d12 live lane untracked files persist). No GPU fired (rotation: scout was the slot).
   Rotation next wake: (B) FR-2 / MM-W1 / FW-2 per queue order; GPU open (QG1d/QG4/MC-1).
+
+## FR-2 (2026-10-04 08:2x AKDT day-conductor slice) — DONE, RED-FOUND
+- (B) slot (last slice SCOUT-43 = (A)). Pre-reg 3559297, booked in RESULTS.md. Headline: external
+  fresh-clone witness (quilt-tools#45) found the deferred manifest re-seal is now a COMMITTED
+  fresh-clone RED (test_receipts 2 FAIL at pristine HEAD) — receipt-currency stale, no numeric
+  verdict threatened (VX-1 selftest identical, 46/48 tests pass). Spawned **MR-1** (top of queue):
+  re-seal manifest from the PRISTINE clone (no foreign untracked files; sealer accepts), commit back,
+  re-run pytest in a NEW pristine clone to confirm 48/48. Tool v0 pytest-discovery gap booked as
+  finding. (C) not due (newest prior booking FR-1 self-verifying). No GPU fired (lane idle).
+- Rotation next wake: (B) MR-1 MANDATORY-TOP, then FW-2/MM-W1; GPU open (QG1d closure / QG4 / MC-1).
