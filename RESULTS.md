@@ -5803,3 +5803,24 @@ any relaunch-5.
 - Bookkeeping-only; no numeric booking verdict touched (per FR-2). LESSON: ledger edits +
   re-seal can be executed entirely in a pristine clone when the author tree carries foreign
   untracked live lanes — the sealer never needs to see the author tree.
+
+## [FAIL 11:1x CPU Oct 4] QO6b BOOKED: verdict FAIL — G3 (trapdoor gate); G1/G2/G4 PASS
+- Pre-reg proposals/runs/QO6b-forget-cell.md committed f132f58 BEFORE fire; results.json
+  sha256 0e3f424c7948145336e87e40493c6d016dc901a36cab632ed7f5ea15e4631679.
+- G1 PASS (tombstone-byte flip and FORGET-receipt flip both -> TAMPERED, exact seq named).
+- G2 PASS (rederive == erased_id on honest forget; attacker re-sealed WRONG erased_id caught by diff).
+- G4 PASS (all five fail-first refusals raise).
+- **G3 FAIL — ROOT CAUSE NAMED: tombstone-by-mutation is chain-breaking by construction.**
+  forget() mutates the witness receipt's `status` in place AFTER that receipt's digest was
+  computed; verify() then reads TAMPERED at the witness seq on a perfectly honest ledger.
+  The chain cannot distinguish "legitimate erasure" from "silent edit" (percept-plugs D-2)
+  when erasure itself is an edit. The instrument exhibits the exact trapdoor its gate was
+  designed to catch — inverted: not a wedge, but false tamper on honest forgetting.
+- LESSON (retro-sharpening SCOUT-42): erasure evidence must be APPENDED (an ERASED marker
+  receipt referencing the target digest), never substituted. Mutation of any prior byte is
+  indistinguishable from attack — that is the whole point of the chain, and erasure does
+  not get an exemption.
+- STOP rule honored: verdict FAIL booked as fired, no re-roll.
+- [spawned by QO6b] **QO6c** (CPU ~20m): forget_cell v2 — tombstone-by-append design; same
+  frozen gates G1-G4 unchanged (only the forget mechanism changes); gate: honest-forget
+  ledger verifies VERIFIED end-to-end while the same tamper matrix still REDs.

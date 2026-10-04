@@ -1,0 +1,36 @@
+{
+  "experiment": "QO6b-forget-cell",
+  "forgotten_digest": "23dd4bc4ac83881ca3ed4470a90b4d70c54f114e23b5e807556b524713397242",
+  "gates": {
+    "G1": {
+      "detail": "tombstone-tamper->{'verdict': 'TAMPERED', 'first_bad_seq': 1}; forget-tamper->{'verdict': 'TAMPERED', 'first_bad_seq': 1}",
+      "pass": true
+    },
+    "G2": {
+      "detail": "",
+      "pass": true
+    },
+    "G2a": {
+      "detail": "rederive 01b20ddf476e8b2f vs erased_id 01b20ddf476e8b2f",
+      "pass": true
+    },
+    "G2b": {
+      "detail": "wrong erased_id (attacker re-sealed) caught by rederive diff",
+      "pass": true
+    },
+    "G3": {
+      "detail": "verify-after-forget {'verdict': 'TAMPERED', 'first_bad_seq': 1}; append-then-verify {'verdict': 'TAMPERED', 'first_bad_seq': 1}",
+      "pass": false
+    },
+    "G3b": {
+      "detail": "empty ledger VERIFIED",
+      "pass": true
+    },
+    "G4": {
+      "detail": "unknown-shot / double-forget / empty-shot / empty-kind / empty-reason all raise",
+      "pass": true
+    }
+  },
+  "ledger_len": 5,
+  "verdict": "FAIL"
+}
