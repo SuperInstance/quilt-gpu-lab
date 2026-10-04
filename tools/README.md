@@ -308,3 +308,16 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
 - **calib-gate** — `tools/calib_gate.py` — proper-scoring calibration battery (pattern lifted from ST3-calibrated-noul / QC-JEV doctrine): given a list of (p, y) predictions, computes ECE (10 bins), Brier, accuracy@0.5, AURC + E-AURC (selective risk-coverage), with an optional KEEP/FAIL gate on ECE/Brier bars. Fail-loud rc=2 on p outside [0,1], bad labels, or empty input. Stdlib-only, deterministic, one JSON receipt.
   `python tools/calib_gate.py --preds preds.json [--ece-bar 0.05 --brier-bar 0.25 --out r.json] | --preds-json '[...]"' | --selftest`
   TEST receipt 2026-10-04: selftest 5/5 (calibrated clean-KEEP, overconfident decoy FAIL, p>1/bad-label/empty rc=2) — selftest caught two of its own control bugs live (perfect predictor at conf 0.9 is honestly ECE 0.1; AURC<0.02 clause impossible for a 0.75-acc control), both fixed; worked example rc=1 FAIL booked honestly (5-item sample, conf 0.7-0.9 at 100% acc -> ECE 0.2).
+
+- **prereg-stamp** — `tools/prereg_stamp.py` — bind run receipts to the committed
+  pre-registration plan (mechanizes the pre-registration doctrine, which was
+  prose until now): sha256-stamp the plan at run start, embed the stamp in the
+  receipt's `prereg` block (`prereg_block(plan)` helper), then at booking time
+  `--check` re-derives the stamp AND requires the plan to be committed clean in
+  git — post-hoc plan edits, uncommitted, and untracked plans all book FAIL.
+  Stdlib-only, fail-loud rc=2. Library: `check(plan, receipt) -> (ok, why)`.
+  `python tools/prereg_stamp.py --stamp PLAN.md | --check PLAN.md --receipt r.json | --selftest`
+  TEST receipt 2026-10-04: selftest 5/5 (committed-clean PASS, post-hoc-edit
+  FAIL, untracked FAIL, dirty FAIL, missing-block rc=2 — selftest caught the
+  cwd/git-repo bug live, fixed with explicit cwd); live: real committed plan
+  C1-cosmos-edge-boots-plan.md -> PASS rc=0, tampered-stamp receipt -> FAIL rc=1.
