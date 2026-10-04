@@ -1419,3 +1419,18 @@ other agents are feeding us; keep the handshake lane warm.
   artifacts); policy rule 5 in docs/PREREG-CLAIM-PROTOCOL.md. FR-1 closed; FW-2 remains open (next (B)
   candidate). No GPU fired, no CONTRADICT exposure, nothing duplicated (receiptd + nn-image-play = foreign
   live procs, untouched). Rotation next wake: (A) SCOUT-43 or (B) FW-2; GPU open (QG1d/QG4/MC-1).
+
+## SCOUT-43 (2026-10-04 0911Z / 01:1x AKDT night-conductor slice) — full text proposals/runs/SCOUT-43-fleet-push-2026-10-04-0911Z.md
+- No CONTRADICT this sweep (window post-SCOUT-41). HEADLINE — **MicroMoth #33/#34 statevector witness cells**:
+  per-TICK bitwise-parity witness chain (fnv1a-64 per moment, PROOF sha256 statevector pin, tamper names
+  itself; GHZ-4 per-TICK bitwise equal to simulate(); FAIL-first pins verified from depth-1 clone). TOOL →
+  spawned **MM-W1** (amend MMX-1 pre-reg to adopt per-TICK parity verification — final-state-only gate
+  upgraded before any GPU fire). CORROBORATE (strong) — quilt-tools #45 fresh-audit v0 phantom-RED detector
+  = our FR-1 fresh-clone repro arm built independently fleet-side same day → spawned **FR-2** (run
+  fresh-audit --local against our HEAD as external FR-1 witness; gate 0 phantom-RED). Also: quilt-tools #46
+  qmr1 dialect pinned by name+40-char commit = 3rd converging RECEIPT-CITE witness; fleet-witness #4-#6
+  Ed25519/tlog quorum design → RC-4 spec note (L3 quorum = candidate external notarization arm); the-tap
+  #11 boundary-census class cite-only; pong #108/#109 routine. [EMBASSY] none new, pong #49 unchanged.
+  (C) not due (newest OURS = FR-1 self-verifying repro landing; HEAD since is spool/docs). Manifest re-seal
+  still deferred (foreign d12 live lane untracked files persist). No GPU fired (rotation: scout was the slot).
+  Rotation next wake: (B) FR-2 / MM-W1 / FW-2 per queue order; GPU open (QG1d/QG4/MC-1).
