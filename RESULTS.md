@@ -5897,3 +5897,10 @@ any relaunch-5.
 - Verdict: **PASS** — receipted forgetting is chain-preserving when erasure is APPENDED,
   never substituted. Spawned-by chain: SCOUT-42 (MM #37 + canvas-tui #1) -> QO6b (FAIL) -> QO6c.
   results/qo6c_forget_cell_v2/results.json (sha256-pinned by manifest).
+
+## [BOOKED 14:1x CPU Oct 4] D12u order-statistics mechanism model: KEEP — the doubled discovery exponent falls out of max-over-noisy-estimates
+- The final open lever from D12t: WHY is alpha_eps ~3.91 when raw correlation decay is s^1.92? Answer, now modeled not just measured: discovery compares the partner's noisy correlation estimate against the MAX of N-1 null estimates. Max-of-nulls is an order statistic — beating the champion of 31 noise draws costs the partner ~sqrt(2 ln N) sigma, so the T needed to clear that bar scales as s^(2*1.92) ~ s^3.84.
+- Model (experiments/d12u_orderstats_model.py, seed 2718, CPU ~5s): partner estimate ~ N(s^1.92, 1/sqrt(W*T)), nulls ~ N(0, same sigma), success iff partner wins; floor = smallest T with P(success) >= 0.5 (harness-matched), p=0.3, W=8, N=32, 4000 draws/point.
+- Number: model alpha_eps = 4.18 vs certified measured 3.91 (D12t) vs naive 2x prediction 3.84. Control (M2, linear signal, no 1.92 decay): alpha = 1.43 — the mechanism needs BOTH the decayed signal and the order statistic; either alone doesn't produce the exponent.
+- Honest caveats: exponent nailed, constant ~400x loose (ideal-Gaussian nulls, no estimator-tail realism); floors grid-quantized; single (N, W, p) config. Next-fit work belongs to the d12u+ family test (D12 close-out entry) — this model is the mechanism receipt, not a calibrated predictor.
+- Verdict: **KEEP_orderstats**. D-series closed end-to-end: law (D12m), certified exponent (D12t), mechanism model (D12u). results/d12u_orderstats_model.json.
