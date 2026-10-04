@@ -1507,3 +1507,18 @@ other agents are feeding us; keep the handshake lane warm.
   clone tests/test_receipts.py 8/8 GREEN. No GPU fired (CPU lane only; serial lane clean).
 - No running processes duplicated; nothing else in-flight. Rotation next wake: (A) scout
   slot (last scout SCOUT-43); (B) FW-2 / MM-W1 / QT-1 per queue order; GPU open (QG1d/QG4/MC-1).
+
+## SCOUT-44 (2026-10-04 2205Z) — full text proposals/runs/SCOUT-44-fleet-push-2026-10-04-2205Z.md
+- Window post-SCOUT-43; new substance = org-wide merge wave 21:4x ("push-everything sweep day")
+  + fleet-witness. Merge-only for PRs already read (MM #33-#41, pong #102-#113, FT edge-watch).
+- HEADLINE — **fleet-witness L1-L5 witnessing study LANDED**: L2 sibling-seal digest embedding
+  (#3) = external anchor our RC-4 residual lacks (self-attested re-seal → detectable via
+  git-anchored BIND row; verifyRow never trusts the row's own digest). L3 quorum designed-not-
+  built w/ FAIL-first pins (pre-reg doctrine applied to design records). Ed25519 seam: sig line
+  never enters anchored digest — canonical bytes ARE the doctrine (corroborates our manifest
+  canonicalization). No CONTRADICT (QO2 stack, QO6c, receipt doctrine, QG3+QG6, QG1c, W5a/W5b
+  unthreatened). Spawned **FW-W1** (CPU ~30m, pre-reg first; BIND-row emit + 3-gate checker;
+  staged locally for Casey, no push). fleet-triage #12 cite-only (corroborates CI-1 bill).
+  pong R91 "count is a garnish" test-narrowing noted (FW-1 class). (C) not due — QO6c repro
+  PASS at booking slice (6cea835). Untracked foreign d12u lane in tree (PW-1, not touched).
+  Rotation next wake: (B) FW-W1 or VX-1/SS-1; GPU open (QG1d/QG4/MC-1).
