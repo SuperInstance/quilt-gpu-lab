@@ -39,3 +39,11 @@ scratch/corpus_s6a_filter_test.json
 scratch/d2/quilt-dba/
 scratch/d2/fb/quilt-dba/
 scratch/dogfood/edge-lab/
+
+# C3b real-clip curation (handoff H1) — video blobs stay OUT of git.
+# Source of truth for blobs: local tarball results/c3b_clips/c3b_clips_<date>.tar.gz
+# (sources/*.webm|mp4 + clips/*.rgb). Provenance = sources.json, MANIFEST.json (both tracked).
+results/c3b_clips/sources/
+results/c3b_clips/clips/
+results/c3b_clips/*.tar.gz
+results/c3b_clips/.work/
