@@ -1,15 +1,18 @@
-"""forget_cell.py — FORGET-cell: receipted erasure over a hash-chained witness ledger.
+"""forget_cell.py — FORGET-cell v2: receipted erasure over a hash-chained witness ledger.
 
-QO6b instrument (pre-reg proposals/runs/QO6b-forget-cell.md). Doctrine lineage:
+QO6c instrument (pre-reg proposals/runs/QO6c-forget-cell-v2.md); supersedes the QO6b
+tombstone-by-mutation design (booked FAIL: in-place status edit broke the chain by
+construction). v2 = tombstone-by-APPEND. Doctrine lineage:
 - QO6 eproc retraction: "a process that cannot retract is a p-value in disguise" —
   forgetting must itself be evidenced.
 - MR-1 / SCOUT-25 tipnotary: hash-chained receipts, tamper names itself.
 - quilt-canvas-tui #1 trapdoor lesson (SCOUT-42): post-FORGET verify must return a
   DEFINED verdict — never wedge, never restart.
 
-Erased receipts are retained as tombstones (payload kept, status=erased): the chain
-stays hash-verifiable end-to-end, and downstream consumers re-derive erased_id from
-the tombstone bytes.
+Witness receipt bytes are FROZEN at append time and never edited. The appended
+FORGET receipt ({shot, reason, erased_id}) is the sole erasure evidence; "forgotten"
+is derived from the presence of a FORGET receipt. The chain stays hash-verifiable
+end-to-end, and downstream consumers re-derive erased_id from the untouched bytes.
 """
 import copy
 import hashlib
@@ -66,24 +69,19 @@ class ForgetCell:
         base = {"seq": len(self.receipts), "prev": self._tip(),
                 "shot": shot, "kind": "FORGET",
                 "payload": {"reason": reason, "erased_id": w["digest"]},
-                "status": "erased"}
+                "status": "erasure-evidence"}
         rec = dict(base)
         rec["digest"] = _digest(base)
-        # tombstone the witness receipt (retain bytes, mark erased)
-        w["status"] = "erased"
         self.receipts.append(rec)
         return rec["digest"]
 
     def rederive(self, shot):
-        """Re-derive erased_id from retained tombstone bytes; diff vs the FORGET."""
+        """Re-derive erased_id from the untouched witness bytes; diff vs the FORGET."""
         w = self.witness_receipt(shot)
         f = next((r for r in self.receipts if r["shot"] == shot and r["kind"] == "FORGET"), None)
         if w is None or f is None:
             raise ValueError(f"shot {shot!r} has no (witness, FORGET) pair to re-derive")
         base = {k: w[k] for k in ("seq", "prev", "shot", "kind", "payload", "status")}
-        # NB: the stored digest was computed over the ORIGINAL status ("witness");
-        # re-derivation must reconstruct the pre-erasure bytes exactly.
-        base["status"] = "witness"
         return _digest(base), f["payload"]["erased_id"]
 
     def verify(self):
