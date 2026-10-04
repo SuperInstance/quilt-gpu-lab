@@ -132,6 +132,18 @@ more than a copy to use, it's not grabbable yet.
   TEST receipt 2026-10-01: selftest OK (4 checks incl. honest-null + p=1/3 exact
   small-n + NaN rc=2); worked example live, receipt written.
 
+- **fresh-clone-witness** — `tools/fresh_clone_witness.py` — verify the sealed
+  manifest from a pristine clone of HEAD (pattern lifted PROVEN from tonight's
+  FR-2/VX-1/MR-1 lane): clones the ref into a throwaway tempdir, re-derives
+  every sealed digest from the cloned bytes — the phantom-seal class (green
+  locally, RED from the outside) is invisible in the working tree and glaring
+  here. Optional `--run-pins` runs the clone's own unittest suite. Never
+  mutates the repo; exit 0=PASS / 1=RED / 2=fail-loud; `--selftest` carries a
+  GOOD control (HEAD clean) + RED control (tampered sealed ledger tripped).
+  `python tools/fresh_clone_witness.py --ref HEAD [--run-pins] [--out w.json] | --selftest`
+  TEST receipt 2026-10-04: selftest 2/2 (GOOD @9ca04e5 0-drift, tamper RED
+  witnessed); live witness HEAD -> PASS 0 drift, receipt
+  results/fresh_clone_witness_2026-10-04.json.
 - **holdout-gate** — `tools/holdout_gate.py` — held-out prediction gate for
   power-law bounds (pattern lifted PROVEN from D12o/D12p): fit C on the FIT
   subset only (conservative max, y <= C/x^alpha), then gate held-out points on

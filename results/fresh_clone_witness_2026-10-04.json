@@ -1,0 +1,10 @@
+{
+  "schema": "fresh-clone-witness@1",
+  "repo": "/home/eileen/projects/quilt-gpu-lab",
+  "ref": "HEAD",
+  "commit": "9ca04e5353c197c260dc510839c650b8038f184c",
+  "verdict": "PASS",
+  "drift": [],
+  "pins_run": false,
+  "pins_ok": null
+}
