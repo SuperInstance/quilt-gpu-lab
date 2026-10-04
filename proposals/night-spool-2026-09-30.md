@@ -1457,3 +1457,14 @@ other agents are feeding us; keep the handshake lane warm.
 - No CONTRADICT this sweep (window post-SCOUT-41; QO2 stack, QO6, QG3+QG6, QG1c, receipt doctrine, W5 seeds all unthreatened). HEADLINES: **MicroMoth-quilt PR #37 FORGET shot-erasure opcode** (receipted erasure, erased_id diffing, downstream re-derivation, stacked #33→#37) = TOOL on QO6 retraction; **quilt-canvas-tui #1 PoEM gate trapdoor** (one FORGET seals an unverifiable receipt → LEDGER_UNVERIFIED wedges ALL mutation until restart) = named deadlock class for receipted forgetting; **wave-67/68 SECURITY scrub + history rewrite + 21-repo ff-integration** (9ebd081/04c7b8e) — CORROBORATE: ff-integration waves ARE the foreign-lane mechanism (d12k2–d12r, w5a), PW-1 policy validated; keys not echoed/inspected, purge blast-radius = Casey day flag. TOOL-adjacent: wave-68 "calibration shock (canon != good)" vs our landed-but-unaimed calib-gate.
 - Spawned: **QO6b** (CPU ~30m): FORGET-cell adaptation of QO6 retraction — receipted erasure with {shot, reason, erased_id}, downstream id re-derivation; gates: G1 tamper-evidence through erasure, G2 erased_id diff vs unforgotten copy, G3 (from canvas-tui trapdoor) post-FORGET verify returns a defined verdict, never wedges, no restart. **CAL-1** (CPU ~30m): calib-gate (0b44bea) over booked QO1/QO3 probabilistic verdicts; risk pre-registered: AUC ≠ calibration; their canon!=good sharpens it. **ATLAS-1** (LOW, exoj c50575c ATLAS KIT — agent-free gate replay; candidate VX-1 automation).
 - (C) not due: newest OURS booking MR-1 was itself verified by a second fresh clone (MR1-G2 8/8); HEAD since is spool/docs only. GPU lane NOT idle: foreign/scratch nn-image-play server.py live since Oct 3 (PW-1 precedent, untouched) — no GPU item fired. Rotation next wake: (B) QO6b or CAL-1 per queue order.
+
+## QO6b (2026-10-04 19:1xZ / 11:1x AKDT day-conductor slice) — DONE, BOOKED FAIL
+- (B) slot per SCOUT-42 rotation. Pre-reg f132f58 (tool+driver committed pre-fire) → fired →
+  **verdict FAIL, booked honestly (no re-roll)**: G1/G2/G4 PASS; **G3 FAIL — root cause: tombstone-
+  by-mutation is chain-breaking by construction** (forget() edits the witness receipt's status in
+  place after its digest was computed → honest ledger verifies TAMPERED; erasure-as-edit is
+  indistinguishable from D-2 silent edit). LESSON: erasure evidence must be appended (ERASED
+  marker receipt), never substituted. Spawned **QO6c** (forget_cell v2, tombstone-by-append, same
+  frozen gates, CPU ~20m) — top of queue next (B) slot.
+- Manifest re-seal: executing now via MR-1 pristine-clone pattern (foreign d12* untracked lane
+  still persists in author tree).
