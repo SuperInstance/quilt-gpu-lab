@@ -5749,3 +5749,10 @@ any relaunch-5.
 - G4 PASS: 0.000s, CPU-only, no network, no GPU.
 - Spawned-by lineage: XM-1 -> VX-1; data source FW-1 tranches 1-3 (all booked). Rotational
   slot (B) taken (last slice SCOUT-42); (C) not due (PIDFIRE-1 repro PASS b78218f stands).
+
+## [DONE 00:1x CPU Oct 4] VX-1 REPRO: PASS (verdict-level) — mandatory (C) slot
+- Committed tools/verdict_index.py + receipts/verdict_index.json re-run UNCHANGED at HEAD 4e34bb5:
+  selftest G1-G4 all PASS (G4 0.000s CPU-only); taint "E trajectory"->[QO6], "positional name->oid
+  map"->[VSB-1], negative control [] — IDENTICAL to the booking (531d08d). Dirty-tree check: both
+  sealed paths clean vs HEAD. No GPU fired, no other lane touched (receiptd serve procs = PW-1 foreign,
+  nn-image-play server = foreign live lane, untouched).
