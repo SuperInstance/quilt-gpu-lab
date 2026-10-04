@@ -5792,3 +5792,14 @@ any relaunch-5.
 - LESSON: FR-1's fresh-clone arm + an external auditor with different discovery conventions is
   exactly the belt-and-suspenders SCOUT-43 hoped — the external pass (discovery gap) missed what
   the naive complement caught. Keep both arms in the mandatory (C) policy.
+
+## [DONE 09:0x CPU Oct 4] MR-1 BOOKED: MR1-G1 PASS, MR1-G2 PASS — fresh-clone manifest RED closed
+- Pre-reg proposals/runs/MR1-manifest-reseal-pristine.md committed bd43868 before fire.
+- Procedure executed as frozen: pristine clone of bd43868 in scratch-ext4/mr1-clone; sealer
+  ran clean (NO --allow-dirty needed); sealed 206 experiment + 51 tool/weight files.
+- MR1-G1 PASS: tests/test_receipts.py 8/8 in sealing clone.
+- MR1-G2 PASS: second fresh clone of NEW HEAD 224dc59 → 8/8 (FR-2's 2 REDs flipped GREEN
+  fleet-visibly). Author-tree stale uncommitted re-seal superseded (never committed).
+- Bookkeeping-only; no numeric booking verdict touched (per FR-2). LESSON: ledger edits +
+  re-seal can be executed entirely in a pristine clone when the author tree carries foreign
+  untracked live lanes — the sealer never needs to see the author tree.

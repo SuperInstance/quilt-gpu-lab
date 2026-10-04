@@ -1444,3 +1444,11 @@ other agents are feeding us; keep the handshake lane warm.
   re-run pytest in a NEW pristine clone to confirm 48/48. Tool v0 pytest-discovery gap booked as
   finding. (C) not due (newest prior booking FR-1 self-verifying). No GPU fired (lane idle).
 - Rotation next wake: (B) MR-1 MANDATORY-TOP, then FW-2/MM-W1; GPU open (QG1d closure / QG4 / MC-1).
+
+## MR-1 (2026-10-04 09:0x AKDT day-conductor slice) — DONE
+- Mandatory-top item from FR-2 executed: pre-reg bd43868 → pristine-clone seal → MR1-G1
+  8/8 → commit 224dc59 → witness clone MR1-G2 8/8 (fresh-clone RED closed). Ledger edit +
+  re-seal done inside the witness clone (author tree never touched by the sealer).
+- No GPU fired (serial lane idle, rotation honored); no running processes duplicated.
+- Rotation next wake: (B) VX-1 successor queue / SS-1 / IND-1; GPU open (QG1d/QG4/MC-1);
+  (A) scout slot due (last scout SCOUT-41).
