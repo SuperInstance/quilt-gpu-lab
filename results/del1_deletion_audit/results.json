@@ -1,0 +1,43 @@
+{
+  "pre_reg": "proposals/runs/DEL1-deletion-audit-qo2.md (20f07ba)",
+  "D1_delete_retraction": {
+    "bloom": "KILL_CANDIDATE",
+    "hopeless": "KILL_CANDIDATE",
+    "flat_p": "INSUFFICIENT",
+    "V2_flip": true,
+    "VERDICT": "LOAD-BEARING (retraction deletes KEEP on late bloomers)"
+  },
+  "D2_delete_mixture": {
+    "drift_down": {
+      "verdict": "WITNESSED",
+      "retracted": 0.0,
+      "E_max": 39078.719259048776
+    },
+    "flat_noise": {
+      "verdict": "NOT_WITNESSED",
+      "retracted": false,
+      "E_max": 2.108873347085183
+    },
+    "bloom_gate": {
+      "verdict": "WITNESSED",
+      "retracted": 1.0,
+      "E_max": 12.55350613666823
+    },
+    "VERDICT": "all pinned verdicts survive single-mu; mixture is pin-level, not outcome-level"
+  },
+  "D3_delete_sigma_contract": {
+    "flat_noise_Emax_booked_sigma": 3.61356364714096,
+    "flat_noise_Emax_self_sigma": 3.423673682089122,
+    "bloom_self_sigma_retracted": false,
+    "NOTE": "self-referential sigma materially moves E_max; refusal contract separately pinned by QO6 V1c"
+  },
+  "D4_oracle_citation": {
+    "QO3_gen1_AUC_booked": 0.88,
+    "chance": 0.5,
+    "QG7_P2_frozen_oracle_range": [
+      0.566,
+      0.581
+    ],
+    "VERDICT": "NON-DECORATIVE by inspection: deletion -> chance collapses both booked signals"
+  }
+}

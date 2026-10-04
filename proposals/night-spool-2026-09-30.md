@@ -1336,3 +1336,11 @@ other agents are feeding us; keep the handshake lane warm.
   lane (server.py since 13:29, untracked power_fit.py etc., PW-1 untouched), deferred per standing
   note. GPU lane busy all slice; nothing fired. Rotation next wake: (A) SCOUT-38 (last sweep
   SCOUT-37 22:11Z) or top open CPU item (SS-1/IND-1 per queue); GPU open once d12 lane lands.
+
+## DEL-1 BOOKED 2026-10-04 0120Z (17:2x AKDT day-cron) — deletion audit over QO2 stack: ZERO RED, one sharpening
+- Pre-reg 20f07ba committed+pushed BEFORE firing; script experiments/del1_deletion_audit.py; results results/del1_deletion_audit/results.json; deterministic CPU, no GPU (lane = foreign portal server.py, PW-1 untouched).
+- **D1 delete-retraction: LOAD-BEARING, prediction held** — non-retractable predicate flips V2 KEEP→KILL_CANDIDATE on the late-bloomer fixture (V3/V4 unchanged). The QO6 booking's headline claim (retraction rescues late bloomers) survives its own deletion test; the witness_compartment failure mode does NOT exist here.
+- **D2 delete-mixture: pin-level, not outcome-level** — single mu=0.2σ preserves all pinned verdicts (drift WITNESSED, flat NOT, bloom retracted). The K=8 mixture shapes E magnitude (E_max 39k single-mu vs booked mixture values), not direction. Recorded, not RED per frozen gates.
+- **D3 delete-sigma-contract: SHARPER than pre-reg anticipated** — self-referential sigma (std of increments) does NOT merely move E_max: on the bloom fixture it kills the retraction (bloom_self_sigma_retracted=false → verdict would flip KEEP). The REQUIRED-sigma refusal contract is OUTCOME-LEVEL for the KEEP class, not just formal. V1c already pins the refusals; this adds the "why it matters" receipt. No gate change.
+- **D4 oracle deletion: NON-DECORATIVE by inspection** (booked 0.880/QG7 0.566-0.581 → 0.5 chance collapses both).
+- Cumulative QO2 stack status: every component now passes BOTH the write-site census (FW-1 9/9) and the deletion audit (DEL-1 0 RED). Rotation next wake: (C) mandatory repro of THIS booking (rerun del1_deletion_audit.py vs committed results.json — deterministic, should be bit-exact), then FW-1-successor or GPU QG1d/MC-1 per queue order.
