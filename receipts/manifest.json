@@ -1,6 +1,6 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-04T17:06:44.761079+00:00",
+  "generated_at": "2026-10-04T17:42:52.230077+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
     "RESULTS.md": "013e59529438867ce09eab28528209eccea9f99ec36c9cb07f4e8b8a438eeec2",
@@ -215,7 +215,7 @@
     "xq0_substrate_consolidation.py": "eae71b6a1c664669a941bc9be03e7574e0ec16fb6f9541250aae11c9384bb32a"
   },
   "tools": {
-    "README.md": "1fa8641abeadfa2da250b680d34f3957199bb839e5f2cc2d343b30f2eb16cb93",
+    "README.md": "3fce70218eb460b1d92997e132dcc73c418847aed83e95e45a121cf232a46bc3",
     "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "calib_gate.py": "3f7a109c81f70bef1bb5d1c2f42656f0bfa65d8fd4a1d27354a0c9eac9019f5d",
     "canary.py": "e072488ab473e0218496a58a0b0eeb16a153efe02e472613e7a0ad4d4de8f6b2",
@@ -239,6 +239,7 @@
     "fleet_board.mjs": "65b9bbdfd5ac4eefcdfbb3a47eb0adb668d2180a050a929e6374b1040b0eba70",
     "floor_law_fit.py": "0ae26fe773e0b960626b2a119e46c223803d4971ec7a620226d233c544e38f3c",
     "floor_scan.py": "140fcd7fedcb2722835b940c751494ba8ddc568af357308c4a6195d6bb743ced",
+    "fresh_clone_witness.py": "40f86b342c0ca2d4e8df994658b5ff5b2cc696b9babc9714ba6fd8d21b8896cc",
     "gpu_ramp_receipt.py": "c0cc342bff783ed3402ebcf35eceb39601d8659fa38b16fab83caea4791452a6",
     "hash_dut.py": "f0eda10fdab8bc5c65498cb7a3f43e5e6aeaba402b5a3cd31327061f8081971d",
     "holdout_gate.py": "5fd73403167ee4b46267333a41d3bc5852ad5138a215e822974e1fc4b044e482",
