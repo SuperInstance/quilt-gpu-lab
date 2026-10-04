@@ -1,0 +1,175 @@
+{
+ "experiment": "d12r_corrected_constant_surface",
+ "seed": 2718,
+ "N": 32,
+ "T_values": [
+  10,
+  15,
+  20,
+  30,
+  40,
+  60,
+  80,
+  120,
+  160,
+  240,
+  320,
+  480,
+  640,
+  800
+ ],
+ "draws": 3,
+ "alpha_fixed": 1.92,
+ "C_BOUND": 60.0,
+ "s_eff_definition": "p*(1-2eps)",
+ "rows": [
+  {
+   "W": 4,
+   "eps": 0.0,
+   "p": 0.3,
+   "s_eff": 0.3,
+   "T_floor": 40,
+   "pinned": false,
+   "C_emp": 15.9,
+   "covered_C60": true
+  },
+  {
+   "W": 4,
+   "eps": 0.05,
+   "p": 0.3,
+   "s_eff": 0.27,
+   "T_floor": 80,
+   "pinned": false,
+   "C_emp": 25.9,
+   "covered_C60": true
+  },
+  {
+   "W": 4,
+   "eps": 0.1,
+   "p": 0.3,
+   "s_eff": 0.24,
+   "T_floor": 80,
+   "pinned": false,
+   "C_emp": 20.7,
+   "covered_C60": true
+  },
+  {
+   "W": 4,
+   "eps": 0.2,
+   "p": 0.3,
+   "s_eff": 0.18,
+   "T_floor": 320,
+   "pinned": false,
+   "C_emp": 47.6,
+   "covered_C60": true
+  },
+  {
+   "W": 8,
+   "eps": 0.0,
+   "p": 0.3,
+   "s_eff": 0.3,
+   "T_floor": 15,
+   "pinned": false,
+   "C_emp": 11.9,
+   "covered_C60": true
+  },
+  {
+   "W": 8,
+   "eps": 0.05,
+   "p": 0.3,
+   "s_eff": 0.27,
+   "T_floor": 40,
+   "pinned": false,
+   "C_emp": 25.9,
+   "covered_C60": true
+  },
+  {
+   "W": 8,
+   "eps": 0.1,
+   "p": 0.7,
+   "s_eff": 0.56,
+   "T_floor": 10,
+   "pinned": true,
+   "C_emp": 26.3,
+   "covered_C60": true
+  },
+  {
+   "W": 8,
+   "eps": 0.2,
+   "p": 0.3,
+   "s_eff": 0.18,
+   "T_floor": 240,
+   "pinned": false,
+   "C_emp": 71.4,
+   "covered_C60": false
+  },
+  {
+   "W": 16,
+   "eps": 0.0,
+   "p": 0.3,
+   "s_eff": 0.3,
+   "T_floor": 10,
+   "pinned": true,
+   "C_emp": 15.9,
+   "covered_C60": true
+  },
+  {
+   "W": 16,
+   "eps": 0.05,
+   "p": 0.3,
+   "s_eff": 0.27,
+   "T_floor": 15,
+   "pinned": false,
+   "C_emp": 19.4,
+   "covered_C60": true
+  },
+  {
+   "W": 16,
+   "eps": 0.1,
+   "p": 0.3,
+   "s_eff": 0.24,
+   "T_floor": 30,
+   "pinned": false,
+   "C_emp": 31.0,
+   "covered_C60": true
+  },
+  {
+   "W": 16,
+   "eps": 0.2,
+   "p": 0.3,
+   "s_eff": 0.18,
+   "T_floor": 80,
+   "pinned": false,
+   "C_emp": 47.6,
+   "covered_C60": true
+  },
+  {
+   "W": 8,
+   "eps": 0.1,
+   "p": 0.7,
+   "s_eff": 0.56,
+   "T_floor": 10,
+   "pinned": true,
+   "C_emp": 26.3,
+   "covered_C60": true
+  }
+ ],
+ "g1_coverage_all": false,
+ "g2_constancy": {
+  "n_resolvable": 10,
+  "C_emp_values": [
+   15.9,
+   25.9,
+   20.7,
+   47.6,
+   11.9,
+   25.9,
+   71.4,
+   19.4,
+   31.0,
+   47.6
+  ],
+  "pass": false
+ },
+ "verdict": "KILL"
+}

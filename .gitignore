@@ -19,3 +19,18 @@ scratch/pinch0/_api/
 
 # receiptd now lives in its own repo (canonical): SuperInstance/receiptd
 scratch/receiptd/
+
+# greenhorn — third-party repo clones stay local (FrugalGPT/RouteLLM/Voyager/dspy/
+# reflexion/semantic-router/QuantumArtHack, ~671M); only the lane's own notes (*.md) tracked
+scratch/greenhorn/*
+!scratch/greenhorn/*.md
+
+# slackwater-fmt — scratch clone of slackwater-rust on audit/iff-consistency (in sync with
+# its origin; source of truth is the slackwater-rust repo). 793M target/ stays local.
+scratch/slackwater-fmt/
+
+# dogfood rust build tree (95M artifacts; sources + run receipts still tracked)
+scratch/dogfood/rust/
+
+# derived corpus-filter test artifact (20MB) — regenerable from committed c1 results
+scratch/corpus_s6a_filter_test.json
