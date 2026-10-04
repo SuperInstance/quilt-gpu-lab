@@ -1,0 +1,35 @@
+{
+  "gates": {
+    "G1": {
+      "detail": "witness-tamper->{'verdict': 'TAMPERED', 'first_bad_seq': 1}; forget-tamper->{'verdict': 'TAMPERED', 'first_bad_seq': 3}",
+      "pass": true
+    },
+    "G2": {
+      "detail": "",
+      "pass": true
+    },
+    "G2a": {
+      "detail": "rederive 01b20ddf476e8b2f vs erased_id 01b20ddf476e8b2f",
+      "pass": true
+    },
+    "G2b": {
+      "detail": "wrong erased_id (attacker re-sealed) caught by rederive diff",
+      "pass": true
+    },
+    "G3": {
+      "detail": "verify-after-forget {'verdict': 'VERIFIED', 'first_bad_seq': None}; append-then-verify {'verdict': 'VERIFIED', 'first_bad_seq': None}",
+      "pass": true
+    },
+    "G3b": {
+      "detail": "empty ledger VERIFIED",
+      "pass": true
+    },
+    "G4": {
+      "detail": "unknown-forget/double-forget/empty-shot/empty-kind/append-under-erased all raise",
+      "pass": true
+    }
+  },
+  "n_receipts_final": 5,
+  "pre_reg": "proposals/runs/QO6c-forget-cell-v2.md",
+  "verdict": "PASS"
+}

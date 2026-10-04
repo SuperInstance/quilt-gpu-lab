@@ -5882,3 +5882,18 @@ any relaunch-5.
   the 3B model dropped the double-space in title_case and the verifier rejected it (5/6).
 - Stores committed: results/skill_library/store.jsonl + store_full.jsonl; logs
   results/skill_library_{smoke,full}.log (already tracked).
+
+## [BOOKED 13:2x CPU Oct 4] QO6c forget_cell v2: PASS (G1-G4) — tombstone-by-append closes the QO6b chain-breaking FAIL
+- Pre-reg 4b610ab (tool+driver committed pre-fire; proposals/runs/QO6c-forget-cell-v2.md).
+  Single delta from QO6b: forget() no longer mutates the witness receipt — the appended
+  FORGET receipt ({shot, reason, erased_id}, status=erasure-evidence) is the sole erasure
+  evidence; witness bytes frozen at append time; rederive() reads the untouched bytes
+  (QO6b's status-reconstruction hack deleted).
+- G1 PASS: witness-payload tamper -> TAMPERED seq 1; FORGET-reason tamper -> TAMPERED seq 3.
+- G2 PASS: honest rederive 01b20ddf... == erased_id; attacker re-sealed wrong erased_id caught.
+- G3 PASS (the gate QO6b failed): verify-after-forget VERIFIED; append-then-verify VERIFIED;
+  empty-ledger control VERIFIED. No wedge, no restart.
+- G4 PASS: unknown-forget / double-forget / empty-shot / empty-kind / append-under-erased all raise.
+- Verdict: **PASS** — receipted forgetting is chain-preserving when erasure is APPENDED,
+  never substituted. Spawned-by chain: SCOUT-42 (MM #37 + canvas-tui #1) -> QO6b (FAIL) -> QO6c.
+  results/qo6c_forget_cell_v2/results.json (sha256-pinned by manifest).
