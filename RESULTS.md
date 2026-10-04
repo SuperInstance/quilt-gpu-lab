@@ -5735,3 +5735,17 @@ any relaunch-5.
   no-corner branch crashed first run (winner=None KeyError) — fixed to book the FAIL
   receipt instead, no dynamics touched. No GPU fired.
 - Repro (verdict-level, spot 3 cells incl. the near-miss p=0.81 q=7.9e-4 seed 10342): committed-code re-run BIT-EXACT vs committed coarse.jsonl rows (n/tau/s_min/KS/density/gate identical); determinism also pinned by tests. REPRO PASS.
+
+## [DONE 23:2x CPU Oct 3] VX-1 BOOKED: PASS (G1-G4) — verdict->instrument index live; wholesale-void is now a lookup
+- Pre-reg f516092 (gates frozen before fire). receipts/verdict_index.json + tools/verdict_index.py
+  compile the FW-1 field-write census (tranches 1-3) into a machine-readable 9-booking index
+  (XM-1's quilt-matrix lesson: wholesale-void as LOOKUP, not archaeology).
+- G1 PASS: exactly the 9 FW-1 bookings (QO10, QO6, QC-JEV, D12i, W5b2, QG7, CI-1, VSB-1, QG7b);
+  statuses match booked FW-1 verdicts (8 GREEN + W5b2 GREEN-with-caveat recorded with its note); zero RED.
+- G2 PASS: round-trip taint on each booking's own verdict-feeding write site returns it
+  (probes: "E trajectory"->QO6, "positional name->oid map"->VSB-1, "control_ladder() rungs"->CI-1, etc).
+- G3 PASS: negative control field returns []; mutation control (write site removed from a copy)
+  flips G2 RED — the index detects its own tampering.
+- G4 PASS: 0.000s, CPU-only, no network, no GPU.
+- Spawned-by lineage: XM-1 -> VX-1; data source FW-1 tranches 1-3 (all booked). Rotational
+  slot (B) taken (last slice SCOUT-42); (C) not due (PIDFIRE-1 repro PASS b78218f stands).

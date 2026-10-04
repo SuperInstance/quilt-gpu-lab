@@ -1,0 +1,94 @@
+{
+  "meta": {
+    "name": "quilt-gpu-lab verdict->instrument index (VX-1)",
+    "spawned_by": "XM-1 (quilt-matrix 0cb7552 guard-registry read); data source: FW-1 field-write census tranches 1-3 (all booked, 9/9 non-RED)",
+    "purpose": "wholesale-void as a LOOKUP: taint(instrument/field) -> bookings resting on it",
+    "schema": {"booking": "RESULTS.md id", "artifact": "producing committed tool(s)", "verdict_reads": ["state fields the verdict fn reads"], "write_sites": ["write paths feeding those fields"], "coverage": ["committed tests/repros covering the write paths"], "fw1_status": "GREEN | GREEN-with-caveat (caveat note)", "commit": "booking/repro anchor"}
+  },
+  "bookings": [
+    {
+      "booking": "QO10",
+      "artifact": "experiments/qo10_projection_ladder.py",
+      "verdict_reads": ["ladder-arm AUC means", "ensemble spread", "G1 anchors vs embedded QO3 AUC constants", "cv/gen-only std-0 degeneracy flags"],
+      "write_sites": ["internal per-arm AUC lists (in-script)", "embedded anchor constants (literals; no external write path)"],
+      "coverage": ["verdict-level repro PASS 14:4x (scoring path)"],
+      "fw1_status": "GREEN",
+      "commit": "FW-1 tranche1 booking 2026-10-02"
+    },
+    {
+      "booking": "QO6",
+      "artifact": "tools/eproc.py",
+      "verdict_reads": ["E trajectory (E_final/E_max)", "stop_t", "retracted", "sigma", "delta"],
+      "write_sites": ["log_acc/cumsum inside eprocess() (internal, deterministic numpy, no RNG)"],
+      "coverage": ["deterministic replicate ALL_PASS identical (booking)", "sigma-refusal exercised", "retraction (late evidence E 581) exercised"],
+      "fw1_status": "GREEN",
+      "caveat_uncovered_branch": "witness() claim=INCREASES arm covered by neither test nor booked run; does not gate any booked verdict (recorded, candidate test pin)",
+      "commit": "FW-1 tranche1 booking 2026-10-02"
+    },
+    {
+      "booking": "QC-JEV",
+      "artifact": "tools/decision_cell.py",
+      "verdict_reads": ["p_true on true/false arithmetic probes (d_ptrue)", "argmax choice on letter-fixed content-swap probes"],
+      "write_sites": ["logits path internal", "noul-branch scalar (fixed in place pre-scoring, 802bae1)", "hardcoded results/ output path (RC-1 class; not verdict-feeding)"],
+      "coverage": ["verdict+gates repro verdict-level PASS 10:1x (not byte-exact, _latency_ms varies)"],
+      "fw1_status": "GREEN",
+      "commit": "FW-1 tranche1 booking 2026-10-02"
+    },
+    {
+      "booking": "D12i",
+      "artifact": "experiments/d12 lane (width-scaling, W*T product rule)",
+      "verdict_reads": ["T_floor vs width W scaling rungs", "saturation corner (N64,p0.3)", "dead-fire recovery pattern vs QO6 pattern #3"],
+      "write_sites": ["internal per-cell T_floor tables (in-lane)", "bit-exact replication harness before booking"],
+      "coverage": ["bit-exact replication before booking (booked 2026-10-01)"],
+      "fw1_status": "GREEN",
+      "commit": "FW-1 tranche2 booking 2026-10-02"
+    },
+    {
+      "booking": "W5b2",
+      "artifact": "w5b_lifetime_precision machinery (imported unchanged), antirank arm",
+      "verdict_reads": ["mean_rel antirank-vs-random (gate >= +0.5%)", "per-seed wins (gate >= 4/5)", "seeds 5291-5295 per-arm bpb"],
+      "write_sites": ["internal per-seed bpb accumulators", "arm allocation by commit-count-ASCENDING rank"],
+      "coverage": ["booking itself = 5 fresh seeds at frozen gates; verdict-level repro (W5B2-REPRO-verdict-level.md)"],
+      "fw1_status": "GREEN-with-caveat",
+      "caveat": "change_count coarseness — verdict-level only, upgraded from YELLOW with caveat (RESULTS 5520)",
+      "commit": "FW-1 tranche2 booking 2026-10-02"
+    },
+    {
+      "booking": "QG7",
+      "artifact": "experiments/qg7_gen_asymmetry.py (4-rerun ensemble)",
+      "verdict_reads": ["gen-1 oracle AUC per rerun (P1 gate >= 0.65)", "frozen-oracle late>hopeless rank (P2)", "ensemble spread across reruns"],
+      "write_sites": ["per-rerun lane trajectories (torch, cross-invocation nondeterminism)", "subpopulation extraction from gens=24 lanes"],
+      "coverage": ["4-rerun ensemble IS the coverage instrument", "QG7b correlation census reinterprets spread (~2 effective draws)"],
+      "fw1_status": "GREEN",
+      "commit": "FW-1 tranche2 booking 2026-10-02"
+    },
+    {
+      "booking": "CI-1",
+      "artifact": ".github/workflows/tests.yml + tools/canary.py + tests/test_canary.py",
+      "verdict_reads": ["control_ladder() rungs (expect_red/observed_red)", "ladder_verdict() ok", "alphabet_canary(CANON_GATES) == ALPHABET_CANARY", "workflow exit code on empty-glob collect"],
+      "write_sites": ["NONE (ladder is in-memory, declared in-code, pre-reg gate G2)", "external read: workflow file + gate names in tools/qcell_sim.py"],
+      "coverage": ["tests/test_canary.py (byte canary, L9(d), twin, alphabet pin)", "empty-glob negative control", "Actions 37112598464 green"],
+      "fw1_status": "GREEN",
+      "caveat_uncovered_branch": "tools/ci_gate.py docstring selftest has no pytest pin (RC-1b entry, not verdict-gating for CI-1)",
+      "commit": "69faafc (CI-1 booking 01:3x Oct 3)"
+    },
+    {
+      "booking": "VSB-1",
+      "artifact": "tools/vendor_strip_census.py",
+      "verdict_reads": ["G1 two-method agreement flag", "per-path byte sizes from BOTH methods", "is_vendor classification on path strings", "raw/real/vendored totals"],
+      "write_sites": ["census_ls_tree + census_cat_file internal parsing", "positional name->oid map (verdict-feeding; booked RESOLVED-oid lesson)", "results.json write is output-only"],
+      "coverage": ["tests/test_vendor_strip_census.py (6 tests)", "full run over 3539 files EXACT agreement at booking", "nested-vendor strip bug caught BY the census (detector branch proven live)"],
+      "fw1_status": "GREEN",
+      "commit": "a0853db (VSB-1 booking 07:2x Oct 3)"
+    },
+    {
+      "booking": "QG7b",
+      "artifact": "tools/ensemble_corr_census.py",
+      "verdict_reads": ["pairwise Spearman matrix (intersection-aligned)", "spearman_mean band gates hi=0.9/lo=0.5", "selftest anchors"],
+      "write_sites": ["_avg_ranks/_pearson/spearman internal (stdlib, deterministic, no RNG)", "runs loaded read-only from JSON", "--out write is receipt-only"],
+      "coverage": ["selftest() (nomask-high, anti branches)", "committed verdict-level repro results/qg7b_rerun_correlation/repro-20261003-1215/"],
+      "fw1_status": "GREEN",
+      "commit": "3658c1c (QG7b repro 12:2x Oct 3)"
+    }
+  ]
+}
