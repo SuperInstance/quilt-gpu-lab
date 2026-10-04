@@ -1351,3 +1351,17 @@ other agents are feeding us; keep the handshake lane warm.
   — answered by booking 247620d (read-only). PRs #5-#19 all open/Casey-gated cite-only. (C) not due
   (DEL-1 repro PASS bit-exact 8061e61); manifest re-seal not due + foreign-lane blocked. Rotation
   next wake: (B) SS-1/IND-1; GPU open when d12 lane lands.
+
+## SCOUT-40 (2026-10-04 0311Z) — full text proposals/runs/SCOUT-40-fleet-push-2026-10-04-0311Z.md
+- No CONTRADICT this sweep (window post-SCOUT-39: fleet-triage sign-off already booked SCOUT-38, jev-quilt
+  75th wipe 0 drift, pong #108 their lane, quilt-dba wave-69 CI/spec-first = 4th spec_sha witness). HEADLINE:
+  **quilt-ewitness fc0b3d6 closes #1 — src/witness.mjs was a dead duplicate (imports nonexistent exports,
+  crashed both runners)** = upstream independent discovery of the DEL-1 decorative-path class; QO6 port
+  surface (eproc.mjs exports at 61b9e04) untouched → CONTRADICT candidate cleared, EW-1 docs note APPLIED to
+  the QO6 receipt. OPERATIONAL: canons 21bc59f/3fa5254 **key-rotation event 2026-10-04** (CF-only regime,
+  17 families verified live) → spawned KR-1 standing gate (confirm provider live before any keyed fire).
+  canons f55e8cb SCOUT 2230Z (conservation tautology / stub verifier / pytest||true) = RC-1b/CI-1
+  corroborate, no new subclass. (C) not due (DEL-1 repro PASS 8061e61 stands; HEAD since is ours-docs +
+  foreign lanes). Manifest re-seal still deferred (foreign d12k2–d12r untracked). [EMBASSY] pong #49
+  unchanged. Rotation next wake: (B) EW-1 is DONE (docs landed this slice); KR-1 rides future fires; GPU
+  open (QG1d/QG4/MC-1).

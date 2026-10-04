@@ -51,3 +51,11 @@ this gate) and QG7 (gen-24 asymmetry test uses the same trajectories).
 Pinned instruments (fire-time convention): tools/eproc.py sha256 8243ef91b1a39f3f, experiments/qo6_kill_evidence.py sha256 fcbfe984ddfe0133, qcell_sim.py untouched (not used; CPU-only slice).
 
 Conclusion: QO2 routing = oracle (QO1/QO3) + budget triage (QG3/QG6: give generations, not variance) + THIS gate. QG7 consumes the same per-gen P(cross) trajectories.
+
+## Upstream delta note (EW-1, 2026-10-04)
+SuperInstance/quilt-ewitness fc0b3d6 closed issue #1: src/witness.mjs was a STALE DUPLICATE (imports
+geometricGrid/makeDriftMixture/makeApproachMixture which eproc.mjs does not export — crashed both experiment
+runners; two incompatible witness() APIs), retired by archive-rename. Our port surface was eproc.mjs exports
+ONLY (logsumexp/increments/eprocess/witness) at lineage 61b9e04/aad90ac5 — untouched by fc0b3d6, no booked
+result affected. Do NOT resurrect witness.mjs in any future re-port; it was dead duplicate code (upstream
+independent discovery of the DEL-1 decorative-path class).
