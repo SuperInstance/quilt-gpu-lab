@@ -5756,3 +5756,15 @@ any relaunch-5.
   map"->[VSB-1], negative control [] — IDENTICAL to the booking (531d08d). Dirty-tree check: both
   sealed paths clean vs HEAD. No GPU fired, no other lane touched (receiptd serve procs = PW-1 foreign,
   nn-image-play server = foreign live lane, untouched).
+
+## [DONE 00:2x CPU Oct 4] FR-1 BOOKED: PASS (FR1-G1, FR1-G2) — fresh-clone repro arm adopted into mandatory (C) policy
+- Pre-reg proposals/runs/FR1-fresh-clone-repro-arm.md (committed this landing; smoke fired after
+  policy-line edit only, same slice — fire order note: pre-reg file written before smoke, policy
+  amendment after, all in one landing, no verdict in flight depended on the amendment).
+- FR1-G1 PASS: fresh `git clone` of HEAD cad3e5c to /home/eileen/scratch-ext4/fr1-clone (ext4, not
+  /tmp); committed tools/verdict_index.py selftest G1-G4 PASS; taint "E trajectory"->[QO6],
+  "positional name->oid map"->[VSB-1], negative control [] — identical to booking.
+- FR1-G2 PASS: everything the run needed came from the clone; no author-tree-only artifacts required
+  (no phantom). Policy line added to docs/PREREG-CLAIM-PROTOCOL.md rule 5. CPU, <2 min, no GPU.
+- Note: `--depth 1` warning on local clone is cosmetic (local hardlink clone); file:// form for
+  future smokes.

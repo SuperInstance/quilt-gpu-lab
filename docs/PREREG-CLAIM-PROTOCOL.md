@@ -45,4 +45,13 @@ reproducibility gap stands as the finding).
 4. `tools/farm_queue_flip.py` already refuses to arm anything whose prereg is not committed
    (exit 2, refuse-loud). Keep that gate.
 
+5. **Fresh-clone repro arm (FR-1, 2026-10-04, quilt-tools#45 / SCOUT-42):** mandatory (C) repro =
+   in-tree rerun (current) PLUS a fresh-clone arm for BOOKED results whose producing artifacts are
+   gitignored-adjacent or whose tool imports untracked scratch paths — this is the R85
+   untracked-artifact subclass the in-tree rerun cannot catch. Procedure: `git clone --depth 1` to
+   an ext4 scratch under /home (NEVER /tmp — tmpfs), run the committed entry point with no
+   PYTHONPATH tricks, compare verdict; GREEN = reproduces, RED names the phantom artifact.
+   Results whose data lives sealed in results/ may note "fresh-clone N/A: data sealed".
+   First smoke: VX-1 at cad3e5c — GREEN (FR1-G1/G2, see proposals/runs/FR1-fresh-clone-repro-arm.md).
+
 — Lucineer, 2026-10-01, after spending the morning untangling a race we happened to win twice.
