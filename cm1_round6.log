@@ -1,0 +1,13 @@
+[cm1r6 14:59:32] r6 start: chunking A/B/C, judge=jev-latest
+[cm1r6 14:59:32] r5 stored no draft texts -> regenerate per plan (fail-loud path booked)
+[cm1r6 15:01:45] regen cell c0 (ByteDance/Seed-2.0-mini) done
+[cm1r6 15:02:22] regen cell c1 (XiaomiMiMo/MiMo-V2.6-Flash) done
+[cm1r6 15:03:01] regen cell c2 (inclusionAI/Ling-3.0-flash) done
+[cm1r6 15:03:02] A' monolithic: wall 0.36s pr=0.000 (0/36 pass)
+[cm1r6 15:03:04] C chunk 0 (sids S1,S2,S3,S4): wall 0.29s pr=1.000
+[cm1r6 15:03:06] C chunk 1 (sids S5,S6,S7,S8): wall 0.23s pr=0.000
+[cm1r6 15:03:08] C chunk 2 (sids S9,S10,S11,S12): wall 0.22s pr=1.000
+[cm1r6 15:03:11] D reference: wall 0.25s pr=1.000 (12/12 pass)
+[cm1r6 15:03:11] r5 stored: pr_r5B=0.000 (0/36) pr_r5A=1.000 (12/12)
+[cm1r6 15:03:11] verdicts fired=[] headline=NO_GATE_FIRED cost_bar_ok=False
+[cm1r6 15:03:11] DONE 218.4s headline=NO_GATE_FIRED
