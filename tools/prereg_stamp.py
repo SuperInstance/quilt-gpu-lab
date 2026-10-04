@@ -17,6 +17,14 @@ actually committed in git. This tool makes the binding a receipt field:
 Fail-loud contract: rc=0 PASS, rc=1 FAIL (tamper/dirty), rc=2 FAIL-INPUT
 (missing files, bad receipt, git errors). Keys are never read; stdlib-only.
 
+EXEMPTION NOTE (2026-10-04): receipts for runs that PRE-DATE this tool's
+landing (b70c64c, 2026-10-04 12:42) carry no stamp by construction — their
+prereg binding is the git-verifiable pre-fire push of the plan (e.g. C5:
+plan pushed e80673f 15 min before fire, receipt 0fc073f). --check on such
+receipts fails by design; do NOT retro-stamp (a post-hoc stamp forges a
+run-time binding). Record the pre-fire push sha as the binding instead.
+"""
+
 Worked example (self-contained):
     import prereg_stamp, json, pathlib
     plan = pathlib.Path("/tmp/plan.md"); plan.write_text("# run plan\\ngate: R2>=0.8\\n")
