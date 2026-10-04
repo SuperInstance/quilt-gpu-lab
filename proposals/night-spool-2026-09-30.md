@@ -1397,3 +1397,17 @@ other agents are feeding us; keep the handshake lane warm.
   OURS booking remains QG7b (repro PASS 12:2x Oct 3). Manifest re-seal still deferred (foreign live lane).
   [EMBASSY] pong #49 unchanged (Casey day item). Rotation next wake: (B) FW-2/FR-1 or VX-1/SS-1/IND-1 per
   queue order; GPU open (QG1d/QG4/MC-1).
+
+## VX-1 (2026-10-04 0711Z / 23:1x AKDT day-conductor slice) — DONE, BOOKED PASS
+- (B) slot per queue order (last slice SCOUT-42; PIDFIRE-1 repro PASS stands, (C) not due).
+  Pre-reg f516092 -> receipts/verdict_index.json + tools/verdict_index.py -> G1-G4 all PASS,
+  booked RESULTS 23:2x, manifest re-sealed (allow-dirty: standing foreign d12k2-d12s untracked
+  live lane admitted, not sealed; all VX-1 paths committed pre-seal).
+- Wholesale-void capability now LIVE: taint query over the 9 FW-1 bookings returns exact
+  citation sets (e.g. QO6's eproc fields -> [QO6]; VSB-1's positional oid map -> [VSB-1]).
+  RC-1b follow-on: per-booking uncovered-branch entries (eproc INCREASES arm, ci_gate unpinned)
+  are recorded in the index as caveat fields — test-pin candidates remain open.
+- No GPU fired (lane idle, CPU item per rotation). Nothing duplicated (git log + ps checked;
+  foreign receiptd/serve + nn-image-play server.py untouched, PW-1).
+- Rotation next wake: (A) SCOUT-43 or (B) FW-2/FR-1 (seal-chain Merkle + fresh-clone repro arm,
+  both spawned by SCOUT-42) or SS-1/IND-1 per queue order; GPU open (QG1d/QG4/MC-1).
