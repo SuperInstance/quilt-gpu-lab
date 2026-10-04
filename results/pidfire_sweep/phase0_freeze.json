@@ -1,0 +1,7 @@
+{
+ "experiment": "PIDFIRE-1 phase0 coarse",
+ "n_cells": 441,
+ "n_passing": 0,
+ "corner_area_fraction": 0.0,
+ "corner_rule": "argmin self_ks among soc_gate cells, tie-break larger n_sizes"
+}

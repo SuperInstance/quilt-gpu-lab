@@ -5699,3 +5699,38 @@ any relaunch-5.
 - Cumulative FW-1: 9/9 booked verdicts censused, 0 RED. No GPU fired (lane busy — foreign
   live server.py since 13:29, PW-1 untouched). (C): no repro due (newest OURS booking QG7b
   already repro PASS 12:2x; HEAD since is spool/docs/foreign lanes).
+
+## [DONE 23:0x CPU Oct 3] PIDFIRE-1 BOOKED: FAIL (honest, no re-rolls) — PID-servo→SOC composition never reached: fixed-rule corner EMPTY at frozen gate
+- Pre-reg 5c9f677 (gates frozen before fire) + annotated amendments 43959b3 (PID arm at
+  p_corner) and self-KS 0.06→0.10 (symmetric, pre-run, synthetic-test evidence). Composition:
+  ternary-pid × ternary-fire × ternary-irradiate (mined 2026-10-03 (3), journaled uncommitted —
+  now real). Upstream lineage pinned in pre-reg (pid 6fbaf73 / fire ab69abd / irradiate 1010fd2).
+- result: ```json
+{
+  "experiment": "PIDFIRE-1",
+  "phases_fired": ["0 coarse"],
+  "coarse_cells": 441,
+  "coarse_passing": 0,
+  "corner_area_fraction": 0.0,
+  "C1_pid_reach": "unevaluable (no reference)",
+  "C2_fixed_corner": false,
+  "C3_exponent": "unevaluable (no reference)",
+  "claim_verdict": "FAIL",
+  "fail_path": "NO_CORNER_REFERENCE",
+  "fail_modes": {"n_ge_100": 395, "self_ks_le_0.10": 26, "tau_in_bracket": 105, "ks_and_tau": 0},
+  "near_miss": {"p": 0.81, "q": 0.000794, "tau": 1.3023, "self_ks": 0.1112, "n": 255, "density": 0.5029},
+  "ks_passing_tau_range": [2.35, 4.49],
+  "diagnosis": "timescale separation unreachable at frozen f_step=1/150: f/q≈8.4 at the tau-bracket, density pinned 0.50 < percolation 0.59; lowering f_step starves n>=100 within T=60k"
+}
+```
+- note: the CLAIM's premise inverted — the fixed-rule (p,q) sweep doesn't reach SOC in a
+  <5% corner, it reaches it in NO cell: KS-passing cells are all steep subcritical spread
+  (tau 2.35-4.49), tau-bracketed cells (105) are all curved near-misses (KS 0.111+ vs 0.10).
+  Phase 1 (calib/eval) executed its pre-booked NO_CORNER FAIL path; the PID composition
+  itself (servo ignition + integrator fuel schedule) remains UNTESTED — nothing to servo
+  toward. PIDFIRE-2 revision note in the pre-reg: tie f_step to q (c·q, c≤0.1) or sweep f
+  as a third axis, or 3-5x T. Substrate port + 15 test pins (incl. upstream
+  textbook-parity + deadband regression + bounded-support MLE bias booked +0.12 upward,
+  cancels in comparison gates) landed for reuse. Fail-loud trail: eval driver's
+  no-corner branch crashed first run (winner=None KeyError) — fixed to book the FAIL
+  receipt instead, no dynamics touched. No GPU fired.

@@ -128,8 +128,48 @@ No GPU, no cascade PID, no feedforward arm, no exponent-theory work, no QUEUE cl
 
 ## Receipts
 
+## Receipts
+
 results/pidfire_sweep/{coarse.jsonl, refine.jsonl, phase0_freeze.json};
 results/pidfire_pid/{calib.json, eval.jsonl, eval_summary.json}; tests/test_pidfire.py
 pins the ported semantics (textbook-formula parity with upstream's own test, deadband
 regression, anti-windup, CA fixtures, avalanche accounting, fit recovery). Seal via
 tools/receipt_manifest.py committed with the booking.
+
+## RESULTS (booked 2026-10-03 23:0x AKDT — HONEST FAIL, no re-rolls)
+
+- **Phase 0 coarse FIRED** (441 cells, ~60 min CPU): n_cells 441, **n_passing 0,
+  corner_area_fraction 0.0** → C2 FAIL (frozen gate required 0 < frac < 0.05).
+  Corner EMPTY, not small: the claim's fixed-rule premise fails at the 0-area end.
+- Fail-mode breakdown (booked from coarse.jsonl): n≥100 in 395/441 cells (measurement
+  adequate); self-KS ≤ 0.10 in 26/441 — ALL in steep subcritical-spread regimes
+  (τ̂ 2.35–4.49, NOT the SOC bracket); τ̂ ∈ [1.0,1.4] in 105/441 (high-p rows,
+  densities 0.41–0.88, clustered 0.41–0.53) but their best self-KS is 0.111+.
+  **KS ∧ τ conjunction: 0 cells.** Near-miss: p=0.81, q=7.94e-4, τ̂=1.3023,
+  self-KS=0.1112 (bar 0.10), n=255, density 0.503.
+- Phase 0b refine: not runnable (no corner) — booked as-is.
+- Phase 1a/1b: pre-booked FAIL path executed (calib status NO_CORNER;
+  eval_summary claim_verdict FAIL, fail_path NO_CORNER_REFERENCE; C1/C3
+  unevaluable — no reference/SP exists).
+- **CLAIM VERDICT: FAIL** (C2 false; C1/C3 unevaluable per pre-reg).
+- **Diagnosis (timescale separation, not gate artifact)**: at the τ-bracket cells,
+  lightning interval 150 steps vs mean fuel regrowth 1/q ≈ 1259 steps (f/q ≈ 8.4).
+  Fires arrive ~8× faster than fuel rebuilds → tree density pinned ~0.50, below the
+  2D site-percolation threshold 0.59 → sampled cluster-size distribution is
+  subcritical-and-curved: steep enough to miss the τ bracket when it fits (low p),
+  bracketed but too curved to pass KS when spread is strong (high p). Classic DS
+  separation requirement f/q → 0 is unreachable inside this protocol's budget:
+  lowering f_star... lowering f_step starves the n≥100 avalanche bar within T=60k
+  (at f_step = q/10 ≈ 8e-5, expected fires ≈ 4 in the 50k window). The frozen
+  lightning rate — chosen a priori at 1/150 — is the binding constraint, not the
+  PID composition (which was never reached: no reference to servo toward).
+- **PIDFIRE-2 revision note (next slice, not run here)**: tie ignition to the fuel
+  schedule (f_step = c·q with c ≤ 0.1, or lightning interval = max(150, κ/q)) and/or
+  sweep f as a third axis, and/or raise T toward 3–5×10⁵ steps; alternatively
+  self-reference the PID arm against its OWN best fixed cell (report-only). The
+  composition question (servo ignition + integrator fuel schedule ⇒ SOC size law)
+  remains OPEN and untested by this slice.
+- Pinned instruments (fire-time): pidfire_common.py 6a6097aa1a35bda0 (sha256 prefix),
+  pidfire_sweep.py dd0d6888d6e37261, pidfire_pid.py 09f988e24fc36a7d (post-run fix:
+  winner=None booking branch added AFTER phase-0 verdict, no dynamics touched —
+  tests/test_pidfire.py 15/15 OK at booking).

@@ -1,0 +1,28 @@
+[coarse] p-row 1/21 done (175s)
+[coarse] p-row 2/21 done (348s)
+[coarse] p-row 3/21 done (526s)
+[coarse] p-row 4/21 done (702s)
+[coarse] p-row 5/21 done (875s)
+[coarse] p-row 6/21 done (1049s)
+[coarse] p-row 7/21 done (1223s)
+[coarse] p-row 8/21 done (1397s)
+[coarse] p-row 9/21 done (1571s)
+[coarse] p-row 10/21 done (1745s)
+[coarse] p-row 11/21 done (1917s)
+[coarse] p-row 12/21 done (2091s)
+[coarse] p-row 13/21 done (2265s)
+[coarse] p-row 14/21 done (2438s)
+[coarse] p-row 15/21 done (2620s)
+[coarse] p-row 16/21 done (2807s)
+[coarse] p-row 17/21 done (2985s)
+[coarse] p-row 18/21 done (3158s)
+[coarse] p-row 19/21 done (3333s)
+[coarse] p-row 20/21 done (3509s)
+[coarse] p-row 21/21 done (3826s)
+{
+ "experiment": "PIDFIRE-1 phase0 coarse",
+ "n_cells": 441,
+ "n_passing": 0,
+ "corner_area_fraction": 0.0,
+ "corner_rule": "argmin self_ks among soc_gate cells, tie-break larger n_sizes"
+}

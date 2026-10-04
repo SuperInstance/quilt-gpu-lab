@@ -134,9 +134,30 @@ def eval_ic(winner: dict, freeze: dict, seed: int, ref_sizes):
 def phase_eval():
     freeze = json.loads(FREEZE.read_text())
     calib = json.loads((OUT / "calib.json").read_text())
-    winner = calib["winner"]
-    if winner is None:
-        print("ALL_DEADLOCK calibration — C1 FAIL booked in summary")
+    winner = calib.get("winner")
+    if winner is None or "corner" not in freeze:
+        # Pre-booked FAIL path (pre-reg): no corner => no SP/reference => C1/C3
+        # unevaluable; claim verdict FAIL. Booked, not crashed.
+        summary = {
+            "experiment": "PIDFIRE-1",
+            "winner_combo": None,
+            "n_eval_ics": 0,
+            "reach_fraction": None,
+            "median_tau_eval": None,
+            "tau_ref": freeze.get("tau_ref"),
+            "corner_area_fraction": freeze.get("corner_area_fraction"),
+            "C1_pid_reach": False,
+            "C2_fixed_corner": bool(0.0 < (freeze.get("corner_area_fraction") or 0.0) < 0.05),
+            "C3_exponent": False,
+            "claim_verdict": "FAIL",
+            "fail_path": "NO_CORNER_REFERENCE" if "corner" not in freeze else "ALL_DEADLOCK",
+            "note": "phase 0 corner empty (or calibration deadlocked): reference/SP "
+                    "undefined; C1/C3 unevaluable per pre-reg; claim FAIL booked.",
+        }
+        OUT.mkdir(parents=True, exist_ok=True)
+        (OUT / "eval_summary.json").write_text(json.dumps(summary, indent=1))
+        print(json.dumps(summary, indent=1))
+        return
     ref_sizes = freeze["reference_sizes"]
     rows = []
     t0 = time.time()

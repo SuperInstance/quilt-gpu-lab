@@ -1,0 +1,15 @@
+{
+ "experiment": "PIDFIRE-1",
+ "winner_combo": null,
+ "n_eval_ics": 0,
+ "reach_fraction": null,
+ "median_tau_eval": null,
+ "tau_ref": null,
+ "corner_area_fraction": 0.0,
+ "C1_pid_reach": false,
+ "C2_fixed_corner": false,
+ "C3_exponent": false,
+ "claim_verdict": "FAIL",
+ "fail_path": "NO_CORNER_REFERENCE",
+ "note": "phase 0 corner empty (or calibration deadlocked): reference/SP undefined; C1/C3 unevaluable per pre-reg; claim FAIL booked."
+}
