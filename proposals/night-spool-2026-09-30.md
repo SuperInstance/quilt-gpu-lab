@@ -72,6 +72,12 @@
   PRs/issues/EMBASSY; pong #49 unchanged. (C) not due (newest OURS = QG7b repro PASS). Rotation
   next wake: (B) FW-1-successor / XM-1 / SS-1 per queue order; GPU free (QG1d/QG4/MC-1).
 
+## XM-1 (2026-10-04 0511Z / 21:1x AKDT day-conductor slice) — DONE, docs-only
+- (B) slot per SCOUT-41 rotation. Read quilt-matrix engine/guards.py + guard_registry.jsonl (commit 0cb7552, read-only). Full note: proposals/runs/XM-1-guard-registry-vs-repro-2026-10-04.md.
+- Verdict: their registry's transferable lesson = **verdict→instrument index** (wholesale-void must be a lookup, not archaeology). Spawned **VX-1** (CPU ~30m, pre-reg first): tools/verdict_index.py over the 9 FW-1-censused bookings; gate = taint query reproduces FW-1 verdict sets exactly.
+- No GPU fired (lane idle, rotation honored). (C) not due: newest OURS booking remains QG7b (repro PASS 12:2x); HEAD since is foreign lanes + spool/docs. Manifest re-seal still deferred (foreign d12k2–d12r untracked live lane persists). No running processes; nothing duplicated.
+- Rotation next wake: (B) VX-1 or SS-1/IND-1 per queue order; GPU open (QG1d/QG4/MC-1).
+
 ## SCOUT-36 (2026-10-03 2111Z) — full text proposals/runs/SCOUT-36-fleet-push-2026-10-03-2111Z.md
 - No CONTRADICT this sweep (window post-SCOUT-35: pong #107 playloop lane, quilt-dba wave-69 CI hygiene
   = CI-1 corroborate, naDir FIRST CODE → hedge trigger fired, fleet-triage edge-watch #17-#22 all
