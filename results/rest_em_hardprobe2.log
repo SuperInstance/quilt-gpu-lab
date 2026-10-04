@@ -1,0 +1,18 @@
+[01:19:37] [verifier] self-test: accepts 8/8 correct, rejects 12/12 wrong -> PASS
+[01:19:37] [tasks] pool=12 heldout=8 contamination_overlap=0
+[01:19:39] [device] cuda (free=5.32GB/total=6.44GB)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<01:18,  3.70it/s]Loading weights:   1%|          | 3/290 [00:00<00:38,  7.54it/s]Loading weights:   6%|▌         | 16/290 [00:00<00:07, 37.22it/s]Loading weights:  13%|█▎        | 39/290 [00:00<00:02, 87.63it/s]Loading weights:  22%|██▏       | 64/290 [00:00<00:01, 118.31it/s]Loading weights:  27%|██▋       | 78/290 [00:00<00:01, 120.47it/s]Loading weights:  32%|███▏      | 92/290 [00:01<00:01, 118.71it/s]Loading weights:  38%|███▊      | 111/290 [00:01<00:01, 128.58it/s]Loading weights:  43%|████▎     | 125/290 [00:01<00:01, 119.43it/s]Loading weights:  51%|█████     | 148/290 [00:01<00:01, 134.86it/s]Loading weights:  59%|█████▉    | 172/290 [00:01<00:00, 160.58it/s]Loading weights:  65%|██████▌   | 189/290 [00:01<00:00, 145.65it/s]Loading weights:  71%|███████   | 205/290 [00:01<00:00, 146.38it/s]Loading weights:  76%|███████▌  | 221/290 [00:02<00:00, 104.38it/s]Loading weights:  84%|████████▍ | 244/290 [00:02<00:00, 120.28it/s]Loading weights:  89%|████████▉ | 258/290 [00:02<00:00, 108.20it/s]Loading weights:  93%|█████████▎| 270/290 [00:02<00:00, 101.96it/s]Loading weights: 100%|██████████| 290/290 [00:02<00:00, 113.46it/s]
+[01:19:50] [load] Qwen/Qwen2.5-0.5B-Instruct mode=qlora-nf4 lora={'impl': 'peft', 'trainable_params': 737280}
+[01:20:09] [eval:base-hf] pass@1 0.500 (arith 0.75, symb 0.25) n=8
+[01:20:19] [eval:base-ollama-parity] ollama pass@1 0.625 n=8 (transport failures: 0)
+[01:20:25] [eval:parity-hf-subset] pass@1 0.500 (arith 0.75, symb 0.25) n=8
+[01:20:25] [parity] |ollama - hf| = 0.125 (registered tolerance 0.12)
+[01:20:25] [round 0] generate via hf(current policy), n_cand=4
+[01:20:55] [round 0] gen=48 verified=15 (31.2%) winners=6 tasks_covered=6/12 transport_fail=0
+[01:20:55] [round 0] SFT on 6 winner samples (vram_free=4.19GB before train)
+[01:20:55] [train] ramp receipt: 3 warmup fwd passes done
+[01:20:56] [round 0] train done: {'steps': 1, 'micro_batches': 2, 'loss_first10': 0.2134, 'loss_last10': 0.2134}
+[01:21:00] [eval:round0-post] pass@1 0.500 (arith 0.75, symb 0.25) n=8
+[01:21:00] [round 0] held-out pass@1 0.500 -> 0.500 (Δ +0.000)
+[01:21:02] [done] cycles=1 base=0.5 final=0.5 Δ=0.0 -> results/rest_em_hardprobe2.json

@@ -1,0 +1,302 @@
+=== FULL RUN START 2026-10-02T07:34:38-08:00 | A1 hard distribution, 4 fresh-process arms (T/C1/C2/N2), round-0 via HF (--skip-ollama logged as deviation per post-smoke annotation 3) ===
+=== ARM T (treatment) 2026-10-02T07:34:38-08:00 ===
+[07:34:43] [verifier] self-test: accepts 8/8 correct, rejects 12/12 wrong -> PASS
+[07:34:43] [tasks] pool=96 heldout=96 contamination_overlap=0
+[07:34:43] [device] cuda (requested=cuda)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<01:00,  4.81it/s]Loading weights:   1%|          | 3/290 [00:00<00:40,  7.14it/s]Loading weights:  10%|█         | 29/290 [00:00<00:03, 75.75it/s]Loading weights:  22%|██▏       | 64/290 [00:00<00:01, 148.93it/s]Loading weights:  39%|███▊      | 112/290 [00:00<00:00, 241.63it/s]Loading weights:  56%|█████▌    | 161/290 [00:00<00:00, 308.67it/s]Loading weights:  73%|███████▎  | 213/290 [00:00<00:00, 368.18it/s]Loading weights:  93%|█████████▎| 269/290 [00:01<00:00, 423.68it/s]Loading weights: 100%|██████████| 290/290 [00:01<00:00, 271.35it/s]
+[07:34:57] [load] Qwen/Qwen2.5-0.5B-Instruct mode=qlora-nf4 lora={'impl': 'peft', 'trainable_params': 737280}
+[07:36:00] [eval:base-hf] pass@1 0.688 (arith 0.7083, symb 0.6667) n=96
+[07:36:00] [eval:base-ollama-parity] ollama pass@1 0.000 n=8 (transport failures: 8)
+[07:36:03] [eval:parity-hf-subset] pass@1 0.875 (arith 0.8333, symb 1.0) n=8
+[07:36:03] [parity] |ollama - hf| = 0.875 (registered tolerance 0.12)
+[07:36:03] [round 0] generate via hf(current policy), n_cand=8
+[07:41:17] [round 0] gen=768 verified=336 (43.8%) winners=91 tasks_covered=80/96 transport_fail=0
+[07:41:17] [round 0] SFT on 91 winner samples (vram_free=4.19GB before train)
+[07:41:17] [train] ramp receipt: 3 warmup fwd passes done
+[07:42:12] [train] step 20/150 loss 0.2793
+[07:42:15] [round 0] train done: {'steps': 22, 'micro_batches': 46, 'loss_first10': 0.2876, 'loss_last10': 0.2615}
+[07:43:07] [eval:round0-post] pass@1 0.635 (arith 0.6667, symb 0.6042) n=96
+[07:43:07] [round 0] held-out pass@1 0.688 -> 0.635 (Δ -0.052)
+[07:43:08] [round 1] generate via hf(current policy), n_cand=8
+[07:47:58] [round 1] gen=768 verified=401 (52.2%) winners=104 tasks_covered=86/96 transport_fail=0
+[07:47:58] [round 1] SFT on 104 winner samples (vram_free=0.00GB before train)
+[07:47:58] [train] ramp receipt: 3 warmup fwd passes done
+[07:48:41] [train] step 20/150 loss 0.2685
+[07:48:58] [round 1] train done: {'steps': 26, 'micro_batches': 52, 'loss_first10': 0.3031, 'loss_last10': 0.3}
+[07:49:38] [eval:round1-post] pass@1 0.562 (arith 0.6042, symb 0.5208) n=96
+[07:49:38] [round 1] held-out pass@1 0.635 -> 0.562 (Δ -0.073)
+[07:49:39] [round 2] generate via hf(current policy), n_cand=8
+[07:53:41] [round 2] gen=768 verified=369 (48.0%) winners=105 tasks_covered=83/96 transport_fail=0
+[07:53:41] [round 2] SFT on 105 winner samples (vram_free=0.00GB before train)
+[07:53:42] [train] ramp receipt: 3 warmup fwd passes done
+[07:54:19] [train] step 20/150 loss 0.2622
+[07:54:35] [round 2] train done: {'steps': 26, 'micro_batches': 54, 'loss_first10': 0.3166, 'loss_last10': 0.2441}
+[07:55:18] [eval:round2-post] pass@1 0.615 (arith 0.6667, symb 0.5625) n=96
+[07:55:18] [round 2] held-out pass@1 0.562 -> 0.615 (Δ +0.052)
+[07:55:19] [done] cycles=3 base=0.6875 final=0.6146 Δ=-0.0729 -> results/rest_em_full_T.json
+=== ARM T done rc=0 2026-10-02T07:55:25-08:00 ===
+=== ARM C1 (no-finetune) 2026-10-02T07:55:25-08:00 ===
+[07:55:28] [verifier] self-test: accepts 8/8 correct, rejects 12/12 wrong -> PASS
+[07:55:28] [tasks] pool=96 heldout=96 contamination_overlap=0
+[07:55:28] [device] cuda (requested=cuda)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<04:46,  1.01it/s]Loading weights:   1%|          | 3/290 [00:01<01:31,  3.15it/s]Loading weights:   5%|▌         | 15/290 [00:01<00:13, 19.81it/s]Loading weights:   9%|▉         | 27/290 [00:01<00:07, 36.58it/s]Loading weights:  14%|█▍        | 40/290 [00:01<00:04, 53.47it/s]Loading weights:  18%|█▊        | 52/290 [00:01<00:03, 61.61it/s]Loading weights:  22%|██▏       | 63/290 [00:01<00:03, 69.10it/s]Loading weights:  25%|██▌       | 73/290 [00:01<00:02, 76.01it/s]Loading weights:  29%|██▊       | 83/290 [00:01<00:02, 79.51it/s]Loading weights:  32%|███▏      | 93/290 [00:02<00:02, 78.71it/s]Loading weights:  38%|███▊      | 111/290 [00:02<00:01, 100.58it/s]Loading weights:  42%|████▏     | 123/290 [00:02<00:01, 98.94it/s] Loading weights:  47%|████▋     | 136/290 [00:02<00:01, 97.76it/s]Loading weights:  51%|█████     | 148/290 [00:02<00:01, 94.22it/s]Loading weights:  55%|█████▌    | 160/290 [00:02<00:01, 97.01it/s]Loading weights:  59%|█████▉    | 171/290 [00:02<00:01, 98.26it/s]Loading weights:  63%|██████▎   | 183/290 [00:02<00:01, 98.32it/s]Loading weights:  67%|██████▋   | 195/290 [00:03<00:00, 96.53it/s]Loading weights:  71%|███████▏  | 207/290 [00:03<00:00, 96.01it/s]Loading weights:  76%|███████▌  | 219/290 [00:03<00:00, 95.77it/s]Loading weights:  80%|███████▉  | 231/290 [00:03<00:00, 97.99it/s]Loading weights:  87%|████████▋ | 251/290 [00:03<00:00, 123.42it/s]Loading weights:  91%|█████████ | 264/290 [00:03<00:00, 116.15it/s]Loading weights:  95%|█████████▌| 276/290 [00:03<00:00, 112.34it/s]Loading weights:  99%|█████████▉| 288/290 [00:03<00:00, 109.46it/s]Loading weights: 100%|██████████| 290/290 [00:03<00:00, 74.27it/s] 
+[07:55:41] [load] Qwen/Qwen2.5-0.5B-Instruct mode=qlora-nf4 lora={'impl': 'peft', 'trainable_params': 737280}
+[07:57:04] [eval:base-hf] pass@1 0.688 (arith 0.7083, symb 0.6667) n=96
+[07:57:04] [eval:base-ollama-parity] ollama pass@1 0.000 n=8 (transport failures: 8)
+[07:57:07] [eval:parity-hf-subset] pass@1 0.875 (arith 0.8333, symb 1.0) n=8
+[07:57:07] [parity] |ollama - hf| = 0.875 (registered tolerance 0.12)
+[07:57:07] [round 0] generate via hf(current policy), n_cand=8
+[08:03:03] [round 0] gen=768 verified=336 (43.8%) winners=91 tasks_covered=80/96 transport_fail=0
+[08:04:08] [eval:C1-round0-base-unchanged] pass@1 0.688 (arith 0.7083, symb 0.6667) n=96
+[08:04:08] [C1 round 0] bookkeeping gen=768 verified=336 winners=91; base pass@1 0.688 -> 0.688
+[08:04:08] [round 1] generate via hf(current policy), n_cand=8
+[08:09:52] [round 1] gen=768 verified=336 (43.8%) winners=91 tasks_covered=80/96 transport_fail=0
+[08:11:00] [eval:C1-round1-base-unchanged] pass@1 0.688 (arith 0.7083, symb 0.6667) n=96
+[08:11:00] [C1 round 1] bookkeeping gen=768 verified=336 winners=91; base pass@1 0.688 -> 0.688
+[08:11:00] [round 2] generate via hf(current policy), n_cand=8
+[08:16:38] [round 2] gen=768 verified=336 (43.8%) winners=91 tasks_covered=80/96 transport_fail=0
+[08:17:47] [eval:C1-round2-base-unchanged] pass@1 0.688 (arith 0.7083, symb 0.6667) n=96
+[08:17:47] [C1 round 2] bookkeeping gen=768 verified=336 winners=91; base pass@1 0.688 -> 0.688
+[08:17:47] [done arm=c1] base=0.6875 final=0.6875 -> results/rest_em_full_C1.json
+=== ARM C1 done rc=0 2026-10-02T08:17:51-08:00 ===
+=== ARM C2 (oracle-SFT 48 demos, steps=22) 2026-10-02T08:17:51-08:00 ===
+[08:17:54] [verifier] self-test: accepts 8/8 correct, rejects 12/12 wrong -> PASS
+[08:17:55] [tasks] pool=96 heldout=96 contamination_overlap=0
+[08:17:55] [device] cuda (requested=cuda)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<01:15,  3.84it/s]Loading weights:   1%|          | 3/290 [00:00<00:33,  8.68it/s]Loading weights:  10%|▉         | 28/290 [00:00<00:03, 81.47it/s]Loading weights:  18%|█▊        | 52/290 [00:00<00:01, 123.76it/s]Loading weights:  26%|██▌       | 76/290 [00:00<00:01, 153.45it/s]Loading weights:  34%|███▍      | 100/290 [00:00<00:01, 176.54it/s]Loading weights:  43%|████▎     | 125/290 [00:00<00:00, 196.17it/s]Loading weights:  51%|█████▏    | 149/290 [00:01<00:00, 202.77it/s]Loading weights:  63%|██████▎   | 184/290 [00:01<00:00, 232.62it/s]Loading weights:  72%|███████▏  | 209/290 [00:01<00:00, 232.81it/s]Loading weights:  80%|████████  | 233/290 [00:01<00:00, 215.26it/s]Loading weights:  88%|████████▊ | 255/290 [00:01<00:00, 216.44it/s]Loading weights:  96%|█████████▌| 279/290 [00:01<00:00, 217.14it/s]Loading weights: 100%|██████████| 290/290 [00:01<00:00, 174.74it/s]
+[08:18:06] [load] Qwen/Qwen2.5-0.5B-Instruct mode=qlora-nf4 lora={'impl': 'peft', 'trainable_params': 737280}
+[08:19:13] [eval:base-hf] pass@1 0.688 (arith 0.7083, symb 0.6667) n=96
+[08:19:13] [eval:base-ollama-parity] ollama pass@1 0.000 n=8 (transport failures: 8)
+[08:19:16] [eval:parity-hf-subset] pass@1 0.875 (arith 0.8333, symb 1.0) n=8
+[08:19:16] [parity] |ollama - hf| = 0.875 (registered tolerance 0.12)
+[08:19:16] [C2] oracle demo self-test: 48/48 authored demos verify against their own targets
+[08:19:16] [train] ramp receipt: 3 warmup fwd passes done
+[08:19:33] [train] step 20/22 loss 0.4125
+[08:20:24] [eval:C2-post-oracle-sft] pass@1 0.562 (arith 0.5, symb 0.625) n=96
+[08:20:24] [done arm=c2] pre=0.6875 post=0.5625 -> results/rest_em_full_C2.json
+=== ARM C2 done rc=0 2026-10-02T08:20:27-08:00 ===
+=== ARM N2 (shuffle-label control, 30 steps) 2026-10-02T08:20:27-08:00 ===
+[08:20:28] [verifier] self-test: accepts 8/8 correct, rejects 12/12 wrong -> PASS
+[08:20:28] [tasks] pool=96 heldout=96 contamination_overlap=0
+[08:20:28] [device] cuda (requested=cuda)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   1%|          | 3/290 [00:00<00:16, 16.92it/s]Loading weights:  26%|██▌       | 75/290 [00:00<00:00, 326.34it/s]Loading weights:  55%|█████▍    | 159/290 [00:00<00:00, 522.74it/s]Loading weights:  84%|████████▍ | 244/290 [00:00<00:00, 628.73it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 532.34it/s]
+[08:20:37] [load] Qwen/Qwen2.5-0.5B-Instruct mode=qlora-nf4 lora={'impl': 'peft', 'trainable_params': 737280}
+[08:21:45] [eval:base-hf] pass@1 0.688 (arith 0.7083, symb 0.6667) n=96
+[08:21:45] [eval:base-ollama-parity] ollama pass@1 0.000 n=8 (transport failures: 8)
+[08:21:47] [eval:parity-hf-subset] pass@1 0.875 (arith 0.8333, symb 1.0) n=8
+[08:21:47] [parity] |ollama - hf| = 0.875 (registered tolerance 0.12)
+                                                                                                                              === ARM N2 RELAUNCH (host crash ~08:31 killed arm post-base-eval; T/C1/C2 JSONs intact from same attempt-2 window; exact frozen line, fresh process per prereg) 2026-10-02T08:43:14-08:00 ===
+[08:43:17] [verifier] self-test: accepts 8/8 correct, rejects 12/12 wrong -> PASS
+[08:43:18] [tasks] pool=96 heldout=96 contamination_overlap=0
+[08:43:18] [device] cuda (requested=cuda)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<01:00,  4.81it/s]Loading weights:   1%|          | 3/290 [00:00<00:36,  7.80it/s]Loading weights:  13%|█▎        | 38/290 [00:00<00:02, 103.39it/s]Loading weights:  29%|██▊       | 83/290 [00:00<00:01, 197.47it/s]Loading weights:  51%|█████     | 147/290 [00:00<00:00, 316.93it/s]Loading weights:  68%|██████▊   | 197/290 [00:00<00:00, 363.52it/s]Loading weights:  92%|█████████▏| 267/290 [00:00<00:00, 448.68it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 296.65it/s]
+[08:43:30] [load] Qwen/Qwen2.5-0.5B-Instruct mode=qlora-nf4 lora={'impl': 'peft', 'trainable_params': 737280}
+[08:44:35] [eval:base-hf] pass@1 0.688 (arith 0.7083, symb 0.6667) n=96
+[08:44:35] [eval:base-ollama-parity] ollama pass@1 0.000 n=8 (transport failures: 8)
+[08:44:37] [eval:parity-hf-subset] pass@1 0.875 (arith 0.8333, symb 1.0) n=8
+[08:44:37] [parity] |ollama - hf| = 0.875 (registered tolerance 0.12)
+[08:50:17] [N2] generated 768, verified-ok 336, rejected pool = 432
+[08:50:18] [train] ramp receipt: 3 warmup fwd passes done
+[08:51:27] [train] step 20/30 loss 0.4642
+Error out of memory at line 93 in file /src/csrc/ops.cu
+/usr/lib/python3.14/multiprocessing/resource_tracker.py:396: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-1238-az4za8_c'}
+  warnings.warn(
+=== ARM N2 RELAUNCH-2 (attempt-2b: relaunch-1 OOM at train step 20/30, bitsandbytes ops.cu:93; ENV-LEVEL fix PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True, zero harness change; annotated deviation) 2026-10-02T10:11:08-08:00 ===
+[10:11:11] [verifier] self-test: accepts 8/8 correct, rejects 12/12 wrong -> PASS
+[10:11:11] [tasks] pool=96 heldout=96 contamination_overlap=0
+[10:11:11] [device] cuda (requested=cuda)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:01<06:19,  1.31s/it]Loading weights:   1%|          | 3/290 [00:01<01:56,  2.46it/s]Loading weights:   4%|▍         | 11/290 [00:01<00:24, 11.32it/s]Loading weights:   6%|▌         | 17/290 [00:01<00:15, 17.49it/s]Loading weights:  10%|▉         | 28/290 [00:01<00:08, 32.06it/s]Loading weights:  13%|█▎        | 39/290 [00:01<00:05, 45.90it/s]Loading weights:  16%|█▌        | 47/290 [00:02<00:04, 52.17it/s]Loading weights:  19%|█▉        | 55/290 [00:02<00:04, 54.57it/s]Loading weights:  22%|██▏       | 64/290 [00:02<00:03, 61.62it/s]Loading weights:  26%|██▌       | 75/290 [00:02<00:02, 72.18it/s]Loading weights:  29%|██▉       | 84/290 [00:02<00:02, 76.06it/s]Loading weights:  32%|███▏      | 93/290 [00:02<00:02, 72.48it/s]Loading weights:  35%|███▍      | 101/290 [00:02<00:02, 67.71it/s]Loading weights:  39%|███▊      | 112/290 [00:02<00:02, 77.33it/s]Loading weights:  42%|████▏     | 123/290 [00:02<00:01, 84.64it/s]Loading weights:  46%|████▌     | 132/290 [00:03<00:01, 85.29it/s]Loading weights:  49%|████▊     | 141/290 [00:03<00:01, 78.34it/s]Loading weights:  52%|█████▏    | 150/290 [00:03<00:01, 73.16it/s]Loading weights:  55%|█████▌    | 160/290 [00:03<00:01, 79.05it/s]Loading weights:  59%|█████▉    | 171/290 [00:03<00:01, 85.52it/s]Loading weights:  62%|██████▏   | 180/290 [00:03<00:01, 85.48it/s]Loading weights:  65%|██████▌   | 189/290 [00:03<00:01, 78.50it/s]Loading weights:  68%|██████▊   | 198/290 [00:03<00:01, 74.08it/s]Loading weights:  72%|███████▏  | 208/290 [00:04<00:01, 79.91it/s]Loading weights:  76%|███████▌  | 219/290 [00:04<00:00, 85.99it/s]Loading weights:  79%|███████▊  | 228/290 [00:04<00:00, 85.24it/s]Loading weights:  82%|████████▏ | 237/290 [00:04<00:00, 77.37it/s]Loading weights:  84%|████████▍ | 245/290 [00:04<00:00, 71.29it/s]Loading weights:  88%|████████▊ | 256/290 [00:04<00:00, 80.17it/s]Loading weights:  92%|█████████▏| 267/290 [00:04<00:00, 86.40it/s]Loading weights:  95%|█████████▌| 276/290 [00:04<00:00, 86.52it/s]Loading weights:  98%|█████████▊| 285/290 [00:05<00:00, 79.27it/s]Loading weights: 100%|██████████| 290/290 [00:05<00:00, 57.70it/s]
+[10:11:26] [load] Qwen/Qwen2.5-0.5B-Instruct mode=qlora-nf4 lora={'impl': 'peft', 'trainable_params': 737280}
+[10:12:34] [eval:base-hf] pass@1 0.688 (arith 0.7083, symb 0.6667) n=96
+[10:12:34] [eval:base-ollama-parity] ollama pass@1 0.000 n=8 (transport failures: 8)
+[10:12:37] [eval:parity-hf-subset] pass@1 0.875 (arith 0.8333, symb 1.0) n=8
+[10:12:37] [parity] |ollama - hf| = 0.875 (registered tolerance 0.12)
+[10:18:12] [N2] generated 768, verified-ok 336, rejected pool = 432
+[10:18:12] [train] ramp receipt: 3 warmup fwd passes done
+Traceback (most recent call last):
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/rest_em_loop.py", line 1098, in <module>
+    main()
+    ~~~~^^
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/rest_em_loop.py", line 991, in main
+    tr = sft_train(model, tok, rej_samples, device, lr=args.lr, epochs=2,
+                   batch_size=args.batch_size, accum=args.grad_accum,
+                   max_steps=30, seed=args.seed_shuffle_probe)
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/rest_em_loop.py", line 457, in sft_train
+    loss = F.cross_entropy(logits[:, :-1].float().reshape(-1, logits.shape[-1]),
+                           lab[:, 1:].reshape(-1), ignore_index=-100)
+  File "/home/eileen/venvs/elephant-gpu/lib/python3.14/site-packages/torch/nn/functional.py", line 3561, in cross_entropy
+    return torch._C._nn.cross_entropy_loss(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<5 lines>...
+        label_smoothing,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+RuntimeError: CUDA driver error: device not ready
+=== ARM N2 RELAUNCH-3 (attempt-2c: 2b killed by CUDA driver 'device not ready' mid-train — box-level, not OOM; box now quiet, env fix retained, solo GPU) 2026-10-02T10:20:04-08:00 ===
+[10:20:06] [verifier] self-test: accepts 8/8 correct, rejects 12/12 wrong -> PASS
+[10:20:06] [tasks] pool=96 heldout=96 contamination_overlap=0
+[10:20:06] [device] cuda (requested=cuda)
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<00:39,  7.26it/s]Loading weights:   1%|          | 3/290 [00:00<00:24, 11.76it/s]Loading weights:  18%|█▊        | 53/290 [00:00<00:01, 194.54it/s]Loading weights:  42%|████▏     | 123/290 [00:00<00:00, 368.15it/s]Loading weights:  62%|██████▏   | 180/290 [00:00<00:00, 434.85it/s]Loading weights:  80%|████████  | 233/290 [00:00<00:00, 457.30it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 381.89it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[10:20:14] [load] Qwen/Qwen2.5-0.5B-Instruct mode=qlora-nf4 lora={'impl': 'peft', 'trainable_params': 737280}
+[10:21:12] [eval:base-hf] pass@1 0.688 (arith 0.7083, symb 0.6667) n=96
+[10:21:12] [eval:base-ollama-parity] ollama pass@1 0.000 n=8 (transport failures: 8)
+[10:21:14] [eval:parity-hf-subset] pass@1 0.875 (arith 0.8333, symb 1.0) n=8
+[10:21:14] [parity] |ollama - hf| = 0.875 (registered tolerance 0.12)
+[10:26:17] [N2] generated 768, verified-ok 336, rejected pool = 432
+[10:26:17] [train] ramp receipt: 3 warmup fwd passes done
+Traceback (most recent call last):
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/rest_em_loop.py", line 1098, in <module>
+    main()
+    ~~~~^^
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/rest_em_loop.py", line 991, in main
+    tr = sft_train(model, tok, rej_samples, device, lr=args.lr, epochs=2,
+                   batch_size=args.batch_size, accum=args.grad_accum,
+                   max_steps=30, seed=args.seed_shuffle_probe)
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/rest_em_loop.py", line 457, in sft_train
+    loss = F.cross_entropy(logits[:, :-1].float().reshape(-1, logits.shape[-1]),
+                           lab[:, 1:].reshape(-1), ignore_index=-100)
+  File "/home/eileen/venvs/elephant-gpu/lib/python3.14/site-packages/torch/nn/functional.py", line 3561, in cross_entropy
+    return torch._C._nn.cross_entropy_loss(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<5 lines>...
+        label_smoothing,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+RuntimeError: CUDA driver error: device not ready
+=== ARM N2 RELAUNCH-4 (attempt-2d: 2c killed by same CUDA 'device not ready' at 10:26; GPU idle+verified healthy 11:45, solo) 2026-10-02T11:45:34-08:00 ===
+[11:45:37] [verifier] self-test: accepts 8/8 correct, rejects 12/12 wrong -> PASS
+[11:45:37] [tasks] pool=96 heldout=96 contamination_overlap=0
+[11:45:37] [device] cuda (requested=cuda)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:01<06:56,  1.44s/it]Loading weights:   1%|          | 3/290 [00:01<02:05,  2.28it/s]Loading weights:   4%|▍         | 11/290 [00:01<00:26, 10.58it/s]Loading weights:   6%|▌         | 17/290 [00:01<00:16, 16.42it/s]Loading weights:  10%|▉         | 28/290 [00:01<00:08, 30.30it/s]Loading weights:  13%|█▎        | 39/290 [00:02<00:05, 43.44it/s]Loading weights:  16%|█▌        | 47/290 [00:02<00:04, 49.50it/s]Loading weights:  19%|█▉        | 55/290 [00:02<00:04, 51.89it/s]Loading weights:  22%|██▏       | 64/290 [00:02<00:03, 58.63it/s]Loading weights:  26%|██▌       | 75/290 [00:02<00:03, 68.89it/s]Loading weights:  29%|██▉       | 84/290 [00:02<00:02, 72.89it/s]Loading weights:  32%|███▏      | 93/290 [00:02<00:02, 69.84it/s]Loading weights:  35%|███▍      | 101/290 [00:02<00:02, 65.03it/s]Loading weights:  39%|███▊      | 112/290 [00:03<00:02, 74.10it/s]Loading weights:  42%|████▏     | 123/290 [00:03<00:02, 81.74it/s]Loading weights:  46%|████▌     | 132/290 [00:03<00:01, 82.63it/s]Loading weights:  49%|████▊     | 141/290 [00:03<00:01, 74.56it/s]Loading weights:  51%|█████▏    | 149/290 [00:03<00:02, 68.14it/s]Loading weights:  55%|█████▌    | 160/290 [00:03<00:01, 76.29it/s]Loading weights:  59%|█████▉    | 171/290 [00:03<00:01, 82.94it/s]Loading weights:  62%|██████▏   | 180/290 [00:03<00:01, 83.21it/s]Loading weights:  65%|██████▌   | 189/290 [00:04<00:01, 76.49it/s]Loading weights:  68%|██████▊   | 197/290 [00:04<00:01, 69.89it/s]Loading weights:  72%|███████▏  | 208/290 [00:04<00:01, 77.22it/s]Loading weights:  76%|███████▌  | 219/290 [00:04<00:00, 83.49it/s]Loading weights:  79%|███████▊  | 228/290 [00:04<00:00, 84.13it/s]Loading weights:  82%|████████▏ | 237/290 [00:04<00:00, 76.99it/s]Loading weights:  84%|████████▍ | 245/290 [00:04<00:00, 69.13it/s]Loading weights:  88%|████████▊ | 256/290 [00:04<00:00, 77.40it/s]Loading weights:  92%|█████████▏| 267/290 [00:05<00:00, 83.52it/s]Loading weights:  95%|█████████▌| 276/290 [00:05<00:00, 83.20it/s]Loading weights:  98%|█████████▊| 285/290 [00:05<00:00, 75.78it/s]Loading weights: 100%|██████████| 290/290 [00:05<00:00, 54.92it/s]
+[11:45:53] [load] Qwen/Qwen2.5-0.5B-Instruct mode=qlora-nf4 lora={'impl': 'peft', 'trainable_params': 737280}
+[11:46:52] [eval:base-hf] pass@1 0.688 (arith 0.7083, symb 0.6667) n=96
+[11:46:52] [eval:base-ollama-parity] ollama pass@1 0.000 n=8 (transport failures: 8)
+[11:46:54] [eval:parity-hf-subset] pass@1 0.875 (arith 0.8333, symb 1.0) n=8
+[11:46:54] [parity] |ollama - hf| = 0.875 (registered tolerance 0.12)
+[11:51:44] [N2] generated 768, verified-ok 336, rejected pool = 432
+[11:51:44] [train] ramp receipt: 3 warmup fwd passes done
+[11:52:50] [train] step 20/30 loss 0.4644
+Traceback (most recent call last):
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/rest_em_loop.py", line 1098, in <module>
+    main()
+    ~~~~^^
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/rest_em_loop.py", line 991, in main
+    tr = sft_train(model, tok, rej_samples, device, lr=args.lr, epochs=2,
+                   batch_size=args.batch_size, accum=args.grad_accum,
+                   max_steps=30, seed=args.seed_shuffle_probe)
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/rest_em_loop.py", line 459, in sft_train
+    (loss / accum).backward()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/eileen/venvs/elephant-gpu/lib/python3.14/site-packages/torch/_tensor.py", line 623, in backward
+    torch.autograd.backward(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        self, gradient, retain_graph, create_graph, inputs=inputs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/eileen/venvs/elephant-gpu/lib/python3.14/site-packages/torch/autograd/__init__.py", line 395, in backward
+    _engine_run_backward(
+    ~~~~~~~~~~~~~~~~~~~~^
+        tensors,
+        ^^^^^^^^
+    ...<5 lines>...
+        accumulate_grad=True,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/eileen/venvs/elephant-gpu/lib/python3.14/site-packages/torch/autograd/graph.py", line 1072, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        t_outputs, *args, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )  # Calls into the C++ engine to run the backward pass
+    ^
+torch.AcceleratorError: CUDA error: out of memory
+Search for `cudaErrorMemoryAllocation' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+
+=== ARM N2 done rc=1 2026-10-02T11:53:24-08:00 ===
+=== ARM N2 RELAUNCH-5 (attempt-2e: relaunch-4 OOM'd at step 20/30 — OMISSION TRACED: relaunch-4 did not export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True that 2b/2c used; env fix now restored, zero harness change, solo GPU) 2026-10-02T11:55:41-08:00 ===
+[11:55:44] [verifier] self-test: accepts 8/8 correct, rejects 12/12 wrong -> PASS
+[11:55:44] [tasks] pool=96 heldout=96 contamination_overlap=0
+[11:55:44] [device] cuda (requested=cuda)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:01<05:42,  1.19s/it]Loading weights:   1%|          | 3/290 [00:01<01:45,  2.72it/s]Loading weights:   5%|▌         | 15/290 [00:01<00:15, 17.27it/s]Loading weights:   9%|▉         | 27/290 [00:01<00:08, 31.96it/s]Loading weights:  13%|█▎        | 39/290 [00:01<00:05, 43.69it/s]Loading weights:  18%|█▊        | 51/290 [00:01<00:04, 53.91it/s]Loading weights:  22%|██▏       | 65/290 [00:01<00:03, 68.12it/s]Loading weights:  29%|██▊       | 83/290 [00:02<00:02, 90.95it/s]Loading weights:  33%|███▎      | 95/290 [00:02<00:02, 92.21it/s]Loading weights:  37%|███▋      | 106/290 [00:02<00:02, 85.38it/s]Loading weights:  40%|████      | 116/290 [00:02<00:02, 82.81it/s]Loading weights:  43%|████▎     | 126/290 [00:02<00:01, 83.76it/s]Loading weights:  47%|████▋     | 136/290 [00:02<00:01, 87.43it/s]Loading weights:  51%|█████     | 148/290 [00:02<00:01, 88.18it/s]Loading weights:  56%|█████▌    | 161/290 [00:02<00:01, 95.67it/s]Loading weights:  60%|█████▉    | 173/290 [00:03<00:01, 95.76it/s]Loading weights:  64%|██████▍   | 185/290 [00:03<00:01, 95.19it/s]Loading weights:  68%|██████▊   | 197/290 [00:03<00:00, 97.68it/s]Loading weights:  72%|███████▏  | 209/290 [00:03<00:00, 94.00it/s]Loading weights:  76%|███████▌  | 221/290 [00:03<00:00, 94.17it/s]Loading weights:  80%|████████  | 233/290 [00:03<00:00, 94.36it/s]Loading weights:  84%|████████▍ | 244/290 [00:03<00:00, 95.68it/s]Loading weights:  88%|████████▊ | 256/290 [00:03<00:00, 96.24it/s]Loading weights:  92%|█████████▏| 268/290 [00:04<00:00, 97.85it/s]Loading weights:  97%|█████████▋| 280/290 [00:04<00:00, 100.60it/s]Loading weights: 100%|██████████| 290/290 [00:04<00:00, 68.33it/s] 
+[11:55:59] [load] Qwen/Qwen2.5-0.5B-Instruct mode=qlora-nf4 lora={'impl': 'peft', 'trainable_params': 737280}
+[11:56:55] [eval:base-hf] pass@1 0.688 (arith 0.7083, symb 0.6667) n=96
+[11:56:55] [eval:base-ollama-parity] ollama pass@1 0.000 n=8 (transport failures: 8)
+[11:56:57] [eval:parity-hf-subset] pass@1 0.875 (arith 0.8333, symb 1.0) n=8
+[11:56:57] [parity] |ollama - hf| = 0.875 (registered tolerance 0.12)
+[12:01:54] [N2] generated 768, verified-ok 336, rejected pool = 432
+[12:01:54] [train] ramp receipt: 3 warmup fwd passes done
+Traceback (most recent call last):
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/rest_em_loop.py", line 1098, in <module>
+    main()
+    ~~~~^^
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/rest_em_loop.py", line 991, in main
+    tr = sft_train(model, tok, rej_samples, device, lr=args.lr, epochs=2,
+                   batch_size=args.batch_size, accum=args.grad_accum,
+                   max_steps=30, seed=args.seed_shuffle_probe)
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/rest_em_loop.py", line 457, in sft_train
+    loss = F.cross_entropy(logits[:, :-1].float().reshape(-1, logits.shape[-1]),
+                           lab[:, 1:].reshape(-1), ignore_index=-100)
+  File "/home/eileen/venvs/elephant-gpu/lib/python3.14/site-packages/torch/nn/functional.py", line 3561, in cross_entropy
+    return torch._C._nn.cross_entropy_loss(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<5 lines>...
+        label_smoothing,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+RuntimeError: CUDA driver error: device not ready
+=== ARM N2 done rc=1 2026-10-02T12:01:56-08:00 ===
+=== ARM N2 RELAUNCH-4 (overnight retry) ===
+[00:30:15] [verifier] self-test: accepts 8/8 correct, rejects 12/12 wrong -> PASS
+[00:30:16] [tasks] pool=96 heldout=96 contamination_overlap=0
+[00:30:16] [device] cuda (requested=cuda)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:02<13:42,  2.84s/it]Loading weights:   1%|          | 3/290 [00:03<04:21,  1.10it/s]Loading weights:   5%|▌         | 15/290 [00:03<00:37,  7.28it/s]Loading weights:   7%|▋         | 19/290 [00:03<00:28,  9.37it/s]Loading weights:   9%|▉         | 27/290 [00:03<00:20, 13.02it/s]Loading weights:  10%|█         | 30/290 [00:04<00:18, 14.40it/s]Loading weights:  13%|█▎        | 38/290 [00:04<00:12, 20.28it/s]Loading weights:  14%|█▍        | 42/290 [00:04<00:12, 19.85it/s]Loading weights:  18%|█▊        | 52/290 [00:04<00:08, 28.10it/s]Loading weights:  22%|██▏       | 64/290 [00:04<00:05, 39.03it/s]Loading weights:  26%|██▌       | 76/290 [00:04<00:04, 47.47it/s]Loading weights:  29%|██▊       | 83/290 [00:05<00:04, 48.77it/s]Loading weights:  31%|███       | 89/290 [00:05<00:04, 49.21it/s]Loading weights:  34%|███▍      | 99/290 [00:05<00:03, 51.57it/s]Loading weights:  36%|███▌      | 105/290 [00:05<00:03, 48.39it/s]Loading weights:  43%|████▎     | 124/290 [00:05<00:02, 71.98it/s]Loading weights:  46%|████▌     | 132/290 [00:05<00:02, 64.39it/s]Loading weights:  48%|████▊     | 139/290 [00:05<00:02, 59.41it/s]Loading weights:  51%|█████     | 147/290 [00:06<00:02, 59.68it/s]Loading weights:  53%|█████▎    | 154/290 [00:06<00:02, 58.16it/s]Loading weights:  55%|█████▌    | 160/290 [00:06<00:02, 56.34it/s]Loading weights:  57%|█████▋    | 166/290 [00:06<00:02, 56.51it/s]Loading weights:  60%|█████▉    | 173/290 [00:06<00:01, 59.24it/s]Loading weights:  62%|██████▏   | 179/290 [00:06<00:01, 59.00it/s]Loading weights:  64%|██████▍   | 185/290 [00:06<00:01, 58.60it/s]Loading weights:  67%|██████▋   | 195/290 [00:06<00:01, 61.29it/s]Loading weights:  71%|███████▏  | 207/290 [00:07<00:01, 59.88it/s]Loading weights:  74%|███████▍  | 214/290 [00:07<00:01, 60.82it/s]Loading weights:  76%|███████▌  | 221/290 [00:07<00:01, 55.37it/s]Loading weights:  84%|████████▍ | 244/290 [00:07<00:00, 92.74it/s]Loading weights:  88%|████████▊ | 256/290 [00:07<00:00, 83.52it/s]Loading weights:  92%|█████████▏| 267/290 [00:07<00:00, 83.15it/s]Loading weights:  95%|█████████▌| 276/290 [00:08<00:00, 74.92it/s]Loading weights: 100%|██████████| 290/290 [00:08<00:00, 36.09it/s]
+[00:30:33] [load] Qwen/Qwen2.5-0.5B-Instruct mode=qlora-nf4 lora={'impl': 'peft', 'trainable_params': 737280}
+[00:31:40] [eval:base-hf] pass@1 0.688 (arith 0.7083, symb 0.6667) n=96
+[00:31:45] [eval:base-ollama-parity] ollama pass@1 1.000 n=8 (transport failures: 0)
+[00:31:47] [eval:parity-hf-subset] pass@1 0.875 (arith 0.8333, symb 1.0) n=8
+[00:31:47] [parity] |ollama - hf| = 0.125 (registered tolerance 0.12)
+[00:37:05] [N2] generated 768, verified-ok 336, rejected pool = 432
+[00:37:05] [train] ramp receipt: 3 warmup fwd passes done
+Traceback (most recent call last):
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/rest_em_loop.py", line 1098, in <module>
+    main()
+    ~~~~^^
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/rest_em_loop.py", line 991, in main
+    tr = sft_train(model, tok, rej_samples, device, lr=args.lr, epochs=2,
+                   batch_size=args.batch_size, accum=args.grad_accum,
+                   max_steps=30, seed=args.seed_shuffle_probe)
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/rest_em_loop.py", line 457, in sft_train
+    loss = F.cross_entropy(logits[:, :-1].float().reshape(-1, logits.shape[-1]),
+                           lab[:, 1:].reshape(-1), ignore_index=-100)
+  File "/home/eileen/venvs/elephant-gpu/lib/python3.14/site-packages/torch/nn/functional.py", line 3561, in cross_entropy
+    return torch._C._nn.cross_entropy_loss(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<5 lines>...
+        label_smoothing,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+RuntimeError: CUDA driver error: device not ready

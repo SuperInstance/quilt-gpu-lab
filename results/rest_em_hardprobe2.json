@@ -1,0 +1,88 @@
+{
+  "config": {
+    "rounds": 1,
+    "train_pool": 12,
+    "heldout": 8,
+    "n_cand": 4,
+    "max_steps": 60,
+    "epochs": 1,
+    "batch_size": 4,
+    "grad_accum": 2,
+    "lr": 0.0001,
+    "lora_impl": "auto",
+    "device": "auto",
+    "hf_model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "ollama_model": "qwen2.5:0.5b",
+    "ollama_url": "http://127.0.0.1:11434",
+    "seed": 20261002,
+    "seed_heldout": 20261003,
+    "seed_shuffle_probe": 20261004,
+    "out_json": "results/rest_em_hardprobe2.json",
+    "adapter_dir": "results/rest_em_hardprobe2_adapter",
+    "parity_n": 8,
+    "skip_parity": false,
+    "skip_ollama": false,
+    "with_controls": false,
+    "max_new": 200,
+    "workers": 4,
+    "difficulty": "hard",
+    "selftest_only": false
+  },
+  "honest_notes": [
+    "parity gap 0.125 > 0.12: round-0 generation moved to HF (registered fallback)",
+    "smoke run = engineering validation; gate (prereg \u00a78) applies only to the full run"
+  ],
+  "rounds": [
+    {
+      "round": 0,
+      "gen_backend": "hf(current policy)",
+      "gen": 48,
+      "verified": 15,
+      "verified_rate": 0.3125,
+      "winners": 6,
+      "train": {
+        "steps": 1,
+        "micro_batches": 2,
+        "loss_first10": 0.2134,
+        "loss_last10": 0.2134
+      },
+      "heldout_pass1_post": 0.5,
+      "heldout_detail": {
+        "n": 8,
+        "pass1": 0.5,
+        "arith_pass1": 0.75,
+        "symb_pass1": 0.25
+      },
+      "heldout_pass1_pre": 0.5,
+      "delta": 0.0
+    }
+  ],
+  "controls": {},
+  "base_eval_hf": {
+    "n": 8,
+    "pass1": 0.5,
+    "arith_pass1": 0.75,
+    "symb_pass1": 0.25
+  },
+  "parity_ollama": {
+    "n": 8,
+    "pass1": 0.625,
+    "transport_none": 0
+  },
+  "parity_gap_abs": 0.125,
+  "summary": {
+    "cycles_completed": 1,
+    "pass1_base": 0.5,
+    "pass1_final": 0.5,
+    "delta_total": 0.0,
+    "verifier_selftest_passed": true,
+    "device": "cuda",
+    "device_note": "free=5.32GB/total=6.44GB",
+    "load_mode": "qlora-nf4",
+    "lora": {
+      "impl": "peft",
+      "trainable_params": 737280
+    }
+  },
+  "timestamp": "2026-10-02 01:21:02 AKDT"
+}

@@ -1,0 +1,79 @@
+{
+  "config": {
+    "rounds": 3,
+    "train_pool": 96,
+    "heldout": 96,
+    "n_cand": 8,
+    "max_steps": 150,
+    "epochs": 2,
+    "batch_size": 4,
+    "grad_accum": 2,
+    "lr": 0.0001,
+    "lora_impl": "auto",
+    "device": "cuda",
+    "hf_model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "ollama_model": "qwen2.5:0.5b",
+    "ollama_url": "http://127.0.0.1:11434",
+    "seed": 20261002,
+    "seed_heldout": 20261003,
+    "seed_shuffle_probe": 20261004,
+    "out_json": "results/rest_em_full_C2.json",
+    "adapter_dir": "results/rest_em_adapter",
+    "parity_n": 8,
+    "skip_parity": false,
+    "skip_ollama": true,
+    "with_controls": false,
+    "arm": "c2",
+    "c2_steps": 22,
+    "max_new": 200,
+    "workers": 4,
+    "difficulty": "hard",
+    "selftest_only": false
+  },
+  "honest_notes": [
+    "parity gap 0.875 > 0.12: round-0 generation moved to HF (registered fallback)"
+  ],
+  "rounds": [],
+  "controls": {},
+  "base_eval_hf": {
+    "n": 96,
+    "pass1": 0.6875,
+    "arith_pass1": 0.7083,
+    "symb_pass1": 0.6667
+  },
+  "parity_ollama": {
+    "n": 8,
+    "pass1": 0.0,
+    "transport_none": 8
+  },
+  "parity_gap_abs": 0.875,
+  "c2": {
+    "pre": 0.6875,
+    "post": 0.5625,
+    "delta": -0.125,
+    "train": {
+      "steps": 22,
+      "micro_batches": 44,
+      "loss_first10": 0.573,
+      "loss_last10": 0.4013
+    },
+    "n_demos": 48,
+    "budget_note": "one-shot SFT, optimizer steps capped at --c2-steps=22 (driver matches to treatment round-1 observed steps)"
+  },
+  "summary": {
+    "arm": "c2",
+    "pass1_base": 0.6875,
+    "pass1_final": 0.5625,
+    "delta_total": -0.125,
+    "verifier_selftest_passed": true,
+    "device": "cuda",
+    "device_note": "requested=cuda",
+    "load_mode": "qlora-nf4",
+    "lora": {
+      "impl": "peft",
+      "trainable_params": 737280
+    },
+    "note": "fresh-process C2: one-shot oracle-SFT (experimenter-authored demos, NOT policy samples)"
+  },
+  "timestamp": "2026-10-02 08:20:24 AKDT"
+}
