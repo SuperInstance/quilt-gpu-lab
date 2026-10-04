@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-03T15:18:00.130700+00:00",
+  "generated_at": "2026-10-04T06:36:30.822493+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "1bdf2df91b0d27948a2f4cd5c6d4d9e8bafcee7d05f7464479ede912823f1e61",
+    "RESULTS.md": "fe69a1f98ff827f0c12ffb7f7662d05bf161bacc9674355a1c5888d298db1066",
     "QUEUE.md": "325394bc5e3c6c559c1189a45dec10ec45816e6f99782f0e6d8c6f722b174e85"
   },
   "experiments": {
@@ -64,6 +64,14 @@
     "d12j_gpu_width.py": "9c33458d20d92ae01bccf085fa7029d3a49fd06472e1043381920345fd36dfc0",
     "d12j_gpu_width_lucineer.py": "e922559ad1e82b4fcb145b308c053d8019efb44570c142720e27dd0b4562fd38",
     "d12k_entangled_register.py": "b8af16b47b830b712075493bc6f95b1dc9d317f0799c95e443575b1f7158ff4d",
+    "d12l_noise_floor.py": "29e60920cf4de41c731b79ae2ff4819175d2a8c39495a2daa6073bc3d3a0a907",
+    "d12m_decorrelation_exponent.py": "c481c76739a53af448941d3b55a0f02b6788a10c6ca97ea30584732d0b14ef1f",
+    "d12n_bound_oos_validation.py": "20b23e85de75a1f104f7de271284644d4cd34fe078c6dc04ef3f6100f0b69a94",
+    "d12o_law_p_generalization.py": "3180ea4421e26164d0485564e487ccb4e8e70dedbcc0010eff4a643b77a79f84",
+    "d12p_cp_fit.py": "b40ef7840e9adc186a633caed218f937e3356d05d9f375801903dcea05732d53",
+    "d12q_cp_near_degenerate.py": "1e390a5a6d75100e0868c27aacde6be02cb18bb04958dc934cf189cfb71285bf",
+    "d12r_corrected_constant_surface.py": "432cb9b76f2d703b36f8bb56e81e01f6a1fbade18622c7877a615c155539b88a",
+    "d12s_joint_alpha_refit.py": "17c6f37bb13bbb3bdd7f2c3c5b36cbe75ec4c22a644397509b1f622be61205e3",
     "d13_relational_growing.py": "6376b3753b41f5f29a0f7ed5abed72d9451350ba3089c828a7fdcea5d85c1a08",
     "d13b_relational_confidence.py": "ddac65b0b0883c07ec81bf2f8fafc9426e60f8435d4b368c586afacd534ae618",
     "d13c_relational_reinforce.py": "f0f60d742b14aae52542afeeb57061921b961583a113af9b65d3801d03d158dd",
@@ -94,6 +102,7 @@
     "decide1b.py": "f4fcd54c702ddce4aea684e9ca074be4f2620448d65e205ec54698e95b2c6cfa",
     "decide1c.py": "ecea3de131cc8fee9b63f7d53eee95d07add99afaf008bcc9294ee90475915fc",
     "decide1d.py": "a7fd594842788e01cceb4472540ac7fc75c12a8a17fbf9191bb990a747531978",
+    "del1_deletion_audit.py": "00a6e1a182c1e3f1815811823083d896b235caa9f05935830d5ea3ac7d96fc78",
     "e10_invariance_race.py": "9ef6deddda4921353742530aec91474540e0fc647e6686284c59684ae1f715f2",
     "e11_debounce_kill.py": "d5c6fb0ea7abfa8016acebe8121ccb531641c7b125764995aef1472b2c402d14",
     "e12_room_dial_reader.py": "1bdb04873fab7140c36ec2cb7ad6d9c2df4269a3a4ec33b7f4c3d68563ba744d",
@@ -140,6 +149,9 @@
     "mq1_growth.py": "7e27d81657009fdcd23c52d9cdaeb70ebef41eecaa2952969fd59fa8390cb567",
     "mq1_shadow.py": "b0bb949db93505fdec898846134ebc2e770fd40f59eda0f39644445605672f30",
     "oracle1.py": "2dfd8247157c656852b9d63c9dc50d08eb77240fe0d60d61c18bd7d1c1a32d34",
+    "pidfire_common.py": "6a6097aa1a35bda0df82f175a7308752879a1b9c2c796bf2cac540eedf8888aa",
+    "pidfire_pid.py": "09f988e24fc36a7dc673aed5fff2bd8b9d874299e595b37418ce9657cf583991",
+    "pidfire_sweep.py": "dd0d6888d6e3726147af2b2529ba92583ab969d4905ec135c4130363560e36b1",
     "probe_baseline_remeasure.py": "5f7b5883b5a8cb95a602bec7aeafac900df42291c83c622b8878df35f388f988",
     "probe_canon_rotation.py": "4f19e93f7597df4347917c23cc1f733e5d40287d2bf955135e59f81e9a447fd7",
     "probe_dispatch_skip.py": "9793df46c03bdaba6ea7454658a7f9989e931c71db89901e42fba6d2bce83321",
@@ -167,6 +179,7 @@
     "qg3_trap_anatomy.py": "3176cd2490d64b0c0953023dacd3156333072da02a3409f5314f0286575f00b2",
     "qg6_variance_rescue.py": "2e8e5d45d6c2ff7476e6d4a3ef68b88c441010b79abc661f7cb110fe08eee951",
     "qg7_gen_asymmetry.py": "7ef37ab3645bc503af0df7d8a23b05934aeec485468f0e812e0b112e7f68a172",
+    "qg7b_rerun_correlation.py": "a4cdc1189e0d2572204e76b6cac7bf21525d08effbefd4a2c724e22f883d031a",
     "qo10_projection_ladder.py": "bfce117d58308d3b2e0a275ff39e906c0eaad1dfc54ab17d860aaa74154a9190",
     "qo3_horizon.py": "9deb7925069c6c3b75c5366b546004ca2d7292fa8d3187c0d31580a3cc167389",
     "qo5_birth_probe.py": "8178caef606b0b0428dc4eb3e05425e15b7d97aaf5d2bc92803bd61b1a8bbbbf",
@@ -210,7 +223,7 @@
     "xq0_substrate_consolidation.py": "eae71b6a1c664669a941bc9be03e7574e0ec16fb6f9541250aae11c9384bb32a"
   },
   "tools": {
-    "README.md": "8d2da8bd01092f276a0c71f7816642067c4d91b6627c606d0fc80f0f87cf4e2d",
+    "README.md": "19e7e7bf0b4a4a376fc89bf8c383a9b703f2a99ab28263751f59bbfc5d31389f",
     "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "canary.py": "e072488ab473e0218496a58a0b0eeb16a153efe02e472613e7a0ad4d4de8f6b2",
     "checkpoint_guard.py": "1bf8ad1fa920b2a636f780a038a1b7fa02088ddb2eb8010133f0c0a3ab963370",
@@ -221,16 +234,21 @@
     "control_ladder.py": "450612e464931d9f7001b3f1bb9e59ca531b17dbf16b030362ce9c2d6e24e06d",
     "corpus_filter.py": "3dbe92aa917eead56bd0c47a2dea858595ee8277a18c0d6c812424bd3ace79c3",
     "corr_exponent.py": "a3cb4cd7dd9312a41bbd23ac49739c001dec42ea0fde399f006282ba56864d2e",
+    "corr_floor_probe.py": "d98a2fec8d1923cec711076715b0f4a3ec3a68441edff9f664301ffe23d3054d",
     "correlate.py": "0e2e3a92a3ecaeee5fda9c34285b609e37ef4468cb33541465ed838603548475",
     "d6_worldgen.js": "789efc53a8312c86a96ab9223305727660d7e76dcd836ded3df36b2ff05f75d2",
     "decision_cell.py": "5a49d0ef989bdaad8acdb144b69998a750a861f64ed689b975915b17b815d8ac",
     "deepinfra_call.py": "a870b48233c2cbb401bd4c2fcd5a2c6300b392ac5449632f0227d4b5df6ff020",
     "deepinfra_ideate.py": "a43b5e545269e14b7a73f35fbf30a3295d4952ea9647f22bfd751a797de73b80",
+    "ensemble_corr_census.py": "f9242e8f1e683a33eea734de4232964ef673fafb50d0a87c851eb2a41eb8f2b0",
     "eproc.py": "8243ef91b1a39f3fabf70d4e0235dbc9c27e0d4d4fd832474d44451c97423d1f",
     "farm_queue_flip.py": "8b375211ed2bdee64015078d1b9f3415a08f19e3a7788ba6b702607166b20e81",
     "fleet_board.mjs": "65b9bbdfd5ac4eefcdfbb3a47eb0adb668d2180a050a929e6374b1040b0eba70",
+    "floor_law_fit.py": "0ae26fe773e0b960626b2a119e46c223803d4971ec7a620226d233c544e38f3c",
+    "floor_scan.py": "140fcd7fedcb2722835b940c751494ba8ddc568af357308c4a6195d6bb743ced",
     "gpu_ramp_receipt.py": "c0cc342bff783ed3402ebcf35eceb39601d8659fa38b16fab83caea4791452a6",
     "hash_dut.py": "f0eda10fdab8bc5c65498cb7a3f43e5e6aeaba402b5a3cd31327061f8081971d",
+    "holdout_gate.py": "5fd73403167ee4b46267333a41d3bc5852ad5138a215e822974e1fc4b044e482",
     "ideation_banter.py": "cfd95d15ed712f699c3902ad3e3c6b2dd67a1feee611ec15fee6d465ff1b3dee",
     "ideation_banter_gpu.py": "5eba10d0cbe2cf5276e02b9a463b395f6d8f5314edc988f310303c720e63ab11",
     "law_floor_check.py": "7bc12262228c2f8e25d6b371cb71ebddbdd08f5e05d6a28e01d729c93e7572fb",
@@ -238,6 +256,7 @@
     "local_jev_bench.py": "f3ff1dc606a2eeeb5206b49e75925853e1ab26cc054d95b859e6384a2d84107a",
     "overnight_gpu.sh": "e3a6de06d14b927fd45b55c5622ca2ad37b32d50a9d02d1de1d64545de3bb61d",
     "perm_ci.py": "6886711bc9f1b07f8184f367cbad9661dd31c082af3bcfc9103d5e9256a25971",
+    "power_fit.py": "74ea3f67ac32a1ea96538c89d317df1da346d520f15dbe67cd9275647a5a5b85",
     "pr_sweep.py": "3c884785286a26fac47f7e74867ed55694ec878290e42bee9682b9c9e38b5242",
     "proj_lattice.py": "52cec2eee97fd649442be0d857810465df3007220e1d736b48d4f8fd61d95a2c",
     "qcell_oracle.pt": "fed2c15fb506899fdc0fb86a7656d965c4b0aae8bceda28d11d6850aec201eed",
@@ -253,5 +272,20 @@
     "vendor_strip_census.py": "bd7d7c2a3561ee7039a58176bdc116357db624ba9595f08a1c2c05417c6a164c",
     "verdict_gate.py": "b1b431f643635b881fb770b72b66429cc3189f9cabb07506371de4fbc8d8f8f8",
     "wt_floor.py": "c28d774268b68c1ca8474c8d33512fd2402d8db94bf28949c95cb7114386de63"
+  },
+  "sealed_from_dirty_tree": {
+    "admission": true,
+    "paths": [
+      "?? experiments/d12k2_entangled_certified.py.pre-rebase-20261002",
+      "?? experiments/d12l_noise_floor.py",
+      "?? experiments/d12m_decorrelation_exponent.py",
+      "?? experiments/d12n_bound_oos_validation.py",
+      "?? experiments/d12o_law_p_generalization.py",
+      "?? experiments/d12p_cp_fit.py",
+      "?? experiments/d12q_cp_near_degenerate.py",
+      "?? experiments/d12r_corrected_constant_surface.py",
+      "?? experiments/d12s_joint_alpha_refit.py",
+      "?? tools/power_fit.py"
+    ]
   }
 }
