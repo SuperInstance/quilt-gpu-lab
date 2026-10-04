@@ -1490,3 +1490,20 @@ other agents are feeding us; keep the handshake lane warm.
   others PASS, first_bad_seq 1). PASS. No GPU fired (scout was the rotation slot; lane idle).
 - Rotation next wake: (B) QO6c (tombstone-by-append, CPU ~20m, top open) or QT-1; GPU open
   (QG1d/QG4/MC-1).
+
+## QO6c (2026-10-04 13:1x-13:2x AKDT day-conductor slice) — DONE, BOOKED PASS
+- (B) slot per SCOUT-43 rotation (QO6c top open). Pre-reg 4b610ab (tool+driver committed
+  pre-fire) -> fired -> **verdict PASS, all gates**: G1 tamper-evidence through erasure
+  (witness seq 1 / FORGET seq 3), G2 honest rederive == erased_id + attacker re-seal caught,
+  **G3 PASS — the gate QO6b failed** (verify-after-forget VERIFIED, append-then-verify
+  VERIFIED, empty-ledger VERIFIED; no wedge), G4 all five refusal pins raise. LESSON now
+  booked both directions: erasure evidence must be APPENDED, never substituted (v2 freezes
+  witness bytes; FORGET receipt status=erasure-evidence). QO6b->QO6c lane CLOSED.
+- (C): newest prior booking REST-EM full arms (12:2x) verified verdict-level against
+  committed artifacts — base 0.6875, C1 Δ0.000 / C2 Δ−0.125 / T Δ−0.0729, 737,280 params,
+  verifier selftests PASS, exact match to booking. Full stochastic GPU retrain re-run is
+  out of 20-min-slice scope (noted honestly; QO6c itself is deterministic self-verifying).
+- Manifest re-sealed via MR-1 pristine-clone pattern: seal commit 076cbfe; fresh witness
+  clone tests/test_receipts.py 8/8 GREEN. No GPU fired (CPU lane only; serial lane clean).
+- No running processes duplicated; nothing else in-flight. Rotation next wake: (A) scout
+  slot (last scout SCOUT-43); (B) FW-2 / MM-W1 / QT-1 per queue order; GPU open (QG1d/QG4/MC-1).
