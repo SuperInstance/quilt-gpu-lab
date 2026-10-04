@@ -67,6 +67,15 @@ cells). Memory O(grid): sizes streamed to JSONL per cell/IC, no corpus held.
   s_min scan (unique sizes ≤ s_max/4, ≤40 candidates) minimizing one-sample KS vs the
   fitted discrete CCDF on [s_min, s_max_obs]; mean burn fraction; mean tree density.
 - **Cell-SOC gate**: n_sizes ≥ 100 AND self-KS ≤ 0.06 AND τ̂ ∈ [1.0, 1.4].
+
+  ANNOTATED AMENDMENT (2026-10-03 21:4x, BEFORE phase 0 fired — no outcome data seen;
+  evidence = synthetic pin in tests/test_pidfire.py): self-KS ≤ 0.06 is inoperable in
+  expectation — one-sample KS at the (bounded-support-biased) MLE floors at ≈0.11 on
+  pure finite-support PL synthetic (τ=1.2, S=16384), and the n≈300 noise floor alone is
+  ≈0.08. Amended gate: **self-KS ≤ 0.10** AND n_sizes ≥ 100 AND τ̂ ∈ [1.0, 1.4].
+  Symmetric loosening (applies to fixed-rule cells and any would-be corner alike) —
+  it can only ENLARGE the fixed-rule corner area, i.e. it works against the claim's
+  C2, not for it. Frozen from this line on.
 - **Corner rule**: among gate-passing cells, argmin self-KS, tie-break larger n.
   REFERENCE = corner's size sample; τ_ref = corner τ̂; SP = corner's MEAN burn fraction
   over the measure window. **Mid-freeze**: results/pidfire_sweep/phase0_freeze.json
