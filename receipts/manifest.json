@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-04T19:08:26.445055+00:00",
+  "generated_at": "2026-10-04T20:27:17.191984+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "b3ecd1e6a57a15c97e4ff54c4d9b61816812c64f2641f8301a663c262908f7f1",
+    "RESULTS.md": "3a977b8a11db50c2c1534b529b8aa87b1d2ccc3e65b7b99fe6c591a56829134a",
     "QUEUE.md": "325394bc5e3c6c559c1189a45dec10ec45816e6f99782f0e6d8c6f722b174e85"
   },
   "experiments": {
@@ -64,6 +64,15 @@
     "d12j_gpu_width.py": "9c33458d20d92ae01bccf085fa7029d3a49fd06472e1043381920345fd36dfc0",
     "d12j_gpu_width_lucineer.py": "e922559ad1e82b4fcb145b308c053d8019efb44570c142720e27dd0b4562fd38",
     "d12k_entangled_register.py": "b8af16b47b830b712075493bc6f95b1dc9d317f0799c95e443575b1f7158ff4d",
+    "d12l_noise_floor.py": "29e60920cf4de41c731b79ae2ff4819175d2a8c39495a2daa6073bc3d3a0a907",
+    "d12m_decorrelation_exponent.py": "c481c76739a53af448941d3b55a0f02b6788a10c6ca97ea30584732d0b14ef1f",
+    "d12n_bound_oos_validation.py": "20b23e85de75a1f104f7de271284644d4cd34fe078c6dc04ef3f6100f0b69a94",
+    "d12o_law_p_generalization.py": "3180ea4421e26164d0485564e487ccb4e8e70dedbcc0010eff4a643b77a79f84",
+    "d12p_cp_fit.py": "b40ef7840e9adc186a633caed218f937e3356d05d9f375801903dcea05732d53",
+    "d12q_cp_near_degenerate.py": "1e390a5a6d75100e0868c27aacde6be02cb18bb04958dc934cf189cfb71285bf",
+    "d12r_corrected_constant_surface.py": "432cb9b76f2d703b36f8bb56e81e01f6a1fbade18622c7877a615c155539b88a",
+    "d12s_joint_alpha_refit.py": "17c6f37bb13bbb3bdd7f2c3c5b36cbe75ec4c22a644397509b1f622be61205e3",
+    "d12t_draws10_alpha_eps.py": "ae3eda0797473a4a64f94953cecfe68d798489710fd7cd20a5d2f2bc2c78d2fd",
     "d13_relational_growing.py": "6376b3753b41f5f29a0f7ed5abed72d9451350ba3089c828a7fdcea5d85c1a08",
     "d13b_relational_confidence.py": "ddac65b0b0883c07ec81bf2f8fafc9426e60f8435d4b368c586afacd534ae618",
     "d13c_relational_reinforce.py": "f0f60d742b14aae52542afeeb57061921b961583a113af9b65d3801d03d158dd",
@@ -252,6 +261,7 @@
     "local_jev_bench.py": "f3ff1dc606a2eeeb5206b49e75925853e1ab26cc054d95b859e6384a2d84107a",
     "overnight_gpu.sh": "e3a6de06d14b927fd45b55c5622ca2ad37b32d50a9d02d1de1d64545de3bb61d",
     "perm_ci.py": "6886711bc9f1b07f8184f367cbad9661dd31c082af3bcfc9103d5e9256a25971",
+    "power_fit.py": "74ea3f67ac32a1ea96538c89d317df1da346d520f15dbe67cd9275647a5a5b85",
     "pr_sweep.py": "3c884785286a26fac47f7e74867ed55694ec878290e42bee9682b9c9e38b5242",
     "proj_lattice.py": "52cec2eee97fd649442be0d857810465df3007220e1d736b48d4f8fd61d95a2c",
     "qcell_oracle.pt": "fed2c15fb506899fdc0fb86a7656d965c4b0aae8bceda28d11d6850aec201eed",
