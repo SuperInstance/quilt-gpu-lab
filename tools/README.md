@@ -171,6 +171,18 @@ more than a copy to use, it's not grabbable yet.
   degenerate-s check live — fixed to pin run_scan's rc=2 refusal); worked
   example: T_floor=40, C_emp=20.66 @ s=0.24, KEEP rc=0.
 
+- **soc-probe** — `tools/soc_probe.py` — avalanche-susceptibility critical-point
+  prober (pattern lifted from PIDFIRE-1's ternary-fire core): seeded forest-fire
+  CA sweep over per-step ignition prob p, chi = Var(size)/<size> per point,
+  KEEP only on an interior peak (edge peak = grid didn't bracket = honest KILL).
+  Stdlib-only, O(grid) memory, fail-loud rc=2.
+  `python tools/soc_probe.py --n 32 --ts 0.05,0.2,0.5,0.8,0.95 --t-total 4000 --t-transient 1000 [--growth 0.02 --draws 2 --out r.json] | --example | --selftest`
+  TEST receipt 2026-10-04: selftest 4/4 (interior-peak KEEP, edge-kill honest KILL,
+  chi finite, same-mean variance pin) — selftest caught three of its own bugs live
+  (bytearray -1 state, mid-pass grid mutation breaking synchronous spread, run()
+  dropping the growth arg -> forest death, all fixed); worked example rc=0 KEEP,
+  peak p=0.8 chi=1.61, 0.38s, receipt results/soc_probe_example_2026-10-04.json.
+
 ### qcell_sim.py — exact small-circuit cell evaluator (GPU, batched)
 Batched statevector evaluator for qcell genomes (n<=12 qubits). Returns exact p(targets), balance,
 best_target, union, and optional shot samples with a sha256 receipt_id. One file, one job, cell-slot ready.
