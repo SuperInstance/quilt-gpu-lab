@@ -5824,3 +5824,61 @@ any relaunch-5.
 - [spawned by QO6b] **QO6c** (CPU ~20m): forget_cell v2 — tombstone-by-append design; same
   frozen gates G1-G4 unchanged (only the forget mechanism changes); gate: honest-forget
   ledger verifies VERIFIED end-to-end while the same tamper matrix still REDs.
+
+## [BOOKED 12:2x CPU Oct 4] D12 CLOSE-OUT (k2–t): line sealed — 5 KILL / 3 KEEP / 2 gate-level; lane artifacts committed after sitting untracked since 09-30 (SCOUT-25 closure)
+- These are the foreign live-lane files that made every sealer refuse (SCOUT-25, FR-2, MR-1
+  all record them). The lane went quiet; the artifacts are honest sealed runs — committed
+  as-is and booked from the artifacts; no re-rolls, no re-runs.
+- d12k2 entangled_certified: `KILL_estimator_correlation_complete_certified` — the entangled
+  estimator's correlation advantage is fully certified as classical correlation.
+- d12l noise_floor: KILL. d12m decorrelation_exponent: KILL.
+- d12n bound_oos_validation: KEEP (bound survives out-of-sample). d12o law_p_generalization:
+  KEEP (law generalizes across p). d12p cp_fit: KEEP.
+- d12q cp_near_degenerate: KILL. d12r corrected_constant_surface: KILL.
+- d12s joint_alpha_refit: gate-level only (no verdict string in artifact) — G1_within_2x
+  PASS, G2_alpha_band FAIL (alpha_W −1.02, alpha_eps −3.99, C_hat 1.52, max_C_emp_dev 0.411).
+- d12t draws10_alpha_eps (draws=10): gate-level only — G1_within_2x PASS,
+  G2_alpha_eps_le_2.5 FAIL (alpha_eps 3.91, C_hat 1.38, max dev 0.278; worst cell w16/eps0.0).
+- Booking note (interpretation, not verdict): the noise-floor LAW survives (OOS bound,
+  p-generalization, cp fit) while every specific constant-surface / joint-alpha
+  parameterization is KILLed — surface SHAPE remains open. Follow-up: prereg a surface
+  family test (d12u+) before any next fit. experiments/d12k2_*.pre-rebase-20261002 kept
+  as the rebase archive.
+
+## [BOOKED 12:2x CPU Oct 4] REST-EM FULL ARMS: null control HELD (C1 Δ0.000), oracle-SFT HURT (C2 Δ−0.125), treatment DECLINED (T Δ−0.0729) — self-training does not lift pass@1 on a base-saturated task
+- rest_full_arms.sh drove three arms from the same 0.6875 pass@1 base (qlora-nf4, peft,
+  737,280 trainable params, verifier selftest PASS in every arm, CUDA):
+  **C1** fresh-process control (no weight updates ever): 0.6875 → 0.6875, Δ 0.000 — the
+  eval pipeline is stable; the null holds.
+  **C2** one-shot oracle-SFT control (experimenter-authored demos, NOT policy samples):
+  0.6875 → 0.5625, Δ −0.125 — even ORACLE demonstrations hurt; gradient pressure narrows
+  a base the model already solves.
+  **T** full treatment (policy-sample self-training, 3 cycles): 0.6875 → 0.6146, Δ −0.0729.
+- Honest notes (all arms): parity gap 0.875 > 0.12 → round-0 generation moved to HF
+  (registered fallback); Ollama parity eval-only, HF is the training device.
+- attempt1 was killed by a reboot (`rest_em_full.attempt1-rebootkill.log` preserved); the
+  retry completed all cycles; the log tail ends in a CUDA driver error AFTER results were
+  written (device died post-write; WSL2 idle-saturation signature, INSTRUMENT-01).
+- Verdict: **FAIL for self-training-improves-pass@1** — and the C2 oracle control names the
+  mechanism: the task is base-saturated; update noise dominates any residual signal.
+  STOP-rule honored: booked as fired, no re-roll. Next self-training attempt requires a
+  base-UNsaturated task family.
+
+## [BOOKED 12:2x CPU Oct 4] VOYAGER-SKILLLIB: retrieval PASS / reuse FAIL (saturated) / purity PASS — verifier-pure skill library works; gate (b) was too lenient, not the mechanism dead
+- Lane VOYAGER-SKILLLIB (prereg proposals/runs/VOYAGER-SKILLLIB-prereg.md, frozen 10-02;
+  harness experiments/skill_library.py; qwen2.5:3b + nomic-embed-text, local ollama, CPU,
+  zero metered spend; verifier = pure code — restricted exec + SIGALRM + oracle tests, no
+  LLM judge). Full pre-written entry with tables: results/skill_library/RESULTS-ENTRY.md
+  (committed with both stores).
+- (a) retrieval: top-1 family-hit 0.750 vs chance 0.250 (+0.500) — PASS. Same-family mean
+  cos 0.9619 > cross 0.9033.
+- (b) reuse: task-level pass@8 saturated (scratch 1.000 = augmented 1.000, 0 flips) — FAIL
+  as gated. Per-sample tells the real story: rev_all_words 1/8 → 8/8 with the stored
+  exemplar; cumsum 8/8 → 5/8 (exemplar-hurt: nearest neighbour was a bad analogy).
+  Honest next move (not done; prereg is prereg): re-book (b) at per-sample pass rate or
+  with harder held-out tasks.
+- (c) purity: smoke store 11/11 verified, full store 39/39 verified; wrong-program negative
+  control rejected; unverified append raises — PASS. title_title case caught red-handed:
+  the 3B model dropped the double-space in title_case and the verifier rejected it (5/6).
+- Stores committed: results/skill_library/store.jsonl + store_full.jsonl; logs
+  results/skill_library_{smoke,full}.log (already tracked).
