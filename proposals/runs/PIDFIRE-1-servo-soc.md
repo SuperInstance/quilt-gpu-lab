@@ -98,6 +98,14 @@ distribution (declared honest limitation). All-deadlock ⇒ calibration FAIL, C1
 - **CLAIM VERDICT: PASS iff C1 ∧ C2 ∧ C3**, else FAIL with diagnosis. Substrate/protocol
   abort ⇒ ABORTED (never quietly patched mid-run).
 
+## Annotation (2026-10-03 21:2x, BEFORE phase 1 fired — phase 0 is p-agnostic)
+
+The frozen grid above under-specifies the PID arm's spread probability `p`. Clarified
+(not a gate change): **the PID arm runs at p = p_corner** — the same substrate point whose
+size distribution is the REFERENCE; only ignition timing (servo trit vs Poisson lightning)
+and the growth schedule (q_t from the integrator vs constant q_corner) differ between the
+arms. Recorded here because the freeze file carries p_corner explicitly.
+
 ## Predicted failure modes (predictions, not gates)
 
 (i) u=−1 firebreaks cast mid-fire truncate the large-size tail ⇒ KS fails; (ii) integrator
