@@ -195,19 +195,37 @@ more than a copy to use, it's not grabbable yet.
   dropping the growth arg -> forest death, all fixed); worked example rc=0 KEEP,
   peak p=0.8 chi=1.61, 0.38s, receipt results/soc_probe_example_2026-10-04.json.
 
-- **minimax-calib** — `tools/minimax_calib.py` — one-parameter minimax calibration fit
-  (pattern lifted PROVEN from d12u++, booked CALIBRATED 2026-10-04: kappa=0.246 closed a 2.7x
+- **worstcase-calib** — `tools/worstcase_calib.py` — one-parameter worst-case (minimax) calibration fit
+  (RENAMED 2026-10-04 from minimax-calib / tools/minimax_calib.py: "minimax" named the optimization
+  criterion, not the MiniMax provider — name collision confused humans, Casey asked for de-branding.
+  The minimax criterion remains; NO AI provider is involved — stdlib-only, no network, no keys.
+  Pattern lifted PROVEN from d12u++, booked CALIBRATED 2026-10-04: kappa=0.246 closed a 2.7x
   worst-cell gap on 12 cells with ONE lumped parameter): given cells {name, skeleton, measured},
   fits model = skeleton * kappa**exp by minimizing worst-cell |log(model/measured)| over a
   deterministic coarse log-grid + golden-section refine — no RNG, bit-identical reruns. Gates:
   G1 worst-cell ratio <= band (1.3 default, both sides), G2 kappa in sane band; unfittable gaps
   book honest FAIL, never PASS. Stdlib-only, fail-loud rc=2, JSON receipt.
-  `python tools/minimax_calib.py --cells cells.json [--exp 1.0 --lo 0.1 --hi 1.0 --band 1.3 --out r.json] | --example | --selftest`
+  `python tools/worstcase_calib.py --cells cells.json [--exp 1.0 --lo 0.1 --hi 1.0 --band 1.3 --out r.json] | --example | --selftest`
   TEST receipt 2026-10-04: selftest 10/10 (scale-recovery kappa~=0.25, unfittable FAIL, exp=2
   sqrt recovery, determinism, 4 fail-loud inputs) — selftest caught a real golden-section bug
   live: (sqrt(5)-1)/2 is 0.618 not 0.382, points were swapped so the fit converged to a
   non-optimal kappa; worked example rc=0 CALIBRATED kappa_hat=0.2515, worst ratio 1.019,
-  receipt results/minimax_calib_example_2026-10-04.json.
+  historical receipt (pre-rename): results/minimax_calib_example_2026-10-04.json.
+
+### onboard.py — fleet-standard credential onboarding (Casey 2026-10-04)
+Every grabbable tool that touches a provider registers itself in `tools/onboard.json`
+(var name, keyfile name, optional extracted-config path) and inherits the onboarding CLI:
+
+    python tools/onboard.py --tool typesafe-batch   # status + paste-ready fixes for one tool
+    python tools/onboard.py --all                   # doctor: the whole fleet, rc=1 if anything required is missing
+    python tools/onboard.py --tool i2i-ledger --json receipt.json
+
+Status resolution per variable: env → keyfile (name-only grep, values never read) →
+extracted config copy → MISSING with a fix hint. **Values are NEVER printed** — output
+is statuses and paths only; the selftest plants a fake secret and asserts it never leaks.
+House rules this encodes: keys read at use-time only; declaring a tool in the registry
+is part of "done" for any provider-touching tool; new env vars go in onboard.json, not
+in per-tool folklore.
 
 ### qcell_sim.py — exact small-circuit cell evaluator (GPU, batched)
 Batched statevector evaluator for qcell genomes (n<=12 qubits). Returns exact p(targets), balance,

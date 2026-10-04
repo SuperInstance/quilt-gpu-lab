@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""minimax-calib — one-parameter minimax calibration fit (stdlib-only).
+"""worstcase-calib — one-parameter worst-case (minimax) calibration fit (stdlib-only).
+
+Renamed 2026-10-04 from tools/minimax_calib.py: "minimax" named the
+optimization criterion (minimize the maximum worst-cell ratio), not the
+MiniMax AI provider — the collision confused humans, so the tool brand is
+now worstcase-calib. The criterion is still minimax; no AI provider is
+involved anywhere in this tool (stdlib-only, no network, no keys).
 
 Pattern lifted PROVEN from d12u++ (booked 2026-10-04, CALIBRATED):
 kappa=0.246 closed a 2.7x worst-cell gap on all 12 d12t cells with ONE
@@ -30,14 +36,14 @@ same as 0.5x.
 
 Usage
 -----
-    python tools/minimax_calib.py --cells cells.json [--exp 1.0]
+    python tools/worstcase_calib.py --cells cells.json [--exp 1.0]
         [--lo 0.1 --hi 1.0 --band 1.3 --steps 33 --tol 0.005 --out r.json]
 
     cells.json: [{"name": "w4_eps0", "skeleton": 53.0, "measured": 220.0}, ...]
     (skeleton = model value at kappa = 1; measured > 0; names unique)
 
-    python tools/minimax_calib.py --example     # worked example below
-    python tools/minimax_calib.py --selftest    # negative-control battery
+    python tools/worstcase_calib.py --example     # worked example below
+    python tools/worstcase_calib.py --selftest    # negative-control battery
 
 Worked example (--example)
 --------------------------
@@ -46,7 +52,7 @@ recover kappa_hat ~= 0.25 within the 1.3x band and book CALIBRATED.
 
 Library API
 -----------
-    from tools.minimax_calib import fit_minimax, load_cells, run_fit
+    from tools.worstcase_calib import fit_minimax, load_cells, run_fit
     cells = load_cells(json.loads(s))
     res = run_fit(cells, lo=0.1, hi=1.0, band=1.3, exp=1.0)
     res["verdict"], res["param_hat"], res["worst_ratio"]
@@ -143,7 +149,7 @@ def run_fit(cells, lo, hi, band=1.3, exp=1.0, steps=33, tol=5e-3):
     g1 = worst_hi <= band and worst_lo <= band
     g2 = lo <= khat <= hi
     return {
-        "tool": "minimax_calib",
+        "tool": "worstcase_calib",
         "exp": exp, "search_band": [lo, hi], "gate_band": band,
         "param_hat": khat, "worst_abs_log_gap": gap,
         "worst_ratio_high": worst_hi, "worst_ratio_low_inv": worst_lo,
@@ -227,7 +233,7 @@ def _selftest():
 
 def main(argv=None):
     ap = argparse.ArgumentParser(
-        description="One-parameter minimax calibration fit "
+        description="One-parameter worst-case (minimax) calibration fit "
                     "(worst-cell |log ratio| objective, d12u++ pattern).")
     ap.add_argument("--cells", help="JSON file of {name, skeleton, measured} cells")
     ap.add_argument("--cells-json", help="inline JSON cells (alternative to --cells)")

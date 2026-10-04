@@ -1,0 +1,84 @@
+{
+  "_comment": "Fleet onboarding registry (Casey 2026-10-04: model-agnostic tooling needs env-var docs + quick onboarding). keyfile = variable name in the fleet keyfile (default /mnt/c/Users/casey/key.txt); config = extracted working copy. onboard.py reports STATUS ONLY — never reads or prints values.",
+  "keyfile_default": "/mnt/c/Users/casey/key.txt",
+  "tools": {
+    "typesafe-batch": {
+      "purpose": "Typesafe judgment-cell batches (the Jev gate primitive)",
+      "env": [
+        {"var": "TYPESAFE_AI_KEY", "keyfile": "TYPESAFE_AI_KEY", "config": "~/.config/typesafe/token", "required": true}
+      ]
+    },
+    "i2i-ledger": {
+      "purpose": "book/query the fleet's shared semantic ledger (POST /book, GET /near, /since)",
+      "env": [
+        {"var": "I2I_TOKEN", "keyfile": null, "config": "~/.config/i2i/i2i-token", "required": true}
+      ]
+    },
+    "deepinfra-roster": {
+      "purpose": "DeepInfra roster model calls (cheap/fast lanes)",
+      "env": [
+        {"var": "DEEPINFRA_KEY", "keyfile": "DEEPINFRA_KEY", "config": "~/.config/deepinfra/token", "required": true}
+      ]
+    },
+    "deepseek-direct": {
+      "purpose": "DeepSeek V4 direct API (Flash sensory / Pro navigator)",
+      "env": [
+        {"var": "DEEPSEEK_KEY", "keyfile": "DEEPSEEK_KEY", "config": null, "required": true}
+      ]
+    },
+    "zai-glm": {
+      "purpose": "Z.ai GLM lanes (subagent workhorse)",
+      "env": [
+        {"var": "ZAI_KEY", "keyfile": "ZAI_KEY", "config": null, "required": true}
+      ]
+    },
+    "kimi-cli": {
+      "purpose": "KimiCode CLI auth (SUSPENDED 10-01 until further notice)",
+      "env": [
+        {"var": "KIMIAI_KEY", "keyfile": "KIMIAI_KEY", "config": null, "required": false}
+      ]
+    },
+    "mmx-media": {
+      "purpose": "MMX media CLI (text/image/video/speech/music)",
+      "env": [
+        {"var": "MINIMAX_KEY", "keyfile": "MINIMAX_KEY", "config": null, "required": true}
+      ]
+    },
+    "mothquantum": {
+      "purpose": "MothQuantum API (MicroMoth -> IonQ recon lane)",
+      "env": [
+        {"var": "MOTHQUANTUM_COM_KEY", "keyfile": "MOTHQUANTUM_COM_KEY", "config": null, "required": false}
+      ]
+    },
+    "cloudflare-wrangler": {
+      "purpose": "Workers/Pages/D1/Vectorize deploys",
+      "env": [
+        {"var": "CF_API_TOKEN", "keyfile": "CF_API_TOKEN", "config": null, "required": true}
+      ]
+    },
+    "publish-pypi": {
+      "purpose": "PyPI releases",
+      "env": [
+        {"var": "PYPI_TOKEN", "keyfile": "PYPI_TOKEN", "config": null, "required": true}
+      ]
+    },
+    "publish-crates": {
+      "purpose": "crates.io releases",
+      "env": [
+        {"var": "CRATES_IO_KEY", "keyfile": "CRATES_IO_KEY", "config": null, "required": true}
+      ]
+    },
+    "publish-npm": {
+      "purpose": "npm releases (@superinstance scope)",
+      "env": [
+        {"var": "NPMJS_KEY", "keyfile": "NPMJS_KEY", "config": null, "required": true}
+      ]
+    },
+    "publish-rubygems": {
+      "purpose": "RubyGems releases",
+      "env": [
+        {"var": "RUBYGEMS_KEY", "keyfile": "RUBYGEMS_KEY", "config": null, "required": true}
+      ]
+    }
+  }
+}
