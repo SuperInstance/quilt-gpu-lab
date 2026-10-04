@@ -5734,3 +5734,4 @@ any relaunch-5.
   cancels in comparison gates) landed for reuse. Fail-loud trail: eval driver's
   no-corner branch crashed first run (winner=None KeyError) — fixed to book the FAIL
   receipt instead, no dynamics touched. No GPU fired.
+- Repro (verdict-level, spot 3 cells incl. the near-miss p=0.81 q=7.9e-4 seed 10342): committed-code re-run BIT-EXACT vs committed coarse.jsonl rows (n/tau/s_min/KS/density/gate identical); determinism also pinned by tests. REPRO PASS.
