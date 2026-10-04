@@ -1522,3 +1522,20 @@ other agents are feeding us; keep the handshake lane warm.
   pong R91 "count is a garnish" test-narrowing noted (FW-1 class). (C) not due — QO6c repro
   PASS at booking slice (6cea835). Untracked foreign d12u lane in tree (PW-1, not touched).
   Rotation next wake: (B) FW-W1 or VX-1/SS-1; GPU open (QG1d/QG4/MC-1).
+
+## SCOUT-45 (2026-10-04 2315Z) — full text proposals/runs/SCOUT-45-fleet-push-2026-10-04-2315Z.md
+- Quiet window post-SCOUT-44. No CONTRADICT (QO2 stack, QO6c, receipt doctrine, QG3+QG6,
+  QG1c, W5 seeds unthreatened). HEADLINES: quilt-tools #49 merged — edge #33 VERIFIED,
+  cot-quilt#1 adopts jev-quilt#24 R6 live-probe doctrine BY NAME (pre-booked-on-merge
+  pattern = pre-registration applied to referral currency) = CORROBORATE of our CM1/jev
+  lineage; quilt-i2i 9a1f988 — H5 Liquid LFM2.5-2.6B pulls clean on Ollama 0.35.1-rc0
+  (CPU ~23.6 tok/s) = TOOL note for our Liquid lane; H4 720px-viewport clip = FW-1-class
+  pin note. Nine *-ai-pages demo pushes + lobster OIDC/vault ops = recorded only.
+- Spawned: **COT-1** (CPU ~15m, LOW, read-only): diff cot-quilt JEV-DOCTRINE.md class
+  mapping vs our CM1 frozen gate vocabulary; flag r7 stimulus-contrast instrumentation
+  candidates and any NO_GATE_FIRED booking drift.
+- (B) skipped: d12u+ family test already IN-FLIGHT (PID 121509 since 15:05 AKDT, pre-reg
+  2516f0b) — no-duplicate discipline honored. (C) not due (CM1-r6 verification assigned
+  next wake's C slot). GPU: foreign nn-image-play server.py untouched (PW-1).
+- Rotation next wake: (C) CM1-r6 driver-repro verification, then (B) FW-W1 / QT-1 / COT-1;
+  d12u+ booking lands from its own lane.
