@@ -195,6 +195,20 @@ more than a copy to use, it's not grabbable yet.
   dropping the growth arg -> forest death, all fixed); worked example rc=0 KEEP,
   peak p=0.8 chi=1.61, 0.38s, receipt results/soc_probe_example_2026-10-04.json.
 
+- **minimax-calib** — `tools/minimax_calib.py` — one-parameter minimax calibration fit
+  (pattern lifted PROVEN from d12u++, booked CALIBRATED 2026-10-04: kappa=0.246 closed a 2.7x
+  worst-cell gap on 12 cells with ONE lumped parameter): given cells {name, skeleton, measured},
+  fits model = skeleton * kappa**exp by minimizing worst-cell |log(model/measured)| over a
+  deterministic coarse log-grid + golden-section refine — no RNG, bit-identical reruns. Gates:
+  G1 worst-cell ratio <= band (1.3 default, both sides), G2 kappa in sane band; unfittable gaps
+  book honest FAIL, never PASS. Stdlib-only, fail-loud rc=2, JSON receipt.
+  `python tools/minimax_calib.py --cells cells.json [--exp 1.0 --lo 0.1 --hi 1.0 --band 1.3 --out r.json] | --example | --selftest`
+  TEST receipt 2026-10-04: selftest 10/10 (scale-recovery kappa~=0.25, unfittable FAIL, exp=2
+  sqrt recovery, determinism, 4 fail-loud inputs) — selftest caught a real golden-section bug
+  live: (sqrt(5)-1)/2 is 0.618 not 0.382, points were swapped so the fit converged to a
+  non-optimal kappa; worked example rc=0 CALIBRATED kappa_hat=0.2515, worst ratio 1.019,
+  receipt results/minimax_calib_example_2026-10-04.json.
+
 ### qcell_sim.py — exact small-circuit cell evaluator (GPU, batched)
 Batched statevector evaluator for qcell genomes (n<=12 qubits). Returns exact p(targets), balance,
 best_target, union, and optional shot samples with a sha256 receipt_id. One file, one job, cell-slot ready.
