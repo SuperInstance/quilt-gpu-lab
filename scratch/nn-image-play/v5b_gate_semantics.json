@@ -1,0 +1,108 @@
+{
+ "experiment": "w5b-gate-semantics",
+ "n": 78,
+ "morphs": 4,
+ "nonmorphs": 74,
+ "legacy_accepts": 67,
+ "claims_frozen_in_header": true,
+ "results": [
+  {
+   "semantics": "clip-alone (legacy)",
+   "morph_rejects": "2/4",
+   "rejected_morphs": [
+    "xcasey_lucedges_s102",
+    "xcasey_lucedges_s101"
+   ],
+   "nonmorph_accepts": 67,
+   "legacy_accepts": 67,
+   "retention_of_legacy": 1.0
+  },
+  {
+   "semantics": "majority-of-3 @0.80",
+   "morph_rejects": "2/4",
+   "rejected_morphs": [
+    "xcasey_lucedges_s102",
+    "xcasey_lucedges_s101"
+   ],
+   "nonmorph_accepts": 66,
+   "legacy_accepts": 67,
+   "retention_of_legacy": 0.9851
+  },
+  {
+   "semantics": "min-gate @0.80",
+   "morph_rejects": "4/4",
+   "rejected_morphs": [
+    "xcasey_lucedges_s102",
+    "xlucineer_caseyedges_s101",
+    "xlucineer_caseyedges_s102",
+    "xcasey_lucedges_s101"
+   ],
+   "nonmorph_accepts": 13,
+   "legacy_accepts": 67,
+   "retention_of_legacy": 0.194
+  },
+  {
+   "semantics": "dino-primary @0.80",
+   "morph_rejects": "4/4",
+   "rejected_morphs": [
+    "xcasey_lucedges_s102",
+    "xlucineer_caseyedges_s101",
+    "xlucineer_caseyedges_s102",
+    "xcasey_lucedges_s101"
+   ],
+   "nonmorph_accepts": 13,
+   "legacy_accepts": 67,
+   "retention_of_legacy": 0.194
+  },
+  {
+   "semantics": "dino-primary @0.70",
+   "morph_rejects": "4/4",
+   "rejected_morphs": [
+    "xcasey_lucedges_s102",
+    "xlucineer_caseyedges_s101",
+    "xlucineer_caseyedges_s102",
+    "xcasey_lucedges_s101"
+   ],
+   "nonmorph_accepts": 30,
+   "legacy_accepts": 67,
+   "retention_of_legacy": 0.4478
+  },
+  {
+   "semantics": "dino-primary @0.60",
+   "morph_rejects": "4/4",
+   "rejected_morphs": [
+    "xcasey_lucedges_s102",
+    "xlucineer_caseyedges_s101",
+    "xlucineer_caseyedges_s102",
+    "xcasey_lucedges_s101"
+   ],
+   "nonmorph_accepts": 42,
+   "legacy_accepts": 67,
+   "retention_of_legacy": 0.6269
+  }
+ ],
+ "claims": {
+  "G1": {
+   "claim": "min-gate @0.80 rejects 4/4 morphs, retains >=50% legacy",
+   "morph_rejects": "4/4",
+   "retention_of_legacy": 0.194,
+   "pass": false
+  },
+  "G2": {
+   "claim": "dino-primary @0.80 rejects 4/4 morphs, retains >=60% legacy",
+   "morph_rejects": "4/4",
+   "retention_of_legacy": 0.194,
+   "pass": false
+  },
+  "G3": {
+   "claim": "scanned semantics hits >=3/4 morph rejects AND >=80% legacy retention",
+   "best": {
+    "floor": 0.75,
+    "kind": "majority",
+    "morph_rejects": "1/4",
+    "retention_of_legacy": 1.0
+   },
+   "pass": false
+  }
+ }
+}
