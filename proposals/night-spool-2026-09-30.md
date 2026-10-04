@@ -1468,3 +1468,10 @@ other agents are feeding us; keep the handshake lane warm.
   frozen gates, CPU ~20m) — top of queue next (B) slot.
 - Manifest re-seal: executing now via MR-1 pristine-clone pattern (foreign d12* untracked lane
   still persists in author tree).
+- Re-seal EXECUTED (MR-1 pattern): pristine clone of dda9eed → sealed (207 exp / 53 tool files)
+  → commit 6458df8 pushed to GitHub (note: clone's default origin was the local author path;
+  refused non-bare push — origin reset to GitHub, HEAD:main). Witness clone of 6458df8:
+  tests/test_receipts.py 8/8 GREEN — fresh-clone RED stays closed. (C) satisfied: QO6b verdict
+  is self-verifying (sha256-pinned results.json; deterministic digest chain, no RNG in the
+  instrument). Rotation next wake: (B) QO6c (forget_cell v2, tombstone-by-append) or CAL-1;
+  GPU open (QG1d/QG4/MC-1); foreign receiptd/serve + nn-image-play server.py untouched (PW-1).
