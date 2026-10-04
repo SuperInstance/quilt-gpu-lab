@@ -72,6 +72,22 @@
   precedent; our newest OURS booking remains QG7b (repro PASS 12:2x). Rotation next wake: (C) none
   due; (B) FW-1 or SS-1/IND-1 per queue order.
 
+## SCOUT-38 (2026-10-04 0011Z) — full text proposals/runs/SCOUT-38-fleet-push-2026-10-04-0011Z.md
+- No CONTRADICT this sweep (window post-SCOUT-37: jev-quilt 75th wipe 0 drift = QC-JEV corroborate;
+  AI-Writings memorial cited-only; quilt-pincher push = stale Sep branch pointer, quiet). HEADLINE —
+  **fleet-triage signed off** (e6c46aa LAST EXPRESSION): 28,771-file gitignore + 18,473 orphaned clones
+  de-indexed, and an epitaph that IS our DEGENERATE/failopen class ("a check that cannot fail converts
+  absence of evidence into evidence of absence"). TOOL/STEAL: f173e16 **sufficiency-by-deletion** on
+  quilt-cell-harness — pre-timestamped prediction, capability-specific death (24/35 EQUAL exact), and
+  the unpredicted find: `witness_compartment` is DECORATIVE (WitnessChain never passes through the echo
+  compartment; cell reports itself alive) = our RC-1b decorative-path class, found DYNAMICALLY →
+  spawned **DEL-1** (deletion audit over QO2 components; decorative component = RED on the citing
+  booking). [note] 23:13Z own-repo commit 9ae129c (w5b gate-semantics shootout, "0/3 claims PASS") is
+  FOREIGN (authored "SuperInstance fleet" 00:05Z, no RESULTS booking) — PW-1/foreign-live precedent;
+  newest OURS booking remains QG7b (repro PASS 12:2x), so (C) not due. Manifest re-seal still deferred
+  (foreign d12k2–d12q untracked live lane). [EMBASSY] pong #49 unchanged (Casey day item). Rotation
+  next wake: (B) DEL-1 or FW-1-successor per queue order; GPU open (QG1d/QG4/MC-1).
+
 ## SCOUT-37 (2026-10-03 2211Z) — full text proposals/runs/SCOUT-37-fleet-push-2026-10-03-2211Z.md
 - No CONTRADICT this sweep (window post-SCOUT-36: quilt-dba wave-69 Track B/sxc1 stitch chain, exoj
   Unit-Table-GAN + cross-language hash parity; PLUS canons fa7504d 1917Z which SCOUT-36 missed:
