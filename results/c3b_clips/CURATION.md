@@ -68,3 +68,27 @@ after the penalty window — nothing was scraped around any limiter.
 - 12 of 21 sources are CC-BY* — attribution requirements are satisfied by the
   per-clip artist credit in `sources.json`/`MANIFEST.json` (kept alongside any
   redistribution).
+
+## Addendum 2026-10-04 15:50 — dual-dispatch collision + medium-720p variant
+
+This lane was dispatched twice on 2026-10-04 (overlapping subagents in one
+working tree). The committed state (this file + `MANIFEST.json` +
+`sources.json` + `experiments/c3b_make_clips.py`, commit 69f3836) is the one
+**already consumed by the C3b GPU lane** (prereg 87f00fd, results ad59f41) —
+NASA sources are the `~mobile.mp4` (320×180) transcodes there. The second
+dispatch independently re-curated the same Commons set (identical 16 picks)
+and upgraded the 5 NASA sources to `~medium.mp4` (1280×720), regenerating all
+NASA clips.
+
+Resolution (non-destructive):
+
+- The consumed state is untouched: `clips/` on disk re-verified 21/21 against
+  the committed manifest via full re-run (byte-identical — the determinism
+  audit passed, including sha-verified re-downloads of all NASA mobile files).
+- The 720p upgrade lives in `variant-medium720p/` (`sources.medium720p.json`,
+  `MANIFEST.medium720p.json` tracked; mp4/rgb blobs local-only). NASA clips
+  differ from the primary set; Commons clips are byte-identical.
+- Tarballs (local): `c3b_clips_2026-10-04.tar.gz` (primary, mobile-NASA) and
+  `c3b_clips_2026-10-04.medium720p.tar.gz` (variant overlay).
+- If C3b re-runs want the cleaner 720p NASA latents, use the variant manifest
+  explicitly; do NOT silently swap the primary — the booked results reference it.

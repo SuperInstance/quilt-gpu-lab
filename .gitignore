@@ -48,3 +48,9 @@ results/c3b_clips/clips/
 results/c3b_clips/*.tar.gz
 results/c3b_clips/.work/
 data/c3b_halves/
+# H1 variant-medium720p: NASA ~medium (720p) source upgrade preserved from the
+# 2026-10-04 dual-dispatch collision. Blobs stay local (tarball); provenance JSONs tracked.
+results/c3b_clips/variant-medium720p/sources/
+results/c3b_clips/variant-medium720p/clips/
+results/c3b_clips/variant-medium720p/.work/
+results/c3b_clips/variant-medium720p/*.archived-*
