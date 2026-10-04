@@ -1,0 +1,163 @@
+{
+  "seed": 2718,
+  "seed_lineage": "default_rng([2718, 7000, tag, chunk]); b_mix [2718,888,chunk]",
+  "parameter": "K_eff = kappa*(N-1) mixture nulls (single lumped null-strength correction)",
+  "kappa_hat": 0.24618503561993196,
+  "kappa_band": [
+    0.1,
+    1.0
+  ],
+  "delta_star_hat_N32": 1.3873659352553382,
+  "delta_star_31_uncal": 2.0453535539780585,
+  "draws_final": 1200000,
+  "cells": [
+    {
+      "W": 4,
+      "eps": 0.0,
+      "T_meas": 40.0,
+      "T_model": 48.99778460536726,
+      "ratio": 1.2249446151341814
+    },
+    {
+      "W": 4,
+      "eps": 0.05,
+      "T_meas": 60.0,
+      "T_model": 73.43197482475571,
+      "ratio": 1.2238662470792618
+    },
+    {
+      "W": 4,
+      "eps": 0.1,
+      "T_meas": 120.0,
+      "T_model": 115.427926477149,
+      "ratio": 0.961899387309575
+    },
+    {
+      "W": 4,
+      "eps": 0.2,
+      "T_meas": 320.0,
+      "T_model": 348.39799156208863,
+      "ratio": 1.088743723631527
+    },
+    {
+      "W": 8,
+      "eps": 0.0,
+      "T_meas": 20.0,
+      "T_model": 24.49889230268363,
+      "ratio": 1.2249446151341814
+    },
+    {
+      "W": 8,
+      "eps": 0.05,
+      "T_meas": 30.0,
+      "T_model": 36.71598741237786,
+      "ratio": 1.2238662470792618
+    },
+    {
+      "W": 8,
+      "eps": 0.1,
+      "T_meas": 60.0,
+      "T_model": 57.7139632385745,
+      "ratio": 0.961899387309575
+    },
+    {
+      "W": 8,
+      "eps": 0.2,
+      "T_meas": 160.0,
+      "T_model": 174.19899578104432,
+      "ratio": 1.088743723631527
+    },
+    {
+      "W": 16,
+      "eps": 0.0,
+      "T_meas": 15.0,
+      "T_model": 12.249446151341814,
+      "ratio": 0.8166297434227876
+    },
+    {
+      "W": 16,
+      "eps": 0.05,
+      "T_meas": 15.0,
+      "T_model": 18.35799370618893,
+      "ratio": 1.2238662470792618
+    },
+    {
+      "W": 16,
+      "eps": 0.1,
+      "T_meas": 30.0,
+      "T_model": 28.85698161928725,
+      "ratio": 0.961899387309575
+    },
+    {
+      "W": 16,
+      "eps": 0.2,
+      "T_meas": 80.0,
+      "T_model": 87.09949789052216,
+      "ratio": 1.088743723631527
+    }
+  ],
+  "g1": {
+    "pass": true,
+    "worst_ratio_high": 1.2249446151341814,
+    "worst_ratio_low_inv": 1.2245451602199082,
+    "band": 1.3
+  },
+  "g2": {
+    "pass": true
+  },
+  "g3": {
+    "pass": true,
+    "monotone_in_N": true,
+    "rows": [
+      {
+        "N": 8,
+        "K_eff": 1.7232952493395237,
+        "delta_star": 0.414935948305181,
+        "flag": "ok",
+        "b_mix": 0.4078781445060847,
+        "C_times_W": 0.17217184119591983,
+        "ratio_CW_over_b2": 1.0349068317514716,
+        "degenerate": true
+      },
+      {
+        "N": 32,
+        "K_eff": 7.631736104217891,
+        "delta_star": 1.3882929011731957,
+        "flag": "ok",
+        "b_mix": 1.39780080273461,
+        "C_times_W": 1.9273571794478885,
+        "ratio_CW_over_b2": 0.9864421812265376,
+        "degenerate": false
+      },
+      {
+        "N": 128,
+        "K_eff": 31.26549952373136,
+        "delta_star": 2.048942307692308,
+        "flag": "ok",
+        "b_mix": 2.0600821687984223,
+        "C_times_W": 4.19816458025148,
+        "ratio_CW_over_b2": 0.9892142731345989,
+        "degenerate": false
+      }
+    ],
+    "band": 1.5,
+    "degeneracy_rule": "K_eff<2 exempt from ratio (pre-declared), C\u00b7W:=0 if no crossing"
+  },
+  "machinery_crosscheck_vs_d12up_mc": {
+    "exact_over_mc": [
+      0.9934279728774733,
+      1.002528829481066,
+      1.0256735763787017,
+      1.0048227950748747
+    ],
+    "d12up_mc_floors_w8": [
+      53.6,
+      79.6,
+      122.3,
+      376.8
+    ],
+    "note": "reported, not gated"
+  },
+  "verdict": "CALIBRATED",
+  "predictor": "T_floor(N,W,p,eps) = delta_star(kappa*(N-1))^2 / (W * (p*(1-2eps))^3.84)"
+}

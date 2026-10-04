@@ -5952,3 +5952,37 @@ any relaunch-5.
   single-N grid); single realism variant; floors near grid bottom at (8,16,·) configs are
   interpolation-flagged 'ok' but sit at T≈1–3 where WT is tiny. results/d12u_family.json,
   experiments/d12u_family.py.
+
+## [BOOKED 15:17 CPU Oct 4] D12u++ CALIBRATED FIT: CALIBRATED — one lumped null-strength parameter κ̂=0.246 (K_eff≈7.6 of 31 nulls at N=32) closes the 2.7× gap to worst-cell 1.22×; the discovery-floor predictor now has zero free constants
+- The follow-up D12u+ prescribed verbatim ("effective-null-count parameter vs d12t's
+  12 measured cells"). Tool committed PRE-FIRE (48f99d6) with frozen plan + G1/G2/G3;
+  one mechanical fix after a crash-before-verdict (86ffa4c: inverted ECDF comparison —
+  plan and gates unchanged). Run: exact scale-invariance reduction of M1 (standardizing
+  by σ isolates δ = s^1.92·√(WT)), so T_floor = δ*(K_eff)²/(W·s^3.84) EXACTLY with the
+  certified exponent 3.84 (not refit); δ* = 0.5-crossing signal-to-noise of the mixture
+  null structure, MC 300k draws/search + 1.2M final, seed 2718 lineage. Reduction
+  validated against d12u+'s per-cell MC floors: ratios 0.99–1.03.
+- ONE parameter (a priori): K_eff = κ·(N−1) — the close-out's named effective-null-count
+  form, correlated nulls the lead suspect; chosen over σ_eff per the prescription.
+  Fit = minimax worst-cell over d12t's 12 measured cells (N=32, p=0.3). κ̂ = 0.2462.
+- **G1 PASS**: all 12 cells within 1.3× — worst 1.225× high (w4/w8, eps 0/0.05) and
+  1.225× low (w16/eps0, the grid-bottom-censored cell); full range 0.817–1.225.
+- **G2 PASS**: κ̂ ∈ [0.10, 1.00] pre-registered band. κ < 1 is exactly the direction the
+  t4 diagnostic demanded (model nulls too strong/many; κ>1 would have worsened the gap).
+- **G3 PASS (out-of-sample, no refit)**: the single κ̂ transfers across the d12u+ family
+  grid: calibrated C·W = δ*(κ̂(N−1))² = 0.986·b(K_eff)² at N=32 and 0.989·b² at N=128
+  (band 1.5×), monotone increasing in N; N=8 block (K_eff=1.72 < 2) pre-declared
+  degenerate (single-null component has no extreme-value anchor) — exempt, diagnostic
+  ratio 1.03 reported.
+- What it buys: T_floor(N,W,p,eps) = δ*(0.246·(N−1))² / (W·[p(1−2eps)]^3.84) predicts
+  discovery floors across the whole config family with NO fitted constants beyond the
+  single κ (δ* is computable, not fitted; exponent and b²/W skeleton were certified by
+  D12u+). Pre-calibration the same predictor sat 2.7× high at the overlap.
+- Caveats: κ is a LUMPED effective strength — it absorbs correlated nulls, the
+  measured-side criterion offset (d12t floor = acc≥0.9 crossing vs model P(win)=0.5),
+  and estimator-variance realism; it is NOT a literal arm count. Measured side is
+  single-N (κ fitted at N=32 only — N-transfer is model-side consistency, not harness
+  evidence); measured floors are hard-grid ceilings (×1.33–1.5 steps). The binding
+  residual is now the W-SHAPE (measured α_W 0.927 vs model 1.0 — w4/w8 run 1.22× high,
+  w16 0.82× low), not the constant. results/d12upp_calibrated.json,
+  experiments/d12upp_calibrated.py.
