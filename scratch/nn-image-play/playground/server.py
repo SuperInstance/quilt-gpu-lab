@@ -269,8 +269,10 @@ PARSE_PROMPT = (
     '"strength":<0.30-0.80>,"cn":<true|false>,"cn_scale":<0.30-0.90>}\n'
     "Defaults: subject lucineer, kind robot, cn true, cn_scale 0.6, strength "
     "0.55. Known fleet faces ignore style/seed. 'keep the shape/structure' -> "
-    "cn true; 'loose/free/painterly/drifting' -> cn false. Bigger changes -> "
-    "higher strength.\nMessage: {msg}"
+    "cn true; 'loose/free/painterly/drifting' -> cn false. Strength anchors: "
+    "subtle/small/minor/slight/close to source -> 0.30-0.40; moderate/refine/"
+    "tweak -> 0.50-0.60; dramatic/bold/neon/remix/menacing/wild -> 0.70-0.80.\n"
+    "Message: {msg}"
 )
 
 
@@ -500,7 +502,10 @@ def run_job(job):
         mark("jev", "done", round((time.time() - t0) * 1000), f"noul {noul}")
 
         # ---- 8. verdict + gallery ------------------------------------
-        accepted = (clip_cos >= 0.80) and (noul is not None and noul >= 0.60)
+        # W5-B gate-semantics shootout (v5b, 0/3 claims pass): the board gate
+        # is DINOv2-primary @0.60 (only detector separating morphs 0.34-0.50)
+        # + JEV mandatory. CLIP is advisory telemetry.
+        accepted = (dino_cos >= 0.60) and (noul is not None and noul >= 0.60)
         with Stage("Gallery"):
             rec = {"ts": round(time.time(), 3), "job": jid, "accepted": accepted,
                    "subject": spec["subject"], "style": spec.get("style"),
@@ -543,9 +548,9 @@ def compose_reply(job, spec, seed_note, prompt, gen_s, load_s,
     top = sorted(delta.items(), key=lambda kv: -abs(kv[1]))[:2]
     dtxt = ", ".join(f"{k} {v:+d}" for k, v in top)
     lines.append(f"👁 dial drift (out − source): {dtxt or 'flat'}")
-    ok_id = clip_cos >= 0.80
-    lines.append(f"🧭 identity: CLIP {clip_cos:.3f} {'✓' if ok_id else '✗'} · "
-                 f"DINO {dino_cos:.3f} (morph-watch)")
+    ok_id = dino_cos >= 0.60
+    lines.append(f"🧭 identity board: DINO {dino_cos:.3f} {'✓' if ok_id else '✗'} "
+                 f"(primary · morph-watch) · CLIP {clip_cos:.3f} (advisory)")
     ok_j = noul is not None and noul >= 0.60
     lines.append(f"⚖ JEV noul {noul if noul is None else round(noul, 3)} "
                  f"{'✓' if ok_j else '✗'} ({spec['kind']} question)")
@@ -555,7 +560,7 @@ def compose_reply(job, spec, seed_note, prompt, gen_s, load_s,
     else:
         why = []
         if not ok_id:
-            why.append("identity below the 0.80 floor")
+            why.append("DINO identity below the 0.60 board floor")
         if not ok_j:
             why.append("JEV noul below 0.60")
         lines.append(f"❌ REJECTED — {', '.join(why)}. Try: more structure "
