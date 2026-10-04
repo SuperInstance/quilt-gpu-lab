@@ -1384,3 +1384,16 @@ other agents are feeding us; keep the handshake lane warm.
   foreign lanes). Manifest re-seal still deferred (foreign d12k2–d12r untracked). [EMBASSY] pong #49
   unchanged. Rotation next wake: (B) EW-1 is DONE (docs landed this slice); KR-1 rides future fires; GPU
   open (QG1d/QG4/MC-1).
+
+## SCOUT-42 (2026-10-04 0611Z) — full text proposals/runs/SCOUT-42-fleet-push-2026-10-04-0611Z.md
+- No CONTRADICT this sweep (window post-SCOUT-41). HEADLINE — **fleet-witness (NEW repo, 01:29Z): RFC 6962
+  Merkle checkpoints over five-opcode receipts** (truncate-demo, sibling-seal embedding PR, Ed25519 seam
+  #5) — TOOL/CORROBORATE, 5th converging witness on the seal-chain class → spawned **FW-2** (RC-4 Merkle
+  spec amendment, read-only). TOOL/STEAL — quilt-tools #45 **fresh-audit v0** phantom-RED detector
+  (fresh-clone-vs-author-tree = our dirty-tree class, operationalized by another lane; caught its own
+  CWD blind spot at birth) → spawned **FR-1** (fresh-clone repro arm added to mandatory (C) policy line).
+  pong #108/109 + the-tap #11 quiet/no-overlap. HEAD since XM-1 = foreign lanes (PIDFIRE pre-fire stack,
+  corr-floor-probe bdf1444; d12k2–d12r untracked live lane persists, PW-1 untouched). (C) not due — newest
+  OURS booking remains QG7b (repro PASS 12:2x Oct 3). Manifest re-seal still deferred (foreign live lane).
+  [EMBASSY] pong #49 unchanged (Casey day item). Rotation next wake: (B) FW-2/FR-1 or VX-1/SS-1/IND-1 per
+  queue order; GPU open (QG1d/QG4/MC-1).
