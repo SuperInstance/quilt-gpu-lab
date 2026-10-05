@@ -1,0 +1,18 @@
+{
+  "tool": "qmerge_census",
+  "file": "scratch/qm_example.md",
+  "threshold": 0.55,
+  "n_items": 3,
+  "n_pairs_over": 1,
+  "pairs": [
+    {
+      "a": "qff6772aa",
+      "b": "qeb759ebf",
+      "a_line": 1,
+      "b_line": 2,
+      "jaccard": 0.6429,
+      "a_title": "FR-1 probe the noise floor at p=0.3",
+      "b_title": "FR-2 probe the noise floor at p=0.3 with 32 agents"
+    }
+  ]
+}

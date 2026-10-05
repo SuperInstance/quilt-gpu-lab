@@ -1,0 +1,3 @@
+- [ ] FR-1 probe the noise floor at p=0.3
+- [ ] FR-2 probe the noise floor at p=0.3 with 32 agents
+- [ ] B1 sweep widths on pong
