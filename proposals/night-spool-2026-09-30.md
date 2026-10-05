@@ -1583,3 +1583,16 @@ other agents are feeding us; keep the handshake lane warm.
   (resolved since the C3b repro note). Nothing fired on GPU; lane idle; no running processes; nothing duplicated.
 - [EMBASSY] not swept this slice (rotation: (C) was the slot; next wake takes (A) SCOUT-43 then (B) per queue:
   EP-1b / VX-1 / SS-1; GPU open QG1d/QG4/MC-1).
+
+## SCOUT-43 + D12u+ REPRO (2026-10-05 0305Z / 19:1x AKDT day-conductor slice) — DONE
+- (A) SCOUT-43: no CONTRADICT (window post-SCOUT-45). TOOL x2 → spawned PONG-J (pong #114 abstaining-judge
+  classifyJudge vs CH-1/QO6/judge-chunk) + FW-M1 (fleet-witness RFC 6962 Merkle + Ed25519 sig-seam → RC-4
+  read). CORROBORATE (weak): rc-20260824-11 lineage-ledger-tax vs W5b/DECIDE-2c shape. lobster/lobster-live =
+  Casey's production agent (note only); polln TS-batch housekeeping; MicroMoth #43/#44 IonQ rung pre-flights
+  (QG1d-adjacent, recorded). Full text proposals/runs/SCOUT-43-fleet-push-2026-10-05-0305Z.md.
+- (C) MANDATORY REPRO of newest OURS booking **d12u+ family** (4cab9a1): COMMITTED tool re-run in scratch
+  sandbox (fired artifact untouched) → exit 0, CONFIRMED, V1/V2/V3 identical; deep-compare 77 diffs all
+  last-ulp float noise. **PASS** (verdict-level). RESULTS.md booked.
+- d12u+ lane confirmed landed+booked by its own lane (no dangling IN-PROGRESS; tree was clean pre-slice).
+- Manifest re-seal post-booking (below). No GPU fired (lane idle; rotation honored — (A)+(C) was the slot).
+- Rotation next wake: (B) PONG-J / FW-M1 / EP-1b per queue order; GPU open (QG1d/QG4/MC-1).

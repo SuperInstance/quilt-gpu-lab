@@ -6043,3 +6043,7 @@ any relaunch-5.
   refuse-overwrite — the repro OVERWROTE results/ep1_seal_census.json (fired-output) with the drifted
   re-run. Restored byte-exact from git (sha256 1af4f056…, matches f571507). Add --out + refuse-overwrite
   to the EP-1b spec.
+
+## [REPRO-PASS 19:1x CPU Oct 4] D12u+ FAMILY MANDATORY REPRO: PASS at verdict level — 77 float diffs all last-ulp
+- COMMITTED experiments/d12u_family.py re-run in a scratch sandbox (own results/ dir, fired artifact untouched — EP-1 hazard protocol). exit 0, VERDICT CONFIRMED, V1/V2/V3 booleans identical to booking (alphas 3.69–3.93, C·W 27/27, t4 in band; overlap ratio 2.67x).
+- Deep-compare vs committed results/d12u_family.json (e58a6235…): 77 diffs, ALL last-ulp float noise (max relative delta ~1e-15, CPU BLAS thread nondeterminism; no structural/boolean/verdict differences). Clean bill.
