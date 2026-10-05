@@ -215,6 +215,25 @@ more than a copy to use, it's not grabbable yet.
   dropping the growth arg -> forest death, all fixed); worked example rc=0 KEEP,
   peak p=0.8 chi=1.61, 0.38s, receipt results/soc_probe_example_2026-10-04.json.
 
+- **nullvar-calib** — `tools/nullvar_calib.py` — one-parameter null-variance
+  floor calibrator (pattern lifted PROVEN from D12u1, booked KEEP 2026-10-04:
+  k=0.657 closed a ~400x model-vs-harness floor gap on ONE lumped parameter,
+  4/4 held-out covered): given cells {name, mu, scale, floor, role}, sigma =
+  k*scale/sqrt(T) with the discovery prob P(N(mu,sigma) > max-of-n-nulls)
+  computed analytically over a cached seeded null-max stream (bit-identical
+  reruns); fits k by worst-cell |log ratio| on the FIT subset (coarse grid +
+  golden-section), then gates G1 held-out coverage (band 1.5x) and G2
+  fit-spread — if one k can't serve the fit cells, the gap is structural and
+  books honest FAIL. Stdlib-only, fail-loud rc=2, JSON receipt.
+  `python tools/nullvar_calib.py --cells cells.json [--n-nulls 31 --cover 1.5 --spread 1.3 --out r.json] | --example | --selftest`
+  TEST receipt 2026-10-04: selftest 9/9 (D12u1 reproduction k_hat=0.6532 vs
+  booked 0.657, holdout-break FAIL, structural-spread G2 FAIL, determinism,
+  4 fail-loud inputs) — selftest caught two real bugs live (sigma grew as
+  k*scale*sqrt(T) instead of /sqrt(T); cached standard-unit null draws were
+  compared against mu without scaling by sigma — both flagged by
+  everything-inf before any verdict); worked example rc=0 KEEP, g1 4/4,
+  g2 worst 1.128, receipt results/nullvar_calib_example_2026-10-04.json.
+
 - **worstcase-calib** — `tools/worstcase_calib.py` — one-parameter worst-case (minimax) calibration fit
   (RENAMED 2026-10-04 from minimax-calib / tools/minimax_calib.py: "minimax" named the optimization
   criterion, not the MiniMax provider — name collision confused humans, Casey asked for de-branding.
