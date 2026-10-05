@@ -6131,3 +6131,10 @@ any relaunch-5.
 - G1 PASS (17/17 rows classified, exactly one class each). G2 PASS (all (b) claims seed-verified at HEAD). G3: 1 RED (REST-EM). G4 verdict: **PASS-with-RED-row** per pre-reg wording — RED rows are named, not re-rolled; tranche verdict is the census itself being complete and honest.
 - Spawned **DET-1b** (CPU/GPU ~2h wall for 3 seeds, pre-reg first): REST-EM seed-replicate arm above. Tranche 2 (legacy D/E-series, 2026-09-27→10-03) remains OPEN for a later wake.
 - Lesson for the doctrine: committed-repro PASS does not subsume determinism-witness — a single-draw GPU booking can repro bit-exactly (C3b did) yet still be seed-lucky in the training draw it froze. Class receipt belongs at BOOKING time, not repro time.
+
+## [SMOKE + RESEAL 13:1x CPU Oct 5] det_witness.py (f1eb90f) committed smoke: PASS; manifest re-sealed
+- (C) slot: DET-1 booking itself is a read-only census (class (a) EXACT, no producing script to re-run);
+  its committed INSTRUMENT det_witness.py landed after the last seal, so the mandatory check ran on the tool.
+- Selftest PASS (fail-loud pins incl. error-loud true); smoke: /bin/echo x3 -> verdict IDENTICAL, hash0
+  789a055f3670225fddb7d8a850cb6afc31dc08b592ca6ef71cf1fd152d0f97f6, receipt to /tmp scratch only. 8/8 receipt
+  tests pass. Manifest re-sealed (68 tool/weight files incl. det_witness.py + example) — f1eb90f post-seal drift retired.
