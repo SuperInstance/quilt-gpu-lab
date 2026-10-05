@@ -392,6 +392,21 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   benign config constants + honest single-draw arrays, no fraud class present. Receipt:
   results/lit_sweep_2026-10-02.json.
 
+- **qmerge-census** — `tools/qmerge_census.py` — near-duplicate queue-item census
+  (Q0 MERGE operator, pattern lifted from rc-20260824-11 via SCOUT-46
+  TOOL/STEAL receipt): parses a QUEUE.md-style checklist, tokenizes items, and
+  reports pairs whose token Jaccard >= threshold as MERGE candidates needing
+  eyes. Read-only, deterministic, stdlib-only, fail-loud rc=2; exit
+  0=clean / 1=FINDINGS. Never edits the queue — books the census, humans act.
+  `python tools/qmerge_census.py --file QUEUE.md [--threshold 0.55 --out r.json] | --selftest`
+  TEST receipt 2026-10-05: selftest 5/5 (near-dup pair, clean-item isolation,
+  strict-threshold honesty, identical-items j=1.0, missing-file rc=2) —
+  selftest caught its own control bug live (pin matched on the hashed id, not
+  the title; pin fixed, detector untouched); worked example rc=1 FR-1/FR-2
+  pair j=0.64, B1 clean; live QUEUE.md census (109 items, t=0.5): 1 pair
+  (E13/E13b j=0.76 — genuine sibling lanes, cited not merged), receipt
+  results/qmerge_census_QUEUE_2026-10-05.json.
+
 - **corr-exponent** — `tools/corr_exponent.py` — exact + empirical decorrelation
   exponent for paired ±1 streams (pattern lifted PROVEN from D12m/D12n:
   r = p_corr·(1-2eps)², alpha_emp = 1.92 OOS-validated). Seeded sim vs closed

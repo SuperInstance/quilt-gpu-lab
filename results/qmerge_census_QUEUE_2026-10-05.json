@@ -1,0 +1,18 @@
+{
+  "tool": "qmerge_census",
+  "file": "QUEUE.md",
+  "threshold": 0.5,
+  "n_items": 109,
+  "n_pairs_over": 1,
+  "pairs": [
+    {
+      "a": "q3c203ef3",
+      "b": "qd5a96a95",
+      "a_line": 61,
+      "b_line": 62,
+      "jaccard": 0.76,
+      "a_title": "E13 nonlinear-carrier dial read (backfilled 2026-09-30: RESULT existed, QUEUE line missing \u2014 drift class of D18/c9b39b4) \u2014 2026-09-28 INCONCLUSIVE",
+      "b_title": "E13b nonlinear-reader dial read (backfilled 2026-09-30: RESULT existed, QUEUE line missing \u2014 drift class of D18/c9b39b4) \u2014 2026-09-28 INCONCLUSIVE (partial recovery)"
+    }
+  ]
+}
