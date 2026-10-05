@@ -1704,3 +1704,32 @@ other agents are feeding us; keep the handshake lane warm.
 - (C) mandatory repro of newest OURS booking IONQ-2: FIRST RUN FAILED from committed artifact — the booking's declared in-place repairs were dirty-on-disk, never committed (dirty-tree class, 4th instance). Landed repairs as-is (f7927cd, declared fix, no re-roll), re-ran → G0-G4 PASS identical. Booked in RESULTS.md. Scratch runs only.
 - Manifest re-seal: deferred again (foreign d12u1/d12u2 untracked live lane persists; receiptd serve processes untouched per PW-1). No GPU fired (lane idle, rotation honored — (C) was the slot). Nothing duplicated (process list checked).
 - Rotation next wake: (A) SCOUT sweep; GPU open (QG1d/QG4/MC-1); EP-1 lane closed.
+
+## SCOUT-42 (2026-10-05 1409Z day-conductor) — full text proposals/runs/SCOUT-42-fleet-push-2026-10-05-1409Z.md
+- No CONTRADICT this sweep (window post-XM-1/SCOUT-41). HEADLINE — **IONQ lane convergence**: MicroMoth
+  docs/IONQ-RECON + open PRs #43/#44 (rung-1/rung-2 sim pre-flight, 01:14Z/02:24Z Oct 5) landed AFTER our
+  IONQ-2 booking — our G2 (transfer = sin²(θ/2) within 1e-9 all θ) GROUNDS their §2 SPECULATIVE bridge
+  constant, and our G4 (crx(θ);crx(−θ) → exactly 0.0) IS their §3.1 cancellation discriminator (the sign
+  the qm\_\* registry algebraically lacks — our substrate expresses it). CORROBORATE, nothing booked
+  threatened; IONQ-1 sim-backend-bound list stands. NOTE: their recon cites OUR
+  quilt-gpu-lab/scratch/dogfood/luau2/brief_r1.txt as AUTHORITATIVE qm\_\* semantics — scratch is
+  load-bearing fleet-side and unsealed by the manifest (flagged for WQ-1 scope; not touched, PW-1).
+- TOOL/STEAL — **fleet-witness** (NEW hot repo: L2 git anchoring, L3 witness quorum, Ed25519 sig-seam
+  57/57, sibling-seal embedding; PRs #3-#5 merged, #7 quorum + #8 open): strongest RC-4/RC-5 reference
+  design yet — our receipt-manifest seal has exactly ONE witness. Spawned **WQ-1** (CPU ~30m, spec-only,
+  pre-reg before tool change): enumerate single-witness sealed claims; spec minimal Ed25519 cosig seam
+  that leaves existing seals verifiable; gate = key-rotation behavior stated in words pre-code.
+- Spawned **IONQ-3** (CPU ~15m, LOW coverage census): reconcile PR #43/#44 §4 discriminators vs IONQ-2
+  G1-G4; list uncovered expressible ones; no new physics.
+- Spawned **RC-B1** (CPU ~20m, LOW): rc-20260824-11 m3 "regime patched good-forever" stable-gap test —
+  mute-after-patch monitoring = FW-1/DEGENERATE class candidate; add to census note only if
+  machine-checked.
+- CORROBORATE: jev-quilt R6 live batteries (#50/#51, record-only) + F4 event-fabrication probe design;
+  pong-quilt rounds 92-95 --check adoption + abstaining-judge (CI-1 class in anger); quilt-tools edge #33
+  verified on-merge booking. quilt-matrix tip unchanged (guard bugfix, already covered). [EMBASSY] pong
+  #49 unchanged at 7 comments (Casey day item). purplepincher/zero + zero-msg-test bursts = messaging
+  plumbing outside org, skipped.
+- (C) not due: newest OURS booking IONQ-2 already committed-repro PASS at HEAD f7927cd (05:2x). No GPU
+  fired (lane idle; rotation honored — scout was the slot). Manifest re-seal still deferred (foreign
+  d12u1/d12u2 untracked live lane persists). Rotation next wake: (B) WQ-1 or IONQ-3 per queue order; GPU
+  open (QG1d/QG4/MC-1).
