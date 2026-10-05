@@ -98,25 +98,6 @@ def main():
             corpus_texts.append((rel, p.read_text(errors="replace")))
     print(f"committed .md corpus for xref: {len(corpus_texts)} files")
 
-    # EP-1d G-DRY: dry-run over named sha prefixes, classified against real citing lines
-    if a.sites:
-        rc = (REPO / "RESULTS.md").read_text(errors="replace").splitlines()
-        ok = True
-        for prefix in a.sites.split(","):
-            hits = 0
-            for i, line in enumerate(rc, 1):
-                if prefix in line:
-                    hits += 1
-                    cls = classify("RESULTS.md", i, next(s for s in SHA_ANY.findall(line) if s.startswith(prefix)) if SHA_ANY.search(line) else prefix, line)
-                    print(f"DRY {prefix} @RESULTS.md:{i} -> {cls}")
-                    if cls == "RED":
-                        ok = False
-            if hits == 0:
-                print(f"DRY {prefix} -> NO SITE FOUND")
-                ok = False
-        print(f"DRY-VERDICT: {'PASS' if ok else 'FAIL'}")
-        return
-
     # G1 census
     digest_claims, seal_claims = [], []
     for path in SCOPE_FILES:
@@ -188,6 +169,25 @@ def main():
         if SELFSCAN_RE.search(line):
             return "WARN_SELFSCAN"
         return "RED"
+
+    # EP-1d G-DRY: dry-run over named sha prefixes, classified against real citing lines
+    if a.sites:
+        rc = (REPO / "RESULTS.md").read_text(errors="replace").splitlines()
+        ok = True
+        for prefix in a.sites.split(","):
+            hits = 0
+            for i, line in enumerate(rc, 1):
+                if prefix in line:
+                    hits += 1
+                    cls = classify("RESULTS.md", i, next(s for s in SHA_ANY.findall(line) if s.startswith(prefix)) if SHA_ANY.search(line) else prefix, line)
+                    print(f"DRY {prefix} @RESULTS.md:{i} -> {cls}")
+                    if cls == "RED":
+                        ok = False
+            if hits == 0:
+                print(f"DRY {prefix} -> NO SITE FOUND")
+                ok = False
+        print(f"DRY-VERDICT: {'PASS' if ok else 'FAIL'}")
+        return
 
     counts = {"RED": [], "WARN_POINTER": [], "WARN_FOREIGN": [], "WARN_SELFSCAN": []}
     g2_resolved = 0
