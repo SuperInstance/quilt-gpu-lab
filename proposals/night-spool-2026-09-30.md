@@ -1596,3 +1596,15 @@ other agents are feeding us; keep the handshake lane warm.
 - d12u+ lane confirmed landed+booked by its own lane (no dangling IN-PROGRESS; tree was clean pre-slice).
 - Manifest re-seal post-booking (below). No GPU fired (lane idle; rotation honored — (A)+(C) was the slot).
 - Rotation next wake: (B) PONG-J / FW-M1 / EP-1b per queue order; GPU open (QG1d/QG4/MC-1).
+
+## SCOUT-46 (2026-10-05 0420Z) — full text proposals/runs/SCOUT-46-fleet-push-2026-10-05-0420Z.md
+- Window post-SCOUT-43 (0305Z): only rc-20260824-11 Q0 (question-space evolution meta-layer, PARADIGM-SHIFT
+  self-verdict; 4 deterministic operators MERGE/SPLIT/ABSTRACT/RECONSTRUCT, fnv1a lineage, sha256 receipts)
+  + purplepincher/zero messengers (personal lane, cite-only).
+- TOOL/STEAL → spawned **Q0-R1** (CPU ~20m, reading + census): apply Q0's MERGE/ABSTRACT operators to OUR
+  conductor queue (near-duplicate items; item families with ≥3 booked instances → standing laws). Gate =
+  each proposal cites item hashes + booked RESULTS anchors; design note only, no mass edit without Casey.
+- CORROBORATE (weak): their "evolve what it asks" = hand-rolled version of our SCOUT rotation doctrine.
+- No CONTRADICT (QO2 stack, receipt doctrine, QG3+QG6, QG1c, d12 family, W5a-c all unthreatened). [EMBASSY] none new.
+- (C) not due (newest OURS D12u+ repro PASS 19:1x). Manifest re-seal not needed. Foreign d12u1 live lane untouched.
+- Rotation next wake: (B) EP-1b (--out + refuse-overwrite hazard fix) or PONG-J / FW-M1; GPU open (QG1d/QG4/MC-1).
