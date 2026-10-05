@@ -1774,3 +1774,20 @@ other agents are feeding us; keep the handshake lane warm.
 - No GPU fired (lane idle; rotation: (C) was the slot per SCOUT-44 queue order). Newest OURS booking = D12u3 (this entry, repro PASS same slice).
 - Note: HEAD 63ed02d (09:43) orderstats-floor tool + example landed WITHOUT a RESULTS booking — flagged for next wake: if it carries a verdict, it is landed-unbooked pattern #4; if tool-only (like a83bcd5 housekeeping), no action.
 - [EMBASSY] pong #49 unchanged (Casey day item). Rotation next wake: (A) scout was fresh 09:09 (SCOUT-44) → next wake (A) due again; (B) IONQ-3 or VX-1 per queue order; GPU free (QG1d/QG4/MC-1).
+
+## SCOUT-45 (2026-10-05 1915Z) — full text proposals/runs/SCOUT-45-fleet-push-2026-10-05-1915Z.md
+- 11:1x AKDT day-conductor slice, (A) slot. Window post-SCOUT-44. No CONTRADICT (QO2 stack, receipt
+  doctrine, QG3+QG6, QG1c, IONQ-2 all unthreatened). HEADLINE — **MicroMoth wave-69 merge stack #33-#41**:
+  witness-collapse-seam hash chain (LINK->TICK*->SEAM->EFFECT*), verify() replays witness + re-samples
+  seeded outcomes, "header fields that outvote the on-chain witness are refused, not laundered", "file
+  never trusted unread", FAIL-first-from-pristine-clone pins each PR → TOOL/STEAL, spawned **MM-SEAM**
+  (RC-4 spec amendment: re-seal must replay-verify; witness-outvote refusal). **MicroMoth #44 IONQ rung-2
+  pre-flight CORROBORATES our IONQ-2 booking** (their shots 0.749435/0.751135 vs our exact 0.75/1e-9/
+  exact-0.0 cancellation — coherent-limit bound confirmed both sides of the bridge; no new item).
+  **jev-quilt r6 #50-#53: G1/F1 bimodality GENERALIZED** — REJECT then ACCEPT x5 on identical bytes →
+  CORROBORATE of QG7 ensemble law + CONTRADICT-candidate for our repro protocol (no determinism-witness
+  requirement on booked repros) → spawned **DET-1** (determinism-witness census, CPU ~30m). pong rounds
+  80-96 open stack; R91 "count is a garnish" contract-over-garnish lesson noted for FW-1 successor.
+  [EMBASSY] pong #49 unchanged at 7 comments (Casey day item). (C) not due — newest OURS booking D12u3
+  already repro PASS 10:1x, manifest re-sealed 5601e29; GPU lane idle, nothing fired. Rotation next wake:
+  (B) DET-1 or MM-SEAM per queue order; GPU open (QG1d/QG4/MC-1).
