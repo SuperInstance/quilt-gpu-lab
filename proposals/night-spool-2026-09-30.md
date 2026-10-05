@@ -1570,3 +1570,16 @@ other agents are feeding us; keep the handshake lane warm.
   pointer-required WARN-vs-RED, CPU ~30m).
 - Manifest re-sealed post-booking (223 exp / 58 tool files); tests/test_receipts.py green.
 - Rotation next wake: (B) EP-1b or QO6c-followups/VX-1/SS-1 per queue order; GPU open (QG1d/QG4/MC-1).
+
+## 18:1x CONDUCTOR slice (day cron Oct 4) — (C) MANDATORY REPRO EP-1: PASS (verdict-level)
+- EP-1 committed tool re-run: exit 0, RED verdict, all 5 booked anchors reproduce exactly. Prose-arm drift
+  21/19 -> 23/20 is expected ledger growth; the extra RED (RESULTS:6024) is the census scanning its own
+  booking narrative (self-referential, not a new anchor). Full entry in RESULTS.md (d3f215f).
+- HAZARD found: ep1_seal_census.py overwrote its fired artifact on re-run (no --out, no refuse-overwrite);
+  restored byte-exact from git 1af4f056. --out + refuse-overwrite added to EP-1b spec below.
+- [spawned by EP-1 repro] **EP-1b spec amendment** (fold into existing EP-1b): census v2 must add --out and
+  refuse to overwrite an existing fired artifact (exit 3) unless --force; fired outputs are immutable.
+- Manifest re-sealed clean post-commit (8a0af19) — foreign d12 untracked lane no longer blocks the sealer
+  (resolved since the C3b repro note). Nothing fired on GPU; lane idle; no running processes; nothing duplicated.
+- [EMBASSY] not swept this slice (rotation: (C) was the slot; next wake takes (A) SCOUT-43 then (B) per queue:
+  EP-1b / VX-1 / SS-1; GPU open QG1d/QG4/MC-1).
