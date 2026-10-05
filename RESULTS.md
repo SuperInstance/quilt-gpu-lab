@@ -6102,3 +6102,8 @@ any relaunch-5.
 - Verdict: qcell_sim crx matches the IonQ-bridge weight algebra exactly. IONQ-1's sim-backend-bound list stands; no booking threatened. Lanes QG1d/QG4 unblocked for next GPU wake.
 - Declared in-place repairs, both PRE-verdict (harness, not tool; gates untouched): (1) probe used default targets ["00","11"] which miss the flipped state — assert crashed; switched to full 4-target vector. (2) first target-marginal summed the CONTROL bit position (all-zero G2/G3) — corrected to the other qubit. Tool qcell_sim.py untouched throughout.
 - Scratch run; no artifact writes (stdout is the record). Runtime <5 s.
+
+## [REPRO 05:2x CPU Oct 5] IONQ-2 committed repro: FAILED first (repair uncommitted — dirty-tree class, 4th instance), then PASS after landing the declared repair
+- Committed HEAD eec8e5c tool run to ext4 scratch → crashed at the G0 bit-order probe assert (`[]`, targets default ["00","11"] misses flipped state). The on-disk file was DIRTY with exactly the booking's two declared pre-verdict repairs — never committed. First run (dirty tree) was verdict-PASS but not a valid committed repro.
+- Remedy: repairs committed as-is f7927cd (landing the booking's own declared fix, no semantic change, no re-roll); re-run → G0-G4 PASS identical to booking (G2 within 1e-9 at every θ; G3 0.75; G4 exactly 0.0). VERDICT PASS at HEAD f7927cd. Scratch only; tool fired results untouched.
+- LESSON (now 4 instances): "declared in-place repair" is not landed until it is COMMITTED. Pre-reg commit ≠ fire-time tree. Repro must run the COMMITTED artifact; a dirty-tree PASS is a false green.

@@ -1699,3 +1699,8 @@ other agents are feeding us; keep the handshake lane warm.
 - Two declared PRE-verdict harness repairs (probe targets; control-vs-target marginal) — tool untouched, gates untouched, no re-roll.
 - (C) not due: newest prior OURS booking EP-1d repro PASS twice (01:09 + 03:09 slices). Manifest re-seal still DEFERRED (foreign d12u1/d12u2 untracked live lanes persist; sealer correctly refuses). No GPU contention (CPU-class lane); nothing duplicated; no running conductor processes.
 - Rotation next wake: (B) FWIT-1 / VX-1 / SS-1 per queue order; GPU open (QG1d/QG4/MC-1).
+
+## CONDUCTOR slice 05:2x Oct 5 (day cron) — (C) slot, IONQ-2 repro
+- (C) mandatory repro of newest OURS booking IONQ-2: FIRST RUN FAILED from committed artifact — the booking's declared in-place repairs were dirty-on-disk, never committed (dirty-tree class, 4th instance). Landed repairs as-is (f7927cd, declared fix, no re-roll), re-ran → G0-G4 PASS identical. Booked in RESULTS.md. Scratch runs only.
+- Manifest re-seal: deferred again (foreign d12u1/d12u2 untracked live lane persists; receiptd serve processes untouched per PW-1). No GPU fired (lane idle, rotation honored — (C) was the slot). Nothing duplicated (process list checked).
+- Rotation next wake: (A) SCOUT sweep; GPU open (QG1d/QG4/MC-1); EP-1 lane closed.
