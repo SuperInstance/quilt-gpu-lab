@@ -104,6 +104,20 @@ piece others can lift. Grab = copy the file; everything here runs alone.
   written (cost bar honestly tripped at chunk-size 1 — overhead dominates
   tiny workloads).
 
+- **reloc-gate** — `tools/reloc_gate.py` — semantic-identity gate for relocated code
+  blocks (pattern lifted PROVEN from EP-1d, commit 5fbf882 2026-10-05: the G-DRY
+  block moved wholesale with "no semantic delta" claimed in the message — this
+  mechanizes that claim): extracts a named block (start/end substrings) from a file
+  at two git refs via `git show`, normalizes (blank/comment/trailing-ws lines
+  dropped), requires EXACT line-sequence identity. Read-only, never mutates the
+  repo. Exit 0=IDENTITY / 1=RED / 2=fail-loud (bad ref, missing marker — caught
+  live: a path that only exists at the new ref rc=2s honestly).
+  `python tools/reloc_gate.py --file F --start "S" --end "E" [--ref-old HEAD~1 --ref-new HEAD] | --selftest`
+  TEST receipt 2026-10-05: selftest 3/3 — selftest caught its own PASS-control bug
+  live (fixture excluded a content line, tool correctly RED'd it; fixture fixed, not
+  the gate); live EP-1d move 5fbf882~1 -> 5fbf882 on the G-DRY block: IDENTITY rc=0,
+  26 content lines match exactly; tamper control RED; missing-ref/path rc=2.
+
 ## When you add a tool
 
 Append it here with: name — path — one line on what it does. If it needs
