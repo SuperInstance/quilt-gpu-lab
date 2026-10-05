@@ -6138,3 +6138,9 @@ any relaunch-5.
 - Selftest PASS (fail-loud pins incl. error-loud true); smoke: /bin/echo x3 -> verdict IDENTICAL, hash0
   789a055f3670225fddb7d8a850cb6afc31dc08b592ca6ef71cf1fd152d0f97f6, receipt to /tmp scratch only. 8/8 receipt
   tests pass. Manifest re-sealed (68 tool/weight files incl. det_witness.py + example) — f1eb90f post-seal drift retired.
+
+## [IN-PROGRESS 14:1x CPU/GPU Oct 5] DET-1b REST-EM seed-replicate FIRED (pre-reg 38d6ea3 committed+pushed BEFORE firing)
+- 3 seeds {20261005,20261006,20261007} x arms {T, C2}; heldout FROZEN 20261003 (same eval set as booked run); outputs isolated under results/det1b/ (booked artifacts untouched). Driver experiments/det1b_replicate.sh.
+- Fire sanity: harness import OK; verifier selftest PASS 8/8+12/12; pool=96 heldout=96 contamination_overlap=0; on cuda. ~2h ETA.
+- Gates pre-registered (DET-1b prereg): G3 sign-flip in >=1 seed on either arm => original REST-EM booking DOWNGRADES to direction-unstable; all-stable => upgrade to class (b) seeded-ensemble. No re-rolls. Next wake: check completion, book honestly vs G3, re-seal manifest.
+- GPU context: foreign idle server.py lanes hold ~2.5 GiB (0% util); nf4 0.5B lane fits in remaining ~3.6 GiB.
