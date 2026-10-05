@@ -6113,3 +6113,9 @@ any relaunch-5.
 - rc=0 both; d12u1 verdict KEEP (G1 holdout 4/4, G2 fit-within-2x), d12u2 verdict KEEP_model_generalizes_to_N64 (worst ratio within 2x gate). Output JSONs IDENTICAL to committed results/ artifacts modulo none (timestamp-stripped compare, no other drift).
 - Verdict-level repro PASS at HEAD ccaa872; D12u1/D12u2 bookings stand. k=0.6571 calibration and N64 out-of-family generalization confirmed reproducible from committed artifacts alone.
 - Note: untracked experiments/d12u3_p07_heldout.py + results/d12u3_p07_heldout.json present in live tree (foreign/in-progress lane per PW-1 — untouched, not booked here).
+
+## [BOOKED + REPRO 10:1x CPU Oct 5] D12u3 p-axis heldout (N=64, p=0.7): committed repro PASS — landed-unbooked slot filled (QO6 pattern #3 closed)
+- Context: 5a2fbcc (08:13 AKDT) committed experiments/d12u3_p07_heldout.py + results/d12u3_p07_heldout.json with verdict ONLY in the commit message (3rd landed-unbooked instance; flagged by SCOUT-44). This wake ran the (C) book+repro slot; no live claimant at fire time (HEAD then 63ed02d, tool-only).
+- Repro method: git archive 5a2fbcc → clean ext4 scratch worktree (/home/eileen/scratch/repro/d12u3_10095); committed script run with elephant-gpu python; output compared against the committed artifact via git show (scripts hardcode results/ writes — never fired over the live tree, D12u1/D12u2 precedent).
+- Result: rc=0; output JSON IDENTICAL to committed artifact modulo volatile fields (timestamp/runtime). Verdict KEEP_model_generalizes_to_p07 (G1 all covered_2x TRUE, worst_ratio 0.27, p=0.7 held-out lane) reproduces exactly. Booking stands: k=0.657 calibration under-predicts all p=0.7 ratios 0.12–0.27 within the 2x gate; harness floors pinned at T-grid bottom caveat carried as booked in the commit message.
+- Verdict-level repro PASS at 5a2fbcc; D12u family fully booked+repro'd end-to-end (u1/u2 at 08:1x, u3 here).
