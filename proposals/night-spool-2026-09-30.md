@@ -1791,3 +1791,9 @@ other agents are feeding us; keep the handshake lane warm.
   [EMBASSY] pong #49 unchanged at 7 comments (Casey day item). (C) not due — newest OURS booking D12u3
   already repro PASS 10:1x, manifest re-sealed 5601e29; GPU lane idle, nothing fired. Rotation next wake:
   (B) DET-1 or MM-SEAM per queue order; GPU open (QG1d/QG4/MC-1).
+
+## DET-1 (2026-10-05 2010Z / 12:2x AKDT day-conductor slice) — DONE, tranche 1
+- (B) slot per SCOUT-45 rotation (11:1x slice already took (A); my duplicate scout writeup discarded pre-commit — rotation honored, no double-booking of the window). Pre-reg 1bb075f, booking 094d2bd.
+- Verdict: PASS with 1 RED row — REST-EM full arms (single-draw torch/qlora, margin 4-8/32 eval flips, no ensemble/nondeterminism receipt at booking time; C1 null Δ0.000 noted as partial mitigation). DET-1b (3-seed REST-EM replicate, pre-reg first) spawned. All (b) seed claims verified at HEAD via git show (G2). C3b/CM1-r6 class-(c) rows carry receipts (bit-identical repro / H2 Δ0 + regeneration ensemble).
+- (C) not due: newest OURS booking remains D12u3 (repro PASS 10:1x); this booking is a read-only census. Manifest untouched (no artifact/ledger hash change beyond RESULTS.md prose — sealer not required for prose-only commit; re-seal at next artifact landing).
+- Rotation next wake: (B) DET-1b (pre-reg first) or MM-SEAM per queue order; tranche 2 (legacy D/E) open; GPU free (QG1d/QG4/MC-1).
