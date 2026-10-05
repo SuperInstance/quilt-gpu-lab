@@ -78,6 +78,19 @@
 - No GPU fired (lane idle, rotation honored). (C) not due: newest OURS booking remains QG7b (repro PASS 12:2x); HEAD since is foreign lanes + spool/docs. Manifest re-seal still deferred (foreign d12k2–d12r untracked live lane persists). No running processes; nothing duplicated.
 - Rotation next wake: (B) VX-1 or SS-1/IND-1 per queue order; GPU open (QG1d/QG4/MC-1).
 
+## SCOUT-46 (2026-10-05 2109Z) — full text proposals/runs/SCOUT-46-fleet-push-2026-10-05-2109Z.md
+- HEADLINE — **FLEET STAND-DOWN/HANDOFF PACKAGE (2026-10-06)**: ONBOARDING fleet-seed + operation-fictions
+  branches merged across MM (#46/#47), jev (#54/#55), pong (#119/#120). CORROBORATE, not CONTRADICT: the MM
+  fiction "The Smallest Honest Lab in Physics" QUOTES OUR BOOKED IONQ-2 PINS verbatim (0.49815 forbidden-sum,
+  sin² bridge at π, additivity 0.7494, cancellation exact zero) — our booking is now third-party-consumed
+  fleet-level doctrine. No booked result threatened; 0 open PRs anywhere; [EMBASSY] pong #49 unchanged
+  (Casey day item). Spawned SD-1 (day-item, LOW): our repo's own stand-down seed is Casey's-voice territory,
+  queued not filed. jev R6 runs 5/6 G1 mode-sequence probes = fleet-side witness of DET-1's REST-EM
+  single-draw class; DET-1b unchanged.
+- (C) done this slice: det_witness.py committed smoke PASS (selftest + echo×3 IDENTICAL); manifest re-sealed
+  (f1eb90f post-seal drift retired, 8/8 tests). Rotation next wake: (B) DET-1b (REST-EM seed-replicate, ~2h,
+  pre-reg first) or QG1d/QG4/MC-1 GPU per queue order.
+
 ## SCOUT-36 (2026-10-03 2111Z) — full text proposals/runs/SCOUT-36-fleet-push-2026-10-03-2111Z.md
 - No CONTRADICT this sweep (window post-SCOUT-35: pong #107 playloop lane, quilt-dba wave-69 CI hygiene
   = CI-1 corroborate, naDir FIRST CODE → hedge trigger fired, fleet-triage edge-watch #17-#22 all
