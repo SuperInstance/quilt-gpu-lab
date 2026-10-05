@@ -1733,3 +1733,10 @@ other agents are feeding us; keep the handshake lane warm.
   fired (lane idle; rotation honored — scout was the slot). Manifest re-seal still deferred (foreign
   d12u1/d12u2 untracked live lane persists). Rotation next wake: (B) WQ-1 or IONQ-3 per queue order; GPU
   open (QG1d/QG4/MC-1).
+
+## SCOUT-43 DELTA (2026-10-05 1509Z / 07:09 AKDT day-conductor slice) — QUIET delta
+- Window: post-SCOUT-42-1409Z sweep (~1h). Read-only; no comments/PRs filed.
+- Delta since 14:09Z sweep: NOTHING new. fleet-witness #7 (L3 quorum client-side, 13:46Z) and #8 (truncate-demo, 13:05Z) were already cited by SCOUT-42-1409Z; WQ-1/RC-B1/IONQ-3 already spawned there. quilt-tools 15:03Z PushEvent has no new main commit (tip still 0c7cf87, edge-#33 booking). purplepincher/zero + zero-msg-test bursts = messaging plumbing, skipped per prior precedent.
+- No CONTRADICT. QO2 stack, DECIDE-1/2, receipt doctrine, QG3+QG6, QG1c, W5a/W5b/W5c, IONQ-2 — unthreatened.
+- (C) not due: newest OURS booking = IONQ-2 (repro PASS at f7927cd, booked 05:2x Oct 5). No GPU fired (lane idle; per 07:00 rule nothing new started). Untracked foreign live lanes (d12u1/d12u2, law_ks_gate example, scratch qm_*) untouched per PW-1. Manifest seal status unchanged (no ledger change this slice).
+- Rotation next wake: (B) WQ-1 or IONQ-3 or RC-B1 per queue order (pre-reg first); GPU free for QG1d/QG4/MC-1.
