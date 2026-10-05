@@ -104,6 +104,19 @@ piece others can lift. Grab = copy the file; everything here runs alone.
   written (cost bar honestly tripped at chunk-size 1 — overhead dominates
   tiny workloads).
 
+- **law-ks-gate** — `tools/law_ks_gate.py` — two-sample KS law-fidelity gate (pattern lifted from the
+  W8b/W9a law-check doctrine + PIDFIRE-1's self-KS tau bracket: when you own the generator, drift is
+  exactly measurable — resample the reference and gate on KS): observed sample vs generator-resampled
+  reference -> KS statistic D (sup |ECDF diff|, exact-equal-value handling, scipy-cross-checked) +
+  seeded permutation p (exact when C(na+nb,na) small, add-one MC otherwise); KEEP iff D <= bar AND
+  p >= alpha (both clauses, either failing books FAIL). Stdlib-only, fail-loud rc=2, JSON receipt.
+  `python tools/law_ks_gate.py --a ... --b ... [--bar 0.4 --alpha 0.05 --out r.json] | --a-file/--b-file | --selftest`
+  TEST receipt 2026-10-05: selftest 6/6 — selftest caught three of its own bugs live (KS loop stopped
+  at first pointer exhaustion, mid-jump evaluation on shared values broke identical-D=0, non-finite
+  check only in the parser not the library entry); then caught a wrong CONTROL pin (expected D>0.8 on
+  a 2-sigma shift, scipy-confirmed truth 0.7 — pin fixed, gate untouched); live example KEEP rc=0
+  (D=0.125, p=1.0), shifted/bimodal FAIL rc=1, receipt results/law_ks_gate_example_2026-10-05.json.
+
 - **reloc-gate** — `tools/reloc_gate.py` — semantic-identity gate for relocated code
   blocks (pattern lifted PROVEN from EP-1d, commit 5fbf882 2026-10-05: the G-DRY
   block moved wholesale with "no semantic delta" claimed in the message — this
