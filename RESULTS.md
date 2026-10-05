@@ -6047,3 +6047,30 @@ any relaunch-5.
 ## [REPRO-PASS 19:1x CPU Oct 4] D12u+ FAMILY MANDATORY REPRO: PASS at verdict level — 77 float diffs all last-ulp
 - COMMITTED experiments/d12u_family.py re-run in a scratch sandbox (own results/ dir, fired artifact untouched — EP-1 hazard protocol). exit 0, VERDICT CONFIRMED, V1/V2/V3 booleans identical to booking (alphas 3.69–3.93, C·W 27/27, t4 in band; overlap ratio 2.67x).
 - Deep-compare vs committed results/d12u_family.json (e58a6235…): 77 diffs, ALL last-ulp float noise (max relative delta ~1e-15, CPU BLAS thread nondeterminism; no structural/boolean/verdict differences). Clean bill.
+
+## [BOOKED 21:2x CPU Oct 4] EP-1b SEAL/EVENT-PROSE CENSUS v2: RED (2 standing, both known classes; WARN classification keywords too narrow — gates honored, no re-roll); hazard fix landed
+- Pre-reg proposals/runs/EP-1b-seal-census-v2-prereg.md committed e662b85 BEFORE fire (tool in same commit).
+  Tool tools/ep1b_seal_census.py. Read-only by default; --out refuses overwrite without --force (EP-1
+  hazard fixed). No network (foreign ls-remote arm declared-deferred to RT-D1 real-probe arm).
+- G1: 8 digest claims + 23 seal-prose lines; artifact arm 2829 files hashed (8 skipped >64 MiB).
+- G2 6/8, G3 20/23 resolved. VERDICT RED (frozen gate RED=0).
+- EP-1's six fired REDs, disposition under v2 arms:
+  #1 qo6b 0e3f424c → RESOLVED by recursive artifact arm (confirmed false positive, as predicted).
+  #2 derived-data 5bc6b78f → WARN_POINTER (regenerable-corpus pointer). #3 external-artifact 9817d604
+  → WARN_SELFSCAN (classifier quirk: citing line mentions census/repro — honest misfile vs predicted
+  POINTER; same claim, same pointer status). #4 tool_pins 9246cc49 → RESOLVED by historical-blob arm
+  (pre-rewrite blob reachable in git history; the wave history-rewrite did NOT orphan it — EP-1's
+  "likely orphaned" guess was WRONG, correction booked).
+  #5 cross-repo 61b9e04 → RED. #6 historical seal 6d3a1162 → RED.
+- The 2 standing REDs are EP-1's known classes #5/#6; they fired because my WARN classifier keywords
+  (FOREIGN requires literal "SuperInstance/" prefix; POINTER requires "manifest" etc. on the line) are
+  narrower than the underlying reality (QO6 receipt pairs 61b9e04 with quilt-ewitness; 6d3a1162 is a
+  manifest-history digest with the narrative right there). Declared-before-fire gates → verdict stands
+  RED. Lesson: classifying-by-keyword re-imports the prose-understanding problem the census exists to
+  avoid; v3 should make WARN_POINTER require a machine-checkable pointer (path exists on disk, or sha
+  appears in a committed receipt) — receipt-hit for #5/#6 actually holds, so a receipt-hit-based
+  pointer arm would turn verdict GREEN without weakening the class.
+- Spawned EP-1c (CPU ~30m): pointer arm v3 = WARN_POINTER iff (citing line names an existing repo-
+  relative path) OR (sha appears in any committed receipt file) OR (citing line names a remote + sha
+  pair). Re-census; expected GREEN. No other deltas.
+- Runtime 3.7 s. Artifact results/ep1b_seal_census.json (explicit --out, first write).
