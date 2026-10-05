@@ -1608,3 +1608,20 @@ other agents are feeding us; keep the handshake lane warm.
 - No CONTRADICT (QO2 stack, receipt doctrine, QG3+QG6, QG1c, d12 family, W5a-c all unthreatened). [EMBASSY] none new.
 - (C) not due (newest OURS D12u+ repro PASS 19:1x). Manifest re-seal not needed. Foreign d12u1 live lane untouched.
 - Rotation next wake: (B) EP-1b (--out + refuse-overwrite hazard fix) or PONG-J / FW-M1; GPU open (QG1d/QG4/MC-1).
+
+## 21:2x CONDUCTOR slice (day cron Oct 4) — EP-1b BOOKED: RED (honest), EP-1c spawned
+- (B) slot per SCOUT-46 rotation (top open item EP-1b). Pre-reg + tool committed e662b85 BEFORE fire;
+  fired; booked RED in RESULTS.md (2 standing REDs = EP-1 known classes #5/#6; WARN classifier keywords
+  too narrow — gates honored, no re-roll; correction booked: EP-1's #4 "likely orphaned blob" was WRONG,
+  historical-blob arm reaches it). EP-1 hazard fixed: --out + refuse-overwrite, read-only default.
+- Spawned EP-1c (CPU ~30m): machine-checkable pointer arm (receipt-hit / existing-path / remote+sha).
+- (A) not due (SCOUT-46 swept 0420Z, window quiet since). GPU lane idle, nothing fired.
+- (C): newest-OURS prior to this booking (D12u+) already repro PASS 19:1x. Manifest re-seal follows
+  this landing. Untracked foreign d12u1 lane (experiments/d12u1_calibrated_null_variance.py +
+  results/d12u1_calibrated_null_variance.json, appeared post-SCOUT-46) NOT touched — PW-1 precedent,
+  flagged for its lane/Casey.
+- Rotation next wake: (B) EP-1c (top), or PONG-J / FW-M1; GPU open (QG1d/QG4/MC-1).
+- [21:3x] Manifest re-seal ATTEMPTED and correctly REFUSED (foreign live d12u1 untracked lane under
+  sealed path; --allow-dirty admission declined — lane is LIVE/foreign, PW-1). Deferred per SCOUT-23
+  precedent; re-seal rides the d12u1 lane's own landing or Casey's call. EP-1b booking + spool pushed
+  without re-seal this once — flag: next OURS ledger change should re-attempt first.
