@@ -1,0 +1,67 @@
+{
+  "seed": 2718,
+  "k_fitted": 0.6570736813058783,
+  "fit_cells": {
+    "W4_eps0.0": {
+      "model": 46.2342540313933,
+      "harness": 40
+    },
+    "W4_eps0.05": {
+      "model": 68.53733868718045,
+      "harness": 60
+    },
+    "W4_eps0.1": {
+      "model": 109.9045474342699,
+      "harness": 120
+    },
+    "W4_eps0.2": {
+      "model": 328.0840679664536,
+      "harness": 320
+    },
+    "W8_eps0.0": {
+      "model": 23.42226586124674,
+      "harness": 20
+    },
+    "W8_eps0.05": {
+      "model": 34.43032911225953,
+      "harness": 30
+    },
+    "W8_eps0.1": {
+      "model": 54.044430484842934,
+      "harness": 60
+    },
+    "W8_eps0.2": {
+      "model": 160.96300610189917,
+      "harness": 160
+    }
+  },
+  "holdout": {
+    "W16_eps0.0": {
+      "model": 11.63264826675096,
+      "harness": 15,
+      "ratio": 0.7755098844500641,
+      "covered": true
+    },
+    "W16_eps0.05": {
+      "model": 17.439393676200776,
+      "harness": 15,
+      "ratio": 1.1626262450800517,
+      "covered": true
+    },
+    "W16_eps0.1": {
+      "model": 27.272191241225777,
+      "harness": 30,
+      "ratio": 0.9090730413741925,
+      "covered": true
+    },
+    "W16_eps0.2": {
+      "model": 82.09021324022824,
+      "harness": 80,
+      "ratio": 1.026127665502853,
+      "covered": true
+    }
+  },
+  "g1_holdout_4of4": true,
+  "g2_fit_within_2x": true,
+  "verdict": "KEEP"
+}

@@ -1,0 +1,13 @@
+{
+  "tool": "law_ks_gate",
+  "verdict": "KEEP",
+  "ks_d": 0.125,
+  "p": 1.0,
+  "g1_d_le_bar": true,
+  "g2_p_ge_alpha": true,
+  "bar": 0.4,
+  "alpha": 0.05,
+  "n_a": 8,
+  "n_b": 10,
+  "seed": 7
+}
