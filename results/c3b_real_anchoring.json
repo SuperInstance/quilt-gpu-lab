@@ -1,17 +1,17 @@
 {
  "schema": "c3b-real-anchoring/1",
  "plan": "proposals/runs/C3b-real-anchoring-plan.md",
- "created": "2026-10-04 15:36:15",
+ "created": "2026-10-04 16:07:02",
  "prereg": {
   "plan": "/home/eileen/projects/quilt-gpu-lab/proposals/runs/C3b-real-anchoring-plan.md",
   "stamp": "a46becd9933a54f48c65b541f0b2ffc71e8464d3ad55c94a63a50aedc116854a"
  },
  "preflight": {
-  "free_mib": 2445,
-  "temp_c": 50
+  "free_mib": 2959,
+  "temp_c": 48
  },
  "loader_receipt": {
-  "t_load_s": 24.22,
+  "t_load_s": 24.96,
   "batch_final": 4,
   "batch0": 4,
   "skip_modules": [
@@ -30,11 +30,11 @@
   "peak_alloc_gib": 2.35,
   "ramp_receipt": {
    "warm_s": 0.602,
-   "iters": 13,
+   "iters": 46,
    "per_iter_ms": {
-    "min": 25.09,
-    "mean": 46.3,
-    "max": 175.86
+    "min": 2.55,
+    "mean": 13.08,
+    "max": 83.01
    },
    "law": "INSTRUMENT-01 calibrated 2026-10-01: >=0.6s sustained synced load restores >=97% of hot throughput"
   },
@@ -43,19 +43,13 @@
     "group": "full",
     "batch": 4,
     "n": 4,
-    "s": 0.98
+    "s": 1.12
    },
    {
     "group": "full",
     "batch": 4,
     "n": 4,
-    "s": 0.34
-   },
-   {
-    "group": "full",
-    "batch": 4,
-    "n": 4,
-    "s": 0.36
+    "s": 0.35
    },
    {
     "group": "full",
@@ -67,7 +61,13 @@
     "group": "full",
     "batch": 4,
     "n": 4,
-    "s": 0.35
+    "s": 0.38
+   },
+   {
+    "group": "full",
+    "batch": 4,
+    "n": 4,
+    "s": 0.36
    },
    {
     "group": "full",
@@ -79,19 +79,19 @@
     "group": "halfA",
     "batch": 4,
     "n": 4,
-    "s": 0.33
+    "s": 0.32
+   },
+   {
+    "group": "halfA",
+    "batch": 4,
+    "n": 4,
+    "s": 0.32
    },
    {
     "group": "halfA",
     "batch": 4,
     "n": 4,
     "s": 0.33
-   },
-   {
-    "group": "halfA",
-    "batch": 4,
-    "n": 4,
-    "s": 0.37
    },
    {
     "group": "halfA",
@@ -103,13 +103,31 @@
     "group": "halfA",
     "batch": 4,
     "n": 4,
-    "s": 0.33
+    "s": 0.32
    },
    {
     "group": "halfA",
     "batch": 4,
     "n": 1,
-    "s": 0.09
+    "s": 0.08
+   },
+   {
+    "group": "halfB",
+    "batch": 4,
+    "n": 4,
+    "s": 0.32
+   },
+   {
+    "group": "halfB",
+    "batch": 4,
+    "n": 4,
+    "s": 0.32
+   },
+   {
+    "group": "halfB",
+    "batch": 4,
+    "n": 4,
+    "s": 0.34
    },
    {
     "group": "halfB",
@@ -121,25 +139,7 @@
     "group": "halfB",
     "batch": 4,
     "n": 4,
-    "s": 0.33
-   },
-   {
-    "group": "halfB",
-    "batch": 4,
-    "n": 4,
-    "s": 0.33
-   },
-   {
-    "group": "halfB",
-    "batch": 4,
-    "n": 4,
-    "s": 0.33
-   },
-   {
-    "group": "halfB",
-    "batch": 4,
-    "n": 4,
-    "s": 0.33
+    "s": 0.32
    },
    {
     "group": "halfB",

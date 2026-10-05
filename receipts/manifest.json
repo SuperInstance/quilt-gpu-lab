@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-04T21:09:17.744672+00:00",
+  "generated_at": "2026-10-05T00:08:26.404098+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "108fe04ab6a0d575bc3163d66017a74df147ecbcce5462e1a684ff407f444cf3",
+    "RESULTS.md": "8e9a93a5bfbd9867dde52248bf648dddd2d78b6c893706ed0d08650499699b16",
     "QUEUE.md": "325394bc5e3c6c559c1189a45dec10ec45816e6f99782f0e6d8c6f722b174e85"
   },
   "experiments": {
@@ -30,6 +30,8 @@
     "c2_world_smoke_v3.py": "908f9755fb11c780f551221c20dfd7d50ecdbc86a22587f78e55c14afd80dd46",
     "c3_make_data.py": "37ca847894136102b16ce887ef0bc105ed76f554a31d98497c8d0bf233440cac",
     "c3_probe.py": "c080017b9f2941298836f840d5505a6767f2d302da0294727d2dbb5e4d7219c8",
+    "c3b_make_clips.py": "641d5f24c5bb578fe00336ef18316cdf92ebcf5d00c731875946b7777b81a009",
+    "c3b_real_anchoring.py": "398e983515a125408129454a98394c23f7f773d060d24d6b086437b5a720be57",
     "c4_action_probe.py": "483ab3fd2cf72078915fc6a451b5e2084d750e432ac8d0e4f82495ac3ca19c3d",
     "c5_paired_action.py": "3b75d52b858bb67b181746f5849f64871be1b3fa6e9d87633d199151331dc9fa",
     "cg1_canon_gate_local.py": "81f6c4c19aad32fdfec2a4298a0a5ea4057394498c5d2026fd544e0e01d10848",
@@ -39,6 +41,7 @@
     "cm1_relay_r3.py": "e8208f2067fc3f513ff6081fecf175f2b063d571d2253152e0bc19307b07b53f",
     "cm1_relay_r4.py": "3c8140936cf8afcf0fc27b0f9d346f06165d287eacfa1a92124c24580ed4ff35",
     "cm1_relay_r5.py": "36705a913abfa04699c9556425c0ff4d6c662fecbbbb28d0d01256fdc401d9b2",
+    "cm1_relay_r6.py": "e5b0a2724710012d0d710d2a7614d51527b5374073bfec62604e82a727e842b3",
     "common.py": "af08f672c78f4934e69fb0e240f22928ff3e65a9848ca9a55a8d07293b69db33",
     "comp0_federation.py": "3fd013fa6582a264a1c6a096834419b60a1b86907507acd8cd3598590ac33c6e",
     "comp1_federation2.py": "53e352979aec0ffe3709409a3677931bd51ce4d7a22d2486cf15bcc474057a97",
@@ -73,6 +76,9 @@
     "d12r_corrected_constant_surface.py": "432cb9b76f2d703b36f8bb56e81e01f6a1fbade18622c7877a615c155539b88a",
     "d12s_joint_alpha_refit.py": "17c6f37bb13bbb3bdd7f2c3c5b36cbe75ec4c22a644397509b1f622be61205e3",
     "d12t_draws10_alpha_eps.py": "ae3eda0797473a4a64f94953cecfe68d798489710fd7cd20a5d2f2bc2c78d2fd",
+    "d12u_family.py": "6bef49310d79d62b53fe60917eae5b1e10e56d82f027a46b70c6cc6656de8c8d",
+    "d12u_orderstats_model.py": "3049e5dd67d6e1c3a41b83b7f9f2b0a89e0a40c6b83f5649935258f17e730f78",
+    "d12upp_calibrated.py": "e9f5afcae3b5d617bf439b471953e3ae895c70c7f3d26967dcdfeb5f632b817b",
     "d13_relational_growing.py": "6376b3753b41f5f29a0f7ed5abed72d9451350ba3089c828a7fdcea5d85c1a08",
     "d13b_relational_confidence.py": "ddac65b0b0883c07ec81bf2f8fafc9426e60f8435d4b368c586afacd534ae618",
     "d13c_relational_reinforce.py": "f0f60d742b14aae52542afeeb57061921b961583a113af9b65d3801d03d158dd",
@@ -226,7 +232,7 @@
     "xq0_substrate_consolidation.py": "eae71b6a1c664669a941bc9be03e7574e0ec16fb6f9541250aae11c9384bb32a"
   },
   "tools": {
-    "README.md": "79b6c84b8642996711349331810953d42c0753da6963370b73362475ddb0031b",
+    "README.md": "f2544c511b6ba78777b7d43353c918d7ca421519b698ccffc4ffaefe053532cb",
     "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "calib_gate.py": "3f7a109c81f70bef1bb5d1c2f42656f0bfa65d8fd4a1d27354a0c9eac9019f5d",
     "canary.py": "e072488ab473e0218496a58a0b0eeb16a153efe02e472613e7a0ad4d4de8f6b2",
@@ -260,11 +266,12 @@
     "law_floor_check.py": "7bc12262228c2f8e25d6b371cb71ebddbdd08f5e05d6a28e01d729c93e7572fb",
     "lit_sweep.py": "b29bc7ae6f6f3f7fead1449f6498ab7d9e99f4f478a7bf4d0c40bc5171ad9495",
     "local_jev_bench.py": "f3ff1dc606a2eeeb5206b49e75925853e1ab26cc054d95b859e6384a2d84107a",
+    "onboard.py": "dc25ca8d051294c8e14f2acecbc0e7017908e60e865daad401ff8d5bc6d5e80f",
     "overnight_gpu.sh": "e3a6de06d14b927fd45b55c5622ca2ad37b32d50a9d02d1de1d64545de3bb61d",
     "perm_ci.py": "6886711bc9f1b07f8184f367cbad9661dd31c082af3bcfc9103d5e9256a25971",
     "power_fit.py": "74ea3f67ac32a1ea96538c89d317df1da346d520f15dbe67cd9275647a5a5b85",
     "pr_sweep.py": "3c884785286a26fac47f7e74867ed55694ec878290e42bee9682b9c9e38b5242",
-    "prereg_stamp.py": "610ed03222a95cb36a462f1edfa51c78a2f17b7f74647146909db394cd4f6fb4",
+    "prereg_stamp.py": "95c591cac74889d07a8bce279e23c865aa3e81e07b562ba472e31e7e992cc1ac",
     "proj_lattice.py": "52cec2eee97fd649442be0d857810465df3007220e1d736b48d4f8fd61d95a2c",
     "qcell_oracle.pt": "fed2c15fb506899fdc0fb86a7656d965c4b0aae8bceda28d11d6850aec201eed",
     "qcell_sim.py": "8c82d4bcc88370c01870238a006fa62bdb6fe571f5c8951bcdae6f3cf7920962",
@@ -280,6 +287,7 @@
     "vendor_strip_census.py": "bd7d7c2a3561ee7039a58176bdc116357db624ba9595f08a1c2c05417c6a164c",
     "verdict_gate.py": "b1b431f643635b881fb770b72b66429cc3189f9cabb07506371de4fbc8d8f8f8",
     "verdict_index.py": "2a42b37c4bcabd2e11124b23d2365e49ece74dba7bd3e3c10472513a503ec086",
+    "worstcase_calib.py": "07f920af3cac829c3aa2265e3c5939555ff0cdea969404d083c8fc3cb0351757",
     "wt_floor.py": "c28d774268b68c1ca8474c8d33512fd2402d8db94bf28949c95cb7114386de63"
   }
 }

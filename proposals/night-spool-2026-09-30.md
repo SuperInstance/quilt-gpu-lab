@@ -1539,3 +1539,22 @@ other agents are feeding us; keep the handshake lane warm.
   next wake's C slot). GPU: foreign nn-image-play server.py untouched (PW-1).
 - Rotation next wake: (C) CM1-r6 driver-repro verification, then (B) FW-W1 / QT-1 / COT-1;
   d12u+ booking lands from its own lane.
+
+## SCOUT-42 + C3b REPRO (2026-10-04 2405Z / 16:1x AKDT day-conductor slice) — DONE
+- (A) SCOUT-42: no CONTRADICT (window post-SCOUT-41). STEAL — jev-quilt PR #49 merged (F4
+  event-fabrication probe, record-only): a fabricated event anchor ("canon sealed at the
+  seventy-fifth wipe") rode true-doctrine alignment into REVIEW; their event_registry.py names
+  event-shaped assertions vs a CANONICAL_FACTS registry and REFUSES to verdict → spawned **EP-1**
+  (CPU ~30m): census of seal/event-shaped prose claims in RESULTS.md + receipts vs
+  receipts/manifest.json — every named verdict/sha must resolve to a manifest entry or a
+  committed receipt; unresolvable seal-prose = RED (RC-4 prose-arm amendment). CORROBORATE —
+  canons 21bc59f/3fa5254 key-rotation event 2026-10-04: "key-loss != model-loss", 17 families
+  re-verified live on Workers AI (identity by recomputation against the artifact = RT-D1
+  real-probe + manifest-seal doctrine, unthreatened). Note only: MicroMoth IONQ-RECON 1067050
+  (qm_* contract + 3-rung falsification ladder, H3 re-fire; QG1d-adjacent). pong #113, fleet-triage
+  edge-watch #20-22 merges: routine. [EMBASSY] none new.
+- (C) MANDATORY REPRO of newest OURS booking **C3b** (ad59f41): COMMITTED tool re-run → exit 0,
+  verdict ANCHORING_SURVIVES, results JSON vs committed = zero value diffs. **PASS** (verdict- and
+  artifact-level). Manifest re-sealed CLEAN (foreign-lane blockage resolved; 223 exp + 57 tool files).
+- GPU idle all slice (repro rode the free lane serially). Rotation next wake: (B) top open queue —
+  EP-1, VX-1, SS-1/IND-1; GPU open (QG1d/QG4/MC-1). No running processes duplicated; tree clean post-push.
