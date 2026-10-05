@@ -6107,3 +6107,9 @@ any relaunch-5.
 - Committed HEAD eec8e5c tool run to ext4 scratch → crashed at the G0 bit-order probe assert (`[]`, targets default ["00","11"] misses flipped state). The on-disk file was DIRTY with exactly the booking's two declared pre-verdict repairs — never committed. First run (dirty tree) was verdict-PASS but not a valid committed repro.
 - Remedy: repairs committed as-is f7927cd (landing the booking's own declared fix, no semantic change, no re-roll); re-run → G0-G4 PASS identical to booking (G2 within 1e-9 at every θ; G3 0.75; G4 exactly 0.0). VERDICT PASS at HEAD f7927cd. Scratch only; tool fired results untouched.
 - LESSON (now 4 instances): "declared in-place repair" is not landed until it is COMMITTED. Pre-reg commit ≠ fire-time tree. Repro must run the COMMITTED artifact; a dirty-tree PASS is a false green.
+
+## [REPRO 08:1x CPU Oct 5] D12u1/D12u2 committed repro: PASS (verdict-level, byte-comparable JSONs)
+- HEAD ccaa872 committed scripts run in clean scratch worktree (/home/eileen/scratch/repro/d12u_081021/, git archive — scripts hardcode results/ writes, so never fired over the live tree), ext4 only.
+- rc=0 both; d12u1 verdict KEEP (G1 holdout 4/4, G2 fit-within-2x), d12u2 verdict KEEP_model_generalizes_to_N64 (worst ratio within 2x gate). Output JSONs IDENTICAL to committed results/ artifacts modulo none (timestamp-stripped compare, no other drift).
+- Verdict-level repro PASS at HEAD ccaa872; D12u1/D12u2 bookings stand. k=0.6571 calibration and N64 out-of-family generalization confirmed reproducible from committed artifacts alone.
+- Note: untracked experiments/d12u3_p07_heldout.py + results/d12u3_p07_heldout.json present in live tree (foreign/in-progress lane per PW-1 — untouched, not booked here).
