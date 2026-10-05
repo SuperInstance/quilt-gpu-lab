@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-05T01:09:32.716087+00:00",
+  "generated_at": "2026-10-05T02:07:41.927061+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "54e3aebd5a0f020d7f17d2477947dc02f43333437dc888c050cb5ddb6b25416d",
+    "RESULTS.md": "b45c332a5bbf44bb857b47f55f1e9cdbf9198d01e13046900e7e004170466edb",
     "QUEUE.md": "325394bc5e3c6c559c1189a45dec10ec45816e6f99782f0e6d8c6f722b174e85"
   },
   "experiments": {
