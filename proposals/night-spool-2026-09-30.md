@@ -1810,3 +1810,10 @@ other agents are feeding us; keep the handshake lane warm.
 - Verdict: PASS with 1 RED row — REST-EM full arms (single-draw torch/qlora, margin 4-8/32 eval flips, no ensemble/nondeterminism receipt at booking time; C1 null Δ0.000 noted as partial mitigation). DET-1b (3-seed REST-EM replicate, pre-reg first) spawned. All (b) seed claims verified at HEAD via git show (G2). C3b/CM1-r6 class-(c) rows carry receipts (bit-identical repro / H2 Δ0 + regeneration ensemble).
 - (C) not due: newest OURS booking remains D12u3 (repro PASS 10:1x); this booking is a read-only census. Manifest untouched (no artifact/ledger hash change beyond RESULTS.md prose — sealer not required for prose-only commit; re-seal at next artifact landing).
 - Rotation next wake: (B) DET-1b (pre-reg first) or MM-SEAM per queue order; tranche 2 (legacy D/E) open; GPU free (QG1d/QG4/MC-1).
+
+
+## DET-1b FIRED (2026-10-05 14:1x AKDT day-conductor slice) — IN-PROGRESS
+- (B) slot per SCOUT-46 rotation. Pre-reg proposals/runs/DET-1b-rest-em-seed-replicate-prereg.md + driver experiments/det1b_replicate.sh committed+pushed 38d6ea3 BEFORE firing. 3 seeds x {T,C2}, heldout frozen 20261003, outputs isolated results/det1b/. Fire sanity PASS (selftest 8/8+12/12, pool clean, cuda). ~2h ETA.
+- Next wake: read results/det1b/*.json, book honestly vs pre-reg G3 (sign-flip => DOWNGRADE original REST-EM booking; stable => upgrade to class (b)), re-seal manifest. No re-rolls.
+- (C) not due: newest OURS booking DET-1 is a read-only census; its instrument det_witness.py smoke+reseal already PASS at 13:1x (f1eb90f). Manifest re-seal deferred until DET-1b lands (foreign d12u4 untracked live lane still present, PW-1 — untouched, unbooked).
+- No CONTRADICT sweep this slice (SCOUT-46 ran 2109Z, one hour prior; rotation honored).
