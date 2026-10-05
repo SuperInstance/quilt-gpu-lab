@@ -6095,3 +6095,10 @@ any relaunch-5.
 - EP-1 lane CLOSES: v1 keyword census → v2 narrowed-keywords (RED, honest) → v3 directory-scoped pointer (RED, falsified) → v4 corpus-xref pointer (GREEN, dry-run-gated). Standing REDs were classification-scope artifacts, not integrity failures; the seal layer itself is clean.
 - LESSON (now three instances): never book a WARN→GREEN prediction without a dry-run over the known sites first. Cheap (seconds), decisive.
 - Runtime ~40 s.
+
+## [BOOKED 04:1x CPU Oct 5] IONQ-2 RUNG-2 BATTERY on qcell_sim crx: PASS (G0-G4; crx convention independently cleared)
+- Pre-reg proposals/runs/IONQ-2-rung2-battery-prereg.md committed BEFORE fire (tool experiments/ionq2_rung2_battery.py same commit). Spawned by IONQ-1 (MicroMoth IONQ-RECON §4 / PRs #43-#44, read-only). Exact statevector, CPU, seconds.
+- G0 selftest anchor PASS (k4 champion 0.4268). G1 control-leak: P(target=1)=0 exactly, all 5 θ. G2 calibration sweep θ∈{π/6..π} (pi-units): transfer = sin²(θ/2) within 1e-9 at EVERY point — matches the fleet-pinned bridge, no radians/unit mismatch. G3 additivity crx(1/3)²→0.75 exactly (their shot-measured 0.7494; accumulator clamp 0.50 is ~150σ away — our substrate is on the coherent side). G4 cancellation crx(1/3);crx(−1/3)→ EXACTLY 0.0 — no QG1c-class crx convention witness; crx semantics independently stressed for the first time (QG1c was swap-only).
+- Verdict: qcell_sim crx matches the IonQ-bridge weight algebra exactly. IONQ-1's sim-backend-bound list stands; no booking threatened. Lanes QG1d/QG4 unblocked for next GPU wake.
+- Declared in-place repairs, both PRE-verdict (harness, not tool; gates untouched): (1) probe used default targets ["00","11"] which miss the flipped state — assert crashed; switched to full 4-target vector. (2) first target-marginal summed the CONTROL bit position (all-zero G2/G3) — corrected to the other qubit. Tool qcell_sim.py untouched throughout.
+- Scratch run; no artifact writes (stdout is the record). Runtime <5 s.

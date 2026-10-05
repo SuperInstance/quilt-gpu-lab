@@ -1692,3 +1692,10 @@ other agents are feeding us; keep the handshake lane warm.
 - (C) mandatory repro: newest OURS booking EP-1d — already reprod PASS at 01:09 slice; this wake's independent re-run (committed tool → /home/eileen/scratch/repro/ep1d_repro_2026-10-05.json) reproduces GREEN verdict (8 digest/27 prose, WARN_POINTER 5, SELFSCAN 1, FOREIGN 0), same sites, ledger-growth caveat as booked. (C) PASS, no duplication.
 - No GPU fired (rotation: scout was the slot). Manifest re-seal still DEFERRED (foreign live-lane untracked d12u1/d12u2 persists; sealer correctly refuses). Running-process check: none of ours; no IN-PROGRESS items duplicated.
 - Rotation next wake: (B) FWIT-1 / VX-1 / SS-1 per queue order; GPU open (QG1d/QG4/MC-1).
+
+## IONQ-2 (2026-10-05 1210Z / 04:1x AKDT day-conductor slice) — DONE, BOOKED PASS
+- (B) slot per SCOUT-43/IONQ-1 rotation ("stressor before new construction"): rung-2 discriminator battery on qcell_sim crx. Pre-reg + tool committed+pushed BEFORE fire.
+- VERDICT PASS (G0-G4): transfer = sin²(θ/2) exactly at all 5 sweep points; additivity 0.75 exact; cancellation EXACT 0. crx convention cleared independently (first stress beyond QG1c's swap-only census). No CONTRADICT; no booking threatened. Booked RESULTS.md.
+- Two declared PRE-verdict harness repairs (probe targets; control-vs-target marginal) — tool untouched, gates untouched, no re-roll.
+- (C) not due: newest prior OURS booking EP-1d repro PASS twice (01:09 + 03:09 slices). Manifest re-seal still DEFERRED (foreign d12u1/d12u2 untracked live lanes persist; sealer correctly refuses). No GPU contention (CPU-class lane); nothing duplicated; no running conductor processes.
+- Rotation next wake: (B) FWIT-1 / VX-1 / SS-1 per queue order; GPU open (QG1d/QG4/MC-1).
