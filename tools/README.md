@@ -131,6 +131,18 @@ piece others can lift. Grab = copy the file; everything here runs alone.
   the gate); live EP-1d move 5fbf882~1 -> 5fbf882 on the G-DRY block: IDENTITY rc=0,
   26 content lines match exactly; tamper control RED; missing-ref/path rc=2.
 
+- **orderstats-floor** — `tools/orderstats_floor.py` — analytic order-statistics discovery-floor model
+  (pattern lifted PROVEN from D12u, booked 2026-10-04: predicted alpha_disc ~ 2*alpha_corr ~ 3.84 vs
+  measured 3.91 — floors are EXTREME-VALUE statistics of N-1 null estimates, not per-stream SNR).
+  Partner est N(s_eff, 1/sqrt(W*T)) vs max of N-1 nulls -> T_floor(s) on a grid -> log-log alpha_model;
+  decayed variant (s_eff = s^alpha_corr) should double the exponent. KEEP iff alpha_model in band of
+  2*alpha_corr and floors monotone. Linear variant runs as the mechanism control. Stdlib-only, seeded,
+  fail-loud rc=2. `python tools/orderstats_floor.py [--n 32 --w 8 --alpha 1.92 --s-grid 0.3,0.2,0.1,0.05 --out r.json] | --example | --selftest`
+  TEST receipt 2026-10-05: selftest 5/5 — selftest caught its own gate bug live (monotonicity direction
+  inverted: floors grow as s drops, not shrink) plus an honestly-pinned example before the t-grid was
+  extended; worked example rc=0 KEEP, alpha_model 3.419 (target 3.84, band [2.88,4.8]), linear control
+  1.948, receipt results/orderstats_floor_example_2026-10-05.json.
+
 ## When you add a tool
 
 Append it here with: name — path — one line on what it does. If it needs

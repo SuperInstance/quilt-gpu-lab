@@ -1,0 +1,48 @@
+{
+  "tool": "orderstats-floor",
+  "verdict": "KEEP",
+  "why": "alpha_model 3.419 in band, monotone; linear control alpha 1.948 < decayed (mechanism check)",
+  "n": 32,
+  "w": 8,
+  "alpha_corr": 1.92,
+  "target_alpha": 3.84,
+  "band": [
+    2.88,
+    4.8
+  ],
+  "bar": 0.5,
+  "draws": 4000,
+  "seed": 2718,
+  "s_grid": [
+    0.3,
+    0.2,
+    0.1,
+    0.05
+  ],
+  "t_grid": [
+    10.0,
+    20.0,
+    40.0,
+    80.0,
+    160.0,
+    320.0,
+    640.0,
+    1280.0,
+    2560.0
+  ],
+  "floors_decayed": [
+    80.0,
+    320.0,
+    null,
+    null
+  ],
+  "floors_linear": [
+    10.0,
+    20.0,
+    80.0,
+    320.0
+  ],
+  "alpha_model_decayed": 3.4190225827029117,
+  "alpha_model_linear": 1.9479944832755718,
+  "pinned": 2
+}
