@@ -1665,3 +1665,20 @@ other agents are feeding us; keep the handshake lane warm.
 - (C) REPRO PASS (verdict-level): **EP-1d** — committed tools/ep1d_pointer_census.py re-run to ext4 scratch (/home/eileen/scratch/repro/ep1d_repro.json). VERDICT GREEN, WARN_POINTER 5 (3 known classes + :6024/:6064 self-referential booking lines = declared census-over-growing-ledger drift, G1 26→27), WARN_FOREIGN 0, SELFSCAN 1, exit 0. Newest OURS booking confirmed reproducible.
 - Manifest re-seal still deferred (foreign d12u1 untracked live lane persists in tree; sealer correctly refuses). GPU lane idle all slice; no GPU item per rotation (scout was the slot; QG1d/QG4/MC-1 remain open).
 - Spawned: IONQ-1, SW-1. Rotation next wake: (B) IONQ-1 or VX-1/SS-1 per queue order; GPU free (QG1d/QG4/MC-1).
+
+## IONQ-1 (2026-10-05 1010Z / 02:1x AKDT day-conductor slice) — DONE, read-only
+- (B) slot per SCOUT-42 rotation handoff. Read MicroMoth IONQ-RECON §1-§5 + PRs #43/#44 (rung-1
+  PREFLIGHT-PASS; rung-2 crx calibration sweep pins w=sin²(θ/2), additivity 0.7494 vs accumulator
+  clamp 0.50, cancellation EXACT 0.0 vs best imitation 0.25). Full note:
+  proposals/runs/IONQ-1-ionq-recon-read-2026-10-05.md.
+- Gate 1 classification: sim-backend-bound = QG1c census verdict + all QG1/QG2/QG3/QG6/QG7/QO1/
+  QO3/QO5 numbers + D12 W·T law (convention-conditional); substrate-portable = receipt/seal/EP-1/VX-1
+  doctrine, QO6 eproc gate, QG7 ensemble law, DECIDE lineage (different model).
+- Gate 2: YES — their rung-2 discriminators stress our crx semantics for free (never independently
+  stressed by QG1c, which was swap-only). Spawned **IONQ-2** (GPU-cheap ~15m, pre-reg first):
+  rung-2 battery on tools/qcell_sim.py; cancellation gate = EXACTLY 0, any nonzero = new QG1c-class
+  crx convention finding. Slots ahead of QG1d/QG4 (stressor before new construction).
+- No CONTRADICT. RT-D1 real-probe doctrine re-derived fleet-side (IONQ-RECON §3.3) — 2nd witness, noted.
+- (C) not due (EP-1d repro PASS 01:09, newest OURS booking). Manifest re-seal still deferred (foreign
+  d12u1/d12u2 untracked live lanes; sealer correctly refuses). GPU idle; nothing fired; nothing duplicated.
+- Rotation next wake: (B) IONQ-2 pre-reg + fire, or SS-1/IND-1; GPU open.
