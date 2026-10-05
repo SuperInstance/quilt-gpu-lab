@@ -1642,3 +1642,9 @@ other agents are feeding us; keep the handshake lane warm.
 - (C) EP-1b repro PASS (verdict-level, declared ledger-growth drift; see RESULTS mark). Manifest
   re-seal deferred (foreign d12u1 live lane persists). GPU idle; rotation next wake: (B) QG1e or
   VX-1/SS-1; GPU open (QG1d/QG4/MC-1).
+
+## EP-1c (2026-10-04 23:2x AKDT day-conductor slice) — DONE, booked RED (prediction falsified)
+- (B) slot per SCOUT-47 rotation (scout landed 22:1x; EP-1c top open, unclaimed). Pre-reg a01dad4 committed+pushed BEFORE fire; tool tools/ep1c_pointer_census.py; ran to scratch, no fired-artifact contact.
+- VERDICT RED vs expected GREEN — frozen gate honored, no re-roll. Full disposition + lesson in RESULTS.md: EP-1b's "receipt-hit holds" was unverified prose (shas' receipts-of-record live in proposals/runs/*.md, not receipts/); keyword-arm removal also regressed 5bc6b78f to RED. Spawned EP-1d (corpus-cross-reference arm v4; mandatory dry-run over the 3 known sites before fire).
+- Noted: foreign anon `python3` PID 168002 from /tmp (CPU-hot since 22:3x) — PW-1, untouched. Foreign live lane d12u1 (untracked experiments/results) persists — manifest re-seal still correctly refused/deferred. (C) not due: EP-1b repro already PASS 06:2x (SCOUT-47); EP-1c books its own census.
+- Rotation next wake: (B) EP-1d (top), or VX-1 / PONG-J / FW-M1; GPU open (QG1d/QG4/MC-1).
