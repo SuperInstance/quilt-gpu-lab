@@ -84,6 +84,26 @@ piece others can lift. Grab = copy the file; everything here runs alone.
   at degenerate p=0.5. Verdict KEEP/KILL, honest receipt.
   `python tools/law_floor_check.py --results results/d12o_law_p_generalization.json --p 0.7 --out r.json | --selftest`
 
+- **judge-chunk** — `tools/judge_chunk.py` — chunked batched rule-judge with
+  stimulus-major interleave (pattern lifted PROVEN from CM1-r6, booked
+  2026-10-04: monolithic 36-item judge batch scored pass 0.0 while the SAME
+  items in 3x12 stimulus-major chunks scored 0.67 — judge-state SIZE is a real
+  failure mode). Items JSON + rule -> interleaved chunks (round-robin over
+  stimulus groups, spread never slab) -> one batched typesafe/System One call
+  per chunk (retry-once, fail-loud) -> per-item gate booleans, per-chunk and
+  overall pass rates, r6 cost bar (chunk wall sum <= bar x est monolith wall,
+  booked honestly), one JSON receipt. Token at use-time from
+  ~/.config/typesafe/token, never echoed. Stdlib-only. Exit 0=KEEP / 1=FAIL
+  (cost bar or zero pass) / 2=fail-loud.
+  `python tools/judge_chunk.py --items items.json --rule rule.txt [--chunk-size 12 --model jev-latest --cost-bar 1.5 --out r.json] | --selftest`
+  TEST receipt 2026-10-04: selftest OK (chunking spread/coverage/slab-split,
+  gate parsing, fail-loud inputs) — selftest caught two real interleave bugs
+  live before any API call (index round-robin and group-dealing both produced
+  single-stimulus slabs; fixed to group round-robin item-by-item then slice);
+  live 2-item smoke vs jev-latest: both gates true, walls 0.45/0.25s, receipt
+  written (cost bar honestly tripped at chunk-size 1 — overhead dominates
+  tiny workloads).
+
 ## When you add a tool
 
 Append it here with: name — path — one line on what it does. If it needs
