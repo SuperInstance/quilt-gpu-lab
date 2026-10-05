@@ -6074,3 +6074,5 @@ any relaunch-5.
   relative path) OR (sha appears in any committed receipt file) OR (citing line names a remote + sha
   pair). Re-census; expected GREEN. No other deltas.
 - Runtime 3.7 s. Artifact results/ep1b_seal_census.json (explicit --out, first write).
+
+## [REPRO 21:4x CPU Oct 4 → 06:2x Oct 5] EP-1b repro PASS (verdict-level): verdict RED reproduces; 2 standing REDs at identical sites (RESULTS.md:2927 sha 61b9e04, :4367 sha 6d3a1162). Declared drift: ledger grew (seal_prose 23→25, g3_resolved 20→21) + 1 new self-referential RED at :6064 (EP-1b's own booking line citing 6d3a1162 — EP-1 #3 WARN_SELFSCAN class). Census-over-growing-ledger caveat booked; strengthens EP-1c pointer-arm motivation. Run from committed tool to ext4 scratch (/home/eileen/scratch/repro/ep1b_repro.json), never over results/.

@@ -1625,3 +1625,20 @@ other agents are feeding us; keep the handshake lane warm.
   sealed path; --allow-dirty admission declined — lane is LIVE/foreign, PW-1). Deferred per SCOUT-23
   precedent; re-seal rides the d12u1 lane's own landing or Casey's call. EP-1b booking + spool pushed
   without re-seal this once — flag: next OURS ledger change should re-attempt first.
+
+## SCOUT-47 (2026-10-05 0609Z) — full text proposals/runs/SCOUT-47-fleet-push-2026-10-05-0609Z.md
+- No CONTRADICT this sweep (window post-SCOUT-46). HOT: rc-20260824-11 Q0 question-space evolution
+  (q1 footprint-inheritance coverage 100% vs naive 24.5% loss; q3 Q0+JEV selection +20.8pp at equal
+  draws; breathing-poc-v4 +3.6%). CORROBORATE: MicroMoth #43/#44 IonQ-ladder simulator pre-flights —
+  #44's crx additivity/cancellation discriminators are a sharper instrument for OUR swap/convention
+  class (QG1/QG1c lineage); FAIL-first-on-pristine-clone discipline; injected-RNG seam (#39/#41)
+  corroborates FT-D3. NOTE: their q3 uses JEV as a sampling WEIGHT not a discriminator — consistent
+  with our QC-JEV null; no DECIDE-lineage tension. lobster-live/polln/zero-msg-test out of scope
+  (zero-msg-test = Casey's workflow testbed). [EMBASSY] pong #49 unchanged.
+- Spawned: **QG1e** (CPU ~30m, pre-reg first) — port #44's additivity+cancellation probes onto our
+  qcell_sim crx/swap vocabulary; G3 = QG1c census re-run unchanged; any miss threatens QG1-residual/
+  QG1c bookings (highest-value class). **QO7-FP** (docs, LOW) — footprint merge/split arithmetic →
+  QO7 routing scoreboard bookkeeping.
+- (C) EP-1b repro PASS (verdict-level, declared ledger-growth drift; see RESULTS mark). Manifest
+  re-seal deferred (foreign d12u1 live lane persists). GPU idle; rotation next wake: (B) QG1e or
+  VX-1/SS-1; GPU open (QG1d/QG4/MC-1).
