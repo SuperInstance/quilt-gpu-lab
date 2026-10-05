@@ -6031,3 +6031,15 @@ any relaunch-5.
   (resolve blobs at pinned commits), external-digest named-pointer requirement; RED classes become
   WARN only when a committed pointer (receipt/recipe/remote) exists, RED otherwise.
 - Artifact: results/ep1_seal_census.json (fired-output, unmodified post-run).
+
+## [REPRO-PASS 18:1x CPU Oct 4] EP-1 MANDATORY REPRO: PASS at verdict level — same 5 standing anchors + 1 NEW self-scan RED; tool hazard found (overwrites fired artifact)
+- Committed tools/ep1_seal_census.py re-run (exit 0, VERDICT RED). All 5 booked anchors reproduce exactly
+  (9817d604 / 5bc6b78f / 0e3f424c / 9246cc49 / 61b9e04 / 6d3a1162@4367). Drift vs committed artifact
+  (results/ep1_seal_census.json @ f571507): prose arm now 23 lines / 20 resolved (was 21/19) — the ledger
+  GREW post-fire (EP-1 spool entry + this booking's own prose), so a prose census over live RESULTS.md is
+  expected to drift. The 7th RED (RESULTS.md:6024) is the census reading THIS booking's own narrative
+  quoting the historical 6d3a1162 anchor — self-referential scan artifact, NOT a new unresolvable anchor.
+- HAZARD (EP-1b must fix): the tool writes its canonical artifact path with no --out and no
+  refuse-overwrite — the repro OVERWROTE results/ep1_seal_census.json (fired-output) with the drifted
+  re-run. Restored byte-exact from git (sha256 1af4f056…, matches f571507). Add --out + refuse-overwrite
+  to the EP-1b spec.
