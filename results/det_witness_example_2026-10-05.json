@@ -1,0 +1,17 @@
+{
+  "tool": "det-witness",
+  "verdict": "IDENTICAL",
+  "cmd": [
+    "sh",
+    "-c",
+    "echo",
+    "deterministic"
+  ],
+  "runs": 3,
+  "hash0": "44f8f7d7609dcaa208233fea36011a3bdce2cb855b5226c2e62f56b0c2994762",
+  "walls_s": [
+    0.001,
+    0.001,
+    0.001
+  ]
+}

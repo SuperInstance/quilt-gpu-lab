@@ -143,6 +143,16 @@ piece others can lift. Grab = copy the file; everything here runs alone.
   extended; worked example rc=0 KEEP, alpha_model 3.419 (target 3.84, band [2.88,4.8]), linear control
   1.948, receipt results/orderstats_floor_example_2026-10-05.json.
 
+- **det-witness** — `tools/det_witness.py` — determinism witness: run a command N times
+  (list-form subprocess, no shell), sha256 each run's stdout+stderr, book IDENTICAL vs DRIFT
+  vs ERROR with the first divergent run + both hashes (pattern lifted from DET-1, booked
+  2026-10-05: a rerun claimed bit-identical but shipped no receipt — "deterministic" is a
+  measurement, not an assertion). Fail-loud rc=2, selftest carries positive + RED controls.
+  `python tools/det_witness.py --cmd CMD --args=a,b --runs 3 [--out r.json] | --selftest`
+  TEST receipt 2026-10-05: selftest 4/4 (stable->IDENTICAL, time_ns->DRIFT, runs<2
+  fail-loud, nonzero-exit ERROR with rc booked); worked example rc=0 IDENTICAL, 3 runs,
+  receipt results/det_witness_example_2026-10-05.json.
+
 ## When you add a tool
 
 Append it here with: name — path — one line on what it does. If it needs
