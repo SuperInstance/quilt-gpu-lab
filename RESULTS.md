@@ -6086,3 +6086,12 @@ any relaunch-5.
 - Spawned EP-1d (CPU ~15m, pre-reg first): pointer arm v4 = WARN_POINTER iff path-hit OR remote-hit OR corpus-cross-reference (tok appears in ≥1 OTHER committed .md outside the citing line — receipts-of-record included wherever they live). Gate: the 3 known classes (#5/#6/5bc6b78f) must classify WARN_POINTER on a DRY-RUN over those exact sites BEFORE the full fire is committed; expected GREEN, else book RED again, no re-roll.
 
 ## [REPRO note] EP-1c is its own census; no separate repro arm (tool read-only, artifact in scratch). Newest OURS booking = this entry.
+
+## [BOOKED 00:3x CPU Oct 5] EP-1d POINTER ARM v4 (corpus cross-reference): GREEN (prediction CONFIRMED; EP-1 lane CLOSES per pre-reg STOP rule)
+- Pre-reg proposals/runs/EP-1d-pointer-arm-v4-prereg.md committed 6cd72df BEFORE fire (tool tools/ep1d_pointer_census.py in same commit; dry-run relocation fix pre-fire, no semantic delta). Ran to scratch (/home/eileen/scratch/ep1d_census.json); read-only; no network.
+- G-DRY (mandatory, PASSED before full fire): all 3 known classes (#5 61b9e04, #6 6d3a1162, 5bc6b78f) classify WARN_POINTER on dry-run over real citing lines — 23/23 sites WARN_POINTER, 0 RED. First wake in the EP-1 series to run its gate BEFORE the fire; this is the lesson EP-1b/EP-1c paid for, applied.
+- G-FULL: G1 8 digest + 26 seal-prose claims; artifact arm 2834 files. G2 6/8, G3 22/26 resolved. WARN_POINTER 5, WARN_FOREIGN 0, WARN_SELFSCAN 1. VERDICT GREEN (expected GREEN; gate honored).
+- All three falsified-RED sites now classify WARN_POINTER: receipts-of-record do live in the committed corpus (proposals/runs/*.md) — EP-1c's failure was corpus scope, exactly as hypothesized but this time machine-checked via dry-run first.
+- EP-1 lane CLOSES: v1 keyword census → v2 narrowed-keywords (RED, honest) → v3 directory-scoped pointer (RED, falsified) → v4 corpus-xref pointer (GREEN, dry-run-gated). Standing REDs were classification-scope artifacts, not integrity failures; the seal layer itself is clean.
+- LESSON (now three instances): never book a WARN→GREEN prediction without a dry-run over the known sites first. Cheap (seconds), decisive.
+- Runtime ~40 s.
