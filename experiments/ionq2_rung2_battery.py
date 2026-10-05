@@ -26,9 +26,10 @@ if r.returncode != 0 or "selftest OK" not in r.stdout:
     fails.append("G0")
 
 # Bit-order probe: x on q0 only. Declared fail-loud assert before gates.
-r = evaluate([["x", 0]], n_qubits=2, device="cpu")[0]
+r = evaluate([["x", 0]], n_qubits=2, device="cpu",
+             targets=["00", "01", "10", "11"])[0]
 ones = [t for t, p in r["probs"].items() if p > 0.5]
-assert len(ones) == 1, ones
+assert len(ones) == 1, r["probs"]
 # ones[0] is the basis string with the q0 bit set somewhere; determine position.
 # (control/target marginals below are computed from the full 4-target vector,
 #  so exact bit-order knowledge is only needed for the assert, not the gates.)
@@ -42,12 +43,10 @@ def target_prob(genome):
     full = evaluate(genome, n_qubits=2, device="cpu",
                     targets=["00", "01", "10", "11"])[0]["probs"]
     # control string = the unique post-x-on-q0 heavy string (probe above)
-    ctrl = ones[0]
-    pos = next(i for i, (a, b) in enumerate(zip(ctrl, "00")) if a != b)
-    p = 0.0
-    for t, pv in full.items():
-        if t[pos] != ctrl[pos]:
-            p += pv
+    ctrl = ones[0]  # q0 is MSB (probe: '10')
+    cpos = next(i for i, (a, b) in enumerate(zip(ctrl, "00")) if a != b)
+    tpos = 1 - cpos  # single other qubit = target
+    p = sum(pv for t, pv in full.items() if t[tpos] != "0")
     return p
 
 # G1: control leak (no x on q0 -> control |0>), sweep
