@@ -248,3 +248,36 @@
 | M32 | facts-in-weights continual learning, measured directly | 2 | 2 | 3 | **12** | ASSAYED — parked (corroborates Wave 5 M1; same F-starvation at our scale) |
 
 *Rubric honesty: 3/5 cleared 27 — the strongest wave since Wave 6, and the pattern held exactly: all three passers are literature×receipt collisions (PIDFIRE-1's booked empty corner; VX-1/FR-1's passing index; the law-owned glyph canvas). Distinctness checks done: M31 ≠ W9a (SOC reachability is dynamics-of-the-sweep, not grokking onset); M33 ≠ gem #5 (the acceptance gate scores improvements, VX-1 audits the verdict ledger itself). No gate loosened.*
+
+## Wave 11 — the rehearsal-and-convention harvest (2026-10-05: edge-mine scout, focus rotated to experiment-selection/adaptive design + quantum-sim verification conventions + reproducibility-hazard classes, since Wave 10 was canvas/criticality/audit — colliding with the fresh EP-1b/c/d dry-run lessons and IONQ-2's crx stress battery)
+
+*Search focus this wave: adaptive experiment selection / information-gain design · quantum-gate convention verification & exact statevector testing · pre-registration/verification-first experiment protocols · reproducibility provenance · RSI news check (corroborative only). 9 searches; sources are search-roundup-grade — flagged for re-verification before canon (same caveat as Waves 0/5–10).*
+
+### Abstraction mines (status MINED → ASSAYED below)
+
+- **M34 — Instrument rehearsal is a gate class: a prediction must pass a dry-run over known failure sites before its full fire.** The 2026 verification-first-experiment literature (verification-first autonomous catalysis; "falsifiable, pre-registered hypotheses" as map nodes; the Honesty Harness's verifiable pre-registration) formalizes pre-registering *claims*, but none of it requires rehearsing the *instrument* against curated known cases before the fire. Our EP-1 series paid for this lesson three times (EP-1b: receipt-hit asserted unverified; EP-1c: corpus-scope failure; EP-1d: dry-run-first, CONFIRMED in ~40s). Essence: *a classification gate is not validated until it reproduces the known verdicts on the known sites — rehearsal is cheap, falsification after fire is expensive.*
+  - https://www.nature.com/articles/s44387-026-00111-4 (verification-first autonomous catalysis) · https://arxiv.org/html/2606.22610v1 (falsifiable pre-registered hypotheses) · https://papers.ssrn.com/sol3/Delivery.cfm/7525882.pdf?abstractid=7525882 (Honesty Harness) · local: EP-1b/c/d bookings (RESULTS.md Oct 4–5)
+
+- **M35 — Reproducibility is defined at a commit, not on the working tree (dirty-tree = false green).** Artifact-badging and reproducibility-provenance practice (ACM badging; ML reproducibility surveys) all anchor reproduction to *the artifact*, but agentic experiment streams add a new failure class: the booking's own declared repairs left uncommitted, so a dirty-tree "PASS" reproduces nothing at HEAD. Our ledger booked this class 4 times (IONQ-2 repro is the 4th instance). Essence: *a declared in-place repair is not landed until it is committed; repro must run the committed artifact or the green is counterfeit.*
+  - https://www.acm.org/publications/policies/artifact-review-and-badging-current · https://arxiv.org/html/2406.14325v3 · local: IONQ-2 repro booking (Oct 5, "4th instance")
+
+- **M36 — Experiment selection is bandwidth-limited, and the selector is a learnable policy.** AExGym, Epistemic Bandwidth for Interactive Agents (a stronger agent makes a low-bandwidth loop viable; adaptive experiment selection as a corollary), and capability-gated planning converge: *which experiment next* is itself an optimizable information-gain policy, not a hand schedule. Our SPOOL queue + edge-mine/assay pipeline is an implicit ranker; making it explicit is the collision. Parked: a clean falsifier would need many fires to compare orderings — weeks, not a day.
+  - https://www.cs.columbia.edu/~misra/Epistemic_Bandwidth_for_Interactive_Agents.pdf · https://www.emergentmind.com/topics/ai-driven-adaptive-experimental-design · https://arxiv.org/html/2608.05085v1
+
+- **M37 — Cross-backend transfer requires convention witnesses (identities), not value agreement.** Gate-convention ambiguity (endianness, controlled-rotation semantics, unit conventions) is documented across the simulation literature, but testing practice is value-agreement against a reference backend at sampled points. IONQ-2 instead cleared the qcell_sim↔fleet-bridge crx convention with an *identity* battery: control-leak P=0 exact, additivity crx(1/3)²→0.75 exact, cancellation crx(+1/3);crx(−1/3)→exactly 0, calibration = sin²(θ/2) within 1e-9 at every grid point. Essence: *algebraic identities the true gate must satisfy exactly are strictly stronger witnesses than sampled value agreement — a wrong convention can agree at the sampled angles and still violate a cancellation identity.*
+  - https://threeplusone.com/pubs/on_gates.pdf (convention reference) · https://arxiv.org/html/2609.19147v1 (same-convention comparisons) · local: IONQ-2 G0–G4 booking (Oct 5)
+
+- **M38 — RSI: autoresearching-the-autoresearcher corroborated (not a new mine).** The "autoresearching the autoresearch agent for eight days" result and the continuing philschmid/Weng harness-engineering line extend M22/M5: the improver-is-searched consensus holds from the top down. No new question for us.
+  - https://www.philschmid.de/recursive-self-improvement · https://lilianweng.github.io/posts/2026-07-04-harness/ · https://www.reddit.com/r/accelerate/comments/1uwypfe/ (Jiang result)
+
+### ASSAY — Wave 11 scoring (novelty × local-uniqueness × falsifiability, per `docs/assayer-spec.md`)
+
+| # | abstraction | N | U | F | score | status |
+|---|------------|---|---|---|-------|--------|
+| M34 | dry-run rehearsal over known failure sites as a mandatory pre-fire gate | 3 | 4 | 4 | **48** | SEEDED (SPOOL Wave 10, entry W11a) |
+| M37 | convention witnesses (exact identities) strictly beat sampled value agreement for cross-backend transfer | 3 | 4 | 4 | **48** | SEEDED (SPOOL Wave 10, entry W11b) |
+| M35 | reproducibility at the commit; dirty-tree repro is a false green | 2 | 3 | 4 | **24** | ASSAYED — parked (now our standing practice; the 4-instance lesson is booked — codifying it as a gem would score our own discipline, not test a hypothesis) |
+| M36 | experiment selection as a learnable information-gain policy | 3 | 3 | 2 | **18** | ASSAYED — parked, F-starved (comparing orderings needs many fires; no ≤1-day gate) |
+| M38 | autoresearch-of-autoresearch corroboration | 1 | 2 | 2 | **4** | ASSAYED — KILLED as a gem (corroboration of M22/M5; zero new question) |
+
+*Rubric honesty: 2/5 cleared 27, both literature×receipt collisions (the EP-1 lesson ledger; IONQ-2's passing witness battery) — the nine-wave pattern holds unchanged. Distinctness checks: M34 ≠ gem #5/M33 (the acceptance gate scores improvements, VX-1 audits the ledger, the dry-run validates the instrument itself); M37 ≠ IONQ-2's booking (the booking cleared one convention; the gem asks whether witnesses are strictly stronger than value agreement via mutation testing). No gate loosened.*
