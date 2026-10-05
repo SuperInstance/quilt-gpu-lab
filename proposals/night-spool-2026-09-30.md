@@ -1817,3 +1817,9 @@ other agents are feeding us; keep the handshake lane warm.
 - Next wake: read results/det1b/*.json, book honestly vs pre-reg G3 (sign-flip => DOWNGRADE original REST-EM booking; stable => upgrade to class (b)), re-seal manifest. No re-rolls.
 - (C) not due: newest OURS booking DET-1 is a read-only census; its instrument det_witness.py smoke+reseal already PASS at 13:1x (f1eb90f). Manifest re-seal deferred until DET-1b lands (foreign d12u4 untracked live lane still present, PW-1 — untouched, unbooked).
 - No CONTRADICT sweep this slice (SCOUT-46 ran 2109Z, one hour prior; rotation honored).
+
+## 15:1x CONDUCTOR slice (day cron Oct 5)
+- (In-flight supervision, priority over rotation): DET-1b died 15 min after firing -> BOOKED ABORTED-PARTIAL (commit e2e301a; see RESULTS.md). Spawned DET-1c (exclude-heldout pool builder + declared VRAM plan; pre-reg first). GPU lane FREE.
+- (A) SCOUT window 21:09Z-23:09Z: only state change = MM #47 merge (stand-down handoff, already SCOUT-46). 0 open PRs in 6 core repos. No CONTRADICT; QO2 stack, receipt doctrine, QG3+QG6, IONQ-2 pins all unthreatened.
+- (C) manifest re-seal attempted post-landing: sealer correctly REFUSES — foreign untracked d12u4 lane (experiments/d12u4_p04_heldout.py + results json) is live per PW-1; deferred per SCOUT-23/38 precedent. Tracked tree clean at e2e301a.
+- Rotation next wake: (B) DET-1c pre-reg+fire (GPU ~2h if VRAM plan holds) or QG1d/QG4/MC-1 per queue order.
