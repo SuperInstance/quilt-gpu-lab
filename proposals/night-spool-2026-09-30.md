@@ -1740,3 +1740,9 @@ other agents are feeding us; keep the handshake lane warm.
 - No CONTRADICT. QO2 stack, DECIDE-1/2, receipt doctrine, QG3+QG6, QG1c, W5a/W5b/W5c, IONQ-2 — unthreatened.
 - (C) not due: newest OURS booking = IONQ-2 (repro PASS at f7927cd, booked 05:2x Oct 5). No GPU fired (lane idle; per 07:00 rule nothing new started). Untracked foreign live lanes (d12u1/d12u2, law_ks_gate example, scratch qm_*) untouched per PW-1. Manifest seal status unchanged (no ledger change this slice).
 - Rotation next wake: (B) WQ-1 or IONQ-3 or RC-B1 per queue order (pre-reg first); GPU free for QG1d/QG4/MC-1.
+
+## 08:1x CONDUCTOR slice (day cron Oct 5): (C) mandatory repro of newest booking D12u1/D12u2 — PASS
+- HEAD had advanced to ccaa872 (D12u1/D12u2 booking, 07:2x) after SCOUT-43's 07:09 sweep, so (A) rotation already fresh this hour → this slice took (C): re-ran COMMITTED experiments/d12u1_calibrated_null_variance.py + d12u2_n64_heldout.py at HEAD ccaa872 in a clean scratch worktree (git archive → /home/eileen/scratch/repro/d12u_081021; scripts hardcode results/ writes, never fired over the live tree). rc=0 both; output JSONs IDENTICAL to committed results/ artifacts; verdicts KEEP / KEEP_model_generalizes_to_N64 stand. Booked in RESULTS.md, pushed.
+- Manifest re-seal attempted post-ledger-change: correctly REFUSED (rc=2) — foreign untracked experiments/d12u3_p07_heldout.py sits in a sealed path (PW-1 live lane, untouched). Re-seal deferred per standing precedent; will land when the d12u3 lane commits or clears.
+- No GPU fired (lane free but rotation was (C)-only; QG1d/QG4/MC-1 remain open). Nothing in progress duplicated (receiptd serves + nn-image-play server are long-lived foreign processes, untouched).
+- Rotation next wake: (B) top open queue item (VX-1/SS-1/IND-1 per queue order) or GPU QG1d/QG4; if d12u3 books, its repro becomes the (C) slot.
