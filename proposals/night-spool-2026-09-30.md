@@ -1558,3 +1558,15 @@ other agents are feeding us; keep the handshake lane warm.
   artifact-level). Manifest re-sealed CLEAN (foreign-lane blockage resolved; 223 exp + 57 tool files).
 - GPU idle all slice (repro rode the free lane serially). Rotation next wake: (B) top open queue —
   EP-1, VX-1, SS-1/IND-1; GPU open (QG1d/QG4/MC-1). No running processes duplicated; tree clean post-push.
+
+## EP-1 (2026-10-04 17:2x AKDT day-conductor slice) — DONE, BOOKED RED
+- (B) slot per SCOUT-42/C3b rotation (EP-1 top open). Pre-reg 6e240f9 (tool+gates frozen pre-fire) →
+  fired → **verdict RED, booked honestly (no re-roll)**: 8 digest claims / 21 seal-prose lines; 5
+  standing unresolvable anchors, ZERO fabrication evidence — all classified (derived-data digest,
+  external-artifact digest, seal-time snapshot pin orphaned by history rewrite, cross-repo lineage
+  pin, historical seal narrative). 1 amended false positive (nested results/ glob gap, file verified
+  byte-exact). HEADLINE: our ledger is F4-clean but the prose arm has 4 resolution-gap classes a
+  hostile writer could hide behind → spawned **EP-1b** (census v2: recursive/foreign/historical arms,
+  pointer-required WARN-vs-RED, CPU ~30m).
+- Manifest re-sealed post-booking (223 exp / 58 tool files); tests/test_receipts.py green.
+- Rotation next wake: (B) EP-1b or QO6c-followups/VX-1/SS-1 per queue order; GPU open (QG1d/QG4/MC-1).

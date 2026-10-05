@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-05T00:08:26.404098+00:00",
+  "generated_at": "2026-10-05T01:09:32.716087+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "8e9a93a5bfbd9867dde52248bf648dddd2d78b6c893706ed0d08650499699b16",
+    "RESULTS.md": "54e3aebd5a0f020d7f17d2477947dc02f43333437dc888c050cb5ddb6b25416d",
     "QUEUE.md": "325394bc5e3c6c559c1189a45dec10ec45816e6f99782f0e6d8c6f722b174e85"
   },
   "experiments": {
@@ -251,6 +251,7 @@
     "deepinfra_call.py": "a870b48233c2cbb401bd4c2fcd5a2c6300b392ac5449632f0227d4b5df6ff020",
     "deepinfra_ideate.py": "a43b5e545269e14b7a73f35fbf30a3295d4952ea9647f22bfd751a797de73b80",
     "ensemble_corr_census.py": "f9242e8f1e683a33eea734de4232964ef673fafb50d0a87c851eb2a41eb8f2b0",
+    "ep1_seal_census.py": "28df2c21d9a88220354eb2a713c7be232b7e7c13ebdbeaccd3cf93e58cb0327b",
     "eproc.py": "8243ef91b1a39f3fabf70d4e0235dbc9c27e0d4d4fd832474d44451c97423d1f",
     "farm_queue_flip.py": "8b375211ed2bdee64015078d1b9f3415a08f19e3a7788ba6b702607166b20e81",
     "fleet_board.mjs": "65b9bbdfd5ac4eefcdfbb3a47eb0adb668d2180a050a929e6374b1040b0eba70",
