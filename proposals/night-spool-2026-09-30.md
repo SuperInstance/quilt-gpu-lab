@@ -1648,3 +1648,9 @@ other agents are feeding us; keep the handshake lane warm.
 - VERDICT RED vs expected GREEN — frozen gate honored, no re-roll. Full disposition + lesson in RESULTS.md: EP-1b's "receipt-hit holds" was unverified prose (shas' receipts-of-record live in proposals/runs/*.md, not receipts/); keyword-arm removal also regressed 5bc6b78f to RED. Spawned EP-1d (corpus-cross-reference arm v4; mandatory dry-run over the 3 known sites before fire).
 - Noted: foreign anon `python3` PID 168002 from /tmp (CPU-hot since 22:3x) — PW-1, untouched. Foreign live lane d12u1 (untracked experiments/results) persists — manifest re-seal still correctly refused/deferred. (C) not due: EP-1b repro already PASS 06:2x (SCOUT-47); EP-1c books its own census.
 - Rotation next wake: (B) EP-1d (top), or VX-1 / PONG-J / FW-M1; GPU open (QG1d/QG4/MC-1).
+
+## EP-1d (2026-10-05 00:3x AKDT day-conductor slice) — DONE, EP-1 lane CLOSED
+- (A) scout delta (post-SCOUT-47, quiet): rc-20260824-11 breathing-poc-v5 07:3xZ (cross-phase create_question INHALE+HOLD flips coverage -37%→+5%; phase-scheduling law, CORROBORATE of D12 lane-family thinking, no booking threatened); quilt-tools edge #32/#33 VERIFIED merges (edge-mine W5a/W5b doctrine CORROBORATE); zero-msg-test harness churn (no signal). No CONTRADICT; no new PRs/issues/EMBASSY; pong #49 unchanged (Casey day item).
+- (B) EP-1d fired + BOOKED GREEN (see RESULTS.md): pre-reg 6cd72df, G-DRY PASS before fire (first dry-run-gated GREEN prediction in the EP-1 series), corpus-xref pointer arm absorbs all 3 falsified-RED sites. EP-1 lane closed per pre-reg STOP rule. Push af/b3-series.
+- (C) manifest re-seal attempted post-booking: REFUSED on foreign d12u1 untracked live lane (experiments/d12u1_calibrated_null_variance.py + results json) — deferred per SCOUT-23 precedent, do not touch foreign lane.
+- Rotation next wake: (B) open queue per order (VX-1 / SS-1 / IND-1 / QG1d / QG4 / MC-1); GPU lane free.
