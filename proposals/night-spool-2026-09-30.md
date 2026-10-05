@@ -1767,3 +1767,10 @@ other agents are feeding us; keep the handshake lane warm.
   caveat), re-seal. Check git log for a live claimant before firing.
 - GPU lane idle all slice (rotation: scout was the slot). Rotation next wake: (C) D12u3 book+repro,
   then (B) IONQ-3 or VX-1 per queue order.
+
+## 10:1x CONDUCTOR slice (day cron Oct 5): (C) D12u3 booked + committed repro PASS — SCOUT-44 find closed
+- (C) FIRST per SCOUT-44 directive: D12u3 (5a2fbcc, landed-unbooked QO6 #3) now booked in RESULTS.md + repro PASS (clean scratch worktree, git archive 5a2fbcc, output identical mod volatile fields; verdict KEEP_model_generalizes_to_p07, worst_ratio 0.27 within 2x gate). D-series u1/u2/u3 fully booked+repro'd.
+- **MANIFEST RE-SEALED (rc=0)** — the standing refusal cleared: d12u3 lane is now tracked; sealed RESULTS/QUEUE + 227 experiment + 67 tool/weight files. Deferred-seal debt from 08:1x retired.
+- No GPU fired (lane idle; rotation: (C) was the slot per SCOUT-44 queue order). Newest OURS booking = D12u3 (this entry, repro PASS same slice).
+- Note: HEAD 63ed02d (09:43) orderstats-floor tool + example landed WITHOUT a RESULTS booking — flagged for next wake: if it carries a verdict, it is landed-unbooked pattern #4; if tool-only (like a83bcd5 housekeeping), no action.
+- [EMBASSY] pong #49 unchanged (Casey day item). Rotation next wake: (A) scout was fresh 09:09 (SCOUT-44) → next wake (A) due again; (B) IONQ-3 or VX-1 per queue order; GPU free (QG1d/QG4/MC-1).
