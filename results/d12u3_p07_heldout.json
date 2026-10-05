@@ -1,0 +1,96 @@
+{
+  "seed": 2718,
+  "N": 64,
+  "p": 0.7,
+  "draws": 5,
+  "t_grid": [
+    10,
+    15,
+    20,
+    30,
+    40,
+    60,
+    80,
+    120,
+    160,
+    240,
+    320,
+    480,
+    640,
+    800
+  ],
+  "k_d12u1": 0.657,
+  "nulls": 63,
+  "generator_corr_check": 0.605,
+  "cells": [
+    {
+      "w": 4,
+      "eps": 0.0,
+      "harness_floor": 10,
+      "model_pred": 2.3,
+      "ratio_model_over_harness": 0.23,
+      "covered_2x": true
+    },
+    {
+      "w": 4,
+      "eps": 0.05,
+      "harness_floor": 15,
+      "model_pred": 3.5,
+      "ratio_model_over_harness": 0.23,
+      "covered_2x": true
+    },
+    {
+      "w": 4,
+      "eps": 0.1,
+      "harness_floor": 20,
+      "model_pred": 5.4,
+      "ratio_model_over_harness": 0.27,
+      "covered_2x": true
+    },
+    {
+      "w": 4,
+      "eps": 0.2,
+      "harness_floor": 60,
+      "model_pred": 16.3,
+      "ratio_model_over_harness": 0.27,
+      "covered_2x": true
+    },
+    {
+      "w": 8,
+      "eps": 0.0,
+      "harness_floor": 10,
+      "model_pred": 1.2,
+      "ratio_model_over_harness": 0.12,
+      "covered_2x": true
+    },
+    {
+      "w": 8,
+      "eps": 0.05,
+      "harness_floor": 10,
+      "model_pred": 1.7,
+      "ratio_model_over_harness": 0.17,
+      "covered_2x": true
+    },
+    {
+      "w": 8,
+      "eps": 0.1,
+      "harness_floor": 10,
+      "model_pred": 2.7,
+      "ratio_model_over_harness": 0.27,
+      "covered_2x": true
+    },
+    {
+      "w": 8,
+      "eps": 0.2,
+      "harness_floor": 30,
+      "model_pred": 8.2,
+      "ratio_model_over_harness": 0.27,
+      "covered_2x": true
+    }
+  ],
+  "gates": {
+    "G1_all_covered_2x": true,
+    "worst_ratio": 0.27
+  },
+  "verdict": "KEEP_model_generalizes_to_p07"
+}
