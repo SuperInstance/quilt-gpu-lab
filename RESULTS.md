@@ -5999,3 +5999,35 @@ any relaunch-5.
   ZERO value diffs (dict key order only). Verdict-level + artifact-level PASS.
 - Script writes canonical path (--out ignored, noted; booked artifact safe in git).
 - Manifest re-sealed clean post-run (foreign d12 untracked lane no longer blocks).
+
+## [BOOKED 17:2x CPU Oct 4] EP-1 SEAL/EVENT-PROSE CENSUS: RED — 5 standing unresolvable anchors, zero fabrication evidence; all 5 classified, prose-arm gaps named (EP-1b spawned)
+- Pre-reg proposals/runs/EP-1-seal-prose-census-prereg.md committed 6e240f9 BEFORE fire (SCOUT-42 spawn,
+  jev-quilt #49 F4 event-fabrication doctrine applied to OUR ledger). Tool tools/ep1_seal_census.py.
+- G1 PASS: 8 digest claims (RESULTS.md + receipts/*.md) + 21 seal/event-prose lines censused, fail-loud clean.
+- G2 4/8 resolved; G3 19/21 resolved. VERDICT RED (frozen gate: RED=0 required). No re-roll.
+- The 6 fired REDs, classified by cause (read-only inspection, no scope change):
+  1. RESULTS:5809 sha256 0e3f424c — FALSE POSITIVE (amended): file results/qo6b_forget_cell/results.json
+     present, independent sha256sum matches EXACTLY. Tool glob gap: artifact arm was non-recursive
+     (results/* missed results/<lane>/) — same class as VSB-1 nested-vendor lesson.
+  2. RESULTS:5221 5bc6b78f — DERIVED-DATA digest (gitignored corpus, 7,584,332 B, LCG-regenerable):
+     resolvable only by recomputation, not present at census time. Class: external/derived digest needs
+     a named-artifact pointer + regen recipe in prose (RT-D1 real-probe arm).
+  3. RESULTS:430 9817d604 — EXTERNAL-ARTIFACT digest (reproducibility_hash inside a JSON receipt blob,
+     artifact not in tree). Same external-pointer class as #2.
+  4. tool_pins:18 9246cc49 — SEAL-TIME SNAPSHOT pin of tools/receipt_manifest.py (since modified, by
+     design); the pre-rewrite blob is no longer reachable in this clone (wave history-rewrite 04c7b8e
+     likely orphaned it). Class: historical pin needs its commit anchor, not just the digest.
+  5. RESULTS:2927 61b9e04 — CROSS-REPO lineage pin (quilt-ewitness commit; full sha in committed
+     QO6 receipt; not an object in OUR git). Class: foreign-repo pin needs remote+sha (fetchable via
+     RT-D1 real-probe arm), census lacks the foreign arm.
+  6. RESULTS:4367 6d3a1162 — HISTORICAL SEAL digest inside a documented drift-repair narrative
+     ("sealed 6d3a1162 vs on-disk"); an old manifest digest, not a git sha. Class: historical
+     seal references need manifest-history anchoring.
+- HEADLINE: no F4-class fabricated event anchors found in OUR ledger — every unresolvable prose
+  anchor has an identifiable, honest cause. But the prose arm has 4 named resolution-gap classes
+  (derived/external digests, seal-time pins, cross-repo pins, historical seals) that a hostile or
+  careless writer could hide behind. Spawned **EP-1b** (CPU ~30m): census v2 — recursive artifact
+  arm, foreign-ref arm (remote+sha via git ls-remote, no network retries), historical-pin arm
+  (resolve blobs at pinned commits), external-digest named-pointer requirement; RED classes become
+  WARN only when a committed pointer (receipt/recipe/remote) exists, RED otherwise.
+- Artifact: results/ep1_seal_census.json (fired-output, unmodified post-run).

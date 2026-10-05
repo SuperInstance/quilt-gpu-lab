@@ -1,0 +1,16 @@
+{
+  "pre_reg": "proposals/runs/EP-1-seal-prose-census-prereg.md",
+  "digest_claims_total": 8,
+  "seal_prose_lines_total": 21,
+  "g2_resolved": 4,
+  "g3_resolved": 19,
+  "reds": [
+    "G2 RED RESULTS.md:430 unresolvable 64-hex 9817d6048268\u2026",
+    "G2 RED RESULTS.md:5221 unresolvable 64-hex 5bc6b78f0a4b\u2026",
+    "G2 RED RESULTS.md:5809 unresolvable 64-hex 0e3f424c7948\u2026",
+    "G2 RED tool_pins_2026-09-30.md:18 unresolvable 64-hex 9246cc4920ef\u2026",
+    "G3 RED RESULTS.md:2927 seal-prose sha 61b9e04 unresolvable :: commit 61b9e04, sha256 aad90ac5\u2026, vendored-via delta-shape PR #1; parity enforced by exact-algebra pin abs_err 0.0).",
+    "G3 RED RESULTS.md:4367 seal-prose sha 6d3a1162 unresolvable :: sealed digest (sealed 6d3a1162\u2026 vs on-disk 80f8b958\u2026): the XP-C-era bookings landed WITHOUT a re-seal. Re-seal is"
+  ],
+  "verdict": "RED"
+}
