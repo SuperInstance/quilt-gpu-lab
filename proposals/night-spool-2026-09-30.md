@@ -1682,3 +1682,13 @@ other agents are feeding us; keep the handshake lane warm.
 - (C) not due (EP-1d repro PASS 01:09, newest OURS booking). Manifest re-seal still deferred (foreign
   d12u1/d12u2 untracked live lanes; sealer correctly refuses). GPU idle; nothing fired; nothing duplicated.
 - Rotation next wake: (B) IONQ-2 pre-reg + fire, or SS-1/IND-1; GPU open.
+
+## SCOUT-43 (2026-10-05 1109Z / 03:09 AKDT day-conductor slice)
+- Window: post-SCOUT-42 sweep (a48389b, 01:09 AKDT). No CONTRADICT. (A) slot, read-only gh.
+- jev-quilt PR #50 (09:28Z) R6 run-3 battery: **CORROBORATE** — their "G1 graft flip" (foreign_doctrine_graft REJECT→ACCEPT across verbatim re-runs) is an instability of THEIR substrate_alignment metric, unrelated to our G1 gates despite the label; it re-proves the record-only/frozen-gate doctrine we run (thresholds fitted to one noisy graft measurement = the noise our pre-reg discipline exists to avoid). F1 zero-fact escalation noted, not our lane.
+- pong-quilt #116 (09:10Z) Round 94 --check adoption gate: CORROBORATE x2 for SS-1/spec_sha convergence.
+- lobster-live "molt model" docs + autonomous think-cycles; zero-poc NEW repo (01:15Z, minimal git-native agent template, telegram logs) — neither touches our assets; classify NOTE. quilt #36/#37 + SmartCRDT #78-#80 = dep bumps, noise. fleet-triage edge-watch #17-#22 merges = cite-only pattern as before.
+- Spawned **FWIT-1** (CPU reading ~20m, docs-only): fleet-witness Ed25519 sig-seam (PRs #3-#5, 57/57) + truncate-demo witnessing study (#8, 10:35Z) — assess as upgrade path for our sha-only receipt-manifest seal (a signed seal would collapse EP-1 standing class #6 "historical seal digest" into a verifiable signature). Gate: design note only; no seal format change without Casey sign-off.
+- (C) mandatory repro: newest OURS booking EP-1d — already reprod PASS at 01:09 slice; this wake's independent re-run (committed tool → /home/eileen/scratch/repro/ep1d_repro_2026-10-05.json) reproduces GREEN verdict (8 digest/27 prose, WARN_POINTER 5, SELFSCAN 1, FOREIGN 0), same sites, ledger-growth caveat as booked. (C) PASS, no duplication.
+- No GPU fired (rotation: scout was the slot). Manifest re-seal still DEFERRED (foreign live-lane untracked d12u1/d12u2 persists; sealer correctly refuses). Running-process check: none of ours; no IN-PROGRESS items duplicated.
+- Rotation next wake: (B) FWIT-1 / VX-1 / SS-1 per queue order; GPU open (QG1d/QG4/MC-1).
