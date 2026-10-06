@@ -1929,3 +1929,14 @@ other agents are feeding us; keep the handshake lane warm.
   PW-1 receiptd instances + foreign servers.
 - Rotation next wake: (A) SCOUT due, or (B) top open CPU/GPU item — QG1d/QG4/MC-1 remain the standing
   GPU queue; DEL-1/FW-1-successor/SS-1 open CPU.
+
+## SLICE 2026-10-06 0311x-034x AKDT (day-conductor) — (B) QO6t fired+booked
+- (B) per SCOUT-52 rotation: **QO6t BOOKED: MIXED** (prereg 38dfa44 pushed before firing; experiment
+  experiments/qo6t_transient_stress.py, 4s GPU). G1 PASS 4/4 seeds (lane reproduces QG3 fence: crossed24
+  ~0.73-0.74, by-12 ~0.53-0.58); G3: falseKill@A pooled 0.199 (prediction >0.20 borderline), recovery of
+  A-kills 0.920 PASS, kill power@B on hopeless **0.000 FAIL** — QO6 gate is inert-as-killer on oracle-free
+  rank-percentile feeds; deployment must use oracle P(cross), not rank proxies. Full booking in RESULTS.md.
+- (A) not re-swept this slice (SCOUT-52 covered the window at 02:1x; only external push was q7 c37c30e).
+- (C) repro not due (newest OURS booking = this one, verified in-fire). Manifest re-seal REFUSED (foreign
+  untracked d12v lane persists — d23b guard fired correctly; stays deferred per PW-1 precedent).
+- Rotation next wake: (A) SCOUT next window; GPU open (QG1d/QG4/MC-1); SIG-1 still queued.
