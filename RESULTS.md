@@ -6275,3 +6275,23 @@ any relaunch-5.
 - Honest notes: two mechanical fixes pre-fire (missing sys.path insert; shim import line removed) — visible in
   committed script. Sensitivity sigmas {0.02,0.04,0.05} recorded in results/qo6t_transient_stress/results.json,
   exploratory only. Runtime 4s GPU.
+
+## SLICE 2026-10-06 0411x AKDT (day-conductor) — (C) QO6t repro PASS + SCOUT-53
+- (C) mandatory repro of newest OURS booking **QO6t: PASS (verdict-level)** — committed script
+  (b8bce7a) re-run on the 4050, 3 s: ANCHOR-VEC 2.08e-34 identical; all 4 seeds MIXED (0/4 PASS);
+  pooled falseKill_A 0.195 (booked 0.199), recovery 0.940 (booked 0.920), power_B 0.000 (booked
+  0.000) — every number inside the torch-lane nondeterminism band, overall MIXED as booked. The
+  gate is confirmed INERT-as-killer on rank-series feed; kill-matrix conclusion stands. Booked
+  results.json restored byte-identical post-repro; repro run.log committed.
+- (A) **SCOUT-53** (full text proposals/runs/SCOUT-53-fleet-push-2026-10-06-1211Z.md): no new
+  pushes in the 6 watched repos since SCOUT-52's window (MM #46/#47 + pong #118-#120 handoff
+  merges were 21:0xZ Oct 5, pre-window). **HEADLINE — taskable-lobster GONE**: 404 on commits API
+  AND absent from the SuperInstance repo list (was SCOUT-49's HEADLINE 20h ago: signed Git task
+  queue + brief-assembler/stream-curator/ledger-continuity). Not a CONTRADICT (nothing of ours
+  consumed it; SIG-1 was a steal, unstarted) — booked as **WATCH**: if fleet repos can vanish
+  within a day, archive-never-delete is a FLEET-WIDE risk, not just ours; SIG-1 (HMAC prereg
+  seal) priority raised — local sealed copies are the only durable defense. plato-portal +
+  zero-poc pushes in window are routine auto-cycles. PRs open elsewhere: SmartCRDT/model-registry
+  dependabot only. No new queue items spawned; [EMBASSY] pong #49 unchanged (Casey day item).
+- Manifest re-seal: still deferred (foreign untracked d12v lane persists; sealer correctly refuses).
+- Rotation next wake: (B) SIG-1 (priority raised) or pre-reg GPU item QG1d/QG4/MC-1 per queue order.
