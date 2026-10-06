@@ -1840,3 +1840,14 @@ other agents are feeding us; keep the handshake lane warm.
 - Original driver (17:1x firing) was killed when its parent session died at 17:44 — AFTER seed 20261005 completed both arms cleanly (T rc=0: base 0.6875→final 0.6458, Δ−0.0417; C2 rc=0: 0.6875→0.5833, Δ−0.1042), but before its C2 rc line / remaining seeds. No crash in the run itself.
 - Resume logged in det1c.log with explicit RESUME marker; seed-20261005 outputs untouched; gates/prereg unchanged. Fire sanity for seed 20261006: loads OK (qlora-nf4, 737280 trainable), base eval 0.688 matches booked base, contamination_overlap=0 (exclude-heldout holding).
 - Resume caveat booked: resumed loop omitted the original driver's pre-fire VRAM gate (arms 20261006 T OOM'd in DET-1b under heavier foreign lanes; currently ~3.6 GiB free at fire). Next wake: check completion (4 arms remaining, ~40-50 min ETA), book honestly vs G1-G4, re-seal manifest if the foreign d12u4 lane allows. No re-rolls.
+
+## 19:2x DAY-CONDUCTOR slice (2026-10-05) — DET-1c BOOKED (see RESULTS)
+- Found DET-1c driver dead AGAIN post 07_T (2nd infra death; 06_T OOM'd rc=1, same arm as DET-1b).
+- Fired the single missing 07_C2 arm (deterministic fixed-budget, c2-steps=22 from 07_T, VRAM gate
+  4.95 GiB) under the same prereg 65a168c — resume precedent already booked at 18:1x. rc=0.
+- BOOKED: G1 FAIL; C2 sign-stable 3/3 (Δ −0.104/−0.010/−0.125, mean −0.080); T G3 UNDETERMINABLE
+  (2/3, s06 OOM). No sign flips → original REST-EM booking unchanged. Contamination-by-construction
+  VERIFIED (overlap=0 all seeds; skipped=1 on s05 legacy-collision). Spawned DET-1d (T-arm only,
+  NEW prereg mandatory per G3 bullet 3; must declare an OOM-survival VRAM plan — start-gate alone
+  failed twice). Manifest seal refused (foreign d12u4 lane persists; refusal booked).
+- Rotation next wake: (B) DET-1d prereg or QG1d/QG4/MC-1 per queue order; scout window due if >12h.

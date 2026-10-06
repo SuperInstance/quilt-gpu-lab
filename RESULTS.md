@@ -6194,3 +6194,6 @@ any relaunch-5.
   {20261006} missing T draw + declared OOM-survival plan; G3 words scoped to the T arm alone;
   single firing. NOT fired this slice (prereg-first discipline).
 - Manifest re-seal: attempted after landing → see next line; foreign d12u4 lane status unchanged.
+- Manifest re-seal at 19:2x: correctly REFUSED — foreign d12u4 untracked lane still persists
+  (experiments/d12u4_p04_heldout.py + results json). Refusal booked per d23b precedent; seal
+  rides on that lane committing or clearing.
