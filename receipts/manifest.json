@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-06T07:13:48.528125+00:00",
+  "generated_at": "2026-10-06T09:11:54.102254+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "d9f26635776ea52d7d947bbf42af747bc73e5a7b30f419d31b2662657c428663",
+    "RESULTS.md": "8b0f941233cd105b3414b4417d0392545ffa47f926e8b6ad9fa0eb1aa28dbe8e",
     "QUEUE.md": "325394bc5e3c6c559c1189a45dec10ec45816e6f99782f0e6d8c6f722b174e85"
   },
   "experiments": {
@@ -239,7 +239,7 @@
     "xq0_substrate_consolidation.py": "eae71b6a1c664669a941bc9be03e7574e0ec16fb6f9541250aae11c9384bb32a"
   },
   "tools": {
-    "README.md": "5a3c4ecba7d715141e79da49d718f4466219954d9aaef4073ff41ffa82f546ac",
+    "README.md": "17f52dd881481c822ed0507c2ee5d666f12803f1d7dd19e19a4ab91feb3356f9",
     "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "calib_gate.py": "3f7a109c81f70bef1bb5d1c2f42656f0bfa65d8fd4a1d27354a0c9eac9019f5d",
     "canary.py": "e072488ab473e0218496a58a0b0eeb16a153efe02e472613e7a0ad4d4de8f6b2",
@@ -272,6 +272,7 @@
     "floor_scan.py": "140fcd7fedcb2722835b940c751494ba8ddc568af357308c4a6195d6bb743ced",
     "forget_cell.py": "1c85006fce3a20a4e7eada8df7dc0bb3989dfb6f47ac85185158860a8ce12adc",
     "fresh_clone_witness.py": "40f86b342c0ca2d4e8df994658b5ff5b2cc696b9babc9714ba6fd8d21b8896cc",
+    "gate_reads.py": "f586a63f7c4d6a3a065c9b7e449d8ad186a879a1d8b5b9b15fe69bc5c6989249",
     "gpu_ramp_receipt.py": "c0cc342bff783ed3402ebcf35eceb39601d8659fa38b16fab83caea4791452a6",
     "hash_dut.py": "f0eda10fdab8bc5c65498cb7a3f43e5e6aeaba402b5a3cd31327061f8081971d",
     "holdout_gate.py": "5fd73403167ee4b46267333a41d3bc5852ad5138a215e822974e1fc4b044e482",
@@ -307,7 +308,7 @@
     "typesafe_batch.py": "6f4a470a02d262c2877748670aeb6ae1ca74a98f6b395864bb84dd8ec2d30381",
     "vendor_strip_census.py": "bd7d7c2a3561ee7039a58176bdc116357db624ba9595f08a1c2c05417c6a164c",
     "verdict_gate.py": "b1b431f643635b881fb770b72b66429cc3189f9cabb07506371de4fbc8d8f8f8",
-    "verdict_index.py": "2a42b37c4bcabd2e11124b23d2365e49ece74dba7bd3e3c10472513a503ec086",
+    "verdict_index.py": "061ecb11319d602d3a5fec82e62aaa9cabfe660cddff90c57a62ae15e155c2e2",
     "worstcase_calib.py": "07f920af3cac829c3aa2265e3c5939555ff0cdea969404d083c8fc3cb0351757",
     "wt_floor.py": "c28d774268b68c1ca8474c8d33512fd2402d8db94bf28949c95cb7114386de63"
   }
