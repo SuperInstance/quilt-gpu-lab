@@ -1,0 +1,17 @@
+{
+ "direction": "decreasing",
+ "jitter": 0.02,
+ "max_inv": 2,
+ "err_bar": 0.25,
+ "n_points": 23,
+ "n_groups": 3,
+ "inversions": 132,
+ "G1": false,
+ "fit_a": 0.1938,
+ "fit_b": 0.4619,
+ "max_loo_err": null,
+ "G2": false,
+ "G2_VOID": false,
+ "verdict": "KILL",
+ "ts": "2026-10-06T17:42:58Z"
+}

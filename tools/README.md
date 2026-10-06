@@ -315,6 +315,20 @@ more than a copy to use, it's not grabbable yet.
   silently extrapolate). Worked example rc=0 KEEP, ratios [0.777, 0.706, 0.647], implied_k
   monotone in eps, receipt results/k_curve_gate_example_2026-10-06.json.
 
+- **collapse-gate** — `tools/collapse_gate.py` — monotone-collapse + leave-one-group-out prediction gate
+  (pattern lifted from D12w, booked KILL_k_eff_is_p_local 2026-10-06: k_eff did NOT collapse onto a
+  single function of s_eff — 79 inversions, positive log-log slope, and the gate said so honestly):
+  points [{x,y,group}] -> G1 inversion count over x-rising pairs (direction/jitter/max-inv flags)
+  + G2 pooled log-log fit (slope-sign clause) with leave-one-GROUP-out prediction vs err-bar.
+  Both clauses must pass; single-group input books G2 VOID (KEEP-PARTIAL, never fake PASS).
+  Stdlib-only, deterministic, fail-loud rc=2, JSON receipt, exit 0=KEEP / 1=KILL.
+  `python tools/collapse_gate.py --points-file pts.json [--direction decreasing --max-inv 2 --err-bar 0.25 --out r.json] | --points '[...]' | --selftest`
+  TEST receipt 2026-10-06: selftest 8/8 — selftest caught two real bugs live (its own violator pin
+  used default max_inv=2 so the KILL came from G2 not G1, pin fixed to max_inv=0; wrong-direction
+  slope path left `void` unbound and crashed instead of booking honest KILL). Live D12w replay:
+  23 points, 3 groups -> KILL rc=1, slope b=0.462, receipt
+  results/collapse_gate_d12w_replay_2026-10-06.json — consistent with the booked experiment verdict.
+
 ### onboard.py — fleet-standard credential onboarding (Casey 2026-10-04)
 Every grabbable tool that touches a provider registers itself in `tools/onboard.json`
 (var name, keyfile name, optional extracted-config path) and inherits the onboarding CLI:
