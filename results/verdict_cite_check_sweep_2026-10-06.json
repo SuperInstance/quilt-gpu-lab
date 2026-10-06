@@ -1,0 +1,74 @@
+{
+  "tool": "verdict-cite-check",
+  "files": 304,
+  "citations": 8,
+  "red": 0,
+  "missing": 1,
+  "verdict": "CLEAN",
+  "findings": [
+    {
+      "file": "tools/collapse_gate.py",
+      "line": 13,
+      "cite": "results/d12w_keff_seff_collapse.json",
+      "claim": "KILL",
+      "verdict": "KILL_k_eff_is_p_local",
+      "status": "CLEAN"
+    },
+    {
+      "file": "tools/collapse_gate.py",
+      "line": 13,
+      "cite": "results/d12w_keff_seff_collapse.json",
+      "claim": "KILL",
+      "verdict": "KILL_k_eff_is_p_local",
+      "status": "CLEAN"
+    },
+    {
+      "file": "tools/collapse_gate.py",
+      "line": 14,
+      "cite": "results/collapse_gate_d12w_replay_2026-10-06.json",
+      "claim": "KILL",
+      "verdict": "KILL",
+      "status": "CLEAN"
+    },
+    {
+      "file": "tools/collapse_gate.py",
+      "line": 14,
+      "cite": "results/collapse_gate_d12w_replay_2026-10-06.json",
+      "claim": "KILL",
+      "verdict": "KILL",
+      "status": "CLEAN"
+    },
+    {
+      "file": "experiments/ib1b_variable_delay.py",
+      "line": 4,
+      "cite": "results/ib1a_fly_rule.json",
+      "claim": "KEEP",
+      "verdict": "KEEP",
+      "status": "CLEAN"
+    },
+    {
+      "file": "experiments/probe_baseline_remeasure.py",
+      "line": 10,
+      "cite": "results/pie_minimax_closure.json",
+      "claim": "PASS",
+      "verdict": null,
+      "status": "MISSING"
+    },
+    {
+      "file": "experiments/probe_baseline_remeasure.py",
+      "line": 26,
+      "cite": "results/probe_battery/baseline_remeasure.json",
+      "claim": "PASS",
+      "verdict": "PASS",
+      "status": "CLEAN"
+    },
+    {
+      "file": "experiments/probe_second_reader.py",
+      "line": 22,
+      "cite": "results/probe_battery/second_reader.json",
+      "claim": "PASS",
+      "verdict": "PASS",
+      "status": "CLEAN"
+    }
+  ]
+}

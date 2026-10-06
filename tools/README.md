@@ -329,6 +329,24 @@ more than a copy to use, it's not grabbable yet.
   23 points, 3 groups -> KILL rc=1, slope b=0.462, receipt
   results/collapse_gate_d12w_replay_2026-10-06.json — consistent with the booked experiment verdict.
 
+- **verdict-cite-check** — `tools/verdict_cite_check.py` — verdict-citation
+  consistency gate (pattern lifted from SCOUT-57/DC-1, booked 2026-10-06: a
+  committed docstring cited a REVERSED verdict against the on-disk receipt —
+  "the receipt is the record" needed a mechanized check): scans files for
+  `results/*.json` citations near verdict claims (KEEP*/KILL*/PASS/FAIL, same
+  line or ±context) and books RED when the claim's family contradicts the
+  receipt's `verdict` (or a suffixed claim fails to prefix-match). Prose that
+  is ABOUT claims never books: quoted spans ("verdict KEEP") and gate
+  definitions (`KEEP iff ...`, `else FAIL`) are stripped — the live sweep
+  caught both false-positive classes and they became selftest pins. Missing
+  receipt books MISSING (advisory — deletion is not contradiction).
+  Read-only, stdlib-only, exit 0=CLEAN / 1=RED / 2=fail-loud, JSON receipt.
+  `python tools/verdict_cite_check.py --file F | --files tools/ experiments/ --glob "*.py" [--context 2 --out r.json] | --selftest`
+  TEST receipt 2026-10-06: selftest 7/7 (consistent-KEEP, reversed-RED, suffix
+  mismatch-RED, missing/no-verdict advisory, quoted-claim and iff-gate pins);
+  live sweep tools/+experiments/ 304 files: 8 citations, 0 RED, 1 MISSING,
+  CLEAN rc=0, receipt results/verdict_cite_check_sweep_2026-10-06.json.
+
 ### onboard.py — fleet-standard credential onboarding (Casey 2026-10-04)
 Every grabbable tool that touches a provider registers itself in `tools/onboard.json`
 (var name, keyfile name, optional extracted-config path) and inherits the onboarding CLI:
