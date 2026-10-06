@@ -6345,3 +6345,19 @@ any relaunch-5.
   caught by G1 failing to seal, fixed before any PASS was recorded. RED-first discipline worked.
 - Manifest re-seal: attempted, correctly refused (foreign untracked d12v/d12w lanes persist).
 - Rotation next wake: (A) SCOUT per rotation; GPU open (QG1d/QG4/MC-1); QO7-ARM day item open.
+
+## SCOUT-55 + (C) repro (2026-10-06 09:11 AKDT / 1711Z day-conductor slice)
+- (A) **SCOUT-55** (full text proposals/runs/SCOUT-55-fleet-push-2026-10-06-1711Z.md):
+  HEADLINE rc q9 — FIFTH consecutive molt negative (validity-aware refill ties AGE 86.7 vs NEVER
+  96.7; refills mostly invalid; "validity is PER-CELL, not per-footprint"). CORROBORATE of QO6
+  doctrine; TOOL sharpening spawned **QO6p** (CPU ~15m per-cell transfer-legibility audit; gates
+  pre-registered in SCOUT-55 file, NOT fired this slice). New public wave 16:13Z (self-assembly
+  Council/bridge, 3 initial pushes) — observation only, no asset threatened. No CONTRADICT.
+  0 open PRs; [EMBASSY] pong #49 unchanged (Casey day item).
+- (C) mandatory repro of newest OURS booking (SIG-1b): live-fired the COMMITTED
+  `tools/prereg_seal.py verify --keyless` against the COMMITTED SIG-1 seal — **DIGEST-MATCH,
+  exit 0** (sha256 fb730257d3a1..., HMAC UNVERIFIED as designed). Repro PASS; SIG-1's 06:1x
+  key-blocked HMAC gap remains honestly booked, its digest layer now verified twice.
+- Manifest re-seal: correctly REFUSED again (foreign untracked d12v/d12w lanes persist; dirty
+  manifest.json is the sealer's own staged state). No GPU fired (scout+C slice).
+- Rotation next wake: (B) QO6p (CPU ~15m) or DET-1b/QG1d/QG4/MC-1 per queue order; GPU open.
