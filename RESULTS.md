@@ -6421,3 +6421,19 @@ any relaunch-5.
 - Manifest re-seal: attempted → foreign untracked d12v lane (experiments/d12v_keff_p045.py +
   results/d12v_keff_p045.json) persists; sealer correctly refuses (PW-1, untouched). Still deferred.
 - Rotation next wake: (B) SIG-1 or QO6t prereg per queue order; GPU open (QG1d/QG4/MC-1).
+
+## CC-1 BOOKED: verdict INCONCLUSIVE (G1/G2/G4 PASS; G3 mixed-band) — prereg 3092b69 honored
+- SCOUT-53 spawn (lucineer-workspace 13efdd2 "comfortable collapse" paper → transfer question):
+  are never-cross (HOPELESS) streams feature-blind vs late-fenced (cross gen>=13) at g*=12 on ALL
+  cheap champion features? Lane: qo6t kernel VERBATIM + ltraj recording; W6/g24/S512/seeds{11-14}.
+- G1 PASS (c24/c12 inside QG3 anchor bands, all 4 seeds); G2 PASS (fenced pooled 165 >= 40);
+  G4 PASS (EARLY control v-AUC min 0.988 > 0.9 — census view sound).
+- G3 PRIMARY pooled AUC at g*=12: v 0.620, rank 0.621, len 0.591, rate 0.611. Per prereg bands:
+  not ALL in [0.45,0.60] (3 of 4 just above), none >= 0.75 => **INCONCLUSIVE**, table booked, no
+  model fit, no re-roll. Read: a WEAK shared fitness signal exists at fence time — features are
+  not fully blind (comfortable collapse NOT confirmed), but far below usable routing (QG7's
+  oracle AUC 0.606 at gen 1 is the same weak-signal regime). QG3b (statevector-distance basins)
+  stays the named successor; priority unchanged (not raised).
+- Scratch note: 3 mechanical script crashes fixed pre-anchor (anchor construction, rng7 order,
+  evaluate dict shape); anchor vec err < 1e-9 before any lane fired. GPU 2.8s.
+- Files: experiments/cc1_comfortable_collapse.py, results/cc1_comfortable_collapse/results.json.
