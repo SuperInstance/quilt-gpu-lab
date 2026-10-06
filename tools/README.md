@@ -402,6 +402,19 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   TEST receipt 2026-10-02: selftest OK (8 accept / 12 reject, 0 failures);
   live examples: arith exact rc=0, symb exact_simplify rc=0 ('-3 + 4*x' ==
   '4*x - 3'), off-by-one wrong_value rc=1.
+- **gate-reads** — `tools/gate_reads.py` — decision-read census for gate functions
+  (pattern lifted PROVEN from QO6n, booked GREEN 2026-10-06: the QO6 kill gate was
+  suspected of consuming E_max — AST proves what a function DECIDES on (compared,
+  branched, asserted) vs merely RECORDS (returned in a receipt dict), plus a
+  per-file line census of any suspicious field, and an `--expect` pin that books
+  RED when the actual decision-read set drifts from the frozen one). Stdlib-only,
+  read-only, fail-loud rc=2. Selftest 6/6 — selftest caught two real bugs live
+  (return-of-receipt counted as a decision read; empty --expect silently pinned
+  "expect nothing"). Live on tools/eproc.py kill_gate: GREEN rc=0, decision-reads
+  exactly [retracted, verdict], E_max recorded-only, receipt
+  results/gate_reads_eproc_2026-10-06.json.
+  `python tools/gate_reads.py --file tools/eproc.py --func kill_gate --suspicious E_max --expect verdict,retracted [--out r.json] | --selftest`
+
 - **lit-sweep** — `tools/lit_sweep.py` — fabricated-benchmark sweep (pattern lifted PROVEN from
   HB-1/SCOUT-26, booked 2026-10-02): extracts numeric literals from source and flags exact
   cross-matches with booked receipt metrics, plus degenerate-stat detectors (zero-variance

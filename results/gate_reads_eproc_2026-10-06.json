@@ -1,0 +1,21 @@
+{
+ "file": "tools/eproc.py",
+ "func": "kill_gate",
+ "reads": {
+  "retracted": [
+   "decision"
+  ],
+  "verdict": [
+   "decision"
+  ]
+ },
+ "suspicious": [
+  "E_max"
+ ],
+ "E_max_decision_lines": [],
+ "E_max_recorded": [
+  "69:        \"E_final\": float(E[-1]), \"E_max\": float(E.max()), \"stop_t\": stop_t,"
+ ],
+ "RED_fields": [],
+ "VERDICT": "GREEN"
+}
