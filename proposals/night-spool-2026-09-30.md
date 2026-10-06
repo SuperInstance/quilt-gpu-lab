@@ -1888,3 +1888,9 @@ other agents are feeding us; keep the handshake lane warm.
 - CORROBORATE/TOOL: MicroMoth IonQ rung-2 SIM pre-flight PR #44 (crx w=sin²(θ/2) pinned; additivity 0.7494 vs 0.75 flags their clamp01 accumulator; cancellation 0.0 vs 0.25) -> spawned **QC-CRX** (GPU ~15m: same discriminators under OUR qcell_sim pi-unit crx, QG1c semantics; mismatch = convention delta, book the census difference, don't force agreement).
 - TOOL: taskable-lobster autonomous repo creation LIVE (3 empty repos, verified) — SIG-1 seal is timely for forward preregs.
 - (C): SIG-1 green repro NOT runnable by design (throwaway key discarded per G4 no-leak; committed RED-first gate record is the verification) — honestly noted, no repro-PASS booked. Re-seal correctly REFUSED again (foreign d12u4/d12u5 untracked lanes persist). No GPU fired (scout slot). Rotation next wake: (B) QO6n or QC-CRX; GPU open (QG1d/QG4/MC-1).
+
+## QO6n (2026-10-06 07:1xZ / 23:2x AKDT day-conductor slice) — DONE, BOOKED GREEN
+- (B) slot per SCOUT-50 rotation. Prereg 4c09dd9 committed+pushed BEFORE firing; tool experiments/qo6n_noise_gap.py; booked in RESULTS.md.
+- **GREEN**: kill_gate decision-reads = {verdict, retracted}, both duration-like; E_max recorded-never-consumed (8 occurrences classified in receipt); sigma honesty PASS (fail-loud, LR-normalized). q6 dip-depth failure class absent from consumed path; nothing threatened.
+- **(C) MANIFEST RE-SEALED** — d9f2663 (RESULTS.md), 230 experiments/71 tools; the foreign d12u4/d12u5 untracked lanes have cleared/committed, sealer accepted. Deferred-seal note CLOSED.
+- Rotation next wake: (A) SCOUT-51 or (B) QC-CRX (GPU ~15m) / DET-1d (new prereg) / VX-1 per queue order; GPU open (QG1d/QG4/MC-1).

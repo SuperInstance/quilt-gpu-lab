@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-05T21:11:43.625796+00:00",
+  "generated_at": "2026-10-06T07:13:48.528125+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "02ac77fc9bca46832bbbbb93b9b3cc73c79b92de32d379273456a0ed4fba77b1",
+    "RESULTS.md": "d9f26635776ea52d7d947bbf42af747bc73e5a7b30f419d31b2662657c428663",
     "QUEUE.md": "325394bc5e3c6c559c1189a45dec10ec45816e6f99782f0e6d8c6f722b174e85"
   },
   "experiments": {
@@ -79,6 +79,8 @@
     "d12u1_calibrated_null_variance.py": "ffff9981b90074339145599e3c6fa7530068a7cf97114f54ccfa0c3d92efe49d",
     "d12u2_n64_heldout.py": "e0a13466bd1183d497948e3dbdcf08e11df158b809b7efbb9da33955c531fcaa",
     "d12u3_p07_heldout.py": "baefca3f5c9f127d22032d06848042fe45928c2b2fc7bb5fce9d1a619d9275d6",
+    "d12u4_p04_heldout.py": "75b3071515f894df0a267b9f542453d95596eff32da031e2571276145edbaf7a",
+    "d12u5_k_refit.py": "57f31d6b4b470367a32f0181a1279695ca34f43b071c1c7ba7dc94138ea144a7",
     "d12u_family.py": "6bef49310d79d62b53fe60917eae5b1e10e56d82f027a46b70c6cc6656de8c8d",
     "d12u_orderstats_model.py": "3049e5dd67d6e1c3a41b83b7f9f2b0a89e0a40c6b83f5649935258f17e730f78",
     "d12upp_calibrated.py": "e9f5afcae3b5d617bf439b471953e3ae895c70c7f3d26967dcdfeb5f632b817b",
@@ -197,8 +199,9 @@
     "qo6_kill_evidence.py": "fcbfe984ddfe01338240eafa4d7d794c41ddec2e17910ec3dc58a3c6a05cbde5",
     "qo6b_forget_cell.py": "c1e147620c391c972540f34c9a0e3a8920edb7f4a7b7ce7a674d2438e9686668",
     "qo6c_forget_cell.py": "6cdd68561437787053ab786d045a8d2364278203d472cf913df6517072dd593a",
+    "qo6n_noise_gap.py": "dd114640c6eee6e0899a8d8144d33aa23fe6e823b41ca7344d36cffb2fcfd226",
     "qo9_lane_vs_stream.py": "30ef64dccbb29bf8d261ece169a02a06f8d0f655fa10d5574d4022ac6949211e",
-    "rest_em_loop.py": "df5087faef0ff76a61dc3cab1ed5a02d9ca0efc3f097878a4cab1cff5cd355d5",
+    "rest_em_loop.py": "d53c4383f7df9d062a1cc61337385ae098d9722ebb9287c68cfe61dad37f3f88",
     "ring_cx0.py": "044db02bf671461c1b00d83cf4fd812db6b2fa738e2066d5dbf18caef33bdb7b",
     "ring_cx1.py": "aab1b8b16c5af9439e73e670a03715dead0f19e8aa7ec13358a2509e037dfa53",
     "ring_cx2.py": "850fc2417346085cc1a4d3488db5d1ecee23e142271de3a12f339eabf0400388",
@@ -236,7 +239,7 @@
     "xq0_substrate_consolidation.py": "eae71b6a1c664669a941bc9be03e7574e0ec16fb6f9541250aae11c9384bb32a"
   },
   "tools": {
-    "README.md": "a614983755bdc66b1f448492070aecca216414a125466984e571b002e7180892",
+    "README.md": "5a3c4ecba7d715141e79da49d718f4466219954d9aaef4073ff41ffa82f546ac",
     "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "calib_gate.py": "3f7a109c81f70bef1bb5d1c2f42656f0bfa65d8fd4a1d27354a0c9eac9019f5d",
     "canary.py": "e072488ab473e0218496a58a0b0eeb16a153efe02e472613e7a0ad4d4de8f6b2",
@@ -245,6 +248,7 @@
     "chip_route.py": "608b890a9a293c7851e9fb18a0262a831dffcd6f85f171afb414b2b9c409f02a",
     "ci_gate.py": "9b958cf592390707dfd8294a0ade7fd36cdd346a264b7f01750e19dec2c541d7",
     "codespace_lane.sh": "996c8e110423fa6b7b22b1781dbe88496b4e488f0601f893abcf1cf2f2580321",
+    "contam_gate.py": "297be5aec304097cdedb060a257a49c4bc1a03679949a648f6c5a55dcf96366f",
     "control_ladder.py": "450612e464931d9f7001b3f1bb9e59ca531b17dbf16b030362ce9c2d6e24e06d",
     "corpus_filter.py": "3dbe92aa917eead56bd0c47a2dea858595ee8277a18c0d6c812424bd3ace79c3",
     "corr_exponent.py": "a3cb4cd7dd9312a41bbd23ac49739c001dec42ea0fde399f006282ba56864d2e",
@@ -261,6 +265,7 @@
     "ep1c_pointer_census.py": "a68486d9ffaafedbc774949e70fd89455de0039abfdc6931f1494b9a49568f11",
     "ep1d_pointer_census.py": "3d0254759c5f898569dea35f59c5c2eb3e8b49346d6f7eb8ec6962ba2cc821b0",
     "eproc.py": "8243ef91b1a39f3fabf70d4e0235dbc9c27e0d4d4fd832474d44451c97423d1f",
+    "exclu_pool.py": "10c1c6b4feb5236884a56e293bb6b2ad7706cf3f4b41bb36937f2ccc7570c5fd",
     "farm_queue_flip.py": "8b375211ed2bdee64015078d1b9f3415a08f19e3a7788ba6b702607166b20e81",
     "fleet_board.mjs": "65b9bbdfd5ac4eefcdfbb3a47eb0adb668d2180a050a929e6374b1040b0eba70",
     "floor_law_fit.py": "0ae26fe773e0b960626b2a119e46c223803d4971ec7a620226d233c544e38f3c",
@@ -284,6 +289,7 @@
     "perm_ci.py": "6886711bc9f1b07f8184f367cbad9661dd31c082af3bcfc9103d5e9256a25971",
     "power_fit.py": "74ea3f67ac32a1ea96538c89d317df1da346d520f15dbe67cd9275647a5a5b85",
     "pr_sweep.py": "3c884785286a26fac47f7e74867ed55694ec878290e42bee9682b9c9e38b5242",
+    "prereg_seal.py": "11a3f7e0b5dca1eeb71d9dc6974621345e3c27d3fd75ebe7fb05d520b7ffc40f",
     "prereg_stamp.py": "95c591cac74889d07a8bce279e23c865aa3e81e07b562ba472e31e7e992cc1ac",
     "proj_lattice.py": "52cec2eee97fd649442be0d857810465df3007220e1d736b48d4f8fd61d95a2c",
     "qcell_oracle.pt": "fed2c15fb506899fdc0fb86a7656d965c4b0aae8bceda28d11d6850aec201eed",
