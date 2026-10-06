@@ -6437,3 +6437,20 @@ any relaunch-5.
 - Scratch note: 3 mechanical script crashes fixed pre-anchor (anchor construction, rng7 order,
   evaluate dict shape); anchor vec err < 1e-9 before any lane fired. GPU 2.8s.
 - Files: experiments/cc1_comfortable_collapse.py, results/cc1_comfortable_collapse/results.json.
+
+### CC-1 AMENDMENT (same slice, repro found a live defect before seal)
+- Mandatory repro of CC-1 did NOT reproduce byte-level: torch.rand in the selection key
+  (run_lane_trajectory VERBATIM from qo6t/QG6) draws from the UNSEEDED torch global RNG —
+  numpy default_rng(seed) pins mutation draws only. Three draws of the same script:
+  per-seed c24 varies (e.g. seed14: 0.699 / 0.725), G1 band check FLIP-FLOPS (pass/fail by
+  draw), subpopulation counts move ~10%. Pooled G3 AUCs stay 0.60-0.66 across all draws =>
+  verdict **INCONCLUSIVE is stable** and stands; the G1 CONSTRUCTION gate as written is
+  draw-sensitive and cannot be certified by a single ensemble.
+- Class: seeded-numpy / unseeded-torch mixed-RNG hole — QG7 booked "rerun ensembles for
+  subpopulation verdicts"; sharper form: the LANES themselves (crossed rates) are torch-RNG
+  draws, so even lane-construction anchors are single-draw statistics unless torch.seed is
+  pinned. QO6t/QG6/QG3 bookings used the same kernel family — their G1 anchors inherit this
+  caveat (their verdicts were ensemble/deterministic-gate based; no booked verdict changes,
+  but the convention is now named).
+- Spawned **CC-1b** (cheap, CPU-side re-fire): torch.seed(seed) pinned kernel, 4 numpy seeds
+  x 3 torch draws, re-certify G1 band stability and re-book the G3 census table.
