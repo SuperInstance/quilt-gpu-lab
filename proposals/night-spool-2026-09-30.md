@@ -2004,3 +2004,28 @@ other agents are feeding us; keep the handshake lane warm.
   in-fire (deterministic, sha eb787f3baf30…).
 - Manifest re-seal: correctly REFUSED (foreign untracked d12v lane persists — PW-1 precedent; standing defer).
 - Rotation next wake: (B) LWS-1 (docs) or top open CPU item (RC-4/CH-1/VP-1/XR-1); GPU open (QG1d/QG4/MC-1).
+
+## SLICE 2026-10-06 1411x AKDT (day-conductor) — (A)+(B)+(C): CC-1 booked INCONCLUSIVE; unseeded-torch defect found by repro
+- (A) **SCOUT-53** (full text proposals/runs/SCOUT-53-fleet-push-2026-10-06-2211Z.md): 6 watched
+  repos quiet. Only push in window = lucineer-workspace 13efdd2 (22:02Z) — JEV×JEPA×Ternary
+  5-paper digest. CLASSIFY: **CORROBORATE x2** — (1) paper-bilateral-judgment "use noul gates as
+  filters, not range generators" = our QO6 eproc retraction-gate doctrine (evidence filters, not
+  oracles); (2) their "audit the textual interface before believing a judge/math divergence"
+  (fake divergence from stale template bank) = FW-1/RC-1b field-write class, 4th fleet witness.
+  **TOOL/TRANSFER** — paper-anti-collapse-guard "comfortable collapse" (math restored, judgment
+  flat) → spawned **CC-1** (feature-blindness census on QO6t desert-fence population). Ternary
+  sweep (κ-axis MI) noted LOW, no spawn. No CONTRADICT; no new PRs/issues; [EMBASSY] pong #49
+  unchanged (Casey day item).
+- (B) **CC-1 BOOKED: INCONCLUSIVE** (prereg 3092b69 committed+pushed BEFORE firing): fence-time
+  cheap features weakly informative, pooled AUC 0.59-0.66 — not blind (comfortable collapse NOT
+  confirmed), not routable; G1/G2/G4 pass; QG3b priority unchanged. THEN the mandatory (C) repro
+  **found a live defect**: torch.rand in the lane selection key is UNSEEDED (numpy-only seeding)
+  — G1 band check flips by draw, subpopulation counts move ~10%, pooled verdict stable.
+  **AMENDED in place** (08450e9): G1-construction gates on this kernel family are single-draw
+  statistics unless torch.seed pinned; QO6t/QG6/QG3 anchors inherit the caveat (no booked verdict
+  changes). Spawned **CC-1b** (torch-seeded, 4 seeds x 3 draws, re-certify G1 + re-book table).
+- (C) satisfied by the CC-1 repro itself (found + booked the defect); manifest RE-SEALED clean
+  (feb1ee6 — foreign untracked d12v lane committed at 7597456 by fleet author without a RESULTS
+  booking, PW-1 foreign-live noted; docs/SUBSTRATE-SYNTHESIS.md still untracked foreign, untouched).
+- Rotation next wake: (B) CC-1b (cheap, closes the draw-sensitivity) or QG1d/QG4/MC-1 per queue
+  order; GPU free.
