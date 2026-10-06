@@ -6159,3 +6159,13 @@ any relaunch-5.
 - (C) mandatory check on the newest OURS booking (DET-1b aborted-partial). The producing script can't be re-fired as a whole (training run; G4 no-re-roll), but its booked verdict IS the deterministic N4 abort — re-derived by importing `gen_task_pool` from committed experiments/rest_em_loop.py (import-safe, `__main__`-guarded) with the prereg parameters (pool 48+48 hard, heldout seed 20261003 48+48 hard start_tid=10000).
 - Result: seed=20261005 overlap=1 ['5*x**2 + 9*x - (8*x**2 - 9*x)']; seed=20261007 overlap=1 ['5*(x + 4) + 3*x']; seed=20261006 overlap=0. IDENTICAL to the booking (same two tasks, same single clean seed). REPRO PASS at verdict level.
 - Manifest re-seal: attempted, correctly REFUSED (foreign d12u4 untracked live lane — dirty-sealed-path guard, d23b precedent). Stays deferred per SCOUT-23/25 note until the foreign lane commits or clears.
+
+## [IN-PROGRESS 17:1x CPU/GPU Oct 5] DET-1c REMEDY FIRED (pre-reg + code committed 65a168c BEFORE firing)
+- Fix landed: gen_task_pool_excluding + --exclude-heldout (contamination excluded BY CONSTRUCTION, not checked
+  post-hoc); legacy N4 check retained as redundant witness. Smoke pre-commit: all 3 seeds overlap=0, deterministic,
+  pool=96; legacy builder untouched. Driver experiments/det1c_replicate.sh with pre-fire VRAM gate (>=3.0 GiB;
+  4.95 GiB at fire — foreign lanes lighter than DET-1b). Batch/accum identical to booked run (declared in prereg).
+- Fire sanity from log: seed 20261005 skipped_at_gen=1 (the known collision, excluded), contamination_overlap=0,
+  cuda, qlora-nf4 loaded, peft impl. Outputs isolated under results/det1c/ (results/det1b/ untouched).
+- ETA ~1.5-2h (6 arms). Next wake: check completion, book honestly vs prereg G1-G4 (G3 words unchanged from
+  DET-1b), re-seal manifest (still blocked by foreign d12u4 lane as of 17:0x). No re-rolls.
