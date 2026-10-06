@@ -1879,3 +1879,12 @@ other agents are feeding us; keep the handshake lane warm.
 - GPU lane idle all slice (rotation honored). No running processes (foreign receiptd only, PW-1).
 - Rotation next wake: (A) SCOUT-50 (A-slot due, ~1h since SCOUT-49) or (B) DET-1d (needs new prereg
   first) / VX-1 / DEL-1 per queue order; GPU open (QG1d/QG4/MC-1).
+
+## SCOUT-50 (2026-10-06 06:1xZ / 22:1x AKDT day-conductor) — full text proposals/runs/SCOUT-50-fleet-push-2026-10-06-0610Z.md
+- No CONTRADICT (QO2 stack, DECIDE-1/2, receipt doctrine, QG3+QG6, QG1c, W5a-c unthreatened); 0 issues on our repo; no [EMBASSY].
+- Fleet event: mass ONBOARDING fleet-seed + operation-fictions merge wave 21:0xZ Oct 5 across ~10 repos ("stand-down 2026-10-06") — Casey day item.
+- CORROBORATE: rc-20260824-11 q5/q6 honest negatives (revival HURTS 88.3 vs 96.7; molt 86.7 vs 96.7 — per-fact ledger can't beat reward noise; "gates need a noise model, dip-duration not dip-depth").
+- TOOL: q6 noise-model lesson maps onto QO6 kill-evidence gate -> spawned **QO6n** (CPU ~20m noise-gap audit; RED if any gate stat is dip-depth-like, GREEN with input-list receipt otherwise).
+- CORROBORATE/TOOL: MicroMoth IonQ rung-2 SIM pre-flight PR #44 (crx w=sin²(θ/2) pinned; additivity 0.7494 vs 0.75 flags their clamp01 accumulator; cancellation 0.0 vs 0.25) -> spawned **QC-CRX** (GPU ~15m: same discriminators under OUR qcell_sim pi-unit crx, QG1c semantics; mismatch = convention delta, book the census difference, don't force agreement).
+- TOOL: taskable-lobster autonomous repo creation LIVE (3 empty repos, verified) — SIG-1 seal is timely for forward preregs.
+- (C): SIG-1 green repro NOT runnable by design (throwaway key discarded per G4 no-leak; committed RED-first gate record is the verification) — honestly noted, no repro-PASS booked. Re-seal correctly REFUSED again (foreign d12u4/d12u5 untracked lanes persist). No GPU fired (scout slot). Rotation next wake: (B) QO6n or QC-CRX; GPU open (QG1d/QG4/MC-1).
