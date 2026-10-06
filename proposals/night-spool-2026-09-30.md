@@ -1957,3 +1957,14 @@ other agents are feeding us; keep the handshake lane warm.
 - Manifest re-seal: still deferred — receipts/manifest.json dirty + foreign d12v untracked files
   persist; sealer correctly refuses. No GPU fired. Nothing duplicated (no running lanes).
 - Rotation next wake: (B) SIG-1b (above) or QG1d/QG4/MC-1 (GPU open).
+
+## SLICE 2026-10-06 1011x AKDT (day-conductor) — (B) QO6p BOOKED: RED (corroboration-grade)
+- [DONE 10:1x CPU] **QO6p BOOKED: verdict RED** (prereg pushed 101x before fire). All 12 kill_gate/
+  witness consumed fields classified PER-UNIT; single AGGREGATE feed = qo6t rank_series (population
+  CDF rank) -> kill_gate, no oracle backing. **Containment: corroborates QO6t MIXED (kill power 0.00
+  was exactly that feed); all per-stream booked feeds unthreatened; no amendments.** 3 fail-loud
+  crashes fixed in place pre-result. Full receipt results/qo6p_percell_transfer/receipt.json.
+- (C) not due: newest OURS booking SIG-1b already keyless-repro'd DIGEST-MATCH 09:1x; QO6p receipt is
+  this slice's own artifact.
+- Manifest re-seal: correctly REFUSED (foreign untracked d12v/d12w lanes persist — standing defer).
+- Rotation next wake: (A) SCOUT-56 per rotation; GPU open (QG1d/QG4/MC-1); QO7-ARM day item open.

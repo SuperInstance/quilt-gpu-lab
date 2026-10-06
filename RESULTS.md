@@ -6361,3 +6361,21 @@ any relaunch-5.
 - Manifest re-seal: correctly REFUSED again (foreign untracked d12v/d12w lanes persist; dirty
   manifest.json is the sealer's own staged state). No GPU fired (scout+C slice).
 - Rotation next wake: (B) QO6p (CPU ~15m) or DET-1b/QG1d/QG4/MC-1 per queue order; GPU open.
+
+## SLICE 2026-10-06 1011x AKDT (day-conductor) — (B) QO6p BOOKED: RED (per-cell transfer audit)
+- **QO6p BOOKED: verdict RED** (prereg proposals/runs/QO6p-percell-transfer.md, committed+pushed BEFORE
+  firing). G1 enumerated 12 consumed fields from the committed QO6n receipt input list + eproc source
+  (E, E_final, E_max, bar, claim, decision, delta, logE, retracted, sigma, stop_t, verdict). G2: all
+  twelve PER-UNIT (computed solely from one stream's own series inside witness/kill_gate). G3: **one
+  AGGREGATE feed found** — qo6t_transient_stress.py rank_series (per-gen population CDF rank) feeds
+  kill_gate with NO oracle backing => RED.
+- **Containment (G4): the RED is a corroboration, not a new wound.** QO6t's MIXED booking (b8bce7a)
+  already pinned kill power 0.00 FAIL to exactly the rank-series feed — SCOUT-55's per-cell framing is
+  now mechanically confirmed as the failure mode. QO6 original per-stream feeds, QO6n, D12i/D12w: all
+  PER-UNIT, unthreatened. No booked result amended.
+- Fail-loud en route (3 crashes pre-result, fixed in place, no PASS recorded early): consumer-census
+  parse (grep strings are path:line:content, not paths, 2 fixes), AST keyword extraction (dropped for
+  regex over source), uppercase-field regex gap (E_final/E_max initially missed — would have been a
+  dishonest under-enumeration; caught by re-reading output before booking).
+- Honest note: QO6n receipt pins E_max as NOT consumed by the gate (diagnostic only) — the RED rests
+  entirely on the single qo6t aggregate feed.
