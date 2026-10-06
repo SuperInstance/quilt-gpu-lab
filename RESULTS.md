@@ -6326,3 +6326,22 @@ any relaunch-5.
   refuses). No GPU fired (rotation + 07:00 rule).
 - **NIGHT COMPLETE 2026-10-06.** Rotation next wake: (B) SIG-1b keyless verify or pre-reg
   QO6t-successor QG1d/QG4/MC-1 GPU per queue order.
+
+## SLICE 2026-10-06 0811x AKDT (day-conductor) — (B) SIG-1b BOOKED: PASS G1-G4
+- **SIG-1b BOOKED (PASS, G1-G4)**: `verify --keyless` mode in tools/prereg_seal.py — compares
+  current sha256 against the digest INSIDE the seal envelope, skips HMAC, prints
+  `DIGEST-MATCH ... HMAC UNVERIFIED (keyless)` (never a silent MATCH). This is the
+  cron-runnable repro arm for every sealed prereg (SIG-1's repro was key-blocked 06:1x).
+  G1 keyless roundtrip DIGEST-MATCH exit 0; G2 RED-first keyless tamper TAMPERED exit 2
+  (byte append caught via sealed digest); G3 legacy corners intact (missing seal exit 3,
+  bad usage exit 4, seal --keyless refused, keyed verify unchanged, missing file now
+  fail-loud exit 4 — was unhandled traceback, fixed in place); G4 committed-tree keyless
+  DIGEST-MATCH on SIG-1-prereg-seal.md (sha256 fb730257d3a1...). Key-material grep negative.
+- Honest note: SIG-1b prereg itself is sealed with a SCRATCH key (Casey's env key unavailable
+  to cron) — HMAC layer on that one seal is placeholder-strength; the D-2 content-digest
+  defense is fully active and is the layer keyless mode uses. Re-seal under Casey's key is a
+  day item; seal refuses overwrite by design, so the swap must be a deliberate manual act.
+- En-route fix: first usage-gate draft rejected `seal` (argv[1] check before arity parse) —
+  caught by G1 failing to seal, fixed before any PASS was recorded. RED-first discipline worked.
+- Manifest re-seal: attempted, correctly refused (foreign untracked d12v/d12w lanes persist).
+- Rotation next wake: (A) SCOUT per rotation; GPU open (QG1d/QG4/MC-1); QO7-ARM day item open.

@@ -1,0 +1,6 @@
+{
+  "alg": "HMAC-SHA256",
+  "file": "SIG-1b-prereg-keyless-verify.md",
+  "hmac": "49f47ccc43506d690d6e4caccc26a095e0df27a2bd1598897e2d62bff1a26f16",
+  "sha256": "f0b7db1b1b368557e1c4cf66e7c6c4f27704ee5c4cbc186c9d61e80ce246a79a"
+}
