@@ -1940,3 +1940,20 @@ other agents are feeding us; keep the handshake lane warm.
 - (C) repro not due (newest OURS booking = this one, verified in-fire). Manifest re-seal REFUSED (foreign
   untracked d12v lane persists — d23b guard fired correctly; stays deferred per PW-1 precedent).
 - Rotation next wake: (A) SCOUT next window; GPU open (QG1d/QG4/MC-1); SIG-1 still queued.
+
+## SLICE 2026-10-06 0611x AKDT (day-conductor) — (C) SIG-1 repro PARTIAL (digest-level) + key-availability finding
+- (C) mandatory repro of newest OURS booking **SIG-1: PARTIAL PASS** — `QUILT_SEAL_KEY` is ABSENT in
+  the cron session env, so full HMAC verify (G1/G2-tamper/G4-signature) cannot re-run here. Keyless
+  partial repro instead: (i) committed pilot seal `SIG-1-prereg-seal.md.seal.json` `.sha256` field
+  matches sha256 of the committed prereg file — DIGEST-MATCH (content integrity intact at HEAD);
+  (ii) no-key refusal path reproduces exactly (exit 4, fail-loud message, no seal written) for BOTH
+  seal and verify. HMAC signature verification itself remains UNVERIFIED in keyless sessions —
+  booked as an honest gap, not a PASS.
+- **FINDING (spawned SIG-1b, docs/tool, ~15m)**: seal format should support a keyless verify mode —
+  if the envelope records the plaintext sha256 digest, `verify --digest-only` can return
+  DIGEST-MATCH / DIGEST-DRIFT (exit 0/2) without the key, reserving full HMAC verdicts for keyed
+  sessions. This makes the mandatory-repro protocol executable from cron. Gate: digest-only mode
+  agrees with keyed verdict on a 3-case matrix (clean/tampered/resealed).
+- Manifest re-seal: still deferred — receipts/manifest.json dirty + foreign d12v untracked files
+  persist; sealer correctly refuses. No GPU fired. Nothing duplicated (no running lanes).
+- Rotation next wake: (B) SIG-1b (above) or QG1d/QG4/MC-1 (GPU open).
