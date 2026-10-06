@@ -6454,3 +6454,19 @@ any relaunch-5.
   but the convention is now named).
 - Spawned **CC-1b** (cheap, CPU-side re-fire): torch.seed(seed) pinned kernel, 4 numpy seeds
   x 3 torch draws, re-certify G1 band stability and re-book the G3 census table.
+
+## CC-1b BOOKED: verdict INCONCLUSIVE (unchanged) — CC-1 STANDS; torch-RNG hole CLOSED. Prereg bf0a3f0 honored
+- Kernel: cc1 verbatim (imported), ONE change — torch.manual_seed(seed*10+draw) at lane entry.
+  4 numpy seeds x 3 torch draws = 12 lanes, W6/g24/S512/g*=12, anchor vec err < 1e-9 pre-fire.
+- G1 PASS (ensemble form): c24 mean 0.7345 (band 0.755±0.05), c12 mean 0.5758 (0.578±0.05),
+  per-seed c24-mean spread 0.0423 <= 0.10 — the CC-1 flip-flop (seed14 0.699/0.725) is GONE with
+  torch pinned. G2 PASS (fenced pooled n across 12 lanes >= 40). G4 PASS (EARLY v-AUC min 1.0).
+- G3 PRIMARY pooled AUC at g*=12: v 0.654, rank 0.651, len 0.608, rate 0.646 — same band as CC-1
+  (0.59-0.62 single-draw; pinned ensemble sits slightly higher but still 0.45<x<0.75 all four)
+  => INCONCLUSIVE, identical verdict. No model fit, no re-roll.
+- Booked consequences: (1) CC-1's INCONCLUSIVE is stable under full RNG pinning — amendment closed;
+  (2) the unseeded-torch mixed-RNG defect is FIXED in the cc1b kernel; QO6t/QG6/QG3-style lane
+  kernels should pin torch.manual_seed at entry going forward (convention, applies to qo6t.py if
+  re-fired); (3) fence-time features remain weakly informative, not routable — QG3b statevector
+  successor unchanged, priority unchanged.
+- GPU 8.2 s. Files: experiments/cc1b_torch_seed_recert.py, results/cc1b_torch_seed_recert/results.json.
