@@ -3,9 +3,9 @@ Classifies every statistic consumed by a QO2 kill/keep decision as ORACLE /
 PER-UNIT / AGGREGATE. Gates frozen in proposals/runs/QO6p-percell-transfer.md
 (and SCOUT-55) BEFORE this file existed; commit order is the prereg proof.
 """
-import ast
 import json
 import os
+import re
 import subprocess
 
 OUT = os.environ.get("QO6P_OUT", "results/qo6p_percell_transfer/receipt.json")
@@ -13,25 +13,23 @@ OUT = os.environ.get("QO6P_OUT", "results/qo6p_percell_transfer/receipt.json")
 # --- G1: enumerate decision reads from the committed QO6n receipt input list ---
 rec = json.load(open("results/qo6n_noise_gap/receipt.json"))
 assert rec["G1_decision_reads"] == ["retracted", "verdict"], "QO6n receipt drift — STOP"
-consumers = sorted({s for s in rec["G2_consumer_sites"] if s.endswith(".py")})
+consumers = sorted({s.split(":")[0] for s in rec["G2_consumer_sites"]
+                    if s.split(":")[0].endswith(".py")})
 assert consumers, "no consumers found — census broken"
 
 # kill_gate / witness consumed fields (static, from tools/eproc.py function bodies)
 src = open("tools/eproc.py").read()
-tree = ast.parse(src)
-fns = {n.name: n for n in tree.body if isinstance(n, ast.FunctionDef)}
-kg = fns["kill_gate"]; w = fns["witness"]
-kg_fields = sorted({k.value for n in ast.walk(kg) for k in n.keywords if isinstance(k, ast.Constant) and isinstance(k.value, str)} |
-                   {t.value for n in ast.walk(kg) for t in ast.walk(n) if isinstance(t, ast.Constant) and isinstance(t.value, str)})
-returned = sorted({k.arg for n in ast.walk(w) for k in ast.walk(n) if isinstance(k, ast.keyword)} |
-                  {k.arg for n in ast.walk(kg) for k in ast.walk(n) if isinstance(k, ast.keyword)})
-reads = sorted(set(kg_fields) | set(returned) | set(rec["G1_decision_reads"]))
+import re
+kw = re.findall(r'"([A-Za-z_]+)"\s*:', src)
+ret = re.findall(r'\.get\("([A-Za-z_]+)"', src)
+reads = sorted(set(kw) | set(ret) | set(rec["G1_decision_reads"]))
+assert "retracted" in reads and "verdict" in reads and "decision" in reads, "field census broken"
 print("G1 enumerated consumed fields:", reads)
 
 # --- G2: classify each consumed statistic ---
 classification = {}
 for r in reads:
-    if r in ("E_final", "E_max", "stop_t", "retracted", "verdict", "decision", "bar", "claim", "sigma", "delta", "logE", "E"):
+    if r in ("E_final", "E_max", "logE", "E", "stop_t", "retracted", "verdict", "decision", "bar", "claim", "sigma", "delta"):
         classification[r] = "PER-UNIT"  # computed solely from ONE stream's series (witness/kill_gate body)
     else:
         classification[r] = "AGGREGATE"  # unknown field defaults RED-side — fail-loud

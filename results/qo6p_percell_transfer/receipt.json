@@ -1,0 +1,39 @@
+{
+  "prereg": "proposals/runs/QO6p-percell-transfer.md",
+  "G1_consumed_fields": [
+    "E",
+    "E_final",
+    "E_max",
+    "bar",
+    "claim",
+    "decision",
+    "delta",
+    "logE",
+    "retracted",
+    "sigma",
+    "stop_t",
+    "verdict"
+  ],
+  "G2_classification": {
+    "E": "PER-UNIT",
+    "E_final": "PER-UNIT",
+    "E_max": "PER-UNIT",
+    "bar": "PER-UNIT",
+    "claim": "PER-UNIT",
+    "decision": "PER-UNIT",
+    "delta": "PER-UNIT",
+    "logE": "PER-UNIT",
+    "retracted": "PER-UNIT",
+    "sigma": "PER-UNIT",
+    "stop_t": "PER-UNIT",
+    "verdict": "PER-UNIT"
+  },
+  "G2_aggregate_feeds": [
+    "qo6t_transient_stress.py: rank_series (per-gen population CDF rank) -> kill_gate"
+  ],
+  "G3_verdict": "RED",
+  "G4_containment": [
+    "QO6t MIXED booking (b8bce7a): kill power 0.00 FAIL was exactly on the rank-series feed \u2014 RED corroborates the booked failure rather than contradicting it.",
+    "QO6 original gate (per-stream P(cross) trajectories), QO6n, D12i/D12w feeds: all PER-UNIT \u2014 unthreatened."
+  ]
+}
