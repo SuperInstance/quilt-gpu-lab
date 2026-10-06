@@ -1,0 +1,195 @@
+{
+  "anchor_vec_err": 2.078080831959185e-34,
+  "config": {
+    "S": 512,
+    "gens": 24,
+    "seeds": [
+      11,
+      12,
+      13,
+      14
+    ],
+    "bar": 0.45,
+    "sigma_primary": 0.03,
+    "sigmas_sweep": [
+      0.02,
+      0.04,
+      0.05
+    ],
+    "delta": 0.1
+  },
+  "seeds": {
+    "11": {
+      "g1": {
+        "crossed24": 0.740234375,
+        "crossed_by_12": 0.564453125,
+        "pass": true
+      },
+      "gates": {
+        "0.03": {
+          "falseKill_A": 0.20844327176781002,
+          "recovery_of_A_kills": 0.8860759493670886,
+          "power_B_hopeless": 0.0,
+          "n_A_kills": 79,
+          "retracted_at_full_among_all": 0.4375,
+          "verdict": "MIXED"
+        },
+        "0.02": {
+          "falseKill_A": 0.25065963060686014,
+          "recovery_of_A_kills": 0.8947368421052632,
+          "power_B_hopeless": 0.0,
+          "n_A_kills": 95,
+          "retracted_at_full_among_all": 0.5,
+          "verdict": "MIXED"
+        },
+        "0.04": {
+          "falseKill_A": 0.14775725593667546,
+          "recovery_of_A_kills": 0.9285714285714286,
+          "power_B_hopeless": 0.0,
+          "n_A_kills": 56,
+          "retracted_at_full_among_all": 0.365234375,
+          "verdict": "MIXED"
+        },
+        "0.05": {
+          "falseKill_A": 0.10817941952506596,
+          "recovery_of_A_kills": 0.975609756097561,
+          "power_B_hopeless": 0.0,
+          "n_A_kills": 41,
+          "retracted_at_full_among_all": 0.314453125,
+          "verdict": "MIXED"
+        }
+      }
+    },
+    "12": {
+      "g1": {
+        "crossed24": 0.7421875,
+        "crossed_by_12": 0.529296875,
+        "pass": true
+      },
+      "gates": {
+        "0.03": {
+          "falseKill_A": 0.21842105263157896,
+          "recovery_of_A_kills": 0.963855421686747,
+          "power_B_hopeless": 0.0,
+          "n_A_kills": 83,
+          "retracted_at_full_among_all": 0.47265625,
+          "verdict": "MIXED"
+        },
+        "0.02": {
+          "falseKill_A": 0.2710526315789474,
+          "recovery_of_A_kills": 0.9223300970873787,
+          "power_B_hopeless": 0.0,
+          "n_A_kills": 103,
+          "retracted_at_full_among_all": 0.53515625,
+          "verdict": "MIXED"
+        },
+        "0.04": {
+          "falseKill_A": 0.14473684210526316,
+          "recovery_of_A_kills": 0.9818181818181818,
+          "power_B_hopeless": 0.0,
+          "n_A_kills": 55,
+          "retracted_at_full_among_all": 0.427734375,
+          "verdict": "MIXED"
+        },
+        "0.05": {
+          "falseKill_A": 0.10789473684210527,
+          "recovery_of_A_kills": 1.0,
+          "power_B_hopeless": 0.0,
+          "n_A_kills": 41,
+          "retracted_at_full_among_all": 0.384765625,
+          "verdict": "MIXED"
+        }
+      }
+    },
+    "13": {
+      "g1": {
+        "crossed24": 0.736328125,
+        "crossed_by_12": 0.564453125,
+        "pass": true
+      },
+      "gates": {
+        "0.03": {
+          "falseKill_A": 0.1883289124668435,
+          "recovery_of_A_kills": 0.8450704225352113,
+          "power_B_hopeless": 0.0,
+          "n_A_kills": 71,
+          "retracted_at_full_among_all": 0.439453125,
+          "verdict": "MIXED"
+        },
+        "0.02": {
+          "falseKill_A": 0.2625994694960212,
+          "recovery_of_A_kills": 0.8686868686868687,
+          "power_B_hopeless": 0.007407407407407408,
+          "n_A_kills": 99,
+          "retracted_at_full_among_all": 0.498046875,
+          "verdict": "MIXED"
+        },
+        "0.04": {
+          "falseKill_A": 0.1273209549071618,
+          "recovery_of_A_kills": 0.9166666666666666,
+          "power_B_hopeless": 0.0,
+          "n_A_kills": 48,
+          "retracted_at_full_among_all": 0.388671875,
+          "verdict": "MIXED"
+        },
+        "0.05": {
+          "falseKill_A": 0.09549071618037135,
+          "recovery_of_A_kills": 0.9722222222222222,
+          "power_B_hopeless": 0.0,
+          "n_A_kills": 36,
+          "retracted_at_full_among_all": 0.357421875,
+          "verdict": "MIXED"
+        }
+      }
+    },
+    "14": {
+      "g1": {
+        "crossed24": 0.7265625,
+        "crossed_by_12": 0.578125,
+        "pass": true
+      },
+      "gates": {
+        "0.03": {
+          "falseKill_A": 0.1827956989247312,
+          "recovery_of_A_kills": 0.9852941176470589,
+          "power_B_hopeless": 0.0,
+          "n_A_kills": 68,
+          "retracted_at_full_among_all": 0.453125,
+          "verdict": "MIXED"
+        },
+        "0.02": {
+          "falseKill_A": 0.25,
+          "recovery_of_A_kills": 0.956989247311828,
+          "power_B_hopeless": 0.0,
+          "n_A_kills": 93,
+          "retracted_at_full_among_all": 0.513671875,
+          "verdict": "MIXED"
+        },
+        "0.04": {
+          "falseKill_A": 0.15053763440860216,
+          "recovery_of_A_kills": 1.0,
+          "power_B_hopeless": 0.0,
+          "n_A_kills": 56,
+          "retracted_at_full_among_all": 0.392578125,
+          "verdict": "MIXED"
+        },
+        "0.05": {
+          "falseKill_A": 0.10215053763440861,
+          "recovery_of_A_kills": 1.0,
+          "power_B_hopeless": 0.0,
+          "n_A_kills": 38,
+          "retracted_at_full_among_all": 0.337890625,
+          "verdict": "MIXED"
+        }
+      }
+    }
+  },
+  "pooled_primary": {
+    "falseKill_A": 0.19949723394774094,
+    "recovery_of_A_kills": 0.9200739778090263,
+    "power_B_hopeless": 0.0,
+    "seeds_pass": 0,
+    "seeds_total": 4,
+    "overall": "MIXED"
+  }
+}

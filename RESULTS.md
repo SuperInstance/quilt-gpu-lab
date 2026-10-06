@@ -6250,3 +6250,28 @@ any relaunch-5.
   ("E trajectory" -> "e_final") — the query vocabulary is the index's field names.
 - Verdict: the FW-1 prose census is now a LOOKUP. Wholesale-void = `python tools/verdict_index.py <field>`.
   Future instrument-taint questions query the index, not archaeology.
+
+## [MIXED 03:4x CPU/GPU Oct 6] QO6t BOOKED: MIXED — retraction works, kill power is ZERO on oracle-free rank series
+- Prereg 38dfa44 committed+pushed BEFORE firing. Tool: experiments/qo6t_transient_stress.py (lane kernel copied
+  verbatim from qg6_variance_rescue, extended only by per-gen champion-fitness trajectory recording).
+- **G1 PASS all 4 seeds**: W6/g24 S=512 crossed-by-24 in [0.727, 0.742] (booked 0.755 ± 0.05); crossed-by-12
+  in [0.529, 0.578] (booked arm-A 0.578 ± 0.05) — fence present, lane construction sound. ANCHOR-VEC 2.08e-34.
+- **G2 PASS**: kill_gate ran on every prefix without refusal (A = gen-11 checkpoint per prereg protocol fix).
+- **G3 MIXED (sigma primary 0.03, delta 0.1)**:
+  - falseKill@A (gen-11 checkpoint kills among eventual crossers) = 0.183-0.218, pooled **0.199** — the fence
+    population DOES attract transient kills, matching the prereg prediction (>0.20 borderline).
+  - recovery (A-kills retracted by gen 24) = 0.845-0.985, pooled **0.920** — PASSES the >= 0.80 gate. The
+    retraction mechanism works on real fence trajectories, not just synthetic V2 pins.
+  - power@B (gen-15 kills among hopeless) = **0.000 on all 4 seeds** — FAILS the >= 0.30 gate. The gate never
+    fires on hopeless streams under the rank-percentile feed: their rank decline is too shallow to drive E to
+    bar 20 at sigma=0.03. The gate is structurally INERT as a killer on this feed; it is only a transient-
+    false-alarm+retract machine here.
+- **Pooled primary verdict: MIXED (0/4 seeds PASS)**. Booked as-is per prereg words.
+- Named reading: QO6's kill semantics need a series whose DOOMED streams DECLINE materially (oracle P(cross)
+  declines hard; population-rank declines weakly because a stuck stream's rank freezes once the climbers pass).
+  This is the fence-cell answer to SCOUT-52's question: the kill matrix's untested cell is NOT safe to arm on
+  oracle-free rank feeds — false-alarm burden ~20% with 92% self-healing, and zero kill yield. Any QO7/QO2
+  deployment must feed oracle P(cross) (QO1/QO3), not rank proxies, or accept INSUFFICIENT-only behavior.
+- Honest notes: two mechanical fixes pre-fire (missing sys.path insert; shim import line removed) — visible in
+  committed script. Sensitivity sigmas {0.02,0.04,0.05} recorded in results/qo6t_transient_stress/results.json,
+  exploratory only. Runtime 4s GPU.
