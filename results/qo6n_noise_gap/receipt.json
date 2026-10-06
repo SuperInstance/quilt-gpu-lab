@@ -1,0 +1,76 @@
+{
+ "prereg": "proposals/runs/QO6n-prereg-noise-gap-audit.md",
+ "commit": "4c09dd9a3a77a77ae5062c71104e7176a36b0685",
+ "G1_decision_reads": [
+  "retracted",
+  "verdict"
+ ],
+ "G2_classification": {
+  "verdict": "DURATION-like (verdict = stop_t > 0; stop_t is first crossing time of the cumsum log-E)",
+  "retracted": "DURATION-like (stop_t > 0 AND E_final < bar; E_final is the time-INTEGRATED cumsum endpoint, not a single-draw magnitude)"
+ },
+ "G2_E_max_consumed_by_gate": false,
+ "G2_sigma_honesty": {
+  "no_sigma": "raises ValueError (fail-loud) \u2014 OK",
+  "zero_sigma": "raises ValueError (fail-loud) \u2014 OK",
+  "sigma_role": "noise model on increments: lr = -(((d-mu)^2 - d^2)/(2 sigma^2)) \u2014 normalized likelihood ratio, NOT a magnitude cutoff (tools/eproc.py eprocess)"
+ },
+ "G2_consumer_sites": [
+  "./experiments/del1_deletion_audit.py:48:def kill_gate_no_retract(series, sigma, delta=0.05):",
+  "./experiments/del1_deletion_audit.py:49:    w = eproc_mod.witness(series, claim=\"DECREASES\", sigma=sigma, delta=delta)",
+  "./experiments/del1_deletion_audit.py:57:    \"bloom\": kill_gate_no_retract(BLOOM, sigma=0.04, delta=0.1)[\"decision\"],      # booked KEEP",
+  "./experiments/del1_deletion_audit.py:58:    \"hopeless\": kill_gate_no_retract(HOPELESS, sigma=0.03)[\"decision\"],           # booked KILL_CANDIDATE",
+  "./experiments/del1_deletion_audit.py:59:    \"flat_p\": kill_gate_no_retract(FLAT_P, sigma=0.04)[\"decision\"],               # booked INSUFFICIENT",
+  "./experiments/del1_deletion_audit.py:92:d3[\"flat_noise_Emax_booked_sigma\"] = eproc_mod.witness(flat_noise(200, 11), sigma=2.6)[\"E_max\"]",
+  "./experiments/del1_deletion_audit.py:93:d3[\"flat_noise_Emax_self_sigma\"] = eproc_mod.witness(",
+  "./experiments/del1_deletion_audit.py:95:w_bloom_self = eproc_mod.witness(BLOOM, sigma=float(np.std(np.diff(np.asarray(BLOOM, dtype=float)))), delta=0.1)",
+  "./experiments/qo6n_noise_gap.py:4:tools/eproc.py kill_gate as DURATION-like or DEPTH-like; verify sigma honesty;",
+  "./experiments/qo6n_noise_gap.py:14:# --- G1: decision-read fields of kill_gate (static, from the function body) ---",
+  "./experiments/qo6n_noise_gap.py:17:kg = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == \"kill_gate\")",
+  "./experiments/qo6n_noise_gap.py:47:# --- consumers census (every repo call site of witness/kill_gate) ---",
+  "./experiments/qo6n_noise_gap.py:49:g = subprocess.run([\"grep\", \"-rn\", \"-e\", \"kill_gate\", \"-e\", \"eproc_mod.witness\", \"--include=*.py\", \"--include=*.mjs\", \".\", ],",
+  "./experiments/qo6n_noise_gap.py:66:    elif \"= eproc_mod.witness\" in cp or \"= witness(\" in cp or \"d3[\" in cp or \"for k in\" in cp or cp.rstrip().endswith('[\"E_max\"]'):  # recorded diagnostic read (incl. multiline continuations / receipt comprehensions)",
+  "./experiments/qo6_kill_evidence.py:15:kill_gate = eproc_mod.kill_gate",
+  "./experiments/qo6_kill_evidence.py:16:witness = eproc_mod.witness",
+  "./experiments/qo6_kill_evidence.py:81:kg_bloom = kill_gate(bloom, sigma=0.04, delta=0.1)  # pre-registered scales",
+  "./experiments/qo6_kill_evidence.py:91:kg_dead = kill_gate(hopeless, sigma=0.03)",
+  "./experiments/qo6_kill_evidence.py:97:kg_flat = kill_gate(flat_p, sigma=0.04)",
+  "./tools/eproc.py:75:def kill_gate(series, sigma, delta=0.05):"
+ ],
+ "G2_E_max_verdict_reads": [],
+ "G2_E_max_recorded_not_decided": [
+  [
+   "./experiments/del1_deletion_audit.py:77:            \"retracted\": stop_t > 0 and E[-1] < bar, \"E_max\": float(E.max())}",
+   "dict-key construction"
+  ],
+  [
+   "./experiments/del1_deletion_audit.py:92:d3[\"flat_noise_Emax_booked_sigma\"] = eproc_mod.witness(flat_noise(200, 11), sigma=2.6)[\"E_max\"]",
+   "diagnostic recording (assigned into receipt/diagnostic dict, not compared)"
+  ],
+  [
+   "./experiments/del1_deletion_audit.py:94:    flat_noise(200, 11), sigma=float(np.std(np.diff(np.asarray(flat_noise(200, 11), dtype=float)))))[\"E_max\"]",
+   "diagnostic recording (assigned into receipt/diagnostic dict, not compared)"
+  ],
+  [
+   "./experiments/del1_deletion_audit.py:97:d3[\"NOTE\"] = \"self-referential sigma materially moves E_max; refusal contract separately pinned by QO6 V1c\"",
+   "diagnostic recording (assigned into receipt/diagnostic dict, not compared)"
+  ],
+  [
+   "./experiments/qo6_kill_evidence.py:56:    \"flat_noise\": {\"verdict\": w_flat[\"verdict\"], \"E_max\": w_flat[\"E_max\"]},",
+   "dict-key construction"
+  ],
+  [
+   "./experiments/qo6_kill_evidence.py:82:R[\"V2_late_bloomer\"] = {k: kg_bloom[k] for k in (\"decision\", \"verdict\", \"stop_t\", \"retracted\", \"E_max\", \"E_final\")}",
+   "diagnostic recording (assigned into receipt/diagnostic dict, not compared)"
+  ],
+  [
+   "./experiments/qo6_kill_evidence.py:92:R[\"V3_hopeless\"] = {k: kg_dead[k] for k in (\"decision\", \"verdict\", \"stop_t\", \"retracted\", \"E_max\")}",
+   "diagnostic recording (assigned into receipt/diagnostic dict, not compared)"
+  ],
+  [
+   "./tools/eproc.py:69:        \"E_final\": float(E[-1]), \"E_max\": float(E.max()), \"stop_t\": stop_t,",
+   "dict-key construction"
+  ]
+ ],
+ "VERDICT": "GREEN"
+}

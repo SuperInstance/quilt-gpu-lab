@@ -1,0 +1,93 @@
+{
+  "seed": 2718,
+  "p": 0.4,
+  "N": 64,
+  "k": 0.657,
+  "alpha": 1.92,
+  "draws": 5,
+  "T_grid": [
+    10,
+    15,
+    20,
+    30,
+    40,
+    60,
+    80,
+    120,
+    160,
+    240,
+    320,
+    480,
+    640,
+    800
+  ],
+  "cells": [
+    {
+      "W": 4,
+      "eps": 0.0,
+      "harness_floor": 30,
+      "model_floor": 20,
+      "ratio": 1.5
+    },
+    {
+      "W": 4,
+      "eps": 0.05,
+      "harness_floor": 40,
+      "model_floor": 30,
+      "ratio": 1.3333333333333333
+    },
+    {
+      "W": 4,
+      "eps": 0.1,
+      "harness_floor": 80,
+      "model_floor": 60,
+      "ratio": 1.3333333333333333
+    },
+    {
+      "W": 4,
+      "eps": 0.2,
+      "harness_floor": 240,
+      "model_floor": 160,
+      "ratio": 1.5
+    },
+    {
+      "W": 8,
+      "eps": 0.0,
+      "harness_floor": 15,
+      "model_floor": 10,
+      "ratio": 1.5
+    },
+    {
+      "W": 8,
+      "eps": 0.05,
+      "harness_floor": 20,
+      "model_floor": 15,
+      "ratio": 1.3333333333333333
+    },
+    {
+      "W": 8,
+      "eps": 0.1,
+      "harness_floor": 30,
+      "model_floor": 30,
+      "ratio": 1.0
+    },
+    {
+      "W": 8,
+      "eps": 0.2,
+      "harness_floor": 120,
+      "model_floor": 80,
+      "ratio": 1.5
+    }
+  ],
+  "G1_pass": true,
+  "ratios": [
+    1.5,
+    1.3333333333333333,
+    1.3333333333333333,
+    1.5,
+    1.5,
+    1.3333333333333333,
+    1.0,
+    1.5
+  ]
+}

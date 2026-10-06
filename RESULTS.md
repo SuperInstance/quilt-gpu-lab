@@ -6212,3 +6212,23 @@ any relaunch-5.
   remains in the Casey-gated note. No persistent key material generated.
 - Honest note: exercised on a scratch copy; the tool is now available for forward preregs (sign at commit time,
   driver check at fire time) but NOT retro-applied to existing preregs.
+
+## [DONE 23:2x CPU] QO6n BOOKED: GREEN — no dip-depth in the QO6 kill gate's consumed statistics
+- Prereg 4c09dd9 (proposals/runs/QO6n-prereg-noise-gap-audit.md) committed+pushed BEFORE firing.
+- Tool: experiments/qo6n_noise_gap.py (deterministic AST+grep census; receipt results/qo6n_noise_gap/receipt.json).
+- **G1 PASS**: kill_gate decision-read set is exactly {verdict, retracted} (AST-verified). Both DURATION-like:
+  verdict = stop_t>0 (first cumsum crossing time); retracted = stop_t>0 AND E_final<bar (E_final is the
+  time-INTEGRATED log-E endpoint). E_max (the only depth-like stat) is computed+recorded but NEVER consumed
+  by the gate decision.
+- **G2 PASS**: sigma honesty verified dynamically — witness/eprocess raise ValueError on missing or zero
+  sigma (no silent default); sigma enters as a /(2σ²) likelihood-ratio normalization on increments, i.e. a
+  real noise model, not a magnitude cutoff. Consumer census: zero E_max decision/comparison sites repo-wide;
+  8 occurrences classified all RECORDED-not-DECIDED (dict keys, producer field, DEL-1 diagnostic
+  recordings — see receipt).
+- **Verdict vs the q6 lesson**: our QO6 gate is structurally dip-duration + noise-modeled. The rc-20260824-11
+  failure class (per-fact magnitude chasing) does not exist in the consumed path. No booked result threatened;
+  QO6/QO2/QO6n-class instrumentation stands.
+- Meta note (honest): the audit script needed two filter refinements DURING the run (comment hits, then
+  dict-key/multiline-continuation false positives) before the census was clean — each refinement is visible in
+  the committed script; gate words were never loosened, the assert target was always "no E_max decision".
+- Manifest re-seal: attempted → see next line.

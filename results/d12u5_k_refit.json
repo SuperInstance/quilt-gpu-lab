@@ -1,0 +1,80 @@
+{
+ "seed": 2718,
+ "fit_surface": "d12u4 p=0.4 N=64",
+ "heldout_surface": "d12u2 p=0.3 N=64",
+ "k_old": 0.657,
+ "k_refit": 0.8963,
+ "fit_ratios_p04_at_krefit": [
+  0.91,
+  1.023,
+  1.023,
+  0.91,
+  0.91,
+  1.023,
+  1.364,
+  0.91
+ ],
+ "heldout_cells": [
+  {
+   "W": 4,
+   "eps": 0.0,
+   "harness": 60,
+   "model": 81.71926994909981,
+   "ratio": 1.362
+  },
+  {
+   "W": 4,
+   "eps": 0.05,
+   "harness": 60,
+   "model": 121.55570872228368,
+   "ratio": 2.026
+  },
+  {
+   "W": 4,
+   "eps": 0.1,
+   "harness": 120,
+   "model": 192.0880335364483,
+   "ratio": 1.601
+  },
+  {
+   "W": 4,
+   "eps": 0.2,
+   "harness": 320,
+   "model": 584.0403917397267,
+   "ratio": 1.825
+  },
+  {
+   "W": 8,
+   "eps": 0.0,
+   "harness": 20,
+   "model": 41.20070037500525,
+   "ratio": 2.06
+  },
+  {
+   "W": 8,
+   "eps": 0.05,
+   "harness": 30,
+   "model": 60.70964128105078,
+   "ratio": 2.024
+  },
+  {
+   "W": 8,
+   "eps": 0.1,
+   "harness": 60,
+   "model": 95.36188596731348,
+   "ratio": 1.589
+  },
+  {
+   "W": 8,
+   "eps": 0.2,
+   "harness": 160,
+   "model": 294.8169321535971,
+   "ratio": 1.843
+  }
+ ],
+ "gates": {
+  "G1_covered_067_150": false,
+  "G2_straddle_1": false
+ },
+ "verdict": "KILL_conservatism_structural"
+}
