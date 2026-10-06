@@ -1,0 +1,176 @@
+=== DET-1c START 2026-10-05T17:13:07-08:00 free=490MiB ===
+=== seed=20261005 ARM T 2026-10-05T17:13:07-08:00 ===
+[17:13:08] [verifier] self-test: accepts 8/8 correct, rejects 12/12 wrong -> PASS
+[17:13:08] [det1c] pool rebuilt excluding heldout exprs: skipped_at_gen=1 (0 = seed was already clean; declared builder differs from legacy two-phase order)
+[17:13:08] [tasks] pool=96 heldout=96 contamination_overlap=0
+[17:13:08] [device] cuda (requested=cuda)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:01<07:25,  1.54s/it]Loading weights:   1%|          | 3/290 [00:02<03:47,  1.26it/s]Loading weights:   3%|▎         | 9/290 [00:02<00:56,  4.93it/s]Loading weights:   6%|▌         | 17/290 [00:02<00:25, 10.85it/s]Loading weights:  10%|█         | 29/290 [00:02<00:12, 21.33it/s]Loading weights:  14%|█▍        | 41/290 [00:03<00:07, 33.22it/s]Loading weights:  22%|██▏       | 63/290 [00:03<00:03, 59.06it/s]Loading weights:  26%|██▌       | 74/290 [00:03<00:03, 67.04it/s]Loading weights:  29%|██▉       | 85/290 [00:03<00:03, 66.05it/s]Loading weights:  33%|███▎      | 95/290 [00:03<00:02, 70.37it/s]Loading weights:  36%|███▌      | 105/290 [00:03<00:02, 70.16it/s]Loading weights:  39%|███▉      | 114/290 [00:03<00:02, 66.50it/s]Loading weights:  43%|████▎     | 124/290 [00:04<00:02, 72.08it/s]Loading weights:  47%|████▋     | 136/290 [00:04<00:01, 77.39it/s]Loading weights:  51%|█████     | 148/290 [00:04<00:01, 74.48it/s]Loading weights:  55%|█████▌    | 160/290 [00:04<00:01, 81.18it/s]Loading weights:  59%|█████▉    | 172/290 [00:04<00:01, 86.94it/s]Loading weights:  63%|██████▎   | 184/290 [00:04<00:01, 87.79it/s]Loading weights:  67%|██████▋   | 195/290 [00:04<00:01, 88.66it/s]Loading weights:  71%|███████   | 205/290 [00:04<00:00, 89.39it/s]Loading weights:  74%|███████▍  | 215/290 [00:05<00:00, 88.74it/s]Loading weights:  77%|███████▋  | 224/290 [00:05<00:00, 79.61it/s]Loading weights:  80%|████████  | 233/290 [00:05<00:00, 71.96it/s]Loading weights:  84%|████████▍ | 244/290 [00:05<00:00, 79.76it/s]Loading weights:  88%|████████▊ | 256/290 [00:05<00:00, 81.55it/s]Loading weights:  92%|█████████▏| 267/290 [00:05<00:00, 83.79it/s]Loading weights:  96%|█████████▌| 279/290 [00:05<00:00, 86.74it/s]Loading weights: 100%|██████████| 290/290 [00:05<00:00, 49.17it/s]
+[17:13:25] [load] Qwen/Qwen2.5-0.5B-Instruct mode=qlora-nf4 lora={'impl': 'peft', 'trainable_params': 737280}
+[17:14:43] [eval:base-hf] pass@1 0.688 (arith 0.7083, symb 0.6667) n=96
+[17:14:53] [eval:base-ollama-parity] ollama pass@1 1.000 n=8 (transport failures: 0)
+[17:14:56] [eval:parity-hf-subset] pass@1 0.875 (arith 0.8333, symb 1.0) n=8
+[17:14:56] [parity] |ollama - hf| = 0.125 (registered tolerance 0.12)
+[17:14:56] [round 0] generate via hf(current policy), n_cand=8
+[17:21:30] [round 0] gen=768 verified=318 (41.4%) winners=90 tasks_covered=79/96 transport_fail=0
+[17:21:30] [round 0] SFT on 90 winner samples (vram_free=4.19GB before train)
+[17:21:30] [train] ramp receipt: 3 warmup fwd passes done
+[17:22:24] [train] step 20/150 loss 0.2881
+[17:22:27] [round 0] train done: {'steps': 22, 'micro_batches': 46, 'loss_first10': 0.3009, 'loss_last10': 0.2826}
+[17:23:26] [eval:round0-post] pass@1 0.708 (arith 0.75, symb 0.6667) n=96
+[17:23:26] [round 0] held-out pass@1 0.688 -> 0.708 (Δ +0.021)
+[17:23:27] [round 1] generate via hf(current policy), n_cand=8
+[17:29:50] [round 1] gen=768 verified=401 (52.2%) winners=97 tasks_covered=80/96 transport_fail=0
+[17:29:50] [round 1] SFT on 97 winner samples (vram_free=0.00GB before train)
+[17:29:51] [train] ramp receipt: 3 warmup fwd passes done
+[17:30:39] [train] step 20/150 loss 0.2471
+[17:30:46] [round 1] train done: {'steps': 24, 'micro_batches': 50, 'loss_first10': 0.2983, 'loss_last10': 0.2715}
+[17:31:52] [eval:round1-post] pass@1 0.646 (arith 0.6042, symb 0.6875) n=96
+[17:31:52] [round 1] held-out pass@1 0.708 -> 0.646 (Δ -0.062)
+[17:31:53] [round 2] generate via hf(current policy), n_cand=8
+[17:38:23] [round 2] gen=768 verified=424 (55.2%) winners=109 tasks_covered=88/96 transport_fail=0
+[17:38:24] [round 2] SFT on 109 winner samples (vram_free=0.00GB before train)
+[17:38:24] [train] ramp receipt: 3 warmup fwd passes done
+[17:38:56] [train] step 20/150 loss 0.2279
+[17:39:09] [round 2] train done: {'steps': 28, 'micro_batches': 56, 'loss_first10': 0.248, 'loss_last10': 0.2078}
+[17:40:11] [eval:round2-post] pass@1 0.646 (arith 0.5833, symb 0.7083) n=96
+[17:40:11] [round 2] held-out pass@1 0.646 -> 0.646 (Δ +0.000)
+[17:40:12] [done] cycles=3 base=0.6875 final=0.6458 Δ=-0.0417 -> results/det1c/rest_em_s20261005_T.json
+=== seed=20261005 ARM T rc=0 2026-10-05T17:40:19-08:00 ===
+=== seed=20261005 ARM C2 (steps=22) 2026-10-05T17:40:19-08:00 ===
+[17:40:28] [verifier] self-test: accepts 8/8 correct, rejects 12/12 wrong -> PASS
+[17:40:29] [det1c] pool rebuilt excluding heldout exprs: skipped_at_gen=1 (0 = seed was already clean; declared builder differs from legacy two-phase order)
+[17:40:29] [tasks] pool=96 heldout=96 contamination_overlap=0
+[17:40:29] [device] cuda (requested=cuda)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:01<07:49,  1.63s/it]Loading weights:   1%|          | 3/290 [00:02<03:01,  1.58it/s]Loading weights:   2%|▏         | 5/290 [00:02<01:37,  2.91it/s]Loading weights:   5%|▌         | 15/290 [00:02<00:24, 11.31it/s]Loading weights:   6%|▌         | 18/290 [00:02<00:23, 11.46it/s]Loading weights:   9%|▉         | 27/290 [00:02<00:12, 20.79it/s]Loading weights:  11%|█         | 32/290 [00:03<00:11, 23.19it/s]Loading weights:  13%|█▎        | 39/290 [00:03<00:08, 30.20it/s]Loading weights:  15%|█▌        | 44/290 [00:03<00:08, 28.71it/s]Loading weights:  18%|█▊        | 51/290 [00:03<00:06, 34.94it/s]Loading weights:  19%|█▉        | 56/290 [00:03<00:06, 34.95it/s]Loading weights:  22%|██▏       | 64/290 [00:03<00:05, 38.55it/s]Loading weights:  24%|██▍       | 69/290 [00:03<00:05, 39.14it/s]Loading weights:  26%|██▌       | 76/290 [00:04<00:05, 40.71it/s]Loading weights:  29%|██▊       | 83/290 [00:04<00:04, 46.66it/s]Loading weights:  31%|███       | 89/290 [00:04<00:05, 34.32it/s]Loading weights:  34%|███▍      | 99/290 [00:04<00:04, 45.95it/s]Loading weights:  36%|███▌      | 105/290 [00:04<00:04, 45.37it/s]Loading weights:  39%|███▊      | 112/290 [00:04<00:03, 47.47it/s]Loading weights:  42%|████▏     | 123/290 [00:05<00:03, 53.74it/s]Loading weights:  44%|████▍     | 129/290 [00:05<00:03, 47.16it/s]Loading weights:  47%|████▋     | 135/290 [00:05<00:03, 43.78it/s]Loading weights:  48%|████▊     | 140/290 [00:05<00:03, 43.14it/s]Loading weights:  51%|█████     | 148/290 [00:05<00:03, 46.69it/s]Loading weights:  55%|█████▍    | 159/290 [00:05<00:02, 52.59it/s]Loading weights:  57%|█████▋    | 165/290 [00:05<00:02, 48.47it/s]Loading weights:  59%|█████▉    | 172/290 [00:06<00:02, 47.89it/s]Loading weights:  62%|██████▏   | 179/290 [00:06<00:02, 48.34it/s]Loading weights:  63%|██████▎   | 184/290 [00:06<00:02, 44.98it/s]Loading weights:  67%|██████▋   | 195/290 [00:06<00:01, 52.88it/s]Loading weights:  69%|██████▉   | 201/290 [00:06<00:01, 48.11it/s]Loading weights:  72%|███████▏  | 208/290 [00:06<00:01, 49.27it/s]Loading weights:  74%|███████▍  | 214/290 [00:06<00:01, 51.68it/s]Loading weights:  76%|███████▌  | 220/290 [00:07<00:01, 49.21it/s]Loading weights:  78%|███████▊  | 225/290 [00:07<00:01, 49.11it/s]Loading weights:  80%|███████▉  | 231/290 [00:07<00:01, 51.43it/s]Loading weights:  82%|████████▏ | 237/290 [00:07<00:01, 46.95it/s]Loading weights:  84%|████████▍ | 244/290 [00:07<00:00, 48.45it/s]Loading weights:  87%|████████▋ | 251/290 [00:07<00:00, 53.23it/s]Loading weights:  89%|████████▊ | 257/290 [00:07<00:00, 46.25it/s]Loading weights:  92%|█████████▏| 268/290 [00:08<00:00, 51.80it/s]Loading weights:  94%|█████████▍| 274/290 [00:08<00:00, 49.65it/s]Loading weights:  97%|█████████▋| 280/290 [00:08<00:00, 42.48it/s]Loading weights:  98%|█████████▊| 285/290 [00:08<00:00, 43.78it/s]Loading weights: 100%|██████████| 290/290 [00:08<00:00, 34.26it/s]
+[17:40:54] [load] Qwen/Qwen2.5-0.5B-Instruct mode=qlora-nf4 lora={'impl': 'peft', 'trainable_params': 737280}
+[17:42:25] [eval:base-hf] pass@1 0.688 (arith 0.7083, symb 0.6667) n=96
+[17:42:35] [eval:base-ollama-parity] ollama pass@1 1.000 n=8 (transport failures: 0)
+[17:42:38] [eval:parity-hf-subset] pass@1 0.875 (arith 0.8333, symb 1.0) n=8
+[17:42:38] [parity] |ollama - hf| = 0.125 (registered tolerance 0.12)
+[17:42:39] [C2] oracle demo self-test: 48/48 authored demos verify against their own targets
+[17:42:39] [train] ramp receipt: 3 warmup fwd passes done
+[17:43:21] [train] step 20/22 loss 0.3794
+[17:44:37] [eval:C2-post-oracle-sft] pass@1 0.583 (arith 0.5208, symb 0.6458) n=96
+[17:44:37] [done arm=c2] pre=0.6875 post=0.5833 -> results/det1c/rest_em_s20261005_C2.json
+=== RESUME 2026-10-05T18:1x: original driver killed (parent session died post seed-20261005); seeds 20261006/20261007 resumed under same prereg 65a168c; seed-20261005 outputs untouched ===
+=== seed=20261006 ARM T 2026-10-05T18:10:06-08:00 ===
+[18:10:09] [verifier] self-test: accepts 8/8 correct, rejects 12/12 wrong -> PASS
+[18:10:10] [det1c] pool rebuilt excluding heldout exprs: skipped_at_gen=0 (0 = seed was already clean; declared builder differs from legacy two-phase order)
+[18:10:10] [tasks] pool=96 heldout=96 contamination_overlap=0
+[18:10:10] [device] cuda (requested=cuda)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<03:52,  1.24it/s]Loading weights:   1%|          | 3/290 [00:00<01:17,  3.69it/s]Loading weights:   5%|▌         | 15/290 [00:01<00:12, 22.38it/s]Loading weights:   9%|▉         | 27/290 [00:01<00:06, 39.40it/s]Loading weights:  13%|█▎        | 39/290 [00:01<00:05, 50.05it/s]Loading weights:  18%|█▊        | 51/290 [00:01<00:03, 64.30it/s]Loading weights:  22%|██▏       | 64/290 [00:01<00:03, 74.55it/s]Loading weights:  27%|██▋       | 77/290 [00:01<00:02, 82.79it/s]Loading weights:  32%|███▏      | 93/290 [00:01<00:01, 100.28it/s]Loading weights:  36%|███▌      | 105/290 [00:01<00:01, 103.76it/s]Loading weights:  40%|████      | 117/290 [00:02<00:01, 107.28it/s]Loading weights:  44%|████▍     | 129/290 [00:02<00:01, 109.16it/s]Loading weights:  49%|████▊     | 141/290 [00:02<00:01, 99.20it/s] Loading weights:  52%|█████▏    | 152/290 [00:02<00:01, 95.43it/s]Loading weights:  56%|█████▌    | 162/290 [00:02<00:01, 95.17it/s]Loading weights:  61%|██████    | 176/290 [00:02<00:01, 106.77it/s]Loading weights:  67%|██████▋   | 195/290 [00:02<00:00, 122.34it/s]Loading weights:  72%|███████▏  | 208/290 [00:02<00:00, 115.84it/s]Loading weights:  76%|███████▌  | 220/290 [00:02<00:00, 113.62it/s]Loading weights:  80%|████████  | 232/290 [00:03<00:00, 113.57it/s]Loading weights:  84%|████████▍ | 245/290 [00:03<00:00, 114.99it/s]Loading weights:  89%|████████▊ | 257/290 [00:03<00:00, 101.22it/s]Loading weights:  94%|█████████▍| 273/290 [00:03<00:00, 115.29it/s]Loading weights: 100%|██████████| 290/290 [00:03<00:00, 81.96it/s] 
+[18:10:23] [load] Qwen/Qwen2.5-0.5B-Instruct mode=qlora-nf4 lora={'impl': 'peft', 'trainable_params': 737280}
+[18:11:47] [eval:base-hf] pass@1 0.688 (arith 0.7083, symb 0.6667) n=96
+[18:11:53] [eval:base-ollama-parity] ollama pass@1 1.000 n=8 (transport failures: 0)
+[18:11:57] [eval:parity-hf-subset] pass@1 0.875 (arith 0.8333, symb 1.0) n=8
+[18:11:57] [parity] |ollama - hf| = 0.125 (registered tolerance 0.12)
+[18:11:57] [round 0] generate via hf(current policy), n_cand=8
+[18:18:37] [round 0] gen=768 verified=375 (48.8%) winners=94 tasks_covered=80/96 transport_fail=0
+[18:18:37] [round 0] SFT on 94 winner samples (vram_free=4.19GB before train)
+[18:18:37] [train] ramp receipt: 3 warmup fwd passes done
+[W1005 18:19:10.825499487 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 945815552 bytes (free: 0, total: 6438780928).
+Traceback (most recent call last):
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/rest_em_loop.py", line 1152, in <module>
+    main()
+    ~~~~^^
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/rest_em_loop.py", line 1069, in main
+    res = run_round(r)
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/rest_em_loop.py", line 948, in run_round
+    tr = sft_train(model, tok, samples, device, lr=args.lr, epochs=args.epochs,
+                   batch_size=args.batch_size, accum=args.grad_accum,
+                   max_steps=args.max_steps, seed=args.seed + r)
+  File "/home/eileen/projects/quilt-gpu-lab/experiments/rest_em_loop.py", line 500, in sft_train
+    loss = F.cross_entropy(logits[:, :-1].float().reshape(-1, logits.shape[-1]),
+                           lab[:, 1:].reshape(-1), ignore_index=-100)
+  File "/home/eileen/venvs/elephant-gpu/lib/python3.14/site-packages/torch/nn/functional.py", line 3561, in cross_entropy
+    return torch._C._nn.cross_entropy_loss(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<5 lines>...
+        label_smoothing,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+torch.AcceleratorError: CUDA error: out of memory
+Search for `cudaErrorMemoryAllocation' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+
+=== seed=20261006 ARM T rc=1 2026-10-05T18:19:21-08:00 ===
+=== seed=20261006 ARM C2 (steps=150) 2026-10-05T18:19:22-08:00 ===
+[18:19:28] [verifier] self-test: accepts 8/8 correct, rejects 12/12 wrong -> PASS
+[18:19:29] [det1c] pool rebuilt excluding heldout exprs: skipped_at_gen=0 (0 = seed was already clean; declared builder differs from legacy two-phase order)
+[18:19:29] [tasks] pool=96 heldout=96 contamination_overlap=0
+[18:19:29] [device] cuda (requested=cuda)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:02<11:06,  2.31s/it]Loading weights:   1%|          | 3/290 [00:02<03:20,  1.43it/s]Loading weights:   1%|▏         | 4/290 [00:02<02:22,  2.01it/s]Loading weights:   3%|▎         | 9/290 [00:02<00:44,  6.28it/s]Loading weights:   5%|▌         | 15/290 [00:02<00:23, 11.57it/s]Loading weights:   6%|▌         | 18/290 [00:03<00:26, 10.40it/s]Loading weights:   9%|▉         | 27/290 [00:03<00:14, 18.36it/s]Loading weights:  11%|█         | 31/290 [00:03<00:13, 18.78it/s]Loading weights:  13%|█▎        | 39/290 [00:03<00:09, 26.56it/s]Loading weights:  15%|█▍        | 43/290 [00:04<00:09, 25.56it/s]Loading weights:  18%|█▊        | 51/290 [00:04<00:07, 34.04it/s]Loading weights:  19%|█▉        | 56/290 [00:04<00:07, 31.71it/s]Loading weights:  22%|██▏       | 63/290 [00:04<00:06, 37.14it/s]Loading weights:  23%|██▎       | 68/290 [00:04<00:06, 32.82it/s]Loading weights:  26%|██▌       | 75/290 [00:04<00:05, 39.23it/s]Loading weights:  28%|██▊       | 80/290 [00:04<00:05, 36.42it/s]Loading weights:  30%|███       | 87/290 [00:05<00:04, 42.50it/s]Loading weights:  32%|███▏      | 92/290 [00:05<00:05, 39.18it/s]Loading weights:  34%|███▍      | 99/290 [00:05<00:04, 39.62it/s]Loading weights:  36%|███▌      | 104/290 [00:05<00:04, 38.28it/s]Loading weights:  39%|███▊      | 112/290 [00:05<00:04, 41.40it/s]Loading weights:  41%|████      | 119/290 [00:05<00:03, 47.06it/s]Loading weights:  43%|████▎     | 124/290 [00:06<00:04, 37.26it/s]Loading weights:  45%|████▌     | 131/290 [00:06<00:03, 43.42it/s]Loading weights:  47%|████▋     | 136/290 [00:06<00:04, 32.54it/s]Loading weights:  49%|████▊     | 141/290 [00:06<00:04, 34.97it/s]Loading weights:  51%|█████     | 148/290 [00:06<00:04, 34.11it/s]Loading weights:  53%|█████▎    | 155/290 [00:06<00:03, 40.41it/s]Loading weights:  55%|█████▌    | 160/290 [00:06<00:03, 37.16it/s]Loading weights:  58%|█████▊    | 167/290 [00:07<00:02, 42.42it/s]Loading weights:  59%|█████▉    | 172/290 [00:07<00:03, 30.70it/s]Loading weights:  61%|██████    | 176/290 [00:07<00:03, 31.05it/s]Loading weights:  63%|██████▎   | 183/290 [00:07<00:03, 34.74it/s]Loading weights:  64%|██████▍   | 187/290 [00:07<00:03, 31.12it/s]Loading weights:  67%|██████▋   | 195/290 [00:07<00:02, 39.82it/s]Loading weights:  69%|██████▉   | 200/290 [00:08<00:02, 32.46it/s]Loading weights:  71%|███████▏  | 207/290 [00:08<00:02, 38.87it/s]Loading weights:  73%|███████▎  | 212/290 [00:08<00:02, 35.56it/s]Loading weights:  76%|███████▌  | 219/290 [00:08<00:01, 41.74it/s]Loading weights:  77%|███████▋  | 224/290 [00:08<00:01, 40.16it/s]Loading weights:  80%|███████▉  | 231/290 [00:08<00:01, 46.26it/s]Loading weights:  82%|████████▏ | 237/290 [00:09<00:01, 42.01it/s]Loading weights:  84%|████████▍ | 243/290 [00:09<00:01, 43.63it/s]Loading weights:  86%|████████▌ | 248/290 [00:09<00:00, 42.52it/s]Loading weights:  88%|████████▊ | 255/290 [00:09<00:00, 46.80it/s]Loading weights:  90%|████████▉ | 260/290 [00:09<00:00, 41.81it/s]Loading weights:  92%|█████████▏| 267/290 [00:09<00:00, 47.07it/s]Loading weights:  94%|█████████▍| 272/290 [00:09<00:00, 41.49it/s]Loading weights:  96%|█████████▌| 279/290 [00:09<00:00, 46.28it/s]Loading weights:  98%|█████████▊| 284/290 [00:10<00:00, 37.24it/s]Loading weights: 100%|██████████| 290/290 [00:10<00:00, 28.48it/s]
+[18:19:51] [load] Qwen/Qwen2.5-0.5B-Instruct mode=qlora-nf4 lora={'impl': 'peft', 'trainable_params': 737280}
+[18:21:14] [eval:base-hf] pass@1 0.688 (arith 0.7083, symb 0.6667) n=96
+[18:21:25] [eval:base-ollama-parity] ollama pass@1 1.000 n=8 (transport failures: 0)
+[18:21:28] [eval:parity-hf-subset] pass@1 0.875 (arith 0.8333, symb 1.0) n=8
+[18:21:28] [parity] |ollama - hf| = 0.125 (registered tolerance 0.12)
+[18:21:28] [C2] oracle demo self-test: 48/48 authored demos verify against their own targets
+[18:21:28] [train] ramp receipt: 3 warmup fwd passes done
+[18:21:50] [train] step 20/150 loss 0.4048
+[18:22:11] [train] step 40/150 loss 0.2073
+[18:23:05] [eval:C2-post-oracle-sft] pass@1 0.677 (arith 0.5208, symb 0.8333) n=96
+[18:23:05] [done arm=c2] pre=0.6875 post=0.6771 -> results/det1c/rest_em_s20261006_C2.json
+=== seed=20261006 ARM C2 rc=0 2026-10-05T18:23:09-08:00 ===
+=== seed=20261007 ARM T 2026-10-05T18:23:09-08:00 ===
+[18:23:12] [verifier] self-test: accepts 8/8 correct, rejects 12/12 wrong -> PASS
+[18:23:12] [det1c] pool rebuilt excluding heldout exprs: skipped_at_gen=0 (0 = seed was already clean; declared builder differs from legacy two-phase order)
+[18:23:12] [tasks] pool=96 heldout=96 contamination_overlap=0
+[18:23:12] [device] cuda (requested=cuda)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<03:45,  1.28it/s]Loading weights:   1%|          | 3/290 [00:00<01:12,  3.96it/s]Loading weights:   6%|▌         | 16/290 [00:01<00:11, 24.47it/s]Loading weights:  10%|█         | 29/290 [00:01<00:06, 42.85it/s]Loading weights:  14%|█▍        | 41/290 [00:01<00:04, 57.57it/s]Loading weights:  18%|█▊        | 53/290 [00:01<00:03, 69.86it/s]Loading weights:  23%|██▎       | 68/290 [00:01<00:02, 88.86it/s]Loading weights:  30%|███       | 87/290 [00:01<00:01, 108.43it/s]Loading weights:  34%|███▍      | 100/290 [00:01<00:01, 110.07it/s]Loading weights:  39%|███▉      | 113/290 [00:01<00:01, 101.67it/s]Loading weights:  43%|████▎     | 125/290 [00:02<00:01, 98.64it/s] Loading weights:  47%|████▋     | 137/290 [00:02<00:01, 96.06it/s]Loading weights:  51%|█████     | 148/290 [00:02<00:01, 90.70it/s]Loading weights:  55%|█████▌    | 160/290 [00:02<00:01, 90.35it/s]Loading weights:  59%|█████▉    | 172/290 [00:02<00:01, 91.68it/s]Loading weights:  63%|██████▎   | 184/290 [00:02<00:01, 91.76it/s]Loading weights:  68%|██████▊   | 196/290 [00:02<00:01, 92.95it/s]Loading weights:  72%|███████▏  | 208/290 [00:02<00:00, 95.25it/s]Loading weights:  76%|███████▌  | 220/290 [00:03<00:00, 96.56it/s]Loading weights:  80%|███████▉  | 231/290 [00:03<00:00, 90.35it/s]Loading weights:  84%|████████▍ | 243/290 [00:03<00:00, 94.45it/s]Loading weights:  88%|████████▊ | 255/290 [00:03<00:00, 100.00it/s]Loading weights:  92%|█████████▏| 267/290 [00:03<00:00, 101.33it/s]Loading weights:  96%|█████████▌| 279/290 [00:03<00:00, 101.70it/s]Loading weights: 100%|██████████| 290/290 [00:03<00:00, 78.25it/s] 
+[18:23:24] [load] Qwen/Qwen2.5-0.5B-Instruct mode=qlora-nf4 lora={'impl': 'peft', 'trainable_params': 737280}
+[18:24:41] [eval:base-hf] pass@1 0.688 (arith 0.7083, symb 0.6667) n=96
+[18:24:42] [eval:base-ollama-parity] ollama pass@1 1.000 n=8 (transport failures: 0)
+[18:24:46] [eval:parity-hf-subset] pass@1 0.875 (arith 0.8333, symb 1.0) n=8
+[18:24:46] [parity] |ollama - hf| = 0.125 (registered tolerance 0.12)
+[18:24:46] [round 0] generate via hf(current policy), n_cand=8
+[18:31:24] [round 0] gen=768 verified=317 (41.3%) winners=86 tasks_covered=73/96 transport_fail=0
+[18:31:24] [round 0] SFT on 86 winner samples (vram_free=4.19GB before train)
+[18:31:24] [train] ramp receipt: 3 warmup fwd passes done
+[18:32:08] [train] step 20/150 loss 0.3256
+[18:32:11] [round 0] train done: {'steps': 22, 'micro_batches': 44, 'loss_first10': 0.2695, 'loss_last10': 0.2668}
+[18:33:34] [eval:round0-post] pass@1 0.573 (arith 0.6875, symb 0.4583) n=96
+[18:33:34] [round 0] held-out pass@1 0.688 -> 0.573 (Δ -0.115)
+[18:33:35] [round 1] generate via hf(current policy), n_cand=8
+[18:41:16] [round 1] gen=768 verified=368 (47.9%) winners=95 tasks_covered=80/96 transport_fail=0
+[18:41:16] [round 1] SFT on 95 winner samples (vram_free=0.00GB before train)
+[18:41:16] [train] ramp receipt: 3 warmup fwd passes done
+[18:42:02] [train] step 20/150 loss 0.3134
+[18:42:09] [round 1] train done: {'steps': 24, 'micro_batches': 48, 'loss_first10': 0.2908, 'loss_last10': 0.2467}
+[18:43:28] [eval:round1-post] pass@1 0.573 (arith 0.5417, symb 0.6042) n=96
+[18:43:28] [round 1] held-out pass@1 0.573 -> 0.573 (Δ +0.000)
+[18:43:33] [round 2] generate via hf(current policy), n_cand=8
+[18:50:13] [round 2] gen=768 verified=381 (49.6%) winners=103 tasks_covered=82/96 transport_fail=0
+[18:50:13] [round 2] SFT on 103 winner samples (vram_free=0.00GB before train)
+[18:50:14] [train] ramp receipt: 3 warmup fwd passes done
+[18:50:52] [train] step 20/150 loss 0.2857
+[18:51:02] [round 2] train done: {'steps': 26, 'micro_batches': 52, 'loss_first10': 0.3294, 'loss_last10': 0.2356}
+[18:52:05] [eval:round2-post] pass@1 0.542 (arith 0.5625, symb 0.5208) n=96
+[18:52:05] [round 2] held-out pass@1 0.573 -> 0.542 (Δ -0.031)
+[18:52:06] [done] cycles=3 base=0.6875 final=0.5417 Δ=-0.1458 -> results/det1c/rest_em_s20261007_T.json
+=== RESUME-2 2026-10-05T19:1x: driver died post seed-20261007_T; firing ONLY seed=20261007 ARM C2 (steps=22) under same prereg 65a168c; prior outputs untouched ===
+=== seed=20261007 ARM C2 (steps=22) 2026-10-05T19:10:18-08:00 ===
+[19:10:19] [verifier] self-test: accepts 8/8 correct, rejects 12/12 wrong -> PASS
+[19:10:20] [det1c] pool rebuilt excluding heldout exprs: skipped_at_gen=0 (0 = seed was already clean; declared builder differs from legacy two-phase order)
+[19:10:20] [tasks] pool=96 heldout=96 contamination_overlap=0
+[19:10:20] [device] cuda (requested=cuda)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<03:16,  1.47it/s]Loading weights:   1%|          | 3/290 [00:00<01:04,  4.46it/s]Loading weights:   6%|▌         | 16/290 [00:00<00:09, 28.23it/s]Loading weights:  10%|█         | 29/290 [00:01<00:05, 49.60it/s]Loading weights:  18%|█▊        | 52/290 [00:01<00:02, 87.99it/s]Loading weights:  22%|██▏       | 65/290 [00:01<00:02, 92.85it/s]Loading weights:  27%|██▋       | 77/290 [00:01<00:02, 93.28it/s]Loading weights:  34%|███▍      | 99/290 [00:01<00:01, 123.99it/s]Loading weights:  39%|███▉      | 114/290 [00:01<00:01, 115.43it/s]Loading weights:  44%|████▍     | 128/290 [00:01<00:01, 119.52it/s]Loading weights:  49%|████▉     | 142/290 [00:01<00:01, 119.05it/s]Loading weights:  53%|█████▎    | 155/290 [00:01<00:01, 115.64it/s]Loading weights:  58%|█████▊    | 168/290 [00:02<00:01, 118.17it/s]Loading weights:  62%|██████▏   | 181/290 [00:02<00:00, 110.71it/s]Loading weights:  67%|██████▋   | 193/290 [00:02<00:00, 97.63it/s] Loading weights:  70%|███████   | 204/290 [00:02<00:00, 99.85it/s]Loading weights:  74%|███████▍  | 215/290 [00:02<00:00, 101.91it/s]Loading weights:  79%|███████▉  | 229/290 [00:02<00:00, 111.93it/s]Loading weights:  84%|████████▍ | 243/290 [00:02<00:00, 112.68it/s]Loading weights:  88%|████████▊ | 256/290 [00:02<00:00, 111.38it/s]Loading weights:  93%|█████████▎| 269/290 [00:03<00:00, 109.56it/s]Loading weights:  98%|█████████▊| 285/290 [00:03<00:00, 119.39it/s]Loading weights: 100%|██████████| 290/290 [00:03<00:00, 90.96it/s] 
+[19:10:31] [load] Qwen/Qwen2.5-0.5B-Instruct mode=qlora-nf4 lora={'impl': 'peft', 'trainable_params': 737280}
+[19:11:47] [eval:base-hf] pass@1 0.688 (arith 0.7083, symb 0.6667) n=96
+[19:11:53] [eval:base-ollama-parity] ollama pass@1 1.000 n=8 (transport failures: 0)
+[19:11:57] [eval:parity-hf-subset] pass@1 0.875 (arith 0.8333, symb 1.0) n=8
+[19:11:57] [parity] |ollama - hf| = 0.125 (registered tolerance 0.12)
+[19:11:57] [C2] oracle demo self-test: 48/48 authored demos verify against their own targets
+[19:11:58] [train] ramp receipt: 3 warmup fwd passes done
+[19:12:40] [train] step 20/22 loss 0.4258
+[19:13:47] [eval:C2-post-oracle-sft] pass@1 0.562 (arith 0.5, symb 0.625) n=96
+[19:13:47] [done arm=c2] pre=0.6875 post=0.5625 -> results/det1c/rest_em_s20261007_C2.json
+=== seed=20261007 ARM C2 rc=0 2026-10-05T19:13:50-08:00 ===

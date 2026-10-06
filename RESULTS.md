@@ -6169,3 +6169,28 @@ any relaunch-5.
   cuda, qlora-nf4 loaded, peft impl. Outputs isolated under results/det1c/ (results/det1b/ untouched).
 - ETA ~1.5-2h (6 arms). Next wake: check completion, book honestly vs prereg G1-G4 (G3 words unchanged from
   DET-1b), re-seal manifest (still blocked by foreign d12u4 lane as of 17:0x). No re-rolls.
+
+## [BOOKED 19:2x CPU/GPU Oct 5] DET-1c remedy: G1 FAIL (1 crash), C2 sign-stable n=3 (mean Δ−0.080), T G3 UNDETERMINABLE (2/3) — remedy PARTIALLY delivered, T-arm owes a NEW prereg
+- Outcome of the 17:1x firing (prereg 65a168c) + two booked resumes under the same prereg (18:1x wake
+  resumed seeds 06/07 after a driver death; 19:1x slice fired the single missing 07_C2 arm after a
+  second driver death — both resumes landed in the log, no gate words touched, deterministic C2 arm).
+- Per-seed Δ vs each arm's own base 0.6875 (G2 measured as pre-registered):
+  - ARM T: s20261005 Δ−0.0417 (rc=0); s20261006 **CUDA OOM rc=1** (round-0 SFT backward, 946 MB
+    alloc vs free 0 — SAME arm as DET-1b's crash, at 4.95 GiB free at fire; foreign lanes grew
+    mid-run); s20261007 Δ−0.1458 (rc=0).
+  - ARM C2 (fixed budget, steps matched to T round-1): s20261005 Δ−0.1042; s20261006 Δ−0.0104;
+    s20261007 Δ−0.1250. All rc=0, verifier selftest PASS, all negative.
+- **G1 FAIL** (1 crash). **G3**: no sign flips anywhere — but T completed only 2/3 seeds → per the
+  pre-registered third bullet, G3 is UNDETERMINABLE for ARM T; C2 is sign-stable across 3/3
+  (mean Δ−0.080) but the upgrade bullet requires BOTH arms stable → **original REST-EM booking
+  (T Δ−0.0729 / C2 Δ−0.125, single-draw wording) stands UNCHANGED — no upgrade, no downgrade.**
+- Contamination fix VERIFIED in anger: overlap=0 all 3 seeds by construction; legacy N4 witness
+  clean; skipped_at_gen=1 on s05 (the known legacy-stream collision, excluded), 0 on 06/07.
+- Meta: the same T-arm OOM'd twice across two firings at different foreign-lane pressure — the
+  treatment arm's SFT peak sits at the edge of the 4050's headroom regardless of start state.
+  Any T-arm retry prereg must declare a VRAM plan that survives a mid-run foreign-lane growth
+  (e.g. declared adapter-offload or a pre-flight peak measurement), NOT a higher start gate.
+- Spawned **DET-1d** (T-arm completion only, NEW prereg required by G3's third bullet): seeds
+  {20261006} missing T draw + declared OOM-survival plan; G3 words scoped to the T arm alone;
+  single firing. NOT fired this slice (prereg-first discipline).
+- Manifest re-seal: attempted after landing → see next line; foreign d12u4 lane status unchanged.
