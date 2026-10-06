@@ -1,0 +1,80 @@
+{
+  "config": {
+    "rounds": 3,
+    "train_pool": 96,
+    "heldout": 96,
+    "n_cand": 8,
+    "max_steps": 150,
+    "epochs": 2,
+    "batch_size": 4,
+    "grad_accum": 2,
+    "lr": 0.0001,
+    "lora_impl": "auto",
+    "device": "cuda",
+    "hf_model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "ollama_model": "qwen2.5:0.5b",
+    "ollama_url": "http://127.0.0.1:11434",
+    "seed": 20261006,
+    "seed_heldout": 20261003,
+    "exclude_heldout": true,
+    "seed_shuffle_probe": 20261004,
+    "out_json": "results/det1c/rest_em_s20261006_C2.json",
+    "adapter_dir": "results/det1c/adapter_s20261006_C2",
+    "parity_n": 8,
+    "skip_parity": false,
+    "skip_ollama": true,
+    "with_controls": false,
+    "arm": "c2",
+    "c2_steps": 150,
+    "max_new": 200,
+    "workers": 4,
+    "difficulty": "hard",
+    "selftest_only": false
+  },
+  "honest_notes": [
+    "parity gap 0.125 > 0.12: round-0 generation moved to HF (registered fallback)"
+  ],
+  "rounds": [],
+  "controls": {},
+  "base_eval_hf": {
+    "n": 96,
+    "pass1": 0.6875,
+    "arith_pass1": 0.7083,
+    "symb_pass1": 0.6667
+  },
+  "parity_ollama": {
+    "n": 8,
+    "pass1": 1.0,
+    "transport_none": 0
+  },
+  "parity_gap_abs": 0.125,
+  "c2": {
+    "pre": 0.6875,
+    "post": 0.6771,
+    "delta": -0.0104,
+    "train": {
+      "steps": 48,
+      "micro_batches": 96,
+      "loss_first10": 0.5439,
+      "loss_last10": 0.1417
+    },
+    "n_demos": 48,
+    "budget_note": "one-shot SFT, optimizer steps capped at --c2-steps=150 (driver matches to treatment round-1 observed steps)"
+  },
+  "summary": {
+    "arm": "c2",
+    "pass1_base": 0.6875,
+    "pass1_final": 0.6771,
+    "delta_total": -0.0104,
+    "verifier_selftest_passed": true,
+    "device": "cuda",
+    "device_note": "requested=cuda",
+    "load_mode": "qlora-nf4",
+    "lora": {
+      "impl": "peft",
+      "trainable_params": 737280
+    },
+    "note": "fresh-process C2: one-shot oracle-SFT (experimenter-authored demos, NOT policy samples)"
+  },
+  "timestamp": "2026-10-05 18:23:05 AKDT"
+}
