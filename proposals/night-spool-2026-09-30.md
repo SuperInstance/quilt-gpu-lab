@@ -1866,3 +1866,16 @@ other agents are feeding us; keep the handshake lane warm.
   NEW prereg mandatory per G3 bullet 3; must declare an OOM-survival VRAM plan — start-gate alone
   failed twice). Manifest seal refused (foreign d12u4 lane persists; refusal booked).
 - Rotation next wake: (B) DET-1d prereg or QG1d/QG4/MC-1 per queue order; scout window due if >12h.
+
+## SIG-1 BOOKED (2026-10-06 05:2xZ / 21:2x AKDT day-conductor slice) — DONE, PASS
+- (B) slot per SCOUT-49 rotation. Prereg 278daf8 committed+pushed before firing; booking e7ae620.
+  Tool: tools/prereg_seal.py (HMAC-SHA256 prereg seals, env key, refuse-to-fire exits 2/3/4). All 5
+  preregistered gates PASS — G1 tamper RED-first observed before green; full detail in RESULTS.md.
+- [x] SIG-1 (SCOUT-49 variant) closed. SIG-1 design note (SCOUT-9, Casey-gated keyfile) remains OPEN,
+  now with a working env-key tool underneath it.
+- (C): newest OURS booking is this booking (self-consistent by construction; prereg commit precedes
+  fire, results/artifacts tracked at booking commit). Manifest re-seal attempted → correctly REFUSED
+  (foreign d12u4/d12u5 untracked experiments; d23b precedent) — stays deferred.
+- GPU lane idle all slice (rotation honored). No running processes (foreign receiptd only, PW-1).
+- Rotation next wake: (A) SCOUT-50 (A-slot due, ~1h since SCOUT-49) or (B) DET-1d (needs new prereg
+  first) / VX-1 / DEL-1 per queue order; GPU open (QG1d/QG4/MC-1).
