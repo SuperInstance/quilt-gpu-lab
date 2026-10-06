@@ -1984,3 +1984,23 @@ other agents are feeding us; keep the handshake lane warm.
   files persist (PW-1 precedent — sealer would refuse; seal rides that lane's clean point).
 - Tree after this commit: spool + SCOUT-56 file only. GPU lane free all slice.
 - Rotation next wake: (B) top open CPU item per QUEUE (pre-reg first) or GPU (QG1d/QG4/MC-1).
+
+## DAY SLICE 2026-10-06 12:1x AKDT (day-conductor) — (A) SCOUT-57 + (B) DC-1 booked
+- (A) **SCOUT-57** (full text proposals/runs/SCOUT-57-fleet-push-2026-10-06-2011Z.md):
+  HEADLINE — **NEW REPO `SuperInstance/lucineer-workspace`** (created 18:27Z, in-window): a parallel
+  Lucineer-workspace agent mining our repo (6 process docs + ARCHIVE/ + memory/, single commit 1835037c).
+  Docs: zero-shot-visitor audit, superinstance-readme misfire, collapse-gate-tool, ear-v8-calibration,
+  ternary-synergy-proposal, zeroclaw-q9-validity-refill. **CONTRADICT-grade**: their
+  `tools/collapse_gate.py` docstring (our commit 1dc3cd2, same file) asserts a REVERSED D12w verdict.
+  No booked number threatened (D12w was unbooked) — the target is the receipt/D-2 doctrine.
+  STEAL (process): zero-shot-visitor lens → RESULTS.md thesis block + quilt-i2i "a cell is" opener
+  (spawned LWS-1, LOW, docs). Spawned **DC-1** (below). No new PRs/issues; [EMBASSY] pong #49 unchanged.
+- (B) **DC-1 BOOKED: RED→repaired** (prereg pushed before firing). `tools/collapse_gate.py:4` cited
+  "verdict KEEP / LOO 13.9% / inversions<=2" for D12w; on-disk data + replay + README all say **KILL**
+  (79 inversions, slope +0.462, LOO 1.15). Docstring amended in place (selftest 8/8 unchanged).
+  **D12w BOOKED KILL_k_eff_is_p_local** (was never booked; script+results were UNTRACKED = D-2 class —
+  committed this slice so the citation has a receipt). Full booking in RESULTS.md.
+- (C) not separately due: newest OURS booking QO6p already repro'd byte-identical 11:1x; D12w repro done
+  in-fire (deterministic, sha eb787f3baf30…).
+- Manifest re-seal: correctly REFUSED (foreign untracked d12v lane persists — PW-1 precedent; standing defer).
+- Rotation next wake: (B) LWS-1 (docs) or top open CPU item (RC-4/CH-1/VP-1/XR-1); GPU open (QG1d/QG4/MC-1).
