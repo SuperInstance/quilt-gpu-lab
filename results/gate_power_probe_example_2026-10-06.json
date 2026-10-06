@@ -1,0 +1,37 @@
+{
+  "checkpoints": {
+    "12": {
+      "n_good": 8,
+      "n_bad": 8,
+      "kill_rate_good": 0.0,
+      "kill_rate_bad": 1.0
+    }
+  },
+  "full": {
+    "24": {
+      "n_good": 8,
+      "n_bad": 8,
+      "kill_rate_good": 0.0,
+      "kill_rate_bad": 1.0
+    }
+  },
+  "verdict": {
+    "falseKill_A": 0.0,
+    "recovery_of_A_kills": 1.0,
+    "power_B": 1.0,
+    "power_null": false,
+    "n_A_kills": 0,
+    "verdict": "PASS"
+  },
+  "gate": {
+    "cmd": "python3",
+    "args": [
+      "/tmp/example_gate.py"
+    ],
+    "checkpoints": [
+      12
+    ]
+  },
+  "n_streams": 16,
+  "sha": "c9fbf45602886824"
+}

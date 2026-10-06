@@ -415,6 +415,21 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   results/gate_reads_eproc_2026-10-06.json.
   `python tools/gate_reads.py --file tools/eproc.py --func kill_gate --suspicious E_max --expect verdict,retracted [--out r.json] | --selftest`
 
+- **gate-power-probe** — `tools/gate_power_probe.py` — kill-gate power/retraction evaluator
+  (pattern lifted PROVEN from QO6t, booked 2026-10-06: recovery 0.92 PASS but kill power 0.00
+  FAIL on rank-series feed — a gate can look sane and still have zero power on the population
+  it exists to kill): labeled streams (crossed/dead) + ANY gate command (list-form subprocess,
+  series JSON on stdin, JSON `{decision, retracted}` on stdout) -> false-kill rate at checkpoint
+  horizon A, retraction recovery of A-kills at full length, kill power at horizon B, with the
+  QO6t verdict bands (PASS / PREMATURE-KILL / MIXED) and a vacuous-power guard (no bad streams
+  never books PASS). Stdlib-only, fail-loud rc=2, JSON receipt.
+  `python tools/gate_power_probe.py --streams s.json --gate CMD --gate-args a,b --checkpoints 12,16 [--out r.json] | --selftest`
+  TEST receipt 2026-10-06: selftest 8/8 — selftest caught its own synthetic-generator bug live
+  (dead-stream drift reached 0.6, tripping the construction pin; generator fixed, pin untouched);
+  RED control (kill-all gate) books PREMATURE-KILL; live external-gate example rc=0 PASS
+  (falseKill 0.0, recovery 1.0, power 1.0), receipt
+  results/gate_power_probe_example_2026-10-06.json.
+
 - **lit-sweep** — `tools/lit_sweep.py` — fabricated-benchmark sweep (pattern lifted PROVEN from
   HB-1/SCOUT-26, booked 2026-10-02): extracts numeric literals from source and flags exact
   cross-matches with booked receipt metrics, plus degenerate-stat detectors (zero-variance
