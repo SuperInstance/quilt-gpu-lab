@@ -300,6 +300,21 @@ more than a copy to use, it's not grabbable yet.
   non-optimal kappa; worked example rc=0 CALIBRATED kappa_hat=0.2515, worst ratio 1.019,
   historical receipt (pre-rename): results/minimax_calib_example_2026-10-04.json.
 
+- **k-curve-gate** — `tools/k_curve_gate.py` — interpolated one-parameter calibration coverage gate
+  (pattern lifted PROVEN from D12v, booked 2026-10-06: the calibrated k was fit from exactly TWO
+  p-points and the midpoint claim was "a linearly interpolated k covers the harness floors within
+  band" — this mechanizes that claim): anchors [{x,k}] + probe cells [{name,x,base,measured}] ->
+  k linearly interpolated per cell (edge-anchored outside the range, always flagged EXTRAPOLATED,
+  never silent), model = base*k, KEEP iff every ratio lands in band (default [0.5, 2.0]); optional
+  monotone check on an implied field vs a sort var (e.g. implied_k monotone in eps — structural
+  drift, not per-cell noise). Stdlib-only, deterministic, fail-loud rc=2, JSON receipt.
+  `python tools/k_curve_gate.py --anchors '[{"x":0.3,"k":0.657},{"x":0.4,"k":0.8963}]' --cells cells.json [--lo 0.5 --hi 2.0 --mono-field implied_k --mono-var eps --out r.json] | --example | --selftest`
+  TEST receipt 2026-10-06: selftest 8/8 — selftest caught its own pin bug live (x=0.45 is OUTSIDE
+  the [0.3,0.4] anchor range, so it edge-anchors + flags EXTRAPOLATED; the true interpolation
+  midpoint is x=0.35 -> k=0.77665 — pin fixed, gate untouched; the gate correctly refused to
+  silently extrapolate). Worked example rc=0 KEEP, ratios [0.777, 0.706, 0.647], implied_k
+  monotone in eps, receipt results/k_curve_gate_example_2026-10-06.json.
+
 ### onboard.py — fleet-standard credential onboarding (Casey 2026-10-04)
 Every grabbable tool that touches a provider registers itself in `tools/onboard.json`
 (var name, keyfile name, optional extracted-config path) and inherits the onboarding CLI:

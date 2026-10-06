@@ -1,0 +1,61 @@
+{
+  "anchors": [
+    {
+      "k": 0.657,
+      "x": 0.3
+    },
+    {
+      "k": 0.8963,
+      "x": 0.4
+    }
+  ],
+  "band": [
+    0.5,
+    2.0
+  ],
+  "band_ok": true,
+  "cells": [
+    {
+      "extrapolated": false,
+      "implied_k": 1.0,
+      "in_band": true,
+      "k": 0.77665,
+      "measured": 100.0,
+      "model": 77.665,
+      "name": "w4-e0.0",
+      "ratio": 0.77665,
+      "x": 0.35
+    },
+    {
+      "extrapolated": false,
+      "implied_k": 1.1,
+      "in_band": true,
+      "k": 0.77665,
+      "measured": 110.0,
+      "model": 77.665,
+      "name": "w4-e0.1",
+      "ratio": 0.706045,
+      "x": 0.35
+    },
+    {
+      "extrapolated": false,
+      "implied_k": 1.2,
+      "in_band": true,
+      "k": 0.77665,
+      "measured": 240.0,
+      "model": 155.33,
+      "name": "w8-e0.2",
+      "ratio": 0.647208,
+      "x": 0.35
+    }
+  ],
+  "mono_check": {
+    "ok": true,
+    "why": "constant slope 0.1"
+  },
+  "n_extrapolated": 0,
+  "tool": "k-curve-gate",
+  "utc": "2026-10-06T14:44:10.382709+00:00",
+  "verdict": "KEEP",
+  "worst_dev_from_1": 0.352792
+}
