@@ -559,3 +559,13 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   FAIL, untracked FAIL, dirty FAIL, missing-block rc=2 — selftest caught the
   cwd/git-repo bug live, fixed with explicit cwd); live: real committed plan
   C1-cosmos-edge-boots-plan.md -> PASS rc=0, tampered-stamp receipt -> FAIL rc=1.
+
+- **auc-sep** — `tools/auc_sep.py` — Mann-Whitney AUC feature-separation gate
+  (pattern lifted from CC-1, booked 2026-10-06): per-feature
+  P(pos > neg) + 0.5 P(equal) between two labeled groups, plus two-sided
+  MW p-value (tie-corrected normal approx, n>=8) and an optional dead-band
+  gate (KEEP iff directional AUC outside [lo,hi] — the CC-1 lesson: AUC
+  0.59-0.62 on a not-blind feature books INCONCLUSIVE, not KEEP).
+  `python tools/auc_sep.py --groups g.json [--pos winners --neg losers --features f1,f2 --band 0.5,0.75 --out r.json] | --example`
+  Stdlib-only, deterministic, fail-loud rc=0/1/2. Smoke 2026-10-06: selftest
+  PASS (sig AUC=1.0, noise AUC=0.5 in-band -> gate FAIL rc=1, clean -> rc=0).
