@@ -6197,3 +6197,18 @@ any relaunch-5.
 - Manifest re-seal at 19:2x: correctly REFUSED — foreign d12u4 untracked lane still persists
   (experiments/d12u4_p04_heldout.py + results json). Refusal booked per d23b precedent; seal
   rides on that lane committing or clearing.
+
+## [DONE 21:2x CPU] SIG-1 (SCOUT-49 variant) BOOKED: PASS — all 5 pre-registered gates
+- Prereg 278daf8 (proposals/runs/SIG-1-prereg-hmac-seal.md) committed+pushed BEFORE firing. Tool: tools/prereg_seal.py
+  (HMAC-SHA256 over raw prereg bytes, env QUILT_PREREG_KEY, constant-time compare).
+- **G1 RED-first PASS**: tamper control (one-byte flip in scratch copy) -> check exit 2 MISMATCH, observed BEFORE any
+  green-path check. (Slice note: first shell used set -e and aborted on the expected RED exit — the RED itself was
+  confirmed and correct; remaining gates re-run without it. No gate result changed.)
+- G2 green PASS (untouched signed prereg -> exit 0). G3 fail-loud PASS (check and sign with key unset both exit 3, no
+  fallback; unsealed prereg -> exit 4; re-sign refuses overwrite -> exit 3, archive-never-delete).
+- G4 no-leak PASS (0 occurrences of the throwaway key in tool output or sig files). G5 scope PASS (only
+  tools/prereg_seal.py added; receipt_manifest.py untouched — SCOUT-9's design-note SIG-1 stays Casey-gated).
+- Accepted boundary (per prereg): an agent that can read the env key can forge; out-of-agent-process keyfile design
+  remains in the Casey-gated note. No persistent key material generated.
+- Honest note: exercised on a scratch copy; the tool is now available for forward preregs (sign at commit time,
+  driver check at fire time) but NOT retro-applied to existing preregs.
