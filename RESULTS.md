@@ -6379,3 +6379,26 @@ any relaunch-5.
   dishonest under-enumeration; caught by re-reading output before booking).
 - Honest note: QO6n receipt pins E_max as NOT consumed by the gate (diagnostic only) — the RED rests
   entirely on the single qo6t aggregate feed.
+
+## DC-1 + D12w BOOKING (2026-10-06 12:2x AKDT / 20:2xZ day-conductor slice) — citation repair + honest KILL
+- **DC-1 BOOKED: verdict RED at G2, repaired at G3/G4** (prereg proposals/runs/DC-1-d12w-citation-consistency.md,
+  committed+pushed before firing). G1: 9 tracked files reference D12w. G2 classification:
+  `tools/collapse_gate.py:4` **DISAGREES** — asserted "booked ... verdict KEEP", "G1 inversions<=2",
+  "G2 max leave-one-p-out error 13.9% vs 25% bar"; `tools/README.md:319` **AGREES-KILL** ("booked
+  KILL_k_eff_is_p_local ... did NOT collapse"); lines collapse_gate.py:15/25 + README:328/330 NEUTRAL.
+  One DISAGREES ⇒ **RED**.
+- **D12w BOOKED: verdict KILL_k_eff_is_p_local** (never previously booked; booked now because a
+  committed tool cites it — G4). Data `results/d12w_keff_seff_collapse.json` (seed 2718, 23 pts):
+  inversions=79, fit_b=+0.462, max_l1o_err=1.1528, G1=false G2=false. Live replay
+  `results/collapse_gate_d12w_replay_2026-10-06.json`: KILL. Re-run of the committed-by-now script
+  reproduces exactly (G2 max L1O 115.3% vs 25% bar; sha256 eb787f3baf30…). Question it answered:
+  does k_eff collapse onto a single function of s_eff=p*(1-2eps)? **No — k_eff is p-local, not s_eff-collapsed.**
+- **G3 repair:** `tools/collapse_gate.py` docstring amended IN PLACE (never deleted; amendment note
+  cites the replay receipt + DC-1 prereg). Behavior unchanged: selftest 8/8 before and after.
+- **G4:** D12w script `experiments/d12w_keff_seff_collapse.py` + `results/d12w_keff_seff_collapse.json`
+  were UNTRACKED (D-2 class — cited artifact with no receipt); committed this slice so the citation has one.
+- Honest note: the D12w script writes to `results/` with NO --out override (6th runner lacking the
+  scratch-out pattern) — flagged for the runner-cleanliness convention; no overwrite occurred.
+- Class: **docstring citation defect on an UNBOOKED experiment** — no *booked* number was contradicted
+  (D12w was unbooked), but the receipt-manifest/D-2 doctrine is the target: a committed tool carried an
+  inverted claim about a result that had no receipt. Source: SCOUT-57 (new repo SuperInstance/lucineer-workspace).

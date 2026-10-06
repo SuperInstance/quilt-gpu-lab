@@ -1,10 +1,19 @@
 #!/usr/bin/env python3
 """collapse-gate — monotone-collapse + leave-one-group-out prediction gate.
 
-Pattern lifted PROVEN from D12w (booked 2026-10-06: k_eff collapses onto a
-single function of s_eff — G1 inversions<=2, G2 max leave-one-p-out error
-13.9% vs 25% bar, verdict KEEP). Mechanizes the general claim: "y is a
-single function of x across my cells, not a per-group artifact."
+Pattern lifted from D12w (booked 2026-10-06: k_eff did NOT collapse onto a
+single function of s_eff — 79 inversions, positive log-log slope, LOO error
+1.15 vs 25% bar, verdict KILL_k_eff_is_p_local). Mechanizes the general
+question: "is y a single function of x across my cells, or a per-group
+artifact?" — D12w is the KILL worked example.
+
+AMENDED 2026-10-06 (DC-1, SCOUT-57): the original docstring asserted the
+REVERSED verdict ("verdict KEEP", "LOO 13.9%", "inversions<=2") for this
+experiment. That claim was false: the on-disk result
+(results/d12w_keff_seff_collapse.json, seed 2718) and the live replay
+(results/collapse_gate_d12w_replay_2026-10-06.json) both book KILL, and
+tools/README.md already said KILL. Corrected in place; behavior unchanged
+(selftest 8/8 before and after). See proposals/runs/DC-1-d12w-citation-consistency.md.
 
 Input: points [{x, y, group}] (group optional but required for the G2 clause
 to run; single-group input books G2 VOID, not PASS — a prediction that is
