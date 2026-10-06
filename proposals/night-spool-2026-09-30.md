@@ -89,7 +89,8 @@
   **found + closed a D-2 instance on OUR booking**: 7f6d927 committed only RESULTS.md+log, left the
   per-seed verdict JSONs + 6 adapter dirs UNTRACKED (18 MB) — committed this slice. Lesson: booking-
   completeness must check cited files are TRACKED at the booking commit (note for FW-1-successor).
-  Manifest re-seal attempted post-commit (refusal expected/boooked if foreign lanes persist).
+  [20:3x confirm] re-seal attempted post-commit → correctly REFUSED (foreign d12u4/d12u5 untracked
+  experiments; d23b guard). Stays deferred until those lanes commit or clear.
 - Rotation next wake: (B) SIG-1 or DET-1d (new prereg required) or GPU QG1d/QG4/MC-1 per queue order.
 
 ## SCOUT-46 (2026-10-05 2109Z) — full text proposals/runs/SCOUT-46-fleet-push-2026-10-05-2109Z.md
