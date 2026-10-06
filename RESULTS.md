@@ -6402,3 +6402,22 @@ any relaunch-5.
 - Class: **docstring citation defect on an UNBOOKED experiment** — no *booked* number was contradicted
   (D12w was unbooked), but the receipt-manifest/D-2 doctrine is the target: a committed tool carried an
   inverted claim about a result that had no receipt. Source: SCOUT-57 (new repo SuperInstance/lucineer-workspace).
+
+## SLICE 2026-10-06 1311x AKDT (day-conductor) — (C) DC-1/D12w repro PASS (verdict-level) + prose amendment
+- (C) mandatory repro of newest OURS booking **DC-1 + D12w: PASS at verdict level**.
+  - D12w replay from committed data (results/d12w_keff_seff_collapse.json, seed 2718, 23 pts) via
+    committed tools/collapse_gate.py: **byte-identical to the committed receipt**
+    (results/collapse_gate_d12w_replay_2026-10-06.json minus ts): decreasing/j0.02, inv 132,
+    fit_b 0.4619, G1=false G2=false, verdict KILL. Reproduced with 3-group and 6-group inputs
+    (booking receipt pinned n_groups 3; inversions group-independent).
+  - verdict_cite_check: selftest 7/7 PASS; full tree sweep tools/+experiments/*.py (304 files,
+    8 citations): RED=0, verdict CLEAN — the DC-1 G3 repair state holds at HEAD.
+- **AMENDMENT (in place, per protocol): the 12:2x booking prose mixed direction arms.** The cited
+  "inversions=79, max_l1o_err 1.1528" numbers come from the INCREASING-direction arm (repro:
+  inv 79, loo 1.1531 at 3-group j0.02); the COMMITTED receipt is the DECREASING arm (inv 132,
+  loo null — gate refuses LOO when fit_b>0 vs decreasing requirement). 1.1528 vs 1.1531 is a
+  digit-level prose slip. Verdict KILL_k_eff_is_p_local is ROBUST: G1=false and G2=false under
+  BOTH directions. No booked verdict changed.
+- Manifest re-seal: attempted → foreign untracked d12v lane (experiments/d12v_keff_p045.py +
+  results/d12v_keff_p045.json) persists; sealer correctly refuses (PW-1, untouched). Still deferred.
+- Rotation next wake: (B) SIG-1 or QO6t prereg per queue order; GPU open (QG1d/QG4/MC-1).
