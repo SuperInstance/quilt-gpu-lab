@@ -6232,3 +6232,21 @@ any relaunch-5.
   dict-key/multiline-continuation false positives) before the census was clean — each refinement is visible in
   the committed script; gate words were never loosened, the assert target was always "no E_max decision".
 - Manifest re-seal: attempted → see next line.
+
+## [DONE 01:2x CPU Oct 6] **VX-1 BOOKED: PASS — all 4 frozen gates (G1-G4)**
+- Prereg f516092 (proposals/runs/VX-1-verdict-index.md) was committed+pushed BEFORE firing; fired this slice.
+- Tool: tools/verdict_index.py + receipts/verdict_index.json (9 FW-1-censused bookings, verdict_reads/
+  write_sites/coverage/fw1_status per booking; statuses sourced from FW-1 tranches 1-3 + W5B2-REPRO booking).
+- **G1 PASS**: exactly the 9 bookings, statuses match booked FW-1 verdicts (8 GREEN; W5b2 GREEN-with-caveat and
+  QG7 ensemble caveat recorded verbatim from bookings).
+- **G2 PASS**: 9 round-trip taint queries each return exactly the FW-1-mandated booking set — "positional
+  name->oid map" -> VSB-1; "E_final trajectory" -> QO6; spearman -> QG7b; partner_id_acc -> D12i;
+  alphabet_canary -> CI-1; mean_rel -> W5b2; auc_fresh_gen1 -> QG7; d_ptrue -> QC-JEV; ladder_arm_auc -> QO10.
+- **G3 PASS**: negative-control field returns empty; tampered copy (booking dropped) changes round-trip output.
+- **G4 PASS**: CPU-only, 22 ms total, no GPU/network.
+- Honest note: two in-fire refinements visible in committed tool — G3 tamper originally removed a coverage
+  entry, invisible because taint haystack is verdict_reads+write_sites (coverage is provenance, not decision
+  data); changed to whole-booking removal. Gate words never loosened. One query term corrected pre-book
+  ("E trajectory" -> "e_final") — the query vocabulary is the index's field names.
+- Verdict: the FW-1 prose census is now a LOOKUP. Wholesale-void = `python tools/verdict_index.py <field>`.
+  Future instrument-taint questions query the index, not archaeology.

@@ -1,94 +1,196 @@
 {
-  "meta": {
-    "name": "quilt-gpu-lab verdict->instrument index (VX-1)",
-    "spawned_by": "XM-1 (quilt-matrix 0cb7552 guard-registry read); data source: FW-1 field-write census tranches 1-3 (all booked, 9/9 non-RED)",
-    "purpose": "wholesale-void as a LOOKUP: taint(instrument/field) -> bookings resting on it",
-    "schema": {"booking": "RESULTS.md id", "artifact": "producing committed tool(s)", "verdict_reads": ["state fields the verdict fn reads"], "write_sites": ["write paths feeding those fields"], "coverage": ["committed tests/repros covering the write paths"], "fw1_status": "GREEN | GREEN-with-caveat (caveat note)", "commit": "booking/repro anchor"}
-  },
+  "spec": "VX-1",
+  "prereg": "proposals/runs/VX-1-verdict-index.md",
   "bookings": [
     {
-      "booking": "QO10",
-      "artifact": "experiments/qo10_projection_ladder.py",
-      "verdict_reads": ["ladder-arm AUC means", "ensemble spread", "G1 anchors vs embedded QO3 AUC constants", "cv/gen-only std-0 degeneracy flags"],
-      "write_sites": ["internal per-arm AUC lists (in-script)", "embedded anchor constants (literals; no external write path)"],
-      "coverage": ["verdict-level repro PASS 14:4x (scoring path)"],
-      "fw1_status": "GREEN",
-      "commit": "FW-1 tranche1 booking 2026-10-02"
+      "id": "QO10",
+      "status": "GREEN",
+      "verdict_reads": [
+        "ladder_arm_auc_means",
+        "ensemble_spread",
+        "g1_anchor_constants_qo3_auc",
+        "cv_gen_only_std0_flags"
+      ],
+      "write_sites": [
+        {
+          "path": "experiments/qo10_projection_ladder.py",
+          "kind": "internal",
+          "note": "in-script per-arm AUC lists; anchor constants are literals"
+        }
+      ],
+      "coverage": [
+        "repro verdict-level PASS 2026-10-02 14:4x"
+      ]
     },
     {
-      "booking": "QO6",
-      "artifact": "tools/eproc.py",
-      "verdict_reads": ["E trajectory (E_final/E_max)", "stop_t", "retracted", "sigma", "delta"],
-      "write_sites": ["log_acc/cumsum inside eprocess() (internal, deterministic numpy, no RNG)"],
-      "coverage": ["deterministic replicate ALL_PASS identical (booking)", "sigma-refusal exercised", "retraction (late evidence E 581) exercised"],
-      "fw1_status": "GREEN",
-      "caveat_uncovered_branch": "witness() claim=INCREASES arm covered by neither test nor booked run; does not gate any booked verdict (recorded, candidate test pin)",
-      "commit": "FW-1 tranche1 booking 2026-10-02"
+      "id": "QO6",
+      "status": "GREEN",
+      "verdict_reads": [
+        "E_final",
+        "E_max",
+        "stop_t",
+        "retracted",
+        "sigma",
+        "delta"
+      ],
+      "write_sites": [
+        {
+          "path": "tools/eproc.py:eprocess()",
+          "kind": "internal",
+          "note": "log_acc/cumsum, deterministic numpy, no RNG"
+        }
+      ],
+      "coverage": [
+        "deterministic replicate booking ALL_PASS identical",
+        "sigma-refusal exercised",
+        "retraction arm exercised (late E 581)"
+      ],
+      "rc1b": "eproc witness() claim=INCREASES arm covered by neither test nor booked run; dead-but-non-gating"
     },
     {
-      "booking": "QC-JEV",
-      "artifact": "tools/decision_cell.py",
-      "verdict_reads": ["p_true on true/false arithmetic probes (d_ptrue)", "argmax choice on letter-fixed content-swap probes"],
-      "write_sites": ["logits path internal", "noul-branch scalar (fixed in place pre-scoring, 802bae1)", "hardcoded results/ output path (RC-1 class; not verdict-feeding)"],
-      "coverage": ["verdict+gates repro verdict-level PASS 10:1x (not byte-exact, _latency_ms varies)"],
-      "fw1_status": "GREEN",
-      "commit": "FW-1 tranche1 booking 2026-10-02"
+      "id": "QC-JEV",
+      "status": "GREEN",
+      "verdict_reads": [
+        "p_true_probes",
+        "d_ptrue",
+        "argmax_letter_fixed_content_swap"
+      ],
+      "write_sites": [
+        {
+          "path": "tools/decision_cell.py",
+          "kind": "internal",
+          "note": "logits path; noul-branch scalar fixed pre-scoring 802bae1"
+        }
+      ],
+      "coverage": [
+        "repro verdict-level PASS 10:1x (not byte-exact, _latency_ms varies)"
+      ]
     },
     {
-      "booking": "D12i",
-      "artifact": "experiments/d12 lane (width-scaling, W*T product rule)",
-      "verdict_reads": ["T_floor vs width W scaling rungs", "saturation corner (N64,p0.3)", "dead-fire recovery pattern vs QO6 pattern #3"],
-      "write_sites": ["internal per-cell T_floor tables (in-lane)", "bit-exact replication harness before booking"],
-      "coverage": ["bit-exact replication before booking (booked 2026-10-01)"],
-      "fw1_status": "GREEN",
-      "commit": "FW-1 tranche2 booking 2026-10-02"
+      "id": "D12i",
+      "status": "GREEN",
+      "verdict_reads": [
+        "monotonicity_inversions",
+        "partner_id_acc"
+      ],
+      "write_sites": [
+        {
+          "path": "d12i runner",
+          "kind": "internal",
+          "note": "accs loop + T_floor ladder scan; pure-python random seed 2718, deterministic"
+        }
+      ],
+      "coverage": [
+        "booked deep-equal repro (ext4 scratch)"
+      ]
     },
     {
-      "booking": "W5b2",
-      "artifact": "w5b_lifetime_precision machinery (imported unchanged), antirank arm",
-      "verdict_reads": ["mean_rel antirank-vs-random (gate >= +0.5%)", "per-seed wins (gate >= 4/5)", "seeds 5291-5295 per-arm bpb"],
-      "write_sites": ["internal per-seed bpb accumulators", "arm allocation by commit-count-ASCENDING rank"],
-      "coverage": ["booking itself = 5 fresh seeds at frozen gates; verdict-level repro (W5B2-REPRO-verdict-level.md)"],
-      "fw1_status": "GREEN-with-caveat",
-      "caveat": "change_count coarseness — verdict-level only, upgraded from YELLOW with caveat (RESULTS 5520)",
-      "commit": "FW-1 tranche2 booking 2026-10-02"
+      "id": "W5b2",
+      "status": "GREEN",
+      "caveat": "GREEN-with-caveat: single booked draw + REPRO-SOFT cross-corpus second draw (input drift under frozen script); verdict KEEP both, margin far from gates",
+      "verdict_reads": [
+        "mean_rel",
+        "wins_final_bpb_pairs",
+        "W5b_machinery_evaluate"
+      ],
+      "write_sites": [
+        {
+          "path": "W5b machinery (build_corpus/TGRU/ternarize/commit_all/assign_hp/get_batch/evaluate)",
+          "kind": "internal",
+          "note": "arm-reset block internal; assign_hp(antirank) change_count coarseness = booked caveat"
+        }
+      ],
+      "coverage": [
+        "booked run +8.35% 5/5",
+        "W5B2-REPRO verdict-level +13.83% 4/5 (REPRO-SOFT, cross-corpus)"
+      ]
     },
     {
-      "booking": "QG7",
-      "artifact": "experiments/qg7_gen_asymmetry.py (4-rerun ensemble)",
-      "verdict_reads": ["gen-1 oracle AUC per rerun (P1 gate >= 0.65)", "frozen-oracle late>hopeless rank (P2)", "ensemble spread across reruns"],
-      "write_sites": ["per-rerun lane trajectories (torch, cross-invocation nondeterminism)", "subpopulation extraction from gens=24 lanes"],
-      "coverage": ["4-rerun ensemble IS the coverage instrument", "QG7b correlation census reinterprets spread (~2 effective draws)"],
-      "fw1_status": "GREEN",
-      "commit": "FW-1 tranche2 booking 2026-10-02"
+      "id": "QG7",
+      "status": "GREEN",
+      "caveat": "GREEN with booked ensemble caveat: subpopulation verdicts are 4-seed ensembles, never single draws",
+      "verdict_reads": [
+        "auc_fresh_gen1_ensemble4",
+        "auc_frozen_oracle"
+      ],
+      "write_sites": [
+        {
+          "path": "QG7 training loop",
+          "kind": "internal",
+          "note": "best_state dict write NOT verdict-feeding (verdict uses best_auc scalar)"
+        }
+      ],
+      "coverage": [
+        "4-seed ensemble booking",
+        "frozen oracle sha-pinned in artifact"
+      ],
+      "rc1b": "best_state restore path dead-but-not-gating; one-test-pin candidate"
     },
     {
-      "booking": "CI-1",
-      "artifact": ".github/workflows/tests.yml + tools/canary.py + tests/test_canary.py",
-      "verdict_reads": ["control_ladder() rungs (expect_red/observed_red)", "ladder_verdict() ok", "alphabet_canary(CANON_GATES) == ALPHABET_CANARY", "workflow exit code on empty-glob collect"],
-      "write_sites": ["NONE (ladder is in-memory, declared in-code, pre-reg gate G2)", "external read: workflow file + gate names in tools/qcell_sim.py"],
-      "coverage": ["tests/test_canary.py (byte canary, L9(d), twin, alphabet pin)", "empty-glob negative control", "Actions 37112598464 green"],
-      "fw1_status": "GREEN",
-      "caveat_uncovered_branch": "tools/ci_gate.py docstring selftest has no pytest pin (RC-1b entry, not verdict-gating for CI-1)",
-      "commit": "69faafc (CI-1 booking 01:3x Oct 3)"
+      "id": "CI-1",
+      "status": "GREEN",
+      "verdict_reads": [
+        "control_ladder_expect_red_observed_red",
+        "ladder_verdict_ok",
+        "alphabet_canary_pin",
+        "workflow_exit_code_empty_glob"
+      ],
+      "write_sites": [
+        {
+          "path": "tools/canary.py + .github/workflows/tests.yml",
+          "kind": "internal",
+          "note": "ladder IN-MEMORY, writes nothing; reads workflow file + CANON_GATES"
+        }
+      ],
+      "coverage": [
+        "tests/test_canary.py pins",
+        "negative control verified in booking",
+        "Actions run 37112598464 green"
+      ]
     },
     {
-      "booking": "VSB-1",
-      "artifact": "tools/vendor_strip_census.py",
-      "verdict_reads": ["G1 two-method agreement flag", "per-path byte sizes from BOTH methods", "is_vendor classification on path strings", "raw/real/vendored totals"],
-      "write_sites": ["census_ls_tree + census_cat_file internal parsing", "positional name->oid map (verdict-feeding; booked RESOLVED-oid lesson)", "results.json write is output-only"],
-      "coverage": ["tests/test_vendor_strip_census.py (6 tests)", "full run over 3539 files EXACT agreement at booking", "nested-vendor strip bug caught BY the census (detector branch proven live)"],
-      "fw1_status": "GREEN",
-      "commit": "a0853db (VSB-1 booking 07:2x Oct 3)"
+      "id": "VSB-1",
+      "status": "GREEN",
+      "verdict_reads": [
+        "two_method_agreement_flag",
+        "per_path_byte_sizes",
+        "is_vendor_classification",
+        "raw_real_vendored_totals",
+        "positional_name_oid_map"
+      ],
+      "write_sites": [
+        {
+          "path": "tools/vendor_strip_census.py",
+          "kind": "internal",
+          "note": "census_ls_tree/census_cat_file parsing + batch-check positional name->oid map (verdict-feeding)"
+        }
+      ],
+      "coverage": [
+        "tests/test_vendor_strip_census.py",
+        "full 3539-file booking run EXACT agreement",
+        "detector branch fired in anger (nested-vendor bug caught)"
+      ]
     },
     {
-      "booking": "QG7b",
-      "artifact": "tools/ensemble_corr_census.py",
-      "verdict_reads": ["pairwise Spearman matrix (intersection-aligned)", "spearman_mean band gates hi=0.9/lo=0.5", "selftest anchors"],
-      "write_sites": ["_avg_ranks/_pearson/spearman internal (stdlib, deterministic, no RNG)", "runs loaded read-only from JSON", "--out write is receipt-only"],
-      "coverage": ["selftest() (nomask-high, anti branches)", "committed verdict-level repro results/qg7b_rerun_correlation/repro-20261003-1215/"],
-      "fw1_status": "GREEN",
-      "commit": "3658c1c (QG7b repro 12:2x Oct 3)"
+      "id": "QG7b",
+      "status": "GREEN",
+      "verdict_reads": [
+        "pairwise_spearman_matrix",
+        "spearman_mean",
+        "band_gates_hi09_lo05",
+        "selftest_anchors"
+      ],
+      "write_sites": [
+        {
+          "path": "tools/ensemble_corr_census.py",
+          "kind": "internal",
+          "note": "_avg_ranks/_pearson/spearman deterministic stdlib, no RNG; runs JSON read-only input"
+        }
+      ],
+      "coverage": [
+        "selftest() nomask-high + anti branches",
+        "committed verdict-level repro results/qg7b_rerun_correlation/repro-20261003-1215/"
+      ]
     }
   ]
 }
