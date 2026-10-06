@@ -347,6 +347,24 @@ Rotation for next wake: non-GPU (PR-SWEEP #5 or SCOUT #2), then QG1-residual or 
   (fitness definition unknown — may not be min(p000,p111)) and rebuild one failing genome directly in
   micromoth.QuantumCircuit to separate "recorded values stale" from "fitness definition differs".
 
+## SLICE 2026-10-06 0211x AKDT (day-conductor) — (C)+(A), no GPU fired
+- (C) mandatory repro of newest OURS booking **VX-1: PASS** — committed tool re-run from clean
+tree paths: ALL GATES PASS (G1-G4), and all 10 taint queries return exactly the booked sets
+(positional name->oid map→VSB-1; E_final→QO6; spearman→QG7b; partner_id_acc→D12i;
+alphabet_canary→CI-1; mean_rel→W5b2; auc_fresh_gen1→QG7; d_ptrue→QC-JEV;
+ladder_arm_auc→QO10). Verdict-level identical to booking. Scratch: /tmp/vx1_repro.
+- (A) **SCOUT-52** (full text proposals/runs/SCOUT-52-fleet-push-2026-10-06-1011Z.md):
+only external push in window = rc-20260824-11 q7 (c37c30e) — dip-DURATION molt gate FAILS too
+(honest negative). **CORROBORATE** of QO6n (our gate is not a dip-shape gate — why it survives);
+no CONTRADICT. Spawned **QO6t** (CPU ~30m, pre-reg first): transient-stress of the QO6 kill gate
+on the QG3 desert-fence population — the one untested cell of the QO2 kill matrix.
+No new PRs/issues in 6 watched repos; [EMBASSY] pong #49 unchanged (Casey day item).
+- Manifest re-seal: deferred — foreign untracked d12v live lane persists (experiments/
+d12v_keff_p045.py + results/d12v_keff_p045.json untracked); sealer correctly refuses; manifest
+itself M from the foreign lane, untouched per PW-1.
+- Rotation next wake: (B) SIG-1 or pre-reg QO6t (cheap, data on disk) per queue order; GPU
+open (QG1d/QG4/MC-1).
+
 ## SCOUT-2 (morning, Casey-directed) — what the fleet is pushing 2026-09-30, classified
 Sweep: SuperInstance account (it's a USER account, not an org — `/users/.../events` works, `/orgs/...` 404s),
 14 repos pushed in the last 48h. quilt-gpu-lab is the most-active repo this morning (our own pushes), plus
