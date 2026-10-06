@@ -6309,3 +6309,20 @@ any relaunch-5.
   (SCOUT-53) — local HMAC-sealed preregs are now the durable defense for our own queue gates.
   Refuse-to-fire convention: future experiments SHOULD verify their prereg seal before firing
   (advisory this booking; enforcement is a follow-up if a second repo adopts it).
+
+## SLICE 2026-10-06 074x AKDT (day-conductor) — (A) SCOUT-54; 07:00 rule: nothing new fired
+- (C) not due: newest OURS booking SIG-1 already repro'd this morning (06:1x PARTIAL,
+  digest-level MATCH, HMAC verify key-blocked in cron; SIG-1b keyless mode spawned, NOT
+  started — local time past 07:00).
+- (A) **SCOUT-54** (full text proposals/runs/SCOUT-54-fleet-push-2026-10-06-1545Z.md):
+  HEADLINE — rc-20260824-11 q8: fourth consecutive molt-gate negative (perfect age-at-zero
+  death sensor still loses to never-molt, 86.7% vs 96.7%). **CORROBORATE** of QO6/QO6t/QO6n
+  gate doctrine — fleet converging on "signal must be oracle-class and readable at decision
+  time post-recovery, else INSUFFICIENT-only." No CONTRADICT. WATCH UPDATE: taskable-lobster
+  satellites alive (pushed 01:18Z), parent deletion risk finding stands. Spawned **QO7-ARM**
+  (docs/CPU ~20m, day item, NOT fired — 07:00 rule): kill-gate pre-arm checklist.
+- PRs/issues quiet in 6 watched repos; [EMBASSY] pong #49 unchanged (Casey day item).
+- Manifest re-seal: still deferred (foreign untracked d12v lane persists; sealer correctly
+  refuses). No GPU fired (rotation + 07:00 rule).
+- **NIGHT COMPLETE 2026-10-06.** Rotation next wake: (B) SIG-1b keyless verify or pre-reg
+  QO6t-successor QG1d/QG4/MC-1 GPU per queue order.
