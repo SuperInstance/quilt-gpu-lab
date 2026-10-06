@@ -1968,3 +1968,19 @@ other agents are feeding us; keep the handshake lane warm.
   this slice's own artifact.
 - Manifest re-seal: correctly REFUSED (foreign untracked d12v/d12w lanes persist — standing defer).
 - Rotation next wake: (A) SCOUT-56 per rotation; GPU open (QG1d/QG4/MC-1); QO7-ARM day item open.
+
+## DAY SLICE 2026-10-06 11:1x AKDT (day-conductor) — (C)+(A), no GPU fired
+- (C) mandatory repro of newest OURS booking **QO6p: PASS byte-identical** — committed
+  experiments/qo6p_percell_transfer.py re-run with QO6P_OUT scratch override
+  (/home/eileen/scratch/qo6p_repro/receipt.json); receipt sha 0e98f4efbe485101, byte-identical
+  to committed results/qo6p_percell_transfer/receipt.json. G3 RED verdict, G1/G2/G4 all exact.
+  (Script already had the env --out pattern — 5th runner clean, no results/-overwrite risk.)
+- (A) **SCOUT-56** (full text proposals/runs/SCOUT-56-fleet-push-2026-10-06-1911Z.md):
+  QUIET window. Only in-window external activity = Luciddreamer-ai/OpenSkyFlight iPad-product
+  pushes (no overlap) + model-registry-archive dependabot PR #3. rc q9 molt-negative push
+  (16:23Z) PREDATES SCOUT-55 and was already classified/spawned (QO6p) — no duplicate.
+  **No CONTRADICT, no new spawns.** [EMBASSY] pong #49 unchanged (Casey day item).
+- Manifest NOT re-sealed: receipts/manifest.json still M + d12v/d12w foreign untracked lane
+  files persist (PW-1 precedent — sealer would refuse; seal rides that lane's clean point).
+- Tree after this commit: spool + SCOUT-56 file only. GPU lane free all slice.
+- Rotation next wake: (B) top open CPU item per QUEUE (pre-reg first) or GPU (QG1d/QG4/MC-1).
