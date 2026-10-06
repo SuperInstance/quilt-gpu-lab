@@ -444,6 +444,20 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   `python tools/calib_gate.py --preds preds.json [--ece-bar 0.05 --brier-bar 0.25 --out r.json] | --preds-json '[...]"' | --selftest`
   TEST receipt 2026-10-04: selftest 5/5 (calibrated clean-KEEP, overconfident decoy FAIL, p>1/bad-label/empty rc=2) — selftest caught two of its own control bugs live (perfect predictor at conf 0.9 is honestly ECE 0.1; AURC<0.02 clause impossible for a 0.75-acc control), both fixed; worked example rc=1 FAIL booked honestly (5-item sample, conf 0.7-0.9 at 100% acc -> ECE 0.2).
 
+- **contam-gate** — `tools/contam_gate.py` — train/heldout pool contamination gate
+  (pattern lifted PROVEN from DET-1b, booked aborted-partial 2026-10-05: 4/6 arms
+  died on pool/heldout expr collision discovered at run time — this gates it BEFORE
+  fire): two JSON record pools + identity rule (dotted `--key` path, or whole-record
+  canonical sha256 by default — key-order insensitive, content-sensitive) -> overlap
+  count + samples, CLEAN rc=0 / CONTAMINATED rc=1 / FAIL-INPUT rc=2. Missing key
+  fails loud (silently-missing keys are how contamination hides); read-only,
+  stdlib-only, deterministic, JSON receipt either direction.
+  `python tools/contam_gate.py --train t.json --heldout h.json [--key expr --out r.json] | --selftest`
+  TEST receipt 2026-10-05: selftest 7/7 (clean 0-overlap, RED collision caught,
+  hash key-order/content pins, missing-key KeyError fail-loud, end-to-end rc
+  mapping + receipt); live: collided pools -> CONTAMINATED rc=1 ("2*3" flagged),
+  disjoint pools -> CLEAN rc=0, receipt results/contam_gate_example_2026-10-05.json.
+
 - **prereg-stamp** — `tools/prereg_stamp.py` — bind run receipts to the committed
   pre-registration plan (mechanizes the pre-registration doctrine, which was
   prose until now): sha256-stamp the plan at run start, embed the stamp in the

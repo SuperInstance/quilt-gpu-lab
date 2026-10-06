@@ -1,0 +1,17 @@
+{
+  "tool": "contam-gate",
+  "train": {
+    "path": "/tmp/cg_t.json",
+    "n": 2
+  },
+  "heldout": {
+    "path": "/tmp/cg_h.json",
+    "n": 2
+  },
+  "identity_rule": "expr",
+  "overlap_n": 1,
+  "overlap_samples": [
+    "\"2*3\""
+  ],
+  "verdict": "CONTAMINATED"
+}
