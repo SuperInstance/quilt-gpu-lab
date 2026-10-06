@@ -414,6 +414,20 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   benign config constants + honest single-draw arrays, no fraud class present. Receipt:
   results/lit_sweep_2026-10-02.json.
 
+- **exclu-pool** — `tools/exclu_pool.py` — deterministic task-pool generator with heldout
+  exclusion BY CONSTRUCTION (pattern lifted PROVEN from DET-1c, commit 65a168c 2026-10-05:
+  smoke overlap=0, deterministic all 3 seeds — kills the DET-1b abort class, pool/heldout
+  expr collision discovered at run time, before any arm fires). Same frozen family rotation
+  + rng stream as the original generator; colliding exprs are skipped at generation time and
+  replaced by continuing the same rotation; n_skipped booked for honesty. Arith families
+  stdlib-only; symb needs sympy (`--no-symb` for pure stdlib). Fail-loud rc=2, JSON receipt.
+  `python tools/exclu_pool.py --seed 101 --n-arith 20 --n-symb 20 [--exclude heldout.json --difficulty hard --out r.json] | --example | --selftest`
+  TEST receipt 2026-10-05: selftest 8/8 (overlap-zero, determinism, seed-sensitivity,
+  exclusion-fires-with-skipped-count, no-exclusion == plain generator, hard difficulty,
+  bad-difficulty fail-loud, counts preserved); worked example rc=0 PASS — heldout_n=12,
+  pool_n=40, overlap=[], deterministic, receipt
+  results/exclu_pool_example_2026-10-05.json.
+
 - **qmerge-census** — `tools/qmerge_census.py` — near-duplicate queue-item census
   (Q0 MERGE operator, pattern lifted from rc-20260824-11 via SCOUT-46
   TOOL/STEAL receipt): parses a QUEUE.md-style checklist, tokenizes items, and

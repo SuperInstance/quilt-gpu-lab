@@ -1,0 +1,11 @@
+{
+  "tool": "exclu_pool",
+  "ts": "2026-10-05T21:42:07-0800",
+  "mode": "example",
+  "verdict": "PASS",
+  "heldout_n": 12,
+  "pool_n": 40,
+  "skipped": 0,
+  "overlap": [],
+  "deterministic": true
+}
