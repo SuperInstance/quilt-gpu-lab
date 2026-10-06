@@ -159,6 +159,49 @@ def gen_task_pool(seed: int, n_arith: int, n_symb: int, start_tid: int = 0,
     return tasks
 
 
+def gen_task_pool_excluding(seed: int, n_arith: int, n_symb: int,
+                            exclude_exprs: set, start_tid: int = 0,
+                            difficulty: str = "registered") -> tuple:
+    """DET-1c remedy (pre-reg proposals/runs/DET-1c): heldout exclusion BY CONSTRUCTION.
+
+    Same family rotation + rng stream as gen_task_pool, but candidates colliding with
+    `exclude_exprs` (task.expr identity) are skipped at generation time and replaced by
+    continuing the SAME deterministic rotation until both counts fill. Deterministic
+    given (seed, exclude set). Returns (tasks, n_skipped) — n_skipped is booked for
+    honesty (family mix may deviate from exact rotation when a collision is skipped;
+    declared in the pre-reg, does not touch any gate word).
+    """
+    arith_families = ARITH_FAMILIES_HARD if difficulty == "hard" else ARITH_FAMILIES
+    symb_families = SYMB_FAMILIES_HARD if difficulty == "hard" else SYMB_FAMILIES
+    rng = random.Random(seed)
+    tasks, tid = [], start_tid
+    skipped = 0
+    ai = si = 0
+    while len(tasks) < n_arith + n_symb:
+        # alternate families exactly like gen_task_pool's two-phase order, but interleaved
+        # so one skipped family cannot starve the other side
+        take_arith = (len(tasks) % 2 == 0 and ai < n_arith) or si >= n_symb
+        if take_arith:
+            t = _arith_task(rng, tid, arith_families[ai % len(arith_families)])
+            if t.expr in exclude_exprs:
+                skipped += 1
+                ai += 1
+                continue
+            tasks.append(t)
+            ai += 1
+        else:
+            t = _symb_task(rng, tid, symb_families[si % len(symb_families)])
+            if t.expr in exclude_exprs:
+                skipped += 1
+                si += 1
+                continue
+            tasks.append(t)
+            si += 1
+        tid += 1
+    rng.shuffle(tasks)
+    return tasks, skipped
+
+
 # --------------------------------------------------------------------------------------
 # Verifier — EXECUTABLE ONLY (regex extraction + int equality / sympy + numeric property test)
 # --------------------------------------------------------------------------------------
@@ -739,6 +782,8 @@ def main():
     ap.add_argument("--ollama-url", default="http://127.0.0.1:11434")
     ap.add_argument("--seed", type=int, default=20261002)
     ap.add_argument("--seed-heldout", type=int, default=20261003)
+    ap.add_argument("--exclude-heldout", action="store_true",
+                    help="DET-1c: build train pool with heldout-expr exclusion by construction")
     ap.add_argument("--seed-shuffle-probe", type=int, default=20261004)
     ap.add_argument("--out-json", default="results/rest_em_smoke.json")
     ap.add_argument("--adapter-dir", default="results/rest_em_adapter")
@@ -785,6 +830,15 @@ def main():
     h_ar, h_sy = args.heldout // 2, args.heldout // 2
     train_pool = gen_task_pool(args.seed, n_ar, n_sy, difficulty=args.difficulty)
     heldout = gen_task_pool(args.seed_heldout, h_ar, h_sy, start_tid=10000, difficulty=args.difficulty)
+    # ---- DET-1c: exclusion by construction (pre-reg proposals/runs/DET-1c) ----
+    # Rebuild the TRAIN pool deterministically, skipping any expr present in the frozen
+    # heldout, then assert zero overlap fail-loud. No-op when there was no collision.
+    _n_skip = -1
+    if getattr(args, "exclude_heldout", False):
+        heldout_exprs = {t.expr for t in heldout}
+        train_pool, _n_skip = gen_task_pool_excluding(
+            args.seed, n_ar, n_sy, heldout_exprs, difficulty=args.difficulty)
+        log(f"[det1c] pool rebuilt excluding heldout exprs: skipped_at_gen={_n_skip} (0 = seed was already clean; declared builder differs from legacy two-phase order)")
     overlap = {t.expr for t in train_pool} & {t.expr for t in heldout}
     log(f"[tasks] pool={len(train_pool)} heldout={len(heldout)} contamination_overlap={len(overlap)}")
     if overlap:
