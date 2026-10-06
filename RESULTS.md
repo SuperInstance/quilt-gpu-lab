@@ -6295,3 +6295,17 @@ any relaunch-5.
   dependabot only. No new queue items spawned; [EMBASSY] pong #49 unchanged (Casey day item).
 - Manifest re-seal: still deferred (foreign untracked d12v lane persists; sealer correctly refuses).
 - Rotation next wake: (B) SIG-1 (priority raised) or pre-reg GPU item QG1d/QG4/MC-1 per queue order.
+
+## SLICE 2026-10-06 0511x AKDT (day-conductor) — (B) SIG-1 BOOKED: PASS G1-G4
+- **SIG-1 BOOKED (PASS, G1-G4)**: tools/prereg_seal.py — HMAC-SHA256 (canonical-JSON envelope,
+  env-key QUILT_SEAL_KEY, fail-loud refusal when unset, refuses to overwrite an existing seal).
+  G1 roundtrip MATCH exit 0; G2 tamper RED-first -> TAMPERED exit 2 (content-digest drift caught);
+  G3 no-key seal refuses exit 4, no seal file written; G4 committed prereg
+  proposals/runs/SIG-1-prereg-seal.md sealed+verified MATCH from committed tree. Key-material grep
+  negative in both scratch and repo seals. Key itself lives only in Casey's env — never stored,
+  never echoed. Pre-reg 8e0c8a8-series commit fired before tool existed. STOP rule not triggered
+  (canonical JSON digests stable across fresh processes).
+- Motivation restated: taskable-lobster vanished from the account ~20h after its HEADLINE push
+  (SCOUT-53) — local HMAC-sealed preregs are now the durable defense for our own queue gates.
+  Refuse-to-fire convention: future experiments SHOULD verify their prereg seal before firing
+  (advisory this booking; enforcement is a follow-up if a second repo adopts it).

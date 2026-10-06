@@ -1,0 +1,6 @@
+{
+  "alg": "HMAC-SHA256",
+  "file": "SIG-1-prereg-seal.md",
+  "hmac": "dc5324656ec6151a6f00d997677b8df36a324cbb03760cd134af8e44928bebdb",
+  "sha256": "fb730257d3a1eb8cfb214ba9d270613bb9b935e4685090c1123c7c7446272cbb"
+}
