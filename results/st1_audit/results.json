@@ -1,0 +1,67 @@
+{
+ "seed": 2718,
+ "n_per_side": 600,
+ "ops": {
+  "sign_flip": {
+   "auc": 0.6208333333333333,
+   "degenerate": false,
+   "leaky": false,
+   "render_kinds": [
+    "j",
+    "t"
+   ]
+  },
+  "wins_over": {
+   "auc": 0.6216666666666667,
+   "degenerate": false,
+   "leaky": false,
+   "render_kinds": [
+    "j",
+    "t"
+   ]
+  },
+  "verdict_flip": {
+   "auc": 1.0,
+   "degenerate": false,
+   "leaky": true,
+   "render_kinds": [
+    "j",
+    "t"
+   ]
+  },
+  "tau_off": {
+   "auc": 1.0,
+   "degenerate": false,
+   "leaky": true,
+   "render_kinds": [
+    "j",
+    "t"
+   ]
+  },
+  "seed_drop": {
+   "auc": 0.735,
+   "degenerate": false,
+   "leaky": false,
+   "render_kinds": [
+    "j",
+    "t"
+   ]
+  },
+  "denom_swap": {
+   "auc": 0.9391666666666667,
+   "degenerate": false,
+   "leaky": false,
+   "render_kinds": [
+    "j",
+    "t"
+   ]
+  }
+ },
+ "runner_sha256": "bd5c7b43f3f0442f",
+ "leaky_ops": [
+  "tau_off",
+  "verdict_flip"
+ ],
+ "degenerate_ops": [],
+ "verdict": "KEEP-AUDIT"
+}
