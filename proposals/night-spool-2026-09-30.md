@@ -2331,3 +2331,15 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   SUBSTRATE-SYNTHESIS persist, PW-1). GPU untouched (inbox-015 student-v2 contention watch stands).
 - Rotation next wake: (A) SCOUT-64 (due ~2h), or (B) AL-1 (UTF-8 dialect fix, top cheap open) / DIFFPORT-1
   (docs fold); GPU open QG4/QG1d/MC-1 only if inbox-015 lane clears.
+
+## SLICE 2026-10-07 14:4x AKDT (day-conductor) — (B) QG1d-micro recon BOOKED: endianness divergence named; QG1c NONE untouched
+- (B) top open item QG1d (read-only CPU recon, spawned by QG1c). Full receipt
+  proposals/runs/QG1d-micro-recon-2026-10-07.md; RESULTS entry booked. Headline: micromoth is qubit-label
+  ENDIANNESS-divergent from our qcell_sim (qubit 0 = rightmost vs leftmost output char) — differential-confirmed —
+  but structural invariance on symmetric targets means QG1c verdict NONE stands; the 28 swap-only misses move to a
+  QG1d-successor corpus-side question. Cross-tool genome rule booked: relabel q->n-1-q on asymmetric-target lanes.
+- (C) not due: newest OURS booking AL-1 already REPRO PASS at 13:2x (10/10). Manifest: no sealed path touched
+  (recon only, foreign trees read-only); foreign untracked d12x/d12y/d12z + SUBSTRATE-SYNTHESIS persist — re-seal
+  stays deferred per precedent. No running duplicates (process list clean; foreign playground servers only).
+- Rotation next wake: (A) SCOUT-66 (window will be >8h) or (B) QG1d-successor prereg / DET-1d; GPU open
+  (QG4/QG1d-corpus/MC-1).

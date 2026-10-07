@@ -6662,3 +6662,19 @@ any relaunch-5.
 - Manifest re-seal: correctly REFUSED (foreign lane persists); deferred per precedent.
 - GPU lane idle this slice (scout slot per rotation). Rotation next wake: (B) QO6t/DET-1d or
   QG1d-micro recon; GPU open (QG4/QG1d/MC-1) with contention cleared.
+
+## [BOOKED 14:4x Oct 7 CPU recon] QG1d: COMPLETE — micromoth semantics standard EXCEPT global qubit-label endianness; QG1c NONE untouched
+- Receipt proposals/runs/QG1d-micro-recon-2026-10-07.md. Provenance gap CLOSED: exp022 lane lives at
+  micrograd-quilt@origin/main labs/qcells/qcell/search.py (MM #29 convention was right); simulator =
+  micromoth-quilt micromoth.py.
+- turn/phaseturn/superpose/crx/swap all verified EXACT standard semantics line-level. Angles pi-units x pi — matches ours.
+- FINDING (differential-confirmed, 7 genomes, target "100"): micromoth genome qubit 0 = RIGHTMOST output char
+  (LSB-weighted index, MSB-first print); our qcell_sim qubit 0 = LEFTMOST. Relabel q->n-1-q makes tools agree exactly.
+- STRUCTURAL NON-OVERTURN: global relabeling leaves p_target invariant on symmetric target sets
+  (("000","111") balance) — proven + reproduced. QG1c verdict NONE stands; its 6-candidate census simply never
+  froze the global-reversal convention. RULE BOOKED: cross-tool genome exchange on any future asymmetric-target
+  lane MUST relabel q->n-1-q. Spawned QG1d-successor (corpus-side): the 28 swap-only misses must now be hunted in
+  the PRODUCED genome corpus / 512-shot counts-vs-exact mismatch, not simulator semantics.
+- FW-1-successor rows: qcell_sim.py duplicated dead crx branch (harmless); micromoth rng=None global-random
+  mutation cross-contaminates unseeded lanes (their docstring admits; fleet injected-rng fix landed 2026-10).
+- No GPU; read-only on foreign trees (micromoth-quilt@4268849, micrograd-quilt origin/main). No booked result modified.
