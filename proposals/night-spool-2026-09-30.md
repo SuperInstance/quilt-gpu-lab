@@ -2205,3 +2205,16 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   (foreign untracked d12x/d12y lane persists; sealer would refuse; untouched per PW-1).
 - GPU lane idle all slice (rotation: scout was the slot). Rotation next wake: (B) PP-1 (cheap) or
   AL-1 (still open from SCOUT-58) or QO6t; GPU open (QG1d/QG4/MC-1).
+
+## SLICE 2026-10-07 0314x AKDT (day-conductor) — (B) XP-B BOOKED: PASS (G1-G4); queue top item cleared
+- (C) not due (ST1-AUDIT reproduced bit-exact 01:1x; XP-B is itself a verification instrument, G4 idempotency = internal repro).
+- (B) **XP-B fired+booked** (pre-reg + runner committed 03:1x BEFORE fire). Digest-only pre-commit receipt gate:
+  **G1 5/5 REFUSE-LOUD** (C1 reuse / C2 chain-repair / C3 truncation / C4 fnv-64 pin format-refused / C5 seed
+  mutation), **G2 2/2 zero false rejects**, G3 no-keys audit clean, G4 two identical runs. Red-first trail: 2
+  harness REDs fixed in place before any green (rec UnboundLocalError + unstaged mutations); no verdict re-rolls.
+  Feeds SIG-1 acceptance evidence; hook INSTALL = Casey day item.
+- Foreign untracked NOT touched (PW-1): d12y_keff_p035 pair (02:06, no live process), d12x lane, docs/
+  SUBSTRATE-SYNTHESIS.md (Oct 6 14:06, unbooked — flagged, likely a neighbor lane's synthesis doc).
+- Manifest re-seal deferred (sealer correctly refuses on the foreign untracked paths; 5th+ deferral).
+- GPU idle all slice. Rotation next wake: **(A) SCOUT-60 due** (last SCOUT-59 02:1x), or QG1d-micro recon
+  (top open queue item); GPU open for QG4/QG1d/MC-1.

@@ -88,6 +88,7 @@ def check_staged(repo):
                     refusals.append((name, f"append-only violation: {f} modified vs HEAD"))
                 continue
             # new receipt file: C3/C4 structural checks
+            rec = None
             try:
                 rec = json.loads(content.decode())
                 missing = [k for k in REQUIRED_FIELDS if k not in rec]
@@ -179,6 +180,7 @@ def selftest(base):
         return sh(["git", "commit", "-qm", "anchor"], cwd=repo).returncode
 
     def fire(name, expect_refuse, desc, mutate):
+        sh(["git", "reset", "-q"], cwd=repo)
         sh(["git", "checkout", "-q", "--", "."], cwd=repo)
         sh(["git", "clean", "-qfd", RECEIVED_DIR], cwd=repo)
         mutate()
@@ -226,6 +228,7 @@ def selftest(base):
             f.write(json.dumps({"receipt_id": VALID_RECEIPT["receipt_id"],
                                 "digest": _sha256(b"different"),
                                 "gate_verdict": "PASS"}) + "\n")
+        sh(["git", "add", "-A"], cwd=repo)
     fire("C1", True, "receipt-reuse (id already at HEAD)", c1)
 
     # C2 chain-repair: modify tracked receipt
@@ -251,6 +254,7 @@ def selftest(base):
             f.write(json.dumps({"receipt_id": "g7-wr-xp-b-c4-fnv-1800000002",
                                 "digest": "9ae16a3b2f90404f",
                                 "gate_verdict": "PASS"}) + "\n")
+        sh(["git", "add", "-A"], cwd=repo)
     fire("C4", True, "digest-substitution (fnv-64 pin)", c4)
 
     # C5 seed mutation

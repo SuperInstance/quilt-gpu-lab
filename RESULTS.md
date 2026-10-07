@@ -6584,3 +6584,30 @@ any relaunch-5.
 - Manifest re-seal DEFERRED again: sealer correctly refused on the persistent FOREIGN untracked d12x lane
   (experiments/d12x_generator_corr_audit.py + results, mtime Oct 6 20:07, no live process — not ours to commit
   or archive; PW-1 precedent). Our ledger paths clean at booking commit.
+
+## [DONE 03:1x Oct 7 CPU 0-Wh] XP-B BOOKED: PASS (G1-G4) — digest-only pre-commit receipt gate refuses all 5 corruption classes, zero false rejects
+- Pre-reg proposals/runs/XP-B-git-hook-receipt-gate.md frozen + runner committed BEFORE fire (commit-first, PX1b precedent).
+  Runner tools/xpb_receipt_hook.py: --staged hook mode + --selftest throwaway-repo harness on ext4 scratch
+  (/home/eileen/scratch/xpb/), never touches this repo's .git.
+- **G1 REFUSE-LOUD PASS 5/5**: C1 receipt-reuse (id re-ledgered at HEAD) / C2 chain-repair (any byte edit of a
+  tracked receipt vs HEAD sha256 — append-only enforced, digest-only, NO keys) / C3 truncated-receipt (invalid JSON
+  or missing schema/receipt_id/determinism/gate) / C4 digest-substitution (non-64-hex pin, the FNV-1a-64
+  collision-pin class, refused BY FORMAT) / C5 seed-mutation (determinism.* changed vs HEAD, named subclass) —
+  every class exit 1 with its class name in stderr.
+- **G2 CLEAN-PASS PASS 2/2 (zero false rejects)**: P1 valid new receipt + ledger append exit 0; P2 unrelated staged
+  files pass untouched.
+- **G3 NO-KEYS PASS** (grep audit: only shebang env + dict-key wording; sha256 only, no secret reads).
+- **G4 IDEMPOTENT-REENTRY PASS**: two consecutive selftest runs byte-identical exit matrix.
+- Red-first trail (honest, 2 harness REDs fixed in place before any green, no verdict re-rolls):
+  (1) rec-UnboundLocalError crashed C3/C4/C5 + C1 class never staged its mutation → exit 0 RED; fixed both.
+  (2) C4 harness class also missing `git add` → exit-0 RED; fixed. Also fixed stale staged-state bleed across
+  fires (checkout-without-reset) that had put cross-class messages in earlier runs' detail columns.
+- Feeds SIG-1 acceptance evidence (same corruption taxonomy, digest-only tier). ADOPTION as an actual
+  .git/hooks pre-commit = protocol change → Casey day item (SIG-1/LC-1 lane). C5 refusals share C2's message
+  wording (named class still correct in [C5]); message split is a cosmetic follow-up, booked not blocking.
+- (C) repro: not due (newest prior OURS booking ST1-AUDIT reproduced bit-exact at 01:1x; XP-B IS a
+  verification instrument, selftest matrix above is its own evidence; G4 = internal repro).
+- Manifest re-seal DEFERRED: foreign untracked lanes persist (d12x + d12y_keff_p035.py/results mtime Oct 7
+  02:06, no live process; docs/SUBSTRATE-SYNTHESIS.md Oct 6 14:06) — sealer correctly refuses; PW-1.
+  GPU lane idle all slice (CPU-only item). Rotation next wake: (A) SCOUT-60 (due — last SCOUT-59 02:1x),
+  or QG1d-micro recon (top open queue item); GPU open for QG4/QG1d/MC-1.
