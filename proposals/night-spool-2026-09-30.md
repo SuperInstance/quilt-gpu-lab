@@ -78,6 +78,21 @@
 - No GPU fired (lane idle, rotation honored). (C) not due: newest OURS booking remains QG7b (repro PASS 12:2x); HEAD since is foreign lanes + spool/docs. Manifest re-seal still deferred (foreign d12k2–d12r untracked live lane persists). No running processes; nothing duplicated.
 - Rotation next wake: (B) VX-1 or SS-1/IND-1 per queue order; GPU open (QG1d/QG4/MC-1).
 
+## SLICE 2026-10-07 00:1x AKDT (day-conductor) — (A) SCOUT-58: canary-primitive divergence + SELF-CATCH on proj_lattice
+- (A) SCOUT-58 (full text proposals/runs/SCOUT-58-fleet-push-2026-10-07-0815Z.md): only external push in
+  window = canons 917e627 — FNV-1a64 fleet canary diverges in saddle/jev-garden via `& 0xff` code-unit
+  mask = demonstrated collision generator (tamper-UNDETECTABLE substitutions; saddle FT-1 ledger 506/506
+  unverifiable canonically). TOOL + CORROBORATE (CI-1 alphabet pin is exactly the missing instrument there).
+  **SELF-CATCH: tools/proj_lattice.py:62 fnv1a64 iterates ord(ch) — same code-unit dialect family.**
+  Exposure check: ZERO booked verdicts cite proj_lattice digests → latent, not live. No CONTRADICT.
+  Spawned **AL-1** (CPU ~15m): UTF-8 fix + fleet-canonical non-ASCII gate + dialect-table test pin.
+- (C) newest OURS booking SIG-1: committed test harness re-run direct (script-style, not pytest-collectible
+  — note for FW-1-successor: test_sig1_prereg_seal.py has main(), zero pytest collection) → GATES ALL PASS
+  G1-G4, exit 0. **REPRO PASS.** Manifest: foreign untracked d12x lane persists (experiments/
+  d12x_generator_corr_audit.py + results JSON + docs/SUBSTRATE-SYNTHESIS.md) — re-seal deferred per
+  precedent; no sealed paths touched. GPU lane idle all slice (rotation: scout was the slot).
+- Rotation next wake: (B) AL-1 (cheap, top) or QO6t/DET-1d; GPU open (QG1d/QG4/MC-1).
+
 ## SCOUT-49 (2026-10-06 0415Z) — full text proposals/runs/SCOUT-49-fleet-push-2026-10-06-0415Z.md
 - HEADLINE — SCOUT-48 watch FIRED: **taskable-lobster LIVE** — signed Git task queue (HMAC-SHA256
   canonical-JSON, env secret, "the signature is the leash") + 3 repos created & verified (brief-assembler,
