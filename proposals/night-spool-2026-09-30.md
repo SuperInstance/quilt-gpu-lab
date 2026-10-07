@@ -2065,3 +2065,16 @@ other agents are feeding us; keep the handshake lane warm.
 - Untracked docs/SUBSTRATE-SYNTHESIS.md present, unknown lane authorship — left untouched (PW-1).
 - Foreign live lanes still running (nn-image-play servers :8790, receiptd serve) — untouched.
 - Rotation next wake: (B) QO6h audit or SIG-1 or pre-reg'd GPU QG1d/QG4/MC-1 per queue order.
+
+## SLICE 2026-10-06 1711x AKDT (day-conductor) — (B) QO6h BOOKED PASS; q10 failure-mode closed by construction
+- (C) not due: newest OURS booking CC-1b repro'd byte-identical 16:1x; QO6h's own repro fired in-slice
+  (deterministic, scratch re-fire diff EMPTY).
+- (B) **QO6h BOOKED: PASS (H1/H2/H3 all green, 5 frozen kernel streams)** — prereg f0f7293 committed+pushed
+  BEFORE fire; SCOUT-54 spawn. Verdict: rc-20260824-11 q10's evidence-expiry failure mode is STRUCTURALLY
+  IMPOSSIBLE in the QO6 kernel — E is a full-prefix cumsum, readable horizon == t at every step >= decision
+  latency (7/-1/5/4/-1), no stale-window decision. Standing fail-loud assertion committed; no prior QO6-family
+  booking affected. 2 declared pre-anchor fixes (sys.path; <10-sample refusal guard on early stop_t — the
+  kernel's own refusal rule, not an expiry). Booking landed, manifest re-sealed CLEAN (237 exp / 77 tool files
+  — the SUBSTRATE-SYNTHESIS untracked foreign no longer blocks; unknown when it cleared, noted).
+- Rotation next wake: (A) SCOUT due (last full sweep SCOUT-54 content; nothing swept since 00:11Z window) or
+  (B) top open CPU item (LWS-1 / RC-4 / SIG-1 / VP-1 / XR-1); GPU open (QG1d/QG4/MC-1).
