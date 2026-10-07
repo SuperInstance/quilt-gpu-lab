@@ -2271,3 +2271,6 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   Manifest re-seal: not attempted this slice (foreign untracked d12x/d12y/SUBSTRATE-SYNTHESIS
   persist; PW-1 precedent; sealer would correctly refuse). No running work duplicated.
 - Rotation next wake: (A) SCOUT-62, or (B) MUA-1 (CPU ~15m, VX-1 match-count assertions).
+- PUSH-PENDING (07:2x): QO7a landing commit 7040ffc + this note — remote rejected 2x
+  (Internal Server Error, not 429; no further retries per discipline). Next wake: `git push`
+  FIRST, before anything else, and mark this line [PUSHED].
