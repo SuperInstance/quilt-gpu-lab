@@ -2317,3 +2317,17 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   unchanged. Manifest re-seal deferred again (foreign untracked d12x/y/z + SUBSTRATE-SYNTHESIS, PW-1).
 - GPU lane idle all slice (rotation: scout slot). Rotation next wake: (B) DIFFPORT-1 fold-in (5m docs)
   then QO7a/AL-1 (cheap), or QG1d-micro recon; GPU open (QG4/QG1d/MC-1).
+
+## SLICE 2026-10-07 11:2x AKDT (day-conductor) — (B) JV-1 CLOSED: jev-semantic v0 maps as CORROBORATE (measurement tier), no new item
+- Top open item per rotation (SCOUT-63 done 10:2x; MUA-1 done). Read jev-semantic @fb1fb29 read-only.
+- Note: proposals/runs/JV-1-jev-semantic-vs-receipt-doctrine-2026-10-07.md. Verdict: the judgment log
+  (blob-hash keys, tolerance-verified values) is the MEASUREMENT tier complementary to our artifact tier
+  (receipt-manifest); inbox-014 "unreceipted claims → IGNORANCE" makes receipt presence an observable —
+  strengthens doctrine. Disagreement-never-averaged = QG7 ensemble law in another dialect. No CONTRADICT;
+  per spawn spec (maps → corroborate only), **JV-1 CLOSED, no new queue item**. Instrument notes for
+  FW-1-successor filed (their unpinned tag() thresholds; shell=True; judge-identity string literal).
+- (C) not due: newest OURS booking MUA-1 repro PASS 10:2x (tool-committed-post-booking caught there);
+  DETERM-1 repro PASS 06:1x. Manifest re-seal deferred (foreign untracked d12x/d12y/d12z +
+  SUBSTRATE-SYNTHESIS persist, PW-1). GPU untouched (inbox-015 student-v2 contention watch stands).
+- Rotation next wake: (A) SCOUT-64 (due ~2h), or (B) AL-1 (UTF-8 dialect fix, top cheap open) / DIFFPORT-1
+  (docs fold); GPU open QG4/QG1d/MC-1 only if inbox-015 lane clears.
