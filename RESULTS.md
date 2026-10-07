@@ -6620,3 +6620,19 @@ any relaunch-5.
 - **G4 PASS (trivial)**: arm-B wall ~4.3-4.6s vs arm-A ~4.6s — no cost concern; the gate is moot since the primitive fails.
 - VERDICT per prereg rules: hypothesis "lattice-snap lanes are single-draw bookable" REFUTED at swept eps; remaining eps {1e-3, 1e-5} deferred (per prereg; would need a different snap point — snap the DECISION inputs pre-pick, not the state post-round — spawned as DETERM-2 note below, not queued). **QG7 ensemble law (>=4 reruns for subpopulation verdicts) STANDS unchanged.**
 - (C) not due: newest OURS booking XP-B (8631d39) is itself a verification instrument (G4 idempotent-reentry = internal repro). Manifest re-seal deferred: foreign untracked d12x/d12y/SUBSTRATE-SYNTHESIS persist (PW-1); our paths clean at booking.
+
+## [BOOKED 09:3x Oct 7 CPU] MUA-1: PASS — VX-1 taint instrument now match-presence-guarded; all 10 verdict sets unchanged
+- Pre-reg proposals/runs/MUA-1-match-presence-assertions.md committed+pushed (914b392) BEFORE fire.
+- Upgrade to tools/verdict_index.py: (1) per-booking match COUNT asserted >=1 on every expected
+  G2 hit (probe-matched evidence, canons 3a7498a class); (2) NEW G3b matcher-alive canary — NEG
+  seeded into a booking copy MUST be detected (mutant-applied assertion: apply, watch detected);
+  (3) CLI arm reports INDETERMINATE (not bare []) for zero-evidence queries — the negative-control
+  empty set was indistinguishable from a dead matcher under old semantics.
+- Gates: G1-G4 verdicts unchanged; all 9 round-trip term->sets IDENTICAL to booked VX-1
+  (positional={VSB-1} counts 2, etc.); G3b canary PASS; <5ms CPU. RED-first witness recorded:
+  empty-index copy passes G3 trivially under old semantics — now visible as all-terms-zero-evidence.
+- No booked result threatened; FW-1-successor census note: every grep/census GREEN needs a
+  match-presence assertion row. GPU lane untouched (contended by inbox-015 student-v2, SCOUT-62).
+- Manifest re-seal: attempted, correctly REFUSED (foreign untracked d12x/d12y/d12z +
+  SUBSTRATE-SYNTHESIS persist; PW-1). Stays deferred until those lanes commit or clear.
+- (C) not due: newest OURS booking remains DETERM-1 (repro PASS 06:1x); XP-B self-verifying.

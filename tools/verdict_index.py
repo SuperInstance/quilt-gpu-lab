@@ -73,6 +73,20 @@ def taint_query(index, term):
     return hits
 
 
+def match_counts(index, term):
+    """MUA-1: per-booking matched-evidence count for `term` (verdict_reads + write sites).
+    A taint result is only meaningful with nonzero evidence of exposure; count==0 on an
+    expected hit means the probe never matched (canons 3a7498a mutant-assertion class)."""
+    counts = {}
+    t = term.lower()
+    for b in index["bookings"]:
+        n = sum(vr.lower().count(t) for vr in b["verdict_reads"])
+        n += sum((w.get("note", "") + " " + w["path"]).lower().count(t) for w in b["write_sites"])
+        if n:
+            counts[b["id"]] = n
+    return counts
+
+
 def selftest():
     fails = []
     idx = json.loads(INDEX.read_text())
@@ -101,6 +115,28 @@ def selftest():
         hits = set(taint_query(idx, term))
         if hits != want:
             fails.append(f"G2 taint({term!r}) = {sorted(hits)}, want {sorted(want)}")
+        # MUA-1: positive evidence — every expected hit must carry match count >= 1
+        mc = match_counts(idx, term)
+        for bid in want:
+            if mc.get(bid, 0) < 1:
+                fails.append(f"G2 MUA-1 taint({term!r}) booking {bid}: match count 0 (probe never matched)")
+    # MUA-1 G3b: matcher-alive canary (mutant-applied assertion) — seed NEG into a copy of
+    # one booking's verdict_reads; the SAME probe must fire on the seeded copy. A negative
+    # control on the live index is only meaningful if the matcher demonstrably matches.
+    seeded = json.loads(json.dumps(idx))
+    seeded["bookings"][0]["verdict_reads"].append(NEG)
+    if NEG not in seeded["bookings"][0]["verdict_reads"]:
+        fails.append("G3b seed did not apply")
+    if seeded["bookings"][0]["id"] not in taint_query(seeded, NEG):
+        fails.append("G3b matcher-alive canary FAILED: seeded probe not detected")
+    if match_counts(seeded, NEG).get(seeded["bookings"][0]["id"], 0) < 1:
+        fails.append("G3b seeded match count 0")
+    # MUA-1 dead-matcher RED-first witness: an EMPTY index under old semantics passed G3
+    # trivially (taint==[]); under new semantics G2 on the empty copy must FAIL loudly.
+    empty = {"bookings": []}
+    if taint_query(empty, NEG) != [] and match_counts(empty, "positional") == {}:
+        fails.append("MUA-1 empty-index probe malformed")
+    # (witness recorded, not a gate on the live index: empty-index G2 would fail all 9 terms)
     # G3 negative control + tamper
     if taint_query(idx, NEG) != []:
         fails.append("G3 negative control returned non-empty")
@@ -132,7 +168,11 @@ def main():
     if terms:
         idx = json.loads(INDEX.read_text())
         for t in terms:
-            print(f"taint({t!r}) -> {taint_query(idx, t)}")
+            hits = taint_query(idx, t)
+            mc = match_counts(idx, t)
+            ev = sum(mc.values())
+            tag = f"-> {hits}" if hits else ("-> INDETERMINATE (zero matched evidence across index)" if ev == 0 else "-> []")
+            print(f"taint({t!r}) {tag} counts={mc}")
     if fails:
         return 1
     print("ALL GATES PASS (G1-G4)")
