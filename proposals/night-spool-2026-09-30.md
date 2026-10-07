@@ -2190,3 +2190,18 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   Manifest re-seal deferred (foreign d12x untracked lane persists; sealer refusal by design, 5th+ instance).
 - Rotation next wake: (A) SCOUT due (~2 slices since SCOUT-58) or GPU open item (QG1d-micro recon / QG4);
   CPU residuals: QC-JEV3 consume-not-build, XP-B git-hook gate (feeds SIG-1 acceptance).
+
+## SLICE 2026-10-07 02:1x AKDT (day-conductor) — (A) SCOUT-59: SCOUT-58 MISSED git.pp + (C) ST1-AUDIT repro PASS
+- (A) SCOUT-59 (full text proposals/runs/SCOUT-59-fleet-push-2026-10-07-1014Z.md): external pushes
+  since 08:15Z = NONE, but **SCOUT-58 MISS found**: git.pp (NEW repo 06:22Z, 5 commits to 07:49Z)
+  was inside SCOUT-58's window and unnoted. TOOL/STEAL — post-receive hook with 40 checks (c266f23)
+  = live reference design for RC-5's push-time --check delta; Jev-scored question-loop (3c1b1b0)
+  CORROBORATES our pre-reg→fire→book doctrine. unoq-node (NEW, 1 commit) = edge witness for W5c
+  (LOW, docs note). No CONTRADICT. Spawned **PP-1** (reading ~20m): map git.pp's 40 checks vs RC-5
+  delta; steal-or-verdict table. LESSON: sweeps must enumerate CreateEvent, not just pushes on
+  watched repos.
+- (C) ST1-AUDIT mandatory repro: committed runner re-run → **PASS, 30/30 fields identical**
+  (KEEP-AUDIT; verdict_flip/tau_off LEAKY 1.000 confirmed). Manifest re-seal still deferred
+  (foreign untracked d12x/d12y lane persists; sealer would refuse; untouched per PW-1).
+- GPU lane idle all slice (rotation: scout was the slot). Rotation next wake: (B) PP-1 (cheap) or
+  AL-1 (still open from SCOUT-58) or QO6t; GPU open (QG1d/QG4/MC-1).
