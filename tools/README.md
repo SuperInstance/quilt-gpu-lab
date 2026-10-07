@@ -153,6 +153,20 @@ piece others can lift. Grab = copy the file; everything here runs alone.
   fail-loud, nonzero-exit ERROR with rc booked); worked example rc=0 IDENTICAL, 3 runs,
   receipt results/det_witness_example_2026-10-05.json.
 
+- **death-watch** — `tools/death_watch.py` — heartbeat + recheck-before-claiming conductor-death
+  detector (pattern lifted PROVEN from LC-1, booked PASS 2026-10-06, prereg 19810da: all 6 historical
+  conductor-death instances caught within one wake by heartbeat-line + recheck). `--beat ID` appends
+  an fsync'd heartbeat JSONL line at slice start; `--check` on the next wake verifies a commit landed
+  at/after the latest beat's ts on `--branch` — CLEAN rc=0 / DEAD rc=1 (dead beat named) /
+  fail-loud rc=2 (missing log, malformed beats, out-of-order ts, future-ts clock skew, git failure).
+  Append-only log; beats never deleted (archive-by-rename to reset). Stdlib-only, list-form
+  subprocess git. `python tools/death_watch.py --beat slice-id --log .wake_log.jsonl` then
+  `python tools/death_watch.py --check --log .wake_log.jsonl | --selftest`
+  TEST receipt 2026-10-06: selftest 6/6 — selftest caught three of its own bugs live (missing-log
+  raised raw OSError instead of rc=2; empty-repo `git log` rc=128 path left unbooked beats booking
+  FAIL-INPUT instead of DEAD; then the unborn-branch stderr string didn't match "ambiguous argument",
+  caught by the same pin); live worked example: unbooked beat DEAD rc=1, post-commit CLEAN rc=0.
+
 ## When you add a tool
 
 Append it here with: name — path — one line on what it does. If it needs
