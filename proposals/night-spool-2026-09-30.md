@@ -2298,3 +2298,22 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - (C) not due (DETERM-1 repro PASS 06:1x stands; XP-B self-verifying).
 - Rotation next wake: (A) SCOUT-63 (due ~every 2h), or (B) JV-1 (docs) / AL-1 (UTF-8 dialect fix,
   pin on 0x24a555471370b18d); GPU stays contended-watch before any QG4/QG1d/MC-1 fire.
+
+## SLICE 2026-10-07 10:2x AKDT (day-conductor) — (A) SCOUT-63: no CONTRADICT; DIFFPORT-1 spawned; MUA-1 REPRO PASS
+- (A) SCOUT-63 (full text proposals/runs/SCOUT-63-fleet-push-2026-10-07-1820Z.md): headline canons
+  5209ba5 — Equipment-Consensus-Engine PHP port computes a DIFFERENT consensus predicate (weighted-mean,
+  never reads verdict; 15.54% divergence, 100% more-permissive, in the UNTESTED port) → polyformalism
+  as N copies is a restatement, not a check → spawned **DIFFPORT-1** (docs-only, FW-1-successor row:
+  any port of a pinned instrument needs an N-way differential-test row). Also: galois-unification-proofs
+  stdout-grep "verification" defeated by one print (RC-1b/DEGENERATE corroborate); substrate-canary-pin
+  never tests its canary + 16-vs-17-hex trap reproduced inside the package (AL-1 direct corroboration —
+  our pin compares the reference integer; canon re-confirms 0x24a555471370b18d). rc q15 (11th gate
+  negative, cost axis) = QG6 + QO7a corroborate; QO7 cost matrix gains the q15 row (folded into QO7a,
+  no new item). jev-semantic disagreement-table / lobster-live Agent Ticket / git.pp = watch,
+  Casey-day territory. [EMBASSY] none new (moth-runner #2, pong #49 unchanged). PRs = dep-bump bots only.
+- (C) mandatory repro of newest OURS booking **MUA-1: REPRO PASS** — booking had cited its tool before
+  the tool commit (36f07ac post-booking; DET-1c class, caught): committed tool re-run → G1-G4 ALL PASS
+  exit 0; `--build` regenerates receipts/verdict_index.json BYTE-IDENTICAL (clean tree). Verdict sets
+  unchanged. Manifest re-seal deferred again (foreign untracked d12x/y/z + SUBSTRATE-SYNTHESIS, PW-1).
+- GPU lane idle all slice (rotation: scout slot). Rotation next wake: (B) DIFFPORT-1 fold-in (5m docs)
+  then QO7a/AL-1 (cheap), or QG1d-micro recon; GPU open (QG4/QG1d/MC-1).
