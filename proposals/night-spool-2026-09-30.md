@@ -93,6 +93,22 @@
   precedent; no sealed paths touched. GPU lane idle all slice (rotation: scout was the slot).
 - Rotation next wake: (B) AL-1 (cheap, top) or QO6t/DET-1d; GPU open (QG1d/QG4/MC-1).
 
+## SLICE 2026-10-07 04:1x AKDT (day-conductor) — (A) SCOUT-60: no CONTRADICT; DETERM-1 spawned (lattice-snap determinism)
+- (A) SCOUT-60 (full text proposals/runs/SCOUT-60-fleet-push-2026-10-07-1214Z.md): only external push in
+  window = canons 33900ac (10:24Z gems: multigraph β₁ precondition gap, fabricated Expected-output README,
+  vacuous T4) + a0b8ba5 (04:23Z: quilt-vm-haskell 4/6 zero-assertion tests, wrong-language .gitignore).
+  No CONTRADICT. TOOL/STEAL: proof-game-sync lattice-snap determinism primitive → spawned **DETERM-1**
+  (CPU ~20m, pre-reg first): eps-snap champion state per selection round; gates G1 (arm A reproduces QG7
+  spread) / G2 (arm B bit-identical 4-rerun) / G3 (AUC within ensemble mean ± spread — snap must not change
+  the verdict) / G4 (≤1.5× cost). PASS ⇒ amend QG7 ensemble law to single-draw-bookable. AL-1 amended:
+  pin dialect table on 0x24a555471370b18d reference values, compare integers. RC-1b/FW-1-successor notes
+  appended (assertion-branch coverage; declared-precondition vs input-domain row; template-.gitignore row).
+  PRs: none open anywhere; zero-msg-test issues = API noise. [EMBASSY] pong #49 unchanged (Casey day item).
+- (C) not due: newest OURS booking XP-B (8631d39) is a verification instrument; G4 idempotent-reentry =
+  internal repro; prior ST1-AUDIT repro PASS 01:1x. GPU lane idle (rotation: scout was the slot).
+  Manifest re-seal deferred (foreign untracked d12x/d12y/SUBSTRATE-SYNTHESIS persist, PW-1).
+- Rotation next wake: (B) DETERM-1 (pre-reg first) or QG1d-micro recon; GPU open (QG4/QG1d/MC-1).
+
 ## SCOUT-49 (2026-10-06 0415Z) — full text proposals/runs/SCOUT-49-fleet-push-2026-10-06-0415Z.md
 - HEADLINE — SCOUT-48 watch FIRED: **taskable-lobster LIVE** — signed Git task queue (HMAC-SHA256
   canonical-JSON, env secret, "the signature is the leash") + 3 repos created & verified (brief-assembler,
