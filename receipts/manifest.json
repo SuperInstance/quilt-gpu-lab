@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-07T01:16:14.293705+00:00",
+  "generated_at": "2026-10-07T03:15:49.662422+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "386f6ec1b403e355b73792eecaba88c61808437c119ed2980ede0cac093878a8",
+    "RESULTS.md": "4edae40eb1d2318772ee53fbf57935fb921c1c833298b8e7b145b35f577ff5be",
     "QUEUE.md": "d990704a9eb087a2052f33562a0a67a40a6281d1c62e95cab3655a559fed8622"
   },
   "experiments": {
@@ -206,6 +206,7 @@
     "qo6h_evidence_horizon.py": "6dda677abd8d7139c1fd0bf6f598aa4fb0cdd16d3c9c7128662456956e84617b",
     "qo6n_noise_gap.py": "dd114640c6eee6e0899a8d8144d33aa23fe6e823b41ca7344d36cffb2fcfd226",
     "qo6p_percell_transfer.py": "579ac7bad6389cf0e9c92ba42e718183dd45530d01778f6f643759678602f0a0",
+    "qo6s_good_to_bad.py": "c0fb450d2eaed494e1b840d2850adb8f67eca34494b705c30393a9e4101e9302",
     "qo6t_transient_stress.py": "cc0ea4786aae3a6461b39d05b2d90e244fe6b6bf34d2bef83ad11b768d09acf5",
     "qo9_lane_vs_stream.py": "30ef64dccbb29bf8d261ece169a02a06f8d0f655fa10d5574d4022ac6949211e",
     "rest_em_loop.py": "d53c4383f7df9d062a1cc61337385ae098d9722ebb9287c68cfe61dad37f3f88",
@@ -246,7 +247,7 @@
     "xq0_substrate_consolidation.py": "eae71b6a1c664669a941bc9be03e7574e0ec16fb6f9541250aae11c9384bb32a"
   },
   "tools": {
-    "README.md": "69ed5151be17584f3e8043c791988e6475af03f0cf8e371fe011647da5345c21",
+    "README.md": "917eff56705b0c43ad906242ded169c18b4ffec2d4c90f4f004dbd7900574874",
     "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "auc_sep.py": "65611d7fc6cb42e3bbd515bb4850e724bf5aa7d318086a4c5e906088f89bd6c9",
     "calib_gate.py": "3f7a109c81f70bef1bb5d1c2f42656f0bfa65d8fd4a1d27354a0c9eac9019f5d",
@@ -286,6 +287,7 @@
     "gpu_ramp_receipt.py": "c0cc342bff783ed3402ebcf35eceb39601d8659fa38b16fab83caea4791452a6",
     "hash_dut.py": "f0eda10fdab8bc5c65498cb7a3f43e5e6aeaba402b5a3cd31327061f8081971d",
     "holdout_gate.py": "5fd73403167ee4b46267333a41d3bc5852ad5138a215e822974e1fc4b044e482",
+    "horizon_witness.py": "b1d0a73b44f19ff699b6b4d4b1cd8954db228fa98b1ecec36b276539a73b955c",
     "ideation_banter.py": "cfd95d15ed712f699c3902ad3e3c6b2dd67a1feee611ec15fee6d465ff1b3dee",
     "ideation_banter_gpu.py": "5eba10d0cbe2cf5276e02b9a463b395f6d8f5314edc988f310303c720e63ab11",
     "judge_chunk.py": "53d5a9aa2b23f317322e3041fd1fb6d5e0ac410dc13c8af80e50d2cde698779b",
