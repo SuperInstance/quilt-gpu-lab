@@ -6513,3 +6513,30 @@ any relaunch-5.
 - (C) not due this slice: newest prior OURS booking QO6h already repro PASS 18:1x (d64b55b); this
   slice's own booking includes its identical repro. Rotation next wake: (A) SCOUT per rotation
   (last was 18:1x SCOUT-55-lineage slice), then GPU open items QG1d/QG4/MC-1.
+
+## SLICE 2026-10-06 21:1x AKDT (day-conductor) — (B) LC-1 BOOKED: PASS (with latency caveat)
+- [QUEUE mark: LC-1 spawned by SCOUT-56 (ledger-continuity 5818938 death-detector doctrine) → DONE this slice.]
+- Prereg 19810da committed+pushed BEFORE the audit. Docs-only; no experiment fired; no GPU.
+- Method: enumerated historical mid-slice-death / unbooked-artifact instances from RESULTS.md+git; for each,
+  tested whether (a) heartbeat-line-at-slice-START to a wake-log + (b) re-check-before-claiming (next wake
+  verifies previous heartbeat's slice reached its booking commit, incl. push) would have caught it.
+- Instances (G1: 6 ≥ 3, all anchored):
+  1. QO6 wake died mid-slice (prereg daf7db7 fired 05:3x Oct 1, artifacts untracked, booked 05:5x) — heartbeat
+     (no booking commit at next wake) + recheck CATCH; this was in fact caught by protocol step-1 git status.
+  2. QG1 census dirty-tree booking (committed script @cf268c6 never produced its own 1892 booking; radians
+     variant, RESULTS:2958-2960) — recheck-before-claiming (booking must cite a commit whose script reproduces
+     it) CATCH. Heartbeat n/a (no death) — recheck is the operative half.
+  3. Dirty-tree instance #4: B1G booking c7126c0 left producing script untracked (RESULTS:5313) — recheck CATCH.
+  4. DET-1c booking 7f6d927 cited untracked verdict JSONs + 6 adapter dirs (closed 04:1x Oct 6) —
+     recheck-as-booking-completeness (cited files TRACKED at booking commit) CATCH; SCOUT-49 already adopted this.
+  5. Orphaned dead-fire 05:11 (runner+results untracked, no prereg, no booking; RESULTS:3498) — heartbeat+recheck CATCH.
+  6. d23b phantom seal (manifest sealed over uncommitted bytes; repaired c8faa32/b2d24bb) — recheck-at-seal
+     (sealer refuses dirty sealed paths) CATCH.
+- G2 PASS: 6/6 caught by heartbeat+recheck at the next wake. G3 PASS: verdict table above; NO protocol change
+  made (Casey gate). Named caveat (not a gate fail): detection latency = one wake (~1h); heartbeat line must be
+  the slice's FIRST action; and death between local commit and push requires recheck to compare REMOTE tip, not
+  local tip — the ledger-continuity "liveness in the ledger" reading. Residue class UNCAUGHT by design:
+  corruption inside a committed+pushed artifact (out of scope — that is RC-4/RC-5/seal-chain territory).
+- BOOKED: PASS — heartbeat+recheck would have caught every historical conductor-death instance in this repo.
+  Adoption decision (write heartbeat lines per slice) is a protocol change → deferred to Casey (day item).
+- G4: manifest re-seal attempt deferred-or-run below (foreign d12x untracked lane present at slice start).
