@@ -187,6 +187,15 @@
 - [ ] **JC-1** (CPU ~10m, LOW): reformat QC-JEV(/QC-JEV2) numbers into fleet-seeds wave-63 jev calibration ledger shape, staged locally for Casey to push. No filing.
 - RC-1 priority RAISED (canons PR #4: quilt-cell-bridges 44/63 bridges hardcode /workspace output paths — our 4-instance class, fleet-wide).
 
+## SLICE 2026-10-06 19:1x AKDT (day-conductor) — (B) QO6s BOOKED: RED — retention-asymmetry limit NAMED
+- Top open item per queue. Prereg 77a8c17 committed+pushed BEFORE firing; booked from committed tree;
+  repro byte-identical. G1/G2 controls PASS; G3 FAIL all three good→bad streams (INSUFFICIENT, never
+  kill, E_final 0.77-1.01 vs hopeless tail). See RESULTS.md. RED does not void QO6/QO6h/QO6t (different
+  stream cells) — it names the limit row: a stream ever plausibly-healthy cannot be killed by prefix
+  evidence alone; QO7 cost matrix must include the asymmetry. Manifest re-sealed clean 62decd7 (the
+  long-standing foreign-lane deferral is cleared — tree sealed). (C) not due (QO6h repro PASS 18:1x).
+  Rotation next wake: (A) SCOUT per rotation, then GPU open QG1d/QG4/MC-1.
+
 ## FINDINGS (append-only)
 - 00:0x CONDUCTOR-0 (main): QG2 headline above. qcell-sim gained crx + receipt-anchored selftest. Vectorized lane = gathers + bmm chains; ANCHOR-VEC 2e-34.
 - 00:2x PR-SWEEP #1 (conductor): 6 repos swept; only MicroMoth-quilt active. **PR #29 OPEN** — docs-only provenance: qcells lab canonical home = SuperInstance/micrograd-quilt; cite repo not local path in receipts. Clean (fail-first pins, 248/249; 1 pre-existing main-tip manifest drift, remedy already in PR #25 stack). Merged highlights: #28 exp022 train-visible crossing census (tie-break-invariant), #27 rate-not-wall + desert-extends-to-cloud, #26 tie-band-diversity replicated, #25 archive-assembly + manifest regen, #24 fitness desert at birth cloud (29/31/37). **Steals:** (a) weight-law by-name citation -> spawned RECEIPT-CITE item; (b) exp018 desert-at-birth-cloud independently corroborates QG2 structural-desert — desert is upstream of selection, now two lanes agreeing; (c) note bookkeeping discipline: my first spool edit clobbered the QG4 queue line; caught + restored same wake. Always re-read the file after structural edits.
