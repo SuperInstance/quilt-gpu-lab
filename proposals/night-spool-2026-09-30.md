@@ -2134,3 +2134,13 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   unthreatened). No PRs/issues; [EMBASSY] pong #49 unchanged (Casey day item). MM/pong/jev 21:0xZ merges
   already covered by SCOUT-46. Foreign untracked d12x + SUBSTRATE-SYNTHESIS.md persist (PW-1, untouched).
 - Rotation next wake: (B) SIG-1 / QO6t prereg / LC-1 / GPU QG1d-QG4-MC-1 per queue order.
+
+## SLICE 2026-10-06 21:1x AKDT (day-conductor) — (B) LC-1 BOOKED: PASS
+- Prereg 19810da pushed before run; booked 667f986. Heartbeat-at-slice-start + re-check-before-claiming
+  (ledger-continuity doctrine) would have caught ALL 6 historical conductor-death/dirty-booking instances
+  (QO6 dead wake daf7db7; QG1 census cf268c6 radians; B1G c7126c0; DET-1c 7f6d927; 05:11 orphaned dead-fire;
+  d23b phantom seal). Caveat: recheck must compare REMOTE tip (death between commit and push). Protocol
+  change itself deferred to Casey (day item). See RESULTS.md.
+- Manifest re-seal REFUSED (foreign d12x untracked lane) — deferred per PW-1 precedent; sealer working as designed.
+- (C) not due: QO6s booking carries its own byte-identical repro; no newer OURS booking prior to this docs-only run.
+- Rotation next wake: (A) SCOUT per rotation; GPU open QG1d/QG4/MC-1.
