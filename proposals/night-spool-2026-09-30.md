@@ -2144,3 +2144,11 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - Manifest re-seal REFUSED (foreign d12x untracked lane) — deferred per PW-1 precedent; sealer working as designed.
 - (C) not due: QO6s booking carries its own byte-identical repro; no newer OURS booking prior to this docs-only run.
 - Rotation next wake: (A) SCOUT per rotation; GPU open QG1d/QG4/MC-1.
+
+## SCOUT-57 (2026-10-07 06:13Z / 22:1x AKDT day-conductor slice) — full text proposals/runs/SCOUT-57-fleet-push-2026-10-07-0613Z.md
+- No CONTRADICT this sweep (QO2 stack, receipt-manifest doctrine, QG3+QG6, QG1c, W5a/b/c, DECIDE-1/2 all unthreatened). Window: 48h.
+- HEADLINE (CORROBORATE): canons a0b8ba5 — quilt-vm-haskell: 4/6 tests have ZERO assertion branches (control-flow-proven vacuous, no execution needed), flagship asserts nothing, tracked build cache, phantom LICENSE. New named member of the REPORTER-DEFAULT/failopen class; cheap static arm (reachable-fail-path grep) noted for FW-1 successor.
+- HEADLINE (TOOL + CORROBORATE x2): lucineer-system b578550 DL3-longitudinal — frozen day-1–3 kernel decays on real data (composed FRR 0%→26.7%, FAR replicates 5.0%); judge stable, stream drifted; INVALID_HARNESS honestly self-declared under frozen pre-reg. Pins doctrine sharpened: digest pins = IDENTITY, freshness = different axis. No OURS booking threatened (no frozen learned components in our instruments). Spawned **SP-1** frozen-component census (CPU ~30m, annotation not audit, pre-reg first) feeding QO7 stale-instrument row.
+- TOOL low: question-tree witness/blame marks → spawned **PP-2** (~20m reading, gate = concrete query git log can't answer).
+- EMBASSY new: pong-quilt r37 stone-v1 verification gift (of OUR artifact — Casey day item), moth-runner second-reader gift, substrate-llm-client DeepSeek field notes (read-only; access still revoked). No replies (standing rule).
+- (C) done: newest OURS booking LC-1 is docs-only — prereg 19810da + booking 667f986 verified to contain all cited files as tracked content (shown in commit stats); no script exists to re-run; prior experiment booking QO6s already carries identical repro. Manifest re-seal still deferred (foreign d12x untracked live lane persists, unchanged this slice). No GPU fired (rotation: scout was the slot; QG1d/QG4/MC-1 open next wake).
