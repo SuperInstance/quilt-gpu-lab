@@ -679,3 +679,19 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   `python tools/auc_sep.py --groups g.json [--pos winners --neg losers --features f1,f2 --band 0.5,0.75 --out r.json] | --example`
   Stdlib-only, deterministic, fail-loud rc=0/1/2. Smoke 2026-10-06: selftest
   PASS (sig AUC=1.0, noise AUC=0.5 in-band -> gate FAIL rc=1, clean -> rc=0).
+
+- **json-gate** — `tools/json_gate.py` — generic fail-loud JSON input
+  validator (mechanizes the fleet-wide convention every tool re-implements
+  inline: required keys + required types are checked BEFORE any
+  computation; violations book FAIL honestly instead of crashing deep in
+  a run). Dot-notation nested paths, types str/int/float/num/bool/list/
+  dict/any, `!` = non-empty required, `?` = optional (null ok); NaN/Inf
+  always fail num; bool is never int (pinned). Stdlib-only, read-only,
+  exit 0=PASS / 1=FAIL / 2=FAIL-INPUT.
+  `python tools/json_gate.py --file r.json --rules '{"verdict":"str!","tau":"num"}' [--out r2.json] | --doc '<json>' | --rules-file f.json | --selftest`
+  TEST receipt 2026-10-07: selftest 11/11 — selftest caught two real bugs
+  live (optional keys with explicit null failed the type check; the `!?`
+  combo rule was undetected because only the last suffix char was checked —
+  both fixed, pins untouched); worked example rc=0 PASS (3 rules on a good
+  doc), missing-key RED rc=1, receipt
+  results/json_gate_example_2026-10-07.json.

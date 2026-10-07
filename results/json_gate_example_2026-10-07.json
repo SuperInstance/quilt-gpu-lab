@@ -1,0 +1,7 @@
+{
+  "doc_source": "/tmp/jg_good.json",
+  "n_rules": 3,
+  "tool": "json-gate",
+  "verdict": "PASS",
+  "violations": []
+}
