@@ -1,0 +1,22 @@
+{
+  "tool": "gen-audit",
+  "p": 0.7,
+  "T": 800,
+  "W": 8,
+  "draws": 300,
+  "k": 3.0,
+  "actual_gen_p": 0.7,
+  "seed": 2718,
+  "corr_mean": 0.6990460605979245,
+  "corr_sd": 0.009014507649759076,
+  "null_mean": 0.010264773652893338,
+  "sigma": 0.0125,
+  "window": [
+    0.6625,
+    0.7374999999999999
+  ],
+  "G1_fidelity": true,
+  "G2_null_control": true,
+  "verdict": "PASS",
+  "ts": "2026-10-07T08:41:48Z"
+}

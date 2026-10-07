@@ -382,6 +382,22 @@ more than a copy to use, it's not grabbable yet.
   INSUFFICIENT before and after the flip — structurally confirms the booked
   QO6h proof, receipt results/horizon_witness_eproc_2026-10-06.json.
 
+- **gen-audit** — `tools/gen_audit.py` — generator-fidelity audit (pattern lifted
+  PROVEN from D12x, booked 2026-10-06: partner corr read 0.605 at nominal p=0.7 and
+  the audit answered "generator is faithful, that was sampling noise"): seeded
+  copy-prob partner-pair generator -> D independent centered-cosine |corr| draws
+  -> G1 fidelity gate (mean within p +- k/sqrt(T*W)) + G2 null-bias control
+  (finite-sample |corr| bias visible but small). RED control `--actual` corrupts
+  the generator and the audit must fire. Stdlib-only, seeded, fail-loud rc=2,
+  exit 0=PASS / 1=FAIL.
+  `python tools/gen_audit.py --p 0.7 --t 800 --w 8 --draws 300 [--out r.json] | --actual 0.6 | --selftest`
+  TEST receipt 2026-10-07: selftest 5/5 — selftest caught its own wrong pin live
+  (p=0.5 is a VALID generator, corr 0, and the fail-loud pin expected it to
+  refuse; pin fixed to p=0.0, gate untouched); worked example rc=0 PASS
+  (corr_mean 0.6990 vs p=0.7, window [0.6625,0.7375], null bias 0.0103),
+  corrupted control (actual=0.6) rc=1 FAIL G1. Receipt
+  results/gen_audit_example_2026-10-07.json.
+
 ### onboard.py — fleet-standard credential onboarding (Casey 2026-10-04)
 Every grabbable tool that touches a provider registers itself in `tools/onboard.json`
 (var name, keyfile name, optional extracted-config path) and inherits the onboarding CLI:
