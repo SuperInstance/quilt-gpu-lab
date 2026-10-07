@@ -2176,3 +2176,17 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - Foreign untracked d12x lane still present — manifest re-seal stays deferred. No GPU fired (rotation: SCOUT
   was last slot; GPU items QG1d/QG4/MC-1 remain open). Rotation next wake: (C) verify SIG-1 booking (trivial
   re-run) or (B) QO6t pre-reg; GPU free.
+
+## SLICE 2026-10-07 0114x AKDT (day-conductor) — (B) ST1-AUDIT BOOKED KEEP-AUDIT; (C) repro bit-exact
+- Idempotence check first: SIG-1 repro PASS + SCOUT-58 landed 00:1x; no IN-PROGRESS items; no live experiment
+  processes (ps checked; GPU lane idle). Foreign untracked d12x lane (mtime Oct 6 20:07, no process) untouched.
+- (B) ST1-AUDIT fired + booked (pre-reg 4c8fc9d pushed BEFORE fire). **KEEP-AUDIT**: verdict_flip and tau_off
+  are trivially surface-solvable (mechanical AUC 1.000); sign_flip 0.6208 / wins_over 0.6217 / seed_drop 0.735 /
+  denom_swap 0.9392 below the 0.95 gate. New booked sub-finding: wins_over is weak-corruption BY CONSTRUCTION
+  (only ~24% of draws cross wins>n_pairs) — a perfect detector still cannot separate it; upstream corpus fix
+  candidate. ST1v3 spec: re-render the 2 leaky ops before any retrain; suspects (b) corpus size / (c) capacity
+  stay live (leakage explains direction, not magnitude).
+- (C) mandatory repro: bit-exact on re-fire to ext4 scratch (--out doctrine; artifact embedded runner_sha256).
+  Manifest re-seal deferred (foreign d12x untracked lane persists; sealer refusal by design, 5th+ instance).
+- Rotation next wake: (A) SCOUT due (~2 slices since SCOUT-58) or GPU open item (QG1d-micro recon / QG4);
+  CPU residuals: QC-JEV3 consume-not-build, XP-B git-hook gate (feeds SIG-1 acceptance).
