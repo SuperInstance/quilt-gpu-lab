@@ -2288,3 +2288,13 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - (C) not due (DETERM-1 repro PASS 06:1x; XP-B self-verifying 03:1x). No GPU fired: lane contended by
   inbox-015 claim anyway; next GPU wake (QG4/QG1d/MC-1) must process-check for student-v2 first.
   Rotation next wake: (B) JV-1 or MUA-1 or QO7a-fire per queue order.
+
+## SLICE 2026-10-07 09:3x AKDT (day-conductor) — (B) MUA-1 BOOKED: PASS (match-presence on VX-1)
+- (B) per rotation (SCOUT-62 was the (A) slot at 08:2x; GPU contended by inbox-015 student-v2).
+  QO7a confirmed already landed (7040ffc docs amendment) — struck from candidate list.
+- MUA-1: pre-reg 914b392 pushed before fire; tool upgrade + booking 575a77b pushed. All VX-1
+  verdict sets unchanged; G3b matcher-alive canary new; CLI INDETERMINATE semantics new.
+  Manifest re-seal refused (foreign untracked lanes persist, PW-1). No CONTRADICT exposure.
+- (C) not due (DETERM-1 repro PASS 06:1x stands; XP-B self-verifying).
+- Rotation next wake: (A) SCOUT-63 (due ~every 2h), or (B) JV-1 (docs) / AL-1 (UTF-8 dialect fix,
+  pin on 0x24a555471370b18d); GPU stays contended-watch before any QG4/QG1d/MC-1 fire.
