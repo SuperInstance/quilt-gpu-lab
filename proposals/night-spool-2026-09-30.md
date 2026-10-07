@@ -2121,3 +2121,16 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   QG1c/W5 seeds beyond the QO6s candidate above.
 - Rotation next wake: (B) SIG-1 or pre-reg+fire QO6s (top, cheap, data constructed) or
   QO6t per queue order; GPU open (QG1d/QG4/MC-1).
+
+## SCOUT-56 (2026-10-06 2011Z AKDT) — full text proposals/runs/SCOUT-56-fleet-push-2026-10-07-0411Z.md
+- HEADLINE — taskable-lobster's three repos PUBLICLY PUSHED 16:13Z Oct 6 (brief-assembler, stream-curator,
+  ledger-continuity; SCOUT-49 saw creation only). TOOL/STEAL: ledger-continuity heartbeat-as-death-detector +
+  re-check-before-claiming (exactly-once recording under at-least-once execution; proven under os._exit) →
+  spawned **LC-1** (CPU ~20m): audit conductor-slice death-detection against our historical instances
+  (05:5x QO6 unbooked wake, 3 dirty-tree bookings, 7f6d927 D-2 untracked booking); gate = each instance
+  caught by heartbeat+recheck; docs-only. CORROBORATE x2: jev R6 G1 bimodality on identical bytes
+  (5th witness of DET-1/QG7 single-draw class); brief-assembler overnight-silent doctrine = our conductor
+  pattern. No CONTRADICT (QO2 stack incl. QO6s asymmetry limit, receipt doctrine, QG3+QG6, QG1c, W5a-c
+  unthreatened). No PRs/issues; [EMBASSY] pong #49 unchanged (Casey day item). MM/pong/jev 21:0xZ merges
+  already covered by SCOUT-46. Foreign untracked d12x + SUBSTRATE-SYNTHESIS.md persist (PW-1, untouched).
+- Rotation next wake: (B) SIG-1 / QO6t prereg / LC-1 / GPU QG1d-QG4-MC-1 per queue order.
