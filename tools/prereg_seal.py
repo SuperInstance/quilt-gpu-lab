@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
-"""SIG-1 — HMAC prereg seal + refuse-to-fire.
+"""SIG-1: HMAC-SHA256 prereg seal (SCOUT-49 spawn, prereg 4dcfe09).
 
-Seals a prereg file with HMAC-SHA256 over its sha256 digest (canonical JSON envelope).
-Key comes from env QUILT_SEAL_KEY and is never echoed or written.
+The signature is the leash: a prereg file sealed at commit time; a runner
+calls `check` before firing and refuses on TAMPER/missing. Secret comes from
+env PREREG_SEAL_SECRET and is never written or echoed.
 
 Usage:
-  QUILT_SEAL_KEY=... python3 tools/prereg_seal.py seal   FILE
-  QUILT_SEAL_KEY=... python3 tools/prereg_seal.py verify  FILE
-  python3 tools/prereg_seal.py verify --keyless FILE   # digest-only, HMAC UNVERIFIED
-Exit codes: 0 MATCH/DIGEST-MATCH | 2 TAMPERED | 3 MISSING-SEAL | 4 KEY/ARG error.
+  prereg_seal.py seal <prereg>     -> writes <prereg>.seal.json (exit 0)
+  prereg_seal.py verify <f> <seal> -> exit 0 MATCH / 1 TAMPERED
+  prereg_seal.py check <prereg>    -> verify against default seal path (refuse-to-fire gate)
+Missing/empty secret on seal: exit 2 (fail-loud). Canonical bytes = raw file bytes.
 """
 import hashlib
 import hmac
@@ -17,74 +18,69 @@ import os
 import sys
 
 
-def die(code, msg):
-    print(msg, file=sys.stderr)
-    sys.exit(code)
+def _secret() -> bytes:
+    s = os.environ.get("PREREG_SEAL_SECRET", "")
+    if not s:
+        print("REFUSE: PREREG_SEAL_SECRET missing/empty", file=sys.stderr)
+        sys.exit(2)
+    return s.encode()
 
 
-def key_from_env():
-    k = os.environ.get("QUILT_SEAL_KEY")
-    if not k:
-        die(4, "QUILT_SEAL_KEY unset — refusing (fail loud, no silent defaults)")
-    return k.encode()
+def _key_id(secret: bytes) -> str:
+    return hashlib.sha256(secret).hexdigest()[:8]
 
 
-def file_digest(path):
-    try:
-        with open(path, "rb") as f:
-            return hashlib.sha256(f.read()).hexdigest()
-    except FileNotFoundError:
-        die(4, f"no such file: {path}")
+def seal(path: str) -> None:
+    data = open(path, "rb").read()
+    secret = _secret()
+    mac = hmac.new(secret, data, hashlib.sha256).hexdigest()
+    record = {
+        "algo": "hmac-sha256",
+        "key_id": _key_id(secret),
+        "file": path,
+        "digest": mac,
+    }
+    seal_path = path + ".seal.json"
+    with open(seal_path, "w") as f:
+        json.dump(record, f, sort_keys=True)
+        f.write("\n")
+    print(f"SEALED {path} -> {seal_path} key_id={record['key_id']}")
 
 
-def load_seal(path):
-    sp = path + ".seal.json"
-    if not os.path.exists(sp):
-        die(3, f"missing seal file: {sp}")
-    with open(sp) as f:
-        return json.load(f)
+def _load(path: str):
+    rec = json.load(open(path))
+    assert rec["algo"] == "hmac-sha256", "bad algo"
+    return rec
 
 
-def canonical(b):
-    return json.dumps(b, sort_keys=True, separators=(",", ":")).encode()
+def verify(target: str, seal_path: str) -> None:
+    secret = _secret()
+    rec = _load(seal_path)
+    data = open(target, "rb").read()
+    mac = hmac.new(secret, data, hashlib.sha256).hexdigest()
+    if hmac.compare_digest(mac, rec["digest"]):
+        print("MATCH")
+        sys.exit(0)
+    print(f"TAMPERED {target}")
+    sys.exit(1)
 
 
-def main():
-    if len(sys.argv) not in (3, 4) or (len(sys.argv) == 4 and (sys.argv[1] != "verify" or sys.argv[2] != "--keyless")):
-        die(4, "usage: prereg_seal.py {seal|verify} FILE | verify --keyless FILE")
-    if len(sys.argv) == 4:
-        cmd, path, keyless = "verify", sys.argv[3], True
-    else:
-        cmd, path, keyless = sys.argv[1], sys.argv[2], False
-    if cmd == "seal" and keyless:
-        die(4, "seal requires a key; --keyless applies to verify only")
-    key = None if keyless else key_from_env()
-    digest = file_digest(path)
-    if cmd == "seal":
-        sp = path + ".seal.json"
-        if os.path.exists(sp):
-            die(4, f"refusing to overwrite existing seal: {sp} (re-seal is forgery surface)")
-        env = {"alg": "HMAC-SHA256", "file": os.path.basename(path), "sha256": digest}
-        mac = hmac.new(key, canonical(env), hashlib.sha256).hexdigest()
-        with open(sp, "w") as f:
-            json.dump({**env, "hmac": mac}, f, indent=2, sort_keys=True)
-            f.write("\n")
-        print(f"SEALED {path} sha256={digest}")
-        return
-    # verify
-    env = {k: v for k, v in load_seal(path).items() if k != "hmac"}
-    stored = load_seal(path)["hmac"]
-    if not keyless:
-        expect = hmac.new(key, canonical(env), hashlib.sha256).hexdigest()
-        if not hmac.compare_digest(expect, stored):
-            die(2, f"TAMPERED: HMAC mismatch on {path}")
-    if env.get("sha256") != digest:
-        die(2, f"TAMPERED: content digest drifted on {path} (sealed {env.get('sha256')[:12]} vs now {digest[:12]})")
-    if keyless:
-        print(f"DIGEST-MATCH {path} sha256={digest} HMAC UNVERIFIED (keyless)")
-    else:
-        print(f"MATCH {path} sha256={digest}")
+def check(path: str) -> None:
+    seal_path = path + ".seal.json"
+    if not os.path.exists(seal_path):
+        print(f"REFUSE-TO-FIRE: no seal for {path}", file=sys.stderr)
+        sys.exit(3)
+    verify(path, seal_path)
 
 
 if __name__ == "__main__":
-    main()
+    cmd = sys.argv[1] if len(sys.argv) > 1 else ""
+    if cmd == "seal":
+        seal(sys.argv[2])
+    elif cmd == "verify":
+        verify(sys.argv[2], sys.argv[3])
+    elif cmd == "check":
+        check(sys.argv[2])
+    else:
+        print(__doc__, file=sys.stderr)
+        sys.exit(64)

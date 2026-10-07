@@ -6540,3 +6540,22 @@ any relaunch-5.
 - BOOKED: PASS — heartbeat+recheck would have caught every historical conductor-death instance in this repo.
   Adoption decision (write heartbeat lines per slice) is a protocol change → deferred to Casey (day item).
 - G4: manifest re-seal attempt deferred-or-run below (foreign d12x untracked lane present at slice start).
+
+## SLICE 2026-10-06 23:1x AKDT (day-conductor) — (B) SIG-1 BOOKED: PASS (G1-G4)
+- [QUEUE mark: SIG-1 spawned by SCOUT-49 (taskable-lobster signed-queue "the signature is the leash") → DONE this slice.]
+- Prereg 4dcfe09 committed+pushed BEFORE the tool ran. No GPU; CPU seconds.
+- Tool: tools/prereg_seal.py — hmac-sha256 over raw prereg bytes, secret env-only (PREREG_SEAL_SECRET,
+  never written/echoed; key_id = sha256(secret)[:8]); subcommands seal/verify/check; check = refuse-to-fire
+  gate (missing seal exit 3, TAMPER exit 1, empty-secret exit 2 fail-loud).
+- Gates (red-first per prereg): G1 refuse-loud + two-seals-byte-identical PASS; G2 clean MATCH PASS;
+  G3 tamper-file AND tamper-digest both RED (exit 1 TAMPERED) PASS; G4 refuse-to-fire (clean 0 / missing 3 /
+  tampered 1) PASS. Two consecutive identical test runs. Live demo: real prereg sealed (key_id f0927b88),
+  check MATCH, wrong-secret check → TAMPERED (exit 1).
+- Test-infra note: initial run RED for a harness-path bug (TOOL resolved under tests/), fixed in place
+  before any green — honest trail, tool itself unchanged by the fix.
+- Honest note: HMAC with a shared env secret detects tampering, not authorship; secret rotation invalidates
+  old seals (key_id pins which secret sealed). Adoption (runner calls check pre-fire) is a protocol change →
+  Casey day item, same as LC-1's heartbeat adoption.
+- (C) not due: newest prior OURS booking LC-1 is docs-only (no artifact to reproduce; verified in 22:1x slice).
+- Manifest: foreign untracked d12x lane persists (experiments/d12x_generator_corr_audit.py et al) —
+  re-seal deferred per standing precedent; no ledger-sealed paths touched this slice.

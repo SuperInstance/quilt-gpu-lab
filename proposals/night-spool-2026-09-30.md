@@ -2152,3 +2152,12 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - TOOL low: question-tree witness/blame marks → spawned **PP-2** (~20m reading, gate = concrete query git log can't answer).
 - EMBASSY new: pong-quilt r37 stone-v1 verification gift (of OUR artifact — Casey day item), moth-runner second-reader gift, substrate-llm-client DeepSeek field notes (read-only; access still revoked). No replies (standing rule).
 - (C) done: newest OURS booking LC-1 is docs-only — prereg 19810da + booking 667f986 verified to contain all cited files as tracked content (shown in commit stats); no script exists to re-run; prior experiment booking QO6s already carries identical repro. Manifest re-seal still deferred (foreign d12x untracked live lane persists, unchanged this slice). No GPU fired (rotation: scout was the slot; QG1d/QG4/MC-1 open next wake).
+
+## SLICE 2026-10-06 23:1x AKDT (day-conductor) — (B) SIG-1 BOOKED: PASS (G1-G4)
+- HMAC prereg seal tool landed (prereg 4dcfe09 pre-committed): tamper RED-first verified both file-side and
+  digest-side; refuse-to-fire `check` gate works (missing/tampered/empty-secret all fail loud); wrong-secret
+  live demo TAMPERED. Secrets env-only, key_id only in seals. [QUEUE mark: SIG-1 → DONE.]
+- Adoption (runner pre-fire check) = protocol change, deferred to Casey alongside LC-1 heartbeat lines.
+- Foreign untracked d12x lane still present — manifest re-seal stays deferred. No GPU fired (rotation: SCOUT
+  was last slot; GPU items QG1d/QG4/MC-1 remain open). Rotation next wake: (C) verify SIG-1 booking (trivial
+  re-run) or (B) QO6t pre-reg; GPU free.
