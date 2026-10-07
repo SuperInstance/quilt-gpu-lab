@@ -227,6 +227,26 @@
   long-standing foreign-lane deferral is cleared — tree sealed). (C) not due (QO6h repro PASS 18:1x).
   Rotation next wake: (A) SCOUT per rotation, then GPU open QG1d/QG4/MC-1.
 
+## SLICE 2026-10-07 06:1x AKDT (day-conductor) — (A) SCOUT-61 + (C) DETERM-1 REPRO PASS
+- (A) SCOUT-61 (full text proposals/runs/SCOUT-61-fleet-push-2026-10-07-1414Z.md): window pushes =
+  canons 3a7498a (wrong CLT constant 1.535x fleet-conservation — NOT our assets, no CONTRADICT;
+  mutant-applied assertion lesson → spawned **MUA-1**; bloom 5x-loose gate = CI-1 corroborate),
+  rc-20260824-11 q10-q14 gate-negative series (CORROBORATE of QG6; q14 deficit-window law → spawned
+  **QO7a** pre-reg amendment), agent-inbox laptop drops 013-oracle-intuition-bench / 012-oracle-gc
+  (TOOL/watch, Casey day territory). No CONTRADICT: QO2 stack, DECIDE-1/2, receipt doctrine, QG3+QG6,
+  QG1c, W5a/b/c all unthreatened.
+- (C) mandatory repro of newest OURS booking **DETERM-1: REPRO PASS (verdict-level)** — committed runner
+  re-run from clean tree (00b8b17): fresh A-r1..r4 + B@1e-2/1e-4 x2 booked to results/determ1_lattice_snap/.
+  G1 holds (arm-A 4/4 distinct crossed_gen_sha, rates 0.581-0.592 inside booked band [0.574-0.593]);
+  G2 FAIL reproduces (snap arms distinct at BOTH eps → draw-path mechanism confirmed); verdict RED on
+  lattice-snap determinism STANDS. Honest caveat: wider ensemble spread this hour — A-r1 auc_fresh 0.5298
+  falls below the booked arm-A band [0.578-0.648] (1/12 draws); consistent with the ensemble law itself
+  (single draws wander), does not touch the verdict; one B@1e-4 anchor_in_band False, same at-the-edge
+  honesty as booking. Repro result JSONs committed with this spool (DET-1c lesson: cited files tracked).
+- Manifest re-seal: deferred again (foreign untracked d12x/d12y/SUBSTRATE-SYNTHESIS persist; our new
+  repro files are committed in this landing). GPU lane idle after repro (~1min). Rotation next wake:
+  (B) MUA-1 or QO7a (cheap) or QG1d-micro recon; GPU open (QG4/QG1d/MC-1).
+
 ## FINDINGS (append-only)
 - 00:0x CONDUCTOR-0 (main): QG2 headline above. qcell-sim gained crx + receipt-anchored selftest. Vectorized lane = gathers + bmm chains; ANCHOR-VEC 2e-34.
 - 00:2x PR-SWEEP #1 (conductor): 6 repos swept; only MicroMoth-quilt active. **PR #29 OPEN** — docs-only provenance: qcells lab canonical home = SuperInstance/micrograd-quilt; cite repo not local path in receipts. Clean (fail-first pins, 248/249; 1 pre-existing main-tip manifest drift, remedy already in PR #25 stack). Merged highlights: #28 exp022 train-visible crossing census (tie-break-invariant), #27 rate-not-wall + desert-extends-to-cloud, #26 tie-band-diversity replicated, #25 archive-assembly + manifest regen, #24 fitness desert at birth cloud (29/31/37). **Steals:** (a) weight-law by-name citation -> spawned RECEIPT-CITE item; (b) exp018 desert-at-birth-cloud independently corroborates QG2 structural-desert — desert is upstream of selection, now two lanes agreeing; (c) note bookkeeping discipline: my first spool edit clobbered the QG4 queue line; caught + restored same wake. Always re-read the file after structural edits.
