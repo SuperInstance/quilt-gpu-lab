@@ -441,6 +441,22 @@ more than a copy to use, it's not grabbable yet.
   fixture's 4 real matches passed; pin raised to 5, gate untouched); live example CLEAN rc=0 with per-probe
   counts, dead-matcher probe books INDETERMINATE rc=1.
 
+- **chain-guard** — `tools/chain_guard.py` — tamper-evident hash-chained receipt
+  ledger (pattern lifted from the "the receipt is the record" doctrine, prereg-stamp
+  / verdict-cite-check lineage): a flat dir of JSON receipts can be edited in place
+  with no trace, so each appended receipt commits to the previous entry's digest
+  AND the payload's sha256 — any edit, delete, reorder, or forged insert breaks
+  every link after the tamper point, and `--verify` names the first broken seq.
+  Append-only (no delete — archive-by-rename to reset), fsync'd, stdlib-only,
+  exit 0=INTACT / 1=TAMPERED / 2=fail-loud, `--selftest` carries edit/delete/forged
+  pins. `python tools/chain_guard.py --append results/foo.json [--note n] [--ledger
+  results/receipt_chain.jsonl] | --verify --ledger L | --selftest`
+  TEST receipt 2026-10-07: selftest 5/5 — selftest caught a real design bug live
+  (a deleted middle entry booked fail-loud rc=2 before verify could name it;
+  seq gap IS the deletion signature, moved to TAMPERED rc=1); live 2-link example
+  INTACT rc=0, head d0f34948b3583ff1, ledger
+  results/chain_guard_example_2026-10-07.jsonl.
+
 ### onboard.py — fleet-standard credential onboarding (Casey 2026-10-04)
 Every grabbable tool that touches a provider registers itself in `tools/onboard.json`
 (var name, keyfile name, optional extracted-config path) and inherits the onboarding CLI:

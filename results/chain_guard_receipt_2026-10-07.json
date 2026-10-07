@@ -1,0 +1,8 @@
+{
+  "tool": "chain_guard",
+  "date": "2026-10-07",
+  "selftest": "5/5 PASS (clean-INTACT, ledger-line-edit TAMPERED, middle-delete TAMPERED via seq-gap, forged-insert caught at next link, genesis prev)",
+  "selftest_bug_caught_live": "initial design booked a deleted middle entry as fail-loud rc=2 (seq gap hit the non-monotonic check before verify could name it TAMPERED); seq gap IS the deletion signature, moved to TAMPERED rc=1",
+  "live_example": "2-link ledger on results/chain_guard_example_2026-10-07.jsonl, verify INTACT rc=0, head d0f34948b3583ff1",
+  "verdict": "PASS"
+}
