@@ -430,6 +430,17 @@ more than a copy to use, it's not grabbable yet.
   DEGENERATE AUC 0.5 (honest scorer, correctly silent), live CLI run on file pairs -> LEAKY
   rc=1, receipt results/pert_audit_example_2026-10-07.json.
 
+- **match-presence** — `tools/match_presence.py` — no-zero-match gate for any probe/haystack census
+  (pattern lifted PROVEN from MUA-1, booked PASS 2026-10-07 commit 575a77b: a grep-style census that GREENs
+  with zero matches is indistinguishable from clean — a dead matcher silently passes). Gates: G1 every probe
+  matches >= min-count (count 0 books INDETERMINATE-as-RED, never CLEAN); G2 negative control absent on live
+  corpus; G3 matcher-alive canary — neg seeded into a copy IS detected (mutant-applied assertion); G4 vacuity
+  floor (tiny corpus fails loud). Read-only, stdlib-only, exit 0=CLEAN / 1=RED / 2=FAIL-INPUT, JSON receipt.
+  `python tools/match_presence.py --probes t1,t2 --neg negterm --haystack f1 --haystack f2 [--min-count 1 --out r.json] | --selftest`
+  TEST receipt 2026-10-07: selftest 5/5 — selftest caught its own pin bug live (min_count=3 below the
+  fixture's 4 real matches passed; pin raised to 5, gate untouched); live example CLEAN rc=0 with per-probe
+  counts, dead-matcher probe books INDETERMINATE rc=1.
+
 ### onboard.py — fleet-standard credential onboarding (Casey 2026-10-04)
 Every grabbable tool that touches a provider registers itself in `tools/onboard.json`
 (var name, keyfile name, optional extracted-config path) and inherits the onboarding CLI:
