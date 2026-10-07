@@ -60,9 +60,12 @@ def log(msg):
 
 # ---- digest: FNV-1a 64, the family hash (same law as fabric.mjs) ----
 def fnv1a64(text):
+    # Fleet-canonical dialect: hash UTF-8 BYTES, not code points. Identical to the
+    # historic ord(ch) form for ASCII inputs; deterministic cross-language for non-ASCII.
+    # SCOUT-58/AL-1; SCOUT-64 rule: never fold this hash with % 2^k — full width only.
     h = 0xCBF29CE484222325
-    for ch in text:
-        h ^= ord(ch)
+    for b in text.encode("utf-8"):
+        h ^= b
         h = (h * 0x100000001B3) & 0xFFFFFFFFFFFFFFFF
     return "%016x" % h
 
@@ -74,6 +77,11 @@ def genome_digest(fabric):
              for c in cells]
     links = sorted((sorted(p) for p in fabric.get("links", [])))
     parts.append("links:" + ";".join("%s-%s" % (a, b) for a, b in links))
+    for p in parts:
+        if not p.isascii():
+            raise ValueError(
+                "non-ASCII genome part %r: fleet genome digests are ASCII-canonical; "
+                "make the encoding explicit upstream (AL-1 gate)" % p)
     return fnv1a64("|".join(parts))
 
 

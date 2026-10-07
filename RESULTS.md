@@ -6636,3 +6636,14 @@ any relaunch-5.
 - Manifest re-seal: attempted, correctly REFUSED (foreign untracked d12x/d12y/d12z +
   SUBSTRATE-SYNTHESIS persist; PW-1). Stays deferred until those lanes commit or clear.
 - (C) not due: newest OURS booking remains DETERM-1 (repro PASS 06:1x); XP-B self-verifying.
+
+## [BOOKED 12:4x Oct 7 CPU] AL-1: PASS — proj_lattice digest pinned to UTF-8-byte fleet dialect; SCOUT-64 fold-class census gate landed
+- Pre-reg proposals/runs/AL-1-proj-lattice-digest-dialect.md committed+pushed BEFORE fire (px2 terrain_digest_fnv1a64 explicitly out of scope — pinned by px2 receipts).
+- Change: tools/proj_lattice.py fnv1a64 now hashes UTF-8 BYTES (ASCII-invariant — ord==byte for ASCII); genome_digest gains fail-loud non-ASCII gate. tests/test_al1_digest_dialect.py: 10 tests.
+- G1 PASS: VX-1 selftest G1-G4 PASS, verdict sets unchanged. HONEST AMENDMENT to prereg wording: the blast radius is NOT "zero citations" — results/proj_lattice.json cites demo digest f01271c5aa10079f (round-trip law); the pin proves it byte-identical post-fix (ASCII invariance), so no booked artifact moves.
+- G2 PASS: all 5 pre-fix ASCII digests + demo genome digest f01271c5aa10079f byte-identical post-fix.
+- G3 PASS: é / naïve—γ match independent UTF-8-byte FNV reference (written from spec in-test); ASCII gate raises ValueError on non-ASCII genome part.
+- G4 PASS: SCOUT-64 collision pairs distinct (abcdefgh/qrstuvwx, cat/sat); 26/26 single-letter digests distinct; source census: no %64/&0x3f fold of fnv digest anywhere in tools/.
+- RED-first WITNESSED (post-hoc mutant, MUA-1 pattern): reverted fnv to ord(ch) dialect → G3 fails exactly as designed (1 failed / 9 passed), restored green. Caveat booked honestly: tests were authored after the fix, so the primary red-first was witnessed via mutant, not during authoring.
+- Suite state: AL-1 10/10 green; 3 remaining failures = pre-existing foreign-untracked-lane class (d12x/d12y/d12z + SUBSTRATE-SYNTHESIS; PW-1 deferral, unchanged, not AL-1's).
+- Manifest re-seal: correctly REFUSED (same foreign lane). Deferred until those lanes commit or clear.
