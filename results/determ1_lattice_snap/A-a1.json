@@ -1,0 +1,16 @@
+{
+ "arm": "A",
+ "eps": null,
+ "tag": "a1",
+ "rate12": 0.5927734375,
+ "rate24": 0.74365234375,
+ "anchor_in_band": true,
+ "subpop": 834,
+ "late": 309,
+ "hopeless": 525,
+ "auc_fresh": 0.5999845344880914,
+ "auc_oracle": 0.5685991678224688,
+ "crossed_gen_sha": "d2fc36a0fd28c3a4d07550f1ffc4fe320f758274899bba9ed7e663d10a1be8d4",
+ "champ_v_sha": "e0366672ae0bcbd046e8c47ccbec0f59e166c7455194480140357005c1747d21",
+ "wall_s": 16.89
+}

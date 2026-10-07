@@ -2234,3 +2234,8 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - Manifest re-seal deferred (sealer correctly refuses on the foreign untracked paths; 5th+ deferral).
 - GPU idle all slice. Rotation next wake: **(A) SCOUT-60 due** (last SCOUT-59 02:1x), or QG1d-micro recon
   (top open queue item); GPU open for QG4/QG1d/MC-1.
+
+## SLICE 2026-10-07 05:2x AKDT (day-conductor) — (B) DETERM-1 BOOKED RED: state-snap insufficient, ensemble law stands
+- (B) per rotation. Pre-reg+runner committed 10dea10 before fire; 12 serial GPU runs (~1 min total — lane much cheaper than the QG7 original). G1 PASS (spread reproduces), G2 FAIL 8/8 (snap reruns all distinct), G3 in-band/moot, G4 trivial PASS. Verdict: determinism primitive must target the draw path (torch.rand tie-breaks + shot_counts kernels), not post-hoc state rounding — DETERM-2 note (snap decision inputs pre-pick) filed in RESULTS, not queued. QG7 ensemble law unchanged. Full entry in RESULTS.md.
+- (C) not due (XP-B = verification instrument; ST1-AUDIT repro PASS 01:1x). Manifest re-seal deferred (foreign untracked d12x/d12y/SUBSTRATE-SYNTHESIS, PW-1). No processes running; nothing duplicated; GPU lane now idle.
+- Rotation next wake: (A) SCOUT-61 (due after this B slot), then GPU open QG1d/QG4/MC-1.
