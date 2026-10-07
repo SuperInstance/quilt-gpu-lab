@@ -2078,3 +2078,37 @@ other agents are feeding us; keep the handshake lane warm.
   — the SUBSTRATE-SYNTHESIS untracked foreign no longer blocks; unknown when it cleared, noted).
 - Rotation next wake: (A) SCOUT due (last full sweep SCOUT-54 content; nothing swept since 00:11Z window) or
   (B) top open CPU item (LWS-1 / RC-4 / SIG-1 / VP-1 / XR-1); GPU open (QG1d/QG4/MC-1).
+
+## SLICE 2026-10-06 18:1x AKDT (day-conductor) — (C)+(A), no GPU fired
+- (C) mandatory repro of newest OURS booking **QO6h: PASS** — committed
+experiments/qo6h_evidence_horizon.py re-run from clean tree to /tmp/qo6h_recert: exit 0,
+ALL GATES PASS (H1/H2/H3 on V1b/V2/V3/V4), verdict-level identical to booking
+(booking itself already carried a bit-identical re-fire; this recertifies at HEAD).
+No manifest change (spool/docs only this slice).
+- (A) **SCOUT-55** (full text proposals/runs/SCOUT-55-fleet-push-2026-10-06-0211Z-local.md):
+window post-SCOUT-54. HEADLINE — **rc-20260824-11 q11** (00:24Z): ledger memory horizon
+FAILS at every depth — long retention preserves evidence for the DEAD regime (9/9 stale
+ranks) and NEVER-molt beats every refill arm; law = validity-blind ledger cannot be both
+fresh and durable across a flip. **CONTRADICT-CANDIDATE named against QO6h**: our booking
+asserts q10's expiry mode is structurally impossible (full-prefix cumsum, horizon==t) —
+but q11 is the COMPLEMENTARY mode and our kernel has it BY CONSTRUCTION: a good→bad
+turn mid-stream leaves E dominated by the good prefix, so KILL is delayed/drowned
+(QO6 only tested bad→good late-bloomers; QO6t covers transient stress, not decay).
+Spawned **QO6s** (CPU ~20m, pre-reg first): construct good→bad streams on the frozen
+eproc kernel; gate RED if the gate cannot kill within decision latency post-flip
+(full-prefix E plateau/climb post-flip). RED does not void QO6/QO6h (different stream
+class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
+- CORROBORATE x3: quilt-canvas-tui forget() divergent-rid fix (write-path vs _seal
+  mismatch = live FW-1/RC-1b class instance, fleet-side, caught); rc q9/q10 honest
+  negatives already tracked via QO6h lineage; MicroMoth IonQ rung-2 pre-flight #44
+  (IONQ-RECON §4 weight-algebra discriminators) — our IONQ-2 pins are consumed as
+  doctrine, no threat observed from titles; deep read not spent this slice.
+- TOOL: **lucineer-workspace 22:02Z JEV×JEPA×Ternary digest** (5 papers, 5 parallel
+  GLM-5.3 lanes) → spawned **LW-1** (CPU reading ~20m, LOW): read the digest, extract
+  anything touching QO6 e-process design or the jeff/DECIDE lane; cite, don't merge.
+- PRs: none open in watched repos; taskable-lobster 404s on /pulls (no PR access from
+  this token or renamed) — noted, not chased. Issues: pong #49 unchanged (Casey day item).
+- [EMBASSY] pong #49 unchanged. No CONTRADICT against QO2 stack/receipt doctrine/QG3+QG6/
+  QG1c/W5 seeds beyond the QO6s candidate above.
+- Rotation next wake: (B) SIG-1 or pre-reg+fire QO6s (top, cheap, data constructed) or
+  QO6t per queue order; GPU open (QG1d/QG4/MC-1).
