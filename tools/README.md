@@ -382,6 +382,21 @@ more than a copy to use, it's not grabbable yet.
   INSUFFICIENT before and after the flip — structurally confirms the booked
   QO6h proof, receipt results/horizon_witness_eproc_2026-10-06.json.
 
+- **verdict-repro** — `tools/verdict_repro.py` — verdict-level repro witness
+  (pattern lifted from DETERM-1, booked REPRO PASS 2026-10-07 at VERDICT level
+  with no mechanized check — det_witness's sha256 bar is stronger than what
+  lane verdicts need): runs a command N times (list-form subprocess, no
+  shell), extracts a verdict field from each run's JSON stdout (dotted
+  `--verdict-key` path), books STABLE rc=0 / DRIFT rc=1 (first divergence +
+  both values) / ERROR rc=2 (nonzero exit, bad JSON, missing field, runs<2).
+  Stdlib-only, fail-loud, JSON receipt, `--selftest` carries stable/DRIFT/
+  3x-ERROR positive-negative battery.
+  `python tools/verdict_repro.py --cmd python3 --args script.py,--flag --runs 3 [--verdict-key verdict --out r.json] | --selftest`
+  TEST receipt 2026-10-07: selftest 6/6 — selftest caught its own error-path bug live
+  (missing-field raised a raw KeyError instead of booking fail-loud ERROR; gate fixed,
+  pins untouched); worked example rc=0 STABLE (3 runs, KEEP/KEEP/KEEP), receipt
+  results/verdict_repro_example_2026-10-07.json.
+
 - **gen-audit** — `tools/gen_audit.py` — generator-fidelity audit (pattern lifted
   PROVEN from D12x, booked 2026-10-06: partner corr read 0.605 at nominal p=0.7 and
   the audit answered "generator is faithful, that was sampling noise"): seeded

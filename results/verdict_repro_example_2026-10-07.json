@@ -1,0 +1,21 @@
+{
+  "verdict": "STABLE",
+  "runs": 3,
+  "verdicts": [
+    "KEEP",
+    "KEEP",
+    "KEEP"
+  ],
+  "distinct": [
+    "KEEP"
+  ],
+  "first_divergence": null,
+  "tool": "verdict-repro",
+  "cmd": "python3",
+  "args": [
+    "/tmp/vr_demo.py"
+  ],
+  "verdict_key": "verdict",
+  "ts": "2026-10-07T06:42:00-0800",
+  "receipt_sha256": "b38e7652aa152a68fb6daeb0cf444b4095123fe2acc149edb153f8379c287f69"
+}
