@@ -347,6 +347,27 @@ more than a copy to use, it's not grabbable yet.
   live sweep tools/+experiments/ 304 files: 8 citations, 0 RED, 1 MISSING,
   CLEAN rc=0, receipt results/verdict_cite_check_sweep_2026-10-06.json.
 
+- **horizon-witness** — `tools/horizon_witness.py` — evidence-expiry audit for
+  decision gates (pattern lifted PROVEN from QO6h, booked 2026-10-06: the QO6
+  kernel was proven immune to q10 evidence-expiry because E(t) is a full-prefix
+  cumsum — this mechanizes that audit for ANY gate): runs the gate on a series,
+  then on a RECENCY FLIP of it (first-half evidence relocated to the end,
+  levels re-anchored — increments, direction, total evidence preserved, only
+  timing changes). Decision moves under the flip = the gate weights evidence by
+  recency = readable horizon EXPIRES; flip-invariant = full-prefix reader,
+  CLEAN. Decision-dead control (perturb ±, gate must react in some direction)
+  refuses trivially-expiry-proof gates; gate crash / bad JSON / missing decision
+  key all fail-loud. Stdlib-only, list-form subprocess, read-only on the gate,
+  exit 0=CLEAN / 1=EXPIRES / 2=FAIL-INPUT, JSON receipt.
+  `python tools/horizon_witness.py --gate CMD --gate-args a,b --series '[...]' [--out r.json] | --series-file f.json | --selftest`
+  TEST receipt 2026-10-06: selftest 4/4 — selftest caught two real bugs live
+  (its first design used front-trims, where removing evidence legitimately
+  changes a full-prefix gate's verdict; and a level-based fixture gate whose
+  pin broke under re-anchoring — probe redesigned to the recency flip, fixture
+  made increment-based); live QO6 eproc kill_gate (sigma=4.0): CLEAN rc=0,
+  INSUFFICIENT before and after the flip — structurally confirms the booked
+  QO6h proof, receipt results/horizon_witness_eproc_2026-10-06.json.
+
 ### onboard.py — fleet-standard credential onboarding (Casey 2026-10-04)
 Every grabbable tool that touches a provider registers itself in `tools/onboard.json`
 (var name, keyfile name, optional extracted-config path) and inherits the onboarding CLI:
