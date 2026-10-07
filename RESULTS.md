@@ -6678,3 +6678,10 @@ any relaunch-5.
 - FW-1-successor rows: qcell_sim.py duplicated dead crx branch (harmless); micromoth rng=None global-random
   mutation cross-contaminates unseeded lanes (their docstring admits; fleet injected-rng fix landed 2026-10).
 - No GPU; read-only on foreign trees (micromoth-quilt@4268849, micrograd-quilt origin/main). No booked result modified.
+
+## [BOOKED 15:4x Oct 7 CPU/GPU ~2min] QG1d-SUCCESSOR: VERDICT NONE (frozen readout census) — misses are SYSTEMATIC, 28/28 outside 4-sigma
+- Prereg proposals/runs/QG1d-SUCCESSOR-readout-census.md committed+pushed BEFORE fire (b108a66 lineage; frozen set R0-R3 x {C0,C3}, TOL 0.044 unchanged).
+- Anchors: C0xR0 1892/1920 (exact booking reproduce — PASS); best readout rival R2_p111 only 1764/1920; C3 family strictly worse (1834 best). G1: no cell reaches 1920/1920. G2: no readout fixes the 28 while keeping anchors.
+- G3: all 28 residual failures OUTSIDE 4-sigma binomial (n=512) => recorded values are NOT a stochastic sample of our exact (p000,p111) under any frozen convention. SYSTEMATIC class confirmed; shot-noise hypothesis DEAD.
+- Narrowed hypothesis space: divergence lives in gate-application SEMANTICS on the produced corpus (e.g. micromoth's LSB pair-loop cx/swap interaction our expansions don't capture) or in what exp022 actually scored — NOT wire-order, NOT readout, NOT endianness alone, NOT shots.
+- FW-1 note: this booking's runner re-derived the C0xR0 booking cell bit-exactly on re-fire (1892/1920), double-confirming QG1c. Results results/qg1d_successor/results.json.

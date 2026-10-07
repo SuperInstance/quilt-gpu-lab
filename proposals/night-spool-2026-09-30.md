@@ -2343,3 +2343,25 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   stays deferred per precedent. No running duplicates (process list clean; foreign playground servers only).
 - Rotation next wake: (A) SCOUT-66 (window will be >8h) or (B) QG1d-successor prereg / DET-1d; GPU open
   (QG4/QG1d-corpus/MC-1).
+
+## SLICE 2026-10-07 15:2x-15:4x AKDT (day-conductor) — (A) SCOUT-66 (quiet-ish) + (B) QG1d-SUCCESSOR BOOKED NONE + G3 systematic
+- (A) SCOUT-66 (window since SCOUT-65 21:20Z; full text proposals/runs/SCOUT-66-fleet-push-2026-10-07-2320Z.md):
+  only substantive external push = canons f92728d 22:34Z — capability-spec repo: 200 PASSING tests, CI
+  prints "No tests — syntax check passed" every push (`--timeout` not installed => argparse USAGE exit 4,
+  stderr buried, `|| echo` asserts a FALSEHOOD about the repo). TOOL + CORROBORATE: new named member of the
+  CI failopen class, harsher than `|| true` (actively misinforming); CI-1 fail-closed bill covers the class.
+  Also: rc 9743fcc q16 (covered SCOUT-65), quilt-atlas/zero-poc/lobster-live routine cycles, jev-semantic
+  + git.pp + question-tree early-morning builds (low, noted), agent-inbox night-shift complete (known).
+  No CONTRADICT — QO2 stack, QG3+QG6, receipt doctrine, AL-1, QG1c/QG1d all unthreatened. No PRs/issues
+  swept in window; [EMBASSY] pong #49 unchanged.
+- (B) **QG1d-SUCCESSOR BOOKED: NONE** (prereg pushed before fire). Readout census R0-R3 x {C0,C3}:
+  no cell 1920/1920; 28 C0 misses fixed by NO readout; G3 **28/28 outside 4-sigma binomial =>
+  SYSTEMATIC, shot-noise dead**. Hypothesis space narrowed to gate-application semantics on the
+  produced corpus. Spawned nothing (single remaining hypothesis needs micromoth simulator-level
+  differential on the 28 exact genomes — candidate QG1d-S2 if a future wake wants it; NOT auto-opened).
+- (C) not due: newest prior OURS booking QG1d-recon is recon-only (no committed script; precedent);
+  AL-1 already REPRO PASS 13:2x. THIS booking (QG1d-SUCCESSOR) becomes the mandatory repro target
+  next wake. Manifest re-seal: foreign untracked d12x/d12y/d12z + SUBSTRATE-SYNTHESIS lane persists —
+  deferred per precedent, correctly refused. GPU lane: single-lane serial honored, idle otherwise.
+- Rotation next wake: (C) QG1d-SUCCESSOR repro (mandatory, cheap) then (A)/(B) per queue;
+  GPU open (QG4/MC-1/DET-1d-with-VRAM-plan).
