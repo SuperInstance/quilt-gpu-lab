@@ -6559,3 +6559,28 @@ any relaunch-5.
 - (C) not due: newest prior OURS booking LC-1 is docs-only (no artifact to reproduce; verified in 22:1x slice).
 - Manifest: foreign untracked d12x lane persists (experiments/d12x_generator_corr_audit.py et al) —
   re-seal deferred per standing precedent; no ledger-sealed paths touched this slice.
+
+## [DONE 01:1x Oct 7 GPU-free CPU] ST1-AUDIT BOOKED: KEEP-AUDIT (op-by-op mechanical leakage)
+- Pre-reg 4c8fc9d (frozen before fire, commit+push-first honored). Runner `experiments/st1_audit_op_leakage.py`
+  imports the COMMITTED ST1v2 generator verbatim (make_example/corrupt_example/render/honest_verdict — import,
+  not copy, so the audit is anchored to the booked corpus definition). 600 clean + 600 corrupt per op, seed 2718,
+  both render styles; discriminators see RENDERED TEXT ONLY (regex + booked verdict rule recomputation).
+- **Gates (frozen): op LEAKY iff mechanical AUC >= 0.95. Verdict KEEP-AUDIT iff >=1 LEAKY.**
+- **VERDICT: KEEP-AUDIT. LEAKY: verdict_flip AUC 1.000, tau_off AUC 1.000. NOT leaky: denom_swap 0.9392
+  (just under gate), seed_drop 0.735, wins_over 0.6217, sign_flip 0.6208. Degenerate: none.**
+- **Reading for ST1v2's syn↑/real↓ crossing (suspect (a) direction-consistency): CONSISTENT but PARTIAL.**
+  2/6 ops are trivially surface-solvable (a one-line regex catches them), and the syn/real gap direction matches
+  (syn solvable ⇒ syn AUC inflated) — but 4/6 ops are NOT mechanically separable, so leakage cannot be the WHOLE
+  story; suspects (b) corpus size and (c) head capacity remain live. ST1v3 spec: re-render verdict_flip and tau_off
+  (strip the giveaway or fix the gate invariants) before any retrain; wins_over flagged WEAK-CORRUPTION (the op only
+  crosses wins>n_pairs on ~24% of draws — delta 1-3 vs wins uniform over n_pairs — so even a PERFECT detector
+  cannot exceed AUC ~0.62 class; the op is a weak signal by construction, worth an upstream corpus fix too).
+- Honest notes: discriminators are white-box (op inventory known) — by design, the question is whether the TASK is
+  white-box-solvable. denom_swap at 0.9392 is the same invariant as wins_over (wins>n_pairs) and misses the gate by
+  0.011 — no re-roll, booked as-is. seed_drop detection (field absence) at 0.735: template style always emits the
+  "seeds:" header (empty value) so absence is only visible in JSON style — render-style asymmetry, booked.
+- (C) repro: bit-exact on immediate re-fire (deterministic seed 2718) — second run to ext4 scratch
+  (/home/eileen/scratch/st1_audit_repro/), committed artifact untouched. runner_sha256 embedded in artifact.
+- Manifest re-seal DEFERRED again: sealer correctly refused on the persistent FOREIGN untracked d12x lane
+  (experiments/d12x_generator_corr_audit.py + results, mtime Oct 6 20:07, no live process — not ours to commit
+  or archive; PW-1 precedent). Our ledger paths clean at booking commit.
