@@ -6488,3 +6488,28 @@ any relaunch-5.
 - 2 pre-anchor mechanical fixes (sys.path insert; <10-sample refusal guard on early stop_t), declared. CPU,
   deterministic, 0 Wh. Files: experiments/qo6h_evidence_horizon.py (--out honored, RC-1 doctrine), scratch
   /home/eileen/scratch/qo6h_audit{,_repro}/. QUEUE line backfilled (spawn was spool-only).
+
+## SLICE 2026-10-06 19:1x AKDT (day-conductor) — (B) QO6s BOOKED: RED — retention-asymmetry limit NAMED
+- [QUEUE mark: QO6s spawned by SCOUT-55 (q11 CONTRADICT-candidate) → DONE this slice.]
+- Prereg 77a8c17 committed+pushed BEFORE the booked firing (proposals/runs/QO6s-good-to-bad-retention-asymmetry.md;
+  smoke run pre-commit went to /tmp scratch only, not booked). Booked firing from committed tree:
+  **VERDICT RED** — G1 PASS (V3 replay KILL_CANDIDATE, stop_t 4), G2 PASS (V2 replay KEEP),
+  G3 FAIL on all three good→bad streams: GB1(flip30)/GB2(flip60)/GB3(flip15) all INSUFFICIENT,
+  stop_t -1 (never kill), E_final 0.88/0.77/1.01 — the V3-style hopeless tail NEVER overcomes the
+  KEEP-direction prefix debt in-stream. Repro re-fire from committed tree: results.json BYTE-IDENTICAL.
+- BOOKED: the QO2 kill matrix has a named retention-asymmetry limit — the same full-prefix-cumsum
+  construction that makes q10 expiry impossible (QO6h) makes good→bad decay unkillable within the
+  stream: kill evidence must out-climb the entire confirming prefix, and at sigma=0.03/40-step decay
+  it does not. RED does NOT void QO6/QO6h/QO6t (different stream cells — late-bloomer retraction,
+  expiry audit, transient stress respectively); it adds the limit row: **a stream that was ever
+  plausibly-healthy cannot be killed by prefix evidence alone — kill decisions need a flip-aware
+  or windowed arm for the good→bad cell.** Feeds QO7 integration (Casey day item): the QO7 cost
+  matrix must include this asymmetry.
+- Honest notes: LATENCY_BUDGET=15 was moot for G3 (no stream killed at all — RED is stronger than
+  the budget test); sigmas/deltas pinned to V3's (0.03/0.05) pre-hoc; no re-roll, no tuning.
+- 2 pre-anchor fixes on the runner during authoring (hopless_tail first-element guard; naming), declared
+  pre-fire, inside the prereg commit. CPU, deterministic, seconds. Files: experiments/qo6s_good_to_bad.py,
+  prereg above; scratch /tmp/qo6s_booked + /tmp/qo6s_repro.
+- (C) not due this slice: newest prior OURS booking QO6h already repro PASS 18:1x (d64b55b); this
+  slice's own booking includes its identical repro. Rotation next wake: (A) SCOUT per rotation
+  (last was 18:1x SCOUT-55-lineage slice), then GPU open items QG1d/QG4/MC-1.
