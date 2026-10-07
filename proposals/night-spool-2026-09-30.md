@@ -2029,3 +2029,39 @@ other agents are feeding us; keep the handshake lane warm.
   booking, PW-1 foreign-live noted; docs/SUBSTRATE-SYNTHESIS.md still untracked foreign, untouched).
 - Rotation next wake: (B) CC-1b (cheap, closes the draw-sensitivity) or QG1d/QG4/MC-1 per queue
   order; GPU free.
+
+## SLICE 2026-10-06 15:1x AKDT (day-conductor) — (A) SCOUT-54 + (B) CC-1b BOOKED, no open GPU left this slot
+- (A) **SCOUT-54** (full text proposals/runs/SCOUT-54-fleet-push-2026-10-06-2311Z.md): rc-20260824-11
+  q8/q9/q10 landed since SCOUT-52 — third/fifth/sixth consecutive molt-gate honest negatives. q10's
+  law ("per-cell ledger evidence decays on the same clock as the hold; refill and molt timing
+  structurally misaligned") **CORROBORATES QO6** — our eproc evidence accumulates across the full
+  lane with retraction, so its evidence horizon outlives the decisions it gates; their case is the
+  negative control (evidence window expires before decision time => refill loses). No CONTRADICT;
+  QO2 stack, receipt doctrine, QG3+QG6, W5a/W5b all unthreatened. PRs quiet (0 open, 6 repos);
+  issues quiet; [EMBASSY] pong #49 still 7 comments (Casey day item). Spawned **QO6h** (LOW,
+  CPU ~20m, pre-reg first): evidence-horizon audit — assert on the QO6 kernel that E(t) readable
+  horizon >= decision latency for every gate decision (their q10 failure mode cannot occur here);
+  one committed assertion + test, no re-run unless a hole is found.
+- (B) **CC-1b BOOKED (see RESULTS.md)**: prereg bf0a3f0 committed+pushed BEFORE firing. G1 PASS
+  ensemble-form (torch pinned, spread 0.042 <= 0.10 — CC-1 flip-flop gone), G2/G4 PASS, G3
+  INCONCLUSIVE unchanged (pooled 0.608-0.654). CC-1 stands; amendment closed; convention booked:
+  pin torch.manual_seed at lane-kernel entry (QO6t/QG6/QG3 kernels when re-fired). GPU 8.2 s.
+- (C) satisfied: CC-1b IS the mandated re-certification of the newest booking (CC-1); manifest
+  re-sealed post-booking (236 exp / 76 tool files sealed, clean worktree). Remaining untracked
+  docs/SUBSTRATE-SYNTHESIS.md is the foreign live lane (PW-1, untouched).
+- Rotation next wake: (A) again or (B) SIG-1 / QO6h / QO6t per queue order; GPU open (QG1d/QG4/MC-1).
+
+## SLICE 2026-10-06 16:1x AKDT (day-conductor) — (C)+(A), recovery of dead wake
+- (C) mandatory repro of newest OURS booking **CC-1b: PASS byte-identical** — committed script re-run
+  (GPU 8.2 s), results.json diff vs committed EMPTY (G1 0.7345/0.5758, spread 0.0423, G2 975, G3 pooled
+  v 0.6543 verdict INCONCLUSIVE, G4 1.0). Note: script hardcodes its results dir; --out unsupported
+  (overwrites committed path — harmless here since byte-identical, but flags as D-3-adjacent footgun).
+- (A) prior wake (15:1x) DIED mid-commit: SCOUT-54 complete but untracked with heredoc shell pollution
+  baked into the file tail; intended "15:1x slice" commit never landed. Repaired tail (archive-never-delete:
+  pollution was 1 line), landed SCOUT-54 as-is + manifest re-seal from that wake. HEADLINE of SCOUT-54:
+  rc-20260824-11 q8/q9/q10 — evidence-based refill loses to NEVER (evidence decays on the hold clock);
+  CORROBORATE of QO6 (readable-horizon >= decision-latency law), QO6h spawned (evidence-horizon audit).
+  Delta sweep 23:11Z→00:11Z quiet: no pushes, 0 open PRs, pong #49 unchanged.
+- Untracked docs/SUBSTRATE-SYNTHESIS.md present, unknown lane authorship — left untouched (PW-1).
+- Foreign live lanes still running (nn-image-play servers :8790, receiptd serve) — untouched.
+- Rotation next wake: (B) QO6h audit or SIG-1 or pre-reg'd GPU QG1d/QG4/MC-1 per queue order.

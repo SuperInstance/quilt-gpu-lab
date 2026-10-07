@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-06T22:18:36.829901+00:00",
+  "generated_at": "2026-10-06T23:14:15.455427+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "02ac5325eb7e529d92c1ec06ff976f2166f6e88b1840ec0b86a4071f4930d4b4",
+    "RESULTS.md": "0e08afc034e53f0ba546a71ee7966a4b46c5a611191e6b665072467501b585ca",
     "QUEUE.md": "325394bc5e3c6c559c1189a45dec10ec45816e6f99782f0e6d8c6f722b174e85"
   },
   "experiments": {
@@ -35,6 +35,7 @@
     "c4_action_probe.py": "483ab3fd2cf72078915fc6a451b5e2084d750e432ac8d0e4f82495ac3ca19c3d",
     "c5_paired_action.py": "3b75d52b858bb67b181746f5849f64871be1b3fa6e9d87633d199151331dc9fa",
     "cc1_comfortable_collapse.py": "e30b064d2e95fce177404304e4dfd6fa1ac3fc301ecc9f844b972fc8a93c9fdc",
+    "cc1b_torch_seed_recert.py": "f47d9a4c9c8311ae9513aac8213b834232f077e5786b5f7db6f0bcc69d021570",
     "cg1_canon_gate_local.py": "81f6c4c19aad32fdfec2a4298a0a5ea4057394498c5d2026fd544e0e01d10848",
     "cg1b_elicitation.py": "4db075c2e589b1c97522f72c73e19238b41d0b5a7de7ee82d8d59eaaae9228a8",
     "cm1_relay.py": "6714b8853bc263a74f9c1b9e82bb2e9a769254cad5fb947da9fb868aedd017d2",
