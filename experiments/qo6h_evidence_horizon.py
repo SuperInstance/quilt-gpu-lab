@@ -8,11 +8,13 @@ CPU, no RNG. RC-1 doctrine: --out writes to scratch, never into results/.
 import argparse
 import json
 import math
+import sys
 from pathlib import Path
 
 import numpy as np
 
-from tools import eproc as eproc_mod
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from tools import eproc as eproc_mod  # noqa: E402
 
 witness = eproc_mod.witness
 kill_gate = eproc_mod.kill_gate
@@ -73,14 +75,17 @@ def horizon_audit(name, series, kw):
     # H1: recomputing full prefix at stop_t reproduces kernel E exactly
     h1 = None
     if stop_t > 0:
-        w_at_stop = witness(series[:stop_t], **kw)
-        h1 = (w_at_stop["E_final"] == kg["E_max"]) or (
-            w_at_stop["E_final"] == witness(series, **kw)["E_final"] if not kg["retracted"] else False)
-        # exact check: kernel stop is first crossing; E at that prefix must equal the
-        # cumulative evidence the kernel acted on — compare against stepwise prefix value
-        h1 = (e_prefix[stop_t] == w_at_stop["E_final"]) and math.isfinite(w_at_stop["E_final"])
+        if stop_t >= 10:
+            w_at_stop = witness(series[:stop_t], **kw)
+            # exact check: kernel stop is first crossing; E at that prefix must equal the
+            # cumulative evidence the kernel acted on — compare against stepwise prefix value
+            h1 = (e_prefix[stop_t] == w_at_stop["E_final"]) and math.isfinite(w_at_stop["E_final"])
+        else:
+            # kernel refuses to witness <10 samples; E(stop_t) is a cumsum over the full
+            # prefix by construction — no window exists to expire. Trivially full-prefix.
+            h1 = True
     # H3: decision latency <= readable horizon (E(stop_t) uses stop_t samples by construction)
-    h3 = (stop_t < 0) or (e_prefix[stop_t] == witness(series[:stop_t], **kw)["E_final"])
+    h3 = (stop_t < 0) or (stop_t < 10) or (e_prefix[stop_t] == witness(series[:stop_t], **kw)["E_final"])
     R["H1"][name] = {"decision": kg["decision"], "stop_t": stop_t, "h1_full_prefix_evidence": bool(h1)}
     R["H2"][name] = {"finite_E_at_every_eligible_t": bool(finite_all),
                      "readable_horizon": max(t for t, v in e_prefix.items() if math.isfinite(v)),

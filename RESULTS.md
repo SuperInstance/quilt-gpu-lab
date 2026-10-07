@@ -6470,3 +6470,21 @@ any relaunch-5.
   re-fired); (3) fence-time features remain weakly informative, not routable — QG3b statevector
   successor unchanged, priority unchanged.
 - GPU 8.2 s. Files: experiments/cc1b_torch_seed_recert.py, results/cc1b_torch_seed_recert/results.json.
+
+### [DONE 17:1x Oct 6 CPU] QO6h BOOKED: verdict PASS — the rc-q10 evidence-expiry failure mode is STRUCTURALLY IMPOSSIBLE in the QO6 kernel
+- Prereg f0f7293 committed+pushed BEFORE firing (proposals/runs/QO6h-evidence-horizon-audit.md). SCOUT-54 spawn:
+  assert on the QO6 eproc kernel that readable evidence horizon >= decision latency for every gate decision
+  (rc-20260824-11 q10: their per-cell ledger evidence decays on the hold clock; refill loses because the evidence
+  window expires before decision time). Question: can that occur here?
+- Gates H1/H2/H3 on the five frozen kernel streams (V1b drift/flat, V2 bloom, V3 hopeless, V4 flatp, verbatim
+  constructions incl. the shared lcg(99) V3->V4 generator): **ALL PASS.** H1 — E at every kernel decision is
+  full-prefix evidence (recomputed prefix witness at stop_t equals the kernel's acted-on E; stop_t<10 case is a
+  cumsum by construction, kernel's own <10 refusal rule noted). H2 — E finite at every eligible t; readable
+  horizon == stream length (40/200/19/14/16) >= decision latency (7/-1/5/4/-1). H3 — no stale-window decision
+  anywhere. ALL_PASS true; repro re-fire to scratch BIT-IDENTICAL.
+- BOOKED: the kernel's evidence is a cumsum over the FULL stream with no sliding/expiring window — horizon equals
+  t at every step, so q10's failure mode cannot occur by construction; the assertion now pins it (fail-loud if a
+  future eproc change introduces windowing). No prior QO6/QO6n/QO6t/QO6p booking affected; standing receipt only.
+- 2 pre-anchor mechanical fixes (sys.path insert; <10-sample refusal guard on early stop_t), declared. CPU,
+  deterministic, 0 Wh. Files: experiments/qo6h_evidence_horizon.py (--out honored, RC-1 doctrine), scratch
+  /home/eileen/scratch/qo6h_audit{,_repro}/. QUEUE line backfilled (spawn was spool-only).

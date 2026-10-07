@@ -312,3 +312,4 @@
   recalibration — routing failure or calibration failure?; (b) re-ask in a structurally complementary view space
   (order-only vs bag-only). Artifacts: results/comp2_itemlocal/ (il_results.json, corpus.jsonl, per_item_stub.jsonl,
   predictions 20 arms × 3 × 3,082 = 184,920 rows, wh_receipt.json, pilots/). NOT COMMITTED.
+- [x] **QO6h evidence-horizon audit** (SCOUT-54 spawn; prereg f0f7293 frozen BEFORE fire) — 2026-10-06 **PASS (all gates)**, CPU 0 Wh, deterministic: rc-q10 evidence-expiry failure mode is STRUCTURALLY IMPOSSIBLE in the QO6 kernel (E is full-prefix cumsum, no expiring window; H1/H2/H3 green on all 5 frozen kernel streams; repro bit-identical). Standing fail-loud assertion now committed. Files: experiments/qo6h_evidence_horizon.py; scratch /home/eileen/scratch/qo6h_audit/.
