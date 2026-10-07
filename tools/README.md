@@ -398,6 +398,23 @@ more than a copy to use, it's not grabbable yet.
   corrupted control (actual=0.6) rc=1 FAIL G1. Receipt
   results/gen_audit_example_2026-10-07.json.
 
+- **pert-audit** — `tools/pert_audit.py` — corruption-sensitivity (leakage) audit for any
+  text scorer (pattern lifted PROVEN from ST1-AUDIT, booked 2026-10-07: verdict_flip &
+  tau_off mechanically LEAKY at AUC 1.0 — "is a checker driven by content or by operation
+  artifacts?" is a measurement): N {clean, corrupt} pairs + ANY scorer command (list-form
+  subprocess, JSON {"score": x} on stdout) -> paired AUC P(score(corrupt) > score(clean)),
+  degenerate guard, verdict LEAKY (AUC >= hi 0.95) / CLEAN (<= lo 0.60) / MIXED / DEGENERATE
+  (blind scorer, honest book — never fake CLEAN). Stdlib-only, fail-loud rc=2 (scorer
+  nonzero, missing/non-finite score, bad JSON), JSON receipt.
+  `python tools/pert_audit.py --pairs pairs.json --scorer CMD --scorer-args a,b [--hi 0.95 --lo 0.6 --out r.json] | --example | --selftest`
+  TEST receipt 2026-10-07: selftest 5/5 — selftest caught three real fixture/pin bugs live
+  (KILL-verdict clean examples that an honest-derived detector legitimately flags; JSON-render
+  texts invisible to template-only regexes, dragging AUC to ~0.5 via ties — the exact dual-regex
+  lesson ST1 booked; and a stale MIXED pin for what is honestly a DEGENERATE book) plus a
+  duplicate-JSON-key display bug; worked example rc=1 LEAKY AUC 1.0 (artifact detector) vs
+  DEGENERATE AUC 0.5 (honest scorer, correctly silent), live CLI run on file pairs -> LEAKY
+  rc=1, receipt results/pert_audit_example_2026-10-07.json.
+
 ### onboard.py — fleet-standard credential onboarding (Casey 2026-10-04)
 Every grabbable tool that touches a provider registers itself in `tools/onboard.json`
 (var name, keyfile name, optional extracted-config path) and inherits the onboarding CLI:

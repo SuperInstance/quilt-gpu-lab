@@ -1,0 +1,15 @@
+{
+ "n_pairs": 40,
+ "n_valid": 40,
+ "n_skipped_null_corrupt": 0,
+ "auc": 1.0,
+ "degenerate": false,
+ "hi": 0.95,
+ "lo": 0.6,
+ "verdict": "LEAKY",
+ "rc": 1,
+ "scorer": [
+  "python3",
+  "/tmp/pert_scorer.py"
+ ]
+}
