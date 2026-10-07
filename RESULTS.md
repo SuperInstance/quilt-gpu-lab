@@ -6647,3 +6647,18 @@ any relaunch-5.
 - RED-first WITNESSED (post-hoc mutant, MUA-1 pattern): reverted fnv to ord(ch) dialect → G3 fails exactly as designed (1 failed / 9 passed), restored green. Caveat booked honestly: tests were authored after the fix, so the primary red-first was witnessed via mutant, not during authoring.
 - Suite state: AL-1 10/10 green; 3 remaining failures = pre-existing foreign-untracked-lane class (d12x/d12y/d12z + SUBSTRATE-SYNTHESIS; PW-1 deferral, unchanged, not AL-1's).
 - Manifest re-seal: correctly REFUSED (same foreign lane). Deferred until those lanes commit or clear.
+
+## SLICE 2026-10-07 13:2x AKDT (day-conductor) — (A) SCOUT-65 (quiet) + (C) AL-1 REPRO PASS
+- (A) SCOUT-65 (full text proposals/runs/SCOUT-65-fleet-push-2026-10-07-2120Z.md): window since
+  SCOUT-64's 20:24Z sweep — only pushes: rc-20260824-11 q16 topology-churn honest-FAIL (channel-closure
+  law, 3-axis: q14 coverage / q15 cost / q16 question-space; anticipatory gating structurally
+  unavailable in reward-only stacks) + lobster-live docs/think-cycle. **No CONTRADICT**; CORROBORATE
+  (honest-negative + receipt doctrine fleet-side); TOOL note-only: law-statement prose convention
+  (structural channel-closure phrasing) — filed for next booking, no queue item spawned. PRs/issues
+  quiet; [EMBASSY] pong #49 unchanged. inbox-015 night shift complete → GPU contention watch cleared.
+- (C) mandatory repro of newest OURS booking AL-1: committed tests/test_al1_digest_dialect.py re-run
+  → 10/10 PASS, 0.02s. **REPRO PASS.** Worktree: only foreign untracked d12x/d12y/d12z +
+  SUBSTRATE-SYNTHESIS + results/cg_ledger.jsonl persist (PW-1 class); our paths clean.
+- Manifest re-seal: correctly REFUSED (foreign lane persists); deferred per precedent.
+- GPU lane idle this slice (scout slot per rotation). Rotation next wake: (B) QO6t/DET-1d or
+  QG1d-micro recon; GPU open (QG4/QG1d/MC-1) with contention cleared.
