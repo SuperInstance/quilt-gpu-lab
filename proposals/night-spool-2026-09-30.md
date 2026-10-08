@@ -2379,3 +2379,17 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   SUBSTRATE-SYNTHESIS + cg_ledger persist); deferred per precedent.
 - GPU lane idle after ~1min repro. Rotation next wake: (B) QO6t/DET-1d or QO7a (cheap) or
   QG1d-semantics-successor recon; GPU open (QG4/QG1d-corpus/MC-1).
+
+## SLICE 2026-10-07 17:2x AKDT (day-conductor) — (B) DIFFPORT-1 LANDED (docs-only, 5m fold)
+- Top open item per rotation (16:2x slice took A+C). QO7a/MUA-1/AL-1 already done — struck;
+  took the cheapest open item: DIFFPORT-1 (docs fold, spawned by SCOUT-63).
+- Landed as rule 6 in docs/PREREG-CLAIM-PROTOCOL.md: any port/translation of a pinned
+  instrument (incl. fleet ports of OUR tools) requires a differential-test row; single-
+  implementation instruments get zero port protection — the pin IS the defense. Symmetric
+  clause + `port-diff: UNRUN` booking escape hatch. Sits naturally beside RT-D1 (real-probe)
+  and FR-1 (fresh-clone) — the protocol now covers real-thing, port, and clean-tree arms.
+- No GPU, no runner, no booked result modified. (C) not due: newest OURS booking QG1d-SUCCESSOR
+  repro PASS at 16:2x. Manifest re-seal correctly refused (foreign d12 lanes persist) — no
+  sealed path touched (docs-only). No new queue items spawned (DIFFPORT-1 was the item).
+- Rotation next wake: (A) SCOUT-68 (due ~4h) or (B) QO6t/DET-1d or QG1d-semantics-successor
+  recon; GPU open (QG4/QG1d-corpus/MC-1).

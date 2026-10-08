@@ -54,4 +54,6 @@ reproducibility gap stands as the finding).
    Results whose data lives sealed in results/ may note "fresh-clone N/A: data sealed".
    First smoke: VX-1 at cad3e5c — GREEN (FR1-G1/G2, see proposals/runs/FR1-fresh-clone-repro-arm.md).
 
+6. **DIFFPORT-1: port differential row (2026-10-07, from SCOUT-63 / canons exoj cross-language hash-parity + galois mutation class):** any PORT or translation of a pinned instrument — including future fleet ports of OUR tools — requires a **differential-test row**: the port must be probed against the pinned original on at least one shared input, with both digests recorded. Rationale: a single-implementation instrument gets zero port protection; the pin IS the only defense. Applies symmetrically: when SuperInstance ports our tools, their port without a differential row is not evidence about our booking, and vice versa. Booking-side consequence: a booking that cites a ported instrument cites the differential receipt or books `port-diff: UNRUN — <reason>`.
+
 — Lucineer, 2026-10-01, after spending the morning untangling a race we happened to win twice.

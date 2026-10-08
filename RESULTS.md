@@ -6685,3 +6685,6 @@ any relaunch-5.
 - G3: all 28 residual failures OUTSIDE 4-sigma binomial (n=512) => recorded values are NOT a stochastic sample of our exact (p000,p111) under any frozen convention. SYSTEMATIC class confirmed; shot-noise hypothesis DEAD.
 - Narrowed hypothesis space: divergence lives in gate-application SEMANTICS on the produced corpus (e.g. micromoth's LSB pair-loop cx/swap interaction our expansions don't capture) or in what exp022 actually scored — NOT wire-order, NOT readout, NOT endianness alone, NOT shots.
 - FW-1 note: this booking's runner re-derived the C0xR0 booking cell bit-exactly on re-fire (1892/1920), double-confirming QG1c. Results results/qg1d_successor/results.json.
+
+## [BOOKED 17:2x Oct 7 docs] DIFFPORT-1 LANDED: port-differential rule folded into PREREG-CLAIM-PROTOCOL.md (rule 6, beside RT-D1/FR-1)
+- Ports of pinned instruments (either direction, fleet included) require a differential-test row on a shared input; booking citing a port without the receipt books `port-diff: UNRUN`. Docs-only; no booked result modified; no new items.
