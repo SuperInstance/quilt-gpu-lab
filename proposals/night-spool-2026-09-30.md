@@ -263,6 +263,19 @@
 - Rotation next wake: (B) HSA-1 (top cheap) or GOLDEN-PIN (from SCOUT-68) or MUA-1-class; GPU open
   (QG4/QG1d corpus-side/MC-1).
 
+## SLICE 2026-10-08 04:2x AKDT (day-conductor) — (B) ENDO-1/ENDO-1b LANDED (docs pre-reg amendment)
+- Top open item per queue: ENDO-1 (SCOUT-70) + ENDO-1b (SCOUT-72), both unclaimed — landed together as
+  proposals/runs/ENDO-1-endogenous-flip-prereg-amendment.md. Five rows for QO7's future pre-reg:
+  flip-model declaration (REACTIVE/INDIFFERENT, rc q17/q18 licensing law), anti-economizer failure
+  mode (q15), per-regime observable-probe threshold re-parameterization (q19), graceful-degradation
+  sweep gate, contrast-arm-at-every-sweep-point. Gates G1-G4 pre-registered in words. Composes with
+  QO7a (not superseding); no booked result threatened; QO7 itself remains Casey day-item.
+- (C) not due: newest OURS booking HSA-1b already REPRO PASS 02:4x this day. GPU lane idle all slice
+  (docs slot per rotation). Foreign d12 untracked lane GREW again this hour (d12aa2/d12ab/d12ac/d12y/
+  d12z + cg_ledger.jsonl) — PW-1, do not touch; manifest re-seal still correctly refused/deferred.
+- No running processes; nothing duplicated; no 429s.
+- Rotation next wake: (A) SCOUT-73 per rotation, or (B) GPU QG4/MC-1/QG1d-corpus if lane wanted.
+
 ## FINDINGS (append-only)
 - 00:0x CONDUCTOR-0 (main): QG2 headline above. qcell-sim gained crx + receipt-anchored selftest. Vectorized lane = gathers + bmm chains; ANCHOR-VEC 2e-34.
 - 00:2x PR-SWEEP #1 (conductor): 6 repos swept; only MicroMoth-quilt active. **PR #29 OPEN** — docs-only provenance: qcells lab canonical home = SuperInstance/micrograd-quilt; cite repo not local path in receipts. Clean (fail-first pins, 248/249; 1 pre-existing main-tip manifest drift, remedy already in PR #25 stack). Merged highlights: #28 exp022 train-visible crossing census (tie-break-invariant), #27 rate-not-wall + desert-extends-to-cloud, #26 tie-band-diversity replicated, #25 archive-assembly + manifest regen, #24 fitness desert at birth cloud (29/31/37). **Steals:** (a) weight-law by-name citation -> spawned RECEIPT-CITE item; (b) exp018 desert-at-birth-cloud independently corroborates QG2 structural-desert — desert is upstream of selection, now two lanes agreeing; (c) note bookkeeping discipline: my first spool edit clobbered the QG4 queue line; caught + restored same wake. Always re-read the file after structural edits.
