@@ -2506,3 +2506,16 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   single re-seal+commit.
 - GPU lane idle all slice (rotation: scout+rota-cheap was the slot). No running processes; nothing duplicated.
 - Rotation next wake: (B) HSA-1b (top, cheap) or MUA-1 or GOLDEN-PIN; GPU open (QG4/QG1d corpus-side/MC-1).
+
+## SLICE 2026-10-08 02:4x AKDT (day-conductor) — (C) HSA-1b REPRO PASS; scout slot not taken
+- (C) mandatory repro of newest booking HSA-1b (booked 02:3x this hour): recomputed from committed
+  booking tree — epoch snapshot re-hashes to 1f9cc956d0b623fe, n=102 sorted-unique, selection
+  bit-stable x2 == {RC-5-push-check.md} == pre-reg, G3 holds (RC-5 re-selected, delta vs freeze =
+  HSA-1's own receipt only). receipt_manifest --check exit 2 => RC-5 RED-at-HEAD reproduced
+  (stale-seal accretion class unchanged). **REPRO PASS, verdict-level.** Results + rota member_check 4
+  committed 208add6. HEAD live census n=103/epoch c1c1afb3175e4eb9 — next (B)-slot wake snapshots per
+  rule 4. Manifest re-seal still REFUSED (foreign d12 lane, PW-1 deferral).
+- No GPU fired (rotation: repro was the slot; lane idle). Scout not taken this slice (last slice was
+  SCOUT-69's scout + HSA-1b landed after). No running processes; nothing duplicated.
+- Rotation next wake: (A) SCOUT (due), then (B) first not-yet-audited member of epoch c1c1afb (snapshot
+  first per rule 4) — likely a genuinely new receipt joins the rota; GPU open (QG4/QG1d corpus-side/MC-1).
