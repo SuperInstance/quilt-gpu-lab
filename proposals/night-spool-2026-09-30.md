@@ -2435,3 +2435,9 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - Manifest re-seal: refused (expected, foreign lane + this slice's new tool pre-commit). Will re-seal+commit immediately after this landing.
 - (A) not this slice (last slice was SCOUT-69); no GPU fired; lane idle; nothing duplicated (MUA-1/QG1d-SUCCESSOR/RC-5 all booked, not in progress).
 - Rotation next wake: (A) SCOUT per rotation; (B) rota suppression re-check or GOLDEN-PIN/MUA-1-class; GPU open (QG4/QG1d corpus-side/MC-1).
+
+## SLICE 21:2x Oct 7 (day-conductor) — scout 403 partial + HSA-1 repro PASS
+- (A) SCOUT: gh API rate-limited 403 on first call (all repos) — aborted per no-retry discipline; slot re-queues next wake. No pushes/PRs/issues observed this window.
+- (C) DONE: HSA-1 repro PASS (selection bit-stable, member #1 = RC-5, RED-at-HEAD reproduced, exit 2). Commit 6713e2a.
+- Manifest re-seal still deferred (foreign untracked lane, PW-1). GPU lane idle this slice.
+- Next wake rotation: (A) SCOUT retry (fresh window), else (B) VX-1/CH-1; GPU open (QG4/MC-1).
