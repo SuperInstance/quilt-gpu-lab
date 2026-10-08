@@ -295,6 +295,23 @@
   nothing duplicated.
 - Rotation next wake: (B) PARAM-1 (top cheap) or GPU QG4/MC-1/QG1d-corpus.
 
+## SLICE 2026-10-08 15:2x AKDT (day-conductor) — (B) PARAM-1 BOOKED: GREEN, 2 latent YELLOWS
+- (B) slot per rotation (SCOUT-77 already at HEAD; 13:1x (C) already done). PARAM-1 (spawned
+  SCOUT-76) fired: pre-reg + census receipt committed BEFORE verdict reliance
+  (proposals/runs/PARAM-1-gate-parameter-census-2026-10-08.md). G1-G4 per frozen words:
+  G1 5/5 instruments surveyed (eproc sigma / determ1 eps / verdict_gate bounds /
+  degrade_gate tolerance / exit_gate_witness params); G2 PASS (zero network param sourcing);
+  G3 PASS (defaults REQUIRED-refuse or strictest-direction); G4 GREEN — **no live RED**, all
+  booked Gate( sites carry explicit bounds, DETERM-1 bookings used explicit eps 1e-2/1e-4.
+  2 YELLOW latent holes named: verdict_gate boundless-Gate vacuous-pass (PARAM-1a),
+  determ1 eps unvalidated at argv (PARAM-1b). Evidence: degrade selftest 13/13,
+  exit-witness 4/4; verdict_gate has NO selftest (note for FW-1-successor: doctrine tool
+  unpinned). No booked result threatened (fastloop-guard class absent from our gates).
+- (C) not due (HSA-1b repro #3 PASS 13:1x; no scripted booking since). GPU lane idle all
+  slice (CPU census slot per rotation). No running processes; nothing duplicated.
+- Rotation next wake: (A) SCOUT-78 per rotation, or (B) PARAM-1a/1b (trivial hardening) /
+  GOLDEN-PIN / MUA-1; GPU open (QG4/MC-1/QG1d-corpus).
+
 ## FINDINGS (append-only)
 - 00:0x CONDUCTOR-0 (main): QG2 headline above. qcell-sim gained crx + receipt-anchored selftest. Vectorized lane = gathers + bmm chains; ANCHOR-VEC 2e-34.
 - 00:2x PR-SWEEP #1 (conductor): 6 repos swept; only MicroMoth-quilt active. **PR #29 OPEN** — docs-only provenance: qcells lab canonical home = SuperInstance/micrograd-quilt; cite repo not local path in receipts. Clean (fail-first pins, 248/249; 1 pre-existing main-tip manifest drift, remedy already in PR #25 stack). Merged highlights: #28 exp022 train-visible crossing census (tie-break-invariant), #27 rate-not-wall + desert-extends-to-cloud, #26 tie-band-diversity replicated, #25 archive-assembly + manifest regen, #24 fitness desert at birth cloud (29/31/37). **Steals:** (a) weight-law by-name citation -> spawned RECEIPT-CITE item; (b) exp018 desert-at-birth-cloud independently corroborates QG2 structural-desert — desert is upstream of selection, now two lanes agreeing; (c) note bookkeeping discipline: my first spool edit clobbered the QG4 queue line; caught + restored same wake. Always re-read the file after structural edits.
