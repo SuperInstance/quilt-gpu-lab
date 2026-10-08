@@ -6707,3 +6707,25 @@ any relaunch-5.
 - Manifest re-seal: still correctly REFUSED (foreign d12x..d12z untracked lane persists, PW-1 deferral);
   the UNSEALED-instrument accretion noted by HSA-1 G4 continues to grow — resolution unchanged:
   clear/commit foreign lane, single re-seal+commit.
+
+## [BOOKED 02:3x Oct 8 CPU] HSA-1b: PASS (G1-G3) — rolling-epoch rota population refresh adopted
+- Prereg `proposals/runs/HSA-1b-population-refresh-policy.md` + tool `tools/rota_census.py` + epoch
+  snapshot commit a3289d0 BEFORE any verdict (per protocol).
+- Decided: versioned rolling epochs. epoch_id = sha256(utf8(join(sorted_paths,"\n")+"\n"))[:16];
+  snapshot to `results/hsa1_rota/population-<epoch_id>.txt` (append-only, never edited); original
+  population.txt retained as freeze epoch. Selection + fallback unchanged. Rule 5: epoch change alone
+  does NOT re-audit an already-audited member.
+- G1 PASS: epoch 1f9cc956d0b623fe, census_n=102 (freeze had 101; delta = HSA-1's own receipt),
+  sorted-unique, snapshot committed with prereg. G2 PASS: selection bit-stable across 2 invocations,
+  equals prereg: {proposals/runs/RC-5-push-check.md}. G3 PASS: RC-5 still selected (digest is
+  path-only), no membership regression from freeze epoch.
+- G4 = NO-NEW-MEMBER (not FAIL): sole member RC-5 already audited in freeze epoch; policy forbids
+  re-audit on epoch change alone. Suppression re-verify: RC-5 receipt unmodified post-booking.
+  Instrument at HEAD a3289d0: `receipt_manifest --check` exit 2 — 3 ledger DRIFTs (QUEUE.md,
+  RESULTS.md, tools/README.md) + proj_lattice/prereg_seal DRIFT + 23 UNSEALED (incl. our own
+  post-HSA-1 tools: binom_gate, chain_guard, verdict_index, verdict_repro, rota_census, snap_gate,
+  saturating_fit, hash_audit_rota...). **RC-5 RED-at-HEAD PERSISTS — stale-seal accretion, working
+  as designed.** Resolution unchanged: clear/commit the foreign d12 lane, single re-seal+commit.
+- Cost: ~10 min CPU, 0 GPU. No booked result modified; no new items spawned (policy is the closure).
+- SUPERSEDES HSA-1's Population clause (frozen manifest -> rolling epochs). HSA-1 G4 semantics
+  unchanged for future wakes.
