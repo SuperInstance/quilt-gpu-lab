@@ -1,0 +1,46 @@
+{
+  "checks": [
+    {
+      "name": "green-validated",
+      "ok": true,
+      "why": "[{'param': 'sigma', 'verdict': 'VALIDATED', 'evidence': 'compared at lines [3]; module raisable'}, {'param': 'delta', 'verdict': 'VALIDATED', 'evidence': 'compared at lines [5]; module raisable'}]"
+    },
+    {
+      "name": "yellow-unvalidated",
+      "ok": true,
+      "why": "[{'param': 'eps', 'verdict': 'UNVALIDATED', 'evidence': 'assigned/parsed but never compared/tested \u2014 unvalidated value flows into gate (PARAM-1 YELLOW class); module contains no raise \u2014 validation tests cannot fail loud', 'comparisons': [], 'default': None, 'default_line': None}]"
+    },
+    {
+      "name": "missing-param",
+      "ok": true,
+      "why": "[{'param': 'tolerance', 'verdict': 'MISSING', 'evidence': 'not found in module'}]"
+    },
+    {
+      "name": "red-network",
+      "ok": true,
+      "why": "[{'param': 'url', 'verdict': 'MISSING', 'evidence': 'not found in module'}, {'param': '<file>', 'verdict': 'RED', 'evidence': \"network import(s) in gate module: ['urllib.request']\"}]"
+    },
+    {
+      "name": "no-raise-yellow",
+      "ok": true,
+      "why": "[{'param': 'eps', 'verdict': 'UNVALIDATED', 'evidence': 'module contains no raise \u2014 validation tests cannot fail loud', 'comparisons': [2], 'default': None, 'default_line': None}]"
+    },
+    {
+      "name": "rc-green",
+      "ok": true,
+      "why": "rc=0 want=0"
+    },
+    {
+      "name": "rc-yellow",
+      "ok": true,
+      "why": "rc=1 want=1"
+    },
+    {
+      "name": "rc-failinput-missing-file",
+      "ok": true,
+      "why": "rc=2 want=2"
+    }
+  ],
+  "selftest": "PASS",
+  "tool": "param_audit"
+}

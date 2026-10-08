@@ -1,0 +1,20 @@
+{
+  "file": "tools/eproc.py",
+  "findings": [
+    {
+      "evidence": "compared at lines [36, 57]; module raisable",
+      "param": "sigma",
+      "verdict": "VALIDATED"
+    },
+    {
+      "comparisons": [],
+      "default": 0.05,
+      "default_line": 48,
+      "evidence": "assigned/parsed but never compared/tested \u2014 unvalidated value flows into gate (PARAM-1 YELLOW class)",
+      "param": "delta",
+      "verdict": "UNVALIDATED"
+    }
+  ],
+  "tool": "param_audit",
+  "verdict": "FINDINGS"
+}

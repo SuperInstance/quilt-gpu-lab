@@ -826,3 +826,27 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   RC-5-push-check selected (no fallback), NO-NEW-MEMBER rc=1 — matches the booked
   HSA-1b G4. Receipt scratch/rota_epoch_test/receipt.json (scratch dir + rota copy
   used so the live instrument was not mutated by a test).
+
+- **param-audit** — `tools/param_audit.py` — gate-parameter validation census
+  (pattern lifted PROVEN from PARAM-1, booked GREEN 2026-10-08 commit 265ce29,
+  which surveyed five instruments by hand for the confused-deputy class — a
+  gate whose *parameter sourcing* can neuter or invert it; this mechanizes
+  that census for any gate file): AST census of named parameters -> VALIDATED
+  (compared/tested + module raisable), UNVALIDATED (assigned/parsed but never
+  compared — the PARAM-1 YELLOW class, e.g. eps<=0 flowing silently into a
+  snap), or MISSING (name drift); file-level RED on any network import in a
+  gate module (G2 clause) and YELLOW when no raise exists anywhere
+  (comparisons cannot fail loud). Read-only, heuristic by construction —
+  books the EVIDENCE (lines, defaults, imports) so a human can overrule,
+  never edits the file. Stdlib-only, deterministic, fail-loud rc=2,
+  exit 0=GREEN / 1=FINDINGS, JSON receipt.
+  `python tools/param_audit.py --file tools/eproc.py --params sigma,delta [--out r.json] | --selftest`
+  TEST receipt 2026-10-08: selftest 8/8 — selftest caught two real bugs live
+  (a module-level `eps = float(argv[1])` booked MISSING instead of
+  UNVALIDATED because only constant-literal defaults were detected; then the
+  same blind spot for function-signature defaults — `def witness(delta=0.05)`
+  — both fixed to detect the assignment/parameter directly, pins untouched).
+  Live: eproc.py sigma VALIDATED / **delta UNVALIDATED rc=1** — a genuine
+  latent hole (`bar = 1.0/delta` div-zeroes on delta=0; PARAM-1b-class,
+  booked FINDINGS, no booked result touched); degrade_gate.py tolerance
+  GREEN rc=0. Receipts results/param_audit_{selftest,eproc,degrade_gate}_2026-10-08.json.

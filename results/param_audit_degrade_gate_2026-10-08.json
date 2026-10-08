@@ -1,0 +1,12 @@
+{
+  "file": "tools/degrade_gate.py",
+  "findings": [
+    {
+      "evidence": "compared at lines [107]; module raisable",
+      "param": "tolerance",
+      "verdict": "VALIDATED"
+    }
+  ],
+  "tool": "param_audit",
+  "verdict": "GREEN"
+}
