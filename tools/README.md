@@ -695,3 +695,20 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   both fixed, pins untouched); worked example rc=0 PASS (3 rules on a good
   doc), missing-key RED rc=1, receipt
   results/json_gate_example_2026-10-07.json.
+
+- **binom-gate** — `tools/binom_gate.py` — binomial systematicity gate (pattern
+  lifted PROVEN from QG1d-SUCCESSOR, booked 2026-10-07 commit b3831a1: 28/28
+  readout misses => "SYSTEMATIC, shot-noise dead" — this mechanizes that book):
+  n trials, k successes, null rate p0 -> exact one-sided binomial tail (integer
+  arithmetic, direction auto-picked from the deviation; central-band k books
+  QUIET honestly), two-sided-equivalent sigma via exact erfc bisection, verdict
+  SYSTEMATIC (tail <= alpha) / QUIET (tail > alpha). Stdlib-only, deterministic,
+  fail-loud rc=2 on degenerate inputs, one JSON receipt, exit 0=QUIET / 1=SYSTEMATIC.
+  `python tools/binom_gate.py --n 28 --k 0 --p0 0.25 [--alpha 1e-4 --out r.json] | --selftest`
+  TEST receipt 2026-10-07: selftest 6/6 — selftest caught three real bugs live
+  (a mis-assembled Acklam ppf that turned tail 0.025 into z=14.3 — replaced with
+  exact erfc bisection; two mis-derived pins: the QG1d replay tail is exactly
+  0.75^28 = 3.17e-4 not <1e-10, and a "bracket" pin that used a central k which
+  honestly books no tail). Live QG1d replay rc=1 SYSTEMATIC (tail 3.175e-4,
+  3.4 sigma, receipt results/binom_gate_qg1d_replay_2026-10-07.json); mild
+  deviation (100/35 @ p0=0.25, 2.13 sigma) rc=0 QUIET.

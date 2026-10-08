@@ -1,0 +1,14 @@
+{
+  "tool": "binom-gate",
+  "ts": "2026-10-08T02:43:31Z",
+  "n": 28,
+  "k": 0,
+  "p0": 0.25,
+  "alpha": 0.001,
+  "expected_mean": 7.0,
+  "tail": 0.0003174792714133595,
+  "sigma": 3.416224595313473,
+  "direction": "lower",
+  "verdict": "SYSTEMATIC",
+  "why": "one-sided tail 3.175e-04 <= alpha 1.0e-03; shot noise rejected (lower tail, 3.4 sigma)"
+}
