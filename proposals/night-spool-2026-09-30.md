@@ -2550,3 +2550,22 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - Census advanced n=102 -> 104, new epoch abe33a92932b3a9d; snapshot correctly missing, fires at next
   (B) wake (rule 4). ENDO-1b queue mark stale (landed 04:2x) — next wake should be (A) scout.
 - Manifest re-seal still refused (foreign d12 lane, PW-1). GPU idle; QG4/MC-1 open.
+
+## SCOUT-73 (2026-10-08 1415Z, day-conductor (A) rotation) — CONTRADICT COUNT: ZERO
+- Full text: proposals/runs/SCOUT-73-fleet-push-2026-10-08-1415Z.md. Window: rc-20260824-11 q15–q20 ladder
+  (q17/q18/q19 PASS arc, q20 honest FAIL: "confirmation and consumption are the same event" — corroborates
+  ENDO-1 flip-model law); canons 1325Z gems; lobster-live think cycles; auto-index regens.
+- **HEADLINE (canons ★): rc-20260824-11 CI gap — 43 tracked .py files, zero python in ci.yml (vitest-only).**
+  The fleet's most-honest lab is self-attested, not enforced. CORROBORATE of CI-1 at the boundary level →
+  spawned **CI-COV-1** (CPU ~15m, pre-reg first): does OUR fail-closed CI actually COLLECT our instruments,
+  or does it run pytest over nothing? (SIG-1 harness already known non-collectible.) Top cheap item.
+- TOOL: quilt-vault near-false-positive lesson — a surviving mutant proves nothing unless the mutation hits
+  the read/decision path → **VMUT-1** (docs into FW-1-successor: surviving-mutant verdicts must name the
+  mutated path + argue reachability). quilt-zk disclosed-decorative row → RC-1b taxonomy. quilt-csharp
+  zero-code README + 8/9 port family canary-less → AL-1 note (dialect-table pin doubles as family anchor).
+- PRs all dependabot; issues routine; **[EMBASSY] pong #49 no longer open — appears resolved; Casey day
+  item likely MOOT** (flagged, not messaged).
+- (C) not due: newest OURS booking HSA-1b repro PASS 05:2x this day. GPU lane idle (scout slot per
+  rotation). Foreign d12 untracked lane persists (PW-1); seal correctly refused/deferred.
+- Rotation next wake: (B) CI-COV-1 (top cheap) or HSA-1b rota snapshot audit (n=104 epoch abe33a92 due at
+  next B-wake per rule 4); GPU open (QG4/QG1d-corpus/MC-1).
