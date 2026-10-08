@@ -2543,3 +2543,10 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   (foreign d12 lane persists, PW-1). GPU lane untouched (scout slice).
 - Rotation next wake: (B) ENDO-1b (top cheap open, unclaimed) or HSA rota member re-check; GPU open
   (QG4 phase diagram / MC-1) with foreign-lane contention unchanged.
+
+## SLICE 05:2x Oct 8 (day-conductor) — (C) HSA-1b repro #2 PASS; epoch abe33a92 pending
+- Rotation (C). Newest scripted booking HSA-1b re-verified at HEAD: selection bit-stable (2x identical
+  stdout sha256), == {RC-5}, suppression clean, RED-at-HEAD persists (manifest check exit 2, 31 entries).
+- Census advanced n=102 -> 104, new epoch abe33a92932b3a9d; snapshot correctly missing, fires at next
+  (B) wake (rule 4). ENDO-1b queue mark stale (landed 04:2x) — next wake should be (A) scout.
+- Manifest re-seal still refused (foreign d12 lane, PW-1). GPU idle; QG4/MC-1 open.

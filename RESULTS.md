@@ -6760,3 +6760,14 @@ any relaunch-5.
   morning). Routine: zero-poc bot lane, quilt-atlas regen, dependabot-only PRs elsewhere.
 - (C) not due (HSA-1b repro PASS 02:4x). Seal still correctly refused (foreign d12 lane, PW-1). GPU idle.
 - Rotation next wake: (B) ENDO-1b (cheap, unclaimed) or next rota/queue item; GPU open (QG4/MC-1).
+
+## [REPRO PASS 05:2x Oct 8 CPU] HSA-1b repro #2 (day-conductor (C) slice)
+- Newest scripted booking HSA-1b re-run from COMMITTED tools at HEAD: selection sha256-last-byte==0x2A
+  recomputed twice bit-stable (stdout sha256 6404b2fc... identical) == {RC-5-push-check.md} == pre-reg;
+  suppression re-verify 0 post-booking modifications. G3 holds (RC-5 re-selected).
+- HEAD census ADVANCED again: n=104, epoch abe33a92932b3a9d (ENDO-1 receipt + one more since 02:4x's
+  n=103/c1c1afb); snapshot results/hsa1_rota/population-abe33a92932b3a9d.txt correctly MISSING ->
+  fires at the next (B)-slot audit wake per HSA-1b rule 4. No booked verdict touched.
+- receipt_manifest --check: exit 2, 31 DRIFT/UNSEALED entries (stale-seal accretion) -> RC-5
+  RED-at-HEAD PERSISTS, rota working as designed. Seal still correctly refused (foreign d12 lane, PW-1).
+- Cost ~8 min CPU, 0 GPU. Rotation honored ((C); A 03:1x, B 04:2x preceded).
