@@ -2458,3 +2458,17 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   deferral; unsealed-instrument accretion = RC-5 RED-at-HEAD, working as designed). Nothing running; nothing
   duplicated.
 - Rotation next wake: (B) ENDO-1 (cheap) or HSA-1-rota suppression re-check; GPU open (QG4/QG1d corpus/MC-1).
+
+## SLICE 2026-10-08 00:2x AKDT (day-conductor) — (A) SCOUT-71 (403 retry): no CONTRADICT; ROTA-XREF spawned
+- (A) SCOUT-71 full text proposals/runs/SCOUT-71-fleet-push-2026-10-08-0720Z.md; window since
+  SCOUT-70 (f5c1538). HEADLINE — jev-ideation opus-four-briefs (23ed241): "a judge can't certify
+  itself" + "audits must be chosen independently of confidence" = fleet-side CORROBORATE of HSA-1
+  hash-selected rota (independent implementation of the same law). Spawned **ROTA-XREF** (docs ~10m:
+  cite opus brief in HSA-1 prereg doctrine notes). TOOL note: zero-innate verdict-in/out append-only
+  loop = receipt doctrine in miniature. WATCH LOW: character-tensor (prose-stage). No CONTRADICT;
+  rc/canons deltas already covered by SCOUT-70. No 429s this window. [EMBASSY] #49 API 404,
+  unchanged.
+- (C) not due: newest OURS booking remains HSA-1 (REPRO PASS 21:2x); no ledger change since.
+- GPU idle whole slice (scout slot, CPU-only). Nothing duplicated; foreign d12 lane persists
+  (PW-1 deferral, re-seal correctly refused).
+- Rotation next wake: (B) ROTA-XREF (cheap) or GOLDEN-PIN/ENDO-1; GPU open (QG4/QG1d corpus/MC-1).
