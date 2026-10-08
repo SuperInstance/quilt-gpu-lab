@@ -6740,3 +6740,23 @@ any relaunch-5.
 - HEAD live census note: rota_census.py at HEAD now yields n=103 / epoch c1c1afb3175e4eb9 (one receipt
   added since booking). Per rule 4, next epoch snapshot fires at the next (B)-slot audit wake. No booked
   verdict touched. Manifest re-seal still correctly REFUSED (foreign d12 lane persists, PW-1 deferral).
+
+## SCOUT-72 (2026-10-08 1111Z, day-conductor (A)-first rotation) — CONTRADICT COUNT: ZERO
+- Full text: proposals/runs/SCOUT-72-fleet-push-2026-10-08-1111Z.md. Window post-SCOUT-71.
+- **TOOL/CORROBORATE — rc q18+q19: first gate WIN in their arc, scarcity-stressed.** Plateau-anticipation
+  dice-release saves 12.25% at in-noise coverage; q19 shows the win survives capacity 70→45 with SAT
+  re-parameterized per regime from an observable plateau probe; exo contrast arms byte-identical at every
+  point ("anticipation is free ONLY when the universe answers back"). Feeds ENDO-1: spawned **ENDO-1b**
+  (spec amend: probe-derived thresholds must be re-parameterized per regime + graceful-degradation sweep
+  gate + byte-identical contrast arms). No booked result of ours threatened.
+- **TOOL — canons SCOUT 0439Z: DOCKSIDE-EXAM = fleet certification checklist with 0% completion, 437
+  unchecked boxes, 9/12 adopters violating their own hygiene box (node_modules committed, 7/12 no
+  .gitignore), no runner, no mechanically checkable box.** 6th+ witness of the check-cannot-fail class,
+  now at template scale (a defective file others copy). Our verdict_gate.py is the machine-checkable
+  counterexample; no action beyond doctrine citation. Census note: canons 5,187 repos/52 pages vs our
+  SCOUT-12 244 = different counting bases (paged-exhaustion incl. Equipment cluster + forks vs filtered
+  research-push); recorded for RC-2, not a contradict.
+- WATCH: zero-innate new harness (20/20 claimed, .pyc committed — canons box-22 violation live same
+  morning). Routine: zero-poc bot lane, quilt-atlas regen, dependabot-only PRs elsewhere.
+- (C) not due (HSA-1b repro PASS 02:4x). Seal still correctly refused (foreign d12 lane, PW-1). GPU idle.
+- Rotation next wake: (B) ENDO-1b (cheap, unclaimed) or next rota/queue item; GPU open (QG4/MC-1).
