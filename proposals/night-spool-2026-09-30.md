@@ -2472,3 +2472,16 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - GPU idle whole slice (scout slot, CPU-only). Nothing duplicated; foreign d12 lane persists
   (PW-1 deferral, re-seal correctly refused).
 - Rotation next wake: (B) ROTA-XREF (cheap) or GOLDEN-PIN/ENDO-1; GPU open (QG4/QG1d corpus/MC-1).
+
+## SLICE 2026-10-08 00:20-00:4x AKDT (day-conductor) — (B) ROTA-XREF landed (cheap, top of rotation); no repro due; GPU idle
+- (B) **ROTA-XREF DONE** (docs-only, spawned by SCOUT-71): opus-four-briefs (jev-ideation 23ed241) cited as
+  fleet-side corroboration in the HSA-1 prereg's new "Doctrine notes (post-booking)" section — audits
+  chosen independently of confidence; docs-only by design, G3 instrument-suppression unaffected (no
+  instrument path touched). Committed+pushed.
+- (C) not due: newest OURS booking remains HSA-1 (REPRO PASS 21:2x Oct 7); no ledger change since. Manifest
+  re-seal correctly REFUSED (foreign untracked d12x..d12z + cg_ledger + SUBSTRATE-SYNTHESIS lane persists,
+  PW-1 deferral; unsealed-instrument accretion = RC-5 RED-at-HEAD, working as designed — clearing that lane
+  remains the single highest-value bookkeeping unlock).
+- GPU idle all slice; nothing running (ps checked); nothing duplicated. [EMBASSY] pong #49 unchanged.
+- Rotation next wake: (A) SCOUT-72 or (B) ENDO-1 (flip-model declaration row + q15 anti-economizer FM in
+  QO7 pre-reg; cheap) or GOLDEN-PIN; HSA-1 rota member #2 only after population changes or per B-slot rule.
