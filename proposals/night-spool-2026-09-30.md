@@ -2585,3 +2585,14 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - **NIGHT 2026-10-08 COMPLETE.** Nothing new started per protocol. Rotation next wake: (A) full SCOUT-74
   (resolve canons 404) or (B) HSA-1b next-epoch snapshot (census n=104, epoch abe33a92 fires at next B-wake
   per rule 4); GPU open (QG4/QG1d-corpus/MC-1).
+
+## SLICE 2026-10-08 08:2x AKDT (day-conductor) — (B) HSA-1b pending epoch snapshot abe33a92 FIRED + NO-NEW-MEMBER
+- (B) per rotation (A at 03:1x/07:1x, repro at 05:2x). The snapshot flagged pending since 05:2x fired:
+  population-abe33a92932b3a9d.txt (n=104, append-only) written + committed. Selection bit-stable x2
+  (stdout sha256 bb2dcb67…) == {RC-5-push-check.md}. G1/G2/G3 PASS; G4 NO-NEW-MEMBER per rule 5 (RC-5
+  already audited; suppression re-verify 0 mods). booked rota.jsonl member_check 5, commit 686f636.
+- receipt_manifest --check: exit 2 (verdict_index DRIFT, verdict_repro/xpb_receipt_hook UNSEALED) —
+  RC-5 RED-at-HEAD persists, rota working as designed; re-seal still correctly refused (foreign d12
+  untracked lane GREW again: d12ad/d12y/d12z/cg_ledger, PW-1 deferral).
+- No GPU fired (CPU slot; lane idle). No 429s; nothing duplicated; keys untouched.
+- Rotation next wake: (A) SCOUT-74 per rotation, or (C); GPU open (QG4/QG1d-corpus/MC-1).
