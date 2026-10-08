@@ -6771,3 +6771,16 @@ any relaunch-5.
 - receipt_manifest --check: exit 2, 31 DRIFT/UNSEALED entries (stale-seal accretion) -> RC-5
   RED-at-HEAD PERSISTS, rota working as designed. Seal still correctly refused (foreign d12 lane, PW-1).
 - Cost ~8 min CPU, 0 GPU. Rotation honored ((C); A 03:1x, B 04:2x preceded).
+
+## [REPRO PASS 13:1x Oct 8 CPU] HSA-1b repro #3 (day-conductor (C) slice)
+- Newest scripted booking HSA-1b re-run from COMMITTED tools at HEAD: hash_audit_rota on the committed
+  epoch snapshot population-abe33a92932b3a9d.txt — stdout sha256 bb2dcb67... bit-stable across two
+  back-to-back runs; rule sha256(utf8(path)) last-byte selection → member RC-5 (unchanged);
+  suppression_check post_booking_modifications=0. G3 holds.
+- Rule-4 check: rota_census at HEAD = n=104 / epoch abe33a92932b3a9d, snapshot matches_census=True →
+  census NOT advanced since 08:2x audit; nothing pending, no snapshot fired, G4 = NO-NEW-MEMBER
+  (not FAIL; policy forbids re-audit on epoch change alone, and there was no change).
+- receipt_manifest --check: exit 2, 38 drift/unsealed lines (stale-seal accretion, foreign d12/d12aa-AD
+  lane persists per PW-1) → RC-5 RED-at-HEAD PERSISTS, rota working as designed. Seal correctly refused.
+- Cost ~4 min CPU, 0 GPU. Rotation honored ((C); A 12:1x SCOUT-76, B 11:1x ENDO-1c preceded).
+- Rotation next wake: (A) SCOUT-77 (window since 20:14Z) or (B) PARAM-1/EXIT-1; GPU open (QG4/MC-1).
