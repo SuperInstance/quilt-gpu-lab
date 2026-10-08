@@ -6695,3 +6695,15 @@ any relaunch-5.
 - G4 (member #1 re-run, RC-5 self-verifying instrument): `receipt_manifest.py --check` exit **2**, pytest 3 failed / 55 passed (clean-tree pin + seal-guard checkout pin among failures). CAUSE CLASSIFIED: manifest STALE vs HEAD — bookings since 9e6823e landed new instruments (binom_gate, verdict_index, proj_lattice post-AL-1, determ1/qg1d_successor experiments…) without a re-seal, because the sealer correctly refuses while the foreign d12x/d12y/d12z untracked lane persists (PW-1 deferral). NOT tamper; NOT a contradiction of RC-5's booking (whose G1 held at its own clean commit). **This is RC-5 working: RED AT HEAD, which the pre-push hook would have made RED AT PUSH.**
 - FINDING: the foreign-lane re-seal deferral has accreted a REAL cost — every wake since the deferral began has been shipping unsealed instruments. Push-time `--check` (RC-5) would have caught this at first landing. Rota verdict for member #1: **RED (stale-seal accretion, mechanism-confirmed)**; resolution = clear/commit foreign lane, then single re-seal+commit.
 - Rota semantics live: results/hsa1_rota/rota.jsonl entry 1 appended. Next (B)-slot audit wake takes rota member #2 (none yet — prefix selects only RC-5; wake re-checks suppression + membership instead).
+
+## [REPRO PASS 21:2x Oct 7 CPU] HSA-1 repro + scout 403 partial (day-conductor slice)
+- (C) mandatory repro of newest booking HSA-1: committed population (101, sorted-unique) +
+  frozen sha256-last-byte==0x2A rule recomputed from committed tree => selected subset == {RC-5-push-check.md},
+  bit-identical to booking; rota.jsonl entry 1 = RC-5 (append-only intact). Member instrument re-run:
+  receipt_manifest --check exit 2 (DRIFT/UNSEALED: stale-seal accretion class, now incl. post-HSA-1
+  unsealed instruments) => **RED-at-HEAD REPRODUCED, verdict-level PASS** (rota working as designed).
+- (A) SCOUT 403'd fleet-wide on first call (gh API rate limit, no retry per discipline) — partial finding
+  booked, sweep NOT performed; scout slot re-queues for next wake.
+- Manifest re-seal: still correctly REFUSED (foreign d12x..d12z untracked lane persists, PW-1 deferral);
+  the UNSEALED-instrument accretion noted by HSA-1 G4 continues to grow — resolution unchanged:
+  clear/commit foreign lane, single re-seal+commit.
