@@ -41,3 +41,13 @@ Our booked results can support a mechanical, attention-free audit rota: hash sel
 stable, the subset was not unconsciously curated, and no selected booking's instrument has
 silently drifted since booking. PASS => standing rota adopted, one member per (B)-slot wake.
 FAIL (any gate) => book honestly; suppression hits feed FW-1-successor rows.
+
+## Doctrine notes (post-booking, docs-only — no instrument change, G3 unaffected)
+- [ROTA-XREF, 2026-10-08] Fleet-side corroboration: jev-ideation `opus-four-briefs.md`
+  (23ed241, 03:08Z 2026-10-08) — Opus 5.5 brief, "a judge can't certify itself"; Brief 2
+  remedy gates on the lower bound of audited-confidence and requires "audits must be chosen
+  independently of confidence." Our sha256-last-byte selection is exactly a
+  confidence-independent audit selector — HSA-1 is an independent implementation of the same
+  fleet law. Also books their blind-spot line ("confident, stable, familiar, and wrong fires
+  none of these") as naming the stale-seal-accretion class RC-5 RED-at-HEAD caught on this
+  rota's member #1. Discovered by SCOUT-71 (commit 6c99f6d).
