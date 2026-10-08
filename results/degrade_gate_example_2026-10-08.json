@@ -1,0 +1,45 @@
+{
+  "tool": "degrade_gate",
+  "verdict": "GRACEFUL",
+  "n_points": 4,
+  "benefit_ladder": [
+    {
+      "param": 70.0,
+      "benefit": 12.25,
+      "exo_fired": false
+    },
+    {
+      "param": 60.0,
+      "benefit": 10.1,
+      "exo_fired": false
+    },
+    {
+      "param": 52.0,
+      "benefit": 6.3,
+      "exo_fired": false
+    },
+    {
+      "param": 45.0,
+      "benefit": 4.0,
+      "exo_fired": false
+    }
+  ],
+  "steps": [
+    {
+      "from_param": 70.0,
+      "to_param": 60.0,
+      "delta": -2.15
+    },
+    {
+      "from_param": 60.0,
+      "to_param": 52.0,
+      "delta": -3.8
+    },
+    {
+      "from_param": 52.0,
+      "to_param": 45.0,
+      "delta": -2.3
+    }
+  ],
+  "reasons": []
+}

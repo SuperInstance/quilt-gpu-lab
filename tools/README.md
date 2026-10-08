@@ -512,6 +512,26 @@ more than a copy to use, it's not grabbable yet.
   hits book EDGE-BRACKET while a near-edge root with witnesses stays HIT). Worked
   example rc=0 HIT x=2.0000 f=4.000000, receipt results/target_bisect_example_2026-10-08.json.
 
+- **degrade-gate** — `tools/degrade_gate.py` — graceful-degradation + contrast-arm
+  sweep gate (pattern lifted PROVEN from rc q19 / ENDO-1b, prereg
+  proposals/runs/ENDO-1-endogenous-flip-prereg-amendment.md 2026-10-08): sweep
+  points [{param(capacity), benefit, exo_fired?}] walked DESCENDING by param
+  (q19 70→60→52→45 scarcity ladder) -> benefit must shrink monotonically and
+  never go negative (any rise books REGIME-BRITTLE honestly) AND the exogenous
+  contrast arm must never fire at any point (exo firing anywhere books
+  EXO-FIRED — falsifies the endogenous-source claim). A gate that passes at
+  the nominal point but inverts under scarcity is never a silent PASS.
+  Stdlib-only, deterministic, fail-loud rc=2, JSON receipt, exit 0=GRACEFUL /
+  1=REGIME-BRITTLE or EXO-FIRED.
+  `python tools/degrade_gate.py --sweep-file sweep.json [--tolerance 0 --out r.json] | --sweep '<json>' | --selftest`
+  TEST receipt 2026-10-08: selftest 13/13 — selftest caught a real polarity bug
+  live on first run (ascending sort walked the ladder 45→70, so shrinking
+  benefits read as rising inversions: graceful FAILed and inversion PASSed
+  simultaneously; fixed to descending param = scarcity-ascending walk, pins
+  untouched). Worked example rc=0 GRACEFUL (12.25/10.1/6.3/4.0 ladder), RED
+  control (inversion + exo-fired) rc=1 REGIME-BRITTLE, receipt
+  results/degrade_gate_example_2026-10-08.json.
+
 ### onboard.py — fleet-standard credential onboarding (Casey 2026-10-04)
 Every grabbable tool that touches a provider registers itself in `tools/onboard.json`
 (var name, keyfile name, optional extracted-config path) and inherits the onboarding CLI:
