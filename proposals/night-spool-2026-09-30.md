@@ -2622,3 +2622,19 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   (foreign d12/d12aa-AD untracked lane GREW again — PW-1 deferral). GPU lane idle (quiet-window scout slot).
 - No running processes; nothing duplicated; no 429s.
 - Rotation next wake: (B) ENDO-1c (cheap docs) or HSA-1b rule-4 snapshot check or GPU QG4/MC-1.
+
+## SLICE 2026-10-08 11:1x AKDT (day-conductor) — (B) ENDO-1c LANDED (docs) + HSA-1b rule-4 check clean
+- (B) per rotation (A at 09:1x + 10:1x). HSA-1b rule-4 check FIRST: rota_census re-run — census_n=104,
+  epoch abe33a92932b3a9d UNCHANGED since booking, snapshot matches_census=True → nothing pending, no
+  snapshot fired. [note] 8084c31 (exit-gate-witness tool) is a FOREIGN lane commit ("SuperInstance fleet",
+  no RESULTS booking) — PW-1 precedent; EXIT-1 remains UNCLAIMED by us (their tool is adjacent, not ours).
+- ENDO-1c landed as amendment row 6 + gate G5 in proposals/runs/ENDO-1-endogenous-flip-prereg-amendment.md
+  (horizon-sensitivity sweep: H-sweep monotonicity duty, resume/un-arm clause as first-class component,
+  H→DWELL limit case; G5 RED = savings invert before H=DWELL ⇒ clause hiding cost). Cite rc 9d041d9 (q21).
+  Composes with ENDO-1/ENDO-1b/QO7a; no booked result threatened; QO7 stays Casey day-item.
+- (C) not due: newest OURS scripted booking HSA-1b REPRO PASS twice this day (02:4x, 05:2x); epoch audit
+  booked 08:2x (NO-NEW-MEMBER) and re-verified clean this slice. Manifest re-seal still correctly refused
+  (foreign d12/d12aa-AD untracked lane persists — PW-1 deferral). GPU lane idle (docs slot per rotation).
+- No running processes (foreign receiptd serves + d12 lanes untouched); nothing duplicated; no 429s.
+- Rotation next wake: (B) EXIT-1 (CPU ~20m, pre-reg first — now also covering exit-gate-witness
+  interplay) or GPU QG4/MC-1; (C) will be due if a scripted booking lands first.

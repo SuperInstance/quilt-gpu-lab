@@ -50,6 +50,13 @@ add the following rows on top of the QO7a deficit-window law:
    anticipation law reproduces. Any exo firing anywhere in the sweep falsifies the
    endogenous-source claim.
 
+6. **Horizon-sensitivity sweep row (ENDO-1c, rc q21).** Any anticipation/dwell gate MUST
+   (a) sweep the arming window H (q21's {3,5,8,12,16} shape) and report savings-vs-coverage
+   monotonicity across it — a single-H win leaves arbitrary savings on the table (q18's fixed
+   H=5 vs 58% at H=16); (b) declare the resume/un-arm clause as a FIRST-CLASS gate component
+   (q21's protector is the resume-on-coverage-break clause, not the window length); (c) report
+   the H→DWELL limit case (q22 watch: saturate or invert).
+
 ## Gates in words (pre-registered for any future QO7 instrument fire)
 
 - **G1**: the endogenous-lane probe is observable from lane data alone and its recipe is
@@ -58,6 +65,9 @@ add the following rows on top of the QO7a deficit-window law:
   never inverts. Inversion at any point ⇒ verdict REGIME-BRITTLE, booked honestly.
 - **G3**: exogenous contrast arms are byte-identical to no-gate at every sweep point.
   Any exo firing ⇒ RED on the endogenous-source claim.
+- **G5** (ENDO-1c): the law holds at every swept H within coverage noise (≤1.0pp-class); the
+  resume clause is receipted as the protective mechanism; H→DWELL limit reported. RED if savings
+  INVERT before H=DWELL — that means the clause is hiding cost, not anticipation.
 - **G4** (inherited, QO7a): scoring is on aligned coverage gained inside the deficit
   window, never on firing count.
 
@@ -70,5 +80,5 @@ add the following rows on top of the QO7a deficit-window law:
 - DIFFPORT-1/RT-D1 doctrine: the contrast-arm duty is a special case of the real-vs-repro
   real-probe arm (the exo arm IS the real-probe for an anticipation claim).
 
-Cite: rc 3fd3116, 9743fcc, eb5f041, dd46e9b, 993336a; SCOUT-70 + SCOUT-72 full notes;
-proposals/runs/QO7a-deficit-window-prereg-amendment.md.
+Cite: rc 3fd3116, 9743fcc, eb5f041, dd46e9b, 993336a, 9d041d9 (q21); SCOUT-70 + SCOUT-72 +
+SCOUT-74 full notes; proposals/runs/QO7a-deficit-window-prereg-amendment.md.
