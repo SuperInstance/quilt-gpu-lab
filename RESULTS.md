@@ -6729,3 +6729,14 @@ any relaunch-5.
 - Cost: ~10 min CPU, 0 GPU. No booked result modified; no new items spawned (policy is the closure).
 - SUPERSEDES HSA-1's Population clause (frozen manifest -> rolling epochs). HSA-1 G4 semantics
   unchanged for future wakes.
+
+## [REPRO PASS 02:4x Oct 8 CPU] HSA-1b repro (day-conductor slice)
+- (C) mandatory repro of newest booking HSA-1b, recomputed from committed booking tree: epoch snapshot
+  population-1f9cc956d0b623fe.txt re-hashes to 1f9cc956d0b623fe (match), n=102 sorted-unique; selection
+  sha256-last-byte==0x2A recomputed twice bit-stable == {proposals/runs/RC-5-push-check.md} == pre-reg;
+  G3 holds (RC-5 re-selected; delta vs freeze epoch = HSA-1's own receipt only, matching booking's
+  census_n 101->102). receipt_manifest --check at HEAD: exit 2, stale-seal accretion class unchanged
+  (ledger DRIFTs + unsealed post-HSA-1 instruments) => RC-5 RED-at-HEAD reproduced, verdict-level PASS.
+- HEAD live census note: rota_census.py at HEAD now yields n=103 / epoch c1c1afb3175e4eb9 (one receipt
+  added since booking). Per rule 4, next epoch snapshot fires at the next (B)-slot audit wake. No booked
+  verdict touched. Manifest re-seal still correctly REFUSED (foreign d12 lane persists, PW-1 deferral).
