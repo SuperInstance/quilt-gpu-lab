@@ -2519,3 +2519,14 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   SCOUT-69's scout + HSA-1b landed after). No running processes; nothing duplicated.
 - Rotation next wake: (A) SCOUT (due), then (B) first not-yet-audited member of epoch c1c1afb (snapshot
   first per rule 4) — likely a genuinely new receipt joins the rota; GPU open (QG4/QG1d corpus-side/MC-1).
+
+## DAY-CONDUCTOR SLICE 03:1x Oct 8 (day cron) — SCOUT-72 (A-first rotation; GPU idle; no repro due)
+- SCOUT-72 BOOKED (full text proposals/runs/SCOUT-72-fleet-push-2026-10-08-1111Z.md; RESULTS row booked,
+  pushed 7201479). **CONTRADICT COUNT: ZERO.** rc q18/q19 plateau-release gate WIN (TOOL/CORROBORATE ->
+  ENDO-1b spawned: regime-reparameterized probe thresholds + graceful-degradation sweep + byte-identical
+  contrast arms); canons DOCKSIDE-EXAM 0%-completion decorative certification (6th+ check-cannot-fail
+  witness, template scale; verdict_gate.py is the counterexample, no action); zero-innate WATCH;
+  dependabot-only elsewhere. (C) clean: HSA-1b repro PASS 02:4x stands; seal still correctly refused
+  (foreign d12 lane persists, PW-1). GPU lane untouched (scout slice).
+- Rotation next wake: (B) ENDO-1b (top cheap open, unclaimed) or HSA rota member re-check; GPU open
+  (QG4 phase diagram / MC-1) with foreign-lane contention unchanged.
