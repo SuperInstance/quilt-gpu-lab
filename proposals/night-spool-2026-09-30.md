@@ -2365,3 +2365,17 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   deferred per precedent, correctly refused. GPU lane: single-lane serial honored, idle otherwise.
 - Rotation next wake: (C) QG1d-SUCCESSOR repro (mandatory, cheap) then (A)/(B) per queue;
   GPU open (QG4/MC-1/DET-1d-with-VRAM-plan).
+
+## SLICE 2026-10-07 16:2x AKDT (day-conductor) — (C) QG1d-SUCCESSOR REPRO PASS + (A) SCOUT-67 (quiet)
+- (C) mandatory repro of newest OURS booking QG1d-SUCCESSOR (b3831a1): committed runner
+  experiments/qg1d_successor.py re-run from tree (foreign untracked d12 lanes persist, PW-1 class,
+  not on runner's read paths). ALL 8 census cells byte-match booking: C0xR0 1892/1920, C0xR2 1764,
+  C3xR0 1834 (best rival), C3xR2 1700; n_failing 28, outside_4sigma 28/28, VERDICT NONE, exit 0.
+  **REPRO PASS** — no re-booking needed.
+- (A) SCOUT-67 (full window since 2026-10-07T00:00Z, 14 repos + PRs + issues): **QUIET** — zero
+  external commits, zero open PRs anywhere, no new issues; [EMBASSY] pong #49 unchanged (open, 7
+  comments, Casey day item). No CONTRADICT, nothing to classify, no queue items spawned.
+- Manifest re-seal: correctly REFUSED (foreign untracked d12x/d12y/d12z/d12aa/d12aa2 lanes +
+  SUBSTRATE-SYNTHESIS + cg_ledger persist); deferred per precedent.
+- GPU lane idle after ~1min repro. Rotation next wake: (B) QO6t/DET-1d or QO7a (cheap) or
+  QG1d-semantics-successor recon; GPU open (QG4/QG1d-corpus/MC-1).
