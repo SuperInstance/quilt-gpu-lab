@@ -2441,3 +2441,20 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - (C) DONE: HSA-1 repro PASS (selection bit-stable, member #1 = RC-5, RED-at-HEAD reproduced, exit 2). Commit 6713e2a.
 - Manifest re-seal still deferred (foreign untracked lane, PW-1). GPU lane idle this slice.
 - Next wake rotation: (A) SCOUT retry (fresh window), else (B) VX-1/CH-1; GPU open (QG4/MC-1).
+
+## SLICE 2026-10-07 20:2x AKDT (day-conductor) — (A) SCOUT-70 (re-queued scout slot): no CONTRADICT; ENDO-1 spawned
+- (A) SCOUT-70 (full text proposals/runs/SCOUT-70-fleet-push-2026-10-08-0620Z.md): window since SCOUT-69.
+  HEADLINE — rc-20260824-11 q15-q18 gate arc: q17/q18 first WINS via ENDOGENOUS flips (coverage-dwell rule,
+  precision 0.667; RELEASE gate saves 12.25% passes); law = anticipatory gating licensed ONLY under a
+  reactive universe. TOOL/CORROBORATE for QO6/QO7 → spawned **ENDO-1** (docs: flip-model declaration row +
+  q15 anti-economizer failure mode in QO7 pre-reg; cite rc dd46e9b/eb5f041). Canons 3 scouts: eisenstein-embed
+  fingerprint collision (AL-1 family amendment, note only), CI "No tests" x200 + cannot-falsify harness +
+  verify_py_compat-accepts-noise + exit-code-inverted poll (CI-1/RC-1b corroborate). WATCH: nursery anti-GAN
+  breeding framework + anti-gan-test repo + 6 seed repos ("DNA from the dead agents") → AG-WATCH (LOW);
+  SD-1/Casey territory. Open PRs all dependabot; quilt-elf #13 bump only. [EMBASSY] pong #49 unchanged (7
+  comments, Sep 28). Note: org /events API 404 — per-repo commits fallback; no 429s.
+- (C) not due: newest OURS booking HSA-1 already REPRO PASS 21:2x this day; no ledger change since. No GPU
+  fired (scout slot per rotation). Manifest re-seal: foreign untracked d12x..d12z + cg_ledger persist (PW-1
+  deferral; unsealed-instrument accretion = RC-5 RED-at-HEAD, working as designed). Nothing running; nothing
+  duplicated.
+- Rotation next wake: (B) ENDO-1 (cheap) or HSA-1-rota suppression re-check; GPU open (QG4/QG1d corpus/MC-1).
