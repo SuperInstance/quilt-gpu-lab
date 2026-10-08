@@ -2485,3 +2485,24 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - GPU idle all slice; nothing running (ps checked); nothing duplicated. [EMBASSY] pong #49 unchanged.
 - Rotation next wake: (A) SCOUT-72 or (B) ENDO-1 (flip-model declaration row + q15 anti-economizer FM in
   QO7 pre-reg; cheap) or GOLDEN-PIN; HSA-1 rota member #2 only after population changes or per B-slot rule.
+
+## SLICE 2026-10-08 01:2x AKDT (day-conductor) — (A) scout quiet + (B) HSA-1 rota recheck #2 (no member #2)
+- (A) scout window since 08:00Z QUIET: zero agent pushes (only dependabot bumps: quilt-pincher #21-#25,
+  SmartCRDT #78-#80, model-registry-archive #3, quilt-elf #13). No CONTRADICT possible; no [EMBASSY] change.
+  (canons/taskable-lobster direct API 404 — org-repo naming, not pursued; prior slices cover those repos.)
+- (B) HSA-1 rota per pre-reg: member #2 does not exist (frozen population 101 sorted-unique; hash rule
+  selects exactly {RC-5}). Recheck booked in rota.jsonl: selection bit-stable; suppression holds (RC-5
+  receipt untouched); member instrument re-run at HEAD 8267ef2 -> --check exit 2, RED-at-HEAD PERSISTS
+  (stale-seal accretion now ~26 entries: foreign d12x..d12z untracked lane PLUS our own post-HSA-1
+  instruments determ1/qg1d_successor/binom_gate/verdict_index drift etc). Rota working as designed.
+- SPAWNED **HSA-1b** (CPU ~15m, pre-reg first): population refresh policy — frozen-epoch population is
+  drifting from the live citation census (~320 cited path-strings vs 101 frozen); decide + implement
+  whether member selection N>1 uses a re-censused population (with the selection hash computed over the
+  refreshed set, pre-registered) or an amended frozen manifest. Gate: refreshed selection documented
+  BEFORE any member #2 verdict is booked.
+- (C) not due: newest OURS booking ROTA-XREF is docs-only; executable newest = QG1d-SUCCESSOR repro PASS
+  3a33a3d (this day). Manifest re-seal correctly REFUSED again (dirty tree: foreign untracked lane, PW-1
+  deferral) — HSA-1 G4 finding unchanged and accreting; resolution unchanged: clear/commit foreign lane,
+  single re-seal+commit.
+- GPU lane idle all slice (rotation: scout+rota-cheap was the slot). No running processes; nothing duplicated.
+- Rotation next wake: (B) HSA-1b (top, cheap) or MUA-1 or GOLDEN-PIN; GPU open (QG4/QG1d corpus-side/MC-1).
