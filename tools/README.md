@@ -805,3 +805,24 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   honestly books no tail). Live QG1d replay rc=1 SYSTEMATIC (tail 3.175e-4,
   3.4 sigma, receipt results/binom_gate_qg1d_replay_2026-10-07.json); mild
   deviation (100/35 @ p0=0.25, 2.13 sigma) rc=0 QUIET.
+
+- **rota-epoch** — `tools/rota_epoch.py` — versioned rolling-epoch rota census +
+  hash-selected member picker (pattern lifted PROVEN from HSA-1b, booked 2026-10-08:
+  the frozen 101-receipt rota population decayed — post-freeze receipts could never
+  be audited; the fix was an epoch that is a PURE FUNCTION of the committed census).
+  Regex-census of receipt paths from RESULTS.md -> sorted-unique -> epoch_id =
+  sha256(joined)[:16] -> append-only snapshot (identity tamper = epoch collision,
+  fail-loud rc=2) -> selection by sha256-last-byte==0x2A (digest-ascending fallback)
+  -> advances to the first member NOT already audited in any prior rota epoch
+  (annotation entries without a `receipt` key are skipped, not corruption);
+  NO-NEW-MEMBER is an honest book (rc=1), never a fake pass. Stdlib-only,
+  deterministic, JSON receipt. `python tools/rota_epoch.py --results RESULTS.md --snapshot-dir results/rota_epochs --rota results/rota.jsonl [--no-append --out r.json] | --selftest`
+  TEST receipt 2026-10-08: selftest 14/14 — selftest caught three real bugs live
+  (temp+replace in append_rota CLOBBERED rota history — the exact append-only
+  violation the tool guards, now a named pin; advance semantics originally checked
+  only the single selected member so fallback re-selection never advanced; and a
+  `receipt: null` pin that slipped through the annotation-skip path). Live census
+  of real RESULTS.md vs a copy of the real rota: epoch abe33a92932b3a9d, 104 paths,
+  RC-5-push-check selected (no fallback), NO-NEW-MEMBER rc=1 — matches the booked
+  HSA-1b G4. Receipt scratch/rota_epoch_test/receipt.json (scratch dir + rota copy
+  used so the live instrument was not mutated by a test).
