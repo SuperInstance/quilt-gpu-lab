@@ -1,0 +1,36 @@
+{
+  "tool": "saturating-fit",
+  "ts": "2026-10-07T21:43:47-0800",
+  "anchors": [
+    [
+      0.3,
+      0.657
+    ],
+    [
+      0.4,
+      0.8963
+    ],
+    [
+      0.45,
+      0.7765
+    ]
+  ],
+  "x_test": 0.7,
+  "actual": 0.836,
+  "fit": {
+    "k0": 0.8364027491260387,
+    "A": -1917154050200.996,
+    "tau": 0.01,
+    "anchor_resid": 0.08471711285316672,
+    "anchor_resid_rel": 0.06248902042390098
+  },
+  "k_pred": 0.8364027491260387,
+  "linear_control": 1.101092857142857,
+  "checks": {
+    "g1_resid": true,
+    "g2_tau_interior": false,
+    "g2_finite": true,
+    "g3_band": true
+  },
+  "verdict": "FAIL"
+}

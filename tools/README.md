@@ -457,6 +457,25 @@ more than a copy to use, it's not grabbable yet.
   INTACT rc=0, head d0f34948b3583ff1, ledger
   results/chain_guard_example_2026-10-07.jsonl.
 
+- **saturating-fit** — `tools/saturating_fit.py` — saturating one-variable fit + held-out
+  prediction gate (pattern lifted PROVEN from D12aa, booked 2026-10-07: D12z's LINEAR
+  extrapolation of k_eff(p) to p=0.7 said 1.614 while the parameter saturates ~0.84 —
+  this mechanizes the alternative): anchors [(x,k)] -> k(x)=k0+A*exp(-x/tau) fit via
+  tau grid-scan + closed-form 2-param least squares (pure Python, no numpy) -> predict
+  the held-out x with NO refit; G1 absolute-RMS anchor residual <= bar (D12aa
+  convention), G2 tau-interior sanity (tau pinned at the grid edge = degenerate
+  exponential, booked honestly, never silent), G3 optional held-out band vs --actual;
+  the linear-OLS control (the D12z failure mode) is always reported for contrast.
+  Stdlib-only, deterministic, fail-loud rc=2, exit 0=PASS / 1=FAIL, JSON receipt.
+  `python tools/saturating_fit.py --anchors '[[0.3,0.657],[0.4,0.8963],[0.45,0.7765]]' --predict 0.7 [--actual 0.836 --resid-bar 0.1 --out r.json] | --anchors-file f.json | --selftest`
+  TEST receipt 2026-10-07: selftest 10/10 — selftest caught three real pin bugs live
+  (booked D12aa resid is ABSOLUTE RMS not relative; the linear-control pin quoted a
+  number from a different fit — true OLS gives 1.101; and the D12aa replay honestly
+  trips the tau-edge gate, which became a named pin rather than a hidden PASS);
+  worked example rc=1: k(0.7)=0.8364 matches booked truth (G3 pass), linear control
+  1.101, tau-edge degeneracy booked FAIL honestly, receipt
+  results/saturating_fit_example_2026-10-07.json.
+
 ### onboard.py — fleet-standard credential onboarding (Casey 2026-10-04)
 Every grabbable tool that touches a provider registers itself in `tools/onboard.json`
 (var name, keyfile name, optional extracted-config path) and inherits the onboarding CLI:
