@@ -2393,3 +2393,22 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   sealed path touched (docs-only). No new queue items spawned (DIFFPORT-1 was the item).
 - Rotation next wake: (A) SCOUT-68 (due ~4h) or (B) QO6t/DET-1d or QG1d-semantics-successor
   recon; GPU open (QG4/QG1d-corpus/MC-1).
+
+- [DONE 18:2x Oct 7 SCOUT-68 (day-conductor, (A)-rotation; GPU idle; no repro due — QG1d-SUCCESSOR
+  PASS 16:2x, DIFFPORT-1 docs-only)]. Full text: proposals/runs/SCOUT-68-fleet-push-2026-10-08-0211Z.md.
+  HEADLINE — **CONTRADICT-CANDIDATE (fleet-side, transfers): quilt-c's "byte-exact" contract is
+  unenforced by its own code** (canons 0131Z, mutation-proven: FNV basis/prime/XOR→ADD mutated,
+  1,285 assertions stay green; canons CI-taxonomy **shape 4 "gate names a nonexistent object"**).
+  Threat named: our receipt-manifest seal verifier has never been demonstrated to FAIL — if it
+  accepts a mutated pinned file, every sealed booking is quilt-c-unbacked. Spawned **GOLDEN-PIN**
+  (scratch-clone red-team: 3 mutations, verifier must refuse all 3 with exit!=0 + named path,
+  md5-confirmed substitutions; any accept = RED). CORROBORATE x2: rc-20260824-11 **q17 first
+  positive in a 12-negative arc** — endogenous flips anticipatable from the stack's own saturation
+  plateau (precision 0.667 vs placebo 0.000, recall 0.150; exogenous arm ≈ placebo) = QG7 desert /
+  projection-law doctrine on an independent substrate, no booked result threatened, recall-asymmetry
+  mechanism noted as TOOL; canons method notes (piped-exit-code 4th witness of our tmpfs-tail class;
+  md5-before/after mutation discipline → GOLDEN-PIN spec). 42 empty repos incl. spec-prereg
+  (0-commit repo advertising hash-sealed prereg) = D-2 corroborate. Positive controls wave69/quilt-quant
+  mutation-resistant — fleet gate quality bimodal, ours in the healthy class pending GOLDEN-PIN.
+  Org PRs dependabot-only; our repo 0 PRs / 0 issues; [EMBASSY] none. Rotation next wake: (B)
+  GOLDEN-PIN (top open CPU item, audit class) or GPU QG4/MC-1 per queue order.
