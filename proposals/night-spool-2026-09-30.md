@@ -2428,3 +2428,10 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   mutation-resistant — fleet gate quality bimodal, ours in the healthy class pending GOLDEN-PIN.
   Org PRs dependabot-only; our repo 0 PRs / 0 issues; [EMBASSY] none. Rotation next wake: (B)
   GOLDEN-PIN (top open CPU item, audit class) or GPU QG4/MC-1 per queue order.
+
+## SLICE 2026-10-07 20:4x AKDT (day-conductor) — (B) HSA-1 BOOKED: rota live; member #1 RC-5 re-run RED-at-HEAD (stale seal, mechanism confirmed)
+- (B) per last rotation (HSA-1 top cheap). Prereg + population committed before selection; selector tools/hash_audit_rota.py; sha256 last-byte 0x2A rule → 1/101 member (RC-5), fallback unused, selection bit-stable, suppression check clean (0 post-booking receipt modifications). Gates G1-G3 PASS.
+- Member #1 re-run: --check exit 2 + 3/58 test failures — classified STALE-SEAL ACCRETION (bookings since 9e6823e shipped unsealed instruments; foreign d12x lane keeps re-seal refused). RC-5 booking untouched — its clean-tree G1 held at its own commit. Booked as rota RED with cause; the push-time hook would have caught the first unsealed landing. See RESULTS.md. rota.jsonl entry 1 appended.
+- Manifest re-seal: refused (expected, foreign lane + this slice's new tool pre-commit). Will re-seal+commit immediately after this landing.
+- (A) not this slice (last slice was SCOUT-69); no GPU fired; lane idle; nothing duplicated (MUA-1/QG1d-SUCCESSOR/RC-5 all booked, not in progress).
+- Rotation next wake: (A) SCOUT per rotation; (B) rota suppression re-check or GOLDEN-PIN/MUA-1-class; GPU open (QG4/QG1d corpus-side/MC-1).

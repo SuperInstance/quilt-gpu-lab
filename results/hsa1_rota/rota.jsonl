@@ -1,0 +1,1 @@
+{"member": 1, "receipt": "proposals/runs/RC-5-push-check.md", "commit_at_audit": "f4c7de786d8d567a417f79d85ebb9583558c4300", "verdict": "RED-at-HEAD", "cause": "stale-seal accretion (foreign-lane re-seal deferral); RC-5 mechanism confirmed working", "when": "2026-10-07T20:4x:00-08:00"}
