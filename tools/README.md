@@ -476,6 +476,25 @@ more than a copy to use, it's not grabbable yet.
   1.101, tau-edge degeneracy booked FAIL honestly, receipt
   results/saturating_fit_example_2026-10-07.json.
 
+- **snap-gate** — `tools/snap_gate.py` — eps-resolution identity gate for two numeric
+  runs (pattern lifted PROVEN from DETERM-1, booked 2026-10-07: Arm B snapped v/champ_v
+  to an eps-lattice each round and stayed within noise of Arm A — "same computation"
+  for a noisy float pipeline means the SAME EPS-CELLS, not bit-identity). det_witness
+  is sha256 bit-strict (too strong for seeded reruns); verdict_repro reads one field
+  (too weak) — this is the middle rung: snap both runs to round(x/eps) cells
+  (ties-to-even), gate the lattice-mismatch fraction <= bar. Flat arrays or nested
+  dicts/lists flatten to stable dotted paths; structure drift (renamed/missing keys)
+  fails loud rc=2, never silent PASS. Stdlib-only, deterministic, fail-loud rc=2,
+  exit 0=SAME / 1=DRIFTED, JSON receipt.
+  `python tools/snap_gate.py --a run1.json --b run2.json [--eps 0.01 --bar 0.0 --out r.json] | --a '<json>' --b '<json>' | --selftest`
+  TEST receipt 2026-10-08: selftest 11/11 — selftest caught two of its own bad pins
+  live (the NaN pin expected compare() to return rc=2 when flatten() correctly raises;
+  and the zero-crossing pin used +-0.004 which honestly tie to the SAME cell 0 at
+  eps=0.01 — sub-half-quantum sign flips are not drift, pinned as a named SAME control,
+  the real crossing pin uses +-0.006, cells_apart=2). Worked example rc=1 DRIFTED:
+  [1.004,2.0] vs [1.001,2.009] -> cell 201 vs 200, 1 mismatch/2, receipt
+  results/snap_gate_example_2026-10-08.json.
+
 ### onboard.py — fleet-standard credential onboarding (Casey 2026-10-04)
 Every grabbable tool that touches a provider registers itself in `tools/onboard.json`
 (var name, keyfile name, optional extracted-config path) and inherits the onboarding CLI:

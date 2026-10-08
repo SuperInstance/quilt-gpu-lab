@@ -1,0 +1,24 @@
+{
+ "tool": "snap-gate",
+ "verdict": "DRIFTED",
+ "eps": 0.01,
+ "bar": 0.0,
+ "n_values": 2,
+ "mismatch_count": 1,
+ "mismatch_frac": 0.5,
+ "max_abs_diff": 0.008999999999999897,
+ "max_abs_diff_path": "[1]",
+ "quantum": 0.005,
+ "mismatches": [
+  {
+   "path": "[1]",
+   "a": 2.0,
+   "b": 2.009,
+   "cell_a": 200,
+   "cell_b": 201,
+   "cells_apart": 1,
+   "abs_diff": 0.008999999999999897
+  }
+ ],
+ "note": "cell = round(x/eps), ties-to-even; mismatch = differing lattice cell"
+}
