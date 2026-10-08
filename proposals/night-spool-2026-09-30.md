@@ -2657,3 +2657,18 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - No running processes (foreign receiptd serves + d12 lanes untouched); nothing duplicated; no 429s.
 - Rotation next wake: (B) EXIT-1 (CPU ~20m, pre-reg first — now also covering exit-gate-witness
   interplay) or GPU QG4/MC-1; (C) will be due if a scripted booking lands first.
+
+## SLICE 2026-10-08 14:1x AKDT (day-conductor) — (A) SCOUT-77: no CONTRADICT; pong RENAME resolved
+- (A) SCOUT-77 (full text proposals/runs/SCOUT-77-fleet-push-2026-10-08-2215Z.md): window pushes =
+  deckboss PWA (WATCH, Casey UI), zero-poc routine, **rc-20260824-11 q22 horizon-knob closure** —
+  optimal gate = resume-clause-alone, monotone to boundary, no inversion; exo arms 0 (4th repro).
+  CORROBORATE x2: PARAM-1 gains a reference methodology cite (72c4a72); QO7a-AMEND spawned (docs,
+  LOW: resume-clause row + no-minimum-floor evidence). **EMBASSY: pong → pong-quilt RENAME resolved**
+  — repo lives at pong-quilt, #49 open/7 comments/updated Sep-28, genuinely unchanged all along;
+  RC-2 note: renames 404, watched-list updated (pong → pong-quilt). No CONTRADICT.
+- (C) not due: newest scripted booking HSA-1b REPRO PASS 13:1x today (census static n=104,
+  epoch abe33a92932b3a9d); newest ENDO-1c is docs-only. GPU lane idle (scout slot per rotation).
+  Foreign d12 untracked lane persists (PW-1); seal correctly refused, deferred. No running
+  processes; nothing duplicated; no 429s.
+- Rotation next wake: (B) PARAM-1 (top cheap, now with q22 methodology cite) or QO7a-AMEND;
+  GPU open (QG4/QG1d-corpus/MC-1).
