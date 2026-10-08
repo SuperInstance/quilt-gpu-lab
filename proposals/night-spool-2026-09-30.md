@@ -2596,3 +2596,18 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   untracked lane GREW again: d12ad/d12y/d12z/cg_ledger, PW-1 deferral).
 - No GPU fired (CPU slot; lane idle). No 429s; nothing duplicated; keys untouched.
 - Rotation next wake: (A) SCOUT-74 per rotation, or (C); GPU open (QG4/QG1d-corpus/MC-1).
+
+## SLICE 2026-10-08 09:1x AKDT (day-conductor) — (A) SCOUT-74 (murmur inverted-science + rc q21) + (C) repro PASS
+- (A) SCOUT-74 (full text proposals/runs/SCOUT-74-fleet-push-2026-10-08-1715Z.md): window 14:15→17:11Z.
+  rc 9d041d9 q21 anticipation-horizon sweep PASS (savings monotone 8.5→58% in H, resume clause is the
+  protector, bound=DWELL, q22 H→DWELL open) → spawned **ENDO-1c** (horizon-sensitivity pre-reg row for
+  QO7). canons 76020e4: quilt-murmur ★ — receipt chain fails-closed but 9/28 experiments exit 0 under
+  verdict-inverting mutation (measurement-not-gate) → spawned **EXIT-1** (booked-script fail-branch
+  exit-code census, ~20m). charCodeAt-FNV canary gap = AL-1 corroboration (3rd dialect instance).
+  Census recount 5,202 repos (RC-2 note). No CONTRADICT. [EMBASSY] pong #49 still open/7 comments —
+  SCOUT-73's "appears resolved" retracted; Casey day item unchanged.
+- (C) mandatory repro of newest OURS booking (HSA-1b epoch snapshot 686f636): rota_census re-run
+  deterministic — n=104, epoch abe33a92932b3a9d, snapshot matches_census=True (no advance since booking,
+  nothing due to fire); hash_audit_rota exit 0, selection RC-5 bit-stable, suppression 0. **REPRO PASS.**
+- GPU lane idle all slice (scout slot per rotation). No running processes; nothing duplicated; no 429s.
+- Rotation next wake: (B) ENDO-1c (cheap) or EXIT-1; GPU open (QG4/MC-1/QG1d-corpus).
