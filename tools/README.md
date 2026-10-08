@@ -495,6 +495,23 @@ more than a copy to use, it's not grabbable yet.
   [1.004,2.0] vs [1.001,2.009] -> cell 201 vs 200, 1 mismatch/2, receipt
   results/snap_gate_example_2026-10-08.json.
 
+- **target-bisect** — `tools/target_bisect.py` — scan+refine solver for f(x) ≈ target,
+  robust to NON-MONOTONE f (pattern lifted PROVEN from D12aa2, booked 2026-10-08: blind
+  bisection on the U-shaped k_eff loss walked the wrong branch and had to fall back to
+  coarse-scan refinement — this mechanizes the fixed recipe): coarse grid scan over
+  [lo,hi] -> golden-section refine around the best interior point -> verdicts HIT /
+  EDGE-BRACKET (target reached only at a scan edge, or hit with no witnessed crossing —
+  the domain stops, never a silent PASS) / NO-HIT, fail-loud rc=2 on empty bracket,
+  tol<=0, or non-finite f. Stdlib-only, deterministic, one JSON receipt.
+  `python tools/target_bisect.py --expr "x*x" --target 4 --lo 0 --hi 3 [--tol 1e-3 --grid 33 --out r.json] | --selftest`
+  TEST receipt 2026-10-08: selftest 6/6 — selftest caught two of its own pin bugs live
+  (the U-shape pin quoted the out-of-bracket root 2.7 when the in-bracket root is 0.7;
+  and the first EDGE-BRACKET fixture genuinely witnessed a crossing — probing why the
+  honest fixture wouldn't fire exposed that the edge path was unreachable dead code:
+  range gate + grid-exact made it impossible, verdict logic restructured so edge-only
+  hits book EDGE-BRACKET while a near-edge root with witnesses stays HIT). Worked
+  example rc=0 HIT x=2.0000 f=4.000000, receipt results/target_bisect_example_2026-10-08.json.
+
 ### onboard.py — fleet-standard credential onboarding (Casey 2026-10-04)
 Every grabbable tool that touches a provider registers itself in `tools/onboard.json`
 (var name, keyfile name, optional extracted-config path) and inherits the onboarding CLI:

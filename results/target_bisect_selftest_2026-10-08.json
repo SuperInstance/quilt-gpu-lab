@@ -1,0 +1,5 @@
+{
+  "tool": "target_bisect",
+  "selftest": "PASS",
+  "n_checks": 6
+}
