@@ -495,6 +495,24 @@ more than a copy to use, it's not grabbable yet.
   [1.004,2.0] vs [1.001,2.009] -> cell 201 vs 200, 1 mismatch/2, receipt
   results/snap_gate_example_2026-10-08.json.
 
+- **exit-gate-witness** — `tools/exit_gate_witness.py` — verdict-vs-exit-code gate
+  witness (pattern lifted PROVEN from SCOUT-74 / quilt-murmur, booked 2026-10-08:
+  28 experiments sat behind a fails-closed receipt chain yet 9/28 EXITED 0 under a
+  verdict-INVERTING mutation — "the tree of experiments is measurement, not gate";
+  this mechanizes that check): runs a command (list-form subprocess, no shell) on a
+  good input and a mutated one, parses a verdict (dotted `--verdict-key`) from each
+  run's JSON stdout, gates BOTH clauses — G1 good->PASS verdict AND exit 0, G2
+  mutated->FAIL verdict AND nonzero exit. FAIL-verdict-with-exit-0 books RED (the
+  murmur class); a mutation that doesn't invert books NOT-INVERTING honestly (too
+  weak to witness anything, never PASS); mutated-run crash counts as gate-fires.
+  Stdlib-only, fail-loud rc=2, JSON receipt, exit 0=WITNESSED / 1=RED.
+  `python tools/exit_gate_witness.py --cmd python3 --args gate.py,{INPUT} --good good.json --bad bad.json [--verdict-key verdict --out r.json] | --inline | --selftest`
+  TEST receipt 2026-10-08: selftest 4/4 — selftest caught its own fixture bug live
+  (`-c` fixtures passed `--x` before `{INPUT}` so sys.argv[1] was the flag, not the
+  path; fixture fixed, gate untouched); worked example rc=0 WITNESSED (PASS->exit0,
+  FAIL->exit1), receipt results/exit_gate_witness_example_2026-10-08.json; murmur
+  control (FAIL prints, exits 0) RED rc=1 with the murmur-class why-line.
+
 - **target-bisect** — `tools/target_bisect.py` — scan+refine solver for f(x) ≈ target,
   robust to NON-MONOTONE f (pattern lifted PROVEN from D12aa2, booked 2026-10-08: blind
   bisection on the U-shaped k_eff loss walked the wrong branch and had to fall back to

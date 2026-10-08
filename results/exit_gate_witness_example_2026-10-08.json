@@ -1,0 +1,1 @@
+{"tool": "exit_gate_witness", "verdict": "WITNESSED", "rc": 0, "why": "PASS->exit0 and FAIL->nonzero both hold", "cmd": ["python3", "/tmp/egw_gate.py", "{INPUT}"], "runs": {"good": {"rc": 0, "verdict": "PASS", "stdout_bytes": 20, "stderr_head": ""}, "bad": {"rc": 1, "verdict": "FAIL", "stdout_bytes": 20, "stderr_head": ""}}}
