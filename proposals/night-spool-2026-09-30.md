@@ -2569,3 +2569,19 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   rotation). Foreign d12 untracked lane persists (PW-1); seal correctly refused/deferred.
 - Rotation next wake: (B) CI-COV-1 (top cheap) or HSA-1b rota snapshot audit (n=104 epoch abe33a92 due at
   next B-wake per rule 4); GPU open (QG4/QG1d-corpus/MC-1).
+
+## SLICE 2026-10-08 07:1x AKDT (day-conductor) — NIGHT COMPLETE (≥07:00 rule); mini-scout: rc q20
+- (A) mini-scout (read-only; org-level API 404'd, per-repo route used — note for future scouts): only external
+  push since SCOUT-73 = rc q20 8990860 (13:07Z): sustained-plateau-release FAIL (honest negative, exit 1),
+  sharpening q18's win — SUSTAINED never fires (dwell>=DWELL unreachable by construction, flip resets dwell),
+  HORIZON repro -26/400 savings; law: in a reactive regime, plateau release must be ANTICIPATORY — confirmation
+  and consumption are the same event. **CORROBORATE of ENDO-1/ENDO-1b** (anticipation/licensing row; strengthens
+  the probe-threshold re-parameterization framing). No CONTRADICT — QO6 eproc accumulates evidence rather than
+  awaiting saturation confirmation, so the q20 law does not touch the retraction gate. canons repo now 404s via
+  API (renamed/archived? — watch item for next full scout, do not assume deletion). Other repos quiet.
+- (B) none fired (rotation + ≥07:00 rule); GPU lane idle; (C) not due (newest scripted booking HSA-1b REPRO PASS
+  05:2x, repro #2; degrade-gate 27d2a2d is a tool landing, no verdict to repro). No running processes; foreign
+  d12 untracked lane persists (PW-1) — manifest re-seal correctly refused, stays deferred.
+- **NIGHT 2026-10-08 COMPLETE.** Nothing new started per protocol. Rotation next wake: (A) full SCOUT-74
+  (resolve canons 404) or (B) HSA-1b next-epoch snapshot (census n=104, epoch abe33a92 fires at next B-wake
+  per rule 4); GPU open (QG4/QG1d-corpus/MC-1).
