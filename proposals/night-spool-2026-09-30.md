@@ -312,6 +312,36 @@
 - Rotation next wake: (A) SCOUT-78 per rotation, or (B) PARAM-1a/1b (trivial hardening) /
   GOLDEN-PIN / MUA-1; GPU open (QG4/MC-1/QG1d-corpus).
 
+## SLICE 2026-10-08 18:3x AKDT (day-conductor) — (A) SCOUT-79 (canons 8fef113 fail-open verifiers) + (C) PARAM-1a/1b REPRO PASS
+- (A) SCOUT-79 (full text upstream: canons 8fef113, research/scout/SCOUT-2026-10-08T2236Z): five-repo
+  dissection. **No CONTRADICT** — QO2 stack, receipt doctrine, QG3+QG6, PARAM-1 landings all unthreatened.
+  HEADLINE shapes: (1) selectlib (fleet's own anti-vacuous-control reference) fails its own doctrine —
+  MUT-1/MUT-2 both survive the suite; root cause of BOTH is the same shape: **a comparison whose
+  tie/no-op case resolves to pass** (`mae() > 1e-6` never calls the clean arm; `X <= Y + 1e-12` passes
+  at tie). (2) ledger-continuity verifier fails OPEN on absent evidence (`inp is None or ...` waves
+  unverifiable claims through as clean). (3) quilt-rooms ships scripts that exit 0 and write nothing
+  (missing dirs) + a hash-chain seal with NO verifier. (4) quilt-tools is the positive control (94/94
+  exact, CI green, tamper-verified ledger-seal) with one defect: vendored provenance pinned to a BRANCH
+  name (merged PR #28 head — expiry-dated receipt) instead of commit SHA. (5) quilt-rag: 17 good tests,
+  CI red 8/8 forever (no lockfile; deps 404 on npm) — green badge and green tests are independent claims.
+  Classification: TIE-1 class spawned (below); quilt-tools branch-pin = RC-1b/receipt-pin corroborate
+  (our pins are commit-SHA'd — RECEIPT-HASH doctrine validated); quilt-rag = CI-1 corroborate (new row:
+  good-tests-red-CI invisibility); selectlib = **direct sharpening of PARAM-1a** — our vacuous-gate fix
+  fail-closes boundless gates, but the tie-case shape (`<= + eps` permissive side) is a NEW named row.
+  Spawned **TIE-1** (CPU ~20m, pre-reg first): census over every committed gate/comparison cited by a
+  booked verdict — flag any gate whose tie/no-op/absent-input case resolves to pass; then mutation-lite:
+  flip each flagged comparison's permissive side, does the owning suite notice? Targets: PARAM-1a
+  vacuous-FAIL path, determ1 eps check, eproc delta (0,1) strict (already strict-side — expected GREEN),
+  degrade_gate tolerance, exit_gate_witness, verdict_gate precedence.
+- (C) mandatory repro of newest OURS booking **PARAM-1a/1b (96cdb80): REPRO PASS (gate-level)** from
+  committed tree: tests/test_verdict_gate.py **11/11** (0.01s); determ1 arm-B argv refuses eps
+  {0,-1,nan,inf} with the PARAM-1b ValueError (4/4) and runs clean on 1e-2/1e-4 (rc=0); eproc witness
+  delta bound present at tools/eproc.py:59-60 (strict-side, fail-loud). All three hardened gates verified
+  in place. Foreign d12 untracked lane persists (PW-1) — manifest re-seal correctly deferred.
+  No GPU fired (scout slot per rotation). No running processes; nothing duplicated; no 429s.
+- Rotation next wake: (B) TIE-1 (top, pre-reg first) or GOLDEN-PIN / MUA-1; GPU open (QG4/MC-1/
+  QG1d-corpus).
+
 ## FINDINGS (append-only)
 - 00:0x CONDUCTOR-0 (main): QG2 headline above. qcell-sim gained crx + receipt-anchored selftest. Vectorized lane = gathers + bmm chains; ANCHOR-VEC 2e-34.
 - 00:2x PR-SWEEP #1 (conductor): 6 repos swept; only MicroMoth-quilt active. **PR #29 OPEN** — docs-only provenance: qcells lab canonical home = SuperInstance/micrograd-quilt; cite repo not local path in receipts. Clean (fail-first pins, 248/249; 1 pre-existing main-tip manifest drift, remedy already in PR #25 stack). Merged highlights: #28 exp022 train-visible crossing census (tie-break-invariant), #27 rate-not-wall + desert-extends-to-cloud, #26 tie-band-diversity replicated, #25 archive-assembly + manifest regen, #24 fitness desert at birth cloud (29/31/37). **Steals:** (a) weight-law by-name citation -> spawned RECEIPT-CITE item; (b) exp018 desert-at-birth-cloud independently corroborates QG2 structural-desert — desert is upstream of selection, now two lanes agreeing; (c) note bookkeeping discipline: my first spool edit clobbered the QG4 queue line; caught + restored same wake. Always re-read the file after structural edits.
