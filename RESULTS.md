@@ -6975,3 +6975,28 @@ new receipts/spec_sha_pregen.json is a NEW file (not sealed) — seal next re-se
   no 429s.
 - Rotation next wake: (A) SCOUT (org-wide pushed-list; canons route dead per SCOUT-85) — then
   (B)/(C) per due-ness; GPU open (QG4/MC-1/QG1d-corpus).
+
+## SLICE 2026-10-09 12:4x AKDT (day-conductor) — (B) PROP-1 BOOKED: GREEN, eproc verdict law property-tested
+- Top open item per rotation (spawned SCOUT-86 cf-native randomized-proof steal). Prereg
+  f92322e committed+pushed BEFORE firing; booked from committed tree.
+- **G1 PASS**: H0 (pure noise) witness fire-rate 0.0050 << 0.09 ceiling — Ville bound holds
+  empirically at delta=0.05 (400 series x T=60, sigma=0.3, seed 0xC0FFEE). **G2 PASS**: H1
+  (drift -sigma, DECREASES claim) fire-rate 1.0000 >= 0.80. **G3 PASS: mutation-verified
+  2/2** — M1 sign-flip collapses power to 0.0000 (caught); M2 bar-inversion (delta vs 1/delta
+  permissive-side flip, AMENDMENT 1) fires H0 at 1.0000 (caught). **G4 PASS**: 0.2s CPU.
+- **VERDICT GREEN**: eproc witness law (QO6/QO6s instrument) holds under randomized property
+  testing + kills both seeded mutants. Booked results citing it gain randomized-test coverage.
+- Fail-loud trail (honest, fixed in place pre-verdict, none touched the instrument): (1)
+  first draft generated +sigma drift for a DECREASES claim; (2) passed raw increments where
+  witness() differences again — double-differencing zeroed all drift (the G2=0 artifact in
+  runs 1-2); (3) prereg AMENDMENT 1: original M2 (point-mass mu_grid=[0.4]) is mathematically
+  incapable of breaking H0 safety (every mu!=0 point mass decays under pure noise) —
+  re-specified pre-catch to bar-inversion (TIE-1 permissive-side class). Rates quoted are the
+  final-harness pinned-seed run; earlier runs' rates not comparable (rng consumption changed).
+- (A) already satisfied this day (SCOUT-86, 11:4x). (C) not due: newest prior scripted booking
+  SS-1 REPRO PASS 09:4x; no scripted booking since before this one. GPU lane idle all slice
+  (CPU property-test slot per rotation). Foreign d12*/empnull-floor untracked lane persists
+  (PW-1); manifest re-seal correctly deferred. No running conductor processes; nothing
+  duplicated; no 429s.
+- Rotation next wake: (A) SCOUT per rotation (re-probe canons HEAD — SCOUT-86 lesson), then
+  (C) mandatory repro of THIS PROP-1 booking; GPU open (QG4/MC-1/QG1d-corpus).

@@ -15,8 +15,12 @@ witness fires at rate ≥ 0.80. A safety-only gate that never fires is useless.
 
 **P3 (mutation-verified 2/2):** The property test must FAIL (detect) both seeded mutations:
   M1: sign flip (witness DECREASES with sign=+1) — P2 must break.
-  M2: mixture collapsed to point mass mu_grid=[0.4] — P1 must break (overconfident point
-      mixture fires on pure noise more often).
+  M2: comparison-side flip (bar = delta instead of 1/delta) — P1 must break (the TIE-1
+      permissive-side class). AMENDMENT 1 (pre-run, honest): the original M2 spec
+      (point-mass mu_grid=[0.4]) is mathematically incapable of breaking P1 — every
+      mu != 0 point mass strictly decays under pure H0 noise, so no fire-rate inflation
+      is possible. Re-specified to the bar-inversion mutation, which is representative
+      of the wrong-comparison-side fault class our TIE-1/PARAM-1a rows target.
 If the suite passes with either mutation in place, the suite is vacuous → RED.
 
 ## Gates
