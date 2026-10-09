@@ -2951,3 +2951,11 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - No CONTRADICT. Issues = zero-msg-test noise; [EMBASSY] pong #49 unchanged (Casey day item).
 - No GPU fired (scout slot); lane idle; no running processes; nothing duplicated; no 429s.
 - Rotation next wake: (B) GPP-1 (top cheap) or VX-1; GPU open (QG4/MC-1/QG1d-corpus).
+
+## SLICE 2026-10-09 10:4x AKDT (day-conductor) — (B) GPP-1 DONE (docs-only)
+- GPP-1 (SCOUT-85 spawn) fired read-only: git.pp jlog.py + hooks + PR#2 mapped onto our booking
+  schema; full note proposals/runs/GPP-1-jlog-vs-booking-schema-2026-10-09.md. Gate PASS (every
+  field mapped or gap-named). Key steals: parent-authorizes rule (= prereg-before-fire as hook
+  law, 5th enforced-not-voluntary witness), judge-as-blob-hash, batch-file concurrency probe.
+  Spawned JLOG-1 (Casey day-item, policy, not filed). No CONTRADICT. (C) not due (SS-1 repro PASS
+  09:4x). Rotation next wake: (A) SCOUT (org-wide pushed-list), GPU open (QG4/MC-1/QG1d-corpus).
