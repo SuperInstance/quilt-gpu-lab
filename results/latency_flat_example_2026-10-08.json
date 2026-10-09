@@ -1,0 +1,30 @@
+{
+  "tool": "latency-flat",
+  "ts": "2026-10-09T02:41:42Z",
+  "verdict": "SCALING",
+  "slope_s_per_item": 0.002315,
+  "intercept_s": 0.4279,
+  "mean_per_item_s": 0.019856,
+  "flatness_ratio": 0.1166,
+  "bar": 0.1,
+  "n_batches": 3,
+  "distinct_n": [
+    12.0,
+    36.0,
+    80.0
+  ],
+  "batches": [
+    {
+      "n": 12.0,
+      "wall_s": 0.45
+    },
+    {
+      "n": 36.0,
+      "wall_s": 0.52
+    },
+    {
+      "n": 80.0,
+      "wall_s": 0.61
+    }
+  ]
+}

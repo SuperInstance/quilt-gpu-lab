@@ -850,3 +850,16 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   latent hole (`bar = 1.0/delta` div-zeroes on delta=0; PARAM-1b-class,
   booked FINDINGS, no booked result touched); degrade_gate.py tolerance
   GREEN rc=0. Receipts results/param_audit_{selftest,eproc,degrade_gate}_2026-10-08.json.
+
+- **latency-flat** — `tools/latency_flat.py` — flat-latency gate for batched calls
+  (pattern lifted from cm1_relay_r4/r5, booked 2026-10-01: 80-question batches came
+  back at ~flat wall vs 12q — observed, never gated): per-batch {n, wall_s} -> least-
+  squares slope of wall vs n -> flatness ratio slope/mean-per-item <= bar (default
+  0.10). Near 1.0 = wall linear in n = no batching win. Fail-loud rc=2 on one-point
+  gates (tautology), span ratio < 2, or negative/non-finite walls. Stdlib-only,
+  deterministic, exit 0=FLAT / 1=SCALING / 2=FAIL-INPUT, JSON receipt.
+  `python tools/latency_flat.py --batches '[{"n":12,"wall_s":0.45},...]' [--bar 0.10 --out r.json] | --selftest`
+  TEST receipt 2026-10-08: selftest 5/5 (flat control FLAT, linear control SCALING,
+  one-point / narrow-span / negative-wall all fail-loud); worked example rc=1
+  SCALING honestly booked (ratio 0.1166 just over bar, slope 0.0023 s/item), receipt
+  results/latency_flat_example_2026-10-08.json.
