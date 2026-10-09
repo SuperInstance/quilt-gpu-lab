@@ -1,0 +1,29 @@
+{
+  "tool": "gate_property_probe",
+  "n": 100,
+  "t": 40,
+  "sigma": 0.5,
+  "mu1": -0.6,
+  "seed": 12648430,
+  "h0_ceil": 0.12,
+  "h1_floor": 0.8,
+  "fire_verdict": "WITNESSED",
+  "raw_increments": false,
+  "ts": "2026-10-09T23:45:58Z",
+  "h0_fire_rate": 0.04,
+  "g1_h0_safety": "PASS",
+  "h1_fire_rate": 1.0,
+  "g2_h1_power": "PASS",
+  "mutations": [
+    {
+      "mutant": "python3",
+      "h0_fire_rate": 0.0,
+      "h1_fire_rate": 0.0,
+      "caught": true,
+      "via": "h1"
+    }
+  ],
+  "g3_mutation": "CAUGHT",
+  "verdict": "PASS",
+  "why": "H0 quiet + H1 fires + mutant caught"
+}

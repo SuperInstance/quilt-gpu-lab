@@ -938,3 +938,20 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   receipt now names G2/G3 explicitly — the tool improved, not the pin); worked example
   rc=0 PINNED (ratio 2e5), tie replay (tol=noise=1e-12) rc=1 UNPINNED "degenerate tie at
   boundary: G3", receipt results/tol_pin_example_2026-10-08.json.
+
+- **gate-property-probe** — `tools/gate_property_probe.py` — randomized H0/H1 property
+  probe for ANY verdict gate (pattern lifted PROVEN from PROP-1, booked GREEN 2026-10-09
+  commits f92322e/d75feaf: the eproc witness law was property-tested with a seeded null
+  arm, an effect arm, and mutation-verification — a gate whose fire-rates are unmeasured
+  has untested laws). Seeded N-series arms (cumulative levels, or `--raw-increments`) ->
+  G1 H0 fire-rate <= ceil, G2 H1 fire-rate >= floor, G3 an optional MUTANT gate must
+  break an arm — a mutant that passes everything books VACUOUS, never PASS. Stdlib-only,
+  list-form subprocess, fail-loud rc=2, exit 0=PASS / 1=FAIL|VACUOUS, JSON receipt.
+  `python tools/gate_property_probe.py --gate CMD --gate-args a,b [--mutant M --mutant-args ...] --n 200 --t 60 --sigma 0.3 --mu1 -0.05 [--h0-ceil 0.12 --h1-floor 0.8 --fire-verdict WITNESSED --out r.json] | --selftest`
+  TEST receipt 2026-10-09: selftest 7/7 — selftest caught three real bugs live (list-form
+  cmd crashed subprocess spawn; the fixture gate's -2.0 threshold honestly fired 26% on
+  noise (walk std 3.16) — recalibrated to -6.0, tool untouched; and a wrong VACUOUS pin —
+  a never-firing mutant IS caught via H1 power loss, true vacuity needs a mutant identical
+  to the gate, pin fixed); worked example rc=0 PASS (H0 0.04 <= 0.12, H1 1.0 >= 0.8, dead
+  mutant CAUGHT via h1), self-mutant run honestly booked VACUOUS rc=1, receipt
+  results/gate_property_probe_example_2026-10-09.json.
