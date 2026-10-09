@@ -341,6 +341,21 @@
   No GPU fired (scout slot per rotation). No running processes; nothing duplicated; no 429s.
 - Rotation next wake: (B) TIE-1 (top, pre-reg first) or GOLDEN-PIN / MUA-1; GPU open (QG4/MC-1/
   QG1d-corpus).
+## SCOUT-82 (2026-10-09 ~00:50 AKDT slice) — canons 0417Z/0717Z (recovered post-404) + agent-inbox verdict manifest
+- Full text proposals/runs/SCOUT-82-fleet-push-2026-10-09-0845Z.md. **No CONTRADICT** (all victims
+  foreign; our assets unthreatened). Two missed canons scouts recovered — lesson: a 404 on canons is
+  stale-cache/transient, re-probe once next wake before declaring quiet. TOOL: (1) plato-dcs
+  circular-constant (SYNTHESIS_BONUS defined from the claimed ratios) → FW-1-successor row;
+  (2) groove-analyzer measure-maximized-by-being-wrong (genre_coherence scored vs own label;
+  clamped producer makes gate un un-failable) → spawned **DECOY-1** (CPU ~20m, pre-reg first:
+  score-vs-own-assignment + clamp-unreachable census over booked-verdict metrics). CORROBORATE:
+  rc q23/q24 "a gate cannot release the layers that hold the line it rests on" → note for QO7
+  pre-reg (same shape as QO6s retention-asymmetry). agent-inbox delegation-provenance manifest
+  v0 = watch, no action. No PRs/issues/EMBASSY changes; pong #49 unchanged.
+- (C) not due: newest OURS booking TIE-1a already REPRO PASS 23:4x (22/22 census verdict-identical);
+  newest commit since is our own test-append-witness tool. No GPU fired (scout slot per rotation);
+  foreign d12 untracked lane persists (PW-1); manifest re-seal correctly deferred.
+- Rotation next wake: (B) DECOY-1 (top, pre-reg first) or FWIT-1/VX-1/SS-1; GPU open (QG4/QG1d-corpus/MC-1).
 
 ## FINDINGS (append-only)
 - 00:0x CONDUCTOR-0 (main): QG2 headline above. qcell-sim gained crx + receipt-anchored selftest. Vectorized lane = gathers + bmm chains; ANCHOR-VEC 2e-34.
