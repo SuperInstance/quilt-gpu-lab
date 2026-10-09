@@ -56,6 +56,8 @@ def witness(series, claim="DECREASES", sigma=None, delta=0.05):
         raise ValueError("non-finite value in series — refuse")
     if sigma is None:
         raise ValueError("sigma is REQUIRED and pre-registered — no silent default")
+    if not (0 < delta < 1 and math.isfinite(delta)):
+        raise ValueError(f"delta must be a finite number in (0,1) (got {delta!r}) — no silent mis-set (PARAM-1 hardening)")
     sign = -1 if claim == "DECREASES" else 1
     E = eprocess(increments(series), sigma, sign)["E"]
     bar = 1.0 / delta

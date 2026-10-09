@@ -4,13 +4,15 @@ Arm A: committed QG7 lane verbatim, no snap. Arm B: v/champ_v rounded to eps-gri
 selection round. Usage: determ1_lattice_snap.py <arm> <eps> <tag>
   arm in {A, B}; eps ignored for A; tag = run label for the output JSON.
 """
-import sys, json, time, hashlib
+import math, sys, json, time, hashlib
 import numpy as np, torch, torch.nn as nn
 sys.path.insert(0, "tools"); sys.path.insert(0, "experiments")
 from qg2_scale_lane import PAD, W, shot_counts, skeleton_seqs, mutate_draw
 
 ARM, EPS, TAG = sys.argv[1], float(sys.argv[2]) if len(sys.argv) > 2 else 0.0, sys.argv[3]
 assert ARM in ("A", "B"), f"bad arm {ARM}"
+if ARM == "B" and not (EPS > 0 and math.isfinite(EPS)):
+    raise ValueError(f"arm B requires a positive finite eps (got {EPS!r}) — refuse to run (PARAM-1b)")
 SNAP = (ARM == "B")
 
 S, GENS, SHOTS, BAR, C = 2048, 24, 512, 0.45, 15

@@ -6795,3 +6795,16 @@ any relaunch-5.
   booking — the tool's docstring states it books evidence for human overrule. Honest note:
   eproc delta joins the PARAM-1a hardening candidate list (explicit in-module comparison or a
   documented overrule pin on the census row).
+
+## [BOOKED GREEN 17:4x Oct 8 CPU] PARAM-1a/1b gate-parameter hardening
+Pre-reg committed a44035f BEFORE firing (proposals/runs/PARAM-1ab-gate-param-hardening-prereg-2026-10-08.md).
+All three latent holes closed fail-loud, verdicts unchanged:
+- G1 PASS: verdict_gate boundless evaluated gate now FAIL-closes ("vacuous gate, never fails");
+  precedence preserved (VOID/DEGENERATE still beat vacuous-FAIL). tests 11/11.
+- G2 PASS: determ1 arm B refuses eps in {0, -1, nan, inf} at argv before any GPU work; valid eps
+  path untouched (committed bookings used 1e-2/1e-4).
+- G3 PASS: eproc witness refuses delta outside (0,1) / non-finite — 5/5 refusals; default 0.05
+  and all committed callers (0.05/0.1) unchanged. Heuristic divergence from 16:4x repro resolved
+  in-module; documented-overrule pin unnecessary.
+- G4 PASS: grep of committed finalize()/determ1/eproc call sites — zero now-invalid arguments.
+No booked verdict changed. Cost ~15 min CPU, 0 GPU.

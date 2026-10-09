@@ -16,6 +16,11 @@ classes the fleet keeps hitting:
    not the check's own (exit-code-of-last-command class) — handled by requiring
    the caller to attest the status source explicitly; status="inherited" is VOID.
 
+PARAM-1a: a gate with a value but NO bound (minimum is None AND maximum is None) is a
+vacuous gate — it can never fail, so it converts absence of a real check into a PASS.
+finalize() fail-closes such a gate: verdict FAIL with the vacuous-gate reason (after the
+VOID/DEGENERATE precedence checks, so it never masks a stronger refusal).
+
 Verdict lattice (never escalates to PASS silently):
     VOID        caller did not attest completeness/status source / missing stats
     DEGENERATE  any gated statistic has zero variance (or n < min_n)
@@ -121,6 +126,12 @@ def finalize(
     if unevaluated:
         reasons.append(f"gates missing values: {unevaluated} => INCONCLUSIVE")
         return Verdict("INCONCLUSIVE", reasons)
+
+    # PARAM-1a: evaluated-but-boundless gates are vacuous => fail closed.
+    boundless = [g.name for g in gates if g.evaluates() and g.minimum is None and g.maximum is None]
+    if boundless:
+        reasons.append(f"gates with no bound (vacuous gate, never fails): {boundless} => FAIL")
+        return Verdict("FAIL", reasons, {g.name: False for g in gates})
 
     gate_results = {g.name: g.passes() for g in gates}
     if all(gate_results.values()):

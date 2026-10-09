@@ -82,3 +82,22 @@ class TestVerdictGate(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+    def test_boundless_gate_vacuous_fails_closed__param_1a(self):
+        # PARAM-1a: an evaluated gate with NO bound can never fail => finalize must FAIL.
+        v = finalize([Gate("auc", 0.91)],
+                     {"auc": StatMeta(std=0.03, n=32)}, completeness=True,
+                     status_source="own")
+        self.assertEqual(v.verdict, "FAIL")
+        self.assertIn("vacuous", " ".join(v.reasons))
+
+    def test_boundless_never_masks_void(self):
+        # precedence: VOID still beats the vacuous-gate FAIL
+        v = finalize([Gate("auc", 0.91)], {"auc": StatMeta(std=0.03, n=32)},
+                     completeness=None, status_source="own")
+        self.assertEqual(v.verdict, "VOID")
+
+    def test_boundless_never_masks_degenerate(self):
+        v = finalize([Gate("g1", 0.95)], {"g1": StatMeta(std=0.0, n=100)},
+                     completeness=True, status_source="own")
+        self.assertEqual(v.verdict, "DEGENERATE")
