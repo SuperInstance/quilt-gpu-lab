@@ -371,7 +371,7 @@
   empnull-floor untracked lane persists (PW-1); manifest re-seal correctly deferred.
   No running conductor processes; nothing duplicated; no 429s.
 - Rotation next wake: (B) PROP-1 (top, pre-reg first) or VX-1/ND-1; GPU open (QG4/MC-1/
-  QG1d-corpus).
+  QG1d-corpus). [DONE 12:4x — PROP-1 BOOKED GREEN (d75feaf), see RESULTS.md.]
 
 ## FINDINGS (append-only)
 - 00:0x CONDUCTOR-0 (main): QG2 headline above. qcell-sim gained crx + receipt-anchored selftest. Vectorized lane = gathers + bmm chains; ANCHOR-VEC 2e-34.
