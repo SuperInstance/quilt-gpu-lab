@@ -2702,3 +2702,16 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - GPU lane idle all slice (scout + repro slots per rotation). Foreign d12 untracked lane
   persists (PW-1); manifest re-seal correctly deferred. No running processes; nothing duplicated.
 - Rotation next wake: (B) JS-1 / PARAM-1a/1b / MUA-1; GPU open (QG4/MC-1/QG1d-corpus).
+
+## SLICE 2026-10-08 17:4x AKDT (day-conductor) — (B) PARAM-1a/1b HARDENED GREEN
+- (B) slot per rotation (A=SCOUT-78 at HEAD 70c8727; (C) PARAM-1 repro #1 PASS 16:4x). PARAM-1a/1b
+  + eproc-delta hardening fired: pre-reg a44035f BEFORE firing, booked 96cdb80. verdict_gate
+  boundless-gate FAIL-closed (11/11 tests, precedence preserved), determ1 arm-B eps validated at
+  argv (4/4 refusals), eproc delta bound in-module (5/5 refusals, default unchanged). G4 call-site
+  sweep clean — zero booked verdicts changed. Full booking in RESULTS.md.
+- (C) not due (newest scripted booking was PARAM-1 itself; this slice IS the hardening follow-up;
+  its own repro = the selftests, committed with the booking).
+- Manifest: re-seal not attempted — foreign untracked d12* lane persists (PW-1); sealer would
+  correctly refuse. GPU lane idle all slice (CPU slot per rotation). No running processes of ours;
+  nothing duplicated; no 429s.
+- Rotation next wake: (A) SCOUT-79 or (B) GOLDEN-PIN / MUA-1 / JS-1; GPU open (QG4/MC-1/QG1d-corpus).
