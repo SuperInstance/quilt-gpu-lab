@@ -6956,3 +6956,22 @@ new receipts/spec_sha_pregen.json is a NEW file (not sealed) — seal next re-se
   nothing duplicated; no 429s.
 - Rotation next wake: (B) GPP-1 (top, spawned SCOUT-85, docs-only) or VX-1; GPU free (QG4/MC-1/
   QG1d-corpus).
+
+## SLICE 2026-10-09 10:4x AKDT (day-conductor) — (B) GPP-1 BOOKED (docs-only, read-only)
+- (B) slot per rotation (top open item, spawned SCOUT-85). git.pp jlog.py + pre/post-receive +
+  PR #2 read direct from source; note landed proposals/runs/GPP-1-jlog-vs-booking-schema-2026-10-09.md.
+- Gate PASS: every our-booking field mapped to a jlog v2 counterpart or named gap (verdict row-
+  semantics, tracked-evidence citations, and prop weight are the three named gaps).
+- HEADLINE: "no commit can authorize itself" — judged by PARENT's policy = prereg-before-fire as
+  hook law (5th enforced-not-voluntary witness). v2 judge = blob hash = instrument pinned IN the
+  line (RECEIPT-HASH corroborated, sharper shape). PR#2 per-region-per-verdict conformal threshold
+  = fleet-side PARAM-1a/TIE-1 tie-case sharpening; blind fault drills + conductor catch-rate = a
+  row we lack (watch, HSA-1-adjacent). No CONTRADICT.
+- Spawned JLOG-1 (Casey day-item, policy decision, not filed): jlog sidecar vs git.pp projection
+  of RESULTS.md — shared-surface schema change, captain's call.
+- (C) not due: newest OURS scripted booking SS-1 already REPRO PASS 09:4x this day; no scripted
+  booking since. GPU lane idle all slice (docs slot). Foreign d12*/empnull-floor untracked lane
+  persists (PW-1); manifest re-seal correctly deferred. No running processes; nothing duplicated;
+  no 429s.
+- Rotation next wake: (A) SCOUT (org-wide pushed-list; canons route dead per SCOUT-85) — then
+  (B)/(C) per due-ness; GPU open (QG4/MC-1/QG1d-corpus).
