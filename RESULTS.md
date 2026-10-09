@@ -6859,6 +6859,13 @@ One honest correction during the slice: initial "mutation UNDETECTED" probes wer
 (sys.path overlay defeated by the test file's own path insert; stale committed __pycache__ in git
 archive) — redo from full temp checkout before trusting either way. Cost ~15 min CPU, 0 GPU.
 Spawned: none (TIE-1 closed; FW-1-successor gains the appended-after-guard row).
+FW-1-successor row added 06:5x Oct 9 (EM-1, cites canons b87ae87 constraint-theory-py
+method correction — 4/4 "undetected" mutants were EQUIVALENT): **a mutation-row may only
+be filed as a blind spot AFTER demonstrating the mutant changes measured behavior** (output
+diff or harness/test counter flip); green-under-mutation alone is not evidence. Audit:
+TIE-1a's two flips and PARAM-1a's boundless tests are all pinned by assertion-bearing
+tie-case tests => behavior-diff carried by construction; TIE-1a 22/22 census stands
+unchanged. Note: proposals/runs/EM-1-equivalent-mutant-precondition-2026-10-09.md.
 
 ## [REPRO PASS 23:4x Oct 8] TIE-1a mandatory repro (day-conductor slice)
 Committed tree re-run from git-archive of HEAD 8010c53 into ext4 scratch: unittest
