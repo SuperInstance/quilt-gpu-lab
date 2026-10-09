@@ -3004,3 +3004,22 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   no 429s. No new queue items spawned.
 - Rotation next wake: (B) DECOY-1 (top, pre-reg first) or VX-1/ND-1; GPU open (QG4/MC-1/
   QG1d-corpus).
+
+## SLICE 2026-10-09 14:4x AKDT (day-conductor) — (A) SCOUT-88: canons RENAMED -> quilt-research-canons; quiet window, no CONTRADICT
+- (A) SCOUT-88 (window since SCOUT-87 20:46Z; method upgraded: org pushed-search `pushed:>2026-10-09T20:00Z`
+  gave the hit-list in ONE query — via the quilt-atlas discovery below — then per-repo commits since 21:30Z).
+- **HEADLINE: `SuperInstance/canons` 404s 3x consecutive -> RENAMED to `quilt-research-canons`** (search-confirmed);
+  HEAD unchanged at 8fdd202 (19:38Z SCOUT theorem commit), zero pushes since SCOUT-87. Route fix recorded for
+  future scouts; NOT a deletion, NOT the SCOUT-82 transient.
+- **quilt-atlas 602c258 (22:38Z, TOOL):** scheduled-every-6h "living map of the org, 4000+ repos, motion, CI" —
+  automated regen not an agent push; adopted into SCOUT method this slice (org-wide pushed-list in one query).
+  No queue item (consumed, not researched).
+- agent-inbox f1ba4d8 = SCOUT-87's commit, window-edge overlap, classification unchanged (watch). lobster-live
+  af3fc76/a3f0688 routine think+docs, watch. git.pp PR#2 OPEN, no movement since 16:26Z. rc q29 thread quiet.
+- **No CONTRADICT** — QO2 stack, PROP-1/eproc, receipt doctrine, QG3+QG6, QG1c, DECIDE-1/2, W5a/b/c unthreatened.
+  No STEAL, no new queue items.
+- (B)/(C) not due this slice: top CPU items done (PROP-1 booked+repro'd, DECOY-1/VX-1/GPP-1 done; queue unchecked
+  remainder = XP-C/G3 GPU lanes, each >20min envelope — left for a longer wake); newest scripted booking PROP-1
+  already REPRO PASS (deb3a57). GPU lane idle all slice. No running conductor processes; nothing duplicated; no 429s.
+- Rotation next wake: (B) XP-C or G3 ONLY if a >=1h envelope is available (pre-reg first); else scout-cycle;
+  GPU open.
