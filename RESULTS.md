@@ -6784,3 +6784,14 @@ any relaunch-5.
   lane persists per PW-1) → RC-5 RED-at-HEAD PERSISTS, rota working as designed. Seal correctly refused.
 - Cost ~4 min CPU, 0 GPU. Rotation honored ((C); A 12:1x SCOUT-76, B 11:1x ENDO-1c preceded).
 - Rotation next wake: (A) SCOUT-77 (window since 20:14Z) or (B) PARAM-1/EXIT-1; GPU open (QG4/MC-1).
+
+## [REPRO PASS 16:4x Oct 8 CPU] PARAM-1 repro #1 (day-conductor (C) slice)
+- Newest scripted booking PARAM-1 (cd296cd/265ce29) re-run from COMMITTED tree:
+  `tools/param_audit.py --selftest` → 8/8 PASS, exit 0 (green-validated / yellow-unvalidated /
+  missing-param / red-network / no-raise / rc pins all hold). Verdict-level REPRO PASS.
+- Live-instrument check on tools/eproc.py --params sigma,delta: sigma VALIDATED (lines 36,57);
+  **delta books UNVALIDATED by heuristic** where the hand census booked GREEN ("default 0.05
+  explicit; stricter values caller-supplied"). Evidence-level divergence, not a contradicted
+  booking — the tool's docstring states it books evidence for human overrule. Honest note:
+  eproc delta joins the PARAM-1a hardening candidate list (explicit in-module comparison or a
+  documented overrule pin on the census row).
