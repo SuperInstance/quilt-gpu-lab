@@ -24,10 +24,10 @@ REPO = Path(__file__).resolve().parent.parent
 # Frozen target set (prereg: proposals/runs/TIE-1-tie-gate-census-prereg-2026-10-09.md)
 TARGETS = {
     "verdict_gate.Gate.passes": ("tools/verdict_gate.py", "passes",
-                                 ["python", "-m", "pytest", "-q", "tests/test_verdict_gate.py"]),
-    "degrade_gate.run_gate": ("tools/degrade_gate.py", "run_gate", ["python", "tools/degrade_gate.py", "--selftest"]),
-    "eproc.bounds": ("tools/eproc.py", None, ["python", "tools/eproc.py", "--selftest"]),
-    "exit_gate_witness.params": ("tools/exit_gate_witness.py", None, ["python", "tools/exit_gate_witness.py", "--selftest"]),
+                                 [sys.executable, "-m", "pytest", "-q", "tests/test_verdict_gate.py"]),
+    "degrade_gate.run_gate": ("tools/degrade_gate.py", "run_gate", [sys.executable, "tools/degrade_gate.py", "--selftest"]),
+    "eproc.bounds": ("tools/eproc.py", None, [sys.executable, "tools/eproc.py", "--selftest"]),
+    "exit_gate_witness.params": ("tools/exit_gate_witness.py", None, [sys.executable, "tools/exit_gate_witness.py", "--selftest"]),
     "determ1_lattice_snap.eps": ("experiments/determ1_lattice_snap.py", None, None),
 }
 

@@ -1,0 +1,287 @@
+{
+  "targets": {
+    "verdict_gate.Gate.passes": [
+      {
+        "target": "tools/verdict_gate.py:62",
+        "op": "IsNot",
+        "src": "self.minimum is not None",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/verdict_gate.py:64",
+        "op": "IsNot",
+        "src": "self.maximum is not None",
+        "ast_class": "tie-candidate"
+      }
+    ],
+    "degrade_gate.run_gate": [
+      {
+        "target": "tools/degrade_gate.py:93",
+        "op": "Eq",
+        "src": "a['param'] == b['param']",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/degrade_gate.py:82",
+        "op": "NotIn",
+        "src": "'param' not in p",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/degrade_gate.py:82",
+        "op": "NotIn",
+        "src": "'benefit' not in p",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/degrade_gate.py:119",
+        "op": "Eq",
+        "src": "rc == RC_PASS",
+        "ast_class": "tie-candidate"
+      }
+    ],
+    "eproc.bounds": [
+      {
+        "target": "tools/eproc.py:50",
+        "op": "NotIn",
+        "src": "claim not in ('DECREASES', 'INCREASES')",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/eproc.py:57",
+        "op": "Is",
+        "src": "sigma is None",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/eproc.py:61",
+        "op": "Eq",
+        "src": "claim == 'DECREASES'",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/eproc.py:66",
+        "op": "GtE",
+        "src": "e >= bar",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/eproc.py:84",
+        "op": "Eq",
+        "src": "w['verdict'] == 'WITNESSED'",
+        "ast_class": "tie-candidate"
+      }
+    ],
+    "exit_gate_witness.params": [
+      {
+        "target": "tools/exit_gate_witness.py:187",
+        "op": "Eq",
+        "src": "__name__ == '__main__'",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/exit_gate_witness.py:88",
+        "op": "Eq",
+        "src": "b['verdict'] == g['verdict']",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/exit_gate_witness.py:91",
+        "op": "NotIn",
+        "src": "g['verdict'] not in PASS_SET",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/exit_gate_witness.py:93",
+        "op": "NotIn",
+        "src": "b['verdict'] not in FAIL_SET",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/exit_gate_witness.py:95",
+        "op": "NotEq",
+        "src": "g['rc'] != 0",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/exit_gate_witness.py:97",
+        "op": "Eq",
+        "src": "b['rc'] == 0",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/exit_gate_witness.py:161",
+        "op": "NotIn",
+        "src": "'{INPUT}' not in a.args",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/exit_gate_witness.py:116",
+        "op": "Eq",
+        "src": "name == 'not-inverting'",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/exit_gate_witness.py:65",
+        "op": "NotIn",
+        "src": "part not in cur",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/exit_gate_witness.py:120",
+        "op": "Eq",
+        "src": "name == 'fail-loud-nokey'",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/exit_gate_witness.py:119",
+        "op": "Eq",
+        "src": "r[1] == 1",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/exit_gate_witness.py:119",
+        "op": "Eq",
+        "src": "r[0] == 'NOT-INVERTING'",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/exit_gate_witness.py:135",
+        "op": "Eq",
+        "src": "r[1] == expect_rc",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/exit_gate_witness.py:135",
+        "op": "Eq",
+        "src": "r[0] == ('WITNESSED' if expect_rc == 0 else 'RED')",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/exit_gate_witness.py:128",
+        "op": "Eq",
+        "src": "e.code == 2",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "tools/exit_gate_witness.py:135",
+        "op": "Eq",
+        "src": "expect_rc == 0",
+        "ast_class": "tie-candidate"
+      }
+    ],
+    "determ1_lattice_snap.eps": [
+      {
+        "target": "experiments/determ1_lattice_snap.py:13",
+        "op": "In",
+        "src": "ARM in ('A', 'B')",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "experiments/determ1_lattice_snap.py:16",
+        "op": "Eq",
+        "src": "ARM == 'B'",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "experiments/determ1_lattice_snap.py:67",
+        "op": "GtE",
+        "src": "crossed_gen >= 0",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "experiments/determ1_lattice_snap.py:14",
+        "op": "Eq",
+        "src": "ARM == 'B'",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "experiments/determ1_lattice_snap.py:33",
+        "op": "GtE",
+        "src": "champ_v.numpy() >= BAR",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "experiments/determ1_lattice_snap.py:65",
+        "op": "GtE",
+        "src": "crossed_gen >= 0",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "experiments/determ1_lattice_snap.py:65",
+        "op": "LtE",
+        "src": "crossed_gen <= 12",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "experiments/determ1_lattice_snap.py:48",
+        "op": "GtE",
+        "src": "bv >= champ_v",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "experiments/determ1_lattice_snap.py:56",
+        "op": "Eq",
+        "src": "g == 0",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "experiments/determ1_lattice_snap.py:102",
+        "op": "GtE",
+        "src": "patience >= 30",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "experiments/determ1_lattice_snap.py:55",
+        "op": "GtE",
+        "src": "champ_v.numpy() >= BAR",
+        "ast_class": "tie-candidate"
+      },
+      {
+        "target": "experiments/determ1_lattice_snap.py:44",
+        "op": "Eq",
+        "src": "F == fmax[:, None]",
+        "ast_class": "tie-candidate"
+      }
+    ]
+  },
+  "mutations": [
+    {
+      "rel": "tools/verdict_gate.py",
+      "old": "self.value < self.minimum",
+      "new": "self.value <= self.minimum",
+      "rc": 0,
+      "detected": false,
+      "tail": "...........                                                              [100%]\n11 passed in 0.01s\n",
+      "owning": "verdict_gate Gate.passes (booked callers: PARAM-1a, QO-lane receipts)"
+    },
+    {
+      "rel": "tools/degrade_gate.py",
+      "old": "s[\"delta\"] > tolerance",
+      "new": "s[\"delta\"] >= tolerance",
+      "rc": 0,
+      "detected": false,
+      "tail": "  [PASS] graceful ladder: got rc=0, want rc=0\n  [PASS] inversion: got rc=1, want rc=1\n  [PASS] negative benefit: got rc=1, want rc=1\n  [PASS] exo-fired: got rc=1, want rc=1\n  [PASS] flat ladder: got rc=0, want rc=0\n  [PASS] fail-loud battery (5 cases)\nselftest: 13/13 checks pass\n",
+      "owning": "degrade_gate tolerance (ENDO-1b/q19 pattern)"
+    }
+  ],
+  "summary": {
+    "tie_candidate_rows": 39,
+    "mutations_detected": [],
+    "mutations_UNDETECTED_yellow": [
+      "verdict_gate Gate.passes (booked callers: PARAM-1a, QO-lane receipts)",
+      "degrade_gate tolerance (ENDO-1b/q19 pattern)"
+    ],
+    "red_live": []
+  },
+  "probes": [
+    {
+      "expr": "value < minimum",
+      "tie_result": false
+    },
+    {
+      "expr": "delta > tolerance",
+      "tie_result": false
+    }
+  ]
+}

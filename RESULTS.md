@@ -6808,3 +6808,26 @@ All three latent holes closed fail-loud, verdicts unchanged:
   in-module; documented-overrule pin unnecessary.
 - G4 PASS: grep of committed finalize()/determ1/eproc call sites — zero now-invalid arguments.
 No booked verdict changed. Cost ~15 min CPU, 0 GPU.
+
+## [BOOKED YELLOW (no live RED) 19:5x Oct 8 CPU] TIE-1 tie/no-op gate census
+Pre-reg committed+pushed BEFORE firing (proposals/runs/TIE-1-tie-gate-census-prereg-2026-10-09.md,
+4b91e0e; tool committed same landing, selftest 4/4). Class source: SCOUT-79 selectlib shape
+(comparison tie/no-op resolves to pass). Findings:
+- G1 PASS: 39 tie-candidate comparison rows across the 5 pre-registered targets (AST census).
+- G2 PASS: empirical probes confirm BOTH pre-registered predictions — verdict_gate
+  `value < minimum` does NOT fail at value==minimum (PASS-side tie); degrade_gate
+  `delta > tolerance` does NOT flag delta==tolerance (permissive tie).
+- G3: mutation-lite (temp-copy flips, never working tree): BOTH flips UNDETECTED by
+  owning committed suites — verdict_gate min/max flip (`<`→`<=`) survives
+  tests/test_verdict_gate.py 11/11 unchanged; degrade_gate tolerance flip (`>`→`>=`)
+  survives --selftest. => **2 YELLOWS: unpinned boundary semantics**, owning bookings
+  named (PARAM-1a receipt; ENDO-1b/q19 pattern). No booked verdict sits on a boundary
+  value, so nothing is voided — latent class only.
+- eproc delta/sigma + determ1 eps + exit_gate_witness: GREEN on reading (strict-side
+  refusals / set-membership, not float ties) — matches prereg predictions; not
+  mutation-tested this pass (honest scope note).
+- RED_LIVE: none (fastloop-guard class absent from our gates).
+One mechanical crash pre-booking, fixed in place (bare `python` absent on PATH ->
+sys.executable). Spawned TIE-1a (CPU ~15m): pin inclusive-bound semantics in
+Gate.passes (`<=`/`>=` or explicit eps) + tie-case tests in both suites; run AFTER
+new prereg. Cost ~12 min CPU, 0 GPU.

@@ -1,0 +1,16 @@
+{
+ "arm": "B",
+ "eps": 0.0001,
+ "tag": "t-smoke",
+ "rate12": 0.57861328125,
+ "rate24": 0.7529296875,
+ "anchor_in_band": true,
+ "subpop": 863,
+ "late": 357,
+ "hopeless": 506,
+ "auc_fresh": 0.5685852981969487,
+ "auc_oracle": 0.5748054162376413,
+ "crossed_gen_sha": "680c6b31cd215bf257bbfd590ca74c5573cfc5c56121280d2722ac8e1b4a2406",
+ "champ_v_sha": "2f99cb88e8ed4f198d82d279ef79445ea6a2d9345866908ed2a44ba3f75449ea",
+ "wall_s": 4.48
+}
