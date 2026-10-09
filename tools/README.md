@@ -49,6 +49,14 @@ piece others can lift. Grab = copy the file; everything here runs alone.
   Stdlib-only, deterministic, fail-loud JSON receipt.
   `python tools/corr_floor_probe.py --p 0.45,0.55 [--t-grid ... --n 32 --w 8 --out r.json]` (or `--example`). Smoke 2026-10-03: PASS.
 
+- **saturating-kfit** — `tools/saturating_kfit.py`
+  Fit a saturating curve k(p)=k0+A*tanh((p-pmid)/tau) to >=3 measured anchors
+  (k0 pinned to the lowest-p anchor), with honest SSE comparison vs the
+  linear (chord) fit and optional eval at unmeasured p. Lifted from the
+  proven D12ac k_eff(p) certification. Stdlib-only, deterministic, fail-loud
+  JSON receipt; saturating-vs-chord verdict reported, never assumed.
+  `python tools/saturating_kfit.py --anchors 0.3,0.657 0.4,0.896 0.55,1.20 0.7,1.20 [--eval 0.35,0.45 --out r.json]` (or `--example`). Smoke 2026-10-09: PASS (D12ac anchors reproduce, SSE 0.0039, beats chord).
+
 ## Coordination platform (lives in SuperInstance/quilt-i2i)
 
 - **i2i-ledger worker** — live shared semantic memory:
