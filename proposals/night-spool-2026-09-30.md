@@ -2745,3 +2745,21 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   correctly refuse. GPU lane idle all slice (CPU slot per rotation). No running processes of ours;
   nothing duplicated; no 429s.
 - Rotation next wake: (A) SCOUT-79 or (B) GOLDEN-PIN / MUA-1 / JS-1; GPU open (QG4/MC-1/QG1d-corpus).
+
+## SLICE 2026-10-08 19:5x AKDT (day-conductor) — (B) TIE-1 BOOKED YELLOW (no live RED); TIE-1a spawned
+- (B) slot per rotation (18:3x was (A)+(C)). TIE-1 fired per prereg 4b91e0e (committed+pushed
+  before firing). 39 tie-candidate rows (G1); empirical probes confirm both PASS-side tie
+  predictions (G2); mutation-lite: BOTH permissive-side flips UNDETECTED by owning suites =>
+  2 YELLOWS — unpinned boundary semantics on verdict_gate min/max (PARAM-1a receipt owns)
+  and degrade_gate tolerance (ENDO-1b/q19). No booked verdict boundary-sitting; latent class,
+  nothing voided. eproc/determ1/exit_witness GREEN on reading (strict-side/set-membership).
+  RED_LIVE none. Booking + results JSON committed 1d7de1e. Spawned **TIE-1a** (CPU ~15m,
+  new prereg first): inclusive-bound pin + tie-case tests in both suites.
+- (C) not due: newest prior scripted booking PARAM-1a/1b already REPRO PASS 18:3x this day;
+  TIE-1 is this slice's booking (fresh, from committed tree by construction).
+- Manifest: foreign d12 untracked lane persists (PW-1) — re-seal correctly deferred. Note:
+  results/determ1_lattice_snap/B-t-smoke.json was untracked from the PARAM-1b repro —
+  committed with this landing (DET-1c lesson applied). No GPU fired (CPU census slot).
+  No running processes of ours; nothing duplicated; no 429s.
+- Rotation next wake: (A) SCOUT-80, or (B) TIE-1a (top cheap) / GOLDEN-PIN / MUA-1;
+  GPU open (QG4/MC-1/QG1d-corpus).
