@@ -6893,3 +6893,14 @@ Spawned by SCOUT-82 (groove-analyzer self-referential-scoring + clamped-producer
   out of ~20m scope — structural argument + witness only. Note for FW-1-successor:
   "persist raw scores+labels for every booked AUC" closes this gap permanently.
 No booked result threatened. Receipt: tools/decoy_census.py (run logged in this commit).
+
+## [BOOKED GREEN 04:5x Oct 9 CPU] FWIT-1 fleet-witness sig-seam design note (read-only)
+Note: proposals/runs/FWIT-1-fleet-witness-sigseam-design-note-2026-10-09.md. Spawned by SCOUT-43;
+B-slot per rotation (SCOUT-84 03:45 satisfied scout; DECOY-1 repro already PASS).
+Read MERGED SuperInstance/fleet-witness PRs #3/#4/#5/#7/#8 (gh, read-only). Verdict PASS:
+Ed25519 sig line over manifest digest, key OUTSIDE the agent process, sig-bytes-never-in-digest
+preserves existing seal byte-stability; L2-bind-first sequencing; L3 quorum gated on >=2 always-on
+external hosts. 4th independent fleet implementation of signed seals (RC-4 raised 3x) — fleet
+consensus real. CASEY-GATED day item: no seal format change without sign-off; no code written.
+G1 clean (only this booking + note committed); G2 citation-complete; G3 no key material touched.
+No GPU fired (CPU docs slice; lane idle). Rotation next wake: (A) scout or (B) VX-1/SS-1; GPU free.
