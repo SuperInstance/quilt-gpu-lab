@@ -2879,3 +2879,14 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   nothing duplicated; no 429s.
 - Rotation next wake: **URGENT-CASEY health item first** (surface to captain at day start), then (B)
   ANOM-1/FWIT-1/VX-1; GPU open (QG4/QG1d-corpus/MC-1).
+
+## SCOUT-84 (2026-10-09 03:4x AKDT slice) — QUIET; canons 404 reclassified
+- Full text proposals/runs/SCOUT-84-fleet-push-2026-10-09-1143Z.md. Window since SCOUT-83:
+  zero commits across all swept repos, zero open PRs, pong #49 unchanged. No CONTRADICT,
+  no spawns. **canons 404 again on the owed re-probe — reclassified moved/renamed/private,
+  not transient; coverage hole noted for FW-1-successor.** Watch: agent-inbox
+  delegation-provenance manifest v0 under test (9e93ce3) — watch only.
+- (C) not due (DECOY-1 repro PASS 1d68678). GPU idle all slice; no processes; foreign d12
+  untracked lane persists (PW-1); manifest re-seal correctly deferred.
+- Rotation next wake: (B) FWIT-1 / VX-1 / SS-1 / GOLDEN-PIN per queue order; GPU open
+  (QG4/QG1d-corpus/MC-1).
