@@ -2975,3 +2975,32 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   law, 5th enforced-not-voluntary witness), judge-as-blob-hash, batch-file concurrency probe.
   Spawned JLOG-1 (Casey day-item, policy, not filed). No CONTRADICT. (C) not due (SS-1 repro PASS
   09:4x). Rotation next wake: (A) SCOUT (org-wide pushed-list), GPU open (QG4/MC-1/QG1d-corpus).
+
+## SLICE 2026-10-09 13:4x AKDT (day-conductor) — (A) SCOUT-87: quiet window, no CONTRADICT + (C) PROP-1 REPRO PASS
+- (A) SCOUT-87 (window since SCOUT-86 19:46Z; org pushed-list re-probed — canons HEAD unchanged at
+  8fdd202, route alive confirmed again per SCOUT-86 lesson). Window pushes: rc-20260824-11 q28
+  (21:07Z) — honest negative: dice footprint-SIZE truncation is NOT a supply regulator (flip count
+  flat vs K, savings 49.7% of BASE, just under the pre-declared 50%); supply breadth is a property
+  of the WHOLE injection schedule (dice+mutate+edges jointly) — honest-booking corroborate, opens
+  q29 (joint supply modulation; QO7a-adjacent watch, no new item). agent-inbox f1ba4d8 (21:36Z)
+  verdicts trials v1.9-v1.18 muse-verdicts carriage — delegation-provenance watch continues, no
+  action. lobster-live a3f0687 molt-model docs + Agent Ticket — watch, no asset touch.
+  quilt-neudecide +3 perspective docs (Claude/ZAI/MiniMax cells) — ND-1 watch unchanged (QO2-
+  adjacent, still pre-PoC). git.pp PR #2 OPEN (audit stream/region gate/ledger/ship gate; Window:
+  blob-hash trailer = "no commit can authorize itself" as enforced hook law) — RECEIPT-HASH/
+  prereg-as-hook-law CORROBORATE; JLOG-1 day-item material, not filed. zero-poc autonomous cycles
+  routine. **No CONTRADICT** — QO2 stack, PROP-1/eproc law, receipt doctrine, QG3+QG6, W5a/b/c all
+  unthreatened. PRs elsewhere: zero open (8 repos checked, git.pp the only one).
+- (C) mandatory repro of newest OURS booking **PROP-1 (d75feaf): REPRO PASS (rate-identical)** —
+  committed harness re-run from clean tracked tree: G1 H0 0.0050 (ceiling 0.09), G2 H1 1.0000,
+  M1 catch 0.0000, M2 catch 1.0000, G3 mutation-verified 2/2, G4 PASS, exit 0 — all four rates
+  BYTE-match the booking (pinned seed 0xC0FFEE doing its job).
+- Manifest: re-seal correctly REFUSED — foreign untracked d12*/empnull-floor lane persists (PW-1)
+  plus our own unsealed new tools (spec_sha.py, empnull_floor.py, saturating_kfit.py unsealed-new).
+  NOTE: receipts/manifest.json was found DIRTY at slice start (residue of a prior sealer attempt
+  predating the deferral); restored to HEAD — sealed state = committed state, no ledger change
+  occurred this slice.
+- GPU lane idle all slice (scout slot per rotation); no running processes; nothing duplicated;
+  no 429s. No new queue items spawned.
+- Rotation next wake: (B) DECOY-1 (top, pre-reg first) or VX-1/ND-1; GPU open (QG4/MC-1/
+  QG1d-corpus).
