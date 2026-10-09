@@ -6875,3 +6875,21 @@ no open PRs or pushes touching our assets. canons API now 404s (repo moved/renam
 or private — logged, not probed further this wake). No CONTRADICT, no spawns.
 Slot used for the TIE-1a repro above. Next wake: (B) top open item per queue
 (FWIT-1 / VX-1 / SS-1 / tol-pin integration check), GPU free for QG1d/QG4/MC-1.
+
+## [BOOKED GREEN 01:5x Oct 9 CPU] DECOY-1 score-vs-own-assignment + clamp-unreachable census
+Pre-reg committed+pushed BEFORE firing (7a26e91, proposals/runs/DECOY-1-decoy-metric-census-prereg-2026-10-09.md).
+Spawned by SCOUT-82 (groove-analyzer self-referential-scoring + clamped-producer shapes).
+- G1 PASS: 13 metric sites surveyed across all score-citing bookings (+6 docs-only NA).
+- G2/G3 PASS: no cited metric is scored against its own producer's assignment; the only
+  clamps found are (a) decision_cell.py:70,75 confidence diagnostics (YELLOW-latent —
+  confidence never served as a gate bound in DECIDE-1..1d bookings; gates used
+  argmax_acc/consistency) and (b) ci_gate.py:52 positional bootstrap index clamp
+  (prereg-exempt class).
+- G4 PASS (instrument-level): shuffled-label control through tools/auc_sep.auc's exact
+  rank statistic — true labels AUC 0.9153 -> shuffled mean |AUC-0.5| 0.0355. Wrongness
+  DROPS the metric; the groove-analyzer decoy class (wrongness-rewarded scoring) is
+  ABSENT from our booked-verdict metrics. Honest caveat: no raw per-stream oracle
+  scores persist on disk (all booked JSONs summary-level), so lane-refire mutation was
+  out of ~20m scope — structural argument + witness only. Note for FW-1-successor:
+  "persist raw scores+labels for every booked AUC" closes this gap permanently.
+No booked result threatened. Receipt: tools/decoy_census.py (run logged in this commit).

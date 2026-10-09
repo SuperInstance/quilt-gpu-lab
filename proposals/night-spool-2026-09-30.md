@@ -2846,3 +2846,18 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   census verdict-identical (39 rows, red_live []). Booked RESULTS.md, pushed 44b66f6.
 - Manifest re-seal refused (foreign d12 lane untracked files persist, PW-1 — by design, deferred).
 - GPU idle all slice. Next wake: (B) top open per queue; GPU free (QG1d/QG4/MC-1).
+
+## SLICE 2026-10-09 01:5x AKDT (day-conductor) — (A) scout window quiet + (B) DECOY-1 BOOKED GREEN
+- (A) fleet probe since SCOUT-82 (08:45Z): canons + quilt-gpu-lab commit lists EMPTY except
+  our own spool push. No PRs/issues probed further (window ~1h, trivially quiet). Scout slot
+  satisfied; no CONTRADICT possible on empty window.
+- (B) DECOY-1 (spawned SCOUT-82) fired per rotation: pre-reg 7a26e91 pushed before firing;
+  tools/decoy_census.py G1-G4 all PASS — GREEN, 1 YELLOW-latent (decision_cell confidence
+  clamps, never cited as a gate). No booked result threatened. G4 instrument-level caveat +
+  "persist raw scores+labels" follow-up note in RESULTS.md booking.
+- (C) not due: newest prior OURS booking TIE-1a already REPRO PASS 23:4x Oct 8; DECOY-1 is
+  now newest OURS (scripted, deterministic, self-contained — trivially reproducible from
+  this commit). Foreign d12 untracked lane persists (PW-1); manifest re-seal correctly
+  deferred. GPU lane idle all slice. No running processes; nothing duplicated; no 429s.
+- Rotation next wake: (A) SCOUT-83 per rotation (re-probe canons once per SCOUT-82 lesson);
+  (B) open items FWIT-1/VX-1/SS-1/MUA-1; GPU open (QG4/MC-1/QG1d-corpus).
