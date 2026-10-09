@@ -6859,3 +6859,19 @@ One honest correction during the slice: initial "mutation UNDETECTED" probes wer
 (sys.path overlay defeated by the test file's own path insert; stale committed __pycache__ in git
 archive) — redo from full temp checkout before trusting either way. Cost ~15 min CPU, 0 GPU.
 Spawned: none (TIE-1 closed; FW-1-successor gains the appended-after-guard row).
+
+## [REPRO PASS 23:4x Oct 8] TIE-1a mandatory repro (day-conductor slice)
+Committed tree re-run from git-archive of HEAD 8010c53 into ext4 scratch: unittest
+verdict_gate+degrade_gate = 22/22 OK (18+4, matching the booking's claim that the
+dead-append fix brought all PARAM-1a tests live); tools/tie_census.py selftest 4/4;
+census output verdict-identical (39 tie rows, same 2 UNDETECTED yellows — now closed
+by the TIE-1a pins they name — red_live []). Verdict-level PASS; tree untouched.
+
+## SCOUT-NOTE 23:4x Oct 8 (day-conductor) — scout rotation freshly satisfied
+No fresh sweep fired this wake: 48f53d8 (SCOUT-81, lobster-live MOLT-1) landed this
+shift BEFORE TIE-1a, and the post-20:30Z fleet window is quiet — lobster-live +
+zero-poc autonomous think-cycles (noise), quilt-pincher dependabot bumps (noise),
+no open PRs or pushes touching our assets. canons API now 404s (repo moved/renamed
+or private — logged, not probed further this wake). No CONTRADICT, no spawns.
+Slot used for the TIE-1a repro above. Next wake: (B) top open item per queue
+(FWIT-1 / VX-1 / SS-1 / tol-pin integration check), GPU free for QG1d/QG4/MC-1.
