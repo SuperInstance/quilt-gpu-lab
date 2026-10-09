@@ -558,6 +558,24 @@ more than a copy to use, it's not grabbable yet.
   control (inversion + exo-fired) rc=1 REGIME-BRITTLE, receipt
   results/degrade_gate_example_2026-10-08.json.
 
+- **empnull-floor** — `tools/empnull_floor.py` — empirical-null discovery-floor
+  prober (pattern lifted PROVEN from D12ah, booked 2026-10-09: Monte-Carlo the
+  ACTUAL estimator under the null — no Gaussian assumption, no k dial — and the
+  k_eff(p) dip vanished, all 16 cells within 2x; the idealized null can
+  manufacture real-looking physics, the empirical null cannot). Copy-branch
+  (p,eps) pairs -> per-T P_succ = mean F_n(|corr|)^n_nulls (beat max of nulls
+  via ECDF) -> floor at the bar; grid-edge/never floors book PINNED_LOW / NEVER
+  honestly (floor_scan convention). Optional harness-floor gate: every
+  model/harness ratio within band (default 0.5..2, D12ah G1) or honest FAIL.
+  Stdlib-only, seeded, deterministic, fail-loud rc=2, exit 0=KEEP / 1=FAIL.
+  `python tools/empnull_floor.py --cells 0.3,0 0.4,0.05 --floors 20,20 [--t-grid 8,10,15,20 --n-nulls 32 --samples 200 --out r.json] | --example | --selftest`
+  TEST receipt 2026-10-09: selftest 6/6 — selftest caught its own wrong-convention
+  pin live (p=0.5 under the copy-branch convention has signal 0.5, so it
+  RESOLVED; the true zero-signal point is p=0.0 -> NEVER — pin fixed, generator
+  d12ah-verbatim, gate untouched); worked example rc=0 KEEP (floors 20/8 vs
+  harness 20/15, ratios 1.0/0.53), receipt
+  results/empnull_floor_example_2026-10-09.json.
+
 ### onboard.py — fleet-standard credential onboarding (Casey 2026-10-04)
 Every grabbable tool that touches a provider registers itself in `tools/onboard.json`
 (var name, keyfile name, optional extracted-config path) and inherits the onboarding CLI:
