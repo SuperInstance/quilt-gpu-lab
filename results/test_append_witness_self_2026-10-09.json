@@ -1,0 +1,11 @@
+{
+  "tool": "test-append-witness",
+  "file": "tools/test_append_witness.py",
+  "verdict": "NO-TESTS",
+  "plausible_classes": 0,
+  "plausible_methods": 0,
+  "collected_classes": 0,
+  "collected_tests": 0,
+  "dead": [],
+  "why": "loader did not collect these units"
+}

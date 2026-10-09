@@ -631,6 +631,22 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   intent->artifact retrieval is pinch0's 10/10 rank-1 probes (commit b639aea);
   this tool ships the retrieval path + fallback semantics, not a quality gate.
 
+- **test-append-witness** — `tools/test_append_witness.py` — dead-test detector for
+  unittest files (pattern lifted PROVEN from TIE-1a/PARAM-1a, booked 2026-10-08 commit
+  97cd58a: appended test classes were never collected under unittest — the suite ran
+  green and the verdict was unchanged because the new tests never ran): AST-census
+  every plausible test unit (Test* classes, test_* methods), load through the REAL
+  unittest loader, book DEAD (named unit + why-hint) for anything the loader didn't
+  collect; zero collected books NO-TESTS honestly, never silent-clean. Stdlib-only,
+  read-only, exit 0=CLEAN / 1=DEAD|NO-TESTS / 2=FAIL-INPUT, JSON receipt.
+  `python tools/test_append_witness.py --file tools/test_foo.py [--out r.json] | --selftest`
+  TEST receipt 2026-10-09: selftest 5/5 (clean fixture, lowercase-class append
+  correctly not a census unit, duplicate-class shadow caught as DEAD with the
+  shadowed method named, del'd method DEAD, empty NO-TESTS); self-run honestly
+  books NO-TESTS (no embedded tests); live on pytest-style test_skill_semantic.py
+  -> NO-TESTS rc=1 (correct: nothing collects under unittest), receipt
+  results/test_append_witness_self_2026-10-09.json.
+
 - **wt-floor** — `tools/wt_floor.py` — bandwidth-time partner-discovery floor
   prober (pattern lifted from `experiments/d12l_noise_floor.py`): seeded
   simulation of N channels / W streams, greedy argmax-correlation partner
