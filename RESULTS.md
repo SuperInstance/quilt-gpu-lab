@@ -6939,3 +6939,20 @@ fail-loud, fixed in place pre-scoring with verified anchor (`pre-registration`),
 Set -e ate one exit-3 echo in run 1; G3b re-run clean (exit 3 confirmed). No booked result
 threatened; QO2 stack / receipt doctrine / DETERM-1 eps pins all untouched. Manifest re-seal:
 new receipts/spec_sha_pregen.json is a NEW file (not sealed) — seal next re-seal window per PW-1.
+
+## SLICE 2026-10-09 09:4x AKDT (day-conductor) — (C) SS-1 REPRO PASS (mandatory)
+- (C) mandatory repro of newest OURS scripted booking **SS-1 (2e79c40): REPRO PASS (gate-level)**
+  from committed tree: `tools/spec_sha.py --check receipts/spec_sha_pregen.json` => exit 0,
+  **32/32 MATCH**, zero MISMATCH/STALE/UNPINNED; G4 never-writes re-verified (receipts ledger +
+  all 32 pinned preregs byte-unchanged post-run). One honest note: first repro attempt invoked
+  `--check` without the ledger argument and crashed (IndexError) — CLI requires the ledger path
+  positionally; usage gap, not a gate defect; no booked G-gate depended on the no-arg form.
+- (A) already satisfied this day (SCOUT-85 landed 08:43 AKDT, 2b8248b: canons route dead ->
+  org-wide pushed-list sweep is primary; GPP-1 spawned). No CONTRADICT in that window.
+- HEAD 2a42b8e (`empnull-floor`) is a FOREIGN live-lane commit (SuperInstance fleet author, no
+  RESULTS booking) — PW-1 precedent, not touched, not repro'd.
+- GPU lane idle all slice. Manifest: pre-existing receipts/manifest.json drift + foreign d12*
+  untracked lane persist — re-seal correctly deferred (PW-1). No running conductor processes;
+  nothing duplicated; no 429s.
+- Rotation next wake: (B) GPP-1 (top, spawned SCOUT-85, docs-only) or VX-1; GPU free (QG4/MC-1/
+  QG1d-corpus).
