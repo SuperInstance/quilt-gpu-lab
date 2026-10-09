@@ -80,9 +80,6 @@ class TestVerdictGate(unittest.TestCase):
         self.assertEqual(v2.verdict, "FAIL")
 
 
-if __name__ == "__main__":
-    unittest.main()
-
     def test_boundless_gate_vacuous_fails_closed__param_1a(self):
         # PARAM-1a: an evaluated gate with NO bound can never fail => finalize must FAIL.
         v = finalize([Gate("auc", 0.91)],
@@ -101,3 +98,32 @@ if __name__ == "__main__":
         v = finalize([Gate("g1", 0.95)], {"g1": StatMeta(std=0.0, n=100)},
                      completeness=True, status_source="own")
         self.assertEqual(v.verdict, "DEGENERATE")
+
+    # --- TIE-1a inclusive-bound pins (2026-10-08): tie case is PASS-side ---
+    def test_tie_at_minimum_passes__tie_1a(self):
+        v = finalize([Gate("auc", 0.80, minimum=0.80)],
+                     {"auc": StatMeta(std=0.01, n=4)}, completeness=True,
+                     status_source="own")
+        self.assertEqual(v.verdict, "PASS")
+
+    def test_tie_at_maximum_passes__tie_1a(self):
+        v = finalize([Gate("drift", 0.05, maximum=0.05)],
+                     {"drift": StatMeta(std=0.01, n=4)}, completeness=True,
+                     status_source="own")
+        self.assertEqual(v.verdict, "PASS")
+
+    def test_just_below_minimum_fails__tie_1a(self):
+        v = finalize([Gate("auc", 0.799999, minimum=0.80)],
+                     {"auc": StatMeta(std=0.01, n=4)}, completeness=True,
+                     status_source="own")
+        self.assertEqual(v.verdict, "FAIL")
+
+    def test_just_above_maximum_fails__tie_1a(self):
+        v = finalize([Gate("drift", 0.050001, maximum=0.05)],
+                     {"drift": StatMeta(std=0.01, n=4)}, completeness=True,
+                     status_source="own")
+        self.assertEqual(v.verdict, "FAIL")
+
+
+if __name__ == "__main__":
+    unittest.main()
