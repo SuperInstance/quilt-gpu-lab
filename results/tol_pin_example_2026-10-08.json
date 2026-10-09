@@ -1,0 +1,21 @@
+{
+  "tool": "tol_pin",
+  "name": "docstring-example",
+  "verdict": "PINNED",
+  "rc": 0,
+  "why": "tol strictly separates noise from signal with witnessable margin",
+  "inputs": {
+    "tol": 0.05,
+    "noise": 1e-06,
+    "signal": 0.2,
+    "band": 4.0
+  },
+  "clauses": {
+    "G1_quiet": true,
+    "G2_fires": true,
+    "G3_pinned_strict": true,
+    "G4_witness": true
+  },
+  "signal_noise_ratio": 200000.00000000003,
+  "ts": "2026-10-09T05:42:34Z"
+}

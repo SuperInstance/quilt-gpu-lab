@@ -863,3 +863,17 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   one-point / narrow-span / negative-wall all fail-loud); worked example rc=1
   SCALING honestly booked (ratio 0.1166 just over bar, slope 0.0023 s/item), receipt
   results/latency_flat_example_2026-10-08.json.
+
+- **tol-pin** — `tools/tol_pin.py` — tolerance-boundary pinner for numeric gates (pattern
+  lifted PROVEN from TIE-1, booked YELLOW 2026-10-09 unpinned-boundary class: verdict_gate
+  min/max and degrade tolerance sat on boundaries with no pin): proves a gate tolerance is
+  PINNED between the noise floor and the signal scale — G1 quiet (noise <= tol), G2 fires
+  (signal > tol), G3 pinned STRICT (noise == tol is the degenerate tie, booked UNPINNED),
+  G4 witness (signal/noise >= band). Degenerate ties name their clause in the receipt.
+  Stdlib-only, deterministic, fail-loud rc=2, JSON receipt, exit 0=PINNED / 1=UNPINNED.
+  `python tools/tol_pin.py --tol 0.05 --noise 1e-6 --signal 0.2 [--band 4 --name g --out r.json] | --example | --selftest`
+  TEST receipt 2026-10-08: selftest 10/10 — selftest caught its own pin bug live (the
+  degenerate-tie `why` string didn't name the failing clause, so pins couldn't match; the
+  receipt now names G2/G3 explicitly — the tool improved, not the pin); worked example
+  rc=0 PINNED (ratio 2e5), tie replay (tol=noise=1e-12) rc=1 UNPINNED "degenerate tie at
+  boundary: G3", receipt results/tol_pin_example_2026-10-08.json.
