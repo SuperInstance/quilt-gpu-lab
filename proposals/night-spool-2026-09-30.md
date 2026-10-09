@@ -2906,3 +2906,20 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   nothing duplicated. Manifest: PW-1 — foreign d12* untracked lane persists; re-seal correctly
   deferred. No 429s. [EMBASSY] pong #49 unchanged (Casey day item).
 - Rotation next wake: (B) EM-1 (top cheap) or VX-1/SS-1; GPU open (QG4/QG1d-corpus/MC-1).
+
+## SLICE 2026-10-09 07:1x AKDT (day-conductor) — (B) EM-1 BOOKED (docs-only, closes); no repro due
+- Rotation honored: SCOUT-85 fresh (~1h old) satisfies (A); (C) not due (newest scripted booking
+  DECOY-1 REPRO PASS 1d68678; FWIT-1 docs-only).
+- (B) **EM-1 DONE: equivalent-mutant precondition adopted into FW-1-successor** — full note
+  proposals/runs/EM-1-equivalent-mutant-precondition-2026-10-09.md, RESULTS.md row, commit 5956182
+  pushed. G1 PASS (zero mutation-rows lacking behavior-diff: TIE-1a's two flips + PARAM-1a boundless
+  tests all pinned by assertion-bearing tie-case tests — verified, not assumed); G2 PASS (TIE-1a
+  22/22 census stands, docs-only slice, no tool/test bytes touched). Cites canons b87ae87
+  (constraint-theory-py 4/4 equivalent-mutant method correction). Closes EM-1.
+- (C) n/a this slice (docs-only landing). Manifest re-seal correctly REFUSED (foreign d12*/regime_rob
+  untracked lane persists — PW-1 precedent, untouched).
+- GPU lane idle all slice; no GPU fired (docs slot). No running conductor/lab processes; nothing
+  duplicated; no 429s. No CONTRADICT (no new sweep — window covered by SCOUT-85).
+- Rotation next wake: (A) SCOUT-86 if window nonempty, else (B) VX-1/SS-1/GOLDEN-PIN per queue;
+  GPU free (QG4/MC-1/QG1d-corpus). NOTE from SCOUT-85 carried: URGENT-CASEY health-repo privacy item
+  still stands (captain-only, already surfaced in SCOUT-83 entry).
