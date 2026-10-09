@@ -20,6 +20,7 @@
 ## QUEUE (top = next)
 - [DONE 07:2x Oct 3] **VSB-1 BOOKED: PASS (G1-G4)**: tools/vendor_strip_census.py — ls-tree vs batch-check EXACT agreement all 3539 files; nested-vendor strip bug caught by census itself (wg1_wgsl target/ ~200MB was ranking as real); raw 910.3MB, vendored 36.2%, real 580.7MB. Lesson: batch-check echoes RESOLVED oid — map positionally. Manifest re-sealed 976ed88 (clean-worktree).
 - [DONE 09:1x Oct 3] **RT-D1 BOOKED (docs)**: real-vs-repro differential pin added to docs/PREREG-CLAIM-PROTOCOL.md — reimplementations need a real-thing headless probe arm alongside the bit-exact repro; UNRUN must be explicit. Applies to MMX-1 and QG1d (both annotated in the doctrine). Source: fleet-triage b04b1e6 REAL-PROBE (SCOUT-31).
+- [open] SEAL-1 (spawned GOLDEN-PIN 2026-10-09): tracked-files-only seal scope + re-seal; gates G1-G4 in RESULTS.md GOLDEN-PIN 15:4x entry; CI red since Oct 6 must go green.
 - [open] MMX-1 (GPU ~45m + 20m recon, spawned by SCOUT-15): MiniMoth→CUDA statevector bit-exact vs sealed exp008 (fleet-triage #1 B3 handoff); primary purpose = QG1d closure instrument (rebuild failing genome, separate stale-vs-fitness-diff). Gate: byte-identical statevectors at n=4 before any scaling claim.
 - [open] FT-D1 (design note, non-GPU, spawned by SCOUT-15): GPU-native cell runtime spec (fleet-triage #1 D1), sized by D12h/i/j W·T law; gate = QG4 cell at W=128/gens=100 in <10 min on the 4050.
 - [open] CH-1 (CPU reading ~30m, spawned by SCOUT-12): chiaroscuro HOLD/CAST abstention split -> map onto QO6 outcomes, draft HOLD-register spec addition for QO7. XR-1 raised (xruntime-conformance pushed post-read). Full sweep: proposals/runs/SCOUT-12-fleet-push-2026-10-01-1311Z.md.
@@ -3023,3 +3024,10 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   already REPRO PASS (deb3a57). GPU lane idle all slice. No running conductor processes; nothing duplicated; no 429s.
 - Rotation next wake: (B) XP-C or G3 ONLY if a >=1h envelope is available (pre-reg first); else scout-cycle;
   GPU open.
+
+## SLICE 2026-10-09 15:4x AKDT (day-conductor) — (B) GOLDEN-PIN FIRED: verifier PASS 3/3 refuse; AUDIT RED — committed seal stale at HEAD, CI red since Oct 6
+- (B) slot per rotation (SCOUT-88 took A last wake; top open CPU item GOLDEN-PIN, audit class). Full booking in RESULTS.md (GOLDEN-PIN 15:4x). Clone-red-team method per SCOUT-68 spec; md5-before/after confirmed substitutions.
+- **HEADLINE (self-CONTRADICT class): every push since 2026-10-06 runs the tests workflow RED (gh run list verified: 5 consecutive failures incl. today's f4eb269) — committed manifest is 23 commits stale because PW-1's foreign untracked experiments/d12* lane keeps dirty_sealed_paths() refusing re-seal.** Bookings' verdicts stand (committed scripts, repro PASS), but the seal is unbacked at HEAD and conductors never read CI. FW-1-successor note: "CI status unread" joins the conductor checklist.
+- Spawned **SEAL-1** (pre-reg first): tracked-files-only seal scope (fix A) — see RESULTS.md gates G1-G4. Fix B (move PW-1 lane) is Casey-only.
+- (C) not due: newest scripted booking PROP-1 REPRO PASS (deb3a57); GOLDEN-PIN is audit-class, no script booking. Manifest re-seal: STILL blocked pre-SEAL-1 (dirty guard correctly refuses — now understood as deadlock, not hygiene). GPU idle. No duplication; no 429s.
+- Rotation next wake: (B) SEAL-1 pre-reg + fix (top, unblocks the whole seal chain); then CI-green confirm. GPU open (QG4/MC-1/QG1d-corpus).
