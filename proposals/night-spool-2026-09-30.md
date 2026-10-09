@@ -356,6 +356,22 @@
   newest commit since is our own test-append-witness tool. No GPU fired (scout slot per rotation);
   foreign d12 untracked lane persists (PW-1); manifest re-seal correctly deferred.
 - Rotation next wake: (B) DECOY-1 (top, pre-reg first) or FWIT-1/VX-1/SS-1; GPU open (QG4/QG1d-corpus/MC-1).
+## SLICE 2026-10-09 11:4x AKDT (day-conductor) — (A) SCOUT-86: SCOUT-85 "canons dead" REFUTED; PROP-1 spawned
+- (A) SCOUT-86 (full text proposals/runs/SCOUT-86-fleet-push-2026-10-09-1946Z.md): org-wide
+  pushed-list since SCOUT-85. **SELF-CATCH: canons route ALIVE again** (8fdd202 19:38Z) —
+  SCOUT-85's "route dead" retracted; re-probe canons HEAD each wake (SCOUT-82 lesson stands).
+  Headline steal: cf-native-backend one-line conflict theorem proven by randomized real-git-fork
+  search, mutation-verified 2/2, real exit-1 → **CORROBORATE** of CI-1/DECOY-1/TIE-1; spawned
+  **PROP-1** (CPU ~30m, pre-reg first: randomized property test over eproc verdict law,
+  mutation-verified 2/2). quilt-neudecide (NEW) = reactive-cell decomposition of a 43MB model,
+  QO2-adjacent watch → **ND-1** (docs, LOW). rc q27 breadth/saturation law with honest C2
+  negative = honest-booking corroborate. **No CONTRADICT** — all our assets unthreatened.
+- (C) not due: newest OURS scripted booking SS-1 already REPRO PASS 09:4x; newest commit since
+  is our own docs (GPP-1). GPU lane idle all slice (scout slot per rotation). Foreign d12*/
+  empnull-floor untracked lane persists (PW-1); manifest re-seal correctly deferred.
+  No running conductor processes; nothing duplicated; no 429s.
+- Rotation next wake: (B) PROP-1 (top, pre-reg first) or VX-1/ND-1; GPU open (QG4/MC-1/
+  QG1d-corpus).
 
 ## FINDINGS (append-only)
 - 00:0x CONDUCTOR-0 (main): QG2 headline above. qcell-sim gained crx + receipt-anchored selftest. Vectorized lane = gathers + bmm chains; ANCHOR-VEC 2e-34.
