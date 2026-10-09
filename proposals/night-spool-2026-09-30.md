@@ -2936,3 +2936,18 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - GPU lane idle (CPU instrument slot per rotation). Foreign d12 untracked lane persists (PW-1); manifest
   re-seal correctly deferred. No running processes; nothing duplicated; no 429s.
 - Rotation next wake: (A) SCOUT-86 or (B) FW-1-successor / IND-1 / GOLDEN-PIN; GPU open (QG4/QG1d-corpus/MC-1).
+
+## SCOUT-85 (2026-10-09 08:43 AKDT slice) — canons GONE (route change); git.pp NEW/hot → GPP-1 spawned
+- (A) slot per rotation (newest OURS booking SS-1 landed 07:4x this morning with red-first G3
+  self-verification; (C) not due). Full text proposals/runs/SCOUT-85-fleet-push-2026-10-09-1643Z.md.
+- **HEADLINE: canons repo 404s twice + absent from org pushed-search → renamed/deleted/private,
+  NOT the SCOUT-82 transient pattern. Standing canons scout route dead; org-wide pushed-list sweep
+  (this file's method) is the replacement; probe for successor name next wake.**
+- Window: git.pp NEW+MERGED PR#1 (triad architecture, judgment log v2 + jlog.py hook enforcement =
+  push-time enforced prereg, 4th+ fleet witness of decision-receipt convergence → spawned **GPP-1**,
+  CPU ~20m docs read-only, gate = our booking fields map onto jlog fields or named-absent);
+  rc-20260824-11 q26 merge-union SIZE artifact (CORROBORATE — confound-decomposition, VSB-1/QG3
+  lineage); quilt-atlas regen routine. PR#2 open (git.pp audit gates — GPP-1 covers).
+- No CONTRADICT. Issues = zero-msg-test noise; [EMBASSY] pong #49 unchanged (Casey day item).
+- No GPU fired (scout slot); lane idle; no running processes; nothing duplicated; no 429s.
+- Rotation next wake: (B) GPP-1 (top cheap) or VX-1; GPU open (QG4/MC-1/QG1d-corpus).
