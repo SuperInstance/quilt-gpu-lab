@@ -57,6 +57,25 @@ piece others can lift. Grab = copy the file; everything here runs alone.
   JSON receipt; saturating-vs-chord verdict reported, never assumed.
   `python tools/saturating_kfit.py --anchors 0.3,0.657 0.4,0.896 0.55,1.20 0.7,1.20 [--eval 0.35,0.45 --out r.json]` (or `--example`). Smoke 2026-10-09: PASS (D12ac anchors reproduce, SSE 0.0039, beats chord).
 
+- **typesafe-batch** — `tools/typesafe_batch.py`
+  Batched typesafe (System One) judge calls: ONE HTTP call carries state + a dict
+  of named questions, returns all answers at once (~flat latency up to 80
+  questions). Retry-once, fail-loud, token read at use-time (never echoed).
+  Lifted from the proven cm1_relay_r4/r5 judge pattern.
+  `python tools/typesafe_batch.py --state s.json --questions q.json [--model jev-latest --out a.json]`. Smoke 2026-10-09: PASS (2-q live API, jev-1.13.0, 0.47s).
+
+- **checkpoint-guard** — `tools/checkpoint_guard.py`
+  Reusable embedding-checkpoint save/verify/resume: persist expensive GPU work
+  before cheap-but-buggy scoring; resume only on exact input-fingerprint match;
+  atomic fsync'd writes; invalidate = archive-by-rename (never delete).
+  `python tools/checkpoint_guard.py --path ckpt.json --info` (module API in docstring; `--selftest`).
+
+- **farm-queue-flip** — `tools/farm_queue_flip.py`
+  Safe farm/queue.json entry flipper: JSON-validated, atomic write, and a
+  pre-reg gate — experiment entries can't be armed unless their `prereg` file
+  is committed in git history. Never deletes (archive-by-rename).
+  `python tools/farm_queue_flip.py --id cm1-r6 --status queued [--dry-run --list]`.
+
 ## Coordination platform (lives in SuperInstance/quilt-i2i)
 
 - **i2i-ledger worker** — live shared semantic memory:
