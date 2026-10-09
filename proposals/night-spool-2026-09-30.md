@@ -2890,3 +2890,19 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   untracked lane persists (PW-1); manifest re-seal correctly deferred.
 - Rotation next wake: (B) FWIT-1 / VX-1 / SS-1 / GOLDEN-PIN per queue order; GPU open
   (QG4/QG1d-corpus/MC-1).
+
+## SCOUT-85 (2026-10-09 ~05:5x AKDT slice) — no CONTRADICT; EM-1 spawned (equivalent-mutant precondition)
+- Full text proposals/runs/SCOUT-85-fleet-push-2026-10-09-1345Z.md. Window since SCOUT-84 (11:45Z):
+  canons b87ae87 (13:19Z: census 5,208 PASS assert, RC-2 drift +6; quilt-canvas-tui cross-language
+  test never runnable — cross-repo cell_api, 0 CI runs; constraint-theory-py A2 covering radius
+  INDEPENDENTLY VERIFIED + equivalent-mutant method correction; zero-innate watch), rc q26
+  (12:06Z: q25 +1.13pp was capacity-pressure SIZE artifact — CORROBORATE of our D12i/QG6
+  normalize-the-footprint law; different substrate). No CONTRADICT — QO2 stack, DECIDE, receipt
+  doctrine, QG3+QG6, QG1c, W5a/b/c all unthreatened. Spawned **EM-1** (docs ~15m: amend TIE-1/
+  PARAM-1a receipts + FW-1-successor with mutant-behavior-diff precondition, cite b87ae87);
+  CI-1-AMEND gains enumerated-subset-gate row (derive CI checks from own .gitignore).
+- (C) not due: newest OURS booking FWIT-1 is docs-only (no script); newest scripted booking DECOY-1
+  already REPRO PASS (1d68678). GPU lane idle (scout slot per rotation). No running lab processes;
+  nothing duplicated. Manifest: PW-1 — foreign d12* untracked lane persists; re-seal correctly
+  deferred. No 429s. [EMBASSY] pong #49 unchanged (Casey day item).
+- Rotation next wake: (B) EM-1 (top cheap) or VX-1/SS-1; GPU open (QG4/QG1d-corpus/MC-1).
