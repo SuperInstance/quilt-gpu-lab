@@ -6837,3 +6837,25 @@ Committed tree re-run (tools/tie_census.py @ 1d7de1e): census 39 tie-candidate r
 UNDETECTED yellows IDENTICAL (verdict_gate Gate.passes, degrade_gate tolerance),
 red_live []. selftest 4/4. Verdict YELLOW-latent-only STANDS. Foreign d12 untracked
 lane persists (PW-1); no sealed path touched.
+
+## [BOOKED GREEN 22:5x Oct 8 CPU] TIE-1a inclusive-bound/tie-semantics pin
+Pre-reg committed+pushed BEFORE firing (aaeae76, proposals/runs/TIE-1a-bound-semantics-pin-prereg-2026-10-08.md).
+PIN-NOT-CHANGE per prereg: both yellows' current tie semantics locked with docstrings + tests.
+- G1 PASS: Gate.passes pinned INCLUSIVE at both bounds (value==min PASS, value==max PASS; fail is
+  strictly <min / >max, no eps); 4 tie-case tests in tests/test_verdict_gate.py.
+- G2 PASS: degrade_gate tolerance pinned strictly-permissive at tie (delta==tolerance NOT flagged);
+  4 tie-case tests in new tests/test_degrade_gate.py (incl. default-tolerance-0 flags any rise).
+- G3 PASS: mutation-lite re-check from full git-archive temp tree — BOTH flips now DETECTED (rc 1
+  each). TIE-1's undetected-yellows are closed.
+- G4 PASS: existing suites unchanged-verdict; degrade selftest 13/13.
+**MECHANICAL FINDING (FW-1-successor, RED-then-fixed): tests/test_verdict_gate.py ended with a bare
+module-level `if __name__=="__main__": unittest.main()` guard MID-FILE — every test appended after it
+(incl. all 3 PARAM-1a boundless fail-closed tests) was dead on arrival, never collected under
+unittest. Prior "tests 11/11" claims were the pre-existing 11, not the PARAM-1a additions. Guard moved
+to true file end; suite now 18 (verdict_gate) + 4 (degrade_gate), ALL PASS, and PARAM-1a's boundless
+tests are live for the first time (all green — verdicts unchanged, but the claim "tests 11/11" in the
+PARAM-1a booking was counting the wrong suite and is hereby amended in the record).**
+One honest correction during the slice: initial "mutation UNDETECTED" probes were harness artifacts
+(sys.path overlay defeated by the test file's own path insert; stale committed __pycache__ in git
+archive) — redo from full temp checkout before trusting either way. Cost ~15 min CPU, 0 GPU.
+Spawned: none (TIE-1 closed; FW-1-successor gains the appended-after-guard row).

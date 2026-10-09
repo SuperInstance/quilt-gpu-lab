@@ -2809,3 +2809,16 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   re-seal deferred (foreign d12 untracked lane persists, PW-1; no sealed path touched).
 - GPU lane idle all slice (rotation: scout was the slot). Next wake rotation: (B) TIE-1a / MOLT-1 /
   DETERM-1; GPU open (QG1d/QG4/MC-1).
+
+## SLICE 2026-10-08 22:5x AKDT (day-conductor) — (B) TIE-1a BOOKED GREEN + dead-append test defect found
+- (B) TIE-1a fired per prereg (aaeae76 before firing; landing 97cd58a). Both TIE-1 yellows pinned,
+  mutation detection now rc 1 on both flips. See RESULTS.md booking.
+- HEADLINE mechanical finding: appended-after-`unittest.main()`-guard tests never collected —
+  PARAM-1a's 3 boundless tests were dead since landing; now live+green. New FW-1-successor row:
+  "census must count tests by loader discovery, not grep of def test_".
+- Tree hygiene this slice: results/tie1_gate_census.json had a dirty timing-string overwrite
+  (re-run artifact) — restored to committed receipt. Foreign d12 untracked lane persists (PW-1);
+  manifest re-seal correctly deferred again.
+- GPU lane idle all slice (CPU pin slot per rotation). No running processes; nothing duplicated; no 429s.
+- Rotation next wake: (A) SCOUT-82 per rotation, or (B) GOLDEN-PIN / MUA-1 / MOLT-1; GPU open
+  (QG4/MC-1/QG1d-corpus).
