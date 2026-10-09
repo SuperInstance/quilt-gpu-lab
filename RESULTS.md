@@ -6831,3 +6831,9 @@ One mechanical crash pre-booking, fixed in place (bare `python` absent on PATH -
 sys.executable). Spawned TIE-1a (CPU ~15m): pin inclusive-bound semantics in
 Gate.passes (`<=`/`>=` or explicit eps) + tie-case tests in both suites; run AFTER
 new prereg. Cost ~12 min CPU, 0 GPU.
+
+## [REPRO PASS 20:5x Oct 8] TIE-1 mandatory repro (SCOUT-80 slice)
+Committed tree re-run (tools/tie_census.py @ 1d7de1e): census 39 tie-candidate rows,
+UNDETECTED yellows IDENTICAL (verdict_gate Gate.passes, degrade_gate tolerance),
+red_live []. selftest 4/4. Verdict YELLOW-latent-only STANDS. Foreign d12 untracked
+lane persists (PW-1); no sealed path touched.
