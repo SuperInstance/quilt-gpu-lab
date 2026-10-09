@@ -2861,3 +2861,21 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   deferred. GPU lane idle all slice. No running processes; nothing duplicated; no 429s.
 - Rotation next wake: (A) SCOUT-83 per rotation (re-probe canons once per SCOUT-82 lesson);
   (B) open items FWIT-1/VX-1/SS-1/MUA-1; GPU open (QG4/MC-1/QG1d-corpus).
+
+## SLICE 2026-10-09 02:4x AKDT (day-conductor) — (A) SCOUT-83: URGENT-CASEY health-repo privacy + no CONTRADICT; (C) DECOY-1 REPRO PASS
+- **⚠ URGENT-CASEY (top priority next wake, captain-only):** SuperInstance/health is PUBLIC with 16 PDFs of
+  Casey's medical records (name/DOB/MRN/address/radiology, public since 2026-01-10) — needs
+  `gh repo edit --visibility private` + history rewrite. External + touches captain's own data → booked,
+  NOT touched (canons 6bc5c3d §2). Full text proposals/runs/SCOUT-83-fleet-push-2026-10-09-1045Z.md.
+- (A) SCOUT-83: canons 6bc5c3d only external push. **No CONTRADICT.** spreadsheet-engine γ+η=C has NO
+  emitter (zero non-test writers) → FW-1-successor LAW-WITH-NO-EMITTER row; our eproc verified live-emitting.
+  plato-portal: unclonable gitlinks + fail-open `submodule status` exit-0 shape (FW-1-succ row) + green-badge
+  on never-passing CI (CI-1 corroborate). flux-lucid anomaly-carry-forward = positive control → spawned
+  **ANOM-1** (docs, LOW). PRs dependabot-only; 019 contrast-pair phantom detector tasked agent-inbox (watch).
+- (C) mandatory repro of newest OURS booking **DECOY-1 (ed3810f): REPRO PASS (verdict-identical)** —
+  committed tools/decoy_census.py re-run from tree: GREEN, 1 YELLOW-latent, self_ref/clamp verdicts and
+  G4 witness (0.9153 / 0.0355) byte-match the booking. No GPU fired (scout slot per rotation); foreign
+  d12 untracked lane persists (PW-1) — manifest re-seal correctly deferred. No running lab processes;
+  nothing duplicated; no 429s.
+- Rotation next wake: **URGENT-CASEY health item first** (surface to captain at day start), then (B)
+  ANOM-1/FWIT-1/VX-1; GPU open (QG4/QG1d-corpus/MC-1).
