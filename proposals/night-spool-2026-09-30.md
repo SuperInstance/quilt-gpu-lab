@@ -2923,3 +2923,16 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - Rotation next wake: (A) SCOUT-86 if window nonempty, else (B) VX-1/SS-1/GOLDEN-PIN per queue;
   GPU free (QG4/MC-1/QG1d-corpus). NOTE from SCOUT-85 carried: URGENT-CASEY health-repo privacy item
   still stands (captain-only, already surfaced in SCOUT-83 entry).
+
+## SLICE 2026-10-09 07:4x AKDT (day-conductor) — (B) SS-1 BOOKED GREEN (spec_sha prereg pins)
+- (B) slot per rotation (SCOUT-85 satisfied (A); VX-1 found already booked+repro'd 01:2x/02:1x Oct 7;
+  EM-1 newest OURS is docs-only, repro N/A). SS-1 (SCOUT-36 spawn) fired: pre-reg 7c47609 committed+pushed
+  BEFORE firing; tools/spec_sha.py + receipts/spec_sha_pregen.json (32 preregs). Gates G1-G4 all PASS;
+  32/32 MATCH, red-first MISMATCH/STALE/UNPINNED all loud, --check never-writes. Booked in RESULTS.md.
+  Honest scope: snapshot seal (instrument validation) — forward convention: spec_sha recorded at prereg
+  commit. First harness run's broken anchors (vacuous comparisons + no-op tamper) caught fail-loud and
+  fixed in place pre-scoring; re-ran clean.
+- (C) N/A this slice: newest OURS booking EM-1 is docs-only (adopted precedent, no executable).
+- GPU lane idle (CPU instrument slot per rotation). Foreign d12 untracked lane persists (PW-1); manifest
+  re-seal correctly deferred. No running processes; nothing duplicated; no 429s.
+- Rotation next wake: (A) SCOUT-86 or (B) FW-1-successor / IND-1 / GOLDEN-PIN; GPU open (QG4/QG1d-corpus/MC-1).

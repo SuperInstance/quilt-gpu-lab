@@ -6919,3 +6919,23 @@ exit 0. Suite 68/69 — the 1 RED is SealGuardLive::test_guard_runs_git_status_i
 the foreign untracked d12*/regime_rob lane bytes = pin firing as designed (PW-1 precedent, not touched).
 GPU lane idle all slice; nothing fired on GPU. No CONTRADICT. No new spawns. Rotation next wake:
 (A) SCOUT-85 (fleet push window since SCOUT-84) or (B) VX-1/SS-1; GPU free for QG1d/QG4/MC-1.
+
+## [BOOKED GREEN 07:4x Oct 9 CPU] SS-1 spec_sha prereg-pin tool
+Pre-reg committed+pushed BEFORE firing (7c47609, proposals/runs/SS-1-spec-sha-prereg.md).
+Spawned by SCOUT-36 (fleet spec_sha convergence: madlibs-jev ee7b73a, unspoken-resonance 3ad67d4 class).
+Instrument: tools/spec_sha.py — canon-form sha256 (cosmetic churn inert, word edits move pin);
+pin / --init (only writer) / --check (never writes; MATCH/MISMATCH/STALE/UNPINNED, exits 0/2/3/4).
+- G1 PASS: deterministic; cosmetic-only edit (trailing ws) does NOT move pin; one-word edit DOES.
+- G2 PASS: receipts/spec_sha_pregen.json pins 32 preregs; full --check 32/32 MATCH exit 0.
+  HONEST SCOPE: this is a SNAPSHOT seal of current prereg bytes (instrument validation), not a
+  claim of historical immutability; forward convention = record spec_sha line at the prereg commit.
+- G3 PASS (red-first, all loud): tampered word -> MISMATCH exit 2; pinned-file deleted -> STALE
+  exit 3; foreign unpinned file -> UNPINNED exit 4. Precedence note: UNPINNED checked before
+  existence, so unpinned+missing reports UNPINNED (correct for foreign files).
+- G4 PASS: --check leaves tracked tree + ledger byte-identical.
+Harness honesty: first firing had broken anchors (compared full `pin` lines incl. paths -> vacuous
+inequalities; sed pattern absent from file -> no-op "tamper" that correctly MATCHed). Caught by
+fail-loud, fixed in place pre-scoring with verified anchor (`pre-registration`), re-run clean.
+Set -e ate one exit-3 echo in run 1; G3b re-run clean (exit 3 confirmed). No booked result
+threatened; QO2 stack / receipt doctrine / DETERM-1 eps pins all untouched. Manifest re-seal:
+new receipts/spec_sha_pregen.json is a NEW file (not sealed) — seal next re-seal window per PW-1.
