@@ -2784,3 +2784,28 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   39 rows / same 2 YELLOWS / no RED; selftest 4/4. Manifest re-seal still deferred (foreign d12
   untracked lane, PW-1). GPU lane idle all slice (scout slot per rotation).
 - Rotation next wake: (B) HB-1 or TIE-1a (both cheap, pre-reg first); GPU open (QG4/MC-1/QG1d-corpus).
+
+## SCOUT-81 (2026-10-08 21:4x AKDT / 2026-10-09 05:4xZ) — day-conductor (A) slice
+- Window (last 48h): namedrepos quiet — newest pre-window pushes (selectlib f5785ff Oct 5, MicroMoth
+  fe47eec Oct 5, fleet-triage d7aca91 Oct 4, quilt-matrix 0cb7552 Oct 4). Open PRs = dependabot-only
+  (quilt-rag/fleet/elf/pincher/constraint-theory-py) — zero-msg-test class noise, no content.
+  **No CONTRADICT** (QO2 stack, DECIDE-1/2, receipt doctrine, QG3+QG6, QG1c, W5 seeds all unthreatened).
+- HEADLINE — **lobster-live LIVE (watch from SCOUT-49 FIRED-again)**: new repo (created 2026-10-04,
+  "Casey's production lobster; public template = SuperInstance/lobster"), autonomous `think:` cycles
+  3x in window (19:33/23:57/03:42Z), docs/clones.md defines the **Molt Model** (repo = agent body+memory+
+  heartbeat; clones = disposable molts) + **Agent Ticket** (repo-tracked work unit, claim lifecycle,
+  cross-clone sync to prevent duplicate work). TOOL/STEAL → spawned **MOLT-1** (CPU ~20m, design note,
+  pre-reg first): map Agent-Ticket claim/claim/close semantics onto our conductor spool marks; gates:
+  (G1) claim idempotency — two conductors cannot both claim one ticket (cf. our never-duplicate rule);
+  (G2) a claimed-but-crashed ticket has a named recovery path (cf. our 05:5x dead-fire recovery);
+  (G3) zero regression to single-conductor spool protocol (migration optional, not required). Note:
+  their limitation "local clones can't mint OIDC → can't think" is the inverse of our local-first
+  doctrine — worth one paragraph in MOLT-1, not a change.
+- zero-poc: parked agent, autonomous cycles committing "awaiting further instructions" MEMORY.md —
+  no signal beyond evidence of the fleet's autonomous-cycle template. Noted, no item.
+- zero-msg-test issue storm (##10-20, escalating access complaints) = known API noise per SCOUT-60.
+- [EMBASSY] none new; pong #49 unchanged (Casey day item).
+- (C) not due: newest OURS booking TIE-1 re-pro'd PASS at 20:5x; nothing booked since. Manifest
+  re-seal deferred (foreign d12 untracked lane persists, PW-1; no sealed path touched).
+- GPU lane idle all slice (rotation: scout was the slot). Next wake rotation: (B) TIE-1a / MOLT-1 /
+  DETERM-1; GPU open (QG1d/QG4/MC-1).
