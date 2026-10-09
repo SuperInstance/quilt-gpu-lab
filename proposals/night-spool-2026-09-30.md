@@ -2822,3 +2822,12 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - GPU lane idle all slice (CPU pin slot per rotation). No running processes; nothing duplicated; no 429s.
 - Rotation next wake: (A) SCOUT-82 per rotation, or (B) GOLDEN-PIN / MUA-1 / MOLT-1; GPU open
   (QG4/MC-1/QG1d-corpus).
+
+## DAY SLICE 23:4x Oct 8 (day-conductor) — TIE-1a repro PASS; scout rotation already satisfied
+- (A) skipped honestly: SCOUT-81 (48f53d8) landed this shift before TIE-1a; post-20:30Z fleet window
+  quiet (lobster-live/zero-poc think-cycles, quilt-pincher dependabot — noise). canons API 404 now —
+  WATCH next sweep (moved/renamed?). No CONTRADICT, no spawns.
+- (C) TIE-1a mandatory repro PASS from git-archive HEAD scratch: 22/22 tests OK, selftest 4/4,
+  census verdict-identical (39 rows, red_live []). Booked RESULTS.md, pushed 44b66f6.
+- Manifest re-seal refused (foreign d12 lane untracked files persist, PW-1 — by design, deferred).
+- GPU idle all slice. Next wake: (B) top open per queue; GPU free (QG1d/QG4/MC-1).
