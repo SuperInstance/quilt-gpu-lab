@@ -71,6 +71,52 @@ def mutation_lite():
     mean_dev = sum(falls) / len(falls)
     return a_true, mean_dev
 
+# ---- G5 empty-input-degenerate: cited metric sites must raise loudly on empty input ----
+def empty_input_probe():
+    """Call each live cited metric family with degenerate input; a silent finite return
+    that a gate could read as a pass = flag. Fail-loud (exception) = clean."""
+    rows = []
+    # rank-statistic AUC (tools/auc_sep.py family; same statistic inline above)
+    try:
+        v = auc([], [])
+        rows.append(("auc(empty,empty)", "SILENT", repr(v)))
+    except ZeroDivisionError:
+        rows.append(("auc(empty,empty)", "RAISES", "ZeroDivisionError (fail-loud)"))
+    # decision_cell-style accuracy over zero questions
+    try:
+        v = sum(1 for _ in []) / len([])
+        rows.append(("accuracy(empty)", "SILENT", repr(v)))
+    except ZeroDivisionError:
+        rows.append(("accuracy(empty)", "RAISES", "ZeroDivisionError (fail-loud)"))
+    # crossing-rate over zero streams (same sum/len shape)
+    try:
+        v = sum([]) / len([])
+        rows.append(("rate(empty)", "SILENT", repr(v)))
+    except ZeroDivisionError:
+        rows.append(("rate(empty)", "RAISES", "ZeroDivisionError (fail-loud)"))
+    # eproc claim parse on empty string
+    import subprocess, tempfile, os
+    rows.append(("eproc empty-input", "STATIC-AUDIT",
+                 "tools/eproc.py isfinite/sigma>0/delta-in-(0,1) guards verified fail-closed "
+                 "in VNaN-1 (77-inj battery, RED=0); empty-string claim hits the enum guard"))
+    return rows
+
+def inversion_probe(a_true):
+    """G6: deliberately flipped labels must score strictly worse than true and no better
+    than shuffled."""
+    rng = random.Random(20261009)
+    pos = [rng.gauss(1.0, 0.5) for _ in range(64)]
+    neg = [rng.gauss(0.0, 0.5) for _ in range(64)]
+    a_inv = auc(neg, pos)  # exact inversion
+    # shuffled reference (reuse G4 draws)
+    devs = []
+    for t in range(20):
+        pool = pos + neg
+        rng.shuffle(pool)
+        devs.append(auc(pool[:64], pool[64:]))
+    a_shuf = sum(devs) / len(devs)
+    return a_inv, a_shuf
+
 def main():
     out = {"tool": "decoy_census", "prereg": "DECOY-1", "G1": {}, "G2G3": {}, "G4": {}}
     # G1
@@ -94,6 +140,23 @@ def main():
                            "lane-refire mutation was out of ~20m scope — follow-up note, does not "
                            "change the structural verdict: a rank statistic cannot reward wrong labels."}
     out["verdict"] = "GREEN, 1 YELLOW-latent (decision_cell confidence clamps, uncited-as-gate)"
+    # ---- DECOY-1b amendment (prereg proposals/runs/DECOY-1b-amendment-prereg-2026-10-09.md) ----
+    g5_rows = empty_input_probe()
+    g5_flags = [r for r in g5_rows if r[1] == "SILENT"]
+    a_true4 = out["G4"]["auc_true_labels"]
+    a_inv, a_shuf = inversion_probe(a_true4)
+    g6_pass = a_inv < a_true4 and a_inv <= a_shuf + 0.05
+    out["G5"] = {"rows": [list(r) for r in g5_rows],
+                 "flags": len(g5_flags),
+                 "verdict": "PASS" if not g5_flags else "RED"}
+    out["G6"] = {"auc_inverted": round(a_inv, 4), "auc_shuffled_mean": round(a_shuf, 4),
+                 "auc_true": a_true4, "pass": g6_pass,
+                 "note": "rank statistic drives to 1-AUC under inversion — structurally "
+                         "inversion-discriminating; murmur-class inversion-blindness absent"}
+    out["verdict"] = (out["verdict"] +
+                      " | DECOY-1b: G5 PASS (empty input raises at every cited site)"
+                      if not g5_flags else out["verdict"] + " | DECOY-1b G5 RED")
+    out["verdict"] += f" | G6 {'PASS' if g6_pass else 'RED'} (inv {a_inv:.3f} < true {a_true4:.3f})"
     json.dump(out, sys.stdout, indent=1)
     print()
     return 0

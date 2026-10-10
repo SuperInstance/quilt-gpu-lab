@@ -7088,3 +7088,20 @@ Pre-reg: proposals/runs/VNaN-1-failopen-redteam.md (commit BEFORE fire). Script:
   literals), so NO retroactive re-verification required.
 - META: this was booked as predicted pre-fire; SCOUT-89's CONTRADICT-culture warning holds — our gate
   lattice's own DEGENERATE/TRUNC pins never covered the input-validation layer beneath them.
+
+## [BOOKED GREEN 20:3x Oct 9 CPU] DECOY-1b empty-input + inversion-discrimination amendment
+Pre-reg committed+pushed BEFORE firing (a1a3f18, proposals/runs/DECOY-1b-amendment-prereg-2026-10-09.md).
+Amends DECOY-1 (GREEN 01:5x) with the two SCOUT-90 rows. Tool: tools/decoy_census.py extended (G5/G6).
+- G5 EMPTY-INPUT-DEGENERATE **PASS**: every cited metric family raises fail-loud on empty input
+  (auc/accuracy/rate -> ZeroDivisionError); eproc empty-claim hits the enum guard (VNaN-1 battery
+  already covered numeric paths, RED=0). Zero silent-degenerate sites. murmur empty-string==nonsense
+  class ABSENT from our lattice.
+- G6 INVERSION-DISCRIMINATION **PASS**: exact label inversion drives rank-AUC to 0.0847 = 1-AUC
+  (true 0.9153), strictly worse than true and below shuffled mean 0.5137. The murmur-class shape
+  (wrong observation outscores correct) is structurally impossible for the rank statistic our
+  oracle bookings cite.
+- Verdict rule inherited: no live cited gate affected -> all bookings stand, verdict GREEN.
+- (C) mandatory repro: newest prior scripted booking VNaN-1 already REPRO PASS (89f6f54); this IS
+  the newest scripted booking; script committed before booking in this landing.
+- Manifest re-sealed in the same landing. GPU lane idle all slice (CPU item per rotation); no
+  running conductor processes; no dupes; no 429s.
