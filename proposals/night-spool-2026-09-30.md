@@ -3046,3 +3046,16 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - Rotation next wake: (A) SCOUT (canons HEAD re-probe per SCOUT-86 lesson); GPU open
   (QG4/MC-1/QG1d-corpus); (B) DECOY-1 / VX-1 / ND-1 per queue order. Manifest re-seal cycle
   restored to normal use — re-seal after ANY ledger change now succeeds.
+
+## SLICE 2026-10-09 18:4x AKDT (day-conductor) — (B) VNaN-1 FIRED + BOOKED: prediction CONFIRMED (Gate NaN passes bounds), fixed fail-closed; RED=0 post-fix
+- (B) top queue item per SCOUT-89 rotation. Pre-reg committed+pushed BEFORE fire
+  (proposals/runs/VNaN-1-failopen-redteam.md). Pre-fix red-team (114 injections): **RED CONFIRMED —
+  Gate(value=nan).passes()==True** (plus minimum/maximum=nan, value/std=inf, std=nan/None, whitespace
+  seal secret). Post-fix (verdict_gate __post_init__ validation x2 + prereg_seal strip): **TOTAL=77
+  RED=0 REFUSE=64 LATTICE=10 ALLOWED=3**, EXIT=0, G3 unit pin refuses loudly. eproc was already
+  fail-closed on every surface — untouched. Tests +5 pins (71/71 clean tree). No booked verdict ran a
+  NaN-vulnerable path — no retroactive re-verification. Full booking: RESULTS.md VNaN-1 entry.
+- (C) satisfied inline: this IS the newest booking; script committed before booking; manifest re-seal in
+  landing commit. GPU lane idle (CPU item per rotation). No dupes (no VNaN work in git log), no 429s.
+- Spool marks: VNaN-1 [DONE]; MMX-1/FT-D1/CH-1/SL-G1/SF-G1/DS-G2/QG4/MC-1/QG1d-corpus remain open.
+- Rotation next wake: (A) SCOUT, then GPU top (QG4 phase diagram or MC-1).

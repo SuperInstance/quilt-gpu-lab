@@ -7068,3 +7068,23 @@ new receipts/spec_sha_pregen.json is a NEW file (not sealed) — seal next re-se
 - GPU lane idle all slice (scout slot per rotation); no running conductor processes; nothing
   duplicated; no 429s; /tmp tmpfs still full — scratch on /home honored.
 - Rotation next wake: (B) VNaN-1 pre-reg + fire (top); GPU open (QG4/MC-1/QG1d-corpus).
+
+## VNaN-1 BOOKED 2026-10-09 18:4x AKDT — CONFIRMED + FIXED (G1-G4 GREEN)
+Pre-reg: proposals/runs/VNaN-1-failopen-redteam.md (commit BEFORE fire). Script: experiments/vnan1_failopen_redteam.py.
+- **PREDICTION CONFIRMED (pre-fix run, 114 injections):** `Gate(value=nan, minimum=0.8).passes() == True` —
+  NaN passes every bound (nan<x and nan>x both False; the exact a2a-constraint-protocol lesson). Also RED
+  pre-fix: minimum=nan→PASS, maximum=nan/inf→PASS, minimum=-inf→PASS, value=inf→PASS, std=nan/inf/-inf/'NaN'/None→
+  PASS (degenerate pin evaded), prereg_seal whitespace-only secret SEALED.
+- **FIXES LANDED:** verdict_gate `Gate.__post_init__` + `StatMeta.__post_init__` fail-closed validation
+  (value/minimum/maximum/std finite-or-None; n positive int; saturated bool-or-None — kills the `''` truthiness
+  hole too); prereg_seal `_secret()` strips before empty-check.
+- **Post-fix run: TOTAL=77 RED=0 REFUSE=64 LATTICE=10 ALLOWED=3** (allowlist: maximum=None / std=None /
+  saturated=None — optional-by-design, each with rationale in script ALLOWLIST table). G3 unit pin: Gate(nan)
+  refuses loudly. EXIT=0.
+- G1 inventory: all 11 fields across verdict_gate/eproc/prereg_seal enumerated and injected. eproc already
+  fail-closed on every surface (isfinite series, sigma>0 finite, delta in (0,1), claim enum) — no changes needed.
+- G4: tests/test_verdict_gate.py +5 NaN/inf refusal pins (suite 71/71 on clean tree); manifest re-sealed in
+  the same landing commit. No booked verdict consumed a NaN-vulnerable path (all bookings pass finite
+  literals), so NO retroactive re-verification required.
+- META: this was booked as predicted pre-fire; SCOUT-89's CONTRADICT-culture warning holds — our gate
+  lattice's own DEGENERATE/TRUNC pins never covered the input-validation layer beneath them.

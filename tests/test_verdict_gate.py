@@ -124,6 +124,29 @@ class TestVerdictGate(unittest.TestCase):
                      status_source="own")
         self.assertEqual(v.verdict, "FAIL")
 
+    # VNaN-1 (SCOUT-89 fail-open class): NaN/inf must refuse at construction, never
+    # pass a bound (nan < x is False, nan > x is False).
+    def test_nan_value_refuses__vnan1(self):
+        with self.assertRaises(ValueError):
+            Gate("g", float("nan"), minimum=0.8)
+
+    def test_inf_bounds_refuse__vnan1(self):
+        for bad in (float("inf"), float("-inf")):
+            with self.assertRaises(ValueError):
+                Gate("g", 0.9, minimum=bad)
+            with self.assertRaises(ValueError):
+                Gate("g", bad, minimum=0.8)
+
+    def test_nan_std_refuses__vnan1(self):
+        with self.assertRaises(ValueError):
+            StatMeta(std=float("nan"), n=4)
+
+    def test_bad_n_and_saturated_refuse__vnan1(self):
+        with self.assertRaises(ValueError):
+            StatMeta(std=0.01, n="8")
+        with self.assertRaises(ValueError):
+            StatMeta(std=0.01, n=8, saturated="")
+
 
 if __name__ == "__main__":
     unittest.main()

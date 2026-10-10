@@ -42,6 +42,7 @@ Usage:
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+import math
 from typing import Any, Dict, List, Optional
 
 
@@ -52,6 +53,14 @@ class Gate:
     value: Optional[float]
     minimum: Optional[float] = None
     maximum: Optional[float] = None
+
+    def __post_init__(self):
+        # VNaN-1 (SCOUT-89 fail-open class): NaN/inf silently pass bound comparisons
+        # (nan < x is False, nan > x is False). Refuse non-finite inputs loudly.
+        for fname in ("value", "minimum", "maximum"):
+            v = getattr(self, fname)
+            if v is not None and not (isinstance(v, (int, float)) and math.isfinite(v)):
+                raise ValueError(f"Gate.{fname} must be a finite number or None (got {v!r})")
 
     def evaluates(self) -> bool:
         return self.value is not None
@@ -72,6 +81,16 @@ class StatMeta:
     std: Optional[float] = None      # None = variance unknown => treated as unknown, not degenerate
     n: int = 1
     saturated: Optional[bool] = None  # explicit saturation attestation (W5a class)
+
+
+    def __post_init__(self):
+        # VNaN-1: std must be a finite number or None; n must be a positive int.
+        if self.std is not None and not (isinstance(self.std, (int, float)) and math.isfinite(self.std)):
+            raise ValueError(f"StatMeta.std must be a finite number or None (got {self.std!r})")
+        if not isinstance(self.n, int) or isinstance(self.n, bool) or self.n < 1:
+            raise ValueError(f"StatMeta.n must be a positive int (got {self.n!r})")
+        if self.saturated is not None and not isinstance(self.saturated, bool):
+            raise ValueError(f"StatMeta.saturated must be a bool or None (got {self.saturated!r})")
 
 
 @dataclass

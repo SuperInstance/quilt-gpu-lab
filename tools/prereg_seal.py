@@ -19,7 +19,8 @@ import sys
 
 
 def _secret() -> bytes:
-    s = os.environ.get("PREREG_SEAL_SECRET", "")
+    s = os.environ.get("PREREG_SEAL_SECRET", "").strip()
+    # VNaN-1: whitespace-only secret sealed successfully — strip before the empty check.
     if not s:
         print("REFUSE: PREREG_SEAL_SECRET missing/empty", file=sys.stderr)
         sys.exit(2)
