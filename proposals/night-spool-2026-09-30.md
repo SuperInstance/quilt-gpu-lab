@@ -3087,3 +3087,18 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   = known foreign untracked lane (PW-1). Commit + push with this spool.
 - Rotation next wake: (B) DECOY-1 (with the two new rows, pre-reg first) or PROP-1-follow-on;
   GPU open (QG4/MC-1/QG1d-corpus).
+
+## SLICE 2026-10-09 20:3x AKDT (day-conductor) — (B) DECOY-1b BOOKED GREEN (SCOUT-90 amendment rows)
+- (B) top queue item per 19:1x rotation. Pre-reg a1a3f18 pushed BEFORE firing. tools/decoy_census.py
+  extended in place (G5/G6 appended; original G1-G4 output byte-stable).
+- G5 EMPTY-INPUT **PASS** (0 flags): auc/accuracy/rate all raise ZeroDivisionError on empty input;
+  eproc empty-claim covered by VNaN-1 battery (enum guard). G6 INVERSION **PASS**: flipped labels
+  score 0.0847 = 1-AUC (true 0.9153), below shuffled mean 0.5137 — murmur-class inversion-blindness
+  structurally absent from every booked metric family. No live gate affected; all bookings stand.
+- (C) satisfied: this is the newest scripted booking; VNaN-1 repro PASS (89f6f54) stands as prior.
+  Manifest re-sealed in landing (e7d06c7), --check exit 0; advisories = known foreign d12* untracked
+  lane (PW-1). GPU lane idle all slice (CPU per rotation). No running conductor processes; no 429s.
+- Spool marks: DECOY-1b [DONE]. Open queue unchanged: MMX-1/FT-D1/CH-1/SL-G1/SF-G1/DS-G2/QG4/MC-1/
+  QG1d-corpus; XP-C/G3 need >=1h envelope.
+- Rotation next wake: (A) SCOUT (canons HEAD re-probe per SCOUT-86 lesson); GPU open (QG4/MC-1/
+  QG1d-corpus) if a longer envelope, else scout-cycle.
