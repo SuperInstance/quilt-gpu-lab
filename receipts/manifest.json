@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-10T03:15:39.535938+00:00",
+  "generated_at": "2026-10-10T04:19:07.228252+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "4fbfba2f8823b7e6562006e2f17f061fa6d84a09409fbd60b7bb48ca8a58ac67",
+    "RESULTS.md": "e52c04f5e01bcaa63dfa5134d42893e7963f073ccfbee84c954a112614f99030",
     "QUEUE.md": "913d9ce17ab763e14cb11aea273536f549d87ae40163f6b93ca1a006546c1939"
   },
   "experiments": {
@@ -274,7 +274,7 @@
     "d6_worldgen.js": "789efc53a8312c86a96ab9223305727660d7e76dcd836ded3df36b2ff05f75d2",
     "death_watch.py": "baeb1a09986aac1ec3f61c3947fef3f626da59537a92299e9dda9d71390b5b53",
     "decision_cell.py": "5a49d0ef989bdaad8acdb144b69998a750a861f64ed689b975915b17b815d8ac",
-    "decoy_census.py": "cdc03ca0e43cfd12ba04bac280a7ff2f8234ac4f9dde0dc8ee5868aa0838bc9d",
+    "decoy_census.py": "b059c8d6fbbffcdd76bd2c1b2882386d86c48310b16b993b7c7ad1fd381e60cb",
     "deepinfra_call.py": "a870b48233c2cbb401bd4c2fcd5a2c6300b392ac5449632f0227d4b5df6ff020",
     "deepinfra_ideate.py": "a43b5e545269e14b7a73f35fbf30a3295d4952ea9647f22bfd751a797de73b80",
     "degrade_gate.py": "41c771b86538e5dcee063841d18318989cf9abf91864bf48d7b627c0c8bbd974",
