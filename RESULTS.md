@@ -7019,3 +7019,18 @@ new receipts/spec_sha_pregen.json is a NEW file (not sealed) — seal next re-se
   drift; check() unchanged semantics). Re-seal succeeded for the first time since Oct 6: 242
   experiments + 105 tools/weights sealed; tests/test_receipts.py 8/8 PASS locally (was FAIL 2/49).
 - G1/G2 (fresh-clone --check exit 0; M1-M3 mutations still refuse) run on the pushed HEAD this slice.
+
+## SEAL-1 2026-10-09 ~17:2x AKDT — G1-G4 ALL GREEN; CI red root cause was numpy, not the seal
+- **G1 PASS**: fresh clone at pushed HEAD ecc477d → `--check` exit 0 (first clean clone check since Oct 6).
+- **G2 PASS**: throwaway clone (/home/eileen/scratch/seal1clone — /tmp tmpfs ran out of space on
+  clone; scratch-on-/home law honored) mutations M1 single-byte flip / M2 RESULTS truncation /
+  M3 sha256→sha384 recipe self-modification ALL exit 2, DRIFT named; restore → exit 0.
+- **G3 PASS**: tracked-but-uncommitted edit refuses exit 2 with named path; 14-file PW-1 untracked
+  lane + tools/regime_rob.py advisory-only, seal proceeds.
+- **CI RED root cause found (fail-loud)**: red runs were NOT the seal — tests/test_pidfire.py
+  (foreign-lane commit aa2083a) imports numpy; CI env installs pytest only → collection error
+  exit 2 since that landing. Fixed: workflow now installs pytest+numpy. Also updated
+  test_seal_guard.py to SEAL-1 semantics (tracked-dirty probe victim ag1_aggregation_rules.py;
+  new UntrackedAdvisory pins untracked-does-not-refuse). Local suite 71/71 PASS.
+- Verification arm: tracked-filter drops only never-committed foreign bytes; all committed booking
+  scripts remain sealed (242 experiments + 105 tools/weights). No verdict text changed.

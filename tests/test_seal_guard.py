@@ -37,7 +37,7 @@ sys.path.insert(0, str(LAB / "tools"))
 import receipt_manifest  # noqa: E402
 
 MANIFEST = LAB / "receipts" / "manifest.json"
-PROBE = LAB / "experiments" / "pin_probe_dirty_guard.py"
+PROBE = LAB / "experiments" / "ag1_aggregation_rules.py.py"
 
 
 class SealGuardLive(unittest.TestCase):
@@ -54,17 +54,27 @@ class SealGuardLive(unittest.TestCase):
 
 
 class DirtyTreeRefusal(unittest.TestCase):
+    """SEAL-1 (2026-10-10): the guard's surface narrowed to TRACKED-file drift
+    (untracked files are unsealed by definition — the PW-1 foreign-lane
+    deadlock). The probe is now a tracked-file MODIFICATION, preserving the
+    d23b phantom-seal intent: uncommitted bytes a seal would hash are refused.
+    Untracked-refusal semantics are pinned separately (UntrackedAdvisory)."""
+
+    TRACKED_VICTIM = LAB / "experiments" / "ag1_aggregation_rules.py"
+
     def setUp(self):
         self.manifest_backup = MANIFEST.read_bytes()
-        PROBE.write_text("# pin probe — dirty-tree trigger for the seal guard\n")
+        self.victim_backup = self.TRACKED_VICTIM.read_bytes()
+        self.TRACKED_VICTIM.write_bytes(
+            self.victim_backup + "\n# pin probe — tracked-dirty trigger for the seal guard\n".encode("utf-8"))
 
     def tearDown(self):
-        PROBE.unlink(missing_ok=True)
+        self.TRACKED_VICTIM.write_bytes(self.victim_backup)
         MANIFEST.write_bytes(self.manifest_backup)
 
     def test_guard_reports_probe(self):
         dirty = receipt_manifest.dirty_sealed_paths()
-        self.assertTrue(any("pin_probe_dirty_guard" in ln for ln in dirty),
+        self.assertTrue(any("ag1_aggregation_rules.py" in ln for ln in dirty),
                         f"probe file under experiments/ not reported dirty: {dirty}")
 
     def test_seal_refuses_dirty_tree(self):
@@ -76,7 +86,7 @@ class DirtyTreeRefusal(unittest.TestCase):
                          f"sealing a dirty tree must exit 2, got {r.returncode}: "
                          f"{r.stdout}{r.stderr}")
         self.assertIn("REFUSED", r.stdout)
-        self.assertIn("pin_probe_dirty_guard", r.stdout,
+        self.assertIn("ag1_aggregation_rules.py", r.stdout,
                       "the refusal must NAME the dirty path — a refusal that "
                       "does not say what was refused cannot be audited")
         self.assertEqual(MANIFEST.read_bytes(), self.manifest_backup,
@@ -93,10 +103,39 @@ class DirtyTreeRefusal(unittest.TestCase):
         admission = m.get("sealed_from_dirty_tree")
         self.assertIsNotNone(admission, "--allow-dirty seal must carry an "
                                        "explicit admission row")
-        self.assertTrue(any("pin_probe_dirty_guard" in p
+        self.assertTrue(any("ag1_aggregation_rules.py" in p
                             for p in admission["paths"]),
                         f"admission must name the dirty paths: {admission}")
 
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
+
+class UntrackedAdvisory(unittest.TestCase):
+    """SEAL-1: untracked files under sealed paths are ADVISORY, never a
+    refusal — pinning the fix for the Oct 6 CI-red deadlock (PW-1 lane)."""
+
+    def setUp(self):
+        self.manifest_backup = MANIFEST.read_bytes()
+        PROBE.write_text("# pin probe — untracked advisory trigger\n")
+
+    def tearDown(self):
+        PROBE.unlink(missing_ok=True)
+        MANIFEST.write_bytes(self.manifest_backup)
+
+    def test_untracked_not_reported_dirty(self):
+        dirty = receipt_manifest.dirty_sealed_paths()
+        self.assertFalse(any("ag1_aggregation_rules.py" in ln for ln in dirty),
+                         f"untracked probe must NOT be tracked-drift: {dirty}")
+
+    def test_seal_proceeds_despite_untracked_lane(self):
+        r = subprocess.run(
+            [sys.executable, "tools/receipt_manifest.py"],
+            cwd=LAB, capture_output=True, text=True,
+        )
+        self.assertEqual(r.returncode, 0,
+                         f"untracked files must not refuse the seal: "
+                         f"{r.stdout}{r.stderr}")
+        self.assertIn("advisory: untracked", r.stdout)
+        MANIFEST.write_bytes(self.manifest_backup)
