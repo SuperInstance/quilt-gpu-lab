@@ -595,6 +595,22 @@ more than a copy to use, it's not grabbable yet.
   harness 20/15, ratios 1.0/0.53), receipt
   results/empnull_floor_example_2026-10-09.json.
 
+- **failopen-redteam** — `tools/failopen_redteam.py` — fail-open injection red-team
+  for any verdict surface (pattern lifted PROVEN from VNaN-1, booked 2026-10-09 commit
+  bbd4752: a verdict gate accepted NaN against bounds and returned PASS — "gate passes
+  bounds" is fail-open against non-numeric garbage). For each (field, injection) pair
+  over a target callable, classifies REFUSE (raised = loud = safe) / LATTICE
+  (non-PASS verdict = safe) / ALLOWED (documented allowlist) / RED (verdict PASS on
+  garbage = the bug class). Exit 0 iff no un-allowlisted RED; rc=2 fail-loud on bad
+  module/field. Stdlib-only, in-process, read-only on the target.
+  `python tools/failopen_redteam.py --module F.py --target fn --base '{...}' --fields value,minimum [--verdict-key verdict --allow field:repr --out r.json] | --selftest`
+  TEST receipt 2026-10-09: selftest 5/5 — selftest caught three of its own pin bugs
+  live (value:nan honestly books LATTICE — NaN>=0.8 is False so the gate FAILs it;
+  the allowlist fixture must actually RED on the allowed entry, REFUSE never reaches
+  it; and -inf is a separate repr from inf so allowlist needs both). Live VNaN-1
+  class replay on a kwargs fixture: 8 REDs (inf/None/'' PASS both fields), rc=1,
+  receipt results/failopen_redteam_vnan1_replay_2026-10-09.json.
+
 ### onboard.py — fleet-standard credential onboarding (Casey 2026-10-04)
 Every grabbable tool that touches a provider registers itself in `tools/onboard.json`
 (var name, keyfile name, optional extracted-config path) and inherits the onboarding CLI:

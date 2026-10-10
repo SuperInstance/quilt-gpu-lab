@@ -1,0 +1,155 @@
+{
+  "tool": "failopen_redteam",
+  "surface": "scratch/vnan1_fixture_gate.py:check",
+  "verdict": "FAIL-OPEN",
+  "n_injections": 16,
+  "reds": [
+    {
+      "field": "value",
+      "inj": "inf",
+      "outcome": "RED",
+      "detail": "verdict=PASS"
+    },
+    {
+      "field": "value",
+      "inj": "'None'",
+      "outcome": "RED",
+      "detail": "verdict=PASS"
+    },
+    {
+      "field": "value",
+      "inj": "None",
+      "outcome": "RED",
+      "detail": "verdict=PASS"
+    },
+    {
+      "field": "value",
+      "inj": "''",
+      "outcome": "RED",
+      "detail": "verdict=PASS"
+    },
+    {
+      "field": "minimum",
+      "inj": "-inf",
+      "outcome": "RED",
+      "detail": "verdict=PASS"
+    },
+    {
+      "field": "minimum",
+      "inj": "'None'",
+      "outcome": "RED",
+      "detail": "verdict=PASS"
+    },
+    {
+      "field": "minimum",
+      "inj": "None",
+      "outcome": "RED",
+      "detail": "verdict=PASS"
+    },
+    {
+      "field": "minimum",
+      "inj": "''",
+      "outcome": "RED",
+      "detail": "verdict=PASS"
+    }
+  ],
+  "cells": [
+    {
+      "field": "value",
+      "inj": "nan",
+      "outcome": "LATTICE",
+      "detail": "verdict=FAIL"
+    },
+    {
+      "field": "value",
+      "inj": "inf",
+      "outcome": "RED",
+      "detail": "verdict=PASS"
+    },
+    {
+      "field": "value",
+      "inj": "-inf",
+      "outcome": "LATTICE",
+      "detail": "verdict=FAIL"
+    },
+    {
+      "field": "value",
+      "inj": "'NaN'",
+      "outcome": "LATTICE",
+      "detail": "verdict=FAIL"
+    },
+    {
+      "field": "value",
+      "inj": "'nan'",
+      "outcome": "LATTICE",
+      "detail": "verdict=FAIL"
+    },
+    {
+      "field": "value",
+      "inj": "'None'",
+      "outcome": "RED",
+      "detail": "verdict=PASS"
+    },
+    {
+      "field": "value",
+      "inj": "None",
+      "outcome": "RED",
+      "detail": "verdict=PASS"
+    },
+    {
+      "field": "value",
+      "inj": "''",
+      "outcome": "RED",
+      "detail": "verdict=PASS"
+    },
+    {
+      "field": "minimum",
+      "inj": "nan",
+      "outcome": "LATTICE",
+      "detail": "verdict=FAIL"
+    },
+    {
+      "field": "minimum",
+      "inj": "inf",
+      "outcome": "LATTICE",
+      "detail": "verdict=FAIL"
+    },
+    {
+      "field": "minimum",
+      "inj": "-inf",
+      "outcome": "RED",
+      "detail": "verdict=PASS"
+    },
+    {
+      "field": "minimum",
+      "inj": "'NaN'",
+      "outcome": "LATTICE",
+      "detail": "verdict=FAIL"
+    },
+    {
+      "field": "minimum",
+      "inj": "'nan'",
+      "outcome": "LATTICE",
+      "detail": "verdict=FAIL"
+    },
+    {
+      "field": "minimum",
+      "inj": "'None'",
+      "outcome": "RED",
+      "detail": "verdict=PASS"
+    },
+    {
+      "field": "minimum",
+      "inj": "None",
+      "outcome": "RED",
+      "detail": "verdict=PASS"
+    },
+    {
+      "field": "minimum",
+      "inj": "''",
+      "outcome": "RED",
+      "detail": "verdict=PASS"
+    }
+  ],
+  "why": "8 fail-open injection(s)"
+}
