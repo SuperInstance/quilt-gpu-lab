@@ -7118,3 +7118,23 @@ Amends DECOY-1 (GREEN 01:5x) with the two SCOUT-90 rows. Tool: tools/decoy_censu
 - No repro due (DECOY-1b self-verifying in-landing; VNaN-1 repro PASS stands). Manifest re-seal
   not due. GPU idle; foreign d12* untracked lane untouched (PW-1). No 429s.
 - Rotation next wake: (B) SHADOW-1 or FW-2; GPU free (QG1d/QG4/MC-1).
+
+## [BOOKED GREEN 11:2x Oct 10 CPU] SHADOW-1 last-definition-wins shadow census
+Pre-reg + tool committed+pushed BEFORE firing (this landing's parent commit). Instrument:
+tools/shadow_census.py (AST, module scope, experiments/ + tools/). G4 determinism trivially
+holds (pure static analysis; identical output on re-run in-slice). G1 PASS: 375 files scanned,
+zero skipped, zero parse errors. G2: exactly 4 shadows found. G3 verdict impact:
+1. experiments/h1_judgment_holonomy.py PERMS (killed L89 stub/`pass` placeholder -> live L115
+   grid_perms()): dead placeholder replaced before any use; benign.
+2-3. experiments/ionq2_rung2_battery.py `r` (L22 selftest result -> L29 evaluate result) and
+   `p` (L65 -> L69): sequential temp reuse, each consumed by its check() before rebinding; the
+   IONQ-2 booking battery path is NOT shadowed (no def later overrides an earlier def); benign.
+4. experiments/qo5_birth_probe.py auc_v (L16 None init -> L18 roc_auc_score): explicit
+   init-then-assign idiom; benign.
+Verdict GREEN — zero RED (no shadow feeds a booked verdict's producing binding), 4 benign with
+named roles as required by the frozen words. No booked result threatened. SCOUT-91's foreign
+witness class (double-def silently deleting curated behavior) is ABSENT from our tree.
+(C) not due: newest scripted booking DECOY-1b self-verified in-landing (repro PASS per 10:1x
+slice). Manifest re-sealed this landing (ledger changed). GPU lane idle (CPU census slot per
+rotation). No running conductor processes; no dupes; no 429s.
+Rotation next wake: (A) SCOUT-92 per rotation; GPU open (QG4/QG1d-corpus/MC-1).
