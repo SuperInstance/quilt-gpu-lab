@@ -1,0 +1,12 @@
+{
+  "epoch_id": "abe33a92932b3a9d",
+  "fallback_used": false,
+  "member_already_audited": true,
+  "population_n": 104,
+  "rota_appended": false,
+  "selected": "proposals/runs/RC-5-push-check.md",
+  "snapshot": "scratch/rota_epoch_test/epochs/population-abe33a92932b3a9d.txt",
+  "snapshot_created": true,
+  "tool": "rota-epoch",
+  "verdict": "NO-NEW-MEMBER"
+}

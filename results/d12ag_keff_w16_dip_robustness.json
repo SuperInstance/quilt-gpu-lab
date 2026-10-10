@@ -1,0 +1,115 @@
+{
+  "seed": 2718,
+  "W": 16,
+  "N": 64,
+  "alpha": 1.92,
+  "draws": 15,
+  "T_grid": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    10,
+    12,
+    15,
+    20,
+    25,
+    30,
+    40,
+    50,
+    65,
+    80,
+    100,
+    130,
+    160,
+    200
+  ],
+  "note": "W=16 dip robustness probe at p in {0.5, 0.525}",
+  "cells": [
+    {
+      "p": 0.5,
+      "W": 16,
+      "eps": 0.0,
+      "harness_floor": 4,
+      "model_floor_sat": 8,
+      "ratio": 0.5,
+      "k_eff_implied": 0.5581068531540072,
+      "k_sat": 1.1162137063080144
+    },
+    {
+      "p": 0.5,
+      "W": 16,
+      "eps": 0.05,
+      "harness_floor": 6,
+      "model_floor_sat": 10,
+      "ratio": 0.6,
+      "k_eff_implied": 0.6697282237848087,
+      "k_sat": 1.1162137063080144
+    },
+    {
+      "p": 0.5,
+      "W": 16,
+      "eps": 0.1,
+      "harness_floor": 10,
+      "model_floor_sat": 15,
+      "ratio": 0.6666666666666666,
+      "k_eff_implied": 0.7441424708720096,
+      "k_sat": 1.1162137063080144
+    },
+    {
+      "p": 0.5,
+      "W": 16,
+      "eps": 0.2,
+      "harness_floor": 40,
+      "model_floor_sat": 50,
+      "ratio": 0.8,
+      "k_eff_implied": 0.8929709650464116,
+      "k_sat": 1.1162137063080144
+    },
+    {
+      "p": 0.525,
+      "W": 16,
+      "eps": 0.0,
+      "harness_floor": 4,
+      "model_floor_sat": 6,
+      "ratio": 0.6666666666666666,
+      "k_eff_implied": 0.7629654586769508,
+      "k_sat": 1.1444481880154262
+    },
+    {
+      "p": 0.525,
+      "W": 16,
+      "eps": 0.05,
+      "harness_floor": 5,
+      "model_floor_sat": 8,
+      "ratio": 0.625,
+      "k_eff_implied": 0.7152801175096414,
+      "k_sat": 1.1444481880154262
+    },
+    {
+      "p": 0.525,
+      "W": 16,
+      "eps": 0.1,
+      "harness_floor": 10,
+      "model_floor_sat": 15,
+      "ratio": 0.6666666666666666,
+      "k_eff_implied": 0.7629654586769508,
+      "k_sat": 1.1444481880154262
+    },
+    {
+      "p": 0.525,
+      "W": 16,
+      "eps": 0.2,
+      "harness_floor": 30,
+      "model_floor_sat": 40,
+      "ratio": 0.75,
+      "k_eff_implied": 0.8583361410115697,
+      "k_sat": 1.1444481880154262
+    }
+  ],
+  "G1_dip_robust_at_W16": true,
+  "G1_hits": 8
+}

@@ -1,0 +1,96 @@
+{
+  "seed": 2718,
+  "p": 0.5,
+  "N": 64,
+  "k_sat": 1.1162137063080144,
+  "k_lin": 1.1356,
+  "alpha": 1.92,
+  "draws": 15,
+  "T_grid": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    10,
+    12,
+    15,
+    20,
+    25,
+    30,
+    40,
+    50
+  ],
+  "note": "saturating-fit heldout at unmeasured interior p=0.5",
+  "cells": [
+    {
+      "W": 4,
+      "eps": 0.0,
+      "harness_floor": 15,
+      "model_floor_sat": 25,
+      "ratio": 0.6,
+      "k_eff_implied": 0.6697282237848087
+    },
+    {
+      "W": 4,
+      "eps": 0.05,
+      "harness_floor": 25,
+      "model_floor_sat": 40,
+      "ratio": 0.625,
+      "k_eff_implied": 0.6976335664425091
+    },
+    {
+      "W": 4,
+      "eps": 0.1,
+      "harness_floor": 40,
+      "model_floor_sat": null,
+      "ratio": null,
+      "k_eff_implied": null
+    },
+    {
+      "W": 4,
+      "eps": 0.2,
+      "harness_floor": null,
+      "model_floor_sat": null,
+      "ratio": null,
+      "k_eff_implied": null
+    },
+    {
+      "W": 8,
+      "eps": 0.0,
+      "harness_floor": 8,
+      "model_floor_sat": 15,
+      "ratio": 0.5333333333333333,
+      "k_eff_implied": 0.5953139766976077
+    },
+    {
+      "W": 8,
+      "eps": 0.05,
+      "harness_floor": 12,
+      "model_floor_sat": 20,
+      "ratio": 0.6,
+      "k_eff_implied": 0.6697282237848087
+    },
+    {
+      "W": 8,
+      "eps": 0.1,
+      "harness_floor": 20,
+      "model_floor_sat": 30,
+      "ratio": 0.6666666666666666,
+      "k_eff_implied": 0.7441424708720096
+    },
+    {
+      "W": 8,
+      "eps": 0.2,
+      "harness_floor": null,
+      "model_floor_sat": null,
+      "ratio": null,
+      "k_eff_implied": null
+    }
+  ],
+  "G1_pass": false,
+  "G2_pass": false,
+  "resolvable_cells": 1
+}

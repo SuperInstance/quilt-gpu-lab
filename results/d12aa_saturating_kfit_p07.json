@@ -1,0 +1,80 @@
+{
+  "seed": 2718,
+  "p": 0.7,
+  "fit": {
+    "k0": 0.8364027491260388,
+    "A": -1917154050200.9983,
+    "tau": 0.01,
+    "anchor_resid": 0.08471711285316672,
+    "k_at_p07": 0.8364027491260388,
+    "dz_linear_extrap": 1.6141999999999999
+  },
+  "cells": [
+    {
+      "W": 4,
+      "eps": 0.0,
+      "harness_floor": 8,
+      "model_floor": 4,
+      "ratio": 2.0,
+      "k_eff_implied": 1.6728054982520777
+    },
+    {
+      "W": 4,
+      "eps": 0.05,
+      "harness_floor": 15,
+      "model_floor": 6,
+      "ratio": 2.5,
+      "k_eff_implied": 2.0910068728150972
+    },
+    {
+      "W": 4,
+      "eps": 0.1,
+      "harness_floor": 20,
+      "model_floor": 10,
+      "ratio": 2.0,
+      "k_eff_implied": 1.6728054982520777
+    },
+    {
+      "W": 4,
+      "eps": 0.2,
+      "harness_floor": null,
+      "model_floor": 30,
+      "ratio": null
+    },
+    {
+      "W": 8,
+      "eps": 0.0,
+      "harness_floor": 4,
+      "model_floor": 2,
+      "ratio": 2.0,
+      "k_eff_implied": 1.6728054982520777
+    },
+    {
+      "W": 8,
+      "eps": 0.05,
+      "harness_floor": 6,
+      "model_floor": 3,
+      "ratio": 2.0,
+      "k_eff_implied": 1.6728054982520777
+    },
+    {
+      "W": 8,
+      "eps": 0.1,
+      "harness_floor": 10,
+      "model_floor": 5,
+      "ratio": 2.0,
+      "k_eff_implied": 1.6728054982520777
+    },
+    {
+      "W": 8,
+      "eps": 0.2,
+      "harness_floor": 50,
+      "model_floor": 15,
+      "ratio": 3.3333333333333335,
+      "k_eff_implied": 2.788009163753463
+    }
+  ],
+  "G1_pass": false,
+  "G2_pass": "True",
+  "straddles_1": false
+}

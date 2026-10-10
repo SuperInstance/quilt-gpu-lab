@@ -1,0 +1,94 @@
+{
+ "name": "d12ak_dependent_null_model",
+ "seed": 2718,
+ "model": "mean-shift Gaussian order statistics: N(s^1.92+rho^2, 1/sqrt(WT)) partner vs 62 x N(rho^2, 1/sqrt(WT)); floor ratio vs rho",
+ "structural_note": "model is EXACTLY rho-invariant (both means shift by rho^2, cancels); predicted ratio = 1.0 at all rho",
+ "rows": [
+  {
+   "W": 8,
+   "eps": 0.0,
+   "rho": 0.0,
+   "pred_floor": 200,
+   "meas_floor": 25,
+   "pred_ratio": 1.0,
+   "meas_ratio": 1.0
+  },
+  {
+   "W": 8,
+   "eps": 0.0,
+   "rho": 0.2,
+   "pred_floor": 200,
+   "meas_floor": 50,
+   "pred_ratio": 1.0,
+   "meas_ratio": 2.0
+  },
+  {
+   "W": 8,
+   "eps": 0.0,
+   "rho": 0.4,
+   "pred_floor": 200,
+   "meas_floor": 160,
+   "pred_ratio": 1.0,
+   "meas_ratio": 6.4
+  },
+  {
+   "W": 8,
+   "eps": 0.2,
+   "rho": 0.0,
+   "pred_floor": null,
+   "meas_floor": 65,
+   "pred_ratio": null,
+   "meas_ratio": null
+  },
+  {
+   "W": 8,
+   "eps": 0.2,
+   "rho": 0.2,
+   "pred_floor": null,
+   "meas_floor": 130,
+   "pred_ratio": null,
+   "meas_ratio": null
+  },
+  {
+   "W": 8,
+   "eps": 0.2,
+   "rho": 0.4,
+   "pred_floor": null,
+   "meas_floor": null,
+   "pred_ratio": null,
+   "meas_ratio": null
+  },
+  {
+   "W": 16,
+   "eps": 0.0,
+   "rho": 0.0,
+   "pred_floor": 100,
+   "meas_floor": 12,
+   "pred_ratio": 1.0,
+   "meas_ratio": 1.0
+  },
+  {
+   "W": 16,
+   "eps": 0.0,
+   "rho": 0.2,
+   "pred_floor": 100,
+   "meas_floor": 25,
+   "pred_ratio": 1.0,
+   "meas_ratio": 2.0833333333333335
+  },
+  {
+   "W": 16,
+   "eps": 0.0,
+   "rho": 0.4,
+   "pred_floor": 100,
+   "meas_floor": 80,
+   "pred_ratio": 1.0,
+   "meas_ratio": 6.666666666666667
+  }
+ ],
+ "gates": {
+  "g1": false,
+  "g2": false
+ },
+ "wall_s": 1.9
+}

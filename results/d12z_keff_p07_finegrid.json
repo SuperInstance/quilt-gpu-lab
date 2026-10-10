@@ -1,0 +1,92 @@
+{
+  "seed": 2718,
+  "p": 0.7,
+  "N": 64,
+  "k_extrap": 1.6141999999999999,
+  "alpha": 1.92,
+  "draws": 15,
+  "T_grid": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    10,
+    15,
+    20,
+    30,
+    50
+  ],
+  "note": "extrapolation beyond the 2-point k_eff(p) line",
+  "cells": [
+    {
+      "W": 4,
+      "eps": 0.0,
+      "harness_floor": 8,
+      "model_floor": 15,
+      "ratio": 0.5333333333333333,
+      "k_eff_implied": 0.8609066666666666
+    },
+    {
+      "W": 4,
+      "eps": 0.05,
+      "harness_floor": 15,
+      "model_floor": 30,
+      "ratio": 0.5,
+      "k_eff_implied": 0.8070999999999999
+    },
+    {
+      "W": 4,
+      "eps": 0.1,
+      "harness_floor": 20,
+      "model_floor": 50,
+      "ratio": 0.4,
+      "k_eff_implied": 0.64568
+    },
+    {
+      "W": 4,
+      "eps": 0.2,
+      "harness_floor": null,
+      "model_floor": null,
+      "ratio": null,
+      "k_eff_implied": null
+    },
+    {
+      "W": 8,
+      "eps": 0.0,
+      "harness_floor": 4,
+      "model_floor": 8,
+      "ratio": 0.5,
+      "k_eff_implied": 0.8070999999999999
+    },
+    {
+      "W": 8,
+      "eps": 0.05,
+      "harness_floor": 6,
+      "model_floor": 15,
+      "ratio": 0.4,
+      "k_eff_implied": 0.64568
+    },
+    {
+      "W": 8,
+      "eps": 0.1,
+      "harness_floor": 10,
+      "model_floor": 20,
+      "ratio": 0.5,
+      "k_eff_implied": 0.8070999999999999
+    },
+    {
+      "W": 8,
+      "eps": 0.2,
+      "harness_floor": 50,
+      "model_floor": 50,
+      "ratio": 1.0,
+      "k_eff_implied": 1.6141999999999999
+    }
+  ],
+  "G1_pass": false,
+  "resolvable_cells": 7,
+  "G2_pass": true
+}

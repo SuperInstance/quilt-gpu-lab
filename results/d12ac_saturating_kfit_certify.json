@@ -1,0 +1,199 @@
+{
+  "seed": 2718,
+  "sat_fit": {
+    "k0": 0.657,
+    "A": 0.5977973122824556,
+    "pmid": 0.3,
+    "tau": 0.19745762711864406,
+    "sse": 0.003906573780044626
+  },
+  "lin_fit": {
+    "sse": 0.02843225850340132,
+    "slope": 1.3976870748299317,
+    "intercept": 0.3068775510204081
+  },
+  "anchors": [
+    [
+      0.3,
+      0.657
+    ],
+    [
+      0.4,
+      0.896
+    ],
+    [
+      0.55,
+      1.2
+    ],
+    [
+      0.7,
+      1.2
+    ]
+  ],
+  "surfaces": [
+    {
+      "p": 0.35,
+      "k_sat": 0.8052191014248791,
+      "k_chord_saved": 0.7766500000000001,
+      "cells": [
+        {
+          "W": 4,
+          "eps": 0.0,
+          "harness_floor": 40,
+          "model_floor@k_sat": 60,
+          "ratio": 0.6666666666666666,
+          "within_2x": true,
+          "log_ratio": -0.40546510810816444
+        },
+        {
+          "W": 4,
+          "eps": 0.05,
+          "harness_floor": 60,
+          "model_floor@k_sat": 80,
+          "ratio": 0.75,
+          "within_2x": true,
+          "log_ratio": -0.2876820724517809
+        },
+        {
+          "W": 4,
+          "eps": 0.1,
+          "harness_floor": 120,
+          "model_floor@k_sat": 120,
+          "ratio": 1.0,
+          "within_2x": true,
+          "log_ratio": 0.0
+        },
+        {
+          "W": 4,
+          "eps": 0.2,
+          "harness_floor": 320,
+          "model_floor@k_sat": 480,
+          "ratio": 0.6666666666666666,
+          "within_2x": true,
+          "log_ratio": -0.40546510810816444
+        },
+        {
+          "W": 8,
+          "eps": 0.0,
+          "harness_floor": 20,
+          "model_floor@k_sat": 30,
+          "ratio": 0.6666666666666666,
+          "within_2x": true,
+          "log_ratio": -0.40546510810816444
+        },
+        {
+          "W": 8,
+          "eps": 0.05,
+          "harness_floor": 30,
+          "model_floor@k_sat": 40,
+          "ratio": 0.75,
+          "within_2x": true,
+          "log_ratio": -0.2876820724517809
+        },
+        {
+          "W": 8,
+          "eps": 0.1,
+          "harness_floor": 60,
+          "model_floor@k_sat": 60,
+          "ratio": 1.0,
+          "within_2x": true,
+          "log_ratio": 0.0
+        },
+        {
+          "W": 8,
+          "eps": 0.2,
+          "harness_floor": 160,
+          "model_floor@k_sat": 240,
+          "ratio": 0.6666666666666666,
+          "within_2x": true,
+          "log_ratio": -0.40546510810816444
+        }
+      ],
+      "max_abslog_chord": 0.40546510810816444,
+      "max_abslog_sat": 0.40546510810816444
+    },
+    {
+      "p": 0.45,
+      "k_sat": 1.0401131599754891,
+      "k_chord_saved": 0.836475,
+      "cells": [
+        {
+          "W": 4,
+          "eps": 0.0,
+          "harness_floor": 20,
+          "model_floor@k_sat": 40,
+          "ratio": 0.5,
+          "within_2x": true,
+          "log_ratio": -0.6931471805599453
+        },
+        {
+          "W": 4,
+          "eps": 0.05,
+          "harness_floor": 40,
+          "model_floor@k_sat": 60,
+          "ratio": 0.6666666666666666,
+          "within_2x": true,
+          "log_ratio": -0.40546510810816444
+        },
+        {
+          "W": 4,
+          "eps": 0.1,
+          "harness_floor": 60,
+          "model_floor@k_sat": 80,
+          "ratio": 0.75,
+          "within_2x": true,
+          "log_ratio": -0.2876820724517809
+        },
+        {
+          "W": 4,
+          "eps": 0.2,
+          "harness_floor": 160,
+          "model_floor@k_sat": 240,
+          "ratio": 0.6666666666666666,
+          "within_2x": true,
+          "log_ratio": -0.40546510810816444
+        },
+        {
+          "W": 8,
+          "eps": 0.0,
+          "harness_floor": 10,
+          "model_floor@k_sat": 20,
+          "ratio": 0.5,
+          "within_2x": true,
+          "log_ratio": -0.6931471805599453
+        },
+        {
+          "W": 8,
+          "eps": 0.05,
+          "harness_floor": 15,
+          "model_floor@k_sat": 30,
+          "ratio": 0.5,
+          "within_2x": true,
+          "log_ratio": -0.6931471805599453
+        },
+        {
+          "W": 8,
+          "eps": 0.1,
+          "harness_floor": 30,
+          "model_floor@k_sat": 40,
+          "ratio": 0.75,
+          "within_2x": true,
+          "log_ratio": -0.2876820724517809
+        },
+        {
+          "W": 8,
+          "eps": 0.2,
+          "harness_floor": 80,
+          "model_floor@k_sat": 120,
+          "ratio": 0.6666666666666666,
+          "within_2x": true,
+          "log_ratio": -0.40546510810816444
+        }
+      ],
+      "max_abslog_chord": 0.40546510810816444,
+      "max_abslog_sat": 0.6931471805599453
+    }
+  ],
+  "G1_perpk_coverage": true,
+  "G2_sat_beats_lin_and_centres": false
+}

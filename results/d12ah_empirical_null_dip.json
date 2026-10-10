@@ -1,0 +1,144 @@
+{
+  "seed": 2718,
+  "W": 8,
+  "nulls": 62,
+  "n_samples": 4000,
+  "model": "empirical-null MC of the D12u4 harness estimator, k=1, succ>=0.9",
+  "cells": [
+    {
+      "p": 0.3,
+      "eps": 0.0,
+      "empirical_floor": 25,
+      "harness_floor": 20,
+      "ratio": 1.25,
+      "covered_2x_k1": true
+    },
+    {
+      "p": 0.3,
+      "eps": 0.05,
+      "empirical_floor": 40,
+      "harness_floor": 30,
+      "ratio": 1.3333333333333333,
+      "covered_2x_k1": true
+    },
+    {
+      "p": 0.3,
+      "eps": 0.1,
+      "empirical_floor": 65,
+      "harness_floor": 60,
+      "ratio": 1.0833333333333333,
+      "covered_2x_k1": true
+    },
+    {
+      "p": 0.3,
+      "eps": 0.2,
+      "empirical_floor": 200,
+      "harness_floor": 160,
+      "ratio": 1.25,
+      "covered_2x_k1": true
+    },
+    {
+      "p": 0.4,
+      "eps": 0.0,
+      "empirical_floor": 12,
+      "harness_floor": 15,
+      "ratio": 0.8,
+      "covered_2x_k1": true
+    },
+    {
+      "p": 0.4,
+      "eps": 0.05,
+      "empirical_floor": 20,
+      "harness_floor": 20,
+      "ratio": 1.0,
+      "covered_2x_k1": true
+    },
+    {
+      "p": 0.4,
+      "eps": 0.1,
+      "empirical_floor": 40,
+      "harness_floor": 30,
+      "ratio": 1.3333333333333333,
+      "covered_2x_k1": true
+    },
+    {
+      "p": 0.4,
+      "eps": 0.2,
+      "empirical_floor": 100,
+      "harness_floor": 120,
+      "ratio": 0.8333333333333334,
+      "covered_2x_k1": true
+    },
+    {
+      "p": 0.45,
+      "eps": 0.0,
+      "empirical_floor": 10,
+      "harness_floor": 10,
+      "ratio": 1.0,
+      "covered_2x_k1": true
+    },
+    {
+      "p": 0.45,
+      "eps": 0.05,
+      "empirical_floor": 15,
+      "harness_floor": 15,
+      "ratio": 1.0,
+      "covered_2x_k1": true
+    },
+    {
+      "p": 0.45,
+      "eps": 0.1,
+      "empirical_floor": 25,
+      "harness_floor": 30,
+      "ratio": 0.8333333333333334,
+      "covered_2x_k1": true
+    },
+    {
+      "p": 0.45,
+      "eps": 0.2,
+      "empirical_floor": 80,
+      "harness_floor": 80,
+      "ratio": 1.0,
+      "covered_2x_k1": true
+    },
+    {
+      "p": 0.525,
+      "eps": 0.0,
+      "empirical_floor": 8,
+      "harness_floor": 8,
+      "ratio": 1.0,
+      "covered_2x_k1": true
+    },
+    {
+      "p": 0.525,
+      "eps": 0.05,
+      "empirical_floor": 12,
+      "harness_floor": 12,
+      "ratio": 1.0,
+      "covered_2x_k1": true
+    },
+    {
+      "p": 0.525,
+      "eps": 0.1,
+      "empirical_floor": 20,
+      "harness_floor": 20,
+      "ratio": 1.0,
+      "covered_2x_k1": true
+    },
+    {
+      "p": 0.525,
+      "eps": 0.2,
+      "empirical_floor": 65,
+      "harness_floor": 65,
+      "ratio": 1.0,
+      "covered_2x_k1": true
+    }
+  ],
+  "G1_all_covered_k1": true,
+  "G1_hits": 16,
+  "n_cells": 16,
+  "G2_trough_covered_k1": true,
+  "G2_hits": 4,
+  "wall_s": 76.0,
+  "verdict": "KEEP_empirical_model_dip_is_gaussian_artifact"
+}

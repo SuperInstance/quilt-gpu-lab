@@ -1,0 +1,129 @@
+{
+  "seed": 2718,
+  "rho_grid": [
+    0.0,
+    0.2,
+    0.4,
+    0.8
+  ],
+  "rows": [
+    {
+      "W": 8,
+      "p": 0.3,
+      "eps": 0.0,
+      "rho": 0.0,
+      "floor": 25,
+      "null_corr_mean": 0.08307333459289529,
+      "ratio_vs_rho0": 1.0
+    },
+    {
+      "W": 8,
+      "p": 0.3,
+      "eps": 0.0,
+      "rho": 0.2,
+      "floor": 50,
+      "null_corr_mean": 0.0877542611270085,
+      "ratio_vs_rho0": 2.0
+    },
+    {
+      "W": 8,
+      "p": 0.3,
+      "eps": 0.0,
+      "rho": 0.4,
+      "floor": 160,
+      "null_corr_mean": 0.164228094219829,
+      "ratio_vs_rho0": 6.4
+    },
+    {
+      "W": 8,
+      "p": 0.3,
+      "eps": 0.0,
+      "rho": 0.8,
+      "floor": null,
+      "null_corr_mean": 0.6416947418015315,
+      "ratio_vs_rho0": null
+    },
+    {
+      "W": 8,
+      "p": 0.3,
+      "eps": 0.2,
+      "rho": 0.0,
+      "floor": 200,
+      "null_corr_mean": 0.08193073121502104,
+      "ratio_vs_rho0": 1.0
+    },
+    {
+      "W": 8,
+      "p": 0.3,
+      "eps": 0.2,
+      "rho": 0.2,
+      "floor": null,
+      "null_corr_mean": 0.08291198828859095,
+      "ratio_vs_rho0": null
+    },
+    {
+      "W": 8,
+      "p": 0.3,
+      "eps": 0.2,
+      "rho": 0.4,
+      "floor": null,
+      "null_corr_mean": 0.09361129939101104,
+      "ratio_vs_rho0": null
+    },
+    {
+      "W": 8,
+      "p": 0.3,
+      "eps": 0.2,
+      "rho": 0.8,
+      "floor": null,
+      "null_corr_mean": 0.23050226685928976,
+      "ratio_vs_rho0": null
+    },
+    {
+      "W": 16,
+      "p": 0.3,
+      "eps": 0.0,
+      "rho": 0.0,
+      "floor": 12,
+      "null_corr_mean": 0.0841244603284575,
+      "ratio_vs_rho0": 1.0
+    },
+    {
+      "W": 16,
+      "p": 0.3,
+      "eps": 0.0,
+      "rho": 0.2,
+      "floor": 25,
+      "null_corr_mean": 0.0868982188152532,
+      "ratio_vs_rho0": 2.0833333333333335
+    },
+    {
+      "W": 16,
+      "p": 0.3,
+      "eps": 0.0,
+      "rho": 0.4,
+      "floor": 80,
+      "null_corr_mean": 0.16127266334573223,
+      "ratio_vs_rho0": 6.666666666666667
+    },
+    {
+      "W": 16,
+      "p": 0.3,
+      "eps": 0.0,
+      "rho": 0.8,
+      "floor": null,
+      "null_corr_mean": 0.6420995335099637,
+      "ratio_vs_rho0": null
+    }
+  ],
+  "harness_partner_id_T20": {
+    "0.0": 0.434375,
+    "0.2": 0.30625,
+    "0.4": 0.115625
+  },
+  "G1_floors_robust_rho_le_0.4": false,
+  "G2_nullcorr_doubles": false,
+  "G3_harness_id_ge_0.9": false,
+  "wall_s": 48.5,
+  "verdict": "KILL_dependence_breaks_discovery"
+}
