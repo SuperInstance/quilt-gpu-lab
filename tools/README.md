@@ -618,6 +618,24 @@ more than a copy to use, it's not grabbable yet.
   class replay on a kwargs fixture: 8 REDs (inf/None/'' PASS both fields), rc=1,
   receipt results/failopen_redteam_vnan1_replay_2026-10-09.json.
 
+- **mut-adequacy** — `tools/mut_adequacy.py` — mutation-scored test-suite adequacy
+  (pattern lifted from SPOOL W15b, booked 2026-10-10: fleet-murmur-worker ran a
+  27/27-GREEN suite over an INVERTED gate — adequacy is mutation KILL RATE, not
+  coverage; a green suite over a wrong gate is the zero-kill case). Generates ALL
+  single-point AST mutants of a target module (cmp swap, and/or, True/False,
+  not-removal, int off-by-one), runs the suite per mutant on a shadow copy via a
+  meta-path import hook (beats test files' own sys.path.insert; original file
+  never touched), gates kill rate >= bar (default 0.80) + min-mutants, names
+  every SURVIVOR for pin-or-justify adjudication. Positive control: suite must
+  pass unmutated or fail-loud rc=2. Stdlib-only, deterministic, JSON receipt,
+  exit 0=ADEQUATE / 1=INADEQUATE / 2=FAIL-INPUT, `--selftest` 11/11 (caught two
+  real shadow bugs live: origin-swap without loader-swap, and the not-removal
+  transform editing a foreign tree).
+  `python tools/mut_adequacy.py --module tools/verdict_gate.py --test-cmd python3 --test-args=-m,unittest,tests.test_verdict_gate [--bar 0.8 --out r.json] | --selftest`
+  LIVE receipt 2026-10-10: verdict_gate suite vs 45 mutants -> ADEQUATE rc=0,
+  kill rate 0.867 (39/45), 6 named survivors for adjudication
+  (results/mut_adequacy_verdict_gate_2026-10-10.json).
+
 ### onboard.py — fleet-standard credential onboarding (Casey 2026-10-04)
 Every grabbable tool that touches a provider registers itself in `tools/onboard.json`
 (var name, keyfile name, optional extracted-config path) and inherits the onboarding CLI:
