@@ -3102,3 +3102,12 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   QG1d-corpus; XP-C/G3 need >=1h envelope.
 - Rotation next wake: (A) SCOUT (canons HEAD re-probe per SCOUT-86 lesson); GPU open (QG4/MC-1/
   QG1d-corpus) if a longer envelope, else scout-cycle.
+
+## SLICE 2026-10-10 10:1x AKDT (day-conductor) — (C) SEAL-REPAIR: manifest 3-commits stale again, re-sealed green; DECOY-1b repro PASS
+- Rotation said (B) SHADOW-1/FW-2, but CI triage preempted: **last 3 pushes (7f99763 edge-mine w16, d41b5a1 degeneracy-probe, d8f5a63 mut-adequacy) landed WITHOUT re-seal — runs 38071502552/38071546887/38073269676 all RED** (tests/test_receipts.py x2: RESULTS.md + tools/README.md DRIFT, degeneracy_probe.py + mut_adequacy.py UNSEALED). Exact GOLDEN-PIN failure class recurring: landings that add files/edit RESULTS without re-sealing.
+- Fix: tools/receipt_manifest.py re-seal at HEAD -> sealed 243 exp + 108 tool files, --check exit 0, advisories = known foreign d12*/untracked lane (PW-1). Local suite 75/75. Commit+push this spool = CI should go green; verify next wake.
+- PROCESS HOLE (spawned **SEAL-2**, bookkeeping class, no GPU): landing checklist must include re-seal in the SAME commit — second occurrence of "conductor/foreign lane pushed tool+RESULTS edits without seal". Candidate fix: pre-push hook or workflow gate that fails any push whose tree drifts from manifest WITHOUT a same-commit manifest change (differs from RC-5 by being push-time, not CI-time). Pre-reg before implementing.
+- (C) mandatory repro: newest scripted booking DECOY-1b (e3fa106) — REPRO PASS: G6 auc_inverted 0.0847 = 1-AUC (true 0.9153), shuffled mean 0.5137, byte-matching committed verdict. SCOUT-91 newest overall (audit class, self-verifying).
+- No dupes (no in-flight SHADOW-1 prereg found, no running conductor procs); no 429s; GPU lane idle all slice.
+- Spool marks: this slice = (C). Open queue unchanged: SHADOW-1 (pre-reg first), FW-2, MMX-1/FT-D1/CH-1/SL-G1/SF-G1/DS-G2/QG4/MC-1/QG1d-corpus.
+- Rotation next wake: FIRST verify CI green on the re-seal push; then (B) SHADOW-1 or FW-2 per queue; GPU open (QG4/MC-1/QG1d-corpus).

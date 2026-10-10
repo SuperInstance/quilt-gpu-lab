@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-10T04:19:07.228252+00:00",
+  "generated_at": "2026-10-10T18:18:31.401587+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "e52c04f5e01bcaa63dfa5134d42893e7963f073ccfbee84c954a112614f99030",
+    "RESULTS.md": "2c0ee6dfae57e4c67532241f886e1160ce8651132451c6ec9852e4a1be38d9c8",
     "QUEUE.md": "913d9ce17ab763e14cb11aea273536f549d87ae40163f6b93ca1a006546c1939"
   },
   "experiments": {
@@ -252,7 +252,7 @@
     "xq0_substrate_consolidation.py": "eae71b6a1c664669a941bc9be03e7574e0ec16fb6f9541250aae11c9384bb32a"
   },
   "tools": {
-    "README.md": "aabe3dbb3a7bba8dae475b7006abe7a5c32775ded70725c24b1b1337e6f4962c",
+    "README.md": "0f27516ce9561d04d777076d797ce6f3251692dc99a8a314665a8120d31b0708",
     "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "auc_sep.py": "65611d7fc6cb42e3bbd515bb4850e724bf5aa7d318086a4c5e906088f89bd6c9",
     "binom_gate.py": "54a02b649c10fc390b49c60131d720b342be8e7552b7189aa7825645f20c3aec",
@@ -277,6 +277,7 @@
     "decoy_census.py": "b059c8d6fbbffcdd76bd2c1b2882386d86c48310b16b993b7c7ad1fd381e60cb",
     "deepinfra_call.py": "a870b48233c2cbb401bd4c2fcd5a2c6300b392ac5449632f0227d4b5df6ff020",
     "deepinfra_ideate.py": "a43b5e545269e14b7a73f35fbf30a3295d4952ea9647f22bfd751a797de73b80",
+    "degeneracy_probe.py": "91b8f1db0e6be87793f7cbf8f53340b15311a8e8feca4fd66f6cb81100603374",
     "degrade_gate.py": "41c771b86538e5dcee063841d18318989cf9abf91864bf48d7b627c0c8bbd974",
     "det_witness.py": "4f5b60fcdc7204297d0dad70bec818594960aed0783c5513eb312fb5938fca48",
     "empnull_floor.py": "0404f8510e5650069b54392d16430c3ce16b17aa08deb4ebdd6d3ce8706ecdd7",
@@ -315,6 +316,7 @@
     "lit_sweep.py": "b29bc7ae6f6f3f7fead1449f6498ab7d9e99f4f478a7bf4d0c40bc5171ad9495",
     "local_jev_bench.py": "f3ff1dc606a2eeeb5206b49e75925853e1ab26cc054d95b859e6384a2d84107a",
     "match_presence.py": "ff8453e71f059389105fcff8161845759e2633b2bb2d09ed51e515276e96a77f",
+    "mut_adequacy.py": "921c1d1ad3da439d1bb9e83ab659f45ddf13f1776163f8c70cff14112c15fecb",
     "nullvar_calib.py": "e3bd928929953c1825fb6230ea741f863301d08a3e9a617629583f93a0099750",
     "onboard.py": "dc25ca8d051294c8e14f2acecbc0e7017908e60e865daad401ff8d5bc6d5e80f",
     "orderstats_floor.py": "adcbae671e1d7c0e0bd745aec9a14f7802bcff81e40d5697678239b79d0188fb",
