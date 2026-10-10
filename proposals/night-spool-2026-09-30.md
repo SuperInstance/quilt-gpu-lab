@@ -3111,3 +3111,14 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - No dupes (no in-flight SHADOW-1 prereg found, no running conductor procs); no 429s; GPU lane idle all slice.
 - Spool marks: this slice = (C). Open queue unchanged: SHADOW-1 (pre-reg first), FW-2, MMX-1/FT-D1/CH-1/SL-G1/SF-G1/DS-G2/QG4/MC-1/QG1d-corpus.
 - Rotation next wake: FIRST verify CI green on the re-seal push; then (B) SHADOW-1 or FW-2 per queue; GPU open (QG4/MC-1/QG1d-corpus).
+
+## SLICE 2026-10-10 11:2x AKDT (day-conductor) — (B) SHADOW-1 BOOKED GREEN (4 benign, zero RED)
+- Top open item per SCOUT-91 rotation. Pre-reg + tool (tools/shadow_census.py) committed+pushed
+  BEFORE firing (b01995a); booked from committed tree (22f0fb); manifest re-sealed clean (bc3880d,
+  after one correct REFUSE on dirty RESULTS.md — CI-1 seal-after-commit lesson holding).
+- G1 PASS (375 files, 0 skipped, 0 parse errors); G2: 4 shadows — h1 PERMS dead-stub→grid_perms,
+  ionq2_rung2 r/p sequential-temp reuse, qo5 auc_v init-then-assign — all benign with named roles;
+  G3 zero RED (no booked verdict's binding shadowed); G4 deterministic (static).
+- Foreign double-def-silently-deletes-curated-behavior class ABSENT from our tree. (C) not due
+  (DECOY-1b self-verified). GPU idle; no dupes; no 429s.
+- Rotation next wake: (A) SCOUT-92; GPU open (QG4/QG1d-corpus/MC-1).
