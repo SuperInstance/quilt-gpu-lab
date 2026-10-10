@@ -201,6 +201,22 @@ piece others can lift. Grab = copy the file; everything here runs alone.
   FAIL-INPUT instead of DEAD; then the unborn-branch stderr string didn't match "ambiguous argument",
   caught by the same pin); live worked example: unbooked beat DEAD rc=1, post-commit CLEAN rc=0.
 
+- **git-anchor-check** — `tools/git_anchor_check.py` — committed-content manifest verifier
+  (pattern lifted from SCOUT-92, booked 2026-10-10: the fleet-witness executed forgery is the
+  reseal class — sealing is not a secret operation, so a verifier that only consults the working
+  tree can't see a tamper-then-reseal; this is the GIT-ANCHOR-1 counter-instrument). Re-derives
+  every (path, sha256) in a sealed manifest from the bytes git actually committed at --ref via
+  `git show <ref>:<path>` (list-form subprocess); tolerant schema (any nested digest map, section-
+  implied dirs like experiments/<name>.py resolved against tree+ref). ANCHORED rc=0 / RED rc=1
+  (digest drift = tampered-or-resealed; path absent from the commit = phantom seal — both named) /
+  FAIL-INPUT rc=2 (bad ref/manifest). Stdlib-only, read-only, never mutates the repo.
+  `python tools/git_anchor_check.py --manifest receipts/manifest.json --ref HEAD [--out r.json] | --selftest`
+  TEST receipt 2026-10-10: selftest 4/4 (clean-anchored, uncommitted tamper+reseal RED — the
+  fleet-witness class, phantom-seal RED, bad-ref fail-loud) — selftest caught its own extractor
+  bug live (flat section keys without "/" were dropped, so nothing extracted; fixed to section-
+  implied path resolution). Live receipts/manifest.json @ HEAD: ANCHORED rc=0, 370/370 paths
+  anchored, receipt results/git_anchor_check_head_2026-10-10.json.
+
 ## When you add a tool
 
 Append it here with: name — path — one line on what it does. If it needs
