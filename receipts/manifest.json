@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-10T01:58:29.008962+00:00",
+  "generated_at": "2026-10-10T02:18:36.566934+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "27a7b96e3d1e128619035accdc15b55ed36180b24bf0b43c32c7cc979d9ff439",
+    "RESULTS.md": "4fbfba2f8823b7e6562006e2f17f061fa6d84a09409fbd60b7bb48ca8a58ac67",
     "QUEUE.md": "913d9ce17ab763e14cb11aea273536f549d87ae40163f6b93ca1a006546c1939"
   },
   "experiments": {
@@ -235,6 +235,7 @@
     "viz_frontier.py": "d9d95c5e7c1f111b08dbbc941654898413c90fd7cc8c4045e776e49879bb79af",
     "viz_mq1_cg1.py": "99a0449ee0179a4a4e95c5f3a840c715d8ad33a9ac43c9d8c1d9fa07ae2f622d",
     "viz_tc.py": "3f325e2fa6657abd931e908d80e03e597e8c761dda7a0ceb049d91036e2eb5d9",
+    "vnan1_failopen_redteam.py": "0b9d4ce35aae9c6477bb47721f4ea2c65446e635274507d75bba84dfc474b58d",
     "w5a_reobserve_vs_trace.py": "271a6251f592acb031145758b2cdfac2a8a93d094215bbe1b0fdd2eaa3d20d55",
     "w5b2_antirank_primacy.py": "7a3950c5f666361153199f69cbbcce9ce4a152fe9376f72e63ff9afdf9358698",
     "w5b_lifetime_precision.py": "a6d2bbcc1b68da5f5390b69c6b9852df720017aaef00c9fecd7b06acf02e3f95",
@@ -322,7 +323,7 @@
     "pert_audit.py": "825e3b960bb407dc7eaa3004df666b6615d0c40882f280ae6f9208a168bc6811",
     "power_fit.py": "74ea3f67ac32a1ea96538c89d317df1da346d520f15dbe67cd9275647a5a5b85",
     "pr_sweep.py": "3c884785286a26fac47f7e74867ed55694ec878290e42bee9682b9c9e38b5242",
-    "prereg_seal.py": "4419f610302dfdb373d68e6968eec6aaf45458fcdc799612d07d7ae5fee9b86e",
+    "prereg_seal.py": "9cdfb8aecb843ad5a96b163b6a3c219d4b09255eb946ef43e61b4ed7cc346ba5",
     "prereg_stamp.py": "95c591cac74889d07a8bce279e23c865aa3e81e07b562ba472e31e7e992cc1ac",
     "proj_lattice.py": "41b779c9bddfc41ea915059f5302de1e8f9f1fcaabeb32feda2f825b3ef225ea",
     "qcell_oracle.pt": "fed2c15fb506899fdc0fb86a7656d965c4b0aae8bceda28d11d6850aec201eed",
@@ -350,7 +351,7 @@
     "typesafe_batch.py": "6f4a470a02d262c2877748670aeb6ae1ca74a98f6b395864bb84dd8ec2d30381",
     "vendor_strip_census.py": "bd7d7c2a3561ee7039a58176bdc116357db624ba9595f08a1c2c05417c6a164c",
     "verdict_cite_check.py": "2e652fe62843a90a191085166ce9eb27d0d52f4d6b2983a25b96874bf4c9d9c7",
-    "verdict_gate.py": "5f6bb3c74ed79be343f29adb2c51036b9074d4580d406445455be8b370ce31fa",
+    "verdict_gate.py": "0f464f7a93f81ea8eb0fe64394f9795812957367a8289c719bcd95c9db016b08",
     "verdict_index.py": "6f46f493797b11d01ca97883c1e046eb48fbd3c6a5ac290a5272f75fbf46d060",
     "verdict_repro.py": "d51cabd4cca08aaa656c9776b9205a182e2b6b02d15e7117e715274ba499ffc7",
     "worstcase_calib.py": "07f920af3cac829c3aa2265e3c5939555ff0cdea969404d083c8fc3cb0351757",
