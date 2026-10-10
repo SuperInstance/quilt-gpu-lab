@@ -7105,3 +7105,16 @@ Amends DECOY-1 (GREEN 01:5x) with the two SCOUT-90 rows. Tool: tools/decoy_censu
   the newest scripted booking; script committed before booking in this landing.
 - Manifest re-sealed in the same landing. GPU lane idle all slice (CPU item per rotation); no
   running conductor processes; no dupes; no 429s.
+
+## SCOUT-91 (2026-10-10 1717Z, day conductor) — full text proposals/runs/SCOUT-91-fleet-push-2026-10-10-1717Z.md
+- Window post-SCOUT-90: 4 canons scouts (70de675/fe5948a/ed4cf13/9331c48), voice-games aviation
+  heading fix, quilt-neudecide(+demo) new activity, 4 seed plantings. **No CONTRADICT** — QO2
+  stack, DECIDE lineage, receipt doctrine, QG3+QG6, QG1c, W5 seeds unthreatened.
+- CORROBORATE ×4 (check-cannot-fail family, foreign-repo instances): constraint-theory
+  exactness-claim-vs-shipped + mute CI; pasture-ai constant fitness; census phantom repos
+  (VSB-1 staleness caution confirmed). NEW subclass: last-definition-wins shadowing
+  (higher-abstraction-vocabularies) → spawned **SHADOW-1** (AST shadow census, pre-reg first,
+  CPU ~15m).
+- No repro due (DECOY-1b self-verifying in-landing; VNaN-1 repro PASS stands). Manifest re-seal
+  not due. GPU idle; foreign d12* untracked lane untouched (PW-1). No 429s.
+- Rotation next wake: (B) SHADOW-1 or FW-2; GPU free (QG1d/QG4/MC-1).
