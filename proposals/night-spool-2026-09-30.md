@@ -3059,3 +3059,31 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   landing commit. GPU lane idle (CPU item per rotation). No dupes (no VNaN work in git log), no 429s.
 - Spool marks: VNaN-1 [DONE]; MMX-1/FT-D1/CH-1/SL-G1/SF-G1/DS-G2/QG4/MC-1/QG1d-corpus remain open.
 - Rotation next wake: (A) SCOUT, then GPU top (QG4 phase diagram or MC-1).
+
+## SLICE 2026-10-09 19:1x AKDT (day-conductor) — (A) SCOUT-90 (canons f464caa) + (C) VNaN-1 REPRO PASS + manifest re-seal
+- (A) SCOUT-90: org pushed:>02:00Z = our repo only; PRs/issues quiet (zero-msg-test #24/#25
+  tracker-config, zero-poc #1 register — API noise class). **canons moved post-SCOUT-88:
+  f464caa 01:30Z** (new name quilt-research-canons confirmed live; full text
+  research/scout/SCOUT-2026-10-10T0129Z-inverted-gate-nan-validator-and-the-crate-that-got-it-right.md).
+  **No CONTRADICT** — QO2 stack, receipt doctrine, QG3+QG6, PARAM-1/VNaN-1 landings unthreatened.
+  CORROBORATE: (1) a2a-constraint-protocol NaN-everything validator = the exact class VNaN-1
+  closed in OUR gate lattice (booked 18:4x; our post-fix battery 77 RED=0 is the standing
+  counter-example); (2) fleet-murmur-worker keyword gate ranks soup 5.2x ABOVE a correct
+  observation, 27/27 green, zero good-vs-bad discrimination pin + empty-string == nonsense
+  score → **DECOY-1 amendment**: add empty-input-degenerate row + inversion-discrimination
+  pin row to the census; (3) README-drift class (src/config.ts missing; 2x 404 install
+  instructions) → note for RT-D1 real-probe arm (registry-claim check = 2 API calls, steal);
+  (4) polyvocoder tests fail from clean clone (/workspace absolute path) = RC-1 corroborate;
+  (5) Sandbox-Lifecycle-Manager 287:1 vendored ratio = VSB-1 class corroborate; (6)
+  young-tableau-rs positive control: committed proptest regression seed = RECEIPT-HASH
+  pin-shape corroborate. No new GPU items spawned.
+- (C) mandatory repro of newest OURS booking **VNaN-1 (bbd4752): REPRO PASS (byte-identical
+  verdict)** — committed experiments/vnan1_failopen_redteam.py from tree at 4b28fc0:
+  TOTAL=77 RED=0 REFUSE=64 LATTICE=10 ALLOWED=3, G3 unit pin OK, exit 0. Ops note: /tmp
+  tmpfs FULL (write error) — scratch rerouted to /home per standing law; first attempt with
+  /tmp redirect died, not a script fault.
+- Manifest: re-sealed this slice (4b28fc0's generic tools/failopen_redteam.py landed post-seal
+  → DRIFT; tools/README.md drift cleared by tracked-only re-seal). Sealed 243+106, advisories
+  = known foreign untracked lane (PW-1). Commit + push with this spool.
+- Rotation next wake: (B) DECOY-1 (with the two new rows, pre-reg first) or PROP-1-follow-on;
+  GPU open (QG4/MC-1/QG1d-corpus).

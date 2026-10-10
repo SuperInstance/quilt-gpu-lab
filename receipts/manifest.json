@@ -1,6 +1,6 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-10T02:18:36.566934+00:00",
+  "generated_at": "2026-10-10T03:15:39.535938+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
     "RESULTS.md": "4fbfba2f8823b7e6562006e2f17f061fa6d84a09409fbd60b7bb48ca8a58ac67",
@@ -252,7 +252,7 @@
     "xq0_substrate_consolidation.py": "eae71b6a1c664669a941bc9be03e7574e0ec16fb6f9541250aae11c9384bb32a"
   },
   "tools": {
-    "README.md": "079083b3eec0bf0419202c397d73c5d3f2333ac09aa2aa200ff092719dfb0680",
+    "README.md": "aabe3dbb3a7bba8dae475b7006abe7a5c32775ded70725c24b1b1337e6f4962c",
     "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "auc_sep.py": "65611d7fc6cb42e3bbd515bb4850e724bf5aa7d318086a4c5e906088f89bd6c9",
     "binom_gate.py": "54a02b649c10fc390b49c60131d720b342be8e7552b7189aa7825645f20c3aec",
@@ -288,6 +288,7 @@
     "eproc.py": "394b4463c3ee87e9f75416c40839560c58a944f08cd2e68f840f42b1e9858f09",
     "exclu_pool.py": "10c1c6b4feb5236884a56e293bb6b2ad7706cf3f4b41bb36937f2ccc7570c5fd",
     "exit_gate_witness.py": "3ee2b3746d778ce74388db1dcd97c03afecafeef132af081fe0aec7aa4e05785",
+    "failopen_redteam.py": "10cd9eeea0dec96ac3484c3c0f480c4a9e6b6421317a182a4fc85205b067e79b",
     "farm_queue_flip.py": "8b375211ed2bdee64015078d1b9f3415a08f19e3a7788ba6b702607166b20e81",
     "fleet_board.mjs": "65b9bbdfd5ac4eefcdfbb3a47eb0adb668d2180a050a929e6374b1040b0eba70",
     "floor_law_fit.py": "0ae26fe773e0b960626b2a119e46c223803d4971ec7a620226d233c544e38f3c",
