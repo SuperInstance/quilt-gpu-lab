@@ -216,6 +216,22 @@ piece others can lift. Grab = copy the file; everything here runs alone.
   bug live (flat section keys without "/" were dropped, so nothing extracted; fixed to section-
   implied path resolution). Live receipts/manifest.json @ HEAD: ANCHORED rc=0, 370/370 paths
   anchored, receipt results/git_anchor_check_head_2026-10-10.json.
+- **merkle-seal-chain** — `tools/merkle_seal_chain.py` — RFC 6962 Merkle seal + git-anchored
+  chain (FW-2 v2 implementation, RC-4 class): Merkle ROOT over sorted (path, digest) leaves
+  (0x00/0x01 domain separation, split at largest power of two < n, empty root = SHA256(""))
+  + C2SP-shaped checkpoint note (origin\nsize\nbase64(root), strict byte-canonical parse)
+  + `seal_chain.prev_digest` committing each seal to the previous manifest bytes (genesis
+  null exactly once, verified). Closes the wholesale-reseal and suffix-truncation holes:
+  truncation is caught by size naming first, leaf tamper by root mismatch, chain break by
+  prev_digest vs sha256(prev bytes). Stdlib-only (hashlib), no network, never deletes.
+  `python tools/merkle_seal_chain.py --seal-dir results --prev receipts/manifest.json --out m.json | --verify m.json --recompute-dir results --prev ... | --example | --selftest`
+  TEST receipt 2026-10-10: selftest 21/21 (G1 MTH vectors iterative==recursive-reference on
+  n=0,1,2,3,7,8,13 + empty-root SHA256("") + singleton; G2 genesis-null/link/verify/tamper-named;
+  G3 truncation size-names-first, stale-prev reseal chain-break RED, leaf tamper root-mismatch;
+  note roundtrip + strict-junk fail-loud; missing-prev genesis guard) — honest boundary per the
+  FW-2 STOP rule: pins are against a self-contained reference MTH, not byte-tested against
+  fleet-witness tree.js (no wire-compat claim); worked example rc=0 CLEAN then truncation RED
+  rc=1 with size named first.
 
 ## When you add a tool
 
