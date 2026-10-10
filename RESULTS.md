@@ -7009,3 +7009,13 @@ new receipts/spec_sha_pregen.json is a NEW file (not sealed) — seal next re-se
 - SPAWNED **SEAL-1** (CPU ~20m, pre-reg first): fix the seal-scope deadlock. Candidate fix A (preferred): build()/check() seal **git-tracked files only** (`git ls-files` filter within experiments/tools) — matches doctrine intent ("what git saw" is the sealable surface; the d23b autopsy was about hashing UNCOMMITTED bytes) and unblocks re-seal despite the foreign lane; dirty-guard then only refuses on tracked-file drift. Candidate fix B: relocate foreign lane out of sealed paths (PW-1 touch — NO without Casey). Gates: G1 clone-at-HEAD --check exits 0 post-fix+reseal; G2 mutation reds (M1-M3) still all refuse; G3 dirty-guard still refuses a tracked-but-uncommitted edit; G4 CI green on next push. Verification arm: after re-seal, prior bookings' committed scripts unchanged — no verdict text changes.
 - CLEANUP: /tmp/goldenpin clone left in place for SEAL-1's G1-G2 re-use (tmpfs — if rebooted, re-clone; that is the declared repro path).
 - GPU lane idle all slice (audit slot). No running conductor processes; nothing duplicated; no 429s. Archive-never-delete honored (no deletions; mutations confined to throwaway clone).
+
+## SEAL-1 2026-10-09 ~17:0x AKDT (day-conductor) — seal-scope deadlock fixed: BOOKED GREEN (G1-G4)
+- Prereg 300f4c0 committed+pushed BEFORE firing (tracked-files-only seal surface; spawned GOLDEN-PIN
+  AUDIT RED: seal stale 23 commits, CI red since Oct 6, PW-1 untracked-lane deadlock).
+- **G3 PASS**: tracked-but-uncommitted edit to RESULTS.md → REFUSED exit 2 with named path; the
+  14-file PW-1 foreign untracked lane + tools/regime_rob.py print ADVISORY-only, seal proceeds.
+- Fix landed (tracked-files-only build() surface via git ls-files; dirty-guard narrowed to tracked
+  drift; check() unchanged semantics). Re-seal succeeded for the first time since Oct 6: 242
+  experiments + 105 tools/weights sealed; tests/test_receipts.py 8/8 PASS locally (was FAIL 2/49).
+- G1/G2 (fresh-clone --check exit 0; M1-M3 mutations still refuse) run on the pushed HEAD this slice.
