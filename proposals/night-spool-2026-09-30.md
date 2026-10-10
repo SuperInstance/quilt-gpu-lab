@@ -3166,3 +3166,22 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - Rotation next wake: (B) GIT-ANCHOR-1 is claimed by the foreign lane (tool landed; do not
   duplicate — verify their booking lands before closing) → next OUR (B) = DECOY-1 leftovers /
   VX-1 / ND-1; GPU open (QG4/QG1d-corpus/MC-1).
+
+## SLICE 2026-10-10 14:2x AKDT (day-conductor) — (B) FW-2 SPEC LANDED (Merkle seal-chain, RC-4)
+- (B) top open per queue (last slice 13:2x = SCOUT-93 + SHADOW-1 booked/repro'd). Read-only
+  source: SuperInstance/fleet-witness @ 2eabe6a (tree.js RFC 6962 MTH w/ 0x00/0x01 domain
+  sep; checkpoint.js note binds SIZE+ROOT, strict byte-canonical parse, Ed25519 seam deferred;
+  WITNESSING.md L1-L4, TSA rejected, no wire-compat claim).
+- GAP NAMED: our seals are UNCHAINED — wholesale re-seal of rewritten history and clean
+  suffix truncation both undetectable (SCOUT-92 executed-forgery class; GIT-ANCHOR-1 closed
+  only the verify-vs-HEAD arm). No CONTRADICT of any booked result.
+- LANDED proposals/runs/FW-2-merkle-seal-chain-spec.md: v2 schema = sorted (path,digest)
+  leaves, RFC 6962 root, our-origin checkpoint note, seal_chain.prev_digest from
+  git show HEAD:receipts/manifest.json (genesis null exactly once, fail-loud). Non-goals:
+  Ed25519 (Casey-key), quorum, TSA. Gates G1-G4 frozen in words (vectors vs fleet-witness
+  tree.js incl. empty/singleton; chain tamper RED; truncation RED size-first; v1
+  non-regression). STOP: no RFC-forking to make vectors pass.
+- (C) not due (SHADOW-1 REPRO PASS 13:2x). Manifest re-sealed post-landing (ff26c39);
+  GIT-ANCHOR-1 ANCHORED 371/371 at HEAD. No GPU fired (CPU docs slot per rotation).
+- Rotation next wake: (A) SCOUT-95, or (B) FW-2 implementation (pre-reg against the frozen
+  G1-G4); GPU open (QG4/QG1d-corpus/MC-1).
