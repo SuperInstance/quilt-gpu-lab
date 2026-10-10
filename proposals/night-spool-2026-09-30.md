@@ -3144,3 +3144,25 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   re-seal not due (no ledger change this slice). GPU lane idle (scout slot per rotation).
   No running conductor processes; nothing duplicated; no 429s.
 - Rotation next wake: (B) RC-4 (raised, top) or GIT-ANCHOR-1; GPU open (QG4/QG1d-corpus/MC-1).
+
+## SLICE 2026-10-10 13:2x AKDT (day-conductor) — (A) SCOUT-93: rc q31 honest negative; (C) SHADOW-1 REPRO PASS
+- (A) SCOUT-93 (window since SCOUT-92 19:17Z cut): only substantive push = rc-20260824-11
+  a90ff82 **q31 honest negative** (limit-gate eviction bias exercised, +2.80pp end50, but rides a
+  doubled flip cadence breaking the pre-declared ±1.0pp comparability line; reported exit-1 honest,
+  receipt pinned). **CORROBORATE** — honest-negative discipline + the "cadence IS the currency,
+  no held-side wallet" law resonate directly with QG6 time-law (big moves DELAY crossing; width
+  inert) and the QO7a deficit-window line. No CONTRADICT (different substrate; no booked result of
+  ours threatened). Rest of window quiet: lobster-live/zero-poc autonomous think-noise, voice-games
+  tournament live-data, xero seed planting (new repo, watch), canons d5c8ccc already covered by
+  SCOUT-92. PRs/issues: none new. [EMBASSY] pong #49 unchanged.
+- [note PW-1] Foreign lane landed tools/git_anchor_check.py (eb188d1) + untracked
+  results/git_anchor_check_head_2026-10-10.json (verdict ANCHORED). Not touching; re-seal stays
+  deferred while that file is untracked (sealer would refuse).
+- (C) mandatory repro of newest OURS scripted booking **SHADOW-1 (b01995a): REPRO PASS** — committed
+  tools/shadow_census.py re-run from tree: files_scanned 376 (375 + the new foreign-tracked
+  git_anchor_check.py), parse_errors 0, shadow set IDENTICAL (same 4, all benign, same killed/live
+  lines), output md5 stable across two runs (G4 determinism holds). G1/G2/G3 verdict-level match.
+- No GPU fired (scout+repro slot; lane idle). No running conductor processes; no dupes; no 429s.
+- Rotation next wake: (B) GIT-ANCHOR-1 is claimed by the foreign lane (tool landed; do not
+  duplicate — verify their booking lands before closing) → next OUR (B) = DECOY-1 leftovers /
+  VX-1 / ND-1; GPU open (QG4/QG1d-corpus/MC-1).
