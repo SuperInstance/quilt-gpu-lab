@@ -76,6 +76,13 @@ piece others can lift. Grab = copy the file; everything here runs alone.
   is committed in git history. Never deletes (archive-by-rename).
   `python tools/farm_queue_flip.py --id cm1-r6 --status queued [--dry-run --list]`.
 
+- **degeneracy-probe** — `tools/degeneracy_probe.py`
+  G5+G6 structural witness for ANY scoring/metric function (lifted from the proven DECOY-1b
+  amendment): G5 empty-input-degeneracy (silent numeric on empty input = RED, fail-loud raise =
+  PASS) + G6 inversion-discrimination pin (inverted labels must score strictly worse than true
+  and no better than shuffled). Stdlib-only, deterministic, fail-loud JSON receipt; exit 1 on RED.
+  `python tools/degeneracy_probe.py --module mymetrics.py --fn metric --pos 1.2,0.9 --neg 0.2,0.4 [--out r.json]` (or `--selftest`). Smoke 2026-10-10: PASS (witness auc_true 0.9153 / inv 0.0847, GREEN; constant-metric probe RED exit=1).
+
 ## Coordination platform (lives in SuperInstance/quilt-i2i)
 
 - **i2i-ledger worker** — live shared semantic memory:
