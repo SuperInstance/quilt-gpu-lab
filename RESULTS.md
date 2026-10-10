@@ -7138,3 +7138,25 @@ witness class (double-def silently deleting curated behavior) is ABSENT from our
 slice). Manifest re-sealed this landing (ledger changed). GPU lane idle (CPU census slot per
 rotation). No running conductor processes; no dupes; no 429s.
 Rotation next wake: (A) SCOUT-92 per rotation; GPU open (QG4/QG1d-corpus/MC-1).
+
+## SLICE 2026-10-10 14:2x AKDT (day-conductor) — (B) FW-2 SPEC LANDED (Merkle seal-chain amendment)
+- (B) top open per queue (last slice SCOUT-93; SHADOW-1 booked+repro'd). Source read (read-only):
+  SuperInstance/fleet-witness @ 2eabe6a — src/tree.js (RFC 6962 MTH, 0x00/0x01 domain sep),
+  src/checkpoint.js (C2SP-shaped note binds SIZE+ROOT, strict byte-canonical parse, Ed25519
+  sig seam deferred), docs/WITNESSING.md (L1-L4; TSA rejected; no wire-compat claim).
+- GAP NAMED: our manifest digests paths (SEAL-1 guard + GIT-ANCHOR-1 verify) but seals are
+  UNCHAINED — wholesale re-seal of rewritten history and clean suffix truncation are both
+  undetectable (exactly the SCOUT-92 executed-forgery class; GIT-ANCHOR-1 closed only the
+  verify-vs-HEAD half).
+- LANDED: proposals/runs/FW-2-merkle-seal-chain-spec.md — v2 manifest schema: RFC 6962 root
+  over sorted (path,digest) leaves, size+root checkpoint note (our origin string), and
+  seal_chain.prev_digest read from git show HEAD:receipts/manifest.json (genesis null once,
+  fail-loud). Ed25519/quorum/TSA = documented non-goals. Gates G1-G4 frozen in words (G1
+  vector pins vs fleet-witness tree.js incl. empty/singleton corners; G2 chain connect +
+  tamper RED; G3 truncation RED size-first; G4 v1 non-regression). STOP rule: no RFC-forking
+  to make vectors pass. Implementation = follow-on prereg against these frozen words.
+- (C) not due: newest scripted booking SHADOW-1 already REPRO PASS 13:2x this day.
+- Manifest re-sealed after this ledger append. No GPU fired (CPU docs slot per rotation).
+  No running conductor processes; foreign d12*/git_anchor untracked files untouched (PW-1).
+- Rotation next wake: (A) SCOUT-95, or (B) FW-2 implementation (pre-reg against the frozen
+  G1-G4 above); GPU open (QG4/QG1d-corpus/MC-1).
