@@ -374,6 +374,26 @@
 - Rotation next wake: (B) PROP-1 (top, pre-reg first) or VX-1/ND-1; GPU open (QG4/MC-1/
   QG1d-corpus). [DONE 12:4x — PROP-1 BOOKED GREEN (d75feaf), see RESULTS.md.]
 
+## SLICE 2026-10-10 15:2x AKDT (day-conductor) — (A) SCOUT-95: no CONTRADICT; CONST-1 spawned (winning-arm-constant census)
+- (A) SCOUT-95 (full text proposals/runs/SCOUT-95-fleet-push-2026-10-10-2323Z.md): window since
+  last slice = canons 55a2afb only (voice-games telemetry, lobster/atlas routine). HEADLINE:
+  CRDT_Research 98.4% "improvement" is a subtraction from a class constant (`CRDT_LOCAL_ACCESS_CYCLES=2`,
+  CRDT avg = {2.0} across 98 sims/6 core counts, hit_rate=1.0 literal); CI ||true, zero test files,
+  results written to /home/z outside the clean clone. neural-plato: ground-truth audit says C9 FAILS,
+  own suite prints ✅ + passed:true and exits 1 WHEN GREEN (polarity inversion). casting-call/constraint-flow
+  = CI-1 corroborate; quilt-gan mutation 2/2 = PROP-1 corroborate; penrose-memory query collapse = watch.
+  **No CONTRADICT** — all victims foreign; our assets unthreatened; FW-2 orthogonal.
+  TOOL/STEAL: "grep the constant of the winning arm before reading the improvement percentage" →
+  spawned **CONST-1** (CPU ~20m, pre-reg first: producer-liveness census over our A-vs-B booked arms
+  — QG6 k-arms, DETERM-1 A/B, DECIDE-1b/c, IONQ-2 battery; constant-produced winning metric = RED).
+  FW-1-successor rows: suite-exit polarity inversion; audit-vs-suite divergence diff.
+- (C) not due: newest scripted booking SHADOW-1 already REPRO PASS 13:2x this day; since then only
+  docs (FW-2 spec). DET-1c completeness: committed the untracked GIT-ANCHOR-1 result JSON cited by
+  eb188d1. Manifest clean (last re-seal ff26c39; no sealed-path changes this slice).
+- GPU lane idle all slice (scout slot per rotation). No running processes; nothing duplicated; no 429s.
+- Rotation next wake: (B) CONST-1 (top, pre-reg first) or FW-2 implementation; GPU open (QG4/
+  QG1d-corpus/MC-1).
+
 ## FINDINGS (append-only)
 - 00:0x CONDUCTOR-0 (main): QG2 headline above. qcell-sim gained crx + receipt-anchored selftest. Vectorized lane = gathers + bmm chains; ANCHOR-VEC 2e-34.
 - 00:2x PR-SWEEP #1 (conductor): 6 repos swept; only MicroMoth-quilt active. **PR #29 OPEN** — docs-only provenance: qcells lab canonical home = SuperInstance/micrograd-quilt; cite repo not local path in receipts. Clean (fail-first pins, 248/249; 1 pre-existing main-tip manifest drift, remedy already in PR #25 stack). Merged highlights: #28 exp022 train-visible crossing census (tie-break-invariant), #27 rate-not-wall + desert-extends-to-cloud, #26 tie-band-diversity replicated, #25 archive-assembly + manifest regen, #24 fitness desert at birth cloud (29/31/37). **Steals:** (a) weight-law by-name citation -> spawned RECEIPT-CITE item; (b) exp018 desert-at-birth-cloud independently corroborates QG2 structural-desert — desert is upstream of selection, now two lanes agreeing; (c) note bookkeeping discipline: my first spool edit clobbered the QG4 queue line; caught + restored same wake. Always re-read the file after structural edits.
