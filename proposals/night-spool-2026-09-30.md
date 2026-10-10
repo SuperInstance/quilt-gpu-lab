@@ -20,7 +20,7 @@
 ## QUEUE (top = next)
 - [DONE 07:2x Oct 3] **VSB-1 BOOKED: PASS (G1-G4)**: tools/vendor_strip_census.py — ls-tree vs batch-check EXACT agreement all 3539 files; nested-vendor strip bug caught by census itself (wg1_wgsl target/ ~200MB was ranking as real); raw 910.3MB, vendored 36.2%, real 580.7MB. Lesson: batch-check echoes RESOLVED oid — map positionally. Manifest re-sealed 976ed88 (clean-worktree).
 - [DONE 09:1x Oct 3] **RT-D1 BOOKED (docs)**: real-vs-repro differential pin added to docs/PREREG-CLAIM-PROTOCOL.md — reimplementations need a real-thing headless probe arm alongside the bit-exact repro; UNRUN must be explicit. Applies to MMX-1 and QG1d (both annotated in the doctrine). Source: fleet-triage b04b1e6 REAL-PROBE (SCOUT-31).
-- [open] SEAL-1 (spawned GOLDEN-PIN 2026-10-09): tracked-files-only seal scope + re-seal; gates G1-G4 in RESULTS.md GOLDEN-PIN 15:4x entry; CI red since Oct 6 must go green.
+- [DONE 17:2x Oct 9] SEAL-1 (spawned GOLDEN-PIN 2026-10-09): tracked-files-only seal scope + re-seal; gates G1-G4 in RESULTS.md GOLDEN-PIN 15:4x entry; CI red since Oct 6 must go green.
 - [open] MMX-1 (GPU ~45m + 20m recon, spawned by SCOUT-15): MiniMoth→CUDA statevector bit-exact vs sealed exp008 (fleet-triage #1 B3 handoff); primary purpose = QG1d closure instrument (rebuild failing genome, separate stale-vs-fitness-diff). Gate: byte-identical statevectors at n=4 before any scaling claim.
 - [open] FT-D1 (design note, non-GPU, spawned by SCOUT-15): GPU-native cell runtime spec (fleet-triage #1 D1), sized by D12h/i/j W·T law; gate = QG4 cell at W=128/gens=100 in <10 min on the 4050.
 - [open] CH-1 (CPU reading ~30m, spawned by SCOUT-12): chiaroscuro HOLD/CAST abstention split -> map onto QO6 outcomes, draft HOLD-register spec addition for QO7. XR-1 raised (xruntime-conformance pushed post-read). Full sweep: proposals/runs/SCOUT-12-fleet-push-2026-10-01-1311Z.md.
@@ -3031,3 +3031,18 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - Spawned **SEAL-1** (pre-reg first): tracked-files-only seal scope (fix A) — see RESULTS.md gates G1-G4. Fix B (move PW-1 lane) is Casey-only.
 - (C) not due: newest scripted booking PROP-1 REPRO PASS (deb3a57); GOLDEN-PIN is audit-class, no script booking. Manifest re-seal: STILL blocked pre-SEAL-1 (dirty guard correctly refuses — now understood as deadlock, not hygiene). GPU idle. No duplication; no 429s.
 - Rotation next wake: (B) SEAL-1 pre-reg + fix (top, unblocks the whole seal chain); then CI-green confirm. GPU open (QG4/MC-1/QG1d-corpus).
+
+## SLICE 2026-10-09 17:2x AKDT (day-conductor) — (B) SEAL-1 BOOKED GREEN; CI GREEN again after 4 days
+- (A) SCOUT quiet: canons HEAD 8fdd202 unchanged since 19:38Z; no new org commits in window
+  (16 hot repos checked); zero open PRs. No CONTRADICT. /tmp tmpfs was FULL — clone scratch
+  moved to /home/eileen/scratch (red-line law re-learned the hard way).
+- (B) SEAL-1 (top open): prereg 300f4c0 pushed BEFORE firing. Tracked-files-only seal surface
+  landed; dirty-guard narrowed to tracked drift + advisory for untracked (PW-1 lane). G1-G4 ALL
+  GREEN (see RESULTS.md); HEAD green CI run 38011834091 — first green since Oct 6.
+- Fail-loud finds: (1) CI red since Oct 6 was numpy-missing collection error from foreign-lane
+  test_pidfire.py (aa2083a), NOT the seal — workflow now installs pytest+numpy. (2) test_seal_guard
+  re-pinned to SEAL-1 semantics + UntrackedAdvisory class. Suite 71/71.
+- (C) covered by this item (newest booking is this one; PROP-1 repro PASS 13:4x stands).
+- Rotation next wake: (A) SCOUT (canons HEAD re-probe per SCOUT-86 lesson); GPU open
+  (QG4/MC-1/QG1d-corpus); (B) DECOY-1 / VX-1 / ND-1 per queue order. Manifest re-seal cycle
+  restored to normal use — re-seal after ANY ledger change now succeeds.
