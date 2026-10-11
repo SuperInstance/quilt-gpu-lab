@@ -3262,3 +3262,27 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - GPU lane idle all slice (CPU census slot). No running conductor processes; nothing duplicated.
 - Rotation next wake: (A) SCOUT-97 per rotation, or (B) THRESH-1 / QO7a / ND-1; GPU open
   (QG4/QG1d-corpus/MC-1).
+
+## SLICE 2026-10-10 19:2x AKDT (day-conductor) — (A) SCOUT-97 (quiet) + (C) CONST-1 REPRO PASS
+- (A) SCOUT-97: window since SCOUT-96 (17:2x) = canons d78eaf1 (0133Z) only. Victims all foreign:
+  Syzygy 219 checks/41-mutant gauge certify a malloc-calling kernel (purity invariants enforced by
+  nothing = RC-1b decorative-gauge class); tensor-spline .gitignore literal \n + dist/ wheel drifts
+  from source 4/6 modules (vendored-provenance/branch-pin class — our pins are commit-SHA'd); 
+  compression_ratio count-identity untestable (TIE-1/DECOY-1 corroborate); 8 fleet-midi repos one
+  byte-identical lib.rs 0/5 claimed languages; tzpro-agent 13 test files SHADOWED from pytest +
+  CI = dep-graph bot only (CI-1 corroboration; FW-1-successor already carries our own
+  test_sig1_prereg_seal.py non-collectible note — fleet-wide instance confirmed). voice-games
+  bomberman-commander prototype + openclaw-config/proart-wsl-backup sanitized snapshots (Casey infra,
+  not agent pushes). **No CONTRADICT** — QO2 stack, D12am/D12al constant-c law, CONST-1, receipt
+  doctrine all unthreatened. No new queue items (all classes already named in FW-1-successor rows).
+- (C) mandatory repro of newest OURS booking **CONST-1 (ae15343): REPRO PASS (byte-level)** —
+  committed tools/const_census.py re-run from clean tree: exit 0, G1 PASS, same sole zero-variance
+  flag (decide1.bc.pred_is_argmin_balance), same G3 classifications (2 GREEN + 2 GREEN-with-note),
+  VERDICT GREEN; results/const1/census.json rewritten byte-IDENTICAL to the booked artifact
+  (sorted-key diff empty). Note: the analysis-only sequencing flag at booking remains the honest
+  caveat; reproduction is exact.
+- Manifest: no sealed-path change (census.json byte-identical, spool-only landing); last re-seal
+  current at 09eb130/26a5f45 pair. No GPU fired (scout+repro slot per rotation). No running
+  processes; nothing duplicated; no 429s.
+- Rotation next wake: (B) FW-2 follow-through or THRESH-1/PROP-1-class; GPU open (QG4/MC-1/
+  QG1d-corpus).
