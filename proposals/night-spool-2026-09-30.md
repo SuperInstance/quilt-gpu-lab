@@ -18,6 +18,10 @@
 - [DONE 01:3x] **DECIDE-1 FIRED + BOOKED**: G1 control PASS (16/16=1.0); G2 lane FAIL decisively BELOW chance (5/64=0.078; zero-shot and shipped trained readout give IDENTICAL predictions); G3 PASS (3.31 GiB, 54 ms); G4 exploratory (fitted-T pinned at boundary, fitted head 0.3125 not significant vs 0.25). Per protocol: STOPPED on G2 FAIL, no re-roll.
 
 ## QUEUE (top = next)
+- [open] THRESH-2 (CPU ~20m, spawned by SCOUT-99 / rc q33): granularity-ladder census over censused
+  knobs (degrade_gate tolerance, eproc sigma, verdict_gate minimum, determ1 eps) — >=5 intermediate
+  settings on pinned inputs; grade each COARSE vs CONTINUOUS; q34 non-monotone-price hazard noted.
+  Pre-reg first.
 - [DONE 07:2x Oct 3] **VSB-1 BOOKED: PASS (G1-G4)**: tools/vendor_strip_census.py — ls-tree vs batch-check EXACT agreement all 3539 files; nested-vendor strip bug caught by census itself (wg1_wgsl target/ ~200MB was ranking as real); raw 910.3MB, vendored 36.2%, real 580.7MB. Lesson: batch-check echoes RESOLVED oid — map positionally. Manifest re-sealed 976ed88 (clean-worktree).
 - [DONE 09:1x Oct 3] **RT-D1 BOOKED (docs)**: real-vs-repro differential pin added to docs/PREREG-CLAIM-PROTOCOL.md — reimplementations need a real-thing headless probe arm alongside the bit-exact repro; UNRUN must be explicit. Applies to MMX-1 and QG1d (both annotated in the doctrine). Source: fleet-triage b04b1e6 REAL-PROBE (SCOUT-31).
 - [DONE 17:2x Oct 9] SEAL-1 (spawned GOLDEN-PIN 2026-10-09): tracked-files-only seal scope + re-seal; gates G1-G4 in RESULTS.md GOLDEN-PIN 15:4x entry; CI red since Oct 6 must go green.
@@ -95,6 +99,21 @@
   d12x_generator_corr_audit.py + results JSON + docs/SUBSTRATE-SYNTHESIS.md) — re-seal deferred per
   precedent; no sealed paths touched. GPU lane idle all slice (rotation: scout was the slot).
 - Rotation next wake: (B) AL-1 (cheap, top) or QO6t/DET-1d; GPU open (QG1d/QG4/MC-1).
+
+## SCOUT-99 (2026-10-11 0624Z) — rc q33 corroboration of THRESH-1 lesson; THRESH-2 spawned; no CONTRADICT
+- Window since SCOUT-98: only substantive push = rc-20260824-11 q33 (914a036, 05:23Z, post-snapshot) —
+  armed eviction NOT a step function; per-cell protection weights expose 8/9 intermediate rungs;
+  "exposure, not ordering, is how an eviction preference becomes real." q32's trace-identical
+  mid-rungs = fleet-side twin of our THRESH-1 booked lesson (knob-liveness input-dependent; census
+  pins must exercise the arm the knob guards). TOOL/STEAL → spawned **THRESH-2** (CPU ~20m, pre-reg
+  first): granularity-ladder census over censused knobs — grade COARSE vs CONTINUOUS; q34's
+  non-monotone price = hazard shape (non-monotone ladder != dead knob). Byte-anchor corroborate
+  (WDIAL(0.00)==BASE, WDIAL(1.00)==q32 signature). voice-games/lobster-live/atlas routine watch;
+  0 PRs/issues/EMBASSY; pong #49 unchanged. Full text proposals/runs/SCOUT-99-fleet-push-
+  2026-10-11-0624Z.md. (C) THRESH-1 REPRO PASS verdict-level (committed tool re-run exit 0,
+  GREEN 4/4 witnessed; determ1 eps digests differ run-to-run = exactly the booked G4 SOFT class).
+  Repro artifact scratch (uncommitted, cited only by digest); d12am foreign lane untouched (PW-1).
+  Rotation next wake: (B) THRESH-2 or GLOSS-1 (top CPU slots); GPU open (QG4/QG1d-corpus/MC-1).
 
 ## SCOUT-98 (2026-10-11 0524Z) — CORROBORATE+TOOL, no CONTRADICT; GLOSS-1 spawned
 - Window: 13 canons reports + 3 new repos (quilt-cells seed, quilt-neudecide pre-PoC,
