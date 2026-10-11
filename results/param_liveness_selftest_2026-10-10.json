@@ -1,0 +1,38 @@
+{
+  "verdict": "PASS",
+  "rc": 0,
+  "checks": [
+    {
+      "name": "slackwater-fixture-RED",
+      "ok": true,
+      "detail": "unwired=['game_state']"
+    },
+    {
+      "name": "wired-fixture-CLEAN",
+      "ok": true,
+      "detail": "unwired=[]"
+    },
+    {
+      "name": "passthru-named-not-silent",
+      "ok": true,
+      "detail": "rows=[{'param': 'thought_text', 'status': 'PASSTHRU', 'detail': 'passed through verbatim to: base_score'}, {'param': 'game_state', 'status': 'PASSTHRU', 'detail': 'passed through verbatim to: base_score'}]"
+    },
+    {
+      "name": "underscore-documented",
+      "ok": true,
+      "detail": "{'_dead': 'READ', 'live': 'READ'}"
+    },
+    {
+      "name": "missing-fn rc2",
+      "ok": true,
+      "detail": "{'verdict': 'FAIL-INPUT', 'rc': 2, 'why': \"function 'nope' not found at module top level\"}"
+    },
+    {
+      "name": "bad-src rc2",
+      "ok": true,
+      "detail": "{'verdict': 'FAIL-INPUT', 'rc': 2, 'why': 'syntax error: invalid syntax (<unknown>, line 1)'}"
+    }
+  ],
+  "tool": "param-liveness",
+  "date": "2026-10-10"
+}

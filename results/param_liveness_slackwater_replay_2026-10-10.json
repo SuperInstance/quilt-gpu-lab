@@ -1,0 +1,22 @@
+{
+  "tool": "param-liveness",
+  "file": "/tmp/slack_fixture.py",
+  "date": "2026-10-10",
+  "functions": {
+    "score_quality": [
+      {
+        "param": "thought_text",
+        "status": "READ",
+        "detail": "loaded in body"
+      },
+      {
+        "param": "game_state",
+        "status": "UNWIRED",
+        "detail": "never read anywhere in the body"
+      }
+    ]
+  },
+  "verdict": "RED",
+  "rc": 1,
+  "why": "score_quality never reads: game_state"
+}

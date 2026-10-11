@@ -1043,3 +1043,18 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   to the gate, pin fixed); worked example rc=0 PASS (H0 0.04 <= 0.12, H1 1.0 >= 0.8, dead
   mutant CAUGHT via h1), self-mutant run honestly booked VACUOUS rc=1, receipt
   results/gate_property_probe_example_2026-10-09.json.
+
+- **param-liveness** — `tools/param_liveness.py` — unwired-parameter AST gate
+  (pattern lifted PROVEN from SCOUT-98, booked 2026-10-10 commit d1a5d7a: slackwater's
+  `score_quality(game_state)` took `game_state` in its signature and AST-verified NEVER
+  read it — the loop's entire training signal was blind to the game by construction).
+  Audits named functions (or `--all`): every parameter booked READ / UNWIRED (RED — the
+  metric cannot see this input) / PASSTHRU (passed verbatim through to a named callee —
+  the slackwater line-140 shape, YELLOW, never silent) / ALLOWED (`--allow fn:param`,
+  documented-dead). Exit 0=CLEAN / 1=RED / 2=fail-loud. Stdlib-only, read-only.
+  `python tools/param_liveness.py --file F.py --func fn1,fn2 [--allow fn:param --out r.json] | --all | --selftest`
+  TEST receipt 2026-10-10: selftest 6/6 — selftest caught its own pin bug live (the
+  passthru fixture passes BOTH params verbatim to the callee, not just game_state;
+  tool correct, pin fixed); live slackwater replay: game_state UNWIRED rc=1, receipt
+  results/param_liveness_slackwater_replay_2026-10-10.json; selftest receipt
+  results/param_liveness_selftest_2026-10-10.json.
