@@ -1,0 +1,15 @@
+{
+  "rc": 0,
+  "family": "CONSISTENT",
+  "why": "GREEN with exit 0",
+  "cmd": [
+    "python3",
+    "tools/vexit_check.py",
+    "--selftest"
+  ],
+  "exit_code": 0,
+  "verdict_word": "GREEN",
+  "verdict_line": "GREEN",
+  "tool": "vexit_check",
+  "convention": "VEXIT-1: last VERDICT: line on stdout must agree with exit code"
+}

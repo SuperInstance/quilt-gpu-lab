@@ -266,6 +266,25 @@ piece others can lift. Grab = copy the file; everything here runs alone.
   a bare-SHA pin that honestly tripped the context gate (fixture fixed, gate untouched);
   live tools/README.md + docs/PREREG-CLAIM-PROTOCOL.md: CLEAN rc=0, 8/8 cites resolve,
   receipt results/commit_cite_check_docs_2026-10-11.json.
+- **vexit-check** — `tools/vexit_check.py` — VERDICT-line vs exit-code convention witness
+  (pattern lifted PROVEN from VEXIT-1, booked 2026-10-11 commit 10b3f0b: the fleet adopted
+  "last VERDICT: line must agree with exit code" — exit_gate_witness found 9/28 experiments
+  exiting 0 under verdict-INVERTING mutation, and convention compliance was prose until now).
+  Runs a command (list-form subprocess, no shell), extracts the LAST `VERDICT:` line, and
+  gates: GREEN-vocabulary-with-nonzero-exit and RED-vocabulary-with-exit-0 both book MURMUR
+  (the SCOUT-74 class: FAIL prints, exits clean); silent exit with no VERDICT line books
+  MURMUR (never silent-clean); unknown verdict word books MURMUR (the vocabulary IS the gate);
+  spawn failure fails loud rc=2. Selftest pins are cross-checked against a deliberately-dumb
+  reference classifier so the classifier cannot drift from its own pin. Stdlib-only,
+  read-only on the target, exit 0=CONSISTENT / 1=MURMUR / 2=FAIL-INPUT, JSON receipt.
+  `python tools/vexit_check.py --cmd CMD --args=a,b [--out r.json] | --selftest`
+  TEST receipt 2026-10-11: selftest 11/11 — selftest caught two real bugs live (an
+  empty-cmd fail-loud pin that actually spawned a valid interpreter — pin fixed to hit
+  the real empty-cmd path; and the CLI rejected `--args=value` single-token form, fixed
+  with an `=` pre-split); worked example rc=0 CONSISTENT, murmur control (VERDICT: FAIL,
+  exit 0) rc=1 MURMUR with the class why-line; live self-witness (vexit_check --selftest
+  as its own target): CONSISTENT rc=0, receipt
+  results/vexit_check_selfwitness_2026-10-11.json.
 - **rho-hazard-gate** — `tools/rho_hazard_gate.py` — common-mode null-dependence hazard gate
   (pattern lifted PROVEN from D12am/D12an, booked 2026-10-11: discovery-floor blow-up under
   inter-stream corr rho is superlinear delta = blowup-1 ~ rho^gamma, gamma fitted 2.04 on the
