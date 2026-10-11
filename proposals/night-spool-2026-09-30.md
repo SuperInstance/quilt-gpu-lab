@@ -59,6 +59,24 @@
 - [spawned by QG2] QG4: budget/gens phase diagram (W x gens grid, 1024 streams/cell) — map the crossing frontier. Directly serves "cells are dedicated; routing happens between cells".
 - [spawned by PR-SWEEP #1] RECEIPT-CITE: amend QG1/QG2 receipts (proposals/runs/*.md) to cite SuperInstance repos by name (weight law; see MicroMoth-quilt PR #29). Docs-only, no re-run.
 
+## SLICE 2026-10-11 14:1x AKDT (day-conductor) — (A) SCOUT-107: no CONTRADICT; PATH-1c spawned
+- (A) SCOUT-107 (full text proposals/runs/SCOUT-107-fleet-push-2026-10-11-2211Z.md): window pushes =
+  rc q37 (790f416, 21:22Z) + canons 1918Z. **No CONTRADICT.** HEADLINE q37: PREDICTIVE controller
+  (err integrated over 2W horizon) BREAKS q36's W20 target-lock — PASS; fine-target insensitivity
+  was a HORIZON artifact, not structural. CORROBORATE+SHARPEN PATH-1b: our FIXED-POINT-AT-FINE rows
+  (degrade/verdict gates) share the surface shape; q37 makes the "payload quantization" alternative
+  testable-in-principle. TOOL (canons gem): flux-conformance report predicted 68% PASS, agent ran
+  the shipped runner -> 12/62 = 19.4%, "100%" categories at 0-7%, nondeterministic uninitialized
+  memory in escape_identity — fleet's most extreme RT-D1 instance yet; our real-probe/UNRUN doctrine
+  NON-VACUOUS; 4-way self-count disagreement = RECEIPT-HASH/FW-1 corroborate. Method steals for
+  FW-1-successor: assert-join-non-empty-before-trusting-zero; recompute cited counts from artifacts.
+  Spawned **PATH-1c** (CPU ~15m): horizon-probe over the two FIXED-POINT-AT-FINE knobs; gates G1-G4
+  pre-registered in the scout file; either outcome sharpens receipts (RED impossible for G2/G3).
+- (C) not due: newest OURS booking PATH-1b already REPRO PASS byte-level 13:1x. No scripted booking
+  since. Manifest unchanged (no ledger change; foreign d12am/d12an untracked, PW-1 standing).
+- No GPU fired (scout slot; serial law). No 429s; nothing duplicated; pong #49 unchanged.
+- Rotation next wake: (B) PATH-1c (top cheap) or GPU-TRUE-1 / QG4 / MC-1 / QG1d-corpus (GPU open).
+
 ## SLICE 2026-10-11 06:1x AKDT (day-conductor) — (A) SCOUT-103 + (C) GLOSS-1 REPRO PASS (byte-level)
 - (A) SCOUT-103 (full text proposals/runs/SCOUT-103-fleet-push-2026-10-11-1415Z.md): window pushes =
   rc q35 (bbcaf99) + canons 1318Z. **No CONTRADICT.** q35: q34 one-sided controllability STRUCTURAL —
