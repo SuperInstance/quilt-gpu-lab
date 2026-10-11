@@ -7305,3 +7305,33 @@ Rotation next wake: (A) SCOUT-92 per rotation; GPU open (QG4/QG1d-corpus/MC-1).
 - G3 SOFT class (torch fit heads logit_fit/fit_mlp_seed): deferred-to-booked-repro per prereg — QO10 verdict-level REPRO PASS 2026-10-02 + ensemble-spread rule covers stochastic-head degeneracy.
 - G4: no RED, no booking threatened. GLOSS-1 CLOSES the SCOUT-98 slackwater class on our assets.
 - CPU only, no GPU fired, no 429s. Manifest re-sealed this landing.
+
+## SLICE 2026-10-11 06:1x AKDT (day-conductor) — (A) SCOUT-103 (rc q35 structural law) + (C) GLOSS-1 REPRO PASS
+- (A) SCOUT-103, window 1211Z→1411Z (full text proposals/runs/SCOUT-103-fleet-push-2026-10-11-1415Z.md):
+  **rc q35 (bbcaf99, 13:23Z)** answers q34's open question — one-sided controllability is STRUCTURAL:
+  upward cadence purchasable ONLY at sustained full supply-side protection; reachable set {7..13} U {16};
+  BREADTH-1 = FIXED(1.0) trace-identical (their draft-1 false positive caught by trace cross-check
+  BEFORE commit — receipt discipline witness); q36 opened (bleed-side 13-floor, arming-window quantization).
+  CORROBORATE+SHARPEN of our PATH-1: path-dependence is a property of knobs with state (hysteresis);
+  PATH-1's PATH-INDEPENDENT verdicts (eproc/degrade/verdict) are exactly the stateless-gate side of
+  that law — no CONTRADICT. determ1 SOFT lane untouched. **canons 1318Z**: qthe-codec ships its own
+  falsifications (13/14 examples print VERDICT: + exit codes; ex8 booked fix measured WORSE and
+  published negative; mutation-verified live-code coupling) — TOOL/STEAL: frameworkless VERDICT-exit
+  receipt convention; README-✅-vs-example-1 contradiction = FW-1/RT-D1 corroborate. hierarchical-memory
+  53/217 tests failing, CI never run = CI-1 corroborate. Method fix (glob-family counting) noted for
+  scout rota. voice-games tournament data + atlas regen = routine; 0 open PRs (6 watch repos); 0 new issues;
+  [EMBASSY] pong #49 unchanged.
+- Spawned **VEXIT-1** (docs ~15m, LOW, pre-reg not required for docs-only): adopt the qthe-codec
+  convention — census/verdict tools print a final `VERDICT: ...` line and encode verdict in exit code
+  (our tools already fail-loud on exceptions but print JSON only); targets gloss1/thresh2/path1/
+  verdict_index; gate = receipts grep-able by `VERDICT:` at a fixed anchor line.
+- (C) mandatory repro of newest OURS booking **GLOSS-1 (36852d2): REPRO PASS (byte-level)** — committed
+  tool re-run from tracked-clean tree (foreign d12am/d12an untracked lanes persist, PW-1): exit 0,
+  G1 rows=3 G3 probes=5 RED=0, receipt **byte-identical** to committed (sha256 fbc36420… both runs).
+  Repro artifact archived /home/eileen/scratch/repro/gloss1_repro_0615.json; in-repo receipt restored
+  from HEAD (no dirty-tree landing). Fail-loud anchor witnessed live (census FAIL(1) on the degenerate
+  pair probe is the probe's designed exit, not a crash).
+- Manifest re-seal deferred per precedent (foreign untracked d12 lanes; advisory only, no sealed paths
+  touched; no ledger change this slice). No GPU fired (scout+repro slots; serial law). No 429s; no
+  running conductor processes; nothing duplicated.
+- Rotation next wake: (B) VEXIT-1 (top cheap) or GPU-TRUE-1; GPU open (QG4/MC-1/QG1d-corpus).

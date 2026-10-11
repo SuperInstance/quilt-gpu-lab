@@ -59,6 +59,21 @@
 - [spawned by QG2] QG4: budget/gens phase diagram (W x gens grid, 1024 streams/cell) — map the crossing frontier. Directly serves "cells are dedicated; routing happens between cells".
 - [spawned by PR-SWEEP #1] RECEIPT-CITE: amend QG1/QG2 receipts (proposals/runs/*.md) to cite SuperInstance repos by name (weight law; see MicroMoth-quilt PR #29). Docs-only, no re-run.
 
+## SLICE 2026-10-11 06:1x AKDT (day-conductor) — (A) SCOUT-103 + (C) GLOSS-1 REPRO PASS (byte-level)
+- (A) SCOUT-103 (full text proposals/runs/SCOUT-103-fleet-push-2026-10-11-1415Z.md): window pushes =
+  rc q35 (bbcaf99) + canons 1318Z. **No CONTRADICT.** q35: q34 one-sided controllability STRUCTURAL —
+  upward cadence ONLY at sustained full supply-side protection; reachable {7..13} U {16}; their
+  draft-1 false positive caught by trace cross-check pre-commit (receipt witness). CORROBORATE+SHARPEN
+  PATH-1: path-dependence = knob-carries-state; PATH-1's PATH-INDEPENDENT knobs are the stateless side.
+  determ1 SOFT lane = standing re-fire candidate on deterministic backend. TOOL/STEAL: qthe-codec
+  self-falsifying VERDICT-exit receipt convention -> spawned **VEXIT-1** (docs ~15m, LOW: VERDICT line +
+  exit-code contract in census tools). hierarchical-memory 53/217 fail CI-never-run = CI-1 corroborate.
+- (C) mandatory repro of newest OURS booking GLOSS-1 (36852d2): **REPRO PASS byte-level** — committed
+  tool re-run exit 0, receipt sha256 fbc36420... byte-identical both runs; repro artifact in
+  /home/eileen/scratch/repro/gloss1_repro_0615.json; in-repo receipt restored (no dirty landing).
+- Manifest re-seal deferred (foreign d12am/d12an untracked, PW-1; no ledger change). No GPU (rotation).
+- Rotation next wake: (B) VEXIT-1 or GPU-TRUE-1; GPU open (QG4/MC-1/QG1d-corpus).
+
 ## SCOUT-24 (2026-10-02 2039Z) — full text proposals/runs/SCOUT-24-fleet-push-2026-10-02-2039Z.md
 - No CONTRADICT this sweep. CORROBORATE: canons e7b3d79 reporter-default defeat (quilt-adjudication exit 0) — our REPORTER-DEFAULT CLEAN bill is non-vacuous (the class is live fleet-wide); jev-quilt hourly wipes 0 drift alarms (QC-JEV booking untouched). TOOL/STEAL: fleet-triage 2353a14 RETRACTION lesson — "grep every write to every field a claim depends on BEFORE modelling it" (4/6 of their bad instruments were simplification errors) → spawned **FW-1 field-write census** (CPU ~40m; booked verdicts' read-fields x write-sites; uncovered write-path on a booked result = RED). READING (low): fleet-triage ASCII-as-Vision landscape + reprojection probe → **AT-1** (low). RC-4 priority RAISED (4th reseal-forgery instance: doubt-ledger live ledger; reference design = quilt-mcp-receipts, 15/15 mutation-clean incl. reseal attack). [EMBASSY] none new; pong#49 unchanged (Casey day item).
 - [DONE 15:1x Oct 3 FW-1 COMPLETE] tranches 1-3, 9/9 GREEN (tranche 3: CI-1/VSB-1/QG7b, 1 RC-1b entry — ci_gate unpinned).
