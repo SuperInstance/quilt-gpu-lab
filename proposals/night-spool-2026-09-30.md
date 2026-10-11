@@ -3389,3 +3389,32 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   slot; serial law). No 429s; no running conductor processes; nothing duplicated.
 - Rotation next wake: (A) SCOUT-102, or (B) GLOSS-1 (top remaining CPU); GPU open (QG4/MC-1/
   QG1d-corpus).
+
+## SLICE 2026-10-11 04:1x AKDT (day-conductor) — (A) SCOUT-102 (quiet window) + (C) PATH-1 REPRO PASS
+- (A) SCOUT-102, window 1011Z→1211Z (no full-text file needed — sweep was small): rc HEAD unchanged
+  (b8986e3 q34, already covered); quilt-research-canons c4609fd (1017Z scout, 5 fresh finds):
+  fleet-sim-rs README ships the PRE-FIX formula + pre-fix numbers after the fix landed (doc/code
+  drift, FW-1/commit-cite corroborate — our commit-cite-check tool covers the SHA side);
+  tile-cuda "CUDA validation: 22 passed" runs under g++ with ZERO CUDA symbols, never includes
+  tile_cuda.h, single green CI was `echo No CI configured`, workflow deleted after (CI-1/RT-D1
+  corroborate + sharpen); fleet-gateway POSITIVE CONTROL (64/64, mutation-verified fail-first);
+  flux-zig VM-in-timed-loop + README-only baseline numbers; ternary-replay round-trip certifier
+  blind to the metadata it provably drops. **No CONTRADICT** — QO2 stack, PATH-1/THRESH-1/2,
+  receipt doctrine, QG3+QG6, W5a/b/c all unthreatened. PRs open fleet-wide: dependabot noise only
+  + git.pp #2 (watch, low); new issues 2, routine. [EMBASSY] pong #49 unchanged (7 comments).
+  Spawned **GPU-TRUE-1** (CPU ~20m, pre-reg first, tile-cuda spawn): GPU-truth census over every
+  booked GPU verdict (QO1/QG3/QG6/QO3/QO5, DET-family GPU arms) — does each committed producing
+  tool ASSERT torch.cuda.is_available() and pin device in its receipt, or would the same booking
+  reproduce silently on a CPU-only backend? Any GPU booking CPU-reproducible unnoticed = RED
+  (the tile-cuda class on OUR side). INSTRUMENT-01 receipts make our pins strong; this checks the
+  assert side.
+- (C) mandatory repro of newest OURS booking **PATH-1 (b4d353b): REPRO PASS (verdict+grade level)**
+  — committed tool re-run from tracked-clean tree (foreign d12am/d12an untracked lanes persist, PW-1)
+  → /home/eileen/scratch/repro/path1_repro_0422.json, exit 0. Verdict GREEN == booked GREEN; grades
+  4/4 reproduce (determ1 PATH-DEPENDENT-SOFT, eproc/degrade/verdict PATH-INDEPENDENT); all three
+  clean-knob digest pairs are schedule-identical as booked. Honest caveat: determ1 direct/ramp digests
+  differ this run with control-vs-control differing too (known torch SOFT class — the booked G4 term;
+  INCONCLUSIVE-SOFT stands, no path-dependence claim).
+- Manifest re-seal deferred per precedent (foreign untracked d12 lanes); no sealed paths touched.
+  No GPU fired (scout+repro slots per rotation; serial law). No 429s; nothing duplicated.
+- Rotation next wake: (B) GLOSS-1 (top CPU) or GPU-TRUE-1; GPU open (QG4/MC-1/QG1d-corpus).
