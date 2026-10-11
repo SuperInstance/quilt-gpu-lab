@@ -7277,3 +7277,14 @@ Rotation next wake: (A) SCOUT-92 per rotation; GPU open (QG4/QG1d-corpus/MC-1).
   continuously graded (every mid-setting is trace-distinct), degrade/verdict knobs are two-rung gates whose
   mid-settings collapse. A COARSE grade is a DESIGN property (gate semantics), not q32 decoration.
 - CPU only, no GPU fired, no 429s. Manifest re-sealed this landing.
+
+## SLICE 2026-10-11 01:1x AKDT (day-conductor) — (C) THRESH-2 REPRO PASS (verdict-level)
+- Mandatory repro of newest OURS booking THRESH-2 (fd25a5c): committed tool re-run from tracked-clean
+  tree (foreign d12am untracked lane persists, PW-1) → /home/eileen/scratch/repro/thresh2_repro.json,
+  exit 0. Verdict GREEN == booked GREEN; grades reproduce 4/4 (determ1 CONTINUOUS, eproc CONTINUOUS,
+  degrade COARSE, verdict_gate COARSE); verdict_gate ordinal rung sequence PASS×4→FAIL identical to
+  booking. **REPRO PASS.** Honest caveat: byte digests not compared cross-run for the subprocess knobs
+  (determ1 SOFT/G4 class, W5B2 precedent — graded at verdict level, matching the booking's own G4 terms).
+- No GPU fired (repro slot per rotation; lane idle after). No 429s; no running conductor processes;
+  nothing duplicated. Rotation next wake: (A) SCOUT-101 per rotation, or (B) GLOSS-1 (top CPU) /
+  GPU QG4/MC-1/QG1d-corpus.
