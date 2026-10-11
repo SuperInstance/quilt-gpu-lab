@@ -7257,3 +7257,23 @@ Rotation next wake: (A) SCOUT-92 per rotation; GPU open (QG4/QG1d-corpus/MC-1).
   param-decoration (identical receipts) — the knob is only witnessed on the fail arm. Lesson:
   knob-liveness is input-dependent; census pins must exercise the arm the knob guards.
 - CPU only, no GPU fired, no 429s. G4 repro artifact: /home/eileen/scratch/repro/thresh1_repro.json.
+
+## [BOOKED 00:4x AKDT Oct 11] THRESH-2 granularity-ladder census: GREEN (G1-G4; grades: determ1 CONTINUOUS, eproc CONTINUOUS, degrade COARSE, verdict_gate COARSE)
+- Pre-reg c9a2541 + AMENDMENT 1 dee6c38 + tool committed+pushed BEFORE the GREEN fire (SCOUT-99 spawn, q33/q34).
+- Ladder result (results/thresh2/census.json): determ1 eps 5/5 rungs CONTINUOUS; eproc sigma 5/5 rungs
+  CONTINUOUS; degrade_gate tolerance 2 rungs COARSE (0.0/0.25=REGIME-BRITTLE vs 0.5/0.75/1.0=GRACEFUL —
+  the tolerance exposure is a STEP at ~0.5 on the pinned sweep, q32 mid-rung-collapse shape, alive not vacuous);
+  verdict_gate minimum 2 rungs COARSE monotone (PASS..PASS@0.90 -> FAIL@0.95 — binary verdict law, expected).
+- G1 20/20 rows runnable (post-amendment); G2 all four THRESH-1 endpoint anchors reproduce exactly (degrade
+  endpoint digests byte-identical to THRESH-1 booking 4e8e6c50/9c6ae245); G3 zero MONOLITHIC => no vacuous knob;
+  G4 in-process knobs bit-identical on re-run, subprocess knobs verdict-level (determ1 SOFT class).
+- FINDING (Amendment 1): eproc REFUSES sigma<=0.0 fail-loud (ValueError) — PARAM-1's REQUIRED-refuse gate
+  witnessed live on an out-of-domain ladder endpoint; refusal probe pinned in the census (sigma0_refuses=true).
+- q34 hazard note (honest): eproc E-path ordinal is DEGENERATE on the pinned series (all-zero at every sigma —
+  E never crosses 1.0), so the non-monotone-ladder check is INCONCLUSIVE-by-degeneracy for eproc, not a hazard
+  finding; digest-level CONTINUOUS grading unaffected. Future ladder pins should pick a series where the ordinal
+  output actually moves.
+- LAW (sharpens THRESH-1): exposure granularity is knob-specific and input-anchored — determ1/eproc knobs are
+  continuously graded (every mid-setting is trace-distinct), degrade/verdict knobs are two-rung gates whose
+  mid-settings collapse. A COARSE grade is a DESIGN property (gate semantics), not q32 decoration.
+- CPU only, no GPU fired, no 429s. Manifest re-sealed this landing.

@@ -1,0 +1,102 @@
+{
+  "census_digest": "8c5b886dad6b7111af136de4433912c0a43984f4c84507d4f9fc27ab2c5604be",
+  "n_knobs": 4,
+  "n_runnable": 4,
+  "prereg": "proposals/runs/THRESH-2-granularity-ladder-census-prereg-2026-10-11.md",
+  "reds": [],
+  "rows": [
+    {
+      "anchors_ok": true,
+      "grade": "CONTINUOUS",
+      "knob": "determ1 eps",
+      "n_rungs": 5,
+      "n_settings": 5,
+      "ok": true,
+      "settings": {
+        "1e-1": "9eeeda9252c5028867949e1db7d88a9f34a873da0b12377e4cddfdc626a937d6",
+        "1e-2": "1ff714cde7dfb9ee8c3171a39c0cb5f1edbdedbd0228e033228d6ba77b23a0f6",
+        "1e-3": "7e49cecb27462c561c92aa8d1199b8acf95f3f41866d4398d77c4ec6dc81a5ac",
+        "1e-4": "2e48161abafda8e55c6147f9e143533c1d84136111ba711f8e3cefddfe3720c8",
+        "1e-5": "24a4cb553266953f6a5f2ef20b835f486a9ae644a104d4d0a565b2ee8eebd6ba"
+      }
+    },
+    {
+      "anchors_ok": true,
+      "grade": "CONTINUOUS",
+      "knob": "eproc sigma",
+      "monotone_rungs": false,
+      "n_rungs": 5,
+      "n_settings": 5,
+      "ok": true,
+      "ordinal_sequence": {
+        "0.1": "0000000000000000000000000000000000000000000000000000000000000000",
+        "0.25": "0000000000000000000000000000000000000000000000000000000000000000",
+        "0.5": "0000000000000000000000000000000000000000000000000000000000000000",
+        "0.75": "0000000000000000000000000000000000000000000000000000000000000000",
+        "1.0": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "settings": {
+        "0.1": "d80d5c952a5adae8f38b8a5b665c8605abab6bc5e8b38edda00d5163179850d5",
+        "0.25": "5252c7bd487263a7f271e8e4a906708ebfea7a7cfc12e407c54d02a5fb39486c",
+        "0.5": "fb2eb3cb5ed3deb3175a124eeaa1513a0b08c4a8802a1a3081d0c1cfde62112e",
+        "0.75": "41cbb0f93e9cb7948a52ed694a0bbb8c2c8a4f0f1ddf1cff3325873d584fe20b",
+        "1.0": "c98cd00c851f3b4d394fc9db7cc66bb0c80c580a5b59e5dacbf8ae4e4546cc1b"
+      },
+      "sigma0_refuses": true
+    },
+    {
+      "anchors_ok": true,
+      "grade": "COARSE",
+      "knob": "degrade_gate tolerance",
+      "n_rungs": 2,
+      "n_settings": 5,
+      "ok": true,
+      "settings": {
+        "0.0": "4e8e6c50d1cd46fb5c90bb29f15314e7ad6335769202e0005dd5b56409657bfc",
+        "0.25": "4e8e6c50d1cd46fb5c90bb29f15314e7ad6335769202e0005dd5b56409657bfc",
+        "0.5": "9c6ae2452f71d562b9ac4a4ed29f814f6694da74462b8056a1bb4d58e27fab99",
+        "0.75": "9c6ae2452f71d562b9ac4a4ed29f814f6694da74462b8056a1bb4d58e27fab99",
+        "1.0": "9c6ae2452f71d562b9ac4a4ed29f814f6694da74462b8056a1bb4d58e27fab99"
+      },
+      "verdicts": {
+        "0.0": "REGIME-BRITTLE",
+        "0.25": "REGIME-BRITTLE",
+        "0.5": "GRACEFUL",
+        "0.75": "GRACEFUL",
+        "1.0": "GRACEFUL"
+      }
+    },
+    {
+      "anchors_ok": true,
+      "grade": "COARSE",
+      "knob": "verdict_gate minimum",
+      "monotone_rungs": true,
+      "n_rungs": 2,
+      "n_settings": 5,
+      "ok": true,
+      "ordinal_sequence": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "FAIL"
+      ],
+      "settings": {
+        "0.80": "PASS",
+        "0.85": "PASS",
+        "0.875": "PASS",
+        "0.90": "PASS",
+        "0.95": "FAIL"
+      },
+      "verdicts": {
+        "0.80": "PASS",
+        "0.85": "PASS",
+        "0.875": "PASS",
+        "0.90": "PASS",
+        "0.95": "FAIL"
+      }
+    }
+  ],
+  "tool": "thresh2_granularity_ladder",
+  "verdict": "GREEN"
+}
