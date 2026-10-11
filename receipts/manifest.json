@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-11T02:22:14.400117+00:00",
+  "generated_at": "2026-10-11T02:27:06.926847+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "62edf6d805e8bc212e6a5f427e938e8004d62c55e02daa3f0fa5d4b457469b43",
+    "RESULTS.md": "bd273633d9d5209f662dfc40ba59c6aedb9cb6e0213b9412735eb9290415494e",
     "QUEUE.md": "913d9ce17ab763e14cb11aea273536f549d87ae40163f6b93ca1a006546c1939"
   },
   "experiments": {
@@ -282,6 +282,7 @@
     "ci_gate.py": "9b958cf592390707dfd8294a0ade7fd36cdd346a264b7f01750e19dec2c541d7",
     "codespace_lane.sh": "996c8e110423fa6b7b22b1781dbe88496b4e488f0601f893abcf1cf2f2580321",
     "collapse_gate.py": "019c14126ca42934360fee89681cc098ed759a0df817f0273aa1633439673dfc",
+    "const_census.py": "6212b1503cc1e763bc37f3399553d454bb85fd412f8af6ee042c40ad64da72a2",
     "contam_gate.py": "297be5aec304097cdedb060a257a49c4bc1a03679949a648f6c5a55dcf96366f",
     "control_ladder.py": "450612e464931d9f7001b3f1bb9e59ca531b17dbf16b030362ce9c2d6e24e06d",
     "corpus_filter.py": "3dbe92aa917eead56bd0c47a2dea858595ee8277a18c0d6c812424bd3ace79c3",
