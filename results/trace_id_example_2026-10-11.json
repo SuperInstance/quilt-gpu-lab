@@ -1,0 +1,1 @@
+{"tool": "trace-id", "ts": "2026-10-11T14:41:35Z", "a": "/tmp/traceid_demo/a.jsonl", "b": "/tmp/traceid_demo/b.jsonl", "ignored": ["ts"], "sha_a": "7c7ed589a56a7d5a", "sha_b": "7c7ed589a56a7d5a", "verdict": "IDENTICAL", "len": 2}

@@ -284,6 +284,22 @@ piece others can lift. Grab = copy the file; everything here runs alone.
   D12am replay rc=0 KEEP: gamma 2.0447, r2 0.9663, 7 fit points, receipt
   results/rho_hazard_gate_d12am_replay_2026-10-11.json.
 
+- **trace-id** — `tools/trace_id.py` — deterministic-replay trace identity witness
+  (pattern lifted PROVEN from SCOUT-103/q35, booked 2026-10-11: the BREADTH-1 arm's draft-1
+  claimed it RAISED something vs FIXED(1.0) but the trace cross-check showed the run was
+  TRACE-IDENTICAL — "a raise happened" is a measurement over the event stream, not a
+  summary-number claim): two event traces (JSONL; raw-line fallback) -> canonical-JSON
+  normalize (key-order insensitive), optional --ignore dotted fields for wall-clock noise
+  -> compare sequences: IDENTICAL rc=0 / DIVERGED rc=1 (first divergence index named, both
+  events shown, extra-tail and length-mismatch cases named, empty-vs-empty honestly
+  IDENTICAL) / fail-loud rc=2. Stdlib-only, read-only, sha receipt both sides.
+  `python tools/trace_id.py --a runA.jsonl --b runB.jsonl [--ignore ts,wall --out r.json] | --selftest`
+  TEST receipt 2026-10-11: selftest 7/7 (reorder+ignore IDENTICAL, without-ignore RED
+  control, divergence named at right index, tail/length DIVERGED, empty IDENTICAL,
+  raw-line compare, missing-file fail-loud); live example rc=0 IDENTICAL (2 events,
+  key-order + ts-insensitive, receipt results/trace_id_example_2026-10-11.json) and
+  content-delta control rc=1 DIVERGED at event 1.
+
 ## When you add a tool
 
 Append it here with: name — path — one line on what it does. If it needs
