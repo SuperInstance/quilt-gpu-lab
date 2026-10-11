@@ -1129,3 +1129,23 @@ Usage: `python tools/qcell_sim.py --genome '[["h",0],["cx",0,1]]' --shots 512` |
   tool correct, pin fixed); live slackwater replay: game_state UNWIRED rc=1, receipt
   results/param_liveness_slackwater_replay_2026-10-10.json; selftest receipt
   results/param_liveness_selftest_2026-10-10.json.
+
+- **angle-width-gate** — `tools/angle_width_gate.py` — hidden-angle channel WIDTH rescue gate
+  (pattern lifted PROVEN from D23d, booked 2026-10-11: an angle register KILLed at W=1 is rescued by
+  the W*T bandwidth lever — G1 rescue delta acc(W=8)-acc(W=1)=0.144 >= 0.10 at T=100, G2 viability
+  failed honestly, verdict KILL). N cells / N/2 pairs share a secret angle; per cell W qubits carry
+  psi + private noise; J views of T Bernoulli bits at phase phi -> per-qubit grid-MLE + circular
+  mean across W -> nearest-neighbor 2AFC pair-match accuracy. Gates: G1 rescue delta >= bar AND
+  G2 acc(W_hi) >= via (both clauses, else KILL); D23d-convention shuffled-secrets null (per-cell
+  INDEPENDENT secrets, partners split) must stay cold — hot null books RED, never PASS. Stdlib-only,
+  seeded, fail-loud rc=2, exit 0=RESCUED / 1=KILL-or-RED, JSON receipt.
+  `python tools/angle_width_gate.py --n 32 --w-lo 1 --w-hi 8 --t 100 --delta 0.10 --via 0.90 [--draws 5 --out r.json] | --selftest`
+  TEST receipt 2026-10-11: selftest 4/4 — selftest caught two REAL estimator bugs live before any
+  booking: (1) the shuffled null relabeled pairs, but shuffled labels re-paired cells so two cells
+  shared label AND secret -> null read ~1.0, RED everywhere; fixed to per-cell independent secrets
+  (D23d convention, null 0.0375 vs chance 0.067); (2) the grid-MLE dropped the T*log(1-pg) term of
+  the log-likelihood as "constant" — it varies with g, estimator was biased ~0.3 rad at T=400;
+  full log-likelihood restored, easy-channel pin went RESCUED. Live D23d replay @ booked config
+  (n=32, T=100, draws=5, seed 2718): G1 PASS delta 0.269, G2 FAIL 0.794 < 0.90, KILL rc=1 — same
+  verdict shape as the booked run, 2.0s wall, receipt
+  results/angle_width_gate_d23d_replay_2026-10-11.json.

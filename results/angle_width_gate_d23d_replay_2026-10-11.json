@@ -1,0 +1,29 @@
+{
+  "tool": "angle-width-gate",
+  "pattern": "D23d",
+  "config": {
+    "n": 32,
+    "w_lo": 1,
+    "w_hi": 8,
+    "t": 100,
+    "delta": 0.1,
+    "via": 0.9,
+    "sigma_secret": 0.15,
+    "sigma_private": 0.1,
+    "j_views": 8,
+    "grid_n": 512,
+    "draws": 5,
+    "seed": 2718
+  },
+  "acc_w_lo": 0.525,
+  "acc_w_lo_second": 0.5625,
+  "acc_w_hi": 0.79375,
+  "rescue_delta": 0.26874999999999993,
+  "null_acc": 0.0375,
+  "chance": 0.06666666666666667,
+  "null_hot": false,
+  "G1_rescue_pass": true,
+  "G2_viability_pass": false,
+  "verdict": "KILL",
+  "wall_s": 1.97
+}
