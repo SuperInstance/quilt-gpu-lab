@@ -1,6 +1,6 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-11T20:14:35.321027+00:00",
+  "generated_at": "2026-10-11T21:12:20.469876+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
     "RESULTS.md": "1c484ef455cc0c9d484a26127d31fa967ca1679a63eb0d4c827b5596ce6710e7",
@@ -269,8 +269,9 @@
     "xq0_substrate_consolidation.py": "eae71b6a1c664669a941bc9be03e7574e0ec16fb6f9541250aae11c9384bb32a"
   },
   "tools": {
-    "README.md": "96fa57107d44d413eca2dbed9e1aa1db94c0636ac47537fceeab27a663b9706d",
+    "README.md": "9479c3018ad98be9d4c13a0bfb6ace520ffb6389b6c3955982c55a6640a3c9ae",
     "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "angle_width_gate.py": "337d94faca6e3d6107e440ada86fb82b2d62aa2051147ee353e7d65059cf39c6",
     "auc_sep.py": "65611d7fc6cb42e3bbd515bb4850e724bf5aa7d318086a4c5e906088f89bd6c9",
     "binom_gate.py": "54a02b649c10fc390b49c60131d720b342be8e7552b7189aa7825645f20c3aec",
     "calib_gate.py": "3f7a109c81f70bef1bb5d1c2f42656f0bfa65d8fd4a1d27354a0c9eac9019f5d",
