@@ -41,12 +41,11 @@ def run(cmd: list[str], timeout: int = 120) -> tuple[int, str]:
 # ---------------- K1: determ1 eps (subprocess, scratch outputs) ----------------
 def k1_determ1() -> dict:
     digs = {}
-    with tempfile.TemporaryDirectory() as td:
-        for eps in ("1e-2", "1e-4"):
-            out = Path(td) / f"det_{eps}.json"
-            rc, so = run([PY, "experiments/determ1_lattice_snap.py", "B", eps, str(out)])
-            if rc != 0 or not out.exists():
-                return {"knob": "determ1 eps", "ok": False, "why": f"rc={rc} {so[-400:]}"}
+    for eps, tag in (("1e-2", "thresh1_eps1e-2"), ("1e-4", "thresh1_eps1e-4")):
+        rc, so = run([PY, "experiments/determ1_lattice_snap.py", "B", eps, tag])
+        out = REPO / f"results/determ1_lattice_snap/B-{tag}.json"
+        if rc != 0 or not out.exists():
+            return {"knob": "determ1 eps", "ok": False, "why": f"rc={rc} {so[-400:]}"}
             # strip wall-clock field before digest (wall_s is nondeterministic
             # bookkeeping, not trace); compare the physics payload only.
             rec = json.loads(out.read_text())
@@ -65,7 +64,7 @@ def k2_eproc() -> dict:
     digs = {}
     for sigma in (0.5, 0.75):
         r = eprocess(d, sigma)
-        digs[str(sigma)] = norm(float(r["E"]))
+        digs[str(sigma)] = norm([float(x) for x in r["E"]])
     return {"knob": "eproc sigma", "ok": True, "settings": digs,
             "diverges": digs["0.5"] != digs["0.75"]}
 
@@ -77,6 +76,7 @@ def k3_degrade() -> dict:
         {"param": 60, "benefit": 10.1},
         {"param": 52, "benefit": 6.3},
         {"param": 45, "benefit": 4.0},
+        {"param": 40, "benefit": 4.5},  # small positive delta: tolerance-witnessing step
     ])
     digs, verdicts = {}, {}
     with tempfile.TemporaryDirectory() as td:
@@ -96,11 +96,11 @@ def k3_degrade() -> dict:
 
 # ---------------- K4: verdict_gate bounds (in-process, pinned) ----------------
 def k4_verdict() -> dict:
-    from tools.verdict_gate import finalize, Gate
+    from tools.verdict_gate import finalize, Gate, StatMeta
     digs = {}
     for mn in (0.80, 0.95):
         v = finalize(gates=[Gate("x", value=0.91, minimum=mn)],
-                     stats={"x": {"std": 0.03, "n": 32}},
+                     stats={"x": StatMeta(std=0.03, n=32)},
                      completeness=True, status_source="own")
         digs[str(mn)] = v.verdict
     return {"knob": "verdict_gate minimum", "ok": True, "settings": digs,
