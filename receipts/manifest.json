@@ -1,6 +1,6 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-10T22:23:49.265018+00:00",
+  "generated_at": "2026-10-11T00:25:53.146439+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
     "RESULTS.md": "b6b1d6d95c05c4db38bfa47a3ee98763cd442ff10d5aaae6f961a88aabdfd8d9",
@@ -267,7 +267,7 @@
     "xq0_substrate_consolidation.py": "eae71b6a1c664669a941bc9be03e7574e0ec16fb6f9541250aae11c9384bb32a"
   },
   "tools": {
-    "README.md": "6cbacfac0ea3ea09c25e95987c0dfa055e27288e2693b1c772f510776e80ee32",
+    "README.md": "f6583a6b70e5b3f395ee99157e429bfcce5dae5e9dfd6f9be809615ddda26b7d",
     "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "auc_sep.py": "65611d7fc6cb42e3bbd515bb4850e724bf5aa7d318086a4c5e906088f89bd6c9",
     "binom_gate.py": "54a02b649c10fc390b49c60131d720b342be8e7552b7189aa7825645f20c3aec",
@@ -332,6 +332,7 @@
     "lit_sweep.py": "b29bc7ae6f6f3f7fead1449f6498ab7d9e99f4f478a7bf4d0c40bc5171ad9495",
     "local_jev_bench.py": "f3ff1dc606a2eeeb5206b49e75925853e1ab26cc054d95b859e6384a2d84107a",
     "match_presence.py": "ff8453e71f059389105fcff8161845759e2633b2bb2d09ed51e515276e96a77f",
+    "merkle_seal_chain.py": "e62b8ccac7b4c7ac052d2bebedc805ffd5288839af2387dc31c1e90176a4df8a",
     "mut_adequacy.py": "921c1d1ad3da439d1bb9e83ab659f45ddf13f1776163f8c70cff14112c15fecb",
     "nullvar_calib.py": "e3bd928929953c1825fb6230ea741f863301d08a3e9a617629583f93a0099750",
     "onboard.py": "dc25ca8d051294c8e14f2acecbc0e7017908e60e865daad401ff8d5bc6d5e80f",
