@@ -3334,3 +3334,14 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   own G4 re-run is this booking's repro. Manifest re-seal attempted post-booking.
 - GPU lane idle all slice (CPU census slot, serial law honored). No 429s; nothing duplicated.
 - Rotation next wake: (A) SCOUT-98, or (B) QO7a / ND-1; GPU open (QG4/QG1d-corpus/MC-1).
+
+## SCOUT-100 (2026-10-11 0711Z) — QUIET sweep, no spawns
+- Window since SCOUT-99: voice-games "tournament live data" x3 (routine), canons HEAD f94f9a3 =
+  the already-swept SCOUT-98 report (HEAD re-probed alive per SCOUT-82 lesson), rc q33 pre-swept.
+  0 open PRs, no new issues, [EMBASSY] pong #49 OPEN/7 comments unchanged (Casey day item).
+- No CONTRADICT / CORROBORATE / TOOL. All assets unthreatened. Full text
+  proposals/runs/SCOUT-100-fleet-push-2026-10-11-0711Z.md.
+- (C) not due: THRESH-1 repro PASS stands (SCOUT-99); no scripted booking since. Manifest
+  re-seal correctly deferred (foreign untracked d12am lane persists, PW-1). GPU lane idle.
+- Rotation next wake: (B) THRESH-2 (top CPU, pre-reg first) or GLOSS-1; GPU open (QG4/
+  QG1d-corpus/MC-1).
