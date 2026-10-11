@@ -96,7 +96,7 @@ def main() -> None:
         print(f"VERDICT: {census['verdict']}")
         sys.exit(1)
 
-    rowmap, horizon_hits, reds = {}, [], [], []
+    rowmap, horizon_hits, reds = {}, [], []
     for knob, targets in TARGETS.items():
         per_variant, vok = {}, True
         for vname, win in VARIANTS.items():
