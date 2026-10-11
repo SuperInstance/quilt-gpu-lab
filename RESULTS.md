@@ -7288,3 +7288,11 @@ Rotation next wake: (A) SCOUT-92 per rotation; GPU open (QG4/QG1d-corpus/MC-1).
 - No GPU fired (repro slot per rotation; lane idle after). No 429s; no running conductor processes;
   nothing duplicated. Rotation next wake: (A) SCOUT-101 per rotation, or (B) GLOSS-1 (top CPU) /
   GPU QG4/MC-1/QG1d-corpus.
+
+## [BOOKED 03:4x AKDT Oct 11] PATH-1 knob history-dependence census: GREEN (G1-G4; 3/4 PATH-INDEPENDENT, determ1 SOFT-inconclusive)
+- Pre-reg 1da9fca + tool committed+pushed BEFORE fire (SCOUT-101 spawn, rc q34). Fired from committed tree; results/path1/census.json (digest 00f2082a…).
+- Result: eproc sigma (0.5), degrade_gate tolerance (0.5), verdict_gate minimum (0.875) — RAMP-vs-DIRECT endpoint digests IDENTICAL ⇒ **PATH-INDEPENDENT**. G4 satisfied: booked grades upgrade toward unconditional for these knobs (eproc CONTINUOUS now certified schedule-free on the pinned series; degrade/verdict COARSE classes likewise schedule-free).
+- determ1 eps (1e-3): RAMP≠DIRECT digest, but the DIRECT-vs-DIRECT control ALSO differs (two fresh DIRECT arms, two digests) ⇒ nondeterminism (known torch SOFT class) fully explains the mismatch — booked **INCONCLUSIVE-SOFT, no path-dependence claim** (per pre-reg control rule; a RED would have required a stable control). Path-dependence on the determ1 lane remains UNTESTED (needs deterministic backend or injected-RNG seam, MicroMoth #39/#41 convention).
+- G2 anchors reproduce THRESH-2 classes 4/4 (eproc 5-rung CONTINUOUS + sigma0 refusal, verdict 2-rung PASS→FAIL, degrade 2-rung RB→GRACEFUL).
+- En-route trail (declared, pre-verdict): 1 harness bug fixed in place (G2 grade anchors initially read the DIRECT arm's 1-rung digest set — corrected to RAMP arm rungs, gates unchanged). First fired artifact (RED from the buggy anchors) archived scratch/path1_archive/, refuse-overwrite honored on re-fire (exit 3 witnessed, RC-1 rule live).
+- CPU only, no GPU fired, no 429s.

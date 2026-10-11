@@ -3375,3 +3375,17 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   census slot). No 429s.
 - Rotation next wake: (A) SCOUT per rotation, or (B) GLOSS-1 (top remaining CPU); GPU open (QG4/MC-1/
   QG1d-corpus).
+
+## SLICE 2026-10-11 03:1x-03:4x AKDT (day-conductor) — (B) PATH-1 BOOKED: GREEN
+- Pre-slice hygiene: dirty tracked results/determ1_lattice_snap/B-thresh2_eps*.json (THRESH-2
+  repro-overwrite hazard class) archived to /home/eileen/scratch/path1_pre/ and restored from
+  HEAD — fired artifacts are the committed ones; foreign d12am untracked lane untouched (PW-1).
+- (B) PATH-1 per rotation (SCOUT-101 spawn): pre-reg 1da9fca + tool pushed BEFORE fire. GREEN:
+  eproc/degrade/verdict knobs PATH-INDEPENDENT (G4 upgrade: grades now schedule-free);
+  determ1 INCONCLUSIVE-SOFT (DIRECT-vs-DIRECT control nondeterministic — no path claim; needs
+  deterministic backend, MicroMoth RNG-seam convention noted). Full booking in RESULTS.md.
+  En-route: G2-anchor harness bug fixed in place (declared); refuse-overwrite exit-3 witnessed live.
+- (C) not due (newest prior OURS booking THRESH-2 repro PASS 01:1x). No GPU fired (CPU census
+  slot; serial law). No 429s; no running conductor processes; nothing duplicated.
+- Rotation next wake: (A) SCOUT-102, or (B) GLOSS-1 (top remaining CPU); GPU open (QG4/MC-1/
+  QG1d-corpus).

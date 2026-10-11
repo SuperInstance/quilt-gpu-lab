@@ -1,0 +1,58 @@
+{
+  "census_digest": "00f2082a0316957051e2817bfea13889a3d0ddecd0b39b4aeb259f430dbf4ca9",
+  "g2_anchors": {
+    "_eproc_direct_endpoint": "aae81cd6064e6092e4bdd86ac853d81345317da8f48bec1717576581313bbdaf",
+    "degrade_coarse": true,
+    "eproc_grade_continues": true,
+    "eproc_sigma0_refuses": true,
+    "ok": true,
+    "verdict_coarse": true
+  },
+  "n_knobs": 4,
+  "prereg": "proposals/runs/PATH-1-knob-history-dependence-prereg-2026-10-11.md",
+  "reds": [],
+  "rows": [
+    {
+      "control_direct_vs_direct": [
+        "c79b8f64cf3988a0345f4bf27dece0fd04c01b9bb1a8d7be8e2c84801fd8d546",
+        "01122419eb53825f5849ee7e07119009dc2b777f8b84ae83f7848daa74c7a595"
+      ],
+      "digest_direct": "6c7a6a3dfae22d8b63d2699fd7a2650bc9e53c44811351a69aa8ed3e1aa5c03f",
+      "digest_ramp": "174b5a6e1a24442857577ba04149ddb548e05f3697b00fd668ec401b4451cb08",
+      "endpoint": "1e-3",
+      "grade": "PATH-DEPENDENT-SOFT",
+      "knob": "determ1 eps",
+      "ok": true,
+      "path_independent": false
+    },
+    {
+      "digest_direct": "aae81cd6064e6092e4bdd86ac853d81345317da8f48bec1717576581313bbdaf",
+      "digest_ramp": "aae81cd6064e6092e4bdd86ac853d81345317da8f48bec1717576581313bbdaf",
+      "endpoint": "0.5",
+      "grade": "PATH-INDEPENDENT",
+      "knob": "eproc sigma",
+      "ok": true,
+      "path_independent": true
+    },
+    {
+      "digest_direct": "b072d17da1f7e14a15735d01dea81773a01978aaab691c229950edcb3babf79f",
+      "digest_ramp": "b072d17da1f7e14a15735d01dea81773a01978aaab691c229950edcb3babf79f",
+      "endpoint": "0.5",
+      "grade": "PATH-INDEPENDENT",
+      "knob": "degrade_gate tolerance",
+      "ok": true,
+      "path_independent": true
+    },
+    {
+      "digest_direct": "32e3c0215358a1f45d846a4a2d924cf7901caa608db81c166e70fc4ac2fecd9a",
+      "digest_ramp": "32e3c0215358a1f45d846a4a2d924cf7901caa608db81c166e70fc4ac2fecd9a",
+      "endpoint": "0.875",
+      "grade": "PATH-INDEPENDENT",
+      "knob": "verdict_gate minimum",
+      "ok": true,
+      "path_independent": true
+    }
+  ],
+  "tool": "path1_schedule_census",
+  "verdict": "GREEN"
+}
