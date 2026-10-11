@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-11T01:25:40.174576+00:00",
+  "generated_at": "2026-10-11T02:19:10.722213+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "40a51e345935d6472861ee57844deebc584c6a2d1b39b1b536bc2b46c676d1f1",
+    "RESULTS.md": "65017db6956daf52e70e05e7a88081ebbf73c4c40618df6aa9539697d26ac690",
     "QUEUE.md": "913d9ce17ab763e14cb11aea273536f549d87ae40163f6b93ca1a006546c1939"
   },
   "experiments": {
@@ -73,6 +73,8 @@
     "d12ai_empirical_null_full_coverage.py": "f74777fcdc1fe52553bbc4ae47f9a3009eab6965f259077e80c3bce717509663",
     "d12aj_null_dependence.py": "7f396623bf533ceb24bf158836b0347ce8b695595aea1b8f86d2da282091910e",
     "d12ak_dependent_null_model.py": "c587b26adf38c61e0b5e580167aed25e9b195591954a7f4dbfe12de4d0eabacd",
+    "d12al_variance_inflation.py": "112bd217c0076abeffc8f6afee54e9211d7df9aecfcc821d80ed5dcbb7023a5f",
+    "d12am_constant_c.py": "676483782bbe6f7dca65bc90357afa2aa307447b64cdcf0807f5787b3d407d71",
     "d12e_correlation_key_delta.py": "36482bbf0fb5be2969138c1ca4c4b48bd95d89a3d2c19e64b2e5a9530468467d",
     "d12f_t_floor_sweep.py": "6347097ecede8df965d02cf48ba27e91c2140b1a100a239661a5ab42792874f1",
     "d12g_cell_count_scaling.py": "76f257ecae413206e6b1dd04233a9e1f0b960e6a6460d0193533036207f606ba",
