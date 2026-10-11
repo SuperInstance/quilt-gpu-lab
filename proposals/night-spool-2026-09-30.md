@@ -3441,3 +3441,9 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   census; answer_of tie-shape logged YELLOW-shape (TIE-1 tracks the class). No booking threatened (G4).
 - Manifest re-sealed post-landing (foreign d12am/d12an untracked lane persists, PW-1, advisory only).
 - Rotation next wake: (A) SCOUT-103 per rotation; GPU open (QG4/MC-1/QG1d-corpus).
+
+## VEXIT-1 (2026-10-11 07:3x AKDT day-conductor) — DONE
+- (B) slot per rotation (post SCOUT-103+GLOSS-1-repro slice). VERDICT-line + exit-code convention on
+  gloss1/thresh2/path1/verdict_index (SCOUT-103 spawn, qthe-codec steal). Census.json byte-stable;
+  gloss1 + verdict_index fired live GREEN; thresh2/path1 compile-checked, verification rides next repro.
+- STATUS: CLOSED. Rotation next wake: (A) SCOUT-104 or (B) GPU-TRUE-1 / QG4 / MC-1; GPU open.

@@ -197,6 +197,7 @@ def main() -> None:
         op.parent.mkdir(parents=True, exist_ok=True)
         op.write_text(text + "\n")
     print(text)
+    print(f"VERDICT: {census['verdict']}")
     sys.exit(0 if census["verdict"] == "GREEN" else 1)
 
 

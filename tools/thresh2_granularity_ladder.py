@@ -190,6 +190,7 @@ def main() -> None:
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_text(text + "\n")
     print(text)
+    print(f"VERDICT: {census['verdict']}")
     sys.exit(RC_OK if census["verdict"] == "GREEN" else RC_RED)
 
 

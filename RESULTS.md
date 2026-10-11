@@ -7335,3 +7335,16 @@ Rotation next wake: (A) SCOUT-92 per rotation; GPU open (QG4/QG1d-corpus/MC-1).
   touched; no ledger change this slice). No GPU fired (scout+repro slots; serial law). No 429s; no
   running conductor processes; nothing duplicated.
 - Rotation next wake: (B) VEXIT-1 (top cheap) or GPU-TRUE-1; GPU open (QG4/MC-1/QG1d-corpus).
+
+## [BOOKED 07:3x AKDT Oct 11] VEXIT-1: VERDICT-line + exit-code convention adopted on 4 census/verdict tools — DONE
+- SCOUT-103 spawn (qthe-codec frameworkless receipt convention). Docs-cheap class, no pre-reg per spawn note.
+- tools/{gloss1_loss_liveness,thresh2_granularity_ladder,path1_schedule_census,verdict_index}.py now print a
+  final `VERDICT: GREEN|RED` anchor line and keep their existing exit-code contract (gloss1 0/4, thresh2 RC_OK/RC_RED,
+  path1 0/1, verdict_index 0/1). Receipt files untouched — census.json remains byte-stable (sha fbc36420… identical
+  pre/post change; GLOSS-1 booking reproducibility preserved, verified live this slice).
+- Verified: 4/4 py_compile OK; gloss1 fired → VERDICT: GREEN exit 0, receipt byte-identical; verdict_index selftest
+  → ALL GATES PASS + VERDICT: GREEN exit 0. thresh2/path1: compile-checked only this slice (torch-subprocess ladders,
+  out of timebox); their VEXIT verification rides their next scheduled committed-script repro (THRESH-2/PATH-1 verdicts
+  unaffected — final print + same exit semantics).
+- Manifest re-seal deferred (foreign d12am/d12an untracked live lanes persist, PW-1; standing precedent).
+- CPU only, no GPU fired, no 429s. Rotation next wake: (A) SCOUT-104, or (B) GPU-TRUE-1 / QG4 / MC-1 (GPU open).

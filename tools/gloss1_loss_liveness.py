@@ -162,4 +162,5 @@ print(f"GLOSS-1: G1 rows={g1['audited']} G3 probes={len(g3)} RED={len(reds)} YEL
       f"{sum(1 for f in FINDINGS if f['level']=='YELLOW')}")
 for f in FINDINGS:
     print(f"  [{f['level']}] {f['target']} ({f['booking']}): {f['note']}")
+print(f"VERDICT: {'RED' if reds else 'GREEN'}")
 sys.exit(4 if reds else 0)

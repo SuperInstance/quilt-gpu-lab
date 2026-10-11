@@ -174,8 +174,10 @@ def main():
             tag = f"-> {hits}" if hits else ("-> INDETERMINATE (zero matched evidence across index)" if ev == 0 else "-> []")
             print(f"taint({t!r}) {tag} counts={mc}")
     if fails:
+        print("VERDICT: RED")
         return 1
     print("ALL GATES PASS (G1-G4)")
+    print("VERDICT: GREEN")
     return 0
 
 
