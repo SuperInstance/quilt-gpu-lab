@@ -3218,3 +3218,34 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - Rotation next wake: (C) mandatory repro of fw2_impl_battery.py @ 939f445 tree; then
   (A) SCOUT-96 or (B) CONST-1 (verify foreign landing before closing); GPU open
   (QG4/QG1d-corpus/MC-1).
+
+## SLICE 2026-10-10 17:2x AKDT (day-conductor) — (C) FW-2-IMPL REPRO PASS + (A) SCOUT-96: canons route DECODED; q32 landed; THRESH-1 spawned
+- (C) mandatory repro of newest booking FW-2-IMPL: committed battery (d4b87ea) re-run verbatim
+  from tree at ad9e3c8 — all gates G1-G4 PASS, 21/21 tool selftest, tamper/truncation/stale-prev
+  all RED as booked, G4 --check rc=0 + git-anchor 372 paths 0 red. Verdict GREEN, byte-identical.
+  **REPRO PASS.**
+- (A) SCOUT-96: window since SCOUT-95 (00:26Z) is quiet EXCEPT one canons-adjacent landing.
+  **ROUTE DECODE: "canons" = the rc-20260824-11 q-series** (the recurring 404 on repo name
+  "canons" was a wrong-name stale cache all along; q-series commits live in
+  SuperInstance/rc-20260824-11). HEADLINE: **q32 (51d22ea, 01:23Z — seconds before probe)**:
+  eviction-preference cadence dial s∈[0,1] over the q22 gate law — C1/C2/C3 PASS, s=1.00
+  reproduces q31 BIAS arm EXACTLY (trace-identical), and the honest disclosed finding:
+  **intermediate rungs s=0.25–0.75 are TRACE-IDENTICAL to BASE** — the "continuous dial" is a
+  binary threshold at s=1; partial protection is never exercised at CAPACITY=70.
+  Classification: CORROBORATE + TOOL. No CONTRADICT — no overlap with QO2 stack, seal chain,
+  CONST-1 targets (their finding is exactly our TIE-1/PARAM-1 vacuous-parameter family,
+  fleet-side instance: a multi-valued gate parameter whose intermediate settings cannot
+  change the verdict). Spawned **THRESH-1** (CPU ~20m, pre-reg first): trace-divergence census
+  over our parameterized gates — for each parameterized instrument (determ1 eps 1e-2/1e-4
+  [known-divergent, G2-confirmed], eproc sigma/budget, degrade_gate tolerance, verdict_gate
+  bounds), verify at least one adjacent parameter setting produces a trace difference on a
+  pinned input; a knob with no witnessable effect anywhere in its range = RED (q32 shape).
+  Also: rc q32's own process note (protection-inverted draft caught by cross-check BEFORE
+  commit) = pre-reg cross-check discipline corroborate. PRs dependabot-only; zero-msg-test
+  escalations = known API noise; [EMBASSY] pong #49 unchanged (Casey day item).
+- Manifest re-seal: run this landing; foreign untracked d12al lane appeared this hour
+  (experiments/d12al_variance_inflation.py + results JSON, PW-1 — do not touch).
+- GPU lane idle all slice (CPU slots per rotation). No running processes; nothing duplicated;
+  no 429s.
+- Rotation next wake: (B) THRESH-1 (top, pre-reg first) or CONST-1 (verify not landed);
+  GPU open (QG4/QG1d-corpus/MC-1).
