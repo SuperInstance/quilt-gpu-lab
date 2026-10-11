@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-11T18:12:14.058192+00:00",
+  "generated_at": "2026-10-11T20:14:35.321027+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "1bb427beafc9824f21ca68de166be6b476d7290afba11d6be2782228fbc68e55",
+    "RESULTS.md": "1c484ef455cc0c9d484a26127d31fa967ca1679a63eb0d4c827b5596ce6710e7",
     "QUEUE.md": "913d9ce17ab763e14cb11aea273536f549d87ae40163f6b93ca1a006546c1939"
   },
   "experiments": {
@@ -346,6 +346,7 @@
     "param_audit.py": "4208b3811af317ab02a30cb2735ee995a9b425ac4376a262bced159a79649939",
     "param_liveness.py": "18180c0d6eaf1d7572acc5056841a96180e701599ee729588830e65015fdcffa",
     "path1_schedule_census.py": "e6b1fa731df0d927671e9caec394051fbb454f2a2f507ae4cc9b2acb32619353",
+    "path1b_steerability.py": "b4669932bce45a0f6582e7b0aca55eca7a421eb49ad647009269a743afa2e806",
     "perm_ci.py": "6886711bc9f1b07f8184f367cbad9661dd31c082af3bcfc9103d5e9256a25971",
     "pert_audit.py": "825e3b960bb407dc7eaa3004df666b6615d0c40882f280ae6f9208a168bc6811",
     "power_fit.py": "74ea3f67ac32a1ea96538c89d317df1da346d520f15dbe67cd9275647a5a5b85",
