@@ -3205,3 +3205,16 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   GIT-ANCHOR-1 ANCHORED 371/371 at HEAD. No GPU fired (CPU docs slot per rotation).
 - Rotation next wake: (A) SCOUT-95, or (B) FW-2 implementation (pre-reg against the frozen
   G1-G4); GPU open (QG4/QG1d-corpus/MC-1).
+
+## SLICE 2026-10-10 16:2x AKDT (day-conductor) — (B) FW-2-IMPL BOOKED GREEN; SEAL-2 instance #3
+- Foreign lane landed merkle_seal_chain.py (2451028) unbooked. Prereg 84cfebb BEFORE
+  firing; battery 71477ba run from committed tree: G1-G3 PASS (independent RFC 6962
+  vectors byte-equal incl empty/singleton; chain tamper RED; truncation RED size-first),
+  G4 PASS after named finding. BOOKED GREEN (RESULTS 939f445; sealed 7088529, --check 0).
+- FINDING: SEAL-2 instance #3 — foreign lane pushed tool+README without re-seal; G4
+  initially RED on stale manifest, fixed by declared regeneration at HEAD. Not a
+  regression. FW-2 v2 closes both RC-4 holes (prev_digest chain; size-first truncation).
+- No GPU; no 429s; no dupes (no in-flight CONST-1 results; battery is ours).
+- Rotation next wake: (C) mandatory repro of fw2_impl_battery.py @ 939f445 tree; then
+  (A) SCOUT-96 or (B) CONST-1 (verify foreign landing before closing); GPU open
+  (QG4/QG1d-corpus/MC-1).
