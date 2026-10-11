@@ -7380,3 +7380,25 @@ Rotation next wake: (A) SCOUT-92 per rotation; GPU open (QG4/QG1d-corpus/MC-1).
 - **degrade_gate tolerance + verdict_gate minimum: FIXED-POINT-AT-FINE (RED rows per frozen G4)** — all three fine targets byte-identical. Caveat attached to PATH-1 receipt (AMENDMENT 1, this landing): within a grade band these payloads are target-indistinguishable; fine-grained discrimination claims from these gates are unsupported. Honest interpretation: both are quantized COARSE gates (booked THRESH-2 classes), so the identical band is consistent with payload quantization — but the q36-shaped target-insensitivity caveat is on the receipts either way. No booked result refuted: no verdict ever relied on fine-grained degrade/verdict-gate discrimination.
 - determ1 eps excluded per prereg (SOFT nondeterminism class).
 - CPU only, no GPU fired, no 429s.
+
+## SLICE 2026-10-11 13:1x AKDT (day-conductor) — (C) PATH-1b REPRO PASS byte-level + D-2 closed + 2 mid-slice self-catches
+- (C) mandatory repro of newest OURS booking PATH-1b (e12f426): committed tool re-run from tree →
+  census_digest c9d39ea16f05bf4b… IDENTICAL to booking; all 3 knob rows byte-identical (eproc STEERABLE
+  3/3 distinct; degrade + verdict_gate FIXED-POINT-AT-FINE); VERDICT: RED exit 1 (VEXIT contract).
+  Fresh receipt results/path1b/census.json sha256 224b60c3… == in-repo receipt. **REPRO PASS byte-level.**
+- **D-2 instance found + closed** (DET-1c lesson, 2nd application): booking commit e12f426 cited
+  results/path1b/census.json but left it UNTRACKED — receipt committed f6b17fe. FW-1-successor note
+  stands: booking-completeness must check cited files are TRACKED at booking commit.
+- SELF-CATCH #1: follow-up seal commit d3a751d accidentally swept 4 FOREIGN result JSONs (d12am/
+  d12an/d12ao/d23d) into tracking via broad `git add results/` — corrected in 4fb1992 (git rm --cached;
+  content preserved in history per archive-never-delete; foreign lanes restored to PW-1 untracked,
+  bytes verified identical against scratch copies before untracking). Lesson for all future landings:
+  NEVER broad-add results/ — add named paths only.
+- SELF-CATCH #2: during the correction a broad `mv results/d12*.json` glob briefly removed 50 TRACKED
+  foreign files from the worktree — restored from HEAD (git restore), tree verified clean, zero byte
+  changes. Both incidents fully resolved within the slice; no foreign lane content altered.
+- Manifest re-sealed + --check PASS (exit 0) post-correction (4fb1992). HEAD pushed through 4fb1992.
+- (A) scout slot consumed by (C)+incident handling this slice (mandatory repro took priority; window
+  overlaps SCOUT-106 19:11Z by <2h — next wake opens with (A) SCOUT-107).
+- No GPU fired (serial law, CPU slice). No 429s; nothing duplicated.
+- Rotation next wake: (A) SCOUT-107 first, then (B) GPU-TRUE-1 / QG4 / MC-1 / QG1d-corpus (GPU open).
