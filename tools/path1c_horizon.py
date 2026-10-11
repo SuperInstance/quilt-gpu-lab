@@ -96,7 +96,7 @@ def main() -> None:
         print(f"VERDICT: {census['verdict']}")
         sys.exit(1)
 
-    rows, horizon_hits, reds = [], [], []
+    rowmap, horizon_hits, reds = {}, [], [], []
     for knob, targets in TARGETS.items():
         per_variant, vok = {}, True
         for vname, win in VARIANTS.items():
@@ -105,7 +105,7 @@ def main() -> None:
                 try:
                     digs[s] = norm(PAYLOADS[knob](s, f"path1c_{vname}_{knob}_{s}", win))
                 except Exception as e:  # fail-loud, no retry loop
-                    rows.append({"knob": knob, "ok": False, "why": f"{vname}/{s}: {e}"})
+                    rowmap[knob] = {"knob": knob, "ok": False, "why": f"{vname}/{s}: {e}"}
                     reds.append(f"RUN:{knob}:{vname}:{s}")
                     vok = False
                     break
@@ -117,8 +117,9 @@ def main() -> None:
         if not vok:
             continue
         ident_all = all(per_variant[v]["n_distinct"] == 1 for v in VARIANTS)
-        rows.append({"knob": knob, "ok": True, "targets": targets,
-                     "variants": per_variant, "identical_all_variants": ident_all})
+        rowmap[knob] = {"knob": knob, "ok": True, "targets": targets,
+                        "variants": per_variant, "identical_all_variants": ident_all}
+    rows = list(rowmap.values())
     if len(rows) < len(TARGETS):
         census = {"tool": "path1c_horizon", "prereg": PREREG, "g1_anchors": anchors,
                   "rows": rows, "reds": reds, "verdict": "RED",
@@ -129,7 +130,7 @@ def main() -> None:
         for knob, targets in TARGETS.items():
             for s in targets:
                 if norm(PAYLOADS[knob](s, f"path1c_rerun_{knob}_{s}", 1)) != \
-                        rows[TARGETS_KEYS.index(knob)]["variants"]["V0"]["digests"][s]:
+                        rowmap[knob]["variants"]["V0"]["digests"][s]:
                     rerun_ok = False
                     reds.append(f"NONDET:{knob}:{s}")
         g2_fired = bool(horizon_hits)
