@@ -1,0 +1,232 @@
+{
+  "G1": {
+    "audited": 3,
+    "rows": [
+      {
+        "booking": "QO6/QO6s/PATH-1",
+        "functions": [
+          "increments",
+          "eprocess",
+          "kill_gate"
+        ],
+        "import_ok": true,
+        "module": "tools/eproc.py"
+      },
+      {
+        "booking": "QC-JEV/DECIDE-1",
+        "functions": [
+          "answer_of"
+        ],
+        "import_ok": true,
+        "module": "tools/decision_cell.py"
+      },
+      {
+        "booking": "QG7b/D12i",
+        "functions": [
+          "_avg_ranks",
+          "_pearson",
+          "spearman",
+          "census"
+        ],
+        "import_ok": true,
+        "module": "tools/ensemble_corr_census.py"
+      }
+    ]
+  },
+  "G2": [
+    {
+      "functions": [
+        {
+          "function": "increments",
+          "rows": [
+            {
+              "detail": "passed through verbatim to: asarray",
+              "param": "y",
+              "status": "PASSTHRU"
+            }
+          ]
+        },
+        {
+          "function": "eprocess",
+          "rows": [
+            {
+              "detail": "passed through verbatim to: asarray",
+              "param": "d",
+              "status": "PASSTHRU"
+            },
+            {
+              "detail": "passed through verbatim to: isfinite",
+              "param": "sigma",
+              "status": "PASSTHRU"
+            },
+            {
+              "detail": "loaded in body",
+              "param": "sign",
+              "status": "READ"
+            },
+            {
+              "detail": "passed through verbatim to: asarray, len",
+              "param": "mu_grid",
+              "status": "PASSTHRU"
+            }
+          ]
+        },
+        {
+          "function": "kill_gate",
+          "rows": [
+            {
+              "detail": "passed through verbatim to: witness",
+              "param": "series",
+              "status": "PASSTHRU"
+            },
+            {
+              "detail": "passed through verbatim to: witness",
+              "param": "sigma",
+              "status": "PASSTHRU"
+            },
+            {
+              "detail": "passed through verbatim to: witness",
+              "param": "delta",
+              "status": "PASSTHRU"
+            }
+          ]
+        }
+      ],
+      "module": "tools/eproc.py",
+      "unwired": false
+    },
+    {
+      "functions": [
+        {
+          "function": "answer_of",
+          "rows": [
+            {
+              "detail": "passed through verbatim to: options_of",
+              "param": "q",
+              "status": "PASSTHRU"
+            },
+            {
+              "detail": "loaded in body",
+              "param": "probs",
+              "status": "READ"
+            }
+          ]
+        }
+      ],
+      "module": "tools/decision_cell.py",
+      "unwired": false
+    },
+    {
+      "functions": [
+        {
+          "function": "_avg_ranks",
+          "rows": [
+            {
+              "detail": "passed through verbatim to: len",
+              "param": "xs",
+              "status": "PASSTHRU"
+            }
+          ]
+        },
+        {
+          "function": "_pearson",
+          "rows": [
+            {
+              "detail": "passed through verbatim to: len, sum",
+              "param": "a",
+              "status": "PASSTHRU"
+            },
+            {
+              "detail": "passed through verbatim to: sum",
+              "param": "b",
+              "status": "PASSTHRU"
+            }
+          ]
+        },
+        {
+          "function": "spearman",
+          "rows": [
+            {
+              "detail": "passed through verbatim to: _avg_ranks",
+              "param": "a",
+              "status": "PASSTHRU"
+            },
+            {
+              "detail": "passed through verbatim to: _avg_ranks",
+              "param": "b",
+              "status": "PASSTHRU"
+            }
+          ]
+        },
+        {
+          "function": "census",
+          "rows": [
+            {
+              "detail": "passed through verbatim to: enumerate, len",
+              "param": "runs",
+              "status": "PASSTHRU"
+            },
+            {
+              "detail": "loaded in body",
+              "param": "hi",
+              "status": "READ"
+            },
+            {
+              "detail": "loaded in body",
+              "param": "lo",
+              "status": "READ"
+            }
+          ]
+        }
+      ],
+      "module": "tools/ensemble_corr_census.py",
+      "unwired": false
+    }
+  ],
+  "G3": [
+    {
+      "E_max_on_const": 0.6099007971765069,
+      "booking": "QO6",
+      "no_spurious_kill": true,
+      "probe": "eprocess constant-series",
+      "verdict": "GREEN"
+    },
+    {
+      "booking": "QO6",
+      "note": "sigma<=0 refuses fail-loud (booked)",
+      "probe": "eprocess sigma-refusal",
+      "verdict": "GREEN"
+    },
+    {
+      "booking": "QG7b/D12i",
+      "const_vs_const": null,
+      "const_vs_varied": null,
+      "note": "None propagates; census() fails loud on None",
+      "pearson_const": null,
+      "probe": "spearman/_pearson constant-input",
+      "verdict": "GREEN"
+    },
+    {
+      "booking": "QG7b/D12i",
+      "note": "degenerate census exits loud (fail())",
+      "probe": "census all-constant runs",
+      "verdict": "GREEN"
+    },
+    {
+      "booking": "QC-JEV/DECIDE-1",
+      "probe": "answer_of tie/single-option",
+      "raised": "KeyError('criteria')"
+    }
+  ],
+  "G3_soft": {
+    "note": "QO10 booked verdict-level REPRO PASS 2026-10-02; stochastic-head degeneracy is covered by the ensemble-spread rule (no gap smaller than spread = finding).",
+    "status": "SOFT-DEFERRED-TO-BOOKED-REPRO",
+    "targets": [
+      "experiments/oracle1.py:logit_fit",
+      "experiments/qo10_projection_ladder.py:fit_mlp_seed"
+    ]
+  },
+  "findings": [],
+  "gloss1": "loss-liveness census",
+  "prereg": "proposals/runs/GLOSS-1-loss-liveness-census-2026-10-11.md (143c9d3)"
+}

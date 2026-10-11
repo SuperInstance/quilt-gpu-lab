@@ -7296,3 +7296,12 @@ Rotation next wake: (A) SCOUT-92 per rotation; GPU open (QG4/QG1d-corpus/MC-1).
 - G2 anchors reproduce THRESH-2 classes 4/4 (eproc 5-rung CONTINUOUS + sigma0 refusal, verdict 2-rung PASS→FAIL, degrade 2-rung RB→GRACEFUL).
 - En-route trail (declared, pre-verdict): 1 harness bug fixed in place (G2 grade anchors initially read the DIRECT arm's 1-rung digest set — corrected to RAMP arm rungs, gates unchanged). First fired artifact (RED from the buggy anchors) archived scratch/path1_archive/, refuse-overwrite honored on re-fire (exit 3 witnessed, RC-1 rule live).
 - CPU only, no GPU fired, no 429s.
+
+## [BOOKED 05:4x AKDT Oct 11] GLOSS-1 loss-liveness census: GREEN (G1-G4; 5/5 probes clean, 0 RED, 1 documented YELLOW-shape)
+- Pre-reg 143c9d3 committed+pushed BEFORE fire (SCOUT-98 spawn). Tool tools/gloss1_loss_liveness.py fired from committed tree; receipt results/gloss1/census.json.
+- G1: 3/3 modules import clean (eproc / decision_cell / ensemble_corr_census); prereg table = scope.
+- G2: param_liveness.audit_function over all 8 target functions — ZERO unwired params (every prereg parameter read on some path).
+- G3: (1) eprocess constant-series E_max stays <=1.0 — no spurious kill optimum (QO6 safe); (2) sigma<=0 refusal re-witnessed (booked PARAM-1 law); (3) spearman/_pearson return None on constant input and census() fails LOUD on degenerate pairs (QG7b/D12i safe); (4) answer_of tie probs -> first index at confidence 0.0 (harmless: softmax-continuous inputs; single-option conf 1.0 is the documented k==1 branch) — logged YELLOW-shape in receipt, note for FW-1-successor tie-case row (TIE-1 class already tracks it); (5) census all-constant two-run exits loud.
+- G3 SOFT class (torch fit heads logit_fit/fit_mlp_seed): deferred-to-booked-repro per prereg — QO10 verdict-level REPRO PASS 2026-10-02 + ensemble-spread rule covers stochastic-head degeneracy.
+- G4: no RED, no booking threatened. GLOSS-1 CLOSES the SCOUT-98 slackwater class on our assets.
+- CPU only, no GPU fired, no 429s. Manifest re-sealed this landing.
