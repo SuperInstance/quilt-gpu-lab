@@ -266,6 +266,23 @@ piece others can lift. Grab = copy the file; everything here runs alone.
   a bare-SHA pin that honestly tripped the context gate (fixture fixed, gate untouched);
   live tools/README.md + docs/PREREG-CLAIM-PROTOCOL.md: CLEAN rc=0, 8/8 cites resolve,
   receipt results/commit_cite_check_docs_2026-10-11.json.
+- **rho-hazard-gate** — `tools/rho_hazard_gate.py` — common-mode null-dependence hazard gate
+  (pattern lifted PROVEN from D12am/D12an, booked 2026-10-11: discovery-floor blow-up under
+  inter-stream corr rho is superlinear delta = blowup-1 ~ rho^gamma, gamma fitted 2.04 on the
+  dense grid, and the hazard magnitude is p-UNIVERSAL within a 2x band across coupling strengths).
+  For any (x, floor) sweep: G1 blowup monotone in x (inversions named), G2 log-log exponent
+  gamma in band (default [1.0, 3.5], no-hazard delta=0 books honest VOID-FAIL, never a silent
+  fit), G3 optional multi-group universality — blowup at a reference x within [lo,hi]x across
+  groups. Stdlib-only, deterministic, fail-loud rc=2, JSON receipt, exit 0=KEEP / 1=FAIL.
+  `python tools/rho_hazard_gate.py --points '[[0.1,40],[0.2,70],[0.4,220]]' [--groups '{...}' --ref-x 0.3 --band 0.5,2.0 --gamma-lo 1.0 --gamma-hi 3.5 --out r.json] | --replay-d12am | --selftest`
+  TEST receipt 2026-10-11: selftest 9/9 — selftest caught three of its own bugs live (two
+  unclosed multi-line return tuples = syntax error on first import; VOID groups booked KEEP
+  because the ok flag carried g1 instead of False — a no-hazard sweep would have silently
+  passed the gate; the sublinear pin used gamma exactly 1.0 on the band edge and honestly
+  PASSED — fixture moved to gamma 0.585) plus a fail-loud gap (empty/string-shaped points
+  raised IndexError/rc=1 instead of loud FAIL-INPUT rc=2 — shape validation added). Live
+  D12am replay rc=0 KEEP: gamma 2.0447, r2 0.9663, 7 fit points, receipt
+  results/rho_hazard_gate_d12am_replay_2026-10-11.json.
 
 ## When you add a tool
 
