@@ -3345,3 +3345,21 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   re-seal correctly deferred (foreign untracked d12am lane persists, PW-1). GPU lane idle.
 - Rotation next wake: (B) THRESH-2 (top CPU, pre-reg first) or GLOSS-1; GPU open (QG4/
   QG1d-corpus/MC-1).
+
+## SLICE 2026-10-11 00:4x AKDT (day-conductor) — (B) THRESH-2 BOOKED: GREEN (determ1/eproc CONTINUOUS; degrade/verdict_gate COARSE 2-rung gates)
+- Top open CPU item per rotation (SCOUT-100 was last slice's (A); no running processes; nothing duplicated).
+- Pre-reg c9a2541 committed+pushed BEFORE fire; first run hit a census-design error (eproc refuses sigma=0.0
+  out-of-domain — the instrument is RIGHT, fail-loud); AMENDMENT 1 + tool fix committed dee6c38 BEFORE the
+  GREEN re-run from the committed tree. Refusal booked as a FINDING (PARAM-1 G3 witnessed live).
+- Result: results/thresh2/census.json. determ1 eps 5/5 rungs CONTINUOUS; eproc sigma 5/5 CONTINUOUS;
+  degrade_gate tolerance COARSE (step at ~0.5 on pinned sweep — alive, q32 mid-rung-collapse shape);
+  verdict_gate minimum COARSE monotone (expected binary verdict law). G1 20/20; G2 all THRESH-1 endpoint
+  anchors byte-reproduce; G3 zero MONOLITHIC; G4 in-process bit-identical rerun, determ1 SOFT (known class).
+- q34 note (honest): eproc E-path ordinal degenerate on pinned series (never crosses 1.0) — non-monotone
+  check INCONCLUSIVE-by-degeneracy, not a hazard finding. Future ladder pins: pick series where the ordinal
+  moves. LAW sharpens THRESH-1: COARSE grade = gate-semantics DESIGN property, not vacuous decoration.
+- (C) not due (newest prior OURS booking THRESH-1 repro PASS in SCOUT-99 slice; this booking is its own
+  successor). Manifest re-sealed 490b811 (foreign d12am untracked lane persists, PW-1). No GPU fired (CPU
+  census slot). No 429s.
+- Rotation next wake: (A) SCOUT per rotation, or (B) GLOSS-1 (top remaining CPU); GPU open (QG4/MC-1/
+  QG1d-corpus).
