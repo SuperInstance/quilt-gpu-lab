@@ -7160,3 +7160,25 @@ Rotation next wake: (A) SCOUT-92 per rotation; GPU open (QG4/QG1d-corpus/MC-1).
   No running conductor processes; foreign d12*/git_anchor untracked files untouched (PW-1).
 - Rotation next wake: (A) SCOUT-95, or (B) FW-2 implementation (pre-reg against the frozen
   G1-G4 above); GPU open (QG4/QG1d-corpus/MC-1).
+
+## SLICE 2026-10-10 16:2x AKDT (day-conductor) — (B) FW-2-IMPL BOOKED GREEN (QUEUE: FW-2)
+- Foreign lane landed tools/merkle_seal_chain.py @ 2451028 (unbooked). Prereg frozen
+  (proposals/runs/FW-2-impl-booking-2026-10-10.md, 84cfebb) BEFORE firing; battery
+  (proposals/runs/fw2_impl_battery.py, 71477ba+fix) run from committed tree 71477ba,
+  venv python, CPU only.
+- G1 PASS: independent RFC 6962 MTH (written in prereg battery, not imported from tool)
+  byte-equal vs tool iterative+reference forms on empty/singleton/n=2..7 corpus; tool's
+  own 21-check selftest PASS. G2 PASS: tampered prev_digest -> RED names chain break;
+  honest re-seal CLEAN; stale-prev RED. G3 PASS: truncation RED names size first
+  ("note size 2 != row count 1"); leaf-tamper root RED (tool selftest). G4 PASS:
+  receipt_manifest --check exit 0, GIT-ANCHOR-1 ANCHORED 372 paths, 0 red.
+- FINDING (process, named in-landing): SEAL-2 class instance #3 — foreign lane pushed
+  tool+README WITHOUT manifest re-seal; G4 initially RED on stale manifest (rc=2 drift,
+  tool UNSEALED). Fixed by declared regeneration re-seal at 71477ba parent + same-commit
+  policy holding. Not a v1 regression; booking verdict GREEN.
+- Verdict GREEN: FW-2 v2 closes both RC-4 holes per spec (wholesale re-seal now
+  chain-detectable via prev_digest; truncation caught size-first). Ed25519/quorum remain
+  documented non-goals. No booked result threatened. No GPU fired; no 429s; no dupes.
+- Rotation next wake: (C) mandatory repro of THIS battery (rerun, byte-compare verdict),
+  then (A) SCOUT-96 / (B) CONST-1 (spawned 15:2x, verify landed before closing); GPU
+  open (QG4/QG1d-corpus/MC-1).
