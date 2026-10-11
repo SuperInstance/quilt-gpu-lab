@@ -7211,3 +7211,21 @@ Rotation next wake: (A) SCOUT-92 per rotation; GPU open (QG4/QG1d-corpus/MC-1).
   T-grid quantization analysis, set BEFORE firing), denser grid (160 pts), adds cross-W
   universality gate. New hypothesis test, not a re-roll (K3b: diagnose, never re-roll).
 - No GPU (CPU slot); no 429s; manifest re-sealed this landing.
+
+## D12am 2026-10-10 ~18:4x AKDT (main lane; prereg 69a96d3 committed+pushed BEFORE firing) — VERDICT KEEP: constant-c rho^2 law CONFIRMED within pre-registered band
+- Closes the D12al harness question. Pre-registered G3 re-band [0.67,1.5] (constant-c
+  invariance), 160-pt T grid (2x denser), new G4 cross-W universality gate.
+- Numbers (results/d12am_constant_c.json): W=8: base 71, c_fit(rho=.2)=25.64, c_impl(.4)=35.28,
+  G3=1.376. W=16: base 36, c_fit=28.93, c_impl=37.72, G3=1.304. G1=1.014/1.027 PASS,
+  G2=0.768/0.808 PASS, G4=0.935 PASS. ALL GATES PASS -> KEEP.
+- Denser grid MOVED the base floors (75->71, 35->36 vs D12al's 80-pt grid) — quantization
+  is real at the ~5-15% level, exactly what the pre-registered band was sized for.
+- Weak systematic named (not gate-threatening): implied-c ratios sit consistently ABOVE 1.0
+  in both runs (D12al 1.19/1.37; D12am 1.38/1.30) — either mild super-rho^2 curvature or
+  residual quantization bias. Line for the next D-series synthesis.
+- HEADLINE LAW (now KEEP-backed): dependent-null discovery-floor blow-up under common-mode
+  rho is floor(rho)/floor(0) ~ 1 + c*rho^2, c ~ 26-38, roughly W-independent. Combined with
+  D12u++ (kappa-hat = 0.246 lumped null-distinctness calibration), the discovery-floor
+  model is now predictive in BOTH regimes: independent-null (kappa-hat) and dependent-null
+  (c*rho^2 tail inflation).
+- CPU MC, seed 2718, deterministic. No GPU fired. No 429s. Manifest re-sealed this landing.

@@ -1,0 +1,54 @@
+{
+ "name": "d12am_constant_c",
+ "seed": 2718,
+ "prereg": "proposals/runs/D12am-constant-c-prereg-2026-10-10.md",
+ "model": "nulls ~ N(0,(1+c*rho^2)/(WT)); partner ~ N(s^1.92,1/(WT)); ratios vs own rho=0 baseline; P_succ>=0.5, 20k MC, 160-pt T grid",
+ "s_decay": 0.09909980708622118,
+ "gates": {
+  "G1_fit_sanity": [
+   0.8,
+   1.25
+  ],
+  "G2_heldout": [
+   0.67,
+   1.5
+  ],
+  "G3_constant_c": [
+   0.67,
+   1.5
+  ],
+  "G4_cross_W": [
+   0.5,
+   2.0
+  ]
+ },
+ "results": {
+  "8": {
+   "base_floor": 71,
+   "c_fit_rho02": 25.643616914749146,
+   "pred_floor_rho02": 144,
+   "pred_floor_rho04": 349,
+   "meas_floor_rho04": 160,
+   "g1_ratio": 1.0140845070422535,
+   "g2_ratio": 0.7680457746478873,
+   "g3_ratio": 1.3757166250027602,
+   "c_implied_rho04": 35.27835011482239
+  },
+  "16": {
+   "base_floor": 36,
+   "c_fit_rho02": 28.930634260177612,
+   "pred_floor_rho02": 77,
+   "pred_floor_rho04": 194,
+   "meas_floor_rho04": 80,
+   "g1_ratio": 1.0266666666666666,
+   "g2_ratio": 0.8083333333333333,
+   "g3_ratio": 1.3037936607842795,
+   "c_implied_rho04": 37.71957755088806
+  }
+ },
+ "G1": true,
+ "G2": true,
+ "G3": true,
+ "G4": true,
+ "verdict": "KEEP"
+}
