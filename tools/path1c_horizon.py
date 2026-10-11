@@ -40,16 +40,31 @@ def norm(obj) -> str:
 
 # ---- payload emitters: PATH-1b's, verbatim, with a window multiplier ----
 
-def payload_degrade(setting: str, tag: str, win: int) -> dict:
-    import subprocess, tempfile
-    base = [
+def widen_sweep(win: int) -> list:
+    """Wider observation window: (win-1) rounds of midpoint insertion (linear interpolation
+    of the same underlying landscape). Direct duplication is REFUSED by degrade_gate
+    (rc=2) — itself a PARAM-1-class positive finding, booked in the census."""
+    pts = [
         {"param": 70, "benefit": 12.25},
         {"param": 60, "benefit": 10.1},
         {"param": 52, "benefit": 6.3},
         {"param": 45, "benefit": 4.0},
         {"param": 40, "benefit": 4.5},
     ]
-    sweep = json.dumps(base * win)  # same marginal evidence, win x window
+    for _ in range(win - 1):
+        new = []
+        for a, b in zip(pts, pts[1:]):
+            new.append(a)
+            new.append({"param": (a["param"] + b["param"]) / 2,
+                        "benefit": (a["benefit"] + b["benefit"]) / 2})
+        new.append(pts[-1])
+        pts = new
+    return pts
+
+
+def payload_degrade(setting: str, tag: str, win: int) -> dict:
+    import subprocess, tempfile
+    sweep = json.dumps(widen_sweep(win))
     with tempfile.TemporaryDirectory() as td:
         out = Path(td) / f"dg_{tag}.json"
         p = subprocess.run([sys.executable, "tools/degrade_gate.py", "--sweep", sweep,
