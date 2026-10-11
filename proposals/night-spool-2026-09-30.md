@@ -3484,3 +3484,24 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - No GPU fired (bookkeeping slot per rotation). No 429s; nothing duplicated; no running conductor
   processes. Rotation next wake: (A) SCOUT-106, then (B) GPU-TRUE-1 / QG4 / MC-1 / QG1d-corpus
   (GPU open, longest-open slots) or ADD-1 (CPU ~15m).
+
+## SLICE 2026-10-11 11:1x AKDT (day-conductor) — (A) SCOUT-106: CONTRADICT-flavored — rc q36 granularity artifact + PATH-1b spawned
+- (A) SCOUT-106 (full text proposals/runs/SCOUT-106-fleet-push-2026-10-11-1911Z.md): window
+  17:11→19:11Z. HEADLINE **rc q36 (0fb9e2a, 17:22Z): CONTRADICT-flavored against q35** — SCOUT-103
+  booked q35's "one-sided controllability STRUCTURAL ({7..13} U {16})" as PATH-1 corroboration;
+  q36 shows the 9..12 gap REAL-CROSSED at W20 and names q34/q35's 13-floor an ARTIFACT OF THE
+  W=40 CONTROL CLOCK. Law: "controllability without steerability" — fine-granularity closed loop
+  converges to a fixed-point orbit, TARGET-INSENSITIVE (all five targets byte-identical traces).
+  Exposure: no booked result of ours refuted (PATH-1 is about our knobs, not the rc s-dial), but
+  PATH-1's G4 "identical ⇒ upgrade CONTINUOUS unconditional" has the exact q36-shaped hole:
+  identical endpoints could be FIXED-POINT convergence, not knob-independence. voice-games 7x
+  tournament routine; PRs dependabot-only (non-watch); [EMBASSY] pong #49 unchanged.
+- Spawned **PATH-1b** (CPU ~15m, pre-reg first): steerability gate for CONTINUOUS upgrades —
+  two arms, DIFFERENT targets, finest censused setting; byte-identical ⇒ FIXED-POINT (annotate,
+  do NOT upgrade); distinct ⇒ upgrade stands. ≤3 knobs, ~15 min. A FIXED-POINT row adds a
+  steerability caveat to the owning THRESH-2/PATH-1 receipt.
+- (B) not fired this slice (scout + spawn consumed the timebox; GPU lane idle, QG4/MC-1/QG1d-corpus
+  remain longest-open for next wake). (C) not due (newest OURS booking VEXIT-1 REPRO PASS a5adb43;
+  manifest seal clean per 10:1x bookkeeping).
+- No 429s; no running processes; nothing duplicated. Rotation next wake: (B) PATH-1b (top cheap,
+  pre-reg first) or GPU QG4 / MC-1 / QG1d-corpus; then (A) SCOUT-107 per rotation.
