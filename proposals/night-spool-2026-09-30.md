@@ -3447,3 +3447,22 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   gloss1/thresh2/path1/verdict_index (SCOUT-103 spawn, qthe-codec steal). Census.json byte-stable;
   gloss1 + verdict_index fired live GREEN; thresh2/path1 compile-checked, verification rides next repro.
 - STATUS: CLOSED. Rotation next wake: (A) SCOUT-104 or (B) GPU-TRUE-1 / QG4 / MC-1; GPU open.
+
+## SLICE 2026-10-11 08:1x AKDT (day-conductor) — (A) SCOUT-104 (quiet; voice-games zeroing incident) + (C) VEXIT-1 REPRO PASS
+- (A) SCOUT-104 (full text proposals/runs/SCOUT-104-fleet-push-2026-10-11-1611Z.md): window 1415→1611Z.
+  HEADLINE — voice-games repair b5233f6: three wiring commits replaced files with ZERO BYTES while
+  claiming "all additive/untouched"; restored from last-good blobs via repair.bundle, honest repair
+  receipt (phantom call-sites named as never-existing). **No CONTRADICT.** CORROBORATE of booking-
+  completeness + FW-1 (claim vs actual write sites — maximal non-additive write under additive claim).
+  TOOL/STEAL: spawned **ADD-1** (CPU ~15m): verify-additive guard — diffstat sweep of watch-repo
+  pushes; 0-byte replacement = RED regardless of message. zero-msg-test issue burst = watchdog-without-
+  backoff anti-pattern, WATCH note. rc/canons/atlas/ewitness/jev + 6 core repos: zero window pushes;
+  0 open PRs; [EMBASSY] pong #49 unchanged.
+- (C) mandatory repro of newest OURS booking VEXIT-1 (10b3f0b): committed gloss1 tool re-run from
+  tracked-clean tree (foreign d12am/d12an untracked persist, PW-1) → exit 0, G1 rows=3 G3 probes=5
+  RED=0, **VERDICT: GREEN**, receipt sha256 fbc36420… **byte-identical** to HEAD (post-VEXIT-1 tool
+  change preserved GLOSS-1 booking reproducibility — the VEXIT-1 gate claim verified again live).
+  Repro artifact /home/eileen/scratch/repro/gloss1_vexit_repro_1615.json.
+- Manifest re-seal deferred (foreign untracked d12 lanes; no sealed paths touched; no ledger change).
+  No GPU fired (serial law; GPU open: QG4/MC-1/QG1d-corpus). No 429s; nothing running; nothing duplicated.
+- Rotation next wake: (B) ADD-1 (top cheap, spawned this slice) or GPU-TRUE-1 / QG4 / MC-1.
