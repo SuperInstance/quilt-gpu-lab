@@ -1,0 +1,52 @@
+{
+  "census_digest": "bd010f14c3d1a5087041c045c58681fb29614b1aa061e5c2d2a016e031cb47ab",
+  "n_knobs": 4,
+  "n_runnable": 4,
+  "n_witnessed": 4,
+  "prereg": "proposals/runs/THRESH-1-trace-divergence-census-prereg-2026-10-10.md",
+  "reds": [],
+  "rows": [
+    {
+      "diverges": true,
+      "knob": "determ1 eps",
+      "ok": true,
+      "settings": {
+        "1e-2": "125aafc50c5af2270c6aa1798e4d713f760c42d33bb2b4277b188e8dadcd64c7",
+        "1e-4": "4c69c9e95fb92ba2a2a4b9baad955626ec2490dbf68a9144f5114cc3a9171063"
+      }
+    },
+    {
+      "diverges": true,
+      "knob": "eproc sigma",
+      "ok": true,
+      "settings": {
+        "0.5": "fb2eb3cb5ed3deb3175a124eeaa1513a0b08c4a8802a1a3081d0c1cfde62112e",
+        "0.75": "41cbb0f93e9cb7948a52ed694a0bbb8c2c8a4f0f1ddf1cff3325873d584fe20b"
+      }
+    },
+    {
+      "diverges": true,
+      "knob": "degrade_gate tolerance",
+      "ok": true,
+      "settings": {
+        "0.0": "4e8e6c50d1cd46fb5c90bb29f15314e7ad6335769202e0005dd5b56409657bfc",
+        "1.0": "9c6ae2452f71d562b9ac4a4ed29f814f6694da74462b8056a1bb4d58e27fab99"
+      },
+      "verdicts": {
+        "0.0": "REGIME-BRITTLE",
+        "1.0": "GRACEFUL"
+      }
+    },
+    {
+      "diverges": true,
+      "knob": "verdict_gate minimum",
+      "ok": true,
+      "settings": {
+        "0.8": "PASS",
+        "0.95": "FAIL"
+      }
+    }
+  ],
+  "tool": "thresh1_trace_divergence",
+  "verdict": "GREEN"
+}

@@ -7235,3 +7235,25 @@ Rotation next wake: (A) SCOUT-92 per rotation; GPU open (QG4/QG1d-corpus/MC-1).
 - SEQUENCING NOTE (honest): census is read-only+deterministic over committed artifacts; first run executed BEFORE the pre-reg commit landed (analysis-only class, QO5 precedent). Committed here together; flagged, not hidden.
 - G2 flags: only zero-variance metric = decide1.bc.pred_is_argmin_balance (0.890625 in BOTH b and c) — but DECIDE-1c's booked claim IS instruction-blindness/identity, so the constant is the finding, not a defect. Producer grep: k/len(rows) data-derived (G3 GREEN-with-note). qg6 cross-arm var 1.14e-3 nonzero; determ1 all arm metrics vary + crossed_gen_sha 21/21 distinct; ionq2 equality-vs-theory-literal (identity-claim, G0-G4 intact).
 - VERDICT: GREEN — no RED rows. CRDT_Research class absent from our booked arms. Note for FW-1-successor: grep-based producer-liveness is heuristic; ionq2 stdout-only booking has no artifact JSON (accepted at its own booking).
+
+## [BOOKED 20:4x AKDT Oct 10] THRESH-1 trace-divergence census: GREEN 4/4 witnessed (G4 SOFT on determ1 sub-lane)
+- Pre-reg 8fce4c3 + tool committed+pushed BEFORE fire (SCOUT-96 spawn, q32 vacuous-knob class).
+- Result (results/thresh1/census.json): all four parameterized knobs WITNESSED — an adjacent
+  setting pair produces a trace/verdict difference on pinned input for each: determ1 eps
+  (1e-2 vs 1e-4, payload digests differ), eproc sigma (0.5 vs 0.75, E-path digests differ),
+  degrade_gate tolerance (0.0=REGIME-BRITTLE vs 1.0=GRACEFUL on a tolerance-witnessing sweep
+  with one small positive delta), verdict_gate minimum (0.80=PASS vs 0.95=FAIL at value 0.91).
+  NO q32-shape vacuous knob in the censused stack.
+- G4 SOFT (honest): verdict-level determinism holds (both independent full runs: 4/4 runnable,
+  4/4 witnessed, verdict GREEN); byte-level holds 3/4 — the determ1 torch sub-lane digests
+  differ run-to-run (known lane nondeterminism class, W5B2 precedent); divergence WITHIN each
+  run is what the census gates on, and it held both runs.
+- En-route trail (declared, pre-verdict): 3 mechanical census bugs fixed in place (determ1
+  tag-is-label; eproc array digest; StatMeta API) + 1 indent repair, all committed pre-fire of
+  the GREEN run. HAZARD (6th RC-1 --out witness): experiments/determ1_lattice_snap.py writes
+  its output in place with no refuse-overwrite — repro run overwrote fired artifacts (fired
+  digests survive in census.json; artifact immutability rule should extend to it).
+- Degrade_gate note: on the original docstring sweep (all-negative deltas) tolerance is
+  param-decoration (identical receipts) — the knob is only witnessed on the fail arm. Lesson:
+  knob-liveness is input-dependent; census pins must exercise the arm the knob guards.
+- CPU only, no GPU fired, no 429s. G4 repro artifact: /home/eileen/scratch/repro/thresh1_repro.json.
