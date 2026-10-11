@@ -7372,3 +7372,11 @@ Rotation next wake: (A) SCOUT-92 per rotation; GPU open (QG4/QG1d-corpus/MC-1).
   no sealed paths touched). No GPU fired (CPU-lane slice; serial law). No 429s; nothing duplicated.
 - Rotation next wake: (B) GPU-TRUE-1 / QG4 / MC-1 / QG1d-corpus (GPU open, longest-open slots), or
   ADD-1 (SCOUT-104 spawn, CPU ~15m).
+
+## [BOOKED 12:3x AKDT Oct 11] PATH-1b steerability gate: RED (2 FIXED-POINT rows; eproc STEERABLE — PATH-1 CONTINUOUS upgrade STANDS)
+- Pre-reg + tool committed+pushed BEFORE fire (1bbe6f2; SCOUT-106 spawn, rc q36 fixed-point hole). Fired from committed tree; receipt results/path1b/census.json (digest c9d39ea16f05bf4b, VEXIT contract: VERDICT: RED exit 1).
+- G1 anchors PASS (fresh RAMP rung counts 5/2/2 == PATH-1/THRESH-2 classes). G2 liveness PASS.
+- **eproc sigma: STEERABLE** — 3 distinct payload digests across 0.5/0.55/0.75 (ladder+midpoint). The PATH-1 G4 CONTINUOUS upgrade (only knob it applied to) STANDS, now with fine-resolution steerability evidence, not just schedule-independence.
+- **degrade_gate tolerance + verdict_gate minimum: FIXED-POINT-AT-FINE (RED rows per frozen G4)** — all three fine targets byte-identical. Caveat attached to PATH-1 receipt (AMENDMENT 1, this landing): within a grade band these payloads are target-indistinguishable; fine-grained discrimination claims from these gates are unsupported. Honest interpretation: both are quantized COARSE gates (booked THRESH-2 classes), so the identical band is consistent with payload quantization — but the q36-shaped target-insensitivity caveat is on the receipts either way. No booked result refuted: no verdict ever relied on fine-grained degrade/verdict-gate discrimination.
+- determ1 eps excluded per prereg (SOFT nondeterminism class).
+- CPU only, no GPU fired, no 429s.

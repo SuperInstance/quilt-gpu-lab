@@ -40,3 +40,17 @@ full schedule; the parent compares endpoint payload digests across arms.
   contact. Census output to --out only (refuse-overwrite, exit 3, RC-1 rule).
 
 CPU only, deterministic except determ1 SOFT lane. Never echoes secrets. Fail-loud on missing gates.
+
+## AMENDMENT 1 (PATH-1b steerability result, 2026-10-11 — post-verdict annotation per PATH-1b G4)
+
+PATH-1b (prereg PATH-1b-steerability-prereg-2026-10-11.md, fired from 1bbe6f2, receipt
+results/path1b/census.json digest c9d39ea16f05bf4b) measured fine-target steerability at
+ladder+midpoint resolution: **eproc sigma STEERABLE** (3 distinct digests at 0.5/0.55/0.75) —
+the CONTINUOUS upgrade granted by this census's G4 STANDS for eproc. **degrade_gate tolerance
+and verdict_gate minimum: FIXED-POINT-AT-FINE rows** (all three fine targets byte-identical) —
+per PATH-1b G4 these carry a steerability caveat: within a grade band the payload is
+target-indistinguishable; any downstream claim requiring FINE-grained discrimination from these
+two gates is unsupported by booked evidence. Interpretation note (honest, not gate-changing):
+both knobs are quantized/COARSE per THRESH-2 (verdict PASS→FAIL at 0.95; degrade RB→GRACEFUL),
+so the identical fine region is consistent with payload quantization; the q36-shaped
+target-insensitivity caveat is attached to the receipts either way.
