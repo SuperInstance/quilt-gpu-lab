@@ -1,0 +1,114 @@
+{
+ "seed": 2718,
+ "rho_grid": [
+  0.0,
+  0.1,
+  0.2,
+  0.3,
+  0.4
+ ],
+ "p_grid": [
+  0.5,
+  0.7
+ ],
+ "W": 8,
+ "eps": 0.0,
+ "rows": [
+  {
+   "W": 8,
+   "p": 0.5,
+   "eps": 0.0,
+   "rho": 0.0,
+   "floor": 8,
+   "base_floor": 8,
+   "blowup": 1.0
+  },
+  {
+   "W": 8,
+   "p": 0.5,
+   "eps": 0.0,
+   "rho": 0.1,
+   "floor": 12,
+   "base_floor": 8,
+   "blowup": 1.5
+  },
+  {
+   "W": 8,
+   "p": 0.5,
+   "eps": 0.0,
+   "rho": 0.2,
+   "floor": 20,
+   "base_floor": 8,
+   "blowup": 2.5
+  },
+  {
+   "W": 8,
+   "p": 0.5,
+   "eps": 0.0,
+   "rho": 0.3,
+   "floor": 30,
+   "base_floor": 8,
+   "blowup": 3.75
+  },
+  {
+   "W": 8,
+   "p": 0.5,
+   "eps": 0.0,
+   "rho": 0.4,
+   "floor": 65,
+   "base_floor": 8,
+   "blowup": 8.125
+  },
+  {
+   "W": 8,
+   "p": 0.7,
+   "eps": 0.0,
+   "rho": 0.0,
+   "floor": 4,
+   "base_floor": 4,
+   "blowup": 1.0
+  },
+  {
+   "W": 8,
+   "p": 0.7,
+   "eps": 0.0,
+   "rho": 0.1,
+   "floor": 6,
+   "base_floor": 4,
+   "blowup": 1.5
+  },
+  {
+   "W": 8,
+   "p": 0.7,
+   "eps": 0.0,
+   "rho": 0.2,
+   "floor": 10,
+   "base_floor": 4,
+   "blowup": 2.5
+  },
+  {
+   "W": 8,
+   "p": 0.7,
+   "eps": 0.0,
+   "rho": 0.3,
+   "floor": 15,
+   "base_floor": 4,
+   "blowup": 3.75
+  },
+  {
+   "W": 8,
+   "p": 0.7,
+   "eps": 0.0,
+   "rho": 0.4,
+   "floor": 30,
+   "base_floor": 4,
+   "blowup": 7.5
+  }
+ ],
+ "ref_blowup_p03_rho03": 2.0,
+ "gates": {
+  "G1_monotone": true,
+  "G2_p_universal_2x": true
+ },
+ "wall_s": 1.4
+}
