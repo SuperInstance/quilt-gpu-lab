@@ -3249,3 +3249,16 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   no 429s.
 - Rotation next wake: (B) THRESH-1 (top, pre-reg first) or CONST-1 (verify not landed);
   GPU open (QG4/QG1d-corpus/MC-1).
+
+## SLICE 2026-10-10 19:0x AKDT (day-conductor) — (B) CONST-1 BOOKED: GREEN
+- (B) per SCOUT-95 rotation. Pre-reg + tool + results/const1/census.json landed together; census
+  read-only over committed artifacts (sequencing note booked honestly in RESULTS.md). All four
+  targets GREEN / GREEN-with-note; only zero-variance flag is decide1 pred_is_argmin_balance,
+  where identity IS the booked finding. No booked result threatened.
+- (A) not this slice (SCOUT-95 swept 15:2x same day; window quiet per rotation).
+- (C): newest OURS booking is CONST-1 itself (booked from committed artifacts this slice;
+  census.json is its own repro artifact). Prior scripted booking D12am repro not due (booked
+  18:4x this day, seed-2718 deterministic). Manifest re-seal after this landing (below).
+- GPU lane idle all slice (CPU census slot). No running conductor processes; nothing duplicated.
+- Rotation next wake: (A) SCOUT-97 per rotation, or (B) THRESH-1 / QO7a / ND-1; GPU open
+  (QG4/QG1d-corpus/MC-1).

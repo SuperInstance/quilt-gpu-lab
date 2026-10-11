@@ -7229,3 +7229,9 @@ Rotation next wake: (A) SCOUT-92 per rotation; GPU open (QG4/QG1d-corpus/MC-1).
   model is now predictive in BOTH regimes: independent-null (kappa-hat) and dependent-null
   (c*rho^2 tail inflation).
 - CPU MC, seed 2718, deterministic. No GPU fired. No 429s. Manifest re-sealed this landing.
+
+## [BOOKED 19:0x CPU Oct 10] CONST-1 winning-arm-constant census: GREEN (G1-G4; no booked A-vs-B verdict rests on a producer constant)
+- Pre-reg proposals/runs/CONST-1-winning-arm-constant-census-prereg-2026-10-10.md + tool tools/const_census.py + results/const1/census.json. Spawned by SCOUT-95 (CRDT_Research class-constant subtraction; SCOUT-95 CONST-1 spawn).
+- SEQUENCING NOTE (honest): census is read-only+deterministic over committed artifacts; first run executed BEFORE the pre-reg commit landed (analysis-only class, QO5 precedent). Committed here together; flagged, not hidden.
+- G2 flags: only zero-variance metric = decide1.bc.pred_is_argmin_balance (0.890625 in BOTH b and c) — but DECIDE-1c's booked claim IS instruction-blindness/identity, so the constant is the finding, not a defect. Producer grep: k/len(rows) data-derived (G3 GREEN-with-note). qg6 cross-arm var 1.14e-3 nonzero; determ1 all arm metrics vary + crossed_gen_sha 21/21 distinct; ionq2 equality-vs-theory-literal (identity-claim, G0-G4 intact).
+- VERDICT: GREEN — no RED rows. CRDT_Research class absent from our booked arms. Note for FW-1-successor: grep-based producer-liveness is heuristic; ionq2 stdout-only booking has no artifact JSON (accepted at its own booking).
