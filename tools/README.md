@@ -247,6 +247,25 @@ piece others can lift. Grab = copy the file; everything here runs alone.
   FW-2 STOP rule: pins are against a self-contained reference MTH, not byte-tested against
   fleet-witness tree.js (no wire-compat claim); worked example rc=0 CLEAN then truncation RED
   rc=1 with size named first.
+- **commit-cite-check** — `tools/commit_cite_check.py` — phantom-commit-citation gate
+  (pattern lifted from the verdict_cite_check / git_anchor_check lineage, 2026-10-11:
+  docs and receipts cite SHAs — "commit 5fbf882", "prereg 19810da", "5fbf882~1" — and
+  nothing verified they resolve; a typo'd or deleted-SHA cite is evidence pointing nowhere).
+  Scans files for hex SHA cites, classifies each via `git cat-file -e <tok>^{commit}`
+  (list-form subprocess). Citation-CONTEXT gated: a token only counts near commit-ish
+  words (commit/sha/prereg/git/booked...) or with a `~N`/`^N` suffix — docs are full of
+  8-digit numeric ids (01677063) that a naive hex sweep books as hundreds of false REDs
+  (live: 11 correctly ignored). PHANTOM rc=1 names token+file; `--allow` books a
+  documented allow (never silent); missing context books nothing. Read-only, stdlib-only,
+  exit 0=CLEAN / 1=PHANTOM / 2=fail-loud.
+  `python tools/commit_cite_check.py --file F [--files dir --glob "*.py" --all-hex --allow tok --out r.json] | --selftest`
+  TEST receipt 2026-10-11: selftest 7/7 — selftest caught one real tool bug live
+  (allow tokens were skipped BEFORE the context check, so allowlisted entries were never
+  booked in the receipt — the gate could silently swallow a documented allow; restructured
+  so scan returns all contextual candidates and classification happens in the gate) plus
+  a bare-SHA pin that honestly tripped the context gate (fixture fixed, gate untouched);
+  live tools/README.md + docs/PREREG-CLAIM-PROTOCOL.md: CLEAN rc=0, 8/8 cites resolve,
+  receipt results/commit_cite_check_docs_2026-10-11.json.
 
 ## When you add a tool
 

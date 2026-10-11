@@ -1,0 +1,45 @@
+{
+  "tool": "commit_cite_check",
+  "verdict": "CLEAN",
+  "rc": 0,
+  "files_scanned": 2,
+  "cites_resolved": 8,
+  "cites_phantom": 0,
+  "allowlisted": [],
+  "hex_ignored_no_context": 11,
+  "resolved": [
+    {
+      "token": "5fbf882",
+      "file": "tools/README.md"
+    },
+    {
+      "token": "19810da",
+      "file": "tools/README.md"
+    },
+    {
+      "token": "575a77b",
+      "file": "tools/README.md"
+    },
+    {
+      "token": "b639aea",
+      "file": "tools/README.md"
+    },
+    {
+      "token": "65a168c",
+      "file": "tools/README.md"
+    },
+    {
+      "token": "b3831a1",
+      "file": "tools/README.md"
+    },
+    {
+      "token": "265ce29",
+      "file": "tools/README.md"
+    },
+    {
+      "token": "d1a5d7a",
+      "file": "tools/README.md"
+    }
+  ],
+  "phantom": []
+}
