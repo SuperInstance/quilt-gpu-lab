@@ -1,0 +1,91 @@
+{
+  "census_digest": "c9d39ea16f05bf4b202350389d2344c4045a37822ca8f8400e7b472a2a2e4949",
+  "g1_anchors": {
+    "degrade_gate tolerance": {
+      "distinct": 2,
+      "expected": 2,
+      "ok": true
+    },
+    "eproc sigma": {
+      "distinct": 5,
+      "expected": 5,
+      "ok": true
+    },
+    "ok": true,
+    "verdict_gate minimum": {
+      "distinct": 2,
+      "expected": 2,
+      "ok": true
+    }
+  },
+  "g2_liveness": true,
+  "n_knobs": 3,
+  "path1_prereg": "proposals/runs/PATH-1-knob-history-dependence-prereg-2026-10-11.md",
+  "prereg": "proposals/runs/PATH-1b-steerability-prereg-2026-10-11.md",
+  "reds": [
+    "FIXED-POINT:degrade_gate tolerance",
+    "FIXED-POINT:verdict_gate minimum"
+  ],
+  "rows": [
+    {
+      "digests": {
+        "0.5": "aae81cd6064e6092e4bdd86ac853d81345317da8f48bec1717576581313bbdaf",
+        "0.55": "fb29e381db62999d38fabf99c9ba3e9a883c630a26c52cd340bc1e4570998122",
+        "0.75": "1476fb51a0bff5fb263a7e5f80ebad843cb3b92e1a47dd24f06d1bf085e2ec56"
+      },
+      "fine_distinct_pairs": [
+        "0.5!=0.55",
+        "0.55!=0.75",
+        "0.5!=0.75"
+      ],
+      "fixed_point_at_fine": false,
+      "grade": "STEERABLE",
+      "knob": "eproc sigma",
+      "n_distinct": 3,
+      "ok": true,
+      "targets": [
+        "0.5",
+        "0.55",
+        "0.75"
+      ]
+    },
+    {
+      "digests": {
+        "0.5": "b072d17da1f7e14a15735d01dea81773a01978aaab691c229950edcb3babf79f",
+        "0.625": "b072d17da1f7e14a15735d01dea81773a01978aaab691c229950edcb3babf79f",
+        "0.75": "b072d17da1f7e14a15735d01dea81773a01978aaab691c229950edcb3babf79f"
+      },
+      "fine_distinct_pairs": [],
+      "fixed_point_at_fine": true,
+      "grade": "FIXED-POINT-AT-FINE",
+      "knob": "degrade_gate tolerance",
+      "n_distinct": 1,
+      "ok": true,
+      "targets": [
+        "0.5",
+        "0.625",
+        "0.75"
+      ]
+    },
+    {
+      "digests": {
+        "0.875": "32e3c0215358a1f45d846a4a2d924cf7901caa608db81c166e70fc4ac2fecd9a",
+        "0.895": "32e3c0215358a1f45d846a4a2d924cf7901caa608db81c166e70fc4ac2fecd9a",
+        "0.90": "32e3c0215358a1f45d846a4a2d924cf7901caa608db81c166e70fc4ac2fecd9a"
+      },
+      "fine_distinct_pairs": [],
+      "fixed_point_at_fine": true,
+      "grade": "FIXED-POINT-AT-FINE",
+      "knob": "verdict_gate minimum",
+      "n_distinct": 1,
+      "ok": true,
+      "targets": [
+        "0.875",
+        "0.895",
+        "0.90"
+      ]
+    }
+  ],
+  "tool": "path1b_steerability",
+  "verdict": "RED"
+}
