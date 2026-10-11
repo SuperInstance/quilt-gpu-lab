@@ -83,6 +83,21 @@ piece others can lift. Grab = copy the file; everything here runs alone.
   and no better than shuffled). Stdlib-only, deterministic, fail-loud JSON receipt; exit 1 on RED.
   `python tools/degeneracy_probe.py --module mymetrics.py --fn metric --pos 1.2,0.9 --neg 0.2,0.4 [--out r.json]` (or `--selftest`). Smoke 2026-10-10: PASS (witness auc_true 0.9153 / inv 0.0847, GREEN; constant-metric probe RED exit=1).
 
+- **ratio-calib-gate** — `tools/ratio_calib_gate.py` — one-parameter ratio calibration with heldout
+  invariance gate (pattern lifted PROVEN from D12al/D12am, booked 2026-10-10: absolute floor models
+  are ~3x off but RATIOS cancel grid quantization — fit ONE parameter c by bisection on the blow-up
+  RATIO at a calibration point, then G1 re-hit fit point(s), G2 predict the held-out point with the
+  SAME c (no refit), G3 invariance — implied-c/c_fit in band, else the functional FORM (rho^2 vs
+  rho^4) is wrong and books honest MISFIT). Model is a user --expr in (c, rho); stdlib-only,
+  deterministic, fail-loud rc=2, exit 0=CALIBRATED / 1=MISFIT, JSON receipt.
+  `python tools/ratio_calib_gate.py --expr "1 + c*rho**2" --cal 0.2:2.0 --heldout 0.4:6.4 [--band 0.5,2.0 --inv-band 0.5,2.0 --out r.json] | --selftest`
+  TEST receipt 2026-10-10: selftest 5/5 — selftest caught two real pin bugs live (G1 can never fail
+  at the FIT point since c is fit to it exactly — moved the pin to a second calibration point; and
+  a non-positive target took the honest-MISFIT unbracketable path instead of failing loud — domain
+  guard added to fit_c). Worked example rc=0 CALIBRATED: D12al W=8 replay, c_fit=25.0, heldout
+  model 5.0 vs measured 6.4 (ratio 1.28), implied-c/c_fit 1.35 — consistent with the booked
+  constant-c finding, receipt results/ratio_calib_gate_example_2026-10-10.json.
+
 ## Coordination platform (lives in SuperInstance/quilt-i2i)
 
 - **i2i-ledger worker** — live shared semantic memory:
