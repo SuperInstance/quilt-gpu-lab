@@ -54,3 +54,9 @@ two gates is unsupported by booked evidence. Interpretation note (honest, not ga
 both knobs are quantized/COARSE per THRESH-2 (verdict PASS→FAIL at 0.95; degrade RB→GRACEFUL),
 so the identical fine region is consistent with payload quantization; the q36-shaped
 target-insensitivity caveat is attached to the receipts either way.
+
+## AMENDMENT 2 (2026-10-11 15:3x AKDT, PATH-1c landing)
+The AMENDMENT 1 caveat "the identical fine region is consistent with payload quantization" is
+UPGRADED per PATH-1c frozen G3: quantization is now EVIDENCED BY the horizon probe
+(results/path1c/horizon_census.json) — window widening V0/V1/V2 leaves fine-target digests
+byte-identical on both FIXED-POINT-AT-FINE knobs.

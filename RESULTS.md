@@ -7402,3 +7402,27 @@ Rotation next wake: (A) SCOUT-92 per rotation; GPU open (QG4/QG1d-corpus/MC-1).
   overlaps SCOUT-106 19:11Z by <2h — next wake opens with (A) SCOUT-107).
 - No GPU fired (serial law, CPU slice). No 429s; nothing duplicated.
 - Rotation next wake: (A) SCOUT-107 first, then (B) GPU-TRUE-1 / QG4 / MC-1 / QG1d-corpus (GPU open).
+
+## [BOOKED 15:3x AKDT Oct 11] PATH-1c horizon probe: GREEN — G3 QUANTIZATION CONFIRMED on both FIXED-POINT-AT-FINE knobs
+- Pre-reg + tool committed+pushed BEFORE fire (11c7acf, three pre-fire tool fixes af405b5/da29d73/db049d0).
+  Fired from committed tree db049d0; receipt results/path1c/horizon_census.json; VEXIT contract honored
+  (`VERDICT: GREEN`, exit 0). Runtime 0.6 s (G4 well under 15 min; CPU-only, no GPU).
+- G1 anchors PASS: V0 reproduces PATH-1b's byte-identical fine-target bands (degrade 3/3 identical,
+  verdict 3/3 identical) + RAMP rung counts (degrade 2, verdict 2).
+- **G3 fired: all variants (V0 single / V1 n2x / V2 n4x) yield IDENTICAL target digests per knob.**
+  degrade_gate tolerance: 3 distinct variant digests (one per window) but 1 distinct per window across
+  targets; verdict_gate minimum: literally one digest across all 9 V-cells. Widening the gate-input
+  observation window (q37's horizon move) does NOT dissolve the fine-target lock ⇒ the PATH-1b
+  interpretation is now **evidenced by**, not merely consistent with: both gates are quantized COARSE
+  gates; their fine-target insensitivity is payload quantization, NOT a horizon artifact.
+- G4 determinism PASS (built-in rerun byte-identical). Receipt digest in artifact.
+- **Bonus positive finding (PARAM-1-class): degrade_gate REFUSES duplicated sweep evidence (rc=2 on
+  entry-duplicated input)** — the window operator was switched to midpoint-interpolation refinement
+  (same landscape, finer observation) pre-fire; refusal committed in db049d0 message. The gate
+  validates its input window instead of silently absorbing degenerate evidence — a live instance of
+  the fastloop-guard class being ABSENT from our gates.
+- Docs amendment per frozen G3: PATH-1 AMENDMENT 1 caveat wording upgraded below (RESULTS 7380 entry
+  stands as booked history; this entry is the upgrade receipt).
+- No booked result refuted. (C) not due (newest OURS scripted booking = VEXIT-1, repro PASS byte-level
+  17:2x prior slice; PATH-1c becomes the new newest — self-repro = built-in G4 rerun, byte-identical).
+- Manifest re-sealed post-landing (this commit). No 429s; nothing duplicated; no GPU fired.
