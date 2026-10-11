@@ -3535,3 +3535,18 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   advisory-only). SCOUT-106 covered (A) at 11:1x; no new external pushes this slice (not re-swept).
 - CPU only, no GPU fired (QG4/MC-1/QG1d-corpus remain longest-open). No 429s; nothing duplicated.
 - Rotation next wake: (A) SCOUT-107, or (B) GPU QG4 / MC-1 / QG1d-corpus.
+
+## SLICE 2026-10-11 15:1x AKDT (day-conductor) — (B) PATH-1c BOOKED: GREEN, G3 QUANTIZATION CONFIRMED
+- Top open item per rotation (SCOUT-107 spawn). Pre-reg + tool pushed BEFORE fire (11c7acf + 3 pre-fire
+  tool fixes, last db049d0). Fired from committed tree; receipt results/path1c/horizon_census.json
+  (VEXIT: `VERDICT: GREEN` exit 0). 0.6 s CPU; no GPU (serial law).
+- **G3 fired**: V0/V1/V2 (1x/2x/4x gate-input window) all leave fine-target digests byte-identical per
+  knob (degrade 3 targets x 3 windows = 3 digests; verdict = ONE digest across all 9 cells). q37's
+  horizon move does NOT unlock our gates ⇒ PATH-1/PATH-1b caveat upgraded to "evidenced by" (AMENDMENT 2
+  on PATH-1 prereg). No booked result refuted.
+- BONUS (PARAM-1-class positive): degrade_gate REFUSES duplicated sweep evidence (rc=2) — window op
+  switched to midpoint interpolation pre-fire. Fastloop-guard class absent from our gates, live witness.
+- (C) not due: VEXIT-1 already REPRO PASS byte-level; PATH-1c carries built-in G4 determinism rerun
+  (byte-identical). Manifest re-sealed + --check PASS (209d800; foreign d12* lanes untracked advisory, PW-1).
+- No 429s; nothing duplicated; keys untouched; archive-never-delete honored.
+- Rotation next wake: (A) SCOUT-108, then GPU open slots (GPU-TRUE-1 / QG4 / MC-1 / QG1d-corpus).
