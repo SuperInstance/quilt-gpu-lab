@@ -7348,3 +7348,27 @@ Rotation next wake: (A) SCOUT-92 per rotation; GPU open (QG4/QG1d-corpus/MC-1).
   unaffected — final print + same exit semantics).
 - Manifest re-seal deferred (foreign d12am/d12an untracked live lanes persist, PW-1; standing precedent).
 - CPU only, no GPU fired, no 429s. Rotation next wake: (A) SCOUT-104, or (B) GPU-TRUE-1 / QG4 / MC-1 (GPU open).
+
+## SLICE 2026-10-11 09:1x AKDT (day-conductor) — (A) SCOUT-105 quiet + (B) VEXIT-deferred REPRO: thresh2/path1 PASS
+- (A) SCOUT-105 (window 16:11Z→17:11Z, post-SCOUT-104): **QUIET** — voice-games b8f31a42 (routine
+  tournament live-data, part of the 6x already covered), lobster-live f20524d0/8329d9a1 (docs-only
+  clones.md 'Agent Ticket' rewording + MEMORY.md 2 lines), zero-poc routine. 0 substantive PRs
+  (dependabot-only fleet), 0 new issues since 16:13Z (watchdog burst not recurring), [EMBASSY] pong
+  #49 unchanged. **No CONTRADICT; no new items spawned** (quiet-window precedent). Full note: this
+  entry suffices; no separate SCOUT-105 file for a quiet window.
+- (B) **VEXIT-1 deferred verification CLOSED (REPRO PASS verdict-level, both remaining tools)** —
+  committed-script re-runs from tracked-clean tree (foreign d12am/d12an untracked persist, PW-1):
+  - thresh2_granularity_ladder: exit 0, **VERDICT: GREEN** printed + encoded (exit-code contract RC_OK);
+    census digest ee757eeb… vs committed 8c5b886d… — ONLY delta = determ1 eps run-digests (booked
+    THRESH-2 G4 SOFT nondeterminism class, same shape as SCOUT-99 repro); grades/anchors/refusals
+    identical. Artifacts /home/eileen/scratch/repro/thresh2_vexit_smoke_1715Z.json.
+  - path1_schedule_census: exit 0, **VERDICT: GREEN** (RC_OK); digest f7607478… vs committed
+    00f2082a… — ONLY delta = determ1 eps digest_* / control_direct_vs_direct digests (same SOFT
+    class); arms/verdicts identical. Artifact …/path1_vexit_smoke_1720Z.json.
+  - Net: VEXIT-1 is now live-verified on ALL FOUR tools (gloss1/verdict_index byte-repro'd 07:3x;
+    thresh2/path1 this slice). VEXIT-1 fully CLOSED.
+- (C) not due: newest OURS booking remains VEXIT-1 (already REPRO PASS byte-level at a5adb43).
+  Manifest re-seal still correctly deferred (foreign d12am/d12an untracked lanes, standing precedent;
+  no sealed paths touched). No GPU fired (CPU-lane slice; serial law). No 429s; nothing duplicated.
+- Rotation next wake: (B) GPU-TRUE-1 / QG4 / MC-1 / QG1d-corpus (GPU open, longest-open slots), or
+  ADD-1 (SCOUT-104 spawn, CPU ~15m).
