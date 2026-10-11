@@ -47,7 +47,11 @@ def k1_determ1() -> dict:
             rc, so = run([PY, "experiments/determ1_lattice_snap.py", "B", eps, str(out)])
             if rc != 0 or not out.exists():
                 return {"knob": "determ1 eps", "ok": False, "why": f"rc={rc} {so[-400:]}"}
-            digs[eps] = digest_bytes(out.read_bytes())
+            # strip wall-clock field before digest (wall_s is nondeterministic
+            # bookkeeping, not trace); compare the physics payload only.
+            rec = json.loads(out.read_text())
+            rec.pop("wall_s", None)
+            digs[eps] = norm(rec)
     return {"knob": "determ1 eps", "ok": True,
             "settings": digs, "diverges": digs["1e-2"] != digs["1e-4"]}
 
