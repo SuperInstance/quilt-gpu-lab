@@ -18,6 +18,11 @@
 - [DONE 01:3x] **DECIDE-1 FIRED + BOOKED**: G1 control PASS (16/16=1.0); G2 lane FAIL decisively BELOW chance (5/64=0.078; zero-shot and shipped trained readout give IDENTICAL predictions); G3 PASS (3.31 GiB, 54 ms); G4 exploratory (fitted-T pinned at boundary, fitted head 0.3125 not significant vs 0.25). Per protocol: STOPPED on G2 FAIL, no re-roll.
 
 ## QUEUE (top = next)
+- [open] PATH-1 (CPU ~20m, spawned by SCOUT-101 / rc q34): knob history-dependence census —
+  two-arm schedules (high→target vs pin→target) over determ1 eps / eproc sigma / degrade
+  tolerance; G2 anchor THRESH-2 grades 4/4 (fd25a5c); path-dependent → annotate THRESH-2
+  receipt; identical → upgrade CONTINUOUS grades unconditional. Pre-reg first. Determ1 runner
+  has NO refuse-overwrite — write to scratch, do not repeat the HAZARD.
 - [open] THRESH-2 (CPU ~20m, spawned by SCOUT-99 / rc q33): granularity-ladder census over censused
   knobs (degrade_gate tolerance, eproc sigma, verdict_gate minimum, determ1 eps) — >=5 intermediate
   settings on pinned inputs; grade each COARSE vs CONTINUOUS; q34 non-monotone-price hazard noted.
@@ -99,6 +104,13 @@
   d12x_generator_corr_audit.py + results JSON + docs/SUBSTRATE-SYNTHESIS.md) — re-seal deferred per
   precedent; no sealed paths touched. GPU lane idle all slice (rotation: scout was the slot).
 - Rotation next wake: (B) AL-1 (cheap, top) or QO6t/DET-1d; GPU open (QG1d/QG4/MC-1).
+
+## SCOUT-101 (2026-10-11 1011Z) — no CONTRADICT; PATH-1 spawned (knob history-dependence)
+- Window since SCOUT-99: rc q34 (b8986e3) + canons ae0423b (07:27Z, HEAD re-probe rule held — canons was NOT quiet). PRs quiet over 6 watch repos; issues routine. Full text proposals/runs/SCOUT-101-fleet-push-2026-10-11-1011Z.md.
+- HEADLINE rc q34: closed-loop s-dial FAIL — **s→cadence map is PATH-DEPENDENT** (same rung via ramp ≠ same rung held fixed; held-set state shaped by arm history; one-sided controllability). CORROBORATE+SHARPEN of THRESH-1/THRESH-2: our ladder grades are certified single-step-from-pin only. Spawned **PATH-1** (CPU ~20m, pre-reg first): two-arm schedule census over determ1 eps / eproc sigma / degrade tolerance; G2 anchor = THRESH-2 grades 4/4 (fd25a5c); G3 path-dependent → annotate receipt; G4 identical → upgrade CONTINUOUS grades to unconditional. Prior: degrade fail-arm is the live path-dependence candidate; determ1/eproc subprocess knobs likely stateless.
+- canons 0717Z: 23 conservation-spectral ports, cheeger 3 answers (12.75× spread), suite blind BY CONSTRUCTION (all fixtures unweighted; bug only exists weighted). CORROBORATE x4: THRESH-1 guarded-arm rule, QG1c class (cross-port convention diff), GLOSS-1/CONST-1 (conservation health-check is the constant all-ones null), RECEIPT-HASH (untraceable empirical constants). tile-compiler = strong gem, READING-LOW watch (QO2-adjacent, no action). Census unseen-intersection method noted for FW-1-successor rota.
+- (C) not due: THRESH-2 REPRO PASS 01:1x; no scripted booking since. No GPU fired (scout slot per rotation). No 429s; nothing duplicated; pong #49 unchanged.
+- Rotation next wake: (B) PATH-1 (top, pre-reg first) or GLOSS-1; GPU open (QG4/MC-1/QG1d-corpus).
 
 ## SCOUT-99 (2026-10-11 0624Z) — rc q33 corroboration of THRESH-1 lesson; THRESH-2 spawned; no CONTRADICT
 - Window since SCOUT-98: only substantive push = rc-20260824-11 q33 (914a036, 05:23Z, post-snapshot) —
