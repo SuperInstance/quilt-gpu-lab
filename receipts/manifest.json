@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-11T13:15:23.738296+00:00",
+  "generated_at": "2026-10-11T18:12:14.058192+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "fb2519d0024767902499c19417afda1463583fbb40b2dc7b2e63a84b7d0752e2",
+    "RESULTS.md": "1bb427beafc9824f21ca68de166be6b476d7290afba11d6be2782228fbc68e55",
     "QUEUE.md": "913d9ce17ab763e14cb11aea273536f549d87ae40163f6b93ca1a006546c1939"
   },
   "experiments": {
@@ -269,7 +269,7 @@
     "xq0_substrate_consolidation.py": "eae71b6a1c664669a941bc9be03e7574e0ec16fb6f9541250aae11c9384bb32a"
   },
   "tools": {
-    "README.md": "b0abe9615dcf74983a881221445292cb6df68c9f1afd9708ca3e7f443b5453a4",
+    "README.md": "96fa57107d44d413eca2dbed9e1aa1db94c0636ac47537fceeab27a663b9706d",
     "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "auc_sep.py": "65611d7fc6cb42e3bbd515bb4850e724bf5aa7d318086a4c5e906088f89bd6c9",
     "binom_gate.py": "54a02b649c10fc390b49c60131d720b342be8e7552b7189aa7825645f20c3aec",
@@ -320,7 +320,7 @@
     "gate_reads.py": "f586a63f7c4d6a3a065c9b7e449d8ad186a879a1d8b5b9b15fe69bc5c6989249",
     "gen_audit.py": "6b74ee583c40dade96168ff60b1417d9331ffee408f6a8f695ddbb785d2ef141",
     "git_anchor_check.py": "03d0ce2eaa89cfd93479eab52c03b812d112959ff312bbcb499f4386fd29f842",
-    "gloss1_loss_liveness.py": "9b398044f9bbbf828c7d1ab2a4c91bb8c0d08622dadecfc54cdbe7ebb4e3bf12",
+    "gloss1_loss_liveness.py": "7db408478172e0fec3b66c51cc7371120ef306184f8d3a7dbec619540d5e95f3",
     "gpu_ramp_receipt.py": "c0cc342bff783ed3402ebcf35eceb39601d8659fa38b16fab83caea4791452a6",
     "hash_audit_rota.py": "f85d016fe79cff99121d8f694db2c7ab2451ff568104c2e9e3ab78e40297b2a4",
     "hash_dut.py": "f0eda10fdab8bc5c65498cb7a3f43e5e6aeaba402b5a3cd31327061f8081971d",
@@ -345,7 +345,7 @@
     "overnight_gpu.sh": "e3a6de06d14b927fd45b55c5622ca2ad37b32d50a9d02d1de1d64545de3bb61d",
     "param_audit.py": "4208b3811af317ab02a30cb2735ee995a9b425ac4376a262bced159a79649939",
     "param_liveness.py": "18180c0d6eaf1d7572acc5056841a96180e701599ee729588830e65015fdcffa",
-    "path1_schedule_census.py": "be0113a5b222baf77175816261522ee0e6b02a9d5dfade891da7ca8f4c0c06f4",
+    "path1_schedule_census.py": "e6b1fa731df0d927671e9caec394051fbb454f2a2f507ae4cc9b2acb32619353",
     "perm_ci.py": "6886711bc9f1b07f8184f367cbad9661dd31c082af3bcfc9103d5e9256a25971",
     "pert_audit.py": "825e3b960bb407dc7eaa3004df666b6615d0c40882f280ae6f9208a168bc6811",
     "power_fit.py": "74ea3f67ac32a1ea96538c89d317df1da346d520f15dbe67cd9275647a5a5b85",
@@ -377,16 +377,18 @@
     "test_append_witness.py": "ee737cb5836b6a8315af6571a8fc360c25e28c0ecae10c16fa8b58576e983144",
     "test_skill_semantic.py": "1045613b43a5b48c8dd22739c227fbaf9cce7102d179814592fbb3e13d1788c2",
     "thresh1_trace_divergence.py": "966ba44465426ae0e39a75dbf9b78f95cb21eeee317a01d9c64dbeb719c519ce",
-    "thresh2_granularity_ladder.py": "39dad5e331c517d30cd1d0ef3c0e3a950b671501f3ff8267c25963278ab1e3c0",
+    "thresh2_granularity_ladder.py": "8211fc21bb5d1dfec7f8769dc3e16f44f3eba9f84ff686581934d6718fb8317a",
     "tie_census.py": "ce6330b22e96f32be53f2f8955283fd8d1096ded70dfef8c5714787cee9d0c26",
     "tol_pin.py": "65b5463ef607fb6f4daa1fab7098ce3a09d2927d505135b09099f8802c798372",
+    "trace_id.py": "7708ae5454118be11615355ebfe5fa48e6619f1305fce2597bb02fd21fe1b53b",
     "transition_kernel.py": "8364ec79e6e866fbf78d4fbd80a3514bf14f11394c4048a1dff30889e7796443",
     "typesafe_batch.py": "6f4a470a02d262c2877748670aeb6ae1ca74a98f6b395864bb84dd8ec2d30381",
     "vendor_strip_census.py": "bd7d7c2a3561ee7039a58176bdc116357db624ba9595f08a1c2c05417c6a164c",
     "verdict_cite_check.py": "2e652fe62843a90a191085166ce9eb27d0d52f4d6b2983a25b96874bf4c9d9c7",
     "verdict_gate.py": "0f464f7a93f81ea8eb0fe64394f9795812957367a8289c719bcd95c9db016b08",
-    "verdict_index.py": "6f46f493797b11d01ca97883c1e046eb48fbd3c6a5ac290a5272f75fbf46d060",
+    "verdict_index.py": "23a1ac63d3444a26570588e2c9cfbf2ea08b9f1e4712da1847dd5b4b026719c8",
     "verdict_repro.py": "d51cabd4cca08aaa656c9776b9205a182e2b6b02d15e7117e715274ba499ffc7",
+    "vexit_check.py": "6a2b060f7222f25fa5705bdc2c1a5c56b6f721066bf62f08a881d618a90f9c65",
     "worstcase_calib.py": "07f920af3cac829c3aa2265e3c5939555ff0cdea969404d083c8fc3cb0351757",
     "wt_floor.py": "c28d774268b68c1ca8474c8d33512fd2402d8db94bf28949c95cb7114386de63",
     "xpb_receipt_hook.py": "9b82ed31859fa9de07e14dda03e366932649e0e0e00c93d40ff2e77f13c2c1d5"

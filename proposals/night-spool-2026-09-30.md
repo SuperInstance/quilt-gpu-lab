@@ -3466,3 +3466,21 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
 - Manifest re-seal deferred (foreign untracked d12 lanes; no sealed paths touched; no ledger change).
   No GPU fired (serial law; GPU open: QG4/MC-1/QG1d-corpus). No 429s; nothing running; nothing duplicated.
 - Rotation next wake: (B) ADD-1 (top cheap, spawned this slice) or GPU-TRUE-1 / QG4 / MC-1.
+
+## SLICE 2026-10-11 10:1x AKDT (day-conductor) — (C) DIRTY-BOOKING HAZARD CLOSED + MANIFEST RE-SEAL CLEARED
+- FOUND: last slice's thresh2/path1 VEXIT smoke re-runs OVERWROTE 11 tracked booked result JSONs
+  (results/determ1_lattice_snap/B-*; git status M). Exactly the 2026-09-30 dirty-tree booking hazard
+  class — repro artifacts must go to scratch, never write back into tracked results. Delta shape was
+  benign (arm-B lattice-snap draws: rates/auc/sha all draw-dependent = booked DETERM-1 G2
+  nondeterminism class), but committed artifacts are the canonical booked ones.
+- FIXED: git checkout -- results/determ1_lattice_snap/ (restored to HEAD, byte-exact booked state).
+  Lesson for FW-1-successor / booking-completeness rota: runners invoked from repo root can clobber
+  tracked results via relative default out-paths — smoke repros MUST pass explicit scratch --out.
+- MANIFEST: re-seal finally CLEARED (previous deferrals were foreign-lane untracked; this wake the
+  tracked tree came clean first). Drift was all our own committed landings since last seal (VEXIT-1
+  tool edits, trace_id/vexit_check new tools, RESULTS/spool). Sealed: RESULTS.md + 260 experiment +
+  123 tool/weight files; --check exit 0; foreign d12am/d12an/d12ao untracked = advisory only (PW-1).
+  (C) repro not due (newest OURS booking VEXIT-1 already REPRO PASS at a5adb43).
+- No GPU fired (bookkeeping slot per rotation). No 429s; nothing duplicated; no running conductor
+  processes. Rotation next wake: (A) SCOUT-106, then (B) GPU-TRUE-1 / QG4 / MC-1 / QG1d-corpus
+  (GPU open, longest-open slots) or ADD-1 (CPU ~15m).
