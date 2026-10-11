@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-11T13:14:56.007855+00:00",
+  "generated_at": "2026-10-11T13:15:23.738296+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "a60b59fe1fa970bc10f3b46f3e51269011ab0c2eb3794bf0f87b3528573be56a",
+    "RESULTS.md": "fb2519d0024767902499c19417afda1463583fbb40b2dc7b2e63a84b7d0752e2",
     "QUEUE.md": "913d9ce17ab763e14cb11aea273536f549d87ae40163f6b93ca1a006546c1939"
   },
   "experiments": {
@@ -320,6 +320,7 @@
     "gate_reads.py": "f586a63f7c4d6a3a065c9b7e449d8ad186a879a1d8b5b9b15fe69bc5c6989249",
     "gen_audit.py": "6b74ee583c40dade96168ff60b1417d9331ffee408f6a8f695ddbb785d2ef141",
     "git_anchor_check.py": "03d0ce2eaa89cfd93479eab52c03b812d112959ff312bbcb499f4386fd29f842",
+    "gloss1_loss_liveness.py": "9b398044f9bbbf828c7d1ab2a4c91bb8c0d08622dadecfc54cdbe7ebb4e3bf12",
     "gpu_ramp_receipt.py": "c0cc342bff783ed3402ebcf35eceb39601d8659fa38b16fab83caea4791452a6",
     "hash_audit_rota.py": "f85d016fe79cff99121d8f694db2c7ab2451ff568104c2e9e3ab78e40297b2a4",
     "hash_dut.py": "f0eda10fdab8bc5c65498cb7a3f43e5e6aeaba402b5a3cd31327061f8081971d",
