@@ -3505,3 +3505,15 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   manifest seal clean per 10:1x bookkeeping).
 - No 429s; no running processes; nothing duplicated. Rotation next wake: (B) PATH-1b (top cheap,
   pre-reg first) or GPU QG4 / MC-1 / QG1d-corpus; then (A) SCOUT-107 per rotation.
+
+## SLICE 2026-10-11 12:1x AKDT (day-conductor) — (B) PATH-1b BOOKED: RED (2 FIXED-POINT rows; eproc STEERABLE)
+- (B) PATH-1b (SCOUT-106 spawn) fired: prereg+tool 1bbe6f2 committed BEFORE fire; receipt
+  results/path1b/census.json (c9d39ea16f05bf4b). G1 anchors 5/2/2 PASS; G2 PASS. **eproc sigma
+  STEERABLE** (3 distinct fine digests) — PATH-1 CONTINUOUS upgrade STANDS with fine-resolution
+  evidence. **degrade/verdict: FIXED-POINT-AT-FINE RED rows** — fine targets payload-indistinguishable;
+  PATH-1 receipt AMENDMENT 1 attached (steerability caveat; no booked result refuted — both knobs
+  quantized COARSE, no verdict ever relied on fine discrimination). determ1 excluded per prereg.
+- (C) satisfied in-slice: manifest re-sealed clean post-booking (3ce5a4d; foreign d12* untracked
+  advisory-only). SCOUT-106 covered (A) at 11:1x; no new external pushes this slice (not re-swept).
+- CPU only, no GPU fired (QG4/MC-1/QG1d-corpus remain longest-open). No 429s; nothing duplicated.
+- Rotation next wake: (A) SCOUT-107, or (B) GPU QG4 / MC-1 / QG1d-corpus.
