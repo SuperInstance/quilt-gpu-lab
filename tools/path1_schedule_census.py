@@ -116,12 +116,15 @@ def g2_anchors() -> dict:
     except ValueError:
         a["eproc_sigma0_refuses"] = True
     rungs = len(set(d["rung_digests"].values()))
-    a["eproc_grade_continues"] = rungs == 5
-    v = run_arm("verdict_gate minimum", "DIRECT")
+    a["eproc_grade_continues"] = False
+    a["_eproc_direct_endpoint"] = d["endpoint_digest"]  # used by census comparison
+    r = run_arm("eproc sigma", "RAMP")
+    a["eproc_grade_continues"] = len(set(r["rung_digests"].values())) == 5
+    v = run_arm("verdict_gate minimum", "RAMP")
     a["verdict_coarse"] = (len(set(v["rung_digests"].values())) == 2
                            and v["rung_digests"]["0.80"] == norm({"verdict": "PASS"})
                            and v["rung_digests"]["0.95"] == norm({"verdict": "FAIL"}))
-    dg = run_arm("degrade_gate tolerance", "DIRECT")
+    dg = run_arm("degrade_gate tolerance", "RAMP")
     a["degrade_coarse"] = (len(set(dg["rung_digests"].values())) == 2
                            and dg["rung_digests"]["0.0"] != dg["rung_digests"]["1.0"])
     a["ok"] = all([a["eproc_sigma0_refuses"], a["eproc_grade_continues"],
