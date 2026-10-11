@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-11T02:27:06.926847+00:00",
+  "generated_at": "2026-10-11T04:31:08.295824+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "bd273633d9d5209f662dfc40ba59c6aedb9cb6e0213b9412735eb9290415494e",
+    "RESULTS.md": "b809b29c4e829960ab08c944912ee7912c095f8b33081e9f4417614fbf6ad871",
     "QUEUE.md": "913d9ce17ab763e14cb11aea273536f549d87ae40163f6b93ca1a006546c1939"
   },
   "experiments": {
@@ -269,7 +269,7 @@
     "xq0_substrate_consolidation.py": "eae71b6a1c664669a941bc9be03e7574e0ec16fb6f9541250aae11c9384bb32a"
   },
   "tools": {
-    "README.md": "f6583a6b70e5b3f395ee99157e429bfcce5dae5e9dfd6f9be809615ddda26b7d",
+    "README.md": "8dac3a0360a184e9dc37f993023c5bcb87c98a52abdcf7524dcfbb1524796f90",
     "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "auc_sep.py": "65611d7fc6cb42e3bbd515bb4850e724bf5aa7d318086a4c5e906088f89bd6c9",
     "binom_gate.py": "54a02b649c10fc390b49c60131d720b342be8e7552b7189aa7825645f20c3aec",
@@ -352,6 +352,7 @@
     "qcell_oracle.pt": "fed2c15fb506899fdc0fb86a7656d965c4b0aae8bceda28d11d6850aec201eed",
     "qcell_sim.py": "8c82d4bcc88370c01870238a006fa62bdb6fe571f5c8951bcdae6f3cf7920962",
     "qmerge_census.py": "81642f80ea6aa42e5b517fe11ac39771c408312b276724b3c526f0ef69b32d1a",
+    "ratio_calib_gate.py": "d04052f4bb28998fea8e75ddcd999760f3d97bdde97f36eafd0a2f391e67f45a",
     "receipt_manifest.py": "4ea82dfe392f55d75436c629798cff167704592214b1ecb884becad75486475a",
     "regime_rob.py": "72a5a9cd69c6a9da9459404ca1f99e57bb1a63075c34cf00b2bd157a9e81ec30",
     "reloc_gate.py": "342f0c0c9a1d689fed5b06b11529249dd9674dfd813183034b91f839226499c2",
@@ -370,6 +371,7 @@
     "target_bisect.py": "489673b197ab1ed4ce4a6067ec45d9217f77bc3fbb3b9d4841a3d509099585cc",
     "test_append_witness.py": "ee737cb5836b6a8315af6571a8fc360c25e28c0ecae10c16fa8b58576e983144",
     "test_skill_semantic.py": "1045613b43a5b48c8dd22739c227fbaf9cce7102d179814592fbb3e13d1788c2",
+    "thresh1_trace_divergence.py": "966ba44465426ae0e39a75dbf9b78f95cb21eeee317a01d9c64dbeb719c519ce",
     "tie_census.py": "ce6330b22e96f32be53f2f8955283fd8d1096ded70dfef8c5714787cee9d0c26",
     "tol_pin.py": "65b5463ef607fb6f4daa1fab7098ce3a09d2927d505135b09099f8802c798372",
     "transition_kernel.py": "8364ec79e6e866fbf78d4fbd80a3514bf14f11394c4048a1dff30889e7796443",
