@@ -21,6 +21,8 @@
 - [DONE 07:2x Oct 3] **VSB-1 BOOKED: PASS (G1-G4)**: tools/vendor_strip_census.py — ls-tree vs batch-check EXACT agreement all 3539 files; nested-vendor strip bug caught by census itself (wg1_wgsl target/ ~200MB was ranking as real); raw 910.3MB, vendored 36.2%, real 580.7MB. Lesson: batch-check echoes RESOLVED oid — map positionally. Manifest re-sealed 976ed88 (clean-worktree).
 - [DONE 09:1x Oct 3] **RT-D1 BOOKED (docs)**: real-vs-repro differential pin added to docs/PREREG-CLAIM-PROTOCOL.md — reimplementations need a real-thing headless probe arm alongside the bit-exact repro; UNRUN must be explicit. Applies to MMX-1 and QG1d (both annotated in the doctrine). Source: fleet-triage b04b1e6 REAL-PROBE (SCOUT-31).
 - [DONE 17:2x Oct 9] SEAL-1 (spawned GOLDEN-PIN 2026-10-09): tracked-files-only seal scope + re-seal; gates G1-G4 in RESULTS.md GOLDEN-PIN 15:4x entry; CI red since Oct 6 must go green.
+- [open] GLOSS-1 (CPU ~30m, spawned by SCOUT-98): loss-liveness census — AST unwired-param check + degenerate-maximum probe over every scored/loss function behind booked verdicts. Gates G1-G4 in proposals/runs/SCOUT-98-fleet-push-2026-10-11-0524Z.md. TOP CPU slot.
+- [open] READING-LOW: quilt-neudecide pre-PoC (DECIDE-family adjacency, possible collision w/ DECIDE-1); quilt-cells seed; quilt-dpcpp watch.
 - [open] MMX-1 (GPU ~45m + 20m recon, spawned by SCOUT-15): MiniMoth→CUDA statevector bit-exact vs sealed exp008 (fleet-triage #1 B3 handoff); primary purpose = QG1d closure instrument (rebuild failing genome, separate stale-vs-fitness-diff). Gate: byte-identical statevectors at n=4 before any scaling claim.
 - [open] FT-D1 (design note, non-GPU, spawned by SCOUT-15): GPU-native cell runtime spec (fleet-triage #1 D1), sized by D12h/i/j W·T law; gate = QG4 cell at W=128/gens=100 in <10 min on the 4050.
 - [open] CH-1 (CPU reading ~30m, spawned by SCOUT-12): chiaroscuro HOLD/CAST abstention split -> map onto QO6 outcomes, draft HOLD-register spec addition for QO7. XR-1 raised (xruntime-conformance pushed post-read). Full sweep: proposals/runs/SCOUT-12-fleet-push-2026-10-01-1311Z.md.
@@ -93,6 +95,18 @@
   d12x_generator_corr_audit.py + results JSON + docs/SUBSTRATE-SYNTHESIS.md) — re-seal deferred per
   precedent; no sealed paths touched. GPU lane idle all slice (rotation: scout was the slot).
 - Rotation next wake: (B) AL-1 (cheap, top) or QO6t/DET-1d; GPU open (QG1d/QG4/MC-1).
+
+## SCOUT-98 (2026-10-11 0524Z) — CORROBORATE+TOOL, no CONTRADICT; GLOSS-1 spawned
+- Window: 13 canons reports + 3 new repos (quilt-cells seed, quilt-neudecide pre-PoC,
+  quilt-dpcpp placeholder); 0 PRs/issues/EMBASSY. HEADLINE f94f9a3: slackwater-cognition
+  `score_quality` never reads `game_state`; degenerate keyword-soup scores 1.000. Independently
+  reproduced at HEAD (clone + read; signature-only pass-through, marker counters confirmed).
+- CORROBORATE: our booked losses data-derived (QO1/QO6/THRESH-1/CONST-1) — unthreatened.
+  TOOL/STEAL: unwired-param AST check + degenerate-maximum probe (CONST-1 would NOT have caught
+  slackwater — its loss varies across arms; only its MAXIMUM is degenerate) → spawned **GLOSS-1**
+  (CPU ~30m, top CPU slot). READING-low: quilt-neudecide. Full text proposals/runs/SCOUT-98-
+  fleet-push-2026-10-11-0524Z.md. (C) satisfied by THRESH-1 in-booking G4 repro + 2a720cc re-seal;
+  untracked d12am file untouched. No GPU fired. Next rotation: (B) GLOSS-1 or QO7a/ND-1.
 
 ## SLICE 2026-10-07 04:1x AKDT (day-conductor) — (A) SCOUT-60: no CONTRADICT; DETERM-1 spawned (lattice-snap determinism)
 - (A) SCOUT-60 (full text proposals/runs/SCOUT-60-fleet-push-2026-10-07-1214Z.md): only external push in
