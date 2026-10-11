@@ -1,9 +1,9 @@
 {
   "schema": "quilt-gpu-lab/receipt-manifest@v1",
-  "generated_at": "2026-10-11T06:28:04.741118+00:00",
+  "generated_at": "2026-10-11T08:15:36.549574+00:00",
   "doctrine": "regenerate via tools/receipt_manifest.py; never edit by hand",
   "ledgers": {
-    "RESULTS.md": "b809b29c4e829960ab08c944912ee7912c095f8b33081e9f4417614fbf6ad871",
+    "RESULTS.md": "1247e55964914862862ac79a69db7582782939076f95d42ebf772c3a16550f8b",
     "QUEUE.md": "913d9ce17ab763e14cb11aea273536f549d87ae40163f6b93ca1a006546c1939"
   },
   "experiments": {
@@ -373,6 +373,7 @@
     "test_append_witness.py": "ee737cb5836b6a8315af6571a8fc360c25e28c0ecae10c16fa8b58576e983144",
     "test_skill_semantic.py": "1045613b43a5b48c8dd22739c227fbaf9cce7102d179814592fbb3e13d1788c2",
     "thresh1_trace_divergence.py": "966ba44465426ae0e39a75dbf9b78f95cb21eeee317a01d9c64dbeb719c519ce",
+    "thresh2_granularity_ladder.py": "39dad5e331c517d30cd1d0ef3c0e3a950b671501f3ff8267c25963278ab1e3c0",
     "tie_census.py": "ce6330b22e96f32be53f2f8955283fd8d1096ded70dfef8c5714787cee9d0c26",
     "tol_pin.py": "65b5463ef607fb6f4daa1fab7098ce3a09d2927d505135b09099f8802c798372",
     "transition_kernel.py": "8364ec79e6e866fbf78d4fbd80a3514bf14f11394c4048a1dff30889e7796443",
