@@ -1,0 +1,69 @@
+{
+ "name": "d12al_variance_inflation",
+ "seed": 2718,
+ "v": 2,
+ "model": "nulls ~ N(0,(1+c*rho^2)/(WT)); partner ~ N(s^1.92,1/(WT)); ratios vs own rho=0 baseline (constants cancel); P_succ>=0.5, 20k MC",
+ "s_decay": 0.09909980708622118,
+ "results": {
+  "8": {
+   "base_floor": 75,
+   "c_fit_rho02": 29.09652888774872,
+   "pred_floor_rho04": 407,
+   "meas_floor_rho04": 160,
+   "heldout_ratio": 0.8479166666666667,
+   "c_implied_rho04": 34.65840220451355,
+   "c_scaling_ratio": 1.1911524683312549
+  },
+  "16": {
+   "base_floor": 35,
+   "c_fit_rho02": 25.698795914649963,
+   "pred_floor_rho04": 175,
+   "meas_floor_rho04": 80,
+   "heldout_ratio": 0.75,
+   "c_implied_rho04": 35.0932776927948,
+   "c_scaling_ratio": 1.3655611651746447
+  }
+ },
+ "G1": true,
+ "G2": true,
+ "G3": false,
+ "verdict": "KILL",
+ "measured_rows": [
+  {
+   "W": 8,
+   "rho": 0.0,
+   "meas_floor": 25,
+   "meas_blowup": 1.0
+  },
+  {
+   "W": 8,
+   "rho": 0.2,
+   "meas_floor": 50,
+   "meas_blowup": 2.0
+  },
+  {
+   "W": 8,
+   "rho": 0.4,
+   "meas_floor": 160,
+   "meas_blowup": 6.4
+  },
+  {
+   "W": 16,
+   "rho": 0.0,
+   "meas_floor": 12,
+   "meas_blowup": 1.0
+  },
+  {
+   "W": 16,
+   "rho": 0.2,
+   "meas_floor": 25,
+   "meas_blowup": 2.0833333333333335
+  },
+  {
+   "W": 16,
+   "rho": 0.4,
+   "meas_floor": 80,
+   "meas_blowup": 6.666666666666667
+  }
+ ]
+}

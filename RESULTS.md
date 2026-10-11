@@ -7182,3 +7182,32 @@ Rotation next wake: (A) SCOUT-92 per rotation; GPU open (QG4/QG1d-corpus/MC-1).
 - Rotation next wake: (C) mandatory repro of THIS battery (rerun, byte-compare verdict),
   then (A) SCOUT-96 / (B) CONST-1 (spawned 15:2x, verify landed before closing); GPU
   open (QG4/QG1d-corpus/MC-1).
+
+## D12al 2026-10-10 ~18:2x AKDT (main lane booking of the foreign d12al files; PW-1 hold lifted by Casey "push everything" 18:10) — VERDICT KILL per frozen gates; G3 mis-band NAMED; constant-c rho^2 law SURVIVES heldout
+- Lineage: D12aj measured dependent-null MC discovery-floor blow-ups under common-mode
+  rho (W=8/16, p=0.3, eps=0: ~2x at rho=0.2, ~6.4x at rho=0.4); D12ak killed the
+  mean-shift explanation; D12al tests the variance-inflation model: nulls ~
+  N(0,(1+c*rho^2)/(WT)), partner ~ N(s^1.92,1/(WT)), s=(p(1-2eps))^1.92.
+- Provenance honesty: gates G1-G3 frozen in the script docstring before firing, but the
+  file was NEVER committed pre-run (foreign-lane landing; no pre-reg commit exists).
+  Named as a provenance weakness; booked now under Casey's push-everything directive.
+  Seed 2718, CPU MC (20k samples, bisection on 80-pt log T grid), deterministic.
+- Numbers (results/d12al_variance_inflation.json): W=8: model base floor 75, c_fit(rho=.2)
+  = 29.10, heldout pred(rho=.4) = 407 vs measured 160 -> ratio-to-ratio 0.848 (G2 PASS);
+  implied c(.4) = 34.66, c-scaling 1.191. W=16: base 35, c_fit = 25.70, pred 175 vs 80
+  -> 0.750 (G2 PASS); implied c(.4) = 35.09, c-scaling 1.366. G1 PASS, G2 PASS (both W),
+  G3 FAIL (band [3,5]) -> frozen verdict KILL. Stands as booked.
+- HARNESS FINDING (named in-landing): G3's band contradicts its own docstring. In the
+  IMPLEMENTED parametrization inflation = 1 + c*rho^2, a constant c predicts implied-c
+  ratio ~ 1.0; ratio ~ 4 corresponds to inflation scaling as rho^4. The [3,5] band
+  therefore tests a rho^4 ALTERNATIVE, not the docstring's "rho^2 scaling hypothesis".
+- What the data support: measured blow-ups are almost exactly 1 + c*rho^2 with a single
+  c ~ 26-35, roughly W-independent (W8: 1+29.10*0.04 = 2.16 vs measured 2.00,
+  1+34.66*0.16 = 6.54 vs 6.40; W16: 2.03 vs 2.08, 6.61 vs 6.67; implied c at rho=.4:
+  34.66 vs 35.09 across W). Tightest closed form yet for the dependent-null discovery-
+  floor blow-up: floor(rho)/floor(0) ~ 1 + 30*rho^2. Caveat: absolute model floors are
+  ~3x off measured (v1 finding); ratios only.
+- Follow-up spawned: D12am pre-reg re-freezes the constant-c gate (band justified by
+  T-grid quantization analysis, set BEFORE firing), denser grid (160 pts), adds cross-W
+  universality gate. New hypothesis test, not a re-roll (K3b: diagnose, never re-roll).
+- No GPU (CPU slot); no 429s; manifest re-sealed this landing.
