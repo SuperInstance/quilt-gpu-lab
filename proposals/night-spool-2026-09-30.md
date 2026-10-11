@@ -3286,3 +3286,18 @@ class) but NAMES the retention-asymmetry limit of the QO2 kill matrix.
   processes; nothing duplicated; no 429s.
 - Rotation next wake: (B) FW-2 follow-through or THRESH-1/PROP-1-class; GPU open (QG4/MC-1/
   QG1d-corpus).
+
+## SLICE 2026-10-10 20:2x-20:4x AKDT (day-conductor) — (B) THRESH-1 BOOKED: GREEN 4/4
+- (B) slot per 19:0x rotation (top open item THRESH-1). Pre-reg 8fce4c3 pushed BEFORE fire;
+  booked GREEN — all four parameterized knobs (determ1 eps, eproc sigma, degrade_gate
+  tolerance, verdict_gate minimum) witnessed by an adjacent-setting trace/verdict flip.
+  Zero q32-shape vacuous knobs in the censused stack. G4 SOFT: determ1 torch sub-lane is
+  run-to-run nondeterministic (verdict-level determinism holds; booked honestly). New
+  hazard: determ1_lattice_snap.py in-place output write = 6th RC-1 refuse-overwrite witness.
+  Degrade_gate lesson: knob-liveness is input-dependent (tolerance invisible on the
+  all-negative-delta docstring sweep).
+- (A) not this slice (SCOUT-97 landed 19:2x; window presumed quiet per rotation).
+- (C): newest prior booking CONST-1 already repro PASS byte-identical (19:2x); THRESH-1's
+  own G4 re-run is this booking's repro. Manifest re-seal attempted post-booking.
+- GPU lane idle all slice (CPU census slot, serial law honored). No 429s; nothing duplicated.
+- Rotation next wake: (A) SCOUT-98, or (B) QO7a / ND-1; GPU open (QG4/QG1d-corpus/MC-1).
