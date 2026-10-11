@@ -46,7 +46,7 @@ def k1_determ1() -> dict:
         out = REPO / f"results/determ1_lattice_snap/B-{tag}.json"
         if rc != 0 or not out.exists():
             return {"knob": "determ1 eps", "ok": False, "why": f"rc={rc} {so[-400:]}"}
-            # strip wall-clock field before digest (wall_s is nondeterministic
+        # strip wall-clock field before digest (wall_s is nondeterministic
             # bookkeeping, not trace); compare the physics payload only.
             rec = json.loads(out.read_text())
             rec.pop("wall_s", None)
