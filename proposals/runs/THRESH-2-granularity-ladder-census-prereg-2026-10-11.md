@@ -10,11 +10,20 @@ For each knob THRESH-1 witnessed at its endpoints, how many DISTINCT trace rungs
 the full ladder expose? Grade each knob COARSE vs CONTINUOUS; a non-monotone ladder
 (q34 hazard shape) is recorded as such, not scored dead.
 
+# AMENDMENT 1 (2026-10-11, pre-verdict, committed before the GREEN fire)
+First run exposed a census-design error: eproc REFUSES sigma=0.0 fail-loud
+(ValueError, PARAM-1's validated REQUIRED-refuse gate — the instrument is right,
+the ladder was out-of-domain). Not a knob defect. Amendment: eproc sigma ladder
+becomes 0.1, 0.25, 0.5, 0.75, 1.0; the sigma<=0.0 refusal is booked as a
+FINDING (fail-loud parameter gate witnessed, corroborates PARAM-1 G3), probed
+explicitly and required to raise. Anchor 0.5 != 0.75 unchanged.
+
 ## Knobs and pinned ladders (5 settings each, endpoints = THRESH-1 anchors)
 1. determ1 eps: 1e-1, 1e-2, 1e-3, 1e-4, 1e-5 (arm B, pinned runner; unique per-setting
    tags thresh2_eps* — never touches booked artifacts, honoring the 7th RC-1
    in-place-write witness; payload = booked JSON minus wall_s, canonical digest).
-2. eproc sigma: 0.0, 0.25, 0.5, 0.75, 1.0 (pinned 64-pt series from THRESH-1; digest of E).
+2. eproc sigma: 0.1, 0.25, 0.5, 0.75, 1.0 (AMENDED per Amendment 1; pinned 64-pt
+   series from THRESH-1; digest of E; sigma=0.0 must REFUSE = refusal finding).
 3. degrade_gate tolerance: 0.0, 0.25, 0.5, 0.75, 1.0 (pinned sweep incl. the
    tolerance-witnessing small positive delta; digest of output file bytes).
 4. verdict_gate minimum: 0.80, 0.85, 0.875, 0.90, 0.95 (pinned value 0.91, stat std 0.03
